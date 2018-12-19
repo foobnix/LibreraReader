@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"Musicus\"</string>
    <string name="save">Save</string>
    <string name="remember_choice">Onthoud de keuze</string>
-   <string name="edit_names">Bewerk namen</string>
+   <string name="edit">Bewerk</string>
    <string name="make_text_reflow">Tekst mode (tekst plaatsen)</string>
    <string name="open_with">Openen met</string>
    <string name="send_file">Verstuur bestand</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud niet verbonden</string>
    <string name="cloud_sync_folder">Cloud sync-map</string>
    <string name="clouds">Wolken</string>
-   <string name="add_to_cloud">Voeg toe aan de cloud</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Zoekbalk verbergen</string>
    <string name="show_search_bar">Toon zoekbalk</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Voorlezen met TTS</string>
    <string name="allow_minimum_brightness">Minimale helderheid toestaan</string>
    <string name="select">Kiezen</string>
+   <string name="create_playlist">Maak afspeellijst</string>
+   <string name="upload_to_cloud">Uploaden naar Сoud</string>
+   <string name="add_to_playlist">Toevoegen aan afspeellijst</string>
+   <string name="create_tag">Maak een tag</string>
+   <string name="add_tags">Tags toevoegen</string>
+   <string name="play">Spelen</string>
+   <string name="favorite">Favoriete</string>
+   <string name="playlists">Afspeellijsten</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Weet je zeker dat je de afspeellijst wilt verwijderen?</string>
 </resources>

@@ -248,7 +248,7 @@
    <string name="mode_musician">وضع \"موسيقي\"</string>
    <string name="save">حفظ</string>
    <string name="remember_choice">تذكر الخيار</string>
-   <string name="edit_names">تعديل الأسماء</string>
+   <string name="edit">تصحيح</string>
    <string name="make_text_reflow">وضع النص (إنحسر النص)</string>
    <string name="open_with">فتح باسم</string>
    <string name="send_file">إرسال ملف</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">السحابة غير متصلة</string>
    <string name="cloud_sync_folder">مجلد مزامنة السحابة</string>
    <string name="clouds">سحاب</string>
-   <string name="add_to_cloud">أضف إلى السحاب</string>
    <string name="librera_cloud">Librera سحابة</string>
    <string name="hide_search_bar">إخفاء شريط البحث</string>
    <string name="show_search_bar">إظهار شريط البحث</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">قراءة بصوت عال مع تحويل النص إلى كلام</string>
    <string name="allow_minimum_brightness">السماح بالحد الأدنى من السطوع</string>
    <string name="select">تحديد</string>
+   <string name="create_playlist">إنشاء قائمة التشغيل</string>
+   <string name="upload_to_cloud">تحميل على Сloud</string>
+   <string name="add_to_playlist">أضف إلى قائمة التشغيل</string>
+   <string name="create_tag">إنشاء علامة</string>
+   <string name="add_tags">اضف اشارة</string>
+   <string name="play">لعب</string>
+   <string name="favorite">مفضل</string>
+   <string name="playlists">قوائم التشغيل</string>
+   <string name="tags">الكلمات</string>
+   <string name="are_you_sure_to_delete_playlist_">هل أنت متأكد من حذف قائمة التشغيل؟</string>
 </resources>

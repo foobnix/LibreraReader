@@ -248,7 +248,7 @@
    <string name="mode_musician">Musician’s mode</string>
    <string name="save">Save</string>
    <string name="remember_choice">Remember selection</string>
-   <string name="edit_names">Edit</string>
+   <string name="edit">Edit</string>
    <string name="make_text_reflow">Reflow PDF</string>
    <string name="open_with">Open with</string>
    <string name="send_file">Send file</string>
@@ -449,7 +449,7 @@
    <string name="text_highlight_mode_is_disable">Text selection is disabled</string>
    <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we can fix the bug ASAP.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause on incoming calls, messages, etc.</string>
-   <string name="add_resource">Add bookshelf</string>
+   <string name="add_resource">Add Resource</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
    <string name="hyphenation_language">Language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replace white color in images with background color (day mode only)</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud is not connected</string>
    <string name="cloud_sync_folder">Cloud sync folder</string>
    <string name="clouds">Clouds</string>
-   <string name="add_to_cloud">Add to cloud</string>
    <string name="librera_cloud">Librera Cloud</string>
    <string name="hide_search_bar">Hide search bar</string>
    <string name="show_search_bar">Show search bar</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Read (TTS)</string>
    <string name="allow_minimum_brightness">Allow zero-brightness (black screen)</string>
    <string name="select">Select</string>
+   <string name="create_playlist">Create Playlist</string>
+   <string name="upload_to_cloud">Upload to Сloud</string>
+   <string name="add_to_playlist">Add to Playlist</string>
+   <string name="create_tag">Create tag</string>
+   <string name="add_tags">Add tags</string>
+   <string name="play">Play</string>
+   <string name="favorite">Favorite</string>
+   <string name="playlists">Playlists</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Are you sure to delete playlist?</string>
 </resources>

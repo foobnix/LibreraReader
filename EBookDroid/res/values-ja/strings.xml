@@ -248,7 +248,7 @@
    <string name="mode_musician">モード \"ミュージシャン\"</string>
    <string name="save">保存</string>
    <string name="remember_choice">選択肢を思い出して</string>
-   <string name="edit_names">名前の編集</string>
+   <string name="edit">編集</string>
    <string name="make_text_reflow">テキストモード（テキストリフロー）</string>
    <string name="open_with">次のアプリで開く</string>
    <string name="send_file">ファイルを送信</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">クラウドに接続されて</string>
    <string name="cloud_sync_folder">クラウド同期フォルダ</string>
    <string name="clouds">雲</string>
-   <string name="add_to_cloud">クラウドに追加</string>
    <string name="librera_cloud">リブレラの雲</string>
    <string name="hide_search_bar">検索バーを非表示にする</string>
    <string name="show_search_bar">検索バーを表示</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">TTSで大声で読む</string>
    <string name="allow_minimum_brightness">最小輝度を許可する</string>
    <string name="select">選択</string>
+   <string name="create_playlist">プレイリストを作成する</string>
+   <string name="upload_to_cloud">Сloudにアップロード</string>
+   <string name="add_to_playlist">プレイリストに追加する</string>
+   <string name="create_tag">タグを作成する</string>
+   <string name="add_tags">タグを追加する</string>
+   <string name="play">遊びます</string>
+   <string name="favorite">お気に入り</string>
+   <string name="playlists">プレイリスト</string>
+   <string name="tags">タグ</string>
+   <string name="are_you_sure_to_delete_playlist_">プレイリストを削除してもよろしいですか？</string>
 </resources>

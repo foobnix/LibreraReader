@@ -946,6 +946,7 @@
 
         <com.jmedeisis.draglinearlayout.DragLinearLayout
             android:id="@+id/dragLinearLayout"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 

@@ -248,7 +248,7 @@
    <string name="mode_musician">Režim \"Hudobník\"</string>
    <string name="save">Save</string>
    <string name="remember_choice">Pamätajte na výber</string>
-   <string name="edit_names">Upraviť mená</string>
+   <string name="edit">Editovať</string>
    <string name="make_text_reflow">Režim Text (Text pretavením)</string>
    <string name="open_with">Open with</string>
    <string name="send_file">Odoslať súbor</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud nie je pripojený</string>
    <string name="cloud_sync_folder">Zložka synchronizácie v cloude</string>
    <string name="clouds">Mraky</string>
-   <string name="add_to_cloud">Pridať do cloudu</string>
    <string name="librera_cloud">Oblak Librera</string>
    <string name="hide_search_bar">Skryť panel vyhľadávania</string>
    <string name="show_search_bar">Zobraziť panel vyhľadávania</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Prečítajte si nahlas s TTS</string>
    <string name="allow_minimum_brightness">Povoliť minimálny jas</string>
    <string name="select">Vybrať</string>
+   <string name="create_playlist">Vytvorte zoznam videí</string>
+   <string name="upload_to_cloud">Odovzdať do programu Sloud</string>
+   <string name="add_to_playlist">Pridať do zoznamu skladieb</string>
+   <string name="create_tag">Vytvorte značku</string>
+   <string name="add_tags">Pridať značky</string>
+   <string name="play">Hrať</string>
+   <string name="favorite">Najobľúbenejšie</string>
+   <string name="playlists">Playlisty</string>
+   <string name="tags">Tagy</string>
+   <string name="are_you_sure_to_delete_playlist_">Naozaj chcete odstrániť zoznam videí?</string>
 </resources>

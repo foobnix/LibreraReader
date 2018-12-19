@@ -44,6 +44,12 @@ public class MyPopupMenu {
         isTabsActivity = c instanceof MainTabs2;
     }
 
+    public MyPopupMenu(View anchor) {
+        this.c = anchor.getContext();
+        this.anchor = anchor;
+        isTabsActivity = c instanceof MainTabs2;
+    }
+
     public class Menu {
         String stringRes;
         int iconRes;

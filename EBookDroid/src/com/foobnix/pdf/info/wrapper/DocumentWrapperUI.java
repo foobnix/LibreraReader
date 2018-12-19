@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.DragingDialogs;
 import com.foobnix.pdf.info.view.DrawView;
 import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
@@ -878,6 +879,8 @@ public class DocumentWrapperUI {
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
+
+
 
     }
 
@@ -1855,6 +1858,8 @@ public class DocumentWrapperUI {
                     hideShowEditIcon();
 
                     updateSpeedLabel();
+
+                    DialogsPlaylist.dispalyPlaylist(a, dc);
 
                 }
             });

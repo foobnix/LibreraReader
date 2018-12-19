@@ -16,10 +16,12 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -163,13 +165,18 @@ public class ShareDialog {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         }
 
-        items.add(a.getString(R.string.my_tags));
-        if (isShowInfo) {
-            items.add(a.getString(R.string.file_info));
-        }
+        items.add(a.getString(R.string.add_tags));
 
         if (AppsConfig.isCloudsEnable) {
-            items.add(a.getString(R.string.add_to_cloud));
+            items.add(a.getString(R.string.upload_to_cloud));
+        }
+        final boolean isPlaylist = file.getName().endsWith(Playlists.L_PLAYLIST);
+        if (!isPlaylist) {
+            items.add(a.getString(R.string.add_to_playlist));
+        }
+
+        if (isShowInfo) {
+            items.add(a.getString(R.string.file_info));
         }
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -194,7 +201,7 @@ public class ShareDialog {
                                 AppState.get().isAlwaysOpenAsMagazine = false;
                             }
                             AppState.get().isMusicianMode = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
                         }
                     });
@@ -213,7 +220,7 @@ public class ShareDialog {
 
                                 }
                                 AppState.get().isMusicianMode = false;
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
                         });
                     }
@@ -225,7 +232,7 @@ public class ShareDialog {
                         public void run() {
                             AppState.get().isMusicianMode = true;
                             AppState.get().isAlwaysOpenAsMagazine = false;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1);
+                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });
                 }
@@ -259,11 +266,12 @@ public class ShareDialog {
                     }
                 } else if (which == i++) {
                     Dialogs.showTagsDialog(a, file, null);
+                } else if (AppsConfig.isCloudsEnable && which == i++) {
+                    showAddToCloudDialog(a, file);
+                } else if (!isPlaylist && which == i++) {
+                    DialogsPlaylist.showPlaylistsDialog(a, null, file);
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                } else if (which == i++) {
-                    showAddToCloudDialog(a, file);
-
                 }
 
             }
@@ -282,7 +290,7 @@ public class ShareDialog {
 
     public static void showAddToCloudDialog(final Activity a, final File file) {
         final AlertDialog.Builder inner = new AlertDialog.Builder(a);
-        inner.setTitle(R.string.add_to_cloud);
+        inner.setTitle(R.string.upload_to_cloud);
 
         List<Pair<Integer, Integer>> list = Arrays.asList(//
                 new Pair<Integer, Integer>(R.string.dropbox, R.drawable.dropbox), //

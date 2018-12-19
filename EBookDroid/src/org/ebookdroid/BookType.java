@@ -45,7 +45,7 @@ public enum BookType {
 
     MOBI(MobiContext.class, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
 
-    TXT(TxtContext.class, Arrays.asList("txt"), Arrays.asList("text/plain")),
+    TXT(TxtContext.class, Arrays.asList("txt", "playlist"), Arrays.asList("text/plain")),
 
     HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
 

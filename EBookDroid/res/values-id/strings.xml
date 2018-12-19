@@ -248,7 +248,7 @@
    <string name="mode_musician">Mode \"Musisi\"</string>
    <string name="save">Menyimpan</string>
    <string name="remember_choice">Ingat pilihan</string>
-   <string name="edit_names">Edit nama</string>
+   <string name="edit">Edit</string>
    <string name="make_text_reflow">Mode teks (Text Reflow)</string>
    <string name="open_with">Buka dengan</string>
    <string name="send_file">Kirim file</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud tidak terhubung</string>
    <string name="cloud_sync_folder">Folder sinkronisasi cloud</string>
    <string name="clouds">Awan</string>
-   <string name="add_to_cloud">Tambahkan ke cloud</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Sembunyikan bilah pencarian</string>
    <string name="show_search_bar">Tampilkan bilah penelusuran</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Baca dengan keras menggunakan TTS</string>
    <string name="allow_minimum_brightness">Izinkan Kecerahan Minimum</string>
    <string name="select">Memilih</string>
+   <string name="create_playlist">Buat Daftar Putar</string>
+   <string name="upload_to_cloud">Unggah ke Сloud</string>
+   <string name="add_to_playlist">Tambahkan ke Daftar Putar</string>
+   <string name="create_tag">Buat tag</string>
+   <string name="add_tags">Tambahkan tanda</string>
+   <string name="play">Bermain</string>
+   <string name="favorite">Favorit</string>
+   <string name="playlists">Playlist</string>
+   <string name="tags">Tag</string>
+   <string name="are_you_sure_to_delete_playlist_">Apakah Anda yakin untuk menghapus daftar putar?</string>
 </resources>

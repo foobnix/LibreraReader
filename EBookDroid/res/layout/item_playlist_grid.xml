@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <com.foobnix.pdf.info.view.UnderlineImageView
+        android:id="@+id/image1"
+        android:layout_width="80dip"
+        android:layout_height="120dip"
+        android:layout_weight="0"
+        android:background="@drawable/bg_clickable"
+        android:paddingLeft="2dip"
+        android:paddingRight="2dip"
+        android:layout_marginBottom="2dip"	
+        android:paddingBottom="8dip"
+        android:src="@drawable/glyphicons_2_book_open" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="80dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Lirbary"
+        android:textSize="@dimen/text_subtitle"
+        android:textColor="@color/white" />
+
+</LinearLayout>

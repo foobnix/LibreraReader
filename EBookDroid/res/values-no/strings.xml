@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"musiker\"</string>
    <string name="save">Lagre</string>
    <string name="remember_choice">Husk valg</string>
-   <string name="edit_names">Rediger navn</string>
+   <string name="edit">Redigere</string>
    <string name="make_text_reflow">Tekstmodus (Tekst Reflow)</string>
    <string name="open_with">Åpne med</string>
    <string name="send_file">Send fil</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud ikke tilkoblet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmappe</string>
    <string name="clouds">Skyer</string>
-   <string name="add_to_cloud">Legg til i skyen</string>
    <string name="librera_cloud">Flytt skyen</string>
    <string name="hide_search_bar">Skjul søkefelt</string>
    <string name="show_search_bar">Vis søkefelt</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Les høyt med TTS</string>
    <string name="allow_minimum_brightness">Tillat minimal lysstyrke</string>
    <string name="select">Å velge</string>
+   <string name="create_playlist">Lag spilleliste</string>
+   <string name="upload_to_cloud">Last opp til Сloud</string>
+   <string name="add_to_playlist">Legg til i spilleliste</string>
+   <string name="create_tag">Opprett tagg</string>
+   <string name="add_tags">Legg til merkelapper</string>
+   <string name="play">Spille</string>
+   <string name="favorite">Favoritt</string>
+   <string name="playlists">Spillelister</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
 </resources>

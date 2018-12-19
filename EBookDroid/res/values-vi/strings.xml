@@ -248,7 +248,7 @@
    <string name="mode_musician">Chế độ \"Nhạc sĩ\"</string>
    <string name="save">Tiết kiệm</string>
    <string name="remember_choice">Nhớ sự lựa chọn</string>
-   <string name="edit_names">Chỉnh sửa tên</string>
+   <string name="edit">Chỉnh sửa</string>
    <string name="make_text_reflow">Chế độ văn bản (Text Reflow)</string>
    <string name="open_with">Mở với</string>
    <string name="send_file">Gửi file</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Đám mây không được kết nối</string>
    <string name="cloud_sync_folder">Thư mục đồng bộ hóa trên đám mây</string>
    <string name="clouds">Mây</string>
-   <string name="add_to_cloud">Thêm vào đám mây</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Ẩn thanh tìm kiếm</string>
    <string name="show_search_bar">Hiển thị thanh tìm kiếm</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Đọc to với TTS</string>
    <string name="allow_minimum_brightness">Cho phép độ sáng tối thiểu</string>
    <string name="select">Lựa chọn</string>
+   <string name="create_playlist">Tạo danh sách phát</string>
+   <string name="upload_to_cloud">Tải lên lên</string>
+   <string name="add_to_playlist">Thêm vào danh sách phát</string>
+   <string name="create_tag">Tạo thẻ</string>
+   <string name="add_tags">Thêm thẻ</string>
+   <string name="play">Chơi</string>
+   <string name="favorite">Yêu thích</string>
+   <string name="playlists">Danh sách phát</string>
+   <string name="tags">Thẻ</string>
+   <string name="are_you_sure_to_delete_playlist_">Bạn có chắc chắn xóa danh sách phát?</string>
 </resources>

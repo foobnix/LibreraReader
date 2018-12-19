@@ -248,7 +248,7 @@
    <string name="mode_musician">Modus \"Musiker\"</string>
    <string name="save">Speichern</string>
    <string name="remember_choice">Denken Sie an die Wahl</string>
-   <string name="edit_names">Namen bearbeiten</string>
+   <string name="edit">Bearbeiten</string>
    <string name="make_text_reflow">Textmodus (Text Reflow)</string>
    <string name="open_with">Öffnen mit</string>
    <string name="send_file">Datei senden</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud nicht verbunden</string>
    <string name="cloud_sync_folder">Cloud-Synchronisierungsordner</string>
    <string name="clouds">Wolken</string>
-   <string name="add_to_cloud">Zur Wolke hinzufügen</string>
    <string name="librera_cloud">Librera Wolke</string>
    <string name="hide_search_bar">Suchleiste ausblenden</string>
    <string name="show_search_bar">Suchleiste anzeigen</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Mit TTS laut vorlesen</string>
    <string name="allow_minimum_brightness">Minimale Helligkeit zulassen</string>
    <string name="select">Wählen</string>
+   <string name="create_playlist">Wiedergabeliste erstellen</string>
+   <string name="upload_to_cloud">In Сloud hochladen</string>
+   <string name="add_to_playlist">Zur Titelliste hinzufügen</string>
+   <string name="create_tag">Tag erstellen</string>
+   <string name="add_tags">Tags hinzufügen</string>
+   <string name="play">Abspielen</string>
+   <string name="favorite">Liebling</string>
+   <string name="playlists">Wiedergabelisten</string>
+   <string name="tags">Stichworte</string>
+   <string name="are_you_sure_to_delete_playlist_">Möchten Sie die Wiedergabeliste wirklich löschen?</string>
 </resources>

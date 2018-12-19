@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 6
+version: 7
 ---
 [<](/wiki/)
 
 {1}常见问题解答
 
 * [如何将PDF转换为EPUB](/wiki/faq/convert-pdf-to-epub/zh)
+* [如何从外部SD卡中删除图书](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [创建自定义标签](/wiki/faq/custom-tags/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何在Android中增加PDF文档中的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)

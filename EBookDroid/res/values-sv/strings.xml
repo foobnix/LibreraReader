@@ -248,7 +248,7 @@
    <string name="mode_musician">Läge \"musiker\"</string>
    <string name="save">Spara</string>
    <string name="remember_choice">Kom ihåg valet</string>
-   <string name="edit_names">Redigera namn</string>
+   <string name="edit">Redigera</string>
    <string name="make_text_reflow">Textläge (Text Reflow)</string>
    <string name="open_with">Öppna med</string>
    <string name="send_file">Skicka Fil</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud inte anslutet</string>
    <string name="cloud_sync_folder">Cloud synkroniseringsmapp</string>
    <string name="clouds">Clouds</string>
-   <string name="add_to_cloud">Lägg till i molnet</string>
    <string name="librera_cloud">Librera moln</string>
    <string name="hide_search_bar">Dölj sökfältet</string>
    <string name="show_search_bar">Visa sökfältet</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Löst ut med TTS</string>
    <string name="allow_minimum_brightness">Tillåt minsta ljusstyrka</string>
    <string name="select">Välj</string>
+   <string name="create_playlist">Skapa spellista</string>
+   <string name="upload_to_cloud">Ladda upp till Сloud</string>
+   <string name="add_to_playlist">Lägg till i spellista</string>
+   <string name="create_tag">Skapa tagg</string>
+   <string name="add_tags">Lägg till taggar</string>
+   <string name="play">Spela</string>
+   <string name="favorite">Favorit</string>
+   <string name="playlists">Spellistor</string>
+   <string name="tags">Tags</string>
+   <string name="are_you_sure_to_delete_playlist_">Är du säker på att radera spellista?</string>
 </resources>

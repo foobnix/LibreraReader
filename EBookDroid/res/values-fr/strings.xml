@@ -248,7 +248,7 @@
    <string name="mode_musician">Mode \"Musicien\"</string>
    <string name="save">Sauver</string>
    <string name="remember_choice">Rappelez vous le choix</string>
-   <string name="edit_names">Modifier les noms</string>
+   <string name="edit">Modifier</string>
    <string name="make_text_reflow">Mode texte (Texte refusion)</string>
    <string name="open_with">Ouvrir avec</string>
    <string name="send_file">Envoyer le fichier</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud non connecté</string>
    <string name="cloud_sync_folder">Dossier de synchronisation du cloud</string>
    <string name="clouds">Des nuages</string>
-   <string name="add_to_cloud">Ajouter au nuage</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">Masquer la barre de recherche</string>
    <string name="show_search_bar">Afficher la barre de recherche</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">Lire à haute voix avec TTS</string>
    <string name="allow_minimum_brightness">Autoriser la luminosité minimale</string>
    <string name="select">Sélectionner</string>
+   <string name="create_playlist">Créer une playlist</string>
+   <string name="upload_to_cloud">Transférer vers Сloud</string>
+   <string name="add_to_playlist">Ajouter à la playlist</string>
+   <string name="create_tag">Créer un tag</string>
+   <string name="add_tags">Ajouter des balises</string>
+   <string name="play">Jouer</string>
+   <string name="favorite">Préféré</string>
+   <string name="playlists">Playlists</string>
+   <string name="tags">Mots clés</string>
+   <string name="are_you_sure_to_delete_playlist_">Êtes-vous sûr de vouloir supprimer la playlist?</string>
 </resources>

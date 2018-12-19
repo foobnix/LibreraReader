@@ -27,12 +27,12 @@
             android:src="@drawable/glyphicons_441_folder_closed" />
 
         <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dip"
-            android:gravity="center_vertical" >
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/text1"
@@ -59,12 +59,20 @@
                 android:textStyle="normal" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play"
+            android:layout_marginRight="10dip"
+            android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
-            android:layout_weight="0"
             android:layout_marginRight="4dip"
+            android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
             android:padding="7dip"
             android:src="@drawable/star_2"

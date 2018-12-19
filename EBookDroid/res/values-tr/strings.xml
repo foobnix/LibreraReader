@@ -248,7 +248,7 @@
    <string name="mode_musician">Mod \"Müzisyen\"</string>
    <string name="save">Kaydet</string>
    <string name="remember_choice">Seçimi hatırla</string>
-   <string name="edit_names">İsimleri düzenle</string>
+   <string name="edit">Düzenle</string>
    <string name="make_text_reflow">Metni yeniden akıt</string>
    <string name="open_with">Birlikte aç</string>
    <string name="send_file">Dosya Gönder</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Bulut bağlı değil</string>
    <string name="cloud_sync_folder">Bulut senkronizasyon klasörü</string>
    <string name="clouds">Bulutlar</string>
-   <string name="add_to_cloud">Bulut ekle</string>
    <string name="librera_cloud">Librera bulut</string>
    <string name="hide_search_bar">Arama çubuğunu gizle</string>
    <string name="show_search_bar">Arama çubuğunu göster</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">TTS ile yüksek sesle oku</string>
    <string name="allow_minimum_brightness">Minimum Parlaklığa İzin Ver</string>
    <string name="select">Seçmek</string>
+   <string name="create_playlist">Oynatma listesi yarat</string>
+   <string name="upload_to_cloud">Сloud\'a yükle</string>
+   <string name="add_to_playlist">Oynatma listesine ekle</string>
+   <string name="create_tag">Etiket oluştur</string>
+   <string name="add_tags">Etiket ekle</string>
+   <string name="play">Oyun</string>
+   <string name="favorite">Favori</string>
+   <string name="playlists">Çalma listeleri</string>
+   <string name="tags">Etiketler</string>
+   <string name="are_you_sure_to_delete_playlist_">Oynatma listesini silmek istediğinizden emin misiniz?</string>
 </resources>

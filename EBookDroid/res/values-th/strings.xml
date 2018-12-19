@@ -248,7 +248,7 @@
    <string name="mode_musician">โหมด \"นักดนตรี\"</string>
    <string name="save">บันทึก</string>
    <string name="remember_choice">โปรดจำไว้ว่าทางเลือก</string>
-   <string name="edit_names">แก้ไขชื่อ</string>
+   <string name="edit">แก้ไข</string>
    <string name="make_text_reflow">โหมดข้อความ (Text Reflow)</string>
    <string name="open_with">เปิดด้วย</string>
    <string name="send_file">ส่งไฟล์</string>
@@ -471,7 +471,6 @@
    <string name="cloud_not_connected">Cloud ไม่ได้เชื่อมต่อ</string>
    <string name="cloud_sync_folder">โฟลเดอร์ซิงค์ระบบคลาวด์</string>
    <string name="clouds">เมฆ</string>
-   <string name="add_to_cloud">เพิ่มลงในคลาวด์</string>
    <string name="librera_cloud">Librera cloud</string>
    <string name="hide_search_bar">ซ่อนแถบค้นหา</string>
    <string name="show_search_bar">แสดงแถบค้นหา</string>
@@ -506,4 +505,14 @@
    <string name="read_out_loud_with_tts">อ่านออกเสียงด้วย TTS</string>
    <string name="allow_minimum_brightness">อนุญาตความสว่างขั้นต่ำ</string>
    <string name="select">เลือก</string>
+   <string name="create_playlist">สร้างเพลย์ลิสต์</string>
+   <string name="upload_to_cloud">อัปโหลดไปที่Сloud</string>
+   <string name="add_to_playlist">เพิ่มลงในเพลย์ลิสต์</string>
+   <string name="create_tag">สร้างแท็ก</string>
+   <string name="add_tags">เพิ่มแท็ก</string>
+   <string name="play">เล่น</string>
+   <string name="favorite">ที่ชื่นชอบ</string>
+   <string name="playlists">รายการเพลง</string>
+   <string name="tags">แท็ก</string>
+   <string name="are_you_sure_to_delete_playlist_">คุณแน่ใจหรือไม่ว่าต้องการลบเพลย์ลิสต์</string>
 </resources>
