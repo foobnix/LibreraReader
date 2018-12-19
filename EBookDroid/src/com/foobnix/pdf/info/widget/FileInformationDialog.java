@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
@@ -33,8 +34,11 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.DefaultListeners;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
@@ -44,6 +48,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -194,6 +200,31 @@ public class FileInformationDialog {
 
             metaSeries.setText(sequence);
 
+            RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
+            recyclerView.setVisibility(View.VISIBLE);
+            recyclerView.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            List<FileMeta> result = AppDB.get().searchBy(SEARCH_IN.SERIES.getDotPrefix() + " " + fileMeta.getSequence(), SORT_BY.SERIES_INDEX, true);
+
+            FileMetaAdapter adapter = new FileMetaAdapter();
+            adapter.tempValue = FileMetaAdapter.TEMP_VALUE_SERIES;
+            adapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
+            adapter.getItemsList().addAll(result);
+            recyclerView.setAdapter(adapter);
+
+            DefaultListeners.bindAdapter(a, adapter);
+            adapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
+
+                @Override
+                public boolean onResultRecive(FileMeta result) {
+                    return true;
+                }
+            });
+
+
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaSeriesID)).setVisibility(View.GONE);
@@ -237,7 +268,7 @@ public class FileInformationDialog {
         };
         tagsRunnable.run();
 
-        TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.addTags)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -311,7 +342,7 @@ public class FileInformationDialog {
         convertFile.setVisibility(ExtUtils.isImageOrEpub(file) ? View.GONE : View.VISIBLE);
         convertFile.setVisibility(View.GONE);
 
-        TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.openWith)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -324,7 +355,7 @@ public class FileInformationDialog {
             }
         });
 
-        TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.sendFile)).setOnClickListener(new OnClickListener() {
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile)).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -337,7 +368,7 @@ public class FileInformationDialog {
             }
         });
 
-        TextView delete = TxtUtils.underlineTextView((TextView) dialog.findViewById(R.id.delete));
+        TextView delete = TxtUtils.underlineTextView(dialog.findViewById(R.id.delete));
         if (onDeleteAction == null) {
             delete.setVisibility(View.GONE);
         }

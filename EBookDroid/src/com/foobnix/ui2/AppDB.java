@@ -485,6 +485,7 @@ public class AppDB {
     }
 
     public List<FileMeta> searchBy(String str, SORT_BY sortby, boolean isAsc) {
+        LOG.d("searchBy", str);
         try {
             QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
             where.preferLocalizedStringOrder();

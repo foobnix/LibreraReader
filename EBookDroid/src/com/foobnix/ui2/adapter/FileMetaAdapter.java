@@ -65,7 +65,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_DIVIDER = 10;
 
-
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
     public static final int ADAPTER_COVERS = 3;
@@ -76,6 +75,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int TEMP_VALUE_NONE = 0;
     public static final int TEMP_VALUE_FOLDER_PATH = 1;
     public static final int TEMP_VALUE_STAR_GRID_ITEM = 2;
+    public static final int TEMP_VALUE_SERIES = 3;
     public int tempValue = TEMP_VALUE_NONE;
 
     public class FileMetaViewHolder extends RecyclerView.ViewHolder {
@@ -214,7 +214,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             return new StarsTitleViewHolder(itemView);
         }
 
-
         if (viewType == DISPALY_TYPE_LAYOUT_TITLE_BOOKS) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_starred_title_books, parent, false);
             return new StarsTitleViewHolder(itemView);
@@ -248,7 +247,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_list, parent, false);
             } else {
                 itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.browse_item_grid, parent, false);
-                if (tempValue == TEMP_VALUE_STAR_GRID_ITEM) {
+                if (tempValue == TEMP_VALUE_STAR_GRID_ITEM || tempValue == TEMP_VALUE_SERIES) {
                     itemView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
                     // itemView.getLayoutParams().height = itemView.getLayoutParams().width * 2;
                 }
@@ -347,7 +346,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             String path = fileMeta.getPath();
             Clouds.showHideCloudImage(holder.cloudImage, path);
 
-
         }
 
         else if (holderAll instanceof TagViewHolder) {
@@ -370,7 +368,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setText(fileMeta.getPath());
 
             holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
-
 
             TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
@@ -396,8 +393,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     }
                 });
             }
-
-
 
             if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
                 // holder.image.setVisibility(View.GONE);
@@ -887,6 +882,15 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         });
         if (!AppState.get().isBorderAndShadow) {
             holder.parent.setBackgroundColor(Color.TRANSPARENT);
+        }
+
+        if (tempValue == TEMP_VALUE_SERIES) {
+            holder.menu.setVisibility(View.GONE);
+            holder.star.setVisibility(View.GONE);
+            if (holder.tags != null) {
+                holder.tags.setVisibility(View.GONE);
+            }
+            holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
         }
 
         return fileMeta;
