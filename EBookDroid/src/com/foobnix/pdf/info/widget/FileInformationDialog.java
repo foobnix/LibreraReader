@@ -199,31 +199,32 @@ public class FileInformationDialog {
             }
 
             metaSeries.setText(sequence);
-
-            RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
-            recyclerView.setVisibility(View.VISIBLE);
-            recyclerView.setHasFixedSize(true);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
-            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-            recyclerView.setLayoutManager(linearLayoutManager);
-
             List<FileMeta> result = AppDB.get().searchBy(SEARCH_IN.SERIES.getDotPrefix() + " " + fileMeta.getSequence(), SORT_BY.SERIES_INDEX, true);
+            if (TxtUtils.isListNotEmpty(result) && result.size() > 1) {
 
-            FileMetaAdapter adapter = new FileMetaAdapter();
-            adapter.tempValue = FileMetaAdapter.TEMP_VALUE_SERIES;
-            adapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
-            adapter.getItemsList().addAll(result);
-            recyclerView.setAdapter(adapter);
+                RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setHasFixedSize(true);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
+                linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerView.setLayoutManager(linearLayoutManager);
 
-            DefaultListeners.bindAdapter(a, adapter);
-            adapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
+                FileMetaAdapter adapter = new FileMetaAdapter();
+                adapter.tempValue = FileMetaAdapter.TEMP_VALUE_SERIES;
+                adapter.setAdapterType(FileMetaAdapter.ADAPTER_GRID);
+                adapter.getItemsList().addAll(result);
+                recyclerView.setAdapter(adapter);
 
-                @Override
-                public boolean onResultRecive(FileMeta result) {
-                    return true;
-                }
-            });
+                DefaultListeners.bindAdapter(a, adapter);
+                adapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
 
+                    @Override
+                    public boolean onResultRecive(FileMeta result) {
+                        return true;
+                    }
+                });
+
+            }
 
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
