@@ -145,7 +145,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             imageDrag = (ImageView) itemView.findViewById(R.id.imageDrag);
 
             parent.setHapticFeedbackEnabled(false);
-            imageDrag.setHapticFeedbackEnabled(false);
+            if (imageDrag != null) {
+                imageDrag.setHapticFeedbackEnabled(false);
+            }
         }
 
         @Override

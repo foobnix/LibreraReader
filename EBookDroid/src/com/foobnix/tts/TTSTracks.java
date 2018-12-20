@@ -57,7 +57,7 @@ public class TTSTracks {
         return ExtUtils.getFileName(AppState.get().mp3BookPath);
     }
 
-    private static List<File> getAllMp3InFolder() {
+    public static List<File> getAllMp3InFolder() {
         if (TxtUtils.isEmpty(AppState.get().mp3BookPath)) {
             return null;
         }

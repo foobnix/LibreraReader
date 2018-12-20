@@ -1,5 +1,7 @@
 package com.foobnix.tts;
 
+import java.io.File;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -9,6 +11,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
@@ -24,6 +27,8 @@ import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -192,8 +197,39 @@ public class TTSControlsView extends FrameLayout {
             }
         });
 
-        ttsPrevTrack.setVisibility(TxtUtils.visibleIf(TTSTracks.isMultyTracks()));
-        ttsNextTrack.setVisibility(TxtUtils.visibleIf(TTSTracks.isMultyTracks()));
+        if (TTSTracks.isMultyTracks()) {
+            ttsPrevTrack.setVisibility(View.VISIBLE);
+            ttsNextTrack.setVisibility(View.VISIBLE);
+
+            trackName.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    MyPopupMenu menu = new MyPopupMenu(v);
+                    for (final File file : TTSTracks.getAllMp3InFolder()) {
+                        menu.getMenu().add(file.getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                TTSEngine.get().stop();
+                                AppState.get().mp3BookPath = file.getPath();
+                                TTSEngine.get().loadMP3(file.getPath(), true);
+                                udateButtons();
+                                return false;
+                            }
+
+
+                        });
+                    }
+                    menu.show();
+
+                }
+            });
+        } else {
+            ttsPrevTrack.setVisibility(View.GONE);
+            ttsNextTrack.setVisibility(View.GONE);
+
+        }
 
     }
 
@@ -274,8 +310,6 @@ public class TTSControlsView extends FrameLayout {
 
                     seekMp3.setMax(TTSEngine.get().mp.getDuration());
                     seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
-
-
 
                     udateButtons();
                 }

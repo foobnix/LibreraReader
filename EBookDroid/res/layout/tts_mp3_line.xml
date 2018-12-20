@@ -7,10 +7,11 @@
 
     <TextView
         android:id="@+id/trackName"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:text="" />
+        android:text="..." />
 
     <LinearLayout
         android:id="@+id/layoutMp3"

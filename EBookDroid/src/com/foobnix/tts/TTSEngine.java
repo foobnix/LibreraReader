@@ -333,6 +333,10 @@ public class TTSEngine {
     }
 
     public void loadMP3(String ttsPlayMp3Path) {
+        loadMP3(ttsPlayMp3Path, false);
+    }
+
+    public void loadMP3(String ttsPlayMp3Path, final boolean play) {
         try {
             mp3Destroy();
             mp = new MediaPlayer();
@@ -342,7 +346,11 @@ public class TTSEngine {
 
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    mp.pause();
+                    if (play) {
+                        mp.start();
+                    } else {
+                        mp.pause();
+                    }
                 }
             });
 
