@@ -15,6 +15,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
@@ -31,6 +32,7 @@ import com.foobnix.ui2.fast.FastScroller;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -78,7 +80,23 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int TEMP_VALUE_SERIES = 3;
     public int tempValue = TEMP_VALUE_NONE;
 
-    public class FileMetaViewHolder extends RecyclerView.ViewHolder {
+    public class ContextViewHolder extends RecyclerView.ViewHolder {
+        public View parent;
+        final Context c;
+
+        public ContextViewHolder(View itemView) {
+            super(itemView);
+            parent = itemView;
+            c = itemView.getContext();
+        }
+
+        public String getString(int resId) {
+            return c.getString(resId);
+        }
+
+    }
+
+    public class FileMetaViewHolder extends ContextViewHolder {
         public TextView title, author, path, browserExt, size, date, series, idPercentText;
         public LinearLayout tags;
         public ImageView image, star, signIcon, menu, cloudImage;
@@ -116,7 +134,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class DirectoryViewHolder extends RecyclerView.ViewHolder {
+    public class DirectoryViewHolder extends ContextViewHolder {
         public TextView title, path, play;
         public ImageView image, starIcon;
         public View parent;
@@ -132,7 +150,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class TagViewHolder extends RecyclerView.ViewHolder {
+    public class TagViewHolder extends ContextViewHolder {
         public TextView title;
         public ImageView image;
         public View parent;
@@ -145,7 +163,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class NameDividerViewHolder extends RecyclerView.ViewHolder {
+    public class NameDividerViewHolder extends ContextViewHolder {
         public TextView title;
         public ImageView image;
         public View parent;
@@ -158,7 +176,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class StarsLayoutViewHolder extends RecyclerView.ViewHolder {
+    public class StarsLayoutViewHolder extends ContextViewHolder {
         public RecyclerView recyclerView;
         public TextView clearAllRecent, clearAllStars, starredName, recentName;
         public View panelStars, panelRecent;
@@ -175,7 +193,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class StarsTitleViewHolder extends RecyclerView.ViewHolder {
+    public class StarsTitleViewHolder extends ContextViewHolder {
         public TextView clearAllFolders, clearAllBooks;
         public View parent;
         public ImageView onGridList;
@@ -189,7 +207,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
     }
 
-    public class NoneHolder extends RecyclerView.ViewHolder {
+    public class NoneHolder extends ContextViewHolder {
 
         public NoneHolder(View view) {
             super(view);
@@ -408,7 +426,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             if (fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
                 holder.image.setImageResource(R.drawable.glyphicons_160_playlist);
-                holder.starIcon.setVisibility(View.GONE);
+                holder.starIcon.setVisibility(View.VISIBLE);
                 holder.path.setVisibility(View.GONE);
                 holder.play.setVisibility(View.VISIBLE);
 
@@ -423,7 +441,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                         onItemLongClickListener.onResultRecive(fileMeta);
                     }
                 });
-                if (new File(fileMeta.getPath()).length() == 0) {
+                if (TEMP_VALUE_STAR_GRID_ITEM == tempValue || new File(fileMeta.getPath()).length() == 0) {
                     holder.play.setVisibility(View.GONE);
                 }
             }
@@ -450,9 +468,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
             List<FileMeta> allStars = AppDB.get().getStarsFiles();
-            final String STARRED = holder.starredName.getContext().getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
 
-            holder.recentName.setText(holder.starredName.getContext().getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
+            final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta();
+
+            final String STARRED = holder.getString(R.string.starred).toUpperCase(Locale.US) + " (" + allStars.size() + ")";
+
+            holder.recentName.setText(holder.getString(R.string.recent) + " (" + (getItemCount() - 1) + ")");
             holder.starredNameIcon.setImageResource(R.drawable.star_1);
             TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
@@ -505,34 +526,61 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             }
                         });
                     }
+
+                    if (TxtUtils.isListNotEmpty(playlists)) {
+                        final String nameName = holder.getString(R.string.playlists) + " (" + playlists.size() + ")";
+                        menu.getMenu().add(nameName).setIcon(R.drawable.glyphicons_160_playlist).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().recentTag = Playlists.L_PLAYLIST;
+                                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
+                                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+                                TxtUtils.underline(holder.starredName, nameName);
+
+                                adapter.getItemsList().clear();
+                                adapter.getItemsList().addAll(playlists);
+                                adapter.notifyDataSetChanged();
+
+                                return false;
+                            }
+                        });
+
+                    }
+
                     menu.show();
 
                 }
             });
-
+            adapter.getItemsList().clear();
             if (TxtUtils.isEmpty(AppState.get().recentTag)) {
                 holder.starredNameIcon.setImageResource(R.drawable.star_1);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
                 TxtUtils.underline(holder.starredName, STARRED);
-
-                adapter.getItemsList().clear();
                 adapter.getItemsList().addAll(allStars);
-                adapter.notifyDataSetChanged();
+
+            } else if (Playlists.L_PLAYLIST.equals(AppState.get().recentTag)) {
+                final String nameName = holder.getString(R.string.playlists) + " (" + playlists.size() + ")";
+
+                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
+                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+
+                TxtUtils.underline(holder.starredName, nameName);
+                adapter.getItemsList().addAll(playlists);
 
             } else {
 
                 holder.starredNameIcon.setImageResource(R.drawable.glyphicons_67_tags);
                 TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
 
-                adapter.getItemsList().clear();
                 List<FileMeta> allTags = AppDB.get().searchBy("@tags " + AppState.get().recentTag, SORT_BY.FILE_NAME, false);
                 adapter.getItemsList().addAll(allTags);
-                adapter.notifyDataSetChanged();
 
                 TxtUtils.underline(holder.starredName, AppState.get().recentTag + " (" + allTags.size() + ")");
 
             }
+            adapter.notifyDataSetChanged();
 
         } else if (holderAll instanceof AuthorViewHolder) {
             AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;

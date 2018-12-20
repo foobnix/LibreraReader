@@ -7,11 +7,14 @@
 
     <TextView
         android:id="@+id/trackName"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="4dip"
         android:singleLine="true"
-        android:text="..." />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="1 Track.mp3"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/layoutMp3"
@@ -21,11 +24,11 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:layout_marginLeft="4dip"
-            android:layout_marginRight="4dip"
             android:id="@+id/seekCurrent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:layout_weight="0"
             android:text="00:10"
             android:textSize="@dimen/text_subtitle" />
@@ -37,11 +40,11 @@
             android:layout_weight="1" />
 
         <TextView
-             android:layout_marginLeft="4dip"
-            android:layout_marginRight="4dip"
             android:id="@+id/seekMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
             android:layout_weight="0"
             android:text="5:45"
             android:textSize="@dimen/text_subtitle" />

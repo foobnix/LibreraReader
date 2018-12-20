@@ -346,13 +346,12 @@ public class TTSEngine {
 
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    if (play) {
-                        mp.start();
-                    } else {
                         mp.pause();
-                    }
                 }
             });
+            if (play) {
+                mp.start();
+            }
 
             mTimer = new Timer();
 
