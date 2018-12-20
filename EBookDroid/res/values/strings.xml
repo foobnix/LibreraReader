@@ -378,7 +378,7 @@
    <string name="banner_slogan_LIRBI_READER">A reliable and feature-rich application for reading all e-book formats</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">A paid version of the best e-book reader for Android devices</string>
    <string name="banner_slogan_EPUB_READER">The most customizable and versatile reader for e-books</string>
-   <string name="banner_slogan_PDF_READER">The most convenient reader for PDF and DjVu documents</string>
+   <string name="banner_slogan_PDF_READER">The most comfortable reader for PDF and DjVu documents</string>
    <string name="books">Books</string>
    <string name="reading_out_loud">TTS Reading</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ad-free): a Leading ePUB and PDF Reader</string>
@@ -449,7 +449,7 @@
    <string name="text_highlight_mode_is_disable">Text selection is disabled</string>
    <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we can fix the bug ASAP.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause on incoming calls, messages, etc.</string>
-   <string name="add_resource">Add Resource</string>
+   <string name="add_resource">Add storage</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
    <string name="hyphenation_language">Language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replace white color in images with background color (day mode only)</string>
@@ -505,14 +505,14 @@
    <string name="read_out_loud_with_tts">Read (TTS)</string>
    <string name="allow_minimum_brightness">Allow zero-brightness (black screen)</string>
    <string name="select">Select</string>
-   <string name="create_playlist">Create Playlist</string>
-   <string name="upload_to_cloud">Upload to Сloud</string>
-   <string name="add_to_playlist">Add to Playlist</string>
+   <string name="create_playlist">Create playlist</string>
+   <string name="upload_to_cloud">Upload to cloud</string>
+   <string name="add_to_playlist">Add to playlist</string>
    <string name="create_tag">Create tag</string>
    <string name="add_tags">Add tags</string>
    <string name="play">Play</string>
    <string name="favorite">Favorite</string>
    <string name="playlists">Playlists</string>
    <string name="tags">Tags</string>
-   <string name="are_you_sure_to_delete_playlist_">Are you sure to delete playlist?</string>
+   <string name="are_you_sure_to_delete_playlist_">Delete this playlist?</string>
 </resources>
