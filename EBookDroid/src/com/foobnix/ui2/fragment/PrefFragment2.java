@@ -141,6 +141,9 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void run() {
+                if (getActivity() == null) {
+                    return;
+                }
                 AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_neet_to_apply_the_new_settings), getString(R.string.ok), new Runnable() {
 
                     @Override
@@ -315,6 +318,9 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
+                if (getActivity() == null) {
+                    return;
+                }
 
                 AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
 
@@ -770,6 +776,10 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void run() {
+                if (getActivity() == null) {
+                    return;
+                }
+
                 AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.you_need_to_update_the_library), getString(R.string.ok), new Runnable() {
 
                     @Override

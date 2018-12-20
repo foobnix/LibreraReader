@@ -363,7 +363,7 @@ public class ExtUtils {
     }
 
     public static boolean isNoTextLayerForamt(String name) {
-        return BookType.DJVU.is(name) || BookType.CBR.is(name) || BookType.CBZ.is(name) || BookType.TIFF.is(name);
+        return BookType.CBR.is(name) || BookType.CBZ.is(name) || BookType.TIFF.is(name);
     }
 
     public static String getMimeTypeByUri(Uri uri) {
