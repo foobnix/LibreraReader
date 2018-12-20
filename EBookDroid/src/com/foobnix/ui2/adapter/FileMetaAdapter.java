@@ -426,7 +426,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             if (fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
                 holder.image.setImageResource(R.drawable.glyphicons_160_playlist);
-                holder.starIcon.setVisibility(View.VISIBLE);
+                holder.starIcon.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
                 holder.play.setVisibility(View.VISIBLE);
 
@@ -527,26 +527,23 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                         });
                     }
 
-                    if (TxtUtils.isListNotEmpty(playlists)) {
-                        final String nameName = holder.getString(R.string.playlists) + " (" + playlists.size() + ")";
-                        menu.getMenu().add(nameName).setIcon(R.drawable.glyphicons_160_playlist).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    final String nameName = holder.getString(R.string.playlists) + " (" + playlists.size() + ")";
+                    menu.getMenu().add(nameName).setIcon(R.drawable.glyphicons_160_playlist).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().recentTag = Playlists.L_PLAYLIST;
-                                holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
-                                TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
-                                TxtUtils.underline(holder.starredName, nameName);
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            AppState.get().recentTag = Playlists.L_PLAYLIST;
+                            holder.starredNameIcon.setImageResource(R.drawable.glyphicons_160_playlist);
+                            TintUtil.setTintImageNoAlpha(holder.starredNameIcon, Color.WHITE);
+                            TxtUtils.underline(holder.starredName, nameName);
 
-                                adapter.getItemsList().clear();
-                                adapter.getItemsList().addAll(playlists);
-                                adapter.notifyDataSetChanged();
+                            adapter.getItemsList().clear();
+                            adapter.getItemsList().addAll(playlists);
+                            adapter.notifyDataSetChanged();
 
-                                return false;
-                            }
-                        });
-
-                    }
+                            return false;
+                        }
+                    });
 
                     menu.show();
 
