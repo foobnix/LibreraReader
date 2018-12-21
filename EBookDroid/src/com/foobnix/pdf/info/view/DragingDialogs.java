@@ -71,6 +71,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
+import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -542,7 +543,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                       
+
                         int[] items = { 1, 15, 30, 45, 60, 90, 120, 240, 360 };
                         for (final int i : items) {
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -740,10 +741,19 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFileorFolder((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
                             @Override
                             public boolean onResultRecive(String result1, Dialog result2) {
+                                LOG.d("onResultRecive", result1);
+                                if (new File(result1).isDirectory()) {
+                                    LOG.d("onResultRecive Directory", result1);
+                                    String firstMp3Infoder = TTSTracks.getFirstMp3Infoder(result1);
+                                    if (firstMp3Infoder != null) {
+                                        result1 = firstMp3Infoder;
+                                    }
+                                    LOG.d("onResultRecive firstMp3Infoder", result1);
+                                }
                                 if (ExtUtils.isAudioContent(result1)) {
 
                                     AppState.get().mp3BookPath = result1;
@@ -1531,9 +1541,9 @@ public class DragingDialogs {
                 image.setBackgroundResource(R.drawable.bg_border_ltgray);
 
                 TintUtil.setTintImageWithAlpha(image, Color.LTGRAY);
-                
+
                 image.setOnClickListener(new OnClickListener() {
-                    
+
                     @Override
                     public void onClick(View v) {
                         DialogTranslateFromTo.show(controller.getActivity(), true, new Runnable() {
@@ -1544,10 +1554,10 @@ public class DragingDialogs {
                                 selectTextMenu(anchor, controller, withAnnotation, reloadUI);
                             }
                         });
-                        
+
                     }
                 });
-                
+
                 FrameLayout fr = new FrameLayout(controller.getActivity());
                 image.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
                 fr.addView(image);

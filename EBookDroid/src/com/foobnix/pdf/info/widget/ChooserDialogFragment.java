@@ -50,6 +50,16 @@ public class ChooserDialogFragment extends DialogFragment {
         return ch;
     }
 
+    public static ChooserDialogFragment chooseFileorFolder(FragmentActivity a, String text) {
+        ChooserDialogFragment ch = new ChooserDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(BrowseFragment2.EXTRA_TYPE, BrowseFragment2.TYPE_SELECT_FILE_OR_FOLDER);
+        bundle.putString(BrowseFragment2.EXTRA_TEXT, text);
+        ch.setArguments(bundle);
+        ch.show(a.getSupportFragmentManager(), "da");
+        return ch;
+    }
+
     public static ChooserDialogFragment createFile(FragmentActivity a, String text) {
         ChooserDialogFragment ch = new ChooserDialogFragment();
         Bundle bundle = new Bundle();

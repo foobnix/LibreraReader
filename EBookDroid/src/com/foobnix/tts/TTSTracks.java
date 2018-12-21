@@ -90,4 +90,36 @@ public class TTSTracks {
         return items;
     }
 
+    public static String getFirstMp3Infoder(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            return null;
+        }
+        File root = new File(path);
+        if (!root.isDirectory()) {
+            return null;
+        }
+
+        File[] listFiles = root.listFiles(new FilenameFilter() {
+
+            @Override
+            public boolean accept(File dir, String name) {
+                for (String ext : ExtUtils.AUDIO) {
+                    if (name.toLowerCase(Locale.US).endsWith(ext)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        if (listFiles == null || listFiles.length == 0) {
+            return null;
+        }
+
+        List<File> items = new ArrayList<File>(Arrays.asList(listFiles));
+
+        Collections.sort(items, FileMetaComparators.BY_PATH_FILE);
+
+        return items.get(0).getPath();
+    }
+
 }

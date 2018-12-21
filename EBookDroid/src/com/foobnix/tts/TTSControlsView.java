@@ -200,36 +200,35 @@ public class TTSControlsView extends FrameLayout {
         if (TTSTracks.isMultyTracks()) {
             ttsPrevTrack.setVisibility(View.VISIBLE);
             ttsNextTrack.setVisibility(View.VISIBLE);
-
-            trackName.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    MyPopupMenu menu = new MyPopupMenu(v);
-                    for (final File file : TTSTracks.getAllMp3InFolder()) {
-                        menu.getMenu().add(file.getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                TTSEngine.get().stop();
-                                AppState.get().mp3BookPath = file.getPath();
-                                TTSEngine.get().loadMP3(file.getPath(), true);
-                                udateButtons();
-                                return false;
-                            }
-
-
-                        });
-                    }
-                    menu.show();
-
-                }
-            });
         } else {
             ttsPrevTrack.setVisibility(View.GONE);
             ttsNextTrack.setVisibility(View.GONE);
 
         }
+        trackName.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MyPopupMenu menu = new MyPopupMenu(v);
+                for (final File file : TTSTracks.getAllMp3InFolder()) {
+                    menu.getMenu().add(file.getName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            TTSEngine.get().stop();
+                            AppState.get().mp3BookPath = file.getPath();
+                            TTSEngine.get().loadMP3(file.getPath(), true);
+                            udateButtons();
+                            return false;
+                        }
+
+
+                    });
+                }
+                menu.show();
+
+            }
+        });
 
     }
 
