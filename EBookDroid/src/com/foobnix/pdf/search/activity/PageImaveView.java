@@ -464,43 +464,48 @@ public class PageImaveView extends View {
 
                 if (event.getPointerCount() == 2) {
                     isIgronerClick = true;
-                    LOG.d("TEST", "action ACTION_MOVE 2");
-                    if (cx == 0) {
-                        cx = centerX(event);
-                        cy = centerY(event);
-                    }
-                    final float nDistance = discance(event);
 
-                    if (distance == 0) {
+                    if (!clickUtils.isIgoreZoom(event)) {
+
+                        LOG.d("TEST", "action ACTION_MOVE 2");
+                        if (cx == 0) {
+                            cx = centerX(event);
+                            cy = centerY(event);
+                        }
+                        final float nDistance = discance(event);
+
+                        if (distance == 0) {
+                            distance = nDistance;
+                        }
+
+                        final float scale = nDistance / distance;
                         distance = nDistance;
-                    }
+                        final float centerX = centerX(event);
+                        final float centerY = centerY(event);
 
-                    final float scale = nDistance / distance;
-                    distance = nDistance;
-                    final float centerX = centerX(event);
-                    final float centerY = centerY(event);
+                        final float values[] = new float[9];
+                        imageMatrix().getValues(values);
 
-                    final float values[] = new float[9];
-                    imageMatrix().getValues(values);
-
-                    if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
-                        LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
-                        if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
-                            imageMatrix().postScale(scale, scale, centerX, centerY);
+                        if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
+                            LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
+                            if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
+                                imageMatrix().postScale(scale, scale, centerX, centerY);
+                                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+                            }
+                        }
+                        final float dx = centerX - cx;
+                        final float dy = centerY - cy;
+                        if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
+                            imageMatrix().postTranslate(dx, dy);
                             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                         }
-                    }
-                    final float dx = centerX - cx;
-                    final float dy = centerY - cy;
-                    if (AppState.get().isAllowMoveTwoFingerWithLock || !AppState.get().isLocked) {
-                        imageMatrix().postTranslate(dx, dy);
-                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
-                    }
-                    cx = centerX(event);
-                    cy = centerY(event);
+                        cx = centerX(event);
+                        cy = centerY(event);
 
-                    PageImageState.get().isAutoFit = false;
-                    invalidateAndMsg();
+                        PageImageState.get().isAutoFit = false;
+                        invalidateAndMsg();
+
+                    }
 
                 }
             } else if (action == MotionEvent.ACTION_POINTER_UP) {
