@@ -9,7 +9,7 @@ public class ClickUtils {
     private int WIDHT_X, HEIGHT_Y;
     private float border_side = 0;
     private float border_top = 0;
-    private static int DP_IGNORE = Dips.DP_50;
+    private static int DP_IGNORE = Dips.DP_15;
 
     public ClickUtils() {
         init();
@@ -24,10 +24,14 @@ public class ClickUtils {
     }
 
     public boolean isIgoreZoom(final MotionEvent event) {
-        if (event.getY() < DP_IGNORE || event.getY(1) < DP_IGNORE) {
+        if (!AppState.get().isLocked) {
+            return false;
+        }
+
+        if (event.getX() < DP_IGNORE || event.getX(1) < DP_IGNORE) {
             return true;
         }
-        if (event.getY() > (HEIGHT_Y - DP_IGNORE) || event.getY(1) > (HEIGHT_Y - DP_IGNORE)) {
+        if (event.getX() > (WIDHT_X - DP_IGNORE) || event.getX(1) > (WIDHT_X - DP_IGNORE)) {
             return true;
         }
         return false;

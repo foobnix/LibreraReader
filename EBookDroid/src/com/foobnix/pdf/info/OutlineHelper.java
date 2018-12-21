@@ -57,10 +57,10 @@ public class OutlineHelper {
         Info info = new Info();
 
         String DV = " ∕ ";
-        String SP = "  ";
+        String SP = "    ";
         if (compact) {
             DV = "/";
-            SP = "";
+            SP = " ";
         }
 
         int max = dc.getPageCount();
@@ -76,10 +76,10 @@ public class OutlineHelper {
         }
 
         if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_1) {
-            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + "  " + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
+            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
 
             int leftPages = getLeftPages(dc);
-            text += SP + "  (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
+            text += SP + "(" + leftPages + ")" + (!compact && leftPages < 10 ? "  " : "");
 
             info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
@@ -110,7 +110,7 @@ public class OutlineHelper {
                 currentChapterAsString = TxtUtils.substringSmart(currentChapterAsString, len);
 
                 info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + DV + totalChapter;
-                info.chText += pageRel < 10 ? "  " : "";
+                info.chText += !compact && pageRel < 10 ? "  " : "";
             }
         }
 
