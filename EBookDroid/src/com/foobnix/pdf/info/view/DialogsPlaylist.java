@@ -363,7 +363,13 @@ public class DialogsPlaylist {
 
         }, true);
         if (dc != null && dc.getCurrentBook() != null) {
-            adapter.setCurrentPath(dc.getCurrentBook().getPath());
+            String path = dc.getCurrentBook().getPath();
+            adapter.setCurrentPath(path);
+            int indexOf = res.indexOf(path);
+            if (indexOf > 3) {
+                playlistRecycleView.scrollToPosition(indexOf - 3);
+            }
+
         }
         playlistRecycleView.setAdapter(adapter);
 

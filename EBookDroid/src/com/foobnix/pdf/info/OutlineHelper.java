@@ -57,8 +57,10 @@ public class OutlineHelper {
         Info info = new Info();
 
         String DV = " ∕ ";
+        String SP = "  ";
         if (compact) {
             DV = "/";
+            SP = "";
         }
 
         int max = dc.getPageCount();
@@ -74,10 +76,10 @@ public class OutlineHelper {
         }
 
         if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_1) {
-            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + "  " + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
+            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + "  " + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
 
             int leftPages = getLeftPages(dc);
-            text += "  (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
+            text += SP + "  (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
 
             info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
