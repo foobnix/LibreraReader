@@ -1323,7 +1323,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                DialogTranslateFromTo.show(getActivity(), new Runnable() {
+                DialogTranslateFromTo.show(getActivity(), false, new Runnable() {
 
                     @Override
                     public void run() {

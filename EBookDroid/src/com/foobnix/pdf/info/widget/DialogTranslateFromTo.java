@@ -169,7 +169,7 @@ public class DialogTranslateFromTo {
         return DictItem.fetchDictName(AppState.get().rememberDict);
     }
 
-    public static AlertDialog show(final Activity a, final Runnable runnable) {
+    public static AlertDialog show(final Activity a, boolean onlyoffline, final Runnable runnable) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(a);
         alertDialog.setTitle(R.string.remember_dictionary);
@@ -180,6 +180,15 @@ public class DialogTranslateFromTo {
         final Spinner spinnerTo = (Spinner) body.findViewById(R.id.spinnerTo);
 
         ImageView imageOk = (ImageView) body.findViewById(R.id.imageOK);
+
+        View onReverse = body.findViewById(R.id.onReverse);
+
+        if (onlyoffline) {
+            spinnerFrom.setVisibility(View.GONE);
+            spinnerTo.setVisibility(View.GONE);
+            imageOk.setVisibility(View.GONE);
+            onReverse.setVisibility(View.GONE);
+        }
 
         final List<String> langNames = new ArrayList<String>(langs.keySet());
         final List<String> langCodes = new ArrayList<String>(langs.values());
@@ -207,7 +216,9 @@ public class DialogTranslateFromTo {
         final ListView dictSpinner = (ListView) body.findViewById(R.id.dictionaries);
 
         final List<DictItem> list = DictsHelper.getAllResolveInfoAsDictItem1(a, "");
+        if (!onlyoffline) {
         list.addAll(DictsHelper.getOnlineDicts(a, ""));
+        }
 
         dictSpinner.setAdapter(new BaseItemLayoutAdapter<DictItem>(a, R.layout.item_dict_line, list) {
             @Override
@@ -222,7 +233,7 @@ public class DialogTranslateFromTo {
             }
         });
 
-        body.findViewById(R.id.onReverse).setOnClickListener(new OnClickListener() {
+        onReverse.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -250,6 +261,7 @@ public class DialogTranslateFromTo {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AppState.get().rememberDict = list.get(position).toString();
+                AppState.get().rememberDictPackage = list.get(position).pkg;
 
                 AppState.get().fromLang = langCodes.get(spinnerFrom.getSelectedItemPosition());
                 AppState.get().toLang = langCodes.get(spinnerTo.getSelectedItemPosition());

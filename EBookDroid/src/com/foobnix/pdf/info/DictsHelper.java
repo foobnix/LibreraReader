@@ -27,12 +27,14 @@ public class DictsHelper {
     public static class DictItem {
         public String name;
         public String type;
+        public String pkg;
         public Drawable image;
 
-        public DictItem(String name, String type, Drawable image) {
+        public DictItem(String name, String type, String pkg, Drawable image) {
             this.name = name;
             this.type = type;
             this.image = image;
+            this.pkg = pkg;
         }
 
         @Override
@@ -124,7 +126,7 @@ public class DictsHelper {
             }
             String name = item.activityInfo.loadLabel(c.getPackageManager()).toString();
 
-            items.add(new DictItem(name, type, icon));
+            items.add(new DictItem(name, type, item.activityInfo.packageName, icon));
         }
 
         return items;
@@ -145,7 +147,7 @@ public class DictsHelper {
         List<DictItem> items = new ArrayList<DictItem>();
         Set<String> keySet = AppState.getDictionaries(text).keySet();
         for (String it : keySet) {
-            items.add(new DictItem(it, "web", null));
+            items.add(new DictItem(it, "web", "", null));
         }
         return items;
     }

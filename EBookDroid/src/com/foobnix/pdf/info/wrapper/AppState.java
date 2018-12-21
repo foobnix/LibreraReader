@@ -434,6 +434,8 @@ public class AppState {
 
     @IgnoreHashCode
     public String rememberDict = "web:Google Translate";
+    @IgnoreHashCode
+    public String rememberDictPackage = "";
 
     @IgnoreHashCode
     public boolean isRememberDictionary;
@@ -676,7 +678,8 @@ public class AppState {
 
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
-            "ling", //
+            "lingvo", //
+            "linguee", //
             "dic", //
             "livio", //
             "tran", //
