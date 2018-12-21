@@ -366,7 +366,7 @@ public class DocumentWrapperUI {
 
     public void updateSpeedLabel() {
 
-        Info info = OutlineHelper.getForamtingInfo(dc);
+        Info info = OutlineHelper.getForamtingInfo(dc, true);
 
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
