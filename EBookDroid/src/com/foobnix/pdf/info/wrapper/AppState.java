@@ -675,7 +675,7 @@ public class AppState {
 
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
-            "lingvo", //
+            "ling", //
             "dic", //
             "livio", //
             "tran", //
