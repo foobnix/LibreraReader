@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [Was ist neu](/wiki/what-is-new/de)
 
@@ -8,18 +8,18 @@ version: 1
 
 **Neue Funktionen**
 
-* Playlist (Büchersammlungen)
-* Benutzerdiagramme im Wortdialogfeld
-* Öffnen Sie den MP3-Ordner
-* Alle Serien im Dateiinformationsdialog
+* Wiedergabelisten (Buchgruppierungen)
+* Fügen Sie Apps (Wörterbücher) hinzu, um den ausgewählten Text im Textfenster zu öffnen
+* Wiedergabe von MP3-Dateien und -Ordnern
+* Buchreihe behandeln
 
 
 
-**Favoriten-Tab**
+**Registerkarte &quot;Favoriten&quot;**
 
-Die Registerkarte &quot;Favorit&quot; wurde neu gestaltet. Jetzt können Sie ganz einfach auf die **Tags** und **Playlists** zugreifen.
-Tags dienen zum Erstellen von Büchern in einigen Sammlungen, beispielsweise &quot;Math&quot; oder &quot;Reading now&quot;.
-Playlisten sind hauptsächlich für Musiker - es ist möglich, Bücher in der Nähe ausgewählt zu haben.
+Die Registerkarte **Favoriten** wurde neu gestaltet. Auf die Elemente **Tags** und **Playlists** kann jetzt problemlos zugegriffen werden.
+Markieren Sie Bücher, um sie nach beliebigen Kriterien zu gruppieren, z. B. &quot;Math&quot;, &quot;Thriller&quot;, &quot;Mystery&quot; usw. (Ein Tag kann auch über das Fenster &quot;Buchinformationen&quot; hinzugefügt werden.)
+Playlisten sind hauptsächlich für Musiker gedacht: Es ist einfach, ausgewählte Dokumente griffbereit zu haben und die Liste zu bearbeiten.
 
 
 ||||
@@ -29,36 +29,38 @@ Playlisten sind hauptsächlich für Musiker - es ist möglich, Bücher in der N�
 **Wiedergabelisten**
 
 * Erstellen Sie Wiedergabelisten
-* Ziehen Sie, um die Reihenfolge zu ändern, streichen Sie nach links, um aus der Liste zu entfernen
-* Alle Bücher aus der Wiedergabeliste
+* Ziehen Sie an den Ziehpunkten, um die Buchreihenfolge zu ändern
+* Wischen Sie nach rechts / links, um ein Buch aus der Liste zu entfernen
+* Tippen Sie auf Bearbeiten, um Änderungen an der Liste vorzunehmen.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**Benutzer-App zum Dialog hinzufügen**
+**Benutzer-Apps hinzufügen**
 
-Es ist möglich, Wörter oder Sätze in jeder App über den Dialog zu öffnen.
+Tippen Sie auf **+**, um eine App hinzuzufügen, mit der der ausgewählte Text geöffnet wird
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-**Serie**
+**Umgang mit Buchserien**
 
-Es ist leicht, alle Bücher in Serien zu finden
+Es ist leicht, alle Bücher einer Serie zu finden:
 
-Die * Serie kann in der Buchkarte angeklickt werden
-* Alle Formularserien für Bücher befinden sich im Buchinformationsdialog.
+* Serien sind in der Buchkarte &quot;anklickbar&quot;
+* Wenden Sie den Serienfilter auf die Buchbibliothek an
+* Alle Bücher der Serie werden im Fenster &quot;Buchinformationen&quot; aufgelistet.
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-**MP3 abspielen**
+**MP3-Dateien abspielen**
 
-Sie können ein oder mehrere MP3-Dateien mit einem Buch anhören.
-Es kann für Musiker nützlich sein, für Fremdsprachen.
+Hören Sie eine MP3-Datei oder eine Dateiauswahl über den internen Player parallel zum Lesen von Büchern.
+Könnte für Musiker und für diejenigen, die Fremdsprachen lernen, nützlich sein.
 
 ||||
 |-|-|-|
@@ -71,5 +73,3 @@ Es kann für Musiker nützlich sein, für Fremdsprachen.
 * [Version 7.12](/wiki/what-is-new/7.12/de)
 * [Version 7.11](/wiki/what-is-new/7.11/de)
 * [Version 7.10](/wiki/what-is-new/7.10/de)
-
-

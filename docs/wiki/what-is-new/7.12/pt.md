@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [O que há de novo](/wiki/what-is-new/pt)
 
@@ -8,18 +8,18 @@ version: 1
 
 **Novos recursos**
 
-* Playlist (coleções de livros)
-* User dicts na palavra diálogo
-* Abra a pasta mp3
-* Todas as séries na caixa de diálogo de informações do arquivo
+* Listas de reprodução (agrupamentos de livros)
+* Adicionar aplicativos (dicionários) para abrir o texto selecionado na janela Texto
+* Reproduzir arquivos e pastas em mp3
+* Lidar com a série de livros
 
 
 
 **Guia Favoritos**
 
-A guia favorita foi redesenhada. Agora é fácil acessar as tags {3}** e **playlists** do livro.
-As tags são projetadas para organizar livros em algumas coleções, por exemplo, &quot;Math&quot; ou &quot;Reading now&quot;.
-As listas de reprodução são principalmente para músicos - é possível ter livros selecionados à mão.
+A guia **Favoritos** foi reprojetada. Os itens **Tags** e **Playlists** agora podem ser acessados facilmente.
+Marcar livros para agrupá-los por qualquer critério comum, por exemplo, &quot;Matemática&quot;, &quot;Suspense&quot;, &quot;Mistério&quot; etc. (também é possível adicionar uma tag na janela Informações do livro).
+As listas de reprodução destinam-se principalmente a músicos: é fácil manter os documentos selecionados à mão e manipular a lista.
 
 
 ||||
@@ -29,36 +29,38 @@ As listas de reprodução são principalmente para músicos - é possível ter l
 **Listas de reprodução**
 
 * Crie listas de reprodução
-* Arraste para alterar o pedido, deslize para a esquerda para remover da lista
-* Todos os livros da playlist
+* Arraste pelas alças para alterar a ordem do livro
+* Deslize para a direita / esquerda para remover um livro da lista
+* Toque em Editar para fazer alterações na lista.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**Adicione aplicativo do usuário à caixa de diálogo**
+**Adicionar aplicativos do usuário**
 
-É possível abrir palavras ou frases em qualquer aplicativo da caixa de diálogo.
+Toque em **+** para adicionar um aplicativo que abrirá o texto selecionado
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-**Série**
+**Manipulando a série de livros**
 
-É fácil encontrar todos os livros em série
+É fácil encontrar todos os livros de uma série:
 
-* Series é clicável no cartão do livro
-* Todas as séries de formulários de livros estão no diálogo de informações do livro.
+* Séries são &quot;clicáveis&quot; no cartão do livro
+* Aplique o filtro da série à biblioteca de livros
+* Todos os livros da série serão listados na janela Informações do livro.
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-**Tocar mp3**
+**Reproduzir arquivos mp3**
 
-Você pode ouvir um ou muitos mp3 com um livro.
-Pode ser útil para músicos, para idiomas de estudo.
+Ouça um arquivo mp3 ou seleção de arquivo através do player interno em paralelo com a leitura do livro.
+Poderia ser útil para músicos e para aqueles que estudam línguas estrangeiras.
 
 ||||
 |-|-|-|
@@ -66,10 +68,8 @@ Pode ser útil para músicos, para idiomas de estudo.
 
 
 
-# O que há de novo no leitor de livros Librera
+# O que há de novo no Librera Book Reader
 
 * [Versão 7.12](/wiki/what-is-new/7.12/pt)
 * [Versão 7.11](/wiki/what-is-new/7.11/pt)
 * [Versão 7.10](/wiki/what-is-new/7.10/pt)
-
-

@@ -2,9 +2,9 @@ package translations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
@@ -56,27 +56,22 @@ public class GoogleTranslation {
     }
 
     public static JSONObject readJsonFromUrl(String url) throws JSONException {
-        InputStream is = null;
         try {
-            is = new URL(url).openStream();
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            URL is = new URL(url);
+            HttpURLConnection urlcon = (HttpURLConnection) is.openConnection();
+            urlcon.addRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
+            System.setProperty("http.agent", "Chrome");
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(urlcon.getInputStream(), Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
             JSONObject json = new JSONObject(jsonText);
+            rd.close();
             return json;
         } catch (IOException e) {
             e.printStackTrace(System.err);
             throw new RuntimeException();
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
-
     }
 
 }
