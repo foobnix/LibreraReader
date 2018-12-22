@@ -64,3 +64,10 @@ The format of the status bar legend can be changed from full to compact to chapt
 
 * Support for phones w/ notched displays
 * Table of contents for EPUB 3.0 books
+
+
+# What is new in Librera book reader
+
+* [Version 7.11](/wiki/what-is-new/7.12/)
+* [Version 7.11](/wiki/what-is-new/7.11/)
+* [Version 7.10](/wiki/what-is-new/7.10/)
