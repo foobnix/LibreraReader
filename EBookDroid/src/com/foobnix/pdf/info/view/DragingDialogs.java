@@ -71,6 +71,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSService;
+import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -542,7 +543,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                       
+
                         int[] items = { 1, 15, 30, 45, 60, 90, 120, 240, 360 };
                         for (final int i : items) {
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -606,7 +607,7 @@ public class DragingDialogs {
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
 
-                TxtUtils.underlineTextView((TextView) view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -686,7 +687,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TxtUtils.underlineTextView((TextView) view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -740,10 +741,19 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
 
-                        ChooserDialogFragment.chooseFile((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFileorFolder((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
                             @Override
                             public boolean onResultRecive(String result1, Dialog result2) {
+                                LOG.d("onResultRecive", result1);
+                                if (new File(result1).isDirectory()) {
+                                    LOG.d("onResultRecive Directory", result1);
+                                    String firstMp3Infoder = TTSTracks.getFirstMp3Infoder(result1);
+                                    if (firstMp3Infoder != null) {
+                                        result1 = firstMp3Infoder;
+                                    }
+                                    LOG.d("onResultRecive firstMp3Infoder", result1);
+                                }
                                 if (ExtUtils.isAudioContent(result1)) {
 
                                     AppState.get().mp3BookPath = result1;
@@ -1437,7 +1447,7 @@ public class DragingDialogs {
                 List<String> cache = new ArrayList<String>();
                 for (final ResolveInfo app : all) {
                     for (final String pkgKey : AppState.appDictionariesKeys) {
-                        if (app.activityInfo.packageName.toLowerCase(Locale.US).contains(pkgKey)) {
+                        if (app.activityInfo.packageName.toLowerCase(Locale.US).contains(pkgKey) || app.activityInfo.packageName.equals(AppState.get().rememberDictPackage)) {
                             if (cache.contains(app.activityInfo.name)) {
                                 continue;
                             }
@@ -1512,7 +1522,7 @@ public class DragingDialogs {
 
                                     }
                                 });
-                                if (app.activityInfo.name.equals(lastID)) {
+                                if (app.activityInfo.name.equals(lastID) || app.activityInfo.packageName.equals(lastID)) {
                                     dictLayout.addView(image, 0);
                                 } else {
                                     dictLayout.addView(image);
@@ -1524,6 +1534,35 @@ public class DragingDialogs {
                     }
 
                 }
+                ImageView image = new ImageView(anchor.getContext());
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Dips.dpToPx(44), Dips.dpToPx(44));
+                image.setLayoutParams(layoutParams);
+                image.setImageResource(R.drawable.glyphicons_433_plus);
+                image.setBackgroundResource(R.drawable.bg_border_ltgray);
+
+                TintUtil.setTintImageWithAlpha(image, Color.LTGRAY);
+
+                image.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        DialogTranslateFromTo.show(controller.getActivity(), true, new Runnable() {
+
+                            @Override
+                            public void run() {
+                                sp.edit().putString("last", AppState.get().rememberDictPackage).commit();
+                                selectTextMenu(anchor, controller, withAnnotation, reloadUI);
+                            }
+                        });
+
+                    }
+                });
+
+                FrameLayout fr = new FrameLayout(controller.getActivity());
+                image.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
+                fr.addView(image);
+
+                dictLayout.addView(fr);
 
                 view.findViewById(R.id.onUnderline).setOnClickListener(new View.OnClickListener() {
 
@@ -3895,7 +3934,7 @@ public class DragingDialogs {
                 linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
                 linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
-                TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -4152,7 +4191,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TextView performanceSettings = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.performanceSettigns));
+                TextView performanceSettings = TxtUtils.underlineTextView(inflate.findViewById(R.id.performanceSettigns));
                 performanceSettings.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -4161,7 +4200,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TextView statusBarSettings = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.statusBarSettings));
+                TextView statusBarSettings = TxtUtils.underlineTextView(inflate.findViewById(R.id.statusBarSettings));
                 statusBarSettings.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -4313,7 +4352,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        DialogTranslateFromTo.show(controller.getActivity(), new Runnable() {
+                        DialogTranslateFromTo.show(controller.getActivity(), false, new Runnable() {
 
                             @Override
                             public void run() {
@@ -4342,7 +4381,7 @@ public class DragingDialogs {
                 }
 
                 final ImageView onDayColorImage = (ImageView) inflate.findViewById(R.id.onDayColorImage);
-                final TextView textDayColor = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDayColor));
+                final TextView textDayColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDayColor));
                 textDayColor.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -4372,7 +4411,7 @@ public class DragingDialogs {
                 });
 
                 final ImageView onNigthColorImage = (ImageView) inflate.findViewById(R.id.onNigthColorImage);
-                final TextView textNigthColor = TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onNigthColor));
+                final TextView textNigthColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onNigthColor));
                 textNigthColor.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -4545,7 +4584,7 @@ public class DragingDialogs {
                 };
                 colorsLine.run();
 
-                TxtUtils.underlineTextView((TextView) inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

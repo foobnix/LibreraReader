@@ -1603,7 +1603,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             viewPager.setCurrentItem(page, false);
         }
 
-        Info info = OutlineHelper.getForamtingInfo(dc);
+        Info info = OutlineHelper.getForamtingInfo(dc, false);
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
         pagesCountIndicator.setText(info.chText);

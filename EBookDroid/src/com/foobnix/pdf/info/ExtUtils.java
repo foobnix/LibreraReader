@@ -362,8 +362,12 @@ public class ExtUtils {
         return ExtUtils.isImageFile(file) || ExtUtils.isFileArchive(file) || BookType.EPUB.is(file.getPath());
     }
 
+    public static boolean isOtherBookFormat(File file) {
+        return ExtUtils.isContainExt(file, AppState.OTHER_BOOK_EXT) || ExtUtils.isContainExt(file, AppState.LIBRE_EXT);
+    }
+
     public static boolean isNoTextLayerForamt(String name) {
-        return BookType.DJVU.is(name) || BookType.CBR.is(name) || BookType.CBZ.is(name) || BookType.TIFF.is(name);
+        return BookType.CBR.is(name) || BookType.CBZ.is(name) || BookType.TIFF.is(name);
     }
 
     public static String getMimeTypeByUri(Uri uri) {
@@ -422,6 +426,18 @@ public class ExtUtils {
         if (file != null && file.isFile()) {
             String name = file.getName().toLowerCase(Locale.US);
             for (String ext : lirbeExt) {
+                if (name.endsWith(ext)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean isContainExt(File file, String[] list) {
+        if (file != null && file.isFile()) {
+            String name = file.getName().toLowerCase(Locale.US);
+            for (String ext : list) {
                 if (name.endsWith(ext)) {
                     return true;
                 }

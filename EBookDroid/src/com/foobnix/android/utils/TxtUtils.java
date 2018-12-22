@@ -218,7 +218,8 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
-        pageHTML = pageHTML.replaceAll("[!?]+", TTS_PAUSE);
+        pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
+        pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);

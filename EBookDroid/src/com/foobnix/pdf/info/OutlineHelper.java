@@ -53,8 +53,15 @@ public class OutlineHelper {
         popupMenu.show();
     }
 
-    public static Info getForamtingInfo(DocumentController dc) {
+    public static Info getForamtingInfo(DocumentController dc, boolean compact) {
         Info info = new Info();
+
+        String DV = " ∕ ";
+        String SP = "    ";
+        if (compact) {
+            DV = "/";
+            SP = " ";
+        }
 
         int max = dc.getPageCount();
         String textPage = TxtUtils.deltaPage(dc.getCurentPageFirst1(), max);
@@ -69,20 +76,20 @@ public class OutlineHelper {
         }
 
         if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_1) {
-            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + "   " + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + " ∕ " + textMax;
+            String text = TxtUtils.getProgressPercent(dc.getCurentPageFirst1(), max) + SP + TxtUtils.deltaPage(dc.getCurentPageFirst1()) + DV + textMax;
 
             int leftPages = getLeftPages(dc);
-            text += "   (" + leftPages + ")" + (leftPages < 10 ? "  " : "");
+            text += SP + "(" + leftPages + ")" + (!compact && leftPages < 10 ? "  " : "");
 
             info.chText = text;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_2) {
-            info.chText = textPage + " ∕ " + textMax;
+            info.chText = textPage + DV + textMax;
         } else if (AppState.get().chapterFormat == AppState.CHAPTER_FORMAT_3) {
             OutlineLinkWrapper currentChapter = getCurrentChapter(dc);
             OutlineLinkWrapper nextChapter = getNextChapter(dc);
 
             if (currentChapter == null) {
-                info.chText = textPage + " ∕ " + textMax;
+                info.chText = textPage + DV + textMax;
             } else {
 
                 int current = currentChapter.targetPage;
@@ -102,8 +109,8 @@ public class OutlineHelper {
                 LOG.d("screenWidthDP", len);
                 currentChapterAsString = TxtUtils.substringSmart(currentChapterAsString, len);
 
-                info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + " / " + totalChapter;
-                info.chText += pageRel < 10 ? "  " : "";
+                info.chText = currentChapterAsString + " " + TxtUtils.LONG_DASH1 + " " + pageRel + DV + totalChapter;
+                info.chText += !compact && pageRel < 10 ? "  " : "";
             }
         }
 

@@ -13,7 +13,6 @@ import com.foobnix.pdf.info.view.UnderlineImageView;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -57,6 +56,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
         final String item = mItems.get(position);
         holder.textView.setText(ExtUtils.getFileNameWithoutExt(ExtUtils.getFileName(item)));
+        holder.textView.setVisibility(TxtUtils.visibleIf(!horizontal));
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
 
@@ -88,10 +88,10 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             holder.imageDrag.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
                         mDragStartListener.onStartDrag(holder);
                     }
-                    return false;
+                    return true;
                 }
             });
             holder.imageDrag.setVisibility(TxtUtils.visibleIf(!horizontal));
@@ -100,9 +100,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
 
     @Override
     public void onItemDismiss(int position) {
+        mDragStartListener.onRevemove();
         mItems.remove(position);
         notifyItemRemoved(position);
-        mDragStartListener.onRevemove();
     }
 
     @Override
@@ -143,6 +143,11 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
             textView = (TextView) itemView.findViewById(R.id.text1);
             imageView = (UnderlineImageView) itemView.findViewById(R.id.image1);
             imageDrag = (ImageView) itemView.findViewById(R.id.imageDrag);
+
+            parent.setHapticFeedbackEnabled(false);
+            if (imageDrag != null) {
+                imageDrag.setHapticFeedbackEnabled(false);
+            }
         }
 
         @Override

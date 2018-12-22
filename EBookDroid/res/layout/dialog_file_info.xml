@@ -165,6 +165,15 @@
                 android:padding="4dip"
                 android:text="Series"
                 android:textIsSelectable="true" />
+            
+        <android.support.v7.widget.RecyclerView
+            android:visibility="gone"
+            android:id="@+id/recycleViewSeries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dip" >
+        </android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/metaGenreID"

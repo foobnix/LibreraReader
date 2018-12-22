@@ -365,6 +365,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (AppState.get().isMusicianMode && AppState.get().isLocked) {
             return;
         }
+        if (clickUtils.isIgoreZoom(e)) {
+            return;
+        }
 
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
         long delta = System.currentTimeMillis() - time;
@@ -385,6 +388,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         if (AppState.get().isMusicianMode && AppState.get().isLocked) {
             return;
         }
+        if (clickUtils.isIgoreZoom(e)) {
+            return;
+        }
+
         avc.base.getZoomModel().commit();
     }
 

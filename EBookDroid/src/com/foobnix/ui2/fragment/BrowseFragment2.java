@@ -79,6 +79,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public static int TYPE_DEFAULT = 0;
     public static int TYPE_SELECT_FOLDER = 1;
     public static int TYPE_SELECT_FILE = 2;
+    public static int TYPE_SELECT_FILE_OR_FOLDER = 4;
+
     public static int TYPE_CREATE_FILE = 3;
 
     FileMetaAdapter searchAdapter;
@@ -193,6 +195,11 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (TYPE_CREATE_FILE == fragmentType) {
             editPath.setVisibility(View.VISIBLE);
             editPath.setEnabled(true);
+            onCloseActionPaner.setVisibility(View.VISIBLE);
+        }
+        if (TYPE_SELECT_FILE_OR_FOLDER == fragmentType) {
+            editPath.setVisibility(View.VISIBLE);
+            editPath.setEnabled(false);
             onCloseActionPaner.setVisibility(View.VISIBLE);
         }
 
@@ -423,6 +430,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         DefaultListeners.getOnItemClickListener(getActivity()).onResultRecive(result);
                     } else if (fragmentType == TYPE_SELECT_FILE) {
                         editPath.setText(ExtUtils.getFileName(result.getPath()));
+                    } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
+                        editPath.setText(result.getPath());
                     }
 
                 }
@@ -523,6 +532,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
             } else if (fragmentType == TYPE_SELECT_FILE) {
                 onPositiveAction.onResultRecive(AppState.get().dirLastPath + "/" + editPath.getText());
+            } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
+                onPositiveAction.onResultRecive(editPath.getText().toString());
             } else if (fragmentType == TYPE_CREATE_FILE) {
                 onPositiveAction.onResultRecive(AppState.get().dirLastPath + "/" + editPath.getText());
             }
@@ -825,6 +836,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public void showPathHeader() {
         paths.removeAllViews();
 
+        if (TYPE_SELECT_FILE_OR_FOLDER == fragmentType) {
+            editPath.setText(displayPath);
+        }
+
         if (ExtUtils.isExteralSD(displayPath)) {
             String id = ExtUtils.getExtSDDisplayName(getContext(), displayPath);
 
@@ -1044,9 +1059,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             searchAdapter.notifyDataSetChanged();
         }
 
-
     }
-
 
     @Override
     public void resetFragment() {
