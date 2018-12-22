@@ -61,17 +61,15 @@
 
 <ul class="languagepicker roundborders large">
 	<a href="#"><li>{{ lang }}</li></a>
-    <a href="index"><li>English</li></a>
-    <a href="ru"><li>Русский</li></a>
-	<a href="fr"><li>Français</li></a>
-    <a href="de"><li>Deutsch</li></a>
-    <a href="it"><li>Italiano</li></a>
-    <a href="pt"><li>Portugal</li></a>
-    <a href="es"><li>Español</li></a>
-    <a href="ar"><li>العربية</li></a>
-    <a href="zh"><li>中文</li></a>
+{% if lang != 'English'%}<a href="index"><li>English</li></a>{% endif %}
+{% if lang != 'Русский'%}<a href="ru"><li>Русский</li></a>{% endif %}
+{% if lang != 'Français'%}<a href="fr"><li>Français</li></a>{% endif %}
+{% if lang != 'Deutsch'%}<a href="de"><li>Deutsch</li></a>{% endif %}
+{% if lang != 'Italiano'%}<a href="it"><li>Italiano</li></a>{% endif %}
+{% if lang != 'Portugal'%}<a href="pt"><li>Portugal</li></a>{% endif %}
+{% if lang != 'Español'%}<a href="es"><li>Español</li></a>{% endif %}
+{% if lang != 'العربية'%}<a href="ar"><li>العربية</li></a>{% endif %}
+{% if lang != '中文'%}<a href="zh"><li>中文</li></a>{% endif %}
 </ul>
-<p>
-
-	       
+<p>       
 	        
