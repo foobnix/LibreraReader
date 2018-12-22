@@ -2,7 +2,7 @@
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
-   <string name="add_folder">Add folder</string>
+   <string name="add_folder">Add a folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
    <string name="you_need_to_update_the_library">Now update Library to apply changes</string>
@@ -39,10 +39,10 @@
    <string name="book_covers">Book Covers</string>
    <string name="cover_image_size">Thumbnail size</string>
    <string name="column_count">Columns</string>
-   <string name="show_book_covers">Show book covers</string>
+   <string name="show_book_covers">Display book covers</string>
    <string name="enable_effect_of_the_book_cover">Mock print book covers</string>
    <string name="crop_images_in_the_book_cover">Crop book covers</string>
-   <string name="borders_and_shadow_around_the_book_cover">Show borders and shadows</string>
+   <string name="borders_and_shadow_around_the_book_cover">Display borders and shadows</string>
    <string name="tabs_position">Tabs</string>
    <string name="show_preferences_tab_in_the_left_menu">Animate Preferences (slide-out)</string>
    <string name="visible">Show</string>
@@ -199,7 +199,7 @@
    <string name="other_settings">Additional Settings</string>
    <string name="folder_for_downloaded_books">Downloads folder</string>
    <string name="display_large_book_covers_in_the_catalog">Large book covers in catalogs</string>
-   <string name="add_catalog">Add Catalog</string>
+   <string name="add_catalog">Add a Catalog</string>
    <string name="name">Name</string>
    <string name="description">Description</string>
    <string name="add_as_a_web_site">Add as a WEB site</string>
@@ -363,7 +363,7 @@
    <string name="this_function_will_works_in_modern_android">This function is for newer Android devices</string>
    <string name="menu">Menu</string>
    <string name="search_not_supported_formats">Search in non-supported formats</string>
-   <string name="add_bookmark">Add bookmark</string>
+   <string name="add_bookmark">Add a bookmark</string>
    <string name="performance_settings">Performance settings</string>
    <string name="size_of_allocated_memory">Size of allocated memory</string>
    <string name="display_settings">Display settings</string>
@@ -397,7 +397,7 @@
    <string name="cd_import">Import</string>
    <string name="cd_back_to_parent">Back to parent</string>
    <string name="cd_back_to_all_catalogs">Back to Catalogs list</string>
-   <string name="cd_add_new_opds_catalog">Add new OPDS catalog</string>
+   <string name="cd_add_new_opds_catalog">Add an OPDS catalog</string>
    <string name="can_t_delete_file">Unable to delete file</string>
    <string name="switch_off">Switch off</string>
    <string name="___RECENTLY___ADDED___SECTION___"></string>
@@ -435,7 +435,7 @@
    <string name="zoom_in_out_using_the_volume_keys">Zoom in/out with volume keys</string>
    <string name="tag">Tag</string>
    <string name="no_tag">No tags</string>
-   <string name="add_tag">Add Tag</string>
+   <string name="add_tag">Add a Tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Remove this tag from all books?</string>
    <string name="by_number_of_pages">Page Count</string>
    <string name="by_number_in_serie"># in Series</string>
@@ -505,10 +505,10 @@
    <string name="read_out_loud_with_tts">Read (TTS)</string>
    <string name="allow_minimum_brightness">Allow zero-brightness (black screen)</string>
    <string name="select">Select</string>
-   <string name="create_playlist">Create playlist</string>
+   <string name="create_playlist">New Playlist</string>
    <string name="upload_to_cloud">Upload to cloud</string>
    <string name="add_to_playlist">Add to playlist</string>
-   <string name="create_tag">Create tag</string>
+   <string name="create_tag">New Tag</string>
    <string name="add_tags">Add tags</string>
    <string name="play">Play</string>
    <string name="favorite">Favorite</string>
