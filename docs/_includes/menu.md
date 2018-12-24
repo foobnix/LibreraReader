@@ -71,5 +71,5 @@
 {% if lang != 'العربية'%}<a href="ar"><li>العربية</li></a>{% endif %}
 {% if lang != '中文'%}<a href="zh"><li>中文</li></a>{% endif %}
 </ul>
-<p>       
+<p></p>           
 	        

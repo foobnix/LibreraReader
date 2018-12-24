@@ -493,7 +493,7 @@
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音频文件</string>
    <string name="rate_us">评价</string>
-   <string name="reset">重启</string>
+   <string name="reset">重置</string>
    <string name="status_bar_location">状态位置</string>
    <string name="add_to_bookmark">加入书签</string>
    <string name="fast_reading">快速阅读（RSVP）</string>
@@ -512,7 +512,7 @@
    <string name="create_tag">创建标签</string>
    <string name="add_tags">添加标签</string>
    <string name="play">播放</string>
-   <string name="favorite">喜爱</string>
+   <string name="favorite">收藏</string>
    <string name="playlists">播放列表</string>
    <string name="tags">标签</string>
    <string name="are_you_sure_to_delete_playlist_">确认删除播放列表？</string>
