@@ -510,11 +510,11 @@
    <string name="upload_to_cloud">Загрузить в облако</string>
    <string name="add_to_playlist">Добавить в плейлист</string>
    <string name="create_tag">Создать тег</string>
-   <string name="add_tags">Добавить теги</string>
+   <string name="add_tags">Добавить тег(и)</string>
    <string name="play">Проиграть</string>
    <string name="favorite">Избранные</string>
    <string name="playlists">Плейлисты</string>
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
-   <string name="zoom_in_out_with_lock_enable">Увеличение / уменьшение с включенной блокировкой</string>
+   <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при "закрытом" замочке</string>
 </resources>
