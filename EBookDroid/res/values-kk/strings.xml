@@ -261,6 +261,7 @@
    <string name="read_a_book">Оқыңыз!</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Жол</string>
+   <string name="folder">Қалта</string>
    <string name="by_file_name">Файл атауы</string>
    <string name="by_size">Файл өлшемі</string>
    <string name="by_date">Күні</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Ойнату тізімдері</string>
    <string name="tags">Тегтер</string>
    <string name="are_you_sure_to_delete_playlist_">Ойнату тізімін жойғыңыз келе ме?</string>
+   <string name="zoom_in_out_with_lock_enable">Блоктау мүмкіндігімен масштабтау / ұлғайту</string>
 </resources>

@@ -261,6 +261,7 @@
    <string name="read_a_book">Olvasás!</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Hely</string>
+   <string name="folder">Mappa</string>
    <string name="by_file_name">Fájlnév</string>
    <string name="by_size">Fájlméret</string>
    <string name="by_date">Dátum</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Lejátszási listák</string>
    <string name="tags">Címkék</string>
    <string name="are_you_sure_to_delete_playlist_">Biztosan törli a lejátszási listát?</string>
+   <string name="zoom_in_out_with_lock_enable">Nagyítás / kicsinyítés zárolással</string>
 </resources>

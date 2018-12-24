@@ -261,6 +261,7 @@
    <string name="read_a_book">Citește o carte</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Cale fișier</string>
+   <string name="folder">Pliant</string>
    <string name="by_file_name">Nume de fișier</string>
    <string name="by_size">Mărimea</string>
    <string name="by_date">Data</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Liste de redare</string>
    <string name="tags">Etichete</string>
    <string name="are_you_sure_to_delete_playlist_">Sigur ștergeți lista de redare?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoom in / out cu funcția de blocare</string>
 </resources>

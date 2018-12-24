@@ -261,6 +261,7 @@
    <string name="read_a_book">Skaityti knygą</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Failo kelias</string>
+   <string name="folder">Aplanką</string>
    <string name="by_file_name">Failo pavadinimas</string>
    <string name="by_size">Dydis</string>
    <string name="by_date">Data</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Grojaraščiai</string>
    <string name="tags">Žymos</string>
    <string name="are_you_sure_to_delete_playlist_">Ar tikrai ištrinsite grojaraštį?</string>
+   <string name="zoom_in_out_with_lock_enable">Priartinti / mažinti su užraktu</string>
 </resources>

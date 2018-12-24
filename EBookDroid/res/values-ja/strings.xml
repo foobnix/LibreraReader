@@ -261,6 +261,7 @@
    <string name="read_a_book">本を読む</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">ファイルパス</string>
+   <string name="folder">フォルダ</string>
    <string name="by_file_name">ファイル名</string>
    <string name="by_size">サイズ</string>
    <string name="by_date">日付</string>
@@ -515,4 +516,5 @@
    <string name="playlists">プレイリスト</string>
    <string name="tags">タグ</string>
    <string name="are_you_sure_to_delete_playlist_">プレイリストを削除してもよろしいですか？</string>
+   <string name="zoom_in_out_with_lock_enable">ロックを有効にしてズームイン/ズームアウト</string>
 </resources>

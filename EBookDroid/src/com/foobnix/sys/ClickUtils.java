@@ -3,13 +3,10 @@ package com.foobnix.sys;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.wrapper.AppState;
 
-import android.view.MotionEvent;
-
 public class ClickUtils {
     private int WIDHT_X, HEIGHT_Y;
     private float border_side = 0;
     private float border_top = 0;
-    private static int DP_IGNORE = Dips.DP_15;
 
     public ClickUtils() {
         init();
@@ -23,19 +20,6 @@ public class ClickUtils {
         border_top = Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
     }
 
-    public boolean isIgoreZoom(final MotionEvent event) {
-        if (!AppState.get().isLocked) {
-            return false;
-        }
-
-        if (event.getX() < DP_IGNORE || event.getX(1) < DP_IGNORE) {
-            return true;
-        }
-        if (event.getX() > (WIDHT_X - DP_IGNORE) || event.getX(1) > (WIDHT_X - DP_IGNORE)) {
-            return true;
-        }
-        return false;
-    }
 
     public void initMusician() {
         WIDHT_X = Dips.screenWidth();

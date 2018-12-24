@@ -261,6 +261,7 @@
    <string name="read_a_book">Читать книгу</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Путь к файлу</string>
+   <string name="folder">Папка</string>
    <string name="by_file_name">Имя файла</string>
    <string name="by_size">Размер</string>
    <string name="by_date">Дата добавления</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Плейлисты</string>
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
+   <string name="zoom_in_out_with_lock_enable">Увеличение / уменьшение с включенной блокировкой</string>
 </resources>

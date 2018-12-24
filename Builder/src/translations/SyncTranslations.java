@@ -11,6 +11,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONException;
 import org.simpleframework.xml.core.Persister;
@@ -249,6 +250,7 @@ public class SyncTranslations {
             // text = "[T]" + text;
             try {
                 text = text.replace(BREK, "\"");
+                text = text.toLowerCase(Locale.US);
                 text = GoogleTranslation.translate(text, lang);
                 text = normilizeText(text);
             } catch (JSONException | IOException e) {

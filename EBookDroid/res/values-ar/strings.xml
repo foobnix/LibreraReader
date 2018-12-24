@@ -261,6 +261,7 @@
    <string name="read_a_book">اقرأ كتاب</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">مسار الملف</string>
+   <string name="folder">مجلد</string>
    <string name="by_file_name">اسم الملف</string>
    <string name="by_size">بحجم</string>
    <string name="by_date">تاريخ</string>
@@ -515,4 +516,5 @@
    <string name="playlists">قوائم التشغيل</string>
    <string name="tags">الكلمات</string>
    <string name="are_you_sure_to_delete_playlist_">هل أنت متأكد من حذف قائمة التشغيل؟</string>
+   <string name="zoom_in_out_with_lock_enable">تكبير / تصغير مع تمكين القفل</string>
 </resources>

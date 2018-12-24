@@ -261,6 +261,7 @@
    <string name="read_a_book">Lee un libro</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Ruta de archivo</string>
+   <string name="folder">Carpeta</string>
    <string name="by_file_name">Nombre del archivo</string>
    <string name="by_size">Tamaño</string>
    <string name="by_date">Fecha</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Listas de reproducción</string>
    <string name="tags">Etiquetas</string>
    <string name="are_you_sure_to_delete_playlist_">¿Estás seguro de eliminar la lista de reproducción?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoom in / out con bloqueo habilitado</string>
 </resources>

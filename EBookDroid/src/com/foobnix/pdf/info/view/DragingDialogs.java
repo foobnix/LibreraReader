@@ -2971,6 +2971,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isZoomInOutWithLock = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithLock);
+                isZoomInOutWithLock.setChecked(AppState.get().isZoomInOutWithLock);
+                isZoomInOutWithLock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isZoomInOutWithLock = isChecked;
+                    }
+                });
+
                 final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseWheelSpeed.getTitleText().setSingleLine(false);
                 mouseWheelSpeed.init(1, 200, AppState.get().mouseWheelSpeed);
@@ -3535,6 +3545,7 @@ public class DragingDialogs {
         });
         return dialog;
     };
+
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initCssHash = BookCSS.get().toCssString().hashCode();

@@ -261,6 +261,7 @@
    <string name="read_a_book">Kitabı_Oku</string>
    <string name="___SORT___AND___VIEW___SECTION___">___Sırala___ve___Görüntüle___Bölümü</string>
    <string name="by_path">Dosya yolu</string>
+   <string name="folder">Klasör</string>
    <string name="by_file_name">Dosya adı</string>
    <string name="by_size">Boyut</string>
    <string name="by_date">Tarih</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Çalma listeleri</string>
    <string name="tags">Etiketler</string>
    <string name="are_you_sure_to_delete_playlist_">Oynatma listesini silmek istediğinizden emin misiniz?</string>
+   <string name="zoom_in_out_with_lock_enable">Kilit etkinken yakınlaştır / uzaklaştır</string>
 </resources>

@@ -295,7 +295,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return true;
         }
 
-        if (isNoLock() || (e2.getPointerCount() == 2 && !AppState.get().isMusicianMode)) {
+        if (isNoLock() || (e2.getPointerCount() == 2 && !AppState.get().isMusicianMode && AppState.get().isZoomInOutWithLock)) {
             avc.getView().scrollBy((int) x, (int) y);
         } else {
             avc.getView().scrollBy(0, (int) y);
@@ -362,11 +362,14 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
-        if (AppState.get().isMusicianMode && AppState.get().isLocked) {
-            return;
-        }
-        if (clickUtils.isIgoreZoom(e)) {
-            return;
+
+        if (AppState.get().isLocked) {
+            if (AppState.get().isMusicianMode) {
+                return;
+            }
+            if (!AppState.get().isZoomInOutWithLock) {
+                return;
+            }
         }
 
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
@@ -385,11 +388,13 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onTwoFingerPinchEnd(final MotionEvent e) {
-        if (AppState.get().isMusicianMode && AppState.get().isLocked) {
-            return;
-        }
-        if (clickUtils.isIgoreZoom(e)) {
-            return;
+        if (AppState.get().isLocked) {
+            if (AppState.get().isMusicianMode) {
+                return;
+            }
+            if (!AppState.get().isZoomInOutWithLock) {
+                return;
+            }
         }
 
         avc.base.getZoomModel().commit();

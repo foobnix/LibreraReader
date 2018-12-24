@@ -261,6 +261,7 @@
    <string name="read_a_book">एक किताब पढ़ी</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">फ़ाइल पथ</string>
+   <string name="folder">फ़ोल्डर</string>
    <string name="by_file_name">फ़ाइल का नाम</string>
    <string name="by_size">आकार</string>
    <string name="by_date">तारीख</string>
@@ -515,4 +516,5 @@
    <string name="playlists">प्लेलिस्ट</string>
    <string name="tags">टैग</string>
    <string name="are_you_sure_to_delete_playlist_">क्या आप प्लेलिस्ट को हटाना चाहते हैं?</string>
+   <string name="zoom_in_out_with_lock_enable">लॉक सक्षम के साथ ज़ूम इन / आउट करें</string>
 </resources>

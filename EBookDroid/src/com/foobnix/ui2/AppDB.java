@@ -91,7 +91,7 @@ public class AppDB {
 
     public enum SORT_BY {
         //
-        PATH(0, R.string.by_path, FileMetaDao.Properties.ParentPath), //
+        PATH(0, R.string.folder, FileMetaDao.Properties.ParentPath), //
         FILE_NAME(1, R.string.by_file_name, FileMetaDao.Properties.PathTxt), //
         SIZE(2, R.string.by_size, FileMetaDao.Properties.Size), //
         DATA(3, R.string.by_date, FileMetaDao.Properties.Date), //

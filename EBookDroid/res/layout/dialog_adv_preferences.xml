@@ -285,6 +285,13 @@
             android:text="@string/zoom_in_out_using_the_volume_keys" />
 
         <CheckBox
+            android:id="@+id/isZoomInOutWithLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zoom_in_out_with_lock_enable" />
+        
+        
+        <CheckBox
             android:id="@+id/isShowLongBackDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

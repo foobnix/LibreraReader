@@ -261,6 +261,7 @@
    <string name="read_a_book">Membaca buku</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Jalur file</string>
+   <string name="folder">Map</string>
    <string name="by_file_name">Nama file</string>
    <string name="by_size">Ukuran</string>
    <string name="by_date">Tanggal</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Playlist</string>
    <string name="tags">Tag</string>
    <string name="are_you_sure_to_delete_playlist_">Apakah Anda yakin untuk menghapus daftar putar?</string>
+   <string name="zoom_in_out_with_lock_enable">Perbesar / perkecil dengan pengaktifan kunci</string>
 </resources>

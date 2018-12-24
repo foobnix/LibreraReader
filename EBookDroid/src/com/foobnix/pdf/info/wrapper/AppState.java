@@ -397,8 +397,6 @@ public class AppState {
 
     public boolean isLocked = false;
 
-    public boolean isAllowMoveTwoFingerWithLock = true;
-
     @IgnoreHashCode
     public boolean isLoopAutoplay = false;
 
@@ -586,6 +584,9 @@ public class AppState {
     @IgnoreHashCode
     public boolean isZoomInOutWithVolueKeys = false;
 
+    @IgnoreHashCode
+    public boolean isZoomInOutWithLock = true;
+
     public String customConfigColors = "";
 
     public boolean isStarsInWidget = false;
@@ -722,7 +723,8 @@ public class AppState {
                     AppState.get().bolderTextOnImage = true;
                     AppState.get().isEnableBC = true;
                     AppState.get().brigtnessImage = -50;
-                    isAllowMoveTwoFingerWithLock = false;
+                    isZoomInOutWithLock = false;
+
                 }
                 if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;

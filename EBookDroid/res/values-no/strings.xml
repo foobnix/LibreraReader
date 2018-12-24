@@ -261,6 +261,7 @@
    <string name="read_a_book">Les en bok</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Filsti</string>
+   <string name="folder">Mappe</string>
    <string name="by_file_name">Filnavn</string>
    <string name="by_size">Størrelse</string>
    <string name="by_date">Dato</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Spillelister</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoome inn / ut med lås aktivering</string>
 </resources>

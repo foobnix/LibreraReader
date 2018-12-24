@@ -261,6 +261,7 @@
    <string name="read_a_book">Đọc quyển sách</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Đường dẫn tập tin</string>
+   <string name="folder">Thư mục</string>
    <string name="by_file_name">File name</string>
    <string name="by_size">Kích thước</string>
    <string name="by_date">Ngày</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Danh sách phát</string>
    <string name="tags">Thẻ</string>
    <string name="are_you_sure_to_delete_playlist_">Bạn có chắc chắn xóa danh sách phát?</string>
+   <string name="zoom_in_out_with_lock_enable">Phóng to / thu nhỏ với khóa cho phép</string>
 </resources>

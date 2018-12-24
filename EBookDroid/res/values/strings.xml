@@ -261,6 +261,7 @@
    <string name="read_a_book">Read!</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Path</string>
+   <string name="folder">Folder</string>
    <string name="by_file_name">Filename</string>
    <string name="by_size">File Size</string>
    <string name="by_date">Date</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Playlists</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Delete this playlist?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoom in/out with Lock enable</string>
 </resources>

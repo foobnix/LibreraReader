@@ -261,6 +261,7 @@
    <string name="read_a_book">Soma kitabu</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">File njia</string>
+   <string name="folder">Folda</string>
    <string name="by_file_name">Jina la faili</string>
    <string name="by_size">Ukubwa</string>
    <string name="by_date">Tarehe</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Orodha za kucheza</string>
    <string name="tags">Vitambulisho</string>
    <string name="are_you_sure_to_delete_playlist_">Una uhakika kufuta orodha ya kucheza?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoom ndani / nje na uwezeshe kufuli</string>
 </resources>

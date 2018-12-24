@@ -261,6 +261,7 @@
    <string name="read_a_book">อ่านหนังสือ</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">เส้นทางของไฟล์</string>
+   <string name="folder">โฟลเดอร์</string>
    <string name="by_file_name">ชื่อไฟล์</string>
    <string name="by_size">ขนาด</string>
    <string name="by_date">วันที่</string>
@@ -515,4 +516,5 @@
    <string name="playlists">รายการเพลง</string>
    <string name="tags">แท็ก</string>
    <string name="are_you_sure_to_delete_playlist_">คุณแน่ใจหรือไม่ว่าต้องการลบเพลย์ลิสต์</string>
+   <string name="zoom_in_out_with_lock_enable">ซูมเข้า / ออกพร้อมเปิดใช้งานล็อค</string>
 </resources>

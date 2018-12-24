@@ -261,6 +261,7 @@
    <string name="read_a_book">خواندن یک کتاب</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">مسیر فایل</string>
+   <string name="folder">پوشه</string>
    <string name="by_file_name">نام فایل</string>
    <string name="by_size">اندازه</string>
    <string name="by_date">تاریخ</string>
@@ -515,4 +516,5 @@
    <string name="playlists">لیست های پخش</string>
    <string name="tags">برچسب ها</string>
    <string name="are_you_sure_to_delete_playlist_">مطمئنید که لیست پخش را حذف کنید؟</string>
+   <string name="zoom_in_out_with_lock_enable">زوم در داخل / خارج با فعال کردن قفل</string>
 </resources>

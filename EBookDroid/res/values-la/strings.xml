@@ -261,6 +261,7 @@
    <string name="read_a_book">Legere</string>
    <string name="___SORT___AND___VIEW___SECTION___"></string>
    <string name="by_path">Via ad plica</string>
+   <string name="folder">Folder</string>
    <string name="by_file_name">Nomen plicae</string>
    <string name="by_size">Mensura</string>
    <string name="by_date">Datum</string>
@@ -515,4 +516,5 @@
    <string name="playlists">Video</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Esne certus ut delete playlist?</string>
+   <string name="zoom_in_out_with_lock_enable">Zoom in / clausum cum enable</string>
 </resources>
