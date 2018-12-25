@@ -432,8 +432,9 @@ public class AppState {
 
     @IgnoreHashCode
     public String rememberDict = "web:Google Translate";
+
     @IgnoreHashCode
-    public String rememberDictPackage = "";
+    public int rememberDictHash = 0;
 
     @IgnoreHashCode
     public boolean isRememberDictionary;

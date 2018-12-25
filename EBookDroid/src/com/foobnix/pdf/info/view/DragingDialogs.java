@@ -1447,7 +1447,11 @@ public class DragingDialogs {
                 List<String> cache = new ArrayList<String>();
                 for (final ResolveInfo app : all) {
                     for (final String pkgKey : AppState.appDictionariesKeys) {
-                        if (app.activityInfo.packageName.toLowerCase(Locale.US).contains(pkgKey) || app.activityInfo.packageName.equals(AppState.get().rememberDictPackage)) {
+                        String pkg = app.activityInfo.packageName;
+
+
+                        if (pkg.toLowerCase(Locale.US).contains(pkgKey) || DictsHelper.getHash(app.activityInfo) == AppState.get().rememberDictHash) {
+
                             if (cache.contains(app.activityInfo.name)) {
                                 continue;
                             }
@@ -1522,7 +1526,7 @@ public class DragingDialogs {
 
                                     }
                                 });
-                                if (app.activityInfo.name.equals(lastID) || app.activityInfo.packageName.equals(lastID)) {
+                                if (app.activityInfo.name.equals(lastID) || lastID.equals("" + DictsHelper.getHash(app.activityInfo))) {
                                     dictLayout.addView(image, 0);
                                 } else {
                                     dictLayout.addView(image);
@@ -1550,7 +1554,7 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                sp.edit().putString("last", AppState.get().rememberDictPackage).commit();
+                                sp.edit().putString("last", "" + AppState.get().rememberDictHash).commit();
                                 selectTextMenu(anchor, controller, withAnnotation, reloadUI);
                             }
                         });

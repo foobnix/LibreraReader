@@ -172,7 +172,7 @@ public class DialogTranslateFromTo {
     public static AlertDialog show(final Activity a, boolean onlyoffline, final Runnable runnable) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(a);
-        alertDialog.setTitle(R.string.remember_dictionary);
+        alertDialog.setTitle(R.string.choose_);
 
         View body = LayoutInflater.from(a).inflate(R.layout.dialog_translate_from_to, null, false);
 
@@ -261,7 +261,7 @@ public class DialogTranslateFromTo {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AppState.get().rememberDict = list.get(position).toString();
-                AppState.get().rememberDictPackage = list.get(position).pkg;
+                AppState.get().rememberDictHash = list.get(position).hash;
 
                 AppState.get().fromLang = langCodes.get(spinnerFrom.getSelectedItemPosition());
                 AppState.get().toLang = langCodes.get(spinnerTo.getSelectedItemPosition());

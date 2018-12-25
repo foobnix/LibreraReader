@@ -15,6 +15,7 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -28,6 +29,7 @@ public class DictsHelper {
         public String name;
         public String type;
         public String pkg;
+        public int hash;
         public Drawable image;
 
         public DictItem(String name, String type, String pkg, Drawable image) {
@@ -55,6 +57,15 @@ public class DictsHelper {
 
         }
 
+        public void addHash(ActivityInfo activityInfo) {
+            hash = getHash(activityInfo);
+        }
+
+    }
+
+    public static int getHash(ActivityInfo activityInfo) {
+        String s = activityInfo.name + activityInfo.packageName;
+        return s.hashCode();
     }
 
     public static Intent getType1(String selecteText) {
@@ -126,7 +137,9 @@ public class DictsHelper {
             }
             String name = item.activityInfo.loadLabel(c.getPackageManager()).toString();
 
-            items.add(new DictItem(name, type, item.activityInfo.packageName, icon));
+            DictItem e = new DictItem(name, type, item.activityInfo.packageName, icon);
+            e.addHash(item.activityInfo);
+            items.add(e);
         }
 
         return items;
