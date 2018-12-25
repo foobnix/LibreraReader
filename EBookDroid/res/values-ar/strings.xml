@@ -517,4 +517,5 @@
    <string name="tags">الكلمات</string>
    <string name="are_you_sure_to_delete_playlist_">هل أنت متأكد من حذف قائمة التشغيل؟</string>
    <string name="zoom_in_out_with_lock_enable">تكبير / تصغير مع تمكين القفل</string>
+   <string name="show_footnotes_directly_in_text">عرض الحواشي السفلية مباشرة في النص</string>
 </resources>

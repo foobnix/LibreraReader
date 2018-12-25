@@ -517,4 +517,5 @@
    <string name="tags">תגים</string>
    <string name="are_you_sure_to_delete_playlist_">האם אתה בטוח למחוק את הפלייליסט?</string>
    <string name="zoom_in_out_with_lock_enable">זום פנימה / החוצה עם לאפשר לנעול</string>
+   <string name="show_footnotes_directly_in_text">הצג הערות שוליים ישירות בטקסט</string>
 </resources>

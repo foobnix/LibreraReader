@@ -517,4 +517,5 @@
    <string name="tags">Thẻ</string>
    <string name="are_you_sure_to_delete_playlist_">Bạn có chắc chắn xóa danh sách phát?</string>
    <string name="zoom_in_out_with_lock_enable">Phóng to / thu nhỏ với khóa cho phép</string>
+   <string name="show_footnotes_directly_in_text">Hiển thị chú thích trực tiếp trong văn bản</string>
 </resources>

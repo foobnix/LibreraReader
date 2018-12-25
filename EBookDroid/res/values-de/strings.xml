@@ -517,4 +517,5 @@
    <string name="tags">Stichworte</string>
    <string name="are_you_sure_to_delete_playlist_">Möchten Sie die Wiedergabeliste wirklich löschen?</string>
    <string name="zoom_in_out_with_lock_enable">Vergrößern / Verkleinern mit Sperren aktivieren</string>
+   <string name="show_footnotes_directly_in_text">Fußnoten direkt im Text anzeigen</string>
 </resources>

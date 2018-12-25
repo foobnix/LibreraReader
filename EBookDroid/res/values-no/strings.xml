@@ -517,4 +517,5 @@
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Er du sikker på å slette spilleliste?</string>
    <string name="zoom_in_out_with_lock_enable">Zoome inn / ut med lås aktivering</string>
+   <string name="show_footnotes_directly_in_text">Vis fotnoter direkte i tekst</string>
 </resources>

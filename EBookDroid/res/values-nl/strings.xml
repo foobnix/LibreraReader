@@ -517,4 +517,5 @@
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Weet je zeker dat je de afspeellijst wilt verwijderen?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / uit met vergrendeling inschakelen</string>
+   <string name="show_footnotes_directly_in_text">Toon voetnoten direct in tekst</string>
 </resources>

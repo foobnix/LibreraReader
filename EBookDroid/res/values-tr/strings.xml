@@ -517,4 +517,5 @@
    <string name="tags">Etiketler</string>
    <string name="are_you_sure_to_delete_playlist_">Oynatma listesini silmek istediğinizden emin misiniz?</string>
    <string name="zoom_in_out_with_lock_enable">Kilit etkinken yakınlaştır / uzaklaştır</string>
+   <string name="show_footnotes_directly_in_text">Dipnotları doğrudan metin olarak göster</string>
 </resources>

@@ -517,4 +517,5 @@
    <string name="tags">Tag</string>
    <string name="are_you_sure_to_delete_playlist_">Apakah Anda yakin untuk menghapus daftar putar?</string>
    <string name="zoom_in_out_with_lock_enable">Perbesar / perkecil dengan pengaktifan kunci</string>
+   <string name="show_footnotes_directly_in_text">Tampilkan catatan kaki secara langsung dalam teks</string>
 </resources>

@@ -517,4 +517,5 @@
    <string name="tags">Mots clés</string>
    <string name="are_you_sure_to_delete_playlist_">Êtes-vous sûr de vouloir supprimer la playlist?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom avant / arrière avec verrouillage activé</string>
+   <string name="show_footnotes_directly_in_text">Afficher les notes directement dans le texte</string>
 </resources>

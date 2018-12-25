@@ -517,4 +517,5 @@
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
    <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при "закрытом" замочке</string>
+   <string name="show_footnotes_directly_in_text">Показывать сноски прямо в тексте</string>
 </resources>

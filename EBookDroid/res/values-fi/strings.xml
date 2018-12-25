@@ -517,4 +517,5 @@
    <string name="tags">Tunnisteet</string>
    <string name="are_you_sure_to_delete_playlist_">Haluatko varmasti poistaa soittolistan?</string>
    <string name="zoom_in_out_with_lock_enable">Zoomaus / pienentäminen lukituksen avulla</string>
+   <string name="show_footnotes_directly_in_text">Näyttää alaviitteet suoraan tekstissä</string>
 </resources>

@@ -517,4 +517,5 @@
    <string name="tags">태그</string>
    <string name="are_you_sure_to_delete_playlist_">재생 목록을 삭제 하시겠습니까?</string>
    <string name="zoom_in_out_with_lock_enable">잠금 사용으로 확대 / 축소</string>
+   <string name="show_footnotes_directly_in_text">각주를 텍스트에 직접 표시</string>
 </resources>

@@ -517,4 +517,5 @@
    <string name="tags">टैग</string>
    <string name="are_you_sure_to_delete_playlist_">क्या आप प्लेलिस्ट को हटाना चाहते हैं?</string>
    <string name="zoom_in_out_with_lock_enable">लॉक सक्षम के साथ ज़ूम इन / आउट करें</string>
+   <string name="show_footnotes_directly_in_text">पाठ में सीधे फुटनोट दिखाएं</string>
 </resources>

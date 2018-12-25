@@ -517,4 +517,5 @@
    <string name="tags">タグ</string>
    <string name="are_you_sure_to_delete_playlist_">プレイリストを削除してもよろしいですか？</string>
    <string name="zoom_in_out_with_lock_enable">ロックを有効にしてズームイン/ズームアウト</string>
+   <string name="show_footnotes_directly_in_text">脚注を直接テキストで表示する</string>
 </resources>

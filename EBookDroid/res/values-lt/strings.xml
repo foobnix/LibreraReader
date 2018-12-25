@@ -517,4 +517,5 @@
    <string name="tags">Žymos</string>
    <string name="are_you_sure_to_delete_playlist_">Ar tikrai ištrinsite grojaraštį?</string>
    <string name="zoom_in_out_with_lock_enable">Priartinti / mažinti su užraktu</string>
+   <string name="show_footnotes_directly_in_text">Parodyti išnašas tiesiogiai tekste</string>
 </resources>

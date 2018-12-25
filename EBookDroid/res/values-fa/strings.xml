@@ -517,4 +517,5 @@
    <string name="tags">برچسب ها</string>
    <string name="are_you_sure_to_delete_playlist_">مطمئنید که لیست پخش را حذف کنید؟</string>
    <string name="zoom_in_out_with_lock_enable">زوم در داخل / خارج با فعال کردن قفل</string>
+   <string name="show_footnotes_directly_in_text">پانویسها را مستقیما در متن نشان دهید</string>
 </resources>

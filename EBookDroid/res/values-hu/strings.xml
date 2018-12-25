@@ -517,4 +517,5 @@
    <string name="tags">Címkék</string>
    <string name="are_you_sure_to_delete_playlist_">Biztosan törli a lejátszási listát?</string>
    <string name="zoom_in_out_with_lock_enable">Nagyítás / kicsinyítés zárolással</string>
+   <string name="show_footnotes_directly_in_text">A lábjegyzeteket közvetlenül a szövegben mutassa</string>
 </resources>

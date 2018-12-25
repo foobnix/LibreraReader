@@ -517,4 +517,5 @@
    <string name="tags">Tagi</string>
    <string name="are_you_sure_to_delete_playlist_">Czy na pewno chcesz usunąć playlistę?</string>
    <string name="zoom_in_out_with_lock_enable">Powiększ / pomniejsz z włączoną blokadą</string>
+   <string name="show_footnotes_directly_in_text">Pokaż przypisy bezpośrednio w tekście</string>
 </resources>

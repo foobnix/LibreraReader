@@ -517,4 +517,5 @@
    <string name="tags">Vitambulisho</string>
    <string name="are_you_sure_to_delete_playlist_">Una uhakika kufuta orodha ya kucheza?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom ndani / nje na uwezeshe kufuli</string>
+   <string name="show_footnotes_directly_in_text">Onyesha maelezo ya chini kwa maandishi</string>
 </resources>
