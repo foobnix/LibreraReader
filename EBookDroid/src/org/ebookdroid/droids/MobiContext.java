@@ -45,7 +45,7 @@ public class MobiContext extends PdfContext {
                 fileNameEpub = extract.path;
                 if (BookCSS.get().isAutoHypens) {
 
-                    EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath());
+                    EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath(), null);
                     fileNameEpub = cacheFile.getPath();
                 }
                 LOG.d("Context", "MobiContext extract", fileNameEpub);

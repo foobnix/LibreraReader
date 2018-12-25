@@ -23,7 +23,7 @@ public class EpubContext extends PdfContext {
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         LOG.d(TAG, "getCacheFileName", fileNameOriginal, BookCSS.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode() + ".epub");
         return cacheFile;
     }
 
@@ -31,8 +31,14 @@ public class EpubContext extends PdfContext {
     public CodecDocument openDocumentInner(final String fileName, String password) {
         LOG.d(TAG, fileName);
 
+        Map<String, String> notes = null;
+        if (AppState.get().isShowFooterNotesInText) {
+            notes = getNotes(fileName);
+
+        }
+
         if (BookCSS.get().isAutoHypens && !cacheFile.isFile()) {
-            EpubExtractor.proccessHypens(fileName, cacheFile.getPath());
+            EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
             removeTempFiles();
@@ -42,24 +48,17 @@ public class EpubContext extends PdfContext {
         String bookPath = BookCSS.get().isAutoHypens ? cacheFile.getPath() : fileName;
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
-        final File jsonFile = new File(cacheFile + ".json");
-        if (jsonFile.isFile()) {
-            muPdfDocument.setFootNotes(JsonHelper.fileToMap(jsonFile));
-            LOG.d("Load notes from file", jsonFile);
+        if (notes != null) {
+            muPdfDocument.setFootNotes(notes);
         }
 
         new Thread() {
             @Override
             public void run() {
-                Map<String, String> notes = null;
                 try {
                     muPdfDocument.setMediaAttachment(EpubExtractor.getAttachments(fileName));
-                    if (!jsonFile.isFile()) {
-                        notes = EpubExtractor.get().getFooterNotes(fileName);
-                        muPdfDocument.setFootNotes(notes);
-
-                        JsonHelper.mapToFile(jsonFile, notes);
-                        LOG.d("save notes to file", jsonFile);
+                    if (muPdfDocument.getFootNotes() == null) {
+                        muPdfDocument.setFootNotes(getNotes(fileName));
                     }
                     removeTempFiles();
                 } catch (Exception e) {
@@ -69,6 +68,19 @@ public class EpubContext extends PdfContext {
         }.start();
 
         return muPdfDocument;
+    }
+
+    public Map<String, String> getNotes(String fileName) {
+        Map<String, String> notes = null;
+        final File jsonFile = new File(cacheFile + ".json");
+        if (jsonFile.isFile()) {
+            notes = JsonHelper.fileToMap(jsonFile);
+        } else {
+            notes = EpubExtractor.get().getFooterNotes(fileName);
+            JsonHelper.mapToFile(jsonFile, notes);
+            LOG.d("save notes to file", jsonFile);
+        }
+        return notes;
     }
 
 }

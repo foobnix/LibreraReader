@@ -251,6 +251,9 @@ public class SyncTranslations {
             try {
                 text = text.replace(BREK, "\"");
                 text = text.toLowerCase(Locale.US);
+
+                lang = lang.replace("zh-r", "zh-");
+
                 text = GoogleTranslation.translate(text, lang);
                 text = normilizeText(text);
             } catch (JSONException | IOException e) {

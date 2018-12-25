@@ -517,4 +517,5 @@
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Delete this playlist?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in/out with Lock enable</string>
+   <string name="show_footnotes_directly_in_text">Show footnotes directly in text</string>
 </resources>

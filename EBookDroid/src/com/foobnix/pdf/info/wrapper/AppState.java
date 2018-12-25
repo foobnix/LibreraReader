@@ -280,6 +280,8 @@ public class AppState {
 
     public boolean isAccurateFontSize = false;
 
+    public boolean isShowFooterNotesInText = false;
+
     @IgnoreHashCode
     public boolean isEditMode = true;
     public boolean isFullScreen = true;

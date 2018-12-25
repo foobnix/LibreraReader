@@ -20,24 +20,30 @@ public class Fb2Context extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameOriginal = fileNameOriginal + AppState.get().isShowFooterNotesInText + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".epub");
         return cacheFile;
     }
-
 
     MuPdfDocument muPdfDocument;
 
     @Override
     public CodecDocument openDocumentInner(final String fileName, String password) {
         String outName = null;
+
+        Map<String, String> notes = null;
+        if (AppState.get().isShowFooterNotesInText) {
+            notes = getNotes(fileName);
+
+        }
+
         if (cacheFile.isFile()) {
             outName = cacheFile.getPath();
         } else
 
         if (outName == null) {
             outName = cacheFile.getPath();
-            Fb2Extractor.get().convert(fileName, outName, false);
+            Fb2Extractor.get().convert(fileName, outName, false, notes);
             LOG.d("Fb2Context create", fileName, "to", outName);
         }
 
@@ -52,30 +58,37 @@ public class Fb2Context extends PdfContext {
             if (cacheFile.isFile()) {
                 cacheFile.delete();
             }
-            Fb2Extractor.get().convert(fileName, outName, true);
+            Fb2Extractor.get().convert(fileName, outName, true, notes);
             LOG.d("Fb2Context create 2", outName);
             muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, outName, password);
         }
 
-        final File jsonFile = new File(cacheFile + ".json");
-        if (jsonFile.isFile()) {
-            muPdfDocument.setFootNotes(JsonHelper.fileToMap(jsonFile));
-            LOG.d("Load notes from file", jsonFile);
+        if (notes != null) {
+            muPdfDocument.setFootNotes(notes);
         } else {
-
             new Thread() {
                 @Override
                 public void run() {
-                    Map<String, String> notes = Fb2Extractor.get().getFooterNotes(fileName);
-                    muPdfDocument.setFootNotes(notes);
-                    JsonHelper.mapToFile(jsonFile, notes);
-                    LOG.d("save notes to file", jsonFile);
+                    muPdfDocument.setFootNotes(getNotes(fileName));
                     removeTempFiles();
                 };
             }.start();
         }
 
         return muPdfDocument;
+    }
+
+    public Map<String, String> getNotes(String fileName) {
+        Map<String, String> notes = null;
+        final File jsonFile = new File(cacheFile + ".json");
+        if (jsonFile.isFile()) {
+            notes = JsonHelper.fileToMap(jsonFile);
+        } else {
+            notes = Fb2Extractor.get().getFooterNotes(fileName);
+            JsonHelper.mapToFile(jsonFile, notes);
+            LOG.d("save notes to file", jsonFile);
+        }
+        return notes;
     }
 
 }

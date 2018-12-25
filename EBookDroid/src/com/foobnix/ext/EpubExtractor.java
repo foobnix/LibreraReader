@@ -53,10 +53,10 @@ public class EpubExtractor extends BaseExtractor {
         return inst;
     }
 
-    public static void proccessHypens(String input, String output) {
+    public static void proccessHypens(String input, String output, Map<String, String> notes) {
         try {
             // proccessHypensDefault(input, output);
-            proccessHypensApache(input, output);
+            proccessHypensApache(input, output, notes);
         } catch (Exception e) {
             LOG.e(e);
             try {
@@ -88,7 +88,7 @@ public class EpubExtractor extends BaseExtractor {
 
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
-                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream));
+                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null);
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
@@ -103,7 +103,7 @@ public class EpubExtractor extends BaseExtractor {
 
     }
 
-    public static void proccessHypensApache(String input, String output) throws Exception {
+    public static void proccessHypensApache(String input, String output, final Map<String, String> notes) throws Exception {
 
         LOG.d("proccessHypens2", input, output);
 
@@ -125,7 +125,7 @@ public class EpubExtractor extends BaseExtractor {
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
 
-                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream));
+                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes);
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
@@ -197,7 +197,6 @@ public class EpubExtractor extends BaseExtractor {
             String date = null;
             String publisher = "";
             String ibsn = "";
-
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase(Locale.US);
@@ -322,7 +321,6 @@ public class EpubExtractor extends BaseExtractor {
 
             String coverName = null;
             String coverResource = null;
-
 
             while (coverName == null && (nextEntry = zipInputStream.getNextEntry()) != null) {
                 String name = nextEntry.getName().toLowerCase(Locale.US);
@@ -593,6 +591,5 @@ public class EpubExtractor extends BaseExtractor {
             return notes;
         }
     }
-
 
 }

@@ -3722,6 +3722,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isShowFooterNotesInText = (CheckBox) inflate.findViewById(R.id.isShowFooterNotesInText);
+                isShowFooterNotesInText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isShowFooterNotesInText.setChecked(AppState.get().isShowFooterNotesInText);
+                isShowFooterNotesInText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowFooterNotesInText = isChecked;
+                    }
+                });
+
                 View customCSS = inflate.findViewById(R.id.customCSS);
                 // TxtUtils.underlineTextView(customCSS);
                 customCSS.setOnClickListener(new OnClickListener() {

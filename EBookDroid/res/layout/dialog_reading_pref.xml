@@ -150,6 +150,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/normalize_font_size" />
+        
+        <CheckBox
+            android:id="@+id/isShowFooterNotesInText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_footnotes_directly_in_text" />
 
 
         <View

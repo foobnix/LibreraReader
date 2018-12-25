@@ -448,7 +448,7 @@ public class Fb2Extractor extends BaseExtractor {
     private boolean convertFB2(String inputFile, String toName) {
         try {
             String encoding = findHeaderEncoding(inputFile);
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, true, null);
             FileOutputStream out = new FileOutputStream(toName);
             out.write(generateFb2File.toByteArray());
             out.close();
@@ -460,7 +460,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     }
 
-    public boolean convert(String inputFile, String toName, boolean fixHTML) {
+    public boolean convert(String inputFile, String toName, boolean fixHTML, Map<String, String> notes) {
 
         try {
             ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(toName)));
@@ -476,7 +476,7 @@ public class Fb2Extractor extends BaseExtractor {
             String ncx = genetateNCX(titles);
             writeToZip(zos, "OEBPS/fb2.ncx", ncx);
 
-            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML);
+            ByteArrayOutputStream generateFb2File = generateFb2File(inputFile, encoding, fixHTML, notes);
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();
@@ -524,7 +524,7 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML) throws Exception {
+    public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -568,6 +568,10 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             line = accurateLine(line);
+
+            if (AppState.get().isShowFooterNotesInText) {
+                line = includeFooterNotes(line, notes);
+            }
 
             String subLine[] = line.split("</");
 
@@ -658,7 +662,7 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-    public static ByteArrayOutputStream generateHyphenFileEpub(InputStreamReader inputStream) throws Exception {
+    public static ByteArrayOutputStream generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -671,6 +675,11 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
+
+            if (AppState.get().isShowFooterNotesInText) {
+                line = includeFooterNotes(line, notes);
+            }
+
             // LOG.d("gen-in", line);
             line = accurateLine(line);
             line = HypenUtils.applyHypnes(line);
@@ -679,6 +688,36 @@ public class Fb2Extractor extends BaseExtractor {
         }
         writer.close();
         return out;
+    }
+
+    public static String includeFooterNotes(String line, Map<String, String> notes) {
+        if (notes == null) {
+            return line;
+        }
+        int i1 = 0;
+        while (i1 != -1) {
+            i1 = line.indexOf("[", i1);
+            if (i1 > 0) {
+                int i2 = line.indexOf("]", i1 + 1);
+                if (i2 > 0) {
+                    String number = line.substring(i1, i2 + 1);
+                    String value = notes.get(number);
+
+                    if (value != null) {
+                        char nextChar = line.charAt(i2 + 1);
+                        if (i2 + 1 < line.length() && (nextChar == '.' || nextChar == ',')) {
+                            i2 = i2 + 1;
+                        }
+
+                        line = line.substring(0, i2 + 1) + "<nt>" + value + "</nt>" + line.substring(i2 + 1);
+                    }
+                }
+                i1 = i2 + 1;
+            }
+
+        }
+
+        return line;
     }
 
     @Deprecated
@@ -794,7 +833,6 @@ public class Fb2Extractor extends BaseExtractor {
                 if (xpp.getName().equals("section")) {
                     section--;
                 }
-
 
             } else if (eventType == XmlPullParser.TEXT) {
                 if (isTitle) {
