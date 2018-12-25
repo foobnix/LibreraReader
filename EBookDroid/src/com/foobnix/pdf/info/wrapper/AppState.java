@@ -562,6 +562,8 @@ public class AppState {
     public boolean isSwipeGestureReverse = false;
 
     public boolean isCustomizeBgAndColors = false;
+
+    @IgnoreHashCode
     public boolean isVibration = true;
 
     @IgnoreHashCode
