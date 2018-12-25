@@ -118,7 +118,7 @@
    <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
    <string name="action_on_double_tap">Два тапа по центру экрана</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
-   <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц при открытии PDF/DJVU (\"закрывать\" замочек)</string>
+   <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц в стороны при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
@@ -517,5 +517,5 @@
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
    <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при "закрытом" замочке</string>
-   <string name="show_footnotes_directly_in_text">Показывать сноски прямо в тексте</string>
+   <string name="show_footnotes_directly_in_text">Показывать текст примечаний внутри текста самих книг</string>
 </resources>
