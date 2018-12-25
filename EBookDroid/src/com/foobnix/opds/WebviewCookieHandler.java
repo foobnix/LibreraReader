@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 
 import android.os.Build;
@@ -18,14 +19,21 @@ public final class WebviewCookieHandler implements CookieJar {
     private CookieManager webviewCookieManager;
 
     public WebviewCookieHandler() {
-        if (Build.VERSION.SDK_INT <= 19) {
-            CookieSyncManager.createInstance(IMG.context);
+        try {
+            if (Build.VERSION.SDK_INT <= 19) {
+                CookieSyncManager.createInstance(IMG.context);
+            }
+            webviewCookieManager = CookieManager.getInstance();
+        } catch (Exception e) {
+            LOG.e(e);
         }
-        webviewCookieManager = CookieManager.getInstance();
     }
 
     @Override
     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+        if (webviewCookieManager == null) {
+            return;
+        }
         String urlString = url.toString();
 
         for (Cookie cookie : cookies) {
@@ -35,6 +43,10 @@ public final class WebviewCookieHandler implements CookieJar {
 
     @Override
     public List<Cookie> loadForRequest(HttpUrl url) {
+        if (webviewCookieManager == null) {
+            return Collections.emptyList();
+        }
+
         String urlString = url.toString();
         String cookiesString = webviewCookieManager.getCookie(urlString);
 

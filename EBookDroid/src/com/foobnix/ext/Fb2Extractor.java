@@ -484,6 +484,8 @@ public class Fb2Extractor extends BaseExtractor {
         } catch (Exception e) {
             LOG.d("Fb2Context convert false error");
             LOG.e(e);
+        } catch (Throwable e) {
+            LOG.e(e);
         }
         LOG.d("Fb2Context convert false");
         return false;
