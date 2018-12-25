@@ -228,6 +228,7 @@ public class TTSService extends Service {
         AppState.get().lastBookHeight = height;
         AppState.get().lastFontSize = fontSize;
         AppState.get().lastBookTitle = title;
+        AppState.get().lastBookPage = page;
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -497,10 +498,16 @@ public class TTSService extends Service {
                     @Override
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
+                        if(utteranceId.startsWith(TTSEngine.FINISHED)) {
+                            AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            return;
+                        }
+                        
                         if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
                             LOG.d(TAG, "onUtteranceCompleted skip", "");
                             return;
                         }
+
 
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
@@ -509,6 +516,7 @@ public class TTSService extends Service {
                             return;
                         }
 
+                        AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
                         SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 
@@ -519,6 +527,11 @@ public class TTSService extends Service {
 
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
+                        if (utteranceId.startsWith(TTSEngine.FINISHED)) {
+                            AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            return;
+                        }
+
                         if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
                             LOG.d(TAG, "onUtteranceCompleted skip", "");
                             return;
@@ -531,6 +544,8 @@ public class TTSService extends Service {
                             stopSelf();
                             return;
                         }
+
+                        AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
                         SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
 

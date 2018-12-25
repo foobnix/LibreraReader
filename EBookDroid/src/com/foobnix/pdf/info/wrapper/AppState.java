@@ -479,11 +479,15 @@ public class AppState {
 
     public String lastBookPath;
 
+
     public String mp3BookPath;
     public int mp3seek = 0;
 
     @IgnoreHashCode
     public int lastBookPage = 0;
+
+    @IgnoreHashCode
+    public volatile int lastBookParagraph = 0;
 
     @IgnoreHashCode
     public String lastBookTitle;

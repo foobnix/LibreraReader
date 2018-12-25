@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 public class TTSEngine {
 
+    public static final String FINISHED = "Finished";
     private static final String WAV = ".wav";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
     private static final String TAG = "TTSEngine";
@@ -141,6 +142,7 @@ public class TTSEngine {
             }
             ttsEngine = null;
         }
+        AppState.get().lastBookParagraph = 0;
     }
 
     public synchronized TextToSpeech setTTSWithEngine(String engine) {
@@ -153,10 +155,19 @@ public class TTSEngine {
 
     private String text = "";
 
+    int lastPage = -1;
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public synchronized void speek(final String text) {
         this.text = text;
-        LOG.d(TAG, "speek", text);
+
+        if (lastPage != AppState.get().lastBookPage) {
+            lastPage = AppState.get().lastBookPage;
+            AppState.get().lastBookParagraph = 0;
+        }
+
+        LOG.d(TAG, "speek", AppState.get().lastBookPage, "par", AppState.get().lastBookParagraph);
+
         if (TxtUtils.isEmpty(text)) {
             return;
         }
@@ -187,16 +198,26 @@ public class TTSEngine {
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek speed", AppState.get().ttsSpeed);
+        LOG.d(TAG, "Speek AppState.get().lastBookParagraph", AppState.get().lastBookParagraph);
 
         if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
             String[] parts = text.split(TxtUtils.TTS_PAUSE);
             ttsEngine.speak(" ", TextToSpeech.QUEUE_FLUSH, mapTemp);
-            for (String big : parts) {
+            for (int i = AppState.get().lastBookParagraph; i < parts.length; i++) {
+
+                String big = parts[i];
                 big = big.trim();
                 if (TxtUtils.isNotEmpty(big)) {
-                    ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp);
-                    ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
-                    LOG.d("pageHTML-parts", big);
+
+                    HashMap<String, String> mapTemp1 = new HashMap<String, String>();
+                    mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED + i);
+
+                    ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp1);
+                    if (!big.endsWith(".")) {
+                        LOG.d("pageHTML-parts", i, "[playSilence]");
+                        ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
+                    }
+                    LOG.d("pageHTML-parts", i, big);
                 }
             }
             ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
@@ -346,7 +367,7 @@ public class TTSEngine {
 
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                        mp.pause();
+                    mp.pause();
                 }
             });
             if (play) {

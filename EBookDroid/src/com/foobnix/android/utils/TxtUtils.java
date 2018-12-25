@@ -224,6 +224,10 @@ public class TxtUtils {
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
+        pageHTML = pageHTML.replace(".", "." + TTS_PAUSE);
+        pageHTML = pageHTML.replace(";", "." + TTS_PAUSE);
+        pageHTML = pageHTML.replace(":", "." + TTS_PAUSE);
+
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("'", "");
