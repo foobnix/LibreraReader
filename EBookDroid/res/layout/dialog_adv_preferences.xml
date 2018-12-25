@@ -165,6 +165,120 @@
                 android:text="@string/close_book" />
         </LinearLayout>
 
+        
+                
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekWheelSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/scroll_speed" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:gravity="center_vertical"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="5dip"
+                android:src="@drawable/glyphicons_281_settings"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="@string/performance_settings"
+                android:textAllCaps="true"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/page_quality"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pageQuality"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/pages_in_memory"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pagesInMemory"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:text="@string/screen_turn_off_after_inactivity_minutes_"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/inactivityTime"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="180dip"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/size_of_allocated_memory"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/allocatedMemorySize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="50dip"
+                android:padding="5dip"
+                android:singleLine="true"
+                android:text="64MB" />
+        </LinearLayout>
+        
         <CheckBox
             android:id="@+id/isLockPDF"
             android:layout_width="wrap_content"
@@ -303,123 +417,6 @@
             android:layout_height="wrap_content"
             android:text="@string/enable_vibration_for_some_actions" />
         
-        <com.foobnix.pdf.info.view.CustomSeek
-            android:id="@+id/seekWheelSpeed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            myseek:text="@string/scroll_speed" >
-        </com.foobnix.pdf.info.view.CustomSeek>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dip"
-            android:gravity="center_vertical"
-            android:visibility="gone" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:padding="5dip"
-                android:src="@drawable/glyphicons_281_settings"
-                android:tint="@color/tint_gray" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dip"
-                android:text="@string/performance_settings"
-                android:textAllCaps="true"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/page_quality"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pageQuality"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1.2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/pages_in_memory"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pagesInMemory"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:text="@string/screen_turn_off_after_inactivity_minutes_"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/inactivityTime"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" >
-
-            <TextView
-                android:layout_width="180dip"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/size_of_allocated_memory"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/allocatedMemorySize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="50dip"
-                android:padding="5dip"
-                android:singleLine="true"
-                android:text="64MB" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
