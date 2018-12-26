@@ -37,7 +37,7 @@ public class EpubContext extends PdfContext {
 
         }
 
-        if (BookCSS.get().isAutoHypens && !cacheFile.isFile()) {
+        if ((BookCSS.get().isAutoHypens || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -45,7 +45,7 @@ public class EpubContext extends PdfContext {
             return null;
         }
 
-        String bookPath = BookCSS.get().isAutoHypens ? cacheFile.getPath() : fileName;
+        String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
         if (notes != null) {

@@ -682,7 +682,9 @@ public class Fb2Extractor extends BaseExtractor {
 
             // LOG.d("gen-in", line);
             line = accurateLine(line);
-            line = HypenUtils.applyHypnes(line);
+            if (BookCSS.get().isAutoHypens) {
+                line = HypenUtils.applyHypnes(line);
+            }
             writer.println(line);
             // LOG.d("gen-ou", line);
         }
@@ -703,7 +705,7 @@ public class Fb2Extractor extends BaseExtractor {
                     String number = line.substring(i1, i2 + 1);
                     String value = notes.get(number);
                     if (value != null) {
-                        value = TxtUtils.getFooterNoteNumber(value);
+                        value = TxtUtils.replaceFirst(value, number.replace("[", "").replace("]", ""), "").trim();
                         line = line.substring(0, i2 + 1) + "(" + value + ")" + line.substring(i2 + 1);
                     }
                 }
@@ -714,6 +716,7 @@ public class Fb2Extractor extends BaseExtractor {
 
         return line;
     }
+
     @Deprecated
     public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
