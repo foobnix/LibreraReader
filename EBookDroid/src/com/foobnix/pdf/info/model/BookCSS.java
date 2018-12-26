@@ -521,8 +521,6 @@ public class BookCSS {
         // not supported text-decoration
         builder.append("del,ins,u,strikethrough{font-family:monospace;}");
 
-        builder.append("nt{text-indent:0px;font-style:italic;border-style:solid;border-width:1px;display:block;padding:0.2em;}");
-
         // FB2 END
 
         builder.append("p,div,span, body{");

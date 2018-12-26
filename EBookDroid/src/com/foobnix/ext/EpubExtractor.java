@@ -572,7 +572,7 @@ public class EpubExtractor extends BaseExtractor {
                                 String textKey = textLink.get(fileKey);
 
                                 LOG.d(textKey + " " + value);
-                                notes.put(textKey, value);
+                                notes.put(textKey, value.trim());
 
                             }
                         }

@@ -415,7 +415,7 @@ public class Fb2Extractor extends BaseExtractor {
                 } else if (eventType == XmlPullParser.END_TAG) {
                     if (sectionId != null && xpp.getName().equals("section")) {
                         String keyEnd = StreamUtils.getKeyByValue(map, sectionId);
-                        map.put(keyEnd, text.toString());
+                        map.put(keyEnd, text.toString().trim());
                         LOG.d("getFooterNotes section", sectionId, keyEnd, ">", text.toString());
                         sectionId = null;
                         text = null;
@@ -427,7 +427,7 @@ public class Fb2Extractor extends BaseExtractor {
                                 key = "[" + link + "]";
                             }
                             link = link.replace("#", "");
-                            map.put(key, link);
+                            map.put(key, link.trim());
                             LOG.d("getFooterNotes", key, ">", link);
 
                             isLink = false;
@@ -702,14 +702,8 @@ public class Fb2Extractor extends BaseExtractor {
                 if (i2 > 0) {
                     String number = line.substring(i1, i2 + 1);
                     String value = notes.get(number);
-
                     if (value != null) {
-                        char nextChar = line.charAt(i2 + 1);
-                        if (i2 + 1 < line.length() && (nextChar == '.' || nextChar == ',')) {
-                            i2 = i2 + 1;
-                        }
-
-                        line = line.substring(0, i2 + 1) + "<nt>" + value + "</nt>" + line.substring(i2 + 1);
+                        line = line.substring(0, i2 + 1) + "<i>(" + value + ")</i>" + line.substring(i2 + 1);
                     }
                 }
                 i1 = i2 + 1;
@@ -719,7 +713,6 @@ public class Fb2Extractor extends BaseExtractor {
 
         return line;
     }
-
     @Deprecated
     public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
