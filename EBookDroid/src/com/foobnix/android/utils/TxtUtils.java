@@ -651,7 +651,7 @@ public class TxtUtils {
         Matcher m = Pattern.compile(patternString).matcher(input);
 
         if (m.find()) {
-            return m.group(0);
+            return m.group(0).trim();
         }
         return "";
 

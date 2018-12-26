@@ -703,7 +703,8 @@ public class Fb2Extractor extends BaseExtractor {
                     String number = line.substring(i1, i2 + 1);
                     String value = notes.get(number);
                     if (value != null) {
-                        line = line.substring(0, i2 + 1) + "<i>(" + value + ")</i>" + line.substring(i2 + 1);
+                        value = TxtUtils.getFooterNoteNumber(value);
+                        line = line.substring(0, i2 + 1) + "(" + value + ")" + line.substring(i2 + 1);
                     }
                 }
                 i1 = i2 + 1;
