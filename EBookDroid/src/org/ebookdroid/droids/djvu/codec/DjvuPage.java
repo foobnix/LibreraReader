@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.settings.AppSettings;
@@ -20,6 +21,8 @@ import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.RectF;
@@ -32,12 +35,16 @@ public class DjvuPage extends AbstractCodecPage {
     private long pageHandle;
     private int w = 0;
     private int h = 0;
+    private String filename;
+    private SharedPreferences sp;
+    private boolean containsErrors;
 
-    DjvuPage(final long contextHandle, final long docHandle, final long pageHandle, final int pageNo) {
+    DjvuPage(final long contextHandle, final long docHandle, final long pageHandle, final int pageNo, String filename) {
         this.contextHandle = contextHandle;
         this.docHandle = docHandle;
         this.pageHandle = pageHandle;
         this.pageNo = pageNo;
+        this.filename = filename;
         w = getWidth(pageHandle);
         h = getHeight(pageHandle);
 
@@ -52,6 +59,9 @@ public class DjvuPage extends AbstractCodecPage {
             h = getHeight(pageHandle);
             LOG.d("DjvuPage-create", count, w, h);
         }
+        sp = LibreraApp.context.getSharedPreferences("djvu", Context.MODE_PRIVATE);
+        containsErrors = sp.contains("" + filename.hashCode());
+
     }
 
     @Override
@@ -229,7 +239,18 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     public List<PageTextBox> getPageText1() {
+
+        TempHolder.lock.lock();
+        if (containsErrors) {
+            LOG.d("getPageText1", "contains" + filename.hashCode());
+            return null;
+        }
+        TempHolder.lock.unlock();
+
+        writeLock();
         final List<PageTextBox> list = getPageTextSync(docHandle, pageNo, contextHandle, null);
+        realesaeLock();
+
         if (LengthUtils.isNotEmpty(list)) {
             final float width = getWidth();
             final float height = getHeight();
@@ -267,9 +288,23 @@ public class DjvuPage extends AbstractCodecPage {
     private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode) {
         try {
             TempHolder.lock.lock();
+            writeLock();
             return renderPage(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, buffer, renderMode);
         } finally {
+            realesaeLock();
             TempHolder.lock.unlock();
+        }
+    }
+
+    public void writeLock() {
+        if (!containsErrors) {
+            sp.edit().putBoolean("" + filename.hashCode(), true).commit();
+        }
+    }
+
+    public void realesaeLock() {
+        if (!containsErrors) {
+            sp.edit().remove("" + filename.hashCode()).commit();
         }
     }
 

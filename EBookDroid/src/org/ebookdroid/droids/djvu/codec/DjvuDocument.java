@@ -69,7 +69,7 @@ public class DjvuDocument extends AbstractCodecDocument {
         TempHolder.lock.lock();
         try {
             LOG.d("DjvuPage_getPage", pageNumber);
-            return new DjvuPage(context.getContextHandle(), documentHandle, getPage(documentHandle, pageNumber), pageNumber);
+            return new DjvuPage(context.getContextHandle(), documentHandle, getPage(documentHandle, pageNumber), pageNumber, fileName);
         } finally {
             TempHolder.lock.unlock();
         }
