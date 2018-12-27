@@ -10,7 +10,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.ebookdroid.LibreraApp;
+
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
@@ -233,6 +236,9 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("'", "");
         pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("[image]", "");
+        if (AppState.get().isShowFooterNotesInText) {
+            pageHTML = pageHTML.replaceAll("\\[([0-9]+)\\]", "[" + LibreraApp.context.getString(R.string.foot_notes) + " $1]");
+        }
 
         pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replace("  ", " ");
