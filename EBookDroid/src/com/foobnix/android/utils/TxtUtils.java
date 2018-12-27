@@ -243,7 +243,7 @@ public class TxtUtils {
         if (AppState.get().isShowFooterNotesInText) {
             try {
                 String string = getLocaleStringResource(new Locale(BookCSS.get().hypenLang), R.string.foot_notes, LibreraApp.context);
-                pageHTML = pageHTML.replaceAll("[\\[{]([0-9]+)[\\]}]", "[" + string + " $1]");
+                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", ". " + string + ".");
             } catch (Exception e) {
                 LOG.e(e);
             }

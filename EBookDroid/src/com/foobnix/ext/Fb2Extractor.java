@@ -727,9 +727,9 @@ public class Fb2Extractor extends BaseExtractor {
                 if (value != null) {
                     value = value.replaceAll("^[0-9]+", "").trim();
 
-                    out.append("<t>(");
+                    out.append(" <t>[");
                     out.append(value);
-                    out.append(")</t>");
+                    out.append("]</t>");
                 }
             }
 
