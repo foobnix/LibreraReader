@@ -155,14 +155,13 @@ public class TTSEngine {
 
     private String text = "";
 
-    int lastPage = -1;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public synchronized void speek(final String text) {
         this.text = text;
 
-        if (lastPage != AppState.get().lastBookPage) {
-            lastPage = AppState.get().lastBookPage;
+        if (AppState.get().tempBookPage != AppState.get().lastBookPage) {
+            AppState.get().tempBookPage = AppState.get().lastBookPage;
             AppState.get().lastBookParagraph = 0;
         }
 

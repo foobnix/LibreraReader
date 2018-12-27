@@ -487,6 +487,7 @@ public class AppState {
 
     @IgnoreHashCode
     public int lastBookPage = 0;
+    public int tempBookPage = 0;
 
     @IgnoreHashCode
     public volatile int lastBookParagraph = 0;
