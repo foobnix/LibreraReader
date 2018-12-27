@@ -696,31 +696,47 @@ public class Fb2Extractor extends BaseExtractor {
         if (notes == null) {
             return line;
         }
-        int i1 = 0;
-        while (i1 != -1) {
-            i1 = line.indexOf("[", i1);
-            if (i1 > 0) {
-                int i2 = line.indexOf("]", i1 + 1);
-                if (i2 - i1 > 4) {
-                    String number = line.substring(i1, i2 + 1);
-                    String value = notes.get(number);
 
-                    if (value != null) {
-                        int i3 = line.indexOf(">", i2 + 1);
-                        if (i3 - i2 < 6) {
-                            i2 = i3;
-                        }
-                        value = value.replaceAll("^" + number.replace("[", "").replace("]", ""), "").trim();
-                        line = line.substring(0, i2 + 1) + "<t>(" + value.trim() + ")</t>" + line.substring(i2 + 1);
-                    }
+        int beginIndex = -1;
+        int endIndex = -1;
+        StringBuffer out = new StringBuffer();
+
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '[' || c == '{') {
+                beginIndex = i;
+            }
+            if (c == ']' || c == '}') {
+                endIndex = i;
+            }
+            out.append(c);
+
+            if (beginIndex > 0 && endIndex > beginIndex && endIndex - beginIndex < 6) {
+                String number = line.substring(beginIndex, endIndex + 1);
+                beginIndex = -1;
+                endIndex = -1;
+
+                int end = line.indexOf('>', i);
+                int k = end - i;
+                if (end > i && k < 6) {
+                    out.append(line.substring(i + 1, end + 1));
+                    i += k;
                 }
-                i1 = i2 + 1;
+
+                String value = notes.get(number);
+                if (value != null) {
+                    value = value.replaceAll("^" + number.replace("[", "").replace("]", ""), "").trim();
+
+                    out.append("<t>(");
+                    out.append(value);
+                    out.append(")</t>");
+                }
             }
 
         }
-
-        return line;
+        return out.toString();
     }
+
 
     @Deprecated
     public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {

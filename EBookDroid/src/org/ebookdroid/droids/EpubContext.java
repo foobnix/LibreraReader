@@ -34,7 +34,7 @@ public class EpubContext extends PdfContext {
         Map<String, String> notes = null;
         if (AppState.get().isShowFooterNotesInText) {
             notes = getNotes(fileName);
-
+            LOG.d("footer-notes-extracted");
         }
 
         if ((BookCSS.get().isAutoHypens || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
