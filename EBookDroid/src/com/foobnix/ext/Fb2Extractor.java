@@ -387,8 +387,8 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xpp.getName().equals("a")) {
-                        String type = xpp.getAttributeValue(null, "type");
-                        if ("note".equals(type)) {
+                        // String type = xpp.getAttributeValue(null, "type");
+                        // if ("note".equals(type)) {
                             isLink = true;
 
                             link = xpp.getAttributeValue(null, "l:href");
@@ -396,7 +396,7 @@ public class Fb2Extractor extends BaseExtractor {
                                 link = xpp.getAttributeValue(null, "xlink:href");
                             }
 
-                        }
+                        // }
                     } else if (xpp.getName().equals("section")) {
                         sectionId = xpp.getAttributeValue(null, "id");
                         text = new StringBuilder();
@@ -718,14 +718,14 @@ public class Fb2Extractor extends BaseExtractor {
 
                 int end = line.indexOf('>', i);
                 int k = end - i;
-                if (end > i && k < 6) {
+                if (end > i && k < 8) {
                     out.append(line.substring(i + 1, end + 1));
                     i += k;
                 }
 
                 String value = notes.get(number);
                 if (value != null) {
-                    value = value.replaceAll("^" + number.replace("[", "").replace("]", ""), "").trim();
+                    value = value.replaceAll("^[0-9]+", "").trim();
 
                     out.append("<t>(");
                     out.append(value);

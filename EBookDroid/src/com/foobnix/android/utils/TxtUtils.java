@@ -14,10 +14,14 @@ import org.ebookdroid.LibreraApp;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -237,7 +241,12 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("[image]", "");
         if (AppState.get().isShowFooterNotesInText) {
-            pageHTML = pageHTML.replaceAll("\\[([0-9]+)\\]", "[" + LibreraApp.context.getString(R.string.foot_notes) + " $1]");
+            try {
+                String string = getLocaleStringResource(new Locale(BookCSS.get().hypenLang), R.string.foot_notes, LibreraApp.context);
+                pageHTML = pageHTML.replaceAll("[\\[{]([0-9]+)[\\]}]", "[" + string + " $1]");
+            } catch (Exception e) {
+                LOG.e(e);
+            }
         }
 
         pageHTML = replaceEndLine(pageHTML);
@@ -248,6 +257,30 @@ public class TxtUtils {
         return pageHTML;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getLocaleStringResource(Locale requestedLocale, int resourceId, Context context) {
+        String result;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { // use latest api
+            Configuration config = new Configuration(context.getResources().getConfiguration());
+            config.setLocale(requestedLocale);
+            result = context.createConfigurationContext(config).getText(resourceId).toString();
+        } else { // support older android versions
+            Resources resources = context.getResources();
+            Configuration conf = resources.getConfiguration();
+            Locale savedLocale = conf.locale;
+            conf.locale = requestedLocale;
+            resources.updateConfiguration(conf, null);
+
+            // retrieve resources from desired locale
+            result = resources.getString(resourceId);
+
+            // restore original locale
+            conf.locale = savedLocale;
+            resources.updateConfiguration(conf, null);
+        }
+
+        return result;
+    }
     public static String sanitizeFilename(String name) {
         return name.replaceAll("[:\\\\/*?|<>]", "_");
     }
@@ -634,9 +667,11 @@ public class TxtUtils {
 
             if (TxtUtils.isNotEmpty(id)) {
                 String string = footNotes.get(id);
-                LOG.d("Find note for id", string);
-                string = string.trim().replaceAll("^[0-9]+ ", "");
-                return string;
+                if (TxtUtils.isNotEmpty(string)) {
+                    LOG.d("Find note for id", string);
+                    string = string.trim().replaceAll("^[0-9]+ ", "");
+                    return string;
+                }
             }
 
         } catch (Exception e) {
