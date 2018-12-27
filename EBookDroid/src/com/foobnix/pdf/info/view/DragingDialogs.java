@@ -4023,6 +4023,8 @@ public class DragingDialogs {
 
                                 emptyLine.reset(BookCSS.get().emptyLine);
 
+                                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
                                 linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
                                 linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
 

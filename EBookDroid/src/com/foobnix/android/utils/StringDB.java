@@ -22,7 +22,7 @@ public class StringDB {
         List<Integer> colors = new ArrayList<Integer>();
         for (String color : db.split(DIVIDER)) {
             try {
-                colors.add(Color.parseColor(color));
+                colors.add(Color.parseColor(color.trim()));
             } catch (Exception e) {
                 LOG.e(e);
             }
