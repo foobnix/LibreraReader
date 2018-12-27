@@ -248,7 +248,7 @@ public class Dialogs {
 
     public static void showEditDialog(Context c, String title, String init, final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        builder.setTitle(R.string.custom_value);
+        builder.setTitle(title);
         final EditText input = new EditText(c);
         input.setSingleLine();
         input.setText(init);

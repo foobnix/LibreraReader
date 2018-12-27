@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.foobnix.pdf.info.model.BookCSS;
-
 import android.graphics.Color;
 
 public class StringDB {
@@ -22,7 +20,7 @@ public class StringDB {
 
     public static List<Integer> converToColor(String db) {
         List<Integer> colors = new ArrayList<Integer>();
-        for (String color : BookCSS.get().linkColorDays.split(DIVIDER)) {
+        for (String color : db.split(DIVIDER)) {
             try {
                 colors.add(Color.parseColor(color));
             } catch (Exception e) {

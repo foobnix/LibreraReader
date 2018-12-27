@@ -3933,67 +3933,66 @@ public class DragingDialogs {
                 });
 
                 // link color
-                final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
+                    final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
 
-                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
-                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                linkColorDay.setOnColorChanged(new StringResponse() {
+                    linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
+                    linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                    linkColorDay.setOnColorChanged(new StringResponse() {
 
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        BookCSS.get().linkColorDay = string;
-                        return false;
-                    }
-                });
-                linkColorDay.setOnLongClickListener(new OnLongClickListener() {
+                        @Override
+                        public boolean onResultRecive(String string) {
+                            BookCSS.get().linkColorDay = string;
+                            return false;
+                        }
+                    });
+                    linkColorDay.setOnLongClickListener(new OnLongClickListener() {
 
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorDay.getText1().toString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            Dialogs.showEditDialog(v.getContext(), linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
 
-                            @Override
-                            public boolean onResultRecive(String result) {
-                                BookCSS.get().linkColorDays = result;
-                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
-                                return true;
-                            }
-                        });
-                        return true;
-                    }
-                });
+                                @Override
+                                public boolean onResultRecive(String result) {
+                                    BookCSS.get().linkColorDays = result;
+                                    linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
+                                    return true;
+                                }
+                            });
+                            return true;
+                        }
+                    });
+                    linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
-                final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
-                linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+                    final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
+                    linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+                    linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                    linkColorNight.setOnColorChanged(new StringResponse() {
 
-                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
-                linkColorNight.setOnColorChanged(new StringResponse() {
+                        @Override
+                        public boolean onResultRecive(String string) {
+                            BookCSS.get().linkColorNight = string;
+                            return false;
+                        }
+                    });
 
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        BookCSS.get().linkColorNight = string;
-                        return false;
-                    }
-                });
+                    linkColorNight.setOnLongClickListener(new OnLongClickListener() {
 
-                linkColorNight.setOnLongClickListener(new OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            Dialogs.showEditDialog(v.getContext(), linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
 
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorNight.getText1().toString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
+                                @Override
+                                public boolean onResultRecive(String result) {
+                                    BookCSS.get().linkColorNigths = result;
+                                    linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+                                    return true;
+                                }
+                            });
+                            return true;
+                        }
+                    });
+                    linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
-                            @Override
-                            public boolean onResultRecive(String result) {
-                                BookCSS.get().linkColorNigths = result;
-                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
-                                return true;
-                            }
-                        });
-                        return true;
-                    }
-                });
-
-                linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
-                linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 TxtUtils.underlineTextView(inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
 
@@ -4024,8 +4023,9 @@ public class DragingDialogs {
 
                                 emptyLine.reset(BookCSS.get().emptyLine);
 
-                                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
+                                linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+
                             }
                         });
 

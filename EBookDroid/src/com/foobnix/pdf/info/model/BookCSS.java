@@ -30,7 +30,6 @@ import android.os.Environment;
 
 public class BookCSS {
 
-
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
 
     public static final String FONTS_DIR = "Fonts";
@@ -89,8 +88,11 @@ public class BookCSS {
     public int capitalLetterSize = 20;
     public String capitalLetterColor = "#ff0000";
 
-    public String linkColorDays = "#876f52," + LINK_COLOR_UNIVERSAL;
-    public String linkColorNigths = "#8c1908," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_DAYS = "#876f52,#665646" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGTHS = "#8c1908,#6e605a" + "," + LINK_COLOR_UNIVERSAL;
+
+    public String linkColorDays = LINKCOLOR_DAYS;
+    public String linkColorNigths = LINKCOLOR_NIGTHS;
 
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
@@ -123,10 +125,15 @@ public class BookCSS {
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
+
+        linkColorDays = LINKCOLOR_DAYS;
+        linkColorNigths = LINKCOLOR_NIGTHS;
+
         customCSS2 = //
                 "code,pre,pre>* {white-space: pre-line;}\n" + //
                         ""//
         ;
+
 
         LOG.d("BookCSS", "resetToDefault");
 
@@ -652,7 +659,6 @@ public class BookCSS {
         return result;
 
     }
-
 
     public String getHeaderFontFamily(String fontName) {
         return isFontFileName(fontName) ? "myHeader" : fontName;

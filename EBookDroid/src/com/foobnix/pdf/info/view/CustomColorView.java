@@ -69,6 +69,10 @@ public class CustomColorView extends FrameLayout {
 
     }
 
+    public String getTextString() {
+        return text1.getText().toString();
+    }
+
     public void withCustomIcon(int resId) {
 
 
