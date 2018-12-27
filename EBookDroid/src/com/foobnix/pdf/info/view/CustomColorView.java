@@ -1,10 +1,13 @@
 package com.foobnix.pdf.info.view;
 
+import java.util.List;
+
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
@@ -13,6 +16,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +29,7 @@ public class CustomColorView extends FrameLayout {
     private LinearLayout defaultValues;
 
     int dp25 = Dips.dpToPx(25);
+    private OnLongClickListener onLongClickListener;
 
     public CustomColorView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,6 +69,59 @@ public class CustomColorView extends FrameLayout {
 
     }
 
+    public void withCustomIcon(int resId) {
+
+
+    }
+    public void withDefaultColors(List<Integer> colors) {
+        defaultValues.removeAllViews();
+        defaultValues.setVisibility(View.VISIBLE);
+
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp25, dp25);
+        p.leftMargin = Dips.DP_4;
+
+        for (final int color : colors) {
+            TextView t = new TextView(getContext());
+            t.setBackgroundColor(color);
+            t.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    init(color);
+                    stringResponse.onResultRecive(MagicHelper.colorToString(color));
+                }
+            });
+            t.setOnLongClickListener(new OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    if (onLongClickListener != null) {
+                        onLongClickListener.onLongClick(v);
+                    }
+                    return true;
+                }
+            });
+
+            defaultValues.addView(t, p);
+        }
+
+        ImageView img = new ImageView(getContext());
+        img.setBackgroundResource(R.drawable.bg_clickable);
+        img.setImageResource(R.drawable.glyphicons_137_cogwheel);
+        img.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (onLongClickListener != null) {
+                    onLongClickListener.onLongClick(v);
+                }
+            }
+        });
+        TintUtil.setTintImageWithAlpha(img);
+
+        defaultValues.addView(img, p);
+    }
+
     public void withDefaultColors(int... colors) {
         defaultValues.removeAllViews();
         defaultValues.setVisibility(View.VISIBLE);
@@ -79,12 +137,27 @@ public class CustomColorView extends FrameLayout {
                     stringResponse.onResultRecive(MagicHelper.colorToString(color));
                 }
             });
+            t.setOnLongClickListener(new OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    if (onLongClickListener != null) {
+                        onLongClickListener.onLongClick(v);
+                    }
+                    return true;
+                }
+            });
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(dp25, dp25);
             p.leftMargin = Dips.dpToPx(4);
             defaultValues.addView(t, p);
 
         }
 
+    }
+
+    @Override
+    public void setOnLongClickListener(OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
     }
 
     public TextView getText1() {

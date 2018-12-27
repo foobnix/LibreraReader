@@ -246,6 +246,28 @@ public class Dialogs {
 
     }
 
+    public static void showEditDialog(Context c, String title, String init, final ResultResponse<String> onresult) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle(R.string.custom_value);
+        final EditText input = new EditText(c);
+        input.setSingleLine();
+        input.setText(init);
+        builder.setView(input);
+        builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onresult.onResultRecive(input.getText().toString());
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
+
+    }
+
     public static void showDeltaPage(final FrameLayout anchor, final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
         Vibro.vibrate();
         String txt = controller.getString(R.string.set_the_current_page_number);
@@ -510,8 +532,6 @@ public class Dialogs {
         });
     }
 
-
-
     public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
         final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
         final String tag = file == null ? "" : fileMeta.getTag();
@@ -672,7 +692,5 @@ public class Dialogs {
         create.show();
 
     }
-
-
 
 }

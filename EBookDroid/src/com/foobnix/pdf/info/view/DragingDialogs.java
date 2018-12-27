@@ -25,6 +25,7 @@ import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
@@ -1448,7 +1449,6 @@ public class DragingDialogs {
                 for (final ResolveInfo app : all) {
                     for (final String pkgKey : AppState.appDictionariesKeys) {
                         String pkg = app.activityInfo.packageName;
-
 
                         if (pkg.toLowerCase(Locale.US).contains(pkgKey) || DictsHelper.getHash(app.activityInfo) == AppState.get().rememberDictHash) {
 
@@ -3550,7 +3550,6 @@ public class DragingDialogs {
         return dialog;
     };
 
-
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initCssHash = BookCSS.get().toCssString().hashCode();
         final int initAppHash = Objects.hashCode(AppState.get());
@@ -3935,7 +3934,8 @@ public class DragingDialogs {
 
                 // link color
                 final CustomColorView linkColorDay = (CustomColorView) inflate.findViewById(R.id.linkColorDay);
-                linkColorDay.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_DAY), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
+
+                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
                 linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
                 linkColorDay.setOnColorChanged(new StringResponse() {
 
@@ -3945,9 +3945,26 @@ public class DragingDialogs {
                         return false;
                     }
                 });
+                linkColorDay.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Dialogs.showEditDialog(v.getContext(), linkColorDay.getText1().toString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
+
+                            @Override
+                            public boolean onResultRecive(String result) {
+                                BookCSS.get().linkColorDays = result;
+                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
+                                return true;
+                            }
+                        });
+                        return true;
+                    }
+                });
 
                 final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
-                linkColorNight.withDefaultColors(Color.parseColor(BookCSS.LINK_COLOR_NIGHT), Color.parseColor(BookCSS.LINK_COLOR_UNIVERSAL));
+                linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+
                 linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
                 linkColorNight.setOnColorChanged(new StringResponse() {
 
@@ -3957,6 +3974,24 @@ public class DragingDialogs {
                         return false;
                     }
                 });
+
+                linkColorNight.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Dialogs.showEditDialog(v.getContext(), linkColorNight.getText1().toString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
+
+                            @Override
+                            public boolean onResultRecive(String result) {
+                                BookCSS.get().linkColorNigths = result;
+                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+                                return true;
+                            }
+                        });
+                        return true;
+                    }
+                });
+
                 linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
                 linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 

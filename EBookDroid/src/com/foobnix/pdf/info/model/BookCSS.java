@@ -30,8 +30,7 @@ import android.os.Environment;
 
 public class BookCSS {
 
-    public static final String LINK_COLOR_NIGHT = "#876f52";
-    public static final String LINK_COLOR_DAY = "#8c1908";
+
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
 
     public static final String FONTS_DIR = "Fonts";
@@ -89,6 +88,9 @@ public class BookCSS {
     public boolean isCapitalLetter = false;
     public int capitalLetterSize = 20;
     public String capitalLetterColor = "#ff0000";
+
+    public String linkColorDays = "#876f52," + LINK_COLOR_UNIVERSAL;
+    public String linkColorNigths = "#8c1908," + LINK_COLOR_UNIVERSAL;
 
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
