@@ -701,12 +701,17 @@ public class Fb2Extractor extends BaseExtractor {
             i1 = line.indexOf("[", i1);
             if (i1 > 0) {
                 int i2 = line.indexOf("]", i1 + 1);
-                if (i2 > 0) {
+                if (i2 - i1 > 4) {
                     String number = line.substring(i1, i2 + 1);
                     String value = notes.get(number);
+
                     if (value != null) {
-                        value = TxtUtils.replaceFirst(value, number.replace("[", "").replace("]", ""), "").trim();
-                        line = line.substring(0, i2 + 1) + "(" + value + ")" + line.substring(i2 + 1);
+                        int i3 = line.indexOf(">", i2 + 1);
+                        if (i3 - i2 < 6) {
+                            i2 = i3;
+                        }
+                        value = value.replaceAll("^" + number.replace("[", "").replace("]", ""), "").trim();
+                        line = line.substring(0, i2 + 1) + "<t>(" + value.trim() + ")</t>" + line.substring(i2 + 1);
                     }
                 }
                 i1 = i2 + 1;

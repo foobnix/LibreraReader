@@ -533,6 +533,12 @@ public class BookCSS {
         builder.append("padding:0 !important; margin:0 !important;");
         builder.append("}");
 
+        if (AppState.get().isDayNotInvert) {
+            builder.append("t{color:" + linkColorDay + " !important;}");
+        } else {
+            builder.append("t{color:" + linkColorNight + " !important;}");
+        }
+
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
 
             if (AppState.get().isDayNotInvert) {
