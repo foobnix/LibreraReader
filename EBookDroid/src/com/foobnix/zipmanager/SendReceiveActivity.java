@@ -1,5 +1,14 @@
 package com.foobnix.zipmanager;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import com.foobnix.android.utils.LOG;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,15 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-
-import com.foobnix.android.utils.LOG;
-
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.File;
-import java.io.FileOutputStream;
 
 public class SendReceiveActivity extends Activity {
 
@@ -51,7 +51,7 @@ public class SendReceiveActivity extends Activity {
     private void updateIntent() {
         Bundle extras = getIntent().getExtras();
         if (extras != null && getIntent().getData() == null) {
-            Object text = extras.get(Intent.EXTRA_TEXT);
+            final Object text = extras.get(Intent.EXTRA_TEXT);
             if (text instanceof Uri) {
                 getIntent().setData((Uri) text);
             }

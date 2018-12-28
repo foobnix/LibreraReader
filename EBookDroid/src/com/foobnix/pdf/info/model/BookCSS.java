@@ -89,8 +89,8 @@ public class BookCSS {
     public int capitalLetterSize = 20;
     public String capitalLetterColor = "#ff0000";
 
-    public static final String LINKCOLOR_DAYS = "#876f52" + "," + LINK_COLOR_UNIVERSAL;
-    public static final String LINKCOLOR_NIGTHS = "#8c1908" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600, #000000" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83, #A9A9A9" + "," + LINK_COLOR_UNIVERSAL;
 
     @IgnoreHashCode
     public String linkColorDays = LINKCOLOR_DAYS;
