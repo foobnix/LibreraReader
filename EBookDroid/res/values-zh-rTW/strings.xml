@@ -516,6 +516,6 @@
    <string name="playlists">播放列表</string>
    <string name="tags">標籤</string>
    <string name="are_you_sure_to_delete_playlist_">確認刪除播放列表？</string>
-   <string name="zoom_in_out_with_lock_enable">使用鎖定啟用放大/縮小</string>
-   <string name="show_footnotes_directly_in_text">直接在文本中顯示腳註</string>
+   <string name="zoom_in_out_with_lock_enable">鎖定時可縮放</string>
+   <string name="show_footnotes_directly_in_text">顯示文本腳注</string>
 </resources>
