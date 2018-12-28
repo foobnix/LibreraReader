@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -88,10 +89,12 @@ public class BookCSS {
     public int capitalLetterSize = 20;
     public String capitalLetterColor = "#ff0000";
 
-    public static final String LINKCOLOR_DAYS = "#876f52,#665646" + "," + LINK_COLOR_UNIVERSAL;
-    public static final String LINKCOLOR_NIGTHS = "#8c1908,#6e605a" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_DAYS = "#876f52" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGTHS = "#8c1908" + "," + LINK_COLOR_UNIVERSAL;
 
+    @IgnoreHashCode
     public String linkColorDays = LINKCOLOR_DAYS;
+    @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGTHS;
 
     public void resetToDefault(Context c) {

@@ -2817,7 +2817,7 @@ public class DragingDialogs {
                 });
 
                 final CustomColorView statusBarColorDay = (CustomColorView) inflate.findViewById(R.id.statusBarColorDay);
-                statusBarColorDay.withDefaultColors(AppState.TEXT_COLOR_DAY, AppState.get().tintColor);
+                statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays, AppState.get().tintColor));
                 statusBarColorDay.init(AppState.get().statusBarColorDay);
                 statusBarColorDay.setOnColorChanged(new StringResponse() {
 
@@ -2834,8 +2834,25 @@ public class DragingDialogs {
                     }
                 });
 
+                statusBarColorDay.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Dialogs.showEditDialog(v.getContext(), statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
+
+                            @Override
+                            public boolean onResultRecive(String result) {
+                                AppState.get().statusBarColorDays = result;
+                                statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays, AppState.get().tintColor));
+                                return true;
+                            }
+                        });
+                        return true;
+                    }
+                });
+
                 final CustomColorView statusBarColorNight = (CustomColorView) inflate.findViewById(R.id.statusBarColorNight);
-                statusBarColorNight.withDefaultColors(AppState.TEXT_COLOR_NIGHT, AppState.get().tintColor);
+                statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights, AppState.get().tintColor));
                 statusBarColorNight.init(AppState.get().statusBarColorNight);
                 statusBarColorNight.setOnColorChanged(new StringResponse() {
 
@@ -2849,6 +2866,23 @@ public class DragingDialogs {
                         }
                         Keyboards.hideNavigation(controller.getActivity());
                         return false;
+                    }
+                });
+
+                statusBarColorNight.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Dialogs.showEditDialog(v.getContext(), statusBarColorNight.getTextString(), AppState.get().statusBarColorNights, new ResultResponse<String>() {
+
+                            @Override
+                            public boolean onResultRecive(String result) {
+                                AppState.get().statusBarColorNights = result;
+                                statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights, AppState.get().tintColor));
+                                return true;
+                            }
+                        });
+                        return true;
                     }
                 });
 
@@ -4683,8 +4717,8 @@ public class DragingDialogs {
                                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
                                 TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
 
-                                AppState.get().statusBarColorDay = AppState.TEXT_COLOR_DAY;
-                                AppState.get().statusBarColorNight = AppState.TEXT_COLOR_NIGHT;
+                                AppState.get().statusBarColorDay = Color.parseColor(AppState.TEXT_COLOR_DAY);
+                                AppState.get().statusBarColorNight = Color.parseColor(AppState.TEXT_COLOR_NIGHT);
 
                                 colorsLine.run();
                             }

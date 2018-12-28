@@ -18,6 +18,13 @@ public class StringDB {
         return db;
     }
 
+    public static List<Integer> converToColor(String db, int last) {
+        List<Integer> res = converToColor(db);
+        res.add(last);
+        return res;
+
+    }
+
     public static List<Integer> converToColor(String db) {
         List<Integer> colors = new ArrayList<Integer>();
         for (String color : db.split(DIVIDER)) {

@@ -12,6 +12,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,8 +122,8 @@ public class CustomColorView extends FrameLayout {
                 }
             }
         });
-        TintUtil.setTintImageWithAlpha(img);
-
+        TintUtil.setTintImageWithAlpha(img, Color.GRAY);
+        img.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
         defaultValues.addView(img, p);
     }
 

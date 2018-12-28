@@ -24,6 +24,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.WebViewHepler;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
@@ -246,7 +247,7 @@ public class Dialogs {
 
     }
 
-    public static void showEditDialog(Context c, String title, String init, final ResultResponse<String> onresult) {
+    public static void showEditDialog(final Context c, String title, String init, final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
         final EditText input = new EditText(c);
@@ -259,12 +260,35 @@ public class Dialogs {
                 onresult.onResultRecive(input.getText().toString());
             }
         });
+        builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onresult.onResultRecive(input.getText().toString());
+            }
+        });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        builder.show();
+        AlertDialog create = builder.show();
+
+        create.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                new HSVColorPickerDialog(c, AppState.get().uiTextColorUser, new OnColorSelectedListener() {
+
+                    @Override
+                    public void colorSelected(Integer color) {
+                        String res = input.getText().toString();
+                        input.setText(res + "," + MagicHelper.colorToString(color));
+                    }
+                }).show();
+
+            }
+        });
 
     }
 

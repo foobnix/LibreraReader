@@ -42,8 +42,8 @@ public class AppState {
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
-    public static final int TEXT_COLOR_DAY = Color.parseColor("#5b5b5b");
-    public static final int TEXT_COLOR_NIGHT = Color.parseColor("#8e8e8e");
+    public static final String TEXT_COLOR_DAY = "#5b5b5b";
+    public static final String TEXT_COLOR_NIGHT = "#8e8e8e";
 
     public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(500);// SECONDS, MINUTES
     public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(10);
@@ -192,8 +192,14 @@ public class AppState {
     public int uiTextColor = Color.BLUE;
     public int uiTextColorUser = Color.MAGENTA;
 
-    public int statusBarColorDay = TEXT_COLOR_DAY;
-    public int statusBarColorNight = TEXT_COLOR_NIGHT;
+    public int statusBarColorDay = Color.parseColor(TEXT_COLOR_DAY);
+    public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
+
+    @IgnoreHashCode
+    public String statusBarColorDays = TEXT_COLOR_DAY;
+    @IgnoreHashCode
+    public String statusBarColorNights = TEXT_COLOR_NIGHT;
+
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
