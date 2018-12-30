@@ -613,7 +613,7 @@ public class Dialogs {
                 text.setChecked(StringDB.contains(tag, tagName));
 
                 ImageView delete = (ImageView) layout.findViewById(R.id.deleteTag);
-                TintUtil.setTintImageWithAlpha(delete);
+                TintUtil.setTintImageWithAlpha(delete, Color.GRAY);
                 delete.setOnClickListener(new OnClickListener() {
 
                     @Override

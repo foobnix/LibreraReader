@@ -29,6 +29,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
@@ -92,7 +93,7 @@ public class DialogsPlaylist {
                 if (file != null) {
                     img.setVisibility(View.GONE);
                 }
-                TintUtil.setTintImageWithAlpha(img);
+                TintUtil.setTintImageWithAlpha(img, Color.GRAY);
                 img.setOnClickListener(new OnClickListener() {
 
                     @Override
