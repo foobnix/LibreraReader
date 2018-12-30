@@ -64,38 +64,26 @@
 			match='android:icon="@mipmap/icon_pdf_droid"' replace='android:icon="${pdf.icon}"' />
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@mipmap/icon_pdf_reader_ink"' replace='android:icon="${pdf.icon}"' />
-	    
-	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@mipmap/icon_pdf_2"' replace='android:icon="${pdf.icon}"' />
 
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:icon="@mipmap/test"' replace='android:icon="${pdf.icon}"' />
-		
 		<!-- section 3a -->
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match=' android:roundIcon="@mipmap/icon_pdf_classic"' replace='android:roundIcon="${adaptive.icon}"' />
+			match=' android:roundIcon="@mipmap/icon_pdf_reader"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:roundIcon="@mipmap/icon_pdf_pro"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@mipmap/icon_pdf_reader"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_classic"' replace='android:roundIcon="${adaptive.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@mipmap/icon_pdf_droid"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_droid"' replace='android:roundIcon="${adaptive.icon}"' />
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@mipmap/icon_pdf_reader_ink"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/launcher_pdf_v2"' replace='android:roundIcon="${adaptive.icon}"' />
 		
-		
-		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@mipmap/icon_pdf_2"' replace='android:roundIcon="${adaptive.icon}"' />
-	
-	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match='android:roundIcon="@mipmap/test"' replace='android:roundIcon="${adaptive.icon}"' />
-	    
+		  
 
 		<!-- section 5 -->
 		
@@ -333,7 +321,7 @@
 
 		<property name="pdf.package" value="${package.ink}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_2" />
-		<property name="adaptive.icon" value="@mipmap/icon_pdf_2" />
+		<property name="adaptive.icon" value="@mipmap/launcher_pdf_v2" />
 		<property name="pdf.app.name" value="${name.ink}" />
 		<property name="pdf.export.name" value="${name.ink} v2" />
 
@@ -362,7 +350,7 @@
 
 		<property name="pdf.package" value="${package.classic}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_classic" />
-		<property name="adaptive.icon" value="@mipmap/icon_pdf_classic" />
+		<property name="adaptive.icon" value="@mipmap/launcher_classic" />
 		<property name="pdf.app.name" value="${name.classic}" />
 		<property name="pdf.export.name" value="${name.classic}" />
 
@@ -394,7 +382,7 @@
 
 		<property name="pdf.package" value="${package.droid}" />
 		<property name="pdf.icon" value="@mipmap/icon_pdf_droid" />
-		<property name="adaptive.icon" value="@mipmap/icon_pdf_droid" />
+		<property name="adaptive.icon" value="@mipmap/launcher_droid" />
 		<property name="pdf.app.name" value="${name.droid}" />
 		<property name="pdf.export.name" value="${name.droid}" />
 
