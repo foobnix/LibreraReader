@@ -13,7 +13,7 @@
    <string name="portrait">竖屏</string>
    <string name="landscape_180">横屏（180°）</string>
    <string name="portrait_180">竖屏（180°）</string>
-   <string name="system_language">系统语言</string>
+   <string name="system_language">系统</string>
    <string name="small">小</string>
    <string name="normal">正常</string>
    <string name="large">大</string>
@@ -30,12 +30,12 @@
    <string name="show_application_close_dialog_every_time">程序退出询问</string>
    <string name="display_all_file_types_in_folders">显示隐藏文件</string>
    <string name="show_the_dialog_what_is_new_for_updates">显示更新记录</string>
-   <string name="what_is_new_in">更新记录与</string>
+   <string name="what_is_new_in">关于</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF格式更新记录...</string>
-   <string name="search_for_text_in_documents">多文件中搜索文本</string>
+   <string name="search_for_text_in_documents">多文件搜文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件格式在线转换</string>
+   <string name="document_converter_online_">文件转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -261,7 +261,7 @@
    <string name="read_a_book">阅读</string>
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="by_path">路径</string>
-   <string name="folder">夹</string>
+   <string name="folder">文件</string>
    <string name="by_file_name">文件</string>
    <string name="by_size">大小</string>
    <string name="by_date">日期</string>
@@ -506,16 +506,16 @@
    <string name="read_out_loud_with_tts">用TTS朗读</string>
    <string name="allow_minimum_brightness">允许最小亮度</string>
    <string name="select">选择</string>
-   <string name="create_playlist">创建播放列表</string>
-   <string name="upload_to_cloud">上传到Сloud</string>
-   <string name="add_to_playlist">加入播放列表</string>
+   <string name="create_playlist">创建曲单</string>
+   <string name="upload_to_cloud">存入云盘</string>
+   <string name="add_to_playlist">加入曲单</string>
    <string name="create_tag">创建标签</string>
    <string name="add_tags">添加标签</string>
    <string name="play">播放</string>
    <string name="favorite">收藏</string>
-   <string name="playlists">播放列表</string>
+   <string name="playlists">曲单</string>
    <string name="tags">标签</string>
-   <string name="are_you_sure_to_delete_playlist_">确认删除播放列表？</string>
+   <string name="are_you_sure_to_delete_playlist_">确认删除曲单？</string>
    <string name="zoom_in_out_with_lock_enable">锁定时可缩放</string>
    <string name="show_footnotes_directly_in_text">显示文本脚注</string>
 </resources>
