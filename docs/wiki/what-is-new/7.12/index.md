@@ -12,7 +12,11 @@ version: 2
 * Add apps (dictionaries) to open selected text in the Text window 
 * Play back mp3 files and folders
 * Handle book series
-
+* Footer notes directly in the text
+* TTS can read footer notes
+* TTS read by sentences, stop and return from the begin of the sentence.
+* Open web page from browse in Librera Reader as a book
+* Support for Chinese Traditional and Chinese Simplified 
 
 
 **Favorites Tab**
