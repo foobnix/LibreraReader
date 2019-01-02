@@ -37,6 +37,13 @@ public class MyContextWrapper extends ContextWrapper {
         LOG.d("ContextWrapper language", language);
 
         Locale newLocale = new Locale(language);
+        if (language.equals("zh-rCN")) {
+            newLocale = new Locale("zh", "CN");
+        } else if (language.equals("zh-rTW")) {
+            newLocale = new Locale("zh", "TW");
+        }
+
+        LOG.d("ContextWrapper newLocale", newLocale.getDisplayName(), newLocale.getCountry());
 
         if (Build.VERSION.SDK_INT >= 24) {
             configuration.setLocale(newLocale);

@@ -217,7 +217,7 @@ public class DialogTranslateFromTo {
 
         final List<DictItem> list = DictsHelper.getAllResolveInfoAsDictItem1(a, "");
         if (!onlyoffline) {
-        list.addAll(DictsHelper.getOnlineDicts(a, ""));
+            list.addAll(DictsHelper.getOnlineDicts(a, ""));
         }
 
         dictSpinner.setAdapter(new BaseItemLayoutAdapter<DictItem>(a, R.layout.item_dict_line, list) {
