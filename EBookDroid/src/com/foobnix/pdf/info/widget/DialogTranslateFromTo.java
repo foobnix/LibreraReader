@@ -33,6 +33,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class DialogTranslateFromTo {
+    public static final String CHINESE_SIMPLE = "zh-rCH";
+    public static final String CHINESE_TRADITIOANAL = "zh-rTW";
     static Map<String, String> langs = new LinkedHashMap<String, String>();
     static {
         langs.put("Afrikaans", "af");
@@ -139,6 +141,12 @@ public class DialogTranslateFromTo {
             }
 
             try {
+                if (code.equals(CHINESE_SIMPLE)) {
+                    return "简体中文";
+                }
+                if (code.equals(CHINESE_TRADITIOANAL)) {
+                    return "繁體中文";
+                }
                 if (code.length() > 2) {
                     code = code.substring(0, 2);
                 }

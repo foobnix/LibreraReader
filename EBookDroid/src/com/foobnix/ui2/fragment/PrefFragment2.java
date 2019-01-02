@@ -535,7 +535,7 @@ public class PrefFragment2 extends UIFragment {
                         "en", "ar", "de", "es", "fa", "fi", "fr", "he", //
                         "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
                         "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-                        "sw", "th", "tr", "uk", "vi", "zh-rCN", "zh-rTW");
+                        "sw", "th", "tr", "uk", "vi", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
                 List<String> langs = new ArrayList<String>();
                 for (String code : codes) {
                     langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);

@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.AppState;
 
 import android.annotation.TargetApi;
@@ -37,10 +38,10 @@ public class MyContextWrapper extends ContextWrapper {
         LOG.d("ContextWrapper language", language);
 
         Locale newLocale = new Locale(language);
-        if (language.equals("zh-rCN")) {
-            newLocale = new Locale("zh", "CN");
-        } else if (language.equals("zh-rTW")) {
-            newLocale = new Locale("zh", "TW");
+        if (language.equals(DialogTranslateFromTo.CHINESE_SIMPLE)) {
+            newLocale = Locale.SIMPLIFIED_CHINESE;
+        } else if (language.equals(DialogTranslateFromTo.CHINESE_TRADITIOANAL)) {
+            newLocale = Locale.TRADITIONAL_CHINESE;
         }
 
         LOG.d("ContextWrapper newLocale", newLocale.getDisplayName(), newLocale.getCountry());
