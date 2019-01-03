@@ -57,6 +57,15 @@
                 android:layout_marginLeft="10dip"
                 android:layout_weight="1"
                 android:text="(Alan:Russian)" />
+
+            <ImageView
+                android:id="@+id/onHelp"
+                android:padding="4dip"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:background="@drawable/bg_clickable"
+                android:src="@drawable/glyphicons_196_info_sign"
+                android:tint="@color/lt_grey" />
         </LinearLayout>
 
         <com.foobnix.pdf.info.view.CustomSeek
@@ -179,10 +188,10 @@
                 android:text="@string/read_by_sentences" />
 
             <EditText
-                android:layout_marginLeft="10dip"
                 android:id="@+id/ttsSentecesDivs"
                 android:layout_width="80dip"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip" />
         </LinearLayout>
 
         <CheckBox

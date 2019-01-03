@@ -502,6 +502,32 @@ public class DragingDialogs {
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
                 final TextView ttsPlayMusicFile = (TextView) view.findViewById(R.id.ttsPlayMusicFile);
 
+                view.findViewById(R.id.onHelp).setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        MyPopupMenu menu = new MyPopupMenu(v);
+                        for (final String key : AppState.get().TTS_ENGINES.keySet()) {
+                            menu.getMenu().add(key).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    String value = AppState.get().TTS_ENGINES.get(key);
+                                    String play = value.replace("https://play.google.com/store/apps/details?", "market://details?");
+                                    try {
+                                        Urls.open(v.getContext(), play);
+                                    } catch (Exception e) {
+                                        Urls.open(v.getContext(), value);
+                                    }
+                                    return false;
+                                }
+                            });
+                        }
+                        menu.show();
+
+                    }
+                });
+
                 final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
 

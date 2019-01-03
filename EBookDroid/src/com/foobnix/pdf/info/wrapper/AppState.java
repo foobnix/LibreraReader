@@ -63,6 +63,15 @@ public class AppState {
 
     }
 
+    public static Map<String, String> TTS_ENGINES = new LinkedHashMap<String, String>();
+    static {
+        TTS_ENGINES.put("Google Text-to-Speech", "https://play.google.com/store/apps/details?id=com.google.android.tts");
+        TTS_ENGINES.put("Acapela TTS Voices", "https://play.google.com/store/apps/details?id=com.acapelagroup.android.tts");
+        TTS_ENGINES.put("Vocalizer TTS Voice", "https://play.google.com/store/apps/details?id=es.codefactory.vocalizertts");
+        TTS_ENGINES.put("RHVoice", "https://play.google.com/store/apps/details?id=com.github.olga_yakovleva.rhvoice.android");
+
+    }
+
     public static final String PNG = "PNG";
     public static final String JPG = "JPG";
 
@@ -492,7 +501,6 @@ public class AppState {
 
     public String lastBookPath;
 
-
     public String mp3BookPath;
     public int mp3seek = 0;
 
@@ -750,7 +758,6 @@ public class AppState {
                 if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;
                 }
-
 
                 try {
                     List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
