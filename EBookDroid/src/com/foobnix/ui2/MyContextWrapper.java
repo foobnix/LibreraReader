@@ -21,7 +21,6 @@ public class MyContextWrapper extends ContextWrapper {
         super(base);
     }
 
-
     @TargetApi(24)
     public static ContextWrapper wrap(Context context) {
         String language = AppState.get().appLang;
@@ -38,7 +37,10 @@ public class MyContextWrapper extends ContextWrapper {
         LOG.d("ContextWrapper language", language);
 
         Locale newLocale = new Locale(language);
-        if (language.equals(DialogTranslateFromTo.CHINESE_SIMPLE)) {
+
+        if (language.equals("zh")) {
+            newLocale = Locale.getDefault();
+        } else if (language.equals(DialogTranslateFromTo.CHINESE_SIMPLE)) {
             newLocale = Locale.SIMPLIFIED_CHINESE;
         } else if (language.equals(DialogTranslateFromTo.CHINESE_TRADITIOANAL)) {
             newLocale = Locale.TRADITIONAL_CHINESE;
