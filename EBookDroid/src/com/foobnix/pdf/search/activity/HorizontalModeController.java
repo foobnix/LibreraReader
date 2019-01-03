@@ -53,7 +53,6 @@ import android.graphics.PointF;
 
 public abstract class HorizontalModeController extends DocumentController {
 
-
     private int pagesCount;
     int currentPage;
     private CopyAsyncTask searchTask;
@@ -114,8 +113,8 @@ public abstract class HorizontalModeController extends DocumentController {
     @Override
     public void cleanImageMatrix() {
         try {
-        PageImageState.get().getMatrix().reset();
-        matrixSP.edit().remove("" + bookPath.hashCode()).commit();
+            PageImageState.get().getMatrix().reset();
+            matrixSP.edit().remove("" + bookPath.hashCode()).commit();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -247,7 +246,9 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public int getPageFromUriSingleRun() {
-        final double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
+
+        double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
+
         int number = activity.getIntent().getIntExtra(EXTRA_PAGE, 0);
         LOG.d("_PAGE", "uri page", number, activity.getIntent().getExtras());
 
@@ -514,7 +515,6 @@ public abstract class HorizontalModeController extends DocumentController {
         return PageUrl.realToFake(pagesCount);
     }
 
-
     @Override
     public void onScrollY(int value) {
         throw new RuntimeException("Not Implemented");
@@ -636,20 +636,21 @@ public abstract class HorizontalModeController extends DocumentController {
                     TextWord firstWord = null;
                     int firstWordIndex = 0;
 
-                    PageSearcher pageSearcher= new PageSearcher();
+                    PageSearcher pageSearcher = new PageSearcher();
                     pageSearcher.setTextForSearch(text);
                     pageSearcher.setListener(new PageSearcher.OnWordSearched() {
                         @Override
                         public void onSearch(TextWord word, Object data) {
-                            if (!(data instanceof Integer))return;
+                            if (!(data instanceof Integer))
+                                return;
                             Integer pageNumber = (Integer) data;
-                            LOG.d("Find on page_", pageNumber, text,word);
+                            LOG.d("Find on page_", pageNumber, text, word);
                             List<TextWord> selectedWords = PageImageState.get().getSelectedWords(pageNumber);
-                            if (selectedWords==null||selectedWords.size()<=0){
+                            if (selectedWords == null || selectedWords.size() <= 0) {
                                 result.onResultRecive(pageNumber);
                                 LOG.d("Find on page", pageNumber, text);
                             }
-                            if (selectedWords==null||!selectedWords.contains(word)) {
+                            if (selectedWords == null || !selectedWords.contains(word)) {
                                 PageImageState.get().addWord(pageNumber, word);
                             }
                         }
@@ -733,7 +734,7 @@ public abstract class HorizontalModeController extends DocumentController {
                                     nextWorld = false;
                                     firstWord = null;
                                 }
-                                pageSearcher.addWord(new PageSearcher.WordData(word,i));
+                                pageSearcher.addWord(new PageSearcher.WordData(word, i));
                             }
                         }
 

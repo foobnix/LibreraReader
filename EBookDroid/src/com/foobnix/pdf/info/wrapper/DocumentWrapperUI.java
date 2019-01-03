@@ -1644,7 +1644,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void run() {
-            a.getIntent().putExtra(HorizontalModeController.EXTRA_PERCENT, dc.getPercentage());
+            a.getIntent().putExtra(HorizontalModeController.EXTRA_PERCENT, (double) dc.getPercentage());
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();
             hideShow();

@@ -215,7 +215,7 @@ public abstract class DocumentController {
     }
 
     public void updateReadPercent() {
-        activity.getIntent().putExtra(DocumentController.EXTRA_PERCENT, getPercentage());
+        activity.getIntent().putExtra(DocumentController.EXTRA_PERCENT, (double) getPercentage());
         LOG.d("updateReadPercent", getPercentage(), getCurentPage(), getPageCount());
 
     }
