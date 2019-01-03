@@ -1,6 +1,6 @@
 <resources>
-   <string name="___LIBRARY___SETTINGS___SECTION___">書架預設</string>
-   <string name="library_settings">書架預設</string>
+   <string name="___LIBRARY___SETTINGS___SECTION___">書架設置</string>
+   <string name="library_settings">書架設置</string>
    <string name="scan_device_for_new_books">導入書籍</string>
    <string name="add_folder">添加目錄</string>
    <string name="archives">檔案</string>
@@ -32,10 +32,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">顯示更新記錄</string>
    <string name="what_is_new_in">關于</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下載官網PDF格式更新記錄...</string>
-   <string name="search_for_text_in_documents">多文件搜文本</string>
+   <string name="search_for_text_in_documents">多文檔搜文本</string>
    <string name="search_in_the_subfolders">子文件夾</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文件轉換</string>
+   <string name="document_converter_online_">文檔轉換</string>
    <string name="book_covers">書籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列數</string>
@@ -171,7 +171,7 @@
    <string name="no_genre">無流派</string>
    <string name="no_language">無語言</string>
    <string name="without_series">無叢書</string>
-   <string name="folders">文件</string>
+   <string name="folders">檔夾</string>
    <string name="recent">最近</string>
    <string name="clear_all">清空</string>
    <string name="search_history_and_autocomplete">歷史記錄</string>
@@ -256,12 +256,12 @@
    <string name="remove_from_library">移出書架</string>
    <string name="send_snapshot_of_the_page">分享頁面</string>
    <string name="file_info">文件資訊</string>
-   <string name="archive_files">文檔</string>
+   <string name="archive_files">檔案</string>
    <string name="open_file">打開文件</string>
    <string name="read_a_book">閱讀</string>
    <string name="___SORT___AND___VIEW___SECTION___">排序視窗</string>
    <string name="by_path">路徑</string>
-   <string name="folder">文件</string>
+   <string name="folder">檔夾</string>
    <string name="by_file_name">文件</string>
    <string name="by_size">大小</string>
    <string name="by_date">日期</string>
