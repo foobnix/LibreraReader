@@ -725,7 +725,9 @@ public class Fb2Extractor extends BaseExtractor {
 
                 String value = notes.get(number);
                 if (value != null) {
-                    value = value.replaceAll("^[0-9]+", "").trim();
+                    value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ");
+                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
+                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();// two times!
 
                     out.append(" <t>[");
                     out.append(value);
