@@ -516,6 +516,7 @@ public class EpubExtractor extends BaseExtractor {
                                 }
 
                                 textLink.put(attr, text);
+                                LOG.d("put links >>", attr, text);
 
                                 LOG.d("Extract file", file);
                                 if (TxtUtils.isEmpty(file)) {
@@ -550,30 +551,34 @@ public class EpubExtractor extends BaseExtractor {
                             for (int i = 0; i < ids.size(); i++) {
                                 Element item = ids.get(i);
                                 String id = item.attr("id");
+
+                                String fileKey = fileName + "#" + id;
+
+                                String textKey = textLink.get(fileKey);
+                                if (textKey == null) {
+                                    LOG.d("skip #id", fileKey);
+                                    continue;
+                                }
+
                                 String value = item.text();
 
-                                if (value.trim().length() < 4) {
+                                int min = 20;
+                                if (value.trim().length() < min) {
                                     value = value + " " + parse.select("[id=" + id + "]+*").text();
                                 }
-                                if (value.trim().length() < 4) {
+                                if (value.trim().length() < min) {
                                     value = value + " " + parse.select("[id=" + id + "]+*+*").text();
                                 }
                                 try {
-                                    if (value.trim().length() < 4) {
+                                    if (value.trim().length() < min) {
                                         value = value + " " + parse.select("[id=" + id + "]").parents().get(0).text();
                                     }
                                 } catch (Exception e) {
                                     LOG.e(e);
                                 }
 
-                                // System.out.println("id:" + id + " value:"
-                                // +
-                                // value);
-                                String fileKey = fileName + "#" + id;
 
-                                String textKey = textLink.get(fileKey);
-
-                                LOG.d(textKey + " " + value);
+                                LOG.d("put text >>", textKey, value);
                                 notes.put(textKey, value.trim());
 
                             }
