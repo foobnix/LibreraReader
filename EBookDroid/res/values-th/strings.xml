@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">คุณแน่ใจหรือไม่ว่าต้องการลบเพลย์ลิสต์</string>
    <string name="zoom_in_out_with_lock_enable">ซูมเข้า / ออกพร้อมเปิดใช้งานล็อค</string>
    <string name="show_footnotes_directly_in_text">แสดงเชิงอรรถโดยตรงในข้อความ</string>
+   <string name="read_by_sentences">อ่านตามประโยค</string>
 </resources>

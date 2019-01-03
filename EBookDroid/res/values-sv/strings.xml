@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Är du säker på att radera spellista?</string>
    <string name="zoom_in_out_with_lock_enable">Zooma in / ut med låsaktivera</string>
    <string name="show_footnotes_directly_in_text">Visa fotnoter direkt i text</string>
+   <string name="read_by_sentences">Läs med meningar</string>
 </resources>

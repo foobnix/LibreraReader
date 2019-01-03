@@ -225,15 +225,17 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("...", TTS_PAUSE);
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
-        pageHTML = pageHTML.replace("!", "!" + TTS_PAUSE);
-        pageHTML = pageHTML.replace("?", "?" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
-        pageHTML = pageHTML.replace(".", "." + TTS_PAUSE);
-        pageHTML = pageHTML.replace(";", "." + TTS_PAUSE);
-        pageHTML = pageHTML.replace(":", "." + TTS_PAUSE);
+        if (AppState.get().ttsReadBySentences) {
+            for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
+                String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
+                pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
+            }
+
+        }
 
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
@@ -281,6 +283,7 @@ public class TxtUtils {
 
         return result;
     }
+
     public static String sanitizeFilename(String name) {
         return name.replaceAll("[:\\\\/*?|<>]", "_");
     }

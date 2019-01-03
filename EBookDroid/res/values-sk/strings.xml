@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Naozaj chcete odstrániť zoznam videí?</string>
    <string name="zoom_in_out_with_lock_enable">Priblíženie / oddialenie s povolením uzamknutia</string>
    <string name="show_footnotes_directly_in_text">Zobraziť poznámky pod čiarou priamo v texte</string>
+   <string name="read_by_sentences">Čítať vety</string>
 </resources>

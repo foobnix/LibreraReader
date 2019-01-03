@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Tem certeza de excluir a playlist?</string>
    <string name="zoom_in_out_with_lock_enable">Aumentar / diminuir zoom com a habilitação de bloqueio</string>
    <string name="show_footnotes_directly_in_text">Mostrar notas de rodapé diretamente no texto</string>
+   <string name="read_by_sentences">Lido por frases</string>
 </resources>

@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Ойнату тізімін жойғыңыз келе ме?</string>
    <string name="zoom_in_out_with_lock_enable">Блоктау мүмкіндігімен масштабтау / ұлғайту</string>
    <string name="show_footnotes_directly_in_text">Тікелей мәтінге сілтемелерді көрсету</string>
+   <string name="read_by_sentences">Сөйлемдер бойынша оқылады</string>
 </resources>

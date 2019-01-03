@@ -167,6 +167,24 @@
                 android:text="@string/start" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip" >
+
+            <CheckBox
+                android:id="@+id/ttsReadBySentences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/read_by_sentences" />
+
+            <EditText
+                android:layout_marginLeft="10dip"
+                android:id="@+id/ttsSentecesDivs"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/stopReadingOnCall"
             android:layout_width="wrap_content"

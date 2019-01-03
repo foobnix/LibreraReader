@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Sigur ștergeți lista de redare?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / out cu funcția de blocare</string>
    <string name="show_footnotes_directly_in_text">Afișați notele de subsol direct în text</string>
+   <string name="read_by_sentences">Citiți prin propoziții</string>
 </resources>

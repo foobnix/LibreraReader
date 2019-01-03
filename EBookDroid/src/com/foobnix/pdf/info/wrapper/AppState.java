@@ -358,6 +358,11 @@ public class AppState {
     public volatile float ttsSpeed = 1.0f;
     public volatile float ttsPitch = 1.0f;
 
+    @IgnoreHashCode
+    public boolean ttsReadBySentences = true;
+    @IgnoreHashCode
+    public String ttsSentecesDivs = ".;:!?";
+
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
 

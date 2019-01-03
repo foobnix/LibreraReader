@@ -475,6 +475,7 @@ public class TTSService extends Service {
                 preText = TxtUtils.replaceLast(preText, "-", "");
                 firstPart = preText + firstPart;
             }
+            final String preText1 = preText;
 
             if (Build.VERSION.SDK_INT >= 15) {
                 TTSEngine.get().getTTS().setOnUtteranceProgressListener(new UtteranceProgressListener() {
@@ -499,7 +500,11 @@ public class TTSService extends Service {
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
                         if(utteranceId.startsWith(TTSEngine.FINISHED)) {
-                            AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            if (TxtUtils.isNotEmpty(preText1)) {
+                                AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                            } else {
+                                AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            }
                             return;
                         }
                         
@@ -528,7 +533,11 @@ public class TTSService extends Service {
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
                         if (utteranceId.startsWith(TTSEngine.FINISHED)) {
-                            AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            if(TxtUtils.isNotEmpty(preText1)) {
+                                AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                            }else {
+                                AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                            }
                             return;
                         }
 

@@ -518,4 +518,5 @@
    <string name="are_you_sure_to_delete_playlist_">Ви дійсно бажаєте видалити список відтворення?</string>
    <string name="zoom_in_out_with_lock_enable">Збільшити / зменшити з включенням блокування</string>
    <string name="show_footnotes_directly_in_text">Показувати виноски безпосередньо в тексті</string>
+   <string name="read_by_sentences">Читати пропозиції</string>
 </resources>
