@@ -69,7 +69,7 @@
 		<!-- section 3a -->
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-			match=' android:roundIcon="@mipmap/icon_pdf_reader"' replace='android:roundIcon="${adaptive.icon}"' />
+			match='android:roundIcon="@mipmap/icon_pdf_reader"' replace='android:roundIcon="${adaptive.icon}"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:roundIcon="@mipmap/icon_pdf_pro"' replace='android:roundIcon="${adaptive.icon}"' />
@@ -83,7 +83,6 @@
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:roundIcon="@mipmap/launcher_pdf_v2"' replace='android:roundIcon="${adaptive.icon}"' />
 		
-		  
 
 		<!-- section 5 -->
 		

@@ -1,254 +1,294 @@
 
 <nl-NL>
-* Een belangrijke update gebaseerd op feedback van lezers 
-* Snelle leesmodus (RSVP) voor alle formaten en PDF 
-* Tekstselectie en zoeken in DjVu-documenten 
-* PDF Reader met nieuwe Text-To-Speech (TTS) interface 
-* Mappen met afbeeldingen kunnen worden geopend zoals een boek
+* Verbeterde PDF-weergave en Epub-lezing 
+* Toegevoegd afspeellijsten (boekgroepen, nabestellingen) 
+* MP3-bestanden en -mappen afspelen 
+* Voetnoten rechtstreeks in de tekst 
+* TTS kan voetnoten lezen (epub, fb2, mobi) 
+* TTS kan door zinnen lezen
 </nl-NL>
 
 <id>
-* Pembaruan besar berdasarkan umpan balik pembaca 
-* Mode cepat baca (RSVP) untuk semua format dan PDF 
-* Pemilihan teks dan pencarian dalam dokumen DjVu 
-* PDF Reader dengan antarmuka Text-To-Speech (TTS) baru 
-* Folder dengan gambar dapat dibuka seperti buku
+* Peningkatan Melihat PDF dan Membaca Epub 
+* Menambahkan Daftar Putar (pengelompokan buku, pemesanan ulang) 
+* Putar file dan folder mp3 
+* Catatan kaki langsung dalam teks 
+* TTS dapat membaca catatan kaki (epub, fb2, mobi) 
+* TTS dapat membaca dengan kalimat
 </id>
 
 <lt>
-* Svarbus naujinimas, pagrįstas skaitytojų atsiliepimais 
-* Greitas skaitymo režimas (RSVP) visuose formatuose ir PDF formatu 
-* Teksto parinkimas ir paieška DjVu dokumentuose 
-* PDF Reader su nauja teksto į kalbą (TTS) sąsaja 
-* Katalogai su vaizdais gali būti atidaryti kaip knyga
+* Patobulintas PDF peržiūros ir Epubo skaitymas 
+* Pridėta grojaraščiai (knygų grupės, pertvarkymas) 
+* MP3 failų ir aplankų atkūrimas 
+* Nuorodos tiesiogiai tekste 
+* TTS gali skaityti išnašas (epub, fb2, mobi) 
+* TTS gali skaityti sakiniai
 </lt>
 
 <ar>
-* تحديث رئيسي يعتمد على ملاحظات القراء 
-* وضع القراءة السريعة (RSVP) لجميع التنسيقات و PDF 
-* اختيار النص والبحث في مستندات DjVu 
-* قارئ PDF مع واجهة تحويل النص إلى كلام (TTS) 
-* يمكن فتح المجلدات مع الصور مثل كتاب
+* تحسين قراءة PDF و Epub القراءة 
+* أضيفت قوائم التشغيل (مجموعات الكتاب ، إعادة ترتيب) 
+* تشغيل ملفات ومجلدات MP3 
+* الهوامش مباشرة في النص 
+* TTS يمكن قراءة الحواشي السفلية (EPUB ، FB2 ، موبي) 
+* يمكن قراءة TTS بواسطة جمل
 </ar>
 
 <ro>
-* O actualizare majoră bazată pe feedback-ul cititorilor 
-* Modul de citire rapidă (RSVP) pentru toate formatele și PDF 
-* Selecția și căutarea textului în documentele DjVu 
-* Reader PDF cu interfață Text-To-Speech (TTS) 
-* Foldere cu imagini pot fi deschise o carte
+* Redarea fișierelor mp3 și a folderelor 
+* Note de text direct în text 
+* TTS poate citi notele de subsol (epub, fb2, mobi) 
+* TTS poate citi prin propoziții
 </ro>
 
 <de-DE>
-* Ein wichtiges Update basierend auf dem Feedback der Leser. 
-* Fast Read-Modus (RSVP) für alle Formate und PDFs. 
-* Textauswahl und -suche in DjVu-Dokumenten ein Buch
+* Verbesserte Anzeige von PDF-Dateien und Lesen von Epub-Dateien. 
+* Wiedergabelisten hinzugefügt (Buchgruppierungen, Umsortieren). 
+* Wiedergabe von MP3-Dateien und -Ordnern. 
+* Fußnoten direkt im Text. 
+* TTS kann Fußnoten lesen (epub, fb2, mobi)
 </de-DE>
 
 <pl-PL>
-* Ważna aktualizacja oparta na informacjach zwrotnych czytelników 
-* Tryb szybkiego czytania (RSVP) dla wszystkich formatów i PDF 
-* Wybór tekstu i wyszukiwanie w dokumentach DjVu 
-* Czytnik plików PDF z nowym interfejsem Text-To-Speech (TTS) 
-* Foldery z obrazami można otwierać książka
+* Poprawione przeglądanie plików PDF i czytanie Epub 
+* Dodano listy odtwarzania (grupowanie książek, zmiana kolejności) 
+* Odtwarzanie plików mp3 i folderów 
+* Przypisy bezpośrednio w tekście 
+* TTS może czytać przypisy (epub, fb2, mobi) 
+* TTS może czytać według zdań
 </pl-PL>
 
 <iw-IL>
-* עדכון גדול מבוסס על משוב הקוראים 
-* מצב קריאה מהירה (RSVP) עבור כל הפורמטים ו- PDF 
-* בחירת טקסט וחיפוש במסמכים DjVu 
-* PDF Reader עם טקסט חדש לדיבור (TTS) ממשק 
-* תיקיות עם תמונות ניתן לפתוח כמו ספר
+* צפייה משופרת PDF ו קריאה EPUB 
+* נוסף פלייליסטים (קיבוצי ספרים, סידור מחדש) 
+* פלייבק קבצי MP3 ותיקיות 
+* הערות שוליים ישירות בטקסט 
+* TTS יכול לקרוא הערות שוליים (epub, fb2, mobi) 
+* TTS יכול לקרוא על ידי משפטים
 </iw-IL>
 
 <hi-IN>
-* पाठकों के फीडबैक पर आधारित एक बड़ा अपडेट 
-* सभी प्रारूपों और पीडीएफ के लिए फास्ट रीड मोड (आरएसवीपी) 
-* डीजेवी दस्तावेजों में टेक्स्ट चयन और खोज 
-* नए टेक्स्ट-टू-स्पीच (टीटीएस) इंटरफ़ेस के साथ पीडीएफ रीडर 
-* छवियों वाले फ़ोल्डर खोले जा सकते हैं एक किताब
+* बेहतर पीडीएफ देखने और Epub पढ़ने 
+* जोड़ा प्लेलिस्ट (पुस्तक समूहों, reordering) 
+* प्लेबैक एमपी 3 फ़ाइलों और फ़ोल्डरों 
+* पाठ में सीधे नोट 
+* TTS फुटनोट्स पढ़ सकते हैं (epub, fb2, mobi) 
+* TTS वाक्यों से पढ़ सकते हैं
 </hi-IN>
 
+<zh-CN>
+*改进的PDF查看和电子书阅读
+*添加播放列表（书籍分组，重新排序）
+*播放mp3文件和文件夹
+*脚注直接在文本中
+* TTS可以读取脚注（epub，fb2，mobi）
+* TTS可以通过句子读取
+</zh-CN>
+
 <es-ES>
-* Una actualización importante basada en los comentarios de los lectores 
-* Modo de lectura rápida (RSVP) para todos los formatos y PDF 
-* Selección de texto y búsqueda en documentos DjVu 
-* Lector de PDF con la nueva interfaz de texto a voz (TTS) un libro
+* Visualización de PDF mejorada y lectura de Epub 
+* Listas de reproducción agregadas (agrupaciones de libros, reordenación) 
+* Archivos y carpetas de reproducción de mp3 
+* Notas al pie directamente en el texto 
+* TTS puede leer notas al pie (epub, fb2, mobi) 
+* TTS puede leer por oraciones
 </es-ES>
 
 <fi-FI>
-* Merkittävä päivitys, joka perustuu lukijoiden palautteeseen 
-* Nopea lukutila (RSVP) kaikissa tiedostomuodoissa ja PDF-muodossa 
-* Teksti valitaan ja haetaan DjVu-dokumenteissa 
-* PDF-lukija uudella tekstille-puheeksi (TTS) 
-* Kuvissa olevat kansiot voidaan avata kirja
+* Parannettu PDF-katselu- ja Epub-lukeminen 
+* Lisätty soittolistoja (kirjan ryhmittely, uudelleenjärjestely) 
+* mp3-tiedostojen ja kansioiden toistaminen 
+* alaviitteet suoraan tekstiin 
+* TTS voi lukea alaviitteitä (epub, fb2, mobi) 
+* TTS voi lukea lauseita
 </fi-FI>
 
 <vi>
-* Cập nhật lớn dựa trên phản hồi của người đọc 
-* Chế độ đọc nhanh (RSVP) cho tất cả các định dạng và PDF 
-* Lựa chọn văn bản và tìm kiếm trong tài liệu DjVu 
-* Trình đọc PDF với giao diện Text-To-Speech (TTS) mới 
-* Thư mục có hình ảnh có thể mở ra một quyển sách
+* Cải thiện khả năng xem và đọc PDF của PDF
 </vi>
 
 <fr-FR>
-* Une mise à jour majeure basée sur les commentaires des lecteurs 
-* Mode de lecture rapide (RSVP) pour tous les formats et PDF 
-* Sélection de texte et recherche dans les documents DjVu 
-* Lecteur PDF avec nouvelle interface de synthèse vocale (TTS) 
-* Les dossiers avec des images peuvent être ouverts comme un livre
+* Amélioration de la visualisation PDF et de la lecture Epub 
+* Ajout de listes de lecture (groupes de livres, réorganisation) 
+* Lecture de fichiers et dossiers mp3 
+* Notes de bas de page directement dans le texte 
+* TTS peut lire les notes de bas de page (epub, fb2, mobi) 
+* TTS peut lire des phrases
 </fr-FR>
 
 <fr-CA>
-* Une mise à jour majeure basée sur les commentaires des lecteurs 
-* Mode de lecture rapide (RSVP) pour tous les formats et PDF 
-* Sélection de texte et recherche dans les documents DjVu 
-* Lecteur PDF avec nouvelle interface de synthèse vocale (TTS) 
-* Les dossiers avec des images peuvent être ouverts comme un livre
+* Amélioration de la visualisation PDF et de la lecture Epub 
+* Ajout de listes de lecture (groupes de livres, réorganisation) 
+* Lecture de fichiers et dossiers mp3 
+* Notes de bas de page directement dans le texte 
+* TTS peut lire les notes de bas de page (epub, fb2, mobi) 
+* TTS peut lire des phrases
 </fr-CA>
 
 <sw>
-* Toleo la msingi linalotokana na maoni ya wasomaji 
-* Mfumo wa kusoma haraka (RSVP) kwa muundo wote na PDF 
-* Uchaguzi wa maandishi na utafutaji katika nyaraka za DjVu 
-* PDF Reader na interface mpya ya Maandishi-To-Speech (TTS) 
-* Folders zilizo na picha zinaweza kufunguliwa kama kitabu
+* Kuboresha PDF Kuangalia na Epub Kusoma 
+* Aliongeza Orodha za kucheza (vikundi vya kitabu, kurekebisha) 
+* Faili za video na folda za kuchezaback 
+* Maneno ya chini ya moja kwa moja katika maandiko 
+* TTS inaweza kusoma maelezo ya chini (epub, fb2, mobi) 
+* TTS inaweza kusoma kwa hukumu
 </sw>
 
-<zh-TW>
-*基于读者反馈的重大更新
-*适用于所有格式的快速阅读模式（RSVP）和PDF 
-* DjVu文档中的文本选择和搜索
-*带有新文本到语音（TTS）界面的PDF阅读器
-*带图像的文件夹可以像一本书
-</zh-TW>
-
 <ru-RU>
-* Большое обновление, основанное на отзывах читателей 
-* Быстрый режим чтения (RSVP) для всех форматов и PDF 
-* Выбор текста и поиск в документах DjVu 
-* PDF Reader с новым интерфейсом Text-To-Speech (TTS) 
-* Папки с изображениями можно открыть, как книга
+* Улучшенный просмотр PDF и чтение в Epub 
+* Добавлены плейлисты (группировки книг, переупорядочение) 
+* Воспроизведение mp3 файлов и папок 
+* Сноски прямо в тексте 
+* TTS может читать сноски (epub, fb2, mobi) 
+* TTS может читать предложения
 </ru-RU>
 
+<zh-TW>
+*改進的PDF查看和電子書閱讀
+*添加播放列表（書籍分組，重新排序）
+*播放mp3文件和文件夾
+*腳註直接在文本中
+* TTS可以讀取腳註（epub，fb2，mobi）
+* TTS可以通過句子讀取
+</zh-TW>
+
 <th>
-* การปรับปรุงที่สำคัญขึ้นอยู่กับความคิดเห็นของผู้อ่าน 
-* Fast อ่านโหมด (RSVP) สำหรับทุกรูปแบบและ PDF 
-* การเลือกข้อความและการค้นหาในเอกสาร DjVu 
-* PDF Reader กับใหม่ Text-To-Speech (TTS) interface 
-* โฟลเดอร์ที่มีภาพสามารถเปิดได้เช่น หนังสือ
+* ปรับปรุงการรับชม PDF และการอ่าน Epub 
+* เพิ่มเพลย์ลิสต์ (การจัดกลุ่มหนังสือ, การจัดเรียงใหม่) 
+* ไฟล์และโฟลเดอร์การเล่น mp3 
+* เชิงอรรถโดยตรงในข้อความ 
+* TTS สามารถอ่านเชิงอรรถ (epub, fb2, mobi)
 </th>
 
 <it-IT>
-* Un importante aggiornamento basato sul feedback dei lettori 
-* Modalità di lettura veloce (RSVP) per tutti i formati e PDF 
-* Selezione del testo e ricerca nei documenti DjVu 
-* PDF Reader con nuova interfaccia Text-To-Speech (TTS) 
-* Le cartelle con le immagini possono essere aperte come un libro
+* Miglioramento della visualizzazione PDF e della lettura di epub 
+* Aggiunte playlist (raggruppamenti di libri, riordino) 
+* Riproduzione di file e cartelle mp3 
+* Note a piè di pagina direttamente nel testo 
+* TTS può leggere note (epub, fb2, mobi) 
+* TTS può leggere con frasi
 </it-IT>
 
 <sv-SE>
-* En viktig uppdatering baserad på läsarens återkoppling 
-* Snabbläsning (RSVP) för alla format och PDF 
-* Textval och sökning i DjVu-dokument 
-* PDF-läsare med nytt text-till-tal (TTS) gränssnitt 
-* Mappar med bilder kan öppnas som en bok
+* Förbättrad PDF-visning och Epub-läsning 
+* Tillagda spellistor (bokgrupperingar, omregistrering) 
+* Uppspelning av mp3-filer och mappar 
+* Fotnoter direkt i texten 
+* TTS kan läsa fotnoter (epub, fb2, mobi) 
+* TTS kan läsa med meningar
 </sv-SE>
 
 <fa>
-* یک بروز رسانی مهم بر اساس بازخورد خوانندگان 
-* حالت سریع خواندن (RSVP) برای تمام فرمت ها و PDF 
-* انتخاب متن و جستجو در اسناد DjVu 
-* PDF Reader با رابط جدید متن به گفتار (TTS) 
-* پوشه ها با تصاویر می توانند مانند یک کتاب
+* بهبود PDF مشاهده و خواندن EPUB 
+* اضافه شده لیست های پخش (گروه بندی کتاب ها، مرتب سازی مجدد) 
+* بازیابی فایل های MP3 و پوشه ها 
+* پنهان به طور مستقیم در متن 
+* TTS می توانید پانویس ها (EPUB، FB2، MOBI) 
+* TTS می توانید با احکام بخوانید
 </fa>
 
 <pt-PT>
-* Uma grande atualização com base no feedback dos leitores 
-* Modo de leitura rápida (RSVP) para todos os formatos e PDF 
-* Seleção de texto e pesquisa em documentos DjVu 
-* Leitor de PDF com nova interface Text-To-Speech (TTS) 
-* Pastas com imagens podem ser abertas como um livro
+* Melhor visualização de PDF e leitura Epub 
+* Adicionado listas de reprodução (agrupamentos de livros, reordenação) 
+* Reprodução de arquivos mp3 e pastas 
+* Notas de rodapé diretamente no texto 
+* TTS pode ler notas de rodapé (epub, fb2, mobi) 
+* TTS pode ler por frases
 </pt-PT>
 
 <pt-BR>
-* Uma grande atualização com base no feedback dos leitores 
-* Modo de leitura rápida (RSVP) para todos os formatos e PDF 
-* Seleção de texto e pesquisa em documentos DjVu 
-* Leitor de PDF com nova interface Text-To-Speech (TTS) 
-* Pastas com imagens podem ser abertas como um livro
+* Melhor visualização de PDF e leitura Epub 
+* Adicionado listas de reprodução (agrupamentos de livros, reordenação) 
+* Reprodução de arquivos mp3 e pastas 
+* Notas de rodapé diretamente no texto 
+* TTS pode ler notas de rodapé (epub, fb2, mobi) 
+* TTS pode ler por frases
 </pt-BR>
 
 <ko-KR>
-* 독자 의견을 기반으로 한 주요 업데이트 
-* 모든 형식 및 PDF에 대한 
-* 빠른 읽기 모드 (RSVP) 
-* DjVu 문서에서 텍스트 선택 및 검색 
-* 새로운 TTS (텍스트 음성 변환) 인터페이스가있는 PDF 리더 
-* 이미지가있는 폴더는 다음과 같이 열 수 있습니다. 책
+* 향상된 PDF보기 및 Epub 읽기 
+* 추가 된 재생 목록 (도서 그룹, 순서 변경) 
+* 재생 MP3 파일 및 폴더 
+* 텍스트의 각주 
+* TTS는 각주 (epub, fb2, mobi)를 읽을 수 있습니다 
+* TTS는 문장으로 읽을 수 있습니다
 </ko-KR>
 
 <hu-HU>
-* A legfontosabb frissítés az olvasók visszajelzései alapján 
-* Gyors olvasási mód (RSVP) minden formátumhoz és PDF formátumhoz 
-* Szövegválasztás és keresés a DjVu dokumentumokban 
-* PDF olvasó új szöveges beszélgetés (TTS) felületen 
-* A képeket tartalmazó mappák megnyithatók könyv
+* Továbbfejlesztett PDF megtekintés és Epub olvasás 
+* Hozzáadott lejátszási listák (könyvcsoportok, átrendezés) 
+* MP3 fájlok és mappák lejátszása 
+* A lábjegyzetek közvetlenül a szövegben 
+* A TTS olvasható lábjegyzeteket (epub, fb2, mobi) 
+* A TTS mondatok olvashatók
 </hu-HU>
 
+<kk>
+* Жақсартылған PDF қарап шығу және эпуб оқу 
+* Қосылған ойнату тізімдері (кітап топтары, ретін өзгерту) 
+* Ойнату mp3 файлдары мен қалталары 
+* Мәтінді тікелей сілтеме 
+* TTS сілтемелерді оқи алады (epub, fb2, mobi) 
+* TTS сөйлемдермен оқылады
+</kk>
+
 <sk>
-* Veľká aktualizácia založená na spätnej väzbe čitateľov 
-* Rýchle čítanie (RSVP) pre všetky formáty a PDF 
-* Výber textu a vyhľadávanie v dokumentoch DjVu 
-* PDF Reader s novým rozhraním Text to Speech (TTS) 
-* Priečinky s obrázkami môžu byť otvorené ako kniha
+* Vylepšené prezeranie PDF a čítanie EPUB 
+* Pridané zoznamy skladieb (zoskupovanie kníh, reordering) 
+* Prehrávanie mp3 súborov a priečinkov 
+* Poznámky priamo v texte 
+* TTS si môže prečítať poznámky pod čiarou (epub, fb2, mobi) 
+* TTS môže čítať vety
 </sk>
 
 <tr-TR>
-* Okuyucular geribildirim dayalı büyük bir güncelleme 
-* Tüm formatlar ve PDF için Hızlı okuma modu (RSVP) 
-* Metin seçimi ve DjVu belgelerinde arama 
-* Yeni Metin-Konuşma (TTS) arayüzü ile PDF Okuyucu 
-* Görüntüler ile Klasörler gibi açılabilir kitap
+* Geliştirilmiş PDF Görüntüleme ve Epub Okuma 
+* Eklenen Çalma Listeleri (kitap grupları, yeniden sıralama) 
+* Çalma mp3 dosyaları ve klasörleri 
+* Doğrudan metindeki dipnotlar 
+* TTS dipnotları okuyabilir (epub, fb2, mobi) 
+* TTS cümleleri okuyabilir
 </tr-TR>
 
 <no-NO>
-* En stor oppdatering basert på leser tilbakemelding 
-* Rask lesemodus (RSVP) for alle formater og PDF 
-* Tekstvalg og søk i DjVu-dokumenter 
-* PDF Reader med nytt tekst-til-tale (TTS) grensesnitt 
-* Mapper med bilder kan åpnes som en bok
+* Forbedret PDF-visning og Epub-lesing 
+* Lagt til spillelister (bok grupperinger, reordering) 
+* Avspilling av mp3-filer og mapper 
+* Fotnoter direkte i teksten 
+* TTS kan lese fotnoter (epub, fb2, mobi) 
+* TTS kan lese med setninger
 </no-NO>
 
 <la>
-* A major update secundum legentibus feedback 
-* Fast lege modus (RSVP) omnes formats et PDF 
-* Text Selectio quaerere in DjVu litteris 
-* PDF Lector cum novo textu ut, Declamatio (TTS) interface 
-* Folders in imaginibus potest aperuit similis librum
+Video added 
+* 
+* Melior PDF Viewing et Epub Rading ’(libri sodalitates, enim refectio) mp3 lima quod folders Playback 
+* 
+* 
+* TTS Corinthians directe in textu notis legi possit (epub, .fb2, mobi) 
+* a sententias legere potes TTS
 </la>
 
 <ja-JP>
-*読者のフィードバックに基づくメジャーアップデート
-*すべてのフォーマットとPDFのための高速読み込みモード（RSVP）
-* DjVuドキュメントでのテキスト選択と検索
-*新しいTTS（Text-To-Speech）インターフェイスを備えたPDFリーダー
-*画像付きのフォルダは一冊の本
+*改善されたPDF表示とEPUB読み
+*プレイリスト（ブックのグループ化、並べ替え）を追加
 </ja-JP>
 
 <uk>
-* Основне оновлення на основі відгуків читачів 
-* Швидкий режим читання (RSVP) для всіх форматів і PDF 
-* Вибір тексту та пошук в документах DjVu 
-* PDF Reader з новим інтерфейсом Text-to-Speech (TTS) 
-* Папки із зображеннями можуть бути відкриті, як книга
+* Покращено PDF-перегляд і читання EPUB 
+* Додані плейлисти (групування книг, переупорядкування) 
+* Відтворення mp3-файлів і папок 
+* Виноски безпосередньо в тексті 
+* TTS може читати виноски (epub, fb2, mobi) 
+* TTS може читати пропозиції
 </uk>
 
 <en-US>
-* A major update based on readers feedback
-* Fast read mode (RSVP) for all formats and PDF
-* Text selection and search in DjVu documents
-* PDF Reader with new Text-To-Speech (TTS) interface
-* Folders with images can be opened like a book
+* Improved PDF Viewing and Epub Reading
+* Added Playlists (book groupings, reordering)
+* Playback mp3 files and folders
+* Footnotes directly in the text
+* TTS can read footnotes (epub, fb2, mobi)
+* TTS can read by sentences
 </en-US>

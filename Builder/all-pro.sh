@@ -6,8 +6,12 @@ ant clean-apk
 
 rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
-ant beta-cpu pdf-beta
-ant arm+arm64 pro
+ant arm pdf
+ant arm64 pdf
+ant x86 pdf
+
+ant arm pro
+ant arm64 pro
 ant x86 pro
 
 ./remove_all.sh

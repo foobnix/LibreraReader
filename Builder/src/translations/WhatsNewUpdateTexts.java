@@ -24,9 +24,10 @@ public class WhatsNewUpdateTexts {
         codes.put("ja", "ja-JP");
         codes.put("ko", "ko-KR");
         codes.put("pt", "pt-PT,pt-BR");
-      
+
         codes.put("tr", "tr-TR");
-        codes.put("zh", "zh-TW");
+        codes.put("zh-rTW", "zh-TW");
+        codes.put("zh-rCH", "zh-CH");
 
         codes.put("nl", "nl-NL");
         codes.put("no", "no-NO");
@@ -34,7 +35,7 @@ public class WhatsNewUpdateTexts {
         codes.put("sv", "sv-SE");
         codes.put("fi", "fi-FI");
         codes.put("hu", "hu-HU");
-        
+
         codes.put("ru", "ru-RU");
 
     }
@@ -45,12 +46,13 @@ public class WhatsNewUpdateTexts {
 
     public static void main(String[] args) throws IOException {
         final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LibreraReader/EBookDroid/res");
-        // final List<String> asList = Arrays.asList("ru");
+        // final List<String> asList = Arrays.asList("zh-rCN", "zh-rTW");
 
         String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LibreraReader/Builder/whatsnew/recent.txt")));
 
         StringBuilder res = new StringBuilder();
         for (String ex : asList) {
+            ex = ex.replace("zh-r", "zh-");
             String outRecnet = RECENT_PATH + ex + ".txt";
 
             String translation = "";
