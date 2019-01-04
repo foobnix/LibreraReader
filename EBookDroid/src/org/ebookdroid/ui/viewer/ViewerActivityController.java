@@ -15,7 +15,6 @@ import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.core.events.CurrentPageListener;
 import org.ebookdroid.core.events.DecodingProgressListener;
-import org.ebookdroid.core.models.DecodingProgressModel;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.core.models.ZoomModel;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
@@ -56,7 +55,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.InputType;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -68,7 +66,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     private ZoomModel zoomModel;
 
-    private DecodingProgressModel progressModel;
 
     private DocumentModel documentModel;
 
@@ -188,8 +185,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             LOG.d("codecType last", codecType);
             documentModel = new DocumentModel(codecType, getView());
             documentModel.addListener(ViewerActivityController.this);
-            progressModel = new DecodingProgressModel();
-            progressModel.addListener(ViewerActivityController.this);
 
             final Uri uri = Uri.fromFile(file);
             controller.setCurrentBook(file);
@@ -383,18 +378,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     @Override
     public void decodingProgressChanged(final int currentlyDecoding) {
-        final VerticalViewActivity activity = getManagedComponent();
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    activity.setProgressBarIndeterminateVisibility(currentlyDecoding > 0);
-                    activity.getWindow().setFeatureInt(Window.FEATURE_INDETERMINATE_PROGRESS, currentlyDecoding == 0 ? 10000 : currentlyDecoding);
-                } catch (final Throwable e) {
-                }
-            }
-        });
     }
 
     @Override
@@ -540,10 +523,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
      * 
      * @return the decoding progress model
      */
-    @Override
-    public DecodingProgressModel getDecodingProgressModel() {
-        return progressModel;
-    }
 
     @Override
     public DocumentModel getDocumentModel() {

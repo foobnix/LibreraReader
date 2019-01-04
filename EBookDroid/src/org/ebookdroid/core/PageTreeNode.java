@@ -12,7 +12,6 @@ import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.core.models.DecodingProgressModel;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MatrixUtils;
 
@@ -82,10 +81,6 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
 
     void stopDecodingThisNode(final String reason) {
         if (this.decodingNow.compareAndSet(true, false)) {
-            final DecodingProgressModel dpm = page.base.getDecodingProgressModel();
-            if (dpm != null) {
-                dpm.decrease();
-            }
             if (reason != null) {
                 final DecodeService ds = page.base.getDecodeService();
                 if (ds != null) {

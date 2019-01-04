@@ -3,7 +3,6 @@ package org.ebookdroid.ui.viewer.stubs;
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
-import org.ebookdroid.core.models.DecodingProgressModel;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.core.models.ZoomModel;
 import org.ebookdroid.ui.viewer.IActivityController;
@@ -71,10 +70,6 @@ public class ActivityControllerStub extends ActionController<VerticalViewActivit
         return ZM_STUB;
     }
 
-    @Override
-    public DecodingProgressModel getDecodingProgressModel() {
-        return null;
-    }
 
     @Override
     public ViewState jumpToPage(final int viewIndex, final float offsetX, final float offsetY, boolean history) {
