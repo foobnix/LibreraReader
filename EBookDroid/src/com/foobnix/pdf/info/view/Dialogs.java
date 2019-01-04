@@ -222,6 +222,8 @@ public class Dialogs {
             final TextView text = (TextView) view.findViewById(R.id.text1);
 
             ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBarLoading);
+            pr.setSaveEnabled(false);
+            pr.setSaveFromParentEnabled(false);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
 
             ImageView image = (ImageView) view.findViewById(R.id.onCancel);

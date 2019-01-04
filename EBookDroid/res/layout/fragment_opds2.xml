@@ -56,6 +56,8 @@
             android:tint="@color/tint_gray" />
 
         <ProgressBar
+                    android:saveEnabled="false"
+            
             android:id="@+id/progressBarOPDS"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"

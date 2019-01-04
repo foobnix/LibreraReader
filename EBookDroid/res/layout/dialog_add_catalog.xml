@@ -44,6 +44,8 @@
 
         <ProgressBar
             android:id="@+id/progressBarAdd"
+                    android:saveEnabled="false"
+            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />

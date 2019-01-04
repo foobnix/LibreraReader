@@ -53,6 +53,8 @@
         android:visibility="gone" />
 
     <ProgressBar
+                android:saveEnabled="false"
+        
         android:id="@+id/progressBarSearch"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
