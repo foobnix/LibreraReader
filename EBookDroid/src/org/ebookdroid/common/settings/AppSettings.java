@@ -49,7 +49,7 @@ public class AppSettings {
 
         bitmapSize = 9;// 6-64,7-128,8-256,9-512,10-1024
         bitmapFileringEnabled = false;
-        textureReuseEnabled = false;// !!!
+        textureReuseEnabled = true;// !!!
         reloadDuringZoom = false;
         pdfStorageSize = 64;// 16-128
 

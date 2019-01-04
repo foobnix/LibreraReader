@@ -359,7 +359,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     public final void surfaceCreated(final SurfaceHolder holder) {
         drawThread = new DrawThread(getHolder());
         drawThread.setPriority(AppSettings.getInstance().drawThreadPriority);
-
         drawThread.start();
     }
 
