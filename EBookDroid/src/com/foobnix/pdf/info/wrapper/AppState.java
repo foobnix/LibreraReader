@@ -272,6 +272,8 @@ public class AppState {
 
     public final static int AUTO_BRIGTNESS = -1000;
 
+    public int helpHash = 0;
+
     @IgnoreHashCode
     public int doubleClickAction1 = DOUBLE_CLICK_ADJUST_PAGE;
 

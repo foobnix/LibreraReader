@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
@@ -28,6 +29,10 @@ import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 public class Views {
+
+    public static void visibleInBeta(View view) {
+        view.setVisibility(AppsConfig.IS_BETA ? View.VISIBLE : View.GONE);
+    }
 
     public static void visible(final View view, boolean visible) {
         if (view == null) {

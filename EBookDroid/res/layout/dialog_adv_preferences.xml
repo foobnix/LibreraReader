@@ -417,6 +417,23 @@
             android:layout_height="wrap_content"
             android:text="@string/enable_vibration_for_some_actions" />
         
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/decodingThreadPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="Decoding Thread Priority" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
+        
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/drawThreadPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="Draw Thread Priority" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+        
     </LinearLayout>
 
 </ScrollView>

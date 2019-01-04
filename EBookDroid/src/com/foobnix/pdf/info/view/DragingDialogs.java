@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
@@ -3622,6 +3623,34 @@ public class DragingDialogs {
                         popupMenu.show();
                     }
                 });
+
+                // BETA
+
+                final CustomSeek decodingThreadPriority = (CustomSeek) inflate.findViewById(R.id.decodingThreadPriority);
+                decodingThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, AppSettings.get().decodingThreadPriority);
+                decodingThreadPriority.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppSettings.get().decodingThreadPriority = result;
+                        AppState.get().helpHash++;
+                        return false;
+                    }
+                });
+                Views.visibleInBeta(decodingThreadPriority);
+
+                final CustomSeek drawThreadPriority = (CustomSeek) inflate.findViewById(R.id.drawThreadPriority);
+                drawThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, AppSettings.get().drawThreadPriority);
+                drawThreadPriority.setOnSeekChanged(new IntegerResponse() {
+
+                    @Override
+                    public boolean onResultRecive(int result) {
+                        AppSettings.get().drawThreadPriority = result;
+                        AppState.get().helpHash++;
+                        return false;
+                    }
+                });
+                Views.visibleInBeta(drawThreadPriority);
 
                 return inflate;
             }
