@@ -12,11 +12,11 @@ version: 2
 * Add apps (dictionaries) to open selected text in the Text window 
 * Play back mp3 files and folders
 * Handle book series
-* Footer notes directly in the text
-* TTS can read footer notes
-* TTS read by sentences, stop and return from the begin of the sentence.
-* Open web page from browse in Librera Reader as a book
-* Support for Chinese Traditional and Chinese Simplified 
+* Option to display end-/footnotes as in-text notes
+* TTS can now read end-/footnotes
+* Option to resume TTS reading at the last punctuation mark (per-sentence mode)
+* Share pages from other apps (e.g., browsers) w/ Librera Reader
+* Support for Chinese Traditional and Simplified 
 
 
 **Favorites Tab**
