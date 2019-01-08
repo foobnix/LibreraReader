@@ -60,10 +60,10 @@
 
             <ImageView
                 android:id="@+id/onHelp"
-                android:padding="4dip"
                 android:layout_width="@dimen/wh_button_small"
                 android:layout_height="@dimen/wh_button_small"
                 android:background="@drawable/bg_clickable"
+                android:padding="4dip"
                 android:src="@drawable/glyphicons_196_info_sign"
                 android:tint="@color/lt_grey" />
         </LinearLayout>
@@ -176,23 +176,29 @@
                 android:text="@string/start" />
         </LinearLayout>
 
-        <LinearLayout
+        <CheckBox
+            android:id="@+id/ttsReadBySentences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_by_sentences" />
+
+        <EditText
+            android:id="@+id/ttsSentecesDivs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dip" >
+            android:layout_marginLeft="40dip" />
 
-            <CheckBox
-                android:id="@+id/ttsReadBySentences"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/read_by_sentences" />
+        <CheckBox
+            android:id="@+id/ttsDoNotReadCharsEnable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/do_not_read_characters" />
 
-            <EditText
-                android:id="@+id/ttsSentecesDivs"
-                android:layout_width="80dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/ttsDoNotReadChars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip" />
 
         <CheckBox
             android:id="@+id/stopReadingOnCall"

@@ -239,8 +239,6 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
-        pageHTML = pageHTML.replace("'", "");
-        pageHTML = pageHTML.replace("*", "");
         pageHTML = pageHTML.replace("[image]", "");
         if (AppState.get().isShowFooterNotesInText) {
             try {
@@ -253,10 +251,16 @@ public class TxtUtils {
 
         pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replace("  ", " ");
-        pageHTML = pageHTML.replace("[", " ");
-        pageHTML = pageHTML.replace("]", " ");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
+
+        if (AppState.get().ttsDoNotReadCharsEnable) {
+            for (int i = 0; i < AppState.get().ttsDoNotReadChars.length(); i++) {
+                String s = String.valueOf(AppState.get().ttsDoNotReadChars.charAt(i));
+                pageHTML = pageHTML.replace(s, " ");
+            }
+
+        }
 
         return pageHTML;
     }

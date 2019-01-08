@@ -108,9 +108,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.Html;
-import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -756,6 +754,19 @@ public class DragingDialogs {
                     }
                 });
 
+                // read by sentences
+                final EditText searchEdit = (EditText) view.findViewById(R.id.ttsSentecesDivs);
+                searchEdit.setText(AppState.get().ttsSentecesDivs);
+                searchEdit.addTextChangedListener(new SmallTextWatcher() {
+
+                    @Override
+                    public void onTextChanged(String text) {
+                        AppState.get().ttsSentecesDivs = text;
+                        TTSEngine.get().stop();
+                    }
+                });
+                searchEdit.setEnabled(AppState.get().ttsReadBySentences);
+
                 CheckBox ttsReadBySentences = (CheckBox) view.findViewById(R.id.ttsReadBySentences);
                 ttsReadBySentences.setChecked(AppState.get().ttsReadBySentences);
                 ttsReadBySentences.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -763,28 +774,34 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().ttsReadBySentences = isChecked;
+                        searchEdit.setEnabled(AppState.get().ttsReadBySentences);
                         TTSEngine.get().stop();
                     }
                 });
 
-                final EditText searchEdit = (EditText) view.findViewById(R.id.ttsSentecesDivs);
-                searchEdit.setText(AppState.get().ttsSentecesDivs);
-                searchEdit.addTextChangedListener(new TextWatcher() {
+                // skip text
+
+                final EditText ttsDoNotReadChars = (EditText) view.findViewById(R.id.ttsDoNotReadChars);
+                ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
+                ttsDoNotReadChars.addTextChangedListener(new SmallTextWatcher() {
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        AppState.get().ttsSentecesDivs = searchEdit.getText().toString();
+                    public void onTextChanged(String text) {
+                        AppState.get().ttsDoNotReadChars = text;
                         TTSEngine.get().stop();
                     }
+                });
+                searchEdit.setEnabled(AppState.get().ttsReadBySentences);
+
+                CheckBox ttsDoNotReadCharsEnable = (CheckBox) view.findViewById(R.id.ttsDoNotReadCharsEnable);
+                ttsDoNotReadCharsEnable.setChecked(AppState.get().ttsDoNotReadCharsEnable);
+                ttsDoNotReadCharsEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().ttsDoNotReadCharsEnable = isChecked;
+                        searchEdit.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
+                        TTSEngine.get().stop();
                     }
                 });
 
