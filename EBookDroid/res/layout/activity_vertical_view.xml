@@ -13,13 +13,25 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
+        android:id="@+id/pageshelper"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal" >
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="40dip"
+        android:layout_marginTop="85dip"
         android:orientation="horizontal" >
 
-        <com.foobnix.pdf.search.view.BgClickbaleView
+        <TextView
+            android:background="@drawable/bg_border_ltgray_dash"
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="220dip"
@@ -55,7 +67,8 @@
                 app:text="1" />
         </LinearLayout>
 
-        <com.foobnix.pdf.search.view.BgClickbaleView
+       <TextView
+            android:background="@drawable/bg_border_ltgray_dash"
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="220dip"
@@ -78,7 +91,6 @@
 
     <ImageView
         android:id="@+id/ttsActive1"
-        android:visibility="gone"
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
@@ -89,7 +101,8 @@
         android:contentDescription="read aloudW"
         android:padding="7dip"
         android:src="@drawable/glyphicons_185_volume_up"
-        android:tint="@color/white" />
+        android:tint="@color/white"
+        android:visibility="gone" />
 
     <include
         android:id="@+id/menuLayout"
@@ -125,10 +138,10 @@
 
     <com.foobnix.tts.TTSControlsView
         android:id="@+id/ttsActive"
-        android:layout_above="@+id/seekSpeedLayot"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/seekSpeedLayot"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="5dip" />
 
     <FrameLayout
@@ -146,8 +159,6 @@
             <include layout="@layout/document_footer" />
         </FrameLayout>
     </FrameLayout>
-
-   
 
     <FrameLayout
         android:id="@+id/overlay"
@@ -170,26 +181,24 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="visible" />
-    
+
     <ImageView
         android:id="@+id/anchorX"
-        android:tint="@color/tint_blue"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="100dip"
         android:src="@drawable/glyphicons_basic_299_circle_selected"
-         />
-     
-      <ImageView
-           android:layout_marginTop="150dip"
-          android:tint="@color/tint_blue"
+        android:tint="@color/tint_blue" />
+
+    <ImageView
         android:id="@+id/anchorY"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
+        android:layout_marginTop="150dip"
         android:src="@drawable/glyphicons_basic_298_circle_empty"
-         />
-      
-       <FrameLayout
+        android:tint="@color/tint_blue" />
+
+    <FrameLayout
         android:id="@+id/anchor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

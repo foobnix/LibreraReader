@@ -22,6 +22,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
+import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -67,6 +68,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -77,6 +79,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -437,7 +440,6 @@ public class DocumentWrapperUI {
                 cut.setVisibility(View.VISIBLE);
             }
         }
-
 
         crop.underline(AppState.get().isCrop);
         cut.underline(AppState.get().isCut);
@@ -845,6 +847,9 @@ public class DocumentWrapperUI {
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
         tintSpeed();
 
+        pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
+        pageshelper.setVisibility(View.GONE);
+
         line1.setVisibility(View.GONE);
         line2.setVisibility(View.GONE);
         lineFirst.setVisibility(View.GONE);
@@ -870,6 +875,8 @@ public class DocumentWrapperUI {
             lockUnlockTop.setVisibility(View.VISIBLE);
             closeTop.setVisibility(View.VISIBLE);
 
+            pageshelper.setVisibility(View.VISIBLE);
+
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
             progressDraw.setVisibility(View.GONE);
@@ -879,8 +886,6 @@ public class DocumentWrapperUI {
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
-
-
 
     }
 
@@ -1266,6 +1271,7 @@ public class DocumentWrapperUI {
         // hideSeekBarInReadMode();
         // showHideHavigationBar();
         DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().isFullScreen);
+        showPagesHelper();
     }
 
     public void hide() {
@@ -1412,6 +1418,7 @@ public class DocumentWrapperUI {
                 @Override
                 public void run() {
                     showHideHistory();
+                    showPagesHelper();
                 }
             });
         }
@@ -1778,6 +1785,8 @@ public class DocumentWrapperUI {
         }
     };
 
+    private LinearLayout pageshelper;
+
     public void setTitle(final String title) {
         this.bookTitle = title;
         hideShowEditIcon();
@@ -1825,6 +1834,61 @@ public class DocumentWrapperUI {
         }
     }
 
+    public void showPagesHelper() {
+        pageshelper.removeAllViews();
+        List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
+        int prev = -1;
+        for (final AppBookmark bookmarks : all) {
+            final int num = bookmarks.getPage();
+            if (num == prev) {
+                continue;
+            }
+            prev = num;
+            TextView t = new TextView(a);
+            t.setText("" + (num));
+            t.setGravity(Gravity.CENTER);
+            // t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+            t.setTextSize(16);
+            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+            t.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    dc.onGoToPage(num);
+                }
+            });
+            t.setOnLongClickListener(new OnLongClickListener() {
+
+                @Override
+                public boolean onLongClick(View v) {
+                    AppSharedPreferences.get().removeBookmark(bookmarks);
+                    showPagesHelper();
+                    return true;
+                }
+            });
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
+            params.leftMargin = Dips.DP_3;
+            pageshelper.addView(t, params);
+        }
+
+        TextView t = new TextView(a);
+        t.setText("+");
+        t.setGravity(Gravity.CENTER);
+        t.setTextSize(16);
+        t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+        t.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                DragingDialogs.addBookmarksLong(anchor, dc);
+                showPagesHelper();
+            }
+        });
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
+        params.leftMargin = Dips.DP_3;
+        pageshelper.addView(t, params);
+    }
+
     public void showOutline(final List<OutlineLinkWrapper> list, final int count) {
         try {
             dc.activity.runOnUiThread(new Runnable() {
@@ -1860,6 +1924,8 @@ public class DocumentWrapperUI {
                     updateSpeedLabel();
 
                     DialogsPlaylist.dispalyPlaylist(a, dc);
+
+                    showPagesHelper();
 
                 }
             });

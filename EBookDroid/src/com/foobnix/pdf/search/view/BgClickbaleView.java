@@ -14,13 +14,17 @@ import android.graphics.Paint.Style;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.View;
+import android.widget.TextView;
 
-public class BgClickbaleView extends View {
+public class BgClickbaleView extends TextView {
 
     private static int LEN = 10;
 
     Paint paint = new Paint();
+
+    public BgClickbaleView(Context c) {
+        super(c, null);
+    }
 
     private String txt;
     {
