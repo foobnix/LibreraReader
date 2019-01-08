@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Zoomaus / pienentäminen lukituksen avulla</string>
    <string name="show_footnotes_directly_in_text">Näyttää alaviitteet suoraan tekstissä</string>
    <string name="read_by_sentences">Lukea lauseita</string>
+   <string name="do_not_read_characters">Älä lue merkkejä</string>
 </resources>

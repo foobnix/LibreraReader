@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Zoom in / uit met vergrendeling inschakelen</string>
    <string name="show_footnotes_directly_in_text">Toon voetnoten direct in tekst</string>
    <string name="read_by_sentences">Gelezen door zinnen</string>
+   <string name="do_not_read_characters">Lees geen karakters</string>
 </resources>

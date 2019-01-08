@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Zooma in / ut med låsaktivera</string>
    <string name="show_footnotes_directly_in_text">Visa fotnoter direkt i text</string>
    <string name="read_by_sentences">Läs med meningar</string>
+   <string name="do_not_read_characters">Läs inte tecken</string>
 </resources>

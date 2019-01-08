@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Phóng to / thu nhỏ với khóa cho phép</string>
    <string name="show_footnotes_directly_in_text">Hiển thị chú thích trực tiếp trong văn bản</string>
    <string name="read_by_sentences">Đọc bằng câu</string>
+   <string name="do_not_read_characters">Không đọc ký tự</string>
 </resources>

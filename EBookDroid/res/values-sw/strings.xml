@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Zoom ndani / nje na uwezeshe kufuli</string>
    <string name="show_footnotes_directly_in_text">Onyesha maelezo ya chini kwa maandishi</string>
    <string name="read_by_sentences">Soma kwa sentensi</string>
+   <string name="do_not_read_characters">Usisome wahusika</string>
 </resources>

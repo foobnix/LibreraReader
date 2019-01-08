@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Powiększ / pomniejsz z włączoną blokadą</string>
    <string name="show_footnotes_directly_in_text">Pokaż przypisy bezpośrednio w tekście</string>
    <string name="read_by_sentences">Czytać według zdań</string>
+   <string name="do_not_read_characters">Nie czytaj znaków</string>
 </resources>

@@ -519,4 +519,5 @@
    <string name="zoom_in_out_with_lock_enable">Vergrößern / Verkleinern mit Sperren aktivieren</string>
    <string name="show_footnotes_directly_in_text">Fußnoten direkt im Text anzeigen</string>
    <string name="read_by_sentences">Durch Sätze gelesen</string>
+   <string name="do_not_read_characters">Lese keine Zeichen</string>
 </resources>
