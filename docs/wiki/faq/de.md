@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 # Häufig gestellte Fragen
 
 * [So konvertieren Sie PDF in EPUB](/wiki/faq/convert-pdf-to-epub/de)
+* [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading_mode_vertical_book_musician/de)
 * [So löschen Sie Bücher von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Benutzerdefinierte Tags erstellen](/wiki/faq/custom-tags/de)
 * [Helligkeitskontrolle und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)

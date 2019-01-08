@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 # Часто задаваемые вопросы
 
 * [Как конвертировать PDF в EPUB](/wiki/faq/convert-pdf-to-epub/ru)
+* [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading_mode_vertical_book_musician/ru)
 * [Как удалить книги с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
 * [Создание пользовательских тегов](/wiki/faq/custom-tags/ru)
 * [Контроль яркости и синий светофильтр](/wiki/faq/brightness-control-and-blue-light-filter/ru)

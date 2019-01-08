@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 # Domande frequenti
 
 * [Come convertire PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
+* [Modalità di lettura: modalità scorrimento, modalità libro e modalità musicista](/wiki/faq/reading_mode_vertical_book_musician/it)
 * [Come eliminare libri dalla scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
 * [Crea tag personalizzati](/wiki/faq/custom-tags/it)
 * [Controllo luminosità e filtro luce blu](/wiki/faq/brightness-control-and-blue-light-filter/it)

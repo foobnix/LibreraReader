@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 {1}常见问题解答
 
 * [如何将PDF转换为EPUB](/wiki/faq/convert-pdf-to-epub/zh)
+* [阅读模式：滚动模式，预订模式和音乐模式](/wiki/faq/reading_mode_vertical_book_musician/zh)
 * [如何从外部SD卡中删除图书](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [创建自定义标签](/wiki/faq/custom-tags/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)

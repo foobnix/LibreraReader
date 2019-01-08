@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 # الأسئلة الشائعة
 
 * [كيفية تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
+* [أوضاع القراءة: وضع التمرير ووضع الكتاب ووضع الموسيقي](/wiki/faq/reading_mode_vertical_book_musician/ar)
 * [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [إنشاء علامات مخصصة](/wiki/faq/custom-tags/ar)
 * [فلتر التحكم في الإضاءة والضوء الأزرق](/wiki/faq/brightness-control-and-blue-light-filter/ar)

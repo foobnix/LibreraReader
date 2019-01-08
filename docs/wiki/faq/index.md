@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 7
+version: 8
 ---
 [<](/wiki/)
 
 # Frequently asked questions
 
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
+* [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading_mode_vertical_book_musician)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [Create custom tags](/wiki/faq/custom-tags)
 * [Brightness control and blue light filter](/wiki/faq/brightness-control-and-blue-light-filter)
