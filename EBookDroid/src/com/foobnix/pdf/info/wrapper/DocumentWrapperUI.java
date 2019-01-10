@@ -1874,7 +1874,9 @@ public class DocumentWrapperUI {
             TextView t = new TextView(a);
             boolean isQuick = bookmarks.getText().equals(quickBookmark);
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
-                t.setText(bookmarks.getText());
+                String substringSmart = TxtUtils.substringSmart(bookmarks.getText(), 20);
+                substringSmart = TxtUtils.firstUppercase(substringSmart);
+                t.setText(substringSmart);
             } else {
                 t.setText("" + (num));
             }
