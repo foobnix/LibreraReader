@@ -281,7 +281,9 @@ public abstract class DocumentController {
         readTimeStart = System.currentTimeMillis();
         try {
             BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-            onGoToPage(bs.getCurrentPage().viewIndex + 1);
+            if (getCurentPage() != bs.getCurrentPage().viewIndex + 1) {
+                onGoToPage(bs.getCurrentPage().viewIndex + 1);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
