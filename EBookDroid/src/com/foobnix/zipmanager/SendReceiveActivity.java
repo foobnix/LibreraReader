@@ -28,7 +28,11 @@ public class SendReceiveActivity extends Activity {
         new Thread() {
             @Override
             public void run() {
-                updateIntent();
+                try {
+                    updateIntent();
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
@@ -57,8 +61,7 @@ public class SendReceiveActivity extends Activity {
             }
             if (text instanceof String) {
                 Uri uri = Uri.parse((String) text);
-                if (uri.getScheme().equalsIgnoreCase("http") ||
-                        uri.getScheme().equalsIgnoreCase("https")) {
+                if (uri != null && uri.getScheme() != null && (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"))) {
                     try {
                         final Object waiter = new Object();
                         Thread thread = new Thread() {
@@ -96,7 +99,7 @@ public class SendReceiveActivity extends Activity {
                         throwable.printStackTrace();
                     }
                 }
-                //getIntent().setData(Uri.parse((String)text));
+                // getIntent().setData(Uri.parse((String)text));
             }
             for (String s : extras.keySet()) {
                 Object o = extras.get(s);
@@ -106,14 +109,9 @@ public class SendReceiveActivity extends Activity {
 
         LOG.d(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-
-        if (getIntent() != null &&
-                getIntent().getData() == null &&
-                getIntent().getExtras() != null &&
-                getIntent().getExtras().get(Intent.EXTRA_STREAM) instanceof Uri) {
+        if (getIntent() != null && getIntent().getData() == null && getIntent().getExtras() != null && getIntent().getExtras().get(Intent.EXTRA_STREAM) instanceof Uri) {
             getIntent().setData((Uri) getIntent().getExtras().get(Intent.EXTRA_STREAM));
         }
     }
-
 
 }

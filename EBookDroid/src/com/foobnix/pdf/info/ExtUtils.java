@@ -666,6 +666,9 @@ public class ExtUtils {
     }
 
     public static boolean isValidFile(final File file) {
+        if (file == null) {
+            return false;
+        }
         if (Clouds.isCloud(file.getPath())) {
             return true;
         }

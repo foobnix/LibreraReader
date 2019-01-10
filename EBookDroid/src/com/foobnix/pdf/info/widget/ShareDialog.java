@@ -114,6 +114,11 @@ public class ShareDialog {
     }
 
     public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
+        if (file == null) {
+            Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (!ExtUtils.isExteralSD(file.getPath()) && ExtUtils.isNotValidFile(file)) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;

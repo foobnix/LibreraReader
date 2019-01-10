@@ -1,9 +1,9 @@
 package org.ebookdroid.common.bitmaps;
 
-import android.graphics.Bitmap;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import android.graphics.Bitmap;
 
 public class BitmapRef {
 
@@ -42,11 +42,14 @@ public class BitmapRef {
     }
 
     public boolean isRecycled() {
-        if (bitmap != null) {
-            if (!bitmap.isRecycled()) {
-                return false;
+        try {
+            if (bitmap != null) {
+                if (!bitmap.isRecycled()) {
+                    return false;
+                }
+                bitmap = null;
             }
-            bitmap = null;
+        } catch (Exception e) {
         }
         return true;
     }
@@ -63,7 +66,6 @@ public class BitmapRef {
 
     @Override
     public String toString() {
-        return "BitmapRef [id=" + id + ", name=" + name + ", width=" + width + ", height=" + height + ", size=" + size
-                + "]";
+        return "BitmapRef [id=" + id + ", name=" + name + ", width=" + width + ", height=" + height + ", size=" + size + "]";
     }
 }

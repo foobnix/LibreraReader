@@ -79,7 +79,7 @@ public class Link {
     }
 
     public boolean isOpdsLink() {
-        return type.startsWith(APPLICATION_ATOM_XML);
+        return type != null && type.startsWith(APPLICATION_ATOM_XML);
     }
 
     public boolean isDisabled() {

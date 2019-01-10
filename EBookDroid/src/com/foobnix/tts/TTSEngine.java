@@ -155,7 +155,6 @@ public class TTSEngine {
 
     private String text = "";
 
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public synchronized void speek(final String text) {
         this.text = text;
@@ -250,6 +249,13 @@ public class TTSEngine {
 
     public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info) {
         LOG.d("speakToFile", page, controller.getPageCount());
+        if (ttsEngine == null) {
+            LOG.d("TTS is null");
+            if (controller != null && controller.getActivity() != null) {
+                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
 
         if (page >= controller.getPageCount() || !TempHolder.isRecordTTS) {
             LOG.d("speakToFile finish", page, controller.getPageCount());

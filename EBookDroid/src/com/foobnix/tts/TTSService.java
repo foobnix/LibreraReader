@@ -215,7 +215,9 @@ public class TTSService extends Service {
                 LOG.d(e);
             }
         } else {
-            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+            if (controller != null) {
+                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+            }
         }
     }
 
@@ -499,7 +501,7 @@ public class TTSService extends Service {
                     @Override
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
-                        if(utteranceId.startsWith(TTSEngine.FINISHED)) {
+                        if (utteranceId.startsWith(TTSEngine.FINISHED)) {
                             if (TxtUtils.isNotEmpty(preText1)) {
                                 AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
                             } else {
@@ -507,12 +509,11 @@ public class TTSService extends Service {
                             }
                             return;
                         }
-                        
+
                         if (!utteranceId.equals(TTSEngine.UTTERANCE_ID_DONE)) {
                             LOG.d(TAG, "onUtteranceCompleted skip", "");
                             return;
                         }
-
 
                         if (TempHolder.get().timerFinishTime != 0 && System.currentTimeMillis() > TempHolder.get().timerFinishTime) {
                             LOG.d(TAG, "Timer");
@@ -533,9 +534,9 @@ public class TTSService extends Service {
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
                         if (utteranceId.startsWith(TTSEngine.FINISHED)) {
-                            if(TxtUtils.isNotEmpty(preText1)) {
+                            if (TxtUtils.isNotEmpty(preText1)) {
                                 AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
-                            }else {
+                            } else {
                                 AppState.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
                             }
                             return;
