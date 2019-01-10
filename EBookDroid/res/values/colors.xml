@@ -12,6 +12,7 @@
    <color name="grey_800">#424242</color>
    <color name="lt_grey">#acacac</color>
    <color name="lt_grey_alpha">#aaacacac</color>
+   <color name="lt_grey_alpha2">#88acacac</color>
    
    <color name="lt_grey_dima1">#d1d1d1</color>
    <color name="lt_grey_dima">#bbd1d1d1</color>

@@ -98,7 +98,7 @@ public class DocumentWrapperUI {
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
-    View line1, line2, lineFirst, lineClose, closeTop;
+    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark;
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
@@ -106,6 +106,7 @@ public class DocumentWrapperUI {
     DrawView drawView;
     ProgressDraw progressDraw;
     UnderlineImageView crop, cut, onBC;
+    LinearLayout pageshelper;
 
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
@@ -848,7 +849,11 @@ public class DocumentWrapperUI {
         tintSpeed();
 
         pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
-        pageshelper.setVisibility(View.GONE);
+        ((View) pageshelper.getParent()).setVisibility(View.GONE);
+
+        pagesBookmark = a.findViewById(R.id.pagesBookmark);
+        pagesBookmark.setOnClickListener(onBookmarks);
+        pagesBookmark.setOnLongClickListener(onBookmarksLong);
 
         line1.setVisibility(View.GONE);
         line2.setVisibility(View.GONE);
@@ -875,7 +880,7 @@ public class DocumentWrapperUI {
             lockUnlockTop.setVisibility(View.VISIBLE);
             closeTop.setVisibility(View.VISIBLE);
 
-            pageshelper.setVisibility(View.VISIBLE);
+            ((View) pageshelper.getParent()).setVisibility(View.VISIBLE);
 
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
@@ -1428,6 +1433,7 @@ public class DocumentWrapperUI {
         @Override
         public boolean onLongClick(final View arg0) {
             DragingDialogs.addBookmarksLong(anchor, dc);
+            showPagesHelper();
             return true;
         }
     };
@@ -1785,7 +1791,7 @@ public class DocumentWrapperUI {
         }
     };
 
-    private LinearLayout pageshelper;
+
 
     public void setTitle(final String title) {
         this.bookTitle = title;
@@ -1870,23 +1876,6 @@ public class DocumentWrapperUI {
             params.leftMargin = Dips.DP_3;
             pageshelper.addView(t, params);
         }
-
-        TextView t = new TextView(a);
-        t.setText("+");
-        t.setGravity(Gravity.CENTER);
-        t.setTextSize(16);
-        t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
-        t.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                DragingDialogs.addBookmarksLong(anchor, dc);
-                showPagesHelper();
-            }
-        });
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
-        params.leftMargin = Dips.DP_3;
-        pageshelper.addView(t, params);
     }
 
     public void showOutline(final List<OutlineLinkWrapper> list, final int count) {
