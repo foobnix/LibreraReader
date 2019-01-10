@@ -31,6 +31,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.CustomSeek;
@@ -65,9 +66,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.graphics.ColorUtils;
+import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -110,6 +113,7 @@ public class DocumentWrapperUI {
 
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
+    String quickBookmark;
 
     public DocumentWrapperUI(final DocumentController controller) {
         AppState.get().annotationDrawColor = "";
@@ -543,6 +547,7 @@ public class DocumentWrapperUI {
 
     public void initUI(final Activity a) {
         this.a = a;
+        quickBookmark = a.getString(R.string.fast_bookmark);
 
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
@@ -880,8 +885,6 @@ public class DocumentWrapperUI {
             goToPage1Top.setVisibility(View.VISIBLE);
             lockUnlockTop.setVisibility(View.VISIBLE);
             closeTop.setVisibility(View.VISIBLE);
-
-            musicButtonPanel.setVisibility(AppState.get().isShowMusicButton ? View.VISIBLE : View.GONE);
 
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
@@ -1842,26 +1845,29 @@ public class DocumentWrapperUI {
 
     public void showPagesHelper() {
         pageshelper.removeAllViews();
-        if (AppState.get().isShowMusicButton) {
+
+        if (AppState.get().isShowBookmarsPanel && dc.isMusicianMode()) {
+            musicButtonPanel.setVisibility(View.VISIBLE);
+        } else if (AppState.get().isShowBookmarsPanelInScrollMode && dc.isScrollMode()) {
             musicButtonPanel.setVisibility(View.VISIBLE);
         } else {
             musicButtonPanel.setVisibility(View.GONE);
             return;
         }
         List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
-        int prev = -1;
         for (final AppBookmark bookmarks : all) {
             final int num = bookmarks.getPage();
-            if (num == prev) {
-                continue;
-            }
-            prev = num;
             TextView t = new TextView(a);
-            t.setText("" + (num));
+            boolean isQuick = bookmarks.getText().equals(quickBookmark);
+            if (AppState.get().isShowBookmarsPanelText && !isQuick) {
+                t.setText(bookmarks.getText());
+            } else {
+                t.setText("" + (num));
+            }
             t.setGravity(Gravity.CENTER);
-            // t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+            t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             t.setTextSize(16);
-            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash);
+            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
             t.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -1873,14 +1879,28 @@ public class DocumentWrapperUI {
 
                 @Override
                 public boolean onLongClick(View v) {
-                    AppSharedPreferences.get().removeBookmark(bookmarks);
-                    showPagesHelper();
+                    AlertDialogs.showOkDialog(a, a.getString(R.string.delete_this_bookmark_), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            AppSharedPreferences.get().removeBookmark(bookmarks);
+                            showPagesHelper();
+                        }
+                    });
+
                     return true;
                 }
             });
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
-            params.leftMargin = Dips.DP_3;
-            pageshelper.addView(t, params);
+            if (AppState.get().isShowBookmarsPanelText && !isQuick) {
+                t.setPadding(Dips.DP_8, Dips.DP_2, Dips.DP_8, Dips.DP_2);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, Dips.DP_60);
+                params.leftMargin = Dips.DP_3;
+                pageshelper.addView(t, params);
+            } else {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
+                params.leftMargin = Dips.DP_3;
+                pageshelper.addView(t, params);
+            }
         }
     }
 

@@ -2684,21 +2684,53 @@ public class DragingDialogs {
                         AppState.get().isRewindEnable = isChecked;
                     }
                 });
-                //
-                CheckBox isShowMusicButton = (CheckBox) inflate.findViewById(R.id.isShowMusicButton);
-                isShowMusicButton.setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+                // isShowBookmarsPanel
+                CheckBox isShowBookmarsPanel = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanel);
+                isShowBookmarsPanel.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
 
-                isShowMusicButton.setChecked(AppState.get().isShowMusicButton);
-                isShowMusicButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowBookmarsPanel.setChecked(AppState.get().isShowBookmarsPanel);
+                isShowBookmarsPanel.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowMusicButton = isChecked;
+                        AppState.get().isShowBookmarsPanel = isChecked;
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
                     }
                 });
+
+                CheckBox isShowBookmarsPanelInScrollMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInScrollMode);
+                isShowBookmarsPanelInScrollMode.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
+
+                isShowBookmarsPanelInScrollMode.setChecked(AppState.get().isShowBookmarsPanelInScrollMode);
+                isShowBookmarsPanelInScrollMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowBookmarsPanelInScrollMode = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                CheckBox isShowBookmarsPanelText = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelText);
+                isShowBookmarsPanelText.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
+
+                isShowBookmarsPanelText.setChecked(AppState.get().isShowBookmarsPanelText);
+                isShowBookmarsPanelText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowBookmarsPanelText = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                //
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
                 isShowSatusBar.setChecked(AppState.get().isShowToolBar);

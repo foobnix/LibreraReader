@@ -6,7 +6,11 @@
     <color name="alpa_ee">#ee000000</color>
     <color name="foobnix_dark_blue">#000080</color>
     <color name="foobnix_light_blue">#0000ff</color>
+    
     <color name="white">#ffffff</color>
+   <color name="white_alpha">#bbffffff</color>
+    
+    
     <color name="transparent">#00000000</color>
     
    <color name="grey_800">#424242</color>

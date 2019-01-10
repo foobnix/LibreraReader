@@ -12,9 +12,8 @@ rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
 ant beta-cpu pdf-beta
 
-ant arm64 pdf
-ant arm pdf
-ant x86 pdf
+#ant arm+arm64 pdf
+#ant x86 pdf
 
 #ant arm+arm64 droid
 #ant x86 droid

@@ -516,9 +516,12 @@
    <string name="playlists">Playlists</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Delete this playlist?</string>
+   <string name="delete_this_bookmark_">Delete this bookmark?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in/out \"locked\" pages</string>
    <string name="show_footnotes_directly_in_text">In-text notes (instead of foot-/endnotes)</string>
    <string name="read_by_sentences">Resume from last punctuation mark</string>
    <string name="do_not_read_characters">Do not read characters</string>
    <string name="show_additional_panel_with_bookmarks">Show additional panel with bookmarks</string>
+   <string name="show_in_scroll_mode">Show in Scroll mode</string>
+   <string name="display_bookmark_text_instead_of_number">Display bookmark text instead of number</string>
 </resources>

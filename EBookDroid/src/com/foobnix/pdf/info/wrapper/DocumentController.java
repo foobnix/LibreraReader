@@ -273,6 +273,10 @@ public abstract class DocumentController {
         return AppState.get().isAlwaysOpenAsMagazine;
     }
 
+    public boolean isScrollMode() {
+        return !AppState.get().isAlwaysOpenAsMagazine && !AppState.get().isMusicianMode;
+    }
+
     public boolean isMusicianMode() {
         return AppState.get().isMusicianMode;
     }

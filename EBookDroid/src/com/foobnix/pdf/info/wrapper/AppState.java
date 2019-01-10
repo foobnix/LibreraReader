@@ -396,7 +396,11 @@ public class AppState {
     public boolean isMusicianMode = false;
 
     @IgnoreHashCode
-    public boolean isShowMusicButton = true;
+    public boolean isShowBookmarsPanel = true;
+    @IgnoreHashCode
+    public boolean isShowBookmarsPanelInScrollMode = false;
+    @IgnoreHashCode
+    public boolean isShowBookmarsPanelText = false;
 
     public String musicText = "Musician";
 
