@@ -207,9 +207,9 @@ public class AppState {
     public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
 
     @IgnoreHashCode
-    public String statusBarColorDays = "#5B5B5B, #6D5C4B, #000000";
+    public String statusBarColorDays = "#5B5B5B, #000000";
     @IgnoreHashCode
-    public String statusBarColorNights = "#767676, #786D62, #e2e2e2";
+    public String statusBarColorNights = "#767676, #e2e2e2";
 
     // public int tintColor =
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));

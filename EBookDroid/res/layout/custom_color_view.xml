@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/text2"
-        android:layout_width="35dip"
+        android:layout_width="50dip"
         android:layout_height="25dip"
         android:layout_marginLeft="4dip"
         android:layout_weight="0"
@@ -27,7 +27,7 @@
         android:singleLine="true"
         android:text="#FF0000"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="10sp"
         android:textStyle="bold" />
 
     <LinearLayout

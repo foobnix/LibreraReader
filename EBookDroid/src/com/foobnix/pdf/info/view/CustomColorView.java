@@ -65,7 +65,7 @@ public class CustomColorView extends FrameLayout {
 
             }
         });
-        text2.setText("");
+        // text2.setText("");
 
         addView(inflate);
 
