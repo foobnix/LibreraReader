@@ -455,6 +455,12 @@ public class DocumentWrapperUI {
         LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
         handler.removeCallbacks(clearFlags);
         handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+
+        if (AppState.get().isAutoScroll) {
+            pagesBookmark.setVisibility(View.GONE);
+        } else {
+            pagesBookmark.setVisibility(View.VISIBLE);
+        }
     }
 
     Runnable clearFlags = new Runnable() {
@@ -1893,6 +1899,7 @@ public class DocumentWrapperUI {
             });
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
                 t.setPadding(Dips.DP_8, Dips.DP_2, Dips.DP_8, Dips.DP_2);
+                t.setMinWidth(Dips.DP_60);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, Dips.DP_60);
                 params.leftMargin = Dips.DP_3;
                 pageshelper.addView(t, params);
