@@ -98,7 +98,7 @@ public class DocumentWrapperUI {
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
-    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark;
+    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel;
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
@@ -849,7 +849,8 @@ public class DocumentWrapperUI {
         tintSpeed();
 
         pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
-        ((View) pageshelper.getParent()).setVisibility(View.GONE);
+        musicButtonPanel = a.findViewById(R.id.musicButtonPanel);
+        musicButtonPanel.setVisibility(View.GONE);
 
         pagesBookmark = a.findViewById(R.id.pagesBookmark);
         pagesBookmark.setOnClickListener(onBookmarks);
@@ -880,7 +881,7 @@ public class DocumentWrapperUI {
             lockUnlockTop.setVisibility(View.VISIBLE);
             closeTop.setVisibility(View.VISIBLE);
 
-            ((View) pageshelper.getParent()).setVisibility(View.VISIBLE);
+            musicButtonPanel.setVisibility(AppState.get().isShowMusicButton ? View.VISIBLE : View.GONE);
 
             reverseKeysIndicator.setVisibility(View.GONE);
             textToSpeachTop.setVisibility(View.GONE);
@@ -1664,6 +1665,7 @@ public class DocumentWrapperUI {
             updateUI();
             TTSEngine.get().stop();
             BrightnessHelper.updateOverlay(overlay);
+            showPagesHelper();
         }
     };
 
@@ -1791,8 +1793,6 @@ public class DocumentWrapperUI {
         }
     };
 
-
-
     public void setTitle(final String title) {
         this.bookTitle = title;
         hideShowEditIcon();
@@ -1842,6 +1842,12 @@ public class DocumentWrapperUI {
 
     public void showPagesHelper() {
         pageshelper.removeAllViews();
+        if (AppState.get().isShowMusicButton) {
+            musicButtonPanel.setVisibility(View.VISIBLE);
+        } else {
+            musicButtonPanel.setVisibility(View.GONE);
+            return;
+        }
         List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
         int prev = -1;
         for (final AppBookmark bookmarks : all) {

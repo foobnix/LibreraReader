@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">عرض الحواشي السفلية مباشرة في النص</string>
    <string name="read_by_sentences">اقرأ من الجمل</string>
    <string name="do_not_read_characters">لا تقرأ الأحرف</string>
+   <string name="show_additional_panel_with_bookmarks">عرض لوحة إضافية مع الإشارات المرجعية</string>
 </resources>

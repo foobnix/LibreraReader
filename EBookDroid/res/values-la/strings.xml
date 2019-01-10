@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Ostende directe in textu notis</string>
    <string name="read_by_sentences">Per sententias legere</string>
    <string name="do_not_read_characters">Non legitur characteribus</string>
+   <string name="show_additional_panel_with_bookmarks">Ostende additional panel in bookmarks</string>
 </resources>

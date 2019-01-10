@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">แสดงเชิงอรรถโดยตรงในข้อความ</string>
    <string name="read_by_sentences">อ่านตามประโยค</string>
    <string name="do_not_read_characters">อย่าอ่านตัวละคร</string>
+   <string name="show_additional_panel_with_bookmarks">แสดงแผงเพิ่มเติมพร้อมบุ๊คมาร์ค</string>
 </resources>

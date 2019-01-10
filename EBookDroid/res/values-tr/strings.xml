@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Dipnotları doğrudan metin olarak göster</string>
    <string name="read_by_sentences">Cümle ile oku</string>
    <string name="do_not_read_characters">Karakter okumayın</string>
+   <string name="show_additional_panel_with_bookmarks">Yer imleriyle ek panel göster</string>
 </resources>

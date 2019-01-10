@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">顯示文本腳注</string>
    <string name="read_by_sentences">用句子讀</string>
    <string name="do_not_read_characters">不讀字符</string>
+   <string name="show_additional_panel_with_bookmarks">顯示帶書籤的其他面板</string>
 </resources>

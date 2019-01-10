@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Mostrar notas al pie directamente en el texto</string>
    <string name="read_by_sentences">Leer por oraciones</string>
    <string name="do_not_read_characters">No leer caracteres</string>
+   <string name="show_additional_panel_with_bookmarks">Mostrar panel adicional con marcadores</string>
 </resources>

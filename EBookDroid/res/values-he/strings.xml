@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">הצג הערות שוליים ישירות בטקסט</string>
    <string name="read_by_sentences">לקרוא על ידי משפטים</string>
    <string name="do_not_read_characters">לא לקרוא תווים</string>
+   <string name="show_additional_panel_with_bookmarks">הצג פאנל נוסף עם סימניות</string>
 </resources>

@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Fußnoten direkt im Text anzeigen</string>
    <string name="read_by_sentences">Durch Sätze gelesen</string>
    <string name="do_not_read_characters">Lese keine Zeichen</string>
+   <string name="show_additional_panel_with_bookmarks">Zusätzliches Panel mit Lesezeichen anzeigen</string>
 </resources>

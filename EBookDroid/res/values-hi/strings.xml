@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">पाठ में सीधे फुटनोट दिखाएं</string>
    <string name="read_by_sentences">वाक्यों द्वारा पढ़ें</string>
    <string name="do_not_read_characters">वर्णों को न पढ़ें</string>
+   <string name="show_additional_panel_with_bookmarks">बुकमार्क के साथ अतिरिक्त पैनल दिखाएं</string>
 </resources>

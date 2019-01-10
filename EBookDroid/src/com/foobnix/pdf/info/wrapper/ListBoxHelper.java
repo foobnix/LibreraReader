@@ -17,7 +17,7 @@ import android.widget.EditText;
 
 public class ListBoxHelper {
 
-    public static void showAddDialog(final DocumentController controller, final List<AppBookmark> objects, final BookmarksAdapter bookmarksAdapter, String text) {
+    public static void showAddDialog(final DocumentController controller, final List<AppBookmark> objects, final BookmarksAdapter bookmarksAdapter, String text, final Runnable onRefresh) {
         final Activity a = controller.getActivity();
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -61,6 +61,9 @@ public class ListBoxHelper {
                 Keyboards.close(editText);
                 Keyboards.hideNavigation(controller.getActivity());
 
+                if (onRefresh != null) {
+                    onRefresh.run();
+                }
             }
         });
 

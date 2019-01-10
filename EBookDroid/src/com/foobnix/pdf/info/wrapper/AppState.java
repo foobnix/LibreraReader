@@ -394,6 +394,10 @@ public class AppState {
     public boolean isReverseKeys = Dips.isSmallScreen();
 
     public boolean isMusicianMode = false;
+
+    @IgnoreHashCode
+    public boolean isShowMusicButton = true;
+
     public String musicText = "Musician";
 
     public boolean isCrop = false;

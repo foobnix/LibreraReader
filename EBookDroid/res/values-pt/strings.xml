@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Mostrar notas de rodapé diretamente no texto</string>
    <string name="read_by_sentences">Lido por frases</string>
    <string name="do_not_read_characters">Não leia caracteres</string>
+   <string name="show_additional_panel_with_bookmarks">Mostre o painel adicional com bookmarks</string>
 </resources>

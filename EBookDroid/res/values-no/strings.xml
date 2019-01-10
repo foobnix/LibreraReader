@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Vis fotnoter direkte i tekst</string>
    <string name="read_by_sentences">Les etter setninger</string>
    <string name="do_not_read_characters">Ikke les tegn</string>
+   <string name="show_additional_panel_with_bookmarks">Vis ekstra panel med bokmerker</string>
 </resources>

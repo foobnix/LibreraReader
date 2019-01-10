@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Hiển thị chú thích trực tiếp trong văn bản</string>
    <string name="read_by_sentences">Đọc bằng câu</string>
    <string name="do_not_read_characters">Không đọc ký tự</string>
+   <string name="show_additional_panel_with_bookmarks">Hiển thị bảng điều khiển bổ sung với dấu trang</string>
 </resources>

@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Pokaż przypisy bezpośrednio w tekście</string>
    <string name="read_by_sentences">Czytać według zdań</string>
    <string name="do_not_read_characters">Nie czytaj znaków</string>
+   <string name="show_additional_panel_with_bookmarks">Pokaż dodatkowy panel z zakładkami</string>
 </resources>

@@ -1410,7 +1410,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         closeDialog();
-                        ListBoxHelper.showAddDialog(controller, null, null, editText.getText().toString().trim());
+                        ListBoxHelper.showAddDialog(controller, null, null, editText.getText().toString().trim(), null);
                     }
                 });
 
@@ -2088,7 +2088,7 @@ public class DragingDialogs {
 
             @Override
             public void onClick(final View v) {
-                ListBoxHelper.showAddDialog(controller, objects, bookmarksAdapter, "");
+                ListBoxHelper.showAddDialog(controller, objects, bookmarksAdapter, "", onRefeshUI);
 
             }
         };
@@ -2124,6 +2124,7 @@ public class DragingDialogs {
             @Override
             public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
                 ListBoxHelper.showEditDeleteDialog(objects.get(position), controller, bookmarksAdapter, objects);
+                onRefeshUI.run();
                 return true;
             }
 
@@ -2165,7 +2166,7 @@ public class DragingDialogs {
                         closeDialog();
                         String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
                         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
-
+                        onRefeshUI.run();
                     }
                 };
 
@@ -2684,6 +2685,20 @@ public class DragingDialogs {
                     }
                 });
                 //
+                CheckBox isShowMusicButton = (CheckBox) inflate.findViewById(R.id.isShowMusicButton);
+                isShowMusicButton.setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+
+                isShowMusicButton.setChecked(AppState.get().isShowMusicButton);
+                isShowMusicButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowMusicButton = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
                 isShowSatusBar.setChecked(AppState.get().isShowToolBar);

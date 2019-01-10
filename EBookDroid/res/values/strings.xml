@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">In-text notes (instead of foot-/endnotes)</string>
    <string name="read_by_sentences">Resume from last punctuation mark</string>
    <string name="do_not_read_characters">Do not read characters</string>
+   <string name="show_additional_panel_with_bookmarks">Show additional panel with bookmarks</string>
 </resources>

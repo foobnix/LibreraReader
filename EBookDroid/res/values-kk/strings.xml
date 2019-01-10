@@ -520,4 +520,5 @@
    <string name="show_footnotes_directly_in_text">Тікелей мәтінге сілтемелерді көрсету</string>
    <string name="read_by_sentences">Сөйлемдер бойынша оқылады</string>
    <string name="do_not_read_characters">Таңбаларды оқымаңыз</string>
+   <string name="show_additional_panel_with_bookmarks">Бетбелгілермен қосымша тақтаны көрсету</string>
 </resources>
