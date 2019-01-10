@@ -11,7 +11,7 @@
     <item><shape>
             <stroke android:dashWidth="4dip" android:dashGap="4dip"  android:width="2dp" android:color="@color/lt_grey" />
 
-            <solid android:color="@color/white"  />
+            <solid android:color="@color/white_alpha"  />
 
             <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
         </shape></item>
