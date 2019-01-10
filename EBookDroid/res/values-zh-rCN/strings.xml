@@ -516,9 +516,12 @@
    <string name="playlists">曲单</string>
    <string name="tags">标签</string>
    <string name="are_you_sure_to_delete_playlist_">确认删除曲单？</string>
+   <string name="delete_this_bookmark_">删除这个书签？</string>
    <string name="zoom_in_out_with_lock_enable">锁定时可缩放</string>
    <string name="show_footnotes_directly_in_text">显示文本脚注</string>
    <string name="read_by_sentences">用句子读</string>
    <string name="do_not_read_characters">不读字符</string>
    <string name="show_additional_panel_with_bookmarks">显示带书签的其他面板</string>
+   <string name="show_in_scroll_mode">以滚动模式显示</string>
+   <string name="display_bookmark_text_instead_of_number">显示书签文字而不是数字</string>
 </resources>

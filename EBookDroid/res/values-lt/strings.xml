@@ -516,9 +516,12 @@
    <string name="playlists">Grojaraščiai</string>
    <string name="tags">Žymos</string>
    <string name="are_you_sure_to_delete_playlist_">Ar tikrai ištrinsite grojaraštį?</string>
+   <string name="delete_this_bookmark_">Ištrinti šią žymą?</string>
    <string name="zoom_in_out_with_lock_enable">Priartinti / mažinti su užraktu</string>
    <string name="show_footnotes_directly_in_text">Parodyti išnašas tiesiogiai tekste</string>
    <string name="read_by_sentences">Skaityti sakiniais</string>
    <string name="do_not_read_characters">Neskaitykite simbolių</string>
    <string name="show_additional_panel_with_bookmarks">Rodyti papildomą skydelį su žymėmis</string>
+   <string name="show_in_scroll_mode">Rodomas slinkties režimu</string>
+   <string name="display_bookmark_text_instead_of_number">Rodyti žymės tekstą vietoj skaičiaus</string>
 </resources>

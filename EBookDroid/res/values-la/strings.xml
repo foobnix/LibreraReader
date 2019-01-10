@@ -516,9 +516,12 @@
    <string name="playlists">Video</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Esne certus ut delete playlist?</string>
+   <string name="delete_this_bookmark_">Delete hoc Top?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / clausum cum enable</string>
    <string name="show_footnotes_directly_in_text">Ostende directe in textu notis</string>
    <string name="read_by_sentences">Per sententias legere</string>
    <string name="do_not_read_characters">Non legitur characteribus</string>
    <string name="show_additional_panel_with_bookmarks">Ostende additional panel in bookmarks</string>
+   <string name="show_in_scroll_mode">In volumen ostendit modus</string>
+   <string name="display_bookmark_text_instead_of_number">Top ostentationem textu pro numero</string>
 </resources>

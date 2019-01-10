@@ -516,9 +516,12 @@
    <string name="playlists">曲單</string>
    <string name="tags">標籤</string>
    <string name="are_you_sure_to_delete_playlist_">確認刪除曲單？</string>
+   <string name="delete_this_bookmark_">刪除這個書籤？</string>
    <string name="zoom_in_out_with_lock_enable">鎖定時可縮放</string>
    <string name="show_footnotes_directly_in_text">顯示文本腳注</string>
    <string name="read_by_sentences">用句子讀</string>
    <string name="do_not_read_characters">不讀字符</string>
    <string name="show_additional_panel_with_bookmarks">顯示帶書籤的其他面板</string>
+   <string name="show_in_scroll_mode">以滾動模式顯示</string>
+   <string name="display_bookmark_text_instead_of_number">顯示書籤文字而不是數字</string>
 </resources>

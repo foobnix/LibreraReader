@@ -516,9 +516,12 @@
    <string name="playlists">Плейлисты</string>
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
+   <string name="delete_this_bookmark_">Удалить эту закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при \"закрытом\" замочке</string>
    <string name="show_footnotes_directly_in_text">Показывать полный текст примечаний внутри текста самих книг</string>
    <string name="read_by_sentences">Читать по предложениям</string>
    <string name="do_not_read_characters">Не читать символы</string>
    <string name="show_additional_panel_with_bookmarks">Показать дополнительную панель с закладками</string>
+   <string name="show_in_scroll_mode">Показать в режиме прокрутки</string>
+   <string name="display_bookmark_text_instead_of_number">Отображать текст закладки вместо номера</string>
 </resources>

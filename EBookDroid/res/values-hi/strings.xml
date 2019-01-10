@@ -516,9 +516,12 @@
    <string name="playlists">प्लेलिस्ट</string>
    <string name="tags">टैग</string>
    <string name="are_you_sure_to_delete_playlist_">क्या आप प्लेलिस्ट को हटाना चाहते हैं?</string>
+   <string name="delete_this_bookmark_">इस बुकमार्क को हटाएं?</string>
    <string name="zoom_in_out_with_lock_enable">लॉक सक्षम के साथ ज़ूम इन / आउट करें</string>
    <string name="show_footnotes_directly_in_text">पाठ में सीधे फुटनोट दिखाएं</string>
    <string name="read_by_sentences">वाक्यों द्वारा पढ़ें</string>
    <string name="do_not_read_characters">वर्णों को न पढ़ें</string>
    <string name="show_additional_panel_with_bookmarks">बुकमार्क के साथ अतिरिक्त पैनल दिखाएं</string>
+   <string name="show_in_scroll_mode">स्क्रॉल मोड में दिखाएं</string>
+   <string name="display_bookmark_text_instead_of_number">संख्या के बजाय बुकमार्क पाठ प्रदर्शित करें</string>
 </resources>

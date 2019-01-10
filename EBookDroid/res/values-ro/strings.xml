@@ -516,9 +516,12 @@
    <string name="playlists">Liste de redare</string>
    <string name="tags">Etichete</string>
    <string name="are_you_sure_to_delete_playlist_">Sigur ștergeți lista de redare?</string>
+   <string name="delete_this_bookmark_">Ștergeți acest marcaj?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / out cu funcția de blocare</string>
    <string name="show_footnotes_directly_in_text">Afișați notele de subsol direct în text</string>
    <string name="read_by_sentences">Citiți prin propoziții</string>
    <string name="do_not_read_characters">Nu citesc caracterele</string>
    <string name="show_additional_panel_with_bookmarks">Afișați un panou suplimentar cu marcaje</string>
+   <string name="show_in_scroll_mode">Afișați în modul de derulare</string>
+   <string name="display_bookmark_text_instead_of_number">Afișați textul de marcaj în loc de număr</string>
 </resources>

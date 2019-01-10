@@ -516,9 +516,12 @@
    <string name="playlists">Ойнату тізімдері</string>
    <string name="tags">Тегтер</string>
    <string name="are_you_sure_to_delete_playlist_">Ойнату тізімін жойғыңыз келе ме?</string>
+   <string name="delete_this_bookmark_">Осы бетбелгіні жою керек пе?</string>
    <string name="zoom_in_out_with_lock_enable">Блоктау мүмкіндігімен масштабтау / ұлғайту</string>
    <string name="show_footnotes_directly_in_text">Тікелей мәтінге сілтемелерді көрсету</string>
    <string name="read_by_sentences">Сөйлемдер бойынша оқылады</string>
    <string name="do_not_read_characters">Таңбаларды оқымаңыз</string>
    <string name="show_additional_panel_with_bookmarks">Бетбелгілермен қосымша тақтаны көрсету</string>
+   <string name="show_in_scroll_mode">Жылжу режимінде көрсетіледі</string>
+   <string name="display_bookmark_text_instead_of_number">Нөмірдің орнына белгі мәтінін көрсету</string>
 </resources>

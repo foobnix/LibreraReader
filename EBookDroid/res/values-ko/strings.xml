@@ -516,9 +516,12 @@
    <string name="playlists">재생 목록</string>
    <string name="tags">태그</string>
    <string name="are_you_sure_to_delete_playlist_">재생 목록을 삭제 하시겠습니까?</string>
+   <string name="delete_this_bookmark_">이 북마크를 삭제 하시겠습니까?</string>
    <string name="zoom_in_out_with_lock_enable">잠금 사용으로 확대 / 축소</string>
    <string name="show_footnotes_directly_in_text">각주를 텍스트에 직접 표시</string>
    <string name="read_by_sentences">문장으로 읽다.</string>
    <string name="do_not_read_characters">문자를 읽지 않는다.</string>
    <string name="show_additional_panel_with_bookmarks">북마크가있는 추가 패널 표시</string>
+   <string name="show_in_scroll_mode">스크롤 모드로 표시</string>
+   <string name="display_bookmark_text_instead_of_number">번호 대신 북마크 텍스트 표시</string>
 </resources>

@@ -516,9 +516,12 @@
    <string name="playlists">Afspeellijsten</string>
    <string name="tags">Tags</string>
    <string name="are_you_sure_to_delete_playlist_">Weet je zeker dat je de afspeellijst wilt verwijderen?</string>
+   <string name="delete_this_bookmark_">Verwijder deze bladwijzer?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in / uit met vergrendeling inschakelen</string>
    <string name="show_footnotes_directly_in_text">Toon voetnoten direct in tekst</string>
    <string name="read_by_sentences">Gelezen door zinnen</string>
    <string name="do_not_read_characters">Lees geen karakters</string>
    <string name="show_additional_panel_with_bookmarks">Toon extra paneel met bladwijzers</string>
+   <string name="show_in_scroll_mode">In de schuifmodus weergeven</string>
+   <string name="display_bookmark_text_instead_of_number">Toon bladwijzertekst in plaats van nummer</string>
 </resources>

@@ -516,9 +516,12 @@
    <string name="playlists">Listas de reprodução</string>
    <string name="tags">Tag</string>
    <string name="are_you_sure_to_delete_playlist_">Tem certeza de excluir a playlist?</string>
+   <string name="delete_this_bookmark_">Excluir este marcador?</string>
    <string name="zoom_in_out_with_lock_enable">Aumentar / diminuir zoom com a habilitação de bloqueio</string>
    <string name="show_footnotes_directly_in_text">Mostrar notas de rodapé diretamente no texto</string>
    <string name="read_by_sentences">Lido por frases</string>
    <string name="do_not_read_characters">Não leia caracteres</string>
    <string name="show_additional_panel_with_bookmarks">Mostre o painel adicional com bookmarks</string>
+   <string name="show_in_scroll_mode">Mostrar no modo de rolagem</string>
+   <string name="display_bookmark_text_instead_of_number">Exibir texto de marcador em vez de número</string>
 </resources>
