@@ -400,7 +400,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInScrollMode = false;
     @IgnoreHashCode
-    public boolean isShowBookmarsPanelText = false;
+    public boolean isShowBookmarsPanelText = true;
 
     public String musicText = "Musician";
 

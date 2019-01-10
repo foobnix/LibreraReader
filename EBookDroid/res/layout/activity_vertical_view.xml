@@ -42,7 +42,7 @@
             android:background="@drawable/bg_border_ltgray_dash2"
             android:padding="14dip"
             android:src="@drawable/glyphicons_73_bookmark1"
-            android:tint="@color/lt_grey" />
+            android:tint="@color/lt_grey_dima1" />
     </LinearLayout>
 
     <LinearLayout

@@ -1860,6 +1860,14 @@ public class DocumentWrapperUI {
             musicButtonPanel.setVisibility(View.GONE);
             return;
         }
+
+        if (AppState.get().isDayNotInvert) {
+            pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
+        } else {
+            pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
+        }
+        pagesBookmark.setPadding(Dips.DP_15, Dips.DP_15, Dips.DP_15, Dips.DP_15);
+
         List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark bookmarks : all) {
             final int num = bookmarks.getPage();
@@ -1873,7 +1881,11 @@ public class DocumentWrapperUI {
             t.setGravity(Gravity.CENTER);
             t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             t.setTextSize(16);
-            t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
+            if (AppState.get().isDayNotInvert) {
+                t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2);
+            } else {
+                t.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
+            }
             t.setOnClickListener(new View.OnClickListener() {
 
                 @Override
