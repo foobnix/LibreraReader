@@ -48,11 +48,12 @@ public class BookmarkPanel {
             boolean isQuick = bookmarks.getText().equals(quickBookmark);
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
                 String substringSmart = TxtUtils.substringSmart(bookmarks.getText(), 20);
-                substringSmart = TxtUtils.firstUppercase(substringSmart);
+                substringSmart = TxtUtils.firstUppercase(substringSmart).trim();
                 t.setText(substringSmart);
             } else {
                 t.setText("" + (num));
             }
+            t.setSingleLine();
             t.setGravity(Gravity.CENTER);
             t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             t.setTextSize(16);

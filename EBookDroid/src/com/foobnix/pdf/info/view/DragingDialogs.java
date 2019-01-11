@@ -778,9 +778,7 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                     }
                 });
-
                 // skip text
-
                 final EditText ttsDoNotReadChars = (EditText) view.findViewById(R.id.ttsDoNotReadChars);
                 ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
                 ttsDoNotReadChars.addTextChangedListener(new SmallTextWatcher() {
@@ -791,7 +789,7 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                     }
                 });
-                searchEdit.setEnabled(AppState.get().ttsReadBySentences);
+                ttsDoNotReadChars.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
 
                 CheckBox ttsDoNotReadCharsEnable = (CheckBox) view.findViewById(R.id.ttsDoNotReadCharsEnable);
                 ttsDoNotReadCharsEnable.setChecked(AppState.get().ttsDoNotReadCharsEnable);
@@ -800,7 +798,7 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().ttsDoNotReadCharsEnable = isChecked;
-                        searchEdit.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
+                        ttsDoNotReadChars.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
                         TTSEngine.get().stop();
                     }
                 });

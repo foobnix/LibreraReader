@@ -30,8 +30,9 @@ public class ListBoxHelper {
         }
 
         final EditText editText = new EditText(a);
-        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        editText.setHorizontallyScrolling(false);
+        // editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES |
+        // InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        // editText.setHorizontallyScrolling(false);
         editText.setLines(6);
         editText.setGravity(Gravity.TOP);
         editText.setText(text);
