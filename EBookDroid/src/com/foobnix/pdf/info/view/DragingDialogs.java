@@ -2078,7 +2078,7 @@ public class DragingDialogs {
 
     }
 
-    public static void addBookmarks(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
+    public static void showBookmarksDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller);
 
@@ -2108,7 +2108,8 @@ public class DragingDialogs {
                 if (appBookmark.getPercent() > 0) {
                     int page2 = (int) (appBookmark.getPercent() * controller.getPageCount());
                     LOG.d("appBookmark", page2);
-                    controller.onGoToPage(page2);
+                    //controller.onGoToPage(page2);
+                    controller.onScrollYPercent(appBookmark.getPercent());
                 } else {
                     controller.onGoToPage(page);
                 }
@@ -2171,7 +2172,9 @@ public class DragingDialogs {
                 a.findViewById(R.id.addPageBookmark).setOnClickListener(onAddPAge);
 
                 objects.clear();
+
                 objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));
+
                 bookmarksAdapter.notifyDataSetChanged();
 
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
@@ -2201,7 +2204,7 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                addBookmarks(anchor, controller, onRefeshUI);
+                                showBookmarksDialog(anchor, controller, onRefeshUI);
                             }
                         });
                         return false;

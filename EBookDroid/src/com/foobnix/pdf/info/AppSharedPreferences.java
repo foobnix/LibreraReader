@@ -120,7 +120,7 @@ public class AppSharedPreferences {
                 filter.add(current);
             }
         }
-        Collections.sort(filter, COMPARE_BY_PAGE);
+        Collections.sort(filter, COMPARE_BY_PERCENT_PAGE);
         return filter;
 
     }
@@ -128,6 +128,16 @@ public class AppSharedPreferences {
     public static Comparator<AppBookmark> COMPARE_BY_PAGE = new Comparator<AppBookmark>() {
         @Override
         public int compare(AppBookmark lhs, AppBookmark rhs) {
+            return lhs.getPage() - rhs.getPage();
+        }
+    };
+
+    public static Comparator<AppBookmark> COMPARE_BY_PERCENT_PAGE = new Comparator<AppBookmark>() {
+        @Override
+        public int compare(AppBookmark lhs, AppBookmark rhs) {
+            if (lhs.getPercent() > 0f && rhs.getPercent() > 0f) {
+                return lhs.getPercent() > rhs.getPercent() ? 1 : -1;
+            }
             return lhs.getPage() - rhs.getPage();
         }
     };

@@ -78,6 +78,23 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public float getPercentage() {
+        float p = (float) ctr.getView().getScrollY() / ctr.getDocumentController().getBottomScrollLimit();
+
+        LOG.d("getPercentage-", ctr.getView().getScrollY(), ctr.getDocumentController().getBottomScrollLimit());
+        LOG.d("getPercentage-", p);
+        return p;
+        // return super.getPercentage();
+    }
+
+    @Override
+    public void onScrollYPercent(float value) {
+        int res = Math.round(ctr.getDocumentController().getBottomScrollLimit() * value);
+        ctr.getView().scrollTo(ctr.getView().getScrollX(), res);
+        LOG.d("getPercentage-Scroll to", value, ctr.getDocumentController().getBottomScrollLimit(), res);
+    }
+
+    @Override
     public int getBookHeight() {
         return ctr.getView().getHeight();
     }

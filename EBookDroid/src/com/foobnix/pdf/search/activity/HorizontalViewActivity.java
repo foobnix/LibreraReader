@@ -978,7 +978,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onClick(final View v) {
-            DragingDialogs.addBookmarks(anchor, dc, new Runnable() {
+            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {

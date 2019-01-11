@@ -1424,7 +1424,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            DragingDialogs.addBookmarks(anchor, dc, new Runnable() {
+            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
 
                 @Override
                 public void run() {

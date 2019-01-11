@@ -302,6 +302,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         }
 
+        LOG.d("onScroll", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
+
         return true;
     }
 

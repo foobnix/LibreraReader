@@ -44,6 +44,10 @@ public class HScrollController extends AbstractScrollController {
         return result;
     }
 
+    @Override
+    public int getBottomScrollLimit() {
+        return 0;
+    }
     /**
      * {@inheritDoc}
      * 

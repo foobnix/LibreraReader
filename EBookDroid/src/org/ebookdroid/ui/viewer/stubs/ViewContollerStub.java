@@ -27,6 +27,11 @@ public class ViewContollerStub implements IViewController {
     }
 
     @Override
+    public int getBottomScrollLimit() {
+        return 0;
+    }
+
+    @Override
     public ViewState goToPage(final int page) {
         return null;
     }

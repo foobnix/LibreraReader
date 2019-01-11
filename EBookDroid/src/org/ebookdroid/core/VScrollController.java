@@ -84,6 +84,22 @@ public class VScrollController extends AbstractScrollController {
         return new Rect(left, -120, right, bottom);
     }
 
+    @Override
+    public final int getBottomScrollLimit() {
+        final int height = getHeight();
+
+        Page lpo = model.getLastPageObject();
+        if (lpo == null) {
+            lpo = model.getCurrentPageObject();
+        }
+
+        final float zoom = getBase().getZoomModel().getZoom();
+
+        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).bottom - height : 0;
+
+        return bottom;
+    }
+
     /**
      * {@inheritDoc}
      * 

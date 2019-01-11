@@ -81,6 +81,12 @@ public abstract class HorizontalModeController extends DocumentController {
         }
     }
 
+    @Override
+    public void onScrollYPercent(float value) {
+        int page2 = (int) (value * getPageCount());
+        onGoToPage(page2);
+    }
+
     public void udpateImageSize(int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);

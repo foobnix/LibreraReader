@@ -64,6 +64,8 @@ public interface IViewController extends ZoomListener {
 
     Rect getScrollLimits();
 
+    int getBottomScrollLimit();
+
     boolean isPageVisible(Page page, ViewState viewState);
     
     boolean onTouchEvent(MotionEvent ev);
