@@ -680,7 +680,7 @@ public class ExtUtils {
     }
 
     public static boolean isValidFile(final Uri uri) {
-        LOG.d("getScheme()", uri.getScheme(), uri, uri.getPath());
+        LOG.d("getScheme()", uri);
         return uri != null && ("content".equals(uri.getScheme()) || isValidFile(uri.getPath()));
     }
 

@@ -54,8 +54,13 @@ public class SendReceiveActivity extends Activity {
 
     private void updateIntent() {
         Bundle extras = getIntent().getExtras();
+        LOG.d("updateIntent()-", getIntent());
+        LOG.d("updateIntent()-getExtras", getIntent().getExtras());
+        LOG.d("updateIntent()-getScheme", getIntent().getScheme());
+
         if (extras != null && getIntent().getData() == null) {
             final Object text = extras.get(Intent.EXTRA_TEXT);
+            LOG.d("updateIntent()-text", text);
             if (text instanceof Uri) {
                 getIntent().setData((Uri) text);
             }
@@ -98,6 +103,19 @@ public class SendReceiveActivity extends Activity {
                     } catch (Throwable throwable) {
                         throwable.printStackTrace();
                     }
+                } else {
+
+                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "temp.txt");
+                    try {
+                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                        fileOutputStream.write(text.toString().getBytes());
+                        fileOutputStream.flush();
+                        fileOutputStream.close();
+                        getIntent().setData(Uri.fromFile(file));
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+
                 }
                 // getIntent().setData(Uri.parse((String)text));
             }
