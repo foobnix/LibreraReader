@@ -255,11 +255,11 @@ public class ExportSettingsManager {
         }
     }
 
-    public static JSONObject exportToJSon(String name, SharedPreferences sp, String exclude) throws JSONException {
+    public static JSONObject exportToJSon(String name, SharedPreferences sp, String excludekey) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         Map<String, ?> all = sp.getAll();
         for (String key : all.keySet()) {
-            if (exclude != null && key.startsWith(exclude)) {
+            if (excludekey != null && key.startsWith(excludekey)) {
                 continue;
             }
             Object value = all.get(key);

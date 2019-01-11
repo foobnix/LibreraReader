@@ -2177,11 +2177,33 @@ public class DragingDialogs {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
-                titlePopupMenu.getMenu().add(R.string.export_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                titlePopupMenu.getMenu().add(R.string.export_as_text).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook());
+                        return false;
+                    }
+                });
+                titlePopupMenu.getMenu().add(R.string.export_as_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity());
+                        return false;
+                    }
+                });
+                titlePopupMenu.getMenu().add(R.string.import_from_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        ExtUtils.importAllBookmarksFromJson((FragmentActivity) controller.getActivity(), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                addBookmarks(anchor, controller, onRefeshUI);
+                            }
+                        });
                         return false;
                     }
                 });

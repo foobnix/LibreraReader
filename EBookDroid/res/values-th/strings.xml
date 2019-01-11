@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">แสดงแผงเพิ่มเติมพร้อมบุ๊คมาร์ค</string>
    <string name="show_in_scroll_mode">แสดงในโหมดเลื่อน</string>
    <string name="display_bookmark_text_instead_of_number">แสดงข้อความบุ๊กมาร์กแทนตัวเลข</string>
+   <string name="export_as_text">ส่งออกเป็นข้อความ</string>
+   <string name="export_as_backup_json_">ส่งออกเป็นการสำรองข้อมูล (json)</string>
+   <string name="import_from_backup_json_">นำเข้าจากการสำรองข้อมูล (json)</string>
 </resources>

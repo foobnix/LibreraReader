@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Vis ekstra panel med bokmerker</string>
    <string name="show_in_scroll_mode">Vis i rullemodus</string>
    <string name="display_bookmark_text_instead_of_number">Vis bokmerketekst i stedet for nummer</string>
+   <string name="export_as_text">Eksporter som tekst</string>
+   <string name="export_as_backup_json_">Eksporter som backup (json)</string>
+   <string name="import_from_backup_json_">Importere fra backup (json)</string>
 </resources>

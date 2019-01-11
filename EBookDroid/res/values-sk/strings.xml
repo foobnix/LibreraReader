@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Zobraziť ďalší panel so záložkami</string>
    <string name="show_in_scroll_mode">Zobraziť v režime rolovania</string>
    <string name="display_bookmark_text_instead_of_number">Zobraziť text záložky namiesto čísla</string>
+   <string name="export_as_text">Export ako text</string>
+   <string name="export_as_backup_json_">Export ako záloha (json)</string>
+   <string name="import_from_backup_json_">Import zo zálohy (json)</string>
 </resources>

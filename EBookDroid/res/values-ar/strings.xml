@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">عرض لوحة إضافية مع الإشارات المرجعية</string>
    <string name="show_in_scroll_mode">تظهر في وضع التمرير</string>
    <string name="display_bookmark_text_instead_of_number">عرض نص الإشارة المرجعية بدلاً من الرقم</string>
+   <string name="export_as_text">تصدير كنص</string>
+   <string name="export_as_backup_json_">تصدير كنسخة احتياطية (json)</string>
+   <string name="import_from_backup_json_">الاستيراد من النسخ الاحتياطي (json)</string>
 </resources>

@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Toon extra paneel met bladwijzers</string>
    <string name="show_in_scroll_mode">In de schuifmodus weergeven</string>
    <string name="display_bookmark_text_instead_of_number">Toon bladwijzertekst in plaats van nummer</string>
+   <string name="export_as_text">Exporteren als tekst</string>
+   <string name="export_as_backup_json_">Exporteren als back-up (json)</string>
+   <string name="import_from_backup_json_">Importeren vanuit back-up (json)</string>
 </resources>

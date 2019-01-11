@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Pokaż dodatkowy panel z zakładkami</string>
    <string name="show_in_scroll_mode">Pokaż w trybie przewijania</string>
    <string name="display_bookmark_text_instead_of_number">Wyświetla tekst zakładki zamiast numeru</string>
+   <string name="export_as_text">Eksportuj jako tekst</string>
+   <string name="export_as_backup_json_">Eksportuj jako kopię zapasową (json)</string>
+   <string name="import_from_backup_json_">Importuj z kopii zapasowej (json)</string>
 </resources>

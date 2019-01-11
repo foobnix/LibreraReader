@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Mostrar panel adicional con marcadores</string>
    <string name="show_in_scroll_mode">Mostrar en modo de desplazamiento</string>
    <string name="display_bookmark_text_instead_of_number">Mostrar texto de marcador en lugar de número</string>
+   <string name="export_as_text">Exportar como texto</string>
+   <string name="export_as_backup_json_">Exportar como copia de seguridad (json)</string>
+   <string name="import_from_backup_json_">Importar desde copia de seguridad (json)</string>
 </resources>

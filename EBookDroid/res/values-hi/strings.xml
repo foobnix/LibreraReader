@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">बुकमार्क के साथ अतिरिक्त पैनल दिखाएं</string>
    <string name="show_in_scroll_mode">स्क्रॉल मोड में दिखाएं</string>
    <string name="display_bookmark_text_instead_of_number">संख्या के बजाय बुकमार्क पाठ प्रदर्शित करें</string>
+   <string name="export_as_text">पाठ के रूप में निर्यात करें</string>
+   <string name="export_as_backup_json_">बैकअप के रूप में निर्यात (json)</string>
+   <string name="import_from_backup_json_">बैकअप से आयात (json)</string>
 </resources>

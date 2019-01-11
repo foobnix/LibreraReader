@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">پانل اضافی با بوک مارک ها را نشان می دهد</string>
    <string name="show_in_scroll_mode">نمایش در حالت اسکرول</string>
    <string name="display_bookmark_text_instead_of_number">نمایش متن چوب به جای شماره</string>
+   <string name="export_as_text">صادرات به عنوان متن</string>
+   <string name="export_as_backup_json_">صادرات به عنوان پشتیبان (json)</string>
+   <string name="import_from_backup_json_">وارد کردن از نسخه پشتیبان (json)</string>
 </resources>

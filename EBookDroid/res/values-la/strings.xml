@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Ostende additional panel in bookmarks</string>
    <string name="show_in_scroll_mode">In volumen ostendit modus</string>
    <string name="display_bookmark_text_instead_of_number">Top ostentationem textu pro numero</string>
+   <string name="export_as_text">Quod illud export</string>
+   <string name="export_as_backup_json_">Export ut tergum (json A)</string>
+   <string name="import_from_backup_json_">Import a tergum (json A)</string>
 </resources>

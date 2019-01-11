@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Hiển thị bảng điều khiển bổ sung với dấu trang</string>
    <string name="show_in_scroll_mode">Hiển thị trong chế độ cuộn</string>
    <string name="display_bookmark_text_instead_of_number">Hiển thị văn bản đánh dấu thay vì số</string>
+   <string name="export_as_text">Xuất dưới dạng văn bản</string>
+   <string name="export_as_backup_json_">Xuất dưới dạng bản sao lưu (json)</string>
+   <string name="import_from_backup_json_">Nhập từ bản sao lưu (json)</string>
 </resources>

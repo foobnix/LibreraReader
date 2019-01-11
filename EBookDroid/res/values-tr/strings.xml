@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">Yer imleriyle ek panel göster</string>
    <string name="show_in_scroll_mode">Kaydırma modunda göster</string>
    <string name="display_bookmark_text_instead_of_number">Sayı yerine yer imi metnini göster</string>
+   <string name="export_as_text">Metin olarak dışa aktar</string>
+   <string name="export_as_backup_json_">Yedek olarak dışa aktar (json)</string>
+   <string name="import_from_backup_json_">Yedekten içe aktarma (json)</string>
 </resources>

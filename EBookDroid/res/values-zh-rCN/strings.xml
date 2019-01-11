@@ -524,4 +524,7 @@
    <string name="show_additional_panel_with_bookmarks">显示带书签的其他面板</string>
    <string name="show_in_scroll_mode">以滚动模式显示</string>
    <string name="display_bookmark_text_instead_of_number">显示书签文字而不是数字</string>
+   <string name="export_as_text">以文本形式导出</string>
+   <string name="export_as_backup_json_">导出为备份（json）</string>
+   <string name="import_from_backup_json_">从备份导入（json）</string>
 </resources>
