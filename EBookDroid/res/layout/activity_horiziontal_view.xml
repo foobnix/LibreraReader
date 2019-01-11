@@ -12,6 +12,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
+    
+     <LinearLayout
+         android:padding="2dip"
+        android:id="@+id/musicButtonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dip"
+        android:orientation="horizontal" >
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/pageshelper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ImageView
+            android:layout_marginLeft="4dip"
+            android:id="@+id/pagesBookmark"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_weight="0"
+            android:background="@drawable/bg_border_ltgray_dash2"
+            android:padding="14dip"
+            android:src="@drawable/glyphicons_73_bookmark1"
+            android:tint="@color/lt_grey_dima1" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/adFrame"

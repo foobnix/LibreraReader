@@ -59,19 +59,32 @@
             android:layout_marginLeft="10dip"
             android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
 
-        <CheckBox
-            android:id="@+id/isShowBookmarsPanel"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:text="@string/show_additional_panel_with_bookmarks" />
+            android:text="Show bookmakrs panel"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInMusicMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/mode_musician" />
 
         <CheckBox
             android:id="@+id/isShowBookmarsPanelInScrollMode"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/sub_checkbox"
-            android:text="@string/show_in_scroll_mode" />
+            android:text="@string/mode_vertical" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInBookMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/mode_horizontally" />
 
         <CheckBox
             android:id="@+id/isShowBookmarsPanelText"

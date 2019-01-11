@@ -35,6 +35,7 @@ import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
+import com.foobnix.pdf.info.view.BookmarkPanel;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
@@ -117,7 +118,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
-    View adFrame, bottomBar, bottomIndicators, onClose, overlay;
+    View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
@@ -135,6 +136,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     volatile int isInitOrientation;
 
     ProgressDraw progressDraw;
+    LinearLayout pageshelper;
+    String quickBookmark;
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -162,7 +165,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-
+        quickBookmark = getString(R.string.fast_bookmark);
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         LOG.d("getRequestedOrientation", AppState.get().orientation, getRequestedOrientation());
 
@@ -337,6 +340,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.pageFlippingDialog(anchor, dc, onRefresh);
             }
         });
+        
+        pageshelper = (LinearLayout) findViewById(R.id.pageshelper);
+        musicButtonPanel = findViewById(R.id.musicButtonPanel);
+        musicButtonPanel.setVisibility(View.GONE);
+
+        pagesBookmark = findViewById(R.id.pagesBookmark);
+        pagesBookmark.setOnClickListener(onBookmarks);
+        pagesBookmark.setOnLongClickListener(onBookmarksLong);
+
 
         final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
         onFullScreen.setOnClickListener(new OnClickListener() {
@@ -425,28 +437,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.showContent(anchor, dc);
             }
         });
-        findViewById(R.id.onBookmarks).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.onBookmarks).setOnClickListener(onBookmarks);
 
-            @Override
-            public void onClick(final View v) {
-                DragingDialogs.addBookmarks(anchor, dc, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        showHideHistory();
-                    }
-                });
-            }
-        });
-
-        findViewById(R.id.onBookmarks).setOnLongClickListener(new View.OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(final View arg0) {
-                DragingDialogs.addBookmarksLong(anchor, dc);
-                return true;
-            }
-        });
+        findViewById(R.id.onBookmarks).setOnLongClickListener(onBookmarksLong);
 
         findViewById(R.id.onRecent).setOnClickListener(new View.OnClickListener() {
 
@@ -977,7 +970,34 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
+    public void showPagesHelper() {
+        BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+    }
 
+    public View.OnClickListener onBookmarks = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            DragingDialogs.addBookmarks(anchor, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    showHideHistory();
+                    showPagesHelper();
+                }
+            });
+        }
+    };
+
+    View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View arg0) {
+            DragingDialogs.addBookmarksLong(anchor, dc);
+            showPagesHelper();
+            return true;
+        }
+    };
 
     @Subscribe
     public void showHideTextSelectors(MessagePageXY event) {
@@ -1079,6 +1099,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             BrightnessHelper.updateOverlay(overlay);
             hideShow();
             TTSEngine.get().stop();
+            showPagesHelper();
 
         }
     };
@@ -1675,6 +1696,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (TxtUtils.isListEmpty(result)) {
                     TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
                 }
+                showPagesHelper();
                 return false;
             }
         }, false);
@@ -1951,6 +1973,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void hideShow(boolean animated) {
         updateBannnerTop();
+        showPagesHelper();
 
         if (prev == AppState.get().isEditMode) {
             return;

@@ -269,7 +269,7 @@ public abstract class DocumentController {
         }
     }
 
-    public boolean isEasyMode() {
+    public boolean isBookMode() {
         return AppState.get().isAlwaysOpenAsMagazine;
     }
 

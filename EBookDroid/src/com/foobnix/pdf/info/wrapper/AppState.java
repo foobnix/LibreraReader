@@ -396,9 +396,12 @@ public class AppState {
     public boolean isMusicianMode = false;
 
     @IgnoreHashCode
-    public boolean isShowBookmarsPanel = true;
+    public boolean isShowBookmarsPanelInMusicMode = true;
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInScrollMode = false;
+    @IgnoreHashCode
+    public boolean isShowBookmarsPanelInBookMode = false;
+
     @IgnoreHashCode
     public boolean isShowBookmarsPanelText = true;
 

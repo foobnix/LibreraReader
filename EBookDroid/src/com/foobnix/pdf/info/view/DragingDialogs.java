@@ -2685,15 +2685,14 @@ public class DragingDialogs {
                     }
                 });
                 // isShowBookmarsPanel
-                CheckBox isShowBookmarsPanel = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanel);
-                isShowBookmarsPanel.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
+                CheckBox isShowBookmarsPanelInMusicMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
 
-                isShowBookmarsPanel.setChecked(AppState.get().isShowBookmarsPanel);
-                isShowBookmarsPanel.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowBookmarsPanelInMusicMode.setChecked(AppState.get().isShowBookmarsPanelInMusicMode);
+                isShowBookmarsPanelInMusicMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowBookmarsPanel = isChecked;
+                        AppState.get().isShowBookmarsPanelInMusicMode = isChecked;
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
@@ -2701,7 +2700,6 @@ public class DragingDialogs {
                 });
 
                 CheckBox isShowBookmarsPanelInScrollMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInScrollMode);
-                isShowBookmarsPanelInScrollMode.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
 
                 isShowBookmarsPanelInScrollMode.setChecked(AppState.get().isShowBookmarsPanelInScrollMode);
                 isShowBookmarsPanelInScrollMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2715,9 +2713,21 @@ public class DragingDialogs {
                     }
                 });
 
-                CheckBox isShowBookmarsPanelText = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelText);
-                isShowBookmarsPanelText.setVisibility(TxtUtils.visibleIf(!controller.isEasyMode()));
+                CheckBox isShowBookmarsPanelInBookMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInBookMode);
 
+                isShowBookmarsPanelInBookMode.setChecked(AppState.get().isShowBookmarsPanelInBookMode);
+                isShowBookmarsPanelInBookMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowBookmarsPanelInBookMode = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                CheckBox isShowBookmarsPanelText = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelText);
                 isShowBookmarsPanelText.setChecked(AppState.get().isShowBookmarsPanelText);
                 isShowBookmarsPanelText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -2905,13 +2915,13 @@ public class DragingDialogs {
                 final CustomSeek statusBarTextSize = (CustomSeek) inflate.findViewById(R.id.statusBarTextSize);
                 statusBarTextSize.setTitleTextWidth(Dips.dpToPx(100));
 
-                statusBarTextSize.init(5, 30, controller.isEasyMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
+                statusBarTextSize.init(5, 30, controller.isBookMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
                 statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
                         isShowSatusBar.setChecked(true);
-                        if (controller.isEasyMode()) {
+                        if (controller.isBookMode()) {
                             AppState.get().statusBarTextSizeEasy = result;
                         } else {
                             AppState.get().statusBarTextSizeAdv = result;
