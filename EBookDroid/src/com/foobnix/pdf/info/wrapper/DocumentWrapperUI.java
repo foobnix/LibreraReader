@@ -457,6 +457,20 @@ public class DocumentWrapperUI {
         } else {
             pagesBookmark.setVisibility(View.VISIBLE);
         }
+
+    }
+
+    public void hideShowPrevNext() {
+        if (AppState.get().isMusicianMode) {
+            if (AppState.get().isShowRectangularTapZones) {
+                line1.setVisibility(View.VISIBLE);
+                line2.setVisibility(View.VISIBLE);
+            } else {
+                line1.setVisibility(View.GONE);
+                line2.setVisibility(View.GONE);
+
+            }
+        }
     }
 
     Runnable clearFlags = new Runnable() {
@@ -897,6 +911,8 @@ public class DocumentWrapperUI {
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
+
+        hideShowPrevNext();
 
     }
 
@@ -1671,6 +1687,7 @@ public class DocumentWrapperUI {
             TTSEngine.get().stop();
             BrightnessHelper.updateOverlay(overlay);
             showPagesHelper();
+            hideShowPrevNext();
         }
     };
 

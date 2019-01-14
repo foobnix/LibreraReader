@@ -527,4 +527,6 @@
    <string name="export_as_text">Экспортировать как текст</string>
    <string name="export_as_backup_json_">Экспорт в качестве резервной копии (JSON)</string>
    <string name="import_from_backup_json_">Импорт из резервной копии (JSON)</string>
+   <string name="additional_bookmarks_bar">Панель дополнительных закладок</string>
+   <string name="show_rectangular_tap_zones">Показать прямоугольные зоны касания</string>
 </resources>

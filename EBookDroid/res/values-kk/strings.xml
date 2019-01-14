@@ -527,4 +527,6 @@
    <string name="export_as_text">Экспорт ретінде мәтін</string>
    <string name="export_as_backup_json_">Сақтық көшірме ретінде экспорттау (json)</string>
    <string name="import_from_backup_json_">Сақтық көшірмеден импорттау (json)</string>
+   <string name="additional_bookmarks_bar">Қосымша бетбелгілер жолағы</string>
+   <string name="show_rectangular_tap_zones">Тік төртбұрыш аймақтарын көрсетіңіз</string>
 </resources>

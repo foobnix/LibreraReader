@@ -527,4 +527,6 @@
    <string name="export_as_text">Експортувати як текст</string>
    <string name="export_as_backup_json_">Експортувати як резервну копію (json)</string>
    <string name="import_from_backup_json_">Імпортувати з резервної копії (json)</string>
+   <string name="additional_bookmarks_bar">Додаткову панель закладок</string>
+   <string name="show_rectangular_tap_zones">Показувати прямокутні зони крану</string>
 </resources>

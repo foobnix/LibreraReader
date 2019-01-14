@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show bookmakrs panel"
+            android:text="@string/additional_bookmarks_bar"
             android:textStyle="bold" />
 
         <CheckBox
@@ -125,6 +125,13 @@
                 android:src="@drawable/glyphicons_207_ok"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isShowRectangularTapZones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_rectangular_tap_zones" />
 
         <LinearLayout
             android:id="@+id/statusBarPositionParent"

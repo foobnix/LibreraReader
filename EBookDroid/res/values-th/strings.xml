@@ -527,4 +527,6 @@
    <string name="export_as_text">ส่งออกเป็นข้อความ</string>
    <string name="export_as_backup_json_">ส่งออกเป็นการสำรองข้อมูล (json)</string>
    <string name="import_from_backup_json_">นำเข้าจากการสำรองข้อมูล (json)</string>
+   <string name="additional_bookmarks_bar">แถบบุ๊กมาร์กเพิ่มเติม</string>
+   <string name="show_rectangular_tap_zones">แสดงพื้นที่ก๊อกสี่เหลี่ยม</string>
 </resources>

@@ -527,4 +527,6 @@
    <string name="export_as_text">Exportar como texto</string>
    <string name="export_as_backup_json_">Exportar como copia de seguridad (json)</string>
    <string name="import_from_backup_json_">Importar desde copia de seguridad (json)</string>
+   <string name="additional_bookmarks_bar">Barra de marcadores adicionales</string>
+   <string name="show_rectangular_tap_zones">Mostrar zonas de grifo rectangulares</string>
 </resources>

@@ -527,4 +527,6 @@
    <string name="export_as_text">Quod illud export</string>
    <string name="export_as_backup_json_">Export ut tergum (json A)</string>
    <string name="import_from_backup_json_">Import a tergum (json A)</string>
+   <string name="additional_bookmarks_bar">Additional bookmarks talea</string>
+   <string name="show_rectangular_tap_zones">Ostende plaga aequali spatio ICTUS</string>
 </resources>

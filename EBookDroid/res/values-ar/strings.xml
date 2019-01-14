@@ -527,4 +527,6 @@
    <string name="export_as_text">تصدير كنص</string>
    <string name="export_as_backup_json_">تصدير كنسخة احتياطية (json)</string>
    <string name="import_from_backup_json_">الاستيراد من النسخ الاحتياطي (json)</string>
+   <string name="additional_bookmarks_bar">شريط الإشارات الإضافية</string>
+   <string name="show_rectangular_tap_zones">إظهار مناطق الصنبور المستطيلة</string>
 </resources>

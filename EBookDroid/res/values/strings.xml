@@ -527,4 +527,6 @@
    <string name="export_as_text">Export to TXT file</string>
    <string name="export_as_backup_json_">Export to JSON file</string>
    <string name="import_from_backup_json_">Import from JSON file</string>
+   <string name="additional_bookmarks_bar">Additional bookmarks bar</string>
+   <string name="show_rectangular_tap_zones">Show rectangular tap zones</string>
 </resources>

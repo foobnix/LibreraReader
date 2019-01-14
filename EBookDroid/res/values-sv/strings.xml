@@ -527,4 +527,6 @@
    <string name="export_as_text">Exportera som text</string>
    <string name="export_as_backup_json_">Exportera som backup (json)</string>
    <string name="import_from_backup_json_">Importera från backup (json)</string>
+   <string name="additional_bookmarks_bar">Ytterligare bokmärkesfältet</string>
+   <string name="show_rectangular_tap_zones">Visa rektangulära kranzoner</string>
 </resources>

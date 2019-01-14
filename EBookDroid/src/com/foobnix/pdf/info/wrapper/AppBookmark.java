@@ -30,7 +30,7 @@ public class AppBookmark {
         this.date = System.currentTimeMillis();
     }
 
-    private static String fixText(String path) {
+    public static String fixText(String path) {
         if (path == null) {
             return "";
         }

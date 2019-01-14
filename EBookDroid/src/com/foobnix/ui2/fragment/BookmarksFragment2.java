@@ -201,7 +201,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
                 @Override
                 public boolean onMenuItemClick(final MenuItem item) {
 
-                    ExtUtils.exportAllBookmarksToJson(getActivity());
+                    ExtUtils.exportAllBookmarksToJson(getActivity(), null);
                     return false;
                 }
             });

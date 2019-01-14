@@ -527,4 +527,6 @@
    <string name="export_as_text">Export ca text</string>
    <string name="export_as_backup_json_">Export ca backup (json)</string>
    <string name="import_from_backup_json_">Import din backup (json)</string>
+   <string name="additional_bookmarks_bar">Bara de marcaje suplimentare</string>
+   <string name="show_rectangular_tap_zones">Arată zone de robinet dreptunghiulare</string>
 </resources>

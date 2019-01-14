@@ -1194,7 +1194,7 @@ public class ExtUtils {
             @Override
             public boolean onResultRecive(String nPath, Dialog dialog) {
                 File toFile = new File(nPath);
-                LOG.d("exportAllBookmarksToFile", toFile);
+                LOG.d("importAllBookmarksFromJson", toFile);
                 if (toFile == null || !toFile.isFile() || toFile.getName().trim().length() == 0) {
                     Toast.makeText(a, "Invalid File name " + toFile.getName(), Toast.LENGTH_LONG).show();
                     return false;
@@ -1221,8 +1221,11 @@ public class ExtUtils {
 
     }
 
-    public static void exportAllBookmarksToJson(final FragmentActivity a) {
+    public static void exportAllBookmarksToJson(final FragmentActivity a, final File book) {
         String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
+        if (book != null) {
+            sampleName = book.getName() + "-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
+        }
 
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
             @Override
@@ -1234,7 +1237,7 @@ public class ExtUtils {
                 }
 
                 try {
-                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", AppSharedPreferences.get().getBookmarkPreferences(), AppSharedPreferences.RECENT_);
+                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", AppSharedPreferences.get().getBookmarkPreferences(), AppSharedPreferences.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
                     FileWriter writer = new FileWriter(toFile);
                     writer.write(result.toString(2));
                     writer.flush();

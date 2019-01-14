@@ -2,7 +2,7 @@ package com.foobnix.pdf.info;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,10 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Environment;
-import android.provider.Settings;
 import android.support.v4.util.Pair;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.widget.Toast;
 
 public class ExportSettingsManager {
@@ -75,10 +72,10 @@ public class ExportSettingsManager {
             BookCSS.get().checkBeforeExport(c);
 
             JSONObject root = new JSONObject();
-            root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null));
-            root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null));
-            root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null));
-            root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null));
+            root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null, null));
+            root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null, null));
+            root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null, null));
+            root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null, null));
 
             root.put(PREFIX_RECENT, fileMetaToJSON(AppDB.get().getRecent()));
             root.put(PREFIX_STARS_Books, fileMetaToJSON(AppDB.get().getStarsFiles()));
@@ -110,13 +107,16 @@ public class ExportSettingsManager {
 
     public static String getSampleJsonConfigName(Context a, String ext) {
         try {
-            final String format = Settings.System.getString(a.getContentResolver(), Settings.System.DATE_FORMAT);
-            String time;
-            if (TextUtils.isEmpty(format)) {
-                time = DateFormat.getMediumDateFormat(a).format(System.currentTimeMillis());
-            } else {
-                time = new SimpleDateFormat(format).format(System.currentTimeMillis());
-            }
+//            final String format = Settings.System.getString(a.getContentResolver(), Settings.System.DATE_FORMAT);
+//            String time;
+//            if (TextUtils.isEmpty(format)) {
+//                time = DateFormat.getMediumDateFormat(a).format(System.currentTimeMillis());
+//            } else {
+//                time = new SimpleDateFormat(format).format(System.currentTimeMillis());
+//            }
+//            
+            String time = java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT, java.text.DateFormat.MEDIUM).format(new Date());
+            time = time.replace(" ", "-").replace(":", "_");
 
             String name = String.format("%s%s", time, ext);
             return name;
@@ -255,14 +255,20 @@ public class ExportSettingsManager {
         }
     }
 
-    public static JSONObject exportToJSon(String name, SharedPreferences sp, String excludekey) throws JSONException {
+    public static JSONObject exportToJSon(String name, SharedPreferences sp, String excludekey, String includeValue) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         Map<String, ?> all = sp.getAll();
         for (String key : all.keySet()) {
             if (excludekey != null && key.startsWith(excludekey)) {
+                LOG.d("excludekey", key);
                 continue;
             }
             Object value = all.get(key);
+            if (value != null && !value.toString().contains(includeValue)) {
+                LOG.d("excludeValue", value);
+                continue;
+            }
+
             jsonObject.put(key, value);
             LOG.d("export", key, value);
         }
@@ -281,7 +287,7 @@ public class ExportSettingsManager {
         while (keys.hasNext()) {
             String name = keys.next();
             Object res = jsonObject.get(name);
-            LOG.d("import", "name", name, "type");
+            LOG.d("import", "name", name, "type", res);
             if (res instanceof String) {
                 edit.putString(name, (String) res);
             } else if (res instanceof Float) {

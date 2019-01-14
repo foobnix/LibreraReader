@@ -2189,7 +2189,7 @@ public class DragingDialogs {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity());
+                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity(), controller.getCurrentBook());
                         return false;
                     }
                 });
@@ -2694,6 +2694,24 @@ public class DragingDialogs {
 
                     }
                 });
+                ///
+
+                CheckBox isShowRectangularTapZones = (CheckBox) inflate.findViewById(R.id.isShowRectangularTapZones);
+                isShowRectangularTapZones.setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+
+                isShowRectangularTapZones.setChecked(AppState.get().isShowRectangularTapZones);
+                isShowRectangularTapZones.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isShowRectangularTapZones = isChecked;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
+                ///
 
                 CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
                 isRewindEnable.setChecked(AppState.get().isRewindEnable);

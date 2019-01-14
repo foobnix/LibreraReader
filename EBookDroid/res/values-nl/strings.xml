@@ -527,4 +527,6 @@
    <string name="export_as_text">Exporteren als tekst</string>
    <string name="export_as_backup_json_">Exporteren als back-up (json)</string>
    <string name="import_from_backup_json_">Importeren vanuit back-up (json)</string>
+   <string name="additional_bookmarks_bar">Extra bladwijzerbalk</string>
+   <string name="show_rectangular_tap_zones">Toon rechthoekige tikzones</string>
 </resources>

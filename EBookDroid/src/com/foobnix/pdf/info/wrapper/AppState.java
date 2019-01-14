@@ -379,7 +379,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean ttsDoNotReadCharsEnable = true;
     @IgnoreHashCode
-    public String ttsDoNotReadChars = "[]()?!\"«»—*'’”“";
+    public String ttsDoNotReadChars = "[]()?!\"«»*'’”“—–−-";
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
@@ -401,6 +401,9 @@ public class AppState {
     public boolean isShowBookmarsPanelInScrollMode = false;
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInBookMode = false;
+
+    @IgnoreHashCode
+    public boolean isShowRectangularTapZones = true;
 
     @IgnoreHashCode
     public boolean isShowBookmarsPanelText = true;

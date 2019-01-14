@@ -527,4 +527,6 @@
    <string name="export_as_text">Exporter en texte</string>
    <string name="export_as_backup_json_">Exporter en sauvegarde (json)</string>
    <string name="import_from_backup_json_">Importer depuis la sauvegarde (json)</string>
+   <string name="additional_bookmarks_bar">Barre de favoris supplémentaire</string>
+   <string name="show_rectangular_tap_zones">Afficher les zones de prise rectangulaires</string>
 </resources>

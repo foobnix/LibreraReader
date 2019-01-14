@@ -527,4 +527,6 @@
    <string name="export_as_text">Eksportuoti kaip tekstą</string>
    <string name="export_as_backup_json_">Eksportuoti kaip atsarginę kopiją (json)</string>
    <string name="import_from_backup_json_">Importuoti iš atsarginės kopijos („Json“)</string>
+   <string name="additional_bookmarks_bar">Papildomos žymių juostos</string>
+   <string name="show_rectangular_tap_zones">Rodyti stačiakampių čiaupų zonas</string>
 </resources>

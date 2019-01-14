@@ -527,4 +527,6 @@
    <string name="export_as_text">텍스트로 내보내기</string>
    <string name="export_as_backup_json_">백업으로 내보내기 (json)</string>
    <string name="import_from_backup_json_">백업에서 가져 오기 (json)</string>
+   <string name="additional_bookmarks_bar">추가 북마크 바</string>
+   <string name="show_rectangular_tap_zones">직사각형 탭 영역 표시</string>
 </resources>

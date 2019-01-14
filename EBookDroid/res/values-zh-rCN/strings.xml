@@ -527,4 +527,6 @@
    <string name="export_as_text">导出为文本</string>
    <string name="export_as_backup_json_">导出为备份（json）</string>
    <string name="import_from_backup_json_">从备份导入（json）</string>
+   <string name="additional_bookmarks_bar">额外的书签栏</string>
+   <string name="show_rectangular_tap_zones">显示矩形水龙头区域</string>
 </resources>
