@@ -718,6 +718,7 @@ public class AppState {
         providers.put("Wikipedia", String.format("https://%s.m.wikipedia.org/wiki/%s", from, text));
         providers.put("Wiktionary", String.format("https://%s.m.wiktionary.org/wiki/%s", from, text));
         providers.put("Academic.ru", String.format("https://dic.academic.ru/searchall.php?SWord=%s", text));
+        providers.put("Treccani.it", String.format("http://www.treccani.it/vocabolario/ricerca/%s", text));
         return providers;
     }
 
@@ -737,6 +738,7 @@ public class AppState {
             "fora", //
             "aard", //
             "web", //
+            "encyc", // encyclopedias
             "woordenboek"// https://play.google.com/store/apps/details?id=com.prisma.woordenboek.englesxl
 
     //
