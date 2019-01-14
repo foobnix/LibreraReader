@@ -2106,9 +2106,6 @@ public class DragingDialogs {
                 }
 
                 if (appBookmark.getPercent() > 0) {
-                    int page2 = (int) (appBookmark.getPercent() * controller.getPageCount());
-                    LOG.d("appBookmark", page2);
-                    //controller.onGoToPage(page2);
                     controller.onScrollYPercent(appBookmark.getPercent());
                 } else {
                     controller.onGoToPage(page);

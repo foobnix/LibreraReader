@@ -87,6 +87,7 @@
             android:text="@string/mode_horizontally" />
 
         <CheckBox
+            android:visibility="gone"
             android:id="@+id/isShowBookmarsPanelText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

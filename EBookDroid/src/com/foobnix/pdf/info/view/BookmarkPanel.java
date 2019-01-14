@@ -42,12 +42,12 @@ public class BookmarkPanel {
         pagesBookmark.setPadding(Dips.DP_15, Dips.DP_15, Dips.DP_15, Dips.DP_15);
 
         List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
-        for (final AppBookmark bookmarks : all) {
-            final int num = bookmarks.getPage();
+        for (final AppBookmark appBookmark : all) {
+            final int num = appBookmark.getPage();
             TextView t = new TextView(pageshelper.getContext());
-            boolean isQuick = bookmarks.getText().equals(quickBookmark);
+            boolean isQuick = appBookmark.getText().equals(quickBookmark);
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
-                String substringSmart = TxtUtils.substringSmart(bookmarks.getText(), 20);
+                String substringSmart = TxtUtils.substringSmart(appBookmark.getText(), 20);
                 substringSmart = TxtUtils.firstUppercase(substringSmart).trim();
                 t.setText(substringSmart);
             } else {
@@ -66,7 +66,11 @@ public class BookmarkPanel {
 
                 @Override
                 public void onClick(View v) {
-                    dc.onGoToPage(num);
+                    if (appBookmark.getPercent() > 0) {
+                        dc.onScrollYPercent(appBookmark.getPercent());
+                    } else {
+                        dc.onGoToPage(num);
+                    }
                 }
             });
             t.setOnLongClickListener(new OnLongClickListener() {
@@ -77,7 +81,7 @@ public class BookmarkPanel {
 
                         @Override
                         public void run() {
-                            AppSharedPreferences.get().removeBookmark(bookmarks);
+                            AppSharedPreferences.get().removeBookmark(appBookmark);
                             showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
                         }
                     });
