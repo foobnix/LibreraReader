@@ -20,7 +20,7 @@
    <string name="theme">Theme</string>
    <string name="light">Light</string>
    <string name="black">Dark</string>
-   <string name="theme_color">Accent</string>
+   <string name="theme_color">Trim</string>
    <string name="widget">Widget</string>
    <string name="show">Show</string>
    <string name="layout">Layout</string>
@@ -519,12 +519,12 @@
    <string name="delete_this_bookmark_">Delete this bookmark?</string>
    <string name="zoom_in_out_with_lock_enable">Zoom in/out \"locked\" pages</string>
    <string name="show_footnotes_directly_in_text">In-text notes (instead of foot-/endnotes)</string>
-   <string name="read_by_sentences">Resume from last punctuation mark</string>
-   <string name="do_not_read_characters">Do not read characters</string>
-   <string name="show_additional_panel_with_bookmarks">Show additional panel with bookmarks</string>
-   <string name="show_in_scroll_mode">Show in Scroll mode</string>
-   <string name="display_bookmark_text_instead_of_number">Display bookmark text instead of number</string>
-   <string name="export_as_text">Export as Text</string>
-   <string name="export_as_backup_json_">Export as Backup (json)</string>
-   <string name="import_from_backup_json_">Import from Backup (json)</string>
+   <string name="read_by_sentences">Resume from last punctuation mark:</string>
+   <string name="do_not_read_characters">Skip symbols:</string>
+   <string name="show_additional_panel_with_bookmarks">Bookmark Panel</string>
+   <string name="show_in_scroll_mode">Scroll mode</string>
+   <string name="display_bookmark_text_instead_of_number">Display text (instead of page number)</string>
+   <string name="export_as_text">Export to TXT file</string>
+   <string name="export_as_backup_json_">Export to JSON file</string>
+   <string name="import_from_backup_json_">Import from JSON file</string>
 </resources>
