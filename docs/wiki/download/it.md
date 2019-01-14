@@ -1,19 +1,21 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-# Scaricare
+# Scarica
 
-[Librera Reader su Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader/it)
+[Librera Reader su Google Play] (https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
-[Librera PRO su Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader/it)
+[Librera PRO su Google Play] (https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Librera Beta su Google Play](https://play.google.com/apps/testing/com.foobnix.pdf.reader/it)
+[Librera Beta su Google Play] (https://play.google.com/apps/testing/com.foobnix.pdf.reader)
 
 
-[Beta build [apk]](http://beta.librera.mobi/it)
+[Beta build [apk]] (http://beta.librera.mobi)
 
-[GitHub](https://github.com/foobnix/LibreraReader/it)
+[GitHub] (https://github.com/foobnix/LibreraReader)
 
-[Telegramma](https://t.me/LibreraReader/it) (News, announcements and a lot of interesting about the new functionality./it)
+[Telegram] (https://t.me/LibreraReader) (Notizie, annunci e molto interessante sulla nuova funzionalità.)
 
+
+[Informativa sulla privacy](/wiki/PrivacyPolicy/it) (Informativa sulla privacy di Librera Reader)

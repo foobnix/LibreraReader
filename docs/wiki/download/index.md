@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 # Download
 
@@ -17,3 +17,5 @@ version: 1
 
 [Telegram](https://t.me/LibreraReader) (News, announcements and a lot of interesting about the new functionality.)
 
+
+[Privacy Policy](/wiki/PrivacyPolicy) (Librera Reader Privacy Policy)

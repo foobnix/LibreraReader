@@ -36,6 +36,33 @@ public class AndroidWhatsNew {
     private static final String WIKI_URL = "http://librera.mobi/wiki/what-is-new/%s/";
 
     public static String getLangUrl(Context c) {
+        String versionName = Apps.getVersionName(c);
+        String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
+        String url = String.format(WIKI_URL, shortVersion);
+
+        List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
+        String appLang = AppState.get().appLang;
+        if (appLang.equals(AppState.MY_SYSTEM_LANG)) {
+            appLang = Urls.getLangCode();
+        }
+
+        if (lns.contains(appLang)) {
+            url += appLang;
+        }
+
+        // url += "?utm_p=" + Apps.getPackageName(c);
+        // url += "&utm_v=" + Apps.getVersionName(c);
+        // url += "&utm_ln=" + appLang;
+        // url += "&utm_beta=" + AppsConfig.IS_BETA;
+
+        url += "#" + shortVersion.replace(".", "");
+
+        LOG.d("getLangUrl", url);
+        return url;
+
+    }
+
+    public static String getLangUrl1(Context c) {
 
         String versionName = Apps.getVersionName(c);
         String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
