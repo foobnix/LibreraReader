@@ -521,7 +521,6 @@
    <string name="show_footnotes_directly_in_text">Onyesha maelezo ya chini kwa maandishi</string>
    <string name="read_by_sentences">Soma kwa sentensi</string>
    <string name="do_not_read_characters">Usisome wahusika</string>
-   <string name="show_additional_panel_with_bookmarks">Onyesha jopo la ziada na alama za alama</string>
    <string name="show_in_scroll_mode">Onyesha katika hali ya kitabu</string>
    <string name="display_bookmark_text_instead_of_number">Onyesha maandishi ya alama badala ya namba</string>
    <string name="export_as_text">Kuuza nje kama maandishi</string>

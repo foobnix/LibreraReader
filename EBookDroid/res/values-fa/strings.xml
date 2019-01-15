@@ -521,7 +521,6 @@
    <string name="show_footnotes_directly_in_text">پانویسها را مستقیما در متن نشان دهید</string>
    <string name="read_by_sentences">خواندن با احکام</string>
    <string name="do_not_read_characters">شخصیت ها را بخوانید</string>
-   <string name="show_additional_panel_with_bookmarks">پانل اضافی با بوک مارک ها را نشان می دهد</string>
    <string name="show_in_scroll_mode">نمایش در حالت اسکرول</string>
    <string name="display_bookmark_text_instead_of_number">نمایش متن چوب به جای شماره</string>
    <string name="export_as_text">صادرات به عنوان متن</string>

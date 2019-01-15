@@ -521,7 +521,6 @@
    <string name="show_footnotes_directly_in_text">Pokaż przypisy bezpośrednio w tekście</string>
    <string name="read_by_sentences">Czytać według zdań</string>
    <string name="do_not_read_characters">Nie czytaj znaków</string>
-   <string name="show_additional_panel_with_bookmarks">Pokaż dodatkowy panel z zakładkami</string>
    <string name="show_in_scroll_mode">Pokaż w trybie przewijania</string>
    <string name="display_bookmark_text_instead_of_number">Wyświetla tekst zakładki zamiast numeru</string>
    <string name="export_as_text">Eksportuj jako tekst</string>

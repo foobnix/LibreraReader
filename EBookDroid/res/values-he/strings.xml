@@ -521,7 +521,6 @@
    <string name="show_footnotes_directly_in_text">הצג הערות שוליים ישירות בטקסט</string>
    <string name="read_by_sentences">לקרוא על ידי משפטים</string>
    <string name="do_not_read_characters">לא לקרוא תווים</string>
-   <string name="show_additional_panel_with_bookmarks">הצג פאנל נוסף עם סימניות</string>
    <string name="show_in_scroll_mode">הצג במצב גלילה</string>
    <string name="display_bookmark_text_instead_of_number">הצג טקסט סימניה במקום מספר</string>
    <string name="export_as_text">ייצוא כטקסט</string>

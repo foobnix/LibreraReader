@@ -521,7 +521,6 @@
    <string name="show_footnotes_directly_in_text">Fußnoten direkt im Text anzeigen</string>
    <string name="read_by_sentences">Durch Sätze gelesen</string>
    <string name="do_not_read_characters">Lese keine Zeichen</string>
-   <string name="show_additional_panel_with_bookmarks">Zusätzliches Panel mit Lesezeichen anzeigen</string>
    <string name="show_in_scroll_mode">Im Scroll-Modus anzeigen</string>
    <string name="display_bookmark_text_instead_of_number">Lesezeichen-Text anstelle von Nummer anzeigen</string>
    <string name="export_as_text">Als Text exportieren</string>
