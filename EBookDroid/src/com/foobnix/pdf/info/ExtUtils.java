@@ -1226,6 +1226,8 @@ public class ExtUtils {
         if (book != null) {
             sampleName = book.getName() + "-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
         }
+        sampleName = TxtUtils.fixFileName(sampleName);
+
 
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
             @Override

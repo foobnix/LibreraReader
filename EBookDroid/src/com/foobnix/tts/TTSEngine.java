@@ -244,7 +244,8 @@ public class TTSEngine {
             }
         }));
 
-        speakToFile(controller, 0, dirFolder.getPath(), info);
+        String path = dirFolder.getPath();
+        speakToFile(controller, 0, path, info);
     }
 
     public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info) {

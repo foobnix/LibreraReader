@@ -11,7 +11,6 @@ import com.foobnix.pdf.info.presentation.BookmarksAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.text.InputType;
 import android.view.Gravity;
 import android.widget.EditText;
 
@@ -91,8 +90,6 @@ public class ListBoxHelper {
         final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());
         builder.setTitle(controller.getActivity().getString(R.string.bookmark_on_page_) + " " + controller.getCurentPage());
         final EditText editText = new EditText(controller.getActivity());
-        editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        editText.setHorizontallyScrolling(false);
         editText.setLines(6);
         editText.setGravity(Gravity.TOP);
         editText.setText(bookmark.getText());

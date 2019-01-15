@@ -305,6 +305,12 @@ public class TxtUtils {
         return text.trim().replace(",", "").replace(";", "");
     }
 
+    public static String fixFileName(String fileName) {
+        fileName = fileName.replaceAll("[\\\\/:*?\"<>|]", "_");
+        return fileName;
+
+    }
+
     public static String getHostUrl(String url) {
         int indexOf = url.indexOf("/", 10);
         if (indexOf > 0) {
