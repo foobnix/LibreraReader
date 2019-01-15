@@ -383,7 +383,7 @@
    <string name="books">Books</string>
    <string name="reading_out_loud">TTS Reading</string>
    <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ad-free): a Leading ePUB and PDF Reader</string>
-   <string name="custom_text">Custom text</string>
+   <string name="custom_text">Title</string>
    <string name="cd_search_books_in_the_library">Search books in Library</string>
    <string name="cd_clear_search_reasult">Clear search results</string>
    <string name="cd_sort_results">Sort results</string>
@@ -526,7 +526,7 @@
    <string name="export_as_text">Export to TXT file</string>
    <string name="export_as_backup_json_">Export to JSON file</string>
    <string name="import_from_backup_json_">Import from JSON file</string>
-   <string name="additional_bookmarks_bar">Additional bookmarks bar</string>
-   <string name="show_rectangular_tap_zones">Show rectangular tap zones</string>
-   <string name="turn_the_page_on_the_last_word">Turn the page on the last word</string>
+   <string name="additional_bookmarks_bar">Bookmarks Ribbon</string>
+   <string name="show_rectangular_tap_zones">Indicate tap zones</string>
+   <string name="turn_the_page_on_the_last_word">Break while turning pages</string>
 </resources>
