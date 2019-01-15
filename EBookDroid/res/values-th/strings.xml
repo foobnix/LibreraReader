@@ -529,4 +529,5 @@
    <string name="import_from_backup_json_">นำเข้าจากการสำรองข้อมูล (json)</string>
    <string name="additional_bookmarks_bar">แถบบุ๊กมาร์กเพิ่มเติม</string>
    <string name="show_rectangular_tap_zones">แสดงพื้นที่ก๊อกสี่เหลี่ยม</string>
+   <string name="turn_the_page_on_the_last_word">เปลี่ยนหน้าเป็นคำสุดท้าย</string>
 </resources>

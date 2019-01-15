@@ -529,4 +529,5 @@
    <string name="import_from_backup_json_">Kuagiza kutoka kwa hifadhi (json)</string>
    <string name="additional_bookmarks_bar">Bar ya ziada ya alama</string>
    <string name="show_rectangular_tap_zones">Onyesha maeneo ya bomba ya mstatili</string>
+   <string name="turn_the_page_on_the_last_word">Weka ukurasa kwenye neno la mwisho</string>
 </resources>

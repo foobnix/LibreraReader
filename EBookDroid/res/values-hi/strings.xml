@@ -529,4 +529,5 @@
    <string name="import_from_backup_json_">बैकअप से आयात (json)</string>
    <string name="additional_bookmarks_bar">अतिरिक्त बुकमार्क बार</string>
    <string name="show_rectangular_tap_zones">आयताकार नल क्षेत्र दिखाएँ</string>
+   <string name="turn_the_page_on_the_last_word">पृष्ठ को अंतिम शब्द पर चालू करें</string>
 </resources>
