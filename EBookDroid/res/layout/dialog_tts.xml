@@ -199,6 +199,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dip" />
+        
+        <CheckBox
+            android:id="@+id/ttsTunnOnLastWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/turn_the_page_on_the_last_word" />
 
         <CheckBox
             android:id="@+id/stopReadingOnCall"

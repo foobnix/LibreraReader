@@ -812,6 +812,18 @@ public class DragingDialogs {
                         AppState.get().isFastBookmarkByTTS = isChecked;
                     }
                 });
+
+                CheckBox ttsTunnOnLastWord = (CheckBox) view.findViewById(R.id.ttsTunnOnLastWord);
+                ttsTunnOnLastWord.setChecked(AppState.get().ttsTunnOnLastWord);
+                ttsTunnOnLastWord.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().ttsTunnOnLastWord = isChecked;
+                        TTSEngine.get().stop();
+                    }
+                });
+
                 // TTS Play music File
                 ttsPlayMusicFile.setOnClickListener(new OnClickListener() {
 

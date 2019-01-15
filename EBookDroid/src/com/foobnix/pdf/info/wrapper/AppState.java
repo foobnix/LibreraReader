@@ -377,9 +377,12 @@ public class AppState {
     public String ttsSentecesDivs = ".;:!?";
 
     @IgnoreHashCode
+    public boolean ttsTunnOnLastWord = false;
+
+    @IgnoreHashCode
     public boolean ttsDoNotReadCharsEnable = true;
     @IgnoreHashCode
-    public String ttsDoNotReadChars = "[]()?!\"«»*'’”“—–−-";
+    public String ttsDoNotReadChars = "[]()?!\"«»*'’”“—–−-/";
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
