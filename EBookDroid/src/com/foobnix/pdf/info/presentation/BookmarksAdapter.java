@@ -57,7 +57,7 @@ public class BookmarksAdapter extends BaseAdapter {
         titleView.setVisibility(View.GONE);
         int pageByPercent = Math.max(1, Math.round(bookmark.getPercent() * controller.getPageCount()));
         if (bookmark.getPercent() > 0) {
-            textView.setText(pageByPercent + ": " + bookmark.getText());
+            textView.setText(pageByPercent + "(" + Math.round(bookmark.getPercent() * 100) + "%)" + ": " + bookmark.getText());
         } else {
             textView.setText(bookmark.getPage() + ": " + bookmark.getText());
         }

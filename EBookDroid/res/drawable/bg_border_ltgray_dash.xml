@@ -4,12 +4,12 @@
     <item android:state_pressed="true"><shape>
             <stroke android:dashWidth="8dip" android:dashGap="8dip"  android:width="2dp" android:color="@color/lt_grey" />
 
-            <solid android:color="@color/lt_grey_alpha" />
+            <solid android:color="@color/lt_grey_alpha2" />
 
             <padding android:bottom="1dp" android:left="1dp" android:right="1dp" android:top="1dp" />
         </shape></item>
     <item><shape>
-            <stroke android:dashWidth="8dip" android:dashGap="8dip"  android:width="2dp" android:color="@color/lt_grey" />
+            <stroke android:dashWidth="8dip" android:dashGap="8dip"  android:width="2dp" android:color="@color/lt_grey_alpha" />
 
             <solid android:color="@color/transparent" />
 
