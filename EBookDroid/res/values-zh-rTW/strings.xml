@@ -526,7 +526,7 @@
    <string name="export_as_text">導出為文本</string>
    <string name="export_as_backup_json_">導出為備份（json）</string>
    <string name="import_from_backup_json_">從備份導入（json）</string>
-   <string name="additional_bookmarks_bar">額外的書籤欄</string>
-   <string name="show_rectangular_tap_zones">顯示矩形水龍頭區域</string>
-   <string name="turn_the_page_on_the_last_word">翻頁最後一個字</string>
+   <string name="additional_bookmarks_bar">閱讀模式附加書簽欄</string>
+   <string name="show_rectangular_tap_zones">矩形抽頭區域</string>
+   <string name="turn_the_page_on_the_last_word">最後一字翻頁</string>
 </resources>
