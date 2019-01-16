@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tts.reader"
     android:installLocation="auto"
-    android:versionCode="875"
-    android:versionName="7.12.55" >
+    android:versionCode="893"
+    android:versionName="7.12.57" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -226,8 +226,7 @@
 		        <action android:name="android.intent.action.VIEW" />
 		        <category android:name="android.intent.category.DEFAULT" />
 		        <category android:name="android.intent.category.BROWSABLE" />
-		
-		        <data android:scheme="tts.reader" />
+		        <data android:scheme="tts.reader"></data>
 		        <data android:scheme="librera" />
 		    </intent-filter>
             
