@@ -756,10 +756,6 @@ public class AppState {
 
     private boolean isLoaded = false;
 
-    public void defaults(Context c) {
-
-        LOG.d("defaults", AppsConfig.IS_CLASSIC, AppState.get().tabsOrder7);
-    }
 
     public void load(final Context a) {
         try {

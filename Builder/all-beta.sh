@@ -10,7 +10,9 @@ ant clean-apk
 rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
 
 
-ant beta-cpu pdf-beta
+ant arm+arm64 tts-reader
+
+#ant beta-cpu pdf-beta
 
 #ant arm+arm64 pdf
 #ant x86 pdf

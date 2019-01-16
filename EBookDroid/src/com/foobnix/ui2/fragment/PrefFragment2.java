@@ -1677,7 +1677,6 @@ public class PrefFragment2 extends UIFragment {
     private void onEink() {
         AppState.get().isInkMode = true;
         AppState.get().isWhiteTheme = true;
-        AppState.get().defaults(getActivity());
         AppState.get().blueLightAlpha = 0;
 
         onTintChanged();

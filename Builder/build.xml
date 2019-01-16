@@ -42,6 +42,9 @@
 		match='${package.ink}' replace='VALUE_1' />
 	
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
+		match='${package.tts}' replace='VALUE_1' />
+	
+	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
 		match='VALUE_1' replace='${pdf.package}' />
 
 	
@@ -65,6 +68,9 @@
 	
 	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:icon="@mipmap/icon_pdf_2"' replace='android:icon="${pdf.icon}"' />
+	    
+	    <replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:icon="@mipmap/icon_tts_reader_app"' replace='android:icon="${pdf.icon}"' />
 
 		<!-- section 3a -->
 		
@@ -82,8 +88,10 @@
 		
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 			match='android:roundIcon="@mipmap/launcher_pdf_v2"' replace='android:roundIcon="${adaptive.icon}"' />
-		
 
+		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
+			match='android:roundIcon="@mipmap/launcher_tts_reader_app"' replace='android:roundIcon="${adaptive.icon}"' />
+		
 		<!-- section 5 -->
 		
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
@@ -340,11 +348,31 @@
 		<echo file="${dropbox}" append="false">${version.code}.${version.code.index}</echo>
 
 	</target>
+	
+	<target name="tts-reader">
+		<antcall target="clean-all" />
+
+		<property name="pdf.package" value="${package.tts}" />
+		<property name="pdf.icon" value="@mipmap/icon_tts_reader_app" />
+		<property name="adaptive.icon" value="@mipmap/launcher_tts_reader_app" />
+		<property name="pdf.app.name" value="${name.tts}" />
+		<property name="pdf.export.name" value="${name.tts}" />
+
+		<antcall target="prepare-packages" />
+		<antcall target="free-replace" />
+
+		<!-- -->
+		<subant target="release">
+			<fileset dir="../EbookaPDF/" includes="build.xml" />
+		</subant>
+
+		<antcall target="copy" inheritAll="true" />
+		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
+			tofile="${dropbox}/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-d${app.db}-${pdf.app.platform}.apk"
+			overwrite="true" />
+	</target>
 
 	<target name="classic">
-
-
-
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.classic}" />
@@ -374,9 +402,6 @@
 	</target>
 
 	<target name="ebooka">
-
-
-
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.droid}" />

@@ -26,17 +26,15 @@ public class AppsConfig {
 
     public static final String LIBRERA_INK_EDITION = "mobi.librera.book.reader";
     public static final String LIBRERA_PDF_2 = "pdf.pdf.reader";
+    public static final String LIBRERA_TTS_READER = "tts.reader";
 
     public static String ADMOB_BANNER;
     public static String ADMOB_FULLSCREEN;
-    public static String ADMOB_NATIVE_BANNER;
-
-    public static String ANALYTICS_ID;
 
     public static String GOOGLE_DRIVE_KEY;
 
     public static String APP_PACKAGE;
-    public static boolean IS_BETA, IS_CLASSIC, IS_INK;
+    public static boolean IS_BETA;
 
 
     public static String TXT_APP_NAME;
@@ -59,64 +57,53 @@ public class AppsConfig {
 
         if (PRO_LIBRERA_READER.equals(packageName)) {
             ADMOB_BANNER = null;
-            ANALYTICS_ID = null;
             GOOGLE_DRIVE_KEY = "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com";
             return;
         }
 
         if (LIBRERA_READER.equals(packageName)) {
-            ANALYTICS_ID = "UA-36581296-2";
-
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/4166397275";
             ADMOB_FULLSCREEN/*  */ = "ca-app-pub-8347903083053959/2769081274";
-            ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/5722547677";
-
             GOOGLE_DRIVE_KEY = "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com";
 
         }
 
         if (CLASSIC_PDF_READER.equals(packageName)) {
-            IS_CLASSIC = true;
-            ANALYTICS_ID = "UA-36581296-6";
-
             ADMOB_BANNER/*       */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*   */ = "ca-app-pub-8347903083053959/7763820878";
-            ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/8572902871";
-
-
             GOOGLE_DRIVE_KEY = "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com";
-
         }
 
         if (EBOOKA_READER.equals(packageName)) {
-            ANALYTICS_ID = "UA-36581296-8";
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
             ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
-            ADMOB_NATIVE_BANNER/**/ = null;
-
             GOOGLE_DRIVE_KEY = "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com";
 
         }
         if (LIBRERA_INK_EDITION.equals(packageName)) {
-            IS_INK = true;
-            ANALYTICS_ID = "UA-36581296-8";
-
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/5364245672";
             ADMOB_FULLSCREEN/*  */ = null;
-            ADMOB_NATIVE_BANNER/**/ = "ca-app-pub-8347903083053959/8572902871";
-
             GOOGLE_DRIVE_KEY = "961762082517-4heqqjfki9n6og2mrltb260l1q8pfmdq.apps.googleusercontent.com";
 
         }
 
         if (LIBRERA_PDF_2.equals(packageName)) {
-            ANALYTICS_ID = "UA-36581296-8";
-
-            ANALYTICS_ID = "UA-36581296-8";
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
             ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
-
             GOOGLE_DRIVE_KEY = "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com";
+
+        }
+
+        if (LIBRERA_PDF_2.equals(packageName)) {
+            ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
+            ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
+            GOOGLE_DRIVE_KEY = "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com";
+        }
+
+        if (LIBRERA_TTS_READER.equals(packageName)) {
+            ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
+            ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
+            GOOGLE_DRIVE_KEY = null;
 
         }
 
@@ -124,8 +111,7 @@ public class AppsConfig {
 
 
         if (IS_BETA) {
-            ANALYTICS_ID = "UA-36581296-9";
-            ADMOB_BANNER = ADMOB_FULLSCREEN = ADMOB_NATIVE_BANNER = null;
+            ADMOB_BANNER = ADMOB_FULLSCREEN = null;
             // LOG.isEnable = true;
         }
         if (LOG.isEnable) {
@@ -153,7 +139,6 @@ public class AppsConfig {
         if (is_pro) {
             ADMOB_BANNER = null;
             ADMOB_FULLSCREEN = null;
-            ADMOB_NATIVE_BANNER = null;
         }
         return is_pro || IS_BETA;
     }
