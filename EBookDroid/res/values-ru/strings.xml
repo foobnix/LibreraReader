@@ -494,7 +494,7 @@
    <string name="play_a_music_file">Выбрать и проиграть музык. файл</string>
    <string name="rate_us">Поставить оценку</string>
    <string name="reset">Сброс</string>
-   <string name="status_bar_location">Расположение строки сост-я</string>
+   <string name="status_bar_location">Расположение строки сост-ния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии текста (CPL)</string>
@@ -519,14 +519,14 @@
    <string name="delete_this_bookmark_">Удалить эту закладку?</string>
    <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при \"закрытом\" замочке</string>
    <string name="show_footnotes_directly_in_text">Показывать полный текст примечаний внутри текста самих книг</string>
-   <string name="read_by_sentences">Читать по предложениям</string>
-   <string name="do_not_read_characters">Не читать символы</string>
-   <string name="show_in_scroll_mode">Показать в режиме прокрутки</string>
-   <string name="display_bookmark_text_instead_of_number">Отображать текст закладки вместо номера</string>
-   <string name="export_as_text">Экспортировать как текст</string>
-   <string name="export_as_backup_json_">Экспорт в качестве резервной копии (JSON)</string>
-   <string name="import_from_backup_json_">Импорт из резервной копии (JSON)</string>
-   <string name="additional_bookmarks_bar">Панель дополнительных закладок</string>
-   <string name="show_rectangular_tap_zones">Показать прямоугольные зоны касания</string>
-   <string name="turn_the_page_on_the_last_word">Перевернуть страницу на последнем слове</string>
+   <string name="read_by_sentences">Начинать читать со слов после символов:</string>
+   <string name="do_not_read_characters">Не произносить словами символы:</string>
+   <string name="show_in_scroll_mode">Показывать в режиме свитка</string>
+   <string name="display_bookmark_text_instead_of_number">Отображать текст закладок, а не их номер</string>
+   <string name="export_as_text">Экспортировать как обычный текст</string>
+   <string name="export_as_backup_json_">Экспортировать в виде резервной копии (JSON)</string>
+   <string name="import_from_backup_json_">Импортировать из резервной копии (JSON)</string>
+   <string name="additional_bookmarks_bar">Отображение расширенной панели закладок</string>
+   <string name="show_rectangular_tap_zones">Показывать прямоугольные зоны касаний</string>
+   <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
 </resources>
