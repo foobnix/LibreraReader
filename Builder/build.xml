@@ -20,17 +20,16 @@
 	   <!-- section 2 -->
 	   
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-		match='package="[a-z.]+"' replace='package="${pdf.package}"' />
+		match='package="[a-z0-9.]+"' replace='package="${pdf.package}"' />
 
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-		match='android:authorities="[a-z.]+.provider"' replace='android:authorities="${pdf.package}.provider"' />
+		match='android:authorities="[a-z0-9.]+.provider"' replace='android:authorities="${pdf.package}.provider"' />
 
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
-		match='android:scheme="[a-z.]+">' replace='android:scheme="${pdf.package}">' />
+		match='android:scheme="[a-z0-9.]+">' replace='android:scheme="${pdf.package}">' />
 	
 		<replaceregexp file="../EBookDroid/res/values/config.xml"
 			match='app_name">[ .()a-zA-Z0-9-]+' replace='app_name">${pdf.app.name}' />
-	
 		
 	<!-- section 3 -->
 		<replaceregexp file="../EbookaPDF/AndroidManifest.xml"

@@ -17,6 +17,7 @@ version: 2
 * Option to resume TTS reading at the last punctuation mark (per-sentence mode)
 * Share pages from other apps (e.g., browsers) w/ Librera Reader
 * Support for Chinese Traditional and Simplified 
+* Bookmarks in Musician mode
 
 
 **Favorites Tab**

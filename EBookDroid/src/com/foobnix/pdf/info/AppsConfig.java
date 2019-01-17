@@ -103,7 +103,7 @@ public class AppsConfig {
         if (LIBRERA_TTS_READER.equals(packageName)) {
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
             ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
-            GOOGLE_DRIVE_KEY = null;
+            GOOGLE_DRIVE_KEY = "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com";
 
         }
 

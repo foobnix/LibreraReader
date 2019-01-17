@@ -25,6 +25,10 @@ ant arm64 ebooka
 ant arm pdf-v2
 ant arm64 pdf-v2
 
+ant arm tts-reader
+ant arm64 tts-reader
+
+ant x86
 
 ./remove_all.sh
 ./install_all.sh
