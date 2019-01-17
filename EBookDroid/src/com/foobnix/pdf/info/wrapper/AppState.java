@@ -783,6 +783,11 @@ public class AppState {
                     isShowWhatIsNewDialog = false;
                 }
 
+                if (AppsConfig.LIBRERA_TTS_READER.equals(Apps.getPackageName(a))) {
+                    isShowWhatIsNewDialog = false;
+                    doubleClickAction1 = DOUBLE_CLICK_START_STOP_TTS;
+                }
+
                 try {
                     List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
 

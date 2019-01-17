@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tts.reader"
     android:installLocation="auto"
-    android:versionCode="893"
-    android:versionName="7.12.57" >
+    android:versionCode="892"
+    android:versionName="7.12.58" >
 
     <uses-sdk
         android:minSdkVersion="14"

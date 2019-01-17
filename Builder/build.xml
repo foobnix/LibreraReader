@@ -19,38 +19,6 @@
 	    <echo>${package.ink}</echo>
 	   <!-- section 2 -->
 	   
-	   
- <!-- 
- 
-   <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta111' replace='VALUE_1' />
-
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-	match='librera.beta112' replace='VALUE_1' />
-	
- <replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pdf}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.pro}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.classic}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.droid}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.ink}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='${package.tts}' replace='VALUE_1' />
-	
-	<replaceregexp file="../EbookaPDF/AndroidManifest.xml" flags="g"
-		match='VALUE_1' replace='${pdf.package}' />
- 
-  -->
-
 	<replaceregexp file="../EbookaPDF/AndroidManifest.xml"
 		match='package="[a-z.]+"' replace='package="${pdf.package}"' />
 
@@ -441,13 +409,13 @@
 	
 	<target name="test" >
 	    
-	<property name="pdf.package" value="com.foobnix.pdf.reader" />
-		<property name="pdf.icon" value="@mipmap/icon_pdf_reader" />
-		<property name="adaptive.icon" value="@mipmap/icon_pdf_reader" />
-		<property name="pdf.app.name" value="${name.pdf}" />
-		<property name="pdf.export.name" value="${name.pdf}" />
+		<property name="pdf.package" value="${package.tts}" />
+		<property name="pdf.icon" value="@mipmap/icon_tts_reader_app" />
+		<property name="adaptive.icon" value="@mipmap/launcher_tts_reader_app" />
+		<property name="pdf.app.name" value="${name.tts}" />
+		<property name="pdf.export.name" value="${name.tts}" />
 
-				<property name="pdf.reader.code" value="0000" />
+				<property name="pdf.reader.code" value="${code.cpu_beta}" />
 		
 		
 		<antcall target="prepare-packages" />

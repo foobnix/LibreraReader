@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class BannerTest {
+public class ScreenshotsGenerator {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Start banners");
@@ -42,7 +42,7 @@ public class BannerTest {
         // "1.png", out);
 
         for (File file : new File(screenshot).listFiles()) {
-            String name = file.getName().replace("_", " ").replace(".png", "");
+            String name = file.getName().replace(".png", "");
             show(false, name, bg + (new Random().nextInt(16) + 1) + ".png", phone, file.getPath(), out);
         }
 
@@ -50,7 +50,7 @@ public class BannerTest {
     }
 
     public static void show(boolean show, String text, String img1, String img2, String img3, String out) throws Exception {
-        int n = text.indexOf(":");
+        int n = text.indexOf("_");
         if (n > 0) {
             text = text.substring(n + 1).trim();
         }
@@ -82,16 +82,22 @@ public class BannerTest {
         int center3 = (image1.getWidth() - imgScreenshot.getWidth()) / 2 + 5;
         g.drawImage(image2, center2, (image1.getHeight() - image2.getHeight()) + 300, null);
         g.drawImage(imgScreenshot, center3, (image1.getHeight() - imgScreenshot.getHeight()), null);
+        int sWidth = 0;
+        Font font = null;
+        for (int fSize = 70; fSize > 20; fSize -= 4) {
+            font = new Font("Arial", Font.BOLD, fSize);
 
-        Font font = new Font("Arial", Font.BOLD, 70);
+            Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
+            attributes.put(TextAttribute.TRACKING, 0.1);
+            font = font.deriveFont(attributes);
 
-        Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
-        attributes.put(TextAttribute.TRACKING, 0.1);
-        font = font.deriveFont(attributes);
+            g.setFont(font);
+            sWidth = g.getFontMetrics().stringWidth(text);
+            if (sWidth < 1040) {
+                break;
+            }
+        }
 
-        g.setFont(font);
-
-        int sWidth = g.getFontMetrics().stringWidth(text);
         int center4 = (image1.getWidth() - sWidth) / 2;
 
         g.setColor(Color.BLACK);
@@ -105,8 +111,6 @@ public class BannerTest {
         g.drawString(text, center4, textY);
 
         g.dispose();
-
-
 
         ImageIO.write(image1, "png", outFile);
         System.out.println("Write: " + outFile.getPath());
