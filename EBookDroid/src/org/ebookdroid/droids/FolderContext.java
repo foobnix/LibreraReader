@@ -29,7 +29,7 @@ public class FolderContext extends PdfContext {
         return muPdfDocument;
     }
 
-    public static File genarateXML(List<FileMeta> items, String base) {
+    public static File genarateXML(List<FileMeta> items, String base, boolean write) {
         List<FileMeta> res = new ArrayList<FileMeta>();
         for (FileMeta meta : items) {
             if (ExtUtils.isImagePath(meta.getPath()) || BookType.TIFF.is(meta.getPath())) {
@@ -41,22 +41,24 @@ public class FolderContext extends PdfContext {
         root.mkdirs();
 
         File file = new File(root, LIST_LXML);
-        file.delete();
+        if (write) {
+            file.delete();
 
-        try {
-            LOG.d("genarateXML", file.getPath());
-            PrintWriter pr = new PrintWriter(file);
-            pr.println("<container count=\"" + res.size() + "\">");
-            for (FileMeta meta : res) {
-                // String x = "<item path=\"" + ExtUtils.getFileName(meta.getPath()) + "\" />";
-                String x = "<item  path=\"" + meta.getPath() + "\" />";
-                pr.println(x);
-                LOG.d("genarateXML", x);
+            try {
+                LOG.d("genarateXML", file.getPath());
+                PrintWriter pr = new PrintWriter(file);
+                pr.println("<container count=\"" + res.size() + "\">");
+                for (FileMeta meta : res) {
+                    // String x = "<item path=\"" + ExtUtils.getFileName(meta.getPath()) + "\" />";
+                    String x = "<item  path=\"" + meta.getPath() + "\" />";
+                    pr.println(x);
+                    LOG.d("genarateXML", x);
+                }
+                pr.println("</container>");
+                pr.close();
+            } catch (Exception e) {
+                LOG.e(e);
             }
-            pr.println("</container>");
-            pr.close();
-        } catch (Exception e) {
-            LOG.e(e);
         }
         return file;
 

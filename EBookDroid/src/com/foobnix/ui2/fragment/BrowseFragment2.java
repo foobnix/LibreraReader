@@ -157,7 +157,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath);
+                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
                 ExtUtils.showDocument(getActivity(), lxml);
             }
         });
@@ -981,7 +981,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        final String ldir = new File(displayPath, FolderContext.LIST_LXML).getPath();
+        final String ldir = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, false).toString();
         if (AppDB.get().isStarFolder(ldir)) {
             starIconDir.setImageResource(R.drawable.star_1);
         } else {
@@ -993,10 +993,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath);
+                File genarateXMLBook = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
 
-                FileMeta fileMeta = AppDB.get().getOrCreate(ldir);
-                FileMetaCore.createMetaIfNeed(ldir, false);
+                FileMeta fileMeta = AppDB.get().getOrCreate(genarateXMLBook.getPath());
+                FileMetaCore.createMetaIfNeed(genarateXMLBook.getPath(), false);
                 DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
                 if (AppDB.get().isStarFolder(ldir)) {
                     starIconDir.setImageResource(R.drawable.star_1);
