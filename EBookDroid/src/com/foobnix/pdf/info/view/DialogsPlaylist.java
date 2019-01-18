@@ -321,6 +321,11 @@ public class DialogsPlaylist {
 
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
         final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
+
+
+        // TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
+
+
         playListName.setVisibility(View.GONE);
         playListNameEdit.setVisibility(View.GONE);
         playlistRecycleView.setVisibility(View.GONE);

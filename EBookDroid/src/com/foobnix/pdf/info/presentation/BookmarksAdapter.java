@@ -56,8 +56,12 @@ public class BookmarksAdapter extends BaseAdapter {
         String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
         titleView.setVisibility(View.GONE);
         int pageByPercent = Math.max(1, Math.round(bookmark.getPercent() * controller.getPageCount()));
-        if (bookmark.getPercent() > 0) {
-            textView.setText(pageByPercent + "(" + Math.round(bookmark.getPercent() * 100) + "%)" + ": " + bookmark.getText());
+        if (bookmark.getPercent() > 0.0f) {
+            if (controller.isMusicianMode()) {
+                textView.setText(pageByPercent + "(" + String.format("%.1f", bookmark.getPercent() * 100) + "%)" + ": " + bookmark.getText());
+            } else {
+                textView.setText(pageByPercent + ": " + bookmark.getText());
+            }
         } else {
             textView.setText(bookmark.getPage() + ": " + bookmark.getText());
         }

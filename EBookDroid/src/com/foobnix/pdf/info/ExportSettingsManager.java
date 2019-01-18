@@ -264,7 +264,7 @@ public class ExportSettingsManager {
                 continue;
             }
             Object value = all.get(key);
-            if (value != null && !value.toString().contains(includeValue)) {
+            if (includeValue != null && value != null && !value.toString().contains(includeValue)) {
                 LOG.d("excludeValue", value);
                 continue;
             }

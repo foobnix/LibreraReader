@@ -95,7 +95,7 @@ public class VScrollController extends AbstractScrollController {
 
         final float zoom = getBase().getZoomModel().getZoom();
 
-        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).bottom - height : 0;
+        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).top - model.getPageCount() * 2 : 0;
 
         return bottom;
     }

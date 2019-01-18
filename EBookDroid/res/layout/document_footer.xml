@@ -28,10 +28,11 @@
 
             <TextView
                 android:id="@+id/playListNameEdit"
-                style="@style/textLink"
+                style="@style/textLinkWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
+                android:tag="textLink"
                 android:text="@string/edit"
                 android:visibility="gone" />
         </LinearLayout>

@@ -83,7 +83,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onScrollYPercent(float value) {
-        int page2 = (int) (value * getPageCount());
+        int page2 = Math.round(value * getPageCount());
         onGoToPage(page2);
     }
 

@@ -968,6 +968,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
 
+
     }
 
     public void showPagesHelper() {

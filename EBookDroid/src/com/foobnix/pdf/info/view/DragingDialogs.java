@@ -767,6 +767,7 @@ public class DragingDialogs {
                 });
                 searchEdit.setEnabled(AppState.get().ttsReadBySentences);
 
+
                 CheckBox ttsReadBySentences = (CheckBox) view.findViewById(R.id.ttsReadBySentences);
                 ttsReadBySentences.setChecked(AppState.get().ttsReadBySentences);
                 ttsReadBySentences.setOnCheckedChangeListener(new OnCheckedChangeListener() {
