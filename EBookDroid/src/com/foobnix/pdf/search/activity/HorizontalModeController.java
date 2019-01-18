@@ -262,7 +262,7 @@ public abstract class HorizontalModeController extends DocumentController {
         activity.getIntent().putExtra(EXTRA_PERCENT, 0.0);
 
         if (percent > 0) {
-            number = (int) (pagesCount * percent);
+            number = (int) Math.round(pagesCount * percent) - 1;
         }
 
         LOG.d("getPageFromUri", "number by percent", percent, number);
