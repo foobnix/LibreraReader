@@ -1329,7 +1329,7 @@ public class PrefFragment2 extends UIFragment {
                     public void run() {
                         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
                     }
-                });
+                }, false);
             }
         });
 

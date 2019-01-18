@@ -1646,7 +1646,7 @@ public class DragingDialogs {
                                 sp.edit().putString("last", "" + AppState.get().rememberDictHash).commit();
                                 selectTextMenu(anchor, controller, withAnnotation, reloadUI);
                             }
-                        });
+                        }, true);
 
                     }
                 });
@@ -4668,7 +4668,7 @@ public class DragingDialogs {
                             public void run() {
                                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
                             }
-                        });
+                        }, false);
                     }
                 });
 

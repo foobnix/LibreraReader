@@ -79,7 +79,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         String url = IMG.toUrl(uri.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
         Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
         v.setImageViewBitmap(R.id.imageView1, image);
-        v.setContentDescription(R.id.imageView1, new File(uri.getPath()).getName());
+        // v.setContentDescription(R.id.imageView1, new File(uri.getPath()).getName());
 
         Bundle extras = new Bundle();
         extras.putInt("pos", position);
