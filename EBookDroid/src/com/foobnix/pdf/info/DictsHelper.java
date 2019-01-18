@@ -167,8 +167,9 @@ public class DictsHelper {
 
     public static void runIntent(Activity c, String selectedText) {
         try {
-            String dict = AppState.get().rememberDict;
-            String dictName = DictItem.fetchDictName(AppState.get().rememberDict);
+            String dict = AppState.get().rememberDict1;
+            final int dictHash = AppState.get().rememberDict1Hash;
+            String dictName = DictItem.fetchDictName(AppState.get().rememberDict1);
             if (dict.startsWith("web")) {
                 Map<String, String> dictionaries = AppState.getDictionaries(selectedText);
                 String url = dictionaries.get(dictName);
@@ -190,8 +191,8 @@ public class DictsHelper {
                 }
                 List<ResolveInfo> apps = getByIntent(c, intent, selectedText);
                 for (final ResolveInfo app : apps) {
-                    String name = app.activityInfo.loadLabel(c.getPackageManager()).toString();
-                    if (name.equals(dictName)) {
+                    // String name = app.activityInfo.loadLabel(c.getPackageManager()).toString();
+                    if (dictHash == DictsHelper.getHash(app.activityInfo)) {
                         final ComponentName cName = new ComponentName(app.activityInfo.applicationInfo.packageName, app.activityInfo.name);
                         intent.addCategory(Intent.CATEGORY_LAUNCHER);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);

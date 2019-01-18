@@ -1539,7 +1539,7 @@ public class DragingDialogs {
                     for (final String pkgKey : AppState.appDictionariesKeys) {
                         String pkg = app.activityInfo.packageName;
 
-                        if (pkg.toLowerCase(Locale.US).contains(pkgKey) || DictsHelper.getHash(app.activityInfo) == AppState.get().rememberDictHash) {
+                        if (pkg.toLowerCase(Locale.US).contains(pkgKey) || DictsHelper.getHash(app.activityInfo) == AppState.get().rememberDictHash2) {
 
                             if (cache.contains(app.activityInfo.name)) {
                                 continue;
@@ -1643,7 +1643,7 @@ public class DragingDialogs {
 
                             @Override
                             public void run() {
-                                sp.edit().putString("last", "" + AppState.get().rememberDictHash).commit();
+                                sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
                                 selectTextMenu(anchor, controller, withAnnotation, reloadUI);
                             }
                         }, true);

@@ -174,7 +174,7 @@ public class DialogTranslateFromTo {
     }
 
     public static String getSelectedDictionary() {
-        return DictItem.fetchDictName(AppState.get().rememberDict);
+        return DictItem.fetchDictName(AppState.get().rememberDict1);
     }
 
     public static AlertDialog show(final Activity a, boolean onlyoffline, final Runnable runnable, final boolean isAddDict) {
@@ -269,9 +269,10 @@ public class DialogTranslateFromTo {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (isAddDict) {
-                AppState.get().rememberDictHash = list.get(position).hash;
+                AppState.get().rememberDictHash2 = list.get(position).hash;
                 } else {
-                    AppState.get().rememberDict = list.get(position).toString();
+                    AppState.get().rememberDict1Hash = list.get(position).hash;
+                    AppState.get().rememberDict1 = list.get(position).toString();
 
                 }
 

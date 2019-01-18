@@ -479,10 +479,13 @@ public class AppState {
     public int widgetSize = WIDGET_SIZE.get(1);
 
     @IgnoreHashCode
-    public String rememberDict = "web:Google Translate";
+    public String rememberDict1 = "web:Google Translate";
 
     @IgnoreHashCode
-    public int rememberDictHash = 0;
+    public int rememberDict1Hash = 0;
+
+    @IgnoreHashCode
+    public int rememberDictHash2 = 0;
 
     @IgnoreHashCode
     public boolean isRememberDictionary;
