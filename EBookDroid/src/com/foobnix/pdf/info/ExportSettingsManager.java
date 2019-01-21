@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -107,20 +108,12 @@ public class ExportSettingsManager {
 
     public static String getSampleJsonConfigName(Context a, String ext) {
         try {
-//            final String format = Settings.System.getString(a.getContentResolver(), Settings.System.DATE_FORMAT);
-//            String time;
-//            if (TextUtils.isEmpty(format)) {
-//                time = DateFormat.getMediumDateFormat(a).format(System.currentTimeMillis());
-//            } else {
-//                time = new SimpleDateFormat(format).format(System.currentTimeMillis());
-//            }
-//            
-            String time = java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT, java.text.DateFormat.MEDIUM).format(new Date());
-            time = time.replace(" ", "-").replace(":", "_");
-
-            String name = String.format("%s%s", time, ext);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+            String time = format.format(new Date());
+            String name = String.format("%s-%s", time, ext);
             return name;
         } catch (Exception e) {
+            LOG.e(e);
             return "pdf_reader" + ext;
         }
     }
