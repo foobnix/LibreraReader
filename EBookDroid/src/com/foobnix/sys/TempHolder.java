@@ -32,6 +32,7 @@ public class TempHolder {
 
     public boolean isAllowTextSelectionFirstTime = true;
     public int textFromPage = 0;
+    public String copyFromPath = null;
 
     public static TempHolder get() {
         return inst;

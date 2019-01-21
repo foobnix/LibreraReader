@@ -390,6 +390,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
+
             if (!AppState.get().isBorderAndShadow) {
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
             }

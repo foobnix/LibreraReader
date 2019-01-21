@@ -26,9 +26,11 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
@@ -444,6 +446,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             public boolean onResultRecive(FileMeta result) {
                 if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
                     // displayAnyPath(result.getPath());
+                    if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                        ShareDialog.dirLongPress(getActivity(), result.getPath(), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                resetFragment();
+                            }
+                        });
+                    }
                 } else {
                     DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter).onResultRecive(result);
                 }
@@ -945,6 +956,33 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         String pathFull = prefix + itemPath;
                         pathFull = pathFull.replace("://", ":/");
                         displayAnyPath(pathFull);
+                    }
+                });
+                item.setOnLongClickListener(new OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        StringBuilder builder = new StringBuilder();
+                        for (int j = 0; j <= index; j++) {
+                            builder.append("/");
+                            builder.append(split[j]);
+                        }
+                        String itemPath = builder.toString();
+                        itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
+                        String pathFull = prefix + itemPath;
+                        pathFull = pathFull.replace("://", ":/");
+
+                        if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                            ShareDialog.dirLongPress(getActivity(), pathFull, new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    resetFragment();
+                                }
+                            });
+                            return true;
+                        }
+                        return false;
                     }
                 });
 

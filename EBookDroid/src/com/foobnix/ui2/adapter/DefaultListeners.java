@@ -164,6 +164,7 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
+                LOG.d("getOnItemLongClickListener");
 
                 if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
                     ExtUtils.openFile(a, result);
@@ -185,11 +186,11 @@ public class DefaultListeners {
                 }
 
                 if (file.isDirectory()) {
-                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                        Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                        LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
-                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+                        EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
                     return true;
                 }
 
@@ -324,7 +325,6 @@ public class DefaultListeners {
 
                     File cacheFile = Clouds.getCacheFile(result.getPath());
 
-
                     if (cacheFile != null && cacheFile.delete()) {
 
                         FileMeta cacheMeta = new FileMeta(cacheFile.getPath());
@@ -346,7 +346,7 @@ public class DefaultListeners {
 
             @Override
             public boolean onResultRecive(final FileMeta result) {
-                
+
                 ADS.hideAdsTemp(a);
 
                 File file = new File(result.getPath());
@@ -354,7 +354,6 @@ public class DefaultListeners {
                 if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
                     file = Clouds.getCacheFile(file.getPath());
                 }
-               
 
                 Runnable onDeleteAction = new Runnable() {
 

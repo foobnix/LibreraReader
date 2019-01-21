@@ -1,6 +1,12 @@
 package com.foobnix.pdf.info.widget;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +17,9 @@ import org.greenrobot.eventbus.EventBus;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
@@ -27,6 +35,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
@@ -64,6 +73,7 @@ public class ShareDialog {
         if (canDelete) {
             items.add(a.getString(R.string.delete));
         }
+
         if (isShowInfo) {
             items.add(a.getString(R.string.file_info));
         }
@@ -113,6 +123,96 @@ public class ShareDialog {
 
     }
 
+    public static void dirLongPress(final Activity a, final String to, final Runnable onRefresh) {
+        List<String> items = new ArrayList<String>();
+
+
+        items.add(a.getString(R.string.paste));
+        items.add(a.getString(R.string.move));
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setItems(items.toArray(new String[items.size()]), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialog, final int which) {
+                int i = 0;
+                if (which == i++) {
+                    try {
+                        String from = TempHolder.get().copyFromPath;
+                        File fromFile = new File(from);
+                        File toFile = new File(to, fromFile.getName());
+
+                        if (toFile.exists()) {
+                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        LOG.d("Copy from to", from, ">>", to);
+
+                        InputStream input = new BufferedInputStream(new FileInputStream(from));
+                        OutputStream output = new BufferedOutputStream(new FileOutputStream(toFile));
+
+                        IOUtils.copy(input, output);
+
+                        output.flush();
+                        output.close();
+                        input.close();
+
+                        TempHolder.get().listHash++;
+
+                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
+                        TempHolder.get().copyFromPath = null;
+                        onRefresh.run();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (which == i++) {
+                    try {
+                        String from = TempHolder.get().copyFromPath;
+                        File fromFile = new File(from);
+                        File toFile = new File(to, fromFile.getName());
+                        LOG.d("Copy from to", from, ">>", to);
+
+                        if (toFile.exists()) {
+                            Toast.makeText(a, R.string.the_file_already_exists_, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        InputStream input = new BufferedInputStream(new FileInputStream(from));
+                        OutputStream output = new BufferedOutputStream(new FileOutputStream(toFile));
+
+                        IOUtils.copy(input, output);
+
+                        output.flush();
+                        output.close();
+                        input.close();
+
+                        fromFile.delete();
+                        AppDB.get().delete(new FileMeta(fromFile.getPath()));
+                        TempHolder.get().listHash++;
+
+                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
+                        TempHolder.get().copyFromPath = null;
+                        onRefresh.run();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        AlertDialog create = builder.create();
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(a);
+            }
+        });
+        create.show();
+    }
+
     public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
         if (file == null) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
@@ -158,11 +258,15 @@ public class ShareDialog {
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
         final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
+        final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
         if (isMainTabs) {
             if (canDelete) {
                 items.add(a.getString(R.string.delete));
+            }
+            if (canCopy) {
+                items.add(a.getString(R.string.copy));
             }
             items.add(a.getString(R.string.remove_from_library));
         }
@@ -256,6 +360,9 @@ public class ShareDialog {
                     ExtUtils.sendFileTo(a, file);
                 } else if (isMainTabs && canDelete && which == i++) {
                     FileInformationDialog.dialogDelete(a, file, onDeleteAction);
+                } else if (isMainTabs && canCopy && which == i++) {
+                    TempHolder.get().copyFromPath = file.getPath();
+                    Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT).show();
                 } else if (isMainTabs && which == i++) {
                     FileMeta load = AppDB.get().load(file.getPath());
                     if (load != null) {
@@ -289,6 +396,7 @@ public class ShareDialog {
             public void onDismiss(DialogInterface dialog) {
                 Keyboards.hideNavigation(a);
             }
+
         });
         create.show();
     };
@@ -359,6 +467,7 @@ public class ShareDialog {
                         Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
                     } else {
                         Clouds.get().loginToDropbox(a, new Runnable() {
+
                             @Override
                             public void run() {
                                 Clouds.get().syncronizeAdd(a, file, Clouds.get().oneDrive);
