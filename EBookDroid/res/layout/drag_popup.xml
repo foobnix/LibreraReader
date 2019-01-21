@@ -76,7 +76,7 @@
                 android:src="@drawable/glyphicons_114_justify" />
             
             <ImageView
-                android:id="@+id/close"
+                android:id="@+id/closePopup"
                 style="@style/buttonWhiteClose"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"

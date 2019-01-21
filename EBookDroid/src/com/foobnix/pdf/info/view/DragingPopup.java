@@ -141,7 +141,7 @@ public abstract class DragingPopup {
         TextView titleView = (TextView) popupView.findViewById(R.id.dialogTitle);
         titleView.setText(title);
 
-        popupView.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+        popupView.findViewById(R.id.closePopup).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

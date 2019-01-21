@@ -359,9 +359,11 @@ public abstract class DocumentController {
         }
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
         if (isVisible) {
-            anchor.setVisibility(View.GONE);
-            anchor.setTag("backGo");
-            anchor.removeAllViews();
+            try {
+                activity.findViewById(R.id.closePopup).performClick();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
             clearSelectedText();
         }
         return isVisible;

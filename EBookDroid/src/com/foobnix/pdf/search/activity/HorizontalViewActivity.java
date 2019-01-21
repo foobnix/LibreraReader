@@ -215,7 +215,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         actionBar = (LinearLayout) findViewById(R.id.actionBar);
         bottomPanel = (LinearLayout) findViewById(R.id.bottomPanel);
 
-
         bottomBar = findViewById(R.id.bottomBar);
         bottomIndicators = findViewById(R.id.bottomIndicators);
         adFrame = findViewById(R.id.adFrame);
@@ -340,7 +339,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.pageFlippingDialog(anchor, dc, onRefresh);
             }
         });
-        
+
         pageshelper = (LinearLayout) findViewById(R.id.pageshelper);
         musicButtonPanel = findViewById(R.id.musicButtonPanel);
         musicButtonPanel.setVisibility(View.GONE);
@@ -348,7 +347,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesBookmark = findViewById(R.id.pagesBookmark);
         pagesBookmark.setOnClickListener(onBookmarks);
         pagesBookmark.setOnLongClickListener(onBookmarksLong);
-
 
         final ImageView onFullScreen = (ImageView) findViewById(R.id.onFullScreen);
         onFullScreen.setOnClickListener(new OnClickListener() {
@@ -966,8 +964,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         });
-
-
 
     }
 
@@ -2210,7 +2206,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         if (anchor != null && anchor.getChildCount() > 0 && anchor.getVisibility() == View.VISIBLE) {
             dc.clearSelectedText();
-            closeDialogs();
+            try {
+                findViewById(R.id.closePopup).performClick();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
             return;
         }
 
