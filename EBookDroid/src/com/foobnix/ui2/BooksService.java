@@ -79,13 +79,24 @@ public class BooksService extends IntentService {
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
                 List<FileMeta> list = AppDB.get().getAll();
                 for (FileMeta meta : list) {
+                    if (meta == null) {
+                        continue;
+                    }
+
                     if (Clouds.isCloud(meta.getPath())) {
                         continue;
                     }
+
                     File bookFile = new File(meta.getPath());
                     if (!bookFile.exists()) {
-                        AppDB.get().delete(meta);
-                        LOG.d(TAG, "Delete meta", meta.getPath());
+                        meta.setIsSearchBook(false);
+                        AppDB.get().update(meta);
+                        LOG.d(TAG, "Delete-setIsSearchBook false", meta.getPath());
+                    } else if (bookFile.exists() && meta.getIsSearchBook() != null && !meta.getIsSearchBook()) {
+                        meta.setIsSearchBook(true);
+                        AppDB.get().update(meta);
+                        LOG.d(TAG, "Delete-setIsSearchBook true", meta.getPath());
+
                     }
                 }
                 sendFinishMessage();
@@ -133,7 +144,6 @@ public class BooksService extends IntentService {
                 IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();
 
-                List<FileMeta> allWithTag = AppDB.get().getAllWithTag();
 
                 List<Uri> recent = AppSharedPreferences.get().getRecent();
                 List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();
@@ -199,7 +209,6 @@ public class BooksService extends IntentService {
 
                 AppDB.get().updateAll(itemsMeta);
 
-                AppDB.get().updateAll(allWithTag);
 
                 itemsMeta.clear();
 

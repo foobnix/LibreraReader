@@ -178,7 +178,7 @@ public class AppDB {
 
     public List<FileMeta> deleteAllSafe() {
         try {
-            List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();
+            List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.Tag.isNotNull(), FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();
             if (list == null) {
                 list = new ArrayList<FileMeta>();
             }
