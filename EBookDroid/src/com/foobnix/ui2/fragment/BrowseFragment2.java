@@ -13,6 +13,7 @@ import org.ebookdroid.droids.FolderContext;
 
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
@@ -940,6 +941,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 if (i == split.length - 1) {
                     item.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+                    item.setMinimumWidth(Dips.DP_40);
+                    item.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
                 }
 
                 item.setOnClickListener(new OnClickListener() {
