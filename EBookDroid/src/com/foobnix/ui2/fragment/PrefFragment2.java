@@ -790,7 +790,6 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-
         inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1084,7 +1083,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                PrefDialogs.importDialog(getActivity());
+                    PrefDialogs.importDialog(getActivity());
             }
         });
 
@@ -1092,7 +1091,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                PrefDialogs.exportDialog(getActivity());
+                    PrefDialogs.exportDialog(getActivity());
             }
         });
 
@@ -1859,7 +1858,6 @@ public class PrefFragment2 extends UIFragment {
             LOG.e(e);
         }
     }
-
 
     public void rotationText() {
         screenOrientation.setText(DocumentController.getRotationText());

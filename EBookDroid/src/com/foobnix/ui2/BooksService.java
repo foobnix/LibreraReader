@@ -65,12 +65,15 @@ public class BooksService extends IntentService {
 
     private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
 
+    public static volatile boolean isRunning = false;
+
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent == null) {
             return;
         }
         try {
+            isRunning = true;
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
@@ -213,6 +216,7 @@ public class BooksService extends IntentService {
             }
 
         } finally {
+            isRunning = false;
         }
 
     }
@@ -250,7 +254,6 @@ public class BooksService extends IntentService {
         Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
         LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
     }
-
 
     private void sendProggressMessage() {
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra(Intent.EXTRA_INDEX, itemsMeta.size());

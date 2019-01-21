@@ -558,7 +558,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
-        if (AppState.get().isAutomaticExport && Android6.canWrite(this)) {
+        if (AppState.get().isAutomaticExport && Android6.canWrite(this) && !BooksService.isRunning) {
             try {
                 File root = new File(AppState.get().backupPath);
                 if (!root.isDirectory()) {

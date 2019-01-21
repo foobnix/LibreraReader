@@ -44,6 +44,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -1189,6 +1190,10 @@ public class ExtUtils {
     }
 
     public static void importAllBookmarksFromJson(final FragmentActivity a, final Runnable onSuccess) {
+        if (PrefDialogs.isBookSeriviceIsRunning(a)) {
+            return;
+        }
+
         String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
             @Override
@@ -1222,6 +1227,10 @@ public class ExtUtils {
     }
 
     public static void exportAllBookmarksToJson(final FragmentActivity a, final File book) {
+        if (PrefDialogs.isBookSeriviceIsRunning(a)) {
+            return;
+        }
+
         String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
         if (book != null) {
             sampleName = book.getName() + "-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");

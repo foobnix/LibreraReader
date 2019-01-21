@@ -914,6 +914,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
         }
+        if (!BooksService.isRunning) {
+            onRefresh.setActivated(!BooksService.isRunning);
+            searchEditText.setHint(R.string.search);
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@ import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 
 import android.app.Activity;
@@ -158,6 +159,10 @@ public class PrefDialogs {
     }
 
     public static void importDialog(final FragmentActivity activity) {
+        if (isBookSeriviceIsRunning(activity)) {
+            return;
+        }
+
         String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, ".JSON.txt");
 
         ChooserDialogFragment.chooseFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
@@ -195,8 +200,19 @@ public class PrefDialogs {
 
     }
 
+    public static boolean isBookSeriviceIsRunning(Activity a) {
+        if (BooksService.isRunning) {
+            Toast.makeText(a, R.string.searching_please_wait_, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
 
     public static void exportDialog(final FragmentActivity activity) {
+        if (isBookSeriviceIsRunning(activity)) {
+            return;
+        }
         String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, "Export-All.JSON.txt");
         ChooserDialogFragment.createFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
@@ -223,6 +239,9 @@ public class PrefDialogs {
     }
 
     private void imExDialog(final Activity a, final int resSelectId, final String sampleName, final ResultResponse<File> onResult) {
+        if (isBookSeriviceIsRunning(a)) {
+            return;
+        }
         List<String> browseexts = Arrays.asList(".json", ".txt", ".ttf", ".otf");
 
         final BrowserAdapter adapter = new BrowserAdapter(a, new ExtFilter(browseexts));
