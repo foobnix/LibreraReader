@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Отображение расширенной панели закладок</string>
    <string name="show_rectangular_tap_zones">Показывать прямоугольные зоны касаний</string>
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
+   <string name="paste">Вставить</string>
+   <string name="move">Переехать</string>
+   <string name="the_file_already_exists_">Файл уже существует</string>
 </resources>

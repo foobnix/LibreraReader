@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Extra bladwijzerbalk</string>
    <string name="show_rectangular_tap_zones">Toon rechthoekige tikzones</string>
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
+   <string name="paste">Pasta</string>
+   <string name="move">Verhuizing</string>
+   <string name="the_file_already_exists_">Het bestand bestaat al</string>
 </resources>

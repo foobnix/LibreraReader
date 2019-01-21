@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">अतिरिक्त बुकमार्क बार</string>
    <string name="show_rectangular_tap_zones">आयताकार नल क्षेत्र दिखाएँ</string>
    <string name="turn_the_page_on_the_last_word">पृष्ठ को अंतिम शब्द पर चालू करें</string>
+   <string name="paste">पेस्ट</string>
+   <string name="move">चाल</string>
+   <string name="the_file_already_exists_">फ़ाइल पहले से मौजूद है।</string>
 </resources>

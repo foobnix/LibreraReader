@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Ďalší blok záložiek</string>
    <string name="show_rectangular_tap_zones">Zobraziť obdĺžnikové zóny ťuknutia</string>
    <string name="turn_the_page_on_the_last_word">Otočte stránku na posledné slovo</string>
+   <string name="paste">Pasta</string>
+   <string name="move">Sťahovať</string>
+   <string name="the_file_already_exists_">Súbor už existuje.</string>
 </resources>

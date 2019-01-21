@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Additional bookmarks talea</string>
    <string name="show_rectangular_tap_zones">Ostende plaga aequali spatio ICTUS</string>
    <string name="turn_the_page_on_the_last_word">Turn in extremum verbum paginae</string>
+   <string name="paste">Crustulum</string>
+   <string name="move">Move</string>
+   <string name="the_file_already_exists_">Iam enim tabella.</string>
 </resources>

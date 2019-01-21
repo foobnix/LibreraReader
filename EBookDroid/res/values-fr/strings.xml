@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Barre de favoris supplémentaire</string>
    <string name="show_rectangular_tap_zones">Afficher les zones de prise rectangulaires</string>
    <string name="turn_the_page_on_the_last_word">Tourne la page sur le dernier mot</string>
+   <string name="paste">Coller</string>
+   <string name="move">Bouge toi</string>
+   <string name="the_file_already_exists_">Le fichier existe déjà.</string>
 </resources>

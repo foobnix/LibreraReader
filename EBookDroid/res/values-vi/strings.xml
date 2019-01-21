@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Thanh dấu trang bổ sung</string>
    <string name="show_rectangular_tap_zones">Hiển thị vùng vòi hình chữ nhật</string>
    <string name="turn_the_page_on_the_last_word">Lật trang trên từ cuối cùng</string>
+   <string name="paste">Dán</string>
+   <string name="move">Di chuyển</string>
+   <string name="the_file_already_exists_">Các tập tin đã tồn tại.</string>
 </resources>

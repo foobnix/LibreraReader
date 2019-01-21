@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Қосымша бетбелгілер жолағы</string>
    <string name="show_rectangular_tap_zones">Тік төртбұрыш аймақтарын көрсетіңіз</string>
    <string name="turn_the_page_on_the_last_word">Бетті соңғы сөзге айналдырыңыз</string>
+   <string name="paste">Паста</string>
+   <string name="move">Жылжытыңыз</string>
+   <string name="the_file_already_exists_">Файл бұрыннан бар.</string>
 </resources>

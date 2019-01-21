@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Barra de marcadores adicionales</string>
    <string name="show_rectangular_tap_zones">Mostrar zonas de grifo rectangulares</string>
    <string name="turn_the_page_on_the_last_word">Pasar la página en la última palabra</string>
+   <string name="paste">Pegar</string>
+   <string name="move">Movimiento</string>
+   <string name="the_file_already_exists_">El archivo ya existe</string>
 </resources>

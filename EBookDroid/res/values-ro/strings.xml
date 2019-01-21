@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Bara de marcaje suplimentare</string>
    <string name="show_rectangular_tap_zones">Arată zone de robinet dreptunghiulare</string>
    <string name="turn_the_page_on_the_last_word">Întoarceți pagina la ultimul cuvânt</string>
+   <string name="paste">Pastă</string>
+   <string name="move">Mișcare</string>
+   <string name="the_file_already_exists_">Fișierul există deja.</string>
 </resources>

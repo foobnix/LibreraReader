@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">追加のブックマークバー</string>
    <string name="show_rectangular_tap_zones">長方形のタップゾーンを表示</string>
    <string name="turn_the_page_on_the_last_word">最後の単語でページをめくる</string>
+   <string name="paste">ペースト</string>
+   <string name="move">動く</string>
+   <string name="the_file_already_exists_">ファイルは既に存在します。</string>
 </resources>

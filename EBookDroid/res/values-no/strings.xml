@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Ekstra bokmerker bar</string>
    <string name="show_rectangular_tap_zones">Vis rektangulære trykksoner</string>
    <string name="turn_the_page_on_the_last_word">Vri siden på siste ord</string>
+   <string name="paste">Lim inn</string>
+   <string name="move">Bevege seg</string>
+   <string name="the_file_already_exists_">Filen eksisterer allerede.</string>
 </resources>

@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">閱讀模式附加書簽欄</string>
    <string name="show_rectangular_tap_zones">矩形抽頭區域</string>
    <string name="turn_the_page_on_the_last_word">最後一字翻頁</string>
+   <string name="paste">糊</string>
+   <string name="move">移動</string>
+   <string name="the_file_already_exists_">該文件已存在。</string>
 </resources>

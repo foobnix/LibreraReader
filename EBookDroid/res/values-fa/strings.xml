@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">نوار نشانکهای اضافی</string>
    <string name="show_rectangular_tap_zones">مناطق کوه مستطیلی را نشان می دهد</string>
    <string name="turn_the_page_on_the_last_word">صفحه را روی آخرین کلمه بنویسید</string>
+   <string name="paste">چسباندن</string>
+   <string name="move">حرکت</string>
+   <string name="the_file_already_exists_">این فایل در حال حاضر موجود است</string>
 </resources>

@@ -529,4 +529,7 @@
    <string name="additional_bookmarks_bar">Додаткова панель закладок</string>
    <string name="show_rectangular_tap_zones">Показувати прямокутні зони перегортання сторінки</string>
    <string name="turn_the_page_on_the_last_word">Перегортати сторінку на останньому слові</string>
+   <string name="paste">Пасти</string>
+   <string name="move">Рухатися</string>
+   <string name="the_file_already_exists_">Файл вже існує.</string>
 </resources>
