@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -558,7 +559,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
-        if (AppState.get().isAutomaticExport && Android6.canWrite(this) && !BooksService.isRunning) {
+        if (AppState.get().isAutomaticExport && Android6.canWrite(this) && !PrefDialogs.isBookSeriviceIsRunning(this)) {
             try {
                 File root = new File(AppState.get().backupPath);
                 if (!root.isDirectory()) {
