@@ -61,4 +61,8 @@ public class StringDB {
         return new ArrayList<String>(Arrays.asList(db.split(",")));
     }
 
+    public static String filter(String trim) {
+        return TxtUtils.replaceLast(trim, DIVIDER, "");
+    }
+
 }

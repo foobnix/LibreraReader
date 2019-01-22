@@ -410,7 +410,11 @@ public class AppDB {
                     if (item == null || TxtUtils.isEmpty(item)) {
                         continue;
                     }
-                    TxtUtils.addFilteredGenreSeries(item, result, in == SEARCH_IN.SERIES);
+                    if (in == SEARCH_IN.TAGS) {
+                        TxtUtils.addFilteredTags(item, result);
+                    } else {
+                        TxtUtils.addFilteredGenreSeries(item, result, in == SEARCH_IN.SERIES);
+                    }
                 } while (c.moveToNext());
             }
         } finally {

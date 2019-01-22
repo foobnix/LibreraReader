@@ -184,6 +184,38 @@ public class TxtUtils {
 
     }
 
+    public static void addFilteredTags(String item, List<String> result) {
+        if (TxtUtils.isEmpty(item)) {
+            return;
+        }
+
+        if (item.contains("#")) {
+
+            String[] split = item.split("#");
+
+            for (String txt : split) {
+                if (TxtUtils.isNotEmpty(txt)) {
+                    txt = txt.trim();
+                    txt = TxtUtils.firstUppercase(txt);
+                    txt = StringDB.filter(txt);
+                    if (!result.contains(txt)) {
+                        result.add(txt);
+                    }
+                }
+            }
+        } else {
+            String trim = item.trim();
+            if (TxtUtils.isNotEmpty(trim)) {
+                trim = TxtUtils.firstUppercase(trim);
+                trim = StringDB.filter(trim);
+                if (!result.contains(trim)) {
+                    result.add(trim);
+                }
+            }
+        }
+
+    }
+
     int a = 1;
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":", "...", LONG_DASH1, LONG_DASH2);
 
