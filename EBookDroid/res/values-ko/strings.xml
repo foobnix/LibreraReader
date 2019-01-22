@@ -532,4 +532,5 @@
    <string name="paste">풀</string>
    <string name="move">움직임</string>
    <string name="the_file_already_exists_">파일이 이미 있습니다.</string>
+   <string name="please_wait_books_are_being_processed_">잠시만 기다려주세요. 도서가 처리 중입니다.</string>
 </resources>

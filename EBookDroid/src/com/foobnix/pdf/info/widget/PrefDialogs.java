@@ -202,7 +202,7 @@ public class PrefDialogs {
 
     public static boolean isBookSeriviceIsRunning(Activity a) {
         if (BooksService.isRunning) {
-            Toast.makeText(a, R.string.searching_please_wait_, Toast.LENGTH_SHORT).show();
+            Toast.makeText(a, R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

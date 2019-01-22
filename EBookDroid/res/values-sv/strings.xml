@@ -532,4 +532,5 @@
    <string name="paste">Klistra</string>
    <string name="move">Flytta</string>
    <string name="the_file_already_exists_">Filen finns redan.</string>
+   <string name="please_wait_books_are_being_processed_">Vänta vänta, böcker behandlas</string>
 </resources>

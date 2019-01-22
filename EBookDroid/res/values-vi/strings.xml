@@ -532,4 +532,5 @@
    <string name="paste">Dán</string>
    <string name="move">Di chuyển</string>
    <string name="the_file_already_exists_">Các tập tin đã tồn tại.</string>
+   <string name="please_wait_books_are_being_processed_">Vui lòng đợi, sách đang được xử lý</string>
 </resources>

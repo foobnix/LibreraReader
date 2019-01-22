@@ -532,4 +532,5 @@
    <string name="paste">معجون</string>
    <string name="move">نقل</string>
    <string name="the_file_already_exists_">الملف موجود بالفعل.</string>
+   <string name="please_wait_books_are_being_processed_">يرجى الانتظار ، يتم معالجة الكتب</string>
 </resources>

@@ -513,6 +513,25 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         progressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
+        final View bankSpace = view.findViewById(R.id.bankSpace);
+
+
+        bankSpace.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                    ShareDialog.dirLongPress(getActivity(), displayPath, new Runnable() {
+
+                        @Override
+                        public void run() {
+                            resetFragment();
+                        }
+                    });
+                }
+            }
+        });
+
         return view;
     }
 

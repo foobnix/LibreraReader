@@ -532,4 +532,5 @@
    <string name="paste">Tahna</string>
    <string name="move">Liikkua</string>
    <string name="the_file_already_exists_">Tiedosto on jo olemassa.</string>
+   <string name="please_wait_books_are_being_processed_">Odota, kirjoja käsitellään</string>
 </resources>

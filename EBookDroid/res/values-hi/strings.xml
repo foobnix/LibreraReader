@@ -532,4 +532,5 @@
    <string name="paste">पेस्ट</string>
    <string name="move">चाल</string>
    <string name="the_file_already_exists_">फ़ाइल पहले से मौजूद है।</string>
+   <string name="please_wait_books_are_being_processed_">कृपया प्रतीक्षा करें, पुस्तकों पर कार्रवाई की जा रही है</string>
 </resources>

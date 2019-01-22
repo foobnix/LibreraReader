@@ -532,4 +532,5 @@
    <string name="paste">Вставить</string>
    <string name="move">Переместить</string>
    <string name="the_file_already_exists_">Такой файл уже существует</string>
+   <string name="please_wait_books_are_being_processed_">Пожалуйста подождите, книги обрабатываются</string>
 </resources>

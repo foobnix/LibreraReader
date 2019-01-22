@@ -532,4 +532,5 @@
    <string name="paste">Colar</string>
    <string name="move">Mover</string>
    <string name="the_file_already_exists_">O arquivo já existe.</string>
+   <string name="please_wait_books_are_being_processed_">Por favor espere, livros estão sendo processados</string>
 </resources>

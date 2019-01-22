@@ -185,14 +185,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/bankSpace"
         android:layout_weight="1" >
 
         <com.foobnix.ui2.fast.FastScrollRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="4dip" >
         </com.foobnix.ui2.fast.FastScrollRecyclerView>
+        
     </FrameLayout>
 
     <EditText

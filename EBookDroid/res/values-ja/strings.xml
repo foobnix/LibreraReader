@@ -532,4 +532,5 @@
    <string name="paste">ペースト</string>
    <string name="move">動く</string>
    <string name="the_file_already_exists_">ファイルは既に存在します。</string>
+   <string name="please_wait_books_are_being_processed_">お待ちください、書籍は処理中です</string>
 </resources>

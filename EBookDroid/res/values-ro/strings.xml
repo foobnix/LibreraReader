@@ -532,4 +532,5 @@
    <string name="paste">Pastă</string>
    <string name="move">Mișcare</string>
    <string name="the_file_already_exists_">Fișierul există deja.</string>
+   <string name="please_wait_books_are_being_processed_">Așteptați, cărțile sunt procesate</string>
 </resources>

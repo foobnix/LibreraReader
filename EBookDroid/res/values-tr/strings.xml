@@ -532,4 +532,5 @@
    <string name="paste">Yapıştırmak</string>
    <string name="move">Hareket</string>
    <string name="the_file_already_exists_">Dosya zaten var.</string>
+   <string name="please_wait_books_are_being_processed_">Lütfen bekleyin, kitaplar işleniyor</string>
 </resources>
