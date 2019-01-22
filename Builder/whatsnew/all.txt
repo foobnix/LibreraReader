@@ -1,294 +1,294 @@
 
 <nl-NL>
 * Verbeterde PDF-weergave en Epub-lezing 
-* Toegevoegd afspeellijsten (boekgroepen, nabestellingen) 
+* Kopiëren, plakken, bestanden verplaatsen in Bestandsbeheer 
+* Verbeterde Tags-manager 
+* Toegevoegde afspeellijsten (boekgroeperingen, nabestellingen) 
 * MP3-bestanden en -mappen afspelen 
-* Voetnoten rechtstreeks in de tekst 
-* TTS kan voetnoten lezen (epub, fb2, mobi) 
-* TTS kan door zinnen lezen
+* Voetnoten rechtstreeks in de tekst
 </nl-NL>
 
 <id>
 * Peningkatan Melihat PDF dan Membaca Epub 
-* Menambahkan Daftar Putar (pengelompokan buku, pemesanan ulang) 
+* Salin, tempel, pindahkan file dalam file manager 
+* Peningkatan tag manager 
+* Ditambahkan Playlist (pengelompokan buku, pemesanan ulang) 
 * Putar file dan folder mp3 
-* Catatan kaki langsung dalam teks 
-* TTS dapat membaca catatan kaki (epub, fb2, mobi) 
-* TTS dapat membaca dengan kalimat
+* Catatan kaki langsung dalam teks
 </id>
 
 <lt>
-* Patobulintas PDF peržiūros ir Epubo skaitymas 
+* Patobulintas PDF peržiūros ir epubo skaitymas 
+* Kopijuoti, įklijuoti, perkelti failus į failų tvarkyklę 
+* Patobulinti žymių tvarkyklė 
 * Pridėta grojaraščiai (knygų grupės, pertvarkymas) 
 * MP3 failų ir aplankų atkūrimas 
-* Nuorodos tiesiogiai tekste 
-* TTS gali skaityti išnašas (epub, fb2, mobi) 
-* TTS gali skaityti sakiniai
+* Nuorodos tiesiogiai tekste
 </lt>
 
 <ar>
-* تحسين قراءة PDF و Epub القراءة 
-* أضيفت قوائم التشغيل (مجموعات الكتاب ، إعادة ترتيب) 
+* عرض PDF المحسّن وقراءة Epub 
+* نسخ ، لصق ، نقل الملفات في مدير الملفات 
+* مدير العلامات المحسَّن 
+* قوائم التشغيل المضافة (تجميعات الكتب ، إعادة الترتيب) 
 * تشغيل ملفات ومجلدات MP3 
-* الهوامش مباشرة في النص 
-* TTS يمكن قراءة الحواشي السفلية (EPUB ، FB2 ، موبي) 
-* يمكن قراءة TTS بواسطة جمل
+* الهوامش مباشرة في النص
 </ar>
 
 <ro>
-* Redarea fișierelor mp3 și a folderelor 
-* Note de text direct în text 
-* TTS poate citi notele de subsol (epub, fb2, mobi) 
-* TTS poate citi prin propoziții
+* Îmbunătățirea vizualizarea PDF și Epub Reading 
+* Copiați, lipiți, mutați fișiere în managerul de fișiere 
+* Manager îmbunătățit Tag-uri 
+* Adăugate liste de redare (grupuri de carte, reordonare) 
+* Redare fișiere mp3 și foldere 
+* Note de subsol direct în text
 </ro>
 
 <de-DE>
-* Verbesserte Anzeige von PDF-Dateien und Lesen von Epub-Dateien. 
-* Wiedergabelisten hinzugefügt (Buchgruppierungen, Umsortieren). 
-* Wiedergabe von MP3-Dateien und -Ordnern. 
-* Fußnoten direkt im Text. 
-* TTS kann Fußnoten lesen (epub, fb2, mobi)
+* Verbessertes Anzeigen und Epub-Lesen von PDFs 
+* Kopieren, Einfügen und Verschieben von Dateien im Dateimanager 
+* Verbesserter Tags-Manager 
+* Hinzufügen von Wiedergabelisten (Buchgruppierungen, Neuordnen) 
+* Wiedergabe von MP3-Dateien und -Ordnern 
+* Fußnoten direkt im Text
 </de-DE>
 
 <pl-PL>
 * Poprawione przeglądanie plików PDF i czytanie Epub 
-* Dodano listy odtwarzania (grupowanie książek, zmiana kolejności) 
+* Kopiowanie, wklejanie, przenoszenie plików w menedżerze plików 
+* Udoskonalony menedżer tagów 
+* Dodane listy odtwarzania (grupowanie książek, zmiana kolejności) 
 * Odtwarzanie plików mp3 i folderów 
-* Przypisy bezpośrednio w tekście 
-* TTS może czytać przypisy (epub, fb2, mobi) 
-* TTS może czytać według zdań
+* Przypisy bezpośrednio w tekście
 </pl-PL>
 
 <iw-IL>
-* צפייה משופרת PDF ו קריאה EPUB 
-* נוסף פלייליסטים (קיבוצי ספרים, סידור מחדש) 
+* צפייה משופרת PDF ו EPUB קריאה 
+* העתק, הדבק, להעביר קבצים במנהל הקבצים 
+* שיפור תגיות מנהל 
+* הוספה פלייליסטים (מקבצי ספרים, סידור מחדש) 
 * פלייבק קבצי MP3 ותיקיות 
-* הערות שוליים ישירות בטקסט 
-* TTS יכול לקרוא הערות שוליים (epub, fb2, mobi) 
-* TTS יכול לקרוא על ידי משפטים
+* הערות שוליים ישירות בטקסט
 </iw-IL>
 
 <hi-IN>
-* बेहतर पीडीएफ देखने और Epub पढ़ने 
-* जोड़ा प्लेलिस्ट (पुस्तक समूहों, reordering) 
-* प्लेबैक एमपी 3 फ़ाइलों और फ़ोल्डरों 
-* पाठ में सीधे नोट 
-* TTS फुटनोट्स पढ़ सकते हैं (epub, fb2, mobi) 
-* TTS वाक्यों से पढ़ सकते हैं
+* बेहतर पीडीएफ देखने और Epub पढ़ना 
+* कॉपी, पेस्ट, फ़ाइल प्रबंधक में फ़ाइलों को ले जाना
 </hi-IN>
 
 <zh-CN>
 *改进的PDF查看和电子书阅读
+*复制，粘贴，移动文件管理器中的文件
+*改进的标签管理器
 *添加播放列表（书籍分组，重新排序）
 *播放mp3文件和文件夹
 *脚注直接在文本中
-* TTS可以读取脚注（epub，fb2，mobi）
-* TTS可以通过句子读取
 </zh-CN>
 
 <es-ES>
-* Visualización de PDF mejorada y lectura de Epub 
-* Listas de reproducción agregadas (agrupaciones de libros, reordenación) 
+* Mejora de la visualización de PDF y lectura de Epub 
+* Copia, pega, mueve archivos en el administrador de archivos 
+* Administrador de etiquetas mejorado 
+* Listas de reproducción agregadas (agrupación de libros, reordenación) 
 * Archivos y carpetas de reproducción de mp3 
-* Notas al pie directamente en el texto 
-* TTS puede leer notas al pie (epub, fb2, mobi) 
-* TTS puede leer por oraciones
+* Notas al pie directamente en el texto
 </es-ES>
 
 <fi-FI>
-* Parannettu PDF-katselu- ja Epub-lukeminen 
-* Lisätty soittolistoja (kirjan ryhmittely, uudelleenjärjestely) 
-* mp3-tiedostojen ja kansioiden toistaminen 
-* alaviitteet suoraan tekstiin 
-* TTS voi lukea alaviitteitä (epub, fb2, mobi) 
-* TTS voi lukea lauseita
+* Parannettu PDF-katseleminen ja Epub-lukeminen 
+* Kopioi, liitä, siirrä tiedostoja tiedostohallinnassa 
+* Parannettu tunnisteiden hallinta 
+* Lisätty soittolistat (kirjan ryhmittelyt, uudelleenjärjestely) 
+* MP3-tiedostojen ja -kansioiden toistaminen 
+* Alaviitteet suoraan tekstiin
 </fi-FI>
 
 <vi>
-* Cải thiện khả năng xem và đọc PDF của PDF
+* Cải thiện Xem PDF và Đọc Epub 
+* Sao chép, dán, di chuyển tệp trong trình quản lý tệp 
+* Trình quản lý thẻ được cải tiến 
+* Danh sách phát đã thêm (nhóm sách, sắp xếp lại) 
+* Phát lại các tệp và thư mục mp3
 </vi>
 
 <fr-FR>
-* Amélioration de la visualisation PDF et de la lecture Epub 
-* Ajout de listes de lecture (groupes de livres, réorganisation) 
-* Lecture de fichiers et dossiers mp3 
-* Notes de bas de page directement dans le texte 
-* TTS peut lire les notes de bas de page (epub, fb2, mobi) 
-* TTS peut lire des phrases
+* Amélioration de l’affichage PDF et de la lecture de fichiers Epub 
+* Copier, coller, déplacer des fichiers dans le gestionnaire de fichiers 
+* Amélioration du gestionnaire d’étiquettes 
+* Ajout de listes de lecture (regroupements de livres, réorganisation) 
+* Lecture de fichiers et de dossiers mp3 
+* Notes directement dans le texte
 </fr-FR>
 
 <fr-CA>
-* Amélioration de la visualisation PDF et de la lecture Epub 
-* Ajout de listes de lecture (groupes de livres, réorganisation) 
-* Lecture de fichiers et dossiers mp3 
-* Notes de bas de page directement dans le texte 
-* TTS peut lire les notes de bas de page (epub, fb2, mobi) 
-* TTS peut lire des phrases
+* Amélioration de l’affichage PDF et de la lecture de fichiers Epub 
+* Copier, coller, déplacer des fichiers dans le gestionnaire de fichiers 
+* Amélioration du gestionnaire d’étiquettes 
+* Ajout de listes de lecture (regroupements de livres, réorganisation) 
+* Lecture de fichiers et de dossiers mp3 
+* Notes directement dans le texte
 </fr-CA>
 
 <sw>
 * Kuboresha PDF Kuangalia na Epub Kusoma 
-* Aliongeza Orodha za kucheza (vikundi vya kitabu, kurekebisha) 
-* Faili za video na folda za kuchezaback 
-* Maneno ya chini ya moja kwa moja katika maandiko 
-* TTS inaweza kusoma maelezo ya chini (epub, fb2, mobi) 
-* TTS inaweza kusoma kwa hukumu
+* Nakili, kusanisha, safisha faili kwenye meneja wa faili 
+* Meneja wa Kuboresha wa Tags 
+* Aliongeza Orodha za kucheza (makundi ya kitabu, kurejesha) 
+* Faili za video za kucheza na folda 
+* Maneno ya chini moja kwa moja katika maandishi
 </sw>
 
 <ru-RU>
 * Улучшенный просмотр PDF и чтение в Epub 
-* Добавлены плейлисты (группировки книг, переупорядочение) 
+* Копирование, вставка, перемещение файлов в файловом менеджере 
+* Улучшенный менеджер тегов 
+* Добавлены плейлисты (группировки книг, переупорядочивание) 
 * Воспроизведение mp3 файлов и папок 
-* Сноски прямо в тексте 
-* TTS может читать сноски (epub, fb2, mobi) 
-* TTS может читать предложения
+* Сноски прямо в текст
 </ru-RU>
 
 <zh-TW>
 *改進的PDF查看和電子書閱讀
+*複製，粘貼，移動文件管理器中的文件
+*改進的標籤管理器
 *添加播放列表（書籍分組，重新排序）
 *播放mp3文件和文件夾
 *腳註直接在文本中
-* TTS可以讀取腳註（epub，fb2，mobi）
-* TTS可以通過句子讀取
 </zh-TW>
 
 <th>
-* ปรับปรุงการรับชม PDF และการอ่าน Epub 
-* เพิ่มเพลย์ลิสต์ (การจัดกลุ่มหนังสือ, การจัดเรียงใหม่) 
-* ไฟล์และโฟลเดอร์การเล่น mp3 
-* เชิงอรรถโดยตรงในข้อความ 
-* TTS สามารถอ่านเชิงอรรถ (epub, fb2, mobi)
+* ปรับปรุงการดู PDF และการอ่าน Epub 
+* คัดลอกวางย้ายไฟล์ในตัวจัดการไฟล์ 
+* ตัวจัดการแท็กที่ปรับปรุงใหม่ 
+* เพิ่มเพลย์ลิสต์ (การจัดกลุ่มหนังสือ, การเรียงลำดับใหม่) 
+* ไฟล์ MP3 และโฟลเดอร์ที่เล่นได้ 
+* เชิงอรรถโดยตรงในข้อความ
 </th>
 
 <it-IT>
 * Miglioramento della visualizzazione PDF e della lettura di epub 
-* Aggiunte playlist (raggruppamenti di libri, riordino) 
+* Copia, incolla, sposta i file nel file manager 
+* Miglioramento gestore tag 
+* Aggiunti elenchi di riproduzione (raggruppamenti di libri, riordino) 
 * Riproduzione di file e cartelle mp3 
-* Note a piè di pagina direttamente nel testo 
-* TTS può leggere note (epub, fb2, mobi) 
-* TTS può leggere con frasi
+* Note a piè di pagina direttamente nel testo
 </it-IT>
 
 <sv-SE>
 * Förbättrad PDF-visning och Epub-läsning 
+* Kopiera, klistra in, flytta filer i filhanteraren 
+* Förbättrad tagshanterare 
 * Tillagda spellistor (bokgrupperingar, omregistrering) 
 * Uppspelning av mp3-filer och mappar 
-* Fotnoter direkt i texten 
-* TTS kan läsa fotnoter (epub, fb2, mobi) 
-* TTS kan läsa med meningar
+* Fotnoter direkt i texten
 </sv-SE>
 
 <fa>
-* بهبود PDF مشاهده و خواندن EPUB 
-* اضافه شده لیست های پخش (گروه بندی کتاب ها، مرتب سازی مجدد) 
-* بازیابی فایل های MP3 و پوشه ها 
-* پنهان به طور مستقیم در متن 
-* TTS می توانید پانویس ها (EPUB، FB2، MOBI) 
-* TTS می توانید با احکام بخوانید
+* بهبود PDF مشاهده و دفعات بازدید: EPUB خواندن 
+* کپی، چسباندن، انتقال فایل ها در مدیر فایل 
+* بهبود برچسب مدیر 
+* اضافه شده لیست های پخش (گروه بندی کتاب، مرتب سازی مجدد) 
+* پخش فایل های mp3 و پوشه 
+* اشاره به طور مستقیم در متن
 </fa>
 
 <pt-PT>
-* Melhor visualização de PDF e leitura Epub 
-* Adicionado listas de reprodução (agrupamentos de livros, reordenação) 
-* Reprodução de arquivos mp3 e pastas 
-* Notas de rodapé diretamente no texto 
-* TTS pode ler notas de rodapé (epub, fb2, mobi) 
-* TTS pode ler por frases
+* Visualização aprimorada de PDF e leitura de Epub 
+* Copie, cole, mova arquivos no gerenciador de arquivos 
+* Gerenciador de tags aprimorado 
+* Listas de reprodução adicionadas (agrupamentos de livros, reordenação) 
+* Reproduzir arquivos e pastas em mp3 
+* Notas de rodapé diretamente no texto
 </pt-PT>
 
 <pt-BR>
-* Melhor visualização de PDF e leitura Epub 
-* Adicionado listas de reprodução (agrupamentos de livros, reordenação) 
-* Reprodução de arquivos mp3 e pastas 
-* Notas de rodapé diretamente no texto 
-* TTS pode ler notas de rodapé (epub, fb2, mobi) 
-* TTS pode ler por frases
+* Visualização aprimorada de PDF e leitura de Epub 
+* Copie, cole, mova arquivos no gerenciador de arquivos 
+* Gerenciador de tags aprimorado 
+* Listas de reprodução adicionadas (agrupamentos de livros, reordenação) 
+* Reproduzir arquivos e pastas em mp3 
+* Notas de rodapé diretamente no texto
 </pt-BR>
 
 <ko-KR>
 * 향상된 PDF보기 및 Epub 읽기 
-* 추가 된 재생 목록 (도서 그룹, 순서 변경) 
-* 재생 MP3 파일 및 폴더 
-* 텍스트의 각주 
-* TTS는 각주 (epub, fb2, mobi)를 읽을 수 있습니다 
-* TTS는 문장으로 읽을 수 있습니다
+* 파일 관리자에서 파일 복사, 붙여 넣기, 이동 
+* 향상된 태그 관리자 
+* 추가 된 재생 목록 (책 그룹, 순서 변경) 
+* MP3 파일 및 폴더 재생 
+* 텍스트의 각주
 </ko-KR>
 
 <hu-HU>
-* Továbbfejlesztett PDF megtekintés és Epub olvasás 
+* Továbbfejlesztett PDF-megtekintés és epubolvasás 
+* Fájlok másolása, beillesztése, áthelyezése a fájlkezelőbe 
+* Továbbfejlesztett címkék kezelő 
 * Hozzáadott lejátszási listák (könyvcsoportok, átrendezés) 
-* MP3 fájlok és mappák lejátszása 
-* A lábjegyzetek közvetlenül a szövegben 
-* A TTS olvasható lábjegyzeteket (epub, fb2, mobi) 
-* A TTS mondatok olvashatók
+* mp3 fájlok és mappák lejátszása 
+* lábjegyzetek közvetlenül a szövegben
 </hu-HU>
 
 <kk>
 * Жақсартылған PDF қарап шығу және эпуб оқу 
-* Қосылған ойнату тізімдері (кітап топтары, ретін өзгерту) 
-* Ойнату mp3 файлдары мен қалталары 
-* Мәтінді тікелей сілтеме 
-* TTS сілтемелерді оқи алады (epub, fb2, mobi) 
-* TTS сөйлемдермен оқылады
+* Файлдар менеджеріне файлдарды көшіру, қою, файлдарды жылжыту 
+* Жақсартылған тегтер менеджері 
+* Қосылған ойнату тізімдері (кітап топтары, қайта тапсыру) 
+* MP3 файлдары мен қалталарды ойнату 
+*
 </kk>
 
 <sk>
-* Vylepšené prezeranie PDF a čítanie EPUB 
-* Pridané zoznamy skladieb (zoskupovanie kníh, reordering) 
+* Vylepšené prezeranie PDF a čítanie Epub 
+* Kopírovať, vkladať, presúvať súbory v správcovi súborov 
+* Vylepšený manažér značiek 
+* Pridané zoznamy skladieb (skupinové skupiny, preskupenie) 
 * Prehrávanie mp3 súborov a priečinkov 
-* Poznámky priamo v texte 
-* TTS si môže prečítať poznámky pod čiarou (epub, fb2, mobi) 
-* TTS môže čítať vety
+* Poznámky priamo v texte
 </sk>
 
 <tr-TR>
 * Geliştirilmiş PDF Görüntüleme ve Epub Okuma 
-* Eklenen Çalma Listeleri (kitap grupları, yeniden sıralama) 
-* Çalma mp3 dosyaları ve klasörleri 
-* Doğrudan metindeki dipnotlar 
-* TTS dipnotları okuyabilir (epub, fb2, mobi) 
-* TTS cümleleri okuyabilir
+* Kopyalama, yapıştırma, dosya yöneticisindeki dosyaları taşıma 
+* Geliştirilmiş Etiketler yöneticisi 
+* Eklenen Çalma Listeleri (kitap grupları, yeniden sıralama)
 </tr-TR>
 
 <no-NO>
 * Forbedret PDF-visning og Epub-lesing 
-* Lagt til spillelister (bok grupperinger, reordering) 
+* Kopier, lim inn, flytt filer i filbehandleren 
+* Forbedret Tags-manager 
+* Lagt til spillelister (bokgrupperinger, reordering) 
 * Avspilling av mp3-filer og mapper 
-* Fotnoter direkte i teksten 
-* TTS kan lese fotnoter (epub, fb2, mobi) 
-* TTS kan lese med setninger
+* Fotnoter direkte i teksten
 </no-NO>
 
 <la>
-Video added 
+Melior PDF Viewing Epub Reading 
 * 
-* Melior PDF Viewing et Epub Rading ’(libri sodalitates, enim refectio) mp3 lima quod folders Playback 
+* et exemplar, crustulum, moveo lima procurator in files 
 * 
+* Melior Tags procurator Video added (liber sodalitates, enim refectio) mp3 Playback 
 * 
-* TTS Corinthians directe in textu notis legi possit (epub, .fb2, mobi) 
-* a sententias legere potes TTS
+* V. directe ad illud lima quod folders
 </la>
 
 <ja-JP>
-*改善されたPDF表示とEPUB読み
-*プレイリスト（ブックのグループ化、並べ替え）を追加
+*改善されたPDF表示とEPUBの読み
+*ファイルマネージャ内のファイルのコピー、貼り付け、移動
+*改善されたタグマネージャ
+*プレイリストの追加（ブックのグループ化、並べ替え）
 </ja-JP>
 
 <uk>
-* Покращено PDF-перегляд і читання EPUB 
-* Додані плейлисти (групування книг, переупорядкування) 
-* Відтворення mp3-файлів і папок 
-* Виноски безпосередньо в тексті 
-* TTS може читати виноски (epub, fb2, mobi) 
-* TTS може читати пропозиції
+* Покращено PDF-перегляд і читання Epub 
+* Копіювання, вставлення, переміщення файлів в менеджері файлів
 </uk>
 
 <en-US>
 * Improved PDF Viewing and Epub Reading
+* Copy, paste, move files in the file manager
+* Improved Tags manager
 * Added Playlists (book groupings, reordering)
 * Playback mp3 files and folders
 * Footnotes directly in the text
-* TTS can read footnotes (epub, fb2, mobi)
-* TTS can read by sentences
 </en-US>

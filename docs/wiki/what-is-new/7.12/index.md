@@ -18,7 +18,27 @@ version: 2
 * Share pages from other apps (e.g., browsers) w/ Librera Reader
 * Support for Chinese Traditional and Simplified 
 * Bookmarks in Musician mode
+* Copy, paste, move files in the file manager
 
+**Additional Bookmark panel**
+
+* Add bookmarks
+* Easy navigate to bookmarks
+* Add\hide bookmark panel in reading modes
+
+||||
+|-|-|-|
+|![](19.png)|![](20.png)|![](21.png)|
+
+**Copy, paste, move files in the file manager**
+
+* Copy any book with a book menu
+* Paster or move book to the folder
+* Click on the folder path or on the black space
+
+||||
+|-|-|-|
+|![](16.png)|![](17.png)|![](18.png)|
 
 **Favorites Tab**
 

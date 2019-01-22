@@ -1,6 +1,6 @@
 * Improved PDF Viewing and Epub Reading
+* Copy, paste, move files in the file manager
+* Improved Tags manager
 * Added Playlists (book groupings, reordering)
 * Playback mp3 files and folders
 * Footnotes directly in the text
-* TTS can read footnotes (epub, fb2, mobi)
-* TTS can read by sentences
