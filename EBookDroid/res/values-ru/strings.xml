@@ -95,8 +95,8 @@
    <string name="margin_width">Ширина отступов</string>
    <string name="top">Сверху</string>
    <string name="bottom">Снизу</string>
-   <string name="links_color_day">Цвет ссылок (\"День\")</string>
-   <string name="links_color_night">Цвет ссылок (\"Ночь\")</string>
+   <string name="links_color_day">Цвет примеч-й (\"День\")</string>
+   <string name="links_color_night">Цвет примеч-й (\"Ночь\")</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Расширенные функции</string>
    <string name="direction_of_scrolling">Прокрутка текста</string>
@@ -134,7 +134,7 @@
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
-   <string name="status_bar">Строка состояния</string>
+   <string name="status_bar">Контроль/прогресс чтения</string>
    <string name="show_status_bar">Показывать строку состояния</string>
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Переходить между страницами скольжением пальца по строке состояния</string>
@@ -531,5 +531,5 @@
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
    <string name="paste">Вставить</string>
    <string name="move">Переместить</string>
-   <string name="the_file_already_exists_">Файл уже существует</string>
+   <string name="the_file_already_exists_">Такой файл уже существует</string>
 </resources>
