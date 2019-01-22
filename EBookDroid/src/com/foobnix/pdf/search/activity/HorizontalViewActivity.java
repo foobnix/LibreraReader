@@ -1120,8 +1120,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     }
 
+    boolean isFlipping = false;
+
     @Subscribe
     public void onFlippingStart(FlippingStart event) {
+        isFlipping = true;
         flippingTimer = 0;
         flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.post(flippingRunnable);
@@ -1139,6 +1142,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Subscribe
     public void onFlippingStop(FlippingStop event) {
+        isFlipping = false;
         flippingHandler.removeCallbacks(flippingRunnable);
         flippingHandler.removeCallbacksAndMessages(null);
         flippingIntervalView.setVisibility(View.GONE);
@@ -1543,6 +1547,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             } else {
                 prevPage();
             }
+        } else if (ev.getMessage().equals(MessageEvent.MESSAGE_AUTO_SCROLL)) {
+            if (isFlipping) {
+                onFlippingStop(null);
+            } else {
+                onFlippingStart(null);
+            }
+
         }
     }
 
