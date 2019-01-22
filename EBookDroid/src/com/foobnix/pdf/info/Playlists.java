@@ -94,9 +94,7 @@ public class Playlists {
 
             while ((line = reader.readLine()) != null) {
                 if (TxtUtils.isNotEmpty(line)) {
-                    if (new File(line).isFile()) {
-                        res.add(line.replace(L_PLAYLIST, ""));
-                    }
+                    res.add(line.replace(L_PLAYLIST, ""));
                 }
             }
             reader.close();
