@@ -439,7 +439,7 @@
    <string name="add_tag">創建標籤</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">確認從所有書籍中刪除這個標籤？</string>
    <string name="by_number_of_pages">頁數</string>
-   <string name="by_number_in_serie">序號</string>
+   <string name="by_number_in_serie">書號</string>
    <string name="by_extension">格式</string>
    <string name="recent_favorites_tags">最近與收藏與標籤</string>
    <string name="line_spacing">行目間距</string>
@@ -529,7 +529,7 @@
    <string name="additional_bookmarks_bar">閱讀模式附加書簽欄</string>
    <string name="show_rectangular_tap_zones">矩形抽頭區域</string>
    <string name="turn_the_page_on_the_last_word">最後一字翻頁</string>
-   <string name="paste">糊</string>
+   <string name="paste">粘貼</string>
    <string name="move">移動</string>
    <string name="the_file_already_exists_">該文件已存在。</string>
    <string name="please_wait_books_are_being_processed_">請稍等，正在處理書籍</string>
