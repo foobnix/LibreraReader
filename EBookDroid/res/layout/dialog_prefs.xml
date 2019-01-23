@@ -206,6 +206,7 @@
         <LinearLayout
             android:id="@+id/onScreenMode"
             android:layout_width="match_parent"
+            android:minHeight="@dimen/wh_button_big"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:gravity="center_vertical" >

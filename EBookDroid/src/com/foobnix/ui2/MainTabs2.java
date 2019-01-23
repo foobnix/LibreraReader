@@ -194,7 +194,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.get().isWhiteTheme) {
@@ -309,7 +308,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             @Override
             public void onDrawerClosed(View arg0) {
-                tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+                try {
+                    tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
 
             }
         });
