@@ -60,7 +60,7 @@
    <string name="web">Web</string>
    <string name="beta_version">Versione beta</string>
    <string name="archive">Archivio</string>
-   <string name="rate_pdf_reader1">Vota e commenta questa app su Google Play, è molto importante per noi</string>
+   <string name="rate_pdf_reader1">Vota e commenta questa app su Google Play, è molto importante per noi!</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Testo formattato (grafica peggiore)</string>
    <string name="continuous_text">Testo continuo (nessuna interruzione di riga)</string>
@@ -92,11 +92,11 @@
    <string name="user_styles">Stili utente</string>
    <string name="automatic_hyphenation">Sillabazione automatica</string>
    <string name="empty_line">Linea vuota</string>
-   <string name="margin_width">Larghezza del margine</string>
+   <string name="margin_width">Larghezza dei margini</string>
    <string name="top">Sopra</string>
    <string name="bottom">Sotto</string>
-   <string name="links_color_day">Colore dei collegamenti (giorno)</string>
-   <string name="links_color_night">Collegamenti colore (notte)</string>
+   <string name="links_color_day">Colore link (giorno)</string>
+   <string name="links_color_night">Colore link (notte)</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Impostazioni avanzate</string>
    <string name="direction_of_scrolling">Direzione di scorrimento</string>
@@ -145,11 +145,11 @@
    <string name="___MULTIPLE___SECTIONS___"></string>
    <string name="preferences">Preferenze</string>
    <string name="language">Lingua</string>
-   <string name="font_size">Dimensione del font</string>
+   <string name="font_size">Dimensione carattere</string>
    <string name="brightness">Luminosità</string>
    <string name="bluelight_filter">Filtro luce blu</string>
    <string name="password">Parola d\'ordine</string>
-   <string name="restore_defaults_short">Ripristino predefinito</string>
+   <string name="restore_defaults_short">Ripristina predefinite</string>
    <string name="customize">Personalizzare</string>
    <string name="color">Colore</string>
    <string name="horizontal">Orizzontale</string>
@@ -179,7 +179,7 @@
    <string name="restore_default_keys">Ripristina tasti predefiniti</string>
    <string name="next_keys">Tasto avanti:</string>
    <string name="prev_keys">Tasto indietro:</string>
-   <string name="starred">Preferito</string>
+   <string name="starred">Preferiti</string>
    <string name="bookmarks">Segnalibri</string>
    <string name="back">Indietro</string>
    <string name="import_bookmarks">Importa segnalibri</string>
@@ -312,7 +312,7 @@
    <string name="pitch1">Tono</string>
    <string name="sound_volume">Volume</string>
    <string name="next">Avanti</string>
-   <string name="stop_reading_timer_">Stop lettura (timer)</string>
+   <string name="stop_reading_timer_">Ferma lettura (timer)</string>
    <string name="start">Inizio</string>
    <string name="reading_will_be_stopped">La lettura verrà interrotta</string>
    <string name="speak_into_file_wav_">Parla in un file (wav)</string>
@@ -332,7 +332,7 @@
    <string name="web_dict">Dizionario Online</string>
    <string name="___TO___CHECK___SECTION___"></string>
    <string name="font">Font</string>
-   <string name="font_name">Nome carattere</string>
+   <string name="font_name">Carattere</string>
    <string name="text_page">Pagina</string>
    <string name="page">Pagina</string>
    <string name="___INDEFINITE___SECTION___"></string>
@@ -420,7 +420,7 @@
    <string name="subject">Soggetto</string>
    <string name="keywords">Parole</string>
    <string name="number">Numero</string>
-   <string name="percent">Per cento</string>
+   <string name="percent">Percentuale</string>
    <string name="awards">Premi</string>
    <string name="close_book_and_application">Chiudere il libro e l\'applicazione</string>
    <string name="percent_and_number">Percentuale e numero</string>
@@ -449,7 +449,7 @@
    <string name="text_highlight_mode_is_enable">La modalità di evidenziazione del testo è abilitata</string>
    <string name="text_highlight_mode_is_disable">La modalità di evidenziazione del testo è disabilitata</string>
    <string name="application_error_please_send_this_report_by_emial">Errore dell\'applicazione, si prega di inviare questo rapporto via emaill</string>
-   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Metti in pausa la lettura se la chiamata in arrivo o altri suoni</string>
+   <string name="pause_reading_if_the_incoming_call_or_other_sounds">Metti in pausa la lettura per chiamate in arrivo o altri suoni</string>
    <string name="add_resource">Aggiungi risorsa</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Vuoi scaricare più font di libri (10 MB)?</string>
    <string name="hyphenation_language">Linguaggio di sillabazione</string>
@@ -471,8 +471,8 @@
    <string name="logout">Disconnettersi</string>
    <string name="cloud_not_connected">Cloud non connesso</string>
    <string name="cloud_sync_folder">Cartella di sincronizzazione cloud</string>
-   <string name="clouds">Nuvole</string>
-   <string name="librera_cloud">Nube di Librera</string>
+   <string name="clouds">Cloud</string>
+   <string name="librera_cloud">Cloud di Librera</string>
    <string name="hide_search_bar">Nascondi la barra di ricerca</string>
    <string name="show_search_bar">Mostra barra di ricerca</string>
    <string name="never">Mai</string>
@@ -512,7 +512,7 @@
    <string name="create_tag">Crea tag</string>
    <string name="add_tags">Aggiungere etichette</string>
    <string name="play">Giocare</string>
-   <string name="favorite">Preferito</string>
+   <string name="favorite">Preferiti</string>
    <string name="playlists">Playlist</string>
    <string name="tags">Tag</string>
    <string name="are_you_sure_to_delete_playlist_">Sei sicuro di cancellare la playlist?</string>
