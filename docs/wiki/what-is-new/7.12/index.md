@@ -17,14 +17,14 @@ version: 2
 * Option to resume TTS reading at the last punctuation mark (per-sentence mode)
 * Share pages from other apps (e.g., browsers) w/ Librera Reader
 * Support for Chinese Traditional and Simplified 
-* Bookmarks in Musician mode
-* Copy, paste, move files in the file manager
+* Bookmarks Ribbon for on-the-fly bookmarking (e.g., in Musician's mode)
+* File manager: copy, paste, and move files
 
-**Additional Bookmark panel**
+**Bookmarks Ribbon**
 
-* Add bookmarks
-* Easy navigate to bookmarks
-* Add\hide bookmark panel in reading modes
+* Add bookmarks w/ a single tap
+* Easily navigate bookmarks
+* Show/hide the ribbon in reading modes
 
 ||||
 |-|-|-|
