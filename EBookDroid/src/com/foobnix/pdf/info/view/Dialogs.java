@@ -1,9 +1,12 @@
 package com.foobnix.pdf.info.view;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +30,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -573,21 +577,19 @@ public class Dialogs {
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_tag));
 
-        final List<String> tags = StringDB.asList(AppState.get().bookTags);
-        List<String> fileTags = StringDB.asList(tag);
-        for (String fileTag : fileTags) {
-            if (!StringDB.contains(AppState.get().bookTags, fileTag)) {
-                tags.add(fileTag);
-            }
-        }
-        Collections.sort(tags);
+        Collection<String> res = new LinkedHashSet<String>();
+        res.addAll(StringDB.asList(AppState.get().bookTags));
+        res.addAll(StringDB.asList(tag));
+        res.addAll(AppDB.get().getAll(SEARCH_IN.TAGS));
 
-        Iterator<String> iterator = tags.iterator();
+        Iterator<String> iterator = res.iterator();
         while (iterator.hasNext()) {
             if (TxtUtils.isEmpty(iterator.next().trim())) {
                 iterator.remove();
             }
         }
+        final List<String> tags = new ArrayList(res);
+        Collections.sort(tags);
 
         final Set<Integer> checked = new HashSet<>();
 
