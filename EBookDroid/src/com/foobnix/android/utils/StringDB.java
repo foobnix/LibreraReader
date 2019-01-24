@@ -2,7 +2,9 @@ package com.foobnix.android.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.graphics.Color;
 
@@ -35,6 +37,23 @@ public class StringDB {
             }
         }
         return colors;
+    }
+
+    public static String merge(String db1, String db2) {
+        if (TxtUtils.isEmpty(db1)) {
+            return db2;
+        }
+
+        if (TxtUtils.isEmpty(db2)) {
+            return db1;
+        }
+
+        Set<String> res = new LinkedHashSet<String>();
+        res.addAll(asList(db1));
+        res.addAll(asList(db2));
+        String join = TxtUtils.joinList(DIVIDER, res) + DIVIDER;
+        LOG.d("MergeTags", db1, db2, ">>", join);
+        return join;
 
     }
 

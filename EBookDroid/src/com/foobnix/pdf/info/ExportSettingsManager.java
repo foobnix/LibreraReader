@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
@@ -167,7 +168,7 @@ public class ExportSettingsManager {
                     try {
                         if (new File(result.first).isFile()) {
                             FileMeta meta = AppDB.get().getOrCreate(result.first);
-                            meta.setTag(result.second);
+                            meta.setTag(StringDB.merge(meta.getTag(), result.second));
                             AppDB.get().update(meta);
                         }
                     } catch (Exception e) {

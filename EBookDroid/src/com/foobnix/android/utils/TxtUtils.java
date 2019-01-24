@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -782,7 +783,7 @@ public class TxtUtils {
         return !isEmpty(txt);
     }
 
-    public static String joinList(String delim, List<?> items) {
+    public static String joinList(String delim, Collection<?> items) {
         if (items == null || items.size() == 0) {
             return "";
         }

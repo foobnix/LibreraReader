@@ -11,6 +11,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
 import com.foobnix.pdf.info.ExtUtils;
@@ -170,11 +171,13 @@ public class PrefDialogs {
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
                 LOG.d("appFontScale0", AppState.get().appFontScale);
+                final String bookTagsInit = AppState.get().bookTags;
                 boolean result = ExportSettingsManager.getInstance(activity).importAll(new File(result1));
 
                 try {
                     if (result) {
                         AppState.get().loadIn(activity);
+                        AppState.get().bookTags = StringDB.merge(bookTagsInit, AppState.get().bookTags);
                         BookCSS.get().load(activity);
                         TintUtil.init();
                         SettingsManager.clearCache();
