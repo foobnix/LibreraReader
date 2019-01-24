@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 9
+version: 10
 ---
 [<](/wiki/)
 
@@ -13,4 +13,5 @@ version: 9
 * [Как увеличить размер шрифта в документе PDF в Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)
 * [Относительные номера страниц для книг в формате PDF](/wiki/faq/relative-page-numbers/ru)
 * [Настройка стилей книги css](/wiki/faq/customize-book-css-styles/ru)
+* [Как обновить библиотеку](/wiki/faq/update-the-library/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)

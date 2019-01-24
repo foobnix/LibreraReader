@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 9
+version: 10
 ---
 [<](/wiki/)
 
@@ -13,4 +13,5 @@ version: 9
 * [Comment augmenter la taille de police d'un document PDF sous Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
 * [Numéros de page relatifs des livres PDF](/wiki/faq/relative-page-numbers/fr)
 * [Personnaliser les styles css du livre](/wiki/faq/customize-book-css-styles/fr)
+* [Comment mettre à jour la bibliothèque](/wiki/faq/update-the-library/fr)
 * [Modes de lecture: mode défilement, mode livre et mode musicien](/wiki/faq/reading-mode-vertical-book-musician/fr)
