@@ -440,6 +440,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 if (i1 > 0 && i2 > i1) {
                     holder.count.setText(fileMeta.getPathTxt().subSequence(i1 + 1, i2));
                     holder.title.setText(fileMeta.getPathTxt().subSequence(0, i1));
+                    holder.count.setVisibility(View.VISIBLE);
+                } else {
+                    holder.count.setVisibility(View.GONE);
                 }
 
                 TxtUtils.underlineTextView(holder.play);

@@ -39,7 +39,6 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -54,6 +53,8 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Document;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -72,7 +73,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-@SuppressLint("NewApi")
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
@@ -423,6 +424,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public boolean onResultRecive(FileMeta result) {
+                if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                    int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                    rememberPos.put(displayPath, pos);
+                    LOG.d("rememberPos LinearLayoutManager", displayPath, pos);
+                } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                    int pos = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
+                    rememberPos.put(displayPath, pos);
+                    LOG.d("rememberPos StaggeredGridLayoutManager", displayPath, pos);
+                }
+
                 if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
                     displayAnyPath(result.getPath());
                     if (fragmentType == TYPE_SELECT_FOLDER) {
@@ -514,7 +525,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         final View bankSpace = view.findViewById(R.id.bankSpace);
-
 
         bankSpace.setOnClickListener(new OnClickListener() {
 
@@ -730,10 +740,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         displayItems(items);
         showPathHeader();
 
+        if (isRestorePos) {
+            final int pos = rememberPos.get(displayPath) == null ? 0 : rememberPos.get(displayPath);
+            recyclerView.getLayoutManager().scrollToPosition(pos);
+            LOG.d("rememberPos go", displayPath, pos);
+        }
+
     }
 
-    public boolean onBackAction() {
+    boolean isRestorePos = false;
 
+    public boolean onBackAction() {
         if (ExtUtils.isExteralSD(AppState.get().dirLastPath)) {
             String path = AppState.get().dirLastPath;
             LOG.d("pathBack before", path);
@@ -766,23 +783,21 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             LOG.d("parent", path);
 
-            int pos = rememberPos.get(path) == null ? 0 : rememberPos.get(path);
             displayAnyPath(path);
-            recyclerView.scrollToPosition(pos);
+            isRestorePos = true;
             return true;
         }
     }
 
     public void displayAnyPath(String path) {
         LOG.d("Display-path", path);
-
+        isRestorePos = false;
         displayPath = path;
         AppState.get().dirLastPath = path;
 
         populate();
     }
 
-    String prevPath;
     private ImageView openAsbookImage;
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -801,14 +816,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         if (searchAdapter == null) {
             return;
         }
-
-        // if (!path.equals(prevPath)) {
-        // int pos = ((LinearLayoutManager)
-        // recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
-        // rememberPos.put(prevPath, pos);
-        // LOG.d("rememberPos", path, pos);
-        // }
-        // prevPath = path;
 
         searchAdapter.clearItems();
 
@@ -978,6 +985,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         String pathFull = prefix + itemPath;
                         pathFull = pathFull.replace("://", ":/");
                         displayAnyPath(pathFull);
+                        isRestorePos = true;
                     }
                 });
                 item.setOnLongClickListener(new OnLongClickListener() {
