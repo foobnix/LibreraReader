@@ -19,12 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dip"
         android:orientation="horizontal" >
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="60dip"
+            android:layout_height="wrap_content"
             android:layout_weight="1" >
 
             <LinearLayout
@@ -38,13 +37,12 @@
         <ImageView
             android:layout_marginLeft="4dip"
             android:id="@+id/pagesBookmark"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray_dash2"
-            android:padding="14dip"
             android:src="@drawable/glyphicons_73_bookmark1"
-            android:tint="@color/lt_grey_dima1" />
+            android:tint="@color/lt_grey_dima" />
     </LinearLayout>
 
     <FrameLayout

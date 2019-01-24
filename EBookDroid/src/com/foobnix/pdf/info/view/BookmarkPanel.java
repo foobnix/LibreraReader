@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 public class BookmarkPanel {
 
+    private static final int SIZE = Dips.DP_40;
+
     public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel, final DocumentController dc, final View pagesBookmark, final String quickBookmark) {
         pageshelper.removeAllViews();
 
@@ -39,7 +41,7 @@ public class BookmarkPanel {
         } else {
             pagesBookmark.setBackgroundResource(R.drawable.bg_border_ltgray_dash2_night);
         }
-        pagesBookmark.setPadding(Dips.DP_15, Dips.DP_15, Dips.DP_15, Dips.DP_15);
+        pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
 
         List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {
@@ -91,12 +93,12 @@ public class BookmarkPanel {
             });
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
                 t.setPadding(Dips.DP_8, Dips.DP_2, Dips.DP_8, Dips.DP_2);
-                t.setMinWidth(Dips.DP_60);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, Dips.DP_60);
+                t.setMinWidth(SIZE);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, SIZE);
                 params.leftMargin = Dips.DP_3;
                 pageshelper.addView(t, params);
             } else {
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.DP_60, Dips.DP_60);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(SIZE, SIZE);
                 params.leftMargin = Dips.DP_3;
                 pageshelper.addView(t, params);
             }

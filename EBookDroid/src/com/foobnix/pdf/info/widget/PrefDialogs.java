@@ -216,7 +216,7 @@ public class PrefDialogs {
         if (isBookSeriviceIsRunning(activity)) {
             return;
         }
-        String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, "Export-All.JSON.txt");
+        String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, "-Export-All.JSON.txt");
         ChooserDialogFragment.createFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
             @Override

@@ -111,7 +111,7 @@ public class ExportSettingsManager {
         try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
             String time = format.format(new Date());
-            String name = String.format("%s-%s", time, ext);
+            String name = String.format("%s%s", time, ext);
             return name;
         } catch (Exception e) {
             LOG.e(e);
