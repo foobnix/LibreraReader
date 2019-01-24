@@ -610,6 +610,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                if (dc == null || dc.getCurrentBook() == null) {
+                    return;
+                }
                 ShareDialog.show(HorizontalViewActivity.this, dc.getCurrentBook(), new Runnable() {
 
                     @Override

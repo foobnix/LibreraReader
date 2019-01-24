@@ -108,7 +108,7 @@ public class AppsConfig {
         }
 
         IS_BETA = TXT_APP_NAME.contains("Beta");
-
+        IS_BETA = false;
 
         if (IS_BETA) {
             ADMOB_BANNER = ADMOB_FULLSCREEN = null;
