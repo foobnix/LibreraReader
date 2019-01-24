@@ -135,13 +135,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     }
 
     public class DirectoryViewHolder extends ContextViewHolder {
-        public TextView title, path, play;
+        public TextView title, path, play, count;
         public ImageView image, starIcon;
         public View parent;
 
         public DirectoryViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.text1);
+            count = (TextView) view.findViewById(R.id.count);
             play = (TextView) view.findViewById(R.id.play);
             path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
@@ -430,8 +431,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
                 holder.play.setVisibility(View.VISIBLE);
+                holder.count.setVisibility(View.VISIBLE);
 
                 holder.play.setText(holder.play.getText().toString().toUpperCase(Locale.US));
+                int i1 = fileMeta.getPathTxt().indexOf("(");
+                int i2 = fileMeta.getPathTxt().indexOf(")");
+
+                if (i1 > 0 && i2 > i1) {
+                    holder.count.setText(fileMeta.getPathTxt().subSequence(i1 + 1, i2));
+                    holder.title.setText(fileMeta.getPathTxt().subSequence(0, i1));
+                }
 
                 TxtUtils.underlineTextView(holder.play);
 
