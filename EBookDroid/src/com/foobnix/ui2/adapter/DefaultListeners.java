@@ -146,7 +146,7 @@ public class DefaultListeners {
 
                 } else {
                     if (AppState.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
-                        Dialogs.showTagsDialog(a, new File(result.getPath()), new Runnable() {
+                        Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 
                             @Override
                             public void run() {

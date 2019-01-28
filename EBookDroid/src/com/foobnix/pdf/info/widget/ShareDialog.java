@@ -373,7 +373,7 @@ public class ShareDialog {
                         ExtUtils.sharePage(a, file, page, null);
                     }
                 } else if (which == i++) {
-                    Dialogs.showTagsDialog(a, file, null);
+                    Dialogs.showTagsDialog(a, file, false, null);
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
                     showAddToCloudDialog(a, file);
                 } else if (!isPlaylist && which == i++) {

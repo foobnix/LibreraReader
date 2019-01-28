@@ -35,6 +35,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.TypedValue;
@@ -696,7 +697,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                         @Override
                         public boolean onLongClick(View v) {
 
-                            Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+                            Dialogs.showTagsDialog((FragmentActivity) v.getContext(), new File(fileMeta.getPath()), false, new Runnable() {
 
                                 @Override
                                 public void run() {
@@ -778,7 +779,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                 @Override
                 public boolean onLongClick(View v) {
-                    Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+                    Dialogs.showTagsDialog((FragmentActivity) v.getContext(), new File(fileMeta.getPath()), false, new Runnable() {
 
                         @Override
                         public void run() {
@@ -799,7 +800,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
                 @Override
                 public void onClick(View v) {
-                    Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+                    Dialogs.showTagsDialog((FragmentActivity) v.getContext(), new File(fileMeta.getPath()), false, new Runnable() {
 
                         @Override
                         public void run() {

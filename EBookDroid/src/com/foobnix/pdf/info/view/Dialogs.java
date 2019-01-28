@@ -22,6 +22,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.WebViewHepler;
@@ -562,7 +563,7 @@ public class Dialogs {
         });
     }
 
-    public static void showTagsDialog(final Context a, File file, final Runnable refresh) {
+    public static void showTagsDialog(final Activity a, final File file, final boolean isReadBookOption, final Runnable refresh) {
         final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
         final String tag = file == null ? "" : fileMeta.getTag();
 
@@ -622,7 +623,7 @@ public class Dialogs {
 
                     @Override
                     public void onClick(View v) {
-                        AlertDialogs.showOkDialog((Activity) a, a.getString(R.string.do_you_want_to_delete_this_tag_from_all_books_), new Runnable() {
+                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_this_tag_from_all_books_), new Runnable() {
 
                             @Override
                             public void run() {
@@ -703,6 +704,17 @@ public class Dialogs {
             });
         }
 
+        if (isReadBookOption) {
+            builder.setNeutralButton(R.string.read_a_book, new AlertDialog.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ExtUtils.openFile(a, new FileMeta(file.getPath()));
+                }
+
+            });
+        }
+
         AlertDialog create = builder.create();
         create.setOnDismissListener(new OnDismissListener() {
 
@@ -712,8 +724,8 @@ public class Dialogs {
                     refresh.run();
                 }
                 TempHolder.listHash++;
-                Keyboards.close((Activity) a);
-                Keyboards.hideNavigation((Activity) a);
+                Keyboards.close(a);
+                Keyboards.hideNavigation(a);
 
             }
         });

@@ -273,7 +273,7 @@ public class FileInformationDialog {
 
             @Override
             public void onClick(View v) {
-                Dialogs.showTagsDialog(v.getContext(), new File(fileMeta.getPath()), new Runnable() {
+                Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
 
                     @Override
                     public void run() {

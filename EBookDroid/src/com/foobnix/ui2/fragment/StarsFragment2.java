@@ -25,6 +25,7 @@ import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -111,7 +112,7 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                Dialogs.showTagsDialog(v.getContext(), null, new Runnable() {
+                Dialogs.showTagsDialog((FragmentActivity) v.getContext(), null, false, new Runnable() {
 
                     @Override
                     public void run() {
