@@ -18,6 +18,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
@@ -29,12 +31,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class BrightnessHelper {
 
+    static Handler handler = new Handler(Looper.getMainLooper());
+
     public static final int BRIGHTNESS_WIDTH = Dips.DP_50;
-    Toast toast;
 
     float lastPercent = 0;
     static float currentPercent = 0;
@@ -143,11 +146,11 @@ public class BrightnessHelper {
         return 50;
     }
 
-    public static void onMessegeBrightness(MessegeBrightness msg, final TextView textView, final View overlay) {
+    public static synchronized void onMessegeBrightness(MessegeBrightness msg, final TextView textView, final View overlay) {
         int value = msg.getValue();
         textView.setVisibility(View.VISIBLE);
-        textView.getHandler().removeCallbacksAndMessages(null);
-        textView.getHandler().postDelayed(new Runnable() {
+        handler.removeCallbacksAndMessages(null);
+        handler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
