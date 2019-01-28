@@ -99,7 +99,7 @@ public class SettingsManager {
     public static BookSettings getBookSettings() {
         lock.readLock().lock();
         try {
-            LOG.d("getBookSettings current");
+            // LOG.d("getBookSettings current");
             return current;
         } finally {
             lock.readLock().unlock();

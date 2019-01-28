@@ -86,18 +86,19 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 }
                 isLongMovement = false;
             }
-            int delta = Dips.dpToPx(15);
+            int delta = Dips.DP_5;
             if (isLongMovement && (Math.abs(y - ev.getY()) > delta || Math.abs(x - ev.getX()) > delta)) {
                 long d = System.currentTimeMillis() - time2;
                 if (d > 150) {
-                    AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
-                    x = ev.getX();
-                    y = ev.getY();
-
                     time2 = System.currentTimeMillis();
-                    if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                        EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
-                    }
+                    AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
+                    time2 = System.currentTimeMillis();
+                }
+                x = ev.getX();
+                y = ev.getY();
+
+                if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                    EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
                 }
 
             }
@@ -318,6 +319,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onLongPress(final MotionEvent e) {
+        LOG.d("ADV-onLongPress");
         if (!AppState.get().isAllowTextSelection) {
             if (TempHolder.get().isAllowTextSelectionFirstTime) {
                 Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
