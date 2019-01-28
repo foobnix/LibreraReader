@@ -709,6 +709,16 @@ public class Dialogs {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    String res = "";
+                    for (int i : checked) {
+                        res = StringDB.add(res, tags.get(i));
+                    }
+                    LOG.d("showTagsDialog", res);
+                    if (fileMeta != null) {
+                        fileMeta.setTag(res);
+                        AppDB.get().update(fileMeta);
+                    }
+
                     ExtUtils.openFile(a, new FileMeta(file.getPath()));
                 }
 
