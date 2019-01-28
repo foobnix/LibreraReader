@@ -19,7 +19,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings.SettingNotFoundException;
 import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
@@ -34,8 +33,6 @@ import android.widget.TextView;
 
 
 public class BrightnessHelper {
-
-    static Handler handler = new Handler(Looper.getMainLooper());
 
     public static final int BRIGHTNESS_WIDTH = Dips.DP_50;
 
@@ -146,23 +143,23 @@ public class BrightnessHelper {
         return 50;
     }
 
-    public static synchronized void onMessegeBrightness(MessegeBrightness msg, final TextView textView, final View overlay) {
+    public static synchronized void onMessegeBrightness(final Handler h, MessegeBrightness msg, final TextView textView, final View overlay) {
         int value = msg.getValue();
         textView.setVisibility(View.VISIBLE);
-        handler.removeCallbacksAndMessages(null);
-        handler.postDelayed(new Runnable() {
+        h.removeCallbacksAndMessages(null);
+        h.postDelayed(new Runnable() {
 
             @Override
             public void run() {
                 textView.setVisibility(View.GONE);
             }
-        }, 1000);
+        }, 2000);
 
         textView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                onMessegeBrightness(new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
+                onMessegeBrightness(h, new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
                 Activity inflate = (Activity) textView.getContext();
                 CheckBox isEnableBlueFilter = inflate.findViewById(R.id.autoSettings);
                 if (isEnableBlueFilter != null) {

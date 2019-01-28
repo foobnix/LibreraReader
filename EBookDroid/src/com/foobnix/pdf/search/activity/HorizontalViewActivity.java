@@ -1022,7 +1022,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
+        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
     }
 
     private boolean closeDialogs() {

@@ -971,7 +971,7 @@ public class DocumentWrapperUI {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
+        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

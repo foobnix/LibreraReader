@@ -60,6 +60,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -194,6 +195,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
+    Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (AppState.get().isWhiteTheme) {
@@ -215,6 +218,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             return;
         }
 
+        handler = new Handler();
         isEink = Dips.isEInk(this);
 
         TintUtil.setStatusBarColor(this);
@@ -428,7 +432,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(msg, toastBrightnessText, overlay);
+        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
