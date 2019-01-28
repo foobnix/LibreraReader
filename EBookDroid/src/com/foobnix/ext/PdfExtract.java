@@ -42,7 +42,8 @@ public class PdfExtract {
         meta.setPagesCount(openDocument.getPageCount());
         meta.setKeywords(openDocument.getMeta("info:Keywords"));
         String subjectLikeGenre = openDocument.getMeta("info:Subject");
-        if (subjectLikeGenre != null && subjectLikeGenre.length() <= SUBJECT_LIMIT) {
+        LOG.d("subjectLikeGenre", subjectLikeGenre, subjectLikeGenre != null ? subjectLikeGenre.length() : 0);
+        if (subjectLikeGenre != null && (subjectLikeGenre.contains(";") || subjectLikeGenre.length() <= SUBJECT_LIMIT)) {
             meta.setGenre(subjectLikeGenre);
         }
         meta.setYear(openDocument.getMeta("info:CreationDate"));
