@@ -282,6 +282,7 @@ public class DialogSpeedRead {
         });
 
         AlertDialog create = builder.create();
+
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:minWidth="1000dip"
+    android:minWidth="10000dip"
+    android:minHeight="10000dip"
     android:orientation="vertical"
     android:padding="4dip" >
 
@@ -34,7 +35,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
         
