@@ -232,7 +232,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         DraggbleTouchListener touch1 = new DraggbleTouchListener(anchorX, (View) anchorX.getParent());
         DraggbleTouchListener touch2 = new DraggbleTouchListener(anchorY, (View) anchorY.getParent());
 
-        final Runnable onMoveAction = new Runnable() {
+        final Runnable onMoveActionOnce = new Runnable() {
 
             @Override
             public void run() {
@@ -242,6 +242,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 float x1 = anchorY.getX();
                 float y1 = anchorY.getY();
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SELECT_TEXT, viewPager.getCurrentItem(), x, y, x1, y1));
+            }
+        };
+
+        final Runnable onMoveAction = new Runnable() {
+
+            @Override
+            public void run() {
+                handler.removeCallbacks(onMoveActionOnce);
+                handler.postDelayed(onMoveActionOnce, 150);
+
             }
         };
 

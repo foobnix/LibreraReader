@@ -514,7 +514,9 @@ public abstract class AbstractViewController extends AbstractComponentController
         if (build.length() > 0) {
             redrawView();
             String filterString = TxtUtils.filterString(build.toString());
-            LOG.d("Add Word SELECT TEXT", filterString);
+            LOG.d("Add Word SELECT-TEXT", filterString);
+            LOG.d("Add Word SELECT-TEXT-ACTION");
+
             return filterString;
         }
 

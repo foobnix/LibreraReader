@@ -88,12 +88,12 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
             int delta = Dips.dpToPx(15);
             if (isLongMovement && (Math.abs(y - ev.getY()) > delta || Math.abs(x - ev.getX()) > delta)) {
-                AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
-                x = ev.getX();
-                y = ev.getY();
-
                 long d = System.currentTimeMillis() - time2;
-                if (d > 25) {
+                if (d > 150) {
+                    AppState.get().selectedText = avc.processLongTap(false, null, ev, true);
+                    x = ev.getX();
+                    y = ev.getY();
+
                     time2 = System.currentTimeMillis();
                     if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
                         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, x, y));
