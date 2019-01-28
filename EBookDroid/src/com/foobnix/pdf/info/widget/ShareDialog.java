@@ -235,14 +235,14 @@ public class ShareDialog {
         }
 
         if (dc != null) {
-            if (a instanceof VerticalViewActivity || AppState.get().isMusicianMode) {
+            if (a instanceof VerticalViewActivity || dc.isMusicianMode()) {
                 items.add(AppState.get().nameHorizontalMode);
             }
-            if (a instanceof HorizontalViewActivity || AppState.get().isMusicianMode) {
+            if (a instanceof HorizontalViewActivity || dc.isMusicianMode()) {
                 items.add(AppState.get().nameVerticalMode);
             }
 
-            if (AppState.get().isMusicianMode == false) {
+            if (dc.isMusicianMode() == false) {
                 items.add(AppState.get().nameMusicianMode);
             }
         }
@@ -299,48 +299,44 @@ public class ShareDialog {
                     MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));
                 }
 
-                if (dc != null && (a instanceof HorizontalViewActivity || AppState.get().isMusicianMode) && which == i++) {
+                if (dc != null && (a instanceof HorizontalViewActivity || dc.isMusicianMode()) && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override
                         public void run() {
-                            if (AppState.get().isMusicianMode) {
-                                AppState.get().isAlwaysOpenAsMagazine = true;
+                            if (dc.isMusicianMode()) {
+                                AppState.get().readingMode = AppState.READING_MODE_BOOK;
                             } else {
-                                AppState.get().isAlwaysOpenAsMagazine = false;
+                                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
                             }
-                            AppState.get().isMusicianMode = false;
                             ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
                         }
                     });
 
                 }
-                if (dc != null && (a instanceof VerticalViewActivity || AppState.get().isMusicianMode) && which == i++) {
+                if (dc != null && (a instanceof VerticalViewActivity || dc.isMusicianMode()) && which == i++) {
                     if (dc != null) {
                         dc.onCloseActivityFinal(new Runnable() {
 
                             @Override
                             public void run() {
-                                if (AppState.get().isMusicianMode) {
-                                    AppState.get().isAlwaysOpenAsMagazine = false;
+                                if (dc.isMusicianMode()) {
+                                    AppState.get().readingMode = AppState.READING_MODE_SCROLL;
                                 } else {
-                                    AppState.get().isAlwaysOpenAsMagazine = true;
-
+                                    AppState.get().readingMode = AppState.READING_MODE_BOOK;
                                 }
-                                AppState.get().isMusicianMode = false;
                                 ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
                         });
                     }
                 }
-                if (dc != null && AppState.get().isMusicianMode == false && which == i++) {
+                if (dc != null && dc.isMusicianMode() == false && which == i++) {
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override
                         public void run() {
-                            AppState.get().isMusicianMode = true;
-                            AppState.get().isAlwaysOpenAsMagazine = false;
+                            AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
                             ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });

@@ -145,7 +145,7 @@ public class DocumentWrapperUI {
     }
 
     public void onSingleTap() {
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             onAutoScrollClick();
         } else {
             doShowHideWrapperControlls();
@@ -412,7 +412,7 @@ public class DocumentWrapperUI {
         updateLock();
 
         reverseKeysIndicator.setVisibility(AppState.get().isReverseKeys ? View.VISIBLE : View.GONE);
-        if (true || AppState.get().isMusicianMode) {
+        if (true || dc.isMusicianMode()) {
             reverseKeysIndicator.setVisibility(View.GONE);
         }
 
@@ -461,7 +461,7 @@ public class DocumentWrapperUI {
     }
 
     public void hideShowPrevNext() {
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             if (AppState.get().isShowRectangularTapZones) {
                 line1.setVisibility(View.VISIBLE);
                 line2.setVisibility(View.VISIBLE);
@@ -836,7 +836,7 @@ public class DocumentWrapperUI {
             @TargetApi(Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onGlobalLayout() {
-                if (anchor.getVisibility() == View.VISIBLE || AppState.get().isMusicianMode) {
+                if (anchor.getVisibility() == View.VISIBLE || dc.isMusicianMode()) {
                     adFrame.setVisibility(View.GONE);
                     adFrame.setClickable(false);
                 } else {
@@ -890,7 +890,7 @@ public class DocumentWrapperUI {
         nextScreenType.setVisibility(View.GONE);
         goToPage1Top.setVisibility(View.GONE);
 
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             AppState.get().isEditMode = false;
             line1.setVisibility(View.VISIBLE);
             line2.setVisibility(View.VISIBLE);
@@ -1089,7 +1089,7 @@ public class DocumentWrapperUI {
     };
 
     public void doDoubleTap(int x, int y) {
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             dc.alignDocument();
         } else {
             if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
@@ -1275,7 +1275,7 @@ public class DocumentWrapperUI {
             autoScroll.setImageResource(R.drawable.glyphicons_37_file_play);
         }
 
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             if (AppState.get().isAutoScroll) {
                 seekSpeedLayot.setVisibility(View.VISIBLE);
             } else {
@@ -1289,7 +1289,7 @@ public class DocumentWrapperUI {
             }
         }
 
-        if (AppState.get().isMusicianMode) {
+        if (dc.isMusicianMode()) {
             lirbiLogo.setVisibility(View.VISIBLE);
         } else {
             lirbiLogo.setVisibility(View.GONE);
@@ -1323,7 +1323,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void run() {
-            if (!AppState.get().isMusicianMode) {
+            if (!dc.isMusicianMode()) {
                 seekSpeedLayot.setVisibility(View.GONE);
             }
 
@@ -1482,7 +1482,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isMusicianMode = false;
+            AppState.get().readingMode = AppState.READING_MODE_BOOK;
             initUI(a);
             hideShow();
         }

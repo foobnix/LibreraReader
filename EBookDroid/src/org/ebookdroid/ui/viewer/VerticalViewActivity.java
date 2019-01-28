@@ -125,7 +125,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             }
         }
 
-        if (AppState.get().isRememberMode && AppState.get().isAlwaysOpenAsMagazine) {
+        if (AppState.get().isRememberMode && AppState.get().readingMode == AppState.READING_MODE_BOOK) {
             super.onCreate(savedInstanceState);
             if (AppState.get().isDayNotInvert) {
                 setTheme(R.style.StyledIndicatorsWhite);

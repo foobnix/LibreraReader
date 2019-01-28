@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Întoarceți pagina la ultimul cuvânt</string>
    <string name="paste">Pastă</string>
    <string name="move">Mișcare</string>
+   <string name="tag_manager">Manager de etichete</string>
    <string name="the_file_already_exists_">Fișierul există deja.</string>
    <string name="please_wait_books_are_being_processed_">Așteptați, cărțile sunt procesate</string>
 </resources>

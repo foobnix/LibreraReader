@@ -2531,7 +2531,7 @@ public class DragingDialogs {
                 View inflate = inflater.inflate(R.layout.dialog_flipping_pages, null, false);
 
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
-                isScrollAnimation.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isScrollAnimation.setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -2695,7 +2695,7 @@ public class DragingDialogs {
 
                 final EditText musicText = (EditText) inflate.findViewById(R.id.musicText);
                 musicText.setText(AppState.get().musicText);
-                ((View) musicText.getParent()).setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+                ((View) musicText.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.musicTextOk).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -2710,7 +2710,7 @@ public class DragingDialogs {
                 ///
 
                 CheckBox isShowRectangularTapZones = (CheckBox) inflate.findViewById(R.id.isShowRectangularTapZones);
-                isShowRectangularTapZones.setVisibility(AppState.get().isMusicianMode ? View.VISIBLE : View.GONE);
+                isShowRectangularTapZones.setVisibility(AppState.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
 
                 isShowRectangularTapZones.setChecked(AppState.get().isShowRectangularTapZones);
                 isShowRectangularTapZones.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3120,7 +3120,8 @@ public class DragingDialogs {
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
-                // isLoopAutoplay.setVisibility(AppState.get().isAlwaysOpenAsMagazine ?
+                // isLoopAutoplay.setVisibility(AppState.get().readingMode ==
+                // AppState.READEING_MODE_BOOK ?
                 // View.GONE : View.VISIBLE);
                 isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3218,7 +3219,7 @@ public class DragingDialogs {
                 });
 
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
-                isScrollAnimation.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isScrollAnimation.setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
                 isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3229,7 +3230,7 @@ public class DragingDialogs {
                 });
 
                 CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableVerticalSwipe);
-                isDisableSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isDisableSwipe.setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isDisableSwipe.setChecked(AppState.get().isEnableVerticalSwipe);
                 isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3240,7 +3241,7 @@ public class DragingDialogs {
                 });
 
                 final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
-                isSwipeGestureReverse.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isSwipeGestureReverse.setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
                 isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
 
@@ -3252,7 +3253,7 @@ public class DragingDialogs {
                 });
 
                 CheckBox isEnableHorizontalSwipe = (CheckBox) inflate.findViewById(R.id.isEnableHorizontalSwipe);
-                isEnableHorizontalSwipe.setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                isEnableHorizontalSwipe.setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isEnableHorizontalSwipe.setChecked(AppState.get().isEnableHorizontalSwipe);
                 isEnableHorizontalSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -3337,7 +3338,7 @@ public class DragingDialogs {
                     }
                 });
 
-                isIgnoreAnnotatations.setVisibility(!AppState.get().isAlwaysOpenAsMagazine && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                isIgnoreAnnotatations.setVisibility(!(AppState.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 CheckBox isSaveAnnotatationsAutomatically = (CheckBox) inflate.findViewById(R.id.isSaveAnnotatationsAutomatically);
                 isSaveAnnotatationsAutomatically.setChecked(AppState.get().isSaveAnnotatationsAutomatically);
@@ -3350,7 +3351,7 @@ public class DragingDialogs {
                     }
                 });
 
-                isSaveAnnotatationsAutomatically.setVisibility(!AppState.get().isAlwaysOpenAsMagazine && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                isSaveAnnotatationsAutomatically.setVisibility(!(AppState.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
                 highlightByLetters.setChecked(AppState.get().selectingByLetters);
@@ -3373,7 +3374,7 @@ public class DragingDialogs {
                 });
 
                 final TextView pageQuality = (TextView) inflate.findViewById(R.id.pageQuality);
-                ((ViewGroup) pageQuality.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine && !ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                ((ViewGroup) pageQuality.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK && !ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
                 TxtUtils.underlineTextView(pageQuality);
                 pageQuality.setOnClickListener(new OnClickListener() {
@@ -3401,7 +3402,7 @@ public class DragingDialogs {
                 });
 
                 final TextView pagesInMemory = (TextView) inflate.findViewById(R.id.pagesInMemory);
-                ((ViewGroup) pagesInMemory.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                ((ViewGroup) pagesInMemory.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
 
                 pagesInMemory.setText("" + AppState.get().pagesInMemory);
                 TxtUtils.underlineTextView(pagesInMemory);
@@ -3480,7 +3481,7 @@ public class DragingDialogs {
                 ///
 
                 final TextView rotate = (TextView) inflate.findViewById(R.id.rotate);
-                ((ViewGroup) rotate.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                ((ViewGroup) rotate.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
 
                 rotate.setText("" + AppState.get().rotate + "°");
                 TxtUtils.underlineTextView(rotate);
@@ -3665,7 +3666,7 @@ public class DragingDialogs {
                 // rotate
 
                 final TextView rotateViewPager = (TextView) inflate.findViewById(R.id.rotateViewPager);
-                ((ViewGroup) rotateViewPager.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                ((ViewGroup) rotateViewPager.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
                 TxtUtils.underlineTextView(rotateViewPager);
                 rotateViewPager.setOnClickListener(new OnClickListener() {
@@ -3700,7 +3701,7 @@ public class DragingDialogs {
                 });
                 // rtl
                 final TextView rtlText = (TextView) inflate.findViewById(R.id.rtlText);
-                ((ViewGroup) rtlText.getParent()).setVisibility(AppState.get().isAlwaysOpenAsMagazine ? View.VISIBLE : View.GONE);
+                ((ViewGroup) rtlText.getParent()).setVisibility(AppState.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 if (AppState.get().isRTL) {
                     rtlText.setText(R.string.right_to_left);
                 } else {

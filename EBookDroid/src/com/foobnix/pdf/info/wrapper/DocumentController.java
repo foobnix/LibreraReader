@@ -272,15 +272,15 @@ public abstract class DocumentController {
     }
 
     public boolean isBookMode() {
-        return AppState.get().isAlwaysOpenAsMagazine;
+        return AppState.get().readingMode == AppState.READING_MODE_BOOK;
     }
 
     public boolean isScrollMode() {
-        return !AppState.get().isAlwaysOpenAsMagazine && !AppState.get().isMusicianMode;
+        return AppState.get().readingMode == AppState.READING_MODE_SCROLL;
     }
 
     public boolean isMusicianMode() {
-        return AppState.get().isMusicianMode;
+        return AppState.get().readingMode == AppState.READING_MODE_MUSICIAN;
     }
 
     public void onResume() {

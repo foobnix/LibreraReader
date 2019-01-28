@@ -20,8 +20,10 @@ import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
@@ -80,7 +82,7 @@ public class DefaultListeners {
         });
     }
 
-    private static void showBooksByTag(final Activity a, String result) {
+    public static void showBooksByTag(final Activity a, String result) {
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                 .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
         LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
@@ -143,7 +145,17 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
-                    ExtUtils.openFile(a, result);
+                    if (AppState.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
+                        Dialogs.showTagsDialog(a, new File(result.getPath()), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                EventBus.getDefault().post(new NotifyAllFragments());
+                            }
+                        });
+                    } else {
+                        ExtUtils.openFile(a, result);
+                    }
                 }
                 return false;
             }
@@ -186,11 +198,11 @@ public class DefaultListeners {
                 }
 
                 if (file.isDirectory()) {
-                        Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                        LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
-                        EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
                     return true;
                 }
 

@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Vri siden på siste ord</string>
    <string name="paste">Lim inn</string>
    <string name="move">Bevege seg</string>
+   <string name="tag_manager">Tag manager</string>
    <string name="the_file_already_exists_">Filen eksisterer allerede.</string>
    <string name="please_wait_books_are_being_processed_">Vent, bøker blir behandlet</string>
 </resources>

@@ -812,8 +812,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().isAlwaysOpenAsMagazine = false;
-                AppState.get().isMusicianMode = false;
+                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, page, null);
             }
         });
@@ -822,8 +821,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().isAlwaysOpenAsMagazine = true;
-                AppState.get().isMusicianMode = false;
+                AppState.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, page, null);
             }
         });
@@ -833,8 +831,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().isAlwaysOpenAsMagazine = false;
-                AppState.get().isMusicianMode = true;
+                AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, page, null);
             }
         });
@@ -886,7 +883,7 @@ public class ExtUtils {
         }
         LOG.d("showDocument", uri.getPath(), playlist);
 
-        if (AppState.get().isAlwaysOpenAsMagazine) {
+        if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, page - 1, playlist);
             return;
         }
@@ -1372,13 +1369,11 @@ public class ExtUtils {
                         @Override
                         public void run() {
                             if (a instanceof VerticalViewActivity) {
-                                AppState.get().isAlwaysOpenAsMagazine = false;
-                                AppState.get().isMusicianMode = false;
+                                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
                                 showDocumentWithoutDialog(a, (File) result, page, null);
 
                             } else if (a instanceof HorizontalViewActivity) {
-                                AppState.get().isAlwaysOpenAsMagazine = true;
-                                AppState.get().isMusicianMode = false;
+                                AppState.get().readingMode = AppState.READING_MODE_BOOK;
                                 showDocumentWithoutDialog(a, (File) result, page, null);
                             } else {
                                 showDocument(a, (File) result);

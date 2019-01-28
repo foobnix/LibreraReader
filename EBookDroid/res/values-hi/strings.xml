@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">पृष्ठ को अंतिम शब्द पर चालू करें</string>
    <string name="paste">पेस्ट</string>
    <string name="move">चाल</string>
+   <string name="tag_manager">टैग प्रबंधक</string>
    <string name="the_file_already_exists_">फ़ाइल पहले से मौजूद है।</string>
    <string name="please_wait_books_are_being_processed_">कृपया प्रतीक्षा करें, पुस्तकों पर कार्रवाई की जा रही है</string>
 </resources>

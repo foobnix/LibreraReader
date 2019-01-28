@@ -88,7 +88,7 @@ public class ProgressDraw extends View {
             int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
             // int titleColor = AppState.get().isInvert ? Color.WHITE :
             // Color.BLACK;
-            if (AppState.get().isAlwaysOpenAsMagazine) {
+            if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
 
             } else {
                 canvas.drawColor(titleColor);

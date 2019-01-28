@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Tourne la page sur le dernier mot</string>
    <string name="paste">Coller</string>
    <string name="move">Bouge toi</string>
+   <string name="tag_manager">Gestionnaire de balises</string>
    <string name="the_file_already_exists_">Le fichier existe déjà.</string>
    <string name="please_wait_books_are_being_processed_">Veuillez patienter, les livres sont en cours de traitement</string>
 </resources>

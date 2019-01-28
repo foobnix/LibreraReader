@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
    <string name="paste">Pasta</string>
    <string name="move">Verhuizing</string>
+   <string name="tag_manager">Tag manager</string>
    <string name="the_file_already_exists_">Het bestand bestaat al</string>
    <string name="please_wait_books_are_being_processed_">Een ogenblik geduld, boeken worden verwerkt</string>
 </resources>

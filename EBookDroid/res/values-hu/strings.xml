@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Fordítsa az oldalt az utolsó szóra</string>
    <string name="paste">Paszta</string>
    <string name="move">Mozog</string>
+   <string name="tag_manager">Tagkezelő</string>
    <string name="the_file_already_exists_">A fájl már létezik.</string>
    <string name="please_wait_books_are_being_processed_">Kérjük várjon, a könyvek feldolgozása folyamatban van</string>
 </resources>

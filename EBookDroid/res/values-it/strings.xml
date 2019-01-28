@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Gira la pagina sull\'ultima parola</string>
    <string name="paste">Incolla</string>
    <string name="move">Mossa</string>
+   <string name="tag_manager">Gestore di tag</string>
    <string name="the_file_already_exists_">Il file esiste già.</string>
    <string name="please_wait_books_are_being_processed_">Per favore aspetta, i libri sono in fase di elaborazione</string>
 </resources>

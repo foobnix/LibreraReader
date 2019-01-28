@@ -272,6 +272,13 @@ public class AppState {
 
     public final static int AUTO_BRIGTNESS = -1000;
 
+    public final static int READING_MODE_SCROLL = 1;
+    public final static int READING_MODE_BOOK = 2;
+    public final static int READING_MODE_MUSICIAN = 3;
+    public final static int READING_MODE_TAG_MANAGER = 4;
+
+    public int readingMode = READING_MODE_SCROLL;
+
     public int helpHash = 0;
 
     @IgnoreHashCode
@@ -396,8 +403,6 @@ public class AppState {
     @IgnoreHashCode
     public boolean isReverseKeys = Dips.isSmallScreen();
 
-    public boolean isMusicianMode = false;
-
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInMusicMode = true;
     @IgnoreHashCode
@@ -456,7 +461,6 @@ public class AppState {
     public int editAlphaColor = 100;
     public float editLineWidth = 3;
 
-    public boolean isAlwaysOpenAsMagazine = false;
     public boolean isRememberMode = false;
     public boolean isInkMode = false;
 

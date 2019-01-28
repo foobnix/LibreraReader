@@ -531,6 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Pasukite puslapį paskutiniu žodžiu</string>
    <string name="paste">Įklijuokite</string>
    <string name="move">Judėti</string>
+   <string name="tag_manager">Žymos tvarkyklė</string>
    <string name="the_file_already_exists_">Failas jau yra.</string>
    <string name="please_wait_books_are_being_processed_">Prašome palaukti, tvarkomos knygos</string>
 </resources>

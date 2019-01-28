@@ -74,7 +74,6 @@ public class RecentBooksWidget extends AppWidgetProvider {
             // Random().nextInt(AppState.STYLE_COLORS.size() - 1)));
             // TintUtil.tintRandomColor();
 
-            AppState.get().isMusicianMode = false;
             AppState.get().isShowToolBar = true;
             AppState.get().lastClosedActivity = null;
             int i = 1;
@@ -158,7 +157,6 @@ public class RecentBooksWidget extends AppWidgetProvider {
                 AppState.get().isDayNotInvert = true;
                 AppState.get().isEditMode = false;
                 AppState.get().isShowToolBar = false;
-                AppState.get().isMusicianMode = true;
                 advMode(context, MUSIC, "id1", false);
             }
 
@@ -242,7 +240,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_MY)) {
 
             String className = VerticalViewActivity.class.getName();
-            if (AppState.get().isAlwaysOpenAsMagazine) {
+            if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
                 className = HorizontalViewActivity.class.getName();
             }
 
@@ -349,7 +347,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         AppDB.removeClouds(recent);
 
         String className = VerticalViewActivity.class.getName();
-        if (AppState.get().isAlwaysOpenAsMagazine) {
+        if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
             className = HorizontalViewActivity.class.getName();
         }
         remoteViews.removeAllViews(R.id.linearLayout);
