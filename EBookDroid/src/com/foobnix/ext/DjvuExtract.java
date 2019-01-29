@@ -4,6 +4,7 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.djvu.codec.DjvuContext;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 
 public class DjvuExtract {
 
@@ -27,24 +28,24 @@ public class DjvuExtract {
 
     public static EbookMeta getBookMetaInformation(String unZipPath) {
         DjvuContext codecContex = new DjvuContext();
-        CodecDocument openDocument = null;
+        CodecDocument doc = null;
         try {
-            openDocument = codecContex.openDocument(unZipPath, "");
+            doc = codecContex.openDocument(unZipPath, "");
         } catch (RuntimeException e) {
             LOG.e(e);
             return EbookMeta.Empty();
         }
-        EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
-        meta.setPagesCount(openDocument.getPageCount());
-        meta.setKeywords(openDocument.getMeta("keywords"));
-        meta.setSequence(openDocument.getMeta("sequence") + "" + openDocument.getMeta("seria"));
-        meta.setGenre(openDocument.getMeta("subject") + "" + openDocument.getMeta("subjects"));
-        meta.setYear(openDocument.getMeta("year"));
-        meta.setPublisher(openDocument.getMeta("publisher"));
-        meta.setIsbn(openDocument.getMeta("isbn"));
+        EbookMeta meta = new EbookMeta(doc.getBookTitle(), doc.getBookAuthor());
+        meta.setPagesCount(doc.getPageCount());
+        meta.setKeywords(doc.getMeta("keywords"));
+        meta.setSequence(TxtUtils.joinTrim(" ", doc.getMeta("sequence"), doc.getMeta("seria")));
+        meta.setGenre(TxtUtils.joinTrim(" ", doc.getMeta("subject"), doc.getMeta("subjects")));
+        meta.setYear(doc.getMeta("year"));
+        meta.setPublisher(doc.getMeta("publisher"));
+        meta.setIsbn(doc.getMeta("isbn"));
         LOG.d("DjvuExtract", meta.getAuthor(), meta.getTitle(), meta.getPagesCount(), unZipPath);
-        openDocument.recycle();
-        openDocument = null;
+        doc.recycle();
+        doc = null;
         return meta;
     }
 

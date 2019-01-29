@@ -92,7 +92,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     private LinearLayout paths;
     HorizontalScrollView scroller;
     private TextView stub;
-    private ImageView onListGrid, starIcon, onSort, starIconDir;
+    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder;
     private EditText editPath;
     private View pathContainer, onClose, onAction, openAsBook;
 
@@ -145,15 +145,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
         onSort = (ImageView) view.findViewById(R.id.onSort);
+        sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
 
-        onSort.setOnLongClickListener(new OnLongClickListener() {
+        sortOrder.setOnClickListener(new OnClickListener() {
 
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 AppState.get().sortByReverse = !AppState.get().sortByReverse;
                 onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+                sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+
                 populate();
-                return true;
+
             }
         });
 
@@ -168,6 +171,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         openAsBook.setVisibility(View.GONE);
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
 
         onAction = view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);
@@ -835,7 +839,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
                 Collections.sort(items, FileMetaComparators.BR_BY_EXT);
             }
-            if (AppState.get().sortByReverse) {
+            if (!AppState.get().sortByReverse) {
                 Collections.reverse(items);
             }
             Collections.sort(items, FileMetaComparators.DIRS);

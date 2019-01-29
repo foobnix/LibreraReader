@@ -28,42 +28,36 @@ public class PdfExtract {
 
     public static EbookMeta getBookMetaInformation(String unZipPath) {
         PdfContext codecContex = new PdfContext();
-        CodecDocument openDocument = null;
+        CodecDocument doc = null;
         try {
-            openDocument = codecContex.openDocument(unZipPath, "");
+            doc = codecContex.openDocument(unZipPath, "");
         } catch (RuntimeException e) {
             LOG.e(e);
             return EbookMeta.Empty();
         }
-        if (openDocument == null) {
+        if (doc == null) {
             return EbookMeta.Empty();
         }
-        EbookMeta meta = new EbookMeta(openDocument.getBookTitle(), openDocument.getBookAuthor());
-        meta.setPagesCount(openDocument.getPageCount());
-        meta.setKeywords(openDocument.getMeta("info:Keywords"));
-        String subjectLikeGenre = openDocument.getMeta("info:Subject");
+        EbookMeta meta = new EbookMeta(doc.getBookTitle(), doc.getBookAuthor());
+        meta.setPagesCount(doc.getPageCount());
+        meta.setKeywords(doc.getMeta("info:Keywords"));
+        String subjectLikeGenre = doc.getMeta("info:Subject");
         LOG.d("subjectLikeGenre", subjectLikeGenre, subjectLikeGenre != null ? subjectLikeGenre.length() : 0);
         if (subjectLikeGenre != null && (subjectLikeGenre.contains(";") || subjectLikeGenre.length() <= SUBJECT_LIMIT)) {
             meta.setGenre(subjectLikeGenre);
         }
-        meta.setYear(openDocument.getMeta("info:CreationDate"));
-        meta.setPublisher(openDocument.getMeta("info:Publisher"));
-        meta.setIsbn(openDocument.getMeta("info:ISBN"));
-        meta.setPublisher(openDocument.getMeta("info:Publisher") + openDocument.getMeta("info:EBX_PUBLISHER"));
-        String s1 = openDocument.getMeta("info:Sequence");
-        String s2 = openDocument.getMeta("info:Seria");
-        if (TxtUtils.isNotEmpty(s1)) {
-            meta.setSequence(s1 + " " + s2);
-        } else {
-            meta.setSequence(s2);
-        }
+        meta.setYear(doc.getMeta("info:CreationDate"));
+        meta.setPublisher(doc.getMeta("info:Publisher"));
+        meta.setIsbn(doc.getMeta("info:ISBN"));
+        meta.setPublisher(TxtUtils.joinTrim(" ", doc.getMeta("info:Publisher"), doc.getMeta("info:EBX_PUBLISHER")));
+        meta.setSequence(TxtUtils.joinTrim(" ", doc.getMeta("info:Sequence"), doc.getMeta("info:Seria")));
 
         if ("untitled".equals(meta.getTitle())) {
             meta.setTitle("");
         }
         LOG.d("PdfExtract", meta.getAuthor(), meta.getTitle(), unZipPath);
-        openDocument.recycle();
-        openDocument = null;
+        doc.recycle();
+        doc = null;
         return meta;
     }
 

@@ -801,12 +801,20 @@ public class TxtUtils {
     }
 
     public static String join(String delim, Object... items) {
+        return join(delim, true, items);
+    }
+
+    public static String joinTrim(String delim, Object... items) {
+        return join(delim, false, items).replace(NON_BREAKE_SPACE, " ").trim();
+    }
+
+    public static String join(String delim, boolean withNull, Object... items) {
         if (items == null || items.length == 0) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
         for (Object it : items) {
-            if (it == null) {
+            if (withNull && it == null) {
                 sb.append("@null");
             } else {
                 sb.append(it);

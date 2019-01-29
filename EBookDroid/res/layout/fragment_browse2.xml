@@ -88,6 +88,18 @@
             android:layout_weight="0"
             android:contentDescription="@string/cd_sort_order"
             android:src="@drawable/glyphicons_409_sort_by_attributes" />
+        
+        <ImageView
+                android:contentDescription="@string/cd_sort_order"
+                android:id="@+id/sortOrder"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="12dip"
+                android:src="@drawable/glyphicons_601_chevron_up"
+                android:tint="@color/white" />
 
         <View
             android:layout_width="1dip"

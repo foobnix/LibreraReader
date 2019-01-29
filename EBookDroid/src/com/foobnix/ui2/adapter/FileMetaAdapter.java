@@ -949,7 +949,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (holder.tags != null) {
                 holder.tags.setVisibility(View.GONE);
             }
-            holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
+            if (fileMeta.getSIndex() != null) {
+                holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
+            }
         }
 
         return fileMeta;
