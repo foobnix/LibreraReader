@@ -839,7 +839,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
                 Collections.sort(items, FileMetaComparators.BR_BY_EXT);
             }
-            if (!AppState.get().sortByReverse) {
+            if (AppState.get().sortByReverse) {
                 Collections.reverse(items);
             }
             Collections.sort(items, FileMetaComparators.DIRS);

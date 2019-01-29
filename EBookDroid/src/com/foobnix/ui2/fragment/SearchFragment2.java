@@ -473,7 +473,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void searchAndOrderAsync() {
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
-        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
         populate();
     }
 
