@@ -301,7 +301,8 @@ public class FileInformationDialog {
                     "info:Creator", //
                     "info:Producer", //
                     "info:CreationDate", //
-                    "info:ModDate" //
+                    "info:ModDate", //
+                    "info:Trapped" //
             ));
 
             try {

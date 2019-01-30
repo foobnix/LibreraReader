@@ -534,4 +534,5 @@
    <string name="tag_manager">مدیر برچسب</string>
    <string name="the_file_already_exists_">این فایل در حال حاضر موجود است</string>
    <string name="please_wait_books_are_being_processed_">لطفا صبر کنید، کتاب ها پردازش می شوند</string>
+   <string name="system_brightness">روشنایی سیستم</string>
 </resources>

@@ -534,4 +534,5 @@
    <string name="tag_manager">Тегтер менеджері</string>
    <string name="the_file_already_exists_">Файл бұрыннан бар.</string>
    <string name="please_wait_books_are_being_processed_">Күте тұрыңыз, кітаптар өңделуде</string>
+   <string name="system_brightness">Жүйенің жарықтығы</string>
 </resources>

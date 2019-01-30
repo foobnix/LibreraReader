@@ -461,7 +461,7 @@
                 android:layout_marginLeft="4dip"
                 android:layout_weight="0"
                 android:singleLine="true"
-                android:text="@string/automatic"
+                android:text="@string/system_brightness"
                 android:textSize="12sp" />
         </LinearLayout>
 

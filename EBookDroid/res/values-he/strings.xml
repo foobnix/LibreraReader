@@ -534,4 +534,5 @@
    <string name="tag_manager">מנהל התגים</string>
    <string name="the_file_already_exists_">הקובץ כבר קיים.</string>
    <string name="please_wait_books_are_being_processed_">אנא המתן, ספרים מעובדים</string>
+   <string name="system_brightness">בהירות המערכת</string>
 </resources>

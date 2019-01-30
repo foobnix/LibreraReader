@@ -534,4 +534,5 @@
    <string name="tag_manager">标签经理</string>
    <string name="the_file_already_exists_">该文件已存在。</string>
    <string name="please_wait_books_are_being_processed_">请稍等，正在处理书籍</string>
+   <string name="system_brightness">系统亮度</string>
 </resources>

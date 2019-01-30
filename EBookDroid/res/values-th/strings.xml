@@ -534,4 +534,5 @@
    <string name="tag_manager">ผู้จัดการแท็ก</string>
    <string name="the_file_already_exists_">ไฟล์มีอยู่แล้ว</string>
    <string name="please_wait_books_are_being_processed_">โปรดรอสักครู่กำลังประมวลผลหนังสือ</string>
+   <string name="system_brightness">ความสว่างของระบบ</string>
 </resources>

@@ -534,4 +534,5 @@
    <string name="tag_manager">Tunnisteiden hallinta</string>
    <string name="the_file_already_exists_">Tiedosto on jo olemassa.</string>
    <string name="please_wait_books_are_being_processed_">Odota, kirjoja käsitellään</string>
+   <string name="system_brightness">Järjestelmän kirkkaus</string>
 </resources>

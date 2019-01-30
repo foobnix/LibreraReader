@@ -400,7 +400,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_weight="0"
-                        android:text="@string/automatic" />
+                        android:text="@string/system_brightness" />
                 </LinearLayout>
 
                 <com.foobnix.pdf.info.view.CustomSeek

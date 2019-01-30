@@ -534,4 +534,5 @@
    <string name="tag_manager">Žymos tvarkyklė</string>
    <string name="the_file_already_exists_">Failas jau yra.</string>
    <string name="please_wait_books_are_being_processed_">Prašome palaukti, tvarkomos knygos</string>
+   <string name="system_brightness">Sistemos ryškumas</string>
 </resources>
