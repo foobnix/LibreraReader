@@ -288,19 +288,29 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      * @see android.view.GestureDetector.SimpleOnGestureListener#onScroll(android.view.MotionEvent,
      *      android.view.MotionEvent, float, float)
      */
+    long t;
+
+    int d1, d2;
+
     @Override
     public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
         final float x = distanceX, y = distanceY;
+        d1 += x;
+        d2 += y;
 
         if (brightnessHelper.onActionMove(e2)) {
             return true;
         }
 
-        if (isNoLock() || (e2.getPointerCount() == 2 && !(AppState.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
-            avc.getView().scrollBy((int) x, (int) y);
-        } else {
-            avc.getView().scrollBy(0, (int) y);
-
+        long delta = System.currentTimeMillis() - t;
+        if (delta > 50) {
+            t = System.currentTimeMillis();
+            if (isNoLock() || (e2.getPointerCount() == 2 && !(AppState.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
+                avc.getView().scrollBy(d1, d2);
+            } else {
+                avc.getView().scrollBy(0, d2);
+            }
+            d1 = d2 = 0;
         }
 
         LOG.d("onScroll", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
@@ -363,10 +373,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
 
     long time = 0;
-
+    float factor1 = 1;
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
-
+        LOG.d("onTwoFingerPinch", oldDistance, newDistance);
         if (AppState.get().isLocked) {
             if (AppState.get().readingMode == AppState.READING_MODE_MUSICIAN) {
                 return;
@@ -377,10 +387,12 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
+        factor1 *= factor;
         long delta = System.currentTimeMillis() - time;
         if (delta > 50) {
             time = System.currentTimeMillis();
-            avc.base.getZoomModel().scaleZoom(factor);
+            avc.base.getZoomModel().scaleZoom(factor1);
+            factor1 = 1;
         }
 
     }

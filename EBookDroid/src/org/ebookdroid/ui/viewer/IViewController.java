@@ -38,7 +38,7 @@ public interface IViewController extends ZoomListener {
 
     int getLastVisiblePage();
 
-    void verticalConfigScroll(int i);
+    // void verticalConfigScroll(int i);
 
     void redrawView();
 

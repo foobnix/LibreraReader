@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
@@ -244,17 +243,6 @@ public abstract class AbstractViewController extends AbstractComponentController
      */
     @Override
     public final boolean onTouchEvent(final MotionEvent ev) {
-        if (true) {
-            final int delay = AppSettings.getInstance().touchProcessingDelay;
-            if (delay > 0) {
-                try {
-                    Thread.sleep(Math.min(200, delay));
-                } catch (final InterruptedException e) {
-                    Thread.interrupted();
-                }
-            }
-        }
-
         for (final IGestureDetector d : getGestureDetectors()) {
             if (d.enabled() && d.onTouchEvent(ev)) {
                 return true;
@@ -364,10 +352,6 @@ public abstract class AbstractViewController extends AbstractComponentController
         getView().redrawView(viewState);
     }
 
-    public final void verticalConfigScroll(final ActionEx action) {
-        final Integer direction = action.getParameter("direction");
-        verticalConfigScroll(direction);
-    }
 
     float xLong;
     float yLong;

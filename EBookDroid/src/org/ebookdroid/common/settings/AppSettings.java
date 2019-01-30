@@ -1,7 +1,5 @@
 package org.ebookdroid.common.settings;
 
-import com.foobnix.android.utils.Dips;
-
 public class AppSettings {
 
     private static AppSettings current;
@@ -12,8 +10,6 @@ public class AppSettings {
     /* =============== Tap & Scroll settings =============== */
 
     public boolean tapsEnabled;
-    public int scrollHeight;
-    public int touchProcessingDelay;
     public boolean animateScrolling;
 
 
@@ -38,8 +34,6 @@ public class AppSettings {
         showAnimIcon = false;
 
         /* =============== Tap & Scroll settings =============== */
-        scrollHeight = Dips.dpToPx(10);
-        touchProcessingDelay = 50;
         animateScrolling = true;
         /* =============== Performance settings =============== */
 
@@ -49,7 +43,7 @@ public class AppSettings {
 
         bitmapSize = 9;// 6-64,7-128,8-256,9-512,10-1024
         bitmapFileringEnabled = false;
-        textureReuseEnabled = true;// !!!
+        textureReuseEnabled = false;// !!!
         reloadDuringZoom = false;
         pdfStorageSize = 64;// 16-128
 

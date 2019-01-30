@@ -60,7 +60,6 @@ public class ViewContollerStub implements IViewController {
         return 0;
     }
 
-    @Override
     public void verticalConfigScroll(final int i) {
     }
     @Override

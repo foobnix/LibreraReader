@@ -1,6 +1,5 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.common.settings.AppSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
@@ -40,23 +39,6 @@ public class VScrollController extends AbstractScrollController {
             }
         }
         return result;
-    }
-
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IViewController#verticalConfigScroll(int)
-     */
-    @Override
-    public final void verticalConfigScroll(final int direction) {
-        final AppSettings app = AppSettings.getInstance();
-        final int dy = (int) (direction * getHeight() * (app.scrollHeight / 100.0));
-
-        if (app.animateScrolling) {
-            getView().startPageScroll(0, dy);
-        } else {
-            getView().scrollBy(0, dy);
-        }
     }
 
     /**
