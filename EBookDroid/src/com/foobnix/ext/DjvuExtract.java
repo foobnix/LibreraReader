@@ -43,6 +43,11 @@ public class DjvuExtract {
         meta.setYear(doc.getMeta("year"));
         meta.setPublisher(doc.getMeta("publisher"));
         meta.setIsbn(doc.getMeta("isbn"));
+        meta.setLang(doc.getMeta("Language"));
+        String edition = doc.getMeta("Edition");
+        if (TxtUtils.isNotEmpty(edition)) {
+            meta.setTitle(meta.getTitle() + " - " + edition + " ed.");
+        }
         LOG.d("DjvuExtract", meta.getAuthor(), meta.getTitle(), meta.getPagesCount(), unZipPath);
         doc.recycle();
         doc = null;

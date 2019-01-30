@@ -55,6 +55,12 @@ public class PdfExtract {
         if ("untitled".equals(meta.getTitle())) {
             meta.setTitle("");
         }
+
+        String edition = doc.getMeta("info:Edition");
+        if (TxtUtils.isNotEmpty(edition)) {
+            meta.setTitle(meta.getTitle() + " - " + edition + " ed.");
+        }
+
         LOG.d("PdfExtract", meta.getAuthor(), meta.getTitle(), unZipPath);
         doc.recycle();
         doc = null;
