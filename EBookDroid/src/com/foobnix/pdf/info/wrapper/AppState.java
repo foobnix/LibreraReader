@@ -46,7 +46,7 @@ public class AppState {
     public static final String TEXT_COLOR_NIGHT = "#8e8e8e";
 
     public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(500);// SECONDS, MINUTES
-    public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(2);
+    public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(5);
     // public static final long APP_CLOSE_AUTOMATIC =
     // TimeUnit.SECONDS.toMillis(5);
     public static final int DAY_TRANSPARENCY = 200;
@@ -54,7 +54,7 @@ public class AppState {
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
     static {
         CONVERTERS.put("PDF", "https://cloudconvert.com/anything-to-pdf, http://topdf.com".split(", "));
-        CONVERTERS.put("PDF Rotate", "https://www.pdfrotate.com, https://smallpdf.com/rotate-pdf, http://www.rotatepdf.net".split(", "));
+        CONVERTERS.put("PDF Rotate", "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, http://www.rotatepdf.net".split(", "));
         CONVERTERS.put("EPUB", "https://cloudconvert.com/anything-to-epub, http://toepub.com".split(", "));
         CONVERTERS.put("MOBI", "https://cloudconvert.com/anything-to-mobi, http://toepub.com".split(", "));
         CONVERTERS.put("AZW3", "https://cloudconvert.com/anything-to-azw3, http://toepub.com".split(", "));

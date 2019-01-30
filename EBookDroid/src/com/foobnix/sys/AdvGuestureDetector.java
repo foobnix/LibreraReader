@@ -162,7 +162,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public boolean onSingleTapUp(final MotionEvent e) {
         updateBorders();
-        if (docCtrl.closeDialogs()) {
+        if (AppState.get().editWith != AppState.EDIT_DELETE && docCtrl.closeDialogs()) {
             alowConfirm = false;
             return true;
         }
