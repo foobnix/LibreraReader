@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 10
+version: 11
 ---
 [<](/wiki/)
 
 {1}常见问题
 
 * [如何将PDF转换为EPUB](/wiki/faq/convert-pdf-to-epub/zh)
+* [直接在文本中加入脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [如何从外部SD卡中删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [创建自定义标签](/wiki/faq/custom-tags/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)

@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 10
+version: 11
 ---
 [<](/wiki/)
 
 # Frequently asked questions
 
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
+* [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [Create custom tags](/wiki/faq/custom-tags)
 * [Brightness control and blue light filter](/wiki/faq/brightness-control-and-blue-light-filter)

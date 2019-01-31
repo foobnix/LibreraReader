@@ -18,7 +18,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 10);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 11);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 

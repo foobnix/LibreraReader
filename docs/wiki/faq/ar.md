@@ -1,12 +1,13 @@
 ---
 layout: main
-version: 10
+version: 11
 ---
 [<](/wiki/)
 
 # الأسئلة الشائعة
 
 * [كيفية تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
+* [تضمين الحواشي السفلية مباشرة في النص](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [إنشاء علامات مخصصة](/wiki/faq/custom-tags/ar)
 * [فلتر التحكم في الإضاءة والضوء الأزرق](/wiki/faq/brightness-control-and-blue-light-filter/ar)
