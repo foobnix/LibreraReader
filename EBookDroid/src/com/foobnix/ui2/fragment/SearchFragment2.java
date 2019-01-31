@@ -62,6 +62,7 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -269,6 +270,26 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             }
         });
+        sortOrder.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                return true;
+            }
+        });
+
+        sortBy.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                return true;
+            }
+        });
+        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
 
         bindAdapter(searchAdapter);
 
@@ -618,7 +639,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setEnabled(true);
             sortBy.setEnabled(true);
             sortOrder.setEnabled(true);
-            sortOrder.setVisibility(View.VISIBLE);
+            if (AppState.get().isVisibleSorting) {
+                sortOrder.setVisibility(View.VISIBLE);
+            }
 
             searchAdapter.clearItems();
             if (loadingResults != null) {
@@ -913,6 +936,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
+            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
         if (!BooksService.isRunning) {
             onRefresh.setActivated(!BooksService.isRunning);

@@ -160,6 +160,27 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+        sortOrder.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                return true;
+            }
+        });
+
+        onSort.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+                return true;
+            }
+        });
+        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+
         openAsBook.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1129,6 +1150,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
+            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
 
     }

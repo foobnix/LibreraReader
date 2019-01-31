@@ -404,6 +404,9 @@ public class AppState {
     public boolean isReverseKeys = Dips.isSmallScreen();
 
     @IgnoreHashCode
+    public boolean isVisibleSorting = Dips.isLargeOrXLargeScreen();
+
+    @IgnoreHashCode
     public boolean isShowBookmarsPanelInMusicMode = true;
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInScrollMode = false;
