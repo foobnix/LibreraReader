@@ -20,6 +20,9 @@ public class DrawThread extends Thread {
 
     private final Flag stop = new Flag();
 
+    private final ArrayList<ViewState> list = new ArrayList<ViewState>();
+
+
     public DrawThread(final SurfaceHolder surfaceHolder) {
         this.surfaceHolder = surfaceHolder;
     }
@@ -40,7 +43,7 @@ public class DrawThread extends Thread {
     }
 
     protected void draw(final boolean useLastState) {
-        final ViewState viewState = takeTask(250, TimeUnit.MILLISECONDS, useLastState);
+        final ViewState viewState = takeLastTask(); // takeTask(250, TimeUnit.MILLISECONDS, useLastState);
         if (viewState == null) {
             return;
         }
@@ -85,6 +88,48 @@ public class DrawThread extends Thread {
         } catch (Throwable ex) {
             // Go to next attempt
             ex.printStackTrace();
+        }
+        return task;
+    }
+
+    public ViewState takeFirstTask() {
+        ViewState task = null;
+        try {
+            task = queue.poll(0, TimeUnit.MILLISECONDS);
+        } catch (final Throwable ex) {
+            // Go to next attempt
+        }
+        return task;
+    }
+
+    public ViewState takeFirstTask1() {
+        ViewState task = null;
+        try {
+            task = queue.poll();
+        } catch (final Throwable ex) {
+            // Go to next attempt
+        }
+        return task;
+    }
+
+    public ViewState takeLastTask() {
+        ViewState task = null;
+        try {
+            // Workaround for possible ConcurrentModificationException
+            while (true) {
+                list.clear();
+                try {
+                    if (queue.drainTo(list) > 0) {
+                        final int last = list.size() - 1;
+                        task = list.get(last);
+                    }
+                    break;
+                } catch (final Throwable ex) {
+                    // Go to next attempt
+                }
+            }
+        } catch (final Throwable ex) {
+            // Go to next attempt
         }
         return task;
     }
