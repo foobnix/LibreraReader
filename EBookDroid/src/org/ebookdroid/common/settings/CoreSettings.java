@@ -1,8 +1,8 @@
 package org.ebookdroid.common.settings;
 
-public class AppSettings {
+public class CoreSettings {
 
-    private static AppSettings current;
+    private static CoreSettings current;
 
     public boolean fullScreen;
     public boolean showAnimIcon;
@@ -28,7 +28,7 @@ public class AppSettings {
     public int djvuRenderingMode;
 
 
-    private AppSettings() {
+    private CoreSettings() {
         /* =============== UI settings =============== */
         fullScreen = false;
         showAnimIcon = false;
@@ -37,7 +37,7 @@ public class AppSettings {
         animateScrolling = true;
         /* =============== Performance settings =============== */
 
-		pagesInMemory = 2;
+        pagesInMemory = 2;
         decodingThreadPriority = Thread.NORM_PRIORITY; // 7
         drawThreadPriority = Thread.NORM_PRIORITY; // 6
 
@@ -53,13 +53,13 @@ public class AppSettings {
 
 
     /* =============== */
-    public static AppSettings get() {
+    public static CoreSettings get() {
         return getInstance();
     }
 
-    public static AppSettings getInstance() {
+    public static CoreSettings getInstance() {
         if (current == null) {
-            current = new AppSettings();
+            current = new CoreSettings();
         }
         return current;
     }

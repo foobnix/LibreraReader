@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
@@ -3753,12 +3753,12 @@ public class DragingDialogs {
                 // BETA
 
                 final CustomSeek decodingThreadPriority = (CustomSeek) inflate.findViewById(R.id.decodingThreadPriority);
-                decodingThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, AppSettings.get().decodingThreadPriority);
+                decodingThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().decodingThreadPriority);
                 decodingThreadPriority.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        AppSettings.get().decodingThreadPriority = result;
+                        CoreSettings.get().decodingThreadPriority = result;
                         AppState.get().helpHash++;
                         return false;
                     }
@@ -3766,12 +3766,12 @@ public class DragingDialogs {
                 Views.visibleInBeta(decodingThreadPriority);
 
                 final CustomSeek drawThreadPriority = (CustomSeek) inflate.findViewById(R.id.drawThreadPriority);
-                drawThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, AppSettings.get().drawThreadPriority);
+                drawThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().drawThreadPriority);
                 drawThreadPriority.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        AppSettings.get().drawThreadPriority = result;
+                        CoreSettings.get().drawThreadPriority = result;
                         AppState.get().helpHash++;
                         return false;
                     }

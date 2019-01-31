@@ -3,7 +3,7 @@ package org.ebookdroid.ui.viewer.viewers;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.Page;
@@ -358,7 +358,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     @Override
     public final void surfaceCreated(final SurfaceHolder holder) {
         drawThread = new DrawThread(getHolder());
-        drawThread.setPriority(AppSettings.getInstance().drawThreadPriority);
+        drawThread.setPriority(CoreSettings.getInstance().drawThreadPriority);
         drawThread.start();
     }
 

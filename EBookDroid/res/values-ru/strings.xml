@@ -429,7 +429,7 @@
    <string name="audio_books_folder">Папка для начит. голосом книг</string>
    <string name="enable_contrast_and_brightness">Включить</string>
    <string name="enable">Включить</string>
-   <string name="link_color">Цвет ссылок/string>
+   <string name="link_color">Цвет ссылок</string>
    <string name="show_battery_percentage">Отображать процент заряда аккумулятора</string>
    <string name="show_current_time">Показывать текущее время</string>
    <string name="telegram_channel">Telegram-канал</string>
@@ -533,6 +533,6 @@
    <string name="move">Переместить</string>
    <string name="tag_manager">Менеджер тегов</string>
    <string name="the_file_already_exists_">Такой файл уже существует</string>
-   <string name="please_wait_books_are_being_processed_">Пожалуйста, подождите, пока обновится библиотека/string>
+   <string name="please_wait_books_are_being_processed_">Пожалуйста, подождите, пока обновится библиотека</string>
    <string name="system_brightness">Cистемное значение</string>
 </resources>

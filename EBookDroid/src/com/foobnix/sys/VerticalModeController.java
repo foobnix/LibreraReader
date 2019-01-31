@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.Page;
@@ -66,7 +66,7 @@ public class VerticalModeController extends DocumentController {
     public VerticalModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
         this.ctr = ctr;
-        AppSettings.getInstance().fullScreen = AppState.get().isFullScreen;
+        CoreSettings.getInstance().fullScreen = AppState.get().isFullScreen;
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
         initHandler();
@@ -717,7 +717,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onFullScreen() {
-        AppSettings.getInstance().fullScreen = !AppSettings.getInstance().fullScreen;
+        CoreSettings.getInstance().fullScreen = !CoreSettings.getInstance().fullScreen;
         activity.finish();
         activity.startActivity(activity.getIntent());
     }

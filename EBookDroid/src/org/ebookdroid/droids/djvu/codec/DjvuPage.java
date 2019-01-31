@@ -7,7 +7,7 @@ import java.util.List;
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.core.codec.AbstractCodecPage;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
@@ -107,7 +107,7 @@ public class DjvuPage extends AbstractCodecPage {
     @Override
     public BitmapRef renderBitmapSimple(int width, int height, RectF pageSliceBounds) {
         LOG.d("Render DJVU Page", width, height, pageSliceBounds);
-        final int renderMode = AppSettings.getInstance().djvuRenderingMode;
+        final int renderMode = CoreSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
         if (width > 0 && height > 0) {
             bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.RGB_565);
@@ -125,7 +125,7 @@ public class DjvuPage extends AbstractCodecPage {
     @Override
     public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
         LOG.d("Render DJVU Page", width, height, pageSliceBounds);
-        final int renderMode = AppSettings.getInstance().djvuRenderingMode;
+        final int renderMode = CoreSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
         if (width > 0 && height > 0) {
             bmp = BitmapManager.getBitmap("Djvu page", width, height, Bitmap.Config.RGB_565);

@@ -11,10 +11,11 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -342,7 +343,7 @@ public class DecodeServiceBase implements DecodeService {
             // vuPage.recycle();
 
         } catch (final OutOfMemoryError ex) {
-            for (int i = 0; i <= AppSettings.getInstance().pagesInMemory; i++) {
+            for (int i = 0; i <= CoreSettings.getInstance().pagesInMemory; i++) {
                 getPages().put(Integer.MAX_VALUE - i, null);
             }
             getPages().clear();
@@ -527,7 +528,7 @@ public class DecodeServiceBase implements DecodeService {
         if (vs != null) {
             minSize = vs.pages.lastVisible - vs.pages.firstVisible + 1;
         }
-        int pagesInMemory = AppSettings.getInstance().pagesInMemory;
+        int pagesInMemory = CoreSettings.getInstance().pagesInMemory;
         return pagesInMemory == 0 ? 1 : Math.max(minSize, pagesInMemory);
     }
 
@@ -537,10 +538,11 @@ public class DecodeServiceBase implements DecodeService {
 
         final List<Task> tasks = new ArrayList<Task>();
         final AtomicBoolean run = new AtomicBoolean(true);
+        final ReentrantLock lock = new ReentrantLock();
 
         ExecutorRunnable() {
             Thread t = new Thread(this);
-            t.setPriority(AppSettings.getInstance().decodingThreadPriority);
+            t.setPriority(CoreSettings.getInstance().decodingThreadPriority);
             t.start();
         }
 

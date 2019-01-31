@@ -177,7 +177,7 @@ public class BrightnessHelper {
             AppState.get().isEnableBlueFilter = false;
             // AppState.get().blueLightAlpha = 0;
             AppState.get().appBrightness = AppState.AUTO_BRIGTNESS;
-            textView.setText(textView.getContext().getString(R.string.automatic));
+            textView.setText(textView.getContext().getString(R.string.system_brightness));
 
         } else if (value < 0) {
             AppState.get().isEnableBlueFilter = true;

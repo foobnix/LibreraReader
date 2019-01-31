@@ -7,7 +7,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.emdev.utils.LengthUtils;
 
 import com.foobnix.android.utils.LOG;
@@ -37,7 +37,7 @@ public class BitmapManager {
 
     private static AtomicLong generation = new AtomicLong();
 
-    static int partSize = 1 << AppSettings.getInstance().bitmapSize;
+    static int partSize = 1 << CoreSettings.getInstance().bitmapSize;
 
     public static BitmapRef addBitmap(final String name, final Bitmap bitmap) {
         final BitmapRef ref = new BitmapRef(bitmap, generation.get());

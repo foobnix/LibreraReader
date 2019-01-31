@@ -2,7 +2,7 @@ package org.ebookdroid.ui.viewer.viewers;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.emdev.common.android.AndroidVersion;
 
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -24,7 +24,7 @@ public class FullScreenCallback implements Runnable {
 
     @Override
     public void run() {
-        if (AppSettings.getInstance().fullScreen && AndroidVersion.is41x) {
+        if (CoreSettings.getInstance().fullScreen && AndroidVersion.is41x) {
             final long expected = time + 2000;
             final long now = System.currentTimeMillis();
             if (now <= expected) {
@@ -37,7 +37,7 @@ public class FullScreenCallback implements Runnable {
     }
 
     public void checkFullScreenMode() {
-        if (AppSettings.getInstance().fullScreen && AndroidVersion.is41x) {
+        if (CoreSettings.getInstance().fullScreen && AndroidVersion.is41x) {
             this.time = System.currentTimeMillis();
             if (added.compareAndSet(false, true)) {
                 view.getHandler().postDelayed(this, 2000);

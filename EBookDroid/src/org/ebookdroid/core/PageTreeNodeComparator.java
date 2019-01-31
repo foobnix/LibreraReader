@@ -1,11 +1,10 @@
 package org.ebookdroid.core;
 
-
-import android.graphics.RectF;
-
 import java.util.Comparator;
 
 import org.emdev.utils.CompareUtils;
+
+import android.graphics.RectF;
 
 public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
 
@@ -15,8 +14,7 @@ public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
         this.viewState = viewState;
     }
 
-    @Override
-    public int compare(final PageTreeNode node1, final PageTreeNode node2) {
+    public int compare1(final PageTreeNode node1, final PageTreeNode node2) {
         final int cp = viewState.pages.currentIndex;
         final int viewIndex1 = node1.page.index.viewIndex;
         final int viewIndex2 = node2.page.index.viewIndex;
@@ -50,5 +48,21 @@ public class PageTreeNodeComparator implements Comparator<PageTreeNode> {
         }
 
         return res;
+    }
+
+    @Override
+    public int compare(final PageTreeNode node1, final PageTreeNode node2) {
+
+        final boolean v1 = viewState.isNodeVisible(node1, viewState.getBounds(node1.page));
+        final boolean v2 = viewState.isNodeVisible(node2, viewState.getBounds(node2.page));
+
+        if (v1 && !v2) {
+            return -1;
+        } else if (!v1 && v2) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 }

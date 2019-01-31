@@ -490,11 +490,15 @@ public class MagicHelper {
         if (!isNeedMagic()) {
             return;
         }
-        LOG.d("MAGIC ON");
 
         int textColor = MagicHelper.getTextColor();
         int bgColor = MagicHelper.getBgColor();
         int first = allpixels[0];
+        if (first == 0) {
+            first = allpixels[allpixels.length - 1];
+        }
+
+        LOG.d("MAGIC0ON", textColor, bgColor, first);
 
         for (int i = 0; i < allpixels.length; i++) {
             int color = allpixels[i];

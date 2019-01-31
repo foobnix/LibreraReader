@@ -1,6 +1,6 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.common.settings.AppSettings;
+import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
@@ -16,7 +16,7 @@ import android.graphics.RectF;
 
 public class ViewState {
 
-    public final AppSettings app;
+    public final CoreSettings app;
     public final BookSettings book;
     public final IViewController ctrl;
     public final DocumentModel model;
@@ -40,7 +40,7 @@ public class ViewState {
     }
 
     public ViewState(final IViewController dc, final float zoom) {
-        this.app = AppSettings.getInstance();
+        this.app = CoreSettings.getInstance();
         this.book = SettingsManager.getBookSettings();
         this.ctrl = dc;
         this.model = dc.getBase().getDocumentModel();
