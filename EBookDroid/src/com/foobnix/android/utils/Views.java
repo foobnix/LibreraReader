@@ -108,6 +108,18 @@ public class Views {
             }
         });
 
+        anchor.getHandler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    mPopupWindow.dismiss();
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+        }, 5000);
+
         Keyboards.hideNavigation((Activity) anchor.getContext());
 
     }
