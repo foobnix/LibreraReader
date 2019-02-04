@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 public class MagicHelper {
 
+    private static final int LIGHT_VALUE = 450;
     public static volatile boolean isNeedBC = true;
 
     public static int hash() {
@@ -480,7 +481,7 @@ public class MagicHelper {
             }
 
             int k = Color.red(color) + Color.green(color) + Color.blue(color);
-            if (k > 500) {
+            if (k > LIGHT_VALUE) {
                 // ligth font color
                 allpixels[i] = mixColorsFontColor(color, bgColor);
             }
@@ -513,7 +514,7 @@ public class MagicHelper {
             }
 
             int k = Color.red(color) + Color.green(color) + Color.blue(color);
-            if (k > 350) {
+            if (k > LIGHT_VALUE) {
                 // ligth font color
                 allpixels[i] = mixColorsFontColor(color, bgColor);
             } else {
