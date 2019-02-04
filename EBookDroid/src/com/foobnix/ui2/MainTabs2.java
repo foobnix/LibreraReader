@@ -28,7 +28,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.widget.PrefDialogs;
-import com.foobnix.pdf.info.widget.RecentBooksWidget;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -119,39 +118,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     }
 
-    public void testIntentHandler() {
-        if (getIntent().hasExtra(RecentBooksWidget.TEST_LOCALE)) {
-
-            int pos = getIntent().getIntExtra(RecentBooksWidget.TEST_LOCALE_POS, -1);
-            if (pos != -1) {
-                pager.setCurrentItem(pos);
-
-                pager.postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        DocumentController.chooseFullScreen(MainTabs2.this, true);
-
-                        if (getIntent().getBooleanExtra("id0", false)) {
-                            ((SearchFragment2) tabFragments.get(0)).popupMenuTest();
-
-                        }
-
-                        if (getIntent().getBooleanExtra("id1", false)) {
-                            ((SearchFragment2) tabFragments.get(0)).onTextRecive("Lewis");
-
-                        }
-                    }
-                }, 100);
-
-            } else {
-                finish();
-                startActivity(new Intent(this, MainTabs2.class));
-            }
-
-        }
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

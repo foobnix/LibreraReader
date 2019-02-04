@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.widget.ColorsDialog;
 import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.PrefDialogs;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -1223,6 +1224,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().widgetType = AppState.WIDGET_LIST;
                         widgetLayout.setText(R.string.list);
                         TxtUtils.underlineTextView(widgetLayout);
+                        RecentUpates.updateAll(getActivity());
                         return false;
                     }
                 });
@@ -1235,6 +1237,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().widgetType = AppState.WIDGET_GRID;
                         widgetLayout.setText(R.string.grid);
                         TxtUtils.underlineTextView(widgetLayout);
+                        RecentUpates.updateAll(getActivity());
                         return false;
                     }
                 });
