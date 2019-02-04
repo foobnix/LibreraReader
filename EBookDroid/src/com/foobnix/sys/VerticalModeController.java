@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
@@ -386,17 +387,25 @@ public class VerticalModeController extends DocumentController {
 
     Thread t = new Thread();
 
+    long begin = 0;
     @Override
     public void onAutoScroll() {
         if (t.isAlive()) {
             return;
         }
+        begin = System.currentTimeMillis();
         t = new Thread(new Runnable() {
 
             @Override
             public void run() {
                 while (AppState.get().isAutoScroll) {
                     boolean repeat = false;
+
+                    long l = System.currentTimeMillis() - begin;
+                    if (!AppState.get().isLoopAutoplay && l > TimeUnit.HOURS.toMillis(1)) {
+                        break;
+                    }
+
                     if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
                         repeat = true;
                         try {
