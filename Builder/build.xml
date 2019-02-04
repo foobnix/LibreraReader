@@ -406,7 +406,7 @@
 
 	</target>
 	
-	<target name="pro-fdroid">
+	<target name="pro-froid">
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.pro}" />
@@ -427,7 +427,7 @@
 		<antcall target="copy" inheritAll="true" />
 		
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="../../froid/release/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-d${app.db}-${pdf.app.platform}.apk"
+			tofile="../../release/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-d${app.db}-${pdf.app.platform}.apk"
 			overwrite="true" />
 		
 		

@@ -4,6 +4,8 @@ git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.11
 
 mkdir release
 
+cp ant.properties LibreraReader/Builder
+
 cd LibreraReader
 git fetch
 git reset --hard origin/master
@@ -24,6 +26,8 @@ cd LibreraReader
 
 cd Builder
 ./update_jars.sh
+
+
 
 
 ant clean-apk
