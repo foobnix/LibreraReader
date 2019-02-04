@@ -1,8 +1,20 @@
 . ~/.profile
+MUPDF_ROOT=$1
+MY=$2
+
+n1=$1
+n2=$2
+if [ -z "$1" ]
+then
 MUPDF_ROOT=/home/ivan-dev/dev/mupdf-1.11-source
+MY=/home/ivan-dev/git/LibreraReader
+fi
+
 MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
-MY=/home/ivan-dev/git/LibreraReader
+pwd
+echo "MUPDF_ROOT" $MUPDF_ROOT 
+echo "LIBRERA_ROOT" $MY
 
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp $MY/Builder/jni-1.11 $MUPDF_JAVA/jni
