@@ -406,7 +406,7 @@
 
 	</target>
 	
-	<target name="pro-froid">
+	<target name="pro-fdroid">
 		<antcall target="clean-all" />
 
 		<property name="pdf.package" value="${package.pro}" />
