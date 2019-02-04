@@ -470,10 +470,11 @@ public class MagicHelper {
     public static void udpateColorsMagicSimple(int[] allpixels) {
         int bgColor = MagicHelper.getBgColor();
         int first = allpixels[0];
+        boolean useFirst = (first == allpixels[allpixels.length - 1]);
 
         for (int i = 0; i < allpixels.length; i++) {
             int color = allpixels[i];
-            if (color == Color.WHITE || color == first) {
+            if (color == Color.WHITE || (useFirst && color == first)) {
                 allpixels[i] = bgColor;
                 continue;
             }
@@ -494,9 +495,7 @@ public class MagicHelper {
         int textColor = MagicHelper.getTextColor();
         int bgColor = MagicHelper.getBgColor();
         int first = allpixels[0];
-        if (first == 0) {
-            first = allpixels[allpixels.length - 1];
-        }
+        boolean useFirst = (first == allpixels[allpixels.length - 1]);
 
         LOG.d("MAGIC0ON", textColor, bgColor, first);
 
@@ -508,7 +507,7 @@ public class MagicHelper {
                 continue;
             }
             //
-            if (color == Color.WHITE || color == first) {
+            if (color == Color.WHITE || (useFirst && color == first)) {
                 allpixels[i] = bgColor;
                 continue;
             }
