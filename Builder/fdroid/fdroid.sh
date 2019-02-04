@@ -16,9 +16,18 @@ cd mupdf
 make
 cd ..
 
-LibreraReader/Builder/link_to_mupdf_1.11.sh mupdf LibreraReader
+cd mupdf
+MUPDF=`pwd`
+cd ..
 
-pwd
+cd LibreraReader
+LibreraReader=`pwd`
+cd ..
+
+echo "LINK MUPDF"
+echo $MUPDF $LibreraReader
+LibreraReader/Builder/link_to_mupdf_1.11.sh $MUPDF $LibreraReader
+
 
 cd LibreraReader
 ./update_all.sh
