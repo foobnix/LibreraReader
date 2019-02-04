@@ -6,8 +6,8 @@ mkdir release
 
 cd LibreraReader
 git fetch
-#git reset --hard origin/master
-git pull origin master
+git reset --hard origin/master
+#git pull origin master
 cd ..
 
 cd mupdf
@@ -27,4 +27,4 @@ cd Builder
 
 
 ant clean-apk
-ant arm+arg64 pro-droid
+ant arm+arm64 pro-fdroid
