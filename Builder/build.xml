@@ -427,7 +427,7 @@
 		<antcall target="copy" inheritAll="true" />
 		
 		<copy file="../EbookaPDF/bin/EbookaPDF-release.apk"
-			tofile="froid/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-d${app.db}-${pdf.app.platform}.apk"
+			tofile="../../froid/release/${pdf.export.name}-${version.code}.${version.code.index}-c${pdf.reader.code}-d${app.db}-${pdf.app.platform}.apk"
 			overwrite="true" />
 		
 		
