@@ -21,7 +21,7 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 [link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
 [link2](https://www.dropbox.com/home/FREE_PDF_APK/testing)
 
-[Telegram] (https://t.me/LibreraReader)
+[Telegram](https://t.me/LibreraReader)
 
 ## Support intents
 
