@@ -257,6 +257,7 @@ public class ShareDialog {
 
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
+        final boolean isExternalOrCloud = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath());
         final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
@@ -274,7 +275,9 @@ public class ShareDialog {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
         }
 
+        if (!isExternalOrCloud) {
         items.add(a.getString(R.string.add_tags));
+        }
 
         if (AppsConfig.isCloudsEnable) {
             items.add(a.getString(R.string.upload_to_cloud));
@@ -372,7 +375,7 @@ public class ShareDialog {
                     } else {
                         ExtUtils.sharePage(a, file, page, null);
                     }
-                } else if (which == i++) {
+                } else if (!isExternalOrCloud && which == i++) {
                     Dialogs.showTagsDialog(a, file, false, null);
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
                     showAddToCloudDialog(a, file);

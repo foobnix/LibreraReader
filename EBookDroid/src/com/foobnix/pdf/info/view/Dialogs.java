@@ -578,19 +578,7 @@ public class Dialogs {
         final TextView add = (TextView) inflate.findViewById(R.id.addTag);
         TxtUtils.underline(add, a.getString(R.string.create_tag));
 
-        Collection<String> res = new LinkedHashSet<String>();
-        res.addAll(StringDB.asList(AppState.get().bookTags));
-        res.addAll(StringDB.asList(tag));
-        res.addAll(AppDB.get().getAll(SEARCH_IN.TAGS));
-
-        Iterator<String> iterator = res.iterator();
-        while (iterator.hasNext()) {
-            if (TxtUtils.isEmpty(iterator.next().trim())) {
-                iterator.remove();
-            }
-        }
-        final List<String> tags = new ArrayList(res);
-        Collections.sort(tags);
+        final List<String> tags = getAllTags(tag);
 
         final Set<Integer> checked = new HashSet<>();
 
@@ -631,7 +619,8 @@ public class Dialogs {
 
                                 AppState.get().bookTags = StringDB.delete(AppState.get().bookTags, tagName);
                                 tags.clear();
-                                tags.addAll(StringDB.asList(AppState.get().bookTags));
+                                tags.addAll(getAllTags(tag));
+
                                 notifyDataSetChanged();
 
                                 List<FileMeta> allWithTag = AppDB.get().getAllWithTag(tagName);
@@ -741,6 +730,23 @@ public class Dialogs {
         });
         create.show();
 
+    }
+
+    private static List<String> getAllTags(final String tag) {
+        Collection<String> res = new LinkedHashSet<String>();
+        res.addAll(StringDB.asList(AppState.get().bookTags));
+        res.addAll(StringDB.asList(tag));
+        res.addAll(AppDB.get().getAll(SEARCH_IN.TAGS));
+
+        Iterator<String> iterator = res.iterator();
+        while (iterator.hasNext()) {
+            if (TxtUtils.isEmpty(iterator.next().trim())) {
+                iterator.remove();
+            }
+        }
+        final List<String> tags = new ArrayList<String>(res);
+        Collections.sort(tags);
+        return tags;
     }
 
 }
