@@ -173,7 +173,7 @@ public class CustomColorView extends FrameLayout {
     public void init(int initColor) {
         this.initColor = initColor;
         text2.setBackgroundColor(initColor);
-        // text2.setText(MagicHelper.colorToString(initColor));
+        text2.setText(MagicHelper.colorToString(initColor));
     }
 
     public void setOnColorChanged(StringResponse response) {
