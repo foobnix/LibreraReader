@@ -138,10 +138,11 @@ public class OutlineAdapter extends BaseAdapter {
         final int id = (int) getItemId(position);
         View container = null;
         if (convertView == null) {
-            container = LayoutInflater.from(context).inflate(R.layout.outline_item, parent, false);
         } else {
             container = convertView;
         }
+        container = LayoutInflater.from(context).inflate(R.layout.outline_item, parent, false);
+
         final TextView view = (TextView) container.findViewById(R.id.outline_title);
         final TextView num = (TextView) container.findViewById(R.id.pageNumber);
         final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);

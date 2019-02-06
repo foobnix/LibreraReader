@@ -112,9 +112,6 @@ public class DefaultListeners {
                     return true;
                 }
 
-                if (isTagCicked(a, result)) {
-                    return true;
-                }
                 boolean isFolder = AppDB.get().isFolder(result);
 
                 if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
@@ -135,6 +132,10 @@ public class DefaultListeners {
                     return false;
                 }
 
+                if (isTagCicked(a, result)) {
+                    return true;
+                }
+
                 // final File item = new File(result.getPath());
                 if (isFolder) {
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
@@ -145,7 +146,7 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
-                    if (AppState.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
+                    if (AppState.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
                         Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 
                             @Override

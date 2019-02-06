@@ -42,7 +42,7 @@
         android:choiceMode="singleChoice"
         android:divider="#00ff0000"
         android:dividerHeight="8dip"
-        android:listSelector="@color/tint_blue"
+        android:listSelector="@color/tint_blue_alpha"
         android:visibility="visible" >
     </ListView>
 

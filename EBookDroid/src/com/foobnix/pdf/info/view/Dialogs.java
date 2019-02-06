@@ -617,7 +617,9 @@ public class Dialogs {
                             public void run() {
                                 checked.clear();
 
+                                LOG.d("AppState.get().bookTags before", AppState.get().bookTags);
                                 AppState.get().bookTags = StringDB.delete(AppState.get().bookTags, tagName);
+
                                 tags.clear();
                                 tags.addAll(getAllTags(tag));
 
@@ -631,6 +633,8 @@ public class Dialogs {
                                 if (refresh != null) {
                                     refresh.run();
                                 }
+
+                                LOG.d("AppState.get().bookTags after", AppState.get().bookTags);
 
                             }
                         });
