@@ -654,7 +654,7 @@ public class Dialogs {
                     @Override
                     public void run() {
                         tags.clear();
-                        tags.addAll(StringDB.asList(AppState.get().bookTags));
+                        tags.addAll(getAllTags(tag));
                         adapter.notifyDataSetChanged();
                     }
                 });
