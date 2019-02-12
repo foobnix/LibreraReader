@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <LinearLayout
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/editPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:enabled="false"
+             >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/buttonPath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/folders" />
+      
+        
+    </LinearLayout>
+    
+    <CheckBox
+            android:id="@+id/searchInTheSubfolders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/search_in_the_subfolders" />
+
+    <LinearLayout
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        
+
+        <EditText
+            android:singleLine="true"
+            android:id="@+id/editSearchText"
+            android:imeOptions="actionSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/text"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/searchStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/search" />
+        
+          <Button
+            android:id="@+id/searchStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/stop" />
+        
+    </LinearLayout>
+    
+    <TextView
+        android:id="@+id/infoView1"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Info ... " />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Info ... " />
+
+</LinearLayout>

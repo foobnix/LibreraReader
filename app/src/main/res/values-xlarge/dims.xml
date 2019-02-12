@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="wh_button">45dp</dimen>
+    <dimen name="wh_button_small">32dp</dimen>
+    
+    <dimen name="wh_button_big">50dp</dimen>
+    
+     
+       <dimen name="title_wh_button">30sp</dimen>
+       <dimen name="title_wh_padding">6sp</dimen>
+     <dimen name="title_h_adv">16sp</dimen>
+     
+     <string name="ads_banner_size">FULL_WIDTHx420</string>
+    
+</resources>

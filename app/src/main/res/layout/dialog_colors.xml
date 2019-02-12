@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="500dip"
+    android:orientation="vertical"
+    android:padding="2dip" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="80dip"
+        android:gravity="center"
+        android:text="Type"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:padding="5dip"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s."
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/textFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/font"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/fontRGB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="#FFAEAE"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.buzzingandroid.ui.HSVValueSlider
+        android:id="@+id/HSVValueSlider1"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_weight="0"
+        android:background="#ff0000" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/background"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/bgRGB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="#FFAEAE"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <com.buzzingandroid.ui.HSVValueSlider
+        android:id="@+id/HSVValueSlider2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dip"
+        android:layout_weight="0"
+        android:background="#ff0000" />
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/bgTransparency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="@string/transparency" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/fontLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/font"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <com.buzzingandroid.ui.HSVColorWheel
+                android:id="@+id/HSVColorWheel1"
+                android:layout_width="wrap_content"
+                android:layout_height="180dip"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dip"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/background"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/isColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_clickable"
+                    android:text="@string/color"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/isImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dip"
+                    android:background="@drawable/bg_clickable"
+                    android:text="@string/image"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <com.buzzingandroid.ui.HSVColorWheel
+                android:id="@+id/HSVColorWheel2"
+                android:layout_width="wrap_content"
+                android:layout_height="180dip"
+                android:layout_weight="1"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/configBGLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/bg1"
+                    android:layout_width="60dip"
+                    android:layout_height="80dip"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/bg_clickable"
+                    android:padding="2dip"
+                    android:scaleType="fitXY" />
+
+                <ImageView
+                    android:id="@+id/bg2"
+                    android:layout_width="60dip"
+                    android:layout_height="80dip"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/bg_clickable"
+                    android:padding="2dip"
+                    android:scaleType="fitXY" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/configBGLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/bg3"
+                    android:layout_width="60dip"
+                    android:layout_height="80dip"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/bg_clickable"
+                    android:padding="2dip"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:padding="2dip"
+                        android:scaleType="center"
+                        android:src="@drawable/glyphicons_191_circle_plus"
+                        android:textSize="40sp"
+                        android:tint="@color/tint_gray" />
+
+                    <ImageView
+                        android:id="@+id/bg4"
+                        android:layout_width="60dip"
+                        android:layout_height="80dip"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/bg_clickable"
+                        android:gravity="center"
+                        android:padding="2dip"
+                        android:scaleType="fitXY"
+                        android:textSize="40sp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/onDefaults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dip"
+        android:layout_weight="0"
+        android:text="@string/restore_defaults_short" />
+
+</LinearLayout>

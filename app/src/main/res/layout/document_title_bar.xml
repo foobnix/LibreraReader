@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearMenuLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+     <com.foobnix.pdf.info.view.ProgressDraw
+            android:id="@+id/progressDraw"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress" />
+     
+    <LinearLayout
+        android:id="@+id/underLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/lirbiLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="0"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_search_second_clickable"
+            android:cropToPadding="true"
+            android:elevation="8dip"
+            android:paddingBottom="0dip"
+            android:ellipsize="end"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="0dip"
+            android:singleLine="true"
+            android:src="@drawable/lirbi_text"
+            android:text="Music"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/lirbiLogo"
+            android:gravity="center_vertical"
+            android:visibility="visible" >
+
+            <ImageView
+                android:id="@+id/imageMenuArrow"
+                style="@style/navBGButton"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_margin="1dip"
+                android:padding="5dip"
+                android:src="@android:drawable/arrow_up_float"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/bookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Book Name.pdf"
+                android:textSize="29sp" />
+
+            
+
+            <TextView
+                android:id="@+id/currentPageIndex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dip"
+                android:layout_weight="0"
+                android:singleLine="true"
+                android:ellipsize="start"
+                android:gravity="right"
+                android:minEms="3"
+                android:text="1/123"
+                android:textSize="@dimen/title_h_adv" />
+
+            <TextView
+                android:id="@+id/reverseKeysIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dip"
+                android:layout_weight="0"
+                android:text="R"
+                android:textSize="@dimen/title_h_adv" />
+
+            <ImageView
+                android:id="@+id/clockIcon"
+                android:layout_width="13sp"
+                android:layout_height="13sp"
+                android:layout_marginLeft="4dip"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_55_clock"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                android:id="@+id/currentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_weight="0"
+                android:text="10:10"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/batteryIcon"
+                android:layout_width="13sp"
+                android:layout_height="13sp"
+                android:layout_marginLeft="2dip"
+                android:layout_weight="0"
+                android:rotation="-90"
+                android:src="@drawable/glyphicons_766_battery_full"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                android:id="@+id/currentBattery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:backgroundTint="@color/tint_gray"
+                android:gravity="center"
+                android:text="76%"
+                android:textSize="12sp" />
+            
+            <ImageView
+                android:id="@+id/goToPage1Top"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:src="@drawable/glyphicons_172_fast_backward"
+                android:text="1"
+                    android:layout_marginLeft="5dip"
+                android:textColor="@color/tint_gray"
+                android:textSize="@dimen/title_h_adv"
+                android:textStyle="bold"
+                android:tint="@color/tint_gray" />
+
+            <ImageView
+                android:id="@+id/textToSpeachTop"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/glyphicons_185_volume_up"
+                android:tint="@color/tint_gray"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/lockUnlockTop"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/glyphicons_205_unlock"
+                android:tint="@color/tint_gray"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/imageNextScreen"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:src="@drawable/glyphicons_full_page"
+                android:tint="@color/tint_gray" />
+
+            <ImageView
+                android:id="@+id/imageToolbar"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="1dip"
+                android:src="@drawable/glyphicons_200_ban"
+                android:tint="@color/tint_gray" />
+
+            <ImageView
+                android:id="@+id/closeTop"
+                android:layout_width="@dimen/title_wh_button"
+                android:layout_height="@dimen/title_wh_button"
+                android:layout_marginLeft="2dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="0"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="1dip"
+                android:src="@drawable/glyphicons_208_remove_2"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+
+       
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<View xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item"
-    android:background="#ff0000"
-    android:layout_width="@dimen/wh_button"
-    android:layout_height="@dimen/wh_button" />

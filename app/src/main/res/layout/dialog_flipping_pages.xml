@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_marginLeft="10dip"
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interval_sec_" />
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/flippingInterval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        myseek:text="" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <CheckBox
+        android:id="@+id/isScrollAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/simple_scroll_animation" />
+    
+    <CheckBox
+        android:id="@+id/isShowToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_bottom_panel" />
+    
+    <CheckBox
+        android:id="@+id/isLoopAutoplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cyclic_scrolling_return_to_1_page_" />
+    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/flippingStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_stop" />
+
+        <Button
+            android:id="@+id/flippingStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/start" />
+    </LinearLayout>
+
+</LinearLayout>

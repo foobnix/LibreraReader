@@ -1,0 +1,17 @@
+* {
+	margin: 0px;
+	position: relative;
+}
+
+body {
+	padding: 5px;
+}
+
+span {
+	white-space: pre-wrap;
+}
+
+table {
+	table-layout: fixed;
+	width: 0px;
+}

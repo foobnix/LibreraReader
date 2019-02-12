@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="wh_button">36dp</dimen>
+    <dimen name="wh_button_big">38dp</dimen>
+    <dimen name="wh_button_small">25dp</dimen>
+    <dimen name="text_title">14sp</dimen>
+    <dimen name="text_title1">14sp</dimen>
+    <dimen name="text_subtitle">12sp</dimen>
+    <dimen name="title_wh_button">18dp</dimen>
+    <dimen name="title_wh_padding">3dp</dimen>
+    <dimen name="title_h_adv">13sp</dimen>
+    <dimen name="sub_checkbox">35dip</dimen>
+
+    <string name="ads_banner_size">FULL_WIDTHx320</string>
+
+    <declare-styleable name="CustomSeek">
+        <attr name="text" format="string" />
+        <attr name="textColor" format="string" />
+    </declare-styleable>
+    
+    
+    <dimen name="sort_by_size">80dip</dimen>
+    
+     
+     <dimen name="speed_size">60dip</dimen>
+     <dimen name="speed_size_padding">14dip</dimen>
+    
+    <dimen name="dv">4dip</dimen>
+    <dimen name="radius">1dip</dimen>
+    
+    <dimen name="brigtness">15dip</dimen>
+    <dimen name="progress">2dip</dimen>
+    
+    
+    
+    
+    
+    <dimen name="fastscroll_bubble_radius">44dp</dimen>
+    <dimen name="fastscroll_bubble_size">88dp</dimen>
+    <dimen name="fastscroll_bubble_textsize">48sp</dimen>
+
+    <dimen name="fastscroll_handle_height">40dp</dimen>
+    <dimen name="fastscroll_handle_width">4dp</dimen>
+    <dimen name="fastscroll_handle_radius">2dp</dimen>
+
+    <dimen name="fastscroll_track_width">1dp</dimen>
+
+    <dimen name="fastscroll_scrollbar_padding">8dp</dimen>
+    
+    <dimen name="downwards_drop_shadow_height">16dp</dimen>
+    
+    
+
+</resources>

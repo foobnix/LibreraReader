@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/proADS"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/colorBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:minHeight="85dip"
+    android:minWidth="1000dip"
+    android:orientation="horizontal"
+    android:visibility="visible" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="60dip"
+        android:layout_height="60dip"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="10dip"
+        android:layout_weight="0"
+        android:adjustViewBounds="true"
+        android:padding="1dip"
+        android:src="@mipmap/icon_pdf_pro" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name_pro"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:scrollHorizontally="true"
+            android:text="@string/pro_pdf_description_ads_free"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:maxLines="3"
+            android:scrollHorizontally="true"
+            android:text="@string/librera_pro_no_ads_leading_book_reader_and_pdf"
+            android:textSize="12sp" />
+
+        <TextView
+            style="@style/textLinkStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dip"
+            android:singleLine="true"
+            android:text="@string/librera_pro_no_ads_leading_book_reader_and_pdf"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

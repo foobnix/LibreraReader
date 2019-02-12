@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:minWidth="10000dip"
+    android:minHeight="10000dip"
+    android:orientation="vertical"
+    android:padding="4dip" >
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastReadSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/speed1" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastReadFontSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/font_size" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <com.foobnix.pdf.info.view.CustomSeek
+        android:id="@+id/fastManyWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        myseek:text="@string/minimum_line_length" >
+    </com.foobnix.pdf.info.view.CustomSeek>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+        
+         <TextView
+            android:id="@+id/textWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/start"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/onPrev"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:src="@drawable/glyphicons_225_chevron_left"
+            android:tint="@color/tint_blue" />
+
+        <ImageView
+            android:id="@+id/onNext"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_clickable"
+            android:src="@drawable/glyphicons_224_chevron_right"
+            android:tint="@color/tint_blue" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/onReset"
+        style="@style/textLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/reset" />
+
+</LinearLayout>

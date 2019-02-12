@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/section1"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/proxy_server_settings" />
+
+        <CheckBox
+            android:id="@+id/proxyEnable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_proxy_server" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="@string/proxy_type" />
+
+            <TextView
+                android:id="@+id/proxyType"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="HTTP" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/server" />
+
+        <EditText
+            android:id="@+id/proxyServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/port" />
+
+        <EditText
+            android:id="@+id/proxyPort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user" />
+
+        <EditText
+            android:id="@+id/proxyUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password" />
+
+        <EditText
+            android:id="@+id/proxyPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/section2"
+            style="@style/textLinkWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:background="@drawable/bg_search_second"
+            android:text="@string/other_settings" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/folder_for_downloaded_books" />
+
+            <TextView
+                android:id="@+id/downlodsPath"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:minWidth="100dip"
+                android:text="Dowloads/Librera" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/opdsLargeCovers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/display_large_book_covers_in_the_catalog" />
+    </LinearLayout>
+
+</ScrollView>

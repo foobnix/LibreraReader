@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/colorBackground"
+    android:paddingLeft="4dip"
+    android:paddingRight="4dip"
+    android:paddingBottom="4dip"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/iconView"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="4dip"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="2dip"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/headlineView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="Sample title"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descriptionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:paddingRight="2dp"
+            android:text="Sample subtitle Sample subtitle Sample subtitle Sample subtitle Sample subtitle"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/sponsoredText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="-3dip"
+                android:text="Sponsored"
+                android:textSize="12sp"
+                android:textColor="@color/lt_grey" />
+
+            <ImageView
+                android:id="@+id/sponsoredIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/callToActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_search_second"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="OPEN"
+            android:paddingLeft="8dip"
+            android:paddingRight="8dip"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

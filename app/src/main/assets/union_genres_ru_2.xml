@@ -1,0 +1,640 @@
+<root-genres>
+<genre id="30" title="Бизнес-Книги" hidden="0">
+<subgenres id="445" title="Банковское дело" token="banking"/>
+<subgenres id="447" title="Бухучет, налогообложение, аудит" token="accounting"/>
+<subgenres id="448" title="ВЭД" token="global_economy"/>
+<subgenres id="456" title="Делопроизводство" token="paper_work"/>
+<subgenres id="6075" title="Зарубежная деловая литература" token="foreign_business"/>
+<subgenres id="451" title="Корпоративная культура" token="org_behavior"/>
+<subgenres id="452" title="Личные финансы" token="personal_finance"/>
+<subgenres id="455" title="Малый бизнес" token="small_business"/>
+<subgenres id="444" title="Маркетинг, PR, реклама" token="marketing"/>
+<subgenres id="453" title="Недвижимость" token="real_estate"/>
+<subgenres id="454" title="О бизнесе популярно" token="popular_business"/>
+<subgenres id="450" title="Отраслевые издания" token="industries"/>
+<subgenres id="442" title="Поиск работы, карьера" token="job_hunting"/>
+<subgenres id="443" title="Управление, подбор персонала" token="management"/>
+<subgenres id="446" title="Ценные бумаги, инвестиции" token="stock"/>
+<subgenres id="449" title="Экономика" token="economics"/>
+</genre>
+<genre id="111" title="Зарубежная литература" hidden="0">
+<subgenres id="6075" title="Зарубежная деловая литература" token="foreign_business"/>
+<subgenres id="6085" title="Зарубежная драматургия" token="foreign_dramaturgy"/>
+<subgenres id="6125" title="Зарубежная классика" token="foreign_prose"/>
+<subgenres id="6330" title="Зарубежная компьютерная литература" token="foreign_comp"/>
+<subgenres id="6185" title="Зарубежная образовательная литература" token="foreign_edu"/>
+<subgenres id="6175" title="Зарубежная прикладная и научно-популярная литература" token="foreign_home"/>
+<subgenres id="6329" title="Зарубежная психология" token="foreign_psychology"/>
+<subgenres id="6135" title="Зарубежная публицистика" token="foreign_publicism"/>
+<subgenres id="6331" title="Зарубежная справочная литература" token="foreign_desc"/>
+<subgenres id="6145" title="Зарубежная старинная литература" token="foreign_antique"/>
+<subgenres id="6155" title="Зарубежная фантастика" token="foreign_sf"/>
+<subgenres id="6205" title="Зарубежная эзотерическая и религиозная литература" token="foreign_religion"/>
+<subgenres id="6215" title="Зарубежное фэнтези" token="foreign_fantasy"/>
+<subgenres id="6195" title="Зарубежное: Прочее" token="foreign_other"/>
+<subgenres id="6293" title="Зарубежные боевики" token="foreign_action"/>
+<subgenres id="6265" title="Зарубежные детективы" token="foreign_detective"/>
+<subgenres id="6235" title="Зарубежные детские книги" token="foreign_children"/>
+<subgenres id="6245" title="Зарубежные любовные романы" token="foreign_love"/>
+<subgenres id="6255" title="Зарубежные приключения" token="foreign_adventure"/>
+<subgenres id="6115" title="Зарубежные стихи" token="foreign_poetry"/>
+<subgenres id="6225" title="Зарубежный юмор" token="foreign_humor"/>
+<subgenres id="6286" title="Современная зарубежная литература" token="foreign_contemporary"/>
+</genre>
+<genre id="36" title="Детские книги" hidden="0">
+<subgenres id="59" title="Детская проза" token="child_prose"/>
+<subgenres id="380" title="Детская фантастика" token="child_sf"/>
+<subgenres id="390" title="Детские детективы" token="child_det"/>
+<subgenres id="353" title="Детские приключения" token="child_adv"/>
+<subgenres id="398" title="Детские стихи" token="child_verse"/>
+<subgenres id="6235" title="Зарубежные детские книги" token="foreign_children"/>
+<subgenres id="45" title="Книги для детей: прочее" token="children"/>
+<subgenres id="181" title="Сказки" token="child_tale"/>
+<subgenres id="40" title="Учебная литература" token="child_education"/>
+</genre>
+<genre id="109" title="Современная проза" hidden="0">
+<subgenres id="312" title="Историческая литература" token="prose_history"/>
+<subgenres id="440" title="Книги о войне" token="prose_military"/>
+<subgenres id="110" title="Контркультура" token="prose_counter"/>
+<subgenres id="6334" title="Самиздат" token="samizdat"/>
+<subgenres id="6286" title="Современная зарубежная литература" token="foreign_contemporary"/>
+<subgenres id="6285" title="Современная русская литература" token="russian_contemporary"/>
+</genre>
+<genre id="31" title="Фантастика" hidden="0">
+<subgenres id="373" title="Боевая фантастика" token="sf_action"/>
+<subgenres id="375" title="Героическая фантастика" token="sf_heroic"/>
+<subgenres id="376" title="Детективная фантастика" token="sf_detective"/>
+<subgenres id="6155" title="Зарубежная фантастика" token="foreign_sf"/>
+<subgenres id="339" title="Историческая фантастика" token="sf_history"/>
+<subgenres id="340" title="Киберпанк" token="sf_cyberpunk"/>
+<subgenres id="377" title="Космическая фантастика" token="sf_space"/>
+<subgenres id="351" title="Научная фантастика" token="sf"/>
+<subgenres id="6303" title="Попаданцы" token="popadanec"/>
+<subgenres id="378" title="Социальная фантастика" token="sf_social"/>
+<subgenres id="379" title="Юмористическая фантастика" token="sf_humor"/>
+</genre>
+<genre id="112" title="Фэнтези" hidden="0">
+<subgenres id="6332" title="Боевое фэнтези" token="fantasy_fight"/>
+<subgenres id="6296" title="Городское фэнтези" token="city_fantasy"/>
+<subgenres id="6215" title="Зарубежное фэнтези" token="foreign_fantasy"/>
+<subgenres id="6298" title="Историческое фэнтези" token="historical_fantasy"/>
+<subgenres id="6295" title="Книги про вампиров" token="vampire_book"/>
+<subgenres id="6297" title="Книги про волшебников" token="magician_book"/>
+<subgenres id="6302" title="Любовное фэнтези" token="love_fantasy"/>
+<subgenres id="6300" title="Русское фэнтези" token="russian_fantasy"/>
+<subgenres id="161" title="Ужасы и Мистика" token="sf_horror"/>
+<subgenres id="6301" title="Фэнтези про драконов" token="dragon_fantasy"/>
+<subgenres id="6299" title="Юмористическое фэнтези" token="humor_fantasy"/>
+</genre>
+<genre id="7032" title="Детективы" hidden="0">
+<subgenres id="6265" title="Зарубежные детективы" token="foreign_detective"/>
+<subgenres id="383" title="Иронические детективы" token="det_irony"/>
+<subgenres id="200" title="Исторические детективы" token="det_history"/>
+<subgenres id="381" title="Классические детективы" token="det_classic"/>
+<subgenres id="388" title="Крутой детектив" token="det_hard"/>
+<subgenres id="386" title="Политические детективы" token="det_political"/>
+<subgenres id="202" title="Полицейские детективы" token="det_police"/>
+<subgenres id="201" title="Современные детективы" token="detective"/>
+<subgenres id="384" title="Шпионские детективы" token="det_espionage"/>
+</genre>
+<genre id="35" title="Приключения" hidden="0">
+<subgenres id="190" title="Вестерны" token="adv_western"/>
+<subgenres id="6255" title="Зарубежные приключения" token="foreign_adventure"/>
+<subgenres id="344" title="Исторические приключения" token="adv_history"/>
+<subgenres id="253" title="Книги о Путешествиях" token="adv_geo"/>
+<subgenres id="187" title="Морские приключения" token="adv_maritime"/>
+<subgenres id="184" title="Приключения: прочее" token="adventure"/>
+</genre>
+<genre id="56" title="Боевики" hidden="0">
+<subgenres id="373" title="Боевая фантастика" token="sf_action"/>
+<subgenres id="382" title="Боевики: Прочее" token="det_action"/>
+<subgenres id="385" title="Криминальные боевики" token="det_crime"/>
+<subgenres id="429" title="Триллеры" token="thriller"/>
+</genre>
+<genre id="34" title="Любовные романы" hidden="0">
+<subgenres id="6245" title="Зарубежные любовные романы" token="foreign_love"/>
+<subgenres id="394" title="Исторические любовные романы" token="love_history"/>
+<subgenres id="395" title="Короткие любовные романы" token="love_short"/>
+<subgenres id="441" title="Любовно-фантастические романы" token="love_sf"/>
+<subgenres id="391" title="Остросюжетные любовные романы" token="love_detective"/>
+<subgenres id="316" title="Современные любовные романы" token="love_contemporary"/>
+<subgenres id="396" title="Эротическая литература" token="love_erotica"/>
+</genre>
+<genre id="7110" title="Классика" hidden="0">
+<subgenres id="400" title="Античная литература" token="antique_ant"/>
+<subgenres id="403" title="Древневосточная литература" token="antique_east"/>
+<subgenres id="402" title="Древнерусская литература" token="antique_russian"/>
+<subgenres id="401" title="Европейская старинная литература" token="antique_european"/>
+<subgenres id="6125" title="Зарубежная классика" token="foreign_prose"/>
+<subgenres id="6145" title="Зарубежная старинная литература" token="foreign_antique"/>
+<subgenres id="194" title="Классическая проза" token="prose_classic"/>
+<subgenres id="6289" title="Литература 18 века" token="literature_18"/>
+<subgenres id="6288" title="Литература 19 века" token="literature_19"/>
+<subgenres id="6287" title="Литература 20 века" token="literature_20"/>
+<subgenres id="221" title="Мифы. Легенды. Эпос" token="antique_myths"/>
+<subgenres id="198" title="Русская классика" token="prose_rus_classic"/>
+<subgenres id="199" title="Советская литература" token="prose_su_classics"/>
+<subgenres id="404" title="Старинная литература: прочее" token="antique"/>
+</genre>
+<genre id="42" title="Публицистика" hidden="0">
+<subgenres id="6312" title="Афоризмы и цитаты" token="aphorism_quote"/>
+<subgenres id="13" title="Биографии и Мемуары" token="nonf_biography"/>
+<subgenres id="6310" title="Военное дело, спецслужбы" token="military_special"/>
+<subgenres id="236" title="Документальная литература" token="nonfiction"/>
+<subgenres id="6135" title="Зарубежная публицистика" token="foreign_publicism"/>
+<subgenres id="413" title="Публицистика: прочее" token="nonf_publicism"/>
+</genre>
+<genre id="43" title="Религия" hidden="0">
+<subgenres id="6205" title="Зарубежная эзотерическая и религиозная литература" token="foreign_religion"/>
+<subgenres id="406" title="Религиоведение" token="sci_religion"/>
+<subgenres id="46" title="Религиозные тексты" token="religion_rel"/>
+<subgenres id="435" title="Религия: прочее" token="religion"/>
+<subgenres id="304" title="Эзотерика" token="religion_esoterics"/>
+</genre>
+<genre id="44" title="Юмор" hidden="0">
+<subgenres id="415" title="Анекдоты" token="humor_anecdote"/>
+<subgenres id="6225" title="Зарубежный юмор" token="foreign_humor"/>
+<subgenres id="262" title="Юмор: прочее" token="humor"/>
+<subgenres id="393" title="Юмористическая проза" token="humor_prose"/>
+<subgenres id="399" title="Юмористические стихи" token="humor_verse"/>
+</genre>
+<genre id="7037" title="Поэзия, Драматургия" hidden="0">
+<subgenres id="7" title="Драматургия" token="dramaturgy"/>
+<subgenres id="6085" title="Зарубежная драматургия" token="foreign_dramaturgy"/>
+<subgenres id="6115" title="Зарубежные стихи" token="foreign_poetry"/>
+<subgenres id="193" title="Поэзия" token="poetry"/>
+</genre>
+<genre id="115" title="Книги по психологии" hidden="0">
+<subgenres id="6327" title="Детская психология" token="psy_childs"/>
+<subgenres id="6329" title="Зарубежная психология" token="foreign_psychology"/>
+<subgenres id="6323" title="Классики психологии" token="psy_alassic"/>
+<subgenres id="6325" title="Личностный рост" token="psy_personal"/>
+<subgenres id="6321" title="Общая психология" token="psy_generic"/>
+<subgenres id="6324" title="Психотерапия и консультирование" token="psy_theraphy"/>
+<subgenres id="6326" title="Секс и семейная психология" token="psy_sex_and_family"/>
+<subgenres id="6322" title="Социальная психология" token="psy_social"/>
+</genre>
+<genre id="7045" title="Дом, Семья" hidden="0">
+<subgenres id="6314" title="Автомобили и ПДД" token="auto_regulations"/>
+<subgenres id="6315" title="Воспитание детей" token="upbringing_book"/>
+<subgenres id="372" title="Дом и Семья: прочее" token="home"/>
+<subgenres id="436" title="Домашние Животные" token="home_pets"/>
+<subgenres id="6175" title="Зарубежная прикладная и научно-популярная литература" token="foreign_home"/>
+<subgenres id="265" title="Здоровье" token="home_health"/>
+<subgenres id="82" title="Кулинария" token="home_cooking"/>
+<subgenres id="37" title="Природа и животные" token="adv_animal"/>
+<subgenres id="438" title="Развлечения" token="home_entertain"/>
+<subgenres id="439" title="Сад и Огород" token="home_garden"/>
+<subgenres id="305" title="Самосовершенствование" token="religion_self"/>
+<subgenres id="154" title="Сделай Сам" token="home_diy"/>
+<subgenres id="341" title="Спорт, фитнес" token="home_sport"/>
+<subgenres id="437" title="Хобби, Ремесла" token="home_crafts"/>
+<subgenres id="227" title="Эротика, Секс" token="home_sex"/>
+</genre>
+<genre id="114" title="Искусство" hidden="0">
+<subgenres id="6318" title="Архитектура" token="architecture_book"/>
+<subgenres id="6317" title="Изобразительное искусство, фотография" token="visual_arts"/>
+<subgenres id="6316" title="Кинематограф, театр" token="cinema_theatre"/>
+<subgenres id="414" title="Критика" token="nonf_criticism"/>
+<subgenres id="6319" title="Музыка, балет" token="music_dancing"/>
+</genre>
+<genre id="39" title="Наука, Образование" hidden="0">
+<subgenres id="245" title="Биология" token="sci_biology"/>
+<subgenres id="6306" title="География" token="geography_book"/>
+<subgenres id="6185" title="Зарубежная образовательная литература" token="foreign_edu"/>
+<subgenres id="6308" title="Иностранные языки" token="foreign_language"/>
+<subgenres id="330" title="История" token="sci_history"/>
+<subgenres id="405" title="Культурология" token="sci_culture"/>
+<subgenres id="331" title="Математика" token="sci_math"/>
+<subgenres id="116" title="Медицина" token="sci_medicine"/>
+<subgenres id="6307" title="Педагогика" token="pedagogy_book"/>
+<subgenres id="407" title="Политика, политология" token="sci_politics"/>
+<subgenres id="430" title="Прочая образовательная литература" token="science"/>
+<subgenres id="6305" title="Социология" token="sociology_book"/>
+<subgenres id="271" title="Техническая литература" token="sci_tech"/>
+<subgenres id="334" title="Физика" token="sci_phys"/>
+<subgenres id="211" title="Философия" token="sci_philosophy"/>
+<subgenres id="325" title="Химия" token="sci_chem"/>
+<subgenres id="210" title="Юриспруденция, право" token="sci_juris"/>
+<subgenres id="408" title="Языкознание" token="sci_linguistic"/>
+</genre>
+<genre id="41" title="Справочники" hidden="0">
+<subgenres id="6331" title="Зарубежная справочная литература" token="foreign_desc"/>
+<subgenres id="2" title="Путеводители" token="geo_guides"/>
+<subgenres id="244" title="Руководства" token="ref_guide"/>
+<subgenres id="434" title="Словари" token="ref_dict"/>
+<subgenres id="290" title="Справочная литература: прочее" token="reference"/>
+<subgenres id="278" title="Справочники" token="ref_ref"/>
+<subgenres id="282" title="Энциклопедии" token="ref_encyc"/>
+</genre>
+<genre id="7040" title="Компьютеры" hidden="0">
+<subgenres id="433" title="Базы данных" token="comp_db"/>
+<subgenres id="6330" title="Зарубежная компьютерная литература" token="foreign_comp"/>
+<subgenres id="431" title="Интернет" token="comp_www"/>
+<subgenres id="75" title="Компьютерное Железо" token="comp_hard"/>
+<subgenres id="67" title="Компьютеры: прочее" token="computers"/>
+<subgenres id="78" title="ОС и Сети" token="comp_osnet"/>
+<subgenres id="432" title="Программирование" token="comp_programming"/>
+<subgenres id="80" title="Программы" token="comp_soft"/>
+</genre>
+<genre id="5000" title="Повести, рассказы" hidden="0">
+<subgenres id="25" title="Очерки" token="sketch"/>
+<subgenres id="24" title="Повести" token="narrative"/>
+<subgenres id="1" title="Рассказы" token="short_story"/>
+<subgenres id="23" title="Эссе" token="essays"/>
+</genre>
+<genre id="7046" title="Периодические издания" hidden="0">
+<subgenres id="460" title="Газеты" token="newspapers"/>
+<subgenres id="458" title="Журналы" token="periodic"/>
+</genre>
+<genre id="47" title="Устройства" hidden="0">
+<subgenres id="459" title="Ридеры" token="bookreader"/>
+</genre>
+<genre id="60" title="Europe" hidden="1">
+<subgenres id="2065" title="British Isles" token="british_isles"/>
+<subgenres id="2025" title="Central Europe" token="central_europe"/>
+<subgenres id="2081" title="Eastern Europe" token="eastern_europe"/>
+<subgenres id="5585" title="Europe (misc.)" token="europe_misc"/>
+<subgenres id="2121" title="Northern Europe, Scandinavia" token="northern_europe_scandinavia"/>
+<subgenres id="2039" title="Southern Europe" token="southern_europe"/>
+<subgenres id="2084" title="Western Continental Europe" token="western_continental_europe"/>
+</genre>
+<genre id="61" title="Asia" hidden="1">
+<subgenres id="5595" title="Asia (misc.)" token="asia_misc"/>
+<subgenres id="2139" title="Central Asia" token="central_asia"/>
+<subgenres id="2175" title="East Asia, Far East" token="east_asia_far_east"/>
+<subgenres id="2153" title="Indian sub-continent" token="indian_sub_continent"/>
+<subgenres id="2156" title="Middle East" token="middle_east"/>
+<subgenres id="2147" title="South East Asia" token="south_east_asia"/>
+</genre>
+<genre id="62" title="Africa" hidden="1">
+<subgenres id="5605" title="Africa (misc.)" token="africa_misc"/>
+<subgenres id="2240" title="North Africa" token="north_africa"/>
+<subgenres id="2228" title="South Indian Ocean Islands" token="south_indian_ocean_islands"/>
+<subgenres id="2246" title="Sub-Saharan Africa" token="sub_saharan_africa"/>
+</genre>
+<genre id="63" title="The Americas" hidden="1">
+<subgenres id="2283" title="Caribbean islands" token="caribbean_islands"/>
+<subgenres id="2387" title="Latin America" token="latin_america"/>
+<subgenres id="2359" title="North America" token="north_america"/>
+<subgenres id="5615" title="The Americas (misc.)" token="the_americas_misc"/>
+</genre>
+<genre id="64" title="Australasia, Oceania and other land areas" hidden="1">
+<subgenres id="2393" title="Australasia" token="australasia"/>
+<subgenres id="5625" title="Australasia, Oceania and other land areas (misc.)" token="australasia_oceania_other_land"/>
+<subgenres id="2413" title="Oceania" token="oceania"/>
+<subgenres id="2426" title="Other land areas" token="other_land_areas"/>
+</genre>
+<genre id="65" title="Other geographical groupings, oceans and seas" hidden="1">
+<subgenres id="2455" title="Climatic regions" token="climatic_regions"/>
+<subgenres id="2503" title="Empires and historical states" token="empires_historical_states"/>
+<subgenres id="2504" title="Groupings linked by seas" token="groupings_linked_by_seas"/>
+<subgenres id="2468" title="Oceans and seas" token="oceans_seas"/>
+<subgenres id="5635" title="Other geographical groupings, oceans and seas (misc.)" token="other_geographical_groupings_o"/>
+<subgenres id="2463" title="Political, socio-economic and strategic groupings" token="political_socio_economic_strat"/>
+</genre>
+<genre id="66" title="Indo-European languages" hidden="1">
+<subgenres id="2530" title="Baltic and other Indo-European languages" token="baltic_other_indo_european_lan"/>
+<subgenres id="2524" title="Celtic languages" token="celtic_languages"/>
+<subgenres id="2538" title="English" token="english"/>
+<subgenres id="2506" title="Germanic and Scandinavian languages" token="germanic_scandinavian_language"/>
+<subgenres id="2528" title="Hellenic languages" token="hellenic_languages"/>
+<subgenres id="5645" title="Indo-European languages (misc.)" token="indo_european_languages_misc"/>
+<subgenres id="2560" title="Romance, Italic and Rhaeto-Romanic languages" token="romance_italic_rhaeto_romanic"/>
+<subgenres id="2541" title="Slavic (Slavonic) languages" token="slavic_slavonic_languages"/>
+</genre>
+<genre id="68" title="Afro-Asiatic languages" hidden="1">
+<subgenres id="5665" title="Afro-Asiatic languages (misc.)" token="afro_asiatic_languages_misc"/>
+<subgenres id="2612" title="Non-Semitic Afro-Asiatic languages" token="non_semitic_afro_asiatic_langu"/>
+<subgenres id="2610" title="Semitic languages" token="semitic_languages"/>
+</genre>
+<genre id="69" title="Ural-Altaic and Hyperborean languages" hidden="1">
+<subgenres id="2631" title="Finno-Ugric languages" token="finno_ugric_languages"/>
+<subgenres id="2632" title="Mongolian" token="mongolian"/>
+<subgenres id="2630" title="Turkic languages" token="turkic_languages"/>
+<subgenres id="5675" title="Ural-Altaic and Hyperborean languages (misc.)" token="ural_altaic_hyperborean_langua"/>
+</genre>
+<genre id="70" title="East and Southeast Asian languages" hidden="1">
+<subgenres id="5685" title="East and Southeast Asian languages (misc.)" token="east_southeast_asian_languages"/>
+<subgenres id="2651" title="Japanese" token="japanese"/>
+<subgenres id="2638" title="Korean" token="korean"/>
+<subgenres id="2648" title="Other Southeast Asian languages, Austroasiatic languages" token="other_southeast_asian_language"/>
+<subgenres id="2640" title="Sino-Tibetan languages" token="sino_tibetan_languages"/>
+</genre>
+<genre id="71" title="African languages" hidden="1">
+<subgenres id="5695" title="African languages (misc.)" token="african_languages_misc"/>
+<subgenres id="2682" title="Khoisan languages" token="khoisan_languages"/>
+<subgenres id="2672" title="Niger-Congo languages" token="niger_congo_languages"/>
+<subgenres id="2700" title="Nilo-Saharan and Chari-Nile (Macrosudanic) languages" token="nilo_saharan_chari_nile_macros"/>
+</genre>
+<genre id="72" title="American indigenous languages" hidden="1">
+<subgenres id="5705" title="American indigenous languages (misc.)" token="american_indigenous_languages"/>
+<subgenres id="2719" title="North and Central American indigenous languages" token="north_central_american_indigen"/>
+<subgenres id="2711" title="South American and Caribbean indigenous languages" token="south_american_caribbean_indig"/>
+</genre>
+<genre id="73" title="Oceanic and Austronesian languages" hidden="1">
+<subgenres id="2735" title="Australian Aboriginal languages" token="australian_aboriginal_language"/>
+<subgenres id="2742" title="Austronesian and Malayo-Polynesian languages" token="austronesian_malayo_polynesian"/>
+<subgenres id="5715" title="Oceanic and Austronesian languages (misc.)" token="oceanic_austronesian_languages"/>
+<subgenres id="2747" title="Papuan languages" token="papuan_languages"/>
+</genre>
+<genre id="74" title="Other languages" hidden="1">
+<subgenres id="2764" title="Artificial languages" token="artificial_languages"/>
+<subgenres id="2760" title="Basque" token="basque"/>
+<subgenres id="2763" title="Caucasian languages" token="caucasian_languages"/>
+<subgenres id="5725" title="Other languages (misc.)" token="other_languages_misc"/>
+<subgenres id="2767" title="Pidgins and Creoles" token="pidgins_creoles"/>
+<subgenres id="2765" title="Sumerian" token="sumerian"/>
+</genre>
+<genre id="76" title="BCE to c 500 CE" hidden="1">
+<subgenres id="5745" title="BCE to c 500 CE (misc.)" token="bce_to_c_500_ce_misc"/>
+</genre>
+<genre id="77" title="c 500 CE to c 1000 CE" hidden="1">
+<subgenres id="5755" title="c 500 CE to c 1000 CE (misc.)" token="c_500_ce_to_c_1000_ce_misc"/>
+</genre>
+<genre id="79" title="Modern period, c 1500 onwards" hidden="1">
+<subgenres id="2775" title="20th century" token="20th_century"/>
+<subgenres id="2774" title="21st century" token="21st_century"/>
+<subgenres id="2776" title="c 1500 to c 1600" token="c_1500_to_c_1600"/>
+<subgenres id="2778" title="c 1600 to c 1700" token="c_1600_to_c_1700"/>
+<subgenres id="2786" title="c 1700 to c 1800" token="c_1700_to_c_1800"/>
+<subgenres id="2773" title="c 1800 to c 1900" token="c_1800_to_c_1900"/>
+<subgenres id="5775" title="Modern period, c 1500 onwards (misc.)" token="modern_period_c_1500_onwards_m"/>
+</genre>
+<genre id="81" title="Designed / suitable for UK curricula and examinations" hidden="1">
+<subgenres id="2859" title="Designed / suitable for A and AS Level" token="designed_suitable_for_a_as_lev"/>
+<subgenres id="2814" title="Designed / suitable for National Curriculum" token="designed_suitable_for_national"/>
+<subgenres id="2829" title="Designed / suitable for Scottish examinations and grades" token="designed_suitable_for_scottish"/>
+<subgenres id="5795" title="Designed / suitable for UK curricula and examinations (misc.)" token="designed_suitable_for_uk_curri"/>
+<subgenres id="2860" title="Designed / suitable for UK vocational qualifications" token="designed_suitable_for_uk_vocat"/>
+<subgenres id="2838" title="UK educational tests" token="uk_educational_tests"/>
+</genre>
+<genre id="86" title="Interest age / level" hidden="1">
+<subgenres id="2893" title="For children c 0-2 years" token="for_children_c_0_2_years"/>
+<subgenres id="2895" title="For emergent readers (adult)" token="for_emergent_readers_adult"/>
+<subgenres id="2894" title="For reluctant readers (children)" token="for_reluctant_readers_children"/>
+<subgenres id="2901" title="Interest age: from c 10 years" token="interest_age_from_c_10_years"/>
+<subgenres id="2892" title="Interest age: from c 11 years" token="interest_age_from_c_11_years"/>
+<subgenres id="2900" title="Interest age: from c 12 years" token="interest_age_from_c_12_years"/>
+<subgenres id="2891" title="Interest age: from c 13 years" token="interest_age_from_c_13_years"/>
+<subgenres id="2899" title="Interest age: from c 14 years" token="interest_age_from_c_14_years"/>
+<subgenres id="2898" title="Interest age: from c 3 years" token="interest_age_from_c_3_years"/>
+<subgenres id="2889" title="Interest age: from c 4 years" token="interest_age_from_c_4_years"/>
+<subgenres id="2902" title="Interest age: from c 5 years" token="interest_age_from_c_5_years"/>
+<subgenres id="2896" title="Interest age: from c 6 years" token="interest_age_from_c_6_years"/>
+<subgenres id="2903" title="Interest age: from c 7 years" token="interest_age_from_c_7_years"/>
+<subgenres id="2897" title="Interest age: from c 8 years" token="interest_age_from_c_8_years"/>
+<subgenres id="2890" title="Interest age: from c 9 years" token="interest_age_from_c_9_years"/>
+</genre>
+<genre id="87" title="Holidays and seasonal interest" hidden="1">
+<subgenres id="2905" title="Christmas" token="christmas"/>
+<subgenres id="2906" title="Easter" token="easter"/>
+<subgenres id="2909" title="Father’s Day" token="father_s_day"/>
+<subgenres id="2907" title="Hallowe’en" token="hallowe_en"/>
+<subgenres id="5855" title="Holidays and seasonal interest (misc.)" token="holidays_seasonal_interest_mis"/>
+<subgenres id="2904" title="Valentine’s Day" token="valentine_s_day"/>
+</genre>
+<genre id="88" title="Of specific Gay and Lesbian interest" hidden="1">
+<subgenres id="5865" title="Of specific Gay and Lesbian interest (misc.)" token="of_specific_gay_lesbian_intere"/>
+<subgenres id="2911" title="Of specific Gay interest" token="of_specific_gay_interest"/>
+<subgenres id="2910" title="Of specific Lesbian interest" token="of_specific_lesbian_interest"/>
+</genre>
+<genre id="89" title="Contains explicit material" hidden="1">
+<subgenres id="5875" title="Contains explicit material (misc.)" token="contains_explicit_material_mis"/>
+</genre>
+<genre id="90" title="The arts" hidden="1">
+<subgenres id="2992" title="Architecture" token="architecture"/>
+<subgenres id="2953" title="Art forms" token="art_forms"/>
+<subgenres id="2915" title="Art treatments and subjects" token="art_treatments_subjects"/>
+<subgenres id="2989" title="Dance and other performing arts" token="dance_other_performing_arts"/>
+<subgenres id="3101" title="Film, TV and radio" token="film_tv_radio"/>
+<subgenres id="2997" title="History of art / art and design styles" token="history_of_art_art_design_styl"/>
+<subgenres id="2961" title="Industrial / commercial art and design" token="industrial_commercial_art_desi"/>
+<subgenres id="3001" title="Music" token="music"/>
+<subgenres id="2967" title="Photography and photographs" token="photography_photographs"/>
+<subgenres id="5885" title="The arts (misc.)" token="the_arts_misc"/>
+<subgenres id="3086" title="The arts: general issues" token="the_arts_general_issues"/>
+<subgenres id="3042" title="Theatre studies" token="theatre_studies"/>
+</genre>
+<genre id="91" title="Biography and True Stories" hidden="1">
+<subgenres id="5895" title="Biography and True Stories (misc.)" token="biography_true_stories_misc"/>
+<subgenres id="3146" title="Biography: general" token="biography_general"/>
+<subgenres id="3150" title="Collected biographies" token="collected_biographies"/>
+<subgenres id="3134" title="Diaries, letters and journals" token="diaries_letters_journals"/>
+<subgenres id="3125" title="Memoirs" token="memoirs"/>
+<subgenres id="3145" title="True stories" token="true_stories"/>
+</genre>
+<genre id="92" title="Language" hidden="1">
+<subgenres id="5905" title="Language (misc.)" token="language_misc"/>
+<subgenres id="3184" title="Language teaching and learning (other than ELT)" token="language_teaching_learning_oth"/>
+<subgenres id="3189" title="Language: reference and general" token="language_reference_general"/>
+<subgenres id="3174" title="linguistics" token="linguistics"/>
+</genre>
+<genre id="93" title="Literature and literary studies" hidden="1">
+<subgenres id="3202" title="Anthologies (non-poetry)" token="anthologies_non_poetry"/>
+<subgenres id="3208" title="Classical texts" token="classical_texts"/>
+<subgenres id="5915" title="Literature and literary studies (misc.)" token="literature_literary_studies_mi"/>
+<subgenres id="3213" title="Literature: history and criticism" token="literature_history_criticism"/>
+<subgenres id="3214" title="Plays, playscripts" token="plays_playscripts"/>
+<subgenres id="3218" title="Poetry" token="poetry1272"/>
+<subgenres id="3217" title="Prose: non-fiction" token="prose_non_fiction"/>
+</genre>
+<genre id="94" title="English language teaching (ELT)" hidden="0">
+<subgenres id="3242" title="ELT background and reference material" token="elt_background_reference_mater"/>
+<subgenres id="3243" title="ELT: English for specific purposes" token="elt_english_for_specific_purpo"/>
+<subgenres id="3249" title="ELT: learning material and coursework" token="elt_learning_material_coursewo"/>
+<subgenres id="5925" title="English language teaching (ELT) (misc.)" token="english_language_teaching_elt"/>
+</genre>
+<genre id="95" title="Fiction and related items" hidden="0">
+<subgenres id="3259" title="Adventure" token="adventure1335"/>
+<subgenres id="3260" title="Classic fiction (pre c 1945)" token="classic_fiction_pre_c_1945"/>
+<subgenres id="3262" title="Crime and mystery" token="crime_mystery"/>
+<subgenres id="3276" title="Erotic fiction" token="erotic_fiction"/>
+<subgenres id="3268" title="Fantasy" token="fantasy"/>
+<subgenres id="5935" title="Fiction and related items (misc.)" token="fiction_related_items_misc"/>
+<subgenres id="3266" title="Fiction-related items" token="fiction_related_items"/>
+<subgenres id="3256" title="Fiction: special features" token="fiction_special_features"/>
+<subgenres id="3288" title="Graphic novels" token="graphic_novels"/>
+<subgenres id="3277" title="Historical fiction" token="historical_fiction"/>
+<subgenres id="3257" title="Horror and ghost stories" token="horror_ghost_stories"/>
+<subgenres id="3263" title="Modern and contemporary fiction (post c 1945)" token="modern_contemporary_fiction_po"/>
+<subgenres id="3290" title="Myth and legend told as fiction" token="myth_legend_told_as_fiction"/>
+<subgenres id="3265" title="Religious and spiritual fiction" token="religious_spiritual_fiction"/>
+<subgenres id="3253" title="Romance" token="romance"/>
+<subgenres id="3250" title="Sagas" token="sagas"/>
+<subgenres id="3264" title="Science fiction" token="science_fiction"/>
+<subgenres id="3272" title="Thriller / suspense" token="thriller_suspense"/>
+</genre>
+<genre id="96" title="Reference, information and interdisciplinary subjects" hidden="1">
+<subgenres id="3301" title="Encyclopaedias and reference works" token="encyclopaedias_reference_works"/>
+<subgenres id="3296" title="Interdisciplinary studies" token="interdisciplinary_studies"/>
+<subgenres id="3324" title="Library and information sciences" token="library_information_sciences"/>
+<subgenres id="3325" title="Museology and heritage studies" token="museology_heritage_studies"/>
+<subgenres id="5945" title="Reference, information and interdisciplinary subjects (misc.)" token="reference_information_interdis"/>
+<subgenres id="3313" title="Research and information: general" token="research_information_general"/>
+</genre>
+<genre id="97" title="Humanities" hidden="1">
+<subgenres id="3394" title="Archaeology" token="archaeology"/>
+<subgenres id="3522" title="History" token="history"/>
+<subgenres id="5955" title="Humanities (misc.)" token="humanities_misc"/>
+<subgenres id="3547" title="Philosophy" token="philosophy"/>
+<subgenres id="3367" title="Religion and beliefs" token="religion_beliefs"/>
+</genre>
+<genre id="98" title="Society and social sciences" hidden="1">
+<subgenres id="3630" title="Education" token="education"/>
+<subgenres id="3810" title="Politics and government" token="politics_government"/>
+<subgenres id="3640" title="Psychology" token="psychology"/>
+<subgenres id="3680" title="Social services and welfare, criminology" token="social_services_welfare_crimin"/>
+<subgenres id="3671" title="Society and culture: general" token="society_culture_general"/>
+<subgenres id="5965" title="Society and social sciences (misc.)" token="society_social_sciences_misc"/>
+<subgenres id="3703" title="Sociology and anthropology" token="sociology_anthropology"/>
+<subgenres id="3607" title="Warfare and defence" token="warfare_defence"/>
+</genre>
+<genre id="99" title="Economics, finance, business and management" hidden="0">
+<subgenres id="4025" title="Business and management" token="business_management"/>
+<subgenres id="3925" title="Economics" token="economics1935"/>
+<subgenres id="5975" title="Economics, finance, business and management (misc.)" token="economics_finance_business_man"/>
+<subgenres id="3856" title="Finance and accounting" token="finance_accounting"/>
+<subgenres id="4021" title="Industry and industrial studies" token="industry_industrial_studies"/>
+</genre>
+<genre id="100" title="Law" hidden="1">
+<subgenres id="4047" title="International law" token="international_law"/>
+<subgenres id="4152" title="Jurisprudence and general issues" token="jurisprudence_general_issues"/>
+<subgenres id="5985" title="Law (misc.)" token="law_misc"/>
+<subgenres id="4109" title="Law: study and revision guides" token="law_study_revision_guides"/>
+<subgenres id="4196" title="Laws of Specific jurisdictions" token="laws_of_specific_jurisdictions"/>
+</genre>
+<genre id="101" title="Medicine" hidden="1">
+<subgenres id="4316" title="Clinical and internal medicine" token="clinical_internal_medicine"/>
+<subgenres id="4326" title="Complementary medicine" token="complementary_medicine"/>
+<subgenres id="4342" title="Medical study and revision guides and reference material" token="medical_study_revision_gui2467"/>
+<subgenres id="5995" title="Medicine (misc.)" token="medicine_misc"/>
+<subgenres id="4396" title="Medicine: general issues" token="medicine_general_issues"/>
+<subgenres id="4368" title="Nursing and ancillary services" token="nursing_ancillary_services"/>
+<subgenres id="4277" title="Other branches of medicine" token="other_branches_of_medicine"/>
+<subgenres id="4223" title="Pre-clinical medicine: basic sciences" token="pre_clinical_medicine_basic_sc"/>
+<subgenres id="4288" title="Surgery" token="surgery"/>
+<subgenres id="4362" title="Veterinary medicine" token="veterinary_medicine"/>
+</genre>
+<genre id="102" title="Mathematics and science" hidden="1">
+<subgenres id="4470" title="Astronomy, space and time" token="astronomy_space_time"/>
+<subgenres id="4519" title="Biology, life sciences" token="biology_life_sciences"/>
+<subgenres id="4511" title="Chemistry" token="chemistry"/>
+<subgenres id="4581" title="Mathematics" token="mathematics"/>
+<subgenres id="6005" title="Mathematics and science (misc.)" token="mathematics_science_misc"/>
+<subgenres id="4564" title="Physics" token="physics"/>
+<subgenres id="4423" title="Science: general issues" token="science_general_issues"/>
+</genre>
+<genre id="103" title="Earth sciences, geography, environment, planning" hidden="1">
+<subgenres id="4601" title="Earth sciences" token="earth_sciences"/>
+<subgenres id="6015" title="Earth sciences, geography, environment, planning (misc.)" token="earth_sciences_geography_envir"/>
+<subgenres id="4597" title="Geography" token="geography"/>
+<subgenres id="4643" title="Regional and area planning" token="regional_area_planning"/>
+<subgenres id="4612" title="The environment" token="the_environment"/>
+</genre>
+<genre id="104" title="Technology, engineering, agriculture" hidden="1">
+<subgenres id="4736" title="Agriculture and farming" token="agriculture_farming"/>
+<subgenres id="4655" title="Biochemical engineering" token="biochemical_engineering"/>
+<subgenres id="4750" title="Civil engineering, surveying and building" token="civil_engineering_surveying_bu"/>
+<subgenres id="4654" title="Electronics and communications engineering" token="electronics_communications_eng"/>
+<subgenres id="4761" title="Energy technology and engineering" token="energy_technology_engineering"/>
+<subgenres id="4707" title="Environmental science, engineering and technology" token="environmental_science_engineer"/>
+<subgenres id="4648" title="Industrial chemistry and manufacturing technologies" token="industrial_chemistry_manufactu"/>
+<subgenres id="4726" title="Mechanical engineering and materials" token="mechanical_engineering_materia"/>
+<subgenres id="4818" title="Other technologies and applied sciences" token="other_technologies_applied_sci"/>
+<subgenres id="6025" title="Technology, engineering, agriculture (misc.)" token="technology_engineering_agricul"/>
+<subgenres id="4832" title="Technology: general issues" token="technology_general_issues"/>
+<subgenres id="4688" title="Transport technology and trades" token="transport_technology_trades"/>
+</genre>
+<genre id="105" title="Computing and information technology" hidden="1">
+<subgenres id="4846" title="Business applications" token="business_applications"/>
+<subgenres id="4889" title="Computer certification" token="computer_certification"/>
+<subgenres id="4962" title="Computer hardware" token="computer_hardware"/>
+<subgenres id="4970" title="Computer networking and communications" token="computer_networking_communicat"/>
+<subgenres id="4906" title="Computer programming / software development" token="computer_programming_software"/>
+<subgenres id="4925" title="Computer science" token="computer_science"/>
+<subgenres id="4938" title="Computer security" token="computer_security"/>
+<subgenres id="6035" title="Computing and information technology (misc.)" token="computing_information_technolo"/>
+<subgenres id="4866" title="Databases" token="databases"/>
+<subgenres id="4851" title="Digital lifestyle" token="digital_lifestyle"/>
+<subgenres id="4989" title="Graphical and digital media applications" token="graphical_digital_media_applic"/>
+<subgenres id="4875" title="Information technology: general issues" token="information_technology_general"/>
+<subgenres id="4842" title="Operating systems" token="operating_systems"/>
+</genre>
+<genre id="106" title="Health and personal development" hidden="1">
+<subgenres id="5058" title="Family and health" token="family_health"/>
+<subgenres id="6045" title="Health and personal development (misc.)" token="health_personal_development_mi"/>
+<subgenres id="5111" title="Mind, Body, Spirit" token="mind_body_spirit"/>
+<subgenres id="5053" title="Self-help and personal development" token="self_help_personal_development"/>
+</genre>
+<genre id="107" title="Lifestyle, sport and leisure" hidden="1">
+<subgenres id="5187" title="Antiques and collectables" token="antiques_collectables"/>
+<subgenres id="5343" title="Cookery / food and drink etc" token="cookery_food_drink_etc"/>
+<subgenres id="5386" title="Gardening" token="gardening"/>
+<subgenres id="5143" title="Handicrafts, decorative arts and crafts" token="handicrafts_decorative_arts_cr"/>
+<subgenres id="5371" title="Hobbies, quizzes and games" token="hobbies_quizzes_games"/>
+<subgenres id="5325" title="Home and house maintenance" token="home_house_maintenance"/>
+<subgenres id="5285" title="Humour" token="humour"/>
+<subgenres id="5192" title="Lifestyle and personal style guides" token="lifestyle_personal_style_guide"/>
+<subgenres id="6055" title="Lifestyle, sport and leisure (misc.)" token="lifestyle_sport_leisure_misc"/>
+<subgenres id="5365" title="Local interest, family history and nostalgia" token="local_interest_family_history"/>
+<subgenres id="5184" title="Miscellaneous items" token="miscellaneous_items"/>
+<subgenres id="5164" title="Natural history" token="natural_history"/>
+<subgenres id="5396" title="Sports and outdoor recreation" token="sports_outdoor_recreation"/>
+<subgenres id="5347" title="Transport: general interest" token="transport_general_interest"/>
+<subgenres id="5121" title="Travel and holiday" token="travel_holiday"/>
+</genre>
+<genre id="108" title="Children's, Teenage and educational" hidden="1">
+<subgenres id="5454" title="Children's / Teenage fiction and true stories" token="children_s_teenage_fiction_tru"/>
+<subgenres id="5502" title="Children's / Teenage poetry, anthologies, annuals" token="children_s_teenage_poetry_anth"/>
+<subgenres id="5501" title="Children's / Teenage: general non-fiction" token="children_s_teenage_general_non"/>
+<subgenres id="6065" title="Children's, Teenage and educational (misc.)" token="children_s_teenage_educational"/>
+<subgenres id="5517" title="Educational material" token="educational_material"/>
+<subgenres id="5436" title="Personal and social issues (Children's / Teenage)" token="personal_social_issues_childre"/>
+<subgenres id="5425" title="Picture books, activity books and early learning material" token="picture_books_activity_books_e"/>
+<subgenres id="5483" title="Reference material (Children's / Teenage)" token="reference_material_children_s"/>
+<subgenres id="5473" title="Stationery and miscellaneous items (Children's / Teenage)" token="stationery_miscellaneous_items"/>
+</genre>
+<genre id="7002" title="Компьютерные игры" hidden="0"/>
+<genre id="7004" title="Ридеры с сенсорным экраном" hidden="1">
+<subgenres id="84" title="Ридеры" token="reader_touch"/>
+</genre>
+<genre id="7005" title="Ридеры, проверенные временем" hidden="1">
+<subgenres id="85" title="Ридеры" token="reader_timechecked"/>
+</genre>
+<genre id="7006" title="Рекомендуем" hidden="1"/>
+<genre id="7067" title="Indic, East Indo-European and Dravidian languages" hidden="1">
+<subgenres id="2597" title="Dravidian languages" token="dravidian_languages"/>
+<subgenres id="2592" title="Early Indic languages" token="early_indic_languages"/>
+<subgenres id="5655" title="Indic, East Indo-European and Dravidian languages (misc.)" token="indic_east_indo_european_dravi"/>
+<subgenres id="2590" title="Indo-Iranian languages" token="indo_iranian_languages"/>
+<subgenres id="2600" title="Modern Indic languages" token="modern_indic_languages"/>
+</genre>
+<genre id="7075" title="Prehistory" hidden="1">
+<subgenres id="5735" title="Prehistory (misc.)" token="prehistory_misc"/>
+</genre>
+<genre id="7078" title="c 1000 CE to c 1500" hidden="1">
+<subgenres id="5765" title="c 1000 CE to c 1500 (misc.)" token="c_1000_ce_to_c_1500_misc"/>
+</genre>
+<genre id="7080" title="ELT examinations and certificates" hidden="1">
+<subgenres id="2797" title="Cambridge International English Language Testing System (IELTS)" token="cambridge_international_englis"/>
+<subgenres id="5785" title="ELT examinations and certificates (misc.)" token="elt_examinations_certificates"/>
+<subgenres id="2801" title="Other ELT examinations" token="other_elt_examinations"/>
+<subgenres id="2794" title="Test of English as a Foreign Language (TOEFL)" token="test_of_english_as_a_foreign_l"/>
+</genre>
+<genre id="7082" title="International curricula and examinations" hidden="1">
+<subgenres id="2862" title="International Baccalaureate (IB) Diploma" token="international_baccalaureate_ib"/>
+<subgenres id="5805" title="International curricula and examinations (misc.)" token="international_curricula_examin"/>
+<subgenres id="2863" title="International GCSE (IGCSE)" token="international_gcse_igcse"/>
+</genre>
+<genre id="7083" title="Designed / suitable for other (non-UK) curricula and examinations" hidden="1">
+<subgenres id="2881" title="Designed / suitable for Irish examinations and educational levels" token="designed_suitable_for_irish_ex"/>
+<subgenres id="5815" title="Designed / suitable for other (non-UK) curricula and examinations (misc.)" token="designed_suitable_for_other_no"/>
+</genre>
+<genre id="7084" title="Designed for differentiated learning" hidden="1">
+<subgenres id="5825" title="Designed for differentiated learning (misc.)" token="designed_for_differentiated_le"/>
+</genre>
+<genre id="7085" title="Designed for home learning" hidden="1">
+<subgenres id="5835" title="Designed for home learning (misc.)" token="designed_for_home_learning_mis"/>
+</genre>
+</root-genres>

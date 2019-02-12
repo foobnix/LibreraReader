@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/wh_button"
+    android:layout_margin="4dip"
+    android:background="@drawable/bg_search_second"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        style="@style/buttonWhite"
+        android:layout_width="@dimen/wh_button"
+        android:layout_height="@dimen/wh_button"
+        android:layout_weight="0"
+        android:src="@drawable/glyphicons_72_book"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/wh_button"
+        android:layout_marginLeft="4dip"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/books"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textStyle="normal" />
+
+    <TextView
+        android:contentDescription="@string/cd_clear_all"
+        android:id="@+id/clearAllBooks"
+        style="@style/textLinkWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/clear_all" />
+
+</LinearLayout>

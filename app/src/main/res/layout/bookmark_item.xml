@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dv"
+    android:background="?android:attr/selectableItemBackground"
+    android:elevation="@dimen/dv"
+    card_view:cardCornerRadius="@dimen/radius" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="2dip" >
+
+        <RelativeLayout
+            android:layout_margin="@dimen/dv"
+            android:layout_weight="0"
+            android:layout_width="50dip"
+            android:elevation="@dimen/dv"
+            android:outlineProvider="bounds"
+            android:layout_height="75dip" >
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="50dip"
+                android:layout_height="75dip"
+                android:layout_weight="0"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/tint_blue"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="125"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:text="Title"
+                android:singleLine="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:gravity="center_vertical"
+                android:text="Bookmark text   Bookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text BookmarkBookmark text Bookmark" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/remove"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="6dip"
+            android:src="@drawable/glyphicons_208_remove_2"
+            android:tint="@color/lt_grey_dima" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

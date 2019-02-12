@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/edit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:imeOptions="actionDone"
+            android:digits="01234567890,.%"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:visibility="visible" >
+        </EditText>
+
+        <ImageView
+            android:id="@+id/onSearch"
+            style="@style/buttonWhiteInverted"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:src="@drawable/glyphicons_28_search1" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/grid1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:scrollbarStyle="outsideOverlay"
+        android:numColumns="auto_fit"
+        android:scrollbars="none"
+        android:stretchMode="columnWidth" >
+    </GridView>
+
+</LinearLayout>
