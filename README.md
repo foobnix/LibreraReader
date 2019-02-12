@@ -25,8 +25,10 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 ## Build Librera
 
+~~~~
 /Builder/link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
 ./gradlew assebleLibrera
+~~~~
 
 ## Librera depends on
 
