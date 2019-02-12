@@ -26,9 +26,9 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 ## Librera depends on
 
-MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11.0-source.tar.xz)
+MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11-source.tar.xz)
 
-MuPDF changed source ./LirbiReader/jni-1.11/~mupdf
+MuPDF changed source ./LirbiReader/Builder/jni-1.11/
 
 * EbookDroid
 * djvulibre
