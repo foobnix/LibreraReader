@@ -164,21 +164,30 @@ android {
 
     }
 
-    def abiCodes = ['x86':1, 'x86_64':2, 'armeabi-v7a':3, 'arm64-v8a':4]
+    def abiCodes = ['x86':3, 'x86_64':2, 'armeabi-v7a':1, 'arm64-v8a':0]
 
     applicationVariants.all { variant ->
-        variant.outputs.all {
+        variant.outputs.all { output ->
             def flavor = variant.productFlavors[0].name.capitalize()
-            def version = variant.versionName
             def abiName = getFilter("ABI")
-            //output.versionCodeOverride = abiCodes.get(abiName, 0) * 100000 + variant.versionCode
+            def code =abiCodes.get(abiName, 0) + variant.versionCode
+            abiName = abiName.replace("arm64-v8a","arm64").replace("armeabi-v7a","arm")
 
-            outputFileName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
+            output.versionCodeOverride = code
+
+            def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+            output.outputFileName = fullName;
+
         }
     }
 
 }
 
+task a_copyApks(type: Copy) {
+    from file("build/outputs/apk/beta/release")
+    include "*.apk"
+    into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing")
+}
 
 
 dependencies {
