@@ -41,9 +41,7 @@ MuPDF changed source ./LibreraReader/Builder/jni-1.11/
 * greendao
 * jsoup
 * juniversalchardet
-* okhttp
 * commons-compress
-* okhttp
 * okhttp-digest
 * okio
 * rtfparserkit
