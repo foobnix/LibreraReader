@@ -1,4 +1,4 @@
-package com.foobnix.pdf.librerav8empty2;
+package com.foobnix.pdf.librera;
 
 import org.junit.Test;
 
