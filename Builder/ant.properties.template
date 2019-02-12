@@ -1,8 +1,0 @@
-key.store=
-key.alias=
-
-key.store.password=
-key.alias.password=
-
-java.target=1.8
-java.source=1.8

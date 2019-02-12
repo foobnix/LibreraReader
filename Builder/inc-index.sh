@@ -1,1 +1,0 @@
-ant -f build_index.xml index
