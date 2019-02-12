@@ -88,15 +88,17 @@ public class BooksService extends IntentService {
                     }
 
                     File bookFile = new File(meta.getPath());
-                    if (!bookFile.exists()) {
-                        meta.setIsSearchBook(false);
-                        AppDB.get().update(meta);
-                        LOG.d(TAG, "Delete-setIsSearchBook false", meta.getPath());
-                    } else if (bookFile.exists() && meta.getIsSearchBook() != null && !meta.getIsSearchBook()) {
-                        meta.setIsSearchBook(true);
-                        AppDB.get().update(meta);
-                        LOG.d(TAG, "Delete-setIsSearchBook true", meta.getPath());
+                    if(bookFile.isFile()) {
+                        if (!bookFile.exists()) {
+                            meta.setIsSearchBook(false);
+                            AppDB.get().update(meta);
+                            LOG.d(TAG, "Delete-setIsSearchBook false", meta.getPath());
+                        } else if (bookFile.exists() && meta.getIsSearchBook() != null && !meta.getIsSearchBook()) {
+                            meta.setIsSearchBook(true);
+                            AppDB.get().update(meta);
+                            LOG.d(TAG, "Delete-setIsSearchBook true", meta.getPath());
 
+                        }
                     }
                 }
                 sendFinishMessage();
