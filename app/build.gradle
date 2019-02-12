@@ -4,12 +4,9 @@ ext {
     codeNumber = 950
     db = 8
     versionNumber = "8.0.1"
-   
 }
 
 android {
-
-
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
@@ -43,6 +40,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             versionNameSuffix ''
+            buildConfigField "boolean", "LOG", "false"
+        }
+        debug{
+            buildConfigField "boolean", "LOG", "true"
         }
     }
     buildToolsVersion '28.0.3'

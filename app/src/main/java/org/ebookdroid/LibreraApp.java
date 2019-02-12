@@ -15,6 +15,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -45,7 +46,7 @@ public class LibreraApp extends Application {
 
         context = getApplicationContext();
 
-        LOG.isEnable = getResources().getBoolean(R.bool.is_log_enable);
+        LOG.isEnable = BuildConfig.LOG;
 
         AppsConfig.init(this);
 
