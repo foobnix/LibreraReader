@@ -28,7 +28,7 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11-source.tar.xz)
 
-MuPDF changed source ./LirbiReader/Builder/jni-1.11/
+MuPDF changed source ./LibreraReader/Builder/jni-1.11/
 
 * EbookDroid
 * djvulibre
