@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 ext {
     codeNumber = 950
     db = 8
-    versionNumber = "8.0.1"
+    versionNumber = "8.0.2"
 }
 
 android {
@@ -63,7 +63,7 @@ android {
         }
 
     }
-    def abiCodes = ['x86':1, 'x86_64':2, 'armeabi-v7a':3, 'arm64-v8a':4]
+
 
     flavorDimensions "version"
     productFlavors {
@@ -162,6 +162,19 @@ android {
             ]
         }
 
+    }
+
+    def abiCodes = ['x86':1, 'x86_64':2, 'armeabi-v7a':3, 'arm64-v8a':4]
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def flavor = variant.productFlavors[0].name.capitalize()
+            def version = variant.versionName
+            def abiName = getFilter("ABI")
+            //output.versionCodeOverride = abiCodes.get(abiName, 0) * 100000 + variant.versionCode
+
+            outputFileName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
+        }
     }
 
 }
