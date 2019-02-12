@@ -23,61 +23,12 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 [Telegram](https://t.me/LibreraReader)
 
-## Support intents
-
-intent.putExtra("page", int); //open a doc on a certain page
-
-intent.putExtra("percent", float); //open a doc at a certain percentage point
-
-intent.putExtra("password", String); //open a password-protected PDFlink
-
-## Support links
-
-<a href="file:///mnt/sdcard/test.pdf?page=2">open page 2</p>
-
-
-## How to install
-
-Librera is developed on Eclise with ADT (Android Developer Tools Plugin)
-
-INSTALL
-0) Linux is preferred (Windows has never been tested)
-1) Install Eclipse
-2) Install Android ADT (from the Eclipse marketplace)
-3) Install Android NDK
-4) Install JAVA
-5) Install ANT
-
-DOWNLOAD Librera SOURCE CODE from GITHUB
-
-1) git clone https://github.com/foobnix/LirbiReader.git
-
-2) run ./LirbiReader/update_all.sh
-Download required packages (Google Play Service, RecicleView, CardView, etc)
-
-3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
-
-4) Import all projects to Eclipse
-
-
-## Build
-
-1) Build NDK part
-./LirbiReader/Builder/link_to_mupdf.sh
-
-Specify you project path and MUPDF path
-MUPDF=/dev/mupdf-test/platform/java
-MY=/home/ivan-dev/git/LirbiReader
-
-2) To build Librera Reader
-./LirbiReader/Builder/all-beta.sh
-
 
 ## Librera depends on
 
-MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.12.0-source.tar.xz)
+MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11.0-source.tar.xz)
 
-MuPDF changed source ./LirbiReader/jni-1.12/~mupdf
+MuPDF changed source ./LirbiReader/jni-1.11/~mupdf
 
 * EbookDroid
 * djvulibre
@@ -90,19 +41,12 @@ MuPDF changed source ./LirbiReader/jni-1.12/~mupdf
 * greendao
 * jsoup
 * juniversalchardet
-* rtfparserkit
 * okhttp
-
-commons-compress-1.14.jar
-eventbus-3.0.0.jar
-greendao-3.2.0.jar
-greendao-api-3.2.0.jar
-jsoup-1.8.3.jar
-juniversalchardet-1.0.3.jar
-okhttp-3.9.1.jar
-okhttp-digest-1.15.jar
-okio-1.13.0.jar
-rtfparserkit-1.10.0.jar
+* commons-compress
+* okhttp
+* okhttp-digest
+* okio
+* rtfparserkit
 
 Librera is distributed under the GPL
 
