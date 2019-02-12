@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 ext {
-    codeNumber = 950
+    codeNumber = 951
     db = 8
-    versionNumber = "8.0.2"
+    versionNumber = "8.0.4"
 }
 
 android {
@@ -183,7 +183,14 @@ android {
 
 }
 
+task a_deleteApks(type: Delete) {
+
+    //delete fileTree(dir: 'app/styles' , include: '**/*.css')
+}
+
 task a_copyApks(type: Copy) {
+    delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+
     from file("build/outputs/apk/beta/release")
     include "*.apk"
     into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing")
