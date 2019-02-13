@@ -146,8 +146,9 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
+        android:id="@+id/openAsBookBg"
         android:orientation="horizontal"
-        android:padding="5dip" >
+        android:padding="@dimen/dv" >
 
         <ImageView
             android:id="@+id/openAsbookImage"

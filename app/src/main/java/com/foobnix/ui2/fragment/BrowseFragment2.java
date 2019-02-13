@@ -147,6 +147,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
 
+        if(!AppState.get().isWhiteTheme){
+            view.findViewById(R.id.openAsBookBg).setBackgroundColor(Color.BLACK);
+        }
+
         sortOrder.setOnClickListener(new OnClickListener() {
 
             @Override
