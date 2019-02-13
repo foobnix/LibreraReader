@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 ext {
-    codeNumber = 953
+    codeNumber = 954
     db = 8
-    versionNumber = "8.0.6"
+    versionNumber = "8.0.7"
 }
 
 android {
@@ -144,6 +144,7 @@ android {
         }
 
         fdroid {
+            minSdkVersion 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
