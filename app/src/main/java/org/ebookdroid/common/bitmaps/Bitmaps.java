@@ -251,6 +251,7 @@ public class Bitmaps {
                 rect.bottom += sizeY;
             }
             canvas.clipRect(orig, Op.REPLACE);
+            //canvas.clipRect(orig, Op.DIFFERENCE);
             return res;
         } finally {
             lock.readLock().unlock();

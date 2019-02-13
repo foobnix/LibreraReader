@@ -1,5 +1,7 @@
 package at.stefl.opendocument.java.translator;
 
+import com.foobnix.android.utils.LOG;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -12,10 +14,14 @@ import at.stefl.commons.io.CharStreamUtil;
 public class StyleScriptUtil {
     
     public static void pipeResource(Class<?> clazz, String name, Writer out)
-            throws IOException {
-        Reader in = new InputStreamReader(clazz.getResourceAsStream(name),
-                Charset.forName("UTF-8"));
-        CharStreamUtil.writeStreamBuffered(in, out);
+            {
+        try {
+            Reader in = new InputStreamReader(clazz.getResourceAsStream(name),
+                    Charset.forName("UTF-8"));
+            CharStreamUtil.writeStreamBuffered(in, out);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
     
     public static void pipeClassResource(Class<?> clazz, String extension,

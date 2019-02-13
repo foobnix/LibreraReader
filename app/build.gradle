@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 ext {
-    codeNumber = 952
+    codeNumber = 953
     db = 8
-    versionNumber = "8.0.5"
+    versionNumber = "8.0.6"
 }
 
 android {
@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode codeNumber
         versionName versionNumber
 
@@ -39,7 +39,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            versionNameSuffix ''
             buildConfigField "boolean", "LOG", "false"
         }
         debug{
