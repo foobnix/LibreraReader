@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 ext {
-    codeNumber = 951
+    codeNumber = 952
     db = 8
-    versionNumber = "8.0.4"
+    versionNumber = "8.0.5"
 }
 
 android {

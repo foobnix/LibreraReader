@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 cd ../
-./gradlew clean assembleBetaRelease a_copyApks
+./gradlew --no-daemon  clean assembleBetaRelease a_copyApks
 
+cd Builder
 ./remove_all.sh
 ./install_all.sh
