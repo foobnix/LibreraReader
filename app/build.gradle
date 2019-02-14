@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
 
 ext {
-    codeNumber = 954
-    db = 8
-    versionNumber = "8.0.7"
+    codeNumber = Integer.parseInt(appCodeNumber)
+    versionNumber = appVersionNumberBase+"."+appVersionNumberIndex
+    db =  Integer.parseInt(appDB)
+    println ""
+    println "Version: [" + versionNumber+"]"
 }
 
 android {
@@ -152,6 +154,7 @@ android {
             abiName = abiName.replace("arm64-v8a","arm64").replace("armeabi-v7a","arm")
 
             output.versionCodeOverride = code
+            output
 
             def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
             output.outputFileName = fullName;
@@ -213,4 +216,28 @@ task a_copyApks(type: Copy) {
         File file = new File('/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/version.txt')
         file.write versionNumber
     }
+}
+
+task incVersion(){
+    if (project.hasProperty('copy')) {
+
+        Properties props = new Properties()
+        File propsFile = new File('app/gradle.properties')
+        props.load(propsFile.newDataInputStream())
+
+        int appCodeNumber = Integer.parseInt(props.getProperty('appCodeNumber'))
+        appCodeNumber += 4
+
+        int appVersionNumberIndex = Integer.parseInt(props.getProperty('appVersionNumberIndex'))
+        appVersionNumberIndex += 1
+
+        props.setProperty('appCodeNumber', "" + appCodeNumber)
+        props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
+
+        props.store(propsFile.newWriter(), null)
+
+        println "[My Code]" + appCodeNumber
+
+    }
+
 }
