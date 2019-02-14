@@ -323,9 +323,6 @@ public class TxtUtils {
         return result;
     }
 
-    public static String sanitizeFilename(String name) {
-        return name.replaceAll("[:\\\\/*?|<>]", "_");
-    }
 
     public static String fixAppState(TextView text) {
         return text.getText().toString().trim().replace(",", "");

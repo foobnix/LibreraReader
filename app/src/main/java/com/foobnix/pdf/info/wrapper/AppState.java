@@ -793,6 +793,9 @@ public class AppState {
                 if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;
                 }
+                if (AppsConfig.LIBRERA_EPUB_READER.equals(Apps.getPackageName(a))) {
+                    isShowWhatIsNewDialog = false;
+                }
 
                 if (AppsConfig.LIBRERA_TTS_READER.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;

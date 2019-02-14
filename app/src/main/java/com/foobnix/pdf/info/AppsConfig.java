@@ -28,6 +28,7 @@ public class AppsConfig {
     public static final String LIBRERA_INK_EDITION = "mobi.librera.book.reader";
     public static final String LIBRERA_PDF_2 = "pdf.pdf.reader";
     public static final String LIBRERA_TTS_READER = "tts.reader";
+    public static final String LIBRERA_EPUB_READER = "epub.reader";
 
     public static String ADMOB_BANNER;
     public static String ADMOB_FULLSCREEN;
@@ -102,6 +103,13 @@ public class AppsConfig {
         }
 
         if (LIBRERA_TTS_READER.equals(packageName)) {
+            ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
+            ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
+            GOOGLE_DRIVE_KEY = "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com";
+
+        }
+
+        if (LIBRERA_EPUB_READER.equals(packageName)) {
             ADMOB_BANNER/*     */ = "ca-app-pub-8347903083053959/6159730856";
             ADMOB_FULLSCREEN/* */ = "ca-app-pub-8347903083053959/2346153515";
             GOOGLE_DRIVE_KEY = "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com";

@@ -116,7 +116,7 @@ public class Link {
         if (parentTitle == null) {
             return "";
         }
-        String name = TxtUtils.sanitizeFilename(parentTitle);
+        String name = TxtUtils.fixFileName(parentTitle);
         String ext = getDownloadDisplayFormat();
         if (ext != null) {
             return name + "." + ext;

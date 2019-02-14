@@ -5,7 +5,7 @@ ext {
     versionNumber = appVersionNumberBase+"."+appVersionNumberIndex
     db =  Integer.parseInt(appDB)
     println ""
-    println "Version: [" + versionNumber+"]"
+    println "Version: [" + versionNumber+ " - "+ codeNumber + "]"
 }
 
 android {
@@ -46,6 +46,8 @@ android {
         debug{
             buildConfigField "boolean", "LOG", "true"
         }
+
+
     }
     buildToolsVersion '28.0.3'
 
@@ -131,6 +133,15 @@ android {
                     appRoundIcon: "@mipmap/launcher_tts_reader_app"
             ]
         }
+        epub_reader {
+            dimension "version"
+            applicationId "epub.reader"
+            manifestPlaceholders = [
+                    appName     : "Epub Reader",
+                    appIcon     : "@mipmap/icon_epub_reader",
+                    appRoundIcon: "@mipmap/launcher_epub_reader"
+            ]
+        }
         fdroid {
             minSdkVersion 16
             dimension "version"
@@ -142,7 +153,9 @@ android {
             ]
             versionNameSuffix '-fdroid'
         }
+
     }
+
 
     def abiCodes = ['x86':3, 'x86_64':4, 'armeabi-v7a':0, 'arm64-v8a':1]
 
@@ -161,6 +174,7 @@ android {
 
         }
     }
+
 
 }
 
@@ -186,12 +200,16 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
+
     betaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     libreraImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     pdf_v2Implementation 'com.google.android.gms:play-services-ads:16.0.0'
     ebookaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     tts_readerImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     pdf_classicImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+    epub_readerImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+
+
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     libreraImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
@@ -199,12 +217,12 @@ dependencies {
     ebookaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     tts_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     pdf_classicImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+    epub_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
 }
 
 
-task a_copyApks(type: Copy) {
-
-    if (project.hasProperty('copy')) {
+task copyApks(type: Copy) {
+    doLast{
         println "My Task: [copy apks]"
 
         delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
@@ -219,8 +237,7 @@ task a_copyApks(type: Copy) {
 }
 
 task incVersion(){
-    if (project.hasProperty('copy')) {
-
+    doLast{
         Properties props = new Properties()
         File propsFile = new File('app/gradle.properties')
         props.load(propsFile.newDataInputStream())
@@ -237,7 +254,6 @@ task incVersion(){
         props.store(propsFile.newWriter(), null)
 
         println "[My Code]" + appCodeNumber
-
     }
 
 }

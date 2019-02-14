@@ -6,4 +6,5 @@ sh ninja-adb.sh uninstall droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3
 sh ninja-adb.sh uninstall mobi.librera.book.reader
 sh ninja-adb.sh uninstall pdf.pdf.reader
 sh ninja-adb.sh uninstall tts.reader
+sh ninja-adb.sh uninstall epub.reader
 
