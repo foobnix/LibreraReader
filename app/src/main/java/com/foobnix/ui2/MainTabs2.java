@@ -329,6 +329,17 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
+        try {
+            LOG.d("checkForNewBeta");
+            AndroidWhatsNew.checkForNewBeta(this);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        if (Android6.canWrite(this)) {
+            FontExtractor.extractFonts(this);
+        }
+        EventBus.getDefault().register(this);
+
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
@@ -384,15 +395,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         checkGoToPage(getIntent());
 
-        try {
-            AndroidWhatsNew.checkForNewBeta(this);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        if (Android6.canWrite(this)) {
-            FontExtractor.extractFonts(this);
-        }
-        EventBus.getDefault().register(this);
+
 
     }
 

@@ -147,6 +147,7 @@ android {
             minSdkVersion 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
+            versionNameSuffix = "-fdroid"
             manifestPlaceholders = [
                     appName:"Librera PRO",
                     appIcon:"@mipmap/icon_pdf_pro",

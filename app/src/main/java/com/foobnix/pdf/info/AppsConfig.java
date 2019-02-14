@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 
 import android.content.Context;
@@ -51,7 +52,7 @@ public class AppsConfig {
         final String packageName = a.getPackageName();
         LOG.d("init packageName", packageName);
 
-        TXT_APP_NAME = a.getString(R.string.app_name);
+        TXT_APP_NAME = Apps.getApplicationName(a);
 
         APP_PACKAGE = packageName;
 
@@ -107,13 +108,9 @@ public class AppsConfig {
 
         }
 
-        IS_BETA = TXT_APP_NAME.contains("Beta");
-        IS_BETA = false;
+        IS_BETA = TXT_APP_NAME.toLowerCase().contains("beta");
+        LOG.d("IS_BETA",IS_BETA);
 
-        if (IS_BETA) {
-            ADMOB_BANNER = ADMOB_FULLSCREEN = null;
-            // LOG.isEnable = true;
-        }
         if (LOG.isEnable) {
             GOOGLE_DRIVE_KEY = "961762082517-d2jro57s97ck73grvknbfnio8cg5fca3.apps.googleusercontent.com";
 
@@ -140,7 +137,7 @@ public class AppsConfig {
             ADMOB_BANNER = null;
             ADMOB_FULLSCREEN = null;
         }
-        return is_pro || IS_BETA;
+        return is_pro;
     }
 
     public static boolean isPackageExisted(final Context a, final String targetPackage) {

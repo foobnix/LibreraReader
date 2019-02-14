@@ -16,6 +16,7 @@
 
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
+        android:usesCleartextTraffic="true"
         tools:replace="label, icon, roundIcon"
         android:name="org.ebookdroid.LibreraApp"
         android:icon="${appIcon}"

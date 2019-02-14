@@ -243,6 +243,8 @@ public class AndroidWhatsNew {
             @Override
             protected void onPostExecute(Object result) {
 
+                LOG.d("checkForNewBeta",result,Apps.getVersionName(c));
+
                 try {
                 if (result == null || TxtUtils.isEmpty("" + result)) {
                     return;
