@@ -66,95 +66,80 @@ android {
 
     flavorDimensions "version"
     productFlavors {
-
         beta {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName:"Beta "+versionNumber,
-                    appIcon:"@mipmap/icon_pdf_reader",
-                    appRoundIcon:"@mipmap/icon_pdf_reader"
-                ]
-           
+                    appName     : "Beta " + versionNumber,
+                    appIcon     : "@mipmap/icon_pdf_reader",
+                    appRoundIcon: "@mipmap/icon_pdf_reader"
+            ]
         }
-
         librera {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName:"Librera Reader",
-                    appIcon:"@mipmap/icon_pdf_reader",
-                    appRoundIcon:"@mipmap/icon_pdf_reader"
+                    appName     : "Librera Reader",
+                    appIcon     : "@mipmap/icon_pdf_reader",
+                    appRoundIcon: "@mipmap/icon_pdf_reader"
             ]
-           
         }
-
         pro {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName:"Librera PRO",
-                    appIcon:"@mipmap/icon_pdf_pro",
-                    appRoundIcon:"@mipmap/icon_pdf_pro"
+                    appName     : "Librera PRO",
+                    appIcon     : "@mipmap/icon_pdf_pro",
+                    appRoundIcon: "@mipmap/icon_pdf_pro"
             ]
         }
-
         pdf_classic {
             dimension "version"
             applicationId "classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
             manifestPlaceholders = [
-                    appName:"PDF Reader",
-                    appIcon:"@mipmap/icon_pdf_classic",
-                    appRoundIcon:"@mipmap/launcher_classic"
+                    appName     : "PDF Reader",
+                    appIcon     : "@mipmap/icon_pdf_classic",
+                    appRoundIcon: "@mipmap/launcher_classic"
             ]
-           
         }
-
         ebooka {
             dimension "version"
             applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
-                    appName:"Ebooka Reader",
-                    appIcon:"@mipmap/icon_pdf_droid",
-                    appRoundIcon:"@mipmap/launcher_droid"
+                    appName     : "Ebooka Reader",
+                    appIcon     : "@mipmap/icon_pdf_droid",
+                    appRoundIcon: "@mipmap/launcher_droid"
             ]
-           
         }
-
         pdf_v2 {
             dimension "version"
             applicationId "pdf.pdf.reader"
             manifestPlaceholders = [
-                    appName:"PDF Reader",
-                    appIcon:"@mipmap/icon_pdf_2",
-                    appRoundIcon:"@mipmap/launcher_pdf_v2"
+                    appName     : "PDF Reader",
+                    appIcon     : "@mipmap/icon_pdf_2",
+                    appRoundIcon: "@mipmap/launcher_pdf_v2"
             ]
-           
         }
-
         tts_reader {
             dimension "version"
             applicationId "tts.reader"
             manifestPlaceholders = [
-                    appName:"TTS Reader",
-                    appIcon:"@mipmap/icon_tts_reader_app",
-                    appRoundIcon:"@mipmap/launcher_tts_reader_app"
+                    appName     : "TTS Reader",
+                    appIcon     : "@mipmap/icon_tts_reader_app",
+                    appRoundIcon: "@mipmap/launcher_tts_reader_app"
             ]
-           
         }
-
         fdroid {
             minSdkVersion 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
-            versionNameSuffix = "-fdroid"
             manifestPlaceholders = [
-                    appName:"Librera PRO",
-                    appIcon:"@mipmap/icon_pdf_pro",
-                    appRoundIcon:"@mipmap/icon_pdf_pro"
+                    appName     : "Librera PRO",
+                    appIcon     : "@mipmap/icon_pdf_pro",
+                    appRoundIcon: "@mipmap/icon_pdf_pro"
             ]
+            versionNameSuffix '-fdroid'
         }
-
     }
 
     def abiCodes = ['x86':3, 'x86_64':4, 'armeabi-v7a':0, 'arm64-v8a':1]
@@ -183,26 +168,19 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28+'
     implementation 'com.android.support:cardview-v7:28+'
     implementation 'com.android.support:support-v4:28+'
-
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-api:3.2.2'
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
-
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.burgstaller:okhttp-digest:1.18'
     implementation 'com.squareup.okio:okio-parent:1.17.3'
-
     implementation 'com.github.joniles:rtfparserkit:1.13.0'
-
     implementation 'com.android.support:customtabs:28+'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
     betaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
@@ -211,7 +189,6 @@ dependencies {
     ebookaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     tts_readerImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     pdf_classicImplementation 'com.google.android.gms:play-services-ads:16.0.0'
-
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     libreraImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
@@ -223,13 +200,17 @@ dependencies {
 
 
 task a_copyApks(type: Copy) {
-    println ">>>>>>>> copy apks >>>>>>>>>>>>>"
-    delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
-    from file("build/outputs/apk/beta/release")
-    include "*.apk"
-    into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing")
+    if (project.hasProperty('copy')) {
+        println "My Task: [copy apks]"
 
-    File file = new File('/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/version.txt')
-    file.write versionNumber
+        delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+
+        from file("build/outputs/apk/beta/release/")
+        include "*.apk"
+        into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/")
+
+        File file = new File('/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/version.txt')
+        file.write versionNumber
+    }
 }
