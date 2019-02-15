@@ -747,6 +747,13 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().prefMusicianMode = prefMusicianMode.getText().toString();
                     }
                 });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int id) {
+
+                    }
+                });
                 builder.show();
             }
         });
