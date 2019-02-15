@@ -143,7 +143,6 @@ android {
             ]
         }
         fdroid {
-            minSdkVersion 16
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -199,10 +198,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
+    betaImplementation project(':pro')
 
-    betaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+    //betaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+
     libreraImplementation 'com.google.android.gms:play-services-ads:16.0.0'
     pdf_v2Implementation 'com.google.android.gms:play-services-ads:16.0.0'
     ebookaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
@@ -238,7 +240,7 @@ task copyApks(type: Copy) {
 }
 
 task incVersion(){
-     if (project.hasProperty('beta')) {
+     doLast{
         
 
         Properties props = new Properties()

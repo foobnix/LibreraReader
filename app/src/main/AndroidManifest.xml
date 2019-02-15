@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+    <uses-sdk tools:overrideLibrary="android.support.customtabs"/>
+
+
     <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
         android:usesCleartextTraffic="true"

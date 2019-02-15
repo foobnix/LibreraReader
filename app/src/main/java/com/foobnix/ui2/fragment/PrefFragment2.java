@@ -705,16 +705,7 @@ public class PrefFragment2 extends UIFragment {
 
                 CheckBox isPrefFormatMode = view.findViewById(R.id.isPrefFormatMode);
                 isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
-                isPrefFormatMode.setOnCheckedChangeListener(
-                        new OnCheckedChangeListener(){
 
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                AppState.get().isPrefFormatMode = isChecked;
-                                //AppState.get().isRememberMode = false;
-                            }
-                        }
-                );
                 view.findViewById(R.id.prefRestore).setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -742,6 +733,8 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void onClick(final DialogInterface dialog, final int id) {
+                        Keyboards.close(getActivity());
+                        AppState.get().isPrefFormatMode = isPrefFormatMode.isChecked();
                         AppState.get().prefScrollMode = prefScrollMode.getText().toString();
                         AppState.get().prefBookMode = prefBookMode.getText().toString();
                         AppState.get().prefMusicianMode = prefMusicianMode.getText().toString();
