@@ -223,7 +223,7 @@ dependencies {
 
 
 task copyApks(type: Copy) {
-    doLast{
+   if (project.hasProperty('beta')) {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
@@ -238,7 +238,9 @@ task copyApks(type: Copy) {
 }
 
 task incVersion(){
-    doLast{
+     if (project.hasProperty('beta')) {
+        
+
         Properties props = new Properties()
         File propsFile = new File('app/gradle.properties')
         props.load(propsFile.newDataInputStream())
@@ -253,8 +255,8 @@ task incVersion(){
         props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
 
         props.store(propsFile.newWriter(), null)
-
-        println "[My Code]" + appCodeNumber
+    
+        println "My Task: [incVersion]"
     }
 
 }
