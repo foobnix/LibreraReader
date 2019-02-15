@@ -594,6 +594,17 @@
                 android:minWidth="100dip"
                 android:singleLine="false"
                 android:text="@string/mode_vertical" />
+
+            <ImageView
+                android:id="@+id/moreModeSettings"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_685_article"
+                android:tint="@color/tint_gray" />
+
+
         </LinearLayout>
 
         <LinearLayout

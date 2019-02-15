@@ -173,6 +173,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
+        if(!AppState.get().isWhiteTheme){
+            searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
+        }
+
         myAutoCompleteImage.setVisibility(View.GONE);
 
         ((FastScrollRecyclerView) recyclerView).setFastScrollStateChangeListener(new FastScrollStateChangeListener() {

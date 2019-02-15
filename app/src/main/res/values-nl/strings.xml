@@ -535,4 +535,5 @@
    <string name="the_file_already_exists_">Het bestand bestaat al</string>
    <string name="please_wait_books_are_being_processed_">Een ogenblik geduld, boeken worden verwerkt</string>
    <string name="system_brightness">Systeem helderheid</string>
+   <string name="opening_books_in_the_specified_mode">Openen van boeken in de opgegeven modus</string>
 </resources>

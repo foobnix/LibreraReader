@@ -535,4 +535,5 @@
    <string name="the_file_already_exists_">A fájl már létezik.</string>
    <string name="please_wait_books_are_being_processed_">Kérjük várjon, a könyvek feldolgozása folyamatban van</string>
    <string name="system_brightness">A rendszer fényereje</string>
+   <string name="opening_books_in_the_specified_mode">Könyvek megnyitása a megadott módban</string>
 </resources>

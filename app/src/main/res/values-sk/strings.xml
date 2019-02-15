@@ -535,4 +535,5 @@
    <string name="the_file_already_exists_">Súbor už existuje.</string>
    <string name="please_wait_books_are_being_processed_">Čakajte prosím, spracovávajú sa knihy</string>
    <string name="system_brightness">Jas systému</string>
+   <string name="opening_books_in_the_specified_mode">Otvorenie kníh v určenom režime</string>
 </resources>

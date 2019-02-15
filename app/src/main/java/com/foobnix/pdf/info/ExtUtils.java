@@ -530,6 +530,10 @@ public class ExtUtils {
         if (name == null) {
             return "";
         }
+        if(name.endsWith("fb2.zip")){
+            return "fb2";
+        }
+
         if (name.contains("/")) {
             name = name.substring(name.lastIndexOf("/") + 1);
         }
@@ -693,10 +697,30 @@ public class ExtUtils {
 
         ImageLoader.getInstance().clearAllTasks();
 
+
+        if(AppState.get().isPrefFormatMode){
+
+            String ext = getFileExtension(file.getName().toLowerCase());
+
+            if(AppState.get().prefScrollMode.contains(ext)){
+                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                showDocumentWithoutDialog(c, file, page, null);
+                return true;
+            }else  if(AppState.get().prefBookMode.contains(ext)) {
+                AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                showDocumentWithoutDialog(c, file, page, null);
+                return true;
+            }else  if(AppState.get().prefMusicianMode.contains(ext)) {
+                AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                showDocumentWithoutDialog(c, file, page, null);
+                return true;
+            }
+        }
         if (AppState.get().isRememberMode) {
             showDocumentWithoutDialog(c, file, page, null);
             return true;
         }
+
 
         View view = LayoutInflater.from(c).inflate(R.layout.choose_mode_dialog, null, false);
 

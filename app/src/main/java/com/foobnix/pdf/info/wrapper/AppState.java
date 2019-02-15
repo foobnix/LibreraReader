@@ -100,6 +100,13 @@ public class AppState {
     public static int BLUE_FILTER_DEFAULT_COLOR = Color.BLACK;
     public static String MY_SYSTEM_LANG = "my";
 
+    public static final String PREF_SCROLL_MODE = "pdf, djvu";
+    public static final String PREF_BOOK_MODE = "epub, mobi, fb2, azw, azw3";
+    public static final String PREF_MUSIC_MODE = "";
+
+
+
+
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
             KeyEvent.KEYCODE_PAGE_UP, //
@@ -452,6 +459,12 @@ public class AppState {
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;
+
+    public boolean isPrefFormatMode = false;
+    public String prefScrollMode = PREF_SCROLL_MODE;
+    public String prefBookMode = PREF_BOOK_MODE;
+    public String prefMusicianMode = PREF_MUSIC_MODE;
+
 
     @IgnoreHashCode
     public boolean isLoopAutoplay = false;

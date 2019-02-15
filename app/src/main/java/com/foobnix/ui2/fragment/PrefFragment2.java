@@ -78,6 +78,7 @@ import android.webkit.WebViewClient;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -684,6 +685,69 @@ public class PrefFragment2 extends UIFragment {
                 });
                 popupMenu.show();
 
+            }
+        });
+
+        inflate.findViewById(R.id.moreModeSettings).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_custom_reading_modes, null, false);
+                builder.setView(view);
+
+                EditText prefScrollMode  = view.findViewById(R.id.prefScrollMode);
+                EditText prefBookMode  = view.findViewById(R.id.prefBookMode);
+                EditText prefMusicianMode  = view.findViewById(R.id.prefMusicianMode);
+
+                prefScrollMode.setText(AppState.get().prefScrollMode);
+                prefBookMode.setText(AppState.get().prefBookMode);
+                prefMusicianMode.setText(AppState.get().prefMusicianMode);
+
+                CheckBox isPrefFormatMode = view.findViewById(R.id.isPrefFormatMode);
+                isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
+                isPrefFormatMode.setOnCheckedChangeListener(
+                        new OnCheckedChangeListener(){
+
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                AppState.get().isPrefFormatMode = isChecked;
+                                //AppState.get().isRememberMode = false;
+                            }
+                        }
+                );
+                view.findViewById(R.id.prefRestore).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), getString(R.string.ok), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AppState.get().isPrefFormatMode = false;
+                                AppState.get().prefScrollMode = AppState.PREF_SCROLL_MODE;
+                                AppState.get().prefBookMode =  AppState.PREF_BOOK_MODE;
+                                AppState.get().prefMusicianMode =  AppState.PREF_MUSIC_MODE;
+
+                                isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
+                                prefScrollMode.setText(AppState.get().prefScrollMode);
+                                prefBookMode.setText(AppState.get().prefBookMode);
+                                prefMusicianMode.setText(AppState.get().prefMusicianMode);
+                            }
+                        }, null);
+
+
+                    }
+                });
+
+                builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        AppState.get().prefScrollMode = prefScrollMode.getText().toString();
+                        AppState.get().prefBookMode = prefBookMode.getText().toString();
+                        AppState.get().prefMusicianMode = prefMusicianMode.getText().toString();
+                    }
+                });
+                builder.show();
             }
         });
 

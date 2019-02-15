@@ -535,4 +535,5 @@
    <string name="the_file_already_exists_">O arquivo já existe.</string>
    <string name="please_wait_books_are_being_processed_">Por favor espere, livros estão sendo processados</string>
    <string name="system_brightness">Brilho do sistema</string>
+   <string name="opening_books_in_the_specified_mode">Abrindo livros no modo especificado</string>
 </resources>
