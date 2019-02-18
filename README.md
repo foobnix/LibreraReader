@@ -52,6 +52,7 @@ MuPDF changed source ./LibreraReader/Builder/jni-1.11/
 * okhttp-digest
 * okio
 * rtfparserkit
+* java-mammoth
 
 Librera is distributed under the GPL
 

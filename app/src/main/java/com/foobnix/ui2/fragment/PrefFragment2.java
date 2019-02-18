@@ -733,7 +733,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void onClick(final DialogInterface dialog, final int id) {
-                        Keyboards.close(getActivity());
+                        Keyboards.close(prefScrollMode);
                         AppState.get().isPrefFormatMode = isPrefFormatMode.isChecked();
                         AppState.get().prefScrollMode = prefScrollMode.getText().toString();
                         AppState.get().prefBookMode = prefBookMode.getText().toString();
@@ -1015,7 +1015,7 @@ public class PrefFragment2 extends UIFragment {
                 handler.postDelayed(ask, timeout);
             }
         });
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setEnabled(Build.VERSION.SDK_INT >= 26);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setVisibility(Build.VERSION.SDK_INT >= 26?View.VISIBLE:View.GONE);
 
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setChecked(AppState.get().supportODT);
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
