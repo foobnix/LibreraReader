@@ -148,11 +148,41 @@
                 android:textSize="11sp" />
 
             <CheckBox
-                android:id="@+id/supportRTF"
+                android:id="@+id/supportXPS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="110dp"
-                android:text="RTF/ODT"
+                android:text="XPS"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/supportDOCX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="DOCX"
+                android:textSize="11sp" />
+
+            <CheckBox
+                android:id="@+id/supportRTF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="90dp"
+                android:text="RTF"
+                android:textSize="11sp" />
+
+            <CheckBox
+                android:id="@+id/supportODT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dp"
+                android:text="ODT"
                 android:textSize="11sp" />
         </LinearLayout>
 
@@ -177,13 +207,7 @@
                 android:text="HTML/TXT"
                 android:textSize="11sp" />
 
-            <CheckBox
-                android:id="@+id/supportXPS"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="110dp"
-                android:text="XPS"
-                android:textSize="11sp" />
+
         </LinearLayout>
 
         <LinearLayout

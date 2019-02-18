@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.view.KeyEvent;
 
@@ -52,6 +53,7 @@ public class AppState {
     public static final int DAY_TRANSPARENCY = 200;
     public static final int NIGHT_TRANSPARENCY = 160;
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
+
     static {
         CONVERTERS.put("PDF", "https://cloudconvert.com/anything-to-pdf, http://topdf.com".split(", "));
         CONVERTERS.put("PDF Rotate", "https://www.pdfrotate.com, https://smaltilpdf.com/rotate-pdf, http://www.rotatepdf.net".split(", "));
@@ -64,6 +66,7 @@ public class AppState {
     }
 
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<String, String>();
+
     static {
         TTS_ENGINES.put("Google Text-to-Speech", "https://play.google.com/store/apps/details?id=com.google.android.tts");
         TTS_ENGINES.put("Acapela TTS Voices", "https://play.google.com/store/apps/details?id=com.acapelagroup.android.tts");
@@ -105,8 +108,6 @@ public class AppState {
     public static final String PREF_MUSIC_MODE = "";
 
 
-
-
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
             KeyEvent.KEYCODE_PAGE_UP, //
@@ -114,7 +115,7 @@ public class AppState {
             KeyEvent.KEYCODE_DPAD_RIGHT, //
             94, //
             105 //
-    // KeyEvent.KEYCODE_DEL//
+            // KeyEvent.KEYCODE_DEL//
     );
 
     public static List<Integer> PREV_KEYS = Arrays.asList(//
@@ -124,7 +125,7 @@ public class AppState {
             KeyEvent.KEYCODE_DPAD_LEFT, //
             95, //
             106 //
-    // KeyEvent.KEYCODE_ENTER //
+            // KeyEvent.KEYCODE_ENTER //
 
     );
 
@@ -163,11 +164,11 @@ public class AppState {
     );
 
     public final static String OPDS_DEFAULT = "" + //
-    // "http://flibusta.is/opds,Flibusta,Книжное
-    // братство,http://flibusta.is/favicon.ico;" + //
+            // "http://flibusta.is/opds,Flibusta,Книжное
+            // братство,http://flibusta.is/favicon.ico;" + //
 
-    // "http://opds.litres.ru,Litres,Библиотека электронных
-    // книг,assets://opds/litres.ico;" + //
+            // "http://opds.litres.ru,Litres,Библиотека электронных
+            // книг,assets://opds/litres.ico;" + //
             "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
@@ -178,8 +179,8 @@ public class AppState {
             "https://www.smashwords.com/atom,Smashwords,Online Catalog,assets://opds/smashwords.png;" + //
             "http://samlib.ru,Журнал Самиздат (samlib.ru),Cовременная литература при библиотеке Мошкова,assets://opds/web.png;" + //
             SamlibOPDS.ROOT_AWARDS + ",Usefull links: The Awards anspand Top Books - Награды и премии, Complete award winners listing,assets://opds/rating.png;" //
-    // end
-    ;
+            // end
+            ;
     // end
 
     public String myOPDSLinks = OPDS_DEFAULT;
@@ -332,9 +333,9 @@ public class AppState {
     public long fontExtractTime = 0;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
-                                                                // pages,
-                                                                // 25 - 25%
-                                                                // persent
+    // pages,
+    // 25 - 25%
+    // persent
 
     public int nextScreenScrollMyValue = 15;
 
@@ -579,6 +580,8 @@ public class AppState {
     public boolean supportEPUB = true;
     public boolean supportFB2 = true;
     public boolean supportRTF = true;
+    public boolean supportODT = true;
+    public boolean supportDOCX = Build.VERSION.SDK_INT >= 26 ? true : false;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = false;
@@ -753,7 +756,7 @@ public class AppState {
 
     public final static List<String> appDictionariesKeysTest = Arrays.asList(//
             "pdf" //
-    //
+            //
     );
 
     public final static List<String> appDictionariesKeys = Arrays.asList(//
@@ -770,7 +773,7 @@ public class AppState {
             "encyc", // encyclopedias
             "woordenboek"// https://play.google.com/store/apps/details?id=com.prisma.woordenboek.englesxl
 
-    //
+            //
     );
 
     public static synchronized AppState get() {

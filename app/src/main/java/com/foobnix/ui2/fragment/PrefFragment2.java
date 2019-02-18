@@ -1004,6 +1004,31 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setChecked(AppState.get().supportDOCX);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().supportDOCX = isChecked;
+                ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
+            }
+        });
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setEnabled(Build.VERSION.SDK_INT >= 26);
+
+        ((CheckBox) inflate.findViewById(R.id.supportODT)).setChecked(AppState.get().supportODT);
+        ((CheckBox) inflate.findViewById(R.id.supportODT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                AppState.get().supportODT = isChecked;
+                ExtUtils.updateSearchExts();
+                handler.removeCallbacks(ask);
+                handler.postDelayed(ask, timeout);
+            }
+        });
+
         ((CheckBox) inflate.findViewById(R.id.supportCBZ)).setChecked(AppState.get().supportCBZ);
         ((CheckBox) inflate.findViewById(R.id.supportCBZ)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

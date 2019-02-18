@@ -124,6 +124,7 @@
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="image/tiff" />
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -151,6 +152,7 @@
                 <data android:pathPattern=".*\\.cbr" />
                 <data android:pathPattern=".*\\.tiff" />
                 <data android:pathPattern=".*\\.odt" />
+                <data android:pathPattern=".*\\.docx" />
             </intent-filter>
         </activity>
 

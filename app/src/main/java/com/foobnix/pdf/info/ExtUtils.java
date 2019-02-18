@@ -191,6 +191,22 @@ public class ExtUtils {
         if (AppState.get().supportDJVU) {
             result.add(".djvu");
         }
+        if (AppState.get().supportDOCX) {
+            result.add(".docx");
+        }
+
+        if (AppState.get().supportODT) {
+            result.add(".odt");
+        }
+
+        if (AppState.get().supportRTF) {
+            result.add(".rtf");
+
+            if (!AppState.get().supportZIP) {
+                result.add(".rtf.zip");
+            }
+        }
+
         if (AppState.get().supportFB2) {
             result.add(".fb2");
             if (!AppState.get().supportZIP) {
@@ -205,13 +221,7 @@ public class ExtUtils {
                 result.add(".txt.zip");
             }
         }
-        if (AppState.get().supportRTF) {
-            result.add(".rtf");
-            result.add(".odt");
-            if (!AppState.get().supportZIP) {
-                result.add(".rtf.zip");
-            }
-        }
+
         if (AppState.get().supportMOBI) {
             result.add(".mobi");
             result.add(".azw");
@@ -610,7 +620,7 @@ public class ExtUtils {
                 || BookType.FB2.is(path) || BookType.TXT.is(path) //
                 || BookType.RTF.is(path) || BookType.HTML.is(path) //
                 || BookType.MHT.is(path) || BookType.MOBI.is(path) //
-                || BookType.ODT.is(path);//
+                || BookType.ODT.is(path) || BookType.DOCX.is(path);//
     }
 
     public static synchronized boolean isZip(File path) {

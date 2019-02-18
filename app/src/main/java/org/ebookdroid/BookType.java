@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.droids.CbrContext;
+import org.ebookdroid.droids.DocxContext;
 import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
 import org.ebookdroid.droids.FolderContext;
@@ -50,6 +51,8 @@ public enum BookType {
     HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
 
     MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
+
+    DOCX(DocxContext.class, Arrays.asList("docx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 
