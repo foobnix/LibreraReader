@@ -338,7 +338,7 @@ public abstract class DocumentController {
     }
 
     public static boolean isEinkOrMode(Context c) {
-        return Dips.isEInk(c) || AppState.get().isInkMode;
+        return Dips.isEInk(c) || AppState.get().appTheme == AppState.THEME_INK;
 
     }
 
@@ -446,7 +446,7 @@ public abstract class DocumentController {
     }
 
     private static void applyTheme(final Activity a) {
-        if (AppState.get().isWhiteTheme) {
+        if (AppState.get().appTheme == AppState.THEME_LIGHT) {
             a.setTheme(R.style.StyledIndicatorsWhite);
         } else {
             a.setTheme(R.style.StyledIndicatorsBlack);

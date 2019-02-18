@@ -429,7 +429,7 @@ public class DocumentWrapperUI {
             crop.setVisibility(View.GONE);
             cut.setVisibility(View.GONE);
             onModeChange.setVisibility(View.GONE);
-            if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
+            if (Dips.isEInk(dc.getActivity()) || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
                 onBC.setVisibility(View.VISIBLE);
             } else {
                 onBC.setVisibility(View.GONE);

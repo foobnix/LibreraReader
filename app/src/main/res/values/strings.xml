@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Please wait, Library is being updated...</string>
    <string name="system_brightness">System</string>
    <string name="opening_books_in_the_specified_mode">Enable reading-mode presets</string>
+   <string name="dark_oled">Dark OLED</string>
 </resources>

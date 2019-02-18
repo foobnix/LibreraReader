@@ -92,7 +92,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
 
         bindItemClickAndLongClickListeners(holder.parent, getItem(position));
 
-        if(!AppState.get().isWhiteTheme){
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
             holder.parent.setBackgroundColor(Color.BLACK);
         }
     }

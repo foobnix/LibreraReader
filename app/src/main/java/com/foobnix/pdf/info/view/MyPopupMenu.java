@@ -155,7 +155,7 @@ public class MyPopupMenu {
                         TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);
                     } else {
                         if (isTabsActivity) {
-                            if (AppState.get().isInkMode || AppState.get().isWhiteTheme) {
+                            if (AppState.get().appTheme == AppState.THEME_INK || AppState.get().appTheme == AppState.THEME_LIGHT) {
                                 TintUtil.setTintImageWithAlpha(imageView, TintUtil.color);
                             } else {
                                 TintUtil.setTintImageWithAlpha(imageView, Color.LTGRAY);

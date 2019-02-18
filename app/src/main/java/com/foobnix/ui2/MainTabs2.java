@@ -165,7 +165,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (AppState.get().isWhiteTheme) {
+        if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
             setTheme(R.style.StyledIndicatorsBlack);
@@ -230,9 +230,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onClick(View v) {
                 if (drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawer(Gravity.START, !AppState.get().isInkMode);
+                    drawerLayout.closeDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
                 else
-                    drawerLayout.openDrawer(Gravity.START, !AppState.get().isInkMode);
+                    drawerLayout.openDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
 
             }
         });
@@ -294,7 +294,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
-        if (AppState.get().isInkMode) {
+        if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
             indicator.setSelectedIndicatorColors(TintUtil.color);
             indicator.setDividerColors(TintUtil.color);
@@ -419,7 +419,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
 
             } else {
-                if (AppState.get().isInkMode) {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
                     TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
                     indicator.setSelectedIndicatorColors(TintUtil.color);
                     indicator.setDividerColors(TintUtil.color);
@@ -616,7 +616,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         if (drawerLayout != null && drawerLayout.isDrawerOpen(Gravity.START)) {
-            drawerLayout.closeDrawer(Gravity.START, !AppState.get().isInkMode);
+            drawerLayout.closeDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
             return;
         }
 

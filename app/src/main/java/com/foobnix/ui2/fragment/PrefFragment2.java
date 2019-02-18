@@ -164,7 +164,7 @@ public class PrefFragment2 extends UIFragment {
             public void run() {
                 dragLinearLayout.removeAllViews();
                 for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
-                    if(Apps.getVersionName(getActivity()).endsWith("-fdroid") && tab == UITab.CloudsFragment){
+                    if (Apps.getVersionName(getActivity()).endsWith("-fdroid") && tab == UITab.CloudsFragment) {
                         continue;
                     }
 
@@ -472,8 +472,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isWhiteTheme = true;
-                        AppState.get().isInkMode = false;
+                        AppState.get().appTheme = AppState.THEME_LIGHT;
 
                         AppState.get().contrastImage = 0;
                         AppState.get().brigtnessImage = 0;
@@ -493,8 +492,27 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isWhiteTheme = false;
-                        AppState.get().isInkMode = false;
+                        AppState.get().appTheme = AppState.THEME_DARK;
+
+                        AppState.get().contrastImage = 0;
+                        AppState.get().brigtnessImage = 0;
+                        AppState.get().bolderTextOnImage = false;
+                        AppState.get().isEnableBC = false;
+
+                        AppState.get().save(getActivity());
+
+                        IMG.clearDiscCache();
+                        IMG.clearMemoryCache();
+
+                        onTheme();
+                        return false;
+                    }
+                });
+                p.getMenu().add(R.string.dark_oled).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().appTheme = AppState.THEME_DARK_OLED;
 
                         AppState.get().contrastImage = 0;
                         AppState.get().brigtnessImage = 0;
@@ -695,9 +713,9 @@ public class PrefFragment2 extends UIFragment {
                 View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_custom_reading_modes, null, false);
                 builder.setView(view);
 
-                EditText prefScrollMode  = view.findViewById(R.id.prefScrollMode);
-                EditText prefBookMode  = view.findViewById(R.id.prefBookMode);
-                EditText prefMusicianMode  = view.findViewById(R.id.prefMusicianMode);
+                EditText prefScrollMode = view.findViewById(R.id.prefScrollMode);
+                EditText prefBookMode = view.findViewById(R.id.prefBookMode);
+                EditText prefMusicianMode = view.findViewById(R.id.prefMusicianMode);
 
                 prefScrollMode.setText(AppState.get().prefScrollMode);
                 prefBookMode.setText(AppState.get().prefBookMode);
@@ -715,8 +733,8 @@ public class PrefFragment2 extends UIFragment {
                             public void run() {
                                 AppState.get().isPrefFormatMode = false;
                                 AppState.get().prefScrollMode = AppState.PREF_SCROLL_MODE;
-                                AppState.get().prefBookMode =  AppState.PREF_BOOK_MODE;
-                                AppState.get().prefMusicianMode =  AppState.PREF_MUSIC_MODE;
+                                AppState.get().prefBookMode = AppState.PREF_BOOK_MODE;
+                                AppState.get().prefMusicianMode = AppState.PREF_MUSIC_MODE;
 
                                 isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
                                 prefScrollMode.setText(AppState.get().prefScrollMode);
@@ -1015,7 +1033,7 @@ public class PrefFragment2 extends UIFragment {
                 handler.postDelayed(ask, timeout);
             }
         });
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setVisibility(Build.VERSION.SDK_INT >= 26?View.VISIBLE:View.GONE);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setVisibility(AppsConfig.isDOCXSupported ? View.VISIBLE : View.GONE);
 
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setChecked(AppState.get().supportODT);
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -1184,7 +1202,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                    PrefDialogs.importDialog(getActivity());
+                PrefDialogs.importDialog(getActivity());
             }
         });
 
@@ -1192,7 +1210,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(final View v) {
-                    PrefDialogs.exportDialog(getActivity());
+                PrefDialogs.exportDialog(getActivity());
             }
         });
 
@@ -1777,8 +1795,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     private void onEink() {
-        AppState.get().isInkMode = true;
-        AppState.get().isWhiteTheme = true;
+        AppState.get().appTheme = AppState.THEME_INK;
         AppState.get().blueLightAlpha = 0;
 
         onTintChanged();
@@ -1920,7 +1937,7 @@ public class PrefFragment2 extends UIFragment {
         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
         String string = getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
-        final String aEmailList[] = { string };
+        final String aEmailList[] = {string};
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(getContext()));
         emailIntent.setType("plain/text");
@@ -1975,12 +1992,17 @@ public class PrefFragment2 extends UIFragment {
         super.onActivityCreated(savedInstanceState);
         rotationText();
 
-        if (AppState.get().isInkMode) {
+        if (AppState.get().appTheme == AppState.THEME_INK) {
             themeColor.setText(TxtUtils.underline("Ink"));
-        } else if (AppState.get().isWhiteTheme) {
+        } else if (AppState.get().appTheme == AppState.THEME_LIGHT) {
             themeColor.setText(TxtUtils.underline(getString(R.string.light)));
-        } else {
+        } else if (AppState.get().appTheme == AppState.THEME_DARK) {
             themeColor.setText(TxtUtils.underline(getString(R.string.black)));
+        } else if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+            themeColor.setText(TxtUtils.underline(getString(R.string.dark_oled)));
+        } else {
+            themeColor.setText("unknown");
+
         }
     }
 

@@ -24,8 +24,11 @@ import org.ebookdroid.droids.djvu.codec.DjvuContext;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.AppsConfig;
 
 import android.content.Intent;
+import android.os.Build;
 
 public enum BookType {
 
@@ -33,7 +36,7 @@ public enum BookType {
     TIFF(PdfContext.class, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
     CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
-	CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
     ODT(OdtContext.class, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
     FOLDER(FolderContext.class, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
@@ -52,7 +55,7 @@ public enum BookType {
 
     MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
-    DOCX(DocxContext.class, Arrays.asList("docx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
+    DOCX(DocxContext.class, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : ""), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 
@@ -160,6 +163,9 @@ public enum BookType {
 
         for (final BookType a : values()) {
             for (final String ext : a.extensions) {
+                if(TxtUtils.isEmpty(ext)){
+                    continue;
+                }
                 if (path.endsWith(ext)) {
                     return true;
                 }

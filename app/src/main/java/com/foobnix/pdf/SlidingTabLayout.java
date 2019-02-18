@@ -215,7 +215,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (tabView == null) {
                 tabView = createDefaultTabView(getContext());
-                if (AppState.get().isInkMode) {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
                     ((TextView) tabView).setTextSize(16);
                 }
             }
@@ -232,7 +232,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
 
-                if (AppState.get().isInkMode) {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
                     tabTitleView.setTextColor(TintUtil.color);
                 } else {
@@ -343,7 +343,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             TextView childAt = (TextView) getmTabStrip().getChildAt(i);
             int myColor = i == position ? Color.WHITE : TintUtil.colorSecondTab;
             Drawable drawable = childAt.getCompoundDrawables()[0];
-            if (AppState.get().isInkMode) {
+            if (AppState.get().appTheme == AppState.THEME_INK) {
                 TintUtil.setDrawableTint(drawable, TintUtil.color);
                 childAt.setTextColor(TintUtil.color);
             } else {
@@ -358,7 +358,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         public void onClick(View v) {
             for (int i = 0; i < getmTabStrip().getChildCount(); i++) {
                 if (v == getmTabStrip().getChildAt(i)) {
-                    mViewPager.setCurrentItem(i, !AppState.get().isInkMode);
+                    mViewPager.setCurrentItem(i, AppState.get().appTheme != AppState.THEME_INK);
                     return;
                 }
             }

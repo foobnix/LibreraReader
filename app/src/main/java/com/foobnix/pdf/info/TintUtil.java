@@ -40,7 +40,7 @@ public class TintUtil {
     public static int COLOR_ORANGE = Color.parseColor("#FF8C00");
 
     public static int getColorInDayNighth() {
-        return AppState.get().isWhiteTheme ? TintUtil.color : Color.LTGRAY;
+        return AppState.get().appTheme == AppState.THEME_LIGHT ? TintUtil.color : Color.LTGRAY;
     }
 
     public static int getColorInDayNighthBook() {

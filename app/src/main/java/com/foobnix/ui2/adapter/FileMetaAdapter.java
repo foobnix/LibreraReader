@@ -466,7 +466,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             }
 
-            if(!AppState.get().isWhiteTheme && tempValue2 != TEMP2_RECENT_FROM_BOOK){
+            if(AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK){
                 holder.parent.setBackgroundColor(Color.BLACK);
             }
 
@@ -953,7 +953,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (!AppState.get().isBorderAndShadow) {
             holder.parent.setBackgroundColor(Color.TRANSPARENT);
         }
-        if(!AppState.get().isWhiteTheme && tempValue2 != TEMP2_RECENT_FROM_BOOK){
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK){
             holder.parent.setBackgroundColor(Color.BLACK);
         }
 

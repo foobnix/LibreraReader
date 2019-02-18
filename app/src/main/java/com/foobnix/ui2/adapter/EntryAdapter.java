@@ -106,9 +106,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 holder.expand.setVisibility(View.GONE);
             }
 
-            if (AppState.get().isInkMode) {
-                // holder.expand.setTextColor(Color.GRAY);
-            }
+
 
         } else {
             holder.content.setVisibility(View.GONE);
@@ -149,9 +147,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 });
             } else {
             }
-            if (AppState.get().isInkMode) {
-                // holder.author.setTextColor(Color.GRAY);
-            }
+
         } else {
             holder.author.setVisibility(View.GONE);
         }
@@ -181,9 +177,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
-                if (AppState.get().isInkMode) {
-                    // TintUtil.grayScaleImageView(holder.image);
-                }
+
             } else if (link.isSearchLink()) {
                 LinearLayout l = new LinearLayout(context);
                 l.setOrientation(LinearLayout.HORIZONTAL);
@@ -240,9 +234,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
                     ImageLoader.getInstance().displayImage(link.href, img, IMG.displayCacheMemoryDisc);
-                    if (AppState.get().isInkMode) {
-                        // TintUtil.grayScaleImageView(img);
-                    }
+
                     holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
                     imgLink = link.href;
 
@@ -319,9 +311,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     // t.setBackgroundColor(Color.TRANSPARENT);
                     // }
 
-                    if (AppState.get().isInkMode) {
-                        // t.setTextColor(Color.GRAY);
-                    }
+
                     holder.links.addView(t);
                 }
 
@@ -330,7 +320,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         bindItemClickAndLongClickListeners(holder.parent, entry);
 
-        if(!AppState.get().isWhiteTheme){
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
             holder.parent.setBackgroundColor(Color.BLACK);
         }
     }

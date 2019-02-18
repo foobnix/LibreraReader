@@ -107,6 +107,11 @@ public class AppState {
     public static final String PREF_BOOK_MODE = "epub, mobi, fb2, azw, azw3";
     public static final String PREF_MUSIC_MODE = "";
 
+    public static final int THEME_LIGHT = 0;
+    public static final int THEME_DARK = 1;
+    public static final int THEME_DARK_OLED = 2;
+    public static final int THEME_INK = 3;
+
 
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
@@ -343,7 +348,8 @@ public class AppState {
 
     public boolean isReplaceWhite = false;
 
-    public boolean isWhiteTheme = true;
+    public int appTheme = THEME_LIGHT;
+
     public boolean isOpenLastBook = false;
 
     // sort by
@@ -479,7 +485,6 @@ public class AppState {
     public float editLineWidth = 3;
 
     public boolean isRememberMode = false;
-    public boolean isInkMode = false;
 
     public volatile boolean isAutoScroll = false;
     public int autoScrollSpeed = 120;
@@ -581,7 +586,7 @@ public class AppState {
     public boolean supportFB2 = true;
     public boolean supportRTF = true;
     public boolean supportODT = true;
-    public boolean supportDOCX = Build.VERSION.SDK_INT >= 26 ? true : false;
+    public boolean supportDOCX = AppsConfig.isDOCXSupported ? true : false;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = false;
@@ -792,7 +797,7 @@ public class AppState {
                 musicText = a.getString(R.string.musician);
 
                 if (Dips.isEInk(a)) {
-                    AppState.get().isInkMode = true;
+                    AppState.get().appTheme = AppState.THEME_INK;
                     AppState.get().isDayNotInvert = true;
                     AppState.get().isEditMode = true;
                     AppState.get().isRememberMode = false;

@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
 
 public class AppsConfig {
 
@@ -40,6 +41,8 @@ public class AppsConfig {
 
 
     public static String TXT_APP_NAME;
+
+    public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
 
     static Random random = new Random();
 

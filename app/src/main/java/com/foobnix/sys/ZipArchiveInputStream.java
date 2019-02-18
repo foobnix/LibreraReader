@@ -30,6 +30,8 @@ public class ZipArchiveInputStream extends InputStream {
         try {
             zp = new ZipFile(file);
             iterator = zp.getFileHeaders().iterator();
+            LOG.d("ZipArchiveInputStream", file);
+
         } catch (ZipException e) {
             LOG.e(e);
         }
@@ -44,11 +46,16 @@ public class ZipArchiveInputStream extends InputStream {
             tempFile = new File(CacheDir.ZipApp.getDir(), "temp.zip");
 
             LOG.d("zip-tempFile", tempFile.getPath());
+
+            LOG.d("ZipArchiveInputStream", "InputStream", "zip-tempFile", tempFile.getPath());
+
             IOUtils.copy(is, new FileOutputStream(tempFile));
             is.close();
 
             zp = new ZipFile(tempFile);
             iterator = zp.getFileHeaders().iterator();
+
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -62,9 +69,9 @@ public class ZipArchiveInputStream extends InputStream {
             tempFile.delete();
         }
         closeStream();
-        if (zp != null) {
-            zp = null;
-        }
+        //if (zp != null) {
+          //  zp = null;
+       // }
     }
 
     private void closeStream() {
@@ -88,7 +95,9 @@ public class ZipArchiveInputStream extends InputStream {
     }
 
     private void openStream() throws IOException {
+
         if (inputStream == null) {
+            LOG.d("openStream", zp);
             try {
                 inputStream = zp.getInputStream(current);
             } catch (ZipException e) {

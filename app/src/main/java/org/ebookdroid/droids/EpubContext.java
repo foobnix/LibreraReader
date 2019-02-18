@@ -74,8 +74,10 @@ public class EpubContext extends PdfContext {
         Map<String, String> notes = null;
         final File jsonFile = new File(cacheFile + ".json");
         if (jsonFile.isFile()) {
+            LOG.d("getNotes cache", fileName);
             notes = JsonHelper.fileToMap(jsonFile);
         } else {
+            LOG.d("getNotes extract", fileName);
             notes = EpubExtractor.get().getFooterNotes(fileName);
             JsonHelper.mapToFile(jsonFile, notes);
             LOG.d("save notes to file", jsonFile);

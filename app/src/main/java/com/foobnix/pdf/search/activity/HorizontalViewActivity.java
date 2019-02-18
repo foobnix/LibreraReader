@@ -912,7 +912,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(dc.isTextFormat() && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk(dc.getActivity()) || AppState.get().isInkMode || AppState.get().isEnableBC) {
+                    if (Dips.isEInk(dc.getActivity()) || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
@@ -2005,7 +2005,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             modeName.setText(R.string.mode_horizontally);
         }
 
-        if (!animated || AppState.get().isInkMode) {
+        if (!animated || AppState.get().appTheme == AppState.THEME_INK) {
             actionBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
