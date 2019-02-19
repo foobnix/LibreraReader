@@ -129,7 +129,7 @@ public class BooksService extends IntentService {
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
                         }else{
-                            LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppState.get().searchDate);
+                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppState.get().searchDate);
                         }
 
                     }

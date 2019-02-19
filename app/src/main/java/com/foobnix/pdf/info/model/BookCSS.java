@@ -621,7 +621,14 @@ public class BookCSS {
                 }
 
                 builder.append(String.format("font-size:%s;", em(capitalLetterSize)));
-                builder.append(String.format("color:%s;", capitalLetterColor));
+
+                if (capitalLetterColor.equals("#000000") && !AppState.get().isDayNotInvert) {
+                    builder.append(String.format("color:%s;", textColor));
+                } else if (capitalLetterColor.equals("#FFFFFF") && AppState.get().isDayNotInvert) {
+                    builder.append(String.format("color:%s;", textColor));
+                } else {
+                    builder.append(String.format("color:%s;", capitalLetterColor));
+                }
 
                 builder.append("}");
             }

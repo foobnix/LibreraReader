@@ -365,10 +365,10 @@ public class ShareDialog {
                 } else if (isMainTabs && which == i++) {
                     FileMeta load = AppDB.get().load(file.getPath());
                     if (load != null) {
-                        load.setIsSearchBook(false);
-                        load.setIsStar(false);
-                        load.setTag(null);
-                        AppDB.get().update(load);
+                        //load.setIsSearchBook(false);
+                        //load.setIsStar(false);
+                        //load.setTag(null);
+                        AppDB.get().delete(load);
                     }
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (!isMainTabs && which == i++) {
