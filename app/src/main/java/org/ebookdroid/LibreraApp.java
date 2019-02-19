@@ -36,6 +36,7 @@ public class LibreraApp extends Application {
     static {
         System.loadLibrary("mypdf");
         System.loadLibrary("mobi");
+        System.loadLibrary("antiword");
     }
 
     public static Context context;

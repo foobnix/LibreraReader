@@ -1,0 +1,80 @@
+# An example of a fontnames translation table
+#
+# MS-Word fontname,	Italic,	Bold,	Acorn fontname,		Special
+Arial,			0,	0,	Homerton.Medium,	0
+Arial,			0,	1,	Homerton.Bold,		0
+Arial,			1,	0,	Homerton.Medium.Oblique,0
+Arial,			1,	1,	Homerton.Bold.Oblique,	0
+Arial Black,		0,	0,	Homerton.Medium,	0
+Arial Black,		0,	1,	Homerton.Bold,		0
+Arial Black,		1,	0,	Homerton.Medium.Oblique,0
+Arial Black,		1,	1,	Homerton.Bold.Oblique,	0
+AvantGarde,		0,	0,	Clare.Medium,		0
+AvantGarde,		0,	1,	Clare.Demi,		0
+AvantGarde,		1,	0,	Clare.Medium.Oblique,	0
+AvantGarde,		1,	1,	Clare.Demi.Oblique,	0
+Bookman,		0,	0,	Robinson.Light,		0
+Bookman,		0,	1,	Robinson.Demi,		0
+Bookman,		1,	0,	Robinson.Light.Italic,	0
+Bookman,		1,	1,	Robinson.Demi.Italic,	0
+Bookman Old Style,	0,	0,	Robinson.Light,		0
+Bookman Old Style,	0,	1,	Robinson.Demi,		0
+Bookman Old Style,	1,	0,	Robinson.Light.Italic,	0
+Bookman Old Style,	1,	1,	Robinson.Demi.Italic,	0
+Courier,		0,	0,	Corpus.Medium,		0
+Courier,		0,	1,	Corpus.Bold,		0
+Courier,		1,	0,	Corpus.Medium.Oblique,	0
+Courier,		1,	1,	Corpus.Bold.Oblique,	0
+Courier New,		0,	0,	Corpus.Medium,		0
+Courier New,		0,	1,	Corpus.Bold,		0
+Courier New,		1,	0,	Corpus.Medium.Oblique,	0
+Courier New,		1,	1,	Corpus.Bold.Oblique,	0
+Fixedsys,		0,	0,	Corpus.Medium,		0
+Fixedsys,		0,	1,	Corpus.Bold,		0
+Fixedsys,		1,	0,	Corpus.Medium.Oblique,	0
+Fixedsys,		1,	1,	Corpus.Bold.Oblique,	0
+Helvetica,		0,	0,	Homerton.Medium,	0
+Helvetica,		0,	1,	Homerton.Bold,		0
+Helvetica,		1,	0,	Homerton.Medium.Oblique,0
+Helvetica,		1,	1,	Homerton.Bold.Oblique,	0
+Lucida Console,		0,	0,	Corpus.Medium,		0
+Lucida Console,		0,	1,	Corpus.Bold,		0
+Lucida Console,		1,	0,	Corpus.Medium.Oblique,	0
+Lucida Console,		1,	1,	Corpus.Bold.Oblique,	0
+Palatino,		0,	0,	Pembroke.Medium,	0
+Palatino,		0,	1,	Pembroke.Bold,		0
+Palatino,		1,	0,	Pembroke.Medium.Italic,	0
+Palatino,		1,	1,	Pembroke.Bold.Italic,	0
+Swiss,			0,	0,	Homerton.Medium,	0
+Swiss,			0,	1,	Homerton.Bold,		0
+Swiss,			1,	0,	Homerton.Medium.Oblique,0
+Swiss,			1,	1,	Homerton.Bold.Oblique,	0
+Symbol,			0,	0,	Sidney,			1
+Symbol,			0,	1,	Sidney,			1
+Symbol,			1,	0,	Sidney,			1
+Symbol,			1,	1,	Sidney,			1
+Times,			0,	0,	Trinity.Medium,		0
+Times,			0,	1,	Trinity.Bold,		0
+Times,			1,	0,	Trinity.Medium.Italic,	0
+Times,			1,	1,	Trinity.Bold.Italic,	0
+Times New Roman,	0,	0,	Trinity.Medium,		0
+Times New Roman,	0,	1,	Trinity.Bold,		0
+Times New Roman,	1,	0,	Trinity.Medium.Italic,	0
+Times New Roman,	1,	1,	Trinity.Bold.Italic,	0
+Times Roman,		0,	0,	Trinity.Medium,		0
+Times Roman,		0,	1,	Trinity.Bold,		0
+Times Roman,		1,	0,	Trinity.Medium.Italic,	0
+Times Roman,		1,	1,	Trinity.Bold.Italic,	0
+Univers,		0,	0,	Homerton.Medium,	0
+Univers,		0,	1,	Homerton.Bold,		0
+Univers,		1,	0,	Homerton.Medium.Oblique,0
+Univers,		1,	1,	Homerton.Bold.Oblique,	0
+ZapfDingbats,		0,	0,	Selwyn,			2
+ZapfDingbats,		0,	1,	Selwyn,			2
+ZapfDingbats,		1,	0,	Selwyn,			2
+ZapfDingbats,		1,	1,	Selwyn,			2
+# All the other fonts
+*,			0,	0,	Trinity.Medium,		0
+*,			0,	1,	Trinity.Bold,		0
+*,			1,	0,	Trinity.Medium.Italic,	0
+*,			1,	1,	Trinity.Bold.Italic,	0

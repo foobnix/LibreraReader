@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# Script to make drag and drop in KDE possible
+#set -x
+#
+
+if [ $# -lt 2 ]
+then
+	exit 0
+fi
+
+# Determine the temp directory
+if [ -d "$TMPDIR" ] && [ -w "$TMPDIR" ]
+then
+	tmp_dir=$TMPDIR
+elif [ -d "$TEMP" ] && [ -w "$TEMP" ]
+then
+	tmp_dir=$TEMP
+else
+	tmp_dir="/tmp"
+fi                        
+
+# Try to create the temp files in a secure way
+if [ -x /bin/tempfile ]
+then
+	out_file=`/bin/tempfile -d "$tmp_dir" -p antiword -s ".ps"` || exit 1
+	err_file=`/bin/tempfile -d "$tmp_dir" -p antiword -s ".err"`
+	if [ $? -ne 0 ]
+	then
+		rm -f "$out_file"
+		exit 1
+	fi
+elif [ -x /bin/mktemp ]
+then
+	out_file=`/bin/mktemp -q -p "$tmp_dir" antiword.ps.XXXXXXXXX` || exit 1
+	err_file=`/bin/mktemp -q -p "$tmp_dir" antiword.err.XXXXXXXXX`
+	if [ $? -ne 0 ]
+	then
+		rm -f "$out_file"
+		exit 1
+	fi
+else
+	# Creating the temp files in an un-secure way
+	out_file=$tmp_dir"/antiword.$$.ps"
+	err_file=$tmp_dir"/antiword.$$.err"
+fi
+
+# Determine the paper size
+paper_size=$1
+shift
+
+# Make the PostScript file
+antiword -p $paper_size -i 0 "$@" 2>"$err_file" >"$out_file"
+if [ $? -ne 0 ]
+then
+	# Something went wrong
+	if [ -r "$err_file" ] && [ -s "$err_file" ]
+	then
+		konsole --caption "Error from Antword" -e less "$err_file"
+	fi
+	# Clean up
+	rm -f "$out_file" "$err_file"
+	exit 1
+fi
+
+# Show the PostScript file
+gv "$out_file" -nocentre -media $paper_size
+
+# Clean up
+rm -f "$out_file" "$err_file"
+exit 0

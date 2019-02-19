@@ -1,0 +1,43 @@
+# Default fontnames translation table
+# for Cyrillic
+#
+# by: Dmitry Chernyak <cdl@inkasbank.ru>
+#
+# MS-Word fontname,	Italic,	Bold,	PostScript fontname,	Special
+Arial,			0,	0,	ArialCyrMT,		0
+Arial,			0,	1,	ArialCyrMT-Bold,	0
+Arial,			1,	0,	ArialCyrMT-Italic,	0
+Arial,			1,	1,	ArialCyrMT-BoldItalic,	0
+Courier,		0,	0,	CourierCyrPS,		0
+Courier,		0,	1,	CourierCyrPS-Bold,	0
+Courier,		1,	0,	CourierCyrPS-Inclined,	0
+Courier,		1,	1,	CourierCyrPS-BoldInclined,	0
+Courier New,		0,	0,	CourierCyrPS,		0
+Courier New,		0,	1,	CourierCyrPS-Bold,	0
+Courier New,		1,	0,	CourierCyrPS-Inclined,	0
+Courier New,		1,	1,	CourierCyrPS-BoldInclined,	0
+Fixedsys,		0,	0,	CourierCyrPS,		0
+Fixedsys,		0,	1,	CourierCyrPS-Bold,	0
+Fixedsys,		1,	0,	CourierCyrPS-Inclined,	0
+Fixedsys,		1,	1,	CourierCyrPS-BoldInclined,	0
+Helvetica,		0,	0,	ArialCyrMT,		0
+Helvetica,		0,	1,	ArialCyrMT-Bold,	0
+Helvetica,		1,	0,	ArialCyrMT-Italic,	0
+Helvetica,		1,	1,	ArialCyrMT-BoldItalic,	0
+Lucida Console,		0,	0,	CourierCyrPS,		0
+Lucida Console,		0,	1,	CourierCyrPS-Bold,	0
+Lucida Console,		1,	0,	CourierCyrPS-Inclined,	0
+Lucida Console,		1,	1,	CourierCyrPS-BoldInclined,	0
+Swiss,			0,	0,	Helvetica,		0
+Swiss,			0,	1,	Helvetica-Bold,		0
+Swiss,			1,	0,	Helvetica-Oblique,	0
+Swiss,			1,	1,	Helvetica-BoldOblique,	0
+Univers,		0,	0,	Helvetica,		0
+Univers,		0,	1,	Helvetica-Bold,		0
+Univers,		1,	0,	Helvetica-Oblique,	0
+Univers,		1,	1,	Helvetica-BoldOblique,	0
+# All the other fonts
+*,			0,	0,	TimesNRCyrMT,		0
+*,			0,	1,	TimesNRCyrMT-Bold,	0
+*,			1,	0,	TimesNRCyrMT-Inclined,	0
+*,			1,	1,	TimesNRCyrMT-BoldInclined,	0

@@ -1,14 +1,14 @@
 package org.ebookdroid;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import android.content.Intent;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.AppsConfig;
 
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.droids.CbrContext;
+import org.ebookdroid.droids.DocContext;
 import org.ebookdroid.droids.DocxContext;
 import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
@@ -23,12 +23,12 @@ import org.ebookdroid.droids.ZipContext;
 import org.ebookdroid.droids.djvu.codec.DjvuContext;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.AppsConfig;
-
-import android.content.Intent;
-import android.os.Build;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public enum BookType {
 
@@ -56,6 +56,8 @@ public enum BookType {
     MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
     DOCX(DocxContext.class, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
+
+    DOC(DocContext.class, Arrays.asList( "doc"), Arrays.asList("application/msword")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 

@@ -1,9 +1,42 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.util.Pair;
+import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
+import android.widget.ScrollView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
@@ -49,43 +82,10 @@ import com.foobnix.ui2.MyContextWrapper;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
-import android.text.Html;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
-import android.widget.ScrollView;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
@@ -1033,9 +1033,10 @@ public class PrefFragment2 extends UIFragment {
                 handler.postDelayed(ask, timeout);
             }
         });
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setVisibility(AppsConfig.isDOCXSupported ? View.VISIBLE : View.GONE);
+
 
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setChecked(AppState.get().supportODT);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setText(AppsConfig.isDOCXSupported ? "DOC/DOCX" : "DOC");
         ((CheckBox) inflate.findViewById(R.id.supportODT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
@@ -1075,7 +1076,7 @@ public class PrefFragment2 extends UIFragment {
 
         CheckBox supportOther = (CheckBox) inflate.findViewById(R.id.supportOther);
         supportOther.setChecked(AppState.get().supportOther);
-        supportOther.setText(getString(R.string.other) + " (DOC/CHM/...)");
+        supportOther.setText(getString(R.string.other) + " (CHM/...)");
         supportOther.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override

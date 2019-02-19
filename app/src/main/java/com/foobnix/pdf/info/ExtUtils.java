@@ -1,60 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.common.cache.CacheManager;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.core.codec.OutlineLink;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.json.JSONObject;
-import org.mozilla.universalchardet.UniversalDetector;
-
-import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.Safe;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Views;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.widget.ChooserDialogFragment;
-import com.foobnix.pdf.info.widget.PrefDialogs;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.search.activity.HorizontalModeController;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.zipmanager.ZipDialog;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -92,6 +37,61 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.Safe;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.info.widget.PrefDialogs;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.zipmanager.ZipDialog;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.common.cache.CacheManager;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+import org.json.JSONObject;
+import org.mozilla.universalchardet.UniversalDetector;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ExtUtils {
 
@@ -192,7 +192,10 @@ public class ExtUtils {
             result.add(".djvu");
         }
         if (AppState.get().supportDOCX) {
-            result.add(".docx");
+            result.add(".doc");
+            if(AppsConfig.isDOCXSupported){
+                result.add(".docx");
+            }
         }
 
         if (AppState.get().supportODT) {
@@ -239,6 +242,9 @@ public class ExtUtils {
             result.addAll(lirbeExt);
             result.add(".prc");
             result.add(".pdb");
+            if(!AppsConfig.isDOCXSupported){
+                result.add(".docx");
+            }
 
         }
 
@@ -620,7 +626,7 @@ public class ExtUtils {
                 || BookType.FB2.is(path) || BookType.TXT.is(path) //
                 || BookType.RTF.is(path) || BookType.HTML.is(path) //
                 || BookType.MHT.is(path) || BookType.MOBI.is(path) //
-                || BookType.ODT.is(path) || BookType.DOCX.is(path);//
+                || BookType.ODT.is(path) || BookType.DOCX.is(path)|| BookType.DOC.is(path);//
     }
 
     public static synchronized boolean isZip(File path) {
@@ -1642,7 +1648,6 @@ public class ExtUtils {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static List<String> getExternalStorageDirectories(Context c) {
-
         List<String> results = new ArrayList<String>();
         try {
 
@@ -1651,6 +1656,7 @@ public class ExtUtils {
                 File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
 
                 for (File file : externalDirs) {
+                    LOG.d("getExternalFilesDirs", file.getPath());
                     String path = file.getPath().split("/Android")[0];
 
                     boolean addPath = false;
@@ -1660,6 +1666,9 @@ public class ExtUtils {
                     } else {
                         addPath = Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
                     }
+
+                    LOG.d("getExternalFilesDirs Removable", addPath, file.getPath());
+
 
                     if (addPath) {
                         results.add(path);

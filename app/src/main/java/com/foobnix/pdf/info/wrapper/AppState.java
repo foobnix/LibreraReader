@@ -1,15 +1,13 @@
 package com.foobnix.pdf.info.wrapper;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.view.KeyEvent;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -28,14 +26,16 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.ui2.AppDB;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.view.KeyEvent;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
@@ -78,7 +78,7 @@ public class AppState {
     public static final String PNG = "PNG";
     public static final String JPG = "JPG";
 
-    public static final String[] LIBRE_EXT = ".odt, .odp, .docx, .doc, .pptx, .ppt".split(", ");
+    public static final String[] LIBRE_EXT = ".odt, .odp, .pptx, .ppt".split(", ");
     public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
@@ -586,7 +586,7 @@ public class AppState {
     public boolean supportFB2 = true;
     public boolean supportRTF = true;
     public boolean supportODT = true;
-    public boolean supportDOCX = AppsConfig.isDOCXSupported ? true : false;
+    public boolean supportDOCX = true;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = false;

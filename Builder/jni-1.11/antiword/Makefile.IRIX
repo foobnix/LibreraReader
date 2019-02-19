@@ -1,0 +1,47 @@
+#
+# Makefile for antiword (IRIX version)
+#
+# Original version by: Martin Watt <mwatt@aw.sgi.com>
+#
+
+CC	= cc
+LD	= cc
+
+# must be equal to DEBUG or NDEBUG
+DB	= NDEBUG
+# Optimization: -O<n> or debugging: -g
+OPT	= -O2
+
+LDLIBS	=
+
+CFLAGS	= $(OPT) -s -D$(DB)
+LDFLAGS	=
+
+OBJS	=\
+	main_u.o asc85enc.o blocklist.o chartrans.o datalist.o depot.o\
+	dib2eps.o doclist.o fail.o finddata.o findtext.o fmt_text.o fontlist.o\
+	fonts.o fonts_u.o hdrftrlist.o imgexam.o imgtrans.o jpeg2eps.o\
+	listlist.o misc.o notes.o options.o out2window.o output.o pdf.o\
+	pictlist.o png2eps.o postscript.o prop0.o prop2.o prop6.o prop8.o\
+	properties.o propmod.o rowlist.o sectlist.o stylelist.o stylesheet.o\
+	summary.o tabstop.o text.o unix.o utf8.o word2text.o worddos.o\
+	wordlib.o wordmac.o wordole.o wordwin.o xmalloc.o xml.o
+
+all:		antiword
+
+antiword:	$(OBJS)
+	$(LD) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+main_u.o:	version.h
+postscript.o:	version.h
+pdf.o:		version.h
+fonts_u.o:	fontinfo.h
+
+fontinfo.h:	Unix-only/fontinfo.h
+	cp -rp $? $@
+
+Unix-only/fontinfo.h:	Unix-only/fontinfo.pl
+	Unix-only/fontinfo.pl > Unix-only/fontinfo.h
