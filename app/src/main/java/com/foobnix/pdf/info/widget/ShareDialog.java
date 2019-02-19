@@ -366,6 +366,8 @@ public class ShareDialog {
                     FileMeta load = AppDB.get().load(file.getPath());
                     if (load != null) {
                         load.setIsSearchBook(false);
+                        load.setIsStar(false);
+                        load.setTag(null);
                         AppDB.get().update(load);
                     }
                     EventBus.getDefault().post(new UpdateAllFragments());

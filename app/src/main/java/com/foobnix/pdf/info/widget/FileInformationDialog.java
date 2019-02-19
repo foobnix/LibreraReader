@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -22,6 +23,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -127,7 +129,13 @@ public class FileInformationDialog {
 
         year.setText("" + TxtUtils.nullToEmpty(fileMeta.getYear()));
 
-        ((TextView) dialog.findViewById(R.id.path)).setText(file.getPath());
+        TextView pathView = (TextView) dialog.findViewById(R.id.path);
+        pathView.setText(file.getPath());
+        if(BuildConfig.LOG){
+            pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
+        }
+
+
         ((TextView) dialog.findViewById(R.id.date)).setText(fileMeta.getDateTxt());
         ((TextView) dialog.findViewById(R.id.info)).setText(fileMeta.getExt());
 

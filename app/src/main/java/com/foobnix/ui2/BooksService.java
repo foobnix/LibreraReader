@@ -1,6 +1,8 @@
 package com.foobnix.ui2;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -88,22 +91,17 @@ public class BooksService extends IntentService {
                     }
 
                     File bookFile = new File(meta.getPath());
-                    if(bookFile.isFile()) {
+                    if(bookFile.getPath().startsWith(Environment.getExternalStorageDirectory().getPath())){
+                        LOG.d("Delete meta from getExternalStorageDirectory ",Environment.getExternalStorageDirectory().getPath());
                         if (!bookFile.exists()) {
-                            meta.setIsSearchBook(false);
-                            AppDB.get().update(meta);
-                            LOG.d(TAG, "Delete-setIsSearchBook false", meta.getPath());
-                        } else if (bookFile.exists() && meta.getIsSearchBook() != null && !meta.getIsSearchBook()) {
-                            meta.setIsSearchBook(true);
-                            AppDB.get().update(meta);
-                            LOG.d(TAG, "Delete-setIsSearchBook true", meta.getPath());
-
+                            AppDB.get().delete(meta);
+                            LOG.d(TAG, "Delete-setIsSearchBook", meta.getPath());
                         }
                     }
                 }
                 sendFinishMessage();
 
-                LOG.d("BooksService , searchDate", AppState.get().searchDate);
+                LOG.d("BooksService , searchDate", AppState.get().searchDate, AppState.get().searchPaths);
                 if (AppState.get().searchDate != 0) {
 
                     List<FileMeta> localMeta = new LinkedList<FileMeta>();
@@ -121,6 +119,7 @@ public class BooksService extends IntentService {
                     for (FileMeta meta : localMeta) {
 
                         File file = new File(meta.getPath());
+
                         if (file.lastModified() >= AppState.get().searchDate) {
                             if (AppDB.get().getDao().hasKey(meta)) {
                                 LOG.d(TAG, "Skip book", file.getPath());
@@ -129,6 +128,8 @@ public class BooksService extends IntentService {
 
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
+                        }else{
+                            LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppState.get().searchDate);
                         }
 
                     }

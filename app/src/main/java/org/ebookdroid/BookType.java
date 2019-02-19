@@ -55,7 +55,7 @@ public enum BookType {
 
     MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
-    DOCX(DocxContext.class, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : ""), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
+    DOCX(DocxContext.class, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
     RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 

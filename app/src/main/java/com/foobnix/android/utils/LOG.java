@@ -58,7 +58,12 @@ public class LOG {
             out.append(f.getName());
             out.append(":");
             try {
-                out.append(f.get(obj));
+                Object v = f.get(obj);
+                if(v==null){
+                    out.append("@null");
+                }else {
+                    out.append(v);
+                }
                 out.append("|\n");
             } catch (Exception e) {
                 LOG.e(e);
