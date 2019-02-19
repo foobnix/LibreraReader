@@ -501,7 +501,7 @@ public class EpubExtractor extends BaseExtractor {
                         // System.out.println("- " + nameLow + " -");
                         Document parse = Jsoup.parse(zipInputStream, null, "", Parser.xmlParser());
                         Elements select = parse.select("a[href]");
-                        zipInputStream.close();
+
                         for (int i = 0; i < select.size(); i++) {
                             Element item = select.get(i);
                             String text = item.text();
@@ -534,10 +534,11 @@ public class EpubExtractor extends BaseExtractor {
                         }
 
 
+
                     }
                 }
 
-
+                zipInputStream.release();
                 zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
 
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
@@ -552,7 +553,7 @@ public class EpubExtractor extends BaseExtractor {
                             // System.out.println("file: " + name);
                             Parser xmlParser = Parser.xmlParser();
                             Document parse = Jsoup.parse(zipInputStream, null, "", xmlParser);
-                            zipInputStream.close();
+
                             Elements ids = parse.select("[id]");
                             for (int i = 0; i < ids.size(); i++) {
                                 Element item = ids.get(i);
@@ -588,12 +589,13 @@ public class EpubExtractor extends BaseExtractor {
                                 notes.put(textKey, value.trim());
 
                             }
+
                         }
 
                     }
                 }
 
-
+                zipInputStream.release();
             } catch (Exception e) {
                 LOG.e(e);
             }

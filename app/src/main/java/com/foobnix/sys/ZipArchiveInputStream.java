@@ -69,9 +69,12 @@ public class ZipArchiveInputStream extends InputStream {
             tempFile.delete();
         }
         closeStream();
-        //if (zp != null) {
-          //  zp = null;
-       // }
+    }
+    public void release(){
+        closeStream();
+        if (zp != null) {
+            zp = null;
+        }
     }
 
     private void closeStream() {

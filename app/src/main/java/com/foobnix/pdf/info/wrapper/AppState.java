@@ -623,8 +623,8 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
 
     // perofrmance
-    public int pagesInMemory = 3;
-    public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N ? 1.6f : 1.2f;
+    public int pagesInMemory = Build.VERSION.SDK_INT >= 24 ? 5 : 3;
+    public float pageQuality = Build.VERSION.SDK_INT >= 24 ? 1.6f : 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
 
