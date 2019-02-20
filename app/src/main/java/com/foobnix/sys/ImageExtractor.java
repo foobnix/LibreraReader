@@ -1,22 +1,17 @@
 package com.foobnix.sys;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.common.bitmaps.BitmapRef;
-import org.ebookdroid.common.bitmaps.RawBitmap;
-import org.ebookdroid.core.codec.CodecContext;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.core.codec.CodecPageInfo;
-import org.ebookdroid.core.crop.PageCropper;
-import org.ebookdroid.droids.FolderContext;
-import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.net.Uri;
+import android.util.Base64;
+import android.util.Pair;
 
 import com.BaseExtractor;
 import com.foobnix.android.utils.Dips;
@@ -44,18 +39,24 @@ import com.foobnix.ui2.FileMetaCore;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.net.Uri;
-import android.util.Base64;
-import android.util.Pair;
+import org.ebookdroid.BookType;
+import org.ebookdroid.common.bitmaps.BitmapRef;
+import org.ebookdroid.common.bitmaps.RawBitmap;
+import org.ebookdroid.core.codec.CodecContext;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.CodecPageInfo;
+import org.ebookdroid.core.crop.PageCropper;
+import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
+
 import okhttp3.Request;
 
 public class ImageExtractor implements ImageDownloader {
@@ -120,7 +121,7 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
-        } else if (ExtUtils.isLibreFile(unZipPath)) {
+        } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath!=null && unZipPath.endsWith(".docx"))) {
             cover = BaseExtractor.arrayToBitmap(OdtExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FB2.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());

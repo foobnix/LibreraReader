@@ -58,7 +58,7 @@ public abstract class DocumentController {
     public static final String EXTRA_PERCENT = "percent";
     public static final String EXTRA_PLAYLIST = "playlist";
 
-    public static final int REPEAT_SKIP_AMOUNT = 10;
+    public static final int REPEAT_SKIP_AMOUNT = 20;
 
     public final static List<Integer> orientationIds = Arrays.asList(//
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
