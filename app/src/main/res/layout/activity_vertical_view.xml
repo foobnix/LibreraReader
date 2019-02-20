@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parent"
+    android:id="@+id/parentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/documentView"
@@ -13,32 +13,31 @@
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:padding="2dip"
         android:id="@+id/musicButtonPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:id="@+id/pageshelper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
 
         <ImageView
-            android:layout_marginLeft="4dip"
             android:id="@+id/pagesBookmark"
             android:layout_width="40dip"
             android:layout_height="40dip"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray_dash2"
             android:src="@drawable/glyphicons_73_bookmark1"
@@ -50,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="94dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/line1"
@@ -71,7 +70,7 @@
             android:layout_marginRight="5dip"
             android:layout_weight="3"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <com.foobnix.pdf.search.view.BgClickbaleView
                 android:id="@+id/lineClose"
@@ -105,10 +104,10 @@
 
     <include
         android:id="@+id/document_title_bar"
+        layout="@layout/document_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        layout="@layout/document_title_bar"
         android:elevation="2dip" />
 
     <ImageView
@@ -116,8 +115,8 @@
         style="@style/buttonWhite"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
-        android:layout_alignParentLeft="true"
         android:layout_below="@+id/document_title_bar"
+        android:layout_alignParentLeft="true"
         android:layout_margin="0dip"
         android:background="@drawable/bg_search_second_clickable"
         android:contentDescription="read aloudW"
@@ -128,11 +127,14 @@
 
     <include
         android:id="@+id/menuLayout"
+        layout="@layout/document_title_buttons"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/document_title_bar"
-        android:layout_centerHorizontal="true"
-        layout="@layout/document_title_buttons" />
+        android:layout_centerHorizontal="true" />
+
+
+
 
     <FrameLayout
         android:id="@+id/adFrame"
@@ -144,19 +146,19 @@
 
     <include
         android:id="@+id/includeEditPanel"
+        layout="@layout/edit_panel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/adFrame"
         android:layout_margin="10dip"
-        layout="@layout/edit_panel"
         android:visibility="gone" />
 
     <include
         android:id="@+id/seekSpeedLayot"
+        layout="@layout/document_speed_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/speed_size"
-        android:layout_above="@+id/bottomBar1"
-        layout="@layout/document_speed_bar" />
+        android:layout_above="@+id/bottomBar1" />
 
     <com.foobnix.tts.TTSControlsView
         android:id="@+id/ttsActive"
@@ -171,12 +173,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#0000ff" >
+        android:background="#0000ff">
 
         <FrameLayout
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <include layout="@layout/document_footer" />
         </FrameLayout>
@@ -225,8 +227,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
-        android:minHeight="10dip"
         android:minWidth="10dip"
+        android:minHeight="10dip"
         android:visibility="gone" />
 
 </RelativeLayout>

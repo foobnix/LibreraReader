@@ -607,7 +607,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    if (BookCSS.get().isAutoHypens) {
+                    if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang)) {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }
@@ -681,7 +681,7 @@ public class Fb2Extractor extends BaseExtractor {
 
             // LOG.d("gen-in", line);
             line = accurateLine(line);
-            if (BookCSS.get().isAutoHypens) {
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang)) {
                 line = HypenUtils.applyHypnes(line);
             }
             writer.println(line);
@@ -740,7 +740,7 @@ public class Fb2Extractor extends BaseExtractor {
 
 
     @Deprecated
-    public static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
+    private static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();

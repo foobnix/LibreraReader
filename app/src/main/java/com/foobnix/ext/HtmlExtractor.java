@@ -1,5 +1,15 @@
 package com.foobnix.ext;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,15 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
-
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.hypen.HypenUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 public class HtmlExtractor {
 
@@ -69,7 +70,7 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if (BookCSS.get().isAutoHypens) {
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang)) {
                 HypenUtils.applyLanguage(BookCSS.get().hypenLang);
                 string = HypenUtils.applyHypnes(string);
                 // string = Jsoup.clean(string, Whitelist.none());

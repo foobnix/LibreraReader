@@ -463,6 +463,7 @@ public class AppState {
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
     public String appLang = AppState.MY_SYSTEM_LANG;
+    public String lastBookLang = "";
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;

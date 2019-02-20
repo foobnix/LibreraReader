@@ -14,7 +14,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
-import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -126,7 +125,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
-        hypenLang = "en";
+        hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
@@ -711,10 +710,12 @@ public class BookCSS {
         FileMeta meta = AppDB.get().load(bookPath);
         if (meta != null) {
             BookCSS.get().hypenLang = meta.getLang();
+        }else{
+            BookCSS.get().hypenLang = null;
         }
-        if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
-            BookCSS.get().hypenLang = Urls.getLangCode();
-        }
+        //if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
+            //BookCSS.get().hypenLang = Urls.getLangCode();
+        //}
     }
 
 }

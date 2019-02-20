@@ -1,79 +1,5 @@
 package com.foobnix.pdf.search.activity;
 
-import java.io.File;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
-import com.foobnix.android.utils.Views;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.CopyAsyncTask;
-import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.DictsHelper;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.OutlineHelper;
-import com.foobnix.pdf.info.OutlineHelper.Info;
-import com.foobnix.pdf.info.PasswordDialog;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.UiSystemUtils;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.view.AnchorHelper;
-import com.foobnix.pdf.info.view.BookmarkPanel;
-import com.foobnix.pdf.info.view.BrightnessHelper;
-import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.DialogsPlaylist;
-import com.foobnix.pdf.info.view.DragingDialogs;
-import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.view.ProgressDraw;
-import com.foobnix.pdf.info.view.UnderlineImageView;
-import com.foobnix.pdf.info.widget.DraggbleTouchListener;
-import com.foobnix.pdf.info.widget.FileInformationDialog;
-import com.foobnix.pdf.info.widget.RecentUpates;
-import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.search.activity.msg.FlippingStart;
-import com.foobnix.pdf.search.activity.msg.FlippingStop;
-import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
-import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
-import com.foobnix.pdf.search.activity.msg.MessageEvent;
-import com.foobnix.pdf.search.activity.msg.MessagePageXY;
-import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
-import com.foobnix.pdf.search.view.CloseAppDialog;
-import com.foobnix.pdf.search.view.VerticalViewPager;
-import com.foobnix.sys.ClickUtils;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.MessagePageNumber;
-import com.foobnix.tts.TTSControlsView;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
-import com.foobnix.tts.TTSService;
-import com.foobnix.tts.TtsStatus;
-import com.foobnix.ui2.AdsFragmentActivity;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.MainTabs2;
-import com.foobnix.ui2.MyContextWrapper;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.TargetApi;
 import android.app.ActionBar.LayoutParams;
 import android.app.AlertDialog;
@@ -113,12 +39,87 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.Views;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.DictsHelper;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.OutlineHelper.Info;
+import com.foobnix.pdf.info.PasswordDialog;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.UiSystemUtils;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.AnchorHelper;
+import com.foobnix.pdf.info.view.BookmarkPanel;
+import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
+import com.foobnix.pdf.info.view.DragingDialogs;
+import com.foobnix.pdf.info.view.HorizontallSeekTouchEventListener;
+import com.foobnix.pdf.info.view.HypenPanelHelper;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.ProgressDraw;
+import com.foobnix.pdf.info.view.UnderlineImageView;
+import com.foobnix.pdf.info.widget.DraggbleTouchListener;
+import com.foobnix.pdf.info.widget.FileInformationDialog;
+import com.foobnix.pdf.info.widget.RecentUpates;
+import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.activity.msg.FlippingStart;
+import com.foobnix.pdf.search.activity.msg.FlippingStop;
+import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
+import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
+import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
+import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
+import com.foobnix.pdf.search.view.CloseAppDialog;
+import com.foobnix.pdf.search.view.VerticalViewPager;
+import com.foobnix.sys.ClickUtils;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.MessagePageNumber;
+import com.foobnix.tts.TTSControlsView;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
+import com.foobnix.tts.TTSService;
+import com.foobnix.tts.TtsStatus;
+import com.foobnix.ui2.AdsFragmentActivity;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.MyContextWrapper;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
     TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
-    View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel;
+    View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
     FrameLayout anchor;
@@ -206,6 +207,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         Android6.checkPermissions(this);
 
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
+
+        parentParent = findViewById(R.id.parentParent);
 
         overlay = findViewById(R.id.overlay);
         overlay.setVisibility(View.VISIBLE);
@@ -712,12 +715,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         Keyboards.hideNavigationOnCreate(HorizontalViewActivity.this);
 
+
         currentSeek.setVisibility(View.GONE);
         maxSeek.setVisibility(View.GONE);
         seekBar.setVisibility(View.INVISIBLE);
         bottomIndicators.setVisibility(View.GONE);
 
         titleTxt.setText(HorizontalModeController.getTempTitle(this));
+
+
+
 
         loadinAsyncTask = new CopyAsyncTask() {
             AlertDialog dialog;
@@ -738,7 +745,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         finish();
                     }
                 });
-            };
+            }
+
+            ;
 
             @Override
             protected Object doInBackground(Object... params) {
@@ -791,7 +800,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 } catch (Exception e) {
                 }
                 isCancelled = true;
-            };
+            }
+
+            ;
 
             @Override
             protected void onPostExecute(Object result) {
@@ -935,9 +946,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         onClose.setVisibility(View.VISIBLE);
                     }
 
+                    HypenPanelHelper.init(parentParent, dc);
+
                 }
 
-            };
+            }
+
+            ;
         };
         loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
         updateIconMode();

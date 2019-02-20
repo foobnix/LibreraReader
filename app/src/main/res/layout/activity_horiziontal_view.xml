@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/parent"
+    android:id="@+id/parentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.foobnix.pdf.search.view.VerticalViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
-    
-     <LinearLayout
-         android:padding="2dip"
+
+    <LinearLayout
         android:id="@+id/musicButtonPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="2dip">
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:id="@+id/pageshelper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
 
         <ImageView
-            android:layout_marginLeft="4dip"
             android:id="@+id/pagesBookmark"
             android:layout_width="40dip"
             android:layout_height="40dip"
+            android:layout_marginLeft="4dip"
             android:layout_weight="0"
             android:background="@drawable/bg_border_ltgray_dash2"
             android:src="@drawable/glyphicons_73_bookmark1"
@@ -53,15 +52,14 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="160dip"
-        android:layout_weight="0" >
-    </FrameLayout>
-    
+        android:layout_weight="0"></FrameLayout>
+
     <LinearLayout
         android:id="@+id/bottomPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/bottomIndicators"
@@ -69,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="-1dip"
             android:clickable="true"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/pagesTime"
@@ -141,14 +139,14 @@
         android:clickable="true"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,7 +155,7 @@
                 android:layout_marginLeft="50dip"
                 android:layout_marginRight="50dip"
                 android:layout_weight="1"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title"
@@ -168,8 +166,7 @@
                     android:text="@string/msg_loading"
                     android:textColor="#ffffff"
                     android:textSize="16sp"
-                    android:textStyle="normal" >
-                </TextView>
+                    android:textStyle="normal"></TextView>
 
                 <TextView
                     android:id="@+id/chapter"
@@ -180,8 +177,7 @@
                     android:text="@string/msg_loading"
                     android:textColor="#ffffff"
                     android:textSize="12sp"
-                    android:visibility="gone" >
-                </TextView>
+                    android:visibility="gone"></TextView>
             </LinearLayout>
 
             <ImageView
@@ -191,8 +187,8 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
                 android:layout_marginTop="10dip"
+                android:layout_marginRight="10dip"
                 android:layout_weight="0"
                 android:contentDescription="@string/close_book"
                 android:src="@drawable/glyphicons_208_remove_2" />
@@ -203,7 +199,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="2dip" >
+            android:padding="2dip">
 
             <ImageView
                 android:id="@+id/moveCenter"
@@ -271,9 +267,14 @@
                 android:contentDescription="@string/preferences"
                 android:src="@drawable/glyphicons_137_cogwheel" />
         </LinearLayout>
+
+        <include
+            android:id="@+id/showHypenLangPanel"
+            layout="@layout/layout_hypen_panel"
+            android:visibility="gone" />
+
     </LinearLayout>
 
-    
 
     <ImageView
         android:id="@+id/ttsActive1"
@@ -302,12 +303,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#96aa39" >
+        android:background="#96aa39">
 
         <include layout="@layout/document_footer" />
     </FrameLayout>
 
-    
 
     <FrameLayout
         android:id="@+id/overlay"
@@ -330,33 +330,31 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:visibility="visible" />
-    
-    
-      <ImageView
+
+
+    <ImageView
         android:id="@+id/anchorX"
-        android:tint="@color/tint_blue"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
         android:layout_marginTop="100dip"
         android:src="@drawable/glyphicons_basic_299_circle_selected"
-         />
-     
-      <ImageView
-           android:layout_marginTop="150dip"
-          android:tint="@color/tint_blue"
+        android:tint="@color/tint_blue" />
+
+    <ImageView
         android:id="@+id/anchorY"
         android:layout_width="@dimen/wh_button"
         android:layout_height="@dimen/wh_button"
+        android:layout_marginTop="150dip"
         android:src="@drawable/glyphicons_basic_298_circle_empty"
-         />
-      
-      <FrameLayout
+        android:tint="@color/tint_blue" />
+
+    <FrameLayout
         android:id="@+id/anchor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="false"
-        android:minHeight="10dip"
         android:minWidth="10dip"
+        android:minHeight="10dip"
         android:visibility="gone" />
 
 </RelativeLayout>

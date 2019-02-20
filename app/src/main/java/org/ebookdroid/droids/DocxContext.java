@@ -1,9 +1,8 @@
 package org.ebookdroid.droids;
 
-import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.RtfExtract;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -16,11 +15,9 @@ import org.zwobble.mammoth.Result;
 import org.zwobble.mammoth.images.Image;
 import org.zwobble.mammoth.images.ImageConverter;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,7 +60,7 @@ public class DocxContext extends PdfContext {
                 result = converter.convertToHtml(new File(fileName));
 
                 String html = result.getValue();
-                if(BookCSS.get().isAutoHypens){
+                if(BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang)){
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(BookCSS.get().hypenLang);
                     HypenUtils.resetTokenizer();

@@ -1,84 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.common.settings.CoreSettings;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.StringResponse;
-import com.foobnix.android.utils.BaseItemAdapter;
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.MemoryUtils;
-import com.foobnix.android.utils.Objects;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
-import com.foobnix.android.utils.Views;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.EpubExtractor;
-import com.foobnix.hypen.HyphenPattern;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.DictsHelper;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FontExtractor;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.OutlineHelper;
-import com.foobnix.pdf.info.PageUrl;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.model.BookCSS.FontPack;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.presentation.BookmarksAdapter;
-import com.foobnix.pdf.info.presentation.OutlineAdapter;
-import com.foobnix.pdf.info.presentation.PageThumbnailAdapter;
-import com.foobnix.pdf.info.widget.ChooserDialogFragment;
-import com.foobnix.pdf.info.widget.ColorsDialog;
-import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
-import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
-import com.foobnix.pdf.info.widget.FontDialog;
-import com.foobnix.pdf.info.widget.TapZoneDialog;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.ListBoxHelper;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.pdf.search.activity.PageImageState;
-import com.foobnix.pdf.search.activity.msg.FlippingStart;
-import com.foobnix.pdf.search.activity.msg.FlippingStop;
-import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
-import com.foobnix.pdf.search.activity.msg.MovePageAction;
-import com.foobnix.pdf.search.menu.MenuBuilderM;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.tts.TTSControlsView;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSService;
-import com.foobnix.tts.TTSTracks;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.adapter.DefaultListeners;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -146,6 +67,85 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.foobnix.StringResponse;
+import com.foobnix.android.utils.BaseItemAdapter;
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MemoryUtils;
+import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.Views;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.EpubExtractor;
+import com.foobnix.hypen.HyphenPattern;
+import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.DictsHelper;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.OutlineHelper;
+import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.BookCSS.FontPack;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.presentation.BookmarksAdapter;
+import com.foobnix.pdf.info.presentation.OutlineAdapter;
+import com.foobnix.pdf.info.presentation.PageThumbnailAdapter;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.info.widget.ColorsDialog;
+import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
+import com.foobnix.pdf.info.widget.FontDialog;
+import com.foobnix.pdf.info.widget.TapZoneDialog;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.ListBoxHelper;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.activity.PageImageState;
+import com.foobnix.pdf.search.activity.msg.FlippingStart;
+import com.foobnix.pdf.search.activity.msg.FlippingStop;
+import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
+import com.foobnix.pdf.search.activity.msg.MovePageAction;
+import com.foobnix.pdf.search.menu.MenuBuilderM;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSControlsView;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSService;
+import com.foobnix.tts.TTSTracks;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.adapter.DefaultListeners;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.common.settings.CoreSettings;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class DragingDialogs {
 
@@ -3914,7 +3914,13 @@ public class DragingDialogs {
                 // hypenLang.setVisibility(View.GONE);
                 // hypenLangLabel.setVisibility(View.GONE);
 
-                hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang));
+                String lanuageByCode = DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang);
+                if(TxtUtils.isEmpty(lanuageByCode)){
+                    hypenLang.setText(R.string.choose_);
+                }else {
+                    hypenLang.setText(lanuageByCode);
+                }
+
                 TxtUtils.underlineTextView(hypenLang);
 
                 hypenLang.setOnClickListener(new OnClickListener() {
@@ -3927,6 +3933,7 @@ public class DragingDialogs {
                         HyphenPattern[] values = HyphenPattern.values();
 
                         List<String> all = new ArrayList<String>();
+
                         for (HyphenPattern p : values) {
                             String e = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
                             all.add(e);
