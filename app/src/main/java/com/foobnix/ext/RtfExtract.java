@@ -67,6 +67,7 @@ public class RtfExtract {
                         htmlEncode = HypenUtils.applyHypnes(htmlEncode);
                     }
                     printText(htmlEncode);
+                    writer.print(" ");
                 }
 
                 @Override
