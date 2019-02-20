@@ -1,5 +1,25 @@
 package com.foobnix.ext;
 
+import com.BaseExtractor;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.sys.ZipArchiveInputStream;
+import com.foobnix.sys.Zips;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
+import org.xmlpull.v1.XmlPullParser;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,26 +40,6 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.parser.Parser;
-import org.jsoup.select.Elements;
-import org.xmlpull.v1.XmlPullParser;
-
-import com.BaseExtractor;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.hypen.HypenUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.sys.ZipArchiveInputStream;
-import com.foobnix.sys.Zips;
 
 public class EpubExtractor extends BaseExtractor {
 
@@ -90,7 +90,9 @@ public class EpubExtractor extends BaseExtractor {
 
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
-                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null);
+
+                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null,hStream);
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
@@ -127,7 +129,8 @@ public class EpubExtractor extends BaseExtractor {
             if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
                 LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
 
-                ByteArrayOutputStream hStream = Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes);
+                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream);
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {

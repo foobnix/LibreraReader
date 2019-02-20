@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./link_to_mupdf_1.11.sh
+
 cd ../
 
 ./gradlew --no-daemon incVersion

@@ -1,13 +1,6 @@
 package org.ebookdroid.droids.mupdf.codec;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import org.ebookdroid.core.codec.AbstractCodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.core.codec.CodecPageInfo;
-import org.ebookdroid.core.codec.OutlineLink;
+import android.graphics.RectF;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -16,7 +9,14 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
-import android.graphics.RectF;
+import org.ebookdroid.core.codec.AbstractCodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.CodecPageInfo;
+import org.ebookdroid.core.codec.OutlineLink;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MuPdfDocument extends AbstractCodecDocument {
 
@@ -31,7 +31,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private String fname;
 
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
-        super(context, openFile(format, fname, pwd, BookCSS.get().toCssString()));
+        super(context, openFile(format, fname, pwd, BookCSS.get().toCssString(fname)));
         this.fname = fname;
         isEpub = ExtUtils.isTextFomat(fname);
     }

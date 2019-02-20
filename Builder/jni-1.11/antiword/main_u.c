@@ -328,14 +328,14 @@ main(int argc, char **argv)
 
 static void setOptions() {
     options_type tOptions = {
-        10000,
+        0,
         conversion_xml,
         TRUE,
         TRUE,
         FALSE,
         encoding_utf_8,
-        INT_MAX,
-        INT_MAX,
+        LONG_MAX,
+        LONG_MAX,
         level_default,
     };
 

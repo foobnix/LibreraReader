@@ -1,5 +1,22 @@
 package com.foobnix.ext;
 
+import android.util.Base64;
+
+import com.BaseExtractor;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.StreamUtils;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.core.codec.OutlineLink;
+import org.xmlpull.v1.XmlPullParser;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,23 +36,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.core.codec.OutlineLink;
-import org.xmlpull.v1.XmlPullParser;
-
-import com.BaseExtractor;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.StreamUtils;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.hypen.HypenUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-
-import android.util.Base64;
 
 public class Fb2Extractor extends BaseExtractor {
     public static final String FOOTER_NOTES_SIGN = "***";
@@ -662,10 +662,9 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-    public static ByteArrayOutputStream generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes) throws Exception {
+    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintWriter writer = new PrintWriter(out);
         String line;
 
@@ -689,7 +688,6 @@ public class Fb2Extractor extends BaseExtractor {
             // LOG.d("gen-ou", line);
         }
         writer.close();
-        return out;
     }
 
     public static String includeFooterNotes(String line, Map<String, String> notes) {

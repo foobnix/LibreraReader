@@ -567,7 +567,7 @@ bExaminePNG(FILE *pFile, imagedata_type *pImg)
 	}
 
         if (pImg->iComponents != 1 && pImg->iComponents != 3
-#if CR3_ANTIWORD_PATCH==1
+#if CR3_ANTIWORD_PATCH_2==1
                  && pImg->iComponents != 2  && pImg->iComponents != 4
 #endif
                 ) {
