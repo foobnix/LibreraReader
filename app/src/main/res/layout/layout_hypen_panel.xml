@@ -4,6 +4,7 @@
     android:background="#F44336"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="4dip"
     android:gravity="center_vertical"
     tools:showIn="@layout/activity_horiziontal_view">
 

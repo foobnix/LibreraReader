@@ -1,11 +1,9 @@
 package org.ebookdroid;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.cache.CacheManager;
-import org.ebookdroid.common.settings.SettingsManager;
+import android.app.Application;
+import android.content.Context;
+import android.os.Build;
+import android.os.Environment;
 
 import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Apps;
@@ -26,10 +24,12 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
 
-import android.app.Application;
-import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
+import org.ebookdroid.common.bitmaps.BitmapManager;
+import org.ebookdroid.common.cache.CacheManager;
+import org.ebookdroid.common.settings.SettingsManager;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class LibreraApp extends Application {
 

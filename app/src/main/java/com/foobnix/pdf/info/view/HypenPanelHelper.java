@@ -76,7 +76,7 @@ public class HypenPanelHelper {
                                 load.setLang(code);
                                 AppDB.get().update(load);
                             }
-
+                            dc.restartActivity();
                             return false;
                         }
                     });
@@ -85,6 +85,7 @@ public class HypenPanelHelper {
 
             }
         });
+        hypenApply.setVisibility(View.GONE);
         hypenApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

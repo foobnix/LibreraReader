@@ -206,6 +206,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         Android6.checkPermissions(this);
 
+        findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
+
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
 
         parentParent = findViewById(R.id.parentParent);

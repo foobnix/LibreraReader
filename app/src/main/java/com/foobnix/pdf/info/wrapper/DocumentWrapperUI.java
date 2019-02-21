@@ -566,6 +566,8 @@ public class DocumentWrapperUI {
         this.a = a;
         quickBookmark = a.getString(R.string.fast_bookmark);
 
+        a.findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
+
         parentParent = a.findViewById(R.id.parentParent);
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);

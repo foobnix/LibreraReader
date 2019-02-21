@@ -1,15 +1,22 @@
 package org.ebookdroid.droids;
 
-import java.io.File;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.hypen.HypenUtils;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 import at.stefl.opendocument.java.odf.LocatedOpenDocumentFile;
 import at.stefl.opendocument.java.odf.OpenDocument;
@@ -55,9 +62,12 @@ public class OdtContext extends PdfContext {
             String root = CacheZipUtils.CACHE_BOOK_DIR.getPath();
             settings.setCache(new DefaultFileCache(root));
             settings.setImageStoreMode(ImageStoreMode.CACHE);
-            DocumentTranslatorUtil.Output output = DocumentTranslatorUtil.provideOutput(openDocument, settings, fileNameCache.hashCode() + "-", ".html");
 
-            LOG.d("OdtContext create", cacheFile.getPath());
+            String tempFileName = fileNameCache.hashCode()+".tmp";
+
+            DocumentTranslatorUtil.Output output = DocumentTranslatorUtil.provideOutput(openDocument, settings, tempFileName + "-", ".html");
+
+
 
             try {
                 translator.translate(openDocument, output.getWriter(), settings);
@@ -65,6 +75,23 @@ public class OdtContext extends PdfContext {
                 output.getWriter().close();
             }
             documentFile.close();
+
+            LOG.d("OdtContext create", cacheFile.getPath());
+
+
+            try {
+                FileInputStream in = new FileInputStream(new File(root, tempFileName+"-0.html"));
+                OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
+
+                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out);
+                out.close();
+                in.close();
+
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
         } catch (Exception e) {
             LOG.e(e);
         }

@@ -196,7 +196,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
+            android:layout_height="30dip"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="2dip">
@@ -271,7 +271,7 @@
         <include
             android:id="@+id/showHypenLangPanel"
             layout="@layout/layout_hypen_panel"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </LinearLayout>
 
