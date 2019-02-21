@@ -1,16 +1,8 @@
 package com.foobnix.ui2;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.greenrobot.greendao.Property;
-import org.greenrobot.greendao.query.QueryBuilder;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StringDB;
@@ -28,9 +20,17 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.SearchFragment2;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
 public class AppDB {
 
@@ -266,6 +266,7 @@ public class AppDB {
                     isRecentProgress = 0;
                 }
                 meta.setIsRecentProgress(isRecentProgress);
+                AppDB.get().update(meta);
             } catch (Exception e) {
                 LOG.d(e);
                 meta.setIsRecentProgress(1f);

@@ -121,6 +121,7 @@ public class ExtUtils {
         browseExts.add(".json");
         browseExts.addAll(BookCSS.fontExts);
         browseExts.addAll(AUDIO);
+        browseExts.add(".docx");
 
         mimeCache.put(".tpz", "application/x-topaz-ebook");
         mimeCache.put(".azw1", "application/x-topaz-ebook");
