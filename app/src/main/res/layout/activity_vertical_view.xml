@@ -126,6 +126,7 @@
         android:visibility="gone" />
 
     <include
+
         android:id="@+id/menuLayout"
         layout="@layout/document_title_buttons"
         android:layout_width="match_parent"
