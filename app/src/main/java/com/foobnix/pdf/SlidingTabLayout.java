@@ -67,7 +67,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static int POS_HORIZONTAL = 0;
     private static int POS_VERTICAL = 1;
 
-    private static final int myPOS = POS_VERTICAL;
+    private static final int myPOS = POS_HORIZONTAL;
 
     private static final int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
 

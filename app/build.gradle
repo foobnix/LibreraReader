@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 ext {
     codeNumber = Integer.parseInt(appCodeNumber)
-    versionNumber = appVersionNumberBase+"."+appVersionNumberIndex
-    db =  Integer.parseInt(appDB)
+    versionNumber = appVersionNumberBase + "." + appVersionNumberIndex
+    db = Integer.parseInt(appDB)
     println ""
-    println "Version: [" + versionNumber+ " - "+ codeNumber + "]"
+    println "Version: [" + versionNumber + " - " + codeNumber + "]"
 }
 
 android {
@@ -43,7 +43,7 @@ android {
             signingConfig signingConfigs.release
             buildConfigField "boolean", "LOG", "false"
         }
-        debug{
+        debug {
             buildConfigField "boolean", "LOG", "true"
         }
 
@@ -61,7 +61,7 @@ android {
         abi {
             enable true
             reset()
-            include  "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+            include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             universalApk false
         }
 
@@ -158,14 +158,14 @@ android {
     }
 
 
-    def abiCodes = ['x86':3, 'x86_64':4, 'armeabi-v7a':0, 'arm64-v8a':1]
+    def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def flavor = variant.productFlavors[0].name.capitalize()
             def abiName = getFilter("ABI")
-            def code =abiCodes.get(abiName, 0) + variant.versionCode
-            abiName = abiName.replace("arm64-v8a","arm64").replace("armeabi-v7a","arm")
+            def code = abiCodes.get(abiName, 0) + variant.versionCode
+            abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
             output.versionCodeOverride = code
             output
@@ -235,7 +235,7 @@ dependencies {
 
 
 task copyApks(type: Copy) {
-   if (project.hasProperty('beta')) {
+    if (project.hasProperty('beta')) {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
@@ -249,9 +249,9 @@ task copyApks(type: Copy) {
     }
 }
 
-task incVersion(){
-     doLast{
-        
+task incVersion() {
+    doLast {
+
 
         Properties props = new Properties()
         File propsFile = new File('app/gradle.properties')
@@ -267,7 +267,7 @@ task incVersion(){
         props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
 
         props.store(propsFile.newWriter(), null)
-    
+
         println "My Task: [incVersion]"
     }
 
