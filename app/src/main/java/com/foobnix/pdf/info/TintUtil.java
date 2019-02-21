@@ -1,14 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
@@ -25,6 +16,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TintUtil {
     public static final int RADIUS = Dips.dpToPx(2);
@@ -140,7 +140,11 @@ public class TintUtil {
     }
 
     public static void setDrawableTint(Drawable drawable, int color) {
-        drawable.setColorFilter(color, Mode.SRC_ATOP);
+        try {
+            drawable.setColorFilter(color, Mode.SRC_ATOP);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     public static void addTingBg(View textView) {
