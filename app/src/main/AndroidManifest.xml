@@ -125,6 +125,7 @@
                 <data android:mimeType="image/tiff" />
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                <data android:mimeType="application/msword" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -153,6 +154,7 @@
                 <data android:pathPattern=".*\\.tiff" />
                 <data android:pathPattern=".*\\.odt" />
                 <data android:pathPattern=".*\\.docx" />
+                <data android:pathPattern=".*\\.doc" />
             </intent-filter>
         </activity>
 
