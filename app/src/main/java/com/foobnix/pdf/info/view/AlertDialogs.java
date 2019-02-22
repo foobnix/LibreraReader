@@ -1,10 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.Urls;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,6 +7,11 @@ import android.content.DialogInterface.OnDismissListener;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
 
 public class AlertDialogs {
 
@@ -47,6 +47,10 @@ public class AlertDialogs {
     }
 
     public static void showOkDialog(final Activity c, final String message, final Runnable action) {
+        showOkDialog(c, message, action, null);
+    }
+
+    public static void showOkDialog(final Activity c, final String message, final Runnable action, Runnable onDismiss) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setMessage(message);
         builder.setCancelable(true);
@@ -64,6 +68,9 @@ public class AlertDialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
+                if (onDismiss != null) {
+                    onDismiss.run();
+                }
             }
         });
         AlertDialog create = builder.create();
@@ -71,6 +78,9 @@ public class AlertDialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                if (onDismiss != null) {
+                    onDismiss.run();
+                }
                 Keyboards.hideNavigation(c);
             }
         });

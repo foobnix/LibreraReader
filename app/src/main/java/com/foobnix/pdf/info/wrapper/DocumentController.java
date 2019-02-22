@@ -1,15 +1,20 @@
 package com.foobnix.pdf.info.wrapper;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.codec.Annotation;
-import org.ebookdroid.core.codec.PageLink;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.PointF;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -34,21 +39,16 @@ import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.PointF;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.Toast;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.PageLink;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @SuppressLint("NewApi")
 public abstract class DocumentController {
@@ -253,6 +253,11 @@ public abstract class DocumentController {
         if (AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
             AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
 
+                @Override
+                public void run() {
+                    readTimeStart = System.currentTimeMillis();
+                }
+            }, new Runnable() {
                 @Override
                 public void run() {
                     readTimeStart = System.currentTimeMillis();

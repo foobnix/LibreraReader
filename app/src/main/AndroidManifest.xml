@@ -6,6 +6,7 @@
     android:versionCode="941"
     android:versionName="7.12.87">
 
+    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -14,10 +15,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
-
-
-    <!-- android:name="com.foobnix.pdf.info.TestAppName" -->
     <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="${appIcon}"
@@ -28,10 +25,18 @@
         android:usesCleartextTraffic="true"
         tools:replace="label, icon, roundIcon">
 
-        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="${admobAppId}" />
-        <meta-data android:name="librera.ADMOB_BANNER_ID" android:value="${admobBannerId}" />
-        <meta-data android:name="librera.ADMOB_FULLSCREEN_ID" android:value="${admobFullId}" />
-        <meta-data android:name="librera.GOOGLE_DRIVE_KEY" android:value="${appGdriveKey}" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${admobAppId}" />
+        <meta-data
+            android:name="librera.ADMOB_BANNER_ID"
+            android:value="${admobBannerId}" />
+        <meta-data
+            android:name="librera.ADMOB_FULLSCREEN_ID"
+            android:value="${admobFullId}" />
+        <meta-data
+            android:name="librera.GOOGLE_DRIVE_KEY"
+            android:value="${appGdriveKey}" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -42,9 +47,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/paths" />
         </provider>
-
-        <activity android:name="com.cloudrail.si.servicecode.commands.awaitCodeRedirect.AuthenticationActivity" />
-
 
         <activity
             android:name="com.foobnix.zipmanager.ZipActivity"
@@ -70,7 +72,9 @@
         <activity android:name="com.foobnix.zipmanager.SendReceiveActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
@@ -81,10 +85,8 @@
             android:launchMode="singleTask"
             android:resizeableActivity="true"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name="test.MimeTestActivity">
+            android:windowSoftInputMode="adjustPan" />
 
-        </activity>
         <activity
             android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -166,8 +168,7 @@
 
         <service
             android:name="com.foobnix.ui2.BooksService"
-            android:exported="false"/>
-
+            android:exported="false" />
         <service
             android:name="com.foobnix.tts.TTSService"
             android:enabled="true"
@@ -176,7 +177,6 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </service>
-
 
         <receiver android:name="android.support.v4.media.session.MediaButtonReceiver">
             <intent-filter>
@@ -192,36 +192,34 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.test.TestAdsActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:resizeableActivity="true"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN1" />
-                <category android:name="android.intent.category.LAUNCHER1" />
-            </intent-filter>
-        </activity>
+
+
 
         <activity
             android:name="com.foobnix.ui2.CloudrailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="${applicationId}"></data>
+                <data android:scheme="${applicationId}" />
                 <data android:scheme="librera" />
             </intent-filter>
-
         </activity>
+
+
+        <activity
+            android:name="com.foobnix.sys.TestActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="com.foobnix.ui2.MainTabs2"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
@@ -232,7 +230,6 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
@@ -255,13 +252,10 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-
         </activity>
 
-
-
         <receiver
-            android:name="com.foobnix.pdf.info.widget.RecentBooksWidget"
+            android:name=".widget.RecentBooksWidget"
             android:exported="false"
             android:label="${appName}">
             <intent-filter>
@@ -277,10 +271,9 @@
         </receiver>
 
         <service
-            android:name="com.foobnix.pdf.info.widget.StackGridWidgetService"
+            android:name=".widget.StackGridWidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
     </application>
 
 </manifest>

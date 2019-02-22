@@ -157,13 +157,9 @@ public class AppState {
     );
 
     public static final List<String> STYLE_COLORS = Arrays.asList(//
-            "#3949AB", //
-            // "#2a56c6", //
-            // "#E6A639", //
-            // "#395B9C", //
-            "#EA5964", //
-            "#00897B", //
-            // "#FBAB49", //
+            "#008760", //
+            "#007dc7", //
+            "#ff001e", //
             "#000000" //
 
     );
@@ -300,7 +296,7 @@ public class AppState {
     @IgnoreHashCode
     public int inactivityTime = 2;
     @IgnoreHashCode
-    public int remindRestTime = 60;
+    public int remindRestTime = 120;
 
     public int flippingInterval = 10;
     public int ttsTimer = 60;
