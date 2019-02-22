@@ -1,13 +1,30 @@
 package com.foobnix.ui2;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
@@ -48,31 +65,14 @@ import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.DrawerLayout.DrawerListener;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
@@ -250,7 +250,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         adapter = new TabsAdapter2(this, tabFragments);
         pager = (ViewPager)
 
-        findViewById(R.id.pager);
+                findViewById(R.id.pager);
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
@@ -287,12 +287,36 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
 
-        indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs);
+        if (AppState.get().tapPositionTop) {
+            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs1);
+        } else {
+            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs2);
+        }
+        indicator.setVisibility(View.VISIBLE);
+        indicator.init();
+
+
         indicator.setViewPager(pager);
 
         indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
+
+        if (!AppState.get().tapPositionTop) {
+            imageMenu.setVisibility(View.GONE);
+            indicator.setDividerColors(Color.TRANSPARENT);
+            indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
+            for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++){
+                View child = indicator.getmTabStrip().getChildAt(i);
+                child.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        imageMenu.performClick();
+                        return true;
+                    }
+                });
+            }
+        }
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
@@ -302,6 +326,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
         }
+
 
         Android6.checkPermissions(this);
         // Analytics.onStart(this);
@@ -396,7 +421,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(getIntent());
 
 
-
     }
 
     @Subscribe
@@ -464,7 +488,9 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
-    };
+    }
+
+    ;
 
     boolean isMyKey = false;
 
@@ -512,7 +538,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         ImageLoader.getInstance().clearAllTasks();
 
-    };
+    }
+
+    ;
 
     @Override
     protected void onStop() {

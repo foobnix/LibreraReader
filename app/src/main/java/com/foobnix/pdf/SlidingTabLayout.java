@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
@@ -40,6 +42,7 @@ import com.foobnix.ui2.adapter.TabsAdapter2;
  */
 public class SlidingTabLayout extends HorizontalScrollView {
 
+
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
      * {@link #setCustomTabColorizer(TabColorizer)}.
@@ -67,9 +70,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static int POS_HORIZONTAL = 0;
     private static int POS_VERTICAL = 1;
 
-    private static final int myPOS = POS_HORIZONTAL;
+    private static int myPOS = POS_VERTICAL;
 
-    private static final int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
+    private static int TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
 
     private int mTitleOffset;
 
@@ -101,8 +104,16 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mTabStrip = new SlidingTabStrip(context);
         mTabStrip.setDividerColors(Color.TRANSPARENT);
-        addView(getmTabStrip(), LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
     }
+
+    public void init() {
+        myPOS = AppState.get().tapPositionTop ? POS_HORIZONTAL : POS_VERTICAL;
+        TAB_VIEW_PADDING_DIPS = myPOS == POS_HORIZONTAL ? 16 : 10;
+        addView(getmTabStrip(), LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+    }
+
 
     /**
      * Set the custom {@link TabColorizer} to be used.
@@ -187,10 +198,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
             textView.setBackgroundResource(outValue.resourceId);
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            // If we're running on ICS or newer, enable all-caps to match the
-            // Action Bar tab style
+
+        if (myPOS == POS_HORIZONTAL) {
             textView.setAllCaps(true);
+        }else {
+            textView.setSingleLine();
+            textView.setEllipsize(TextUtils.TruncateAt.END);
         }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
@@ -254,7 +267,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setOnClickListener(tabClickListener);
 
 
-                getmTabStrip().addView(tabView);
+                if (myPOS == POS_VERTICAL) {
+                    getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(Dips.DP_80, LayoutParams.WRAP_CONTENT));
+                } else {
+                    getmTabStrip().addView(tabView);
+                }
             }
         }
         updateIcons(0);

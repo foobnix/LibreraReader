@@ -286,6 +286,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="135dp"
+                android:text="@string/tabs_position"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tapPositionTop"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="135dp"
                 android:text="@string/full_screen"
                 android:textStyle="bold" />
 

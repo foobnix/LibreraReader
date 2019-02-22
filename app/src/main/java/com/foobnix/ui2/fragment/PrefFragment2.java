@@ -415,6 +415,41 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        final TextView tapPositionTop = (TextView) inflate.findViewById(R.id.tapPositionTop);
+        tapPositionTop.setText(AppState.get().tapPositionTop ? R.string.top : R.string.bottom);
+        TxtUtils.underlineTextView(tapPositionTop);
+
+        tapPositionTop.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(final View v) {
+
+                MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
+                popup.getMenu().add(R.string.top).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().tapPositionTop = true;
+                        onTheme();
+                        return false;
+                    }
+                });
+
+                popup.getMenu().add(R.string.bottom).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AppState.get().tapPositionTop = false;
+                        onTheme();
+                        return false;
+                    }
+                });
+
+                popup.show();
+
+            }
+        });
+
         screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
         screenOrientation.setText(DocumentController.getRotationText());
         TxtUtils.underlineTextView(screenOrientation);

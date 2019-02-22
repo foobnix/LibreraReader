@@ -3,8 +3,6 @@
  */
 package com.foobnix.android.utils;
 
-import java.util.Locale;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -15,6 +13,8 @@ import android.provider.Settings;
 import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
+
+import java.util.Locale;
 
 public class Dips {
 
@@ -33,6 +33,8 @@ public class Dips {
     public final static int DP_50 = Dips.dpToPx(50);
     public final static int DP_60 = Dips.dpToPx(60);
     public final static int DP_80 = Dips.dpToPx(80);
+    public final static int DP_90 = Dips.dpToPx(90);
+    public final static int DP_120 = Dips.dpToPx(120);
     public final static int DP_800 = Dips.dpToPx(800);
     public final static int DP_600 = Dips.dpToPx(600);
     public final static int DP_400 = Dips.dpToPx(400);

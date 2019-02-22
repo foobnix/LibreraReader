@@ -335,6 +335,8 @@ public class AppState {
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
 
+    public boolean tapPositionTop = false;
+
     public long fontExtractTime = 0;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
@@ -418,7 +420,7 @@ public class AppState {
     public boolean isReverseKeys = Dips.isSmallScreen();
 
     @IgnoreHashCode
-    public boolean isVisibleSorting = Dips.isLargeOrXLargeScreen();
+    public boolean isVisibleSorting = true;
 
     @IgnoreHashCode
     public boolean isShowBookmarsPanelInMusicMode = true;
@@ -624,8 +626,8 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
 
     // perofrmance
-    public int pagesInMemory = Build.VERSION.SDK_INT >= 24 ? 5 : 3;
-    public float pageQuality = Build.VERSION.SDK_INT >= 24 ? 1.6f : 1.2f;
+    public int pagesInMemory =  3;
+    public float pageQuality = Build.VERSION.SDK_INT >= 24 ? 1.4f : 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
 
