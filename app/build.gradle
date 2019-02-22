@@ -246,8 +246,8 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
-    //betaImplementation project(':pro')
-    betaImplementation 'com.google.android.gms:play-services-ads:17+'
+    betaImplementation project(':pro')
+    //betaImplementation 'com.google.android.gms:play-services-ads:17+'
 
     libreraImplementation 'com.google.android.gms:play-services-ads:17+'
     pdf_v2Implementation 'com.google.android.gms:play-services-ads:17+'

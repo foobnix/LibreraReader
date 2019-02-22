@@ -9,5 +9,8 @@ public class AdListener {
     public void onAdClosed() {
 
     }
+    public void onAdLoaded() {
+        
+    }
 
 }

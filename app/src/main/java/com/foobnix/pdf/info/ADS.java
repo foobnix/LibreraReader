@@ -32,7 +32,9 @@ public class ADS {
                 return;
             }
             View adFrame = a.findViewById(R.id.adFrame);
-            adFrame.setVisibility(View.INVISIBLE);
+            if(adFrame.getVisibility() == View.VISIBLE) {
+                adFrame.setVisibility(View.INVISIBLE);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }

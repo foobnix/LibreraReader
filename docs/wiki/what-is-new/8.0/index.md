@@ -11,7 +11,14 @@ version: 2
 * Migrate to Android Studio (https://github.com/foobnix/LibreraReader)
 * Update all libraries up to date
 * Improved Dark Theme
+* Doc format support
 * Docx format support for Anroid 8+
+
+**Taps positoin - top or bottom**
+
+||||
+|-|-|-|
+|![](2.png)|![](3.png)|![](1.png)|
 
 # What is new in Librera Book Reader
 
