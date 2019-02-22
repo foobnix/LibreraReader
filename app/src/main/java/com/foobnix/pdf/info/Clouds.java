@@ -1,13 +1,12 @@
 package com.foobnix.pdf.info;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.List;
-
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.greenrobot.eventbus.EventBus;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.cloudrail.si.CloudRail;
 import com.cloudrail.si.interfaces.CloudStorage;
@@ -26,13 +25,14 @@ import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
 
 public class Clouds {
 
@@ -234,7 +234,7 @@ public class Clouds {
             dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
             ((Dropbox) dropbox).useAdvancedAuthentication();
 
-            googleDrive = new GoogleDrive(c, AppsConfig.GOOGLE_DRIVE_KEY, "", Apps.getPackageName(c) + ":/auth", "");
+            googleDrive = new GoogleDrive(c, Apps.getMetaData(c,"librera.GOOGLE_DRIVE_KEY"), "", Apps.getPackageName(c) + ":/auth", "");
             ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
             // https://apps.dev.microsoft.com/#/application

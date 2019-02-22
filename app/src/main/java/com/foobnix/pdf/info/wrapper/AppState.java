@@ -335,7 +335,7 @@ public class AppState {
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
 
-    public boolean tapPositionTop = false;
+    public boolean tapPositionTop = true;
 
     public long fontExtractTime = 0;
 
@@ -814,17 +814,10 @@ public class AppState {
 
                 }
 
-                if (AppsConfig.LIBRERA_PDF_2.equals(Apps.getPackageName(a))) {
-                    isShowWhatIsNewDialog = false;
-                }
-                if (AppsConfig.LIBRERA_EPUB_READER.equals(Apps.getPackageName(a))) {
+                if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
                     isShowWhatIsNewDialog = false;
                 }
 
-                if (AppsConfig.LIBRERA_TTS_READER.equals(Apps.getPackageName(a))) {
-                    isShowWhatIsNewDialog = false;
-                    doubleClickAction1 = DOUBLE_CLICK_START_STOP_TTS;
-                }
 
                 try {
                     List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);

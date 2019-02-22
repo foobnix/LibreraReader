@@ -1,15 +1,17 @@
 package com.foobnix.android.utils;
 
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.R;
-
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
+
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.R;
 
 public class Apps {
 
@@ -93,7 +95,7 @@ public class Apps {
         final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
 
         String string = c.getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
-        final String aEmailList[] = { string };
+        final String aEmailList[] = {string};
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(c) + " Crash report");
         emailIntent.setType("plain/text");
@@ -106,4 +108,18 @@ public class Apps {
         }
     }
 
+
+    public static String getMetaData(Context context, String name) {
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(
+                    context.getPackageName(), PackageManager.GET_META_DATA);
+            if (appInfo.metaData != null) {
+                return appInfo.metaData.getString(name);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            LOG.e(e);
+        }
+        new RuntimeException("can't find meta-data:" + name);
+        return null;
+    }
 }

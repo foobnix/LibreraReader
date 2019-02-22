@@ -1,21 +1,22 @@
 package com.foobnix.pdf.info;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import android.app.Activity;
+import android.content.Context;
+import android.provider.Settings;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
-import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.NativeExpressAdView;
 
-import android.app.Activity;
-import android.content.Context;
-import android.provider.Settings;
-import android.view.View;
-import android.widget.FrameLayout;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class ADS {
     private static final String TAG = "ADS";
@@ -41,6 +42,7 @@ public class ADS {
         try {
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
             frame.removeAllViews();
+            frame.setVisibility(View.VISIBLE);
 
             if (adView != null) {
                 adView.destroy();
@@ -48,85 +50,53 @@ public class ADS {
             }
             adView = new AdView(a);
             adView.setAdSize(AdSize.SMART_BANNER);
-            adView.setAdUnitId(AppsConfig.ADMOB_BANNER);
+            adView.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_BANNER_ID"));
 
             adView.loadAd(adRequest);
 
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(int arg0) {
-                    frame.removeAllViews();
-                    // frame.setVisibility(View.GONE);
+                    LOG.d("failed ads");
+                    //frame.removeAllViews();
+                    //frame.setVisibility(View.GONE);
+                    frame.setVisibility(View.GONE);
                 }
-            });
 
-            frame.addView(adView);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-    }
-
-    @Deprecated
-    private void activateAdmobNativeBanner(final Activity a, NativeExpressAdView adViewNative) {
-        try {
-
-            final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
-            frame.removeAllViews();
-            frame.setVisibility(View.VISIBLE);
-
-            if (adViewNative != null) {
-                adViewNative.destroy();
-                adViewNative = null;
-            }
-
-            adViewNative = new NativeExpressAdView(a);
-            adViewNative.setAdUnitId("");// init ID here
-            int adSizeHeight = Dips.screenHeightDP() / 9;
-            LOG.d("adSizeHeight", adSizeHeight);
-            adViewNative.setAdSize(new AdSize(AdSize.FULL_WIDTH, Math.max(82, adSizeHeight)));
-
-            adViewNative.loadAd(ADS.adRequest);
-
-            adViewNative.setAdListener(new AdListener() {
                 @Override
-                public void onAdFailedToLoad(int arg0) {
-                    frame.removeAllViews();
-                    // frame.setVisibility(View.GONE);
+                public void onAdLoaded() {
+                    frame.setVisibility(View.VISIBLE);
                 }
+
             });
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.CENTER_HORIZONTAL;
+            adView.setLayoutParams(params);
 
-            frame.addView(adViewNative);
-
-        } catch (Exception e) {
+            adView.setLayoutParams(params);
+            frame.addView(adView);
+        } catch (Throwable e) {
             LOG.e(e);
         }
 
     }
 
-    public static void onPauseAll(NativeExpressAdView adViewNative, AdView adView) {
-        if (adViewNative != null) {
-            adViewNative.pause();
-        }
+
+
+    public static void onPauseAll(AdView adView) {
         if (adView != null) {
             adView.pause();
         }
     }
 
-    public static void onResumeAll(Context c, NativeExpressAdView adViewNative, AdView adView) {
-        if (adViewNative != null) {
-            adViewNative.resume();
-        }
+    public static void onResumeAll(AdView adView) {
         if (adView != null) {
             adView.resume();
         }
     }
 
-    public static void destoryAll(NativeExpressAdView adViewNative, AdView adView) {
-        if (adViewNative != null) {
-            adViewNative.destroy();
-            adViewNative = null;
-        }
+    public static void destoryAll( AdView adView) {
         if (adView != null) {
             adView.destroy();
             adView = null;

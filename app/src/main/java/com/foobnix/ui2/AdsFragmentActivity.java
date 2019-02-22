@@ -1,14 +1,15 @@
 package com.foobnix.ui2;
 
-import com.foobnix.pdf.info.MyADSProvider;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
-
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.foobnix.pdf.info.MyADSProvider;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
+
 import fi.iki.elonen.SampleServer;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

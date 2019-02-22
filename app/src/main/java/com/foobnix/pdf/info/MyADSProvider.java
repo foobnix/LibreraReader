@@ -1,20 +1,19 @@
 package com.foobnix.pdf.info;
 
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
+import android.app.Activity;
+import android.os.Handler;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.NativeExpressAdView;
 
-import android.app.Activity;
-import android.os.Handler;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class MyADSProvider {
 
-    private NativeExpressAdView adViewNative;
     private AdView adView;
     private Activity a;
 
@@ -41,10 +40,6 @@ public class MyADSProvider {
             return;
         }
 
-        // if (AppsConfig.ADMOB_NATIVE_BANNER != null && random.nextBoolean()) {
-        // ADS.activateAdmobNativeBanner(a, adViewNative);
-        // } else {
-        // }
         ADS.activateAdmobSmartBanner(a, adView);
 
         if (handler == null) {
@@ -58,9 +53,8 @@ public class MyADSProvider {
             @Override
             public void run() {
                 try {
-                    if (AppsConfig.ADMOB_FULLSCREEN != null) {
                         mInterstitialAd = new InterstitialAd(a);
-                        mInterstitialAd.setAdUnitId(AppsConfig.ADMOB_FULLSCREEN);
+                        mInterstitialAd.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_FULLSCREEN_ID"));
                         mInterstitialAd.setAdListener(new AdListener() {
                             @Override
                             public void onAdClosed() {
@@ -68,7 +62,6 @@ public class MyADSProvider {
                             }
                         });
                         mInterstitialAd.loadAd(ADS.adRequest);
-                    }
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -93,15 +86,15 @@ public class MyADSProvider {
     }
 
     public void pause() {
-        ADS.onPauseAll(adViewNative, adView);
+        ADS.onPauseAll(adView);
     }
 
     public void resume() {
-        ADS.onResumeAll(a, adViewNative, adView);
+        ADS.onResumeAll( adView);
     }
 
     public void destroy() {
-        ADS.destoryAll(adViewNative, adView);
+        ADS.destoryAll( adView);
         a = null;
     }
 

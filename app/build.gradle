@@ -17,9 +17,9 @@ android {
         versionCode codeNumber
         versionName versionNumber
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     lintOptions {
         abortOnError false
@@ -27,7 +27,6 @@ android {
     }
 
     signingConfigs {
-
         release {
             storeFile file(RELEASE_STORE_FILE)
             storePassword RELEASE_STORE_PASSWORD
@@ -74,12 +73,14 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName     : "Beta " + versionNumber,
-                    appIcon     : "@mipmap/icon_pdf_reader",
-                    appRoundIcon: "@mipmap/icon_pdf_reader",
-                    appAdmobId  : "ca-app-pub-3940256099942544~3347511713"
+                    appName       : "Beta " + versionNumber,
+                    appIcon       : "@mipmap/icon_pdf_reader",
+                    appRoundIcon  : "@mipmap/icon_pdf_reader",
+                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
+                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
-            buildConfigField "String", "YOUR_ADMOB_APP_ID", '"ca-app-pub-3940256099942544~3347511713"'
         }
         librera {
             dimension "version"
@@ -87,7 +88,11 @@ android {
             manifestPlaceholders = [
                     appName     : "Librera Reader",
                     appIcon     : "@mipmap/icon_pdf_reader",
-                    appRoundIcon: "@mipmap/icon_pdf_reader"
+                    appRoundIcon: "@mipmap/icon_pdf_reader",
+                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
+                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
         }
         pro {
@@ -96,7 +101,11 @@ android {
             manifestPlaceholders = [
                     appName     : "Librera PRO",
                     appIcon     : "@mipmap/icon_pdf_pro",
-                    appRoundIcon: "@mipmap/icon_pdf_pro"
+                    appRoundIcon: "@mipmap/icon_pdf_pro",
+                    appGdriveKey  : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
+                    admobAppId    : "",
+                    admobBannerId : "",
+                    admobFullId   : ""
             ]
         }
         pdf_classic {
@@ -105,7 +114,11 @@ android {
             manifestPlaceholders = [
                     appName     : "PDF Reader",
                     appIcon     : "@mipmap/icon_pdf_classic",
-                    appRoundIcon: "@mipmap/launcher_classic"
+                    appRoundIcon: "@mipmap/launcher_classic",
+                    appGdriveKey  : "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~8457312875",
+                    admobBannerId : "ca-app-pub-8347903083053959/5364245672",
+                    admobFullId   : "ca-app-pub-8347903083053959/7763820878"
             ]
         }
         ebooka {
@@ -114,7 +127,11 @@ android {
             manifestPlaceholders = [
                     appName     : "Ebooka Reader",
                     appIcon     : "@mipmap/icon_pdf_droid",
-                    appRoundIcon: "@mipmap/launcher_droid"
+                    appRoundIcon: "@mipmap/launcher_droid",
+                    appGdriveKey  : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~5153060505",
+                    admobBannerId : "ca-app-pub-8347903083053959/6159730856",
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
         }
         pdf_v2 {
@@ -123,7 +140,11 @@ android {
             manifestPlaceholders = [
                     appName     : "PDF Reader",
                     appIcon     : "@mipmap/icon_pdf_2",
-                    appRoundIcon: "@mipmap/launcher_pdf_v2"
+                    appRoundIcon: "@mipmap/launcher_pdf_v2",
+                    appGdriveKey  : "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~5153060505",
+                    admobBannerId : "ca-app-pub-8347903083053959/6159730856",
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
         }
         tts_reader {
@@ -132,7 +153,11 @@ android {
             manifestPlaceholders = [
                     appName     : "TTS Reader",
                     appIcon     : "@mipmap/icon_tts_reader_app",
-                    appRoundIcon: "@mipmap/launcher_tts_reader_app"
+                    appRoundIcon: "@mipmap/launcher_tts_reader_app",
+                    appGdriveKey  : "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~5153060505",
+                    admobBannerId : "ca-app-pub-8347903083053959/6159730856",
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
         }
         epub_reader {
@@ -141,7 +166,11 @@ android {
             manifestPlaceholders = [
                     appName     : "Epub Reader",
                     appIcon     : "@mipmap/icon_epub_reader",
-                    appRoundIcon: "@mipmap/launcher_epub_reader"
+                    appRoundIcon: "@mipmap/launcher_epub_reader",
+                    appGdriveKey  : "961762082517-p6b2kqqimju6rlp314mu56lipvq2m68r.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~5153060505",
+                    admobBannerId : "ca-app-pub-8347903083053959/6159730856",
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
         }
         fdroid {
@@ -150,7 +179,11 @@ android {
             manifestPlaceholders = [
                     appName     : "Librera PRO",
                     appIcon     : "@mipmap/icon_pdf_pro",
-                    appRoundIcon: "@mipmap/icon_pdf_pro"
+                    appRoundIcon: "@mipmap/icon_pdf_pro",
+                    appGdriveKey  : "",
+                    admobAppId    : "",
+                    admobBannerId : "",
+                    admobFullId   : ""
             ]
             versionNameSuffix '-fdroid'
         }
@@ -182,6 +215,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation 'com.android.support:multidex:1.0.3'
+
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     implementation 'com.android.support:appcompat-v7:28+'
@@ -201,6 +236,7 @@ dependencies {
     implementation 'com.github.joniles:rtfparserkit:1.13.0'
 
 
+
     implementation 'org.zwobble.mammoth:mammoth:1.4.0'
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
@@ -212,15 +248,15 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
-    betaImplementation project(':pro')
-    //betaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+    //betaImplementation project(':pro')
+    betaImplementation 'com.google.android.gms:play-services-ads:17+'
 
-    libreraImplementation 'com.google.android.gms:play-services-ads:16.0.0'
-    pdf_v2Implementation 'com.google.android.gms:play-services-ads:16.0.0'
-    ebookaImplementation 'com.google.android.gms:play-services-ads:16.0.0'
-    tts_readerImplementation 'com.google.android.gms:play-services-ads:16.0.0'
-    pdf_classicImplementation 'com.google.android.gms:play-services-ads:16.0.0'
-    epub_readerImplementation 'com.google.android.gms:play-services-ads:16.0.0'
+    libreraImplementation 'com.google.android.gms:play-services-ads:17+'
+    pdf_v2Implementation 'com.google.android.gms:play-services-ads:17+'
+    ebookaImplementation 'com.google.android.gms:play-services-ads:17+'
+    tts_readerImplementation 'com.google.android.gms:play-services-ads:17+'
+    pdf_classicImplementation 'com.google.android.gms:play-services-ads:17+'
+    epub_readerImplementation 'com.google.android.gms:play-services-ads:17+'
 
 
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'

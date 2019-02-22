@@ -1,9 +1,9 @@
 package org.ebookdroid;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
+import android.support.multidex.MultiDexApplication;
 
 import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Apps;
@@ -23,6 +23,7 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.cache.CacheManager;
@@ -31,7 +32,7 @@ import org.ebookdroid.common.settings.SettingsManager;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class LibreraApp extends Application {
+public class LibreraApp extends MultiDexApplication {
 
     static {
         System.loadLibrary("mypdf");
@@ -44,6 +45,9 @@ public class LibreraApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+
+        MobileAds.initialize(this, Apps.getMetaData(this,"com.google.android.gms.ads.APPLICATION_ID"));
 
         context = getApplicationContext();
 
