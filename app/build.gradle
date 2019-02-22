@@ -201,8 +201,6 @@ android {
             abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
             output.versionCodeOverride = code
-            output
-
             def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
             output.outputFileName = fullName;
 
@@ -276,9 +274,18 @@ task copyApks(type: Copy) {
 
         delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
-        from file("build/outputs/apk/beta/release/")
-        include "*.apk"
-        into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/")
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                def flavor = variant.productFlavors[0].name
+                println "build/outputs/apk/${flavor}/release/"
+                from file(
+                        "build/outputs/apk/${flavor}/release/"
+                )
+                include "*.apk"
+                into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/")
+            }
+        }
+
 
         File file = new File('/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/version.txt')
         file.write versionNumber
