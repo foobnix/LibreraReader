@@ -80,7 +80,7 @@
         </activity>
 
         <activity
-            android:name="com.foobnix.OpenActivity"
+            android:name="com.foobnix.OpenerActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">

@@ -13,12 +13,24 @@ version: 2
 * Improved Dark Theme
 * Doc format support
 * Docx format support for Anroid 8+
+* Open with Librera fixed expiring files
+* Reading modes presets
 
 **Taps positoin - top or bottom**
 
 ||||
 |-|-|-|
 |![](2.png)|![](3.png)|![](1.png)|
+
+**Reading modes presets**
+
+* You can set in what mode to open book formats
+* Add manualy desired formats
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
+
 
 # What is new in Librera Book Reader
 
