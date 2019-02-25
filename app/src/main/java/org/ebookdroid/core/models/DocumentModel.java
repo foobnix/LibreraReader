@@ -1,13 +1,15 @@
 package org.ebookdroid.core.models;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.Bitmaps;
-import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.cache.PageCacheFile;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -27,12 +29,9 @@ import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.listeners.ListenerProxy;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class DocumentModel extends ListenerProxy {
 
@@ -221,7 +220,7 @@ public class DocumentModel extends ListenerProxy {
 
     private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final BookSettings bs, final IProgressIndicator task) {
         int pagesCount = base.getDecodeService().getPageCount();
-        final PageCacheFile pagesFile = CacheManager.getPageFile(bs.fileName, pagesCount);
+        final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.fileName, pagesCount);
 
         try {
             if (pagesCount > 0) {

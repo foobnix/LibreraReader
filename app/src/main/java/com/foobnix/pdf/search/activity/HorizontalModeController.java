@@ -1,23 +1,11 @@
 package com.foobnix.pdf.search.activity;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-
-import org.ebookdroid.common.cache.CacheManager;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.PageIndex;
-import org.ebookdroid.core.PageSearcher;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.core.codec.OutlineLink;
-import org.ebookdroid.core.codec.PageLink;
-import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
-import org.ebookdroid.droids.mupdf.codec.TextWord;
-import org.greenrobot.eventbus.EventBus;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Matrix;
+import android.graphics.PointF;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -44,12 +32,23 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Matrix;
-import android.graphics.PointF;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.core.PageIndex;
+import org.ebookdroid.core.PageSearcher;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 public abstract class HorizontalModeController extends DocumentController {
 
@@ -131,11 +130,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public static String getBookPathFromActivity(Activity a) {
-        String bookPath = CacheManager.getFilePathFromAttachmentIfNeed(a);
-        if (TxtUtils.isEmpty(bookPath)) {
-            bookPath = a.getIntent().getData().getPath();
-        }
-        return bookPath;
+        return a.getIntent().getData().getPath();
     }
 
     public static String getTempTitle(Activity a) {
@@ -600,7 +595,9 @@ public abstract class HorizontalModeController extends DocumentController {
                         LOG.e(e);
                     }
 
-                };
+                }
+
+                ;
             }.start();
         } else {
             outlineResonse.onResultRecive(outline);
@@ -756,7 +753,9 @@ public abstract class HorizontalModeController extends DocumentController {
             @Override
             protected void onPostExecute(Object result) {
                 EventBus.getDefault().post(new InvalidateMessage());
-            };
+            }
+
+            ;
 
         }.execute();
 

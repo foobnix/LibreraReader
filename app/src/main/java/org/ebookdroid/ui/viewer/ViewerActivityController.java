@@ -1,12 +1,36 @@
 package org.ebookdroid.ui.viewer;
 
-import java.io.File;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.Safe;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
+import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.sys.VerticalModeController;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
+import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
@@ -26,37 +50,10 @@ import org.emdev.ui.actions.IActionController;
 import org.emdev.ui.actions.params.EditableValue.PasswordEditable;
 import org.emdev.ui.progress.IProgressIndicator;
 import org.emdev.ui.tasks.BaseAsyncTask;
-import org.emdev.utils.LengthUtils;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.Safe;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
-import com.foobnix.pdf.search.activity.HorizontalModeController;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.sys.VerticalModeController;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
-import com.foobnix.ui2.AppDB;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.text.InputType;
-import android.widget.EditText;
-import android.widget.Toast;
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ViewerActivityController extends ActionController<VerticalViewActivity> implements IActivityController, DecodingProgressListener, CurrentPageListener, IBookSettingsChangeListener {
 
@@ -69,10 +66,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     private DocumentModel documentModel;
 
-    private String bookTitle;
-
-    private boolean temporaryBook;
-
     private BookType codecType;
 
     private final Intent intent;
@@ -80,6 +73,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     private int loadingCount = 0;
 
     private String m_fileName;
+    private String title;
 
     private String currentSearchPattern;
 
@@ -131,48 +125,14 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             if (intent == null) {
                 return;
             }
-            final String scheme = intent.getScheme();
-            if (LengthUtils.isEmpty(scheme)) {
-                return;
-            }
-            final Uri data = intent.getData();
-            if (data == null) {
-                return;
-            }
 
-            File file = null;
-            if (scheme.equals("content")) {
-                bookTitle = CacheManager.getFilePathFromAttachmentIfNeed(getActivity());
-                if (BookType.isSupportedExtByPath(bookTitle)) {
-                    codecType = BookType.getByUri(bookTitle);
-                    file = new File(bookTitle);
-                    bookTitle = AppDB.get().getOrCreate(bookTitle).getTitle();
-                    LOG.d("codecType 0", codecType);
-                }
-                if (codecType == null) {
-                    codecType = BookType.getByMimeType(ExtUtils.getMimeTypeByUri(intent.getData()));
-                    file = new File(bookTitle);
-                }
+            File file = new File(intent.getData().getPath());
+             m_fileName = intent.getData().getPath();
+            codecType = BookType.getByUri(m_fileName);
 
-                LOG.d("codecType1", codecType);
-            }
-            if (codecType == null) {
-                bookTitle = LengthUtils.safeString(data.getLastPathSegment(), E_MAIL_ATTACHMENT);
-                if (ExtUtils.isTextFomat(data.getLastPathSegment())) {
-                    bookTitle = AppDB.get().getOrCreate(data.getPath()).getTitle();
-                }
-                codecType = BookType.getByUri(data.toString());
-                if (codecType == null) {
-                    final String type = intent.getType();
-                    if (LengthUtils.isNotEmpty(type)) {
-                        codecType = BookType.getByMimeType(type);
-                    }
-                }
-                LOG.d("codecType2", codecType);
-            }
-            if (file == null) {
-                file = new File(intent.getData().getPath());
-            }
+            FileMeta meta = FileMetaCore.createMetaIfNeed(m_fileName, false);
+            title = meta.getTitle();
+
 
             if (codecType == null) {
                 if (getActivity() != null) {
@@ -188,14 +148,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             final Uri uri = Uri.fromFile(file);
             controller.setCurrentBook(file);
-            m_fileName = "";
 
-            if (scheme.equals("content")) {
-                temporaryBook = true;
-                m_fileName = E_MAIL_ATTACHMENT;
-            } else {
-                m_fileName = retrieve(activity.getContentResolver(), uri);
-            }
+
             controller.addRecent(uri);
             SettingsManager.getBookSettings(uri.getPath());
 
@@ -211,19 +165,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     }
 
-    public static String retrieve(final ContentResolver resolver, final Uri uri) {
-        if (uri.getScheme().equals("file")) {
-            return uri.getPath();
-        }
-        final Cursor cursor = resolver.query(uri, new String[] { "_data" }, null, null, null);
-        if ((cursor != null) && cursor.moveToFirst()) {
-            return cursor.getString(0);
-        }
-        throw new RuntimeException("Can't retrieve path from uri: " + uri.toString());
-    }
 
     public void afterPostCreate() {
-        setWindowTitle();
+
         if (loadingCount == 1 && documentModel != ActivityControllerStub.DM_STUB) {
             String stringExtra = intent.getStringExtra(DocumentController.EXTRA_PASSWORD);
             if (stringExtra == null) {
@@ -398,16 +342,17 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
 
         wrapperControlls.updateUI();
-        wrapperControlls.setTitle(bookTitle);
-        controller.setTitle(bookTitle);
+
+
+
+        wrapperControlls.setTitle(title);
+        controller.setTitle(title);
     }
 
     public void createWrapper(Activity a) {
         try {
-            String file = CacheManager.getFilePathFromAttachmentIfNeed(a);
-            if (TxtUtils.isEmpty(file)) {
-                file = a.getIntent().getData().getPath();
-            }
+            String file = a.getIntent().getData().getPath();
+
             AppState.get().lastBookPath = file;
             AppState.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
             AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
@@ -442,16 +387,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         wrapperControlls.onConfigChanged();
     }
 
-    public void setWindowTitle() {
-        getManagedComponent().getWindow().setTitle(bookTitle);
-    }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IActivityController#jumpToPage(int, float,
-     *      float)
-     */
+
+
     @Override
     public ViewState jumpToPage(final int viewIndex, final float offsetX, final float offsetY, boolean addToHistory) {
         // getDocumentController().goToPage(viewIndex, offsetX, offsetY);
@@ -502,7 +440,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     /**
      * Gets the zoom model.
-     * 
+     *
      * @return the zoom model
      */
     @Override
@@ -520,7 +458,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     /**
      * Gets the decoding progress model.
-     * 
+     *
      * @return the decoding progress model
      */
 
@@ -575,11 +513,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 }
 
                 LOG.d("closeActivity 2");
-                if (temporaryBook) {
-                    SettingsManager.removeCurrentBookSettings();
-                } else {
-                    SettingsManager.storeBookSettings1();
-                }
+
+                SettingsManager.storeBookSettings1();
+
                 LOG.d("closeActivity 3");
                 getManagedComponent().finish();
 
@@ -596,11 +532,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void closeActivity1(final ActionEx action) {
-        if (temporaryBook) {
-            SettingsManager.removeCurrentBookSettings();
-        } else {
-            SettingsManager.storeBookSettings1();
-        }
+        SettingsManager.storeBookSettings1();
         getManagedComponent().finish();
 
         System.gc();
@@ -609,14 +541,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         LOG.d("ViewerActivityController closeActivity1");
     }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.common.settings.listeners.ISettingsChangeListener#onBookSettingsChanged(org.ebookdroid.common.settings.books.BookSettings,
-     *      org.ebookdroid.common.settings.books.BookSettings,
-     *      org.ebookdroid.common.settings.books.BookSettings.Diff,
-     *      org.ebookdroid.common.settings.AppSettings.Diff)
-     */
+
     @Override
     public void onBookSettingsChanged(final BookSettings oldSettings, final BookSettings newSettings, final BookSettings.Diff diff) {
         if (newSettings == null) {
@@ -686,9 +611,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         @Override
         protected Throwable doInBackground(final String... params) {
             try {
-                if (intent.getScheme().equals("content")) {
-                    m_fileName = CacheManager.getFilePathFromAttachmentIfNeed(getActivity());
-                }
+                m_fileName = getActivity().getIntent().getData().getPath();
+
+
                 getView().waitForInitialization();
                 documentModel.open(m_fileName, m_password);
                 getDocumentController().init(this);

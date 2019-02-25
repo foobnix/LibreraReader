@@ -26,7 +26,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.settings.SettingsManager;
 
 import java.io.PrintWriter;
@@ -65,7 +64,6 @@ public class LibreraApp extends MultiDexApplication {
         AppDB.get().open(this);
         AppState.get().load(this);
         AppSharedPreferences.get().init(this);
-        CacheManager.init(this);
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);

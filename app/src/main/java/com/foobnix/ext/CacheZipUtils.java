@@ -1,5 +1,18 @@
 package com.foobnix.ext;
 
+import android.content.Context;
+import android.os.Environment;
+import android.support.v4.util.Pair;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
+
+import net.lingala.zip4j.model.FileHeader;
+
+import org.ebookdroid.BookType;
+
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,19 +30,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.common.cache.CacheManager;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.ZipArchiveInputStream;
-
-import android.content.Context;
-import android.os.Environment;
-import android.support.v4.util.Pair;
-import net.lingala.zip4j.model.FileHeader;
 
 public class CacheZipUtils {
     private static final int BUFFER_SIZE = 16 * 1024;
@@ -76,6 +76,7 @@ public class CacheZipUtils {
     public static File CACHE_UN_ZIP_DIR;
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
+    public static File CACHE_OPENER;
     public static File ATTACHMENTS_CACHE_DIR;
     public static final Lock cacheLock = new ReentrantLock();
 
@@ -93,10 +94,10 @@ public class CacheZipUtils {
         CACHE_UN_ZIP_DIR = new File(externalCacheDir, "UnZip");
         ATTACHMENTS_CACHE_DIR = new File(externalCacheDir, "Attachments");
         CACHE_WEB = new File(externalCacheDir, "WEB");
+        CACHE_OPENER = new File(externalCacheDir, "Opener");
 
         CacheZipUtils.createAllCacheDirs();
         CacheDir.createCacheDirs();
-        CacheManager.clearAllTemp();
     }
 
     public static void createAllCacheDirs() {
@@ -143,6 +144,7 @@ public class CacheZipUtils {
             for (File file : files) {
                 if (file != null) {
                     file.delete();
+                    LOG.d("removeFile", file);
                 }
             }
         } catch (Exception e) {

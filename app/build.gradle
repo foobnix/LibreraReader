@@ -19,7 +19,7 @@ android {
 
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //vectorDrawables.useSupportLibrary = true
-        multiDexEnabled true
+        multiDexEnabled false
     }
     lintOptions {
         abortOnError false
@@ -247,14 +247,14 @@ dependencies {
     fdroidImplementation project(':pro')
 
     betaImplementation project(':pro')
-    //betaImplementation 'com.google.android.gms:play-services-ads:17+'
+    //betaImplementation 'com.google.android.gms:play-services-ads:16+'
 
-    libreraImplementation 'com.google.android.gms:play-services-ads:17+'
-    pdf_v2Implementation 'com.google.android.gms:play-services-ads:17+'
-    ebookaImplementation 'com.google.android.gms:play-services-ads:17+'
-    tts_readerImplementation 'com.google.android.gms:play-services-ads:17+'
-    pdf_classicImplementation 'com.google.android.gms:play-services-ads:17+'
-    epub_readerImplementation 'com.google.android.gms:play-services-ads:17+'
+    libreraImplementation 'com.google.android.gms:play-services-ads:16+'
+    pdf_v2Implementation 'com.google.android.gms:play-services-ads:16+'
+    ebookaImplementation 'com.google.android.gms:play-services-ads:16+'
+    tts_readerImplementation 'com.google.android.gms:play-services-ads:16+'
+    pdf_classicImplementation 'com.google.android.gms:play-services-ads:16+'
+    epub_readerImplementation 'com.google.android.gms:play-services-ads:16+'
 
 
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'

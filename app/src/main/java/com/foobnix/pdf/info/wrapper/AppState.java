@@ -331,7 +331,7 @@ public class AppState {
     public boolean isShowChaptersOnProgress = true;
     public boolean isShowSubChaptersOnProgress = true;
 
-    public boolean tapPositionTop = false;
+    public boolean tapPositionTop = true;
 
     public long fontExtractTime = 0;
 

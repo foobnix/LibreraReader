@@ -51,7 +51,6 @@
         <activity
             android:name="com.foobnix.zipmanager.ZipActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="false"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -60,9 +59,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="*" />
-                <data android:scheme="file" />
-                <data android:scheme="content" />
+                <data android:scheme="file"  />
+                <data android:scheme="content"  />
+                <data android:host="*"  />
+
                 <data android:mimeType="application/x-compressed" />
                 <data android:mimeType="application/x-compressed-zip" />
                 <data android:mimeType="application/x-zip-compressed" />
@@ -78,28 +78,22 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:resizeableActivity="true"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
+            android:name="com.foobnix.OpenActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="true"
             android:launchMode="singleTask"
-            android:resizeableActivity="true"
-            android:screenOrientation="behind"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
+
+            <intent-filter >
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="file"  />
+                <data android:scheme="content"  />
+                <data android:host="*"  />
 
                 <data android:mimeType="application/x-fictionbook+xml" />
                 <data android:mimeType="application/x-fictionbook" />
@@ -117,6 +111,8 @@
                 <data android:mimeType="application/x-cbr" />
                 <data android:mimeType="application/rtf" />
                 <data android:mimeType="application/x-rtf" />
+                <data android:mimeType="application/azw" />
+                <data android:mimeType="application/azw3" />
                 <data android:mimeType="text/rtf" />
                 <data android:mimeType="text/richtext" />
                 <data android:mimeType="text/html" />
@@ -139,12 +135,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="*" />
-                <data android:scheme="file" />
-                <data android:scheme="content" />
+
+                <data android:scheme="file"  />
+                <data android:scheme="content"  />
+                <data android:host="*"  />
+
                 <data android:pathPattern=".*\\.txt" />
                 <data android:pathPattern=".*\\.epub" />
                 <data android:pathPattern=".*\\.fb2" />
+                <data android:pathPattern=".*\\fb2.zip" />
                 <data android:pathPattern=".*\\.pdf" />
                 <data android:pathPattern=".*\\.djvu" />
                 <data android:pathPattern=".*\\.rtf" />
@@ -163,7 +162,29 @@
                 <data android:pathPattern=".*\\.odt" />
                 <data android:pathPattern=".*\\.docx" />
                 <data android:pathPattern=".*\\.doc" />
+
             </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan">
+
         </activity>
 
         <service

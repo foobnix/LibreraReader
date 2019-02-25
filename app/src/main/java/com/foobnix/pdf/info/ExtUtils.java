@@ -64,7 +64,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
-import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -897,14 +896,7 @@ public class ExtUtils {
         showDocument(c, Uri.fromFile(file), page, playlist);
     }
 
-    public static boolean showDocument(final Activity c, final Uri uri) {
-        String filePath = CacheManager.getFilePathFromAttachmentIfNeed(c);
-        if (TxtUtils.isEmpty(filePath) && uri != null && uri.getPath() != null) {
-            filePath = uri.getPath();
-        }
-        // MetaCache.get().getOrCreateByPath(filePath);
-        return showDocument(c, new File(filePath), -1);
-    }
+
 
     public static void showDocument(final Context c, final Uri uri, final int page, final String playList) {
         Safe.run(new Runnable() {

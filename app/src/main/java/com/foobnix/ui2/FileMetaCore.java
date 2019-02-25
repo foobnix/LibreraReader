@@ -1,14 +1,7 @@
 package com.foobnix.ui2;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Locale;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.common.cache.CacheManager;
-import org.ebookdroid.droids.FolderContext;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import android.app.Activity;
+import android.support.v4.util.Pair;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -29,8 +22,14 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.AppState;
 
-import android.app.Activity;
-import android.support.v4.util.Pair;
+import org.ebookdroid.BookType;
+import org.ebookdroid.droids.FolderContext;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
 
 public class FileMetaCore {
 
@@ -47,10 +46,7 @@ public class FileMetaCore {
     public static void checkOrCreateMetaInfo(Activity a) {
         try {
 
-            String path = CacheManager.getFilePathFromAttachmentIfNeed(a);
-            if (!BookType.isSupportedExtByPath(path)) {
-                path = a.getIntent().getData().getPath();
-            }
+            String path = a.getIntent().getData().getPath();
 
             LOG.d("checkOrCreateMetaInfo", path);
             if (new File(path).isFile()) {

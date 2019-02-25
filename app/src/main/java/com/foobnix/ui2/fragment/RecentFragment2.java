@@ -1,22 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.RecentUpates;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +11,24 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.RecentUpates;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
@@ -66,6 +67,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                     public void run() {
                         clearAllRecent.run();
                         RecentUpates.updateAll(getActivity());
+                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_OPENER.listFiles());
                     }
                 });
 
