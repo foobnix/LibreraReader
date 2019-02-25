@@ -43,7 +43,7 @@
    <string name="enable_effect_of_the_book_cover">Придать обложкам реалистичности</string>
    <string name="crop_images_in_the_book_cover">Кадрировать обложки книг</string>
    <string name="borders_and_shadow_around_the_book_cover">Отображать границы и тени</string>
-   <string name="tabs_position">Очередность/видимость вкладок</string>
+   <string name="tabs_position">Вкладки</string>
    <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку \"Настройки\" как боковое меню</string>
    <string name="visible">Показывать</string>
    <string name="application_user_guide_">Руководство пользователя</string>

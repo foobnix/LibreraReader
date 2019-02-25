@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.droids.DocContext;
 
@@ -494,6 +495,7 @@ public class BookCSS {
     public String toCssString() {
         return toCssString("");
     }
+
     public String toCssString(String path) {
         StringBuilder builder = new StringBuilder();
 
@@ -505,7 +507,7 @@ public class BookCSS {
 
         builder.append("b>span,strong>span{font-weight:normal}");// fix chess
 
-        if(path.endsWith(DocContext.EXT_DOC_HTML)) {
+        if (path.endsWith(DocContext.EXT_DOC_HTML)) {
             builder.append("book>title, bookinfo {display:none}");
             builder.append("emphasis,para {display:inline}");
             builder.append("chapter,sect1, title {display:block}");
@@ -707,15 +709,13 @@ public class BookCSS {
     }
 
     public void detectLang(String bookPath) {
+
         FileMeta meta = AppDB.get().load(bookPath);
-        if (meta != null) {
-            BookCSS.get().hypenLang = meta.getLang();
-        }else{
-            BookCSS.get().hypenLang = null;
+        if (meta == null) {
+            meta = FileMetaCore.createMetaIfNeed(bookPath, false);
         }
-        //if (TxtUtils.isEmpty(BookCSS.get().hypenLang)) {
-            //BookCSS.get().hypenLang = Urls.getLangCode();
-        //}
+        BookCSS.get().hypenLang = meta != null ? meta.getLang() : null;
+        LOG.d("detectLang",bookPath,  BookCSS.get().hypenLang);
     }
 
 }
