@@ -328,7 +328,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
-        Android6.checkPermissions(this);
+        Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
 
         List<String> actions = Arrays.asList("android.intent.action.PROCESS_TEXT", "android.intent.action.SEARCH", "android.intent.action.SEND");

@@ -1,9 +1,21 @@
 package org.ebookdroid.ui.viewer;
 
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
-import org.emdev.ui.AbstractActionActivity;
+import android.app.ActionBar.LayoutParams;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.DisplayMetrics;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -26,22 +38,10 @@ import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 
-import android.app.ActionBar.LayoutParams;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
+import org.emdev.ui.AbstractActionActivity;
 
 public class VerticalViewActivity extends AbstractActionActivity<VerticalViewActivity, ViewerActivityController> {
     public static final DisplayMetrics DM = new DisplayMetrics();
@@ -174,7 +174,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
         setContentView(R.layout.activity_vertical_view);
 
-        Android6.checkPermissions(this);
+        Android6.checkPermissions(this, false);
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
