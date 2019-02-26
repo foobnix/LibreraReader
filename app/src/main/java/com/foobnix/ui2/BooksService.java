@@ -1,12 +1,12 @@
 package com.foobnix.ui2;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.greenrobot.eventbus.EventBus;
+import android.app.IntentService;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.media.session.MediaSessionCompat;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -22,14 +22,11 @@ import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
-import android.app.IntentService;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Environment;
-import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.media.session.MediaSessionCompat;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
 public class BooksService extends IntentService {
     private MediaSessionCompat mediaSessionCompat;
@@ -91,13 +88,14 @@ public class BooksService extends IntentService {
                     }
 
                     File bookFile = new File(meta.getPath());
-                    if(bookFile.getPath().startsWith(Environment.getExternalStorageDirectory().getPath())){
-                        LOG.d("Delete meta from getExternalStorageDirectory ",Environment.getExternalStorageDirectory().getPath());
+                    if(ExtUtils.isMounted(bookFile)){
+                        LOG.d("isMounted",bookFile);
                         if (!bookFile.exists()) {
                             AppDB.get().delete(meta);
                             LOG.d(TAG, "Delete-setIsSearchBook", meta.getPath());
                         }
                     }
+
                 }
                 sendFinishMessage();
 

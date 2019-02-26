@@ -1639,6 +1639,10 @@ public class ExtUtils {
         return null;
     }
 
+    public  static boolean isMounted(File file){
+            return Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static List<String> getExternalStorageDirectories(Context c) {
         List<String> results = new ArrayList<String>();
