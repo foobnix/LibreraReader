@@ -16,7 +16,7 @@
 package com.nostra13.universalimageloader.cache.disc;
 
 import android.graphics.Bitmap;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public interface DiskCache {
 	 * @return <b>true</b> - if image was saved successfully; <b>false</b> - if image wasn't saved in disk cache.
 	 * @throws java.io.IOException
 	 */
-	boolean save(String imageUri, InputStream imageStream, IoUtils.CopyListener listener) throws IOException;
+	boolean save(String imageUri, InputStream imageStream, IoUtilsUIL.CopyListener listener) throws IOException;
 
 	/**
 	 * Saves image bitmap in disk cache.

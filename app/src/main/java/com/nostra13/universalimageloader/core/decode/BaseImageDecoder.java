@@ -24,7 +24,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import com.nostra13.universalimageloader.utils.ImageSizeUtils;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 import com.nostra13.universalimageloader.utils.L;
 
 import android.graphics.Bitmap;
@@ -100,7 +100,7 @@ public class BaseImageDecoder implements ImageDecoder {
             Options decodingOptions = prepareDecodingOptions(imageInfo.imageSize, decodingInfo);
             decodedBitmap = BitmapFactory.decodeStream(imageStream, null, decodingOptions);
         } finally {
-            IoUtils.closeSilently(imageStream);
+            IoUtilsUIL.closeSilently(imageStream);
         }
 
         if (decodedBitmap == null) {
@@ -198,7 +198,7 @@ public class BaseImageDecoder implements ImageDecoder {
             } catch (IOException ignored) {
             }
         }
-        IoUtils.closeSilently(imageStream);
+        IoUtilsUIL.closeSilently(imageStream);
         return getImageStream(decodingInfo);
     }
 

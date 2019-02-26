@@ -35,7 +35,7 @@ import com.nostra13.universalimageloader.core.download.ImageDownloader.Scheme;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 import com.nostra13.universalimageloader.utils.L;
 
 import android.graphics.Bitmap;
@@ -52,7 +52,7 @@ import android.os.Handler;
  * @see ImageLoadingInfo
  * @since 1.3.1
  */
-final class LoadAndDisplayImageTask implements Runnable, IoUtils.CopyListener {
+final class LoadAndDisplayImageTask implements Runnable, IoUtilsUIL.CopyListener {
 
     private static final String LOG_WAITING_FOR_RESUME = "ImageLoader is paused. Waiting...  [%s]";
     private static final String LOG_RESUME_AFTER_PAUSE = ".. Resume loading [%s]";
@@ -313,7 +313,7 @@ final class LoadAndDisplayImageTask implements Runnable, IoUtils.CopyListener {
             try {
                 return configuration.diskCache.save(uri, is, this);
             } finally {
-                IoUtils.closeSilently(is);
+                IoUtilsUIL.closeSilently(is);
             }
         }
     }

@@ -18,7 +18,7 @@ package com.nostra13.universalimageloader.cache.disc.impl.ext;
 import android.graphics.Bitmap;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 import com.nostra13.universalimageloader.utils.L;
 
 import java.io.BufferedOutputStream;
@@ -143,7 +143,7 @@ public class LruDiskCache implements DiskCache {
 	}
 
 	@Override
-	public boolean save(String imageUri, InputStream imageStream, IoUtils.CopyListener listener) throws IOException {
+	public boolean save(String imageUri, InputStream imageStream, IoUtilsUIL.CopyListener listener) throws IOException {
 		DiskLruCache.Editor editor = cache.edit(getKey(imageUri));
 		if (editor == null) {
 			return false;
@@ -152,9 +152,9 @@ public class LruDiskCache implements DiskCache {
 		OutputStream os = new BufferedOutputStream(editor.newOutputStream(0), bufferSize);
 		boolean copied = false;
 		try {
-			copied = IoUtils.copyStream(imageStream, os, listener, bufferSize);
+			copied = IoUtilsUIL.copyStream(imageStream, os, listener, bufferSize);
 		} finally {
-			IoUtils.closeSilently(os);
+			IoUtilsUIL.closeSilently(os);
 			if (copied) {
 				editor.commit();
 			} else {
@@ -176,7 +176,7 @@ public class LruDiskCache implements DiskCache {
 		try {
 			savedSuccessfully = bitmap.compress(compressFormat, compressQuality, os);
 		} finally {
-			IoUtils.closeSilently(os);
+			IoUtilsUIL.closeSilently(os);
 		}
 		if (savedSuccessfully) {
 			editor.commit();

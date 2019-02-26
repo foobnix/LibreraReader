@@ -19,7 +19,7 @@ import android.graphics.Bitmap;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -99,16 +99,16 @@ public abstract class BaseDiskCache implements DiskCache {
 	}
 
 	@Override
-	public boolean save(String imageUri, InputStream imageStream, IoUtils.CopyListener listener) throws IOException {
+	public boolean save(String imageUri, InputStream imageStream, IoUtilsUIL.CopyListener listener) throws IOException {
 		File imageFile = getFile(imageUri);
 		File tmpFile = new File(imageFile.getAbsolutePath() + TEMP_IMAGE_POSTFIX);
 		boolean loaded = false;
 		try {
 			OutputStream os = new BufferedOutputStream(new FileOutputStream(tmpFile), bufferSize);
 			try {
-				loaded = IoUtils.copyStream(imageStream, os, listener, bufferSize);
+				loaded = IoUtilsUIL.copyStream(imageStream, os, listener, bufferSize);
 			} finally {
-				IoUtils.closeSilently(os);
+				IoUtilsUIL.closeSilently(os);
 			}
 		} finally {
 			if (loaded && !tmpFile.renameTo(imageFile)) {
@@ -130,7 +130,7 @@ public abstract class BaseDiskCache implements DiskCache {
 		try {
 			savedSuccessfully = bitmap.compress(compressFormat, compressQuality, os);
 		} finally {
-			IoUtils.closeSilently(os);
+			IoUtilsUIL.closeSilently(os);
 			if (savedSuccessfully && !tmpFile.renameTo(imageFile)) {
 				savedSuccessfully = false;
 			}

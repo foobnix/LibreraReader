@@ -26,7 +26,7 @@ import java.io.OutputStream;
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  * @since 1.0.0
  */
-public final class IoUtils {
+public final class IoUtilsUIL {
 
 	/** {@value} */
 	public static final int DEFAULT_BUFFER_SIZE = 32 * 1024; // 32 KB
@@ -35,7 +35,7 @@ public final class IoUtils {
 	/** {@value} */
 	public static final int CONTINUE_LOADING_PERCENTAGE = 75;
 
-	private IoUtils() {
+	private IoUtilsUIL() {
 	}
 
 	/**

@@ -28,7 +28,7 @@ import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ContentLengthInputStream;
-import com.nostra13.universalimageloader.utils.IoUtils;
+import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -124,11 +124,11 @@ public class BaseImageDownloader implements ImageDownloader {
 			imageStream = conn.getInputStream();
 		} catch (IOException e) {
 			// Read all data to allow reuse connection (http://bit.ly/1ad35PY)
-			IoUtils.readAndCloseStream(conn.getErrorStream());
+			IoUtilsUIL.readAndCloseStream(conn.getErrorStream());
 			throw e;
 		}
 		if (!shouldBeProcessed(conn)) {
-			IoUtils.closeSilently(imageStream);
+			IoUtilsUIL.closeSilently(imageStream);
 			throw new IOException("Image request failed with response code " + conn.getResponseCode());
 		}
 
