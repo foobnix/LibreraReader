@@ -44,7 +44,7 @@ public class ADS {
         try {
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
             frame.removeAllViews();
-            frame.setVisibility(View.VISIBLE);
+            frame.setVisibility(View.GONE);
 
             if (adView != null) {
                 adView.destroy();
@@ -59,9 +59,8 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(int arg0) {
-                    LOG.d("failed ads");
-                    //frame.removeAllViews();
-                    //frame.setVisibility(View.GONE);
+                    LOG.d("failed ads",arg0);
+                    frame.removeAllViews();
                     frame.setVisibility(View.GONE);
                 }
 
@@ -76,7 +75,6 @@ public class ADS {
             params.gravity = Gravity.CENTER_HORIZONTAL;
             adView.setLayoutParams(params);
 
-            adView.setLayoutParams(params);
             frame.addView(adView);
         } catch (Throwable e) {
             LOG.e(e);

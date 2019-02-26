@@ -63,8 +63,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         myAds.pause();
+        super.onPause();
         // sampleServer.stop();
     }
 
@@ -74,8 +74,8 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         myAds.destroy();
+        super.onDestroy();
     }
 
     @Override

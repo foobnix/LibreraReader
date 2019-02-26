@@ -421,6 +421,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(getIntent());
 
 
+
     }
 
     @Subscribe

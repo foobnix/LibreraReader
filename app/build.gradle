@@ -81,6 +81,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
+            //buildConfigField "boolean", "LOG", "true"
         }
         librera {
             dimension "version"
@@ -246,8 +247,8 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
-    betaImplementation project(':pro')
-    //betaImplementation 'com.google.android.gms:play-services-ads:16+'
+    //betaImplementation project(':pro')
+    betaImplementation 'com.google.android.gms:play-services-ads:16+'
 
     libreraImplementation 'com.google.android.gms:play-services-ads:16+'
     pdf_v2Implementation 'com.google.android.gms:play-services-ads:16+'

@@ -5,7 +5,19 @@
 cd ../
 
 ./gradlew clean incVersion
-./gradlew assembleRelease
+
+./gradlew assembleBetaRelease
+./gradlew assembleFdroidRelease
+
+./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
+./gradlew assemblePdf_classicRelease
+
+./gradlew assembleEpub_readerRelease
+./gradlew assembleEbookaRelease
+./gradlew assemblePdf_v2Release
+./gradlew assembleTts_readerRelease
+
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
