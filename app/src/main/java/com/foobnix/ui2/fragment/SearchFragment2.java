@@ -1,44 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.EmptyStackException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.Stack;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.EditTextHelper;
-import com.foobnix.pdf.info.view.KeyCodeDialog;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
-import com.foobnix.pdf.info.widget.PrefDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
-import com.foobnix.ui2.AppDB.SORT_BY;
-import com.foobnix.ui2.BooksService;
-import com.foobnix.ui2.adapter.AuthorsAdapter2;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
-import com.foobnix.ui2.fast.FastScrollStateChangeListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -71,6 +32,45 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.EditTextHelper;
+import com.foobnix.pdf.info.view.KeyCodeDialog;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
+import com.foobnix.pdf.info.widget.PrefDialogs;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.OpenTagMessage;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.AppDB.SORT_BY;
+import com.foobnix.ui2.BooksService;
+import com.foobnix.ui2.adapter.AuthorsAdapter2;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fast.FastScrollRecyclerView;
+import com.foobnix.ui2.fast.FastScrollStateChangeListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.EmptyStackException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.Stack;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
@@ -173,7 +173,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK){
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
         }
 

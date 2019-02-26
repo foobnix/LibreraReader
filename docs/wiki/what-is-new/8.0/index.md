@@ -32,6 +32,15 @@ version: 2
 |![](4.png)|![](5.png)|![](6.png)|
 
 
+**Dark Theme and Dark OLED Theme**
+
+* Added Dark OLED theme with solid black color
+
+||||
+|-|-|-|
+|![](9.png)|![](8.png)|![](7.png)|
+
+
 # What is new in Librera Book Reader
 
 * [Version 7.12](/wiki/what-is-new/7.12/)

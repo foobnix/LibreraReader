@@ -1,14 +1,5 @@
 package com.foobnix.pdf.info.io;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
@@ -17,6 +8,15 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 
 public class SearchCore {
     public static boolean endWith(String name, List<String> exts) {
@@ -29,6 +29,7 @@ public class SearchCore {
     }
 
     public static boolean findOnce = false;
+    public static boolean findOnce2 = false;
 
     public static void searchSimple(List<FileMeta> items, File root, List<String> exts) {
         File[] listFiles = root.listFiles();
@@ -44,7 +45,12 @@ public class SearchCore {
     }
 
     public static void search(List<FileMeta> items, File root, List<String> exts) {
+        if(root.getPath().equals("/")){
+            LOG.d("Skip search in root");
+            return;
+        }
         findOnce = false;
+        //findOnce2 = false;
         search(root, exts, items);
     }
 
@@ -64,10 +70,15 @@ public class SearchCore {
         for (File file : listFiles) {
             if (file.isDirectory()) {
                 if (!findOnce && file.getPath().endsWith("/Android/data")) {
-                    LOG.d("Skip path", file.getPath());
+                    LOG.d("Skip path1", file.getPath());
                     findOnce = true;
                     continue;
                 }
+//                if (!findOnce2 && file.getPath().startsWith("/data/user/")) {
+//                    LOG.d("Skip path2", file.getPath());
+//                    findOnce2 = true;
+//                    continue;
+//                }
 
                 search(file, exts, items);
             } else if (endWith(file.getName(), exts)) {

@@ -1,30 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-
-import org.ebookdroid.common.settings.SettingsManager;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.pdf.info.ExportSettingsManager;
-import com.foobnix.pdf.info.ExtFilter;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.presentation.BrowserAdapter;
-import com.foobnix.pdf.info.presentation.PathAdapter;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.BooksService;
-import com.foobnix.ui2.MainTabs2;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -49,6 +24,31 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
+import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.pdf.info.ExtFilter;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.presentation.BrowserAdapter;
+import com.foobnix.pdf.info.presentation.PathAdapter;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.BooksService;
+import com.foobnix.ui2.MainTabs2;
+
+import org.ebookdroid.common.settings.SettingsManager;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class PrefDialogs {
 
@@ -89,6 +89,11 @@ public class PrefDialogs {
                 ChooserDialogFragment.chooseFolder(a, AppState.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
+
+                        if (nPath.equals("/")) {
+                            Toast.makeText(a, String.format("[ / ] %s", a.getString(R.string.incorrect_value)), Toast.LENGTH_LONG).show();
+                            return false;
+                        }
                         boolean isExists = false;
                         String existPath = "";
                         for (String str : AppState.get().searchPaths.split(",")) {
