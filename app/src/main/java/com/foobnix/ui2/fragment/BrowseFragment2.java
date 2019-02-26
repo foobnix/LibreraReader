@@ -1,44 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.droids.FolderContext;
-
-import com.cloudrail.si.interfaces.CloudStorage;
-import com.cloudrail.si.types.CloudMetaData;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.io.SearchCore;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.view.AsyncProgressTask;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.FileMetaCore;
-import com.foobnix.ui2.MainTabs2;
-import com.foobnix.ui2.adapter.DefaultListeners;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
-
 import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -72,6 +33,45 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.cloudrail.si.interfaces.CloudStorage;
+import com.cloudrail.si.types.CloudMetaData;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.StringDB;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FileMetaComparators;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.adapter.DefaultListeners;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fast.FastScrollRecyclerView;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.droids.FolderContext;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BrowseFragment2 extends UIFragment<FileMeta> {
@@ -123,7 +123,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setTintImageWithAlpha(openAsbookImage);
+        TintUtil.setTintImageWithAlpha(openAsbookImage, TintUtil.color == Color.BLACK && AppState.get().appTheme == AppState.THEME_DARK_OLED ? Color.WHITE : TintUtil.color);
+
     }
 
     public CloudStorage cloudStorage;
@@ -140,16 +141,13 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onClose = view.findViewById(R.id.onClose);
         openAsBook = view.findViewById(R.id.openAsBook);
         openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
-        TintUtil.setTintImageWithAlpha(openAsbookImage);
+        TintUtil.setTintImageWithAlpha(openAsbookImage, TintUtil.color == Color.BLACK && AppState.get().appTheme == AppState.THEME_DARK_OLED ? Color.WHITE : TintUtil.color);
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
         onSort = (ImageView) view.findViewById(R.id.onSort);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
-            view.findViewById(R.id.openAsBookBg).setBackgroundColor(Color.BLACK);
-        }
 
         sortOrder.setOnClickListener(new OnClickListener() {
 
@@ -571,6 +569,18 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+            view.findViewById(R.id.openAsBookBg).setBackgroundColor(Color.BLACK);
+
+
+            if (fragmentType == TYPE_DEFAULT) {
+                searchAdapter.tempValue2 = FileMetaAdapter.TEMP2_NONE;
+            } else {
+                searchAdapter.tempValue2 = FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
+            }
+        }
+
         return view;
     }
 
@@ -694,15 +704,15 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 LOG.d("newNode uri >> ", uri);
                 LOG.d("newNode childrenUri >> ", childrenUri);
 
-                Cursor childCursor = contentResolver.query(childrenUri, new String[] { //
-                        Document.COLUMN_DISPLAY_NAME, //
-                        Document.COLUMN_DOCUMENT_ID, //
-                        Document.COLUMN_ICON, //
-                        Document.COLUMN_LAST_MODIFIED, //
-                        Document.COLUMN_MIME_TYPE, //
-                        Document.COLUMN_SIZE, //
-                        Document.COLUMN_SUMMARY, //
-                }, //
+                Cursor childCursor = contentResolver.query(childrenUri, new String[]{ //
+                                Document.COLUMN_DISPLAY_NAME, //
+                                Document.COLUMN_DOCUMENT_ID, //
+                                Document.COLUMN_ICON, //
+                                Document.COLUMN_LAST_MODIFIED, //
+                                Document.COLUMN_MIME_TYPE, //
+                                Document.COLUMN_SIZE, //
+                                Document.COLUMN_SUMMARY, //
+                        }, //
                         null, null, null); //
                 try {
                     while (childCursor.moveToNext()) {
