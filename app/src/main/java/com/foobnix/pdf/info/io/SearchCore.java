@@ -50,7 +50,6 @@ public class SearchCore {
             return;
         }
         findOnce = false;
-        //findOnce2 = false;
         search(root, exts, items);
     }
 
@@ -74,11 +73,6 @@ public class SearchCore {
                     findOnce = true;
                     continue;
                 }
-//                if (!findOnce2 && file.getPath().startsWith("/data/user/")) {
-//                    LOG.d("Skip path2", file.getPath());
-//                    findOnce2 = true;
-//                    continue;
-//                }
 
                 search(file, exts, items);
             } else if (endWith(file.getName(), exts)) {

@@ -57,11 +57,11 @@ public class OpenerActivity extends Activity {
 
                 LOG.d("OpenerActivity", "cache", name);
 
-                if (!CacheZipUtils.CACHE_OPENER.exists()) {
-                    CacheZipUtils.CACHE_OPENER.mkdirs();
+                if (!CacheZipUtils.CACHE_RECENT.exists()) {
+                    CacheZipUtils.CACHE_RECENT.mkdirs();
                 }
 
-                file = new File(CacheZipUtils.CACHE_OPENER, name);
+                file = new File(CacheZipUtils.CACHE_RECENT, name);
                 if (!file.isFile()) {
                     FileOutputStream out = new FileOutputStream(file);
                     InputStream inputStream = getContentResolver().openInputStream(getIntent().getData());

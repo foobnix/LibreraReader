@@ -1,24 +1,5 @@
 package com.foobnix.zipmanager;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.search.view.AsyncProgressTask;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.ZipArchiveInputStream;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +13,26 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 public class ZipDialog {
     static AlertDialog create;
@@ -183,15 +184,15 @@ public class ZipDialog {
 
     public static File extractFile(Activity a, String fileName, Uri uri, boolean single) {
         try {
-            CacheZipUtils.CACHE_UN_ZIP_DIR.mkdirs();
+            CacheZipUtils.CACHE_RECENT.mkdirs();
 
-            if (!CacheZipUtils.CACHE_UN_ZIP_DIR.isDirectory()) {
+            if (!CacheZipUtils.CACHE_RECENT.isDirectory()) {
                 Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                 return null;
             }
 
             String outFileName = ExtUtils.getFileName(fileName);
-            File out = new File(CacheZipUtils.CACHE_UN_ZIP_DIR, outFileName);
+            File out = new File(CacheZipUtils.CACHE_RECENT, outFileName);
             if (out.isFile()) {
                 return out;
             }
@@ -207,7 +208,7 @@ public class ZipDialog {
                 if (name.equals(fileName) || single) {
 
                     LOG.d("File extract", out.getPath());
-                    CacheZipUtils.writeToStream(zipInputStream, new FileOutputStream(out));
+                    IOUtils.copy(zipInputStream, new FileOutputStream(out));
                     zipInputStream.close();
                     openInputStream.close();
                     return out;

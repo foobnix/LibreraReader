@@ -1,5 +1,14 @@
 package com.foobnix.ext;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.sys.ArchiveEntry;
+import com.foobnix.sys.ZipArchiveInputStream;
+import com.foobnix.sys.Zips;
+
+import org.ebookdroid.BookType;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,14 +17,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-
-import org.ebookdroid.BookType;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.sys.ArchiveEntry;
-import com.foobnix.sys.ZipArchiveInputStream;
-import com.foobnix.sys.Zips;
 
 import junrar.Archive;
 import junrar.rarfile.FileHeader;
@@ -92,7 +93,7 @@ public class CbzCbrExtractor {
                 String first = names.get(0);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (nextEntry.getName().equals(first)) {
-                        CacheZipUtils.writeToStream(zipInputStream, out);
+                        IOUtils.copy(zipInputStream, out);
                         break;
                     }
                 }

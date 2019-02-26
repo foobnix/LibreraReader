@@ -1139,7 +1139,7 @@ public class ExtUtils {
 
             String title = file.getName() + "." + (page + 1) + ".jpg";
 
-            File oFile = new File(CacheZipUtils.CACHE_UN_ZIP_DIR, title);
+            File oFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, title);
             oFile.getParentFile().mkdirs();
             String pathofBmp = oFile.getPath();
 

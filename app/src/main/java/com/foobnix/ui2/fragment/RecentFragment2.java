@@ -67,7 +67,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                     public void run() {
                         clearAllRecent.run();
                         RecentUpates.updateAll(getActivity());
-                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_OPENER.listFiles());
+                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
                     }
                 });
 
