@@ -1,41 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Stack;
-
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.opds.Entry;
-import com.foobnix.opds.Feed;
-import com.foobnix.opds.Hrefs;
-import com.foobnix.opds.Link;
-import com.foobnix.opds.OPDS;
-import com.foobnix.opds.SamlibOPDS;
-import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.widget.AddCatalogDialog;
-import com.foobnix.pdf.info.widget.ChooserDialogFragment;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.adapter.EntryAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
-
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -65,6 +29,44 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.opds.Entry;
+import com.foobnix.opds.Feed;
+import com.foobnix.opds.Hrefs;
+import com.foobnix.opds.Link;
+import com.foobnix.opds.OPDS;
+import com.foobnix.opds.SamlibOPDS;
+import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.widget.AddCatalogDialog;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.adapter.EntryAdapter;
+import com.foobnix.ui2.fast.FastScrollRecyclerView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
+
 import okhttp3.CacheControl;
 import okhttp3.Response;
 import okio.BufferedSink;
@@ -562,9 +564,25 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                         LIRBI_DOWNLOAD_DIR.mkdirs();
                                     }
 
-                                    final File file = new File(LIRBI_DOWNLOAD_DIR, displayName);
-                                    file.delete();
-                                    outStream = new FileOutputStream(file);
+                                    File file = null;
+                                    try {
+                                        file = new File(LIRBI_DOWNLOAD_DIR, displayName);
+                                        file.delete();
+                                        outStream = new FileOutputStream(file);
+                                    } catch (FileNotFoundException e1) {
+                                        try {
+                                            file = new File(LIRBI_DOWNLOAD_DIR, TxtUtils.substringSmart(displayName, 50) + "." + ExtUtils.getFileExtension(displayName));
+                                            file.delete();
+                                            outStream = new FileOutputStream(file);
+                                        } catch (FileNotFoundException e2) {
+                                            file = new File(LIRBI_DOWNLOAD_DIR, displayName.hashCode() + "." + ExtUtils.getFileExtension(displayName));
+                                            file.delete();
+                                            outStream = new FileOutputStream(file);
+                                        }
+
+                                    }
+
+
                                     bookPath = file.getPath();
                                 }
 
@@ -596,7 +614,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                         @Override
                         protected void onPreExecute() {
                             progressBar.setVisibility(View.VISIBLE);
-                        };
+                        }
+
+                        ;
 
                         @Override
                         protected void onPostExecute(Object result) {
@@ -617,7 +637,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                             }
                             clearEmpty();
-                        };
+                        }
+
+                        ;
 
                     }.execute();
 
