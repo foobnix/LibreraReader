@@ -1,7 +1,8 @@
 package com.foobnix.ext;
 
-import java.io.File;
-import java.io.FileInputStream;
+import com.BaseExtractor;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,9 +10,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.xmlpull.v1.XmlPullParser;
 
-import com.BaseExtractor;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class CalirbeExtractor {
 
@@ -107,6 +107,14 @@ public class CalirbeExtractor {
                                 res = TxtUtils.replaceFirst(res, ",", "");
                                 meta.setGenre(res);
                                 LOG.d("userGenre-list", res);
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                        }
+                        if ("librera:user_metadata:#genre".equals(attrName)) {
+                            LOG.d("librera-userGenre", attrContent);
+                            try {
+                                meta.setGenre(attrContent);
                             } catch (Exception e) {
                                 LOG.e(e);
                             }

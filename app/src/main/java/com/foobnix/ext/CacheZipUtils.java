@@ -83,9 +83,6 @@ public class CacheZipUtils {
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
         if (externalCacheDir == null) {
-            externalCacheDir = c.getCacheDir();
-        }
-        if (externalCacheDir == null) {
             externalCacheDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         }
         CacheDir.parent = externalCacheDir;
