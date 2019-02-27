@@ -6,35 +6,43 @@ version: 2
 
 # 8.0
 
+**General Improvements**
+
+* The whole development kit and caboodle has moved to Android Studio (https://github.com/foobnix/LibreraReader)
+* All libraries have been updated
+* Dark theme has been improved
+
 **New Features**
 
-* Migrate to Android Studio (https://github.com/foobnix/LibreraReader)
-* Update all libraries up to date
-* Improved Dark Theme
-* Doc format support
-* Docx format support for Anroid 8+
-* Open with Librera fixed expiring files
-* Reading modes presets
+* Option to change **Tabs** position
+* **Doc** format support
+* **Docx** format support on Anroid 8+ devices
+* Reading-mode presets
 
-**Taps positoin - top or bottom**
+**Bug Fixes**
+
+* Deleted files and folders no longer _ghost_ Library
+* Files, opened from other apps, will stay in Library until deleted (and cache cleared)
+
+**Choose Tabs Position: Top or Bottom**
 
 ||||
 |-|-|-|
 |![](2.png)|![](3.png)|![](1.png)|
 
-**Reading modes presets**
+**Reading-mode presets**
 
-* You can set in what mode to open book formats
-* Add manualy desired formats
+* Tell **Librera** which default reading mode you prefer for a particular book format
+* Manually add any desired format
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 
-**Dark Theme and Dark OLED Theme**
+**Dark & Dark OLED Themes**
 
-* Added Dark OLED theme with solid black color
+* Choose Dark OLED theme with pitch-black color
 
 ||||
 |-|-|-|
