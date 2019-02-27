@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">يرجى الانتظار ، يتم معالجة الكتب</string>
    <string name="system_brightness">سطوع النظام</string>
    <string name="opening_books_in_the_specified_mode">فتح الكتب في الوضع المحدد</string>
+   <string name="dark_oled">الظلام الظلام</string>
 </resources>

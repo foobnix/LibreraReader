@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">โปรดรอสักครู่กำลังประมวลผลหนังสือ</string>
    <string name="system_brightness">ความสว่างของระบบ</string>
    <string name="opening_books_in_the_specified_mode">การเปิดหนังสือในโหมดที่ระบุ</string>
+   <string name="dark_oled">มืด oled</string>
 </resources>

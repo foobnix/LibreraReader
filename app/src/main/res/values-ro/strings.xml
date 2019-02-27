@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Așteptați, cărțile sunt procesate</string>
    <string name="system_brightness">Luminozitatea sistemului</string>
    <string name="opening_books_in_the_specified_mode">Deschiderea cărților în modul specificat</string>
+   <string name="dark_oled">Întuneric oled</string>
 </resources>

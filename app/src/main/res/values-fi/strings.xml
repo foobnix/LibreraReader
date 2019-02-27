@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Odota, kirjoja käsitellään</string>
    <string name="system_brightness">Järjestelmän kirkkaus</string>
    <string name="opening_books_in_the_specified_mode">Kirjojen avaaminen määritetyssä tilassa</string>
+   <string name="dark_oled">Tumma oled</string>
 </resources>

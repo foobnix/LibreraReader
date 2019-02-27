@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Пожалуйста, подождите, пока обновится библиотека</string>
    <string name="system_brightness">Cистемное значение</string>
    <string name="opening_books_in_the_specified_mode">Открытие книг в указанном режиме</string>
+   <string name="dark_oled">Темная OLED</string>
 </resources>

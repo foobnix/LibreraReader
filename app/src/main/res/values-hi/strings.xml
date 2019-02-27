@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">कृपया प्रतीक्षा करें, पुस्तकों पर कार्रवाई की जा रही है</string>
    <string name="system_brightness">सिस्टम की चमक</string>
    <string name="opening_books_in_the_specified_mode">निर्दिष्ट मोड में किताबें खोलना</string>
+   <string name="dark_oled">गहरे रंग का</string>
 </resources>

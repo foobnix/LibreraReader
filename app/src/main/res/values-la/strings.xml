@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Placet exspectare, quae libri processionaliter</string>
    <string name="system_brightness">Ratio claritas</string>
    <string name="opening_books_in_the_specified_mode">Foramen in libris certa modus</string>
+   <string name="dark_oled">Tenebris OLED</string>
 </resources>

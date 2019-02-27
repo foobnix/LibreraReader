@@ -1,6 +1,5 @@
-* Improved PDF Viewing and Epub Reading
-* Copy, paste, move files in the file manager
-* Improved Tags manager
-* Added Playlists (book groupings, reordering)
-* Playback mp3 files and folders
-* Footnotes directly in the text
+* Doc format support
+* Docx format support on Anroid 8+ devices
+* Dark theme has been improved
+* Option to change Tabs position
+* Reading-mode presets

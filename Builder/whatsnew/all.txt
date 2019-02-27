@@ -1,294 +1,272 @@
 
 <nl-NL>
-* Verbeterde PDF-weergave en Epub-lezing 
-* Kopiëren, plakken, bestanden verplaatsen in Bestandsbeheer 
-* Verbeterde Tags-manager 
-* Toegevoegde afspeellijsten (boekgroeperingen, nabestellingen) 
-* MP3-bestanden en -mappen afspelen 
-* Voetnoten rechtstreeks in de tekst
+* Doc-formaat ondersteuning 
+* Docx-formaat ondersteuning op Anroid 8+ apparaten 
+* Donker thema is verbeterd 
+* Mogelijkheid om de positie van de tabs te veranderen 
+* Voorinstellingen voor de leesmodus
 </nl-NL>
 
 <id>
-* Peningkatan Melihat PDF dan Membaca Epub 
-* Salin, tempel, pindahkan file dalam file manager 
-* Peningkatan tag manager 
-* Ditambahkan Playlist (pengelompokan buku, pemesanan ulang) 
-* Putar file dan folder mp3 
-* Catatan kaki langsung dalam teks
+* Dukungan format Doc 
+* Dukungan format Docx pada perangkat Anroid 8+ 
+* Tema gelap telah ditingkatkan 
+* Opsi untuk mengubah posisi Tab 
+* Pengaturan mode baca
 </id>
 
 <lt>
-* Patobulintas PDF peržiūros ir epubo skaitymas 
-* Kopijuoti, įklijuoti, perkelti failus į failų tvarkyklę 
-* Patobulinti žymių tvarkyklė 
-* Pridėta grojaraščiai (knygų grupės, pertvarkymas) 
-* MP3 failų ir aplankų atkūrimas 
-* Nuorodos tiesiogiai tekste
+* Doc formato palaikymas 
+* „Docx“ formato palaikymas „Anroid 8+“ įrenginiuose 
+* Patobulinta tamsi tema 
+* Galimybė pakeisti skirtukų padėtį 
+* Skaitymo režimo nustatymai
 </lt>
 
 <ar>
-* عرض PDF المحسّن وقراءة Epub 
-* نسخ ، لصق ، نقل الملفات في مدير الملفات 
-* مدير العلامات المحسَّن 
-* قوائم التشغيل المضافة (تجميعات الكتب ، إعادة الترتيب) 
-* تشغيل ملفات ومجلدات MP3 
-* الهوامش مباشرة في النص
+* دعم تنسيق Doc 
+* دعم تنسيق Docx على أجهزة Anroid 8+ 
+* تم تحسين مظهر Dark 
+* الخيار لتغيير وضع Tabs 
+* إعدادات وضع القراءة المسبقة
 </ar>
 
 <ro>
-* Îmbunătățirea vizualizarea PDF și Epub Reading 
-* Copiați, lipiți, mutați fișiere în managerul de fișiere 
-* Manager îmbunătățit Tag-uri 
-* Adăugate liste de redare (grupuri de carte, reordonare) 
-* Redare fișiere mp3 și foldere 
-* Note de subsol direct în text
+* Suport pentru format doc 
+* Suport pentru formatul Docx pe dispozitivele Anroid 8+ 
+* Tema intunecata a fost imbunatatita 
+* Optiunea de a schimba pozitia filelor 
+* Presetarile modului de citire
 </ro>
 
 <de-DE>
-* Verbessertes Anzeigen und Epub-Lesen von PDFs 
-* Kopieren, Einfügen und Verschieben von Dateien im Dateimanager 
-* Verbesserter Tags-Manager 
-* Hinzufügen von Wiedergabelisten (Buchgruppierungen, Neuordnen) 
-* Wiedergabe von MP3-Dateien und -Ordnern 
-* Fußnoten direkt im Text
+* Unterstützung des Doc-Formats 
+* Unterstützung des Docx-Formats auf Anroid 8+ -Geräten 
+* Dunkles Design wurde verbessert 
+* Option zum Ändern der Position der Tabs 
+* Presets im Lesemodus
 </de-DE>
 
 <pl-PL>
-* Poprawione przeglądanie plików PDF i czytanie Epub 
-* Kopiowanie, wklejanie, przenoszenie plików w menedżerze plików 
-* Udoskonalony menedżer tagów 
-* Dodane listy odtwarzania (grupowanie książek, zmiana kolejności) 
-* Odtwarzanie plików mp3 i folderów 
-* Przypisy bezpośrednio w tekście
+* Obsługa formatu Doc 
+* Obsługa formatu Docx na urządzeniach z systemem Anroid 8+ 
+* Poprawiono ciemny motyw 
+* Opcja zmiany pozycji kart 
+* Presety trybu czytania
 </pl-PL>
 
 <iw-IL>
-* צפייה משופרת PDF ו EPUB קריאה 
-* העתק, הדבק, להעביר קבצים במנהל הקבצים 
-* שיפור תגיות מנהל 
-* הוספה פלייליסטים (מקבצי ספרים, סידור מחדש) 
-* פלייבק קבצי MP3 ותיקיות 
-* הערות שוליים ישירות בטקסט
+* תמיכה בפורמט Doc 
+* תמיכה בפורמט Docx על מכשירי Android 8 + 
+* ערכת נושא כהה שופרה 
+* אפשרות לשינוי מיקום הכרטיסיות 
+* מצב קריאה מראש
 </iw-IL>
 
 <hi-IN>
-* बेहतर पीडीएफ देखने और Epub पढ़ना 
-* कॉपी, पेस्ट, फ़ाइल प्रबंधक में फ़ाइलों को ले जाना
+* Doc प्रारूप समर्थन 
+* Anroid 8+ उपकरणों पर Docx प्रारूप समर्थन 
+* डार्क थीम में सुधार किया गया है 
+* टैब स्थिति बदलने का विकल्प 
+* रीडिंग-मोड प्रीसेट
 </hi-IN>
 
 <zh-CN>
-*改进的PDF查看和电子书阅读
-*复制，粘贴，移动文件管理器中的文件
-*改进的标签管理器
-*添加播放列表（书籍分组，重新排序）
-*播放mp3文件和文件夹
-*脚注直接在文本中
+* Doc格式支持
+* Anroid 8+设备支持Docx格式
+*黑暗主题已得到改进
+*选项更改标签位置
+*阅读模式预设
 </zh-CN>
 
 <es-ES>
-* Mejora de la visualización de PDF y lectura de Epub 
-* Copia, pega, mueve archivos en el administrador de archivos 
-* Administrador de etiquetas mejorado 
-* Listas de reproducción agregadas (agrupación de libros, reordenación) 
-* Archivos y carpetas de reproducción de mp3 
-* Notas al pie directamente en el texto
+* Soporte de formato doc. 
+* Soporte de formato docx en dispositivos Anroid 8+. 
+* Se ha mejorado el tema oscuro. 
+* Opción para cambiar la posición de las pestañas.
 </es-ES>
 
 <fi-FI>
-* Parannettu PDF-katseleminen ja Epub-lukeminen 
-* Kopioi, liitä, siirrä tiedostoja tiedostohallinnassa 
-* Parannettu tunnisteiden hallinta 
-* Lisätty soittolistat (kirjan ryhmittelyt, uudelleenjärjestely) 
-* MP3-tiedostojen ja -kansioiden toistaminen 
-* Alaviitteet suoraan tekstiin
+* Doc-formaatin tuki 
+* Docx-muotoinen tuki Anroid 8+ -laitteissa 
+* Tumma teema on parantunut 
+* Vaihtoehto vaihtaa välilehdet 
+* Lukumoodin esiasetukset
 </fi-FI>
 
 <vi>
-* Cải thiện Xem PDF và Đọc Epub 
-* Sao chép, dán, di chuyển tệp trong trình quản lý tệp 
-* Trình quản lý thẻ được cải tiến 
-* Danh sách phát đã thêm (nhóm sách, sắp xếp lại) 
-* Phát lại các tệp và thư mục mp3
+* Hỗ trợ định dạng Doc 
+* Hỗ trợ định dạng Docx trên các thiết bị Anroid 8+ 
+* Chủ đề tối đã được cải thiện 
+* Tùy chọn thay đổi vị trí Tab 
+* Cài đặt trước chế độ đọc
 </vi>
 
 <fr-FR>
-* Amélioration de l’affichage PDF et de la lecture de fichiers Epub 
-* Copier, coller, déplacer des fichiers dans le gestionnaire de fichiers 
-* Amélioration du gestionnaire d’étiquettes 
-* Ajout de listes de lecture (regroupements de livres, réorganisation) 
-* Lecture de fichiers et de dossiers mp3 
-* Notes directement dans le texte
+* Prise en charge du format Doc 
+* Prise en charge du format Docx sur Anroid 8+ 
+* Le thème sombre a été amélioré 
+* Possibilité de changer la position des onglets 
+* Préréglages en mode lecture
 </fr-FR>
 
 <fr-CA>
-* Amélioration de l’affichage PDF et de la lecture de fichiers Epub 
-* Copier, coller, déplacer des fichiers dans le gestionnaire de fichiers 
-* Amélioration du gestionnaire d’étiquettes 
-* Ajout de listes de lecture (regroupements de livres, réorganisation) 
-* Lecture de fichiers et de dossiers mp3 
-* Notes directement dans le texte
+* Prise en charge du format Doc 
+* Prise en charge du format Docx sur Anroid 8+ 
+* Le thème sombre a été amélioré 
+* Possibilité de changer la position des onglets 
+* Préréglages en mode lecture
 </fr-CA>
 
 <sw>
-* Kuboresha PDF Kuangalia na Epub Kusoma 
-* Nakili, kusanisha, safisha faili kwenye meneja wa faili 
-* Meneja wa Kuboresha wa Tags 
-* Aliongeza Orodha za kucheza (makundi ya kitabu, kurejesha) 
-* Faili za video za kucheza na folda 
-* Maneno ya chini moja kwa moja katika maandishi
+* Msaada wa fomu ya Doc 
+* Usanidi wa muundo wa Docx kwenye vifaa vya Anroid 8+ 
+* Mandhari ya giza imeboreshwa 
+* Chaguo kubadilisha nafasi ya Tabs 
+* Presets mode kusoma
 </sw>
 
 <ru-RU>
-* Улучшенный просмотр PDF и чтение в Epub 
-* Копирование, вставка, перемещение файлов в файловом менеджере 
-* Улучшенный менеджер тегов 
-* Добавлены плейлисты (группировки книг, переупорядочивание) 
-* Воспроизведение mp3 файлов и папок 
-* Сноски прямо в текст
+* Поддержка формата Doc 
+* Поддержка формата Docx на устройствах Anroid 8+ 
+* Улучшена темная тема 
+* Возможность изменять положение вкладок 
+* Предустановки режима чтения
 </ru-RU>
 
 <zh-TW>
-*改進的PDF查看和電子書閱讀
-*複製，粘貼，移動文件管理器中的文件
-*改進的標籤管理器
-*添加播放列表（書籍分組，重新排序）
-*播放mp3文件和文件夾
-*腳註直接在文本中
+* Doc格式支持
+* Anroid 8+設備支持Docx格式
+*黑暗主題已得到改進
+*選項更改標籤位置
+*閱讀模式預設
 </zh-TW>
 
 <th>
-* ปรับปรุงการดู PDF และการอ่าน Epub 
-* คัดลอกวางย้ายไฟล์ในตัวจัดการไฟล์ 
-* ตัวจัดการแท็กที่ปรับปรุงใหม่ 
-* เพิ่มเพลย์ลิสต์ (การจัดกลุ่มหนังสือ, การเรียงลำดับใหม่) 
-* ไฟล์ MP3 และโฟลเดอร์ที่เล่นได้ 
-* เชิงอรรถโดยตรงในข้อความ
+* รองรับรูปแบบ Doc 
+* รองรับรูปแบบ Docx บนอุปกรณ์ Anroid 8+ 
+* ชุดรูปแบบมืดได้รับการปรับปรุง 
+* ตัวเลือกในการเปลี่ยนตำแหน่งแท็บ 
+* ตั้งค่าโหมดการอ่านล่วงหน้า
 </th>
 
 <it-IT>
-* Miglioramento della visualizzazione PDF e della lettura di epub 
-* Copia, incolla, sposta i file nel file manager 
-* Miglioramento gestore tag 
-* Aggiunti elenchi di riproduzione (raggruppamenti di libri, riordino) 
-* Riproduzione di file e cartelle mp3 
-* Note a piè di pagina direttamente nel testo
+* Supporto del formato Doc 
+* Supporto del formato Docx su dispositivi Anroid 8+ 
+* Il tema scuro è stato migliorato 
+* Possibilità di cambiare la posizione delle schede 
+* Preimpostazioni in modalità lettura
 </it-IT>
 
 <sv-SE>
-* Förbättrad PDF-visning och Epub-läsning 
-* Kopiera, klistra in, flytta filer i filhanteraren 
-* Förbättrad tagshanterare 
-* Tillagda spellistor (bokgrupperingar, omregistrering) 
-* Uppspelning av mp3-filer och mappar 
-* Fotnoter direkt i texten
+* Dokumentformatstöd 
+* Support för Docx-format på Anroid 8+ enheter 
+* Mörkt tema har förbättrats 
+* Alternativ att ändra flikposition 
+* Förinställning av läsläge
 </sv-SE>
 
 <fa>
-* بهبود PDF مشاهده و دفعات بازدید: EPUB خواندن 
-* کپی، چسباندن، انتقال فایل ها در مدیر فایل 
-* بهبود برچسب مدیر 
-* اضافه شده لیست های پخش (گروه بندی کتاب، مرتب سازی مجدد) 
-* پخش فایل های mp3 و پوشه 
-* اشاره به طور مستقیم در متن
+* پشتیبانی از فرمت Doc 
+* پشتیبانی از فرمت Docx در دستگاه های Anroid 8+ 
+* تم تیره بهبود یافته است 
+* گزینه ای برای تغییر موقعیت Tabs 
+* خواندن حالت ایستگاه از پیش تنظیم
 </fa>
 
 <pt-PT>
-* Visualização aprimorada de PDF e leitura de Epub 
-* Copie, cole, mova arquivos no gerenciador de arquivos 
-* Gerenciador de tags aprimorado 
-* Listas de reprodução adicionadas (agrupamentos de livros, reordenação) 
-* Reproduzir arquivos e pastas em mp3 
-* Notas de rodapé diretamente no texto
+* Suporte ao formato Doc 
+* Suporte ao formato Docx nos dispositivos Anroid 8+ 
+* O tema Dark foi melhorado 
+* Opção de alterar a posição das guias 
+* Predefinições do modo de leitura
 </pt-PT>
 
 <pt-BR>
-* Visualização aprimorada de PDF e leitura de Epub 
-* Copie, cole, mova arquivos no gerenciador de arquivos 
-* Gerenciador de tags aprimorado 
-* Listas de reprodução adicionadas (agrupamentos de livros, reordenação) 
-* Reproduzir arquivos e pastas em mp3 
-* Notas de rodapé diretamente no texto
+* Suporte ao formato Doc 
+* Suporte ao formato Docx nos dispositivos Anroid 8+ 
+* O tema Dark foi melhorado 
+* Opção de alterar a posição das guias 
+* Predefinições do modo de leitura
 </pt-BR>
 
 <ko-KR>
-* 향상된 PDF보기 및 Epub 읽기 
-* 파일 관리자에서 파일 복사, 붙여 넣기, 이동 
-* 향상된 태그 관리자 
-* 추가 된 재생 목록 (책 그룹, 순서 변경) 
-* MP3 파일 및 폴더 재생 
-* 텍스트의 각주
+* Doc 형식 지원 
+* DocX 형식 지원 Anroid 8+ 기기 
+* 어두운 테마가 개선되었습니다 
+* 탭 위치를 변경하는 옵션 
+* 읽기 모드 사전 설정
 </ko-KR>
 
 <hu-HU>
-* Továbbfejlesztett PDF-megtekintés és epubolvasás 
-* Fájlok másolása, beillesztése, áthelyezése a fájlkezelőbe 
-* Továbbfejlesztett címkék kezelő 
-* Hozzáadott lejátszási listák (könyvcsoportok, átrendezés) 
-* mp3 fájlok és mappák lejátszása 
-* lábjegyzetek közvetlenül a szövegben
+* Doc formátum támogatás 
+* Docx formátum támogatás az Anroid 8+ eszközökön 
+* Sötét téma javult 
+* Lehetőség a lapok pozíciójának megváltoztatására 
+* Olvasási mód beállításai
 </hu-HU>
 
 <kk>
-* Жақсартылған PDF қарап шығу және эпуб оқу 
-* Файлдар менеджеріне файлдарды көшіру, қою, файлдарды жылжыту 
-* Жақсартылған тегтер менеджері 
-* Қосылған ойнату тізімдері (кітап топтары, қайта тапсыру) 
-* MP3 файлдары мен қалталарды ойнату 
-*
+* Doc пішімін қолдау 
+* Anroid 8+ құрылғыларында Docx пішіміндегі қолдау 
+* Қараңғы тақырып жақсарды 
+* Tabs күйін өзгерту мүмкіндігі 
+* Оқу режимінің алдын ала орнатулары
 </kk>
 
 <sk>
-* Vylepšené prezeranie PDF a čítanie Epub 
-* Kopírovať, vkladať, presúvať súbory v správcovi súborov 
-* Vylepšený manažér značiek 
-* Pridané zoznamy skladieb (skupinové skupiny, preskupenie) 
-* Prehrávanie mp3 súborov a priečinkov 
-* Poznámky priamo v texte
+* Podpora formátu Doc 
+* Podpora formátu Docx na zariadeniach Anroid 8+ 
+* Tmavá tému bola vylepšená 
+* Možnosť zmeniť pozíciu kariet 
+* Predvoľby režimu čítania
 </sk>
 
 <tr-TR>
-* Geliştirilmiş PDF Görüntüleme ve Epub Okuma 
-* Kopyalama, yapıştırma, dosya yöneticisindeki dosyaları taşıma 
-* Geliştirilmiş Etiketler yöneticisi 
-* Eklenen Çalma Listeleri (kitap grupları, yeniden sıralama)
+* Doc format desteği 
+* Anroid 8+ cihazlarda Docx format desteği 
+* Koyu tema geliştirildi 
+* Sekmelerin konumunu değiştirme seçeneği 
+* Okuma modu ön ayarları
 </tr-TR>
 
 <no-NO>
-* Forbedret PDF-visning og Epub-lesing 
-* Kopier, lim inn, flytt filer i filbehandleren 
-* Forbedret Tags-manager 
-* Lagt til spillelister (bokgrupperinger, reordering) 
-* Avspilling av mp3-filer og mapper 
-* Fotnoter direkte i teksten
+* Dokformatstøtte 
+* Docx-formatstøtte på Anroid 8+ enheter 
+* Mørkt tema har blitt forbedret 
+* Alternativ for å endre tabulatorposisjon 
+* Lese-modus forhåndsinnstillinger
 </no-NO>
 
 <la>
-Melior PDF Viewing Epub Reading 
+Doc firmamentum forma 
 * 
-* et exemplar, crustulum, moveo lima procurator in files 
 * 
-* Melior Tags procurator Video added (liber sodalitates, enim refectio) mp3 Playback 
+* Dark theme docx forma firmamentum in Anroid 8+ inventa est in melius mutare Bene tab situ 
 * 
-* V. directe ad illud lima quod folders
+* Etiam iaculis mollis modus Reading-
 </la>
 
 <ja-JP>
-*改善されたPDF表示とEPUBの読み
-*ファイルマネージャ内のファイルのコピー、貼り付け、移動
-*改善されたタグマネージャ
-*プレイリストの追加（ブックのグループ化、並べ替え）
+* Docフォーマットのサポート
+* Anroid 8+デバイス上のDocxフォーマットのサポート
+*ダークテーマが改善されました
+*タブの位置を変更するオプション
+*読み取りモードのプリセット
 </ja-JP>
 
 <uk>
-* Покращено PDF-перегляд і читання Epub 
-* Копіювання, вставлення, переміщення файлів в менеджері файлів
+* Підтримка формату Doc 
+* Підтримка формату Docx на пристроях Anroid 8+ 
+* Покращено темну тему 
+* Можливість зміни позиції вкладок 
+* Пресети в режимі читання
 </uk>
 
 <en-US>
-* Improved PDF Viewing and Epub Reading
-* Copy, paste, move files in the file manager
-* Improved Tags manager
-* Added Playlists (book groupings, reordering)
-* Playback mp3 files and folders
-* Footnotes directly in the text
+* Doc format support
+* Docx format support on Anroid 8+ devices
+* Dark theme has been improved
+* Option to change Tabs position
+* Reading-mode presets
 </en-US>

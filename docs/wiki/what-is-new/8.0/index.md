@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 2
+version: 6
 ---
 [What Is New](/wiki/what-is-new)
 
@@ -8,15 +8,14 @@ version: 2
 
 **General Improvements**
 
-* The whole development kit and caboodle has moved to Android Studio (https://github.com/foobnix/LibreraReader)
 * All libraries have been updated
 * Dark theme has been improved
 
 **New Features**
 
-* Option to change **Tabs** position
-* **Doc** format support
-* **Docx** format support on Anroid 8+ devices
+* Option to change Tabs position
+* Doc format support
+* Docx format support on Anroid 8+ devices
 * Reading-mode presets
 
 **Bug Fixes**

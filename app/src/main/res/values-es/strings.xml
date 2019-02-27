@@ -536,4 +536,5 @@
    <string name="please_wait_books_are_being_processed_">Por favor espere, los libros están siendo procesados.</string>
    <string name="system_brightness">Brillo del sistema</string>
    <string name="opening_books_in_the_specified_mode">Abriendo libros en el modo especificado</string>
+   <string name="dark_oled">Oled oscuro</string>
 </resources>

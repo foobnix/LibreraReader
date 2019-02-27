@@ -45,7 +45,7 @@ public class WhatsNewUpdateTexts {
     }
 
     public static void main(String[] args) throws IOException {
-        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LibreraReader/EBookDroid/res");
+        final List<String> asList = SyncTranslations.getAllLangCodes("/home/ivan-dev/git/LibreraReader/app/src/main/rescd");
         // final List<String> asList = Arrays.asList("zh-rCN", "zh-rTW");
 
         String recentEN = new String(Files.readAllBytes(Paths.get("/home/ivan-dev/git/LibreraReader/Builder/whatsnew/recent.txt")));
