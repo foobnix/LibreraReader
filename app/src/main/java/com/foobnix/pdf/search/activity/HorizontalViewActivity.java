@@ -193,7 +193,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        FirebaseAnalytics.getInstance(this);
+        //FirebaseAnalytics.getInstance(this);
 
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;

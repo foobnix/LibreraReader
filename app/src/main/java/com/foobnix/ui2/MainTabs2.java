@@ -173,7 +173,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             setTheme(R.style.StyledIndicatorsBlack);
         }
         super.onCreate(savedInstanceState);
-        FirebaseAnalytics.getInstance(this);
+        //FirebaseAnalytics.getInstance(this);
 
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;

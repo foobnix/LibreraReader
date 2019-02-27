@@ -125,7 +125,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
         super.onCreate(savedInstanceState);
 
-        FirebaseAnalytics.getInstance(this);
+        //FirebaseAnalytics.getInstance(this);
 
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;
