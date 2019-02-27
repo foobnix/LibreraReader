@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +19,6 @@ import android.widget.FrameLayout;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -37,6 +35,7 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -72,7 +71,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.emdev.ui.AbstractActionActivity#createController()
      */
     @Override
@@ -95,79 +94,38 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         FileMetaCore.checkOrCreateMetaInfo(this);
 
-        // check uri
-
-        if (false) {
-            try {
-                Uri uri = getIntent().getData();
-                String page = uri.getQueryParameter(DocumentController.EXTRA_PAGE);
-                String password = uri.getQueryParameter(DocumentController.EXTRA_PASSWORD);
-
-                LOG.d("getIntent-1", getIntent());
-                if (TxtUtils.isNotEmpty(page) || TxtUtils.isNotEmpty(password)) {
-                    Uri data = Uri.parse(uri.getScheme() + "://" + uri.getPath());
-                    getIntent().setData(data);
-                    if (TxtUtils.isNotEmpty(page)) {
-                        try {
-                            getIntent().putExtra(DocumentController.EXTRA_PAGE, Integer.parseInt(page));
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
-                    }
-
-                    if (TxtUtils.isNotEmpty(password)) {
-                        getIntent().putExtra(DocumentController.EXTRA_PASSWORD, password);
-                    }
+        if (getIntent().getData() != null) {
+            String path = getIntent().getData().getPath();
+            final BookSettings bs = SettingsManager.getBookSettings(path);
+            // AppState.get().setNextScreen(bs.isNextScreen);
+            if (bs != null) {
+                // AppState.get().isLocked = bs.isLocked;
+                AppState.get().autoScrollSpeed = bs.speed;
+                AppState.get().isCut = bs.isTextFormat() ? false : bs.splitPages;
+                AppState.get().isCrop = bs.cropPages;
+                AppState.get().isDouble = false;
+                AppState.get().isDoubleCoverAlone = false;
+                AppState.get().isLocked = bs.isLocked;
+                TempHolder.get().pageDelta = bs.pageDelta;
+                if (AppState.get().isCropPDF && !bs.isTextFormat()) {
+                    AppState.get().isCrop = true;
                 }
-                LOG.d("getIntent-2", getIntent());
-            } catch (Exception e) {
-                LOG.e(e);
             }
+            BookCSS.get().detectLang(path);
         }
 
-        if (AppState.get().isRememberMode && AppState.get().readingMode == AppState.READING_MODE_BOOK) {
-            super.onCreate(savedInstanceState);
-            if (AppState.get().isDayNotInvert) {
-                setTheme(R.style.StyledIndicatorsWhite);
-            } else {
-                setTheme(R.style.StyledIndicatorsBlack);
+        getController().beforeCreate(this);
 
-            }
-            finish();
-            ExtUtils.showDocumentInner(this, getIntent().getData(), getIntent().getIntExtra(DocumentController.EXTRA_PAGE, 0), getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
-            return;
+        BrightnessHelper.applyBrigtness(this);
+
+        if (AppState.get().isDayNotInvert) {
+            setTheme(R.style.StyledIndicatorsWhite);
         } else {
-            if (getIntent().getData() != null) {
-                String path = getIntent().getData().getPath();
-                final BookSettings bs = SettingsManager.getBookSettings(path);
-                // AppState.get().setNextScreen(bs.isNextScreen);
-                if (bs != null) {
-                    // AppState.get().isLocked = bs.isLocked;
-                    AppState.get().autoScrollSpeed = bs.speed;
-                    AppState.get().isCut = bs.isTextFormat() ? false : bs.splitPages;
-                    AppState.get().isCrop = bs.cropPages;
-                    AppState.get().isDouble = false;
-                    AppState.get().isDoubleCoverAlone = false;
-                    AppState.get().isLocked = bs.isLocked;
-                    TempHolder.get().pageDelta = bs.pageDelta;
-                    if (AppState.get().isCropPDF && !bs.isTextFormat()) {
-                        AppState.get().isCrop = true;
-                    }
-                }
-                BookCSS.get().detectLang(path);
-            }
-
-            getController().beforeCreate(this);
-
-            BrightnessHelper.applyBrigtness(this);
-
-            if (AppState.get().isDayNotInvert) {
-                setTheme(R.style.StyledIndicatorsWhite);
-            } else {
-                setTheme(R.style.StyledIndicatorsBlack);
-            }
-            super.onCreate(savedInstanceState);
+            setTheme(R.style.StyledIndicatorsBlack);
         }
+        super.onCreate(savedInstanceState);
+
+        FirebaseAnalytics.getInstance(this);
 
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;

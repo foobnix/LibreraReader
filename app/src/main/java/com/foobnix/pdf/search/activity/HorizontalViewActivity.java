@@ -18,6 +18,7 @@ import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
+import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -101,6 +102,7 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
@@ -190,6 +192,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         clickUtils = new ClickUtils();
 
         super.onCreate(savedInstanceState);
+
+        FirebaseAnalytics.getInstance(this);
+
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;
         }
@@ -1910,6 +1915,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
             }
         }, 50);
+    }
+
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
