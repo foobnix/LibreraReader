@@ -240,6 +240,9 @@ dependencies {
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
 
+
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -247,8 +250,12 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
+
+
     //betaImplementation project(':pro')
-    betaImplementation 'com.google.android.gms:play-services-ads:16+'
+    betaImplementation 'com.google.firebase:firebase-ads:16+'
+    betaImplementation 'com.google.firebase:firebase-core:16+'
+
 
     libreraImplementation 'com.google.android.gms:play-services-ads:16+'
     pdf_v2Implementation 'com.google.android.gms:play-services-ads:16+'
@@ -316,3 +323,5 @@ task incVersion() {
     }
 
 }
+
+apply plugin: 'com.google.gms.google-services'
