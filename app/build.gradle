@@ -6,6 +6,8 @@ ext {
     db = Integer.parseInt(appDB)
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]"
+    
+    
 }
 
 android {
@@ -16,14 +18,14 @@ android {
         targetSdkVersion 27
         versionCode codeNumber
         versionName versionNumber
-
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //vectorDrawables.useSupportLibrary = true
-        multiDexEnabled false
+        multiDexEnabled true
     }
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
+
     }
 
     signingConfigs {
@@ -247,23 +249,30 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    proImplementation project(':pro')
-    fdroidImplementation project(':pro')
-
-
-
     //betaImplementation project(':pro')
-    betaImplementation 'com.google.firebase:firebase-ads:16+'
+    betaImplementation 'com.google.firebase:firebase-ads:17+'
     betaImplementation 'com.google.firebase:firebase-core:16+'
 
 
-    libreraImplementation 'com.google.android.gms:play-services-ads:16+'
-    pdf_v2Implementation 'com.google.android.gms:play-services-ads:16+'
-    ebookaImplementation 'com.google.android.gms:play-services-ads:16+'
-    tts_readerImplementation 'com.google.android.gms:play-services-ads:16+'
-    pdf_classicImplementation 'com.google.android.gms:play-services-ads:16+'
-    epub_readerImplementation 'com.google.android.gms:play-services-ads:16+'
 
+    libreraImplementation 'com.google.firebase:firebase-ads:17+'
+    pdf_v2Implementation 'com.google.firebase:firebase-ads:17+'
+    ebookaImplementation 'com.google.firebase:firebase-ads:17+'
+    tts_readerImplementation 'com.google.firebase:firebase-ads:17+'
+    pdf_classicImplementation 'com.google.firebase:firebase-ads:17+'
+    epub_readerImplementation 'com.google.firebase:firebase-ads:17+'
+
+    libreraImplementation 'com.google.firebase:firebase-core:16+'
+    pdf_v2Implementation 'com.google.firebase:firebase-core:16+'
+    ebookaImplementation 'com.google.firebase:firebase-core:16+'
+    tts_readerImplementation 'com.google.firebase:firebase-core:16+'
+    pdf_classicImplementation 'com.google.firebase:firebase-core:16+'
+    epub_readerImplementation 'com.google.firebase:firebase-core:16+'
+
+
+    proImplementation 'com.google.firebase:firebase-core:16+'
+    proImplementation project(':pro')
+    fdroidImplementation project(':pro')
 
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
