@@ -509,8 +509,8 @@ public class BookCSS {
 
         if (path.endsWith(DocContext.EXT_DOC_HTML)) {
             builder.append("book>title, bookinfo {display:none}");
-            builder.append("emphasis,para {display:inline}");
-            builder.append("chapter,sect1, title {display:block}");
+            //builder.append("emphasis {display:inline}");
+            //builder.append("chapter,sect1, title {display:block}");
         }
 
 

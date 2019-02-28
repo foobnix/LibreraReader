@@ -38,6 +38,7 @@ public class DocContext extends PdfContext {
         if (!cacheFile.isFile()) {
             String outputTemp = cacheFile.getPath() + ".tmp";
             LibMobi.convertDocToHtml(fileName, outputTemp);
+
             try {
                 FileInputStream in = new FileInputStream(outputTemp);
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));

@@ -5,7 +5,7 @@ LOCAL_ARM_MODE := $(MY_ARM_MODE)
 LOCAL_MODULE  := antiword
 
 LOCAL_CFLAGS += -funwind-tables -Wl,--no-merge-exidx-entries
-LOCAL_CFLAGS += -DCR3_ANTIWORD_PATCH_2=1
+LOCAL_CFLAGS += -DCR3_ANTIWORD_PATCH_2=0 -DCR3_ANTIWORD_PATCH=0
 
 LOCAL_SRC_FILES := \
     main_u.c asc85enc.c blocklist.c chartrans.c \

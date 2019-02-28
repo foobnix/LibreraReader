@@ -123,7 +123,7 @@ static const docbooktags_type atDocBookTags[] = {
 	{	TAG_ITEMIZEDLIST,	"itemizedlist",	TRUE,	TRUE	},
 	{	TAG_LISTITEM,		"listitem",	TRUE,	TRUE	},
 	{	TAG_ORDEREDLIST,	"orderedlist",	TRUE,	TRUE	},
-	{	TAG_PARA, 		"para",		TRUE,	TRUE	},
+	{	TAG_PARA, 		"p",		TRUE,	TRUE	},
 	{	TAG_ROW,		"row",		TRUE,	TRUE	},
 	{	TAG_SECT1, 		"sect1",	TRUE,	TRUE	},
 	{	TAG_SECT2, 		"sect2",	TRUE,	TRUE	},
@@ -875,13 +875,13 @@ vPrintXML(diagram_type *pDiag, const char *szString, size_t tStringLength,
 	/* Start what has to be started */
 	if (bEmphasisNew && !bEmphasisOpen) {
 		if (bIsBold(usFontstyle)) {
-			szAttr = "role='bold'";
+			szAttr = "style='font-weight: bold'";
 		} else if (bIsItalic(usFontstyle)) {
-			szAttr = NULL;
+			szAttr = "style='font-style: italic'";
 		} else if (bIsUnderline(usFontstyle)) {
-			szAttr = "role='underline'";
+			szAttr = NULL;//"role='underline'";
 		} else if (bIsStrike(usFontstyle)) {
-			szAttr = "role='strikethrough'";
+			szAttr = NULL;//"role='strikethrough'";
 		} else {
 			szAttr = NULL;
 		}
