@@ -527,7 +527,7 @@
    <string name="export_as_backup_json_">导出为备份（json）</string>
    <string name="import_from_backup_json_">从备份导入（json）</string>
    <string name="additional_bookmarks_bar">阅读模式附加书签栏</string>
-   <string name="show_rectangular_tap_zones">矩形抽头区域</string>
+   <string name="show_rectangular_tap_zones">矩形点击区域</string>
    <string name="turn_the_page_on_the_last_word">最后一字翻页</string>
    <string name="paste">粘贴</string>
    <string name="move">移动</string>
@@ -536,5 +536,5 @@
    <string name="please_wait_books_are_being_processed_">请稍候，正在处理书籍</string>
    <string name="system_brightness">系统亮度</string>
    <string name="opening_books_in_the_specified_mode">以指定模式打开书籍</string>
-   <string name="dark_oled">黑暗的oled</string>
+   <string name="dark_oled">黑暗有机电激光显示</string>
 </resources>
