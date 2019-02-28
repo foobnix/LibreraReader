@@ -122,7 +122,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (++loadingCount == 1) {
             documentModel = ActivityControllerStub.DM_STUB;
 
-            if (intent == null) {
+            if (intent == null || intent.getData()==null) {
                 return;
             }
 

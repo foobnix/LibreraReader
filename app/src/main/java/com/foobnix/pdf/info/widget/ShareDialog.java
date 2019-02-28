@@ -1,19 +1,15 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.greenrobot.eventbus.EventBus;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
+import android.support.v4.util.Pair;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
@@ -39,16 +35,20 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
-import android.graphics.Color;
-import android.support.v4.util.Pair;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import org.ebookdroid.BookType;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ShareDialog {
 
@@ -151,11 +151,9 @@ public class ShareDialog {
                         InputStream input = new BufferedInputStream(new FileInputStream(from));
                         OutputStream output = new BufferedOutputStream(new FileOutputStream(toFile));
 
-                        IOUtils.copy(input, output);
+                        IOUtils.copyClose(input, output);
 
-                        output.flush();
-                        output.close();
-                        input.close();
+
 
                         TempHolder.get().listHash++;
 
@@ -182,11 +180,9 @@ public class ShareDialog {
                         InputStream input = new BufferedInputStream(new FileInputStream(from));
                         OutputStream output = new BufferedOutputStream(new FileOutputStream(toFile));
 
-                        IOUtils.copy(input, output);
+                        IOUtils.copyClose(input, output);
 
-                        output.flush();
-                        output.close();
-                        input.close();
+
 
                         fromFile.delete();
                         AppDB.get().delete(new FileMeta(fromFile.getPath()));

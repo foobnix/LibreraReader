@@ -251,11 +251,8 @@ public class CacheZipUtils {
                     }
                     File file = new File(folder.getDir(), name);
                     BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
-                    IOUtils.copy(zipInputStream, fileOutputStream);
+                    IOUtils.copyClose(zipInputStream, fileOutputStream);
                     LOG.d("Unpack archive", file.getPath());
-
-                    zipInputStream.close();
-
                     return new UnZipRes(path, file.getPath(), nextEntry.getName());
                 }
             }
@@ -281,7 +278,7 @@ public class CacheZipUtils {
                 File file = new File(toDir, name);
                 LOG.d("extractArchive", file.getName());
                 BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
-                IOUtils.copy(zipInputStream, fileOutputStream);
+                IOUtils.copyClose(zipInputStream, fileOutputStream);
             }
             zipInputStream.close();
         } catch (Exception e) {

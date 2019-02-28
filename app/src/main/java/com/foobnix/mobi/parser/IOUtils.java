@@ -59,6 +59,12 @@ public final class IOUtils {
     public static long copy(final InputStream input, final OutputStream output) throws IOException {
         return copy(input, output, COPY_BUF_SIZE);
     }
+    public static void copyClose(final InputStream input, final OutputStream output) throws IOException {
+        copy(input, output, COPY_BUF_SIZE);
+        output.flush();
+        output.close();
+        input.close();
+    }
 
     /**
      * Copies the content of a InputStream into an OutputStream

@@ -208,9 +208,7 @@ public class ZipDialog {
                 if (name.equals(fileName) || single) {
 
                     LOG.d("File extract", out.getPath());
-                    IOUtils.copy(zipInputStream, new FileOutputStream(out));
-                    zipInputStream.close();
-                    openInputStream.close();
+                    IOUtils.copyClose(zipInputStream, new FileOutputStream(out));
                     return out;
                 }
             }

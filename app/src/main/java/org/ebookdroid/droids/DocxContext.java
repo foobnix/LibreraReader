@@ -46,8 +46,8 @@ public class DocxContext extends PdfContext {
                     LOG.d("ImageConverter name", imageName);
 
                     FileOutputStream out = new FileOutputStream(new File(cacheFile.getParent(),imageName));
-                    IOUtils.copy(image.getInputStream(), out);
-                    out.close();
+                    IOUtils.copyClose(image.getInputStream(), out);
+
 
                     Map<String, String> map = new HashMap<>();
                     map.put("src",imageName);

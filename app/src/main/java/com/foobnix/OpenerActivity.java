@@ -65,8 +65,8 @@ public class OpenerActivity extends Activity {
                 if (!file.isFile()) {
                     FileOutputStream out = new FileOutputStream(file);
                     InputStream inputStream = getContentResolver().openInputStream(getIntent().getData());
-                    IOUtils.copy(inputStream, out);
-                    inputStream.close();
+                    IOUtils.copyClose(inputStream, out);
+
                     LOG.d("OpenerActivity", "creatae cache file", file.getPath());
                 }
             } catch (Exception e) {

@@ -167,7 +167,10 @@ public class Fb2Extractor extends BaseExtractor {
                     }
 
                     if (imageID != null && xpp.getName().equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
-                        decode = Base64.decode(xpp.nextText(), Base64.DEFAULT);
+                        String text = xpp.nextText();
+                        if(text!=null) {
+                            decode = Base64.decode(text, Base64.DEFAULT);
+                        }
                         break;
                     }
                 }

@@ -1,11 +1,5 @@
 package com.foobnix.sys;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Iterator;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.mobi.parser.IOUtils;
@@ -14,6 +8,12 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
 
 public class ZipArchiveInputStream extends InputStream {
 
@@ -49,8 +49,8 @@ public class ZipArchiveInputStream extends InputStream {
 
             LOG.d("ZipArchiveInputStream", "InputStream", "zip-tempFile", tempFile.getPath());
 
-            IOUtils.copy(is, new FileOutputStream(tempFile));
-            is.close();
+            IOUtils.copyClose(is, new FileOutputStream(tempFile));
+
 
             zp = new ZipFile(tempFile);
             iterator = zp.getFileHeaders().iterator();

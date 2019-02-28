@@ -93,7 +93,7 @@ public class CbzCbrExtractor {
                 String first = names.get(0);
                 while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                     if (nextEntry.getName().equals(first)) {
-                        IOUtils.copy(zipInputStream, out);
+                        IOUtils.copyClose(zipInputStream, out);
                         break;
                     }
                 }
