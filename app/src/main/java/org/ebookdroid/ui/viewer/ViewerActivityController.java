@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
@@ -136,7 +137,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             if (codecType == null) {
                 if (getActivity() != null) {
-                    Toast.makeText(getActivity(), getActivity().getString(R.string.app_name) + " " + getActivity().getString(R.string.application_cannot_open_the_book), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), Apps.getApplicationName(getActivity()) + " " + getActivity().getString(R.string.application_cannot_open_the_book), Toast.LENGTH_LONG).show();
                     getActivity().finish();
                 }
                 return;
