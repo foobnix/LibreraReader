@@ -504,7 +504,7 @@
    <string name="exit_application_question">Выйти из приложения?</string>
    <string name="open_folder_as_a_book">Открыть файлы папки как книгу</string>
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
-   <string name="allow_minimum_brightness">Разрешать минимально возможные значения яркости</string>
+   <string name="allow_minimum_brightness">Разрешать предельно минимальные значения яркости подсветки экрана</string>
    <string name="select">Выбрать</string>
    <string name="create_playlist">Создать плейлист</string>
    <string name="upload_to_cloud">Загрузить в облако</string>
@@ -517,7 +517,7 @@
    <string name="tags">Теги</string>
    <string name="are_you_sure_to_delete_playlist_">Вы уверены, что хотите удалить плейлист?</string>
    <string name="delete_this_bookmark_">Удалить эту закладку?</string>
-   <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при \"закрытом\" замочке</string>
+   <string name="zoom_in_out_with_lock_enable">Позволять масштабировать страницы двумя пальцами при \"закрытом\" замке</string>
    <string name="show_footnotes_directly_in_text">Показывать полный текст примечаний внутри текста самих книг</string>
    <string name="read_by_sentences">Начинать читать со слов после символов:</string>
    <string name="do_not_read_characters">Не произносить словами символы:</string>
@@ -526,7 +526,7 @@
    <string name="export_as_text">Экспортировать как обычный txt-файл</string>
    <string name="export_as_backup_json_">Экспортировать в виде резервной копии (JSON)</string>
    <string name="import_from_backup_json_">Импортировать из резервной копии (JSON)</string>
-   <string name="additional_bookmarks_bar">Отображение расширенной панели закладок:</string>
+   <string name="additional_bookmarks_bar">Отображение расширенной панели закладок на экране при чтении:</string>
    <string name="show_rectangular_tap_zones">Показывать прямоугольные зоны касаний</string>
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
    <string name="paste">Вставить</string>
@@ -535,6 +535,6 @@
    <string name="the_file_already_exists_">Такой файл уже существует</string>
    <string name="please_wait_books_are_being_processed_">Пожалуйста, подождите, пока обновится библиотека</string>
    <string name="system_brightness">Cистемное значение</string>
-   <string name="opening_books_in_the_specified_mode">Открытие книг в указанном режиме</string>
-   <string name="dark_oled">Темная OLED</string>
+   <string name="opening_books_in_the_specified_mode">Всегда открывать указанные форматы книг в соответствующих режимах:</string>
+   <string name="dark_oled">Черная (OLED)</string>
 </resources>
