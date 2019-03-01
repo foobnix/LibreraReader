@@ -1466,7 +1466,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     long lastClick = 0;
     long lastClickMaxTime = 300;
 
-    public void nextPage() {
+    public synchronized void nextPage() {
         flippingTimer = 0;
 
         boolean isAnimate = AppState.get().isScrollAnimation;
@@ -1481,7 +1481,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
-    public void prevPage() {
+    public synchronized void prevPage() {
         flippingTimer = 0;
 
         boolean isAnimate = AppState.get().isScrollAnimation;
@@ -2130,7 +2130,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     }
 
-    private boolean isMyKey = false;
+    private volatile boolean isMyKey = false;
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
