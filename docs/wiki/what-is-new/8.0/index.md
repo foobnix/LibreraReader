@@ -15,13 +15,13 @@ version: 6
 
 * Option to change Tabs position
 * Doc format support
-* Docx format support on Anroid 8+ devices
+* Docx format support on Android 8+ devices
 * Reading-mode presets
 
 **Bug Fixes**
 
 * Deleted files and folders no longer _ghost_ Library
-* Files, opened from other apps, will stay in Library until deleted (and cache cleared)
+* Files opened from other apps will stay in Library until deleted (and cache cleared)
 
 **Choose Tabs Position: Top or Bottom**
 
