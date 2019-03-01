@@ -352,6 +352,10 @@ public class PrefFragment2 extends UIFragment {
         final ScrollView scrollView = (ScrollView) inflate.findViewById(R.id.scroll);
         scrollView.setVerticalScrollBarEnabled(false);
 
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
+            scrollView.setBackgroundColor(Color.BLACK);
+        }
+
         ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s", getString(R.string.product), AppsConfig.TXT_APP_NAME));
         // ((TextView) findViewById(R.id.appName)).setText(AppsConfig.APP_NAME);
 
