@@ -1876,7 +1876,11 @@ public class DocumentWrapperUI {
     }
 
     public void showPagesHelper() {
-        BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+        try {
+            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     public void showOutline(final List<OutlineLinkWrapper> list, final int count) {

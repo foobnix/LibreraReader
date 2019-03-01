@@ -2000,6 +2000,9 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onScan() {
+        if(getActivity() ==null){
+            return;
+        }
         closeLeftMenu();
 
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));

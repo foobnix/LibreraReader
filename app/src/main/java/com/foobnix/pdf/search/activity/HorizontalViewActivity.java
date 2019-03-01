@@ -1002,7 +1002,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void showPagesHelper() {
-        BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+        try {
+            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+        }catch (Exception e){
+            LOG.e(e);
+        }
+
     }
 
     public View.OnClickListener onBookmarks = new View.OnClickListener() {
