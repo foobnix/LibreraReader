@@ -242,6 +242,15 @@ dependencies {
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
 
+//    implementation 'com.google.android.gms:play-services-auth:+'
+//    implementation('com.google.api-client:google-api-client-android:+') {
+//        exclude group: 'org.apache.httpcomponents'
+//    }
+//    implementation('com.google.apis:google-api-services-drive:+') {
+//        exclude group: 'org.apache.httpcomponents'
+//    }
+
+
 
 
 
