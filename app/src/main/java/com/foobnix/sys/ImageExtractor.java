@@ -9,7 +9,11 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
+import android.os.Build;
+import android.os.ParcelFileDescriptor;
+import android.support.annotation.RequiresApi;
 import android.util.Base64;
 import android.util.Pair;
 
@@ -84,6 +88,32 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public synchronized Bitmap coverPDFNative(PageUrl pageUrl) {
+        try {
+            LOG.d("Cover-PDF-navite");
+            PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY));
+            PdfRenderer.Page page = renderer.openPage(0);
+
+            final float k = (float) page.getHeight() / page.getWidth();
+            int width = pageUrl.getWidth();
+            int height = (int) (width * k);
+
+
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+
+            page.close();
+            renderer.close();
+            return bitmap;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+
+    }
+
+
     private ImageExtractor(final Context c) {
         this.c = c;
         baseImage = new BaseImageDownloader(c);
@@ -121,7 +151,7 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
-        } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath!=null && unZipPath.endsWith(".docx"))) {
+        } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath != null && unZipPath.endsWith(".docx"))) {
             cover = BaseExtractor.arrayToBitmap(OdtExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (BookType.FB2.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(Fb2Extractor.get().getBookCover(unZipPath), pageUrl.getWidth());
@@ -315,7 +345,8 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     @Deprecated
-    public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap bitmap) {
+    public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap
+            bitmap) {
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final Rect rootRect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 
@@ -332,7 +363,8 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     @Override
-    public synchronized InputStream getStream(final String imageUri, final Object extra) throws IOException {
+    public synchronized InputStream getStream(final String imageUri, final Object extra) throws
+            IOException {
         try {
             return getStreamInner(imageUri);
         } finally {
@@ -559,7 +591,8 @@ public class ImageExtractor implements ImageDownloader {
         pathCache = path;
     }
 
-    public static synchronized CodecDocument singleCodecContext(final String path, String passw, int w, int h) {
+    public static synchronized CodecDocument singleCodecContext(final String path, String
+            passw, int w, int h) {
         try {
             CodecContext codecContex = BookType.getCodecContextByPath(path);
 
@@ -577,7 +610,8 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public static synchronized CodecDocument getNewCodecContext(final String path, String passw, int w, int h) {
+    public static synchronized CodecDocument getNewCodecContext(final String path, String
+            passw, int w, int h) {
 
         if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {
             LOG.d("getNewCodecContext cache", path, w, h);

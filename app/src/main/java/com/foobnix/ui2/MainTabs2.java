@@ -358,7 +358,9 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         try {
             LOG.d("checkForNewBeta");
-            AndroidWhatsNew.checkForNewBeta(this);
+            if(AppState.get().isShowWhatIsNewDialog) {
+                AndroidWhatsNew.checkForNewBeta(this);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }

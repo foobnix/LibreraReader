@@ -378,7 +378,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     }
 
-    private boolean isMyKey = false;
+    private volatile boolean isMyKey = false;
 
     @Override
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
@@ -396,13 +396,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
         LOG.d("onKeyDown");
-
+        isMyKey = false;
         int repeatCount = event.getRepeatCount();
         if (repeatCount >= 1 && repeatCount < DocumentController.REPEAT_SKIP_AMOUNT) {
+            isMyKey = true;
             return true;
         }
 
-        isMyKey = false;
+
         if (getController().getWrapperControlls().dispatchKeyEventDown(event)) {
             isMyKey = true;
             return true;
