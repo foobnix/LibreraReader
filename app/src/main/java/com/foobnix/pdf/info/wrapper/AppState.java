@@ -302,6 +302,9 @@ public class AppState {
     public int ttsTimer = 60;
     public int ttsPauseDuration = 350;
 
+    public int transparencyUI = 245;
+
+
     @IgnoreHashCode
     public int pageNumberFormat = PAGE_NUMBER_FORMAT_NUMBER;
 
@@ -483,6 +486,7 @@ public class AppState {
     public int editAlphaColor = 100;
     public float editLineWidth = 3;
 
+    @IgnoreHashCode
     public boolean isRememberMode = false;
 
     public volatile boolean isAutoScroll = false;

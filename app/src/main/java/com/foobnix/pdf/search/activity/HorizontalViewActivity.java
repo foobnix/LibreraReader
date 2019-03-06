@@ -1772,8 +1772,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private void tinUI() {
-        TintUtil.setTintBgSimple(actionBar, 230);
-        TintUtil.setTintBgSimple(bottomBar, 230);
+        TintUtil.setTintBgSimple(actionBar, AppState.get().transparencyUI);
+        TintUtil.setTintBgSimple(bottomBar, AppState.get().transparencyUI);
         TintUtil.setStatusBarColor(this);
         // TintUtil.setBackgroundFillColorBottomRight(ttsActive,
         // ColorUtils.setAlphaComponent(TintUtil.color, 230));

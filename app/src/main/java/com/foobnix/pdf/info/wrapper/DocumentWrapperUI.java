@@ -88,7 +88,6 @@ import java.util.concurrent.TimeUnit;
  * 
  */
 public class DocumentWrapperUI {
-    private static final int TRANSPARENT_UI = 240;
 
     final DocumentController dc;
     Activity a;
@@ -881,9 +880,9 @@ public class DocumentWrapperUI {
         // bottom 1
         TintUtil.setStatusBarColor(a);
 
-        TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), TRANSPARENT_UI);
-        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), TRANSPARENT_UI);
-        TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, TRANSPARENT_UI));
+        TintUtil.setTintBgSimple(a.findViewById(R.id.menuLayout), AppState.get().transparencyUI);
+        TintUtil.setTintBgSimple(a.findViewById(R.id.bottomBar1), AppState.get().transparencyUI);
+        TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
         tintSpeed();
 
         pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);

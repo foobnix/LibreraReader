@@ -227,7 +227,10 @@ dependencies {
     implementation 'com.android.support:customtabs:28+'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'org.greenrobot:greendao:3.2.2'
+
+    implementation ('org.greenrobot:greendao:3.2.2'){
+        exclude group: 'org.greenrobot.greendao.rx'
+    }
     implementation 'org.greenrobot:greendao-api:3.2.2'
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
