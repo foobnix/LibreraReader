@@ -1592,6 +1592,7 @@ public class DragingDialogs {
                                             intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
 
                                             controller.getActivity().startActivity(intentProccessText);
+                                            LOG.d("dict-intent",intentProccessText);
                                         } else if (searchList.contains(app)) {
                                             LOG.d("dict-intent", "searchList");
                                             intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -1602,6 +1603,7 @@ public class DragingDialogs {
                                             intentSearch.putExtra(Intent.EXTRA_TEXT, selecteText);
 
                                             controller.getActivity().startActivity(intentSearch);
+                                            LOG.d("dict-intent",intentSearch);
                                         } else if (sendList.contains(app)) {
                                             LOG.d("dict-intent", "sendList");
                                             intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -1610,8 +1612,12 @@ public class DragingDialogs {
 
                                             intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
                                             controller.getActivity().startActivity(intentSend);
+                                            LOG.d("dict-intent",intentSend);
                                         }
                                         sp.edit().putString("last", app.activityInfo.name).commit();
+
+
+                                        controller.clearSelectedText();
 
                                     }
                                 });

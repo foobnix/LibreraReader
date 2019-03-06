@@ -732,7 +732,7 @@ public class AppState {
         return isReverseKeys ? nextKeys : prevKeys;
     }
 
-    public static Map<String, String> getDictionaries(String input) {
+    public static Map<String, String > getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<String, String>();
         String ln = AppState.get().toLang;
         String from = AppState.get().fromLang;

@@ -1567,7 +1567,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             } else {
 
                 if (AppState.get().isRememberDictionary) {
-                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                    final String text = AppState.get().selectedText;
+                    DictsHelper.runIntent(dc.getActivity(), text);
+                    dc.clearSelectedText();
                 } else {
                     DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
                 }

@@ -174,6 +174,7 @@ public class DocumentWrapperUI {
         } else {
             if (AppState.get().isRememberDictionary) {
                 DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                dc.clearSelectedText();
             } else {
                 DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
             }
@@ -624,7 +625,10 @@ public class DocumentWrapperUI {
             public void run() {
                 onMoveAction.run();
                 if (AppState.get().isRememberDictionary) {
-                    DictsHelper.runIntent(dc.getActivity(), AppState.get().selectedText);
+                    final String text = AppState.get().selectedText;
+                    DictsHelper.runIntent(dc.getActivity(), text);
+                    dc.clearSelectedText();
+
                 } else {
                     DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
                 }
