@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
+import android.os.Environment;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
+import java.io.File;
 import java.util.Random;
 
 public class AppsConfig {
@@ -20,6 +22,8 @@ public class AppsConfig {
 
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
+
+    public static File SYNC_FOLDER = new File(Environment.getExternalStorageDirectory(), "Librera/sync/"+ Build.MODEL);
 
 
     public static boolean IS_BETA;

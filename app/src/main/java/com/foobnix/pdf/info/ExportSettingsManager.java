@@ -1,17 +1,11 @@
 package com.foobnix.pdf.info;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.os.Environment;
+import android.support.v4.util.Pair;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -21,12 +15,18 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Environment;
-import android.support.v4.util.Pair;
-import android.widget.Toast;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class ExportSettingsManager {
     public static final String PREFIX_BOOKMARKS_PREFERENCES = "ViewerPreferences";// DO
@@ -34,7 +34,6 @@ public class ExportSettingsManager {
                                                                                   // CHANGE!!!!
     public static final String PREFIX_BOOKS = "BOOKS";
     public static final String PREFIX_PDF = "pdf";
-    public static final String PREFIX_RESULTS = "search_results_1";
     public static final String PREFIX_BOOK_CSS = "BookCSS";
 
     public static final String PREFIX_RECENT = "Recent";
@@ -74,7 +73,6 @@ public class ExportSettingsManager {
             BookCSS.get().checkBeforeExport(c);
 
             JSONObject root = new JSONObject();
-            root.put(PREFIX_PDF, exportToJSon(PREFIX_RESULTS, pdfSP, null, null));
             root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null, null));
             root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null, null));
             root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null, null));

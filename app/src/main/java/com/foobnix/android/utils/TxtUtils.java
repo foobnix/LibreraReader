@@ -1,24 +1,5 @@
 package com.foobnix.android.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.Character.UnicodeBlock;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.ebookdroid.LibreraApp;
-
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -34,6 +15,25 @@ import android.text.SpannedString;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.TempHolder;
+
+import org.ebookdroid.LibreraApp;
+
+import java.io.UnsupportedEncodingException;
+import java.lang.Character.UnicodeBlock;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TxtUtils {
 
@@ -955,5 +955,7 @@ public class TxtUtils {
 
         return buf.toString();
     }
+
+
 
 }

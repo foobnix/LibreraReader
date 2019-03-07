@@ -24,6 +24,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.sh.MySharedPreferences;
 import com.foobnix.ui2.AppDB;
 
 import java.io.File;
@@ -856,7 +857,8 @@ public class AppState {
         if (a == null) {
             return;
         }
-        sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+        //sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
+        sp = new MySharedPreferences(ExportSettingsManager.PREFIX_PDF);
         Objects.loadFromSp(this, sp);
     }
 
@@ -902,9 +904,10 @@ public class AppState {
             LOG.d("Objects", "Ignore save hashCode the same");
             return;
         }
-        sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
         hashCode = currentHash;
-        Objects.saveToSP(AppState.get(), sp);
+        if(sp!=null) {
+            Objects.saveToSP(AppState.get(), sp);
+        }
     }
 
     public boolean isTextFormat() {

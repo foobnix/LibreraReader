@@ -1,5 +1,16 @@
 package com.foobnix.pdf.info;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.Uri;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.sh.MySharedPreferences;
+import com.foobnix.sys.TempHolder;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,16 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.sys.TempHolder;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.net.Uri;
 
 public class AppSharedPreferences {
     public static final String BOOKMARK_ = "bookmark_";
@@ -33,7 +34,8 @@ public class AppSharedPreferences {
     }
 
     public void init(Context context) {
-        bookmarkPreferences = context.getSharedPreferences(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES, Context.MODE_PRIVATE);
+        //bookmarkPreferences = context.getSharedPreferences(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES, Context.MODE_PRIVATE);
+        bookmarkPreferences = new MySharedPreferences(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
     }
 
     public void addRecent(Uri uri) {

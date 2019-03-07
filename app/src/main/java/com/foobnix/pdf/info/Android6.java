@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.ui2.AppDB;
 
 public class Android6 {
 
@@ -62,6 +63,9 @@ public class Android6 {
         } else {
             if(checkWhatIsNew) {
                 AndroidWhatsNew.checkWhatsNew(a);
+            }
+            if(!AppDB.get().isOpen){
+                AppDB.get().open(a);
             }
             FontExtractor.extractFonts(a);
         }

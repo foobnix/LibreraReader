@@ -12,6 +12,8 @@ import com.foobnix.dao2.DaoSession;
 import com.foobnix.dao2.DatabaseUpgradeHelper;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
+import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -152,9 +154,13 @@ public class AppDB {
         return meta.getCusType() != null && meta.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY;
 
     }
-
+    public boolean isOpen;
     public void open(Context c) {
-        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
+        isOpen = false;
+        if (!Android6.canWrite(c)) {
+            return;
+        }
+        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, AppsConfig.SYNC_FOLDER+"/"+DB_NAME);
 
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);
@@ -162,6 +168,7 @@ public class AppDB {
         daoSession = daoMaster.newSession();
 
         fileMetaDao = daoSession.getFileMetaDao();
+        isOpen = true;
 
         // if (c.getResources().getBoolean(R.bool.is_log_enable)) {
         // QueryBuilder.LOG_SQL = true;
@@ -170,11 +177,11 @@ public class AppDB {
 
     }
 
-    public void dropCreateTables(Context c) {
-        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
-        DaoMaster.dropAllTables(helper.getWritableDb(), true);
-        DaoMaster.createAllTables(helper.getWritableDb(), true);
-    }
+    //public void dropCreateTables(Context c) {
+    //    DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
+    //    DaoMaster.dropAllTables(helper.getWritableDb(), true);
+    //    DaoMaster.createAllTables(helper.getWritableDb(), true);
+   // }
 
     public List<FileMeta> deleteAllSafe() {
         try {
@@ -254,6 +261,7 @@ public class AppDB {
     }
 
     public List<FileMeta> getAllRecentWithProgress() {
+        SettingsManager.load();
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
         for (FileMeta meta : list) {
             BookSettings bs = SettingsManager.getTempBookSettings(meta.getPath());

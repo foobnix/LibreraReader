@@ -16,6 +16,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.sh.MySharedPreferences;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -143,7 +144,7 @@ public class BookCSS {
         LOG.d("BookCSS", "resetToDefault");
 
     }
-
+    SharedPreferences sp;
     public void load(Context c) {
         if (c == null) {
             return;
@@ -151,7 +152,8 @@ public class BookCSS {
         DEFAULT_FOLDER = FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
         resetToDefault(c);
 
-        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
+        //sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
+        sp = new MySharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS);
         Objects.loadFromSp(this, sp);
     }
 
@@ -159,7 +161,7 @@ public class BookCSS {
         if (c == null) {
             return;
         }
-        SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
+        //SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
         Objects.saveToSP(BookCSS.get(), sp);
     }
 

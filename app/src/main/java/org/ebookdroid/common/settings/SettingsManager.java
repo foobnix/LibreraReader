@@ -1,6 +1,9 @@
 package org.ebookdroid.common.settings;
 
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import android.content.Context;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.AppState;
 
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.books.SharedDB;
@@ -8,10 +11,7 @@ import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.core.PageIndex;
 import org.emdev.utils.listeners.ListenerProxy;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
-
-import android.content.Context;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class SettingsManager {
 
@@ -56,6 +56,14 @@ public class SettingsManager {
             LOG.e(e);
         }
 
+    }
+    public static void load(){
+        lock.writeLock().lock();
+        try {
+            db.load();
+        }finally {
+            lock.writeLock().unlock();
+        }
     }
 
     public static BookSettings getTempBookSettings(final String fileName) {

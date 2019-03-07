@@ -1,9 +1,9 @@
 package com.foobnix.android.utils;
 
+import android.util.Log;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-
-import android.util.Log;
 
 public class LOG {
     public static boolean isEnable = false;
@@ -36,6 +36,12 @@ public class LOG {
     public static void e(Throwable e, Object... statement) {
         if (isEnable) {
             Log.e(TAG, asString(statement), e);
+        }
+    }
+
+    public static void w(Throwable e, Object... statement) {
+        if (isEnable) {
+            Log.w(TAG, asString(statement), e);
         }
     }
 
