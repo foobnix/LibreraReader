@@ -1,22 +1,20 @@
 package com.foobnix.pdf.info.model;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Environment;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExportSettingsManager;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sh.MySharedPreferences;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
@@ -33,6 +31,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class BookCSS {
+
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "BookCSS.json");
+
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
 
@@ -144,7 +145,7 @@ public class BookCSS {
         LOG.d("BookCSS", "resetToDefault");
 
     }
-    SharedPreferences sp;
+
     public void load(Context c) {
         if (c == null) {
             return;
@@ -152,17 +153,16 @@ public class BookCSS {
         DEFAULT_FOLDER = FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
         resetToDefault(c);
 
-        //sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-        sp = new MySharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS);
-        Objects.loadFromSp(this, sp);
+        IO.readObj(syncFile,instance);
+
+
     }
 
     public void save(Context c) {
         if (c == null) {
             return;
         }
-        //SharedPreferences sp = c.getSharedPreferences(ExportSettingsManager.PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-        Objects.saveToSP(BookCSS.get(), sp);
+        IO.writeObj(syncFile,instance);
     }
 
     public int position(String fontName) {
@@ -471,11 +471,11 @@ public class BookCSS {
         return "" + em + "em";
     }
 
-    private static BookCSS inst = new BookCSS();
+    private static BookCSS instance = new BookCSS();
 
     public static BookCSS get() {
 
-        return inst;
+        return instance;
     }
 
     public String getTextAlignConst(int id) {

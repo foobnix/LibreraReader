@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.wrapper;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
@@ -11,6 +10,7 @@ import android.view.KeyEvent;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
@@ -18,13 +18,11 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
-import com.foobnix.sh.MySharedPreferences;
 import com.foobnix.ui2.AppDB;
 
 import java.io.File;
@@ -39,6 +37,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppState {
+
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json");
+
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String PROXY_HTTP = "HTTP";
@@ -135,7 +136,7 @@ public class AppState {
 
     );
 
-    public List<String> COLORS = Arrays.asList(//
+    public static final List<String> COLORS = Arrays.asList(//
             "#000001", //
             "#000002", //
             "#0000FF", //
@@ -202,7 +203,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
+    public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     // public static String DEFAULTS_TABS_ORDER =
     // "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#1";BETA
     public String tabsOrder7 = DEFAULTS_TABS_ORDER;
@@ -527,7 +528,6 @@ public class AppState {
     public int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
 
     private static AppState instance = new AppState();
-    private SharedPreferences sp;
 
     public int libraryMode = MODE_GRID;
     public int broseMode = MODE_LIST;
@@ -627,7 +627,7 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
 
     // perofrmance
-    public int pagesInMemory =  3;
+    public int pagesInMemory = 3;
     public float pageQuality = Build.VERSION.SDK_INT >= 24 ? 1.4f : 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
@@ -737,7 +737,7 @@ public class AppState {
         return isReverseKeys ? nextKeys : prevKeys;
     }
 
-    public static Map<String, String > getDictionaries(String input) {
+    public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<String, String>();
         String ln = AppState.get().toLang;
         String from = AppState.get().fromLang;
@@ -857,9 +857,7 @@ public class AppState {
         if (a == null) {
             return;
         }
-        //sp = a.getSharedPreferences(ExportSettingsManager.PREFIX_PDF, Context.MODE_PRIVATE);
-        sp = new MySharedPreferences(ExportSettingsManager.PREFIX_PDF);
-        Objects.loadFromSp(this, sp);
+        IO.readObj(syncFile,instance);
     }
 
     public static String keyToString(final List<Integer> list) {
@@ -905,9 +903,8 @@ public class AppState {
             return;
         }
         hashCode = currentHash;
-        if(sp!=null) {
-            Objects.saveToSP(AppState.get(), sp);
-        }
+
+        IO.writeObj(syncFile,instance);
     }
 
     public boolean isTextFormat() {

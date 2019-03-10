@@ -21,7 +21,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
-import com.foobnix.sh.MySharedPreferences;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -86,8 +85,8 @@ public abstract class DragingPopup {
     public static void loadCache(final Context c) {
         try {
             cache.clear();
-            //SharedPreferences sp =  c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
-            SharedPreferences sp =  new MySharedPreferences(DRAGGING_POPUPS);
+            SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
+
             Map<String, String> all = (Map<String, String>) sp.getAll();
             for (String key : all.keySet()) {
                 cache.put(key, Place.fromString(all.get(key)));
@@ -98,8 +97,7 @@ public abstract class DragingPopup {
     }
 
     public static void saveCache(final Context c) {
-        //SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
-        SharedPreferences sp =  new MySharedPreferences(DRAGGING_POPUPS);
+        SharedPreferences sp = c.getSharedPreferences(DRAGGING_POPUPS, Context.MODE_PRIVATE);
         sp.edit().clear().commit();
         Editor edit = sp.edit();
         for (String key : cache.keySet()) {
