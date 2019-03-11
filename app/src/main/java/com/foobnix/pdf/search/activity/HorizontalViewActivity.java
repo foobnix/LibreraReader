@@ -609,7 +609,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     @Override
                     public void run() {
-                        SettingsManager.getBookSettings().cropPages = AppState.get().isCrop;
+                        SettingsManager.getBookSettings().cp = AppState.get().isCrop;
                         reloadDocBrigntness.run();
                         onCrop.underline(AppState.get().isCrop);
 
@@ -1308,7 +1308,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
         }
-//        if (AppState.get().isLocked) {
+//        if (AppState.get().l) {
 //            TintUtil.setTintImageWithAlpha(moveCenter, Color.LTGRAY);
 //        } else {
 //            TintUtil.setTintImageWithAlpha(moveCenter, Color.WHITE);

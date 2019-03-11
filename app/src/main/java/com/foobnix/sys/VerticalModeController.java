@@ -1,45 +1,5 @@
 package com.foobnix.sys;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.ebookdroid.common.settings.CoreSettings;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.Page;
-import org.ebookdroid.core.codec.Annotation;
-import org.ebookdroid.core.codec.OutlineLink;
-import org.ebookdroid.core.codec.PageLink;
-import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
-import org.ebookdroid.droids.mupdf.codec.TextWord;
-import org.ebookdroid.ui.viewer.ViewerActivityController;
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.PageUrl;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.widget.PrefDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.search.activity.msg.MessagePageXY;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -55,6 +15,46 @@ import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.widget.PrefDialogs;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
+
+import org.ebookdroid.common.settings.CoreSettings;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.core.Page;
+import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.OutlineLink;
+import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
+import org.ebookdroid.ui.viewer.ViewerActivityController;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class VerticalModeController extends DocumentController {
 
@@ -258,12 +258,12 @@ public class VerticalModeController extends DocumentController {
         if (bookSettings == null) {
             return false;
         }
-        return bookSettings.cropPages;
+        return bookSettings.cp;
     }
 
     @Override
     public void saveChanges(final List<PointF> points, final int color) {
-        if (SettingsManager.getBookSettings().cropPages) {
+        if (SettingsManager.getBookSettings().cp) {
             onCrop();
             return;
         }
@@ -291,8 +291,8 @@ public class VerticalModeController extends DocumentController {
                 LOG.d("PAGE #", page.index.viewIndex);
                 LOG.d("PAGE wxh", page.cpi.width, page.cpi.height);
                 LOG.d("PAGE dpi", page.cpi.dpi, page.cpi.dpi);
-                LOG.d("pbounds p", pbounds, "zoom", zoom, "aspect", aspect);
-                LOG.d("pbounds p", pbounds, "zoom", zoom, "aspect", aspect);
+                LOG.d("pbounds p", pbounds, "z", zoom, "aspect", aspect);
+                LOG.d("pbounds p", pbounds, "z", zoom, "aspect", aspect);
 
                 if (RectF.intersects(pbounds, tapRect)) {
                     int pNumber = page.index.docIndex;

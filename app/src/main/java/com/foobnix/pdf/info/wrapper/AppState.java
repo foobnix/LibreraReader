@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json.zip");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json");
 
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -81,7 +81,7 @@ public class AppState {
     public static final String JPG = "JPG";
 
     public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt".split(", ");
-    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .pages, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
+    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
     public static int COLOR_WHITE = Color.WHITE;
@@ -341,7 +341,7 @@ public class AppState {
     public long fontExtractTime = 0;
 
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
-    // pages,
+    // n,
     // 25 - 25%
     // persent
 

@@ -98,15 +98,15 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             final BookSettings bs = SettingsManager.getBookSettings(path);
             // AppState.get().setNextScreen(bs.isNextScreen);
             if (bs != null) {
-                // AppState.get().isLocked = bs.isLocked;
-                AppState.get().autoScrollSpeed = bs.speed;
-                AppState.get().isCut = bs.isTextFormat() ? false : bs.splitPages;
-                AppState.get().isCrop = bs.cropPages;
+                // AppState.get().l = bs.l;
+                AppState.get().autoScrollSpeed = bs.s;
+                AppState.get().isCut = ExtUtils.isTextFomat(bs.path) ? false : bs.sp;
+                AppState.get().isCrop = bs.cp;
                 AppState.get().isDouble = false;
                 AppState.get().isDoubleCoverAlone = false;
-                AppState.get().isLocked = bs.isLocked;
-                TempHolder.get().pageDelta = bs.pageDelta;
-                if (AppState.get().isCropPDF && !bs.isTextFormat()) {
+                AppState.get().isLocked = bs.l;
+                TempHolder.get().pageDelta = bs.d;
+                if (AppState.get().isCropPDF && !ExtUtils.isTextFomat(bs.path)) {
                     AppState.get().isCrop = true;
                 }
             }

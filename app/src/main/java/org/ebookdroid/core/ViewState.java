@@ -1,5 +1,10 @@
 package org.ebookdroid.core;
 
+import android.graphics.PointF;
+import android.graphics.RectF;
+
+import com.foobnix.pdf.info.wrapper.AppState;
+
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -8,11 +13,6 @@ import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController;
-
-import com.foobnix.pdf.info.wrapper.AppState;
-
-import android.graphics.PointF;
-import android.graphics.RectF;
 
 public class ViewState {
 
@@ -122,7 +122,7 @@ public class ViewState {
     public String toString() {
         final StringBuilder buf = new StringBuilder();
 
-        pages.toString(buf).append(" ").append("zoom: ").append(zoom);
+        pages.toString(buf).append(" ").append("z: ").append(zoom);
 
         return buf.toString();
     }

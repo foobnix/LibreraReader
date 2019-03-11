@@ -139,7 +139,7 @@ public class DocumentModel extends ListenerProxy {
 
             this.currentIndex = newIndex;
 
-            this.<CurrentPageListener>getListener().currentPageChanged(newIndex, pages);
+            this.<CurrentPageListener>getListener().currentPageChanged(newIndex.docIndex, pages);
         }
     }
 
@@ -220,11 +220,11 @@ public class DocumentModel extends ListenerProxy {
 
     private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final BookSettings bs, final IProgressIndicator task) {
         int pagesCount = base.getDecodeService().getPageCount();
-        final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.fileName, pagesCount);
+        final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.path, pagesCount);
 
         try {
             if (pagesCount > 0) {
-                FileMeta meta = AppDB.get().load(bs.fileName);
+                FileMeta meta = AppDB.get().load(bs.path);
                 if (meta != null) {
                     meta.setPages(pagesCount);
                     AppDB.get().update(meta);

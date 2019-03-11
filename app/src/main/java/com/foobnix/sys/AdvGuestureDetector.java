@@ -1,15 +1,10 @@
 package com.foobnix.sys;
 
-import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.touch.IGestureDetector;
-import org.ebookdroid.common.touch.IMultiTouchListener;
-import org.ebookdroid.common.touch.TouchManager;
-import org.ebookdroid.core.AbstractViewController;
-import org.ebookdroid.core.codec.Annotation;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -23,11 +18,16 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.MotionEvent;
-import android.widget.Toast;
+import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.touch.IGestureDetector;
+import org.ebookdroid.common.touch.IMultiTouchListener;
+import org.ebookdroid.common.touch.TouchManager;
+import org.ebookdroid.core.AbstractViewController;
+import org.ebookdroid.core.codec.Annotation;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class AdvGuestureDetector extends SimpleOnGestureListener implements IMultiTouchListener {
 
@@ -345,7 +345,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
         isLongMovement = true;
 
-        if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cropPages) {
+        if (SettingsManager.getBookSettings() != null && SettingsManager.getBookSettings().cp) {
             docCtrl.onCrop();
         }
         AppState.get().selectedText = avc.processLongTap(true, e, e, true);

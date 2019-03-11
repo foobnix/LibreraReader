@@ -34,7 +34,6 @@ import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.PageSearcher;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -154,12 +153,12 @@ public abstract class HorizontalModeController extends DocumentController {
 
         BookSettings bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
-            AppState.get().isCut = bs.splitPages;
-            AppState.get().isCrop = bs.cropPages;
-            AppState.get().isDouble = bs.doublePages;
-            AppState.get().isDoubleCoverAlone = bs.doublePagesCover;
-            AppState.get().isLocked = bs.isLocked;
-            TempHolder.get().pageDelta = bs.pageDelta;
+            AppState.get().isCut = bs.sp;
+            AppState.get().isCrop = bs.cp;
+            AppState.get().isDouble = bs.dp;
+            AppState.get().isDoubleCoverAlone = bs.dc;
+            AppState.get().isLocked = bs.l;
+            TempHolder.get().pageDelta = bs.d;
 
             if (AppState.get().isCropPDF && !isTextFormat) {
                 AppState.get().isCrop = true;
@@ -209,7 +208,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
         try {
             if (pagesCount > 0) {
-                FileMeta meta = AppDB.get().load(bs.fileName);
+                FileMeta meta = AppDB.get().load(bs.path);
                 if (meta != null) {
                     meta.setPages(pagesCount);
                     AppDB.get().update(meta);
@@ -260,7 +259,7 @@ public abstract class HorizontalModeController extends DocumentController {
             number = (int) Math.round(pagesCount * percent) - 1;
         }
 
-        LOG.d("getPageFromUri", "number by percent", percent, number);
+        LOG.d("getPageFromUri", "number by p", percent, number);
 
         if (number > 0) {
             currentPage = number;
@@ -283,7 +282,7 @@ public abstract class HorizontalModeController extends DocumentController {
         try {
             BookSettings bs = SettingsManager.getBookSettings(getBookPath());
             bs.updateFromAppState();
-            bs.currentPageChanged(new PageIndex(currentPage, currentPage), pagesCount);
+            bs.currentPageChanged(currentPage, pagesCount);
             bs.save();
             activity.getIntent().putExtra(EXTRA_PAGE, currentPage);
         } catch (Exception e) {

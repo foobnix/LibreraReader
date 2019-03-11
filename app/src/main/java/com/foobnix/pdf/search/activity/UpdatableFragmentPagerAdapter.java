@@ -1,7 +1,5 @@
 package com.foobnix.pdf.search.activity;
 
-import com.foobnix.android.utils.LOG;
-
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -14,18 +12,20 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.foobnix.android.utils.LOG;
+
 /**
  * Implementation of {@link PagerAdapter} that
  * uses a {@link Fragment} to manage each page. This class also handles
  * saving and restoring of fragment's state.
  *
  * <p>This version of the pager is more useful when there are a large number
- * of pages, working more like a list view.  When pages are not visible to
+ * of n, working more like a list view.  When n are not visible to
  * the user, their entire fragment may be destroyed, only keeping the saved
  * state of that fragment.  This allows the pager to hold on to much less
  * memory associated with each visited page as compared to
  * {@link FragmentPagerAdapter} at the cost of potentially more overhead when
- * switching between pages.
+ * switching between n.
  *
  * <p>When using FragmentPagerAdapter the host ViewPager must have a
  * valid ID set.</p>

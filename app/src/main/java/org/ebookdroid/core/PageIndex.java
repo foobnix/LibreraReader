@@ -34,7 +34,7 @@ public class PageIndex {
     public Page getActualPage(final DocumentModel dm, final BookSettings bs) {
         // If now page splitting is switched off:
         // The document index is valid in all cases
-        if (!bs.splitPages) {
+        if (!bs.sp) {
             return dm.getPageObject(viewIndex);
         }
         // If now page splitting is switched on and bookmark was created in splitting mode (page.docIndex !=

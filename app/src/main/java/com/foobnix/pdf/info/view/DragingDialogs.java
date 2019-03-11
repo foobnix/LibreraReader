@@ -2484,8 +2484,8 @@ public class DragingDialogs {
                         PageImageState.get().isShowCuttingLine = false;
                         AppState.get().isCut = false;
                         BookSettings bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
-                        boolean wasSplit = bookSettings.splitPages;
-                        bookSettings.splitPages = false;
+                        boolean wasSplit = bookSettings.sp;
+                        bookSettings.sp = false;
                         onRefreshDoc.run();
                         closeDialog();
                         if (wasSplit) {
@@ -2503,7 +2503,7 @@ public class DragingDialogs {
                         PageImageState.get().isShowCuttingLine = false;
                         AppState.get().isCut = true;
                         AppState.get().isCrop = false;
-                        boolean init = SettingsManager.getBookSettings().splitPages;
+                        boolean init = SettingsManager.getBookSettings().sp;
                         SettingsManager.getBookSettings().updateFromAppState();
                         onRefreshDoc.run();
                         closeDialog();

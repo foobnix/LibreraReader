@@ -49,7 +49,7 @@ public class SettingsManager {
     public static void updateTempPage(String fileName, int pageNumber) {
         try {
             BookSettings bookSettings = getTempBookSettings(fileName);
-            bookSettings.currentPage = new PageIndex(pageNumber, pageNumber);
+            bookSettings.currentPageChanged(pageNumber);
             db.storeBookSettings(bookSettings);
             LOG.d("updateTempPage", fileName, pageNumber);
         } catch (Exception e) {
@@ -122,21 +122,21 @@ public class SettingsManager {
         lock.writeLock().lock();
         try {
             if (current != null) {
-                current.cropPages = isCrop;
+                current.cp = isCrop;
                 db.storeBookSettings(current);
             }
         } finally {
             lock.writeLock().unlock();
         }
 
-        return current.cropPages;
+        return current.cp;
     }
 
     public static void currentPageChanged(final PageIndex newIndex, int pages) {
         lock.readLock().lock();
         try {
             if (current != null) {
-                current.currentPageChanged(newIndex, pages);
+                current.currentPageChanged(newIndex.docIndex, pages);
             }
         } finally {
             lock.readLock().unlock();
@@ -158,8 +158,8 @@ public class SettingsManager {
         lock.readLock().lock();
         try {
             if (current != null) {
-                current.offsetX = offsetX;
-                current.offsetY = offsetY;
+                current.x = offsetX;
+                current.y = offsetY;
             }
         } finally {
             lock.readLock().unlock();
@@ -170,7 +170,7 @@ public class SettingsManager {
         lock.readLock().lock();
         try {
             if (current != null) {
-                current.speed = AppState.get().autoScrollSpeed;
+                current.s = AppState.get().autoScrollSpeed;
                 db.storeBookSettings(current);
             }
         } finally {

@@ -1,8 +1,18 @@
 package org.ebookdroid.core;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.AdvGuestureDetector;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
@@ -28,19 +38,9 @@ import org.emdev.ui.actions.params.Constant;
 import org.emdev.ui.progress.IProgressIndicator;
 import org.emdev.utils.LengthUtils;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.AdvGuestureDetector;
-import com.foobnix.sys.TempHolder;
-
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.MotionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class AbstractViewController extends AbstractComponentController<IView> implements IViewController {
 
@@ -165,7 +165,7 @@ public abstract class AbstractViewController extends AbstractComponentController
             final Page page = pageToGo.getActualPage(model, bs);
             final int toPage = page != null ? page.index.viewIndex : 0;
 
-            goToPage(toPage, bs.offsetX, bs.offsetY);
+            goToPage(toPage, bs.x, bs.y);
 
         }
     }

@@ -1,17 +1,21 @@
 package org.ebookdroid.core;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.IdentityHashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.ReentrantLock;
+import android.graphics.Bitmap.Config;
+import android.graphics.PixelFormat;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.Pair;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.Safe;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.sys.Colors;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -32,22 +36,18 @@ import org.emdev.utils.CompareUtils;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MathUtils;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.Safe;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.Colors;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.sys.TempHolder;
-
-import android.graphics.Bitmap.Config;
-import android.graphics.PixelFormat;
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.Pair;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.IdentityHashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class DecodeServiceBase implements DecodeService {
 
@@ -368,7 +368,7 @@ public class DecodeServiceBase implements DecodeService {
 
     RectF checkCropping(final DecodeTask task, final CodecPage vuPage) {
         // Checks if cropping setting is not set
-        if (task.viewState.book == null || !task.viewState.book.cropPages) {
+        if (task.viewState.book == null || !task.viewState.book.cp) {
             return null;
         }
         // Checks if page has been cropped before
@@ -405,8 +405,8 @@ public class DecodeServiceBase implements DecodeService {
             LOG.d("DJVU1-3", pageWidth, pageHeight);
 
             final PageIndex currentPage = viewState.book.getCurrentPage();
-            final float offsetX = viewState.book.offsetX;
-            final float offsetY = viewState.book.offsetY;
+            final float offsetX = viewState.book.x;
+            final float offsetY = viewState.book.y;
 
             root.page.setAspectRatio(pageWidth, pageHeight);
             viewState.ctrl.invalidatePageSizes(InvalidateSizeReason.PAGE_LOADED, task.node.page);
@@ -892,7 +892,7 @@ public class DecodeServiceBase implements DecodeService {
             buf.append(", ");
             buf.append("width").append("=").append((int) viewState.viewRect.width());
             buf.append(", ");
-            buf.append("zoom").append("=").append(viewState.zoom);
+            buf.append("z").append("=").append(viewState.zoom);
 
             buf.append("]");
             return buf.toString();

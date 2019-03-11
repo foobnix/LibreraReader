@@ -55,7 +55,7 @@ public abstract class DocumentController {
 
     public static final String EXTRA_PAGE = "page";
     public static final String EXTRA_PASSWORD = "password";
-    public static final String EXTRA_PERCENT = "percent";
+    public static final String EXTRA_PERCENT = "p";
     public static final String EXTRA_PLAYLIST = "playlist";
 
     public static final int REPEAT_SKIP_AMOUNT = 15;

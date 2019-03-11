@@ -66,16 +66,16 @@ public class Clouds {
 
     public static void saveProgress(BookSettings bs) {
         LOG.d("Save progress", bs);
-        if (!isCloudImage(bs.fileName)) {
+        if (!isCloudImage(bs.path)) {
             return;
         }
-        File bookFile = new File(bs.fileName);
+        File bookFile = new File(bs.path);
         File folder = new File(bookFile.getParentFile(), ".data");
         folder.mkdirs();
 
         File settings = new File(folder, bookFile.getName());
         try {
-            CacheZipUtils.copyFile(new ByteArrayInputStream(bs.toJSON().toString().getBytes()), settings);
+            CacheZipUtils.copyFile(new ByteArrayInputStream(Objects.toJSONString(bs).getBytes()), settings);
         } catch (Exception e) {
             LOG.e(e);
         }

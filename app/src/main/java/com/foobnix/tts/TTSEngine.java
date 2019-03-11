@@ -1,15 +1,15 @@
 package com.foobnix.tts;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import org.ebookdroid.LibreraApp;
-import org.greenrobot.eventbus.EventBus;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Build;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.EngineInfo;
+import android.speech.tts.TextToSpeech.OnInitListener;
+import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -23,16 +23,16 @@ import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
-import android.os.Build;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.EngineInfo;
-import android.speech.tts.TextToSpeech.OnInitListener;
-import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
-import android.widget.Toast;
+import org.ebookdroid.LibreraApp;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TTSEngine {
 
@@ -195,7 +195,7 @@ public class TTSEngine {
             AppState.get().ttsSpeed = 0.01f;
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
-        LOG.d(TAG, "Speek speed", AppState.get().ttsSpeed);
+        LOG.d(TAG, "Speek s", AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek AppState.get().lastBookParagraph", AppState.get().lastBookParagraph);
 
         if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {

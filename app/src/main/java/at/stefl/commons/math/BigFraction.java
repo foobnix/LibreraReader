@@ -796,7 +796,7 @@ public final class BigFraction extends Number implements Comparable<Number> {
         // for x2 > 0 and n2).
         // This guarantees that the GCD for any of the above three cases is
         // equal to gcd(n1,n2).
-        // Since it is easier to compute GCD of smaller numbers, this can speed
+        // Since it is easier to compute GCD of smaller numbers, this can s
         // us up a bit.
         
         BigInteger gcd = numFract.numerator.gcd(denFract.numerator);

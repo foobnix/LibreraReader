@@ -153,7 +153,9 @@ public class AppDB {
         return meta.getCusType() != null && meta.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY;
 
     }
+
     public boolean isOpen;
+
     public void open(Context c) {
         isOpen = false;
         if (!Android6.canWrite(c)) {
@@ -180,7 +182,7 @@ public class AppDB {
     //    DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
     //    DaoMaster.dropAllTables(helper.getWritableDb(), true);
     //    DaoMaster.createAllTables(helper.getWritableDb(), true);
-   // }
+    // }
 
     public List<FileMeta> deleteAllSafe() {
         try {
@@ -259,13 +261,15 @@ public class AppDB {
         return list.get(0);
     }
 
+
     public List<FileMeta> getAllRecentWithProgress() {
         SettingsManager.load();
         List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
         for (FileMeta meta : list) {
             BookSettings bs = SettingsManager.getTempBookSettings(meta.getPath());
             try {
-                float isRecentProgress = (float) (bs.currentPage.viewIndex + 1) / bs.getPages();
+                float isRecentProgress = bs.p;
+
                 if (isRecentProgress > 1) {
                     isRecentProgress = 1;
                 }
@@ -523,9 +527,7 @@ public class AppDB {
             LOG.d("searchBy", searchIn, str, "-");
             if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
-            } else
-
-            if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
+            } else if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
                 where = where.where(searchIn.getProperty().eq(str));
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
