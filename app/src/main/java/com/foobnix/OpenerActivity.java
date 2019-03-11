@@ -41,6 +41,7 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getIntent().getData().getPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
+        //LOG.d("OpenerActivity Mime", getIntent().getData().);
 
         File file = new File(getIntent().getData().getPath());
         if (!file.isFile()) {

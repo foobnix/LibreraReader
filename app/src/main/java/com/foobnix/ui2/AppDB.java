@@ -13,7 +13,6 @@ import com.foobnix.dao2.DatabaseUpgradeHelper;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -160,7 +159,7 @@ public class AppDB {
         if (!Android6.canWrite(c)) {
             return;
         }
-        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, AppsConfig.SYNC_FOLDER+"/"+DB_NAME);
+        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
 
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);

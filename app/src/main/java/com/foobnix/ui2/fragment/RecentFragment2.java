@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -102,6 +103,11 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
             AppDB.get().update(result);
             populate();
             RecentUpates.updateAll(getActivity());
+            if(result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())){
+                new File(result.getPath()).delete();
+                LOG.d("Delete cache recent file", result.getPath());
+            }
+
             return false;
         }
     };

@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json.zip");
 
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);

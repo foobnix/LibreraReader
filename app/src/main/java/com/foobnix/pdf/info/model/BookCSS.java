@@ -32,7 +32,7 @@ import java.util.Locale;
 
 public class BookCSS {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "BookCSS.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "BookCSS.json.zip");
 
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
