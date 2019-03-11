@@ -1,15 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.ui2.AppRecycleAdapter;
-import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
@@ -20,6 +10,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksViewHolder> {
 

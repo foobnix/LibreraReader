@@ -1,14 +1,14 @@
 package com.foobnix.android.utils;
 
-import org.ebookdroid.LibreraApp;
-
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+
+import com.foobnix.model.AppState;
+
+import org.ebookdroid.LibreraApp;
 
 public class Vibro {
 

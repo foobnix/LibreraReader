@@ -14,7 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.foobnix.ui2.AppDB;
 
 public class Android6 {

@@ -1,22 +1,5 @@
 package com.foobnix.pdf.search.view;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
-import com.foobnix.ui2.MainTabs2;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -29,6 +12,23 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.tts.TTSEngine;
+import com.foobnix.tts.TTSNotification;
+import com.foobnix.ui2.MainTabs2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CloseAppDialog {
 

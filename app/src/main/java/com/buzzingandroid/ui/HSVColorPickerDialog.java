@@ -1,10 +1,5 @@
 package com.buzzingandroid.ui;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +10,11 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 public class HSVColorPickerDialog extends AlertDialog {
 

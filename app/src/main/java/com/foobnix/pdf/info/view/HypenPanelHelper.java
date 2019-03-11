@@ -8,11 +8,11 @@ import android.widget.TextView;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.hypen.HyphenPattern;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.ui2.AppDB;
 

@@ -1,10 +1,10 @@
 package com.foobnix.pdf.info;
 
-import org.json.JSONObject;
-
 import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import org.json.JSONObject;
 
 public class PageUrl {
 

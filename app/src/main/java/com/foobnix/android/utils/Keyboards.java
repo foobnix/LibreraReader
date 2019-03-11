@@ -1,14 +1,14 @@
 package com.foobnix.android.utils;
 
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.ui2.MainTabs2;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import com.foobnix.model.AppState;
+import com.foobnix.ui2.MainTabs2;
 
 public class Keyboards {
     public static void hideAlways(Activity context) {

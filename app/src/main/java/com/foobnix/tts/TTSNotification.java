@@ -1,24 +1,5 @@
 package com.foobnix.tts;
 
-import java.io.File;
-
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -33,6 +14,25 @@ import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.AppDB;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+
+import java.io.File;
 
 public class TTSNotification {
 

@@ -1,15 +1,15 @@
 package org.ebookdroid.common.bitmaps;
 
-import org.ebookdroid.BookType;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import org.ebookdroid.BookType;
 
 public final class RawBitmap {
 

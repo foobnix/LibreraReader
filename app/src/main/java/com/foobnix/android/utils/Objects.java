@@ -3,8 +3,9 @@ package com.foobnix.android.utils;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.annotation.Retention;
@@ -23,6 +24,10 @@ public class Objects {
     }
 
     public static String toJSONString(Object obj) {
+        return toJSONObject(obj).toString();
+    }
+
+    public static JSONObject toJSONObject(Object obj) {
         LOG.d(TAG, "saveToSP");
         final JSONObject edit = new JSONObject();
         for (final Field f : obj.getClass().getDeclaredFields()) {
@@ -36,14 +41,19 @@ public class Objects {
                 LOG.e(e, f.getName());
             }
         }
-        return edit.toString();
+        return edit;
     }
 
     public static void loadFromJson(Object obj, String json) {
-
         try {
-            JSONObject sp = new JSONObject(json);
+            loadFromJson(obj, new JSONObject(json));
+        } catch (JSONException e) {
+            LOG.e(e);
+        }
+    }
 
+    public static void loadFromJson(Object obj, JSONObject sp) {
+        try {
             for (final Field f : obj.getClass().getDeclaredFields()) {
                 if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
                     continue;

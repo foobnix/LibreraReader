@@ -1,22 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.Https;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.opds.OPDS;
-import com.foobnix.pdf.CopyAsyncTask;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,6 +10,23 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Https;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.CopyAsyncTask;
+import com.foobnix.pdf.info.view.AlertDialogs;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class AndroidWhatsNew {
 

@@ -1,13 +1,21 @@
 package com.foobnix.ui2.adapter;
 
-import java.io.File;
-
-import org.greenrobot.eventbus.EventBus;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.provider.DocumentFile;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
+import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -20,7 +28,6 @@ import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
@@ -32,14 +39,9 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.fragment.UIFragment;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.provider.DocumentFile;
-import android.widget.Toast;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
 
 public class DefaultListeners {
 
@@ -162,7 +164,9 @@ public class DefaultListeners {
             }
 
         };
-    };
+    }
+
+    ;
 
     private static boolean isTagCicked(final Activity a, FileMeta result) {
         if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG) {
@@ -221,7 +225,9 @@ public class DefaultListeners {
                 return true;
             }
         };
-    };
+    }
+
+    ;
 
     @SuppressLint("NewApi")
     private static void deleteFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
@@ -299,7 +305,9 @@ public class DefaultListeners {
                 } else {
                     Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
                 }
-            };
+            }
+
+            ;
 
         }.execute();
     }
@@ -349,7 +357,9 @@ public class DefaultListeners {
                 } else {
                     Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
                 }
-            };
+            }
+
+            ;
 
         }.execute();
     }
@@ -394,7 +404,9 @@ public class DefaultListeners {
                 return false;
             }
         };
-    };
+    }
+
+    ;
 
     public static ResultResponse<String> getOnAuthorClickListener(final Activity a) {
         return new ResultResponse<String>() {
@@ -441,11 +453,25 @@ public class DefaultListeners {
 
                 if (isStar == null) {
                     isStar = AppDB.get().isStarFolder(fileMeta.getPath());
+
+                } else {
+
                 }
 
+
+
                 fileMeta.setIsStar(!isStar);
+
+
+                if (fileMeta.getIsStar()) {
+                    AppData.get().addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
+                } else {
+                    AppData.get().removeFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
+                }
+
                 fileMeta.setIsStarTime(System.currentTimeMillis());
                 AppDB.get().updateOrSave(fileMeta);
+
 
                 if (adapter != null) {
                     adapter.notifyDataSetChanged();
@@ -456,6 +482,8 @@ public class DefaultListeners {
                 return false;
             }
         };
-    };
+    }
+
+    ;
 
 }

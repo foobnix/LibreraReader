@@ -1,18 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import java.io.File;
-import java.util.List;
-
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
@@ -23,6 +10,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import java.io.File;
+import java.util.List;
 
 public class SearchAdapter extends BaseAdapter {
     private final List<FileMeta> items;

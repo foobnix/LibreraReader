@@ -1,10 +1,23 @@
 package org.ebookdroid.droids.mupdf.codec;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+
+import com.artifex.mupdf.fitz.StructuredText;
+import com.artifex.mupdf.fitz.StructuredText.TextBlock;
+import com.artifex.mupdf.fitz.StructuredText.TextLine;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
@@ -15,24 +28,11 @@ import org.ebookdroid.core.codec.PageTextBox;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MatrixUtils;
 
-import com.artifex.mupdf.fitz.StructuredText;
-import com.artifex.mupdf.fitz.StructuredText.TextBlock;
-import com.artifex.mupdf.fitz.StructuredText.TextLine;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sys.TempHolder;
-
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class MuPdfPage extends AbstractCodecPage {
 

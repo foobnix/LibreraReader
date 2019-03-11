@@ -3,8 +3,8 @@ package com.foobnix.zipmanager;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 public class ZipActivity extends Activity {
 

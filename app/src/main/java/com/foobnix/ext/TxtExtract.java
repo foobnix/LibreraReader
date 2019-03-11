@@ -5,9 +5,9 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,29 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.Playlists;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.DialogsPlaylist;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.RecentUpates;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
@@ -35,6 +11,31 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Playlists;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.DialogsPlaylist;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.widget.RecentUpates;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StarsFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
@@ -76,6 +77,8 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
                             f.setIsStar(false);
                             AppDB.get().update(f);
                         }
+                        AppData.get().clearFavorites();
+
                         populate();
                         RecentUpates.updateAll(getActivity());
                     }
@@ -192,6 +195,8 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
+        AppData.get().loadFavorites();
+
         List<FileMeta> all = new ArrayList<FileMeta>();
 
         List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
@@ -215,14 +220,14 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
         empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
         all.add(empy);
 
-        all.addAll(AppDB.get().getStarsFolder());
+        all.addAll(AppData.get().getAllFavoriteFolders());
 
 
         FileMeta books = new FileMeta();
         books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
         all.add(books);
 
-        all.addAll(AppDB.get().getStarsFiles());
+        all.addAll(AppData.get().getAllFavoriteFiles());
         return all;
     }
 

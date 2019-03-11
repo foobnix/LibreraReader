@@ -10,6 +10,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
@@ -18,7 +19,6 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
@@ -96,6 +96,7 @@ public class LibreraApp extends MultiDexApplication {
         } catch (Exception e) {
             LOG.e(e);
         }
+
 
     }
 

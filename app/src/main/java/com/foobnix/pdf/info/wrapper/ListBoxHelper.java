@@ -1,18 +1,19 @@
 package com.foobnix.pdf.info.wrapper;
 
-import java.util.List;
-
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.PageUrl;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.presentation.BookmarksAdapter;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.Gravity;
 import android.widget.EditText;
+
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.presentation.BookmarksAdapter;
+
+import java.util.List;
 
 public class ListBoxHelper {
 

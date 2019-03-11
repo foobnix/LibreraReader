@@ -18,9 +18,9 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;

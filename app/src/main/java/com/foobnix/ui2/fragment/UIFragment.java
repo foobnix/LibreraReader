@@ -1,30 +1,5 @@
 package com.foobnix.ui2.fragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import com.foobnix.android.utils.AsyncTasks;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
-import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.MainTabs2;
-import com.foobnix.ui2.adapter.AuthorsAdapter2;
-import com.foobnix.ui2.adapter.DefaultListeners;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +18,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import com.foobnix.android.utils.AsyncTasks;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.adapter.AuthorsAdapter2;
+import com.foobnix.ui2.adapter.DefaultListeners;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.foobnix.ui2.fast.FastScrollRecyclerView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";

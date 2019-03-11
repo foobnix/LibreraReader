@@ -1,9 +1,5 @@
 package com.foobnix.pdf.search.menu;
 
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +8,10 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.PopupMenu;
+
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 
 @SuppressLint("NewApi")
 public class MenuBuilderM {

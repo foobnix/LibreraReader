@@ -1,20 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import com.foobnix.android.utils.AsyncTasks;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.opds.Entry;
-import com.foobnix.opds.Feed;
-import com.foobnix.opds.Hrefs;
-import com.foobnix.opds.OPDS;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -30,6 +15,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.AsyncTasks;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.opds.Entry;
+import com.foobnix.opds.Feed;
+import com.foobnix.opds.Hrefs;
+import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.sys.TempHolder;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class AddCatalogDialog {
 

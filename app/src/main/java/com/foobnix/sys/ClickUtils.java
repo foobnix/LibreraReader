@@ -1,7 +1,7 @@
 package com.foobnix.sys;
 
 import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
 public class ClickUtils {
     private int WIDHT_X, HEIGHT_Y;

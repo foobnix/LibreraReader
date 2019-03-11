@@ -1,20 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.ui2.MainTabs2;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -31,6 +16,21 @@ import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.ui2.MainTabs2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyPopupMenu {
     Context c;

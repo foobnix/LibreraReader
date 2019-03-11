@@ -3,7 +3,6 @@ package com.foobnix.ui2;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -12,15 +11,14 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.model.AppData;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.sys.ImageExtractor;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -146,26 +144,7 @@ public class BooksService extends IntentService {
                 ImageExtractor.clearErrors();
 
 
-                List<Uri> recent = AppSharedPreferences.get().getRecent();
-                List<FileMeta> starsAndRecent = AppDB.get().deleteAllSafe();
-
-                long time = Integer.MAX_VALUE;
-                for (Uri uri : recent) {
-                    FileMeta item = new FileMeta(uri.getPath());
-                    item.setIsRecent(true);
-                    item.setIsStarTime(time--);
-                    starsAndRecent.add(item);
-                }
-                for (FileMeta m : starsAndRecent) {
-                    if (m.getCusType() != null && FileMetaAdapter.DISPLAY_TYPE_DIRECTORY == m.getCusType()) {
-                        m.setIsSearchBook(false);
-                    } else {
-                        m.setIsSearchBook(true);
-                    }
-                }
-
-                AppSharedPreferences.get().cleanRecent();
-
+                AppDB.get().deleteAllData();
                 itemsMeta.clear();
 
                 handler.post(timer);
@@ -185,7 +164,11 @@ public class BooksService extends IntentService {
                     meta.setIsSearchBook(true);
                 }
 
-                itemsMeta.addAll(starsAndRecent);
+                itemsMeta.addAll(AppData.get().getAllRecent());
+                itemsMeta.addAll(AppData.get().getAllFavoriteFiles());
+                itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
+
+
                 AppDB.get().saveAll(itemsMeta);
 
                 handler.removeCallbacks(timer);

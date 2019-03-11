@@ -1,12 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.PageUrl;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -16,6 +9,13 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class PageThumbnailAdapter extends BaseAdapter {
 

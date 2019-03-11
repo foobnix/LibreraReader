@@ -16,10 +16,10 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 

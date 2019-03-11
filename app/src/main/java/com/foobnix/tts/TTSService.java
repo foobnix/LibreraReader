@@ -1,23 +1,5 @@
 package com.foobnix.tts;
 
-import java.io.IOException;
-
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.sys.TempHolder;
-
 import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -41,6 +23,24 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
+
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.IOException;
 
 public class TTSService extends Service {
 

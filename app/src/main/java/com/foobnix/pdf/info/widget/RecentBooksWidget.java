@@ -1,20 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.File;
-import java.util.List;
-
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.MainTabs2;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.PendingIntent;
@@ -31,6 +16,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
+
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.MainTabs2;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+
+import java.io.File;
+import java.util.List;
 
 public class RecentBooksWidget extends AppWidgetProvider {
 

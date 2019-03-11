@@ -1,37 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.Playlists;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.PopupHelper;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
-import com.foobnix.ui2.AppDB.SORT_BY;
-import com.foobnix.ui2.AppRecycleAdapter;
-import com.foobnix.ui2.MainTabs2;
-import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
-import com.foobnix.ui2.fast.FastScroller;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -52,6 +20,38 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.StringDB;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.Playlists;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.AppDB.SORT_BY;
+import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.ui2.MainTabs2;
+import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
+import com.foobnix.ui2.fast.FastScroller;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.ViewHolder> implements FastScroller.SectionIndexer {
 

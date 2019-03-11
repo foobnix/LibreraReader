@@ -1,17 +1,5 @@
 package com.foobnix.opds;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
-import java.net.Proxy.Type;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
-
-import org.xmlpull.v1.XmlPullParser;
-
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
 import com.burgstaller.okhttp.DispatchingAuthenticator;
@@ -23,8 +11,20 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.foobnix.sys.TempHolder;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.Proxy.Type;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;

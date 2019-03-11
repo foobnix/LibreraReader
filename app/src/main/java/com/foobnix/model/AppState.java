@@ -1,4 +1,4 @@
-package com.foobnix.pdf.info.wrapper;
+package com.foobnix.model;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -23,6 +23,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.ui2.AppDB;
 
 import java.io.File;
@@ -38,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "AppState.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-State.json");
 
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -554,7 +556,7 @@ public class AppState {
     public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
     public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
-    public String playlistPath = new File(DOWNLOADS_DIR, "Librera/Playlist").getPath();
+    public String playlistSyncPath = new File(AppsConfig.SYNC_FOLDER, "playlists").getPath();
 
     public String fileToDelete;
 

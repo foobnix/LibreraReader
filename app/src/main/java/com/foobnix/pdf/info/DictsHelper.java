@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.foobnix.sys.TempHolder;
 
 import java.util.ArrayList;

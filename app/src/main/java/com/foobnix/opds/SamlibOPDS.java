@@ -1,8 +1,9 @@
 package com.foobnix.opds;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import android.support.v4.util.Pair;
+
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,10 +11,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Tag;
 import org.jsoup.select.Elements;
 
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
-
-import android.support.v4.util.Pair;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SamlibOPDS {
 

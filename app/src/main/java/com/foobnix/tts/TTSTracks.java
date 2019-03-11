@@ -1,5 +1,10 @@
 package com.foobnix.tts;
 
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.FileMetaComparators;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -7,11 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FileMetaComparators;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 public class TTSTracks {
 

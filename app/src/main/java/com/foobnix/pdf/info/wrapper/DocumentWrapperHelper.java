@@ -3,6 +3,8 @@ package com.foobnix.pdf.info.wrapper;
 import android.app.Activity;
 import android.view.WindowManager;
 
+import com.foobnix.model.AppState;
+
 public class DocumentWrapperHelper {
 
 	public static void restoreFullScreen(Activity a) {

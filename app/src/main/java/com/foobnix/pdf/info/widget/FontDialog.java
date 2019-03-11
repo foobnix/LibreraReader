@@ -1,21 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.util.List;
-
-import org.ebookdroid.BookType;
-
-import com.foobnix.StringResponse;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.view.CustomColorView;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,8 +12,23 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
+
+import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.CustomColorView;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+
+import org.ebookdroid.BookType;
+
+import java.util.List;
 
 public class FontDialog {
 

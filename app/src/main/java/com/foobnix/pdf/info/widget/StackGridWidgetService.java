@@ -1,16 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.File;
-import java.util.List;
-
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.AppDB;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.io.File;
+import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class StackGridWidgetService extends RemoteViewsService {

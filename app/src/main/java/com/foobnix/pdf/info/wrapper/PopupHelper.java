@@ -1,13 +1,5 @@
 package com.foobnix.pdf.info.wrapper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-
 import android.content.Context;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
@@ -15,6 +7,15 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class PopupHelper {
 

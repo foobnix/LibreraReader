@@ -1,33 +1,5 @@
 package com.foobnix.pdf.search.activity;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.ebookdroid.LibreraApp;
-import org.ebookdroid.core.codec.PageLink;
-import org.ebookdroid.droids.mupdf.codec.TextWord;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.view.BrightnessHelper;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
-import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
-import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
-import com.foobnix.pdf.search.activity.msg.MessageEvent;
-import com.foobnix.pdf.search.activity.msg.MessagePageXY;
-import com.foobnix.pdf.search.activity.msg.MovePageAction;
-import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
-import com.foobnix.sys.ClickUtils;
-import com.foobnix.sys.TempHolder;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -47,6 +19,34 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
+import com.foobnix.pdf.search.activity.msg.MessageAutoFit;
+import com.foobnix.pdf.search.activity.msg.MessageCenterHorizontally;
+import com.foobnix.pdf.search.activity.msg.MessageEvent;
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
+import com.foobnix.pdf.search.activity.msg.MovePageAction;
+import com.foobnix.pdf.search.activity.msg.TextWordsMessage;
+import com.foobnix.sys.ClickUtils;
+import com.foobnix.sys.TempHolder;
+
+import org.ebookdroid.LibreraApp;
+import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.Collections;
+import java.util.List;
 
 public class PageImaveView extends View {
 

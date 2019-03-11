@@ -4,8 +4,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;

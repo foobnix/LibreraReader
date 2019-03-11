@@ -1,14 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import java.util.List;
-
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.ViewCompat;
@@ -20,6 +11,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+
+import java.util.List;
 
 public class BookmarksAdapter extends BaseAdapter {
 

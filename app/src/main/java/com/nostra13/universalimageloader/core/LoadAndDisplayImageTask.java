@@ -15,13 +15,10 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.ReentrantLock;
+import android.graphics.Bitmap;
+import android.os.Handler;
 
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.FailReason.FailType;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -38,8 +35,11 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListe
 import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 import com.nostra13.universalimageloader.utils.L;
 
-import android.graphics.Bitmap;
-import android.os.Handler;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Presents load'n'display image task. Used to load image from Internet or file

@@ -1,19 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.view.CustomSeek;
-import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.sys.TempHolder;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +11,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.CustomSeek;
+import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.sys.TempHolder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DialogSpeedRead {
 

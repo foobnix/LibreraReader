@@ -2,8 +2,8 @@ package org.ebookdroid.core.models;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 

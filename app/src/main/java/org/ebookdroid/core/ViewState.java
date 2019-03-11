@@ -3,7 +3,7 @@ package org.ebookdroid.core;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;

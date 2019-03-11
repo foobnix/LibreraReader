@@ -1,15 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +8,16 @@ import android.graphics.Paint.Style;
 import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProgressDraw extends View {
 

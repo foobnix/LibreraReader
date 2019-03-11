@@ -19,7 +19,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;

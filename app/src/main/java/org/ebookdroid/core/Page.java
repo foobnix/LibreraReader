@@ -4,7 +4,7 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.common.settings.SettingsManager;

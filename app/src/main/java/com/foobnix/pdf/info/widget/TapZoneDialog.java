@@ -1,19 +1,19 @@
 package com.foobnix.pdf.info.widget;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Views;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Spinner;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Views;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class TapZoneDialog {
 

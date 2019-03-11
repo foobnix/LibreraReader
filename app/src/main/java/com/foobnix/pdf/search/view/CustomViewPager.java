@@ -1,10 +1,10 @@
 package com.foobnix.pdf.search.view;
 
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import com.foobnix.model.AppState;
 
 public class CustomViewPager extends RtlViewPager {
 

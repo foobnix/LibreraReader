@@ -1,18 +1,18 @@
 package org.ebookdroid.droids;
 
-import java.io.File;
-import java.util.Map;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.JsonHelper;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.pdf.info.JsonHelper;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
+import java.io.File;
+import java.util.Map;
 
 public class Fb2Context extends PdfContext {
 

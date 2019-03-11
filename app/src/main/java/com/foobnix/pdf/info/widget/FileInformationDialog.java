@@ -1,48 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Objects;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.ext.EbookMeta;
-import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.BuildConfig;
-import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.ScaledImageView;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
-import com.foobnix.ui2.AppDB.SORT_BY;
-import com.foobnix.ui2.FileMetaCore;
-import com.foobnix.ui2.adapter.DefaultListeners;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -60,6 +17,48 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.ext.EbookMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BuildConfig;
+import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.ScaledImageView;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.foobnix.ui2.AppDB.SORT_BY;
+import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.adapter.DefaultListeners;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class FileInformationDialog {
 

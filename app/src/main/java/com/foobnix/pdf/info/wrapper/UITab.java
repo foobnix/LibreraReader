@@ -1,9 +1,7 @@
 package com.foobnix.pdf.info.wrapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.CloudsFragment2;
@@ -13,6 +11,9 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.StarsFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public enum UITab {
 

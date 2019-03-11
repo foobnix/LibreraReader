@@ -2,7 +2,7 @@ package org.ebookdroid.common.cache;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.emdev.utils.StringUtils;

@@ -1,22 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.io.File;
-import java.util.Arrays;
-
-import org.ebookdroid.ui.viewer.VerticalViewActivity;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
-import com.foobnix.sys.ImageExtractor;
-import com.foobnix.tts.TTSActivity;
-import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +9,23 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.sys.ImageExtractor;
+import com.foobnix.tts.TTSActivity;
+import com.foobnix.ui2.AppDB;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
+
+import java.io.File;
+import java.util.Arrays;
 
 public class RecentUpates {
 

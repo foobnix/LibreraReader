@@ -1,15 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-
 import android.graphics.Typeface;
 import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.Gravity;
@@ -17,6 +7,16 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.AppBookmark;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+
+import java.util.List;
 
 public class BookmarkPanel {
 

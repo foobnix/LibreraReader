@@ -1,12 +1,5 @@
 package com.foobnix.ui2;
 
-import java.util.Locale;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -14,6 +7,13 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
+
+import java.util.Locale;
 
 public class MyContextWrapper extends ContextWrapper {
 

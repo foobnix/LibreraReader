@@ -1,19 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.EpubExtractor;
-import com.foobnix.opds.OPDS;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,6 +7,21 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.EpubExtractor;
+import com.foobnix.model.AppState;
+import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.AlertDialogs;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import okhttp3.CacheControl;
 import okhttp3.Response;
 import okio.BufferedSink;

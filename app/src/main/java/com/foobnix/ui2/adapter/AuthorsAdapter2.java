@@ -1,16 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import java.util.Locale;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.ui2.AppRecycleAdapter;
-import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
-import com.foobnix.ui2.fast.FastScroller;
-
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.ui2.AppRecycleAdapter;
+import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
+import com.foobnix.ui2.fast.FastScroller;
+
+import java.util.Locale;
 
 public class AuthorsAdapter2 extends AppRecycleAdapter<String, AuthorViewHolder> implements FastScroller.SectionIndexer {
 

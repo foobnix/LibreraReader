@@ -1,5 +1,8 @@
 package com.foobnix.android.utils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,8 +26,17 @@ public class IO {
 
     }
 
-    public static void writeObjAsync(File file, Object o) {
-        IO.writeString(file, Objects.toJSONString(o));
+    public static synchronized void writeObjAsync(File file, Object o) {
+        if (o instanceof JSONObject || o instanceof JSONArray) {
+            LOG.d("writeObjAsync", "JSONObject");
+            IO.writeString(file, o.toString());
+        } else if (o instanceof String) {
+            LOG.d("writeObjAsync", "String");
+            IO.writeString(file, (String) o);
+        } else {
+            LOG.d("writeObjAsync", "Class", o.getClass().getName());
+            IO.writeString(file, Objects.toJSONString(o));
+        }
 
 //        try {
 //            LOG.d("writeObjAsync", file.getPath());

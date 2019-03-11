@@ -1,9 +1,9 @@
 package com.foobnix.tts;
 
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.foobnix.model.AppState;
 
 public class TTSActivity extends Activity {
 

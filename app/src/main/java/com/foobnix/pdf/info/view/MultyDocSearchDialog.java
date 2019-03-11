@@ -1,31 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import org.ebookdroid.BookType;
-import org.ebookdroid.core.Page;
-import org.ebookdroid.core.codec.CodecContext;
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.core.codec.CodecPage;
-import org.ebookdroid.droids.mupdf.codec.TextWord;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.io.SearchCore;
-import com.foobnix.pdf.info.widget.ChooserDialogFragment;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -48,6 +22,32 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
+
+import org.ebookdroid.BookType;
+import org.ebookdroid.core.Page;
+import org.ebookdroid.core.codec.CodecContext;
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.core.codec.CodecPage;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class MultyDocSearchDialog {
 

@@ -3,7 +3,7 @@ package org.ebookdroid.common.settings;
 import android.content.Context;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
+import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.books.SharedDB;

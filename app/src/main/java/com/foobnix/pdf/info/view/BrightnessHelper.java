@@ -1,17 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.StringResponse;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -30,6 +18,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+
+import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 public class BrightnessHelper {

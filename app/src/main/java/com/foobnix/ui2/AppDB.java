@@ -12,11 +12,13 @@ import com.foobnix.dao2.DaoSession;
 import com.foobnix.dao2.DatabaseUpgradeHelper;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
+import com.foobnix.model.AppData;
+import com.foobnix.model.AppState;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.SearchFragment2;
@@ -184,6 +186,10 @@ public class AppDB {
     //    DaoMaster.createAllTables(helper.getWritableDb(), true);
     // }
 
+    public void deleteAllData() {
+        fileMetaDao.deleteAll();
+    }
+
     public List<FileMeta> deleteAllSafe() {
         try {
             List<FileMeta> list = fileMetaDao.queryBuilder().whereOr(FileMetaDao.Properties.Tag.isNotNull(), FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.IsRecent.eq(1)).list();
@@ -301,6 +307,9 @@ public class AppDB {
         load.setIsRecent(true);
         load.setIsRecentTime(System.currentTimeMillis());
         fileMetaDao.update(load);
+
+        AppData.get().addRecent(new SimpleMeta(path, System.currentTimeMillis()));
+
     }
 
     public void addStarFile(String path) {

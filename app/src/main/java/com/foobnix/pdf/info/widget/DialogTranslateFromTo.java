@@ -1,22 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import org.ebookdroid.LibreraApp;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Views;
-import com.foobnix.pdf.info.DictsHelper;
-import com.foobnix.pdf.info.DictsHelper.DictItem;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -31,6 +14,23 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Views;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.DictsHelper;
+import com.foobnix.pdf.info.DictsHelper.DictItem;
+import com.foobnix.pdf.info.R;
+
+import org.ebookdroid.LibreraApp;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class DialogTranslateFromTo {
     public static final String CHINESE_SIMPLE = "zh-rCH";

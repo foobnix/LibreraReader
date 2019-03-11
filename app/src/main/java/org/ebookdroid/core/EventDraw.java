@@ -10,8 +10,8 @@ import android.graphics.RectF;
 import android.text.TextPaint;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import org.ebookdroid.LibreraApp;

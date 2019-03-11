@@ -11,8 +11,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.AppDB;
 
 import org.json.JSONArray;

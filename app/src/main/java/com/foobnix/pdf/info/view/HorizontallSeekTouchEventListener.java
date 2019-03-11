@@ -1,13 +1,13 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.SeekBar;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
 
 public class HorizontallSeekTouchEventListener implements OnTouchListener {
 

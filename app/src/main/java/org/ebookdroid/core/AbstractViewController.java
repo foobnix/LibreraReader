@@ -8,9 +8,9 @@ import android.view.MotionEvent;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.AdvGuestureDetector;
 import com.foobnix.sys.TempHolder;
 

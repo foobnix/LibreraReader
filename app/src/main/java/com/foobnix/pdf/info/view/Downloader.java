@@ -1,8 +1,8 @@
 package com.foobnix.pdf.info.view;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import android.app.Activity;
+import android.content.Context;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -10,12 +10,11 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 
-import android.app.Activity;
-import android.content.Context;
-import android.widget.Toast;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 public class Downloader {
 

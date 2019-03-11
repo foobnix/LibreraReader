@@ -1,14 +1,14 @@
 package org.ebookdroid.droids.mupdf.codec;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.model.AppState;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.OutlineLink;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.Fb2Extractor;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.sys.TempHolder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MuPdfOutline {
 

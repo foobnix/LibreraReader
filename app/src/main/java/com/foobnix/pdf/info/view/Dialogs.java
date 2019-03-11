@@ -1,38 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.buzzingandroid.ui.HSVColorPickerDialog;
-import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.WebViewHepler;
-import com.foobnix.pdf.info.wrapper.AppState;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
-import com.foobnix.ui2.AppDB.SEARCH_IN;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -59,6 +26,39 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.buzzingandroid.ui.HSVColorPickerDialog;
+import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.StringDB;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.Vibro;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.WebViewHepler;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.AppDB.SEARCH_IN;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Dialogs {
 

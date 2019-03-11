@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -27,7 +28,6 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.adapter.BookmarksAdapter2;
 

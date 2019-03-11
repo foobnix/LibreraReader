@@ -1,8 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppState;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
 
 public class KeyCodeDialog {
 

@@ -1,7 +1,7 @@
 package org.ebookdroid.common.settings.books;
 
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.settings.SettingsManager;

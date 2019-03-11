@@ -10,10 +10,10 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -32,7 +32,7 @@ import java.util.Locale;
 
 public class BookCSS {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "BookCSS.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-Css.json");
 
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";

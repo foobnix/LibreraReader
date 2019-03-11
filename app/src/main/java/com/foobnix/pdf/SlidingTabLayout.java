@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppState;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
 /**
