@@ -2,6 +2,7 @@ package org.ebookdroid.core.models;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.TempHolder;
@@ -12,7 +13,6 @@ import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.common.cache.PageCacheFile;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.PageType;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.DecodeServiceBase;
@@ -170,7 +170,7 @@ public class DocumentModel extends ListenerProxy {
     public void initPages(final IActivityController base, final IProgressIndicator task) {
         recyclePages();
 
-        final BookSettings bs = SettingsManager.getBookSettings();
+        final AppBook bs = SettingsManager.getBookSettings();
 
         if (base == null || bs == null || context == null || decodeService == null) {
             return;
@@ -218,7 +218,7 @@ public class DocumentModel extends ListenerProxy {
         }
     }
 
-    private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final BookSettings bs, final IProgressIndicator task) {
+    private CodecPageInfo[] retrievePagesInfo(final IActivityController base, final AppBook bs, final IProgressIndicator task) {
         int pagesCount = base.getDecodeService().getPageCount();
         final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.path, pagesCount);
 

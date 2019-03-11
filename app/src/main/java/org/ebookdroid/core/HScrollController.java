@@ -1,13 +1,14 @@
 package org.ebookdroid.core;
 
+import android.graphics.Rect;
+import android.graphics.RectF;
+
+import com.foobnix.model.AppBook;
+
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.ui.viewer.IActivityController;
-
-import android.graphics.Rect;
-import android.graphics.RectF;
 
 public class HScrollController extends AbstractScrollController {
 
@@ -84,7 +85,7 @@ public class HScrollController extends AbstractScrollController {
 
         final int height = getHeight();
         final int width = getWidth();
-        final BookSettings bookSettings = SettingsManager.getBookSettings();
+        final AppBook bookSettings = SettingsManager.getBookSettings();
         final PageAlign pageAlign = DocumentViewMode.getPageAlign(bookSettings);
 
         if (changedPage == null) {

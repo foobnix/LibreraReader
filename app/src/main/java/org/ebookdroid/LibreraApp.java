@@ -25,7 +25,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.settings.SettingsManager;
 
 public class LibreraApp extends MultiDexApplication {
 
@@ -65,8 +64,6 @@ public class LibreraApp extends MultiDexApplication {
         IMG.init(this);
 
         TintUtil.init();
-
-        SettingsManager.init(this);
 
         Clouds.get().init(this);
 

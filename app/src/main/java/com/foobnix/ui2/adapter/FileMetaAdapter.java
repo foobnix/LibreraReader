@@ -742,14 +742,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         double recentProgress = fileMeta.getIsRecentProgress() == null ? 0 : fileMeta.getIsRecentProgress();
 
-        if (holder.idProgressColor != null && recentProgress > 0) {
+
+
+        if (holder.idProgressColor != null && recentProgress > 0f) {
+            LOG.d("getIsRecentProgress", recentProgress);
             holder.progresLayout.setVisibility(View.VISIBLE);
             holder.idPercentText.setVisibility(View.VISIBLE);
             holder.idProgressColor.setBackgroundColor(TintUtil.color);
             int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(100) : Dips.dpToPx(200);
 
             holder.idProgressBg.getLayoutParams().width = width;
-            holder.idProgressColor.getLayoutParams().width = (int) (width * recentProgress);
+            holder.idProgressColor.getLayoutParams().width = (int) Math.round ((float)width * recentProgress);
             holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
@@ -758,7 +761,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.idPercentText.setVisibility(View.INVISIBLE);
         }
 
-        if (adapterType == ADAPTER_GRID && recentProgress > 0) {
+        if (adapterType == ADAPTER_GRID && recentProgress > 0f) {
             holder.idPercentText.setText("" + (int) (100 * recentProgress) + "%");
             if (AppState.get().coverBigSize < IMG.TWO_LINE_COVER_SIZE) {
                 holder.browserExt.setVisibility(View.GONE);

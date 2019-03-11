@@ -1,6 +1,7 @@
 package org.ebookdroid.common.settings.types;
 
-import org.ebookdroid.common.settings.books.BookSettings;
+import com.foobnix.model.AppBook;
+
 import org.ebookdroid.core.HScrollController;
 import org.ebookdroid.core.VScrollController;
 import org.ebookdroid.ui.viewer.IActivityController;
@@ -25,7 +26,7 @@ public enum DocumentViewMode {
         return new VScrollController(base);
     }
 
-    public static PageAlign getPageAlign(final BookSettings bs) {
+    public static PageAlign getPageAlign(final AppBook bs) {
         return PageAlign.AUTO;
     }
 

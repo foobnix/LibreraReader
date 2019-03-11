@@ -1,13 +1,13 @@
 package com.foobnix.pdf.info;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ui2.adapter.FileMetaAdapter;
+
 import java.io.File;
 import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 public class FileMetaComparators {
 
@@ -40,6 +40,17 @@ public class FileMetaComparators {
         public int compare(FileMeta o1, FileMeta o2) {
             try {
                 return compareLong(o1.getDate(), o2.getDate());
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<FileMeta> BY_RECENT_TIME = new Comparator<FileMeta>() {
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return compareLong(o1.getIsRecentTime(), o2.getIsRecentTime());
             } catch (Exception e) {
                 return 0;
             }

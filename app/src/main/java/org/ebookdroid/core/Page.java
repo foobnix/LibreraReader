@@ -4,11 +4,11 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.PageType;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -213,7 +213,7 @@ public class Page {
     }
 
     public RectF getPageRegion(final RectF pageBounds, final RectF sourceRect) {
-        final BookSettings bs = SettingsManager.getBookSettings();
+        final AppBook bs = SettingsManager.getBookSettings();
         final RectF cb = nodes.root.croppedBounds;
         if (bs != null && bs.cp && cb != null) {
             final Matrix m = MatrixUtils.get();

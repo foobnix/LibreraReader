@@ -20,6 +20,7 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.sys.ImageExtractor;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -129,6 +130,10 @@ public class BooksService extends IntentService {
                         }
 
                     }
+
+                    SharedBooks.updateProgress(list);
+                    AppDB.get().updateAll(list);
+
                     AppState.get().searchDate = System.currentTimeMillis();
                     sendFinishMessage();
                 }
@@ -191,6 +196,7 @@ public class BooksService extends IntentService {
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
+                SharedBooks.updateProgress(itemsMeta);
                 AppDB.get().updateAll(itemsMeta);
 
 
@@ -201,12 +207,15 @@ public class BooksService extends IntentService {
                 CacheDir.ZipService.removeCacheContent();
 
                 Clouds.get().syncronizeGet();
+
                 sendFinishMessage();
 
             } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
                 Clouds.get().syncronizeGet();
                 sendFinishMessage();
             }
+
+
 
         } finally {
             isRunning = false;

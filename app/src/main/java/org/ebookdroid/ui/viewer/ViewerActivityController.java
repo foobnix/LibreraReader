@@ -17,6 +17,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -33,7 +34,7 @@ import com.foobnix.ui2.FileMetaCore;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.core.DecodeService;
@@ -154,7 +155,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             controller.addRecent(uri);
             SettingsManager.getBookSettings(uri.getPath());
 
-            final BookSettings.Diff diff = new BookSettings.Diff(null, SettingsManager.getBookSettings());
+            final AppBook.Diff diff = new AppBook.Diff(null, SettingsManager.getBookSettings());
             onBookSettingsChanged(null, SettingsManager.getBookSettings(), diff);
 
             if (intent.hasExtra("id2")) {
@@ -224,10 +225,10 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             wrapperControlls.onPause();
         }
 
-        BookSettings bookSettings = SettingsManager.getBookSettings();
+        AppBook bookSettings = SettingsManager.getBookSettings();
         if (bookSettings != null) {
             bookSettings.updateFromAppState();
-            bookSettings.save();
+            SharedBooks.save(bookSettings);
         }
     }
 
@@ -304,7 +305,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         startDecoding(fileName, password);
     }
 
-    protected IViewController switchDocumentController(final BookSettings bs) {
+    protected IViewController switchDocumentController(final AppBook bs) {
         if (bs != null) {
             try {
                 final IViewController newDc = DocumentViewMode.VERTICALL_SCROLL.create(this);
@@ -334,10 +335,10 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
 
         try {
-            BookSettings bs = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
+            AppBook bs = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
             bs.updateFromAppState();
             bs.currentPageChanged(page, pageCount);
-            bs.save();
+            SharedBooks.save(bs);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -544,7 +545,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
 
     @Override
-    public void onBookSettingsChanged(final BookSettings oldSettings, final BookSettings newSettings, final BookSettings.Diff diff) {
+    public void onBookSettingsChanged(final AppBook oldSettings, final AppBook newSettings, final AppBook.Diff diff) {
         if (newSettings == null) {
             return;
         }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.ExtUtils;
@@ -32,7 +33,6 @@ import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.adapter.BookmarksAdapter2;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -295,7 +295,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
-                    BookSettings bs = SettingsManager.getBookSettings(result.getPath());
+                    AppBook bs = SettingsManager.getBookSettings(result.getPath());
                     if (bs.sp) {
                         ExtUtils.showDocument(getActivity(), file, result.getPage() * 2);
                     } else {

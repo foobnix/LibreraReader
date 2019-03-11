@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
@@ -37,7 +38,6 @@ import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
 import org.emdev.ui.AbstractActionActivity;
 
@@ -95,7 +95,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         if (getIntent().getData() != null) {
             String path = getIntent().getData().getPath();
-            final BookSettings bs = SettingsManager.getBookSettings(path);
+            final AppBook bs = SettingsManager.getBookSettings(path);
             // AppState.get().setNextScreen(bs.isNextScreen);
             if (bs != null) {
                 // AppState.get().l = bs.l;

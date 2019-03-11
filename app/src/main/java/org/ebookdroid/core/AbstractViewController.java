@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -15,7 +16,6 @@ import com.foobnix.sys.AdvGuestureDetector;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.common.settings.types.PageType;
@@ -161,7 +161,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             invalidatePageSizes(InvalidateSizeReason.INIT, null);
 
-            final BookSettings bs = SettingsManager.getBookSettings();
+            final AppBook bs = SettingsManager.getBookSettings();
             final Page page = pageToGo.getActualPage(model, bs);
             final int toPage = page != null ? page.index.viewIndex : 0;
 

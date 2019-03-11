@@ -20,6 +20,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
@@ -32,7 +33,6 @@ import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -254,7 +254,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public boolean isCropCurrentBook() {
-        BookSettings bookSettings = SettingsManager.getBookSettings();
+        AppBook bookSettings = SettingsManager.getBookSettings();
         if (bookSettings == null) {
             return false;
         }

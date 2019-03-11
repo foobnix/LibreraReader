@@ -19,13 +19,13 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
 
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.ByteArrayInputStream;
@@ -64,7 +64,7 @@ public class Clouds {
     public volatile String oneDriveSpace;
     private Context context;
 
-    public static void saveProgress(BookSettings bs) {
+    public static void saveProgress(AppBook bs) {
         LOG.d("Save progress", bs);
         if (!isCloudImage(bs.path)) {
             return;

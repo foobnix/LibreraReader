@@ -3,11 +3,11 @@ package org.ebookdroid.core;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.core.models.DocumentModel;
@@ -17,7 +17,7 @@ import org.ebookdroid.ui.viewer.IViewController;
 public class ViewState {
 
     public final CoreSettings app;
-    public final BookSettings book;
+    public final AppBook book;
     public final IViewController ctrl;
     public final DocumentModel model;
 

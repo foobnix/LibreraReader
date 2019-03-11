@@ -6,6 +6,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
@@ -13,7 +14,6 @@ import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MatrixUtils;
@@ -226,7 +226,7 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
         }
 
         public Bitmaps reuse(final String nodeId, final BitmapRef bitmap, final Rect bitmapBounds) {
-            final BookSettings bs = SettingsManager.getBookSettings();
+            final AppBook bs = SettingsManager.getBookSettings();
             final CoreSettings app = CoreSettings.getInstance();
             // final boolean invert = bs != null ? bs.nightMode : app.nightMode;
             final boolean invert = !AppState.get().isDayNotInvert;

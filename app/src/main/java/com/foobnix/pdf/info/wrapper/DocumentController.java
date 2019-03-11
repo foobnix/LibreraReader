@@ -24,6 +24,7 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -41,7 +42,6 @@ import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
@@ -235,7 +235,7 @@ public abstract class DocumentController {
         try {
             if (TTSEngine.get().isPlaying()) {
 
-                BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
 
                 if (getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage().viewIndex + 1);
@@ -292,7 +292,7 @@ public abstract class DocumentController {
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
         try {
-            BookSettings bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
             if (getCurentPage() != bs.getCurrentPage().viewIndex + 1) {
                 onGoToPage(bs.getCurrentPage().viewIndex + 1);
             }

@@ -12,6 +12,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
@@ -33,7 +34,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.PageSearcher;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -151,7 +152,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
         AppState.get().lastBookPath = bookPath;
 
-        BookSettings bs = SettingsManager.getBookSettings(bookPath);
+        AppBook bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
             AppState.get().isCut = bs.sp;
             AppState.get().isCrop = bs.cp;
@@ -280,10 +281,10 @@ public abstract class HorizontalModeController extends DocumentController {
         // int page = PageUrl.fakeToReal(currentPage);
         LOG.d("_PAGE", "saveCurrentPage", currentPage, pagesCount);
         try {
-            BookSettings bs = SettingsManager.getBookSettings(getBookPath());
+            AppBook bs = SettingsManager.getBookSettings(getBookPath());
             bs.updateFromAppState();
             bs.currentPageChanged(currentPage, pagesCount);
-            bs.save();
+            SharedBooks.save(bs);
             activity.getIntent().putExtra(EXTRA_PAGE, currentPage);
         } catch (Exception e) {
             LOG.e(e);

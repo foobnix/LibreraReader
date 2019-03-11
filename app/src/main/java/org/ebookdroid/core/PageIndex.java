@@ -1,6 +1,7 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.common.settings.books.BookSettings;
+import com.foobnix.model.AppBook;
+
 import org.ebookdroid.core.models.DocumentModel;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +32,7 @@ public class PageIndex {
         return obj;
     }
 
-    public Page getActualPage(final DocumentModel dm, final BookSettings bs) {
+    public Page getActualPage(final DocumentModel dm, final AppBook bs) {
         // If now page splitting is switched off:
         // The document index is valid in all cases
         if (!bs.sp) {

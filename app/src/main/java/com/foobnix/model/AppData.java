@@ -6,9 +6,12 @@ import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -76,13 +79,14 @@ public class AppData  {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.path).isFile()) {
-                FileMeta meta = new FileMeta(s.path);
+                FileMeta meta = AppDB.get().getOrCreate(s.path);
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
                 res.add(meta);
             }
         }
+        SharedBooks.updateProgress(res);
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
         return res;
@@ -92,14 +96,19 @@ public class AppData  {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.path).isDirectory()) {
-                FileMeta meta = new FileMeta(s.path);
+                FileMeta meta = AppDB.get().getOrCreate(s.path);
                 meta.setIsStar(true);
+                meta.setPathTxt(ExtUtils.getFileName(s.path));
                 meta.setIsSearchBook(false);
                 meta.setIsStarTime(s.time);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
                 res.add(meta);
             }
         }
+
+        SharedBooks.updateProgress(res);
+
+
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
         return res;
@@ -109,13 +118,14 @@ public class AppData  {
         readSimpleMeta(recent, syncRecent);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
-            FileMeta meta = new FileMeta(s.path);
+            FileMeta meta = AppDB.get().getOrCreate(s.path);
             meta.setIsRecent(true);
             meta.setIsSearchBook(true);
             meta.setIsRecentTime(s.time);
             res.add(meta);
         }
-        Collections.sort(res, FileMetaComparators.BY_DATE);
+        SharedBooks.updateProgress(res);
+        Collections.sort(res, FileMetaComparators.BY_RECENT_TIME);
         Collections.reverse(res);
         return res;
     }

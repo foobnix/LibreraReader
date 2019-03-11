@@ -1,16 +1,15 @@
-package org.ebookdroid.common.settings.books;
+package com.foobnix.model;
 
-import com.foobnix.model.AppState;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.sys.TempHolder;
 
-import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.events.CurrentPageListener;
 
 import java.io.File;
 
-public class BookSettings implements CurrentPageListener {
+public class AppBook implements CurrentPageListener {
 
     public String path;
     public int z = 100;//z
@@ -30,15 +29,21 @@ public class BookSettings implements CurrentPageListener {
     public int d = 0;//delta
     public float p; //percent
 
-    public File getCacheFile(){
+    public static File getCacheFile(String path) {
         //return new File(AppsConfig.SYNC_FOLDER, new File(path).getName()+"_"+ path.hashCode()+".json");
-        return new File(AppsConfig.SYNC_FOLDER, "book-"+new File(path).getName()+".json");
+        return new File(AppsConfig.SYNC_FOLDER, "book-" + new File(path).getName() + ".json");
     }
 
-    public BookSettings(){
+    public File getCacheFile() {
+        return getCacheFile(path);
+    }
+
+
+    public AppBook() {
 
     }
-    public BookSettings(final String path) {
+
+    public AppBook(final String path) {
         this.path = path;
     }
 
@@ -51,21 +56,23 @@ public class BookSettings implements CurrentPageListener {
         d = TempHolder.get().pageDelta;
     }
 
-    public void save() {
-        SettingsManager.db.storeBookSettings(this);
-    }
 
-    public void currentPageChanged(final int page, int pages) {
+    public void currentPageChanged(int page, int pages) {
         this.n = pages;
+        page = page + 1;
         this.p = (float) page / pages;
+        LOG.d("currentPageChanged", page, pages, p);
     }
 
     public void currentPageChanged(final int page) {
-        this.p = (float) page / n;
+        currentPageChanged(page, n);
     }
 
     public PageIndex getCurrentPage() {
-        int p = Math.round(n * this.p);
+        int p = (int) (n * this.p);
+        if (p > 0) {
+            p = p - 1;
+        }
         return new PageIndex(p, p);
     }
 
@@ -93,7 +100,7 @@ public class BookSettings implements CurrentPageListener {
         private short mask;
         private final boolean firstTime;
 
-        public Diff(final BookSettings olds, final BookSettings news) {
+        public Diff(final AppBook olds, final AppBook news) {
             firstTime = olds == null;
             if (firstTime) {
                 mask = (short) 0xFFFF;

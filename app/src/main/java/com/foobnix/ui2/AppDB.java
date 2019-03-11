@@ -23,8 +23,6 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.SearchFragment2;
 
-import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.query.QueryBuilder;
 
@@ -268,30 +266,6 @@ public class AppDB {
     }
 
 
-    public List<FileMeta> getAllRecentWithProgress() {
-        SettingsManager.load();
-        List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
-        for (FileMeta meta : list) {
-            BookSettings bs = SettingsManager.getTempBookSettings(meta.getPath());
-            try {
-                float isRecentProgress = bs.p;
-
-                if (isRecentProgress > 1) {
-                    isRecentProgress = 1;
-                }
-                if (isRecentProgress < 0) {
-                    isRecentProgress = 0;
-                }
-                meta.setIsRecentProgress(isRecentProgress);
-                AppDB.get().update(meta);
-            } catch (Exception e) {
-                LOG.d(e);
-                meta.setIsRecentProgress(1f);
-            }
-        }
-
-        return removeNotExist(list);
-    }
 
     public void addRecent(String path) {
         if (!UITab.isShowRecent()) {

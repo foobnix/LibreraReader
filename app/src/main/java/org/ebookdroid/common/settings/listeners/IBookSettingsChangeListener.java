@@ -1,9 +1,9 @@
 package org.ebookdroid.common.settings.listeners;
 
-import org.ebookdroid.common.settings.books.BookSettings;
+import com.foobnix.model.AppBook;
 
 public interface IBookSettingsChangeListener {
 
-    void onBookSettingsChanged(BookSettings oldSettings, BookSettings newSettings, BookSettings.Diff diff);
+    void onBookSettingsChanged(AppBook oldSettings, AppBook newSettings, AppBook.Diff diff);
 
 }

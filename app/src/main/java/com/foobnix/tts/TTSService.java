@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -35,7 +36,7 @@ import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
@@ -69,8 +70,8 @@ public class TTSService extends Service {
     public void onCreate() {
         LOG.d(TAG, "Create");
 
-        PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TTSService");
+        PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        wakeLock = myPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Librera:TTSServiceLock");
 
         AppState.get().load(getApplicationContext());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -524,7 +525,10 @@ public class TTSService extends Service {
 
                         AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
-                        SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
+
+                        AppBook load = SharedBooks.load(AppState.get().lastBookPath);
+                        load.currentPageChanged( AppState.get().lastBookPage + 1);
+                        SharedBooks.save(load);
 
                     }
                 });
@@ -557,7 +561,10 @@ public class TTSService extends Service {
 
                         AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
-                        SettingsManager.updateTempPage(AppState.get().lastBookPath, AppState.get().lastBookPage + 1);
+
+                        AppBook load = SharedBooks.load(AppState.get().lastBookPath);
+                        load.currentPageChanged( AppState.get().lastBookPage + 1);
+                        SharedBooks.save(load);
 
                     }
 
@@ -581,9 +588,9 @@ public class TTSService extends Service {
         AppState.get().save(getApplicationContext());
 
         try {
-            BookSettings bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
+            AppBook bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
             bs.currentPageChanged(AppState.get().lastBookPage);
-            bs.save();
+            SharedBooks.save(bs);
             LOG.d(TAG, "currentPageChanged ", AppState.get().lastBookPage, AppState.get().lastBookPath);
         } catch (Exception e) {
             LOG.e(e);

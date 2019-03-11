@@ -86,6 +86,8 @@ import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.hypen.HyphenPattern;
+import com.foobnix.model.AppBook;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.DictsHelper;
@@ -135,7 +137,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.BookSettings;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -2056,7 +2057,7 @@ public class DragingDialogs {
                 recyclerView.setAdapter(recentAdapter);
                 recentAdapter.tempValue2 =FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
 
-                List<FileMeta> all = AppDB.get().getAllRecentWithProgress();
+                List<FileMeta> all = AppData.get().getAllRecent();
                 FileMeta stars = new FileMeta();
                 stars.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_STARS);
                 all.add(0, stars);
@@ -2483,7 +2484,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         PageImageState.get().isShowCuttingLine = false;
                         AppState.get().isCut = false;
-                        BookSettings bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
+                        AppBook bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
                         boolean wasSplit = bookSettings.sp;
                         bookSettings.sp = false;
                         onRefreshDoc.run();
