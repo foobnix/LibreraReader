@@ -105,13 +105,15 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         public boolean onResultRecive(FileMeta result) {
             result.setIsRecent(false);
             AppDB.get().update(result);
-            populate();
-            RecentUpates.updateAll(getActivity());
+
             if(result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())){
                 new File(result.getPath()).delete();
                 LOG.d("Delete cache recent file", result.getPath());
             }
             AppData.get().removeRecent(new SimpleMeta(result.getPath()));
+
+            populate();
+            RecentUpates.updateAll(getActivity());
 
             return false;
         }

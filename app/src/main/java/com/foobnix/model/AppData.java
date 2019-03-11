@@ -160,7 +160,7 @@ public class AppData  {
             array.put(o);
             LOG.d("writeSimpleMeta", o);
         }
-        IO.writeObj(file, array);
+        IO.writeObjAsync(file, array);
 
     }
 }

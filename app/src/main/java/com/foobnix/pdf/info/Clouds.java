@@ -234,7 +234,7 @@ public class Clouds {
             dropbox = new Dropbox(c, "wp5uvfelqbdnwkg", "e7hfer9dh5r18tz", "https://auth.cloudrail.com/Librera", "");
             ((Dropbox) dropbox).useAdvancedAuthentication();
 
-            googleDrive = new GoogleDrive(c, Apps.getMetaData(c,"librera.GOOGLE_DRIVE_KEY"), "", Apps.getPackageName(c) + ":/auth", "");
+            googleDrive = new GoogleDrive(c, Apps.getMetaData(c, "librera.GOOGLE_DRIVE_KEY"), "", Apps.getPackageName(c) + ":/auth", "");
             ((GoogleDrive) googleDrive).useAdvancedAuthentication();
 
             // https://apps.dev.microsoft.com/#/application
@@ -523,7 +523,9 @@ public class Clouds {
                         }
                     });
                 }
-            };
+            }
+
+            ;
         }.start();
     }
 
@@ -562,7 +564,9 @@ public class Clouds {
                         }
                     });
                 }
-            };
+            }
+
+            ;
         }.start();
     }
 
@@ -601,11 +605,22 @@ public class Clouds {
                         }
                     });
                 }
-            };
+            }
+
+            ;
         }.start();
     }
 
     public static boolean showHideCloudImage(ImageView img, String path) {
+
+        String fileName = ExtUtils.getFileName(path);
+
+        if (new File(AppsConfig.SYNC_FOLDER_ROOT, fileName).isFile()) {
+            img.setImageResource(R.mipmap.icon_pdf_reader);
+            return true;
+        }
+
+
         if (!AppsConfig.isCloudsEnable) {
             img.setVisibility(View.GONE);
             return false;

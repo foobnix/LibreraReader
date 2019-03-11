@@ -31,7 +31,7 @@ public class AppBook implements CurrentPageListener {
 
     public static File getCacheFile(String path) {
         //return new File(AppsConfig.SYNC_FOLDER, new File(path).getName()+"_"+ path.hashCode()+".json");
-        return new File(AppsConfig.SYNC_FOLDER, "book-" + new File(path).getName() + ".json");
+        return new File(AppsConfig.SYNC_FOLDER, "books/" + new File(path).getName() + ".json");
     }
 
     public File getCacheFile() {

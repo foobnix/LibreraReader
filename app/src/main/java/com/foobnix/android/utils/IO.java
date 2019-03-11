@@ -1,13 +1,19 @@
 package com.foobnix.android.utils;
 
+import com.foobnix.mobi.parser.IOUtils;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 public class IO {
@@ -15,6 +21,7 @@ public class IO {
     public static void writeObj(String file, Object o) {
         writeObj(new File(file), o);
     }
+
 
     public static void writeObj(File file, Object o) {
         new Thread(new Runnable() {
@@ -26,7 +33,7 @@ public class IO {
 
     }
 
-    public static synchronized void writeObjAsync(File file, Object o) {
+    public static void writeObjAsync(File file, Object o) {
         if (o instanceof JSONObject || o instanceof JSONArray) {
             LOG.d("writeObjAsync", "JSONObject");
             IO.writeString(file, o.toString());
@@ -80,6 +87,8 @@ public class IO {
     public static boolean writeString(File file, String string) {
         try {
             LOG.d("IO", "write to file");
+            new File(file.getParent()).mkdirs();
+
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             out.write(string.getBytes());
             out.flush();
@@ -106,5 +115,22 @@ public class IO {
         }
         return "";
 
+    }
+
+    public static boolean copyFile(File from, File to) {
+        try {
+            new File(to.getParent()).mkdirs();
+
+            InputStream input = new BufferedInputStream(new FileInputStream(from));
+            OutputStream output = new BufferedOutputStream(new FileOutputStream(to));
+
+            IOUtils.copyClose(input, output);
+
+            LOG.d("Copy file form to", from, to);
+        } catch (IOException e) {
+            LOG.e(e);
+            return false;
+        }
+        return true;
     }
 }

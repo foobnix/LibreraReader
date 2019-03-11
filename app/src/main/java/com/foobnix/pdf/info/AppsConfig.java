@@ -24,7 +24,8 @@ public class AppsConfig {
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
 
     //public static final File SYNC_FOLDER = new File(Environment.getExternalStorageDirectory(), "Librera/sync/"+ Build.MODEL);
-    public static final File SYNC_FOLDER = new File(Environment.getExternalStorageDirectory(), "Librera/sync/BETA");
+    public static final File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
+    public static final File SYNC_FOLDER = new File(SYNC_FOLDER_ROOT, "sync/BETA");
 
 
     public static boolean IS_BETA;

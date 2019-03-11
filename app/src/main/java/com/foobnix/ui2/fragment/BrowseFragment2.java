@@ -308,6 +308,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
                 }).setIcon(R.drawable.glyphicons_591_folder_heart);
 
+
+                menu.getMenu().add("Syncronization").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        displayAnyPath(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+                        return false;
+                    }
+                }).setIcon(R.mipmap.icon_pdf_reader).active(true);
+
                 // resources
 
                 if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {

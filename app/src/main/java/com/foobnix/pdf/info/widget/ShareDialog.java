@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -107,7 +108,9 @@ public class ShareDialog {
                     }
                 });
         builder.show();
-    };
+    }
+
+    ;
 
     public static void showsItemsDialog(final Activity a, String title, final String[] items) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -154,7 +157,6 @@ public class ShareDialog {
                         IOUtils.copyClose(input, output);
 
 
-
                         TempHolder.get().listHash++;
 
                         Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
@@ -181,7 +183,6 @@ public class ShareDialog {
                         OutputStream output = new BufferedOutputStream(new FileOutputStream(toFile));
 
                         IOUtils.copyClose(input, output);
-
 
 
                         fromFile.delete();
@@ -221,7 +222,7 @@ public class ShareDialog {
         }
         final boolean isPDF = BookType.PDF.is(file.getPath());
         final boolean isLibrary = false;// a instanceof MainTabs2 ? false :
-                                        // true;
+        // true;
         final boolean isMainTabs = a instanceof MainTabs2;
 
         List<String> items = new ArrayList<String>();
@@ -272,7 +273,7 @@ public class ShareDialog {
         }
 
         if (!isExternalOrCloud) {
-        items.add(a.getString(R.string.add_tags));
+            items.add(a.getString(R.string.add_tags));
         }
 
         if (AppsConfig.isCloudsEnable) {
@@ -281,6 +282,11 @@ public class ShareDialog {
         final boolean isPlaylist = file.getName().endsWith(Playlists.L_PLAYLIST);
         if (!isPlaylist) {
             items.add(a.getString(R.string.add_to_playlist));
+        }
+
+        final boolean isSyncronized = file.getPath().startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+        if (!isSyncronized) {
+            items.add("Synchronize");
         }
 
         if (isShowInfo) {
@@ -379,6 +385,18 @@ public class ShareDialog {
                     showAddToCloudDialog(a, file);
                 } else if (!isPlaylist && which == i++) {
                     DialogsPlaylist.showPlaylistsDialog(a, null, file);
+                } else if (!isSyncronized && which == i++) {
+
+                    boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_ROOT, file.getName()));
+                    if (result) {
+                        Toast.makeText(a, "Synchronized: "+AppsConfig.SYNC_FOLDER_ROOT.getPath() , Toast.LENGTH_LONG).show();
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                    }else{
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    }
+
+                    TempHolder.get().listHash++;
+
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }
@@ -396,7 +414,9 @@ public class ShareDialog {
 
         });
         create.show();
-    };
+    }
+
+    ;
 
     public static void showAddToCloudDialog(final Activity a, final File file) {
         final AlertDialog.Builder inner = new AlertDialog.Builder(a);
