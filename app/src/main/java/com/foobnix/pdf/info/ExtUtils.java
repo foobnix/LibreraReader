@@ -714,7 +714,7 @@ public class ExtUtils {
         return showDocument(c, file, -1);
     }
 
-    public static boolean showDocument(final Context c, final File file, final int page) {
+    public static boolean showDocument(final Context c, final File file, final float percent) {
 
         ImageLoader.getInstance().clearAllTasks();
 
@@ -725,20 +725,20 @@ public class ExtUtils {
 
             if(AppState.get().prefScrollMode.contains(ext)){
                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
                 return true;
             }else  if(AppState.get().prefBookMode.contains(ext)) {
                 AppState.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
                 return true;
             }else  if(AppState.get().prefMusicianMode.contains(ext)) {
                 AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
                 return true;
             }
         }
         if (AppState.get().isRememberMode) {
-            showDocumentWithoutDialog(c, file, page, null);
+            showDocumentWithoutDialog(c, file, percent, null);
             return true;
         }
 
@@ -858,7 +858,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
             }
         });
         horizontal.setOnClickListener(new View.OnClickListener() {
@@ -867,7 +867,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
             }
         });
 
@@ -877,7 +877,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, page, null);
+                showDocumentWithoutDialog(c, file, percent, null);
             }
         });
 
@@ -897,24 +897,24 @@ public class ExtUtils {
 
     }
 
-    public static void showDocumentWithoutDialog(final Context c, final File file, final int page, String playlist) {
-        showDocument(c, Uri.fromFile(file), page, playlist);
+    public static void showDocumentWithoutDialog(final Context c, final File file, final float percent, String playlist) {
+        showDocument(c, Uri.fromFile(file), percent, playlist);
     }
 
 
 
-    public static void showDocument(final Context c, final Uri uri, final int page, final String playList) {
+    public static void showDocument(final Context c, final Uri uri, final float percent, final String playList) {
         Safe.run(new Runnable() {
 
             @Override
             public void run() {
-                showDocumentInner(c, uri, page, playList);
+                showDocumentInner(c, uri, percent, playList);
             }
         });
 
     }
 
-    public static void showDocumentInner(final Context c, final Uri uri, final int page, String playlist) {
+    public static void showDocumentInner(final Context c, final Uri uri, final float percent, String playlist) {
         if (!isValidFile(uri)) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -922,7 +922,7 @@ public class ExtUtils {
         LOG.d("showDocument", uri.getPath(), playlist);
 
         if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
-            openHorizontalView(c, uri, page - 1, playlist);
+            openHorizontalView(c, uri, percent, playlist);
             return;
         }
 
@@ -934,8 +934,8 @@ public class ExtUtils {
         }
         intent.setData(checkPlaylisturi(uri, intent, playlist));
 
-        if (page > 0) {
-            intent.putExtra(DocumentController.EXTRA_PAGE, page);
+        if (percent > 0f) {
+            intent.putExtra(DocumentController.EXTRA_PERCENT, percent);
 
         }
         c.startActivity(intent);
@@ -956,7 +956,7 @@ public class ExtUtils {
         return uri;
     }
 
-    private static void openHorizontalView(final Context c, final Uri uri, final int page, String playlist) {
+    private static void openHorizontalView(final Context c, final Uri uri, final float percent, String playlist) {
         if (uri == null) {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -975,8 +975,8 @@ public class ExtUtils {
             LOG.e(e);
         }
 
-        if (page > 0) {
-            intent.putExtra(DocumentController.EXTRA_PAGE, page);
+        if (percent > 0f) {
+            intent.putExtra(DocumentController.EXTRA_PERCENT, percent);
         }
         c.startActivity(intent);
 
@@ -1175,7 +1175,7 @@ public class ExtUtils {
             return;
         }
 
-        final List<AppBookmark> bookmarksByBook = AppSharedPreferences.get().getBookmarksByBook(file);
+        final List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(file);
 
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -1186,7 +1186,7 @@ public class ExtUtils {
             result.append(a.getString(R.string.bookmarks) + "\n\n");
             result.append(file.getName() + "\n");
             for (final AppBookmark book : bookmarksByBook) {
-                result.append(String.format("%s. %s \n", book.getPage(), book.getText()));
+                result.append(String.format("%s. %s \n", book.p, book.getText()));
             }
             intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         }
@@ -1209,7 +1209,7 @@ public class ExtUtils {
                 try {
                     LOG.d("exportAllBookmarksToFile 2", toFile);
                     FileWriter writer = new FileWriter(toFile);
-                    writer.write(getAllExportString(a, AppSharedPreferences.get()));
+                    writer.write(getAllExportString(a, BookmarksData.get()));
                     writer.flush();
                     writer.close();
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
@@ -1247,7 +1247,7 @@ public class ExtUtils {
                         jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
                     }
 
-                    ExportSettingsManager.importFromJSon(jsonObject, AppSharedPreferences.get().getBookmarkPreferences());
+                   // ExportSettingsManager.importFromJSon(jsonObject, BookmarksData.get().getBookmarkPreferences());
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
                     onSuccess.run();
                 } catch (Exception e) {
@@ -1282,17 +1282,17 @@ public class ExtUtils {
                     return false;
                 }
 
-                try {
-                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", AppSharedPreferences.get().getBookmarkPreferences(), AppSharedPreferences.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
-                    FileWriter writer = new FileWriter(toFile);
-                    writer.write(result.toString(2));
-                    writer.flush();
-                    writer.close();
-                    Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
-                    LOG.e(e);
-                    Toast.makeText(a, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                }
+//                try {
+//                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", BookmarksData.get().getBookmarkPreferences(), BookmarksData.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
+//                    FileWriter writer = new FileWriter(toFile);
+//                    writer.write(result.toString(2));
+//                    writer.flush();
+//                    writer.close();
+//                    Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
+//                } catch (Exception e) {
+//                    LOG.e(e);
+//                    Toast.makeText(a, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                }
                 dialog.dismiss();
                 return false;
             }
@@ -1300,7 +1300,7 @@ public class ExtUtils {
 
     }
 
-    public static String getAllExportString(final Activity a, AppSharedPreferences viewerPreferences) {
+    public static String getAllExportString(final Activity a, BookmarksData viewerPreferences) {
         final StringBuilder out = new StringBuilder();
         Map<String, List<AppBookmark>> bookmarks = viewerPreferences.getBookmarksMap();
 
@@ -1309,7 +1309,7 @@ public class ExtUtils {
 
         for (String path : bookmarks.keySet()) {
             List<AppBookmark> list = bookmarks.get(path);
-            Collections.sort(list, AppSharedPreferences.COMPARE_BY_PAGE);
+           // Collections.sort(list, BookmarksData.COMPARE_BY_PAGE);
             File file = new File(path);
             if (file.isFile()) {
                 path = file.getName();
@@ -1317,7 +1317,7 @@ public class ExtUtils {
             out.append(path + "\n");
             out.append("\n");
             for (AppBookmark item : list) {
-                out.append(String.format("%s. %s \n", item.getPage(), item.getText()));
+                out.append(String.format("%s. %s \n", item.p, item.getText()));
             }
             out.append("\n");
 
@@ -1329,7 +1329,7 @@ public class ExtUtils {
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, getAllExportString(a, AppSharedPreferences.get()));
+        intent.putExtra(Intent.EXTRA_TEXT, getAllExportString(a, BookmarksData.get()));
         a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 

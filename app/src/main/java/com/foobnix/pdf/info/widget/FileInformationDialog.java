@@ -28,7 +28,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -155,13 +155,13 @@ public class FileInformationDialog {
             ((View) hypenLang.getParent()).setVisibility(View.GONE);
         }
 
-        List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(file);
+        List<AppBookmark> objects = BookmarksData.get().getBookmarksByBook(file);
         StringBuilder lines = new StringBuilder();
         String fast = a.getString(R.string.fast_bookmark);
         if (TxtUtils.isListNotEmpty(objects)) {
             for (AppBookmark b : objects) {
                 if (!fast.equals(b.getText())) {
-                    lines.append(b.getPage() + ": " + b.getText());
+                    lines.append(b.getPercent()*100+"%" + ": " + b.getText());
                     lines.append("\n");
                 }
             }

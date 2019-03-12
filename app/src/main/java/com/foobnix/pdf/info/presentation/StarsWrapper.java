@@ -1,14 +1,13 @@
 package com.foobnix.pdf.info.presentation;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppSharedPreferences;
-import com.foobnix.pdf.info.TintUtil;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.TintUtil;
 
 public class StarsWrapper {
 
@@ -28,9 +27,9 @@ public class StarsWrapper {
 
             @Override
             public void onClick(View v) {
-                boolean changeIsStar = AppSharedPreferences.get().changeIsStar(info.getPath());
-                info.setIsStar(changeIsStar);
-                TintUtil.drawStar(starIcon, changeIsStar);
+//                boolean changeIsStar = BookmarksData.get().changeIsStar(info.getPath());
+//                info.setIsStar(changeIsStar);
+//                TintUtil.drawStar(starIcon, changeIsStar);
                 if (onClick != null) {
                     onClick.run();
                 }

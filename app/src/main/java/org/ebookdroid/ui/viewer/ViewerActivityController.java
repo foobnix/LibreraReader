@@ -124,12 +124,12 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (++loadingCount == 1) {
             documentModel = ActivityControllerStub.DM_STUB;
 
-            if (intent == null || intent.getData()==null) {
+            if (intent == null || intent.getData() == null) {
                 return;
             }
 
             File file = new File(intent.getData().getPath());
-             m_fileName = intent.getData().getPath();
+            m_fileName = intent.getData().getPath();
             codecType = BookType.getByUri(m_fileName);
 
             FileMeta meta = FileMetaCore.createMetaIfNeed(m_fileName, false);
@@ -179,28 +179,25 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
 
     }
+
     public int pageCount;
+
     public void startDecoding(final String fileName, final String password) {
         getManagedComponent().view.getView().post(new BookLoadTask(fileName, password, new Runnable() {
 
             @Override
             public void run() {
 
-                int pageIntent = intent.getIntExtra(DocumentController.EXTRA_PAGE, 0);
                 intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
                 double percent = intent.getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
-                intent.putExtra(DocumentController.EXTRA_PAGE, 0);
                 intent.putExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
-                if (percent > 0) {
-                    LOG.d("Percent", percent, getDocumentModel().getPageCount());
-                    pageIntent = (int) (getDocumentModel().getPageCount() * percent);
+
+                if (percent > 0f) {
+                    controller.onGoToPage((int)Math.round(getDocumentModel().getPageCount() * percent));
                 }
 
-                if (pageIntent > 0) {
-                    controller.onGoToPage(pageIntent);
-                }
 
                 if (onBookLoaded != null) {
                     onBookLoaded.run();
@@ -339,7 +336,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         wrapperControlls.updateUI();
 
 
-
         wrapperControlls.setTitle(title);
         controller.setTitle(title);
     }
@@ -381,8 +377,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void onConfigChanged() {
         wrapperControlls.onConfigChanged();
     }
-
-
 
 
     @Override

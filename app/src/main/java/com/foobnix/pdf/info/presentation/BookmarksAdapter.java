@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -53,18 +53,9 @@ public class BookmarksAdapter extends BaseAdapter {
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
 
-        String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage() * 2 : bookmark.getPage());
+        String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage(controller.getPageCount()) * 2 : bookmark.getPage(controller.getPageCount()));
         titleView.setVisibility(View.GONE);
-        int pageByPercent = Math.max(1, Math.round(bookmark.getPercent() * controller.getPageCount()));
-        if (bookmark.getPercent() > 0.0f) {
-            if (controller.isMusicianMode()) {
-                textView.setText(pageByPercent + "(" + String.format("%.1f", bookmark.getPercent() * 100) + "%)" + ": " + bookmark.getText());
-            } else {
-                textView.setText(pageByPercent + ": " + bookmark.getText());
-            }
-        } else {
-            textView.setText(bookmark.getPage() + ": " + bookmark.getText());
-        }
+        textView.setText(bookmark.getPage(controller.getPageCount()) + ": " + bookmark.text);
 
         pageView.setText(pageNumber);
 
@@ -79,7 +70,7 @@ public class BookmarksAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                AppSharedPreferences.get().removeBookmark(bookmark);
+                BookmarksData.get().remove(bookmark);
                 objects.remove(bookmark);
                 notifyDataSetChanged();
             }

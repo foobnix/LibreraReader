@@ -49,8 +49,8 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
-import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -1717,7 +1717,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        AppSharedPreferences.get().cleanRecent();
+                        //BookmarksData.get().cleanRecent();
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -1743,7 +1743,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        AppSharedPreferences.get().cleanBookmarks();
+                        BookmarksData.get().cleanBookmarks();
 
                     }
                 });

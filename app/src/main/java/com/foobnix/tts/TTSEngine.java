@@ -17,7 +17,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -287,11 +287,11 @@ public class TTSEngine {
 
     public static void fastTTSBookmakr(Context c, float percent) {
         int page = AppState.get().lastBookPage + 1;
-        boolean hasBookmark = AppSharedPreferences.get().hasBookmark(AppState.get().lastBookPath, page);
+        boolean hasBookmark = BookmarksData.get().hasBookmark(AppState.get().lastBookPath, page);
 
         if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(AppState.get().lastBookPath, c.getString(R.string.fast_bookmark), page, AppState.get().lastBookTitle, percent);
-            AppSharedPreferences.get().addBookMark(bookmark);
+            final AppBookmark bookmark = new AppBookmark(AppState.get().lastBookPath, c.getString(R.string.fast_bookmark), percent);
+            BookmarksData.get().add(bookmark);
 
         }
         Vibro.vibrate();

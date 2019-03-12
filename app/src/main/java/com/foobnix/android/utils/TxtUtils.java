@@ -138,6 +138,10 @@ public class TxtUtils {
         return String.format("%.1f", f) + "%";
     }
 
+    public static String percentFormatInt(float f) {
+        return Math.round(f * 100) + "%";
+    }
+
     public static String deltaPageMax(int current) {
         if (AppState.get().pageNumberFormat == AppState.PAGE_NUMBER_FORMAT_PERCENT) {
             return "100%";
@@ -235,7 +239,7 @@ public class TxtUtils {
         String firstPart = max > 0 ? text.substring(0, max + 1) : text;
         String secondPart = max > 0 ? text.substring(max + 1) : "";
 
-        return new String[] { firstPart, secondPart };
+        return new String[]{firstPart, secondPart};
 
     }
 
@@ -828,7 +832,7 @@ public class TxtUtils {
 
     /**
      * Replace string "My name is @firstName @lastName"
-     * 
+     *
      * @param str
      * @param keys
      * @return
@@ -899,7 +903,7 @@ public class TxtUtils {
                 if (AppState.get().isUiTextColor) {
                     TxtUtils.updateAllLinks((ViewGroup) parent, AppState.get().uiTextColor);
                 } else {
-                    TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[] { android.R.attr.textColorLink });
+                    TypedArray out = parent.getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.textColorLink});
                     int systemLinkColor = out.getColor(0, 0);
 
                     TxtUtils.updateAllLinks((ViewGroup) parent, systemLinkColor);
@@ -955,7 +959,6 @@ public class TxtUtils {
 
         return buf.toString();
     }
-
 
 
 }

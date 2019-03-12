@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -22,6 +23,7 @@ import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksViewHolder> {
+
 
     public class BookmarksViewHolder extends RecyclerView.ViewHolder {
         public TextView page, text, title;
@@ -50,10 +52,11 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
     public void onBindViewHolder(final BookmarksViewHolder holder, final int position) {
         final AppBookmark item = getItem(position);
 
-        holder.page.setText("" + item.getPage());
-        holder.title.setText("" + item.getTitle());
+        holder.page.setText(TxtUtils.percentFormatInt(item.getPercent()));
+        holder.title.setText("Title");
 
-        holder.text.setText(item.getText());
+
+        holder.text.setText(item.text);
         holder.remove.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -63,7 +66,8 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         });
 
         if (withTitle) {
-            holder.title.setVisibility(View.VISIBLE);
+            //holder.title.setVisibility(View.VISIBLE);
+            holder.title.setVisibility(View.GONE);
         } else {
             holder.title.setVisibility(View.GONE);
         }
@@ -78,7 +82,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             holder.remove.setVisibility(View.GONE);
         }
 
-        IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
+        IMG.getCoverPageWithEffectPos(holder.image, item.path, IMG.getImageSize(), position, new SimpleImageLoadingListener() {
 
             @Override
             public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
@@ -92,7 +96,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
 
         bindItemClickAndLongClickListeners(holder.parent, getItem(position));
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
             holder.parent.setBackgroundColor(Color.BLACK);
         }
     }

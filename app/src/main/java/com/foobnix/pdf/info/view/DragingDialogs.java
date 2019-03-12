@@ -89,7 +89,7 @@ import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
@@ -2081,18 +2081,18 @@ public class DragingDialogs {
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
         Vibro.vibrate();
-        List<AppBookmark> objects = AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook());
+        List<AppBookmark> objects = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
         int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
         for (AppBookmark all : objects) {
-            if (all.getPage() == page) {
+            if (all.getPage(controller.getPageCount()) == page) {
                 Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
                 return;
             }
         }
 
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle(), controller.getPercentage());
-        AppSharedPreferences.get().addBookMark(bookmark);
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), controller.getPercentage());
+        BookmarksData.get().add(bookmark);
 
         String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
         Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
@@ -2117,7 +2117,7 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
-                int page = PageUrl.realToFake(appBookmark.getPage());
+                int page = PageUrl.realToFake(appBookmark.getPage(controller.getPageCount()));
 
                 if (page != controller.getCurentPageFirst1()) {
                     final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());
@@ -2126,11 +2126,12 @@ public class DragingDialogs {
                     controller.getLinkHistory().add(offsetY);
                 }
 
-                if (appBookmark.getPercent() > 0) {
-                    controller.onScrollYPercent(appBookmark.getPercent());
-                } else {
-                    controller.onGoToPage(page);
-                }
+                //if (appBookmark.p > 0) {
+                 //   controller.onScrollYPercent(appBookmark.p);
+                //} else {
+
+                //}
+                controller.onGoToPage(page);
 
                 onRefeshUI.run();
             }
@@ -2167,17 +2168,17 @@ public class DragingDialogs {
                         int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
                         for (AppBookmark all : objects) {
-                            if (all.getPage() == page) {
+                            if (all.getPage(controller.getPageCount()) == page) {
                                 Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
                                 return;
                             }
                         }
 
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), page, controller.getTitle(), controller.getPercentage());
-                        AppSharedPreferences.get().addBookMark(bookmark);
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), controller.getPercentage());
+                        BookmarksData.get().add(bookmark);
 
                         objects.clear();
-                        objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));
+                        objects.addAll(BookmarksData.get().getBookmarksByBook(controller.getCurrentBook()));
                         bookmarksAdapter.notifyDataSetChanged();
 
                         closeDialog();
@@ -2191,7 +2192,7 @@ public class DragingDialogs {
 
                 objects.clear();
 
-                objects.addAll(AppSharedPreferences.get().getBookmarksByBook(controller.getCurrentBook()));
+                objects.addAll(BookmarksData.get().getBookmarksByBook(controller.getCurrentBook()));
 
                 bookmarksAdapter.notifyDataSetChanged();
 

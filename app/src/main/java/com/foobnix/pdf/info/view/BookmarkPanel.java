@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -43,13 +43,13 @@ public class BookmarkPanel {
         }
         pagesBookmark.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
 
-        List<AppBookmark> all = AppSharedPreferences.get().getBookmarksByBook(dc.getCurrentBook());
+        List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {
-            final int num = appBookmark.getPage();
+            final int num = appBookmark.getPage(dc.getPageCount());
             TextView t = new TextView(pageshelper.getContext());
-            boolean isQuick = appBookmark.getText().equals(quickBookmark);
+            boolean isQuick = appBookmark.text.equals(quickBookmark);
             if (AppState.get().isShowBookmarsPanelText && !isQuick) {
-                String substringSmart = TxtUtils.substringSmart(appBookmark.getText(), 20);
+                String substringSmart = TxtUtils.substringSmart(appBookmark.text, 20);
                 substringSmart = TxtUtils.firstUppercase(substringSmart).trim();
                 t.setText(substringSmart);
             } else {
@@ -68,11 +68,11 @@ public class BookmarkPanel {
 
                 @Override
                 public void onClick(View v) {
-                    if (appBookmark.getPercent() > 0) {
-                        dc.onScrollYPercent(appBookmark.getPercent());
-                    } else {
-                        dc.onGoToPage(num);
-                    }
+                    //if (appBookmark.getPercent() > 0) {
+                    //    dc.onScrollYPercent(appBookmark.getPercent());
+                    //} else {
+                    //}
+                    dc.onGoToPage(num);
                 }
             });
             t.setOnLongClickListener(new OnLongClickListener() {
@@ -83,7 +83,7 @@ public class BookmarkPanel {
 
                         @Override
                         public void run() {
-                            AppSharedPreferences.get().removeBookmark(appBookmark);
+                            BookmarksData.get().remove(appBookmark);
                             showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
                         }
                     });

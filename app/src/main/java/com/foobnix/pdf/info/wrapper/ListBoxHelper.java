@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.presentation.BookmarksAdapter;
@@ -46,8 +46,8 @@ public class ListBoxHelper {
                 try {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, curentPageFirst1, controller.getTitle(), controller.getPercentage());
-                        AppSharedPreferences.get().addBookMark(bookmark);
+                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getPercentage());
+                        BookmarksData.get().add(bookmark);
                         if (objects != null) {
                             objects.add(0, bookmark);
                         }
@@ -82,8 +82,8 @@ public class ListBoxHelper {
     }
 
     public static void addBookmark(DocumentController controller, String text) {
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getCurentPage(), controller.getTitle(), controller.getPercentage());
-        AppSharedPreferences.get().addBookMark(bookmark);
+        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getPercentage());
+        BookmarksData.get().add(bookmark);
     }
 
     public static void showEditDeleteDialog(final AppBookmark bookmark, DocumentController controller, final BookmarksAdapter bookmarksAdapter, final List<AppBookmark> objects) {
@@ -104,9 +104,9 @@ public class ListBoxHelper {
                 try {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
-                        bookmark.setText(text);
-                        AppSharedPreferences.get().removeBookmark(bookmark);
-                        AppSharedPreferences.get().addBookMark(bookmark);
+                        bookmark.text = text;
+                        BookmarksData.get().remove(bookmark);
+                        BookmarksData.get().add(bookmark);
 
                         bookmarksAdapter.notifyDataSetChanged();
                         Keyboards.close(editText);
@@ -128,7 +128,7 @@ public class ListBoxHelper {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
                 Keyboards.close(editText);
-                AppSharedPreferences.get().removeBookmark(bookmark);
+                BookmarksData.get().remove(bookmark);
                 objects.remove(bookmark);
                 bookmarksAdapter.notifyDataSetChanged();
 

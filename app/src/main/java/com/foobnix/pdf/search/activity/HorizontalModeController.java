@@ -250,23 +250,14 @@ public abstract class HorizontalModeController extends DocumentController {
 
         double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
-        int number = activity.getIntent().getIntExtra(EXTRA_PAGE, 0);
-        LOG.d("_PAGE", "uri page", number, activity.getIntent().getExtras());
+        LOG.d("_PAGE", "uri page", activity.getIntent().getExtras());
 
-        activity.getIntent().putExtra(EXTRA_PAGE, 0);
         activity.getIntent().putExtra(EXTRA_PERCENT, 0.0);
 
         if (percent > 0) {
-            number = (int) Math.round(pagesCount * percent) - 1;
-        }
-
-        LOG.d("getPageFromUri", "number by p", percent, number);
-
-        if (number > 0) {
-            currentPage = number;
+            currentPage = (int) Math.round(pagesCount * percent) - 1;
         } else {
             currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
-            // currentPage = PageUrl.realToFake(currentPage);
         }
 
         LOG.d("_PAGE", "LOAD currentPage", currentPage, getBookPath());
@@ -285,7 +276,7 @@ public abstract class HorizontalModeController extends DocumentController {
             bs.updateFromAppState();
             bs.currentPageChanged(currentPage, pagesCount);
             SharedBooks.save(bs);
-            activity.getIntent().putExtra(EXTRA_PAGE, currentPage);
+            activity.getIntent().putExtra(EXTRA_PERCENT, (double) currentPage / pagesCount);
         } catch (Exception e) {
             LOG.e(e);
         }

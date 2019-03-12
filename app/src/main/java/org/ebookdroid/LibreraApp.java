@@ -12,7 +12,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppSharedPreferences;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -58,7 +57,6 @@ public class LibreraApp extends MultiDexApplication {
         Dips.init(this);
         AppDB.get().open(this);
         AppState.get().load(this);
-        AppSharedPreferences.get().init(this);
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);

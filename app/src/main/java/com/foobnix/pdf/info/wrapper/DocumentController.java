@@ -54,7 +54,6 @@ import java.util.concurrent.TimeUnit;
 @SuppressLint("NewApi")
 public abstract class DocumentController {
 
-    public static final String EXTRA_PAGE = "page";
     public static final String EXTRA_PASSWORD = "password";
     public static final String EXTRA_PERCENT = "p";
     public static final String EXTRA_PLAYLIST = "playlist";
@@ -393,7 +392,7 @@ public abstract class DocumentController {
 
     public void addRecent(final Uri uri) {
         AppDB.get().addRecent(uri.getPath());
-        // AppSharedPreferences.get().addRecent(uri);
+        // BookmarksData.get().addRecent(uri);
     }
 
     public void onClickTop() {

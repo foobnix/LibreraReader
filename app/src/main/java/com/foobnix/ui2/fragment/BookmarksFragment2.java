@@ -20,9 +20,8 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.AppSharedPreferences;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -32,13 +31,9 @@ import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.adapter.BookmarksAdapter2;
 
-import org.ebookdroid.common.settings.SettingsManager;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -281,7 +276,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         @Override
         public boolean onResultRecive(AppBookmark result) {
             // bookmarksSearchContainer.setVisibility(View.VISIBLE);
-            bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getTitle());
+            bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getPath());
             populate();
             return false;
         }
@@ -295,15 +290,11 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
-                    AppBook bs = SettingsManager.getBookSettings(result.getPath());
-                    if (bs.sp) {
-                        ExtUtils.showDocument(getActivity(), file, result.getPage() * 2);
-                    } else {
-                        ExtUtils.showDocument(getActivity(), file, result.getPage());
-                    }
+                    ExtUtils.showDocument(getActivity(), file, result.getPercent());
+
                 }
             } else {
-                bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getTitle());
+                bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getPath());
                 populate();
             }
             return false;
@@ -314,7 +305,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         @Override
         public boolean onResultRecive(AppBookmark result) {
-            AppSharedPreferences.get().removeBookmark(result);
+            BookmarksData.get().remove(result);
             populate();
             return false;
         }
@@ -326,7 +317,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
         if (TxtUtils.isEmpty(text)) {
-            List<AppBookmark> bookmarks = AppSharedPreferences.get().getBookmarks();
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll();
 
             if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_BOOK) {
                 List<AppBookmark> filtered = new ArrayList<AppBookmark>();
@@ -343,23 +334,17 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             }
         } else {
             List<AppBookmark> filtered = new ArrayList<AppBookmark>();
-            List<AppBookmark> bookmarks = AppSharedPreferences.get().getBookmarks();
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll();
 
             if (text.startsWith(BOOK_PREFIX)) {
                 text = text.replace(BOOK_PREFIX, "").trim();
                 for (final AppBookmark bookmark : bookmarks) {
-                    if (bookmark.getTitle().toLowerCase(Locale.US).contains(text.toLowerCase(Locale.US))) {
+                    if (bookmark.getPath().toLowerCase(Locale.US).contains(text.toLowerCase(Locale.US))) {
                         filtered.add(bookmark);
                     }
                 }
 
-                Collections.sort(filtered, new Comparator<AppBookmark>() {
 
-                    @Override
-                    public int compare(AppBookmark o1, AppBookmark o2) {
-                        return new Integer(o1.getPage()).compareTo(new Integer(o2.getPage()));
-                    }
-                });
 
             } else {
                 for (AppBookmark bookmark : bookmarks) {

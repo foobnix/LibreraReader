@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AppData  {
+public class AppData {
 
     public static final File syncRecent = new File(AppsConfig.SYNC_FOLDER, "app-Recent.json");
     public static final File syncFavorite = new File(AppsConfig.SYNC_FOLDER, "app-Favorite.json");
@@ -42,37 +42,40 @@ public class AppData  {
         recent.add(s);
         writeSimpleMeta(recent, syncRecent);
     }
-    public void removeRecent(SimpleMeta s){
+
+    public void removeRecent(SimpleMeta s) {
         recent.remove(s);
         writeSimpleMeta(recent, syncRecent);
-        LOG.d("AppData removeRecent",s.path);
+        LOG.d("AppData removeRecent", s.path);
     }
 
     public void addFavorite(SimpleMeta s) {
         favorites.remove(s);
         favorites.add(s);
-        LOG.d("AppData addFavorite",s.path);
+        LOG.d("AppData addFavorite", s.path);
         writeSimpleMeta(favorites, syncFavorite);
     }
-    public void removeFavorite(SimpleMeta s){
+
+    public void removeFavorite(SimpleMeta s) {
         favorites.remove(s);
         writeSimpleMeta(favorites, syncFavorite);
-        LOG.d("AppData removeFavorite",s.path);
+        LOG.d("AppData removeFavorite", s.path);
 
     }
 
-    public void clearRecents(){
+    public void clearRecents() {
         recent.clear();
         writeSimpleMeta(recent, syncRecent);
     }
-    public void clearFavorites(){
+
+    public void clearFavorites() {
         favorites.clear();
         writeSimpleMeta(favorites, syncFavorite);
 
     }
 
     public void loadFavorites() {
-        readSimpleMeta(favorites, syncFavorite);
+        readSimpleMeta(favorites, syncFavorite, SimpleMeta.class);
     }
 
     public List<FileMeta> getAllFavoriteFiles() {
@@ -115,7 +118,7 @@ public class AppData  {
     }
 
     public List<FileMeta> getAllRecent() {
-        readSimpleMeta(recent, syncRecent);
+        readSimpleMeta(recent, syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
             FileMeta meta = AppDB.get().getOrCreate(s.path);
@@ -131,11 +134,11 @@ public class AppData  {
     }
 
 
-
-
-
-    private void readSimpleMeta(List<SimpleMeta> list, File file) {
+    public static <T> void readSimpleMeta(List<T> list, File file, Class<T> clazz) {
         list.clear();
+        if (!file.exists()) {
+            return;
+        }
         String in = IO.readString(file);
         if (TxtUtils.isEmpty(in)) {
             return;
@@ -144,7 +147,7 @@ public class AppData  {
         try {
             JSONArray array = new JSONArray(in);
             for (int i = 0; i < array.length(); i++) {
-                SimpleMeta meta = new SimpleMeta();
+                T meta = clazz.newInstance();
                 Objects.loadFromJson(meta, array.getJSONObject(i));
                 list.add(meta);
             }
@@ -153,9 +156,9 @@ public class AppData  {
         }
     }
 
-    private void writeSimpleMeta(List<SimpleMeta> list, File file) {
+    public static <T> void writeSimpleMeta(List<T> list, File file) {
         JSONArray array = new JSONArray();
-        for (SimpleMeta meta : list) {
+        for (T meta : list) {
             JSONObject o = Objects.toJSONObject(meta);
             array.put(o);
             LOG.d("writeSimpleMeta", o);
