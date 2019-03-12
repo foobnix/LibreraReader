@@ -1484,7 +1484,7 @@ public class DragingDialogs {
                     }
                 });
 
-                TextView onBookSearch = (TextView) view.findViewById(R.id.onBookSearch);
+                View onBookSearch =  view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
                 if (onBookSearch != null) {
@@ -1659,7 +1659,7 @@ public class DragingDialogs {
                 });
 
                 FrameLayout fr = new FrameLayout(controller.getActivity());
-                image.setPadding(Dips.DP_6, Dips.DP_6, Dips.DP_6, Dips.DP_6);
+                image.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
                 fr.addView(image);
 
                 dictLayout.addView(fr);
