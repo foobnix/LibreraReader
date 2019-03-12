@@ -265,7 +265,7 @@ public abstract class HorizontalModeController extends DocumentController {
         if (number > 0) {
             currentPage = number;
         } else {
-            currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage().viewIndex;
+            currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
             // currentPage = PageUrl.realToFake(currentPage);
         }
 

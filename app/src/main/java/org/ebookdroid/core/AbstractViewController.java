@@ -44,7 +44,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class AbstractViewController extends AbstractComponentController<IView> implements IViewController {
 
-    public static final int DOUBLE_TAP_TIME = 500;
 
     public final IActivityController base;
 
@@ -60,7 +59,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     protected final AtomicBoolean inQuickZoom = new AtomicBoolean();
 
-    protected final PageIndex pageToGo;
+    //protected final PageIndex pageToGo;
 
     protected int firstVisiblePage;
 
@@ -80,7 +79,7 @@ public abstract class AbstractViewController extends AbstractComponentController
         this.firstVisiblePage = -1;
         this.lastVisiblePage = -1;
 
-        this.pageToGo = SettingsManager.getBookSettings().getCurrentPage();
+        //this.pageToGo = SettingsManager.getBookSettings().getCurrentPage(base.getDocumentModel().getPageCount());
 
         createAction(R.id.adFrame, new Constant("direction", -1));
         createAction(R.id.adFrame, new Constant("direction", +1));
@@ -162,7 +161,7 @@ public abstract class AbstractViewController extends AbstractComponentController
             invalidatePageSizes(InvalidateSizeReason.INIT, null);
 
             final AppBook bs = SettingsManager.getBookSettings();
-            final Page page = pageToGo.getActualPage(model, bs);
+            final Page page = bs.getCurrentPage(getBase().getDocumentModel().getPageCount()).getActualPage(model, bs);
             final int toPage = page != null ? page.index.viewIndex : 0;
 
             goToPage(toPage, bs.x, bs.y);
@@ -652,12 +651,6 @@ public abstract class AbstractViewController extends AbstractComponentController
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IViewController#goToLink(int,
-     *      android.graphics.RectF)
-     */
     @Override
     public ViewState goToLink(final int pageDocIndex, final RectF targetRect, final boolean addToHistory) {
         if (pageDocIndex >= 0) {
@@ -776,33 +769,20 @@ public abstract class AbstractViewController extends AbstractComponentController
             // processTap(TouchManager.Touch.LongTap, e);
         }
 
-        /**
-         * {@inheritDoc}
-         * 
-         * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerPinch(float,
-         *      float)
-         */
+
         @Override
         public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
             final float factor = (float) Math.sqrt(newDistance / oldDistance);
             base.getZoomModel().scaleZoom(factor);
         }
 
-        /**
-         * {@inheritDoc}
-         * 
-         * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerPinchEnd()
-         */
+
         @Override
         public void onTwoFingerPinchEnd(final MotionEvent e) {
             base.getZoomModel().commit();
         }
 
-        /**
-         * {@inheritDoc}
-         * 
-         * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerTap()
-         */
+
         @Override
         public void onTwoFingerTap(final MotionEvent e) {
             processTap(TouchManager.Touch.TwoFingerTap, e);

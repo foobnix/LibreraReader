@@ -35,7 +35,6 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
-import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -272,7 +271,7 @@ public class TTSService extends Service {
             AppState.get().mp3BookPath = null;
             AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
-            savePage();
+
             TTSEngine.get().stopDestroy();
 
             if (wakeLock.isHeld()) {
@@ -294,7 +293,6 @@ public class TTSService extends Service {
 
             if (TTSEngine.get().isPlaying()) {
                 TTSEngine.get().stop();
-                savePage();
             } else {
                 playPage("", AppState.get().lastBookPage, null);
             }
@@ -311,7 +309,6 @@ public class TTSService extends Service {
             }
 
             TTSEngine.get().stop();
-            savePage();
             if (wakeLock.isHeld()) {
                 wakeLock.release();
             }
@@ -527,7 +524,7 @@ public class TTSService extends Service {
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
 
                         AppBook load = SharedBooks.load(AppState.get().lastBookPath);
-                        load.currentPageChanged( AppState.get().lastBookPage + 1);
+                        load.currentPageChanged( AppState.get().lastBookPage + 1, dc.getPageCount());
                         SharedBooks.save(load);
 
                     }
@@ -563,7 +560,7 @@ public class TTSService extends Service {
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
 
                         AppBook load = SharedBooks.load(AppState.get().lastBookPath);
-                        load.currentPageChanged( AppState.get().lastBookPage + 1);
+                        load.currentPageChanged( AppState.get().lastBookPage + 1,dc.getPageCount());
                         SharedBooks.save(load);
 
                     }
@@ -577,26 +574,12 @@ public class TTSService extends Service {
 
             EventBus.getDefault().post(new TtsStatus());
 
-            savePage();
-
             TTSNotification.showLast();
 
         }
     }
 
-    public void savePage() {
-        AppState.get().save(getApplicationContext());
 
-        try {
-            AppBook bs = SettingsManager.getBookSettings(AppState.get().lastBookPath);
-            bs.currentPageChanged(AppState.get().lastBookPage);
-            SharedBooks.save(bs);
-            LOG.d(TAG, "currentPageChanged ", AppState.get().lastBookPage, AppState.get().lastBookPath);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-    }
 
     @Override
     public void onDestroy() {

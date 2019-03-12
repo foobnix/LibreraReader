@@ -404,7 +404,7 @@ public class DecodeServiceBase implements DecodeService {
 
             LOG.d("DJVU1-3", pageWidth, pageHeight);
 
-            final PageIndex currentPage = viewState.book.getCurrentPage();
+            final PageIndex currentPage = viewState.book.getCurrentPage(codecDocument.getPageCount());
             final float offsetX = viewState.book.x;
             final float offsetY = viewState.book.y;
 

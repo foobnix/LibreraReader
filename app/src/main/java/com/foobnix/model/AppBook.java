@@ -25,7 +25,6 @@ public class AppBook implements CurrentPageListener {
 
     public int s = AppState.get().autoScrollSpeed; //speed
 
-    public int n; //pages
     public int d = 0;//delta
     public float p; //percent
 
@@ -58,18 +57,17 @@ public class AppBook implements CurrentPageListener {
 
 
     public void currentPageChanged(int page, int pages) {
-        this.n = pages;
         page = page + 1;
         this.p = (float) page / pages;
         LOG.d("currentPageChanged", page, pages, p);
     }
 
-    public void currentPageChanged(final int page) {
-        currentPageChanged(page, n);
-    }
-
-    public PageIndex getCurrentPage() {
-        int p = (int) (n * this.p);
+    public PageIndex getCurrentPage(int pages) {
+        if(pages==0 && LOG.isEnable){
+            throw new RuntimeException("Error!!!");
+        }
+        LOG.d("AppBook-getCurrentPage", pages);
+        int p = (int) (pages * this.p);
         if (p > 0) {
             p = p - 1;
         }
@@ -84,9 +82,6 @@ public class AppBook implements CurrentPageListener {
         this.z = Math.round(zoom * 100);
     }
 
-    public void setN(int n) {
-        this.n = n;
-    }
 
     public static class Diff {
 

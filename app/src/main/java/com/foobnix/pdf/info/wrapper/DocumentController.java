@@ -238,7 +238,7 @@ public abstract class DocumentController {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
 
                 if (getCurrentBook().getPath().equals(AppState.get().lastBookPath)) {
-                    onGoToPage(bs.getCurrentPage().viewIndex + 1);
+                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
                     LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
                 }
             }
@@ -292,9 +292,11 @@ public abstract class DocumentController {
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
         try {
-            AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-            if (getCurentPage() != bs.getCurrentPage().viewIndex + 1) {
-                onGoToPage(bs.getCurrentPage().viewIndex + 1);
+            if(getPageCount()!=0) {
+                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
+                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
