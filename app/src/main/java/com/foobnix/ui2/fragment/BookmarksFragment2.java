@@ -1,5 +1,6 @@
 package com.foobnix.ui2.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
@@ -290,7 +291,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
-                    ExtUtils.showDocument(getActivity(), file, result.getPercent());
+                    ExtUtils.showDocument(getActivity(), Uri.fromFile(file), result.getPercent(),null);
 
                 }
             } else {

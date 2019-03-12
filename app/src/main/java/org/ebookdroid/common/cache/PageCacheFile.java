@@ -26,6 +26,7 @@ public class PageCacheFile extends File {
         final String md5 = StringUtils.md5(path + lastModified + pages + AppState.get().isFullScreen);
         LOG.d("getPageFile", "LAST" + md5);
         final File cacheDir = CacheZipUtils.CACHE_RECENT;
+        LOG.d("PageCacheFile-getPageFile");
         return new PageCacheFile(cacheDir, md5 + ".cache");
     }
 
@@ -34,6 +35,7 @@ public class PageCacheFile extends File {
     }
 
     public CodecPageInfo[] load() {
+        LOG.d("PageCacheFile-load");
         try {
             final DataInputStream in = new DataInputStream(new FileInputStream(this));
             try {
@@ -55,16 +57,19 @@ public class PageCacheFile extends File {
                 try {
                     in.close();
                 } catch (final IOException ex) {
+                    LOG.e(ex);
                 }
             }
         } catch (final FileNotFoundException ex) {
-            ex.printStackTrace();
+            LOG.e(ex);
         }
         return null;
     }
 
     public void save(final CodecPageInfo[] infos) {
+        LOG.d("PageCacheFile-save");
         try {
+            getParentFile().mkdirs();
             final DataOutputStream out = new DataOutputStream(new FileOutputStream(this));
             try {
                 out.writeInt(infos.length);
@@ -78,15 +83,16 @@ public class PageCacheFile extends File {
                     }
                 }
             } catch (final IOException ex) {
-                ex.printStackTrace();
+               LOG.e(ex);
             } finally {
                 try {
                     out.close();
                 } catch (final IOException ex) {
+                    LOG.e(ex);
                 }
             }
         } catch (final IOException ex) {
-            ex.printStackTrace();
+            LOG.e(ex);
         }
     }
 }

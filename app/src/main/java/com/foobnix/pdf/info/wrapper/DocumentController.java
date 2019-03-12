@@ -216,11 +216,7 @@ public abstract class DocumentController {
         return (float) (getCurentPageFirst1() + 0.0001) / getPageCount();
     }
 
-    public void updateReadPercent() {
-        activity.getIntent().putExtra(DocumentController.EXTRA_PERCENT, (double) getPercentage());
-        LOG.d("updateReadPercent", getPercentage(), getCurentPage(), getPageCount());
 
-    }
 
     public MyADSProvider getAdsProvider() {
         return null;
@@ -461,7 +457,7 @@ public abstract class DocumentController {
     }
 
     public void restartActivity() {
-        updateReadPercent();
+
 
         IMG.clearMemoryCache();
         saveAppState();

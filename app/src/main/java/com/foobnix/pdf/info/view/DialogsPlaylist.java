@@ -1,28 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.io.File;
-import java.util.List;
-
-import org.greenrobot.eventbus.EventBus;
-
-import com.foobnix.android.utils.BaseItemLayoutAdapter;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.Playlists;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.drag.OnStartDragListener;
-import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
-import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
-import com.foobnix.pdf.info.wrapper.DocumentController;
-import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
-import com.foobnix.sys.TempHolder;
-import com.jmedeisis.draglinearlayout.DragLinearLayout;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -47,6 +24,29 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.Playlists;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.drag.OnStartDragListener;
+import com.foobnix.pdf.info.view.drag.PlaylistAdapter;
+import com.foobnix.pdf.info.view.drag.SimpleItemTouchHelperCallback;
+import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
+import com.foobnix.sys.TempHolder;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.File;
+import java.util.List;
 
 public class DialogsPlaylist {
     private static final int SIZE = Dips.isLargeOrXLargeScreen() ? Dips.DP_80 : Dips.DP_60;
@@ -360,7 +360,7 @@ public class DialogsPlaylist {
 
                         @Override
                         public void run() {
-                            ExtUtils.showDocumentWithoutDialog(a, new File(s), -1, palylistPath);
+                            ExtUtils.showDocumentWithoutDialog(a, new File(s),  palylistPath);
                         }
                     });
                 }

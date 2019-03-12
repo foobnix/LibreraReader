@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
@@ -248,19 +249,17 @@ public abstract class HorizontalModeController extends DocumentController {
 
     public int getPageFromUriSingleRun() {
 
-        double percent = activity.getIntent().getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
+        float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
-        LOG.d("_PAGE", "uri page", activity.getIntent().getExtras());
 
-        activity.getIntent().putExtra(EXTRA_PERCENT, 0.0);
-
-        if (percent > 0) {
+        LOG.d("_PAGE", "getPageFromUriSingleRun", percent, pagesCount);
+        if (percent > 0.0f) {
             currentPage = (int) Math.round(pagesCount * percent) - 1;
         } else {
             currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
         }
 
-        LOG.d("_PAGE", "LOAD currentPage", currentPage, getBookPath());
+        LOG.d("_PAGE", "getPageFromUriSingleRun",currentPage);
         return currentPage;
     }
 
@@ -276,7 +275,7 @@ public abstract class HorizontalModeController extends DocumentController {
             bs.updateFromAppState();
             bs.currentPageChanged(currentPage, pagesCount);
             SharedBooks.save(bs);
-            activity.getIntent().putExtra(EXTRA_PERCENT, (double) currentPage / pagesCount);
+            //activity.getIntent().putExtra(EXTRA_PERCENT, (double) currentPage / pagesCount);
         } catch (Exception e) {
             LOG.e(e);
         }

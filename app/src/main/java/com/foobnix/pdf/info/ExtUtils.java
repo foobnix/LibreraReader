@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
@@ -193,7 +194,7 @@ public class ExtUtils {
         }
         if (AppState.get().supportDOCX) {
             result.add(".doc");
-            if(AppsConfig.isDOCXSupported){
+            if (AppsConfig.isDOCXSupported) {
                 result.add(".docx");
             }
         }
@@ -242,7 +243,7 @@ public class ExtUtils {
             result.addAll(lirbeExt);
             result.add(".prc");
             result.add(".pdb");
-            if(!AppsConfig.isDOCXSupported){
+            if (!AppsConfig.isDOCXSupported) {
                 result.add(".docx");
             }
 
@@ -372,7 +373,7 @@ public class ExtUtils {
     }
 
     public static boolean isNotSupportedFile(File file) {
-        return !BookType.isSupportedExtByPath(file.getPath()) ;
+        return !BookType.isSupportedExtByPath(file.getPath());
     }
 
     public static boolean isImageOrEpub(File file) {
@@ -546,7 +547,7 @@ public class ExtUtils {
         if (name == null) {
             return "";
         }
-        if(name.endsWith("fb2.zip")){
+        if (name.endsWith("fb2.zip")) {
             return "fb2";
         }
 
@@ -626,7 +627,7 @@ public class ExtUtils {
                 || BookType.FB2.is(path) || BookType.TXT.is(path) //
                 || BookType.RTF.is(path) || BookType.HTML.is(path) //
                 || BookType.MHT.is(path) || BookType.MOBI.is(path) //
-                || BookType.ODT.is(path) || BookType.DOCX.is(path)|| BookType.DOC.is(path);//
+                || BookType.ODT.is(path) || BookType.DOCX.is(path) || BookType.DOC.is(path);//
     }
 
     public static synchronized boolean isZip(File path) {
@@ -650,9 +651,9 @@ public class ExtUtils {
     public static String getDateTimeFormat(File file) {
         try {
             return dateFormat.format(file.lastModified()) + " " + timeFormat.format(file.lastModified());
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
-            return ""+file.lastModified();
+            return "" + file.lastModified();
         }
     }
 
@@ -670,7 +671,7 @@ public class ExtUtils {
         }
         if (size <= 0)
             return "0";
-        final String[] units = new String[] { "B", "KB", "MB", "GB", "TB" };
+        final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
         int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
         return new DecimalFormat("#,##0").format(size / Math.pow(1024, digitGroups)) + "" + units[digitGroups];
     }
@@ -711,34 +712,30 @@ public class ExtUtils {
     }
 
     public static boolean showDocument(final Context c, final File file) {
-        return showDocument(c, file, -1);
-    }
-
-    public static boolean showDocument(final Context c, final File file, final float percent) {
 
         ImageLoader.getInstance().clearAllTasks();
 
 
-        if(AppState.get().isPrefFormatMode){
+        if (AppState.get().isPrefFormatMode) {
 
             String ext = getFileExtension(file.getName().toLowerCase());
 
-            if(AppState.get().prefScrollMode.contains(ext)){
+            if (AppState.get().prefScrollMode.contains(ext)) {
                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
                 return true;
-            }else  if(AppState.get().prefBookMode.contains(ext)) {
+            } else if (AppState.get().prefBookMode.contains(ext)) {
                 AppState.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
                 return true;
-            }else  if(AppState.get().prefMusicianMode.contains(ext)) {
+            } else if (AppState.get().prefMusicianMode.contains(ext)) {
                 AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
                 return true;
             }
         }
         if (AppState.get().isRememberMode) {
-            showDocumentWithoutDialog(c, file, percent, null);
+            showDocumentWithoutDialog(c, file,  null);
             return true;
         }
 
@@ -858,7 +855,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
             }
         });
         horizontal.setOnClickListener(new View.OnClickListener() {
@@ -867,7 +864,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_BOOK;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
             }
         });
 
@@ -877,7 +874,7 @@ public class ExtUtils {
             public void onClick(View v) {
                 dialog.dismiss();
                 AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                showDocumentWithoutDialog(c, file, percent, null);
+                showDocumentWithoutDialog(c, file, null);
             }
         });
 
@@ -897,10 +894,9 @@ public class ExtUtils {
 
     }
 
-    public static void showDocumentWithoutDialog(final Context c, final File file, final float percent, String playlist) {
-        showDocument(c, Uri.fromFile(file), percent, playlist);
+    public static void showDocumentWithoutDialog(final Context c, final File file, String playlist) {
+        showDocument(c, Uri.fromFile(file), 0.0f, playlist);
     }
-
 
 
     public static void showDocument(final Context c, final Uri uri, final float percent, final String playList) {
@@ -934,10 +930,10 @@ public class ExtUtils {
         }
         intent.setData(checkPlaylisturi(uri, intent, playlist));
 
-        if (percent > 0f) {
-            intent.putExtra(DocumentController.EXTRA_PERCENT, percent);
-
-        }
+//        if (percent > 0f) {
+//            Intents.putFloat(intent,DocumentController.EXTRA_PERCENT, percent);
+//
+//        }
         c.startActivity(intent);
     }
 
@@ -976,7 +972,7 @@ public class ExtUtils {
         }
 
         if (percent > 0f) {
-            intent.putExtra(DocumentController.EXTRA_PERCENT, percent);
+            Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
         }
         c.startActivity(intent);
 
@@ -1044,7 +1040,7 @@ public class ExtUtils {
         }
         Intent remove = targetedOpenIntents.remove(targetedOpenIntents.size() - 1);
         Intent createChooser = Intent.createChooser(remove, context.getString(R.string.open_with));
-        Intent chooserIntent = createChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedOpenIntents.toArray(new Parcelable[] {}));
+        Intent chooserIntent = createChooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedOpenIntents.toArray(new Parcelable[]{}));
 
         return chooserIntent;
     }
@@ -1090,7 +1086,7 @@ public class ExtUtils {
         try {
             final Intent intent = new Intent(Intent.ACTION_SEND);
 
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "" });
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
             intent.setType(getMimeType(file));
             intent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, file));
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
@@ -1247,7 +1243,7 @@ public class ExtUtils {
                         jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
                     }
 
-                   // ExportSettingsManager.importFromJSon(jsonObject, BookmarksData.get().getBookmarkPreferences());
+                    // ExportSettingsManager.importFromJSon(jsonObject, BookmarksData.get().getBookmarkPreferences());
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
                     onSuccess.run();
                 } catch (Exception e) {
@@ -1309,7 +1305,7 @@ public class ExtUtils {
 
         for (String path : bookmarks.keySet()) {
             List<AppBookmark> list = bookmarks.get(path);
-           // Collections.sort(list, BookmarksData.COMPARE_BY_PAGE);
+            // Collections.sort(list, BookmarksData.COMPARE_BY_PAGE);
             File file = new File(path);
             if (file.isFile()) {
                 path = file.getName();
@@ -1356,7 +1352,9 @@ public class ExtUtils {
                     @Override
                     public void handleMessage(android.os.Message msg) {
                         text.setText(a.getString(R.string.please_wait) + " " + msg.what + "/100%");
-                    };
+                    }
+
+                    ;
                 };
 
                 ImageView image = (ImageView) view.findViewById(R.id.onCancel);
@@ -1377,7 +1375,9 @@ public class ExtUtils {
                 dialog = builder.show();
                 dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
-            };
+            }
+
+            ;
 
             @Override
             protected Object doInBackground(Object... params) {
@@ -1387,7 +1387,9 @@ public class ExtUtils {
                     LOG.e(e);
                     return null;
                 }
-            };
+            }
+
+            ;
 
             @Override
             protected void onPostExecute(final Object result) {
@@ -1408,11 +1410,11 @@ public class ExtUtils {
                         public void run() {
                             if (a instanceof VerticalViewActivity) {
                                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
-                                showDocumentWithoutDialog(a, (File) result, page, null);
+                                showDocumentWithoutDialog(a, (File) result, null);
 
                             } else if (a instanceof HorizontalViewActivity) {
                                 AppState.get().readingMode = AppState.READING_MODE_BOOK;
-                                showDocumentWithoutDialog(a, (File) result, page, null);
+                                showDocumentWithoutDialog(a, (File) result, null);
                             } else {
                                 showDocument(a, (File) result);
                             }
@@ -1425,7 +1427,9 @@ public class ExtUtils {
                     }
 
                 }
-            };
+            }
+
+            ;
 
         }.execute();
     }
@@ -1644,8 +1648,8 @@ public class ExtUtils {
         return null;
     }
 
-    public  static boolean isMounted(File file){
-            return Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
+    public static boolean isMounted(File file) {
+        return Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

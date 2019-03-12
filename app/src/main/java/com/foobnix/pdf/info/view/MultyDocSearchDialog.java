@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
@@ -117,7 +118,7 @@ public class MultyDocSearchDialog {
 
                     @Override
                     public void onClick(View v) {
-                        ExtUtils.showDocument(c, file, item.second + 1);
+                        ExtUtils.showDocument(c, Uri.fromFile(file), (float) (item.second + 1) / Model.get().currentPagesCount, null);
                     }
                 });
             }
@@ -302,7 +303,9 @@ public class MultyDocSearchDialog {
             return null;
         }
 
-    };
+    }
+
+    ;
 
     public static int searchInThePDF(String path, String text, final Handler update1) {
         try {

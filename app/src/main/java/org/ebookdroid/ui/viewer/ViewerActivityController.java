@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
@@ -189,9 +190,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             public void run() {
 
                 intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
-                double percent = intent.getDoubleExtra(DocumentController.EXTRA_PERCENT, 0.0);
 
-                intent.putExtra(DocumentController.EXTRA_PERCENT, 0.0);
+                float percent = Intents.getFloatAndClear(intent, DocumentController.EXTRA_PERCENT);
 
 
                 if (percent > 0f) {

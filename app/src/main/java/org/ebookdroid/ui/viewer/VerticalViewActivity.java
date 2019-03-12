@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.Intents;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppBook;
@@ -194,7 +195,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            int page = Math.round(getController().getDocumentModel().getPageCount() * data.getIntExtra(DocumentController.EXTRA_PERCENT, 0));
+            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data,DocumentController.EXTRA_PERCENT));
             getController().getDocumentController().goToPage(page);
         }
     }
@@ -315,10 +316,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         if (ExtUtils.isTextFomat(getIntent())) {
 
-            double value = getController().getDocumentModel().getPercentRead();
-            getIntent().putExtra(DocumentController.EXTRA_PERCENT, value);
+            //float value = getController().getDocumentModel().getPercentRead();
+            //Intents.putFloat(getIntent(),DocumentController.EXTRA_PERCENT, value);
 
-            LOG.d("READ PERCEnt", value);
+            //LOG.d("READ PERCEnt", value);
 
             getController().closeActivityFinal(new Runnable() {
 

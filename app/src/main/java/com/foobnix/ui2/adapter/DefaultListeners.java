@@ -55,7 +55,7 @@ public class DefaultListeners {
 
                     @Override
                     public void run() {
-                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), -1, null);
+                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null);
 
                     }
                 });
@@ -457,7 +457,6 @@ public class DefaultListeners {
                 } else {
 
                 }
-
 
 
                 fileMeta.setIsStar(!isStar);

@@ -118,7 +118,7 @@ public class DocumentModel extends ListenerProxy {
 
     /**
      * Gets the current page object.
-     * 
+     *
      * @return the current page object
      */
     public Page getCurrentPageObject() {
@@ -127,7 +127,7 @@ public class DocumentModel extends ListenerProxy {
 
     /**
      * Gets the last page object.
-     * 
+     *
      * @return the last page object
      */
     public Page getLastPageObject() {
@@ -234,7 +234,7 @@ public class DocumentModel extends ListenerProxy {
             LOG.e(e);
         }
 
-        if (decodeService.isPageSizeCacheable() && pagesFile.exists()) {
+        if (pagesFile.exists()) {
             final CodecPageInfo[] infos = pagesFile.load();
             if (infos != null && infos.length == decodeService.getPageCount()) {
                 return infos;
@@ -251,9 +251,9 @@ public class DocumentModel extends ListenerProxy {
             infos[i] = unified != null ? unified : decodeService.getPageInfo(i);
         }
 
-        if (decodeService.isPageSizeCacheable()) {
-            pagesFile.save(infos);
-        }
+        // if (decodeService.isPageSizeCacheable()) {
+        pagesFile.save(infos);
+        //}
         return infos;
     }
 

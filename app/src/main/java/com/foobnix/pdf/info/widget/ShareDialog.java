@@ -314,7 +314,7 @@ public class ShareDialog {
                             } else {
                                 AppState.get().readingMode = AppState.READING_MODE_SCROLL;
                             }
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                            ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
                         }
                     });
@@ -331,7 +331,7 @@ public class ShareDialog {
                                 } else {
                                     AppState.get().readingMode = AppState.READING_MODE_BOOK;
                                 }
-                                ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                                ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
                         });
                     }
@@ -342,7 +342,7 @@ public class ShareDialog {
                         @Override
                         public void run() {
                             AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                            ExtUtils.showDocumentWithoutDialog(a, file, page + 1, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
+                            ExtUtils.showDocumentWithoutDialog(a, file,  a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });
                 }
@@ -389,9 +389,9 @@ public class ShareDialog {
 
                     boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_ROOT, file.getName()));
                     if (result) {
-                        Toast.makeText(a, "Synchronized: "+AppsConfig.SYNC_FOLDER_ROOT.getPath() , Toast.LENGTH_LONG).show();
+                        Toast.makeText(a, "Synchronized: " + AppsConfig.SYNC_FOLDER_ROOT.getPath(), Toast.LENGTH_LONG).show();
                         EventBus.getDefault().post(new UpdateAllFragments());
-                    }else{
+                    } else {
                         Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     }
 

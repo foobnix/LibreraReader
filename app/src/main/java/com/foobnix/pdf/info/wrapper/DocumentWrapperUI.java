@@ -59,7 +59,6 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.search.activity.HorizontalModeController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -1697,7 +1696,6 @@ public class DocumentWrapperUI {
 
         @Override
         public void run() {
-            a.getIntent().putExtra(HorizontalModeController.EXTRA_PERCENT, (double) dc.getPercentage());
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();
             hideShow();

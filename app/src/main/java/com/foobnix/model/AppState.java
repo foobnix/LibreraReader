@@ -51,7 +51,7 @@ public class AppState {
     public static final String TEXT_COLOR_NIGHT = "#8e8e8e";
 
     public static final long APP_CLOSE_AUTOMATIC = TimeUnit.MINUTES.toMillis(500);// SECONDS, MINUTES
-    public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(5);
+    public static final long APP_UPDATE_TIME_IN_UI = TimeUnit.SECONDS.toMillis(30);
     // public static final long APP_CLOSE_AUTOMATIC =
     // TimeUnit.SECONDS.toMillis(5);
     public static final int DAY_TRANSPARENCY = 200;
