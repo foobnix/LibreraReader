@@ -100,17 +100,6 @@ public class VerticalModeController extends DocumentController {
         return ctr.getView().getHeight();
     }
 
-    public void saveCurrentPage() {
-        handler.removeCallbacksAndMessages(null);
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                saveSettings();
-                LOG.d("PAGE SAVED");
-            }
-        }, 2000);
-    }
 
     @Override
     public void cleanImageMatrix() {
@@ -119,7 +108,6 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void onGoToPage(int page) {
         ctr.getDocumentController().goToPage(page - 1);
-        saveCurrentPage();
     }
 
     @Override
@@ -195,7 +183,7 @@ public class VerticalModeController extends DocumentController {
     public void onNextPage(final boolean animate) {
         final int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
         ctr.getDocumentController().goToPage(page, animate);
-        saveCurrentPage();
+
 
     }
 
@@ -203,14 +191,12 @@ public class VerticalModeController extends DocumentController {
     public void onPrevPage(final boolean animate) {
         final int page = ctr.getDocumentModel().getCurrentDocPageIndex() - 1;
         ctr.getDocumentController().goToPage(page, animate);
-        saveCurrentPage();
     }
 
     @Override
     public void onClickTop() {
         final int page = ctr.getDocumentModel().getCurrentDocPageIndex();
         ctr.getDocumentController().goToPage(page, (float) 0.25, 0);
-        saveCurrentPage();
     }
 
     @Override
@@ -222,7 +208,6 @@ public class VerticalModeController extends DocumentController {
         } else {
             ctr.getDocumentController().getView().scrollBy(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-        saveCurrentPage();
     }
 
     @Override
@@ -234,7 +219,6 @@ public class VerticalModeController extends DocumentController {
         } else {
             ctr.getDocumentController().getView().scrollBy(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-        saveCurrentPage();
 
     }
 

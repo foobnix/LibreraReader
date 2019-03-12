@@ -30,7 +30,7 @@ public class SharedBooks {
 
     public static synchronized void save(AppBook bs) {
         IO.writeObj(bs.getCacheFile(), bs);
-        LOG.d("SharedBooks", "save", bs.path);
+        LOG.d("SharedBooks-save", bs.path);
     }
 
     public static void delete(AppBook bs) {

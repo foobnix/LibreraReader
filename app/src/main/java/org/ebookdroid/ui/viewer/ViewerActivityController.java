@@ -179,7 +179,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
 
     }
-
+    public int pageCount;
     public void startDecoding(final String fileName, final String password) {
         getManagedComponent().view.getView().post(new BookLoadTask(fileName, password, new Runnable() {
 
@@ -215,6 +215,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         return false;
                     }
                 });
+                pageCount = controller.getPageCount();
 
             }
         }));
@@ -227,6 +228,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         AppBook bookSettings = SettingsManager.getBookSettings();
         if (bookSettings != null) {
+            bookSettings.currentPageChanged(documentModel.getCurrentIndex().docIndex, pageCount);
             bookSettings.updateFromAppState();
             SharedBooks.save(bookSettings);
         }
@@ -334,15 +336,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             pageText = (page + 1) + "/" + pageCount;
         }
 
-        try {
-            AppBook bs = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
-            bs.updateFromAppState();
-            bs.currentPageChanged(page, pageCount);
-            SharedBooks.save(bs);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
         wrapperControlls.updateUI();
 
 
@@ -425,7 +418,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     public void toggleNightMode() {
         getDocumentController().toggleRenderingEffects();
-        currentPageChanged(documentModel.getCurrentIndex().docIndex, -1);
+        currentPageChanged(documentModel.getCurrentIndex().docIndex, getDocumentController().getBase().getDocumentModel().getPageCount());
     }
 
     public void toggleCrop(boolean isCrop) {
@@ -436,7 +429,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         newDc.init(null);
         newDc.show();
 
-        currentPageChanged(documentModel.getCurrentIndex().docIndex, -1);
+        currentPageChanged(documentModel.getCurrentIndex().docIndex, getDocumentController().getBase().getDocumentModel().getPageCount());
 
     }
 
