@@ -29,7 +29,7 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
-        IO.writeObj(bs.getCacheFile(), bs);
+        IO.writeObjAsync(bs.getCacheFile(), bs);
         LOG.d("SharedBooks-save", bs.path);
     }
 

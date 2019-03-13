@@ -40,6 +40,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -628,8 +629,11 @@ public class Dialogs {
                                 List<FileMeta> allWithTag = AppDB.get().getAllWithTag(tagName);
                                 for (FileMeta meta : allWithTag) {
                                     meta.setTag(StringDB.delete(meta.getTag(), tagName));
+                                    TagData.saveTags(meta);
                                 }
                                 AppDB.get().updateAll(allWithTag);
+
+
                                 if (refresh != null) {
                                     refresh.run();
                                 }
@@ -687,6 +691,7 @@ public class Dialogs {
                     if (fileMeta != null) {
                         fileMeta.setTag(res);
                         AppDB.get().update(fileMeta);
+                        TagData.saveTags(fileMeta);
                     }
                     if (refresh != null) {
                         refresh.run();
@@ -710,6 +715,7 @@ public class Dialogs {
                     if (fileMeta != null) {
                         fileMeta.setTag(res);
                         AppDB.get().update(fileMeta);
+                        TagData.saveTags(fileMeta);
                     }
 
                     ExtUtils.openFile(a, new FileMeta(file.getPath()));

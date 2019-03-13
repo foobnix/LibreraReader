@@ -906,7 +906,7 @@ public class AppState {
         }
         hashCode = currentHash;
 
-        IO.writeObj(syncFile,instance);
+        IO.writeObjAsync(syncFile,instance);
     }
 
     public boolean isTextFormat() {

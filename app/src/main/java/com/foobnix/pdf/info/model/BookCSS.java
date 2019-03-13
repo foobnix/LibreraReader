@@ -162,7 +162,7 @@ public class BookCSS {
         if (c == null) {
             return;
         }
-        IO.writeObj(syncFile,instance);
+        IO.writeObjAsync(syncFile,instance);
     }
 
     public int position(String fontName) {

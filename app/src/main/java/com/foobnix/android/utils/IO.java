@@ -23,7 +23,7 @@ public class IO {
     }
 
 
-    public static void writeObj(File file, Object o) {
+    private static void writeObj(File file, Object o) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -33,6 +33,9 @@ public class IO {
 
     }
 
+    public static void writeObjAsync(String file, Object o) {
+         writeObjAsync(new File(file),o);
+    }
     public static void writeObjAsync(File file, Object o) {
         if (o instanceof JSONObject || o instanceof JSONArray) {
             LOG.d("writeObjAsync", "JSONObject");
@@ -41,7 +44,7 @@ public class IO {
             LOG.d("writeObjAsync", "String");
             IO.writeString(file, (String) o);
         } else {
-            LOG.d("writeObjAsync", "Class", o.getClass().getName());
+            //LOG.d("writeObjAsync", "Class", o.getClass().getName());
             IO.writeString(file, Objects.toJSONString(o));
         }
 
@@ -88,6 +91,9 @@ public class IO {
         try {
             LOG.d("IO", "write to file");
             new File(file.getParent()).mkdirs();
+            if (string == null) {
+                string = "";
+            }
 
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             out.write(string.getBytes());

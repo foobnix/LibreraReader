@@ -40,7 +40,9 @@ public class BookmarksData {
         res.add(bookmark);
         AppData.writeSimpleMeta(res, getCacheFile(bookmark.path));
 
+
     }
+
 
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);

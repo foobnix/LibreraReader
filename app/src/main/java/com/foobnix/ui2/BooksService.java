@@ -13,6 +13,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -207,6 +208,8 @@ public class BooksService extends IntentService {
                 CacheDir.ZipService.removeCacheContent();
 
                 Clouds.get().syncronizeGet();
+
+                TagData.restoreTags();
 
                 sendFinishMessage();
 
