@@ -42,7 +42,10 @@ public class TagData {
     }
 
     public static void saveTags(FileMeta meta) {
-        IO.writeObjAsync(getCacheFile(meta.getPath()), new Tag(meta.getPath(), meta.getTag()));
+        saveTags(meta.getPath(), meta.getTag());
+    }
+    public static void saveTags(String path, String tags) {
+        IO.writeObjAsync(getCacheFile(path), new Tag(path, tags));
     }
 
     public static void restoreTags() {
@@ -53,6 +56,10 @@ public class TagData {
                 return pathname.getPath().endsWith(".json");
             }
         });
+        if (files == null) {
+            return;
+        }
+
         for (File file : files) {
             Tag tag = new Tag();
             IO.readObj(file, tag);

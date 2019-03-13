@@ -69,6 +69,10 @@ public class BookmarksData {
                 return pathname.getPath().endsWith(".json");
             }
         });
+        if(files ==null){
+            return all;
+        }
+
         for (File file : files) {
             LOG.d("getAll-path", file.getPath());
             all.addAll(getBookmarksByBook(file));

@@ -5,6 +5,7 @@ public class AppBookmark {
     public String text;
 
     public float p;
+    public long t;
 
     public AppBookmark() {
 
@@ -15,6 +16,7 @@ public class AppBookmark {
         this.path = path;
         this.text = text;
         this.p = percent;
+        t = System.currentTimeMillis();
     }
 
     public int getPage(int pages) {
@@ -41,6 +43,6 @@ public class AppBookmark {
     @Override
     public boolean equals(Object obj) {
         AppBookmark a = (AppBookmark) obj;
-        return a.path.equals(path) && a.text.equals(text) && a.p == p;
+        return a.path.equals(path) && a.t == t;
     }
 }

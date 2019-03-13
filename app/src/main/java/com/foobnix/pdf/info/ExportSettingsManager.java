@@ -83,16 +83,10 @@ public class ExportSettingsManager {
 
             root.put(PREFIX_TAGS_BOOKS, fileMetaTagToJSON(AppDB.get().getAllWithTag()));
 
-            String name = getSampleJsonConfigName(c, "export_all.json");
-            File fileConfig = toFile;
 
-            if (toFile.isDirectory()) {
-                fileConfig = new File(toFile, name);
-            }
-            LOG.d("TEXT", "exoprt to " + name);
 
-            FileWriter file = new FileWriter(fileConfig);
-            LOG.d("TEXT", "exoprt to " + fileConfig.getPath());
+            FileWriter file = new FileWriter(toFile);
+            LOG.d("TEXT", "exoprt to " + toFile.getPath());
             String string = root.toString(5);
             file.write(string);
             file.flush();

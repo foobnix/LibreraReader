@@ -14,7 +14,9 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -75,6 +77,16 @@ public class BooksService extends IntentService {
         try {
             isRunning = true;
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
+
+            //TESET
+
+
+            File oldConfig = new File(AppsConfig.SYNC_FOLDER_ROOT, "old.json");
+            if(!oldConfig.exists()) {
+                AppsConfig.SYNC_FOLDER_ROOT.mkdirs();
+                ExportSettingsManager.getInstance(this).exportAll(oldConfig);
+            }
+
 
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
                 List<FileMeta> list = AppDB.get().getAll();

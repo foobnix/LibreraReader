@@ -195,7 +195,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
 
                 if (percent > 0f) {
-                    controller.onGoToPage((int)Math.round(getDocumentModel().getPageCount() * percent));
+                    controller.onGoToPage((int) Math.round(getDocumentModel().getPageCount() * percent));
                 }
 
 
@@ -224,7 +224,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         }
 
         AppBook bookSettings = SettingsManager.getBookSettings();
-        if (bookSettings != null) {
+        if (bookSettings != null && pageCount > 0) {
             bookSettings.currentPageChanged(documentModel.getCurrentIndex().docIndex, pageCount);
             bookSettings.updateFromAppState();
             SharedBooks.save(bookSettings);

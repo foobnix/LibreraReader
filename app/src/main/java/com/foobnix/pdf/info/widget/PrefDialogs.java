@@ -32,6 +32,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
 import com.foobnix.pdf.info.ExtUtils;
@@ -175,6 +176,25 @@ public class PrefDialogs {
 
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
+                if (true) {
+
+                    try {
+                        ExportConverter.covertJSONtoNew(activity, new File(result1));
+
+                        activity.finish();
+                        MainTabs2.startActivity(activity, TempHolder.get().currentTab);
+
+                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
+                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
+                        LOG.e(e);
+                    }
+
+                    result2.dismiss();
+
+                    return true;
+                }
+
                 LOG.d("appFontScale0", AppState.get().appFontScale);
                 final String bookTagsInit = AppState.get().bookTags;
                 boolean result = ExportSettingsManager.getInstance(activity).importAll(new File(result1));

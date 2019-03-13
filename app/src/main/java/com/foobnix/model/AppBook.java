@@ -57,8 +57,8 @@ public class AppBook implements CurrentPageListener {
 
 
     public void currentPageChanged(int page, int pages) {
-        if(pages<=0 && LOG.isEnable){
-            throw new RuntimeException("Error!!! " + page+ " : "+ pages);
+        if (pages <= 0) {
+            throw new RuntimeException("Error!!! " + page + " : " + pages);
         }
         page = page + 1;
         this.p = (float) page / pages;
@@ -66,8 +66,8 @@ public class AppBook implements CurrentPageListener {
     }
 
     public PageIndex getCurrentPage(int pages) {
-        if(pages<=0 && LOG.isEnable){
-            throw new RuntimeException("Error!!! "+pages);
+        if (pages <= 0) {
+            throw new RuntimeException("Error!!! " + pages);
         }
         LOG.d("AppBook-getCurrentPage", pages);
         int p = (int) (pages * this.p);
