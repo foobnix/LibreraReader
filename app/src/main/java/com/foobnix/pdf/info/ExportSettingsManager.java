@@ -62,6 +62,13 @@ public class ExportSettingsManager {
         bookCSS = c.getSharedPreferences(PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
     }
 
+    public void clearAll() {
+        booksSP.edit().clear().commit();
+        viewerSP.edit().clear().commit();
+        pdfSP.edit().clear().commit();
+        bookCSS.edit().clear().commit();
+    }
+
     public boolean exportAll(File toFile) {
         if (toFile == null) {
             return false;

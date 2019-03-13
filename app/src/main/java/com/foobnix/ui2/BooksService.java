@@ -16,6 +16,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
+import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -81,10 +82,15 @@ public class BooksService extends IntentService {
             //TESET
 
 
-            File oldConfig = new File(AppsConfig.SYNC_FOLDER_ROOT, "old.json");
-            if(!oldConfig.exists()) {
+            File oldConfig = new File(AppsConfig.SYNC_FOLDER, "backup-8.0.json");
+            if (!oldConfig.exists()) {
                 AppsConfig.SYNC_FOLDER_ROOT.mkdirs();
                 ExportSettingsManager.getInstance(this).exportAll(oldConfig);
+                try {
+                    ExportConverter.covertJSONtoNew(this, oldConfig);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
 
 
@@ -100,8 +106,8 @@ public class BooksService extends IntentService {
                     }
 
                     File bookFile = new File(meta.getPath());
-                    if(ExtUtils.isMounted(bookFile)){
-                        LOG.d("isMounted",bookFile);
+                    if (ExtUtils.isMounted(bookFile)) {
+                        LOG.d("isMounted", bookFile);
                         if (!bookFile.exists()) {
                             AppDB.get().delete(meta);
                             LOG.d(TAG, "Delete-setIsSearchBook", meta.getPath());
@@ -138,7 +144,7 @@ public class BooksService extends IntentService {
 
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
-                        }else{
+                        } else {
                             //LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppState.get().searchDate);
                         }
 
@@ -229,7 +235,6 @@ public class BooksService extends IntentService {
                 Clouds.get().syncronizeGet();
                 sendFinishMessage();
             }
-
 
 
         } finally {
