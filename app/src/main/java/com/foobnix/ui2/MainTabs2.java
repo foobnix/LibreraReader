@@ -39,7 +39,6 @@ import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
@@ -576,7 +575,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
                 File file = new File(root, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.JSON.txt");
                 LOG.d("isAutomaticExport", file);
-                ExportSettingsManager.getInstance(this).exportAll(file);
+                //ExportSettingsManager.getInstance(this).exportAll(file);
             } catch (Exception e) {
                 LOG.e(e);
             }

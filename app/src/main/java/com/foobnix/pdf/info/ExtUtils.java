@@ -69,7 +69,6 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.json.JSONObject;
 import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.BufferedReader;
@@ -1191,7 +1190,7 @@ public class ExtUtils {
     }
 
     public static void exportAllBookmarksToFile(final FragmentActivity a) {
-        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".TXT.txt");
+        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getSampleJsonConfigName(a, ".TXT.txt");
 
         ChooserDialogFragment.createFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
             @Override
@@ -1225,7 +1224,7 @@ public class ExtUtils {
             return;
         }
 
-        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
+        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getSampleJsonConfigName(a, ".JSON.txt");
         ChooserDialogFragment.chooseFile(a, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
             @Override
             public boolean onResultRecive(String nPath, Dialog dialog) {
@@ -1238,10 +1237,10 @@ public class ExtUtils {
                 try {
                     String json = new Scanner(toFile).useDelimiter("\\A").next();
 
-                    JSONObject jsonObject = new JSONObject(json);
-                    if (jsonObject.has(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES)) {
-                        jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
-                    }
+//                    JSONObject jsonObject = new JSONObject(json);
+//                    if (jsonObject.has(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES)) {
+//                        jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
+//                    }
 
                     // ExportSettingsManager.importFromJSon(jsonObject, BookmarksData.get().getBookmarkPreferences());
                     Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
@@ -1262,9 +1261,9 @@ public class ExtUtils {
             return;
         }
 
-        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
+        String sampleName = "Bookmarks-All-" + ExportSettingsManager.getSampleJsonConfigName(a, ".JSON.txt");
         if (book != null) {
-            sampleName = book.getName() + "-" + ExportSettingsManager.getInstance(a).getSampleJsonConfigName(a, ".JSON.txt");
+            sampleName = book.getName() + "-" + ExportSettingsManager.getSampleJsonConfigName(a, ".JSON.txt");
         }
         sampleName = TxtUtils.fixFileName(sampleName);
 

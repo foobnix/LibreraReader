@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -53,7 +54,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         final AppBookmark item = getItem(position);
 
         holder.page.setText(TxtUtils.percentFormatInt(item.getPercent()));
-        holder.title.setText("Title");
+        holder.title.setText(ExtUtils.getFileName(item.getPath()));
 
 
         holder.text.setText(item.text);
@@ -67,7 +68,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);
-            holder.title.setVisibility(View.GONE);
+            //holder.title.setVisibility(View.GONE);
         } else {
             holder.title.setVisibility(View.GONE);
         }

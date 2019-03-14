@@ -3,16 +3,13 @@ package com.foobnix.pdf.info;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.os.Environment;
 import android.support.v4.util.Pair;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.AppDB;
 
 import org.json.JSONArray;
@@ -26,70 +23,37 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class ExportSettingsManager {
-    public static final String PREFIX_BOOKMARKS_PREFERENCES = "ViewerPreferences";// DO
-                                                                                  // NOT
-                                                                                  // CHANGE!!!!
-    public static final String PREFIX_BOOKS = "BOOKS";
-    public static final String PREFIX_PDF = "pdf";
-    public static final String PREFIX_BOOK_CSS = "BookCSS";
 
-    public static final String PREFIX_RECENT = "Recent";
-    public static final String PREFIX_STARS_Books = "StarsBook";
-    public static final String PREFIX_STARS_Folders = "StarsFolder";
 
-    public static final String PREFIX_TAGS_BOOKS = "TAGS";
-
-    public static final String RECURCIVE = "recurcive";
-    private static final String PATH2 = "PATH";
-
-    SharedPreferences lastPathSP;
-    SharedPreferences booksSP;
-    SharedPreferences viewerSP;
-    SharedPreferences pdfSP;
-    SharedPreferences bookCSS;
-
-    private static ExportSettingsManager instance;
-    private Context c;
-
-    private ExportSettingsManager(Context c) {
-        this.c = c;
-        booksSP = c.getSharedPreferences(PREFIX_BOOKS, Context.MODE_PRIVATE);
-        viewerSP = c.getSharedPreferences(PREFIX_BOOKMARKS_PREFERENCES, Context.MODE_PRIVATE);
-        pdfSP = c.getSharedPreferences(PREFIX_PDF, Context.MODE_PRIVATE);
-        bookCSS = c.getSharedPreferences(PREFIX_BOOK_CSS, Context.MODE_PRIVATE);
-    }
-
-    public void clearAll() {
-        booksSP.edit().clear().commit();
-        viewerSP.edit().clear().commit();
-        pdfSP.edit().clear().commit();
-        bookCSS.edit().clear().commit();
-    }
-
-    public boolean exportAll(File toFile) {
+    public static boolean exportAll(Context c, File toFile) {
         if (toFile == null) {
             return false;
         }
         LOG.d("TEST", "Export all to" + toFile.getPath());
 
+        SharedPreferences pdf = c.getSharedPreferences("pdf", Context.MODE_PRIVATE);
+        SharedPreferences BOOKS = c.getSharedPreferences("BOOKS", Context.MODE_PRIVATE);
+        SharedPreferences ViewerPreferences = c.getSharedPreferences("ViewerPreferences", Context.MODE_PRIVATE);
+        SharedPreferences BookCSS = c.getSharedPreferences("BookCSS", Context.MODE_PRIVATE);
+
+
         try {
             AppState.get().save(c);
-            BookCSS.get().checkBeforeExport(c);
+            com.foobnix.pdf.info.model.BookCSS.get().checkBeforeExport(c);
 
             JSONObject root = new JSONObject();
-            root.put(PREFIX_BOOKS, exportToJSon(PREFIX_BOOKS, booksSP, null, null));
-            root.put(PREFIX_BOOKMARKS_PREFERENCES, exportToJSon(PREFIX_BOOKMARKS_PREFERENCES, viewerSP, null, null));
-            root.put(PREFIX_BOOK_CSS, exportToJSon(PREFIX_BOOK_CSS, bookCSS, null, null));
+            root.put("pdf", exportToJSon("pdf", pdf, null, null));
+            root.put("BOOKS", exportToJSon("BOOKS", BOOKS, null, null));
+            root.put("ViewerPreferences", exportToJSon("ViewerPreferences", ViewerPreferences, null, null));
+            root.put("BookCSS", exportToJSon("BookCSS", BookCSS, null, null));
 
-            root.put(PREFIX_RECENT, fileMetaToJSON(AppDB.get().getRecent()));
-            root.put(PREFIX_STARS_Books, fileMetaToJSON(AppDB.get().getStarsFiles()));
-            root.put(PREFIX_STARS_Folders, fileMetaToJSON(AppDB.get().getStarsFolder()));
+            root.put("Recent", fileMetaToJSON(AppDB.get().getRecent()));
+            root.put("StarsBook", fileMetaToJSON(AppDB.get().getStarsFiles()));
+            root.put("StarsFolder", fileMetaToJSON(AppDB.get().getStarsFolder()));
 
-            root.put(PREFIX_TAGS_BOOKS, fileMetaTagToJSON(AppDB.get().getAllWithTag()));
-
+            root.put("TAGS", fileMetaTagToJSON(AppDB.get().getAllWithTag()));
 
 
             FileWriter file = new FileWriter(toFile);
@@ -118,74 +82,6 @@ public class ExportSettingsManager {
         }
     }
 
-    public boolean importAll(File file) {
-        if (file == null) {
-            return false;
-        }
-        LOG.d("TEST", "Import all from " + file.getPath());
-        try {
-            String json = new Scanner(file).useDelimiter("\\A").next();
-            LOG.d("[IMPORT]", json);
-            JSONObject jsonObject = new JSONObject(json);
-
-            importFromJSon(jsonObject.optJSONObject(PREFIX_PDF), pdfSP);
-            importFromJSon(jsonObject.optJSONObject(PREFIX_BOOKS), booksSP);
-            importFromJSon(jsonObject.optJSONObject(PREFIX_BOOKMARKS_PREFERENCES), viewerSP);
-            importFromJSon(jsonObject.optJSONObject(PREFIX_BOOK_CSS), bookCSS);
-
-            jsonToMeta(jsonObject.optJSONArray(PREFIX_RECENT), new ResultResponse<String>() {
-
-                @Override
-                public boolean onResultRecive(String result) {
-                    AppDB.get().addRecent(result);
-                    return false;
-                }
-            });
-
-            jsonToMeta(jsonObject.optJSONArray(PREFIX_STARS_Books), new ResultResponse<String>() {
-
-                @Override
-                public boolean onResultRecive(String result) {
-                    AppDB.get().addStarFile(result);
-                    return false;
-                }
-            });
-
-            jsonToMeta(jsonObject.optJSONArray(PREFIX_STARS_Folders), new ResultResponse<String>() {
-
-                @Override
-                public boolean onResultRecive(String result) {
-                    AppDB.get().addStarFolder(result);
-                    return false;
-                }
-            });
-
-            jsonTagsToMeta(jsonObject.optJSONArray(PREFIX_TAGS_BOOKS), new ResultResponse<Pair<String, String>>() {
-
-                @Override
-                public boolean onResultRecive(Pair<String, String> result) {
-                    try {
-                        if (new File(result.first).isFile()) {
-                            FileMeta meta = AppDB.get().getOrCreate(result.first);
-                            meta.setTag(StringDB.merge(meta.getTag(), result.second));
-                            AppDB.get().update(meta);
-                        }
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-
-                    return false;
-                }
-            });
-
-            return true;
-        } catch (Exception e) {
-            LOG.e(e);
-            Toast.makeText(c, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-        return false;
-
-    }
 
     public static JSONArray fileMetaToJSON(List<FileMeta> list) {
         JSONArray jsonObject = new JSONArray();
@@ -293,27 +189,6 @@ public class ExportSettingsManager {
                 edit.putBoolean(name, (Boolean) res);
             }
         }
-        edit.commit();
-    }
-
-    public static ExportSettingsManager getInstance(Context c) {
-        if (instance == null) {
-            instance = new ExportSettingsManager(c);
-        }
-        return instance;
-    }
-
-    public String getLastPath() {
-        File externalStorageDirectory = Environment.getExternalStorageDirectory();
-        if (!externalStorageDirectory.exists()) {
-            externalStorageDirectory = new File("/");
-        }
-        return lastPathSP.getString(PATH2, externalStorageDirectory.getPath());
-    }
-
-    public void saveLastPath(File file) {
-        Editor edit = lastPathSP.edit();
-        edit.putString(PATH2, file.getPath());
         edit.commit();
     }
 

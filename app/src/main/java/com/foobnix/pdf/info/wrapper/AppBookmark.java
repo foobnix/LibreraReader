@@ -35,6 +35,10 @@ public class AppBookmark {
         return p;
     }
 
+    public float getTime() {
+        return t;
+    }
+
     @Override
     public int hashCode() {
         return (path + text + p).hashCode();

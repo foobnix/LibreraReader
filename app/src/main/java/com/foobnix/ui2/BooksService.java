@@ -85,9 +85,10 @@ public class BooksService extends IntentService {
             File oldConfig = new File(AppsConfig.SYNC_FOLDER, "backup-8.0.json");
             if (!oldConfig.exists()) {
                 AppsConfig.SYNC_FOLDER_ROOT.mkdirs();
-                ExportSettingsManager.getInstance(this).exportAll(oldConfig);
+                ExportSettingsManager.exportAll(this, oldConfig);
                 try {
                     ExportConverter.covertJSONtoNew(this, oldConfig);
+                    ExportConverter.copyPlaylists();
                 } catch (Exception e) {
                     LOG.e(e);
                 }

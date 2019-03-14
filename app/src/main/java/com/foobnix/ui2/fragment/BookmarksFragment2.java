@@ -318,7 +318,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
         if (TxtUtils.isEmpty(text)) {
-            List<AppBookmark> bookmarks = BookmarksData.get().getAll();
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll(getActivity());
 
             if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_BOOK) {
                 List<AppBookmark> filtered = new ArrayList<AppBookmark>();
@@ -335,7 +335,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             }
         } else {
             List<AppBookmark> filtered = new ArrayList<AppBookmark>();
-            List<AppBookmark> bookmarks = BookmarksData.get().getAll();
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll(getActivity());
 
             if (text.startsWith(BOOK_PREFIX)) {
                 text = text.replace(BOOK_PREFIX, "").trim();

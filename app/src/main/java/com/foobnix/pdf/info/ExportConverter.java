@@ -21,6 +21,21 @@ import java.util.Iterator;
 
 public class ExportConverter {
 
+
+    public static void copyPlaylists() {
+        File syncDir = new File(AppsConfig.SYNC_FOLDER, "playlists");
+        File oldDir = new File(AppState.DOWNLOADS_DIR, "Librera/Playlist");
+        File[] list = oldDir.listFiles();
+
+        if (list != null) {
+            syncDir.mkdirs();
+            for (File file : list) {
+                LOG.d("copyPlaylists", file.getPath());
+                IO.copyFile(file, new File(syncDir, file.getName()));
+            }
+        }
+    }
+
     public static void covertJSONtoNew(Context c, File file) throws Exception {
         LOG.d("covertJSONtoNew", file);
 

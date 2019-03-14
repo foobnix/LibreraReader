@@ -1,5 +1,7 @@
 package com.foobnix.pdf.info;
 
+import android.content.Context;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppData;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
@@ -9,6 +11,7 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +64,9 @@ public class BookmarksData {
         return getBookmarksByBook(file.getPath());
     }
 
-    public List<AppBookmark> getAll() {
+    public List<AppBookmark> getAll(Context c) {
+        String quick = c.getString(R.string.fast_bookmark);
+
         List<AppBookmark> all = new ArrayList<>();
         File[] files = BOOKMARKS_ROOT.listFiles(new FileFilter() {
             @Override
@@ -69,7 +74,7 @@ public class BookmarksData {
                 return pathname.getPath().endsWith(".json");
             }
         });
-        if(files ==null){
+        if (files == null) {
             return all;
         }
 
@@ -77,7 +82,16 @@ public class BookmarksData {
             LOG.d("getAll-path", file.getPath());
             all.addAll(getBookmarksByBook(file));
         }
+        Iterator<AppBookmark> iterator = all.iterator();
+        while (iterator.hasNext()) {
+            AppBookmark next = iterator.next();
+            if (next.getText().equals(quick)) {
+                iterator.remove();
+            }
+        }
+
         LOG.d("getAll-size", all.size());
+        Collections.sort(all, BY_TIME);
         return all;
     }
 
@@ -96,6 +110,14 @@ public class BookmarksData {
         @Override
         public int compare(AppBookmark o1, AppBookmark o2) {
             return Float.compare(o1.getPercent(), o2.getPercent());
+        }
+    };
+
+    static final Comparator<AppBookmark> BY_TIME = new Comparator<AppBookmark>() {
+
+        @Override
+        public int compare(AppBookmark o1, AppBookmark o2) {
+            return Float.compare(o2.getTime(), o1.getTime());
         }
     };
 

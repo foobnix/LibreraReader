@@ -1,17 +1,5 @@
 package com.foobnix.sys;
 
-import java.io.File;
-
-import org.ebookdroid.core.codec.CodecDocument;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.ExportSettingsManager;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.ui2.MainTabs2;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -27,6 +15,18 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.ui2.MainTabs2;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.core.codec.CodecDocument;
+
+import java.io.File;
+
 import dalvik.system.DexClassLoader;
 
 public class BitmapActivity extends Activity {
@@ -103,8 +103,8 @@ public class BitmapActivity extends Activity {
         }, 5000);
 
         File exportFile = new File(Environment.getExternalStorageDirectory(), "test.json");
-        ExportSettingsManager.getInstance(this).exportAll(exportFile);
-        ExportSettingsManager.getInstance(this).importAll(exportFile);
+        //ExportSettingsManager.getInstance(this).exportAll(exportFile);
+        //ExportSettingsManager.getInstance(this).importAll(exportFile);
 
     }
 

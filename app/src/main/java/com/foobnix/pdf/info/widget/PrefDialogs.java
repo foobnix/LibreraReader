@@ -170,7 +170,7 @@ public class PrefDialogs {
             return;
         }
 
-        String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, ".JSON.txt");
+        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, ".JSON.txt");
 
         ChooserDialogFragment.chooseFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
@@ -197,7 +197,7 @@ public class PrefDialogs {
 
                 LOG.d("appFontScale0", AppState.get().appFontScale);
                 final String bookTagsInit = AppState.get().bookTags;
-                boolean result = ExportSettingsManager.getInstance(activity).importAll(new File(result1));
+                boolean result = false;//ExportSettingsManager.getInstance(activity).importAll(new File(result1));
 
                 try {
                     if (result) {
@@ -241,7 +241,7 @@ public class PrefDialogs {
         if (isBookSeriviceIsRunning(activity)) {
             return;
         }
-        String sampleName = ExportSettingsManager.getInstance(activity).getSampleJsonConfigName(activity, "-Export-All.JSON.txt");
+        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, "-Export-All.JSON.txt");
         ChooserDialogFragment.createFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
             @Override
@@ -252,7 +252,7 @@ public class PrefDialogs {
                     return false;
                 }
 
-                boolean result = ExportSettingsManager.getInstance(activity).exportAll(toFile);
+                boolean result = false;//ExportSettingsManager.exportAll(toFile);
 
                 if (result) {
                     Toast.makeText(activity, activity.getString(R.string.export_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
