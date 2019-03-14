@@ -95,7 +95,7 @@ public class ExportConverter {
             appBook.dc = value.getBoolean("doublePagesCover");
             appBook.l = value.getBoolean("isLocked");
             appBook.s = value.getInt("speed");
-            appBook.d = value.getInt("pageDelta");
+            appBook.d = value.optInt("pageDelta",0);
 
             JSONObject currentPage = value.getJSONObject("currentPage");
             appBook.p = (float) currentPage.getInt("docIndex") / value.getInt("pages");
