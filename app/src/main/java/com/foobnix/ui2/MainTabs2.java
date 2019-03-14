@@ -62,6 +62,7 @@ import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -119,6 +120,9 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
 
+    private static final int REQUEST_CODE_SIGN_IN = 1;
+    private static final int REQUEST_CODE_OPEN_DOCUMENT = 2;
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -141,6 +145,25 @@ public class MainTabs2 extends AdsFragmentActivity {
                 fr.displayAnyPath(pathSAF);
             }
         }
+
+        switch (requestCode) {
+            case REQUEST_CODE_SIGN_IN:
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    handleSignInResult(data);
+                }
+                break;
+        }
+
+    }
+
+    private void handleSignInResult(Intent result) {
+        GoogleSignIn.getSignedInAccountFromIntent(result)
+                .addOnSuccessListener(googleAccount -> {
+                    Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(exception ->
+                        Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show()
+                );
 
     }
 
@@ -307,7 +330,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenu.setVisibility(View.GONE);
             indicator.setDividerColors(Color.TRANSPARENT);
             indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
-            for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++){
+            for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
                 View child = indicator.getmTabStrip().getChildAt(i);
                 child.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
@@ -357,7 +380,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         try {
             LOG.d("checkForNewBeta");
-            if(AppState.get().isShowWhatIsNewDialog) {
+            if (AppState.get().isShowWhatIsNewDialog) {
                 AndroidWhatsNew.checkForNewBeta(this);
             }
         } catch (Exception e) {
@@ -422,7 +445,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         checkGoToPage(getIntent());
-
 
 
     }

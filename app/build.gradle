@@ -42,7 +42,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            buildConfigField "boolean", "LOG", "false"
+            buildConfigField "boolean", "LOG", "true"
         }
         debug {
             buildConfigField "boolean", "LOG", "true"
@@ -246,6 +246,8 @@ dependencies {
 
 
     implementation 'com.google.android.gms:play-services-auth:+'
+    implementation 'com.google.http-client:google-http-client-gson:+'
+
     implementation('com.google.api-client:google-api-client-android:+') {
         exclude group: 'org.apache.httpcomponents'
     }

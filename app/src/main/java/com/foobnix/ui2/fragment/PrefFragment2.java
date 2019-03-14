@@ -80,13 +80,21 @@ import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.Scope;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.http.ByteArrayContent;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -138,28 +146,100 @@ public class PrefFragment2 extends UIFragment {
     private static final int REQUEST_CODE_SIGN_IN = 0;
 
 
-    /** Start sign in activity. */
-    private void signIn() {
-        GoogleSignInClient GoogleSignInClient = buildGoogleSignInClient();
-        startActivityForResult(GoogleSignInClient.getSignInIntent(), REQUEST_CODE_SIGN_IN);
+    private void requestSignIn() {
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
+
+        if (account == null) {
+
+
+            GoogleSignInOptions signInOptions =
+                    new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestEmail()
+                            .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
+                            .build();
+            GoogleSignInClient client = GoogleSignIn.getClient(getActivity(), signInOptions);
+
+            // The result of the sign-in Intent is handled in onActivityResult.
+            startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
+        } else {
+            gText.setText(account.getDisplayName() + ":" + account.getEmail());
+
+            GoogleAccountCredential credential =
+                    GoogleAccountCredential.usingOAuth2(
+                            getContext(), Collections.singleton(DriveScopes.DRIVE_FILE));
+            credential.setSelectedAccount(account.getAccount());
+            com.google.api.services.drive.Drive googleDriveService =
+                    new com.google.api.services.drive.Drive.Builder(
+                            AndroidHttp.newCompatibleTransport(),
+                            new GsonFactory(),
+                            credential)
+                            .setApplicationName("Librera")
+                            .build();
+            //DriveServiceHelper mDriveServiceHelper = new DriveServiceHelper(googleDriveService);
+
+
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        try {
+            FileList list = googleDriveService.files().list().setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
+            List<File> files = list.getFiles();
+
+            LOG.d("g-FILE","===== before ======");
+
+            String rootId = null;
+            for (File file : files) {
+                if(file.getName().equals("Librera") && file.getMimeType().equals("application/vnd.google-apps.folder")){
+                    rootId = file.getId();
+                }
+                LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime(),file.getAppProperties(), file.getFullFileExtension(),file.getTrashed());
+            }
+
+            File myFile = new File().setName("test3.txt")
+                    .setParents(Collections.singletonList(rootId))
+                    .setMimeType("text/plain");
+
+
+            File myFileCreated = googleDriveService.files().create(myFile).execute();
+
+            LOG.d("g-FILE","myFileCreated",myFileCreated.getId());
+
+            File metadata = new File().setName("test3.txt");
+            ByteArrayContent contentStream = ByteArrayContent.fromString("text/plain", "hello world content");
+            googleDriveService.files().update(myFileCreated.getId(), metadata, contentStream).execute();
+
+
+
+            LOG.d("g-FILE","===== after ======");
+
+            list = googleDriveService.files().list().setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
+            files =list.getFiles();
+            for (File file : files) {
+                LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime());
+            }
+
+        } catch (IOException e) {
+            LOG.e(e);
+        }
+    }
+}).start();
+
+
+        }
     }
 
-    private GoogleSignInClient buildGoogleSignInClient() {
-        GoogleSignInOptions signInOptions =
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestScopes(new Scope(Scopes.DRIVE_FULL))
-                        .build();
-        return GoogleSignIn.getClient(getActivity(), signInOptions);
-    }
+    TextView gText;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
-        inflate.findViewById(R.id.gdrive).setOnClickListener(new OnClickListener() {
+        gText = inflate.findViewById(R.id.gdrive);
+        gText.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                requestSignIn();
             }
         });
         // tabs position
@@ -381,7 +461,7 @@ public class PrefFragment2 extends UIFragment {
         final ScrollView scrollView = (ScrollView) inflate.findViewById(R.id.scroll);
         scrollView.setVerticalScrollBarEnabled(false);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
             scrollView.setBackgroundColor(Color.BLACK);
         }
 
@@ -2029,7 +2109,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onScan() {
-        if(getActivity() ==null){
+        if (getActivity() == null) {
             return;
         }
         closeLeftMenu();
