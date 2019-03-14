@@ -120,14 +120,15 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
 
-    private static final int REQUEST_CODE_SIGN_IN = 1;
-    private static final int REQUEST_CODE_OPEN_DOCUMENT = 2;
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         LOG.d("REQUEST_CODE_ADD_RESOURCE", requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) {
+            Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         if (requestCode == REQUEST_CODE_ADD_RESOURCE && resultCode == Activity.RESULT_OK) {
             getContentResolver().takePersistableUriPermission(data.getData(), Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -144,28 +145,20 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
+        } else if (requestCode == PrefFragment2.REQUEST_CODE_SIGN_IN) {
+            GoogleSignIn.getSignedInAccountFromIntent(data)
+                    .addOnSuccessListener(googleAccount -> {
+                        Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(exception ->
+                            Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show()
+                    );
+            Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
         }
 
-        switch (requestCode) {
-            case REQUEST_CODE_SIGN_IN:
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                    handleSignInResult(data);
-                }
-                break;
-        }
 
     }
 
-    private void handleSignInResult(Intent result) {
-        GoogleSignIn.getSignedInAccountFromIntent(result)
-                .addOnSuccessListener(googleAccount -> {
-                    Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(exception ->
-                        Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show()
-                );
-
-    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

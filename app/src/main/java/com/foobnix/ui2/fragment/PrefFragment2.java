@@ -143,7 +143,7 @@ public class PrefFragment2 extends UIFragment {
     View section1, section2, section3, section4, section5, section6, section7, overlay;
 
 
-    private static final int REQUEST_CODE_SIGN_IN = 0;
+    public static final int REQUEST_CODE_SIGN_IN = 1110;
 
 
     private void requestSignIn() {
@@ -163,7 +163,11 @@ public class PrefFragment2 extends UIFragment {
             // The result of the sign-in Intent is handled in onActivityResult.
             startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
         } else {
-            gText.setText(account.getDisplayName() + ":" + account.getEmail());
+            gText.setText(account.getDisplayName() + " : " + account.getEmail());
+
+            if (true) {
+                return;
+            }
 
             GoogleAccountCredential credential =
                     GoogleAccountCredential.usingOAuth2(
@@ -176,54 +180,52 @@ public class PrefFragment2 extends UIFragment {
                             credential)
                             .setApplicationName("Librera")
                             .build();
-            //DriveServiceHelper mDriveServiceHelper = new DriveServiceHelper(googleDriveService);
 
 
-new Thread(new Runnable() {
-    @Override
-    public void run() {
-        try {
-            FileList list = googleDriveService.files().list().setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
-            List<File> files = list.getFiles();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        FileList list = googleDriveService.files().list().setQ("'1v3ZHnxD-ViPWhBZ6-MvcO-__tzzia3V4' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
+                        List<File> files = list.getFiles();
 
-            LOG.d("g-FILE","===== before ======");
+                        LOG.d("g-FILE", "===== before ======");
 
-            String rootId = null;
-            for (File file : files) {
-                if(file.getName().equals("Librera") && file.getMimeType().equals("application/vnd.google-apps.folder")){
-                    rootId = file.getId();
+                        String rootId = null;
+                        for (File file : files) {
+                            if (file.getName().equals("Librera") && file.getMimeType().equals("application/vnd.google-apps.folder")) {
+                                rootId = file.getId();
+                            }
+                            LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime(), file.getAppProperties(), file.getFullFileExtension(), file.getTrashed());
+                        }
+
+                        File myFile = new File().setName("test3.txt")
+                                .setParents(Collections.singletonList(rootId))
+                                .setMimeType("text/plain");
+
+
+                        File myFileCreated = googleDriveService.files().create(myFile).execute();
+
+                        LOG.d("g-FILE", "myFileCreated", myFileCreated.getId());
+
+                        File metadata = new File().setName("test3.txt");
+                        ByteArrayContent contentStream = ByteArrayContent.fromString("text/plain", "hello world content2");
+                        googleDriveService.files().update(myFileCreated.getId(), metadata, contentStream).execute();
+
+
+                        LOG.d("g-FILE", "===== after ======");
+
+                        list = googleDriveService.files().list().setQ("'1v3ZHnxD-ViPWhBZ6-MvcO-__tzzia3V4' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
+                        files = list.getFiles();
+                        for (File file : files) {
+                            LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime());
+                        }
+
+                    } catch (IOException e) {
+                        LOG.e(e);
+                    }
                 }
-                LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime(),file.getAppProperties(), file.getFullFileExtension(),file.getTrashed());
-            }
-
-            File myFile = new File().setName("test3.txt")
-                    .setParents(Collections.singletonList(rootId))
-                    .setMimeType("text/plain");
-
-
-            File myFileCreated = googleDriveService.files().create(myFile).execute();
-
-            LOG.d("g-FILE","myFileCreated",myFileCreated.getId());
-
-            File metadata = new File().setName("test3.txt");
-            ByteArrayContent contentStream = ByteArrayContent.fromString("text/plain", "hello world content");
-            googleDriveService.files().update(myFileCreated.getId(), metadata, contentStream).execute();
-
-
-
-            LOG.d("g-FILE","===== after ======");
-
-            list = googleDriveService.files().list().setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
-            files =list.getFiles();
-            for (File file : files) {
-                LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime());
-            }
-
-        } catch (IOException e) {
-            LOG.e(e);
-        }
-    }
-}).start();
+            }).start();
 
 
         }
