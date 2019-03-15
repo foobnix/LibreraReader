@@ -716,6 +716,10 @@ public class DragingDialogs {
                     }
                 });
 
+                final EditText ttsDoNotReadChars = (EditText) view.findViewById(R.id.ttsDoNotReadChars);
+                final EditText ttsSentecesDivs = (EditText) view.findViewById(R.id.ttsSentecesDivs);
+
+
                 TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -738,6 +742,11 @@ public class DragingDialogs {
                                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                                 // TxtUtils.underlineTextView(textEngine);
+                                AppState.get().ttsDoNotReadChars = AppState.IGNORE_TTS_CHARS;
+                                ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
+
+                                AppState.get().ttsSentecesDivs = AppState.TTS_PUNCUATIONS;
+                                ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
                             }
                         });
 
@@ -756,9 +765,8 @@ public class DragingDialogs {
                 });
 
                 // read by sentences
-                final EditText searchEdit = (EditText) view.findViewById(R.id.ttsSentecesDivs);
-                searchEdit.setText(AppState.get().ttsSentecesDivs);
-                searchEdit.addTextChangedListener(new SmallTextWatcher() {
+                ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
+                ttsSentecesDivs.addTextChangedListener(new SmallTextWatcher() {
 
                     @Override
                     public void onTextChanged(String text) {
@@ -766,7 +774,7 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                     }
                 });
-                searchEdit.setEnabled(AppState.get().ttsReadBySentences);
+                ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
 
 
                 CheckBox ttsReadBySentences = (CheckBox) view.findViewById(R.id.ttsReadBySentences);
@@ -776,12 +784,11 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().ttsReadBySentences = isChecked;
-                        searchEdit.setEnabled(AppState.get().ttsReadBySentences);
+                        ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
                         TTSEngine.get().stop();
                     }
                 });
                 // skip text
-                final EditText ttsDoNotReadChars = (EditText) view.findViewById(R.id.ttsDoNotReadChars);
                 ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
                 ttsDoNotReadChars.addTextChangedListener(new SmallTextWatcher() {
 

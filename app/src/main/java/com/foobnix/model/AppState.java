@@ -203,7 +203,12 @@ public class AppState {
                     "B,#000000,#8cffb5,1;" + //
                     "C,#3a3a3a,#c8c8c8,1;"; //
 
+
+
     public String readColors = READ_COLORS_DEAFAUL;
+
+    public static final String IGNORE_TTS_CHARS = "[]()?!\"«»*’”“—–−-/";
+    public static final String TTS_PUNCUATIONS = ".;:!?";
 
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     // public static String DEFAULTS_TABS_ORDER =
@@ -400,15 +405,17 @@ public class AppState {
     @IgnoreHashCode
     public boolean ttsReadBySentences = true;
     @IgnoreHashCode
-    public String ttsSentecesDivs = ".;:!?";
+    public String ttsSentecesDivs = TTS_PUNCUATIONS;
 
     @IgnoreHashCode
     public boolean ttsTunnOnLastWord = false;
 
     @IgnoreHashCode
     public boolean ttsDoNotReadCharsEnable = true;
+
+
     @IgnoreHashCode
-    public String ttsDoNotReadChars = "[]()?!\"«»*'’”“—–−-/";
+    public String ttsDoNotReadChars = IGNORE_TTS_CHARS;
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
