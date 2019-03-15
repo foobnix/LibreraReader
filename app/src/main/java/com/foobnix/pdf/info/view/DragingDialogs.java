@@ -742,8 +742,8 @@ public class DragingDialogs {
                                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                                 // TxtUtils.underlineTextView(textEngine);
-                                AppState.get().ttsDoNotReadChars = AppState.IGNORE_TTS_CHARS;
-                                ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
+                                AppState.get().ttsSkipChars = AppState.SKIP_TTS_CHARS;
+                                ttsDoNotReadChars.setText(AppState.get().ttsSkipChars);
 
                                 AppState.get().ttsSentecesDivs = AppState.TTS_PUNCUATIONS;
                                 ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
@@ -789,12 +789,12 @@ public class DragingDialogs {
                     }
                 });
                 // skip text
-                ttsDoNotReadChars.setText(AppState.get().ttsDoNotReadChars);
+                ttsDoNotReadChars.setText(AppState.get().ttsSkipChars);
                 ttsDoNotReadChars.addTextChangedListener(new SmallTextWatcher() {
 
                     @Override
                     public void onTextChanged(String text) {
-                        AppState.get().ttsDoNotReadChars = text;
+                        AppState.get().ttsSkipChars = text;
                         TTSEngine.get().stop();
                     }
                 });

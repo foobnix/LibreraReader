@@ -207,7 +207,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static final String IGNORE_TTS_CHARS = "[]()?!\"«»*’”“—–−-/";
+    public static final String SKIP_TTS_CHARS = "[]()?!\"«»*’”“—–−-/";
     public static final String TTS_PUNCUATIONS = ".;:!?";
 
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
@@ -415,7 +415,7 @@ public class AppState {
 
 
     @IgnoreHashCode
-    public String ttsDoNotReadChars = IGNORE_TTS_CHARS;
+    public String ttsSkipChars = SKIP_TTS_CHARS;
 
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;

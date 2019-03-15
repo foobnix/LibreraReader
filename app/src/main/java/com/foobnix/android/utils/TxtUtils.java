@@ -292,8 +292,8 @@ public class TxtUtils {
         LOG.d("pageHTML [after] ", pageHTML);
 
         if (AppState.get().ttsDoNotReadCharsEnable) {
-            for (int i = 0; i < AppState.get().ttsDoNotReadChars.length(); i++) {
-                String s = String.valueOf(AppState.get().ttsDoNotReadChars.charAt(i));
+            for (int i = 0; i < AppState.get().ttsSkipChars.length(); i++) {
+                String s = String.valueOf(AppState.get().ttsSkipChars.charAt(i));
                 pageHTML = pageHTML.replace(s, " ");
             }
 
