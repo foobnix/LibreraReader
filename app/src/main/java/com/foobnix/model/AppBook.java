@@ -11,7 +11,7 @@ import java.io.File;
 
 public class AppBook implements CurrentPageListener {
 
-    public String path;
+    public transient String path;
     public int z = 100;//z
 
     public boolean sp = false;//split pages
@@ -29,7 +29,6 @@ public class AppBook implements CurrentPageListener {
     public float p; //percent
 
     public static File getCacheFile(String path) {
-        //return new File(AppsConfig.SYNC_FOLDER, new File(path).getName()+"_"+ path.hashCode()+".json");
         return new File(AppsConfig.SYNC_FOLDER, "books/" + new File(path).getName() + ".json");
     }
 

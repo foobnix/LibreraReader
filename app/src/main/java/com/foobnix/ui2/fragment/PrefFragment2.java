@@ -335,9 +335,6 @@ public class PrefFragment2 extends UIFragment {
                 } else {
                     AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
                 }
-
-                dragLinear.run();
-
             }
         });
 
@@ -351,7 +348,8 @@ public class PrefFragment2 extends UIFragment {
                     public void run() {
                         AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
                         isshowPrefAsMenu.setChecked(false);
-                        dragLinear.run();
+                        AppState.get().save(getActivity());
+                        onTheme();
                     }
                 });
 
