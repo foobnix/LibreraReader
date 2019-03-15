@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 public class AppState {
 
     public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-State.json");
+    public String syncRootID;
 
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -479,6 +480,8 @@ public class AppState {
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;
+
+
 
     public boolean isPrefFormatMode = false;
     public String prefScrollMode = PREF_SCROLL_MODE;

@@ -18,13 +18,19 @@ android {
         targetSdkVersion 27
         versionCode codeNumber
         versionName versionNumber
-        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
         //vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
+
+    }
+    testOptions {
+        unitTests.includeAndroidResources = true
+        unitTests.returnDefaultValues = true
 
     }
 
@@ -214,6 +220,11 @@ android {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.android.support.test:runner:+'
+    //testImplementation "com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION"
+
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     implementation 'com.android.support:multidex:1.0.3'

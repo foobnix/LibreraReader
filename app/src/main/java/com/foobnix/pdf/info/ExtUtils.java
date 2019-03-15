@@ -131,6 +131,8 @@ public class ExtUtils {
         mimeCache.put(".jpg", "image/jpeg");
         mimeCache.put(".png", "image/png");
 
+        mimeCache.put(".json", "text/plain");
+
         mimeCache.put(".chm", "application/x-chm");
         mimeCache.put(".xps", "application/vnd.ms-xpsdocument");
         mimeCache.put(".chm", "application/x-chm");

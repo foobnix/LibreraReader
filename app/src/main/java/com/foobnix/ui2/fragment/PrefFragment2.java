@@ -47,6 +47,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.drive.GFile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
@@ -81,16 +82,6 @@ import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Scope;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.http.ByteArrayContent;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.drive.DriveScopes;
-import com.google.api.services.drive.model.File;
-import com.google.api.services.drive.model.FileList;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -143,98 +134,38 @@ public class PrefFragment2 extends UIFragment {
     View section1, section2, section3, section4, section5, section6, section7, overlay;
 
 
-    public static final int REQUEST_CODE_SIGN_IN = 1110;
-
-
     private void requestSignIn() {
 
+
+        GFile.init(getActivity());
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-
-        if (account == null) {
-
-
-            GoogleSignInOptions signInOptions =
-                    new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestEmail()
-                            .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
-                            .build();
-            GoogleSignInClient client = GoogleSignIn.getClient(getActivity(), signInOptions);
-
-            // The result of the sign-in Intent is handled in onActivityResult.
-            startActivityForResult(client.getSignInIntent(), REQUEST_CODE_SIGN_IN);
-        } else {
+        if (account != null) {
             gText.setText(account.getDisplayName() + " : " + account.getEmail());
 
-            if (true) {
-                return;
-            }
+            Toast.makeText(getActivity(), "Syncronization Begin", Toast.LENGTH_SHORT).show();
 
-            GoogleAccountCredential credential =
-                    GoogleAccountCredential.usingOAuth2(
-                            getContext(), Collections.singleton(DriveScopes.DRIVE_FILE));
-            credential.setSelectedAccount(account.getAccount());
-            com.google.api.services.drive.Drive googleDriveService =
-                    new com.google.api.services.drive.Drive.Builder(
-                            AndroidHttp.newCompatibleTransport(),
-                            new GsonFactory(),
-                            credential)
-                            .setApplicationName("Librera")
-                            .build();
+            new Thread(() -> {
+                try {
+                    GFile.sycnronizeAll(getActivity());
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getActivity(), "Syncronization Finish SUCCESS", Toast.LENGTH_LONG).show());
 
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        FileList list = googleDriveService.files().list().setQ("'1v3ZHnxD-ViPWhBZ6-MvcO-__tzzia3V4' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
-                        List<File> files = list.getFiles();
-
-                        LOG.d("g-FILE", "===== before ======");
-
-                        String rootId = null;
-                        for (File file : files) {
-                            if (file.getName().equals("Librera") && file.getMimeType().equals("application/vnd.google-apps.folder")) {
-                                rootId = file.getId();
-                            }
-                            LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime(), file.getAppProperties(), file.getFullFileExtension(), file.getTrashed());
-                        }
-
-                        File myFile = new File().setName("test3.txt")
-                                .setParents(Collections.singletonList(rootId))
-                                .setMimeType("text/plain");
-
-
-                        File myFileCreated = googleDriveService.files().create(myFile).execute();
-
-                        LOG.d("g-FILE", "myFileCreated", myFileCreated.getId());
-
-                        File metadata = new File().setName("test3.txt");
-                        ByteArrayContent contentStream = ByteArrayContent.fromString("text/plain", "hello world content2");
-                        googleDriveService.files().update(myFileCreated.getId(), metadata, contentStream).execute();
-
-
-                        LOG.d("g-FILE", "===== after ======");
-
-                        list = googleDriveService.files().list().setQ("'1v3ZHnxD-ViPWhBZ6-MvcO-__tzzia3V4' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setOrderBy("createdTime,modifiedTime").setPageSize(1000).execute();
-                        files = list.getFiles();
-                        for (File file : files) {
-                            LOG.d("g-FILE", file.getId(), file.getName(), file.getMimeType(), file.getParents(), file.getCreatedTime());
-                        }
-
-                    } catch (IOException e) {
-                        LOG.e(e);
-                    }
+                } catch (IOException e) {
+                    LOG.e(e);
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getActivity(), "Syncronization Fail", Toast.LENGTH_LONG).show());
                 }
             }).start();
-
 
         }
     }
 
+
     TextView gText;
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
+                             final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
         gText = inflate.findViewById(R.id.gdrive);

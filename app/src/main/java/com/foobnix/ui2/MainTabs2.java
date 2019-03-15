@@ -33,6 +33,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
@@ -145,7 +146,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
             }
-        } else if (requestCode == PrefFragment2.REQUEST_CODE_SIGN_IN) {
+        } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
             GoogleSignIn.getSignedInAccountFromIntent(data)
                     .addOnSuccessListener(googleAccount -> {
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();

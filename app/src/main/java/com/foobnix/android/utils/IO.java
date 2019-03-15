@@ -139,4 +139,20 @@ public class IO {
         }
         return true;
     }
+    public static boolean copyFile(InputStream from, File to) {
+        try {
+            new File(to.getParent()).mkdirs();
+
+            InputStream input = new BufferedInputStream(from);
+            OutputStream output = new BufferedOutputStream(new FileOutputStream(to));
+
+            IOUtils.copyClose(input, output);
+
+            LOG.d("Copy file form to", from, to);
+        } catch (IOException e) {
+            LOG.e(e);
+            return false;
+        }
+        return true;
+    }
 }
