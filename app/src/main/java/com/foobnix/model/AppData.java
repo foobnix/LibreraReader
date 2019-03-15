@@ -117,10 +117,15 @@ public class AppData {
         return res;
     }
 
+
     public List<FileMeta> getAllRecent() {
         readSimpleMeta(recent, syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
+            if (!new File(s.path).isFile()) {
+                continue;
+            }
+
             FileMeta meta = AppDB.get().getOrCreate(s.path);
             meta.setIsRecent(true);
             meta.setIsSearchBook(true);

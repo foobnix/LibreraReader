@@ -51,8 +51,9 @@ public class ExportConverter {
         TintUtil.init();
 
         JSONArray recent = obj.getJSONArray("Recent");
+        long t = System.currentTimeMillis();
         for (int i = 0; i < recent.length(); i++) {
-            AppData.get().addRecent(new SimpleMeta(recent.getString(i), i));
+            AppData.get().addRecent(new SimpleMeta(recent.getString(i), t - i));
         }
 
         JSONArray favorites = obj.getJSONArray("StarsBook");
@@ -95,10 +96,13 @@ public class ExportConverter {
             appBook.dc = value.getBoolean("doublePagesCover");
             appBook.l = value.getBoolean("isLocked");
             appBook.s = value.getInt("speed");
-            appBook.d = value.optInt("pageDelta",0);
+            appBook.d = value.optInt("pageDelta", 0);
 
             JSONObject currentPage = value.getJSONObject("currentPage");
-            appBook.p = (float) currentPage.getInt("docIndex") / value.getInt("pages");
+            int pages = value.optInt("pages", 0);
+            if (pages > 0) {
+                appBook.p = (float) (currentPage.getInt("docIndex") + 1) / pages;
+            }
             appBook.x = value.getInt("offsetX");
             appBook.y = value.getInt("offsetY");
 

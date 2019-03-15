@@ -291,7 +291,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
-                    ExtUtils.showDocument(getActivity(), Uri.fromFile(file), result.getPercent(),null);
+                    ExtUtils.showDocument(getActivity(), Uri.fromFile(file), result.getPercent(), null);
 
                 }
             } else {
@@ -346,7 +346,6 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
                 }
 
 
-
             } else {
                 for (AppBookmark bookmark : bookmarks) {
                     if (bookmark.getText().toLowerCase(Locale.US).contains(text)) {
@@ -394,7 +393,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     @Override
     public void notifyFragment() {
-
+        populate();
     }
 
     @Override
