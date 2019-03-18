@@ -6,6 +6,8 @@ version: 6
 
 # 8.0
 
+By using the application you agree to [Privacy Policy](/wiki/PrivacyPolicy/)
+
 **General Improvements**
 
 * All libraries have been updated
