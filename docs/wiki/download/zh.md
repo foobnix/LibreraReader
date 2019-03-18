@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 2
+version: 3
 ---
 {1}下载
 
@@ -15,7 +15,7 @@ version: 2
 
 [GitHub的]（https://github.com/foobnix/LibreraReader）
 
-[Telegram]（https://t.me/LibreraReader）（有关新功能的新闻，公告和许多有趣内容。）
+[电报]（https://t.me/LibreraReader）（有关新功能的新闻，公告和许多有趣内容。）
 
 
-[隐私政策](/wiki/PrivacyPolicy/zh)（Librera读者隐私政策）
+[隐私政策](/wiki/PrivacyPolicy/zh)

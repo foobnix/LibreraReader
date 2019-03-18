@@ -55,6 +55,7 @@ public class WikiTranslate {
         map.put(" **", " {3}");
         map.put("* ", "{4}");
         map.put("**", "{6}");
+        map.put("&nbsp;", "{7}");
 
         Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
@@ -66,6 +67,14 @@ public class WikiTranslate {
         reverse.put("{6} ", "**");
 
         reverse.put("{4} ", "* ");
+
+        reverse.put("{7}", "&nbsp;");
+
+        reverse.put("] (", "](");
+        reverse.put("&#39;", "'");
+        reverse.put(" / ", "/");
+        reverse.put("(/ ", "(/");
+        reverse.put(" /)", "/)");
 
         // System.out.println(in);
         for (String key : map.keySet()) {
@@ -86,8 +95,7 @@ public class WikiTranslate {
         }
 
         String line = GoogleTranslation.translate(in, ln);
-        line = line.replace("&#39;", "'");
-
+        line=line.replace("（","(").replace("）",")");
 
         for (String key : reverse.keySet()) {
             line = line.replace(key, reverse.get(key));

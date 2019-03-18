@@ -2,7 +2,7 @@
 layout: main
 version: 5
 ---
-[<](/wiki/)
+[Wiki](/wiki/)
 
 # What is new in Librera book reader
 

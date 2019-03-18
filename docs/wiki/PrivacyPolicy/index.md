@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
-[Wiki](/wiki)
+[Wiki](/wiki)&nbsp;&nbsp;&nbsp;[What is new](/wiki/what-is-new/)&nbsp;&nbsp;&nbsp;[About app](/wiki/about/)
 
 # Privacy Policies
 
