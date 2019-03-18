@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[Wiki](/wiki)
+[Back](/wiki/PrivacyPolicy/)
 
 # Privacy Policy
 
