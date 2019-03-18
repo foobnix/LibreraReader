@@ -6,6 +6,8 @@ version: 6
 
 # 8.0
 
+By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+
 **Améliorations générales**
 
 * Toutes les bibliothèques ont été mises à jour

@@ -6,6 +6,8 @@ version: 6
 
 # 8.0
 
+By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+
 {6}一般改进{6}
 
 {4}所有图书馆都已更新
