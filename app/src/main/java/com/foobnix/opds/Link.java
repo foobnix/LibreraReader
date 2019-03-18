@@ -1,12 +1,12 @@
 package com.foobnix.opds;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Link {
 
@@ -31,6 +31,7 @@ public class Link {
     {
         map.put("text/html", "web");
         map.put("text/download", "txt");
+        map.put("text/fb2+xml", "fb2");
         map.put("application/rtf", "rtf");
         map.put("application/msword", "doc");
         map.put("application/doc", "doc");
