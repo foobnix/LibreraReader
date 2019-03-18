@@ -6,7 +6,7 @@ version: 6
 
 # 8.0
 
-By using the application you agree to [Privacy Policy](/wiki/PrivacyPolicy/)
+By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
 
 **General Improvements**
 

@@ -6,5 +6,5 @@ version: 0
 
 # 8.1
 
-By using the application you agree to [Privacy Policy](/wiki/PrivacyPolicy/)
+By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
 
