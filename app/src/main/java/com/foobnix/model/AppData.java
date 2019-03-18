@@ -37,10 +37,21 @@ public class AppData {
     }
 
 
+
+
     public void addRecent(SimpleMeta s) {
+
+        if(TxtUtils.isListNotEmpty(recent)){
+            Collections.sort(recent,FileMetaComparators.BY_RECENT_TIME_2);
+            if(s.path.equals(recent.get(0).path)) {
+                LOG.d("Skip-recent");
+                return;
+            }
+        }
         recent.remove(s);
         recent.add(s);
         writeSimpleMeta(recent, syncRecent);
+        LOG.d("Objects-save", "SAVE Recent");
     }
 
     public void removeRecent(SimpleMeta s) {
@@ -54,6 +65,8 @@ public class AppData {
         favorites.add(s);
         LOG.d("AppData addFavorite", s.path);
         writeSimpleMeta(favorites, syncFavorite);
+        LOG.d("Objects-save", "SAVE Favorite");
+
     }
 
     public void removeFavorite(SimpleMeta s) {
@@ -66,11 +79,13 @@ public class AppData {
     public void clearRecents() {
         recent.clear();
         writeSimpleMeta(recent, syncRecent);
+        LOG.d("Objects-save", "SAVE Recent");
     }
 
     public void clearFavorites() {
         favorites.clear();
         writeSimpleMeta(favorites, syncFavorite);
+        LOG.d("Objects-save", "SAVE Favorite");
 
     }
 

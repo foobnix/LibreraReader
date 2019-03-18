@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import java.io.File;
@@ -150,6 +151,17 @@ public class FileMetaComparators {
                 return 1;
 
             return 0;
+        }
+    };
+
+    public static Comparator<SimpleMeta> BY_RECENT_TIME_2 = new Comparator<SimpleMeta>() {
+        @Override
+        public int compare(SimpleMeta o1, SimpleMeta o2) {
+            try {
+                return compareLong(o2.time, o1.time);
+            } catch (Exception e) {
+                return 0;
+            }
         }
     };
 
