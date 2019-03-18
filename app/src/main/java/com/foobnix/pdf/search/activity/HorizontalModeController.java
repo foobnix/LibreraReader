@@ -255,7 +255,7 @@ public abstract class HorizontalModeController extends DocumentController {
         LOG.d("_PAGE", "getPageFromUriSingleRun", percent, pagesCount);
         if (percent > 0.0f) {
             currentPage = (int) Math.round(pagesCount * percent) - 1;
-        } else {
+        } else if(pagesCount>0) {
             currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
         }
 

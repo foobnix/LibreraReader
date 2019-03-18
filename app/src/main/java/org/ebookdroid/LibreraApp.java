@@ -12,6 +12,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -56,7 +57,9 @@ public class LibreraApp extends MultiDexApplication {
         TTSNotification.initChannels(this);
         Dips.init(this);
         AppDB.get().open(this);
-        AppState.get().load(this);
+        if(Android6.canWrite(this)) {
+            AppState.get().load(this);
+        }
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);

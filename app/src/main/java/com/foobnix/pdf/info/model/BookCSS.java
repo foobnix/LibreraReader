@@ -6,6 +6,8 @@ import android.os.Environment;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
@@ -85,7 +87,10 @@ public class BookCSS {
     public String capitalFont;
 
     public boolean isAutoHypens;
+
+    @IgnoreCalculateHashCode
     public String hypenLang;
+
     public String linkColorDay;
     public String linkColorNight;
 
@@ -95,6 +100,9 @@ public class BookCSS {
 
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
+
+    @IgnoreHashCode
+    public int hashCode = 0;
 
     @IgnoreHashCode
     public String linkColorDays = LINKCOLOR_DAYS;
@@ -162,7 +170,13 @@ public class BookCSS {
         if (c == null) {
             return;
         }
-        IO.writeObjAsync(syncFile,instance);
+
+        int currentHash = Objects.hashCode(instance, false);
+        if (currentHash != instance.hashCode) {
+            LOG.d("Objects-save", "SAVE BookCSS");
+            hashCode = currentHash;
+            IO.writeObjAsync(syncFile, instance);
+        }
     }
 
     public int position(String fontName) {

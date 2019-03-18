@@ -14,6 +14,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
@@ -296,6 +297,7 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
 
+    @IgnoreCalculateHashCode
     public int readingMode = READING_MODE_SCROLL;
 
     public int helpHash = 0;
@@ -570,23 +572,32 @@ public class AppState {
 
     public String fileToDelete;
 
+    @IgnoreCalculateHashCode
     public String lastBookPath;
 
     public String mp3BookPath;
     public int mp3seek = 0;
 
+    @IgnoreCalculateHashCode
     @IgnoreHashCode
     public int lastBookPage = 0;
+
+    @IgnoreCalculateHashCode
     public int tempBookPage = 0;
 
     @IgnoreHashCode
+    @IgnoreCalculateHashCode
     public volatile int lastBookParagraph = 0;
 
     @IgnoreHashCode
+    @IgnoreCalculateHashCode
     public String lastBookTitle;
 
+    @IgnoreCalculateHashCode
     public int lastBookWidth = 0;
+    @IgnoreCalculateHashCode
     public int lastBookHeight = 0;
+    @IgnoreCalculateHashCode
     public int lastFontSize = 0;
 
     public int colorDayText = COLOR_BLACK;
@@ -629,8 +640,12 @@ public class AppState {
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
 
+    @IgnoreCalculateHashCode
     public String lastClosedActivity;
+
+    @IgnoreCalculateHashCode
     public String lastMode;
+
     public String dirLastPath;
 
     public String versionNew = "";
@@ -675,6 +690,9 @@ public class AppState {
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
 
     public long installationDate = System.currentTimeMillis();
+
+
+    @IgnoreCalculateHashCode
     public long searchDate = 0;
 
     public boolean isFirstTimeVertical = true;
@@ -909,14 +927,12 @@ public class AppState {
         if (a == null) {
             return;
         }
-        int currentHash = Objects.hashCode(AppState.get(), false);
-        if (currentHash == hashCode) {
-            LOG.d("Objects", "Ignore save hashCode the same");
-            return;
+        int currentHash = Objects.hashCode(instance, false);
+        if (currentHash != instance.hashCode) {
+            LOG.d("Objects-save", "SAVE AppState");
+            hashCode = currentHash;
+            IO.writeObjAsync(syncFile, instance);
         }
-        hashCode = currentHash;
-
-        IO.writeObjAsync(syncFile,instance);
     }
 
     public boolean isTextFormat() {

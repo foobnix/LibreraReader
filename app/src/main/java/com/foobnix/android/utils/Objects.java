@@ -22,6 +22,10 @@ public class Objects {
     public @interface IgnoreHashCode {
 
     }
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface IgnoreCalculateHashCode {
+
+    }
 
     public static String toJSONString(Object obj) {
         return toJSONObject(obj).toString();
@@ -160,11 +164,15 @@ public class Objects {
     public static int hashCode(Object obj, boolean ignoreSomeHash) {
         StringBuilder res = new StringBuilder();
 
-        for (Field f : obj.getClass().getDeclaredFields()) {
+        final Field[] declaredFields = obj.getClass().getDeclaredFields();
+        for (Field f : declaredFields) {
             if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers())) {
                 continue;
             }
             if (ignoreSomeHash && f.isAnnotationPresent(IgnoreHashCode.class)) {
+                continue;
+            }
+            if (f.isAnnotationPresent(IgnoreCalculateHashCode.class)) {
                 continue;
             }
             if (f.getName().equals(hashStringID)) {

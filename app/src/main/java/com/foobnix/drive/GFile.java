@@ -80,7 +80,7 @@ public class GFile {
     public static List<File> getFiles(String rootId) {
         try {
             LOG.d("getFiles by", rootId);
-            FileList drive = googleDriveService.files().list().setQ("'" + rootId + "' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(100).execute();
+            FileList drive = googleDriveService.files().list().setQ("'" + rootId + "' in parents and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
             return drive.getFiles();
         } catch (Exception e) {
             LOG.e(e);
@@ -91,7 +91,7 @@ public class GFile {
     public static File findLibreraSync() {
         try {
 
-            FileList drive = googleDriveService.files().list().setQ("name = 'Librera' and 'root' in parents and mimeType = '" + MIME_FOLDER + "' and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(100).execute();
+            FileList drive = googleDriveService.files().list().setQ("name = 'Librera' and 'root' in parents and mimeType = '" + MIME_FOLDER + "' and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
             debugPrint(drive.getFiles());
             for (File it : drive.getFiles()) {
                 if (it.getParents() == null) {
@@ -252,7 +252,7 @@ public class GFile {
         LOG.d(TAG, "sycnronizeAll", "finished");
     }
 
-    private static void sync(String syncId, java.io.File ioRoot) throws IOException {
+    private static void sync(String syncId, final java.io.File ioRoot) throws IOException {
         LOG.d(TAG, "sync", syncId, ioRoot.getPath());
         final java.io.File[] files = ioRoot.listFiles();
 
@@ -271,8 +271,15 @@ public class GFile {
                 } else if (syncFile.getModifiedTime().getValue() > file.lastModified()) {
                     downloadFile(syncId, file);
                 }
-
-
+            }
+        }
+        final List<File> rFiles = getFiles(syncId);
+        for (File remote : rFiles) {
+            if (!MIME_FOLDER.equals(remote.getMimeType())) {
+                java.io.File lFile = new java.io.File(ioRoot, remote.getName());
+                if (!lFile.exists()) {
+                    downloadFile(remote.getId(), lFile);
+                }
             }
         }
 
