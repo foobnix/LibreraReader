@@ -47,6 +47,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
+import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
@@ -1461,6 +1462,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         dc.saveCurrentPage();
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
+        GFile.runSyncService(this);
 
     }
 

@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -24,10 +25,12 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -39,6 +42,7 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
@@ -130,7 +134,7 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if(BuildConfig.LOG){
+        if (BuildConfig.LOG) {
             pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
         }
 
@@ -161,7 +165,7 @@ public class FileInformationDialog {
         if (TxtUtils.isListNotEmpty(objects)) {
             for (AppBookmark b : objects) {
                 if (!fast.equals(b.getText())) {
-                    lines.append(b.getPercent()*100+"%" + ": " + b.getText());
+                    lines.append(b.getPercent() * 100 + "%" + ": " + b.getText());
                     lines.append("\n");
                 }
             }
@@ -551,7 +555,46 @@ public class FileInformationDialog {
         builder.setMessage(a.getString(R.string.do_you_want_to_delete_this_file_) + "\n\"" + name + "\"").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-                onDeleteAction.run();
+
+
+                if (file.getPath().startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath())) {
+
+                    new AsyncProgressTask<Boolean>() {
+
+
+                        @Override
+                        protected Boolean doInBackground(Object... objects) {
+                            try {
+                                GFile.deleteBook(AppState.get().syncRootID, file.getName());
+                            } catch (Exception e) {
+                                LOG.e(e);
+                                return false;
+                            }
+                            return true;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Boolean result) {
+                            super.onPostExecute(result);
+                            if (result) {
+                                Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
+                                onDeleteAction.run();
+                            } else {
+                                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public Context getContext() {
+                            return a;
+                        }
+                    }.execute();
+
+
+                } else {
+                    onDeleteAction.run();
+                }
+
             }
         }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override

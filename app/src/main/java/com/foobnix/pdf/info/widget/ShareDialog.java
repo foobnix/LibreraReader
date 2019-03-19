@@ -16,6 +16,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
@@ -388,15 +389,11 @@ public class ShareDialog {
                 } else if (!isSyncronized && which == i++) {
 
                     boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_ROOT, file.getName()));
-                    if (result) {
-                        Toast.makeText(a, "Synchronized: " + AppsConfig.SYNC_FOLDER_ROOT.getPath(), Toast.LENGTH_LONG).show();
-                        EventBus.getDefault().post(new UpdateAllFragments());
-                    } else {
-                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
-                    }
-
+                    GFile.runSyncService(a);
                     TempHolder.get().listHash++;
-
+                    if (result) {
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                    }
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }

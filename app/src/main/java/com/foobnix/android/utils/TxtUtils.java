@@ -438,6 +438,19 @@ public class TxtUtils {
         }
     }
 
+    @TargetApi(24)
+    public static Spanned fromHtml(final String text) {
+        try {
+            return Html.fromHtml(text);
+        } catch (Exception e) {
+            try {
+                return Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY);
+            } catch (Exception e1) {
+                return new SpannedString(text);
+            }
+        }
+    }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public static boolean isCJK2(int ch) {
         Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
@@ -598,9 +611,6 @@ public class TxtUtils {
         return textView;
     }
 
-    public static Spanned bold(String text) {
-        return Html.fromHtml("<u>" + text + "</u>");
-    }
 
     public static char getLastChar(String line) {
         if (line == null || line.isEmpty()) {

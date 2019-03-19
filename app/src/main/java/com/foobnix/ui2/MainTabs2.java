@@ -50,6 +50,7 @@ import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
+import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -150,11 +151,18 @@ public class MainTabs2 extends AdsFragmentActivity {
             GoogleSignIn.getSignedInAccountFromIntent(data)
                     .addOnSuccessListener(googleAccount -> {
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+                        EventBus.getDefault().post(new GDriveSycnEvent());
+                        GFile.runSyncService(MainTabs2.this);
                     })
                     .addOnFailureListener(exception ->
-                            Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show()
+                            {
+                                Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
+                                AppState.get().isEnableGdrive = false;
+
+                            }
                     );
-            Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+
+
         }
 
 
@@ -557,17 +565,17 @@ public class MainTabs2 extends AdsFragmentActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         ImageLoader.getInstance().clearAllTasks();
 
-        if(Android6.canWrite(this)) {
+        if (Android6.canWrite(this)) {
             AppState.get().save(this);
         }
 
     }
 
-    ;
 
     @Override
     protected void onStop() {
         super.onStop();
+        GFile.runSyncService(this);
     }
 
     @Override

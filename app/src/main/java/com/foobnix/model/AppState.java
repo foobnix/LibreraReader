@@ -16,7 +16,6 @@ import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
@@ -315,6 +314,10 @@ public class AppState {
     public int ttsPauseDuration = 350;
 
     public int transparencyUI = 245;
+
+
+    public boolean isEnableGdrive;
+
 
 
     @IgnoreHashCode
@@ -863,7 +866,8 @@ public class AppState {
                             extFolders.add(sdPath);
                         }
                     }
-                    searchPaths = TxtUtils.joinList(",", extFolders);
+                    //searchPaths = TxtUtils.joinList(",", extFolders);
+                    searchPaths = Environment.getExternalStorageDirectory().getPath();
                     LOG.d("searchPaths", searchPaths);
                 } catch (Exception e) {
                     LOG.e(e);

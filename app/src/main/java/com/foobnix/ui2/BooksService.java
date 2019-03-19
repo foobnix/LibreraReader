@@ -3,12 +3,14 @@ package com.foobnix.ui2;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
@@ -21,8 +23,11 @@ import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
@@ -47,10 +52,16 @@ public class BooksService extends IntentService {
         LOG.d("BooksService", "onDestroy");
     }
 
+    SharedPreferences sp;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        sp = this.getSharedPreferences("BookService", Context.MODE_PRIVATE);
     }
+
+    private static final String LAST_SEARCH_TIME = "LAST_SEARCH_TIME";
+    private static final String LAST_SYNC_TIME = "LAST_SYNC_TIME";
 
     public static String TAG = "BooksService";
 
@@ -60,6 +71,7 @@ public class BooksService extends IntentService {
     public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
     public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
     public static String ACTION_SYNC_DROPBOX = "ACTION_SYNC_DROPBOX";
+    public static String ACTION_RUN_SYNCRONICATION = "ACTION_RUN_SYNCRONICATION";
 
     public static String RESULT_SYNC_FINISH = "RESULT_SYNC_FINISH";
     public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
@@ -76,6 +88,11 @@ public class BooksService extends IntentService {
             return;
         }
         try {
+            if (isRunning) {
+                LOG.d(TAG, "BooksService", "Is-running");
+                return;
+            }
+
             isRunning = true;
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
@@ -92,6 +109,30 @@ public class BooksService extends IntentService {
                 } catch (Exception e) {
                     LOG.e(e);
                 }
+            }
+
+            if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
+                if (AppState.get().isEnableGdrive) {
+
+                    AppState.get().saveIn(this);
+                    BookCSS.get().save(this);
+
+                    long lastSyncTime = sp.getLong(LAST_SYNC_TIME, 0);
+
+                    long tempSynctime = System.currentTimeMillis();
+
+                    ///lastSyncTime -= TimeUnit.MINUTES.toMillis(10);
+
+                    GFile.sycnronizeAll(this, lastSyncTime);
+
+                    sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
+
+                    TempHolder.get().listHash++;
+                    EventBus.getDefault().post(new UpdateAllFragments());
+
+                    onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+                }
+
             }
 
 

@@ -76,20 +76,23 @@ import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
+import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.io.IOException;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
@@ -128,53 +131,142 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section5, TintUtil.color);
         TintUtil.setBackgroundFillColor(section6, TintUtil.color);
         TintUtil.setBackgroundFillColor(section7, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section8, TintUtil.color);
 
     }
 
-    View section1, section2, section3, section4, section5, section6, section7, overlay;
+    View section1, section2, section3, section4, section5, section6, section7, section8, overlay;
 
 
-    private void requestSignIn() {
-
-
-        GFile.init(getActivity());
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity());
-        if (account != null) {
-            gText.setText(account.getDisplayName() + " : " + account.getEmail());
-
-            Toast.makeText(getActivity(), "Syncronization Begin", Toast.LENGTH_SHORT).show();
-
-            new Thread(() -> {
-                try {
-                    GFile.sycnronizeAll(getActivity());
-                    getActivity().runOnUiThread(() ->
-                            Toast.makeText(getActivity(), "Syncronization Finish SUCCESS", Toast.LENGTH_LONG).show());
-
-                } catch (IOException e) {
-                    LOG.e(e);
-                    getActivity().runOnUiThread(() ->
-                            Toast.makeText(getActivity(), "Syncronization Fail", Toast.LENGTH_LONG).show());
-                }
-            }).start();
+    @Subscribe
+    public void updateSyncInfo(GDriveSycnEvent event) {
+        String gdriveInfo = GFile.getDisplayInfo(getActivity());
+        if (TxtUtils.isEmpty(gdriveInfo) || "null".equals(gdriveInfo)) {
+            syncInfo.setText(TxtUtils.fromHtml("<b>" + getString(R.string.user) + "</b>: " + "Please login to get started"));
+        } else {
+            syncInfo.setText(TxtUtils.fromHtml("<b>" + getString(R.string.user) + "</b>: " + gdriveInfo));
 
         }
     }
 
-
-    TextView gText;
+    TextView syncInfo;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
-        gText = inflate.findViewById(R.id.gdrive);
-        gText.setOnClickListener(new OnClickListener() {
+        TextView syncFolder = inflate.findViewById(R.id.syncFolder);
+        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppsConfig.SYNC_FOLDER_ROOT.getPath()));
+
+        syncFolder.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestSignIn();
+                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
+                EventBus.getDefault().post(new OpenDirMessage(AppsConfig.SYNC_FOLDER_ROOT.getPath()));
+                closeLeftMenu();
             }
         });
+
+        syncInfo = inflate.findViewById(R.id.syncInfo);
+
+        final CheckBox isEnableGdrive = (CheckBox) inflate.findViewById(R.id.isEnableGdrive);
+        isEnableGdrive.setChecked(AppState.get().isEnableGdrive);
+        isEnableGdrive.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+
+                AppState.get().isEnableGdrive = isChecked;
+                if (isChecked) {
+                    GFile.init(getActivity());
+                    updateSyncInfo(null);
+
+                } else {
+                    AlertDialogs.showDialog(getActivity(), "Are you sure to logout Google Drive and Syncronization?", getString(R.string.ok), new Runnable() {
+
+                        @Override
+                        public void run() {
+                            syncInfo.setText("");
+                            AppState.get().isEnableGdrive = false;
+                            AppState.get().syncRootID = "";
+                            GFile.logout(getActivity());
+                            updateSyncInfo(null);
+
+                        }
+                    }, new Runnable() {
+                        @Override
+                        public void run() {
+                            AppState.get().isEnableGdrive = true;
+                            isEnableGdrive.setChecked(true);
+                        }
+                    });
+
+                }
+            }
+        });
+
+        updateSyncInfo(null);
+
+        inflate.findViewById(R.id.onSyncStart).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GFile.runSyncService(getActivity());
+                Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
+            }
+        });
+        inflate.findViewById(R.id.onSyncDebug).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView result = new TextView(getActivity());
+
+                final AtomicBoolean flag = new AtomicBoolean(true);
+
+                new Thread(() -> {
+                    while (flag.get()) {
+                        getActivity().runOnUiThread(() -> result.setText(GFile.debugOut));
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+
+                        }
+                    }
+                }).start();
+
+
+                result.setText(GFile.debugOut);
+
+                result.setTextSize(12);
+                result.setText(GFile.debugOut);
+                result.setMinWidth(Dips.dpToPx(1000));
+                result.setMinHeight(Dips.dpToPx(1000));
+
+                AlertDialogs.showViewDialog(getActivity(), result, new Runnable() {
+                    @Override
+                    public void run() {
+                        flag.set(false);
+                    }
+                });
+
+            }
+        });
+        section8 = inflate.findViewById(R.id.section8);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            section8.setVisibility(View.GONE);
+            syncFolder.setVisibility(View.GONE);
+            isEnableGdrive.setVisibility(View.GONE);
+            syncInfo.setVisibility(View.GONE);
+            inflate.findViewById(R.id.onSyncStart).setVisibility(View.GONE);
+            inflate.findViewById(R.id.onSyncDebug).setVisibility(View.GONE);
+        }
+
+
         // tabs position
         final DragLinearLayout dragLinearLayout = (DragLinearLayout) inflate.findViewById(R.id.dragLinearLayout);
         final LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -296,6 +388,7 @@ public class PrefFragment2 extends UIFragment {
         section5 = inflate.findViewById(R.id.section5);
         section6 = inflate.findViewById(R.id.section6);
         section7 = inflate.findViewById(R.id.section7);
+
 
         onTintChanged();
 

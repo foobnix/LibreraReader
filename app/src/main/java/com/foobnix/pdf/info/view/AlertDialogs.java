@@ -128,6 +128,10 @@ public class AlertDialogs {
     }
 
     public static AlertDialog showViewDialog(final Activity c, final View child) {
+        return showViewDialog(c, child, null);
+    }
+
+    public static AlertDialog showViewDialog(final Activity c, final View child, Runnable ondissmiss) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setCancelable(true);
 
@@ -152,6 +156,9 @@ public class AlertDialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                if (ondissmiss != null) {
+                    ondissmiss.run();
+                }
                 Keyboards.hideNavigation(c);
             }
         });
