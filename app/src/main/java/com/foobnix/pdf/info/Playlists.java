@@ -4,7 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
-import com.foobnix.model.MyFile;
+import com.foobnix.model.MyPath;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import java.io.BufferedReader;
@@ -56,7 +56,7 @@ public class Playlists {
 
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child, true)));
-            out.println(file.getPath());
+            out.println(MyPath.toRelative(file.getPath()));
             out.close();
         } catch (IOException e) {
             LOG.e(e);
@@ -71,7 +71,7 @@ public class Playlists {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child)));
             for (String path : items) {
-                out.println(MyFile.toRelative(path));
+                out.println(MyPath.toRelative(path));
             }
             out.close();
         } catch (IOException e) {
@@ -95,7 +95,7 @@ public class Playlists {
 
             while ((line = reader.readLine()) != null) {
                 if (TxtUtils.isNotEmpty(line)) {
-                    line = MyFile.toAbsolute(line);
+                    line = MyPath.toAbsolute(line);
                     res.add(line.replace(L_PLAYLIST, ""));
                 }
             }

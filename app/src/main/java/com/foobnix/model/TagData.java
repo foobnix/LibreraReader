@@ -12,7 +12,7 @@ import java.io.FileFilter;
 
 public class TagData {
 
-    public static class Tag implements MyFile.RelativePath {
+    public static class Tag implements MyPath.RelativePath {
         public String path;
         public String tags;
 
@@ -20,16 +20,16 @@ public class TagData {
         }
 
         public Tag(String path, String tags) {
-            this.path = MyFile.toRelative(path);
+            this.path = MyPath.toRelative(path);
             this.tags = tags;
         }
 
         public String getPath() {
-            return MyFile.toAbsolute(path);
+            return MyPath.toAbsolute(path);
         }
 
         public void setPath(String path) {
-            this.path = MyFile.toRelative(path);
+            this.path = MyPath.toRelative(path);
         }
     }
 

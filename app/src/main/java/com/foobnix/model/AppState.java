@@ -205,7 +205,6 @@ public class AppState {
                     "C,#3a3a3a,#c8c8c8,1;"; //
 
 
-
     public String readColors = READ_COLORS_DEAFAUL;
 
     public static final String SKIP_TTS_CHARS = "[]()?!\"«»*’”“—–−-/";
@@ -317,7 +316,6 @@ public class AppState {
 
 
     public boolean isEnableGdrive;
-
 
 
     @IgnoreHashCode
@@ -487,7 +485,6 @@ public class AppState {
     public boolean isLocked = false;
 
 
-
     public boolean isPrefFormatMode = false;
     public String prefScrollMode = PREF_SCROLL_MODE;
     public String prefBookMode = PREF_BOOK_MODE;
@@ -554,7 +551,6 @@ public class AppState {
     public int starsMode = MODE_LIST_COMPACT;
 
     public boolean isBrowseGrid = false;
-    public boolean isRecentGrid = false;
 
     public boolean isShowCloudsLine = true;
 
@@ -562,8 +558,7 @@ public class AppState {
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
 
-    public String searchPaths = "/";
-    public String texturePath = Environment.getExternalStorageDirectory().getPath();
+    public String searchPaths = Environment.getExternalStorageDirectory().getPath();
     public String cachePath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Download").getPath();
     public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
@@ -867,7 +862,7 @@ public class AppState {
                         }
                     }
                     //searchPaths = TxtUtils.joinList(",", extFolders);
-                    searchPaths = Environment.getExternalStorageDirectory().getPath();
+                    //searchPaths = Environment.getExternalStorageDirectory().getPath();
                     LOG.d("searchPaths", searchPaths);
                 } catch (Exception e) {
                     LOG.e(e);
@@ -891,7 +886,7 @@ public class AppState {
         if (a == null) {
             return;
         }
-        IO.readObj(syncFile,instance);
+        IO.readObj(syncFile, instance);
     }
 
     public static String keyToString(final List<Integer> list) {

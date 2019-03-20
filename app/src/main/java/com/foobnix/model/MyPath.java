@@ -4,14 +4,31 @@ import android.os.Environment;
 
 import java.io.File;
 
-public class MyFile extends File {
+public class MyPath {
 
     final static String INTERNAL_ROOT = Environment.getExternalStorageDirectory().getPath();
     final static String INTERNAL_PREFIX = "internal-storage:";
 
+    private String path;
 
-    public MyFile(String path) {
-        super(toAbsolute(path));
+    public static MyPath InternalStorate() {
+        return new MyPath(Environment.getExternalStorageDirectory());
+    }
+
+    public MyPath(File file) {
+        this(file.getPath());
+    }
+
+    public MyPath(String path) {
+        this.path = toRelative(path);
+    }
+
+    public String getPath() {
+        return toAbsolute(path);
+    }
+
+    public String getPathRelative() {
+        return path;
     }
 
 
@@ -23,7 +40,7 @@ public class MyFile extends File {
         return path.replace(INTERNAL_PREFIX, INTERNAL_ROOT);
     }
 
-    public  interface  RelativePath {
+    public interface RelativePath {
         String getPath();
 
         void setPath(String path);
