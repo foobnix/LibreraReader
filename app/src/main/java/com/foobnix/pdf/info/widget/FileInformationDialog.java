@@ -28,9 +28,9 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -40,7 +40,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.ImageExtractor;
@@ -557,7 +556,7 @@ public class FileInformationDialog {
             public void onClick(final DialogInterface dialog, final int id) {
 
 
-                if (file.getPath().startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath())) {
+                if (Clouds.isLibreraSyncFile(file)) {
 
                     new AsyncProgressTask<Boolean>() {
 

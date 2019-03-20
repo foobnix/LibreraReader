@@ -43,7 +43,7 @@ public class AppData {
 
         if(TxtUtils.isListNotEmpty(recent)){
             Collections.sort(recent,FileMetaComparators.BY_RECENT_TIME_2);
-            if(s.path.equals(recent.get(0).path)) {
+            if(s.getPath().equals(recent.get(0).getPath())) {
                 LOG.d("Skip-recent");
                 return;
             }
@@ -57,13 +57,13 @@ public class AppData {
     public void removeRecent(SimpleMeta s) {
         recent.remove(s);
         writeSimpleMeta(recent, syncRecent);
-        LOG.d("AppData removeRecent", s.path);
+        LOG.d("AppData removeRecent", s.getPath());
     }
 
     public void addFavorite(SimpleMeta s) {
         favorites.remove(s);
         favorites.add(s);
-        LOG.d("AppData addFavorite", s.path);
+        LOG.d("AppData addFavorite", s.getPath());
         writeSimpleMeta(favorites, syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
 
@@ -72,7 +72,7 @@ public class AppData {
     public void removeFavorite(SimpleMeta s) {
         favorites.remove(s);
         writeSimpleMeta(favorites, syncFavorite);
-        LOG.d("AppData removeFavorite", s.path);
+        LOG.d("AppData removeFavorite", s.getPath());
 
     }
 
@@ -96,8 +96,8 @@ public class AppData {
     public List<FileMeta> getAllFavoriteFiles() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
-            if (new File(s.path).isFile()) {
-                FileMeta meta = AppDB.get().getOrCreate(s.path);
+            if (new File(s.getPath()).isFile()) {
+                FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
@@ -113,10 +113,10 @@ public class AppData {
     public List<FileMeta> getAllFavoriteFolders() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
-            if (new File(s.path).isDirectory()) {
-                FileMeta meta = AppDB.get().getOrCreate(s.path);
+            if (new File(s.getPath()).isDirectory()) {
+                FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
-                meta.setPathTxt(ExtUtils.getFileName(s.path));
+                meta.setPathTxt(ExtUtils.getFileName(s.getPath()));
                 meta.setIsSearchBook(false);
                 meta.setIsStarTime(s.time);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
@@ -137,11 +137,11 @@ public class AppData {
         readSimpleMeta(recent, syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
-            if (!new File(s.path).isFile()) {
+            if (!new File(s.getPath()).isFile()) {
                 continue;
             }
 
-            FileMeta meta = AppDB.get().getOrCreate(s.path);
+            FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             meta.setIsRecent(true);
             meta.setIsSearchBook(true);
             meta.setIsRecentTime(s.time);

@@ -341,6 +341,7 @@ public class AppDB {
     }
 
     public FileMeta getOrCreate(String path) {
+
         FileMeta load = fileMetaDao.load(path);
         try {
             if (load == null) {

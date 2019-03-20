@@ -285,7 +285,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.add_to_playlist));
         }
 
-        final boolean isSyncronized = file.getPath().startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+        final boolean isSyncronized = Clouds.isLibreraSyncFile(file);
         if (!isSyncronized) {
             items.add("Synchronize");
         }

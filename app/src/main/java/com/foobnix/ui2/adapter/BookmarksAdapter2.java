@@ -13,12 +13,12 @@ import android.widget.TextView;
 
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -83,7 +83,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             holder.remove.setVisibility(View.GONE);
         }
 
-        IMG.getCoverPageWithEffectPos(holder.image, item.path, IMG.getImageSize(), position, new SimpleImageLoadingListener() {
+        IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
 
             @Override
             public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {

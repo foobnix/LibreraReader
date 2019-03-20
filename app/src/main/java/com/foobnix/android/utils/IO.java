@@ -34,8 +34,9 @@ public class IO {
     }
 
     public static void writeObjAsync(String file, Object o) {
-         writeObjAsync(new File(file),o);
+        writeObjAsync(new File(file), o);
     }
+
     public static void writeObjAsync(File file, Object o) {
         if (o instanceof JSONObject || o instanceof JSONArray) {
             LOG.d("writeObjAsync", "JSONObject");
@@ -89,6 +90,9 @@ public class IO {
 
     public static boolean writeString(File file, String string) {
         try {
+            if (string == null || "".equals(string) || "{}".equals(string)) {
+                return false;
+            }
             LOG.d("IO", "write to file");
             new File(file.getParent()).mkdirs();
             if (string == null) {
@@ -139,6 +143,7 @@ public class IO {
         }
         return true;
     }
+
     public static boolean copyFile(InputStream from, File to) {
         try {
             new File(to.getParent()).mkdirs();

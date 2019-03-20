@@ -143,7 +143,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     public class DirectoryViewHolder extends ContextViewHolder {
         public TextView title, path, play, count;
-        public ImageView image, starIcon;
+        public ImageView image, starIcon, imageCloud;
         public View parent;
 
         public DirectoryViewHolder(View view) {
@@ -154,6 +154,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
             starIcon = (ImageView) view.findViewById(R.id.starIcon);
+            imageCloud = (ImageView) view.findViewById(R.id.imageCloud);
             parent = view;
         }
     }
@@ -394,6 +395,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setText(fileMeta.getPath());
 
             holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
+            holder.imageCloud.setVisibility(Clouds.isLibreraSyncFile(fileMeta.getPath()) && !fileMeta.getPath().endsWith(Playlists.L_PLAYLIST) ? View.VISIBLE : View.GONE);
+
 
             TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 

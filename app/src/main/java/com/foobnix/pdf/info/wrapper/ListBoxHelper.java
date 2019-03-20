@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.widget.EditText;
 
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.PageUrl;

@@ -1,6 +1,6 @@
-package com.foobnix.pdf.info.wrapper;
+package com.foobnix.model;
 
-public class AppBookmark {
+public class AppBookmark  implements MyFile.RelativePath {
     public String path;
     public String text;
 
@@ -13,7 +13,7 @@ public class AppBookmark {
 
     public AppBookmark(String path, String text, float percent) {
         super();
-        this.path = path;
+        this.path = MyFile.toRelative(path);
         this.text = text;
         this.p = percent;
         t = System.currentTimeMillis();
@@ -28,7 +28,11 @@ public class AppBookmark {
     }
 
     public String getPath() {
-        return path;
+        return MyFile.toAbsolute(path);
+    }
+
+    public void setPath(String path) {
+        this.path = MyFile.toRelative(path);
     }
 
     public float getPercent() {
@@ -49,4 +53,6 @@ public class AppBookmark {
         AppBookmark a = (AppBookmark) obj;
         return a.path.equals(path) && a.t == t;
     }
+
+
 }

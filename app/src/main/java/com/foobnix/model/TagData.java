@@ -12,7 +12,7 @@ import java.io.FileFilter;
 
 public class TagData {
 
-    public static class Tag {
+    public static class Tag implements MyFile.RelativePath {
         public String path;
         public String tags;
 
@@ -20,8 +20,16 @@ public class TagData {
         }
 
         public Tag(String path, String tags) {
-            this.path = path;
+            this.path = MyFile.toRelative(path);
             this.tags = tags;
+        }
+
+        public String getPath() {
+            return MyFile.toAbsolute(path);
+        }
+
+        public void setPath(String path) {
+            this.path = MyFile.toRelative(path);
         }
     }
 
@@ -44,6 +52,7 @@ public class TagData {
     public static void saveTags(FileMeta meta) {
         saveTags(meta.getPath(), meta.getTag());
     }
+
     public static void saveTags(String path, String tags) {
         IO.writeObjAsync(getCacheFile(path), new Tag(path, tags));
     }
@@ -63,10 +72,10 @@ public class TagData {
         for (File file : files) {
             Tag tag = new Tag();
             IO.readObj(file, tag);
-            FileMeta load = AppDB.get().load(tag.path);
+            FileMeta load = AppDB.get().load(tag.getPath());
             if (load != null) {
                 load.setTag(tag.tags);
-                LOG.d("restoreTags", tag.path, tag.tags);
+                LOG.d("restoreTags", tag.getPath(), tag.tags);
                 AppDB.get().update(load);
             }
 

@@ -45,6 +45,18 @@
                 android:background="@drawable/bg_my_toast"
                 android:visibility="gone"
                 android:textSize="12sp" />
+
+           <ImageView
+               android:id="@+id/imageCloud"
+               android:visibility="gone"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               android:layout_width="@dimen/wh_button_small"
+               android:layout_height="@dimen/wh_button_small"
+               android:layout_weight="0"
+               android:paddingLeft="4dip"
+               android:paddingRight="4dip"
+               android:src="@mipmap/icon_pdf_reader" />
         </RelativeLayout>
 
         <LinearLayout

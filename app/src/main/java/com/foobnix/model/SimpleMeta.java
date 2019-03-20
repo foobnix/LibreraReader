@@ -1,22 +1,25 @@
 package com.foobnix.model;
 
-public class SimpleMeta {
+public class SimpleMeta implements MyFile.RelativePath {
 
     public String path;
     public long time;
 
-    public SimpleMeta() {
-
+    public SimpleMeta(String path, long time) {
+        this.path = MyFile.toRelative(path);
+        this.time = time;
     }
 
     public SimpleMeta(String path) {
-        this.path = path;
+        this.path = MyFile.toRelative(path);
     }
 
-    public SimpleMeta(String path, long time) {
-        this.path = path;
-        this.time = time;
+    public String getPath() {
+        return MyFile.toAbsolute(path);
+    }
 
+    public void setPath(String path) {
+        this.path = MyFile.toRelative(path);
     }
 
     @Override

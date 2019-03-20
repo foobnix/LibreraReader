@@ -139,7 +139,7 @@ public class GFile {
         String time = new DateTime(lastModifiedTime).toString();
         LOG.d("getFiles-by", rootId, time);
         final String txt = "('%s' in parents and trashed = false and modifiedTime>'%s') or ('%s' in parents and trashed = false and mimeType = '%s')";
-        FileList drive = googleDriveService.files().list().setQ(String.format(txt, rootId, time,rootId,MIME_FOLDER)).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
+        FileList drive = googleDriveService.files().list().setQ(String.format(txt, rootId, time, rootId, MIME_FOLDER)).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
         return drive.getFiles();
     }
 
@@ -215,11 +215,12 @@ public class GFile {
     }
 
 
-    public static void uploadFile(String roodId, String fileId, final java.io.File inFile) throws IOException {
-        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
+    public static void uploadFile(String roodId, String fileId, final java.io.File inFile, long lastModified) throws IOException {
+        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(lastModified));
         FileContent contentStream = new FileContent("text/plain", inFile);
         LOG.d(TAG, "BIG upload file", roodId, inFile);
         googleDriveService.files().update(fileId, metadata, contentStream).execute();
+        setLastModifiedTime(inFile, lastModified);
     }
 
     public static String readFileAsString(String fileId) throws IOException {
@@ -245,7 +246,7 @@ public class GFile {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
+
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
         LOG.d(TAG, "BIG download file", fileId, file.getPath());
         InputStream is = null;
@@ -262,11 +263,23 @@ public class GFile {
         IO.copyFile(is, file);
         LOG.d(TAG, "downloadFile-lastModified before", file.lastModified(), lastModified, file.getName());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Files.setLastModifiedTime(Paths.get(file.getPath()), FileTime.fromMillis(lastModified));
-        }
+        setLastModifiedTime(file, lastModified);
+
         LOG.d(TAG, "downloadFile-lastModified after", file.lastModified(), lastModified, file.getName());
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    public static boolean setLastModifiedTime(java.io.File file, long lastModified) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                Files.setLastModifiedTime(Paths.get(file.getPath()), FileTime.fromMillis(lastModified));
+            } catch (IOException e) {
+                LOG.e(e);
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void deleteBook(String rootId, String name) throws IOException {
@@ -311,12 +324,12 @@ public class GFile {
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
             }
-            debugOut += "\nBegin: " + lastSycnTime;
+            debugOut += "\nBegin: " + new DateTime(lastSycnTime).toStringRfc3339();
 
             sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, lastSycnTime);
 
             LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd: " + lastSycnTime;
+            debugOut += "\nEnd: " + new DateTime(lastSycnTime).toStringRfc3339();
         } catch (Exception e) {
             debugOut += "\nException: " + e.getMessage();
             LOG.e(e);
@@ -343,7 +356,7 @@ public class GFile {
                     //LOG.d(TAG, "sync-file", syncFile.getName(), syncFile.getModifiedTime().getValue(), file.lastModified());
                     if (syncFile.getModifiedTime() == null || syncFile.getModifiedTime().getValue() / 1000 < file.lastModified() / 1000) {
                         debugOut += "\nUpload: " + file.getName();
-                        uploadFile(syncId, syncFile.getId(), file);
+                        uploadFile(syncId, syncFile.getId(), file, lastModified);
                     } else if (syncFile.getModifiedTime().getValue() / 1000 > file.lastModified() / 1000) {
                         debugOut += "\nDownload: " + file.getName();
                         downloadFile(syncId, file, syncFile.getModifiedTime().getValue());

@@ -5,12 +5,12 @@ import android.content.Context;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
@@ -120,7 +120,7 @@ public class ExportConverter {
             String[] it = value.split("~");
 
             AppBookmark bookmark = new AppBookmark();
-            bookmark.path = it[0];
+            bookmark.setPath(it[0]);
             bookmark.text = it[1];
             bookmark.t = Long.parseLong(it[4]);
             if (it.length > 5) {

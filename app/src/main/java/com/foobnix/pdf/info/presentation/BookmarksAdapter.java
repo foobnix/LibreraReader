@@ -13,10 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import java.util.List;

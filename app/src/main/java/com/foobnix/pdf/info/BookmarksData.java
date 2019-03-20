@@ -3,8 +3,8 @@ package com.foobnix.pdf.info;
 import android.content.Context;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
-import com.foobnix.pdf.info.wrapper.AppBookmark;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -39,9 +39,9 @@ public class BookmarksData {
 
     public void add(AppBookmark bookmark) {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text);
-        List<AppBookmark> res = getBookmarksByBook(bookmark.path);
+        List<AppBookmark> res = getBookmarksByBook(bookmark.getPath());
         res.add(bookmark);
-        AppData.writeSimpleMeta(res, getCacheFile(bookmark.path));
+        AppData.writeSimpleMeta(res, getCacheFile(bookmark.getPath()));
 
 
     }
@@ -49,9 +49,9 @@ public class BookmarksData {
 
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);
-        List<AppBookmark> res = getBookmarksByBook(bookmark.path);
+        List<AppBookmark> res = getBookmarksByBook(bookmark.getPath());
         res.remove(bookmark);
-        AppData.writeSimpleMeta(res, getCacheFile(bookmark.path));
+        AppData.writeSimpleMeta(res, getCacheFile(bookmark.getPath()));
     }
 
     public boolean hasBookmark(String path, int page) {

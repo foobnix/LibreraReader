@@ -611,13 +611,25 @@ public class Clouds {
         }.start();
     }
 
+    public static boolean isLibreraSyncFile(File path) {
+        return isLibreraSyncFile(path.getPath());
+    }
+
+    public static boolean isLibreraSyncFile(String path) {
+        return path.startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+    }
+
     public static boolean showHideCloudImage(ImageView img, String path) {
 
         String fileName = ExtUtils.getFileName(path);
 
-        if (new File(AppsConfig.SYNC_FOLDER_ROOT, fileName).isFile()) {
+        if (isLibreraSyncFile(path)) {
+            img.setVisibility(View.VISIBLE);
             img.setImageResource(R.mipmap.icon_pdf_reader);
             return true;
+        } else {
+            img.setVisibility(View.GONE);
+            img.setImageDrawable(null);
         }
 
 
