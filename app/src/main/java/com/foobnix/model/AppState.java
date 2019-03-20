@@ -42,6 +42,7 @@ public class AppState {
 
     public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-State.json");
     public String syncRootID;
+    public String syncLockID;
 
 
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);

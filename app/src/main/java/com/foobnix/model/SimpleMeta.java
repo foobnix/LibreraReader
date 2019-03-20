@@ -5,6 +5,10 @@ public class SimpleMeta implements MyPath.RelativePath {
     public String path;
     public long time;
 
+
+    public SimpleMeta(){
+
+    }
     public SimpleMeta(String path, long time) {
         this.path = MyPath.toRelative(path);
         this.time = time;

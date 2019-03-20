@@ -101,6 +101,7 @@ public class BooksService extends IntentService {
 
             File oldConfig = new File(AppsConfig.SYNC_FOLDER, "backup-8.0.json");
             if (!oldConfig.exists()) {
+                sp.edit().remove(LAST_SYNC_TIME).commit();
                 AppsConfig.SYNC_FOLDER_ROOT.mkdirs();
                 ExportSettingsManager.exportAll(this, oldConfig);
                 try {
@@ -110,6 +111,7 @@ public class BooksService extends IntentService {
                     LOG.e(e);
                 }
             }
+
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
                 if (AppState.get().isEnableGdrive) {

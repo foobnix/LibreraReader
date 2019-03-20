@@ -176,13 +176,36 @@ public class GFile {
         return null;
     }
 
+    public static File getOrCreateLock(String roodId, long modifiedTime) throws IOException {
+        File file = getFileById(roodId, "lock");
+        if (file == null) {
+            File metadata = new File()
+                    .setParents(Collections.singletonList(roodId))
+                    .setModifiedTime(new DateTime(modifiedTime))
+                    .setMimeType("text/plain")
+                    .setName("lock");
 
-    public static File createFile(String roodId, String name, String content) throws IOException {
+            LOG.d(TAG, "Create lock", roodId, "lock");
+            debugOut += "\nCreate lock: " + new DateTime(modifiedTime).toStringRfc3339();
+            file = googleDriveService.files().create(metadata).execute();
+        }
+        return file;
+    }
+
+    public static void updateLock(String roodId, long modifiedTime) throws IOException {
+        File file = getOrCreateLock(roodId, modifiedTime);
+        File metadata = new File().setModifiedTime(new DateTime(modifiedTime));
+
+        debugOut += "\nUpdate lock: " + new DateTime(modifiedTime).toStringRfc3339();
+        GFile.googleDriveService.files().update(file.getId(), metadata).execute();
+    }
+
+    public static File createFile(String roodId, String name, String content, long lastModifiedtime) throws IOException {
         File file = getFileById(roodId, name);
         if (file == null) {
             File metadata = new File()
                     .setParents(Collections.singletonList(roodId))
-                    .setModifiedTime(new DateTime(System.currentTimeMillis()))
+                    .setModifiedTime(new DateTime(lastModifiedtime))
                     .setMimeType("text/plain")
                     .setName(name);
 
@@ -190,13 +213,14 @@ public class GFile {
             file = googleDriveService.files().create(metadata).execute();
         }
 
-        File metadata = new File().setName(name).setModifiedTime(new DateTime(System.currentTimeMillis()));
+        File metadata = new File().setName(name).setModifiedTime(new DateTime(lastModifiedtime));
         ByteArrayContent contentStream = ByteArrayContent.fromString("text/plain", content);
         LOG.d(TAG, "Create file with content", roodId, name);
         GFile.googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
         return file;
     }
+
 
     public static File getFileInfo(String roodId, final java.io.File inFile) throws IOException {
         File file = getFileById(roodId, inFile.getName());
@@ -216,12 +240,16 @@ public class GFile {
 
 
     public static void uploadFile(String roodId, String fileId, final java.io.File inFile, long lastModified) throws IOException {
+        if (lastModified == 0) {
+            lastModified = inFile.lastModified();
+        }
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(lastModified));
         FileContent contentStream = new FileContent("text/plain", inFile);
         LOG.d(TAG, "BIG upload file", roodId, inFile);
         googleDriveService.files().update(fileId, metadata, contentStream).execute();
         setLastModifiedTime(inFile, lastModified);
     }
+
 
     public static String readFileAsString(String fileId) throws IOException {
 
@@ -271,7 +299,7 @@ public class GFile {
 
     @TargetApi(Build.VERSION_CODES.O)
     public static boolean setLastModifiedTime(java.io.File file, long lastModified) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (lastModified > 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
                 Files.setLastModifiedTime(Paths.get(file.getPath()), FileTime.fromMillis(lastModified));
             } catch (IOException e) {
@@ -311,7 +339,7 @@ public class GFile {
     }
 
 
-    public static synchronized void sycnronizeAll(final Context c, long lastSycnTime) {
+    public static synchronized void sycnronizeAll(final Context c, long myLastSyncTime) {
         LOG.d(TAG, "sycnronizeAll", "begin");
         try {
             if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
@@ -324,12 +352,24 @@ public class GFile {
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
             }
-            debugOut += "\nBegin: " + new DateTime(lastSycnTime).toStringRfc3339();
 
-            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, lastSycnTime);
+
+            //debugOut += "\nInit:";
+
+            //long beginTime = System.currentTimeMillis();
+
+            //File file = getOrCreateLock(AppState.get().syncRootID, beginTime);
+            //final long syncTime = file.getModifiedTime().getValue();
+
+
+            debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
+
+            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
+
+            //updateLock(AppState.get().syncRootID, beginTime);
 
             LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd: " + new DateTime(lastSycnTime).toStringRfc3339();
+            debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
         } catch (Exception e) {
             debugOut += "\nException: " + e.getMessage();
             LOG.e(e);
@@ -339,7 +379,6 @@ public class GFile {
 
     private static void sync(String syncId, final java.io.File ioRoot, long lastModified) throws Exception {
         LOG.d(TAG, "sync", syncId, ioRoot.getPath());
-        long lastTimeBegin = System.currentTimeMillis();
         final java.io.File[] files = ioRoot.listFiles();
 
         if (files == null) {
@@ -368,7 +407,7 @@ public class GFile {
         for (File remote : rFiles) {
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
                 java.io.File lFile = new java.io.File(ioRoot, remote.getName());
-                if (!lFile.exists()) {
+                if (!lFile.exists() || remote.getModifiedTime().getValue() / 1000 > lFile.lastModified() / 1000) {
                     debugOut += "\nDownload: " + lFile.getName();
                     downloadFile(remote.getId(), lFile, remote.getModifiedTime().getValue());
                 }

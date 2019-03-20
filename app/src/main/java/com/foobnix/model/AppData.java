@@ -138,6 +138,7 @@ public class AppData {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
             if (!new File(s.getPath()).isFile()) {
+                LOG.d("getAllRecent can't find file", s.getPath());
                 continue;
             }
 
