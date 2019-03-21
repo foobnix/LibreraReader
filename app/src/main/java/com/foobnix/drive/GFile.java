@@ -27,6 +27,7 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
+import com.google.api.services.drive.model.FileList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +36,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class GFile {
     public static final String MIME_FOLDER = "application/vnd.google-apps.folder";
 
     public static final String TAG = "GFile";
-    public static final int PAGE_SIZE = 1000;
+    public static final int PAGE_SIZE = 999;
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
@@ -144,7 +146,15 @@ public class GFile {
 
     public static List<File> exeQ(String q) throws IOException {
         //LOG.d(TAG, "exeQ", q);
-        return googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(PAGE_SIZE).execute().getFiles();
+        String nextPageToken;
+        List<File> res = new ArrayList<File>();
+        do {
+            final FileList list = googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(PAGE_SIZE).execute();
+            nextPageToken = list.getNextPageToken();
+            res.addAll(list.getFiles());
+            LOG.d("nextPageToken",nextPageToken);
+        } while (nextPageToken != null);
+        return res;
     }
 
     public static List<File> getFiles(String rootId, long lastModifiedTime) throws Exception {

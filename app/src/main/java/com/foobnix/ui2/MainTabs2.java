@@ -164,6 +164,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                             {
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
                                 AppState.get().isEnableGdrive = false;
+                                swipeRefreshLayout.setEnabled(false);
 
                             }
                     );
