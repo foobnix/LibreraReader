@@ -27,7 +27,6 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
-import com.google.api.services.drive.model.FileList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,6 +44,7 @@ public class GFile {
     public static final String MIME_FOLDER = "application/vnd.google-apps.folder";
 
     public static final String TAG = "GFile";
+    public static final int PAGE_SIZE = 1000;
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
@@ -134,20 +134,28 @@ public class GFile {
 
     }
 
+    public static List<File> exeQF(String q, String... args) throws IOException {
+        return exeQ(String.format(q, args));
+    }
+
+    public static List<File> exeQ(String q) throws IOException {
+        LOG.d(TAG, "exeQ", q);
+        return googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(PAGE_SIZE).execute().getFiles();
+    }
+
     public static List<File> getFiles(String rootId, long lastModifiedTime) throws Exception {
 
         String time = new DateTime(lastModifiedTime).toString();
         LOG.d("getFiles-by", rootId, time);
         final String txt = "('%s' in parents and trashed = false and modifiedTime>'%s') or ('%s' in parents and trashed = false and mimeType = '%s')";
-        FileList drive = googleDriveService.files().list().setQ(String.format(txt, rootId, time, rootId, MIME_FOLDER)).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
-        return drive.getFiles();
+        return exeQF(txt, rootId, time, rootId, MIME_FOLDER);
     }
 
     public static File findLibreraSync() throws Exception {
 
-        FileList drive = googleDriveService.files().list().setQ("name = 'Librera' and 'root' in parents and mimeType = '" + MIME_FOLDER + "' and trashed = false").setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
-        debugPrint(drive.getFiles());
-        for (File it : drive.getFiles()) {
+        final List<File> files = exeQF("name = 'Librera' and 'root' in parents and mimeType = '%s' and trashed = false", MIME_FOLDER);
+        debugPrint(files);
+        for (File it : files) {
             if (it.getParents() == null) {
                 return it;
             }
@@ -167,9 +175,9 @@ public class GFile {
     public static File getFileById(String roodId, String name) throws IOException {
         LOG.d(TAG, "Get file", roodId, name);
         name = name.replace("'", "\\'");
-        FileList drive = googleDriveService.files().list().setQ(String.format("'%s' in parents and name='%s' and trashed = false", roodId, name)).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(10).execute();
-        if (drive.getFiles() != null && drive.getFiles().size() >= 1) {
-            final File file = drive.getFiles().get(0);
+        final List<File> files = exeQF("'%s' in parents and name='%s' and trashed = false", roodId, name);
+        if (files != null && files.size() >= 1) {
+            final File file = files.get(0);
             return file;
         }
 
@@ -312,8 +320,8 @@ public class GFile {
 
     public static void deleteBook(String rootId, String name) throws IOException {
         name = name.replace("'", "\\'");
-        FileList drive = googleDriveService.files().list().setQ(String.format("'%s' in parents and name = '%s'", rootId, name)).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(1000).execute();
-        for (File f : drive.getFiles()) {
+        final List<File> files = exeQF("'%s' in parents and name = '%s'", rootId, name);
+        for (File f : files) {
             File metadata = new File().setTrashed(true);
             LOG.d("Delete book", name);
             debugOut += "\nDelete book: " + name;
@@ -339,9 +347,9 @@ public class GFile {
     }
 
 
-    public static synchronized void sycnronizeAll(final Context c, long myLastSyncTime) {
-        LOG.d(TAG, "sycnronizeAll", "begin");
+    public static synchronized void sycnronizeAll(final Context c, long myLastSyncTime) throws Exception {
         try {
+            LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
                 LOG.d(TAG, "syncRootID", AppState.get().syncRootID);
                 File syncRoot = GFile.findLibreraSync();
@@ -351,33 +359,27 @@ public class GFile {
                 }
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
+
+
+                debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
+
+                sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
+
+                //updateLock(AppState.get().syncRootID, beginTime);
+
+                LOG.d(TAG, "sycnronizeAll", "finished");
+                debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
             }
-
-
-            //debugOut += "\nInit:";
-
-            //long beginTime = System.currentTimeMillis();
-
-            //File file = getOrCreateLock(AppState.get().syncRootID, beginTime);
-            //final long syncTime = file.getModifiedTime().getValue();
-
-
-            debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
-
-            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
-
-            //updateLock(AppState.get().syncRootID, beginTime);
-
-            LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
         } catch (Exception e) {
             debugOut += "\nException: " + e.getMessage();
             LOG.e(e);
+            throw e;
         }
     }
 
 
-    private static void sync(String syncId, final java.io.File ioRoot, long lastModified) throws Exception {
+    private static void sync(String syncId, final java.io.File ioRoot, long lastModified) throws
+            Exception {
         LOG.d(TAG, "sync", syncId, ioRoot.getPath());
         final java.io.File[] files = ioRoot.listFiles();
 
@@ -393,10 +395,10 @@ public class GFile {
                 if (file.lastModified() > lastModified) {
                     final File syncFile = getFileInfo(syncId, file);
                     //LOG.d(TAG, "sync-file", syncFile.getName(), syncFile.getModifiedTime().getValue(), file.lastModified());
-                    if (syncFile.getModifiedTime() == null || syncFile.getModifiedTime().getValue() / 1000 < file.lastModified() / 1000) {
+                    if (syncFile.getModifiedTime() == null || syncFile.getModifiedTime().getValue() / PAGE_SIZE < file.lastModified() / PAGE_SIZE) {
                         debugOut += "\nUpload: " + file.getName();
                         uploadFile(syncId, syncFile.getId(), file, lastModified);
-                    } else if (syncFile.getModifiedTime().getValue() / 1000 > file.lastModified() / 1000) {
+                    } else if (syncFile.getModifiedTime().getValue() / PAGE_SIZE > file.lastModified() / PAGE_SIZE) {
                         debugOut += "\nDownload: " + file.getName();
                         downloadFile(syncId, file, syncFile.getModifiedTime().getValue());
                     }
@@ -407,7 +409,7 @@ public class GFile {
         for (File remote : rFiles) {
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
                 java.io.File lFile = new java.io.File(ioRoot, remote.getName());
-                if (!lFile.exists() || remote.getModifiedTime().getValue() / 1000 > lFile.lastModified() / 1000) {
+                if (!lFile.exists() || remote.getModifiedTime().getValue() / PAGE_SIZE > lFile.lastModified() / PAGE_SIZE) {
                     debugOut += "\nDownload: " + lFile.getName();
                     downloadFile(remote.getId(), lFile, remote.getModifiedTime().getValue());
                 }

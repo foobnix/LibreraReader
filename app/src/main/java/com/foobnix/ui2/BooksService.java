@@ -120,19 +120,19 @@ public class BooksService extends IntentService {
                     BookCSS.get().save(this);
 
                     long lastSyncTime = sp.getLong(LAST_SYNC_TIME, 0);
-
                     long tempSynctime = System.currentTimeMillis();
+                    try {
+                        GFile.sycnronizeAll(this, lastSyncTime);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
 
-                    ///lastSyncTime -= TimeUnit.MINUTES.toMillis(10);
-
-                    GFile.sycnronizeAll(this, lastSyncTime);
-
-                    sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
-
-                    TempHolder.get().listHash++;
-                    EventBus.getDefault().post(new UpdateAllFragments());
-
+                        TempHolder.get().listHash++;
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                    }
                     onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+
+
                 }
 
             }

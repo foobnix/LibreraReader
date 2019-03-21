@@ -33,10 +33,16 @@ public class MyPath {
 
 
     public static String toRelative(String path) {
+        if (path == null) {
+            return path;
+        }
         return path.replace(INTERNAL_ROOT, INTERNAL_PREFIX);
     }
 
     public static String toAbsolute(String path) {
+        if (path == null) {
+            return path;
+        }
         return path.replace(INTERNAL_PREFIX, INTERNAL_ROOT);
     }
 
