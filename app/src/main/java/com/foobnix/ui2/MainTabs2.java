@@ -17,6 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -157,6 +158,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
+                        swipeRefreshLayout.setEnabled(true);
                     })
                     .addOnFailureListener(exception ->
                             {
@@ -192,6 +194,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     Handler handler;
     ProgressBar fab;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,6 +236,15 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onClick(View v) {
                 Dialogs.showSyncLOGDialog(MainTabs2.this);
+            }
+        });
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setEnabled(GoogleSignIn.getLastSignedInAccount(this) != null);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                GFile.runSyncService(MainTabs2.this);
             }
         });
 
@@ -473,10 +485,13 @@ public class MainTabs2 extends AdsFragmentActivity {
         try {
             if (msg.state == MessageSync.STATE_VISIBLE) {
                 fab.setVisibility(View.VISIBLE);
+                swipeRefreshLayout.setRefreshing(false);
             } else {
                 fab.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(this,"Synchronized",Toast.LENGTH_LONG).show();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }

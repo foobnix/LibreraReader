@@ -434,7 +434,7 @@ public class GFile {
     }
 
     public static void runSyncService(Activity a) {
-        if (AppState.get().isEnableGdrive) {
+        if (AppState.get().isEnableGdrive && !BooksService.isRunning) {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
             if (account != null) {
                 GFile.buildDriveService(a);
