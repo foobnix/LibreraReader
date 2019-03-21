@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/ab_solid_shadow_holo"
+    android:drawable="@drawable/glyphicons_748_synchronization"
     android:fromDegrees="180"
     android:pivotX="50%"
     android:pivotY="50%"

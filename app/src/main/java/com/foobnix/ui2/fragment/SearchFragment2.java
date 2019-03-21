@@ -39,7 +39,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.drive.GFile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -311,7 +310,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             checkForDeleteBooks();
             searchAndOrderAsync();
         }
-        GFile.runSyncService(getActivity());
 
         initAutocomplition();
         onTintChanged();

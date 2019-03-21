@@ -92,7 +92,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
@@ -182,7 +181,6 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 
-
                 AppState.get().isEnableGdrive = isChecked;
                 if (isChecked) {
                     GFile.init(getActivity());
@@ -217,42 +215,18 @@ public class PrefFragment2 extends UIFragment {
         inflate.findViewById(R.id.onSyncStart).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                GFile.runSyncService(getActivity());
-                Toast.makeText(getActivity(), "Start", Toast.LENGTH_SHORT).show();
+                if (BooksService.isRunning) {
+                    Toast.makeText(getActivity(), "Service is running", Toast.LENGTH_SHORT).show();
+                } else {
+                    GFile.runSyncService(getActivity());
+                    Toast.makeText(getActivity(), "Start Synchronization", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         inflate.findViewById(R.id.onSyncDebug).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView result = new TextView(getActivity());
-
-                final AtomicBoolean flag = new AtomicBoolean(true);
-
-                new Thread(() -> {
-                    while (flag.get()) {
-                        getActivity().runOnUiThread(() -> result.setText(GFile.debugOut));
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-
-                        }
-                    }
-                }).start();
-
-
-                result.setText(GFile.debugOut);
-
-                result.setTextSize(12);
-                result.setText(GFile.debugOut);
-                result.setMinWidth(Dips.dpToPx(1000));
-                result.setMinHeight(Dips.dpToPx(1000));
-
-                AlertDialogs.showViewDialog(getActivity(), result, new Runnable() {
-                    @Override
-                    public void run() {
-                        flag.set(false);
-                    }
-                });
+                Dialogs.showSyncLOGDialog(getActivity());
 
             }
         });

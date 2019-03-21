@@ -39,6 +39,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
@@ -60,8 +61,41 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Dialogs {
+
+    public static void showSyncLOGDialog(Activity a){
+        TextView result = new TextView(a);
+
+        final AtomicBoolean flag = new AtomicBoolean(true);
+
+        new Thread(() -> {
+            while (flag.get()) {
+                a.runOnUiThread(() -> result.setText(GFile.debugOut));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }).start();
+
+
+        result.setText(GFile.debugOut);
+
+        result.setTextSize(12);
+        result.setText(GFile.debugOut);
+        result.setMinWidth(Dips.dpToPx(1000));
+        result.setMinHeight(Dips.dpToPx(1000));
+
+        AlertDialogs.showViewDialog(a, result, new Runnable() {
+            @Override
+            public void run() {
+                flag.set(false);
+            }
+        });
+    }
 
     public static void testWebView(final Activity a, final String path) {
 

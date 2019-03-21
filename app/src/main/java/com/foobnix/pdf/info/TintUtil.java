@@ -139,12 +139,13 @@ public class TintUtil {
         }
     }
 
-    public static void setDrawableTint(Drawable drawable, int color) {
+    public static Drawable setDrawableTint(Drawable drawable, int color) {
         try {
             drawable.setColorFilter(color, Mode.SRC_ATOP);
         }catch (Exception e){
             LOG.e(e);
         }
+        return drawable;
     }
 
     public static void addTingBg(View textView) {

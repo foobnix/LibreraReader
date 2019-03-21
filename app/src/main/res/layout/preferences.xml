@@ -300,14 +300,14 @@
             android:layout_height="wrap_content"
             android:text="Enable Syncronize with Google Drive" />
 
-        <TextView
+        <Button
             android:id="@+id/onSyncStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
-            android:text="Start manually" />
+            android:text="Start Synchronization" />
 
-        <TextView
+        <Button
             android:id="@+id/onSyncDebug"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

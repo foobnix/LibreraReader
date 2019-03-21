@@ -24,6 +24,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
@@ -122,17 +123,18 @@ public class BooksService extends IntentService {
                     long lastSyncTime = sp.getLong(LAST_SYNC_TIME, 0);
                     long tempSynctime = System.currentTimeMillis();
                     try {
-                        GFile.sycnronizeAll(this, lastSyncTime);
-                    } catch (Exception e) {
-                        LOG.e(e);
-                        sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
 
+                        GFile.sycnronizeAll(this, lastSyncTime);
+
+                        sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
                         TempHolder.get().listHash++;
                         EventBus.getDefault().post(new UpdateAllFragments());
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
+                    EventBus.getDefault().post(new MessageSync(MessageSync.STATE_GONE));
                     onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
-
-
                 }
 
             }

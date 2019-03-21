@@ -112,10 +112,12 @@ public class GFile {
     public static void buildDriveService(Context c) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(c);
         if (account == null) {
+            LOG.d(TAG, "buildDriveService", " account is null");
             return;
         }
 
         if (googleDriveService != null) {
+            LOG.d(TAG, "googleDriveService", " has already inited");
             return;
         }
 
@@ -132,6 +134,8 @@ public class GFile {
                         .setApplicationName(Apps.getApplicationName(c))
                         .build();
 
+        LOG.d(TAG, "googleDriveService", " build");
+
     }
 
     public static List<File> exeQF(String q, String... args) throws IOException {
@@ -139,7 +143,7 @@ public class GFile {
     }
 
     public static List<File> exeQ(String q) throws IOException {
-        LOG.d(TAG, "exeQ", q);
+        //LOG.d(TAG, "exeQ", q);
         return googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(PAGE_SIZE).execute().getFiles();
     }
 
@@ -348,7 +352,9 @@ public class GFile {
 
 
     public static synchronized void sycnronizeAll(final Context c, long myLastSyncTime) throws Exception {
+
         try {
+            buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
                 LOG.d(TAG, "syncRootID", AppState.get().syncRootID);
@@ -359,17 +365,18 @@ public class GFile {
                 }
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
-
-
-                debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
-
-                sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
-
-                //updateLock(AppState.get().syncRootID, beginTime);
-
-                LOG.d(TAG, "sycnronizeAll", "finished");
-                debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
             }
+
+
+            debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
+
+            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
+
+            //updateLock(AppState.get().syncRootID, beginTime);
+
+            LOG.d(TAG, "sycnronizeAll", "finished");
+            debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
+
         } catch (Exception e) {
             debugOut += "\nException: " + e.getMessage();
             LOG.e(e);

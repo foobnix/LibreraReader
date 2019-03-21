@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,12 +46,14 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.BrightnessHelper;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
+import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -70,6 +73,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -187,6 +191,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     Handler handler;
+    ProgressBar fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,6 +226,16 @@ public class MainTabs2 extends AdsFragmentActivity {
         imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
+
+        fab = findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+        fab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialogs.showSyncLOGDialog(MainTabs2.this);
+            }
+        });
+
 
         overlay = findViewById(R.id.overlay);
 
@@ -448,7 +463,22 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         checkGoToPage(getIntent());
 
+        GFile.runSyncService(this);
 
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onShowSycn(MessageSync msg) {
+        try {
+            if (msg.state == MessageSync.STATE_VISIBLE) {
+                fab.setVisibility(View.VISIBLE);
+            } else {
+                fab.setVisibility(View.GONE);
+            }
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     @Subscribe
@@ -575,12 +605,13 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        GFile.runSyncService(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        GFile.runSyncService(this);
+
         LOG.d(TAG, "onDestroy");
         if (pager != null) {
             try {
