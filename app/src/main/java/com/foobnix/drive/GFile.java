@@ -30,6 +30,7 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
 import java.io.BufferedReader;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -149,20 +150,21 @@ public class GFile {
         String nextPageToken;
         List<File> res = new ArrayList<File>();
         do {
-            final FileList list = googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSpaces("drive").setPageSize(PAGE_SIZE).execute();
+            //debugOut += "\n:" + q;
+            final FileList list = googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSupportsTeamDrives(true).setIncludeTeamDriveItems(true).setPageSize(PAGE_SIZE).execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
-            LOG.d("nextPageToken",nextPageToken);
+            LOG.d("nextPageToken", nextPageToken);
         } while (nextPageToken != null);
         return res;
     }
 
-    public static List<File> getFiles(String rootId, long lastModifiedTime) throws Exception {
+    public static List<File> getFiles(String rootId) throws Exception {
 
-        String time = new DateTime(lastModifiedTime).toString();
-        LOG.d("getFiles-by", rootId, time);
-        final String txt = "('%s' in parents and trashed = false and modifiedTime>'%s') or ('%s' in parents and trashed = false and mimeType = '%s')";
-        return exeQF(txt, rootId, time, rootId, MIME_FOLDER);
+        //String time = new DateTime(lastModifiedTime).toString();
+        LOG.d("getFiles-by", rootId);
+        final String txt = "('%s' in parents and trashed = false) or ('%s' in parents and trashed = false and mimeType = '%s')";
+        return exeQF(txt, rootId, rootId, MIME_FOLDER);
     }
 
     public static File findLibreraSync() throws Exception {
@@ -261,15 +263,12 @@ public class GFile {
     }
 
 
-    public static void uploadFile(String roodId, String fileId, final java.io.File inFile, long lastModified) throws IOException {
-        if (lastModified == 0) {
-            lastModified = inFile.lastModified();
-        }
-        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(lastModified));
+    public static void uploadFile(String roodId, String fileId, final java.io.File inFile) throws IOException {
+        debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
+        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
         FileContent contentStream = new FileContent("text/plain", inFile);
         LOG.d(TAG, "BIG upload file", roodId, inFile);
         googleDriveService.files().update(fileId, metadata, contentStream).execute();
-        setLastModifiedTime(inFile, lastModified);
     }
 
 
@@ -299,6 +298,7 @@ public class GFile {
 
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
         LOG.d(TAG, "BIG download file", fileId, file.getPath());
+        debugOut += "\nDownload: " + file.getParentFile().getName() + "/" + file.getName();
         InputStream is = null;
         //if (!file.getPath().endsWith("json")) {
         //    is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
@@ -344,15 +344,16 @@ public class GFile {
     }
 
 
-    public static File createFolder(String roodId, String name) throws IOException {
+    public static File createFolder(String roodId, String name, long lastModified) throws IOException {
         File folder = getFileById(roodId, name);
         if (folder != null) {
             return folder;
         }
         LOG.d(TAG, "Create folder", roodId, name);
-        debugOut += "\nCreate folder: " + name;
+        debugOut += "\nCreate remote folder: " + name;
         File metadata = new File()
                 .setParents(Collections.singletonList(roodId))
+                .setModifiedTime(new DateTime(lastModified))
                 .setMimeType(MIME_FOLDER)
                 .setName(name);
 
@@ -361,9 +362,10 @@ public class GFile {
     }
 
 
-    public static synchronized void sycnronizeAll(final Context c, long myLastSyncTime) throws Exception {
+    public static synchronized void sycnronizeAll(final Context c) throws Exception {
 
         try {
+            debugOut = "";
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
@@ -371,21 +373,21 @@ public class GFile {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync", syncRoot);
                 if (syncRoot == null) {
-                    syncRoot = GFile.createFolder("root", "Librera");
+                    syncRoot = GFile.createFolder("root", "Librera", AppsConfig.SYNC_FOLDER_ROOT.lastModified());
                 }
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
             }
 
 
-            debugOut += "\nBegin from: " + new DateTime(myLastSyncTime).toStringRfc3339();
+            debugOut += "\nBegin";
 
-            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT, myLastSyncTime);
+            sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT);
 
             //updateLock(AppState.get().syncRootID, beginTime);
 
             LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd: " + new DateTime(myLastSyncTime).toStringRfc3339();
+            debugOut += "\nEnd";
 
         } catch (Exception e) {
             debugOut += "\nException: " + e.getMessage();
@@ -395,52 +397,57 @@ public class GFile {
     }
 
 
-    private static void sync(String syncId, final java.io.File ioRoot, long lastModified) throws
-            Exception {
-        LOG.d(TAG, "sync", syncId, ioRoot.getPath());
-        final java.io.File[] files = ioRoot.listFiles();
+    private static void sync(String syncId, final java.io.File ioRoot) throws Exception {
 
-        if (files == null) {
-            return;
-        }
+        final List<File> driveFiles = getFiles(syncId);
 
-        for (java.io.File file : files) {
-            if (file.isDirectory()) {
-                File folder = createFolder(syncId, file.getName());
-                sync(folder.getId(), file, lastModified);
-            } else {
-                if (file.lastModified() > lastModified) {
-                    final File syncFile = getFileInfo(syncId, file);
-                    //LOG.d(TAG, "sync-file", syncFile.getName(), syncFile.getModifiedTime().getValue(), file.lastModified());
-                    if (syncFile.getModifiedTime() == null || syncFile.getModifiedTime().getValue() / PAGE_SIZE < file.lastModified() / PAGE_SIZE) {
-                        debugOut += "\nUpload: " + file.getName();
-                        uploadFile(syncId, syncFile.getId(), file, lastModified);
-                    } else if (syncFile.getModifiedTime().getValue() / PAGE_SIZE > file.lastModified() / PAGE_SIZE) {
-                        debugOut += "\nDownload: " + file.getName();
-                        downloadFile(syncId, file, syncFile.getModifiedTime().getValue());
+        LOG.d(TAG, "Sync-folder:", ioRoot.getName(), syncId);
+        debugPrint(driveFiles);
+
+
+        java.io.File[] toUpload = ioRoot.listFiles(new FileFilter() {
+            @Override
+            public boolean accept(java.io.File pathname) {
+                final String localName = pathname.getName();
+                for (File f : driveFiles) {
+                    if (f.getName().equals(localName)) {
+                        return false;
                     }
                 }
+                LOG.d(TAG, "to upload", pathname);
+                return true;
+            }
+        });
+
+        if (toUpload != null) {
+            for (java.io.File file : toUpload) {
+                if (file.isDirectory()) {
+                    File folder = createFolder(syncId, file.getName(), file.lastModified());
+                    sync(folder.getId(), file);
+                } else if (file.isFile()) {
+                    final File syncFile = getFileInfo(syncId, file);
+                    uploadFile(syncId, syncFile.getId(), file);
+                }
             }
         }
-        final List<File> rFiles = getFiles(syncId, lastModified);
-        for (File remote : rFiles) {
-            if (!MIME_FOLDER.equals(remote.getMimeType())) {
-                java.io.File lFile = new java.io.File(ioRoot, remote.getName());
-                if (!lFile.exists() || remote.getModifiedTime().getValue() / PAGE_SIZE > lFile.lastModified() / PAGE_SIZE) {
-                    debugOut += "\nDownload: " + lFile.getName();
-                    downloadFile(remote.getId(), lFile, remote.getModifiedTime().getValue());
+
+        for (File remote : driveFiles) {
+            java.io.File local = new java.io.File(ioRoot, remote.getName());
+            if (MIME_FOLDER.equals(remote.getMimeType())) {
+                if (!local.exists()) {
+                    debugOut += "\nCreate local folder: " + local.getName();
+                    local.mkdirs();
+                    setLastModifiedTime(local, remote.getModifiedTime().getValue());
                 }
+                sync(remote.getId(), local);
             } else {
-                java.io.File lFile = new java.io.File(ioRoot, remote.getName());
-                if (!lFile.exists()) {
-                    debugOut += "\nCreate dir: " + lFile.getName();
-                    lFile.mkdirs();
-                    sync(remote.getId(), lFile, lastModified);
+                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
+                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+                } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
+                    uploadFile(syncId, remote.getId(), local);
                 }
             }
         }
-
-
     }
 
     public static void runSyncService(Activity a) {

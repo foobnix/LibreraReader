@@ -475,6 +475,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityAdnShowInterstial() {
+        SettingsManager.clearCache();
         showInterstialAndClose();
 
     }

@@ -3,7 +3,6 @@ package com.foobnix.ui2;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -30,6 +29,7 @@ import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
@@ -53,12 +53,10 @@ public class BooksService extends IntentService {
         LOG.d("BooksService", "onDestroy");
     }
 
-    SharedPreferences sp;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sp = this.getSharedPreferences("BookService", Context.MODE_PRIVATE);
     }
 
     private static final String LAST_SEARCH_TIME = "LAST_SEARCH_TIME";
@@ -102,7 +100,7 @@ public class BooksService extends IntentService {
 
             File oldConfig = new File(AppsConfig.SYNC_FOLDER, "backup-8.0.json");
             if (!oldConfig.exists()) {
-                sp.edit().remove(LAST_SYNC_TIME).commit();
+
                 AppsConfig.SYNC_FOLDER_ROOT.mkdirs();
                 ExportSettingsManager.exportAll(this, oldConfig);
                 try {
@@ -120,21 +118,20 @@ public class BooksService extends IntentService {
                     AppState.get().saveIn(this);
                     BookCSS.get().save(this);
 
-                    long lastSyncTime = sp.getLong(LAST_SYNC_TIME, 0);
-                    long tempSynctime = System.currentTimeMillis();
+
                     try {
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
 
-                        GFile.sycnronizeAll(this, lastSyncTime);
+                        SettingsManager.clearCache();
+                        GFile.sycnronizeAll(this);
 
-                        sp.edit().putLong(LAST_SYNC_TIME, tempSynctime).commit();
                         TempHolder.get().listHash++;
                         EventBus.getDefault().post(new UpdateAllFragments());
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                     EventBus.getDefault().post(new MessageSync(MessageSync.STATE_GONE));
-                    onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+                    //onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
                 }
 
             }

@@ -2,6 +2,7 @@ package org.ebookdroid.common.settings.books;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.ui2.AppDB;
@@ -29,8 +30,13 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
-        IO.writeObjAsync(bs.getCacheFile(), bs);
-        LOG.d("SharedBooks-save", bs.path);
+        final int hash = Objects.hashCode(bs);
+        bs.h = hash;
+        final AppBook load = load(bs.path);
+        if(load.h != hash) {
+            IO.writeObjAsync(bs.getCacheFile(), bs);
+            LOG.d("SharedBooks-save", bs.path, hash);
+        }
     }
 
     public static void delete(AppBook bs) {

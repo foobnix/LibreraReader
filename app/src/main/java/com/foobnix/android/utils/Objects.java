@@ -179,13 +179,19 @@ public class Objects {
                 continue;
             }
 
+
             try {
-                res.append(f.get(obj));
+                if (f.getType().equals(float.class)) {
+                    res.append(TxtUtils.substring(f.get(obj).toString(),5));
+                }else {
+                    res.append(f.get(obj));
+                }
             } catch (Exception e) {
                 LOG.e(e);
             }
 
         }
+        LOG.d(TAG, "hashCodeString", res.toString());
         int hashCode = res.toString().hashCode();
         LOG.d(TAG, "hashCode", hashCode);
         return hashCode;

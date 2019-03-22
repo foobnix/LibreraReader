@@ -1,6 +1,7 @@
 package com.foobnix.model;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.sys.TempHolder;
 
@@ -10,7 +11,7 @@ import org.ebookdroid.core.events.CurrentPageListener;
 import java.io.File;
 
 public class AppBook implements CurrentPageListener {
-
+    @Objects.IgnoreCalculateHashCode
     public transient String path;
     public int z = 100;//z
 
@@ -27,6 +28,8 @@ public class AppBook implements CurrentPageListener {
 
     public int d = 0;//delta
     public float p; //percent
+    @Objects.IgnoreCalculateHashCode
+    public long h;
 
     public static File getCacheFile(String path) {
         return new File(AppsConfig.SYNC_FOLDER, "books/" + new File(path).getName() + ".json");

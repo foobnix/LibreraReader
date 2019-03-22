@@ -694,7 +694,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         @Override
-        public void onPageScrollStateChanged(int arg0) {
+        public void onPageScrollStateChanged(int state) {
+            if(AppState.get().isEnableGdrive) {
+                swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+            }
+
 
         }
     };

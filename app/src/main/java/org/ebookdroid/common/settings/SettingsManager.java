@@ -6,7 +6,6 @@ import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
-import org.ebookdroid.core.PageIndex;
 import org.emdev.utils.listeners.ListenerProxy;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -41,15 +40,6 @@ public class SettingsManager {
     }
 
 
-    public static void clearCurrentBookSettings2() {
-        lock.writeLock().lock();
-        try {
-            storeBookSettings1();
-        } finally {
-            lock.writeLock().unlock();
-        }
-    }
-
 
     public static AppBook getBookSettings() {
         lock.readLock().lock();
@@ -79,16 +69,6 @@ public class SettingsManager {
         return current.cp;
     }
 
-    public static void currentPageChanged(final PageIndex newIndex, int pages) {
-        lock.readLock().lock();
-        try {
-            if (current != null) {
-                current.currentPageChanged(newIndex.docIndex, pages);
-            }
-        } finally {
-            lock.readLock().unlock();
-        }
-    }
 
     public static void zoomChanged(final float zoom, final boolean committed) {
         lock.readLock().lock();
