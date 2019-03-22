@@ -20,6 +20,10 @@ import java.util.Locale;
 
 public class SearchCore {
     public static boolean endWith(String name, List<String> exts) {
+        if (exts == null) {
+            return true;
+        }
+
         for (String ext : exts) {
             if (name.endsWith(ext)) {
                 return true;
@@ -45,7 +49,7 @@ public class SearchCore {
     }
 
     public static void search(List<FileMeta> items, File root, List<String> exts) {
-        if(root.getPath().equals("/")){
+        if (root.getPath().equals("/")) {
             LOG.d("Skip search in root");
             return;
         }

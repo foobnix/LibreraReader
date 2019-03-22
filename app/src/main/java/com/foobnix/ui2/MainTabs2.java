@@ -180,6 +180,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
+        GFile.runSyncService(this);
     }
 
     @Override
@@ -476,10 +477,9 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         checkGoToPage(getIntent());
 
-        GFile.runSyncService(this);
-
-
     }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {

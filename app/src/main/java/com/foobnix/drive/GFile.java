@@ -30,7 +30,6 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
 import java.io.BufferedReader;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,7 +38,9 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GFile {
     public static final int REQUEST_CODE_SIGN_IN = 1110;
@@ -47,7 +48,9 @@ public class GFile {
     public static final String MIME_FOLDER = "application/vnd.google-apps.folder";
 
     public static final String TAG = "GFile";
-    public static final int PAGE_SIZE = 999;
+    public static final int PAGE_SIZE = 1000;
+    public static final String SKIP = "skip";
+    public static final String MY_SCOPE = DriveScopes.DRIVE_FILE;
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
@@ -67,7 +70,7 @@ public class GFile {
         GoogleSignInOptions signInOptions =
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestEmail()
-                        .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
+                        .requestScopes(new Scope(MY_SCOPE))
                         .build();
         GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
         client.signOut();
@@ -89,7 +92,7 @@ public class GFile {
             GoogleSignInOptions signInOptions =
                     new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                             .requestEmail()
-                            .requestScopes(new Scope(DriveScopes.DRIVE_FILE))
+                            .requestScopes(new Scope(DriveScopes.DRIVE))
                             .build();
             GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
 
@@ -99,7 +102,7 @@ public class GFile {
 
             GoogleAccountCredential credential =
                     GoogleAccountCredential.usingOAuth2(
-                            c, Collections.singleton(DriveScopes.DRIVE_FILE));
+                            c, Collections.singleton(DriveScopes.DRIVE));
             credential.setSelectedAccount(account.getAccount());
             googleDriveService =
                     new com.google.api.services.drive.Drive.Builder(
@@ -127,7 +130,7 @@ public class GFile {
 
         GoogleAccountCredential credential =
                 GoogleAccountCredential.usingOAuth2(
-                        c, Collections.singleton(DriveScopes.DRIVE_FILE));
+                        c, Collections.singleton(DriveScopes.DRIVE));
         credential.setSelectedAccount(account.getAccount());
         googleDriveService =
                 new com.google.api.services.drive.Drive.Builder(
@@ -147,14 +150,16 @@ public class GFile {
 
     public static List<File> exeQ(String q) throws IOException {
         //LOG.d(TAG, "exeQ", q);
-        String nextPageToken;
+        String nextPageToken = "";
         List<File> res = new ArrayList<File>();
         do {
             //debugOut += "\n:" + q;
-            final FileList list = googleDriveService.files().list().setQ(q).setFields("nextPageToken, files(*)").setSupportsTeamDrives(true).setIncludeTeamDriveItems(true).setPageSize(PAGE_SIZE).execute();
+
+            final FileList list = googleDriveService.files().list().setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
-            LOG.d("nextPageToken", nextPageToken);
+            debugOut += "\nGet remote files info: " + list.getFiles().size();
+            //debugPrint(list.getFiles());
         } while (nextPageToken != null);
         return res;
     }
@@ -167,16 +172,19 @@ public class GFile {
         return exeQF(txt, rootId, rootId, MIME_FOLDER);
     }
 
+    public static List<File> getFilesAll() throws Exception {
+        return exeQ("trashed = false");
+    }
+
     public static File findLibreraSync() throws Exception {
 
         final List<File> files = exeQF("name = 'Librera' and 'root' in parents and mimeType = '%s' and trashed = false", MIME_FOLDER);
         debugPrint(files);
-        for (File it : files) {
-            if (it.getParents() == null) {
-                return it;
-            }
+        if (files.size() > 0) {
+            return files.get(0);
+        } else {
+            return null;
         }
-        return null;
     }
 
     public static void debugPrint(List<File> list) {
@@ -262,12 +270,23 @@ public class GFile {
 
     }
 
+    public static File createFirstTime(String roodId, final java.io.File inFile) throws IOException {
+        File metadata = new File()
+                .setParents(Collections.singletonList(roodId))
+                .setMimeType(ExtUtils.getMimeType(inFile))
+                .setModifiedTime(new DateTime(inFile.lastModified()))
+                .setName(inFile.getName());
+
+        LOG.d(TAG, "Create file", roodId, inFile.getName());
+        return googleDriveService.files().create(metadata).execute();
+    }
+
 
     public static void uploadFile(String roodId, String fileId, final java.io.File inFile) throws IOException {
         debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
         FileContent contentStream = new FileContent("text/plain", inFile);
-        LOG.d(TAG, "BIG upload file", roodId, inFile);
+        LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
         googleDriveService.files().update(fileId, metadata, contentStream).execute();
     }
 
@@ -297,7 +316,7 @@ public class GFile {
 
 
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
-        LOG.d(TAG, "BIG download file", fileId, file.getPath());
+        LOG.d(TAG, "Download: " + file.getParentFile().getName() + "/" + file.getName());
         debugOut += "\nDownload: " + file.getParentFile().getName() + "/" + file.getName();
         InputStream is = null;
         //if (!file.getPath().endsWith("json")) {
@@ -311,11 +330,11 @@ public class GFile {
         }
 
         IO.copyFile(is, file);
-        LOG.d(TAG, "downloadFile-lastModified before", file.lastModified(), lastModified, file.getName());
+        //LOG.d(TAG, "downloadFile-lastModified before", file.lastModified(), lastModified, file.getName());
 
         setLastModifiedTime(file, lastModified);
 
-        LOG.d(TAG, "downloadFile-lastModified after", file.lastModified(), lastModified, file.getName());
+        //LOG.d(TAG, "downloadFile-lastModified after", file.lastModified(), lastModified, file.getName());
 
     }
 
@@ -344,7 +363,7 @@ public class GFile {
     }
 
 
-    public static File createFolder(String roodId, String name, long lastModified) throws IOException {
+    public static File createFolder(String roodId, String name) throws IOException {
         File folder = getFileById(roodId, name);
         if (folder != null) {
             return folder;
@@ -353,7 +372,7 @@ public class GFile {
         debugOut += "\nCreate remote folder: " + name;
         File metadata = new File()
                 .setParents(Collections.singletonList(roodId))
-                .setModifiedTime(new DateTime(lastModified))
+                //.setModifiedTime(new DateTime(lastModified))
                 .setMimeType(MIME_FOLDER)
                 .setName(name);
 
@@ -369,11 +388,10 @@ public class GFile {
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
-                LOG.d(TAG, "syncRootID", AppState.get().syncRootID);
                 File syncRoot = GFile.findLibreraSync();
-                LOG.d(TAG, "findLibreraSync", syncRoot);
+                LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null) {
-                    syncRoot = GFile.createFolder("root", "Librera", AppsConfig.SYNC_FOLDER_ROOT.lastModified());
+                    syncRoot = GFile.createFolder("root", "Librera");
                 }
                 AppState.get().syncRootID = syncRoot.getId();
                 AppState.get().save(c);
@@ -381,6 +399,7 @@ public class GFile {
 
 
             debugOut += "\nBegin";
+            LOG.d("Begin");
 
             sync(AppState.get().syncRootID, AppsConfig.SYNC_FOLDER_ROOT);
 
@@ -396,59 +415,130 @@ public class GFile {
         }
     }
 
-
     private static void sync(String syncId, final java.io.File ioRoot) throws Exception {
+        final List<File> driveFiles = getFilesAll();
+        LOG.d(TAG, "getFilesAll", "end");
 
-        final List<File> driveFiles = getFiles(syncId);
+        Map<String, File> map = new HashMap<>();
+        Map<java.io.File, File> map2 = new HashMap<>();
 
-        LOG.d(TAG, "Sync-folder:", ioRoot.getName(), syncId);
-        debugPrint(driveFiles);
+        for (File file : driveFiles) {
+            map.put(file.getId(), file);
+        }
+        for (File file : driveFiles) {
+            final String filePath = findFile(file, map);
 
-
-        java.io.File[] toUpload = ioRoot.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(java.io.File pathname) {
-                final String localName = pathname.getName();
-                for (File f : driveFiles) {
-                    if (f.getName().equals(localName)) {
-                        return false;
-                    }
-                }
-                LOG.d(TAG, "to upload", pathname);
-                return true;
+            if (filePath.startsWith(SKIP)) {
+                continue;
             }
-        });
 
-        if (toUpload != null) {
-            for (java.io.File file : toUpload) {
-                if (file.isDirectory()) {
-                    File folder = createFolder(syncId, file.getName(), file.lastModified());
-                    sync(folder.getId(), file);
-                } else if (file.isFile()) {
-                    final File syncFile = getFileInfo(syncId, file);
-                    uploadFile(syncId, syncFile.getId(), file);
+            java.io.File local = new java.io.File(ioRoot, filePath);
+            map2.put(local, file);
+        }
+        //upload second files
+        for (File remote : driveFiles) {
+            //create local files
+            if (!MIME_FOLDER.equals(remote.getMimeType())) {
+                final String filePath = findFile(remote, map);
+                if (filePath.startsWith(SKIP)) {
+                    LOG.d(TAG, "Skip", filePath);
+                    continue;
+                }
+
+                java.io.File local = new java.io.File(ioRoot, filePath);
+                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
+                    final java.io.File parentFile = local.getParentFile();
+                    if (parentFile.exists()) {
+                        parentFile.mkdirs();
+                    }
+                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
                 }
             }
         }
 
-        for (File remote : driveFiles) {
-            java.io.File local = new java.io.File(ioRoot, remote.getName());
-            if (MIME_FOLDER.equals(remote.getMimeType())) {
-                if (!local.exists()) {
-                    debugOut += "\nCreate local folder: " + local.getName();
-                    local.mkdirs();
-                    setLastModifiedTime(local, remote.getModifiedTime().getValue());
+        syncUpload(syncId, ioRoot, map2);
+    }
+
+    private static void syncUpload(String syncId, java.io.File ioRoot, Map<java.io.File, File> map2) throws IOException {
+        java.io.File[] files = ioRoot.listFiles();
+        if (files == null) {
+            return;
+        }
+        for (java.io.File local : files) {
+            File remote = map2.get(local);
+            if (local.isDirectory()) {
+                if (remote == null) {
+                    remote = createFolder(syncId, local.getName());
                 }
-                sync(remote.getId(), local);
+                syncUpload(remote.getId(), local, map2);
             } else {
-                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
-                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
-                } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
+                if(remote==null){
+                    File add = createFirstTime(syncId, local);
+                    uploadFile(syncId, add.getId(), local);
+                }else if(remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000){
                     uploadFile(syncId, remote.getId(), local);
                 }
+
+
             }
         }
     }
+
+//    private static void syncUpload(String syncId, final java.io.File ioRoot, List<File> driveFiles) throws Exception {
+//        LOG.d(TAG, "updaload", ioRoot.getName());
+//        final java.io.File[] files = ioRoot.listFiles();
+//        for (java.io.File file : files) {
+//            final String filePath = findFile(remote, map);
+//
+//
+//        }
+
+
+//        for (java.io.File file : toUpload) {
+//            if (file.isDirectory()) {
+//                File folder = createFolder(syncId, file.getName(), file.lastModified());
+//                sync(folder.getId(), file);
+//            } else if (file.isFile()) {
+//                final File syncFile = getFileInfo(syncId, file);
+//                uploadFile(syncId, syncFile.getId(), file);
+//            }
+//        }
+//    }
+//
+//        for (File remote : driveFiles) {
+//        java.io.File local = new java.io.File(ioRoot, remote.getName());
+//        if (MIME_FOLDER.equals(remote.getMimeType())) {
+//            if (!local.exists()) {
+//                debugOut += "\nCreate local folder: " + local.getName();
+//                local.mkdirs();
+//                setLastModifiedTime(local, remote.getModifiedTime().getValue());
+//            }
+//            sync(remote.getId(), local);
+//        } else {
+//            if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
+//                downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+//            } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
+//                uploadFile(syncId, remote.getId(), local);
+//            }
+//        }
+//    }
+    //   }
+
+    private static String findFile(File file, Map<String, File> map) {
+        if (file == null) {
+            return SKIP;
+        }
+        if (file.getParents() == null) {
+            return SKIP;
+        }
+
+        if (file.getId().equals(AppState.get().syncRootID)) {
+            return "";
+        }
+
+        return findFile(map.get(file.getParents().get(0)), map) + "/" + file.getName();
+    }
+
 
     public static void runSyncService(Activity a) {
         if (AppState.get().isEnableGdrive && !BooksService.isRunning) {
