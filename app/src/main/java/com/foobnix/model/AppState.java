@@ -888,6 +888,7 @@ public class AppState {
             return;
         }
         IO.readObj(syncFile, instance);
+
     }
 
     public static String keyToString(final List<Integer> list) {
@@ -927,6 +928,7 @@ public class AppState {
         if (a == null) {
             return;
         }
+
         int currentHash = Objects.hashCode(instance, false);
         if (currentHash != instance.hashCode) {
             LOG.d("Objects-save", "SAVE AppState");

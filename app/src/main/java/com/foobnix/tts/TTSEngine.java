@@ -285,9 +285,9 @@ public class TTSEngine {
 
     }
 
-    public static void fastTTSBookmakr(Context c, float percent) {
+    public static void fastTTSBookmakr(Context c, float percent, int pages) {
         int page = AppState.get().lastBookPage + 1;
-        boolean hasBookmark = BookmarksData.get().hasBookmark(AppState.get().lastBookPath, page);
+        boolean hasBookmark = BookmarksData.get().hasBookmark(AppState.get().lastBookPath, page, pages);
 
         if (!hasBookmark) {
             final AppBookmark bookmark = new AppBookmark(AppState.get().lastBookPath, c.getString(R.string.fast_bookmark), percent);

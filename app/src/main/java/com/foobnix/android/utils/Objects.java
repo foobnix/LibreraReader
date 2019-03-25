@@ -182,7 +182,7 @@ public class Objects {
 
             try {
                 if (f.getType().equals(float.class)) {
-                    res.append(TxtUtils.substring(f.get(obj).toString(),5));
+                    res.append(TxtUtils.substring(f.get(obj).toString(),4));
                 }else {
                     res.append(f.get(obj));
                 }

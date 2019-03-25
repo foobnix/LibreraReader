@@ -15,6 +15,7 @@ public class MyPath {
         return new MyPath(Environment.getExternalStorageDirectory());
     }
 
+
     public MyPath(File file) {
         this(file.getPath());
     }
@@ -31,7 +32,6 @@ public class MyPath {
         return path;
     }
 
-
     public static String toRelative(String path) {
         if (path == null) {
             return path;
@@ -42,7 +42,7 @@ public class MyPath {
     public static String toAbsolute(String path) {
         if (path == null) {
             return path;
-             }
+        }
         return path.replace(INTERNAL_PREFIX, INTERNAL_ROOT);
     }
 

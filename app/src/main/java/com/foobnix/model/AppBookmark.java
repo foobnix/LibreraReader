@@ -51,7 +51,7 @@ public class AppBookmark  implements MyPath.RelativePath {
     @Override
     public boolean equals(Object obj) {
         AppBookmark a = (AppBookmark) obj;
-        return a.path.equals(path) && a.t == t;
+        return a.t == t;
     }
 
 

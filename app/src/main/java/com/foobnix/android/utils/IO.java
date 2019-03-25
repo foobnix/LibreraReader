@@ -3,6 +3,7 @@ package com.foobnix.android.utils;
 import com.foobnix.mobi.parser.IOUtils;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -91,7 +92,7 @@ public class IO {
     public static boolean writeString(File file, String string) {
         try {
             if (string == null || "".equals(string) || "{}".equals(string)) {
-                LOG.d("IO", "Skip write empy to file",file.getPath());
+                LOG.d("IO", "Skip write empy to file", file.getPath());
                 return false;
             }
             LOG.d("IO", "write to file");
@@ -108,6 +109,16 @@ public class IO {
             LOG.e(e);
         }
         return false;
+    }
+
+    public static JSONObject readJsonObject(File file) {
+        final String s = readString(file);
+
+        try {
+            return new JSONObject(s);
+        } catch (JSONException e) {
+            return new JSONObject();
+        }
     }
 
     public static String readString(File file) {

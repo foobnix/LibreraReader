@@ -2,12 +2,14 @@ package com.foobnix.pdf.info;
 
 import android.content.Context;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBookmark;
-import com.foobnix.model.AppData;
+
+import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,17 +19,7 @@ import java.util.Map;
 
 public class BookmarksData {
 
-    public static File BOOKMARKS_ROOT = new File(AppsConfig.SYNC_FOLDER, "bookmarks");
-
-    public static File getCacheFile(String path) {
-        BOOKMARKS_ROOT.mkdirs();
-
-        if (path.startsWith(BOOKMARKS_ROOT.getPath())) {
-            return new File(path);
-        }
-
-        return new File(BOOKMARKS_ROOT, ExtUtils.getFileName(path) + ".json");
-    }
+    public static final File syncBookmarks = new File(AppsConfig.SYNC_FOLDER, "app-Bookmarks.json");
 
 
     final static BookmarksData instance = new BookmarksData();
@@ -39,25 +31,29 @@ public class BookmarksData {
 
     public void add(AppBookmark bookmark) {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text);
-        List<AppBookmark> res = getBookmarksByBook(bookmark.getPath());
-        res.add(bookmark);
-        AppData.writeSimpleMeta(res, getCacheFile(bookmark.getPath()));
-
-
+        try {
+            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            final String fileName = ExtUtils.getFileName(bookmark.path);
+            obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
+            IO.writeObjAsync(syncBookmarks, obj);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);
-        List<AppBookmark> res = getBookmarksByBook(bookmark.getPath());
-        res.remove(bookmark);
-        AppData.writeSimpleMeta(res, getCacheFile(bookmark.getPath()));
-    }
 
-    public boolean hasBookmark(String path, int page) {
-
-        return false;
-
+        try {
+            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            if (obj.has("" + bookmark.t)) {
+                obj.remove("" + bookmark.t);
+            }
+            IO.writeObjAsync(syncBookmarks, obj);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public List<AppBookmark> getBookmarksByBook(File file) {
@@ -68,20 +64,24 @@ public class BookmarksData {
         String quick = c.getString(R.string.fast_bookmark);
 
         List<AppBookmark> all = new ArrayList<>();
-        File[] files = BOOKMARKS_ROOT.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.getPath().endsWith(".json");
+
+        try {
+            JSONObject obj = IO.readJsonObject(syncBookmarks);
+
+            final Iterator<String> keys = obj.keys();
+            while (keys.hasNext()) {
+                final String next = keys.next();
+
+                AppBookmark appBookmark = new AppBookmark();
+                final JSONObject local = obj.getJSONObject(next);
+                Objects.loadFromJson(appBookmark, local);
+                all.add(appBookmark);
             }
-        });
-        if (files == null) {
-            return all;
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
-        for (File file : files) {
-            LOG.d("getAll-path", file.getPath());
-            all.addAll(getBookmarksByBook(file));
-        }
+
         Iterator<AppBookmark> iterator = all.iterator();
         while (iterator.hasNext()) {
             AppBookmark next = iterator.next();
@@ -97,12 +97,34 @@ public class BookmarksData {
 
 
     public List<AppBookmark> getBookmarksByBook(String path) {
-        List<AppBookmark> res = new ArrayList<AppBookmark>();
-        AppData.readSimpleMeta(res, getCacheFile(path), AppBookmark.class);
-        LOG.d("getBookmarksByBook", path, res.size());
-        Collections.sort(res, BY_PERCENT);
-        return res;
 
+        List<AppBookmark> all = new ArrayList<>();
+
+        try {
+            JSONObject obj = IO.readJsonObject(syncBookmarks);
+
+            final Iterator<String> keys = obj.keys();
+            while (keys.hasNext()) {
+                final String next = keys.next();
+
+                AppBookmark appBookmark = new AppBookmark();
+                final JSONObject local = obj.getJSONObject(next);
+                Objects.loadFromJson(appBookmark, local);
+                if (appBookmark.getPath().equals(path)) {
+                    all.add(appBookmark);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+        LOG.d("getBookmarksByBook", path, all.size());
+        Collections.sort(all, BY_PERCENT);
+        return all;
+    }
+    public boolean hasBookmark(String lastBookPath, int page, int pages) {
+        //TODO Implement
+        return false;
     }
 
     static final Comparator<AppBookmark> BY_PERCENT = new Comparator<AppBookmark>() {
@@ -128,8 +150,9 @@ public class BookmarksData {
 
 
     public void cleanBookmarks() {
-
+        IO.writeObj(syncBookmarks.getPath(), "{}");
     }
+
 
 
 }
