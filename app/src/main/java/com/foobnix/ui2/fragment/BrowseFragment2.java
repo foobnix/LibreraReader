@@ -42,6 +42,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -303,7 +304,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(new File(AppState.DOWNLOADS_DIR, "Librera").getPath());
+                        displayAnyPath(new File(AppProfile.DOWNLOADS_DIR, "Librera").getPath());
                         return false;
                     }
                 }).setIcon(R.drawable.glyphicons_591_folder_heart);
@@ -313,7 +314,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+                        displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
                         return false;
                     }
                 }).setIcon(R.mipmap.icon_pdf_reader).active(true);

@@ -1,10 +1,5 @@
 package com.foobnix.pdf.info;
 
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.view.EditTextHelper;
-import com.foobnix.pdf.info.wrapper.PasswordState;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,6 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.view.EditTextHelper;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 
 public class PasswordDialog {
     public static String EXTRA_APP_PASSWORD = "EXTRA_APP_PASSWORD";
@@ -41,7 +42,7 @@ public class PasswordDialog {
         if (isSetPassord) {
             builder.setTitle(R.string.set_an_application_password);
         } else {
-            builder.setTitle(AppsConfig.TXT_APP_NAME);
+            builder.setTitle(Apps.getApplicationName(a));
         }
 
         View inflate = LayoutInflater.from(a).inflate(R.layout.dialog_app_password, null, false);

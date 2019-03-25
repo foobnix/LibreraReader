@@ -22,6 +22,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
@@ -91,7 +92,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
 
-        AppState.get().load(this);
 
         FileMetaCore.checkOrCreateMetaInfo(this);
 
@@ -168,6 +168,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void attachBaseContext(Context context) {
+        AppProfile.init(context);
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 

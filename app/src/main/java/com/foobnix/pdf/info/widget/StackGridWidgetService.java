@@ -11,6 +11,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -42,7 +43,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onCreate() {
-        AppState.get().load(context);
+        AppProfile.init(context);
         onDataSetChanged();
     }
 

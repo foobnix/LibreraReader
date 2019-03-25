@@ -133,7 +133,7 @@ public class FileInformationDialog {
 
         TextView pathView = (TextView) dialog.findViewById(R.id.path);
         pathView.setText(file.getPath());
-        if (BuildConfig.LOG) {
+        if (BuildConfig.IS_BETA) {
             pathView.setText(file.getPath() + "\n" + LOG.ojectAsString(fileMeta));
         }
 

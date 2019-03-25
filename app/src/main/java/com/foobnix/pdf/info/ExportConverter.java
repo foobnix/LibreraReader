@@ -7,6 +7,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
@@ -23,8 +24,8 @@ public class ExportConverter {
 
 
     public static void copyPlaylists() {
-        File syncDir = new File(AppsConfig.SYNC_FOLDER, "playlists");
-        File oldDir = new File(AppState.DOWNLOADS_DIR, "Librera/Playlist");
+        File syncDir = new File(AppProfile.SYNC_FOLDER, "playlists");
+        File oldDir = new File(AppProfile.DOWNLOADS_DIR, "Librera/Playlist");
         File[] list = oldDir.listFiles();
 
         if (list != null) {
@@ -43,8 +44,8 @@ public class ExportConverter {
         JSONObject obj = new JSONObject(st);
 
 
-        IO.writeString(AppState.syncFile, obj.getJSONObject("pdf").toString());
-        IO.writeString(BookCSS.syncFile, obj.getJSONObject("BookCSS").toString());
+        IO.writeString(AppProfile.syncState, obj.getJSONObject("pdf").toString());
+        IO.writeString(AppProfile.syncCSS, obj.getJSONObject("BookCSS").toString());
 
         AppState.get().loadIn(c);
         BookCSS.get().load(c);

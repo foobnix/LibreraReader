@@ -279,18 +279,18 @@
             android:text="Syncronization" />
 
         <TextView
-            android:layout_margin="4dip"
             android:id="@+id/syncFolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dip"
             android:text="Path: /storage/emulated/0/Librera" />
 
         <TextView
-            android:layout_margin="4dip"
             android:id="@+id/syncInfo"
             android:layout_width="wrap_content"
-            android:singleLine="true"
             android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:singleLine="true"
             android:text="User: Ivan Ivanenko (librera.reader@gmail.com)" />
 
         <CheckBox
@@ -322,6 +322,36 @@
             android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
             android:text="@string/general_settings" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="135dp"
+                android:text="@string/profile"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/onProfile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BETA" />
+
+            <ImageView
+                android:id="@+id/onProfileEdit"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_weight="0"
+                android:padding="3dip"
+                android:src="@drawable/glyphicons_685_article"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

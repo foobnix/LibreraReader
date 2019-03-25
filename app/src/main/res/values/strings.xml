@@ -537,4 +537,9 @@
    <string name="system_brightness">System</string>
    <string name="opening_books_in_the_specified_mode">Enable reading-mode presets</string>
    <string name="dark_oled">Dark OLED</string>
+    <string name="profile">Profile</string>
+    <string name="new_profile">New Profile</string>
+   <string name="main">Main</string>
+   <string name="do_you_want_to_switch_profile_">Do you want to switch profile?</string>
+
 </resources>

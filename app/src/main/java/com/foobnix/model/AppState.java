@@ -40,12 +40,10 @@ import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, Build.MODEL.replace(" ","_")+"-app-State.json");
+
+
     public String syncRootID;
-    public String syncLockID;
 
-
-    public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
@@ -560,14 +558,13 @@ public class AppState {
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
 
     public String searchPaths = Environment.getExternalStorageDirectory().getPath();
-    public String cachePath = new File(DOWNLOADS_DIR, "Librera/Cache").getPath();
-    public String downlodsPath = new File(DOWNLOADS_DIR, "Librera/Download").getPath();
-    public String ttsSpeakPath = new File(DOWNLOADS_DIR, "Librera/TTS").getPath();
-    public String backupPath = new File(DOWNLOADS_DIR, "Librera/Backup").getPath();
-    public String syncDropboxPath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
-    public String syncGdrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
-    public String syncOneDrivePath = new File(DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
-    public String playlistSyncPath = new File(AppsConfig.SYNC_FOLDER, "playlists").getPath();
+    public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
+    public String downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Download").getPath();
+    public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
+    public String backupPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Backup").getPath();
+    public String syncDropboxPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
+    public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
+    public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
     public String fileToDelete;
 
@@ -820,10 +817,11 @@ public class AppState {
     }
 
     private boolean isLoaded = false;
-
-
-    public void load(final Context a) {
+    public boolean loadFromProfile(final Context a) {
+        boolean init = isLoaded;
         try {
+
+
             if (!isLoaded) {
                 nameVerticalMode = a.getString(R.string.mode_vertical);
                 nameHorizontalMode = a.getString(R.string.mode_horizontally);
@@ -870,25 +868,22 @@ public class AppState {
                 }
 
                 loadIn(a);
-                BookCSS.get().load(a);
-                DragingPopup.loadCache(a);
-                PasswordState.get().load(a);
                 LOG.d("AppState Load lasta", lastClosedActivity);
+                isLoaded = true;
             } else {
                 LOG.d("AppState is Loaded", lastClosedActivity);
             }
-            isLoaded = true;
         } catch (Exception e) {
             LOG.e(e);
         }
+        return init;
     }
 
     public void loadIn(final Context a) {
         if (a == null) {
             return;
         }
-        IO.readObj(syncFile, instance);
-
+        IO.readObj(AppProfile.syncState, instance);
     }
 
     public static String keyToString(final List<Integer> list) {
@@ -933,7 +928,7 @@ public class AppState {
         if (currentHash != instance.hashCode) {
             LOG.d("Objects-save", "SAVE AppState");
             hashCode = currentHash;
-            IO.writeObjAsync(syncFile, instance);
+            IO.writeObjAsync(AppProfile.syncState, instance);
         }
     }
 

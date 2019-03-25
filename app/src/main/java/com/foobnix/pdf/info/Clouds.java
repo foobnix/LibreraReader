@@ -20,6 +20,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
@@ -616,7 +617,7 @@ public class Clouds {
     }
 
     public static boolean isLibreraSyncFile(String path) {
-        return path.startsWith(AppsConfig.SYNC_FOLDER_ROOT.getPath());
+        return path.startsWith(AppProfile.SYNC_FOLDER_BOOKS.getPath()) || new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path)).exists();
     }
 
     public static boolean showHideCloudImage(ImageView img, String path) {

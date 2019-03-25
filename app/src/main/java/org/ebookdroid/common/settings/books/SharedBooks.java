@@ -5,23 +5,21 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
-import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.ui2.AppDB;
 
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.List;
 
 public class SharedBooks {
 
-    public static final File syncProgress = new File(AppsConfig.SYNC_FOLDER, "app-Progress.json");
 
 
     public static synchronized void updateProgress(List<FileMeta> list) {
 
-        JSONObject obj = IO.readJsonObject(syncProgress);
+        JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
         for (FileMeta meta : list) {
             try {
                 final String fileName = ExtUtils.getFileName(meta.getPath());
@@ -44,7 +42,7 @@ public class SharedBooks {
 
     public static synchronized AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
-        return load(IO.readJsonObject(syncProgress), fileName);
+        return load(IO.readJsonObject(AppProfile.syncProgress), fileName);
 
     }
 
@@ -70,10 +68,10 @@ public class SharedBooks {
             LOG.d("SharedBooks-save", bs.path, hash);
 
             try {
-                JSONObject obj = IO.readJsonObject(syncProgress);
+                JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
                 final String fileName = ExtUtils.getFileName(bs.path);
                 obj.put(fileName, Objects.toJSONObject(bs));
-                IO.writeObjAsync(syncProgress, obj);
+                IO.writeObjAsync(AppProfile.syncProgress, obj);
             } catch (Exception e) {
                 LOG.e(e);
             }

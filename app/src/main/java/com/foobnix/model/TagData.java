@@ -4,18 +4,15 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.ui2.AppDB;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.Iterator;
 
 public class TagData {
 
-    public static final File syncTags = new File(AppsConfig.SYNC_FOLDER, "app-Tags.json");
 
 
     public static class Tag implements MyPath.RelativePath {
@@ -46,9 +43,9 @@ public class TagData {
 
     public static void saveTags(String path, String tags) {
         try {
-            JSONObject obj = IO.readJsonObject(syncTags);
+            JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
             obj.put(MyPath.toRelative(path), tags);
-            IO.writeObjAsync(syncTags, obj);
+            IO.writeObjAsync(AppProfile.syncTags, obj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -57,7 +54,7 @@ public class TagData {
     public static void restoreTags() {
         LOG.d("restoreTags");
 
-        JSONObject obj = IO.readJsonObject(syncTags);
+        JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
 
         final Iterator<String> keys = obj.keys();
 

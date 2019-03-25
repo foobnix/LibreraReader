@@ -6,6 +6,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppProfile;
 
 import org.json.JSONObject;
 
@@ -19,8 +20,6 @@ import java.util.Map;
 
 public class BookmarksData {
 
-    public static final File syncBookmarks = new File(AppsConfig.SYNC_FOLDER, "app-Bookmarks.json");
-
 
     final static BookmarksData instance = new BookmarksData();
 
@@ -32,10 +31,10 @@ public class BookmarksData {
     public void add(AppBookmark bookmark) {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text);
         try {
-            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             final String fileName = ExtUtils.getFileName(bookmark.path);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
-            IO.writeObjAsync(syncBookmarks, obj);
+            IO.writeObjAsync(AppProfile.syncBookmarks, obj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -46,11 +45,11 @@ public class BookmarksData {
         LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);
 
         try {
-            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             if (obj.has("" + bookmark.t)) {
                 obj.remove("" + bookmark.t);
             }
-            IO.writeObjAsync(syncBookmarks, obj);
+            IO.writeObjAsync(AppProfile.syncBookmarks, obj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -66,7 +65,7 @@ public class BookmarksData {
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
 
             final Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
@@ -101,7 +100,7 @@ public class BookmarksData {
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            JSONObject obj = IO.readJsonObject(syncBookmarks);
+            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
 
             final Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
@@ -122,6 +121,7 @@ public class BookmarksData {
         Collections.sort(all, BY_PERCENT);
         return all;
     }
+
     public boolean hasBookmark(String lastBookPath, int page, int pages) {
         //TODO Implement
         return false;
@@ -150,9 +150,8 @@ public class BookmarksData {
 
 
     public void cleanBookmarks() {
-        IO.writeObj(syncBookmarks.getPath(), "{}");
+        IO.writeObj(AppProfile.syncBookmarks.getPath(), "{}");
     }
-
 
 
 }

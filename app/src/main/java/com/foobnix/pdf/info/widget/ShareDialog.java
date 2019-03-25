@@ -18,6 +18,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
@@ -388,7 +389,7 @@ public class ShareDialog {
                     DialogsPlaylist.showPlaylistsDialog(a, null, file);
                 } else if (!isSyncronized && which == i++) {
 
-                    boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_BOOKS, file.getName()));
+                    boolean result = IO.copyFile(file, new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName()));
                     GFile.runSyncService(a);
                     TempHolder.get().listHash++;
                     if (result) {

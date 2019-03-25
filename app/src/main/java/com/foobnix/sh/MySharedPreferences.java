@@ -3,7 +3,7 @@ package com.foobnix.sh;
 import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.model.AppProfile;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ public class MySharedPreferences implements SharedPreferences {
     public MySharedPreferences(String name) {
         LOG.d("MySharedPreferences begin", name);
         ;
-        File root = AppsConfig.SYNC_FOLDER;
+        File root = AppProfile.SYNC_FOLDER;
         root.mkdirs();
 
         file = new File(root, name + ".json");

@@ -10,7 +10,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.model.AppState;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
@@ -18,6 +18,8 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
@@ -46,7 +48,11 @@ public class LibreraApp extends MultiDexApplication {
 
         LOG.isEnable = BuildConfig.LOG;
 
-        AppsConfig.init(this);
+        DragingPopup.loadCache(this);
+        PasswordState.get().load(this);
+
+        AppProfile.init(this);
+
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
             int initNative = StructuredText.initNative();
@@ -55,8 +61,8 @@ public class LibreraApp extends MultiDexApplication {
 
         TTSNotification.initChannels(this);
         Dips.init(this);
-        AppDB.get().open(this);
-        AppState.get().load(this);
+        AppDB.get().open(this, AppProfile.getCurrent(this));
+
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);

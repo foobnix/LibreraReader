@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class AppDB {
 
-    private static final String DB_NAME = "all-5";
+    public static final String DB_NAME = "all-5";
 
     private final static AppDB in = new AppDB();
 
@@ -156,12 +156,12 @@ public class AppDB {
 
     public boolean isOpen;
 
-    public void open(Context c) {
+    public void open(Context c, String appDB) {
         isOpen = false;
         if (!Android6.canWrite(c)) {
             return;
         }
-        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);
+        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, appDB);
 
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);

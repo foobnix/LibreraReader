@@ -48,6 +48,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
@@ -79,6 +80,7 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
@@ -156,7 +158,7 @@ public class PrefFragment2 extends UIFragment {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
         TextView syncFolder = inflate.findViewById(R.id.syncFolder);
-        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppsConfig.SYNC_FOLDER_ROOT.getPath()));
+        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppProfile.SYNC_FOLDER_ROOT.getPath()));
 
         syncFolder.setOnClickListener(new OnClickListener() {
             @Override
@@ -166,7 +168,7 @@ public class PrefFragment2 extends UIFragment {
                         .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
                 LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
-                EventBus.getDefault().post(new OpenDirMessage(AppsConfig.SYNC_FOLDER_ROOT.getPath()));
+                EventBus.getDefault().post(new OpenDirMessage(AppProfile.SYNC_FOLDER_ROOT.getPath()));
                 closeLeftMenu();
             }
         });
@@ -463,7 +465,7 @@ public class PrefFragment2 extends UIFragment {
             scrollView.setBackgroundColor(Color.BLACK);
         }
 
-        ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s", getString(R.string.product), AppsConfig.TXT_APP_NAME));
+        ((TextView) inflate.findViewById(R.id.section6)).setText(String.format("%s: %s", getString(R.string.product), Apps.getApplicationName(getActivity())));
         // ((TextView) findViewById(R.id.appName)).setText(AppsConfig.APP_NAME);
 
         try {
@@ -1937,6 +1939,41 @@ public class PrefFragment2 extends UIFragment {
 
         overlay = getActivity().findViewById(R.id.overlay);
 
+
+        TextView onProfile = inflate.findViewById(R.id.onProfile);
+        onProfile.setText(AppProfile.getCurrent(getActivity()));
+        TxtUtils.underlineTextView(onProfile);
+        onProfile.setOnClickListener(v -> {
+            MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
+
+            List<String> all = AppProfile.getAllProfiles();
+            for (String profile : all) {
+                popup.getMenu().add(profile).setOnMenuItemClickListener(menu -> {
+                    {
+                        AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                AppProfile.saveCurrent(getActivity(), profile);
+                                AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
+                                onTheme();
+                            }
+                        });
+
+                        return false;
+                    }
+                });
+            }
+            popup.show();
+
+        });
+
+        inflate.findViewById(R.id.onProfileEdit).setOnClickListener(v -> {
+                    AppProfile.showDialog(getActivity());
+                }
+        );
+
+
         return inflate;
 
     }
@@ -2086,7 +2123,7 @@ public class PrefFragment2 extends UIFragment {
         String string = getResources().getString(R.string.my_email).replace("<u>", "").replace("</u>", "");
         final String aEmailList[] = {string};
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList);
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, AppsConfig.TXT_APP_NAME + " " + Apps.getVersionName(getContext()));
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, Apps.getApplicationName(getContext()) + " " + Apps.getVersionName(getContext()));
         emailIntent.setType("plain/text");
         emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hi Support, ");
 

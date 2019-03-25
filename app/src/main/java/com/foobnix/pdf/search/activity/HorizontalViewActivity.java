@@ -49,6 +49,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
@@ -200,7 +201,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
-        AppState.get().load(this);
+
 
         // AppState.get().isCut = false;
         PageImageState.get().isShowCuttingLine = false;
@@ -1087,6 +1088,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
+        AppProfile.init(context);
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 

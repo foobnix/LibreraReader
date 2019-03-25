@@ -5,7 +5,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.ui2.AppDB;
@@ -21,9 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class AppData {
-
-    public static final File syncRecent = new File(AppsConfig.SYNC_FOLDER, "app-Recent.json");
-    public static final File syncFavorite = new File(AppsConfig.SYNC_FOLDER, "app-Favorite.json");
 
 
     private List<SimpleMeta> recent = new ArrayList<>();
@@ -50,13 +46,13 @@ public class AppData {
         }
         recent.remove(s);
         recent.add(s);
-        writeSimpleMeta(recent, syncRecent);
+        writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
     public void removeRecent(SimpleMeta s) {
         recent.remove(s);
-        writeSimpleMeta(recent, syncRecent);
+        writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("AppData removeRecent", s.getPath());
     }
 
@@ -64,33 +60,33 @@ public class AppData {
         favorites.remove(s);
         favorites.add(s);
         LOG.d("AppData addFavorite", s.getPath());
-        writeSimpleMeta(favorites, syncFavorite);
+        writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
 
     }
 
     public void removeFavorite(SimpleMeta s) {
         favorites.remove(s);
-        writeSimpleMeta(favorites, syncFavorite);
+        writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("AppData removeFavorite", s.getPath());
 
     }
 
     public void clearRecents() {
         recent.clear();
-        writeSimpleMeta(recent, syncRecent);
+        writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
     public void clearFavorites() {
         favorites.clear();
-        writeSimpleMeta(favorites, syncFavorite);
+        writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
 
     }
 
     public void loadFavorites() {
-        readSimpleMeta(favorites, syncFavorite, SimpleMeta.class);
+        readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
     }
 
     public List<FileMeta> getAllFavoriteFiles() {
@@ -134,7 +130,7 @@ public class AppData {
 
 
     public List<FileMeta> getAllRecent() {
-        readSimpleMeta(recent, syncRecent, SimpleMeta.class);
+        readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
             if (!new File(s.getPath()).isFile()) {

@@ -48,10 +48,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            buildConfigField "boolean", "LOG", "true"
+            buildConfigField "boolean", "LOG", "false"
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         debug {
             buildConfigField "boolean", "LOG", "true"
+            buildConfigField "boolean", "IS_BETA", "false"
         }
 
 
@@ -89,7 +91,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
-            //buildConfigField "boolean", "LOG", "true"
+            buildConfigField "boolean", "IS_BETA", "true"
         }
         librera {
             dimension "version"

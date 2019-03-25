@@ -37,6 +37,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
@@ -105,6 +106,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onNewIntent(final Intent intent) {
+        AppProfile.init(this);
         LOG.d(TAG, "onNewIntent");
         // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
@@ -185,6 +187,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
+        AppProfile.init(context);
         if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && AppState.get().appFontScale == 1.0f) {
             LOG.d("attachBaseContext skip");
             super.attachBaseContext(context);
@@ -200,6 +203,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {

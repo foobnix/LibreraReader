@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -91,7 +92,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        AppState.get().load(context);
+        AppProfile.init(context);
         for (int widgetId : appWidgetIds) {
             RemoteViews remoteViews = null;
             if (Build.VERSION.SDK_INT >= 16 && AppState.get().widgetType == AppState.WIDGET_GRID) {

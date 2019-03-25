@@ -28,6 +28,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -72,7 +73,8 @@ public class TTSService extends Service {
         PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = myPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Librera:TTSServiceLock");
 
-        AppState.get().load(getApplicationContext());
+        AppProfile.init(getApplicationContext());
+
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         if (Build.VERSION.SDK_INT >= 26) {
