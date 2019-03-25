@@ -14,7 +14,6 @@ import java.util.Iterator;
 public class TagData {
 
 
-
     public static class Tag implements MyPath.RelativePath {
         public String path;
         public String tags;
@@ -62,6 +61,9 @@ public class TagData {
             final String key = keys.next();
             Tag tag = new Tag();
             try {
+                if (!obj.has(key)) {
+                    continue;
+                }
                 Objects.loadFromJson(tag, obj.getJSONObject(key));
             } catch (JSONException e) {
                 LOG.e(e);

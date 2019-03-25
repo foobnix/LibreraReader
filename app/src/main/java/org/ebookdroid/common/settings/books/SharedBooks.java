@@ -16,7 +16,6 @@ import java.util.List;
 public class SharedBooks {
 
 
-
     public static synchronized void updateProgress(List<FileMeta> list) {
 
         JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
@@ -49,8 +48,13 @@ public class SharedBooks {
     public static synchronized AppBook load(JSONObject obj, String fileName) {
         AppBook bs = new AppBook(fileName);
         try {
+
             LOG.d("SharedBooks-load", bs.path);
-            final JSONObject jsonObject = obj.getJSONObject(ExtUtils.getFileName(fileName));
+            final String key = ExtUtils.getFileName(fileName);
+            if (!obj.has(key)) {
+                return bs;
+            }
+            final JSONObject jsonObject = obj.getJSONObject(key);
             Objects.loadFromJson(bs, jsonObject);
         } catch (Exception e) {
             LOG.e(e);

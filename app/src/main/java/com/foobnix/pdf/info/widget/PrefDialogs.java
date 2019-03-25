@@ -181,6 +181,7 @@ public class PrefDialogs {
                     try {
                         ExportConverter.covertJSONtoNew(activity, new File(result1));
 
+
                         activity.finish();
                         MainTabs2.startActivity(activity, TempHolder.get().currentTab);
 

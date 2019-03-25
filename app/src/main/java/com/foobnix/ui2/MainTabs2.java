@@ -245,7 +245,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setEnabled(GoogleSignIn.getLastSignedInAccount(this) != null);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -322,23 +321,33 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             @Override
             public void onDrawerStateChanged(int arg0) {
+                LOG.d("drawerLayout-onDrawerStateChanged");
+
             }
 
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
-
+                LOG.d("drawerLayout-onDrawerSlide");
             }
 
             @Override
             public void onDrawerOpened(View arg0) {
-                // TODO Auto-generated method stub
+                LOG.d("drawerLayout-onDrawerOpened");
+                if(AppState.get().isEnableGdrive) {
+                    swipeRefreshLayout.setEnabled(false);
+                }
 
             }
 
             @Override
             public void onDrawerClosed(View arg0) {
+                LOG.d("drawerLayout-onDrawerClosed");
                 try {
                     tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+
+                    if(AppState.get().isEnableGdrive) {
+                        swipeRefreshLayout.setEnabled(true);
+                    }
                 } catch (Exception e) {
                     LOG.e(e);
                 }
@@ -554,6 +563,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         AppState.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
+        swipeRefreshLayout.setEnabled(AppState.get().isEnableGdrive && GoogleSignIn.getLastSignedInAccount(this) != null);
 
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
