@@ -26,7 +26,9 @@ public class AppsConfig {
     //public static final File SYNC_FOLDER = new File(Environment.getExternalStorageDirectory(), "Librera/sync/"+ Build.MODEL);
     //public static final File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
     public static final File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory().getPath(), "Librera");
-    public static final File SYNC_FOLDER = new File(SYNC_FOLDER_ROOT, "sync/BETA");
+    public static final File SYNC_FOLDER = new File(SYNC_FOLDER_ROOT, "profile.BETA");
+    public static final File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER, "Books");
+
 
 
     public static boolean IS_BETA;

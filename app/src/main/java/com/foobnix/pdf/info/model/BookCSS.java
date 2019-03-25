@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.model;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Environment;
 
 import com.foobnix.android.utils.IO;
@@ -34,7 +35,7 @@ import java.util.Locale;
 
 public class BookCSS {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-Css.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, Build.MODEL.replace(" ","_")+"-app-Css.json");
 
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";

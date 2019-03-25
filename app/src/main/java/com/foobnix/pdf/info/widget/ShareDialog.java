@@ -388,7 +388,7 @@ public class ShareDialog {
                     DialogsPlaylist.showPlaylistsDialog(a, null, file);
                 } else if (!isSyncronized && which == i++) {
 
-                    boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_ROOT, file.getName()));
+                    boolean result = IO.copyFile(file, new File(AppsConfig.SYNC_FOLDER_BOOKS, file.getName()));
                     GFile.runSyncService(a);
                     TempHolder.get().listHash++;
                     if (result) {

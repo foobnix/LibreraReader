@@ -92,7 +92,7 @@ public class GFile {
             GoogleSignInOptions signInOptions =
                     new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                             .requestEmail()
-                            .requestScopes(new Scope(DriveScopes.DRIVE))
+                            .requestScopes(new Scope(MY_SCOPE))
                             .build();
             GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
 
@@ -102,7 +102,7 @@ public class GFile {
 
             GoogleAccountCredential credential =
                     GoogleAccountCredential.usingOAuth2(
-                            c, Collections.singleton(DriveScopes.DRIVE));
+                            c, Collections.singleton(MY_SCOPE));
             credential.setSelectedAccount(account.getAccount());
             googleDriveService =
                     new com.google.api.services.drive.Drive.Builder(
@@ -130,7 +130,7 @@ public class GFile {
 
         GoogleAccountCredential credential =
                 GoogleAccountCredential.usingOAuth2(
-                        c, Collections.singleton(DriveScopes.DRIVE));
+                        c, Collections.singleton(MY_SCOPE));
         credential.setSelectedAccount(account.getAccount());
         googleDriveService =
                 new com.google.api.services.drive.Drive.Builder(

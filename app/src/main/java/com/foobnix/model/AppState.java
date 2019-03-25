@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AppState {
 
-    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, "app-State.json");
+    public static final File syncFile = new File(AppsConfig.SYNC_FOLDER, Build.MODEL.replace(" ","_")+"-app-State.json");
     public String syncRootID;
     public String syncLockID;
 
