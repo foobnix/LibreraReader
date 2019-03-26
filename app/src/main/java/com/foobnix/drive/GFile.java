@@ -11,8 +11,8 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.BooksService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -387,21 +387,21 @@ public class GFile {
             debugOut = "";
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
-            if (TxtUtils.isEmpty(AppState.get().syncRootID)) {
+            if (TxtUtils.isEmpty(BookCSS.get().syncRootID)) {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null) {
                     syncRoot = GFile.createFolder("root", "Librera");
                 }
-                AppState.get().syncRootID = syncRoot.getId();
-                AppState.get().save(c);
+                BookCSS.get().syncRootID = syncRoot.getId();
+                BookCSS.get().save(c);
             }
 
 
             debugOut += "\nBegin";
             LOG.d("Begin");
 
-            sync(AppState.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
+            sync(BookCSS.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
 
             //updateLock(AppState.get().syncRootID, beginTime);
 
@@ -532,7 +532,7 @@ public class GFile {
             return SKIP;
         }
 
-        if (file.getId().equals(AppState.get().syncRootID)) {
+        if (file.getId().equals(BookCSS.get().syncRootID)) {
             return "";
         }
 
@@ -541,7 +541,7 @@ public class GFile {
 
 
     public static void runSyncService(Activity a) {
-        if (AppState.get().isEnableGdrive && !BooksService.isRunning) {
+        if (BookCSS.get().isEnableGdrive && !BooksService.isRunning) {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
             if (account != null) {
                 GFile.buildDriveService(a);

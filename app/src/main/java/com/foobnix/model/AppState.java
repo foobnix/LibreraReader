@@ -37,9 +37,6 @@ import java.util.concurrent.TimeUnit;
 public class AppState {
 
 
-
-    public String syncRootID;
-
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
@@ -306,9 +303,6 @@ public class AppState {
     public int ttsPauseDuration = 350;
 
     public int transparencyUI = 245;
-
-
-    public boolean isEnableGdrive;
 
 
     @IgnoreHashCode

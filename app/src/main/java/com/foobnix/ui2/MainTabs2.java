@@ -165,8 +165,9 @@ public class MainTabs2 extends AdsFragmentActivity {
                     })
                     .addOnFailureListener(exception ->
                             {
+                                LOG.e(exception);
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                AppState.get().isEnableGdrive = false;
+                                BookCSS.get().isEnableGdrive = false;
                                 swipeRefreshLayout.setEnabled(false);
 
                             }
@@ -334,7 +335,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
-                if(AppState.get().isEnableGdrive) {
+                if (BookCSS.get().isEnableGdrive) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -346,7 +347,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 try {
                     tabFragments.get(pager.getCurrentItem()).onSelectFragment();
 
-                    if(AppState.get().isEnableGdrive) {
+                    if (BookCSS.get().isEnableGdrive) {
                         swipeRefreshLayout.setEnabled(true);
                     }
                 } catch (Exception e) {
@@ -494,7 +495,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
         try {
@@ -504,7 +504,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             } else {
                 fab.setVisibility(View.GONE);
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(this,"Synchronized",Toast.LENGTH_LONG).show();
+                final Toast to = Toast.makeText(this, "Synchronized", Toast.LENGTH_LONG);
+                to.setGravity(Gravity.TOP, 0, Dips.DP_25);
+                to.show();
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -564,7 +566,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         BookCSS.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-        swipeRefreshLayout.setEnabled(AppState.get().isEnableGdrive && GoogleSignIn.getLastSignedInAccount(this) != null);
+        swipeRefreshLayout.setEnabled(BookCSS.get().isEnableGdrive && GoogleSignIn.getLastSignedInAccount(this) != null);
 
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
@@ -710,7 +712,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-            if(AppState.get().isEnableGdrive) {
+            if (BookCSS.get().isEnableGdrive) {
                 swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
 

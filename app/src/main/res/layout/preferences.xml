@@ -324,7 +324,7 @@
             android:text="@string/general_settings" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
             android:gravity="center_vertical">
@@ -332,6 +332,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:minWidth="135dp"
                 android:text="@string/profile"
                 android:textStyle="bold" />
@@ -341,14 +342,15 @@
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="BETA" />
 
             <ImageView
                 android:id="@+id/onProfileEdit"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:padding="3dip"
+                android:padding="8dip"
                 android:src="@drawable/glyphicons_685_article"
                 android:tint="@color/tint_gray" />
         </LinearLayout>

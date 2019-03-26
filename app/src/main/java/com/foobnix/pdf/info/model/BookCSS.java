@@ -88,6 +88,10 @@ public class BookCSS {
 
     public String lastBookLang = "";
 
+    public boolean isEnableGdrive;
+
+    public String syncRootID;
+
 
 
     public boolean isTextFormat() {

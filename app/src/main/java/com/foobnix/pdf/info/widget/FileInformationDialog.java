@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
@@ -564,7 +565,7 @@ public class FileInformationDialog {
                         @Override
                         protected Boolean doInBackground(Object... objects) {
                             try {
-                                GFile.deleteBook(AppState.get().syncRootID, file.getName());
+                                GFile.deleteBook(BookCSS.get().syncRootID, file.getName());
                             } catch (Exception e) {
                                 LOG.e(e);
                                 return false;

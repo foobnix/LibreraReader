@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -118,7 +120,7 @@ public class AppProfile {
     }
 
 
-    public static void showDialog(Activity a) {
+    public static void showDialog(Activity a, ResultResponse<String> onclick) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         // builder.setTitle(R.string.tag);
@@ -187,6 +189,14 @@ public class AppProfile {
         });
 
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onclick.onResultRecive(profiles.get(position));
+            }
+        });
+
         builder.setView(inflate);
 
         builder.setNegativeButton(R.string.close, new AlertDialog.OnClickListener() {

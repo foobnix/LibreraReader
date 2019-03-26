@@ -288,7 +288,7 @@ public class ShareDialog {
 
         final boolean isSyncronized = Clouds.isLibreraSyncFile(file);
         if (!isSyncronized) {
-            items.add("Synchronize");
+            items.add("Add to Cloud (Synchronize)");
         }
 
         if (isShowInfo) {

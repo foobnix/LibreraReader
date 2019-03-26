@@ -176,14 +176,14 @@ public class PrefFragment2 extends UIFragment {
         syncInfo = inflate.findViewById(R.id.syncInfo);
 
         final CheckBox isEnableGdrive = (CheckBox) inflate.findViewById(R.id.isEnableGdrive);
-        isEnableGdrive.setChecked(AppState.get().isEnableGdrive);
+        isEnableGdrive.setChecked(BookCSS.get().isEnableGdrive);
         isEnableGdrive.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 
-                AppState.get().isEnableGdrive = isChecked;
+                BookCSS.get().isEnableGdrive = isChecked;
                 if (isChecked) {
                     GFile.init(getActivity());
                     updateSyncInfo(null);
@@ -194,8 +194,8 @@ public class PrefFragment2 extends UIFragment {
                         @Override
                         public void run() {
                             syncInfo.setText("");
-                            AppState.get().isEnableGdrive = false;
-                            AppState.get().syncRootID = "";
+                            BookCSS.get().isEnableGdrive = false;
+                            BookCSS.get().syncRootID = "";
                             GFile.logout(getActivity());
                             updateSyncInfo(null);
 
@@ -203,7 +203,7 @@ public class PrefFragment2 extends UIFragment {
                     }, new Runnable() {
                         @Override
                         public void run() {
-                            AppState.get().isEnableGdrive = true;
+                            BookCSS.get().isEnableGdrive = true;
                             isEnableGdrive.setChecked(true);
                         }
                     });
@@ -1950,15 +1950,18 @@ public class PrefFragment2 extends UIFragment {
             for (String profile : all) {
                 popup.getMenu().add(profile).setOnMenuItemClickListener(menu -> {
                     {
-                        AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+                        if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
 
-                            @Override
-                            public void run() {
-                                AppProfile.saveCurrent(getActivity(), profile);
-                                AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
-                                onTheme();
-                            }
-                        });
+                            AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    AppProfile.saveCurrent(getActivity(), profile);
+                                    AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
+                                    onTheme();
+                                }
+                            });
+                        }
 
                         return false;
                     }
@@ -1969,7 +1972,20 @@ public class PrefFragment2 extends UIFragment {
         });
 
         inflate.findViewById(R.id.onProfileEdit).setOnClickListener(v -> {
-                    AppProfile.showDialog(getActivity());
+                    AppProfile.showDialog(getActivity(), profile -> {
+                        if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
+                            AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    AppProfile.saveCurrent(getActivity(), profile);
+                                    AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
+                                    onTheme();
+                                }
+                            });
+                        }
+                        return false;
+                    });
                 }
         );
 
