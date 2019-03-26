@@ -540,6 +540,5 @@
     <string name="profile">Profile</string>
     <string name="new_profile">New Profile</string>
    <string name="main">Main</string>
-   <string name="do_you_want_to_switch_profile_">Do you want to switch profile?</string>
-
+   <string name="do_you_want_to_switch_profile_">Switch to another profile?</string>
 </resources>
