@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.view.KeyEvent;
 
 import com.foobnix.android.utils.Apps;
@@ -18,7 +17,6 @@ import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -27,7 +25,6 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.ui2.AppDB;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -232,7 +229,6 @@ public class AppState {
     // Color.parseColor(STYLE_COLORS.get(STYLE_COLORS.size() - 2));
     public int userColor = Color.MAGENTA;
 
-    public String pathSAF = "";
 
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
 
@@ -553,25 +549,9 @@ public class AppState {
 
     public boolean isShowCloudsLine = true;
 
-    public static final String LIBRERA_CLOUD_DROPBOX = "Librera.Cloud-Dropbox";
-    public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
-    public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
-
-    public String searchPaths = Environment.getExternalStorageDirectory().getPath();
-    public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
-    public String downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Download").getPath();
-    public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
-    public String backupPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Backup").getPath();
-    public String syncDropboxPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
-    public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
-    public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
     public String fileToDelete;
 
-    @IgnoreCalculateHashCode
-    public String lastBookPath;
-
-    public String mp3BookPath;
     public int mp3seek = 0;
 
     @IgnoreCalculateHashCode
@@ -636,13 +616,7 @@ public class AppState {
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
 
-    @IgnoreCalculateHashCode
-    public String lastClosedActivity;
 
-    @IgnoreCalculateHashCode
-    public String lastMode;
-
-    public String dirLastPath;
 
     public String versionNew = "";
 
@@ -848,30 +822,28 @@ public class AppState {
                 }
 
 
-                try {
-                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
-
-                    if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
-                        extFolders.add(Environment.getExternalStorageDirectory().getPath());
-                    }
-                    if (!extFolders.contains(ExtUtils.getSDPath())) {
-                        String sdPath = ExtUtils.getSDPath();
-                        if (sdPath != null) {
-                            extFolders.add(sdPath);
-                        }
-                    }
-                    //searchPaths = TxtUtils.joinList(",", extFolders);
-                    //searchPaths = Environment.getExternalStorageDirectory().getPath();
-                    LOG.d("searchPaths", searchPaths);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
+//                try {
+//                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
+//
+//                    if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
+//                        extFolders.add(Environment.getExternalStorageDirectory().getPath());
+//                    }
+//                    if (!extFolders.contains(ExtUtils.getSDPath())) {
+//                        String sdPath = ExtUtils.getSDPath();
+//                        if (sdPath != null) {
+//                            extFolders.add(sdPath);
+//                        }
+//                    }
+//                    //searchPaths = TxtUtils.joinList(",", extFolders);
+//                    //searchPaths = Environment.getExternalStorageDirectory().getPath();
+//                    LOG.d("searchPaths", searchPaths);
+//                } catch (Exception e) {
+//                    LOG.e(e);
+//                }
 
                 loadIn(a);
-                LOG.d("AppState Load lasta", lastClosedActivity);
                 isLoaded = true;
             } else {
-                LOG.d("AppState is Loaded", lastClosedActivity);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -932,12 +904,6 @@ public class AppState {
         }
     }
 
-    public boolean isTextFormat() {
-        try {
-            return ExtUtils.isTextFomat(lastBookPath);
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
 
 }

@@ -51,6 +51,7 @@ import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -314,7 +315,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
+                        displayAnyPath(AppProfile.SYNC_FOLDER_BOOKS.getPath());
                         return false;
                     }
                 }).setIcon(R.mipmap.icon_pdf_reader).active(true);
@@ -322,7 +323,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 // resources
 
                 if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
-                    List<String> safs = StringDB.asList(AppState.get().pathSAF);
+                    List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
 
                     for (final String saf : safs) {
                         String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
@@ -337,7 +338,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pathSAF = StringDB.delete(AppState.get().pathSAF, saf);
+                                BookCSS.get().pathSAF = StringDB.delete(BookCSS.get().pathSAF, saf);
                                 return false;
                             }
                         }).setIcon(R.drawable.glyphicons_146_folder_plus);
@@ -616,17 +617,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         public void onClick(View v) {
             if (fragmentType == TYPE_SELECT_FOLDER) {
 
-                if (ExtUtils.isExteralSD(AppState.get().dirLastPath) || new File(AppState.get().dirLastPath).canRead()) {
-                    onPositiveAction.onResultRecive(AppState.get().dirLastPath);
+                if (ExtUtils.isExteralSD(BookCSS.get().dirLastPath) || new File(BookCSS.get().dirLastPath).canRead()) {
+                    onPositiveAction.onResultRecive(BookCSS.get().dirLastPath);
                 } else {
                     Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                 }
             } else if (fragmentType == TYPE_SELECT_FILE) {
-                onPositiveAction.onResultRecive(AppState.get().dirLastPath + "/" + editPath.getText());
+                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + editPath.getText());
             } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
                 onPositiveAction.onResultRecive(editPath.getText().toString());
             } else if (fragmentType == TYPE_CREATE_FILE) {
-                onPositiveAction.onResultRecive(AppState.get().dirLastPath + "/" + editPath.getText());
+                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + editPath.getText());
             }
 
         }
@@ -641,7 +642,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         } catch (Exception e) {
             LOG.e(e);
         }
-        String path = AppState.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : AppState.get().dirLastPath;
+        String path = BookCSS.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : BookCSS.get().dirLastPath;
         if (ExtUtils.isExteralSD(path)) {
             return path;
         }
@@ -801,8 +802,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     boolean isRestorePos = false;
 
     public boolean onBackAction() {
-        if (ExtUtils.isExteralSD(AppState.get().dirLastPath)) {
-            String path = AppState.get().dirLastPath;
+        if (ExtUtils.isExteralSD(BookCSS.get().dirLastPath)) {
+            String path = BookCSS.get().dirLastPath;
             LOG.d("pathBack before", path);
             if (path.contains("%2F")) {
                 path = path.substring(0, path.lastIndexOf("%2F"));
@@ -843,7 +844,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         LOG.d("Display-path", path);
         isRestorePos = false;
         displayPath = path;
-        AppState.get().dirLastPath = path;
+        BookCSS.get().dirLastPath = path;
 
         populate();
     }

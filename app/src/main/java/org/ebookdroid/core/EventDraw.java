@@ -12,6 +12,7 @@ import android.text.TextPaint;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import org.ebookdroid.LibreraApp;
@@ -125,7 +126,7 @@ public class EventDraw implements IEvent {
 
         // TODO Draw there
         // drawLine(page);
-        if (!AppState.get().isTextFormat()) {
+        if (!BookCSS.get().isTextFormat()) {
         drawPageLinks(page);
         }
         // drawSomething(page);

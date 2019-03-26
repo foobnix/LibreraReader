@@ -43,6 +43,7 @@ import com.foobnix.pdf.info.OutlineHelper.Info;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BookmarkPanel;
@@ -358,7 +359,7 @@ public class DocumentWrapperUI {
     public void closeAndRunList() {
         EventBus.getDefault().unregister(this);
 
-        AppState.get().lastClosedActivity = null;
+        BookCSS.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

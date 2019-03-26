@@ -33,6 +33,47 @@ import java.util.List;
 import java.util.Locale;
 
 public class BookCSS {
+    /// PATHS
+
+    public static final String LIBRERA_CLOUD_DROPBOX = "Librera.Cloud-Dropbox";
+    public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
+    public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
+
+    public String searchPaths = Environment.getExternalStorageDirectory().getPath();
+    public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
+    public String downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Download").getPath();
+    public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
+    public String backupPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Backup").getPath();
+    public String syncDropboxPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
+    public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
+    public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
+
+    @IgnoreCalculateHashCode
+    public String lastBookPath;
+
+    public String mp3BookPath;
+
+    @IgnoreCalculateHashCode
+    public String lastClosedActivity;
+
+    @IgnoreCalculateHashCode
+    public String lastMode;
+
+    public String dirLastPath;
+
+    public String pathSAF = "";
+
+
+    public boolean isTextFormat() {
+        try {
+            return ExtUtils.isTextFomat(lastBookPath);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    ///
+
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
 
@@ -298,8 +339,8 @@ public class BookCSS {
 
     public List<String> getAllFonts() {
         List<String> all = new ArrayList<String>();
-        if (AppState.get().lastBookPath != null) {
-            all.addAll(getAllFontsFromFolder(new File(AppState.get().lastBookPath).getParent()));
+        if (BookCSS.get().lastBookPath != null) {
+            all.addAll(getAllFontsFromFolder(new File(BookCSS.get().lastBookPath).getParent()));
         }
         all.add(ARIAL);
         all.add(COURIER);
@@ -318,8 +359,8 @@ public class BookCSS {
 
     public List<FontPack> getAllFontsPacks() {
         List<FontPack> all = new ArrayList<FontPack>();
-        if (AppState.get().lastBookPath != null) {
-            all.addAll(getAllFontsFiltered(new File(AppState.get().lastBookPath).getParent()));
+        if (BookCSS.get().lastBookPath != null) {
+            all.addAll(getAllFontsFiltered(new File(BookCSS.get().lastBookPath).getParent()));
         }
         all.add(new FontPack(ARIAL));
         all.add(new FontPack(COURIER));

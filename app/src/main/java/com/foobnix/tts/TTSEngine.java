@@ -20,6 +20,7 @@ import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
 
@@ -97,7 +98,7 @@ public class TTSEngine {
         synchronized (helpObject) {
 
             if (TTSEngine.get().isMp3() && mp == null) {
-                TTSEngine.get().loadMP3(AppState.get().mp3BookPath);
+                TTSEngine.get().loadMP3(BookCSS.get().mp3BookPath);
             }
 
             if (ttsEngine != null) {
@@ -228,7 +229,7 @@ public class TTSEngine {
     }
 
     public void speakToFile(final DocumentController controller, final ResultResponse<String> info) {
-        File dirFolder = new File(AppState.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
+        File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
         if (!dirFolder.exists()) {
             dirFolder.mkdirs();
         }
@@ -287,10 +288,10 @@ public class TTSEngine {
 
     public static void fastTTSBookmakr(Context c, float percent, int pages) {
         int page = AppState.get().lastBookPage + 1;
-        boolean hasBookmark = BookmarksData.get().hasBookmark(AppState.get().lastBookPath, page, pages);
+        boolean hasBookmark = BookmarksData.get().hasBookmark(BookCSS.get().lastBookPath, page, pages);
 
         if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(AppState.get().lastBookPath, c.getString(R.string.fast_bookmark), percent);
+            final AppBookmark bookmark = new AppBookmark(BookCSS.get().lastBookPath, c.getString(R.string.fast_bookmark), percent);
             BookmarksData.get().add(bookmark);
 
         }
@@ -428,7 +429,7 @@ public class TTSEngine {
     public boolean isMp3PlayPause() {
         if (isMp3()) {
             if (mp == null) {
-                loadMP3(AppState.get().mp3BookPath);
+                loadMP3(BookCSS.get().mp3BookPath);
             }
             if (mp.isPlaying()) {
                 mp.pause();
@@ -454,7 +455,7 @@ public class TTSEngine {
     }
 
     public boolean isMp3() {
-        return TxtUtils.isNotEmpty(AppState.get().mp3BookPath);
+        return TxtUtils.isNotEmpty(BookCSS.get().mp3BookPath);
     }
 
     public void seekTo(int i) {

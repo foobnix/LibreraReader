@@ -22,6 +22,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
@@ -344,11 +345,11 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         try {
             String file = a.getIntent().getData().getPath();
 
-            AppState.get().lastBookPath = file;
-            AppState.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
-            AppState.get().lastMode = VerticalViewActivity.class.getSimpleName();
+            BookCSS.get().lastBookPath = file;
+            BookCSS.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
+            BookCSS.get().lastMode = VerticalViewActivity.class.getSimpleName();
 
-            LOG.d("lasta save", AppState.get().lastClosedActivity);
+            LOG.d("lasta save", BookCSS.get().lastClosedActivity);
 
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(file)) {

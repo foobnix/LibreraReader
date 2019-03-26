@@ -161,12 +161,12 @@ public class BooksService extends IntentService {
                 }
                 sendFinishMessage();
 
-                LOG.d("BooksService , searchDate", AppState.get().searchDate, AppState.get().searchPaths);
+                LOG.d("BooksService , searchDate", AppState.get().searchDate, BookCSS.get().searchPaths);
                 if (AppState.get().searchDate != 0) {
 
                     List<FileMeta> localMeta = new LinkedList<FileMeta>();
 
-                    for (final String path : AppState.get().searchPaths.split(",")) {
+                    for (final String path : BookCSS.get().searchPaths.split(",")) {
                         if (path != null && path.trim().length() > 0) {
                             final File root = new File(path);
                             if (root.isDirectory()) {
@@ -217,7 +217,7 @@ public class BooksService extends IntentService {
 
                 handler.post(timer);
 
-                for (final String path : AppState.get().searchPaths.split(",")) {
+                for (final String path : BookCSS.get().searchPaths.split(",")) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {

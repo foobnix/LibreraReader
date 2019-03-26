@@ -65,7 +65,14 @@ public class BookmarksData {
         List<AppBookmark> all = new ArrayList<>();
 
         try {
+            if(!AppProfile.syncBookmarks.isFile()){
+                return all;
+            }
             JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
+
+            if(!AppProfile.syncBookmarks.isFile()){
+                return all;
+            }
 
             final Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {

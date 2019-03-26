@@ -151,7 +151,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
         bookPath = getBookPathFromActivity(activity);
 
-        AppState.get().lastBookPath = bookPath;
+        BookCSS.get().lastBookPath = bookPath;
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {

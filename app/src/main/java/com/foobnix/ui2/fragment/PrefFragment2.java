@@ -1328,7 +1328,7 @@ public class PrefFragment2 extends UIFragment {
         initKeys();
 
         searchPaths = (TextView) inflate.findViewById(R.id.searchPaths);
-        searchPaths.setText(TxtUtils.underline(AppState.get().searchPaths.replace(",", "<br>")));
+        searchPaths.setText(TxtUtils.underline(BookCSS.get().searchPaths.replace(",", "<br>")));
         searchPaths.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -1393,16 +1393,16 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView downloadFolder = (TextView) inflate.findViewById(R.id.downloadFolder);
-        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
+        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
         downloadFolder.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                        AppState.get().downlodsPath = nPath;
-                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
+                        BookCSS.get().downlodsPath = nPath;
+                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -1411,16 +1411,16 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView syncPath = (TextView) inflate.findViewById(R.id.syncPath);
-        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(AppState.get().syncDropboxPath));
+        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
         syncPath.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().syncDropboxPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().syncDropboxPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                        AppState.get().syncDropboxPath = nPath;
-                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(AppState.get().syncDropboxPath));
+                        BookCSS.get().syncDropboxPath = nPath;
+                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -1429,16 +1429,16 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView ttsFolder = (TextView) inflate.findViewById(R.id.ttsFolder);
-        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(AppState.get().ttsSpeakPath));
+        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
         ttsFolder.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                        AppState.get().ttsSpeakPath = nPath;
-                        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(AppState.get().ttsSpeakPath));
+                        BookCSS.get().ttsSpeakPath = nPath;
+                        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -1447,16 +1447,16 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView backupPath = (TextView) inflate.findViewById(R.id.backupFolder);
-        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(AppState.get().backupPath));
+        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
         backupPath.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().backupPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().backupPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                        AppState.get().backupPath = nPath;
-                        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(AppState.get().backupPath));
+                        BookCSS.get().backupPath = nPath;
+                        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
                         dialog.dismiss();
                         return false;
                     }
@@ -2025,13 +2025,13 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onFolderConfigDialog() {
-        AppState.get().searchPaths = AppState.get().searchPaths.replace("//", "/");
+        BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
 
             @Override
             public void run() {
-                AppState.get().searchPaths = AppState.get().searchPaths.replace("//", "/");
-                searchPaths.setText(TxtUtils.underline(AppState.get().searchPaths.replace(",", "<br>")));
+                BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
+                searchPaths.setText(TxtUtils.underline(BookCSS.get().searchPaths.replace(",", "<br>")));
                 saveChanges();
                 LOG.d("Save Changes", 2);
             }

@@ -16,6 +16,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.model.AnnotationType;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
@@ -218,7 +219,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
             final int[] bufferarray = new int[width * height];
 
-            if (AppState.get().isTextFormat()) {
+            if (BookCSS.get().isTextFormat()) {
                 int color = MagicHelper.getBgColor();
                 int r = Color.red(color);
                 int g = Color.green(color);

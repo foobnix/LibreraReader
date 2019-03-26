@@ -66,7 +66,7 @@ public class PrefDialogs {
     public static void chooseFolderDialog(final FragmentActivity a, final Runnable onChanges, final Runnable onScan) {
 
         final PathAdapter recentAdapter = new PathAdapter();
-        recentAdapter.setPaths(AppState.get().searchPaths);
+        recentAdapter.setPaths(BookCSS.get().searchPaths);
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(R.string.scan_device_for_new_books);
@@ -87,7 +87,7 @@ public class PrefDialogs {
         builder.setNeutralButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                ChooserDialogFragment.chooseFolder(a, AppState.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                ChooserDialogFragment.chooseFolder(a, BookCSS.get().dirLastPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
 
@@ -97,7 +97,7 @@ public class PrefDialogs {
                         }
                         boolean isExists = false;
                         String existPath = "";
-                        for (String str : AppState.get().searchPaths.split(",")) {
+                        for (String str : BookCSS.get().searchPaths.split(",")) {
                             if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
                                 isExists = true;
                                 existPath = str;
@@ -109,10 +109,10 @@ public class PrefDialogs {
                         } else if (isExists) {
                             Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, existPath, a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
                         } else {
-                            if (AppState.get().searchPaths.endsWith(",")) {
-                                AppState.get().searchPaths = AppState.get().searchPaths + "" + nPath;
+                            if (BookCSS.get().searchPaths.endsWith(",")) {
+                                BookCSS.get().searchPaths = BookCSS.get().searchPaths + "" + nPath;
                             } else {
-                                AppState.get().searchPaths = AppState.get().searchPaths + "," + nPath;
+                                BookCSS.get().searchPaths = BookCSS.get().searchPaths + "," + nPath;
                             }
                         }
                         dialog.dismiss();
@@ -137,18 +137,18 @@ public class PrefDialogs {
             @Override
             public boolean onResultRecive(Uri result) {
                 String path = result.getPath();
-                LOG.d("TEST", "Remove " + AppState.get().searchPaths);
+                LOG.d("TEST", "Remove " + BookCSS.get().searchPaths);
                 LOG.d("TEST", "Remove " + path);
                 StringBuilder builder = new StringBuilder();
-                for (String str : AppState.get().searchPaths.split(",")) {
+                for (String str : BookCSS.get().searchPaths.split(",")) {
                     if (str != null && str.trim().length() > 0 && !str.equals(path)) {
                         builder.append(str);
                         builder.append(",");
                     }
                 }
-                AppState.get().searchPaths = builder.toString();
-                LOG.d("TEST", "Remove " + AppState.get().searchPaths);
-                recentAdapter.setPaths(AppState.get().searchPaths);
+                BookCSS.get().searchPaths = builder.toString();
+                LOG.d("TEST", "Remove " + BookCSS.get().searchPaths);
+                recentAdapter.setPaths(BookCSS.get().searchPaths);
                 onChanges.run();
                 return false;
             }

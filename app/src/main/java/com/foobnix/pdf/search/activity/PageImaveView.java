@@ -27,6 +27,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.msg.InvalidateMessage;
@@ -306,7 +307,7 @@ public class PageImaveView extends View {
 
                     } else {
                         AppState.get().isLocked = prevLock;
-                        if (AppState.get().isTextFormat()) {
+                        if (BookCSS.get().isTextFormat()) {
                             AppState.get().isLocked = true;
                         }
                         isLognPress = true;
@@ -539,7 +540,7 @@ public class PageImaveView extends View {
                         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_SHOW, -1, xInit, yInit, event.getX(), event.getY()));
                     }
 
-                } else if (AppState.get().isTextFormat()) {
+                } else if (BookCSS.get().isTextFormat()) {
                     if (!TempHolder.isSeaching) {
                         selectText(event.getX(), event.getY(), event.getX(), event.getY());
                         if (!TxtUtils.isFooterNote(AppState.get().selectedText)) {
@@ -688,7 +689,7 @@ public class PageImaveView extends View {
                 paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
                 paintWrods.setAlpha(60);
 
-                if (!AppState.get().isTextFormat()) {
+                if (!BookCSS.get().isTextFormat()) {
                     if (AppState.get().isDouble) {
                         for (PageLink pl : getPageLinks(1)) {
                             drawLink(canvas, pl);
@@ -911,7 +912,7 @@ public class PageImaveView extends View {
                 if (textWord == null) {
                     continue;
                 }
-                if (!AppState.get().isTextFormat() && (textWord.left < 0 || textWord.top < 0)) {
+                if (!BookCSS.get().isTextFormat() && (textWord.left < 0 || textWord.top < 0)) {
                     continue;
                 }
 

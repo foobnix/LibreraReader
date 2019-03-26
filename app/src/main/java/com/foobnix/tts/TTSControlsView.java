@@ -173,7 +173,7 @@ public class TTSControlsView extends FrameLayout {
             public void onClick(View v) {
                 String track = TTSTracks.getPrevTrack();
                 if (track != null) {
-                    AppState.get().mp3BookPath = track;
+                    BookCSS.get().mp3BookPath = track;
                     TTSEngine.get().loadMP3(track, true);
                     udateButtons();
                 }
@@ -186,7 +186,7 @@ public class TTSControlsView extends FrameLayout {
             public void onClick(View v) {
                 String track = TTSTracks.getNextTrack();
                 if (track != null) {
-                    AppState.get().mp3BookPath = track;
+                    BookCSS.get().mp3BookPath = track;
                     TTSEngine.get().loadMP3(track, true);
                     udateButtons();
                 }
@@ -212,7 +212,7 @@ public class TTSControlsView extends FrameLayout {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             TTSEngine.get().stop();
-                            AppState.get().mp3BookPath = file.getPath();
+                            BookCSS.get().mp3BookPath = file.getPath();
                             TTSEngine.get().loadMP3(file.getPath(), true);
                             udateButtons();
                             return false;

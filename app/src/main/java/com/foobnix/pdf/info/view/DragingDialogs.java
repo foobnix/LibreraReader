@@ -854,7 +854,7 @@ public class DragingDialogs {
                                 }
                                 if (ExtUtils.isAudioContent(result1)) {
 
-                                    AppState.get().mp3BookPath = result1;
+                                    BookCSS.get().mp3BookPath = result1;
                                     AppState.get().mp3seek = 0;
 
                                     tts.udateButtons();
@@ -890,17 +890,17 @@ public class DragingDialogs {
                         progressBar1.setVisibility(View.GONE);
                         progressText.setText("");
 
-                        ttsSpeakPath.setText(Html.fromHtml("<u>" + AppState.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
                         ttsSpeakPath.setOnClickListener(new OnClickListener() {
 
                             @Override
                             public void onClick(View v) {
 
-                                ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), AppState.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), BookCSS.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                                     @Override
                                     public boolean onResultRecive(String nPath, Dialog dialog) {
-                                        AppState.get().ttsSpeakPath = nPath;
-                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + AppState.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                                        BookCSS.get().ttsSpeakPath = nPath;
+                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
                                         dialog.dismiss();
                                         return false;
                                     }
@@ -2323,7 +2323,7 @@ public class DragingDialogs {
                                                 LOG.d("Try to open path", aPath);
                                                 if (ExtUtils.isAudioContent(aPath.getPath())) {
                                                     TTSEngine.get().mp3Destroy();
-                                                    AppState.get().mp3BookPath = aPath.getPath();
+                                                    BookCSS.get().mp3BookPath = aPath.getPath();
                                                     AppState.get().mp3seek = 0;
                                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                                                 } else {

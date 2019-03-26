@@ -11,6 +11,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.AdvGuestureDetector;
 import com.foobnix.sys.TempHolder;
@@ -397,7 +398,7 @@ public abstract class AbstractViewController extends AbstractComponentController
                     for (final TextWord[] lines : page.texts) {
                         final TextWord current[] = lines;
                         for (final TextWord line : current) {
-                            if (!AppState.get().isTextFormat() && (line.left < 0 || line.top < 0)) {
+                            if (!BookCSS.get().isTextFormat() && (line.left < 0 || line.top < 0)) {
                                 continue;
                             }
                             RectF wordRect = page.getPageRegion(bounds, line);

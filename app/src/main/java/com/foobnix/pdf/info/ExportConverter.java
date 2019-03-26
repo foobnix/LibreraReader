@@ -46,6 +46,9 @@ public class ExportConverter {
 
         IO.writeString(AppProfile.syncState, obj.getJSONObject("pdf").toString());
         IO.writeString(AppProfile.syncCSS, obj.getJSONObject("BookCSS").toString());
+        //add missing paths
+        IO.writeString(AppProfile.syncCSS, obj.getJSONObject("pdf").toString());
+
 
         AppState.get().loadIn(c);
         BookCSS.get().load(c);

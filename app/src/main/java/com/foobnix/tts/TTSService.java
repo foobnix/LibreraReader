@@ -31,6 +31,7 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
@@ -205,7 +206,7 @@ public class TTSService extends Service {
     }
 
     public static void playLastBook() {
-        playBookPage(AppState.get().lastBookPage, AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize, AppState.get().lastBookTitle);
+        playBookPage(AppState.get().lastBookPage, BookCSS.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().lastFontSize, AppState.get().lastBookTitle);
     }
 
     public static void playPause(Context context, DocumentController controller) {
@@ -270,7 +271,7 @@ public class TTSService extends Service {
 
         if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
             TTSEngine.get().mp3Destroy();
-            AppState.get().mp3BookPath = null;
+            BookCSS.get().mp3BookPath = null;
             AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
 
@@ -360,13 +361,13 @@ public class TTSService extends Service {
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
             if (TTSEngine.get().isMp3PlayPause()) {
-                TTSNotification.show(AppState.get().lastBookPath, -1, -1);
+                TTSNotification.show(BookCSS.get().lastBookPath, -1, -1);
                 return START_STICKY;
             }
 
             mMediaSessionCompat.setActive(true);
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
-            AppState.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
+            BookCSS.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
 
             if (pageNumber != -1) {
@@ -389,19 +390,19 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            if (AppState.get().lastBookPath != null && AppState.get().lastBookPath.equals(path) && cache != null && wh == AppState.get().lastBookWidth + AppState.get().lastBookHeight) {
-                LOG.d(TAG, "CodecDocument from cache", AppState.get().lastBookPath);
+            if (BookCSS.get().lastBookPath != null && BookCSS.get().lastBookPath.equals(path) && cache != null && wh == AppState.get().lastBookWidth + AppState.get().lastBookHeight) {
+                LOG.d(TAG, "CodecDocument from cache", BookCSS.get().lastBookPath);
                 return cache;
             }
             if (cache != null) {
                 cache.recycle();
                 cache = null;
             }
-            path = AppState.get().lastBookPath;
-            cache = ImageExtractor.singleCodecContext(AppState.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            path = BookCSS.get().lastBookPath;
+            cache = ImageExtractor.singleCodecContext(BookCSS.get().lastBookPath, "", AppState.get().lastBookWidth, AppState.get().lastBookHeight);
             cache.getPageCount(AppState.get().lastBookWidth, AppState.get().lastBookHeight, AppState.get().fontSizeSp);
             wh = AppState.get().lastBookWidth + AppState.get().lastBookHeight;
-            LOG.d(TAG, "CodecDocument new", AppState.get().lastBookPath, AppState.get().lastBookWidth, AppState.get().lastBookHeight);
+            LOG.d(TAG, "CodecDocument new", BookCSS.get().lastBookPath, AppState.get().lastBookWidth, AppState.get().lastBookHeight);
             return cache;
         } catch (Exception e) {
             LOG.e(e);
@@ -525,7 +526,7 @@ public class TTSService extends Service {
                         AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(AppState.get().lastBookPath);
+                        AppBook load = SharedBooks.load(BookCSS.get().lastBookPath);
                         load.currentPageChanged( AppState.get().lastBookPage + 1, dc.getPageCount());
                         SharedBooks.save(load);
 
@@ -561,7 +562,7 @@ public class TTSService extends Service {
                         AppState.get().lastBookParagraph = 0;
                         playPage(secondPart, AppState.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(AppState.get().lastBookPath);
+                        AppBook load = SharedBooks.load(BookCSS.get().lastBookPath);
                         load.currentPageChanged( AppState.get().lastBookPage + 1,dc.getPageCount());
                         SharedBooks.save(load);
 
@@ -570,7 +571,7 @@ public class TTSService extends Service {
                 });
             }
 
-            TTSNotification.show(AppState.get().lastBookPath, pageNumber + 1, dc.getPageCount());
+            TTSNotification.show(BookCSS.get().lastBookPath, pageNumber + 1, dc.getPageCount());
 
             TTSEngine.get().speek(firstPart);
 

@@ -223,7 +223,7 @@ android {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    testImplementation 'com.android.support.test:runner:+'
+    //testImplementation 'com.android.support.test:runner:+'
     //testImplementation "com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION"
 
 
@@ -259,13 +259,13 @@ dependencies {
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
 
-    implementation 'com.google.android.gms:play-services-auth:+'
-    implementation 'com.google.http-client:google-http-client-gson:+'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
-    implementation('com.google.api-client:google-api-client-android:+') {
+    implementation 'com.google.http-client:google-http-client-gson:1.28.0'
+    implementation('com.google.api-client:google-api-client-android:1.28.0') {
         exclude group: 'org.apache.httpcomponents'
     }
-    implementation('com.google.apis:google-api-services-drive:+') {
+    implementation('com.google.apis:google-api-services-drive:v3-rev156-1.25.0') {
         exclude group: 'org.apache.httpcomponents'
     }
 

@@ -1,9 +1,9 @@
 package com.foobnix.tts;
 
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -29,7 +29,7 @@ public class TTSTracks {
 
         for (int i = 0; i < listFiles.size(); i++) {
             File file = listFiles.get(i);
-            if (file.getPath().equals(AppState.get().mp3BookPath)) {
+            if (file.getPath().equals(BookCSS.get().mp3BookPath)) {
                 return listFiles.size() > i + 1 ? listFiles.get(i + 1).getPath() : null;
             }
         }
@@ -45,7 +45,7 @@ public class TTSTracks {
 
         for (int i = 0; i < listFiles.size(); i++) {
             File file = listFiles.get(i);
-            if (file.getPath().equals(AppState.get().mp3BookPath)) {
+            if (file.getPath().equals(BookCSS.get().mp3BookPath)) {
                 return i > 0 ? listFiles.get(i - 1).getPath() : null;
             }
         }
@@ -54,14 +54,14 @@ public class TTSTracks {
     }
 
     public static String getCurrentTrackName() {
-        return ExtUtils.getFileName(AppState.get().mp3BookPath);
+        return ExtUtils.getFileName(BookCSS.get().mp3BookPath);
     }
 
     public static List<File> getAllMp3InFolder() {
-        if (TxtUtils.isEmpty(AppState.get().mp3BookPath)) {
+        if (TxtUtils.isEmpty(BookCSS.get().mp3BookPath)) {
             return null;
         }
-        File file = new File(AppState.get().mp3BookPath);
+        File file = new File(BookCSS.get().mp3BookPath);
         File root = file.getParentFile();
         if (!file.isFile() || !root.isDirectory()) {
             return null;

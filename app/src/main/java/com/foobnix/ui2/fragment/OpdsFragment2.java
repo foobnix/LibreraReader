@@ -49,6 +49,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
@@ -448,16 +449,16 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 });
 
                 final TextView downlodsPath = (TextView) view.findViewById(R.id.downlodsPath);
-                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
+                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
                 downlodsPath.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
-                        ChooserDialogFragment.chooseFolder(getActivity(), AppState.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                        ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                             @Override
                             public boolean onResultRecive(String nPath, Dialog dialog) {
-                                AppState.get().downlodsPath = nPath;
-                                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(AppState.get().downlodsPath));
+                                BookCSS.get().downlodsPath = nPath;
+                                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
                                 dialog.dismiss();
                                 return false;
                             }
@@ -549,17 +550,17 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                             try {
                                 OutputStream outStream = null;
                                 String displayName = link.getDownloadName();
-                                if (ExtUtils.isExteralSD(AppState.get().downlodsPath)) {
+                                if (ExtUtils.isExteralSD(BookCSS.get().downlodsPath)) {
                                     String mimeType = ExtUtils.getMimeType(displayName);
 
-                                    Uri uri = Uri.parse(AppState.get().downlodsPath);
+                                    Uri uri = Uri.parse(BookCSS.get().downlodsPath);
                                     Uri childrenUri = ExtUtils.getChildUri(getContext(), uri);
                                     Uri createDocument = DocumentsContract.createDocument(getActivity().getContentResolver(), childrenUri, mimeType, displayName);
 
                                     bookPath = createDocument.toString();
                                     outStream = getActivity().getContentResolver().openOutputStream(createDocument);
                                 } else {
-                                    File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+                                    File LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
                                     if (!LIRBI_DOWNLOAD_DIR.exists()) {
                                         LIRBI_DOWNLOAD_DIR.mkdirs();
                                     }
@@ -650,13 +651,13 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public void clearEmpty() {
-        if (ExtUtils.isExteralSD(AppState.get().downlodsPath)) {
+        if (ExtUtils.isExteralSD(BookCSS.get().downlodsPath)) {
             searchAdapter.notifyDataSetChanged();
             return;
         }
 
         try {
-            File LIRBI_DOWNLOAD_DIR = new File(AppState.get().downlodsPath);
+            File LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
 
             if (!LIRBI_DOWNLOAD_DIR.exists()) {
                 LIRBI_DOWNLOAD_DIR.mkdirs();
@@ -739,7 +740,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         for (Link l : links) {
             Hrefs.fixHref(l, homeUrl);
             l.parentTitle = parentTitle;
-            File book = new File(AppState.get().downlodsPath, l.getDownloadName());
+            File book = new File(BookCSS.get().downlodsPath, l.getDownloadName());
             if (book.isFile()) {
                 l.filePath = book.getPath();
             }
@@ -754,7 +755,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                     alternative = new Link(url, l.type);
                     alternative.rel = l.rel;
                     alternative.parentTitle = "2." + parentTitle;
-                    File book1 = new File(AppState.get().downlodsPath, alternative.getDownloadName());
+                    File book1 = new File(BookCSS.get().downlodsPath, alternative.getDownloadName());
                     if (book1.isFile()) {
                         alternative.filePath = book1.getPath();
                     }

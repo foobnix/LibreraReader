@@ -67,7 +67,7 @@ public class AppProfile {
         syncBookmarks = new File(AppProfile.SYNC_FOLDER, "app-Bookmarks.json");
 
 
-        syncState = new File(SYNC_FOLDER, "app-State-[" + Build.MODEL.replace(" ", "_") + "].json");
+        syncState = new File(SYNC_FOLDER, "app-State.json");
         syncCSS = new File(SYNC_FOLDER, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
 
 

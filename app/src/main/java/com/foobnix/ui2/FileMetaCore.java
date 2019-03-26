@@ -146,6 +146,8 @@ public class FileMetaCore {
             ebookMeta = DjvuExtract.getBookMetaInformation(unZipPath);
         } else if (BookType.DOCX.is(unZipPath)) {
             ebookMeta.setLang(DocxExtractor.getLang(unZipPath));
+        } else if (BookType.JSON.is(unZipPath)) {
+            ebookMeta.setLang("en");
         } else if (BookType.PDF.is(unZipPath)) {
             boolean needExtractMeta = AppState.get().isAuthorTitleFromMetaPDF ? true : isNeedToExtractPDFMeta(unZipPath);
             EbookMeta local = PdfExtract.getBookMetaInformation(unZipPath);

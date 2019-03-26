@@ -42,6 +42,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -234,7 +235,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
-                        AppState.get().searchPaths = AppState.get().searchPaths.replace("//", "/");
+                        BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
                     }
                 }, new Runnable() {
 

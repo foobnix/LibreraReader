@@ -64,6 +64,7 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
@@ -889,9 +890,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onModeChange.setVisibility(View.VISIBLE);
 
                     dc.initHandler();
-                    AppState.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
-                    AppState.get().lastMode = HorizontalViewActivity.class.getSimpleName();
-                    LOG.d("lasta save", AppState.get().lastClosedActivity);
+                    BookCSS.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
+                    BookCSS.get().lastMode = HorizontalViewActivity.class.getSimpleName();
+                    LOG.d("lasta save", BookCSS.get().lastClosedActivity);
 
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
@@ -2284,7 +2285,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onFinishActivity() {
-        AppState.get().lastClosedActivity = null;
+        BookCSS.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

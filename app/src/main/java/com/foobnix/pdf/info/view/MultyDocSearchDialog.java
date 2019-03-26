@@ -32,10 +32,10 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 
 import org.ebookdroid.BookType;
@@ -72,7 +72,7 @@ public class MultyDocSearchDialog {
     }
 
     public static void show(FragmentActivity c) {
-        Model.get().path = AppState.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : AppState.get().dirLastPath;
+        Model.get().path = BookCSS.get().dirLastPath == null ? Environment.getExternalStorageDirectory().getPath() : BookCSS.get().dirLastPath;
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.search_for_text_in_documents);
         builder.setView(getDialogView(c));
@@ -135,7 +135,7 @@ public class MultyDocSearchDialog {
                     @Override
                     public boolean onResultRecive(String nPath, Dialog dialog) {
                         Model.get().path = nPath;
-                        AppState.get().dirLastPath = nPath;
+                        BookCSS.get().dirLastPath = nPath;
                         editPath.setText(Model.get().path);
                         dialog.dismiss();
 

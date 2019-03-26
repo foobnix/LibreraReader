@@ -47,6 +47,7 @@ import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -145,9 +146,9 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             String pathSAF = uri.toString();
 
-            AppState.get().pathSAF = StringDB.add(AppState.get().pathSAF, pathSAF);
+            BookCSS.get().pathSAF = StringDB.add(BookCSS.get().pathSAF, pathSAF);
 
-            LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, AppState.get().pathSAF);
+            LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, BookCSS.get().pathSAF);
 
             UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
             if (uiFragment instanceof BrowseFragment2) {
@@ -406,7 +407,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        AppState.get().lastClosedActivity = null;
+                        BookCSS.get().lastClosedActivity = null;
                         pager.postDelayed(new Runnable() {
 
                             @Override
@@ -436,34 +437,34 @@ public class MainTabs2 extends AdsFragmentActivity {
         EventBus.getDefault().register(this);
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs, AppState.get().lastMode);
+        LOG.d("EXTRA_SHOW_TABS", showTabs, BookCSS.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            LOG.d("Open lastBookPath", AppState.get().lastBookPath);
-            if (AppState.get().lastBookPath == null || !new File(AppState.get().lastBookPath).isFile()) {
+            LOG.d("Open lastBookPath", BookCSS.get().lastBookPath);
+            if (BookCSS.get().lastBookPath == null || !new File(BookCSS.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
-            AppState.get().lastClosedActivity = null;
+            BookCSS.get().lastClosedActivity = null;
 
             Safe.run(new Runnable() {
 
                 @Override
                 public void run() {
-                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode);
+                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(BookCSS.get().lastMode);
                     Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                     intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-                    intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                    intent.setData(Uri.fromFile(new File(BookCSS.get().lastBookPath)));
                     startActivity(intent);
                 }
             });
         } else if (!AppState.get().isOpenLastBook) {
-            LOG.d("Open book lastA", AppState.get().lastClosedActivity);
+            LOG.d("Open book lastA", BookCSS.get().lastClosedActivity);
 
-            if (AppState.get().lastBookPath == null || !new File(AppState.get().lastBookPath).isFile()) {
+            if (BookCSS.get().lastBookPath == null || !new File(BookCSS.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
-            final String saveMode = AppState.get().lastClosedActivity;
+            final String saveMode = BookCSS.get().lastClosedActivity;
             Safe.run(new Runnable() {
 
                 @Override
@@ -471,12 +472,12 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                     if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                        intent.setData(Uri.fromFile(new File(BookCSS.get().lastBookPath)));
                         startActivity(intent);
                         LOG.d("Start lastA", saveMode);
                     } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppState.get().lastBookPath)));
+                        intent.setData(Uri.fromFile(new File(BookCSS.get().lastBookPath)));
                         startActivity(intent);
                         LOG.d("Start lastA", saveMode);
                     }
@@ -561,7 +562,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         DocumentController.chooseFullScreen(this, AppState.get().isFullScreenMain);
         TintUtil.updateAll();
-        AppState.get().lastClosedActivity = MainTabs2.class.getSimpleName();
+        BookCSS.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         swipeRefreshLayout.setEnabled(AppState.get().isEnableGdrive && GoogleSignIn.getLastSignedInAccount(this) != null);
 
@@ -657,7 +658,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (AppState.get().isAutomaticExport && Android6.canWrite(this) && !PrefDialogs.isBookSeriviceIsRunning(this)) {
             try {
-                File root = new File(AppState.get().backupPath);
+                File root = new File(BookCSS.get().backupPath);
                 if (!root.isDirectory()) {
                     root.mkdirs();
                 }
@@ -766,7 +767,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     private DrawerLayout drawerLayout;
 
     public static void startActivity(Activity c, int tab) {
-        AppState.get().lastClosedActivity = null;
+        BookCSS.get().lastClosedActivity = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);

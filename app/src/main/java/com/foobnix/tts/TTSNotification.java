@@ -19,11 +19,11 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
@@ -84,7 +84,7 @@ public class TTSNotification {
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppState.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
+            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(BookCSS.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {
@@ -135,8 +135,8 @@ public class TTSNotification {
 
             String textLine = pageNumber + " " + fileMetaBookName;
 
-            if (TxtUtils.isNotEmpty(AppState.get().mp3BookPath)) {
-                textLine = "[" + ExtUtils.getFileName(AppState.get().mp3BookPath) + "] " + textLine;
+            if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPath)) {
+                textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPath) + "] " + textLine;
             }
 
             remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());

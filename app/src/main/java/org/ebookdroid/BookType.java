@@ -32,38 +32,40 @@ import java.util.Map;
 
 public enum BookType {
 
-    PDF(PdfContext.class, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf")),
-    TIFF(PdfContext.class, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
+    PDF(PdfContext.class, false, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf")),
+    TIFF(PdfContext.class, false, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
-    CBZ(PdfContext.class, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
-    CBR(CbrContext.class, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
-    ODT(OdtContext.class, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
+    CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
+    CBR(CbrContext.class, false, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    ODT(OdtContext.class, true, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
-    FOLDER(FolderContext.class, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
+    FOLDER(FolderContext.class, false, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
 
-    EPUB(EpubContext.class, Arrays.asList("epub"), Arrays.asList("application/epub+zip")),
+    EPUB(EpubContext.class, true, Arrays.asList("epub"), Arrays.asList("application/epub+zip")),
 
 
-    FB2(Fb2Context.class, Arrays.asList("fb2"),
+    FB2(Fb2Context.class, true, Arrays.asList("fb2"),
             Arrays.asList("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
 
-    MOBI(MobiContext.class, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
+    MOBI(MobiContext.class, true, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
 
-    TXT(TxtContext.class, Arrays.asList("txt", "playlist"), Arrays.asList("text/plain")),
+    TXT(TxtContext.class, true, Arrays.asList("txt", "playlist"), Arrays.asList("text/plain")),
 
-    HTML(HtmlContext.class, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
+    JSON(TxtContext.class, true, Arrays.asList("json"), Arrays.asList("application/json")),
 
-    MHT(MhtContext.class, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
+    HTML(HtmlContext.class, true, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
 
-    DOCX(DocxContext.class, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
+    MHT(MhtContext.class, true, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
 
-    DOC(DocContext.class, Arrays.asList( "doc"), Arrays.asList("application/msword")),
+    DOCX(DocxContext.class, true, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
-    RTF(RtfContext.class, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
+    DOC(DocContext.class, true, Arrays.asList("doc"), Arrays.asList("application/msword")),
 
-    DJVU(DjvuContext.class, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
+    RTF(RtfContext.class, true, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 
-    ZIP(ZipContext.class, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
+    DJVU(DjvuContext.class, false, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
+
+    ZIP(ZipContext.class, false, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
 
     private final static Map<String, BookType> extensionToActivity;
 
@@ -89,11 +91,13 @@ public enum BookType {
     private final List<String> extensions;
 
     private final List<String> mimeTypes;
+    private boolean isTextFormat;
 
-    private BookType(final Class<? extends CodecContext> contextClass, final List<String> extensions, final List<String> mimeTypes) {
+    private BookType(final Class<? extends CodecContext> contextClass, boolean isTextFormat, final List<String> extensions, final List<String> mimeTypes) {
         this.contextClass = contextClass;
         this.extensions = extensions;
         this.mimeTypes = mimeTypes;
+        this.isTextFormat = isTextFormat;
     }
 
     public boolean is(String path) {
@@ -134,6 +138,19 @@ public enum BookType {
         return list;
     }
 
+    public static boolean isTextFormat(String path) {
+        List<String> list = new ArrayList<String>();
+
+        for (final BookType a : values()) {
+            for (final String ext : a.extensions) {
+                if (path.endsWith(ext)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static CodecContext getCodecContextByType(BookType activityType) {
         try {
             return activityType.contextClass.newInstance();
@@ -165,7 +182,7 @@ public enum BookType {
 
         for (final BookType a : values()) {
             for (final String ext : a.extensions) {
-                if(TxtUtils.isEmpty(ext)){
+                if (TxtUtils.isEmpty(ext)) {
                     continue;
                 }
                 if (path.endsWith(ext)) {

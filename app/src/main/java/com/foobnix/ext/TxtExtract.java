@@ -32,6 +32,9 @@ public class TxtExtract {
     public static FooterNote extract(String inputPath, String outputDir) throws IOException {
         File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
 
+
+        boolean isJSON = inputPath.endsWith(".json");
+
         String encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
@@ -61,6 +64,11 @@ public class TxtExtract {
 
         while ((line = input.readLine()) != null) {
             String outLn = null;
+
+            if(isJSON){
+                line = line.replace(",",", ");
+            }
+
             if (AppState.get().isPreText) {
 
                 outLn = retab(line, 8);

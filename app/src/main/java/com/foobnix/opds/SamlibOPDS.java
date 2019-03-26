@@ -4,6 +4,7 @@ import android.support.v4.util.Pair;
 
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -414,7 +415,7 @@ public class SamlibOPDS {
 
         link.parentTitle = authorTxt.trim() + " - " + title.trim();
 
-        File book = new File(AppState.get().downlodsPath, link.getDownloadName());
+        File book = new File(BookCSS.get().downlodsPath, link.getDownloadName());
         if (book.isFile()) {
             link.filePath = book.getPath();
         }
@@ -489,7 +490,7 @@ public class SamlibOPDS {
 
         Link web = new Link(tURL + LIBRERA_MOBI, Link.WEB_LINK, "WEB");
 
-        File book = new File(AppState.get().downlodsPath, download.getDownloadName());
+        File book = new File(BookCSS.get().downlodsPath, download.getDownloadName());
         if (book.isFile()) {
             download.filePath = book.getPath();
         }

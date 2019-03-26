@@ -624,11 +624,7 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.ZIP.is(path) || BookType.EPUB.is(path) //
-                || BookType.FB2.is(path) || BookType.TXT.is(path) //
-                || BookType.RTF.is(path) || BookType.HTML.is(path) //
-                || BookType.MHT.is(path) || BookType.MOBI.is(path) //
-                || BookType.ODT.is(path) || BookType.DOCX.is(path) || BookType.DOC.is(path);//
+        return BookType.isTextFormat(path);
     }
 
     public static synchronized boolean isZip(File path) {
@@ -736,7 +732,7 @@ public class ExtUtils {
             }
         }
         if (AppState.get().isRememberMode) {
-            showDocumentWithoutDialog(c, file,  null);
+            showDocumentWithoutDialog(c, file, null);
             return true;
         }
 
@@ -1437,7 +1433,7 @@ public class ExtUtils {
 
     public static File openPDFInTextReflowAsync(Activity a, final File file, Handler dialog) {
         try {
-            File bookTempRoot = new File(AppState.get().downlodsPath, "temp-dir-" + file.getName());
+            File bookTempRoot = new File(BookCSS.get().downlodsPath, "temp-dir-" + file.getName());
             if (!bookTempRoot.exists()) {
                 bookTempRoot.mkdirs();
             } else {
@@ -1549,7 +1545,7 @@ public class ExtUtils {
                 return null;
             }
 
-            File epubOutpub = new File(AppState.get().downlodsPath, file.getName() + REFLOW_EPUB);
+            File epubOutpub = new File(BookCSS.get().downlodsPath, file.getName() + REFLOW_EPUB);
             if (epubOutpub.isFile()) {
                 epubOutpub.delete();
             }
@@ -1818,7 +1814,7 @@ public class ExtUtils {
         return encoding == null ? "UTF-8" : encoding;
     }
 
-   public static void deleteRecursive(File fileOrDirectory) {
+    public static void deleteRecursive(File fileOrDirectory) {
         if (fileOrDirectory.isDirectory())
             for (File child : fileOrDirectory.listFiles())
                 deleteRecursive(child);

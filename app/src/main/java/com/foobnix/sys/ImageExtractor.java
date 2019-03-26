@@ -447,12 +447,12 @@ public class ImageExtractor implements ImageDownloader {
                 return BaseExtractor.decodeImage(path, IMG.getImageSize());
             }
 
-            if (path.endsWith("json")) {
-                FileMeta fileMeta = AppDB.get().getOrCreate(path);
-                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-                AppDB.get().update(fileMeta);
-                return messageFile("#json", "");
-            }
+//            if (path.endsWith("json")) {
+//                FileMeta fileMeta = AppDB.get().getOrCreate(path);
+//                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+//                AppDB.get().update(fileMeta);
+//                return messageFile("#json", "");
+//            }
 
             // if (!file.isFile()) {
             // return messageFile("#no file", "");
