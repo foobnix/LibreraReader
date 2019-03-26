@@ -7,7 +7,6 @@ import android.os.Environment;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
-import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
@@ -48,20 +47,47 @@ public class BookCSS {
     public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
-    @IgnoreCalculateHashCode
+    
     public String lastBookPath;
 
     public String mp3BookPath;
 
-    @IgnoreCalculateHashCode
+    
     public String lastClosedActivity;
 
-    @IgnoreCalculateHashCode
+    
     public String lastMode;
 
     public String dirLastPath;
 
     public String pathSAF = "";
+
+    public long searchDate = 0;
+
+    
+    @IgnoreHashCode
+    public int lastBookPage = 0;
+
+    
+    public int tempBookPage = 0;
+
+    @IgnoreHashCode
+    
+    public volatile int lastBookParagraph = 0;
+
+    @IgnoreHashCode
+    
+    public String lastBookTitle;
+
+    
+    public int lastBookWidth = 0;
+    
+    public int lastBookHeight = 0;
+    
+    public int lastFontSize = 0;
+
+    public String lastBookLang = "";
+
 
 
     public boolean isTextFormat() {
@@ -126,7 +152,7 @@ public class BookCSS {
 
     public boolean isAutoHypens;
 
-    @IgnoreCalculateHashCode
+    
     public String hypenLang;
 
     public String linkColorDay;

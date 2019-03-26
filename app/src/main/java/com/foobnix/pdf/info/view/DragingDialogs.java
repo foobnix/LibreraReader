@@ -1446,7 +1446,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
-                        AppState.get().lastBookParagraph = 0;
+                        BookCSS.get().lastBookParagraph = 0;
                         TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                     }
                 });

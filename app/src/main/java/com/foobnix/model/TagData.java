@@ -2,7 +2,6 @@ package com.foobnix.model;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Objects;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ui2.AppDB;
 
@@ -59,21 +58,20 @@ public class TagData {
 
         while (keys.hasNext()) {
             final String key = keys.next();
-            Tag tag = new Tag();
+
             try {
-                if (!obj.has(key)) {
-                    continue;
+
+                Tag tag = new Tag(key, obj.getString(key));
+                LOG.d("restoreTags",tag.path, tag.tags);
+
+                FileMeta load = AppDB.get().load(tag.getPath());
+                if (load != null) {
+                    load.setTag(tag.tags);
+                    LOG.d("restoreTags", tag.getPath(), tag.tags);
+                    AppDB.get().update(load);
                 }
-                Objects.loadFromJson(tag, obj.getJSONObject(key));
             } catch (JSONException e) {
                 LOG.e(e);
-            }
-
-            FileMeta load = AppDB.get().load(tag.getPath());
-            if (load != null) {
-                load.setTag(tag.tags);
-                LOG.d("restoreTags", tag.getPath(), tag.tags);
-                AppDB.get().update(load);
             }
 
         }

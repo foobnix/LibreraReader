@@ -142,6 +142,9 @@ public enum BookType {
         List<String> list = new ArrayList<String>();
 
         for (final BookType a : values()) {
+            if (!a.isTextFormat) {
+                continue;
+            }
             for (final String ext : a.extensions) {
                 if (path.endsWith(ext)) {
                     return true;

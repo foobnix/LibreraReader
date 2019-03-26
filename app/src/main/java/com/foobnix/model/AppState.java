@@ -13,7 +13,6 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
-import com.foobnix.android.utils.Objects.IgnoreCalculateHashCode;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
@@ -290,7 +289,6 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
 
-    @IgnoreCalculateHashCode
     public int readingMode = READING_MODE_SCROLL;
 
     public int helpHash = 0;
@@ -474,7 +472,6 @@ public class AppState {
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
     public String appLang = AppState.MY_SYSTEM_LANG;
-    public String lastBookLang = "";
     public float appFontScale = 1.0f;
 
     public boolean isLocked = false;
@@ -554,27 +551,7 @@ public class AppState {
 
     public int mp3seek = 0;
 
-    @IgnoreCalculateHashCode
-    @IgnoreHashCode
-    public int lastBookPage = 0;
 
-    @IgnoreCalculateHashCode
-    public int tempBookPage = 0;
-
-    @IgnoreHashCode
-    @IgnoreCalculateHashCode
-    public volatile int lastBookParagraph = 0;
-
-    @IgnoreHashCode
-    @IgnoreCalculateHashCode
-    public String lastBookTitle;
-
-    @IgnoreCalculateHashCode
-    public int lastBookWidth = 0;
-    @IgnoreCalculateHashCode
-    public int lastBookHeight = 0;
-    @IgnoreCalculateHashCode
-    public int lastFontSize = 0;
 
     public int colorDayText = COLOR_BLACK;
     public int colorDayBg = COLOR_WHITE;
@@ -598,7 +575,6 @@ public class AppState {
     public boolean supportTXT = false;
     public boolean isPreText = false;
     public boolean isLineBreaksText = false;
-    public boolean isShowDroid = true;
     public boolean isIgnoreAnnotatations = false;
     public boolean isSaveAnnotatationsAutomatically = false;
     public boolean isShowWhatIsNewDialog = true;
@@ -662,8 +638,7 @@ public class AppState {
     public long installationDate = System.currentTimeMillis();
 
 
-    @IgnoreCalculateHashCode
-    public long searchDate = 0;
+
 
     public boolean isFirstTimeVertical = true;
     public boolean isFirstTimeHorizontal = true;

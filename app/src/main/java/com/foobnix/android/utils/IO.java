@@ -123,6 +123,9 @@ public class IO {
 
     public static String readString(File file) {
         try {
+            if(!file.exists()){
+                return "";
+            }
             LOG.d("IO", "read from file");
             StringBuilder builder = new StringBuilder();
             String aux = "";

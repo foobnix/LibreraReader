@@ -143,7 +143,7 @@ public class TTSEngine {
             }
             ttsEngine = null;
         }
-        AppState.get().lastBookParagraph = 0;
+        BookCSS.get().lastBookParagraph = 0;
     }
 
     public synchronized TextToSpeech setTTSWithEngine(String engine) {
@@ -160,12 +160,12 @@ public class TTSEngine {
     public synchronized void speek(final String text) {
         this.text = text;
 
-        if (AppState.get().tempBookPage != AppState.get().lastBookPage) {
-            AppState.get().tempBookPage = AppState.get().lastBookPage;
-            AppState.get().lastBookParagraph = 0;
+        if (BookCSS.get().tempBookPage != BookCSS.get().lastBookPage) {
+            BookCSS.get().tempBookPage = BookCSS.get().lastBookPage;
+            BookCSS.get().lastBookParagraph = 0;
         }
 
-        LOG.d(TAG, "speek", AppState.get().lastBookPage, "par", AppState.get().lastBookParagraph);
+        LOG.d(TAG, "speek", BookCSS.get().lastBookPage, "par", BookCSS.get().lastBookParagraph);
 
         if (TxtUtils.isEmpty(text)) {
             return;
@@ -197,12 +197,12 @@ public class TTSEngine {
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek s", AppState.get().ttsSpeed);
-        LOG.d(TAG, "Speek AppState.get().lastBookParagraph", AppState.get().lastBookParagraph);
+        LOG.d(TAG, "Speek BookCSS.get().lastBookParagraph", BookCSS.get().lastBookParagraph);
 
         if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
             String[] parts = text.split(TxtUtils.TTS_PAUSE);
             ttsEngine.speak(" ", TextToSpeech.QUEUE_FLUSH, mapTemp);
-            for (int i = AppState.get().lastBookParagraph; i < parts.length; i++) {
+            for (int i = BookCSS.get().lastBookParagraph; i < parts.length; i++) {
 
                 String big = parts[i];
                 big = big.trim();
@@ -287,7 +287,7 @@ public class TTSEngine {
     }
 
     public static void fastTTSBookmakr(Context c, float percent, int pages) {
-        int page = AppState.get().lastBookPage + 1;
+        int page = BookCSS.get().lastBookPage + 1;
         boolean hasBookmark = BookmarksData.get().hasBookmark(BookCSS.get().lastBookPath, page, pages);
 
         if (!hasBookmark) {
@@ -296,7 +296,7 @@ public class TTSEngine {
 
         }
         Vibro.vibrate();
-        LOG.d("Fast-bookmark", AppState.get().lastBookPage);
+        LOG.d("Fast-bookmark", BookCSS.get().lastBookPage);
     }
 
     public synchronized boolean isPlaying() {

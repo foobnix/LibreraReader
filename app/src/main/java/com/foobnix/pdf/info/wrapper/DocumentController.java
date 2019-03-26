@@ -235,7 +235,7 @@ public abstract class DocumentController {
 
                 if (getCurrentBook().getPath().equals(BookCSS.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                    LOG.d("goToPageByTTS", AppState.get().lastBookPage + 1);
+                    LOG.d("goToPageByTTS", BookCSS.get().lastBookPage + 1);
                 }
             }
         } catch (Exception e) {

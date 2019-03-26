@@ -161,8 +161,8 @@ public class BooksService extends IntentService {
                 }
                 sendFinishMessage();
 
-                LOG.d("BooksService , searchDate", AppState.get().searchDate, BookCSS.get().searchPaths);
-                if (AppState.get().searchDate != 0) {
+                LOG.d("BooksService , searchDate", BookCSS.get().searchDate, BookCSS.get().searchPaths);
+                if (BookCSS.get().searchDate != 0) {
 
                     List<FileMeta> localMeta = new LinkedList<FileMeta>();
 
@@ -180,7 +180,7 @@ public class BooksService extends IntentService {
 
                         File file = new File(meta.getPath());
 
-                        if (file.lastModified() >= AppState.get().searchDate) {
+                        if (file.lastModified() >= BookCSS.get().searchDate) {
                             if (AppDB.get().getDao().hasKey(meta)) {
                                 LOG.d(TAG, "Skip book", file.getPath());
                                 continue;
@@ -189,7 +189,7 @@ public class BooksService extends IntentService {
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
                         } else {
-                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppState.get().searchDate);
+                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), BookCSS.get().searchDate);
                         }
 
                     }
@@ -197,7 +197,7 @@ public class BooksService extends IntentService {
                     SharedBooks.updateProgress(list);
                     AppDB.get().updateAll(list);
 
-                    AppState.get().searchDate = System.currentTimeMillis();
+                    BookCSS.get().searchDate = System.currentTimeMillis();
                     sendFinishMessage();
                 }
 
@@ -226,7 +226,7 @@ public class BooksService extends IntentService {
                         }
                     }
                 }
-                AppState.get().searchDate = System.currentTimeMillis();
+                BookCSS.get().searchDate = System.currentTimeMillis();
 
                 for (FileMeta meta : itemsMeta) {
                     meta.setIsSearchBook(true);

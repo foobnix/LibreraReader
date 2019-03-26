@@ -53,10 +53,10 @@ public class HypenPanelHelper {
 
                 }
                 Collections.sort(all);
-                if(TxtUtils.isEmpty(AppState.get().lastBookLang)){
-                    AppState.get().lastBookLang = AppState.get().appLang.equals(AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : AppState.get().appLang;
+                if(TxtUtils.isEmpty(BookCSS.get().lastBookLang)){
+                    BookCSS.get().lastBookLang = AppState.get().appLang.equals(AppState.MY_SYSTEM_LANG) ? Urls.getLangCode() : AppState.get().appLang;
                 }
-                String e = DialogTranslateFromTo.getLanuageByCode(AppState.get().lastBookLang) + ":" + AppState.get().lastBookLang;
+                String e = DialogTranslateFromTo.getLanuageByCode(BookCSS.get().lastBookLang) + ":" + BookCSS.get().lastBookLang;
                 all.add(0, e);
 
                 for (final String langFull : all) {
@@ -68,7 +68,7 @@ public class HypenPanelHelper {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             BookCSS.get().hypenLang = code;
-                            AppState.get().lastBookLang = code;
+                            BookCSS.get().lastBookLang = code;
                             hypenLang.setText(titleLang);
                             TxtUtils.underlineTextView(hypenLang);
                             FileMeta load = AppDB.get().load(dc.getCurrentBook().getPath());
