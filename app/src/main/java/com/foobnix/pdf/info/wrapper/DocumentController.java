@@ -272,6 +272,8 @@ public abstract class DocumentController {
     }
 
     public void saveCurrentPage() {
+
+
         handler2.removeCallbacks(saveCurrentPageRunnable);
         handler2.postDelayed(saveCurrentPageRunnable, 3000);
     }

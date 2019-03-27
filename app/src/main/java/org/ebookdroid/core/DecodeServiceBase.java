@@ -413,13 +413,6 @@ public class DecodeServiceBase implements DecodeService {
 
             croppedPageBounds = root.page.getBounds(task.viewState.zoom);
 
-            task.node.page.base.getActivity().runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    viewState.ctrl.goToPage(currentPage.viewIndex, offsetX, offsetY);
-                }
-            });
 
         }
 

@@ -50,7 +50,7 @@ public class AppBook implements CurrentPageListener {
     public void currentPageChanged(int page, int pages) {
         if (pages <= 0 || pages <= 0) {
             if (LOG.isEnable) {
-                throw new RuntimeException("Error!!! " + page + " : " + pages);
+                //throw new RuntimeException("Error!!! " + page + " : " + pages);
             }
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;

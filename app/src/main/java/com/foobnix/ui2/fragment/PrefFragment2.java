@@ -279,6 +279,10 @@ public class PrefFragment2 extends UIFragment {
                     }
 
                     View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
+                    if(AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK){
+                        library.setBackgroundColor(Color.BLACK);
+                    }
+
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
                     ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
                     ((CheckBox) library.findViewById(R.id.isVisible)).setOnCheckedChangeListener(new OnCheckedChangeListener() {

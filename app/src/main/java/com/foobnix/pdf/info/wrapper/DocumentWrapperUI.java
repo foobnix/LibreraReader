@@ -460,7 +460,12 @@ public class DocumentWrapperUI {
             pagesBookmark.setVisibility(View.VISIBLE);
         }
 
+
+
+
+
         dc.saveCurrentPage();
+        //SharedBooks.save(bs);
 
     }
 

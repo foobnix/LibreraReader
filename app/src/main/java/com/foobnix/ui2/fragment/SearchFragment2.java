@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -118,6 +119,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         TintUtil.setTintImageNoAlpha(cleanFilter, colorTheme);
         TintUtil.setTintImageNoAlpha(myAutoCompleteImage, colorTheme);
 
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)){
+            searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
+        }else{
+            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
+        }
+
     }
 
     public void onGridList() {
@@ -174,7 +181,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK){
+        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)){
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
         }
 
