@@ -127,6 +127,14 @@ public class BooksService extends IntentService {
                         GFile.sycnronizeAll(this);
 
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
+
+                        final File[] books = AppProfile.SYNC_FOLDER_BOOKS.listFiles();
+                        if (books != null) {
+                            for (File file : books) {
+                                IMG.clearCache(file.getPath());
+                            }
+                        }
+
                     } catch (Exception e) {
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                         LOG.e(e);
