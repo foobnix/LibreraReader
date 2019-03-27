@@ -373,9 +373,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             String path = fileMeta.getPath();
             Clouds.showHideCloudImage(holder.cloudImage, path);
 
-        }
-
-        else if (holderAll instanceof TagViewHolder) {
+        } else if (holderAll instanceof TagViewHolder) {
             final TagViewHolder holder = (TagViewHolder) holderAll;
             holder.title.setText(fileMeta.getPathTxt());
             TintUtil.setTintImageWithAlpha(holder.image);
@@ -385,9 +383,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getTitle());
             // bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
-        } else if (holderAll instanceof DirectoryViewHolder)
-
-        {
+        } else if (holderAll instanceof DirectoryViewHolder) {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
 
             holder.play.setVisibility(View.GONE);
@@ -469,7 +465,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             }
 
-            if(AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK){
+            if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
                 holder.parent.setBackgroundColor(Color.BLACK);
             }
 
@@ -746,7 +742,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         double recentProgress = fileMeta.getIsRecentProgress() == null ? 0 : fileMeta.getIsRecentProgress();
 
 
-
         if (holder.idProgressColor != null && recentProgress > 0f) {
             LOG.d("getIsRecentProgress", recentProgress);
             holder.progresLayout.setVisibility(View.VISIBLE);
@@ -755,7 +750,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             int width = adapterType == ADAPTER_LIST_COMPACT ? Dips.dpToPx(100) : Dips.dpToPx(200);
 
             holder.idProgressBg.getLayoutParams().width = width;
-            holder.idProgressColor.getLayoutParams().width = (int) Math.round ((float)width * recentProgress);
+            holder.idProgressColor.getLayoutParams().width = (int) Math.round((float) width * recentProgress);
             holder.idProgressColor.setLayoutParams(holder.idProgressColor.getLayoutParams());
             holder.idPercentText.setText("" + Math.round(100f * recentProgress) + "%");
 
@@ -806,9 +801,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     return true;
                 }
             });
-        } else
-
-        {
+        } else {
         }
         holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
 
@@ -935,7 +928,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             @Override
             public void onClick(View v) {
-                if (onMenuClickListener != null) {
+                if (onMenuClickListener != null && fileMeta != null) {
                     onMenuClickListener.onResultRecive(fileMeta);
                 }
             }
@@ -959,7 +952,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (!AppState.get().isBorderAndShadow) {
             holder.parent.setBackgroundColor(Color.TRANSPARENT);
         }
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
             holder.parent.setBackgroundColor(Color.BLACK);
         }
 

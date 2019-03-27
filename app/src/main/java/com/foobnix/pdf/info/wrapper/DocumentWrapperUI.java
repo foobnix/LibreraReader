@@ -34,7 +34,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
-import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -75,7 +74,6 @@ import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -368,6 +366,7 @@ public class DocumentWrapperUI {
             titleBar.removeCallbacks(null);
         }
         dc.onCloseActivityAdnShowInterstial();
+        dc.closeActivity();
 
     }
 
@@ -460,6 +459,8 @@ public class DocumentWrapperUI {
         } else {
             pagesBookmark.setVisibility(View.VISIBLE);
         }
+
+        dc.saveCurrentPage();
 
     }
 
@@ -1135,6 +1136,7 @@ public class DocumentWrapperUI {
                         MainTabs2.closeApp(dc.getActivity());
                     }
                 });
+                dc.closeActivity();
             }
         }
     }
@@ -1655,11 +1657,7 @@ public class DocumentWrapperUI {
             AppState.get().cutP = 50;
             AppState.get().isCut = !AppState.get().isCut;
 
-            AppBook bookSettings = SettingsManager.getBookSettings();
-            if (bookSettings != null) {
-                bookSettings.updateFromAppState();
-                SharedBooks.save(bookSettings);
-            }
+            dc.saveCurrentPageAsync();
 
             crop.setVisibility(AppState.get().isCut ? View.GONE : View.VISIBLE);
 

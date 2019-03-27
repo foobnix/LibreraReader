@@ -18,6 +18,7 @@ import com.cloudrail.si.types.SpaceAllocation;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
@@ -617,6 +618,9 @@ public class Clouds {
     }
 
     public static boolean isLibreraSyncFile(String path) {
+        if(TxtUtils.isEmpty(path)){
+            return false;
+        }
         return path.startsWith(AppProfile.SYNC_FOLDER_BOOKS.getPath()) || new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path)).exists();
     }
 

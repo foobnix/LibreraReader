@@ -574,6 +574,9 @@ public class ExtUtils {
     }
 
     public static String getFileName(String name) {
+        if(TxtUtils.isEmpty(name)){
+            return "";
+        }
         if (!name.contains("/")) {
             return name;
         }

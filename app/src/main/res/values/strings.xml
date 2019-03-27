@@ -500,7 +500,7 @@
    <string name="minimum_line_length">Minimum line length (CPL)</string>
    <string name="ask_rate_us1">If you like this application, please rate and review us on Google Play. Thank you!</string>
    <string name="message">Message</string>
-   <string name="exit_application">Exit</string>
+   <string name="exit_application">Exit app</string>
    <string name="exit_application_question">Exit application?</string>
    <string name="open_folder_as_a_book">Bind in a Book</string>
    <string name="read_out_loud_with_tts">Read (TTS)</string>
@@ -541,5 +541,6 @@
     <string name="new_profile">New Profile</string>
    <string name="main">Main</string>
    <string name="do_you_want_to_switch_profile_">Do you want to switch profile?</string>
+    <string name="sync_error">Sync error</string>
 
 </resources>

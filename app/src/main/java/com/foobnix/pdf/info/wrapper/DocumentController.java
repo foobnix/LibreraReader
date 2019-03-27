@@ -9,6 +9,7 @@ import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,6 +44,7 @@ import com.foobnix.ui2.AppDB;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.PageLink;
 
@@ -83,7 +85,9 @@ public abstract class DocumentController {
 
     protected final Activity activity;
     private DocumentWrapperUI ui;
-    public Handler handler;
+
+    public Handler handler = new Handler(Looper.getMainLooper());
+    public Handler handler2 = new Handler(Looper.getMainLooper());
 
     public long readTimeStart;
 
@@ -92,9 +96,6 @@ public abstract class DocumentController {
         readTimeStart = System.currentTimeMillis();
     }
 
-    public void initHandler() {
-        handler = new Handler();
-    }
 
     private File currentBook;
     private String title;
@@ -169,6 +170,8 @@ public abstract class DocumentController {
 
     public abstract void onCloseActivityFinal(Runnable run);
 
+
+
     public abstract void onNightMode();
 
     public abstract void onCrop();
@@ -218,7 +221,6 @@ public abstract class DocumentController {
     }
 
 
-
     public MyADSProvider getAdsProvider() {
         return null;
     }
@@ -261,6 +263,46 @@ public abstract class DocumentController {
                 }
             });
         }
+
+    }
+
+    public void closeActivity(){
+        handler2.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    public void saveCurrentPage() {
+        handler2.removeCallbacks(saveCurrentPageRunnable);
+        handler2.postDelayed(saveCurrentPageRunnable, 3000);
+    }
+
+    Runnable saveCurrentPageRunnable = new Runnable() {
+        @Override
+        public void run() {
+            saveCurrentPageAsync();
+        }
+    };
+
+    public void saveCurrentPageAsync() {
+        if (TempHolder.get().loadingCancelled) {
+            LOG.d("Loading cancelled");
+            return;
+        }
+        // int page = PageUrl.fakeToReal(currentPage);
+        LOG.d("_PAGE", "saveCurrentPage", getCurentPage(), getPageCount());
+        try {
+            if (getPageCount() <= 0) {
+                LOG.d("_PAGE", "saveCurrentPage skip");
+                return;
+            }
+            AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            bs.updateFromAppState();
+            bs.currentPageChanged(getCurentPage(), getPageCount());
+            SharedBooks.save(bs);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     public void onChangeTextSelection() {
@@ -288,7 +330,7 @@ public abstract class DocumentController {
     public void onResume() {
         readTimeStart = System.currentTimeMillis();
         try {
-            if(getPageCount()!=0) {
+            if (getPageCount() != 0) {
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
                 if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);

@@ -51,6 +51,7 @@
 
                 </LinearLayout>
 
+
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
@@ -99,18 +100,17 @@
             android:visibility="visible" />
 
 
-
         <ProgressBar
             android:id="@+id/fab"
-            android:layout_margin="10dip"
-            android:background="@drawable/bg_circular"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
             android:layout_alignParentRight="true"
-            android:padding="10dip"
-            android:layout_alignParentBottom="true"
+            android:layout_margin="4dip"
+            android:background="@drawable/bg_circular"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_gravity="center_horizontal"
             android:indeterminateTint="@color/white"
             android:indeterminateDrawable="@drawable/my_progress" />
+
 
 
 

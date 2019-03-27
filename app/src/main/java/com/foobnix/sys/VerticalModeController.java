@@ -70,7 +70,6 @@ public class VerticalModeController extends DocumentController {
         CoreSettings.getInstance().fullScreen = AppState.get().isFullScreen;
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
-        initHandler();
     }
 
     @Override

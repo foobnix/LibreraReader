@@ -7,6 +7,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
+import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -33,13 +34,11 @@ public class AppData {
     }
 
 
-
-
     public void addRecent(SimpleMeta s) {
 
-        if(TxtUtils.isListNotEmpty(recent)){
-            Collections.sort(recent,FileMetaComparators.BY_RECENT_TIME_2);
-            if(s.getPath().equals(recent.get(0).getPath())) {
+        if (TxtUtils.isListNotEmpty(recent)) {
+            Collections.sort(recent, FileMetaComparators.BY_RECENT_TIME_2);
+            if (s.getPath().equals(recent.get(0).getPath())) {
                 LOG.d("Skip-recent");
                 return;
             }
@@ -87,6 +86,17 @@ public class AppData {
 
     public void loadFavorites() {
         readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
+    }
+
+    public List<FileMeta> getAllSyncBooks() {
+        List<FileMeta> res = new ArrayList<>();
+
+        SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, null);
+
+        Collections.sort(res, FileMetaComparators.BY_DATE);
+        Collections.reverse(res);
+        return res;
+
     }
 
     public List<FileMeta> getAllFavoriteFiles() {

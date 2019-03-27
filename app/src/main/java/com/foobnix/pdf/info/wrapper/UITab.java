@@ -5,11 +5,11 @@ import com.foobnix.model.AppState;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.CloudsFragment2;
+import com.foobnix.ui2.fragment.FavoritesFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
-import com.foobnix.ui2.fragment.StarsFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public enum UITab {
     SearchFragment(0, SearchFragment2.PAIR.first, SearchFragment2.PAIR.second, SearchFragment2.class, true), //
     BrowseFragment(1, BrowseFragment2.PAIR.first, BrowseFragment2.PAIR.second, BrowseFragment2.class, true), //
     RecentFragment(2, RecentFragment2.PAIR.first, RecentFragment2.PAIR.second, RecentFragment2.class, true), //
-    StarsFragment(3, StarsFragment2.PAIR.first, StarsFragment2.PAIR.second, StarsFragment2.class, true), //
+    StarsFragment(3, FavoritesFragment2.PAIR.first, FavoritesFragment2.PAIR.second, FavoritesFragment2.class, true), //
     BookmarksFragment(4, BookmarksFragment2.PAIR.first, BookmarksFragment2.PAIR.second, BookmarksFragment2.class, true), //
     OpdsFragment(5, OpdsFragment2.PAIR.first, OpdsFragment2.PAIR.second, OpdsFragment2.class, true), //
     PrefFragment(6, PrefFragment2.PAIR.first, PrefFragment2.PAIR.second, PrefFragment2.class, true), //

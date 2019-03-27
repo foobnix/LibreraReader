@@ -78,7 +78,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
-import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
@@ -87,7 +86,6 @@ import com.foobnix.ui2.MyContextWrapper;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -133,10 +131,11 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section6, TintUtil.color);
         TintUtil.setBackgroundFillColor(section7, TintUtil.color);
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
+        TintUtil.setBackgroundFillColor(section9, TintUtil.color);
 
     }
 
-    View section1, section2, section3, section4, section5, section6, section7, section8, overlay;
+    View section1, section2, section3, section4, section5, section6, section7, section8,section9, overlay;
 
 
     @Subscribe
@@ -157,21 +156,21 @@ public class PrefFragment2 extends UIFragment {
                              final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
-        TextView syncFolder = inflate.findViewById(R.id.syncFolder);
-        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppProfile.SYNC_FOLDER_ROOT.getPath()));
-
-        syncFolder.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                EventBus.getDefault().post(new OpenDirMessage(AppProfile.SYNC_FOLDER_ROOT.getPath()));
-                closeLeftMenu();
-            }
-        });
+//        TextView syncFolder = inflate.findViewById(R.id.syncFolder);
+//        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppProfile.SYNC_FOLDER_ROOT.getPath()));
+//
+//        syncFolder.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+//
+//                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+//                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+//
+//                EventBus.getDefault().post(new OpenDirMessage(AppProfile.SYNC_FOLDER_ROOT.getPath()));
+//                closeLeftMenu();
+//            }
+//        });
 
         syncInfo = inflate.findViewById(R.id.syncInfo);
 
@@ -233,9 +232,10 @@ public class PrefFragment2 extends UIFragment {
             }
         });
         section8 = inflate.findViewById(R.id.section8);
+        section9 = inflate.findViewById(R.id.section9);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             section8.setVisibility(View.GONE);
-            syncFolder.setVisibility(View.GONE);
+            //syncFolder.setVisibility(View.GONE);
             isEnableGdrive.setVisibility(View.GONE);
             syncInfo.setVisibility(View.GONE);
             inflate.findViewById(R.id.onSyncStart).setVisibility(View.GONE);

@@ -126,12 +126,15 @@ public class BooksService extends IntentService {
                         SettingsManager.clearCache();
                         GFile.sycnronizeAll(this);
 
-                        TempHolder.get().listHash++;
-                        EventBus.getDefault().post(new UpdateAllFragments());
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
                     } catch (Exception e) {
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                         LOG.e(e);
                     }
-                    EventBus.getDefault().post(new MessageSync(MessageSync.STATE_GONE));
+
+                    TempHolder.get().listHash++;
+                    EventBus.getDefault().post(new UpdateAllFragments());
+
                     //onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
                 }
 

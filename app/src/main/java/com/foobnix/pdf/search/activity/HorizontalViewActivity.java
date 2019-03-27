@@ -889,7 +889,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomIndicators.setVisibility(View.VISIBLE);
                     onModeChange.setVisibility(View.VISIBLE);
 
-                    dc.initHandler();
                     BookCSS.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
                     BookCSS.get().lastMode = HorizontalViewActivity.class.getSimpleName();
                     LOG.d("lasta save", BookCSS.get().lastClosedActivity);
@@ -1326,7 +1325,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             onBC.underline(AppState.get().isEnableBC);
             // dc.getOutline(null, false);
-            dc.saveCurrentPage();
+            dc.saveCurrentPageAsync();
             createAdapter();
 
             loadUI();
@@ -1384,6 +1383,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             LOG.d("Close App");
             if (dc != null) {
                 dc.onCloseActivityAdnShowInterstial();
+                dc.closeActivity();
             } else {
                 finish();
             }
@@ -1462,7 +1462,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppState.get().save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
-        dc.saveCurrentPage();
+        dc.saveCurrentPageAsync();
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
         GFile.runSyncService(this);
@@ -1704,6 +1704,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         LOG.d("_PAGE", "Update UI", page);
+        dc.saveCurrentPage();
     }
 
     public void loadUI() {
@@ -2291,6 +2292,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         nullAdapter();
         dc.onCloseActivityFinal(null);
+        dc.closeActivity();
     }
 
     private void updateAnimation(final TranslateAnimation a) {

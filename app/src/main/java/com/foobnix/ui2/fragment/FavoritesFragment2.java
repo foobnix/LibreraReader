@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StarsFragment2 extends UIFragment<FileMeta> {
+public class FavoritesFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
 
     FileMetaAdapter recentAdapter;
@@ -209,25 +209,41 @@ public class StarsFragment2 extends UIFragment<FileMeta> {
                 all.add(m);
             }
 
+            {
+                FileMeta empy = new FileMeta();
+                empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+                all.add(empy);
+            }
+        }
+
+        all.addAll(Playlists.getAllPlaylistsMeta());
+
+        {
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
             all.add(empy);
         }
 
-        all.addAll(Playlists.getAllPlaylistsMeta());
-
-        FileMeta empy = new FileMeta();
-        empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
-        all.add(empy);
-
         all.addAll(AppData.get().getAllFavoriteFolders());
 
 
-        FileMeta books = new FileMeta();
-        books.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
-        all.add(books);
+        {
+            FileMeta empy = new FileMeta();
+            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
+            all.add(empy);
+        }
 
         all.addAll(AppData.get().getAllFavoriteFiles());
+
+        {
+            FileMeta empy = new FileMeta();
+            empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
+            empy.setTitle("Synchronized Books");
+            all.add(empy);
+        }
+
+        all.addAll(AppData.get().getAllSyncBooks());
+
         return all;
     }
 

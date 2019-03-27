@@ -35,7 +35,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.PageSearcher;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
@@ -263,24 +262,7 @@ public abstract class HorizontalModeController extends DocumentController {
         return currentPage;
     }
 
-    public void saveCurrentPage() {
-        if (TempHolder.get().loadingCancelled) {
-            LOG.d("Loading cancelled");
-            return;
-        }
-        // int page = PageUrl.fakeToReal(currentPage);
-        LOG.d("_PAGE", "saveCurrentPage", currentPage, pagesCount);
-        try {
-            AppBook bs = SettingsManager.getBookSettings(getBookPath());
-            bs.updateFromAppState();
-            bs.currentPageChanged(currentPage, pagesCount);
-            SharedBooks.save(bs);
-            //activity.getIntent().putExtra(EXTRA_PERCENT, (double) currentPage / pagesCount);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
 
-    }
 
     public int getOpenPageNumber() {
         return currentPage;

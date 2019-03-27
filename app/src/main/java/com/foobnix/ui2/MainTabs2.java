@@ -323,13 +323,17 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             @Override
             public void onDrawerStateChanged(int arg0) {
-                LOG.d("drawerLayout-onDrawerStateChanged");
+                LOG.d("drawerLayout-onDrawerStateChanged",arg0);
 
             }
 
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
+                if (BookCSS.get().isEnableGdrive) {
+                    swipeRefreshLayout.setEnabled(false);
+                }
+
             }
 
             @Override
@@ -501,12 +505,14 @@ public class MainTabs2 extends AdsFragmentActivity {
             if (msg.state == MessageSync.STATE_VISIBLE) {
                 fab.setVisibility(View.VISIBLE);
                 swipeRefreshLayout.setRefreshing(false);
+            } else if (msg.state == MessageSync.STATE_FAILE) {
+                fab.setVisibility(View.GONE);
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
             } else {
                 fab.setVisibility(View.GONE);
                 swipeRefreshLayout.setRefreshing(false);
-                final Toast to = Toast.makeText(this, "Synchronized", Toast.LENGTH_LONG);
-                to.setGravity(Gravity.TOP, 0, Dips.DP_25);
-                to.show();
+
             }
         } catch (Exception e) {
             LOG.e(e);

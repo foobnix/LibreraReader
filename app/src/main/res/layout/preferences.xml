@@ -13,43 +13,21 @@
         android:orientation="vertical"
         android:padding="3dip">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="4dip"
-            android:visibility="visible">
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_margin="4dip"
-                android:src="@mipmap/icon_pdf_pro" />
-
-            <TextView
-                android:id="@+id/downloadPRO"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:singleLine="false"
-                android:text="@string/librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application" />
-        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/section1"
+            android:id="@+id/section9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:background="@drawable/bg_search_second">
+
 
             <TextView
                 style="@style/textLinkWhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/library_settings" />
+                android:text="@string/profile" />
 
             <TextView
                 android:id="@+id/onCloseApp"
@@ -64,6 +42,58 @@
                 android:text="@string/exit_application"
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/onProfileEdit"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_137_cogwheel"
+                android:tint="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dip">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:src="@drawable/googleg_standard_color_18" />
+
+            <TextView
+                android:layout_marginLeft="10dip"
+                android:id="@+id/onProfile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BETA"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/section1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search_second">
+
+            <TextView
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/library_settings" />
+
+
         </LinearLayout>
 
         <TextView
@@ -263,7 +293,7 @@
                     android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
                     android:padding="8dip"
-                    android:src="@drawable/glyphicons_685_article"
+                    android:src="@drawable/glyphicons_137_cogwheel"
                     android:tint="@color/tint_gray" />
             </LinearLayout>
 
@@ -278,12 +308,6 @@
             android:background="@drawable/bg_search_second"
             android:text="Syncronization" />
 
-        <TextView
-            android:id="@+id/syncFolder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dip"
-            android:text="Path: /storage/emulated/0/Librera" />
 
         <TextView
             android:id="@+id/syncInfo"
@@ -298,7 +322,7 @@
             style="@style/textLinkStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enable Syncronize with Google Drive" />
+            android:text="Enable Sync via Google Drive" />
 
         <Button
             android:id="@+id/onSyncStart"
@@ -323,37 +347,6 @@
             android:background="@drawable/bg_search_second"
             android:text="@string/general_settings" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:minWidth="135dp"
-                android:text="@string/profile"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/onProfile"
-                style="@style/textLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="BETA" />
-
-            <ImageView
-                android:id="@+id/onProfileEdit"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:padding="8dip"
-                android:src="@drawable/glyphicons_685_article"
-                android:tint="@color/tint_gray" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -722,7 +715,7 @@
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
                 android:padding="8dip"
-                android:src="@drawable/glyphicons_685_article"
+                android:src="@drawable/glyphicons_137_cogwheel"
                 android:tint="@color/tint_gray" />
 
 
@@ -1489,6 +1482,33 @@
             android:gravity="center"
             android:singleLine="false"
             android:text="@string/rate_pdf_reader1" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dip"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_margin="4dip"
+                android:src="@mipmap/icon_pdf_pro" />
+
+            <TextView
+                android:id="@+id/downloadPRO"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="@string/librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

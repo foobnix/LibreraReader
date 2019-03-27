@@ -325,7 +325,7 @@ public class GFile {
         // }
         try {
             is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
-        } catch (Exception e) {
+        } catch (IOException e) {
             is = googleDriveService.files().get(fileId).executeAsInputStream();
         }
 
@@ -408,7 +408,7 @@ public class GFile {
             LOG.d(TAG, "sycnronizeAll", "finished");
             debugOut += "\nEnd";
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             debugOut += "\nException: " + e.getMessage();
             LOG.e(e);
             throw e;
@@ -472,10 +472,10 @@ public class GFile {
                 }
                 syncUpload(remote.getId(), local, map2);
             } else {
-                if(remote==null){
+                if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add.getId(), local);
-                }else if(remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000){
+                } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
                     uploadFile(syncId, remote.getId(), local);
                 }
 
