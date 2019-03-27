@@ -65,7 +65,7 @@ public enum BookType {
 
     DJVU(DjvuContext.class, false, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
 
-    ZIP(ZipContext.class, false, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
+    ZIP(ZipContext.class, true, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
 
     private final static Map<String, BookType> extensionToActivity;
 
