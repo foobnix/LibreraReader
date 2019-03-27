@@ -3,6 +3,8 @@ package org.emdev.ui.actions;
 
 import android.app.Activity;
 
+import org.emdev.utils.LengthUtils;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -10,8 +12,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.emdev.utils.LengthUtils;
 
 public class EventDispatcher {
 

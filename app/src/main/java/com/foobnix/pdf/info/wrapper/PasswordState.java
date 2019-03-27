@@ -1,9 +1,9 @@
 package com.foobnix.pdf.info.wrapper;
 
-import com.foobnix.android.utils.Objects;
-
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.foobnix.android.utils.Objects;
 
 public class PasswordState {
 

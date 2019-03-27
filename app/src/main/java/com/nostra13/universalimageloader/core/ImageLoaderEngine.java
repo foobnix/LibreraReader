@@ -15,6 +15,13 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core;
 
+import android.view.View;
+
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.FlushedInputStream;
+import com.nostra13.universalimageloader.core.imageaware.ImageAware;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,13 +31,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
-
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.FlushedInputStream;
-import com.nostra13.universalimageloader.core.imageaware.ImageAware;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-
-import android.view.View;
 
 /**
  * {@link ImageLoader} engine which responsible for {@linkplain LoadAndDisplayImageTask display task} execution.

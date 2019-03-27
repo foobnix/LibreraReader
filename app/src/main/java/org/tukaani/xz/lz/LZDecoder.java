@@ -10,10 +10,11 @@
 
 package org.tukaani.xz.lz;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import org.tukaani.xz.ArrayCache;
 import org.tukaani.xz.CorruptedInputException;
+
+import java.io.DataInputStream;
+import java.io.IOException;
 
 public final class LZDecoder {
     private final byte[] buf;

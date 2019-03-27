@@ -16,16 +16,6 @@
 
 package net.lingala.zip4j.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import net.lingala.zip4j.core.HeaderReader;
 import net.lingala.zip4j.core.HeaderWriter;
 import net.lingala.zip4j.exception.ZipException;
@@ -36,6 +26,16 @@ import net.lingala.zip4j.model.Zip64EndCentralDirLocator;
 import net.lingala.zip4j.model.Zip64EndCentralDirRecord;
 import net.lingala.zip4j.model.ZipModel;
 import net.lingala.zip4j.progress.ProgressMonitor;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ArchiveMaintainer {
 	

@@ -1,16 +1,16 @@
 package com.foobnix.pdf.search.activity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.ebookdroid.core.codec.PageLink;
-import org.ebookdroid.droids.mupdf.codec.TextWord;
+import android.graphics.Matrix;
+import android.util.SparseArray;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
-import android.graphics.Matrix;
-import android.util.SparseArray;
+import org.ebookdroid.core.codec.PageLink;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PageImageState {
     private static final int M9 = 9;

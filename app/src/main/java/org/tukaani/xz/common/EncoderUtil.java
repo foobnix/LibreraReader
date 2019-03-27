@@ -9,8 +9,8 @@
 
 package org.tukaani.xz.common;
 
-import java.io.OutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.zip.CRC32;
 
 public class EncoderUtil extends Util {

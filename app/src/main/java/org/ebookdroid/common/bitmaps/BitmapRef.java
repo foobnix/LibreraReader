@@ -1,9 +1,9 @@
 package org.ebookdroid.common.bitmaps;
 
+import android.graphics.Bitmap;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import android.graphics.Bitmap;
 
 public class BitmapRef {
 

@@ -1,15 +1,15 @@
 package org.ebookdroid.droids.mupdf.codec;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.ebookdroid.core.codec.PageLink;
+import android.graphics.RectF;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.sys.TempHolder;
 
-import android.graphics.RectF;
+import org.ebookdroid.core.codec.PageLink;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MuPdfLinks {
 

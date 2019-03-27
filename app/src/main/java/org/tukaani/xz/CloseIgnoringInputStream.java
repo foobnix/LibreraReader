@@ -9,8 +9,8 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
 import java.io.FilterInputStream;
+import java.io.InputStream;
 
 /**
  * An {@code InputStream} wrapper whose {@code close()} does nothing.

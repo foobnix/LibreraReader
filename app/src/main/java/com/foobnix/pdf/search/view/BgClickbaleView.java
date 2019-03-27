@@ -1,8 +1,5 @@
 package com.foobnix.pdf.search.view;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -15,6 +12,9 @@ import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.R;
 
 public class BgClickbaleView extends TextView {
 

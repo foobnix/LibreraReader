@@ -40,6 +40,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
@@ -592,7 +593,7 @@ public class Dialogs {
                     onRefresh.run();
                 }
                 create.dismiss();
-                AppState.get().save(a);
+                AppProfile.save(a);
 
             }
         });

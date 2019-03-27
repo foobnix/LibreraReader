@@ -16,16 +16,6 @@
 
 package net.lingala.zip4j.unzip;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.util.Arrays;
-import java.util.zip.CRC32;
-
 import net.lingala.zip4j.core.HeaderReader;
 import net.lingala.zip4j.crypto.AESDecrypter;
 import net.lingala.zip4j.crypto.IDecrypter;
@@ -44,6 +34,16 @@ import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Raw;
 import net.lingala.zip4j.util.Zip4jConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.util.Arrays;
+import java.util.zip.CRC32;
 
 public class UnzipEngine {
 	

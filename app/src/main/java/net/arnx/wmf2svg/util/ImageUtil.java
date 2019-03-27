@@ -1,13 +1,13 @@
 package net.arnx.wmf2svg.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-
-import com.foobnix.android.utils.LOG;
-
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+
+import com.foobnix.android.utils.LOG;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 
 public class ImageUtil {
 

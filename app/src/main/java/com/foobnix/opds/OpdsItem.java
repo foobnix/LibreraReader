@@ -1,8 +1,8 @@
 package com.foobnix.opds;
 
-import org.json.JSONObject;
-
 import com.foobnix.android.utils.LOG;
+
+import org.json.JSONObject;
 
 public class OpdsItem {
 

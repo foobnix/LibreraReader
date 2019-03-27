@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 
@@ -35,7 +36,7 @@ public class KeyCodeDialog {
             public void onClick(DialogInterface dialog, int id) {
                 AppState.get().nextKeys = AppState.stringToKyes(keyNext.getText().toString());
                 AppState.get().prevKeys = AppState.stringToKyes(keyPrev.getText().toString());
-                AppState.get().save(a);
+                AppProfile.save(a);
                 if (onClose != null) {
                     onClose.run();
                 }

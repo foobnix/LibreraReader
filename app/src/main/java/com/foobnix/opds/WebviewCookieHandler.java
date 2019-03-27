@@ -1,15 +1,16 @@
 package com.foobnix.opds;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import android.os.Build;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 
-import android.os.Build;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;

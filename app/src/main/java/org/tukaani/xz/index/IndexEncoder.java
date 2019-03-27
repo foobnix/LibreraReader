@@ -9,13 +9,13 @@
 
 package org.tukaani.xz.index;
 
-import java.io.OutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.zip.CheckedOutputStream;
-import org.tukaani.xz.common.EncoderUtil;
 import org.tukaani.xz.XZIOException;
+import org.tukaani.xz.common.EncoderUtil;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.zip.CheckedOutputStream;
 
 public class IndexEncoder extends IndexBase {
     private final ArrayList<IndexRecord> records

@@ -16,16 +16,16 @@
 
 package net.lingala.zip4j.io;
 
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.util.InternalZipConstants;
+import net.lingala.zip4j.util.Raw;
+import net.lingala.zip4j.util.Zip4jUtil;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
-
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.Raw;
-import net.lingala.zip4j.util.Zip4jUtil;
 
 public class SplitOutputStream extends OutputStream {
 	

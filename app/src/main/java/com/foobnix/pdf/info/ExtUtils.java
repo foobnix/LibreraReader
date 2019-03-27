@@ -51,6 +51,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
@@ -779,7 +780,7 @@ public class ExtUtils {
                 horizontal.setText(AppState.get().nameHorizontalMode);
                 music.setText(AppState.get().nameMusicianMode);
 
-                AppState.get().save(c);
+                AppProfile.save(c);
 
                 return true;
             }
@@ -816,7 +817,7 @@ public class ExtUtils {
                     Views.visible(verticalEdit, horizontalEdit, musicEdit);
                     Views.gone(vertical, horizontal, music);
 
-                    AppState.get().save(c);
+                    AppProfile.save(c);
 
                 } else { // text view
                     editNames.setText(R.string.edit);
@@ -1149,7 +1150,7 @@ public class ExtUtils {
             out.close();
 
             AppState.get().fileToDelete = pathofBmp;
-            AppState.get().save(a);
+            AppProfile.save(a);
 
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);

@@ -1,10 +1,10 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.core.models.DocumentModel;
-import org.ebookdroid.ui.viewer.IView;
-
 import android.graphics.PointF;
 import android.graphics.RectF;
+
+import org.ebookdroid.core.models.DocumentModel;
+import org.ebookdroid.ui.viewer.IView;
 
 public class EventGotoPage implements IEvent {
 

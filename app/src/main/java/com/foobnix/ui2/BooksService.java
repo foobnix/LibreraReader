@@ -14,7 +14,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExportConverter;
@@ -57,9 +57,6 @@ public class BooksService extends IntentService {
     public void onCreate() {
         super.onCreate();
     }
-
-    private static final String LAST_SEARCH_TIME = "LAST_SEARCH_TIME";
-    private static final String LAST_SYNC_TIME = "LAST_SYNC_TIME";
 
     public static String TAG = "BooksService";
 
@@ -116,8 +113,8 @@ public class BooksService extends IntentService {
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
                 if (BookCSS.get().isEnableGdrive) {
 
-                    AppState.get().saveIn(this);
-                    BookCSS.get().save(this);
+
+                    AppProfile.save(this);
 
 
                     try {
@@ -172,8 +169,8 @@ public class BooksService extends IntentService {
                 }
                 sendFinishMessage();
 
-                LOG.d("BooksService , searchDate", BookCSS.get().searchDate, BookCSS.get().searchPaths);
-                if (BookCSS.get().searchDate != 0) {
+                LOG.d("BooksService , searchDate", AppTemp.get().searchDate, BookCSS.get().searchPaths);
+                if (AppTemp.get().searchDate != 0) {
 
                     List<FileMeta> localMeta = new LinkedList<FileMeta>();
 
@@ -191,7 +188,7 @@ public class BooksService extends IntentService {
 
                         File file = new File(meta.getPath());
 
-                        if (file.lastModified() >= BookCSS.get().searchDate) {
+                        if (file.lastModified() >= AppTemp.get().searchDate) {
                             if (AppDB.get().getDao().hasKey(meta)) {
                                 LOG.d(TAG, "Skip book", file.getPath());
                                 continue;
@@ -200,7 +197,7 @@ public class BooksService extends IntentService {
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
                         } else {
-                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), BookCSS.get().searchDate);
+                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
                         }
 
                     }
@@ -208,7 +205,7 @@ public class BooksService extends IntentService {
                     SharedBooks.updateProgress(list);
                     AppDB.get().updateAll(list);
 
-                    BookCSS.get().searchDate = System.currentTimeMillis();
+                    AppTemp.get().searchDate = System.currentTimeMillis();
                     sendFinishMessage();
                 }
 
@@ -237,7 +234,7 @@ public class BooksService extends IntentService {
                         }
                     }
                 }
-                BookCSS.get().searchDate = System.currentTimeMillis();
+                AppTemp.get().searchDate = System.currentTimeMillis();
 
                 for (FileMeta meta : itemsMeta) {
                     meta.setIsSearchBook(true);

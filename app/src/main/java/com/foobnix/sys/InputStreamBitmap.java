@@ -1,10 +1,10 @@
 package com.foobnix.sys;
 
+import android.graphics.Bitmap;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
-
-import android.graphics.Bitmap;
 
 public class InputStreamBitmap extends InputStream {
 

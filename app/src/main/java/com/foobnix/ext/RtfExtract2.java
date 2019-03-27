@@ -1,11 +1,6 @@
 package com.foobnix.ext;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import android.text.TextUtils;
 
 import com.foobnix.android.utils.LOG;
 import com.rtfparserkit.parser.IRtfParser;
@@ -16,7 +11,12 @@ import com.rtfparserkit.parser.standard.StandardRtfParser;
 import com.rtfparserkit.rtf.Command;
 import com.rtfparserkit.utils.HexUtils;
 
-import android.text.TextUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 
 public class RtfExtract2 {
 

@@ -1,10 +1,5 @@
 package com.foobnix.pdf.search.view;
 
-import java.util.Arrays;
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,6 +8,11 @@ import android.graphics.Paint.Style;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.foobnix.android.utils.Dips;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SpeedBgView extends View {
 

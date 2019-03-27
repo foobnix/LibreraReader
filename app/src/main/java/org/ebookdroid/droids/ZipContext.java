@@ -1,17 +1,17 @@
 package org.ebookdroid.droids;
 
-import java.io.File;
+import android.support.v4.util.Pair;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CacheZipUtils.CacheDir;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecContext;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-
-import android.support.v4.util.Pair;
+import java.io.File;
 
 public class ZipContext extends PdfContext {
 

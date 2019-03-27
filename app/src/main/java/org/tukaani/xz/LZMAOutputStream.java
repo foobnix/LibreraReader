@@ -10,11 +10,12 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
-import java.io.IOException;
 import org.tukaani.xz.lz.LZEncoder;
-import org.tukaani.xz.rangecoder.RangeEncoderToStream;
 import org.tukaani.xz.lzma.LZMAEncoder;
+import org.tukaani.xz.rangecoder.RangeEncoderToStream;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Compresses into the legacy .lzma file format or into a raw LZMA stream.

@@ -1,5 +1,9 @@
 package org.ebookdroid.ui.viewer.stubs;
 
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.core.EventDraw;
 import org.ebookdroid.core.Page;
@@ -8,10 +12,6 @@ import org.ebookdroid.ui.viewer.IActivityController;
 import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.ui.progress.IProgressIndicator;
-
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 
 public class ViewContollerStub implements IViewController {
 

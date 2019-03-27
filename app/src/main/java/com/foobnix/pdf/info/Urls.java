@@ -1,12 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Locale;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.opds.OPDS;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,6 +13,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.opds.OPDS;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Locale;
 
 public class Urls {
 

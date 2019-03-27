@@ -1,8 +1,8 @@
 package com.foobnix.ext;
 
-import java.util.Map;
-
 import com.foobnix.android.utils.LOG;
+
+import java.util.Map;
 
 public class FooterNote {
 

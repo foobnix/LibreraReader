@@ -9,15 +9,16 @@
 
 package org.tukaani.xz.index;
 
-import java.io.InputStream;
+import org.tukaani.xz.CorruptedInputException;
+import org.tukaani.xz.XZIOException;
+import org.tukaani.xz.common.DecoderUtil;
+
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.zip.CheckedInputStream;
-import org.tukaani.xz.common.DecoderUtil;
-import org.tukaani.xz.XZIOException;
-import org.tukaani.xz.CorruptedInputException;
 
 public class IndexHash extends IndexBase {
     private org.tukaani.xz.check.Check hash;

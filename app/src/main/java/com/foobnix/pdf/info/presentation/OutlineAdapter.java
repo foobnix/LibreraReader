@@ -1,13 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.util.SparseIntArray;
@@ -22,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+
+import java.util.List;
 
 public class OutlineAdapter extends BaseAdapter {
 

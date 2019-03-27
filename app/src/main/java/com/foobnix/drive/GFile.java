@@ -394,7 +394,7 @@ public class GFile {
                     syncRoot = GFile.createFolder("root", "Librera");
                 }
                 BookCSS.get().syncRootID = syncRoot.getId();
-                BookCSS.get().save(c);
+                AppProfile.save(c);
             }
 
 

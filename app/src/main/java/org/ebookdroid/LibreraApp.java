@@ -18,8 +18,6 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.view.DragingPopup;
-import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.AppDB;
 import com.google.android.gms.ads.AdRequest;
@@ -48,9 +46,6 @@ public class LibreraApp extends MultiDexApplication {
 
         LOG.isEnable = BuildConfig.LOG;
 
-        DragingPopup.loadCache(this);
-        PasswordState.get().load(this);
-
         AppProfile.init(this);
 
 
@@ -66,8 +61,6 @@ public class LibreraApp extends MultiDexApplication {
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);
-
-        TintUtil.init();
 
         Clouds.get().init(this);
 

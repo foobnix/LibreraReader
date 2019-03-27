@@ -1,21 +1,21 @@
 package org.ebookdroid.common.bitmaps;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.support.v4.util.LruCache;
+
+import com.foobnix.android.utils.LOG;
+
+import org.ebookdroid.common.settings.CoreSettings;
+import org.emdev.utils.LengthUtils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.ebookdroid.common.settings.CoreSettings;
-import org.emdev.utils.LengthUtils;
-
-import com.foobnix.android.utils.LOG;
-
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.support.v4.util.LruCache;
 
 public class BitmapManager {
 

@@ -1,12 +1,12 @@
 package net.lingala.zip4j.unzip;
 
-import java.io.File;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
 import net.lingala.zip4j.model.UnzipParameters;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.File;
 
 public class UnzipUtil {
 	

@@ -16,15 +16,15 @@
 
 package net.lingala.zip4j.io;
 
-import java.io.IOException;
-import java.io.RandomAccessFile;
-
 import net.lingala.zip4j.crypto.AESDecrypter;
 import net.lingala.zip4j.crypto.IDecrypter;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.unzip.UnzipEngine;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jConstants;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class PartInputStream extends BaseInputStream
 {

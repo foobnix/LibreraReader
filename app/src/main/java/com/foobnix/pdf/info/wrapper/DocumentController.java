@@ -26,7 +26,9 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.MyADSProvider;
@@ -34,7 +36,6 @@ import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.sys.ImageExtractor;
@@ -235,9 +236,9 @@ public abstract class DocumentController {
 
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
 
-                if (getCurrentBook().getPath().equals(BookCSS.get().lastBookPath)) {
+                if (getCurrentBook().getPath().equals(AppTemp.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                    LOG.d("goToPageByTTS", BookCSS.get().lastBookPage + 1);
+                    LOG.d("goToPageByTTS", AppTemp.get().lastBookPage + 1);
                 }
             }
         } catch (Exception e) {
@@ -520,7 +521,7 @@ public abstract class DocumentController {
     }
 
     public void saveAppState() {
-        AppState.get().save(activity);
+        AppProfile.save(activity);
     }
 
     public static void doRotation(final Activity a) {

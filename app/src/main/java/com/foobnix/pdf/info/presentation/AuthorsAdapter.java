@@ -1,16 +1,16 @@
 package com.foobnix.pdf.info.presentation;
 
-import java.util.List;
-
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
+
+import java.util.List;
 
 public class AuthorsAdapter extends BaseAdapter {
 

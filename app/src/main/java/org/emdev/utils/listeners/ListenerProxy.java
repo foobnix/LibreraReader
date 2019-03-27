@@ -1,6 +1,8 @@
 package org.emdev.utils.listeners;
 
 
+import org.emdev.utils.LengthUtils;
+
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -9,8 +11,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import org.emdev.utils.LengthUtils;
 
 public class ListenerProxy {
 

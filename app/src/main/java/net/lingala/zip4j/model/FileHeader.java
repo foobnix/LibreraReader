@@ -16,12 +16,12 @@
 
 package net.lingala.zip4j.model;
 
-import java.util.ArrayList;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.progress.ProgressMonitor;
 import net.lingala.zip4j.unzip.Unzip;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.util.ArrayList;
 
 public class FileHeader {
 	

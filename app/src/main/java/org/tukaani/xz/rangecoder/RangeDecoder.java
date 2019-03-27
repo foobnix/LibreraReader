@@ -10,7 +10,6 @@
 
 package org.tukaani.xz.rangecoder;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 
 public abstract class RangeDecoder extends RangeCoder {

@@ -1,14 +1,5 @@
 package com.foobnix.pdf.info.presentation;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.pdf.info.R;
-
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +7,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.pdf.info.R;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class PathAdapter extends BaseAdapter {
 

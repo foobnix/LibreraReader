@@ -9,8 +9,8 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Wraps an output stream to a finishable output stream for use with

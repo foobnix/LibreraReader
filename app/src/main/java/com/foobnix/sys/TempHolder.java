@@ -1,9 +1,9 @@
 package com.foobnix.sys;
 
+import com.foobnix.pdf.info.wrapper.UITab;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
-
-import com.foobnix.pdf.info.wrapper.UITab;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();

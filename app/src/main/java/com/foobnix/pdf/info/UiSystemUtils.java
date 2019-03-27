@@ -1,11 +1,11 @@
 package com.foobnix.pdf.info;
 
-import java.sql.Date;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+
+import java.sql.Date;
 
 public class UiSystemUtils {
 

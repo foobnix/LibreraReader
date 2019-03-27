@@ -15,7 +15,14 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core.display;
 
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.ComposeShader;
+import android.graphics.Matrix;
+import android.graphics.PorterDuff;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
+import android.graphics.Shader;
+
 import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;

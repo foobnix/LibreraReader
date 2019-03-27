@@ -16,9 +16,9 @@
 
 package com.foobnix.pdf;
 
-import java.util.concurrent.ExecutorService;
-
 import android.app.Activity;
+
+import java.util.concurrent.ExecutorService;
 
 public abstract class CopyAsyncTask2 {
 

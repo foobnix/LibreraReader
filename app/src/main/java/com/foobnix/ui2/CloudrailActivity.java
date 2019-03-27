@@ -1,14 +1,14 @@
 package com.foobnix.ui2;
 
-import com.cloudrail.si.CloudRail;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.wrapper.UITab;
-import com.foobnix.ui2.fragment.UIFragment;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+
+import com.cloudrail.si.CloudRail;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.wrapper.UITab;
+import com.foobnix.ui2.fragment.UIFragment;
 
 public class CloudrailActivity extends Activity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;

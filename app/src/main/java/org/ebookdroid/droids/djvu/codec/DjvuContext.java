@@ -1,8 +1,8 @@
 package org.ebookdroid.droids.djvu.codec;
 
-import org.ebookdroid.core.codec.AbstractCodecContext;
-
 import com.foobnix.sys.TempHolder;
+
+import org.ebookdroid.core.codec.AbstractCodecContext;
 
 public class DjvuContext extends AbstractCodecContext {
 

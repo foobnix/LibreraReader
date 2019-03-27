@@ -15,6 +15,13 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core;
 
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -31,13 +38,6 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.nostra13.universalimageloader.utils.ImageSizeUtils;
 import com.nostra13.universalimageloader.utils.L;
 import com.nostra13.universalimageloader.utils.MemoryCacheUtils;
-
-import android.graphics.Bitmap;
-import android.os.Handler;
-import android.os.Looper;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
 
 /**
  * Singletone for image loading and displaying at {@link ImageView

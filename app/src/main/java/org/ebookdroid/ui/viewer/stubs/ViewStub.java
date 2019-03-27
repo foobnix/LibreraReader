@@ -1,14 +1,14 @@
 package org.ebookdroid.ui.viewer.stubs;
 
-import org.ebookdroid.core.ViewState;
-import org.ebookdroid.ui.viewer.IActivityController;
-import org.ebookdroid.ui.viewer.IView;
-
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 import android.widget.Scroller;
+
+import org.ebookdroid.core.ViewState;
+import org.ebookdroid.ui.viewer.IActivityController;
+import org.ebookdroid.ui.viewer.IView;
 
 public class ViewStub implements IView {
 

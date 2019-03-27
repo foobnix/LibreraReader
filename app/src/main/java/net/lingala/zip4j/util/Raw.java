@@ -16,10 +16,10 @@
 
 package net.lingala.zip4j.util;
 
+import net.lingala.zip4j.exception.ZipException;
+
 import java.io.DataInput;
 import java.io.IOException;
-
-import net.lingala.zip4j.exception.ZipException;
 
 public class Raw
 {

@@ -17,6 +17,7 @@ package com.nostra13.universalimageloader.utils;
 
 import android.graphics.BitmapFactory;
 import android.opengl.GLES10;
+
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.assist.ViewScaleType;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;

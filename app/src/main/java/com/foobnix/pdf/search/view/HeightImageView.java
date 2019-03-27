@@ -1,11 +1,11 @@
 package com.foobnix.pdf.search.view;
 
-import com.foobnix.android.utils.LOG;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.foobnix.android.utils.LOG;
 
 public class HeightImageView extends ImageView {
 

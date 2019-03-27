@@ -1,10 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,6 +11,11 @@ import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.foobnix.android.utils.Dips;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DrawView extends View {

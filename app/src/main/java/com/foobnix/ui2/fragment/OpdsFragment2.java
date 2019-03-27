@@ -36,6 +36,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
@@ -426,7 +427,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         OPDS.buildProxy();
 
-                        AppState.get().save(getActivity());
+                        AppProfile.save(getActivity());
                         Keyboards.close(proxyServer);
 
                     }

@@ -16,15 +16,15 @@
 
 package com.foobnix.ui2.fast;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.TintUtil;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.TintUtil;
 
 public class FastScrollRecyclerView extends RecyclerView {
 

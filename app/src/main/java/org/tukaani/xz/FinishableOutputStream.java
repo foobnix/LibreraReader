@@ -9,8 +9,8 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Output stream that supports finishing without closing

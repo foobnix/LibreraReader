@@ -8,10 +8,8 @@ import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
-import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
@@ -50,9 +48,7 @@ public class ExportConverter {
         IO.writeString(AppProfile.syncCSS, obj.getJSONObject("pdf").toString());
 
 
-        AppState.get().loadIn(c);
-        BookCSS.get().load(c);
-        TintUtil.init();
+        AppProfile.load(c);
 
         JSONArray recent = obj.getJSONArray("Recent");
         long t = System.currentTimeMillis();

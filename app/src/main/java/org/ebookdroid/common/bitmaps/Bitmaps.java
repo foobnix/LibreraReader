@@ -1,7 +1,5 @@
 package org.ebookdroid.common.bitmaps;
 
-import org.ebookdroid.core.PagePaint;
-
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -11,10 +9,11 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region.Op;
 
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
+import org.ebookdroid.core.PagePaint;
 import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MathUtils;
+
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Bitmaps {
 

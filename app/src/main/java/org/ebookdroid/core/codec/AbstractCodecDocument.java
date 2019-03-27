@@ -1,13 +1,13 @@
 package org.ebookdroid.core.codec;
 
+import android.graphics.Bitmap;
+
+import com.foobnix.sys.TempHolder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import com.foobnix.sys.TempHolder;
-
-import android.graphics.Bitmap;
 
 public abstract class AbstractCodecDocument implements CodecDocument {
 

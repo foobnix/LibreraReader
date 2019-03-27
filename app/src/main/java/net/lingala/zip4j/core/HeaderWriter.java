@@ -16,12 +16,6 @@
 
 package net.lingala.zip4j.core;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.SplitOutputStream;
 import net.lingala.zip4j.model.AESExtraDataRecord;
@@ -33,6 +27,12 @@ import net.lingala.zip4j.model.ZipModel;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Raw;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HeaderWriter {
 	

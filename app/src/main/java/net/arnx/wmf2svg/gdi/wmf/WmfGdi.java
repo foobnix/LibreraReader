@@ -1,11 +1,5 @@
 package net.arnx.wmf2svg.gdi.wmf;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import net.arnx.wmf2svg.gdi.Gdi;
 import net.arnx.wmf2svg.gdi.GdiBrush;
 import net.arnx.wmf2svg.gdi.GdiFont;
@@ -16,6 +10,12 @@ import net.arnx.wmf2svg.gdi.GdiPen;
 import net.arnx.wmf2svg.gdi.GdiRegion;
 import net.arnx.wmf2svg.gdi.Point;
 import net.arnx.wmf2svg.gdi.Size;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class WmfGdi implements Gdi, WmfConstants {
 	private byte[] placeableHeader;

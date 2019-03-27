@@ -15,7 +15,9 @@
  */
 package net.arnx.wmf2svg.io;
 
-import java.io.*;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteOrder;
 
 /**

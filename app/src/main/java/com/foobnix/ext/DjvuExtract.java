@@ -1,10 +1,10 @@
 package com.foobnix.ext;
 
-import org.ebookdroid.core.codec.CodecDocument;
-import org.ebookdroid.droids.djvu.codec.DjvuContext;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+
+import org.ebookdroid.core.codec.CodecDocument;
+import org.ebookdroid.droids.djvu.codec.DjvuContext;
 
 public class DjvuExtract {
 

@@ -16,11 +16,6 @@
  */
 package com.foobnix.pdf.search.view;
 
-import java.util.Locale;
-import java.util.Map;
-
-import com.foobnix.android.utils.LOG;
-
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.support.v4.text.TextUtilsCompat;
@@ -30,6 +25,11 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+
+import com.foobnix.android.utils.LOG;
+
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * ViewPager that reverses the items order in RTL locales.

@@ -1,9 +1,9 @@
 package org.ebookdroid.droids.mupdf.codec;
 
+import android.graphics.RectF;
+
 import com.artifex.mupdf.fitz.Rect;
 import com.foobnix.android.utils.TxtUtils;
-
-import android.graphics.RectF;
 
 public class TextWord extends RectF {
     public String w;

@@ -15,9 +15,9 @@
  */
 package net.arnx.wmf2svg.gdi.svg;
 
-import org.w3c.dom.Text;
+import net.arnx.wmf2svg.gdi.GdiPen;
 
-import net.arnx.wmf2svg.gdi.*;
+import org.w3c.dom.Text;
 
 /**
  * @author Hidekatsu Izuno

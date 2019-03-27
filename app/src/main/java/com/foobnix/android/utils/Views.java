@@ -1,13 +1,5 @@
 package com.foobnix.android.utils;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -27,6 +19,14 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
+
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Views {
 

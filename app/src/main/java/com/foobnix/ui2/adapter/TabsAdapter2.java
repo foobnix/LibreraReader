@@ -1,13 +1,13 @@
 package com.foobnix.ui2.adapter;
 
-import java.util.List;
-
-import com.foobnix.ui2.fragment.UIFragment;
-
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.foobnix.ui2.fragment.UIFragment;
+
+import java.util.List;
 
 public class TabsAdapter2 extends FragmentStatePagerAdapter {
 

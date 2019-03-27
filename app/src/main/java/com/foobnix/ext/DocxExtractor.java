@@ -6,8 +6,6 @@ import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.Locale;

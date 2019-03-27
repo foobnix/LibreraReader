@@ -51,6 +51,7 @@ import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
@@ -64,7 +65,6 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
@@ -889,9 +889,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomIndicators.setVisibility(View.VISIBLE);
                     onModeChange.setVisibility(View.VISIBLE);
 
-                    BookCSS.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
-                    BookCSS.get().lastMode = HorizontalViewActivity.class.getSimpleName();
-                    LOG.d("lasta save", BookCSS.get().lastClosedActivity);
+                    AppTemp.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
+                    AppTemp.get().lastMode = HorizontalViewActivity.class.getSimpleName();
+                    LOG.d("lasta save", AppTemp.get().lastClosedActivity);
 
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
@@ -1459,7 +1459,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        AppState.get().save(this);
+        AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
         dc.saveCurrentPageAsync();
@@ -1932,7 +1932,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // ADS.activate(this, adView);
         activateAds();
 
-        AppState.get().save(this);
+        AppProfile.save(this);
         if (ExtUtils.isTextFomat(getIntent())) {
             nullAdapter();
             dc.restartActivity();
@@ -2286,7 +2286,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onFinishActivity() {
-        BookCSS.get().lastClosedActivity = null;
+        AppTemp.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

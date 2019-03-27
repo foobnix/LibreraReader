@@ -1,12 +1,12 @@
 package org.ebookdroid.core.crop;
 
-import org.ebookdroid.common.bitmaps.BitmapRef;
-import org.ebookdroid.common.bitmaps.RawBitmap;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+
+import org.ebookdroid.common.bitmaps.BitmapRef;
+import org.ebookdroid.common.bitmaps.RawBitmap;
 
 public class PageCropper2 {
 

@@ -15,15 +15,15 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.utils;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 
-import android.graphics.Bitmap;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Utility for generating of keys for memory cache, key comparing and other work with memory cache

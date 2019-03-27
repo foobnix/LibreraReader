@@ -1,14 +1,14 @@
 package org.ebookdroid.ui.viewer.viewers;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.app.Activity;
+import android.view.View;
+
+import com.foobnix.pdf.info.wrapper.DocumentController;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.emdev.common.android.AndroidVersion;
 
-import com.foobnix.pdf.info.wrapper.DocumentController;
-
-import android.app.Activity;
-import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FullScreenCallback implements Runnable {
 

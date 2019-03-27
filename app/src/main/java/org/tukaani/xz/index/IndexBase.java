@@ -9,8 +9,8 @@
 
 package org.tukaani.xz.index;
 
-import org.tukaani.xz.common.Util;
 import org.tukaani.xz.XZIOException;
+import org.tukaani.xz.common.Util;
 
 abstract class IndexBase {
     private final XZIOException invalidIndexException;

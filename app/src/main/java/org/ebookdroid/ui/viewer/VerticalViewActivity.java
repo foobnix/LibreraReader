@@ -211,7 +211,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         getController().onPause();
         needToRestore = AppState.get().isAutoScroll;
         AppState.get().isAutoScroll = false;
-        AppState.get().save(this);
+        AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
 
@@ -316,7 +316,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
-        AppState.get().save(this);
+        AppProfile.save(this);
 
         if (ExtUtils.isTextFomat(getIntent())) {
 

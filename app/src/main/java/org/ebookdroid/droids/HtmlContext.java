@@ -1,15 +1,15 @@
 package org.ebookdroid.droids;
 
-import java.util.Map;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.FooterNote;
+import com.foobnix.ext.HtmlExtractor;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.FooterNote;
-import com.foobnix.ext.HtmlExtractor;
+import java.util.Map;
 
 public class HtmlContext extends PdfContext {
 

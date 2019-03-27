@@ -1,13 +1,13 @@
 package com.foobnix.ext;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.libmobi.LibMobi;
 import com.foobnix.mobi.parser.MobiParserIS;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MobiExtract {
 

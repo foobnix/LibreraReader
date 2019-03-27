@@ -9,13 +9,14 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
-import java.io.DataInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Arrays;
-import org.tukaani.xz.common.DecoderUtil;
 import org.tukaani.xz.check.Check;
+import org.tukaani.xz.common.DecoderUtil;
+
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 
 class BlockInputStream extends InputStream {
     private final DataInputStream inData;

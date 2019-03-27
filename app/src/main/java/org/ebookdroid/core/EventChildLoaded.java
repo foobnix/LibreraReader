@@ -1,10 +1,10 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.bitmaps.Bitmaps;
-
 import android.graphics.Rect;
 import android.graphics.RectF;
+
+import org.ebookdroid.common.bitmaps.BitmapManager;
+import org.ebookdroid.common.bitmaps.Bitmaps;
 
 import java.util.ArrayList;
 import java.util.List;

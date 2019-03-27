@@ -1,15 +1,15 @@
 package org.ebookdroid.ui.viewer;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.foobnix.sys.VerticalModeController;
+
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.core.models.ZoomModel;
 import org.emdev.ui.actions.IActionController;
-
-import com.foobnix.sys.VerticalModeController;
-
-import android.app.Activity;
-import android.content.Context;
 
 public interface IActivityController extends IActionController<VerticalViewActivity> {
 

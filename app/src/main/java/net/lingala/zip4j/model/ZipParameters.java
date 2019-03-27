@@ -16,11 +16,11 @@
 
 package net.lingala.zip4j.model;
 
-import java.util.TimeZone;
-
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.util.TimeZone;
 
 public class ZipParameters implements Cloneable {
 	

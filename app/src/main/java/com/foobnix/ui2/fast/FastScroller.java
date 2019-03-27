@@ -17,8 +17,6 @@
 package com.foobnix.ui2.fast;
 
 
-import com.foobnix.pdf.info.R;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -42,6 +40,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.foobnix.pdf.info.R;
 
 @SuppressLint("NewApi")
 public class FastScroller extends LinearLayout {

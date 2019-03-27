@@ -7,6 +7,7 @@ import android.graphics.Rect;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -88,12 +89,12 @@ public final class RawBitmap {
 
 
     public void invert() {
-        LOG.d("invert", BookCSS.get().lastBookPath);
-        if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(BookCSS.get().lastBookPath)) {
+        LOG.d("invert", AppTemp.get().lastBookPath);
+        if (!MagicHelper.isNeedMagic() && BookType.DJVU.is(AppTemp.get().lastBookPath)) {
             nativeInvert(pixels, width, height);
             return;
         }
-        if (BookType.DJVU.is(BookCSS.get().lastBookPath)) {
+        if (BookType.DJVU.is(AppTemp.get().lastBookPath)) {
             return;
         }
         if (!(MagicHelper.isNeedMagic() && AppState.get().isCustomizeBgAndColors)) {

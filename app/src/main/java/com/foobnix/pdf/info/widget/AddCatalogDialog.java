@@ -20,6 +20,7 @@ import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
@@ -183,7 +184,7 @@ public class AddCatalogDialog {
                     AppState.get().myOPDSLinks = entry.appState + AppState.get().myOPDSLinks;
                     onRefresh.run();
                     infoDialog.dismiss();
-                    AppState.get().save(a);
+                    AppProfile.save(a);
                     return;
 
                 }

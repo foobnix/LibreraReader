@@ -25,6 +25,7 @@ import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -398,7 +399,7 @@ public class ColorsDialog {
 
                 colorsDialogResult.onChooseColor(colorTextChoose, colorBgChoose);
 
-                AppState.get().save(c);
+                AppProfile.save(c);
             }
         });
         d.show();

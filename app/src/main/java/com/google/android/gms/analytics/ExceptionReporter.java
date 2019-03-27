@@ -1,8 +1,8 @@
 package com.google.android.gms.analytics;
 
-import java.lang.Thread.UncaughtExceptionHandler;
-
 import android.content.Context;
+
+import java.lang.Thread.UncaughtExceptionHandler;
 
 public class ExceptionReporter {
 

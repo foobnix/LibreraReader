@@ -1,9 +1,9 @@
 package net.lingala.zip4j.io;
 
+import net.lingala.zip4j.unzip.UnzipEngine;
+
 import java.io.IOException;
 import java.io.InputStream;
-
-import net.lingala.zip4j.unzip.UnzipEngine;
 
 public abstract class BaseInputStream extends InputStream {
 

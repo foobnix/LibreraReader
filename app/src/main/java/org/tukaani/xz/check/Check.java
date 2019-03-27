@@ -9,8 +9,8 @@
 
 package org.tukaani.xz.check;
 
-import org.tukaani.xz.XZ;
 import org.tukaani.xz.UnsupportedOptionsException;
+import org.tukaani.xz.XZ;
 
 public abstract class Check {
     int size;

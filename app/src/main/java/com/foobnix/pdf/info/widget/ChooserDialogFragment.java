@@ -1,11 +1,5 @@
 package com.foobnix.pdf.info.widget;
 
-import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.pdf.info.R;
-import com.foobnix.ui2.fragment.BrowseFragment2;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -16,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
+
+import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.pdf.info.R;
+import com.foobnix.ui2.fragment.BrowseFragment2;
 
 public class ChooserDialogFragment extends DialogFragment {
 

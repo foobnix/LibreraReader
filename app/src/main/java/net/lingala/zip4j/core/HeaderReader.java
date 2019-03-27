@@ -16,10 +16,6 @@
 
 package net.lingala.zip4j.core;
 
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.exception.ZipExceptionConstants;
 import net.lingala.zip4j.model.AESExtraDataRecord;
@@ -37,6 +33,10 @@ import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Raw;
 import net.lingala.zip4j.util.Zip4jConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 /**
  * Helper class to read header information for the zip file

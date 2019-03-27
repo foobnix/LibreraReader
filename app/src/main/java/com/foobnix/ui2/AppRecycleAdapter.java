@@ -1,15 +1,15 @@
 package com.foobnix.ui2;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.foobnix.android.utils.ResultResponse;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AppRecycleAdapter<K, T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {
 

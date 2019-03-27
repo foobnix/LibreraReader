@@ -1,18 +1,5 @@
 package org.emdev.ui.actions;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.emdev.utils.LengthUtils;
-import org.emdev.utils.collections.SparseArrayEx;
-
-import  com.foobnix.pdf.info.R;
-
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.util.SparseBooleanArray;
@@ -20,6 +7,19 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
+import com.foobnix.pdf.info.R;
+
+import org.emdev.utils.LengthUtils;
+import org.emdev.utils.collections.SparseArrayEx;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class ActionEx implements Runnable, View.OnClickListener, View.OnLongClickListener,
         AdapterView.OnItemClickListener, DialogInterface.OnClickListener, OnMultiChoiceClickListener,

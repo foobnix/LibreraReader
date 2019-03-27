@@ -9,8 +9,8 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Counts the number of bytes written to an output stream.

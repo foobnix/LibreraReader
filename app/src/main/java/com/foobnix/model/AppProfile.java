@@ -27,6 +27,8 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.DragingPopup;
+import com.foobnix.pdf.info.wrapper.PasswordState;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -68,19 +70,31 @@ public class AppProfile {
         syncProgress = new File(SYNC_FOLDER, "app-Progress.json");
         syncBookmarks = new File(AppProfile.SYNC_FOLDER, "app-Bookmarks.json");
 
-
         syncState = new File(SYNC_FOLDER, "app-State.json");
         syncCSS = new File(SYNC_FOLDER, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
 
+        load(c);
+    }
 
-        final boolean isLoaded = AppState.get().loadFromProfile(c);
+    public static void load(Context c){
+        final boolean isLoaded = AppState.get().loadInit(c);
         if (isLoaded) {
-            AppState.get().loadIn(c);
+            AppState.get().load(c);
         }
         TintUtil.init();
-        BookCSS.get().load(c);
+        BookCSS.get().load1(c);
+        AppTemp.get().init(c);
+        PasswordState.get().load(c);
+        DragingPopup.loadCache(c);
 
+    }
 
+    public static void save(Context a){
+        DragingPopup.saveCache(a);
+        PasswordState.get().save(a);
+        AppState.get().save(a);
+        BookCSS.get().save(a);
+        AppTemp.get().save();
     }
 
     public static String getCurrent(Context c) {
@@ -88,7 +102,7 @@ public class AppProfile {
     }
 
     public static void saveCurrent(Context c, String name) {
-        AppState.get().save(c);
+        save(c);
         sp.edit().putString(PROFILE_PREFIX, name).commit();
     }
 

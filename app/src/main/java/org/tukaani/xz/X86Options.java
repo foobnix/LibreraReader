@@ -9,8 +9,9 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
 import org.tukaani.xz.simple.X86;
+
+import java.io.InputStream;
 
 /**
  * BCJ filter for x86 (32-bit and 64-bit) instructions.

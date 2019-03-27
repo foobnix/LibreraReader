@@ -9,8 +9,8 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Input stream with random access support.

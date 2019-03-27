@@ -1,12 +1,12 @@
 package org.emdev.ui;
 
-import org.emdev.ui.actions.ActionController;
-import org.emdev.ui.actions.ActionEx;
+import android.content.Intent;
+import android.view.View;
 
 import com.foobnix.ui2.AdsFragmentActivity;
 
-import android.content.Intent;
-import android.view.View;
+import org.emdev.ui.actions.ActionController;
+import org.emdev.ui.actions.ActionEx;
 
 public abstract class AbstractActionActivity<A extends AdsFragmentActivity, C extends ActionController<A>> extends AdsFragmentActivity {
 

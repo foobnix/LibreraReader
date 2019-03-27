@@ -1,8 +1,8 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.common.bitmaps.Bitmaps;
-
 import android.graphics.RectF;
+
+import org.ebookdroid.common.bitmaps.Bitmaps;
 
 import java.util.List;
 

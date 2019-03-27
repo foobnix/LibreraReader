@@ -9,16 +9,17 @@
 
 package org.tukaani.xz;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.EOFException;
+import org.tukaani.xz.check.Check;
 import org.tukaani.xz.common.DecoderUtil;
 import org.tukaani.xz.common.StreamFlags;
-import org.tukaani.xz.check.Check;
-import org.tukaani.xz.index.IndexDecoder;
 import org.tukaani.xz.index.BlockInfo;
+import org.tukaani.xz.index.IndexDecoder;
+
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Decompresses a .xz file in random access mode.

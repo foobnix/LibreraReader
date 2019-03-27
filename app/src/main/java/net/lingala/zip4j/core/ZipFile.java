@@ -16,15 +16,6 @@
 
 package net.lingala.zip4j.core;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.exception.ZipExceptionConstants;
 import net.lingala.zip4j.io.ZipInputStream;
@@ -38,6 +29,15 @@ import net.lingala.zip4j.util.ArchiveMaintainer;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
 import net.lingala.zip4j.zip.ZipEngine;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Base class to handle zip files. Some of the operations supported

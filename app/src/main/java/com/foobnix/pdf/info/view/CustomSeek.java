@@ -1,10 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.android.utils.IntegerResponse;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -16,6 +11,11 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.R;
 
 public class CustomSeek extends FrameLayout {
 

@@ -1,10 +1,10 @@
 package org.ebookdroid.droids;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.XmlParser;
+import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -12,11 +12,11 @@ import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
 import org.xmlpull.v1.XmlPullParser;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.ext.XmlParser;
-import com.foobnix.pdf.info.ExtUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FolderContext extends PdfContext {
 

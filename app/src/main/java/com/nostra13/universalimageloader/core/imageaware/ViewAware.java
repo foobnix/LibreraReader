@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.nostra13.universalimageloader.core.assist.ViewScaleType;
 import com.nostra13.universalimageloader.utils.L;
 

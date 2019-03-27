@@ -26,6 +26,7 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ContentLengthInputStream;
 import com.nostra13.universalimageloader.utils.IoUtilsUIL;

@@ -10,11 +10,12 @@
 
 package org.tukaani.xz;
 
+import org.tukaani.xz.lz.LZEncoder;
+import org.tukaani.xz.lzma.LZMAEncoder;
+import org.tukaani.xz.rangecoder.RangeEncoderToBuffer;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
-import org.tukaani.xz.lz.LZEncoder;
-import org.tukaani.xz.rangecoder.RangeEncoderToBuffer;
-import org.tukaani.xz.lzma.LZMAEncoder;
 
 class LZMA2OutputStream extends FinishableOutputStream {
     static final int COMPRESSED_SIZE_MAX = 64 << 10;

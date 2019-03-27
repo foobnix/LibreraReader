@@ -16,15 +16,6 @@
 
 package net.lingala.zip4j.zip;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.SplitOutputStream;
 import net.lingala.zip4j.io.ZipOutputStream;
@@ -38,6 +29,15 @@ import net.lingala.zip4j.util.CRCUtil;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ZipEngine {
 	

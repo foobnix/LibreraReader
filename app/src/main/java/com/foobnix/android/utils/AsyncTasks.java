@@ -1,10 +1,10 @@
 package com.foobnix.android.utils;
 
-import com.foobnix.pdf.info.R;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.foobnix.pdf.info.R;
 
 public class AsyncTasks {
 

@@ -1,9 +1,9 @@
 package com.foobnix.pdf.info.model;
 
-import java.io.Serializable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 public class Doc implements Serializable{
 	private String docname;

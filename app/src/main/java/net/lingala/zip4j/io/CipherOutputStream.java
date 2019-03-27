@@ -16,12 +16,6 @@
 
 package net.lingala.zip4j.io;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.zip.CRC32;
-
 import net.lingala.zip4j.core.HeaderWriter;
 import net.lingala.zip4j.crypto.AESEncrpyter;
 import net.lingala.zip4j.crypto.IEncrypter;
@@ -38,6 +32,12 @@ import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Raw;
 import net.lingala.zip4j.util.Zip4jConstants;
 import net.lingala.zip4j.util.Zip4jUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.zip.CRC32;
 
 public class CipherOutputStream extends BaseOutputStream {
 	

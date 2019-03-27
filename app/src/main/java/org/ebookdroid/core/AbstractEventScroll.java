@@ -1,8 +1,8 @@
 package org.ebookdroid.core;
 
-import java.util.Queue;
-
 import android.graphics.RectF;
+
+import java.util.Queue;
 
 public abstract class AbstractEventScroll<E extends AbstractEventScroll<E>> extends AbstractEvent {
 

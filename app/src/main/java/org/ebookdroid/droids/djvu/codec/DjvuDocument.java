@@ -1,9 +1,10 @@
 package org.ebookdroid.droids.djvu.codec;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import android.graphics.RectF;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPageInfo;
@@ -11,11 +12,10 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageTextBox;
 import org.emdev.utils.LengthUtils;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.sys.TempHolder;
-
-import android.graphics.RectF;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 public class DjvuDocument extends AbstractCodecDocument {
 

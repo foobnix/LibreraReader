@@ -1,18 +1,5 @@
 package fi.iki.elonen;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.List;
-
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.sys.ImageExtractor;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -23,6 +10,19 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.sys.ImageExtractor;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 
 public class SampleServer extends NanoHTTPD {
 

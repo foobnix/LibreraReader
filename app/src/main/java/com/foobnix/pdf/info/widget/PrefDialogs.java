@@ -31,6 +31,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.StringDB;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
@@ -202,9 +203,8 @@ public class PrefDialogs {
 
                 try {
                     if (result) {
-                        AppState.get().loadIn(activity);
+                        AppProfile.load(activity);
                         AppState.get().bookTags = StringDB.merge(bookTagsInit, AppState.get().bookTags);
-                        BookCSS.get().load(activity);
                         TintUtil.init();
                         SettingsManager.clearCache();
 

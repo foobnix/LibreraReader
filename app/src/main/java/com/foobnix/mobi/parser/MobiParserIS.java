@@ -1,5 +1,7 @@
 package com.foobnix.mobi.parser;
 
+import com.foobnix.android.utils.LOG;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,8 +10,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.foobnix.android.utils.LOG;
 
 public class MobiParserIS {
     public static int COMPRESSION_NONE = 0;

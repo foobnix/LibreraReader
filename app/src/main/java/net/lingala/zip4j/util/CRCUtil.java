@@ -16,14 +16,14 @@
 
 package net.lingala.zip4j.util;
 
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.progress.ProgressMonitor;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.CRC32;
-
-import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.progress.ProgressMonitor;
 
 public class CRCUtil {
 	

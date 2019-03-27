@@ -1,11 +1,11 @@
 package com.foobnix.pdf.search.view;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.R;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.R;
 
 public abstract class AsyncProgressTask<T> extends AsyncTask<Object, Object, T> {
 

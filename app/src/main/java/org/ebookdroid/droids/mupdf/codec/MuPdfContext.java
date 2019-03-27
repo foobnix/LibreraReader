@@ -1,8 +1,8 @@
 package org.ebookdroid.droids.mupdf.codec;
 
-import org.ebookdroid.core.codec.AbstractCodecContext;
-
 import android.graphics.Bitmap;
+
+import org.ebookdroid.core.codec.AbstractCodecContext;
 
 public abstract class MuPdfContext extends AbstractCodecContext {
 

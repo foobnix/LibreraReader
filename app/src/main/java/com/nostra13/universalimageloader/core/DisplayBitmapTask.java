@@ -15,13 +15,13 @@
  *******************************************************************************/
 package com.nostra13.universalimageloader.core;
 
+import android.graphics.Bitmap;
+
 import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.utils.L;
-
-import android.graphics.Bitmap;
 
 /**
  * Displays bitmap in

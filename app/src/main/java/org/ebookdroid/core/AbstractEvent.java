@@ -1,11 +1,11 @@
 package org.ebookdroid.core;
 
+import org.ebookdroid.common.bitmaps.BitmapManager;
+import org.ebookdroid.common.bitmaps.Bitmaps;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.ebookdroid.common.bitmaps.BitmapManager;
-import org.ebookdroid.common.bitmaps.Bitmaps;
 
 public abstract class AbstractEvent implements IEvent {
 

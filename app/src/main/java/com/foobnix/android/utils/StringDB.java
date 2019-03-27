@@ -1,12 +1,12 @@
 package com.foobnix.android.utils;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
-import android.graphics.Color;
 
 public class StringDB {
     public static String DIVIDER = ",";

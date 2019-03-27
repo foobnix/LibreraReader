@@ -9,14 +9,15 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.EOFException;
+import org.tukaani.xz.check.Check;
 import org.tukaani.xz.common.DecoderUtil;
 import org.tukaani.xz.common.StreamFlags;
 import org.tukaani.xz.index.IndexHash;
-import org.tukaani.xz.check.Check;
+
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Decompresses exactly one XZ Stream in streamed mode (no seeking).

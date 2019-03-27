@@ -1,9 +1,9 @@
 package com.foobnix.opds;
 
+import com.foobnix.android.utils.TxtUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.foobnix.android.utils.TxtUtils;
 
 public class Entry {
 

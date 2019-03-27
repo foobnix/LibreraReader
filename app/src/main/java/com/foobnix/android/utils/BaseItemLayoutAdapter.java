@@ -1,11 +1,11 @@
 package com.foobnix.android.utils;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 public abstract class BaseItemLayoutAdapter<T> extends BaseItemAdapter<T> {
 

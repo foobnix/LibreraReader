@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppState;
+import com.foobnix.model.AppProfile;
 import com.foobnix.ui2.AppDB;
 
 import org.json.JSONArray;
@@ -40,7 +40,7 @@ public class ExportSettingsManager {
 
 
         try {
-            AppState.get().save(c);
+            AppProfile.save(c);
             com.foobnix.pdf.info.model.BookCSS.get().checkBeforeExport(c);
 
             JSONObject root = new JSONObject();

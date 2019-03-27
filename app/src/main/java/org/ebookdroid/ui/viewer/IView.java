@@ -1,12 +1,12 @@
 package org.ebookdroid.ui.viewer;
 
-import org.ebookdroid.core.ViewState;
-
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 import android.widget.Scroller;
+
+import org.ebookdroid.core.ViewState;
 
 public interface IView {
 

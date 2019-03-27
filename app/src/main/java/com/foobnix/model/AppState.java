@@ -18,10 +18,7 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.ui2.AppDB;
 
 import java.util.ArrayList;
@@ -760,7 +757,7 @@ public class AppState {
     }
 
     private boolean isLoaded = false;
-    public boolean loadFromProfile(final Context a) {
+    public boolean loadInit(final Context a) {
         boolean init = isLoaded;
         try {
 
@@ -810,7 +807,7 @@ public class AppState {
 //                    LOG.e(e);
 //                }
 
-                loadIn(a);
+                load(a);
                 isLoaded = true;
             } else {
             }
@@ -820,7 +817,7 @@ public class AppState {
         return init;
     }
 
-    public void loadIn(final Context a) {
+    public void load(final Context a) {
         if (a == null) {
             return;
         }
@@ -849,18 +846,9 @@ public class AppState {
         return res;
     }
 
-    public synchronized void save(final Context a) {
-        try {
-            saveIn(a);
-            BookCSS.get().save(a);
-            DragingPopup.saveCache(a);
-            PasswordState.get().save(a);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
 
-    public void saveIn(final Context a) {
+
+    public void save(final Context a) {
         if (a == null) {
             return;
         }

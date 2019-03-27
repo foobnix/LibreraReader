@@ -1,15 +1,5 @@
 package com.foobnix.pdf.info.view.drag;
 
-import java.util.Collections;
-import java.util.List;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.view.UnderlineImageView;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -21,6 +11,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.view.UnderlineImageView;
+
+import java.util.Collections;
+import java.util.List;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemViewHolder> implements ItemTouchHelperAdapter {
 

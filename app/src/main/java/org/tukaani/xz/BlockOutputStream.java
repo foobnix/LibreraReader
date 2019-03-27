@@ -9,11 +9,12 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
+import org.tukaani.xz.check.Check;
+import org.tukaani.xz.common.EncoderUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import org.tukaani.xz.common.EncoderUtil;
-import org.tukaani.xz.check.Check;
+import java.io.OutputStream;
 
 class BlockOutputStream extends FinishableOutputStream {
     private final OutputStream out;

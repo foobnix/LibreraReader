@@ -1,9 +1,9 @@
 package com.foobnix.pdf.info;
 
+import android.app.Application;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import android.app.Application;
 
 public class TestAppName extends Application {
 

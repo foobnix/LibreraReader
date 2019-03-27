@@ -89,7 +89,9 @@ import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -171,7 +173,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                AppState.get().save(controller.getActivity());
+                AppProfile.save(controller.getActivity());
 
             }
         });
@@ -464,7 +466,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                AppState.get().save(controller.getActivity());
+                AppProfile.save(controller.getActivity());
 
             }
 
@@ -977,7 +979,7 @@ public class DragingDialogs {
             @Override
             public void run() {
                 controller.stopTimer();
-                AppState.get().save(controller.getActivity());
+                AppProfile.save(controller.getActivity());
 
             }
         });
@@ -1446,7 +1448,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
-                        BookCSS.get().lastBookParagraph = 0;
+                        AppTemp.get().lastBookParagraph = 0;
                         TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
                     }
                 });
@@ -3101,7 +3103,7 @@ public class DragingDialogs {
     }
 
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        AppState.get().saveIn(controller.getActivity());
+        AppProfile.save(controller.getActivity());
         final int cssHash = BookCSS.get().toCssString().hashCode();
         final int appHash = Objects.hashCode(AppState.get());
 
@@ -4024,7 +4026,7 @@ public class DragingDialogs {
                             @Override
                             public void onClick(final DialogInterface dialog, final int id) {
                                 BookCSS.get().customCSS2 = edit.getText().toString();
-                                BookCSS.get().save(v.getContext());
+                                AppProfile.save(v.getContext());
                             }
                         });
                         builder.show();
@@ -4142,7 +4144,7 @@ public class DragingDialogs {
                                 File result = new File(nPath);
                                 BookCSS.get().fontFolder = result.getPath();
                                 TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
-                                BookCSS.get().save(controller.getActivity());
+                                AppProfile.save(controller.getActivity());
                                 dialog.dismiss();
                                 return false;
                             }
@@ -4314,7 +4316,7 @@ public class DragingDialogs {
             @Override
             public void run() {
                 if (initCssHash != BookCSS.get().toCssString().hashCode() || initAppHash != Objects.hashCode(AppState.get())) {
-                    AppState.get().save(controller.getActivity());
+                    AppProfile.save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();
                     }

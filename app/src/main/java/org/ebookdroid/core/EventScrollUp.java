@@ -1,8 +1,8 @@
 package org.ebookdroid.core;
 
-import java.util.Queue;
-
 import org.emdev.utils.LengthUtils;
+
+import java.util.Queue;
 
 public class EventScrollUp extends AbstractEventScroll<EventScrollUp> {
 

@@ -9,8 +9,15 @@
 
 package org.tukaani.xz;
 
+import org.tukaani.xz.simple.ARM;
+import org.tukaani.xz.simple.ARMThumb;
+import org.tukaani.xz.simple.IA64;
+import org.tukaani.xz.simple.PowerPC;
+import org.tukaani.xz.simple.SPARC;
+import org.tukaani.xz.simple.SimpleFilter;
+import org.tukaani.xz.simple.X86;
+
 import java.io.InputStream;
-import org.tukaani.xz.simple.*;
 
 class BCJDecoder extends BCJCoder implements FilterDecoder {
     private final long filterID;

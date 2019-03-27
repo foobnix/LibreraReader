@@ -16,6 +16,7 @@
 package com.nostra13.universalimageloader.cache.memory.impl;
 
 import android.graphics.Bitmap;
+
 import com.nostra13.universalimageloader.cache.memory.LimitedMemoryCache;
 
 import java.lang.ref.Reference;

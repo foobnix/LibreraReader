@@ -10,9 +10,10 @@
 
 package org.tukaani.xz.lz;
 
-import java.io.OutputStream;
-import java.io.IOException;
 import org.tukaani.xz.ArrayCache;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 public abstract class LZEncoder {
     public static final int MF_HC4 = 0x04;

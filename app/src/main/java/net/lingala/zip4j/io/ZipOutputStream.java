@@ -1,9 +1,9 @@
 package net.lingala.zip4j.io;
 
+import net.lingala.zip4j.model.ZipModel;
+
 import java.io.IOException;
 import java.io.OutputStream;
-
-import net.lingala.zip4j.model.ZipModel;
 
 public class ZipOutputStream extends DeflaterOutputStream {
 	

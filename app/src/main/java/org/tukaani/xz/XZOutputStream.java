@@ -9,12 +9,13 @@
 
 package org.tukaani.xz;
 
-import java.io.OutputStream;
-import java.io.IOException;
+import org.tukaani.xz.check.Check;
 import org.tukaani.xz.common.EncoderUtil;
 import org.tukaani.xz.common.StreamFlags;
-import org.tukaani.xz.check.Check;
 import org.tukaani.xz.index.IndexEncoder;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Compresses into the .xz file format.

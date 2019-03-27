@@ -1,14 +1,14 @@
 package com.foobnix.dao2;
 
+import android.content.Context;
+import android.util.Log;
+
+import org.greenrobot.greendao.database.Database;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import org.greenrobot.greendao.database.Database;
-
-import android.content.Context;
-import android.util.Log;
 
 public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
 

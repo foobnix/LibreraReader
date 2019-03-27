@@ -1,10 +1,10 @@
 package com.foobnix.ext;
 
+import android.util.Xml;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-
-import android.util.Xml;
 
 public class XmlParser {
 

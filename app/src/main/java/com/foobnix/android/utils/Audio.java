@@ -1,14 +1,14 @@
 package com.foobnix.android.utils;
 
+import com.naman14.androidlame.AndroidLame;
+import com.naman14.androidlame.LameBuilder;
+import com.naman14.androidlame.WaveReader;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import com.naman14.androidlame.AndroidLame;
-import com.naman14.androidlame.LameBuilder;
-import com.naman14.androidlame.WaveReader;
 
 public class Audio {
     private static final String TAG = "AUDIO-LOG";

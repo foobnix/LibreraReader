@@ -16,10 +16,10 @@
 
 package net.lingala.zip4j.io;
 
+import net.lingala.zip4j.exception.ZipException;
+
 import java.io.IOException;
 import java.io.InputStream;
-
-import net.lingala.zip4j.exception.ZipException;
 
 public class ZipInputStream extends InputStream {
 	

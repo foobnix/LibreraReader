@@ -1,10 +1,10 @@
 package com.foobnix.sys;
 
+import com.foobnix.android.utils.LOG;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.foobnix.android.utils.LOG;
 
 public class UnclosableBufferedInputStream extends BufferedInputStream {
 

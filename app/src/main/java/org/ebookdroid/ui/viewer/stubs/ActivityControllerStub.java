@@ -1,5 +1,10 @@
 package org.ebookdroid.ui.viewer.stubs;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.foobnix.sys.VerticalModeController;
+
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.DecodeService;
 import org.ebookdroid.core.ViewState;
@@ -11,11 +16,6 @@ import org.ebookdroid.ui.viewer.IViewController;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.emdev.ui.actions.ActionController;
 import org.emdev.ui.actions.IActionController;
-
-import com.foobnix.sys.VerticalModeController;
-
-import android.app.Activity;
-import android.content.Context;
 
 public class ActivityControllerStub extends ActionController<VerticalViewActivity> implements IActivityController {
 

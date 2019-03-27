@@ -10,9 +10,9 @@
 package org.tukaani.xz;
 
 import java.io.File;
-import java.io.RandomAccessFile;
-import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 /**
  * Wraps a {@link java.io.RandomAccessFile RandomAccessFile}

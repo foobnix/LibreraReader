@@ -1,13 +1,5 @@
 package com.foobnix.pdf.search.activity;
 
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";

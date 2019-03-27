@@ -15,13 +15,6 @@
  */
 package net.arnx.wmf2svg.gdi.wmf;
 
-import java.io.BufferedInputStream;
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteOrder;
-import java.util.logging.Logger;
-
 import net.arnx.wmf2svg.gdi.Gdi;
 import net.arnx.wmf2svg.gdi.GdiBrush;
 import net.arnx.wmf2svg.gdi.GdiObject;
@@ -29,6 +22,13 @@ import net.arnx.wmf2svg.gdi.GdiPalette;
 import net.arnx.wmf2svg.gdi.GdiRegion;
 import net.arnx.wmf2svg.gdi.Point;
 import net.arnx.wmf2svg.io.DataInput;
+
+import java.io.BufferedInputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteOrder;
+import java.util.logging.Logger;
 
 /**
  * @author Hidekatsu Izuno

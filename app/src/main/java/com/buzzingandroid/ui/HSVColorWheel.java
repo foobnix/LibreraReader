@@ -1,8 +1,5 @@
 package com.buzzingandroid.ui;
 
-import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
-import com.foobnix.android.utils.LOG;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -14,6 +11,9 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.android.utils.LOG;
 
 public class HSVColorWheel extends View {
 

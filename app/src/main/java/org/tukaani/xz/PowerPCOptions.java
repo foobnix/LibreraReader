@@ -9,8 +9,9 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
 import org.tukaani.xz.simple.PowerPC;
+
+import java.io.InputStream;
 
 /**
  * BCJ filter for big endian PowerPC instructions.

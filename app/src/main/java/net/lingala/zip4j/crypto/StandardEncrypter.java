@@ -16,11 +16,11 @@
 
 package net.lingala.zip4j.crypto;
 
-import java.util.Random;
-
 import net.lingala.zip4j.crypto.engine.ZipCryptoEngine;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.util.InternalZipConstants;
+
+import java.util.Random;
 
 public class StandardEncrypter implements IEncrypter {
 	

@@ -1,13 +1,13 @@
 package com.foobnix.android.utils;
 
-import java.util.Random;
+import android.graphics.Bitmap;
+import android.view.View;
 
 import com.foobnix.pdf.info.IMG;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import android.graphics.Bitmap;
-import android.view.View;
+import java.util.Random;
 
 public class Safe {
 

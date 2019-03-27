@@ -15,14 +15,14 @@
  */
 package net.arnx.wmf2svg.gdi.svg;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import net.arnx.wmf2svg.gdi.GdiFont;
+import net.arnx.wmf2svg.gdi.GdiUtils;
 
 import org.w3c.dom.Text;
 
-import net.arnx.wmf2svg.gdi.GdiFont;
-import net.arnx.wmf2svg.gdi.GdiUtils;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Hidekatsu Izuno

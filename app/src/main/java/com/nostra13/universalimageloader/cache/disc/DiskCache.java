@@ -16,6 +16,7 @@
 package com.nostra13.universalimageloader.cache.disc;
 
 import android.graphics.Bitmap;
+
 import com.nostra13.universalimageloader.utils.IoUtilsUIL;
 
 import java.io.File;

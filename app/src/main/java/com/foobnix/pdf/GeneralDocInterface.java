@@ -1,14 +1,14 @@
 package com.foobnix.pdf;
 
-import java.util.List;
+import android.content.Context;
+import android.net.Uri;
+
+import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
-import com.foobnix.pdf.info.model.OutlineLinkWrapper;
-
-import android.content.Context;
-import android.net.Uri;
+import java.util.List;
 
 public interface GeneralDocInterface {
 

@@ -1,16 +1,16 @@
 package org.ebookdroid.ui.viewer.viewers;
 
-import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
+import android.graphics.Canvas;
+import android.view.SurfaceHolder;
 
 import org.ebookdroid.core.EventPool;
 import org.ebookdroid.core.ViewState;
 import org.emdev.utils.concurrent.Flag;
 
-import android.graphics.Canvas;
-import android.view.SurfaceHolder;
+import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 public class DrawThread extends Thread {
 

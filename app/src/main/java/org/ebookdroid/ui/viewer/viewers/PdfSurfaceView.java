@@ -1,7 +1,14 @@
 package org.ebookdroid.ui.viewer.viewers;
 
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.View;
+import android.widget.Scroller;
+
+import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.types.PageAlign;
@@ -15,15 +22,8 @@ import org.emdev.utils.MathUtils;
 import org.emdev.utils.concurrent.Flag;
 import org.greenrobot.eventbus.EventBus;
 
-import com.foobnix.pdf.search.activity.msg.MessagePageXY;
-
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.View;
-import android.widget.Scroller;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class PdfSurfaceView extends android.view.SurfaceView implements IView, SurfaceHolder.Callback {
 

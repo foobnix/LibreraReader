@@ -10,11 +10,12 @@
 
 package org.tukaani.xz.lzma;
 
-import java.io.IOException;
 import org.tukaani.xz.ArrayCache;
 import org.tukaani.xz.lz.LZEncoder;
 import org.tukaani.xz.lz.Matches;
 import org.tukaani.xz.rangecoder.RangeEncoder;
+
+import java.io.IOException;
 
 public abstract class LZMAEncoder extends LZMACoder {
     public static final int MODE_FAST = 1;

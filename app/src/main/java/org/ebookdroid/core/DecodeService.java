@@ -1,7 +1,13 @@
 package org.ebookdroid.core;
 
-import java.util.List;
-import java.util.Map;
+import android.graphics.Bitmap;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.Pair;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.pdf.info.model.AnnotationType;
 
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.Annotation;
@@ -13,14 +19,8 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.pdf.info.model.AnnotationType;
-
-import android.graphics.Bitmap;
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.util.Pair;
+import java.util.List;
+import java.util.Map;
 
 public interface DecodeService {
 

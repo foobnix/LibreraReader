@@ -1,10 +1,10 @@
 package org.ebookdroid.core;
 
-import org.ebookdroid.ui.viewer.IActivityController;
-import org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason;
-
 import android.graphics.Canvas;
 import android.graphics.Rect;
+
+import org.ebookdroid.ui.viewer.IActivityController;
+import org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 

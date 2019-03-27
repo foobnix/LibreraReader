@@ -1,15 +1,15 @@
 package com.foobnix.pdf.info.widget;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.view.AnchorHelper;
-import com.foobnix.pdf.info.view.DragingPopup;
-
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.view.AnchorHelper;
+import com.foobnix.pdf.info.view.DragingPopup;
 
 public class DraggbleTouchListener implements OnTouchListener {
     PointF initLatout = new PointF();

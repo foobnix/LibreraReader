@@ -9,11 +9,12 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.EOFException;
 import org.tukaani.xz.common.DecoderUtil;
+
+import java.io.DataInputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Decompresses a .xz file in streamed mode (no seeking).

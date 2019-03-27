@@ -16,6 +16,7 @@
 package com.nostra13.universalimageloader.core.process;
 
 import android.graphics.Bitmap;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 /**

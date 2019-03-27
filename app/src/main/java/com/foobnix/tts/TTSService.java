@@ -30,6 +30,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -110,13 +111,13 @@ public class TTSService extends Service {
                                 TTSEngine.get().stop();
                             }
                         } else {
-                            playPage("", BookCSS.get().lastBookPage, null);
+                            playPage("", AppTemp.get().lastBookPage, null);
                         }
                     } else if (KeyEvent.KEYCODE_MEDIA_STOP == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PAUSE == event.getKeyCode()) {
                         TTSEngine.get().stop();
                     } else if (KeyEvent.KEYCODE_MEDIA_PLAY == event.getKeyCode()) {
                         if (!isPlaying) {
-                            playPage("", BookCSS.get().lastBookPage, null);
+                            playPage("", AppTemp.get().lastBookPage, null);
                         }
 
                     }
@@ -194,7 +195,7 @@ public class TTSService extends Service {
                 TTSNotification.showLast();
             } else {
                 if (isPlaying) {
-                    playPage("", BookCSS.get().lastBookPage, null);
+                    playPage("", AppTemp.get().lastBookPage, null);
                 }
             }
         }
@@ -206,7 +207,7 @@ public class TTSService extends Service {
     }
 
     public static void playLastBook() {
-        playBookPage(BookCSS.get().lastBookPage, BookCSS.get().lastBookPath, "", BookCSS.get().lastBookWidth, BookCSS.get().lastBookHeight, BookCSS.get().lastFontSize, BookCSS.get().lastBookTitle);
+        playBookPage(AppTemp.get().lastBookPage, AppTemp.get().lastBookPath, "", AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight, AppTemp.get().lastFontSize, AppTemp.get().lastBookTitle);
     }
 
     public static void playPause(Context context, DocumentController controller) {
@@ -229,11 +230,11 @@ public class TTSService extends Service {
         LOG.d(TAG, "playBookPage", page, path, width, height);
         TTSEngine.get().stop();
 
-        BookCSS.get().lastBookWidth = width;
-        BookCSS.get().lastBookHeight = height;
-        BookCSS.get().lastFontSize = fontSize;
-        BookCSS.get().lastBookTitle = title;
-        BookCSS.get().lastBookPage = page;
+        AppTemp.get().lastBookWidth = width;
+        AppTemp.get().lastBookHeight = height;
+        AppTemp.get().lastFontSize = fontSize;
+        AppTemp.get().lastBookTitle = title;
+        AppTemp.get().lastBookPage = page;
 
         Intent intent = playBookIntent(page, path, anchor);
 
@@ -297,7 +298,7 @@ public class TTSService extends Service {
             if (TTSEngine.get().isPlaying()) {
                 TTSEngine.get().stop();
             } else {
-                playPage("", BookCSS.get().lastBookPage, null);
+                playPage("", AppTemp.get().lastBookPage, null);
             }
             if (wakeLock.isHeld()) {
                 wakeLock.release();
@@ -326,7 +327,7 @@ public class TTSService extends Service {
             }
 
             TTSEngine.get().stop();
-            playPage("", BookCSS.get().lastBookPage, null);
+            playPage("", AppTemp.get().lastBookPage, null);
             if (!wakeLock.isHeld()) {
                 wakeLock.acquire();
             }
@@ -340,7 +341,7 @@ public class TTSService extends Service {
             }
 
             TTSEngine.get().stop();
-            playPage("", BookCSS.get().lastBookPage + 1, null);
+            playPage("", AppTemp.get().lastBookPage + 1, null);
             if (!wakeLock.isHeld()) {
                 wakeLock.acquire();
             }
@@ -353,7 +354,7 @@ public class TTSService extends Service {
             }
 
             TTSEngine.get().stop();
-            playPage("", BookCSS.get().lastBookPage - 1, null);
+            playPage("", AppTemp.get().lastBookPage - 1, null);
             if (!wakeLock.isHeld()) {
                 wakeLock.acquire();
             }
@@ -361,13 +362,13 @@ public class TTSService extends Service {
 
         if (ACTION_PLAY_CURRENT_PAGE.equals(intent.getAction())) {
             if (TTSEngine.get().isMp3PlayPause()) {
-                TTSNotification.show(BookCSS.get().lastBookPath, -1, -1);
+                TTSNotification.show(AppTemp.get().lastBookPath, -1, -1);
                 return START_STICKY;
             }
 
             mMediaSessionCompat.setActive(true);
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
-            BookCSS.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
+            AppTemp.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
 
             if (pageNumber != -1) {
@@ -390,19 +391,19 @@ public class TTSService extends Service {
 
     public CodecDocument getDC() {
         try {
-            if (BookCSS.get().lastBookPath != null && BookCSS.get().lastBookPath.equals(path) && cache != null && wh == BookCSS.get().lastBookWidth + BookCSS.get().lastBookHeight) {
-                LOG.d(TAG, "CodecDocument from cache", BookCSS.get().lastBookPath);
+            if (AppTemp.get().lastBookPath != null && AppTemp.get().lastBookPath.equals(path) && cache != null && wh == AppTemp.get().lastBookWidth + AppTemp.get().lastBookHeight) {
+                LOG.d(TAG, "CodecDocument from cache", AppTemp.get().lastBookPath);
                 return cache;
             }
             if (cache != null) {
                 cache.recycle();
                 cache = null;
             }
-            path = BookCSS.get().lastBookPath;
-            cache = ImageExtractor.singleCodecContext(BookCSS.get().lastBookPath, "", BookCSS.get().lastBookWidth, BookCSS.get().lastBookHeight);
-            cache.getPageCount(BookCSS.get().lastBookWidth, BookCSS.get().lastBookHeight, AppState.get().fontSizeSp);
-            wh = BookCSS.get().lastBookWidth + BookCSS.get().lastBookHeight;
-            LOG.d(TAG, "CodecDocument new", BookCSS.get().lastBookPath, BookCSS.get().lastBookWidth, BookCSS.get().lastBookHeight);
+            path = AppTemp.get().lastBookPath;
+            cache = ImageExtractor.singleCodecContext(AppTemp.get().lastBookPath, "", AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight);
+            cache.getPageCount(AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight, AppState.get().fontSizeSp);
+            wh = AppTemp.get().lastBookWidth + AppTemp.get().lastBookHeight;
+            LOG.d(TAG, "CodecDocument new", AppTemp.get().lastBookPath, AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight);
             return cache;
         } catch (Exception e) {
             LOG.e(e);
@@ -417,7 +418,7 @@ public class TTSService extends Service {
         if (pageNumber != -1) {
             isActivated = true;
             EventBus.getDefault().post(new MessagePageNumber(pageNumber));
-            BookCSS.get().lastBookPage = pageNumber;
+            AppTemp.get().lastBookPage = pageNumber;
             CodecDocument dc = getDC();
             if (dc == null) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
@@ -464,7 +465,7 @@ public class TTSService extends Service {
                 LOG.d("empty page play next one", emptyPageCount);
                 emptyPageCount++;
                 if (emptyPageCount < 3) {
-                    playPage("", BookCSS.get().lastBookPage + 1, null);
+                    playPage("", AppTemp.get().lastBookPage + 1, null);
                 }
                 return;
             }
@@ -504,9 +505,9 @@ public class TTSService extends Service {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
                         if (utteranceId.startsWith(TTSEngine.FINISHED)) {
                             if (TxtUtils.isNotEmpty(preText1)) {
-                                BookCSS.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
                             } else {
-                                BookCSS.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
                             }
                             return;
                         }
@@ -523,11 +524,11 @@ public class TTSService extends Service {
                             return;
                         }
 
-                        BookCSS.get().lastBookParagraph = 0;
-                        playPage(secondPart, BookCSS.get().lastBookPage + 1, null);
+                        AppTemp.get().lastBookParagraph = 0;
+                        playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(BookCSS.get().lastBookPath);
-                        load.currentPageChanged( BookCSS.get().lastBookPage + 1, dc.getPageCount());
+                        AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
+                        load.currentPageChanged( AppTemp.get().lastBookPage + 1, dc.getPageCount());
                         SharedBooks.save(load);
 
                     }
@@ -539,9 +540,9 @@ public class TTSService extends Service {
                     public void onUtteranceCompleted(String utteranceId) {
                         if (utteranceId.startsWith(TTSEngine.FINISHED)) {
                             if (TxtUtils.isNotEmpty(preText1)) {
-                                BookCSS.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
                             } else {
-                                BookCSS.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
                             }
                             return;
                         }
@@ -559,11 +560,11 @@ public class TTSService extends Service {
                             return;
                         }
 
-                        BookCSS.get().lastBookParagraph = 0;
-                        playPage(secondPart, BookCSS.get().lastBookPage + 1, null);
+                        AppTemp.get().lastBookParagraph = 0;
+                        playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(BookCSS.get().lastBookPath);
-                        load.currentPageChanged( BookCSS.get().lastBookPage + 1,dc.getPageCount());
+                        AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
+                        load.currentPageChanged( AppTemp.get().lastBookPage + 1,dc.getPageCount());
                         SharedBooks.save(load);
 
                     }
@@ -571,7 +572,7 @@ public class TTSService extends Service {
                 });
             }
 
-            TTSNotification.show(BookCSS.get().lastBookPath, pageNumber + 1, dc.getPageCount());
+            TTSNotification.show(AppTemp.get().lastBookPath, pageNumber + 1, dc.getPageCount());
 
             TTSEngine.get().speek(firstPart);
 

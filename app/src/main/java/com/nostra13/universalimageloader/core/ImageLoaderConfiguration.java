@@ -18,6 +18,7 @@ package com.nostra13.universalimageloader.core;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
+
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;

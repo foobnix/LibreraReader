@@ -1,10 +1,10 @@
 package com.foobnix.hypen;
 
+import com.foobnix.android.utils.LOG;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
-
-import com.foobnix.android.utils.LOG;
 
 public class HypenUtils {
 

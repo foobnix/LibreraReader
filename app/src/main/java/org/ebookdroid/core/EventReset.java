@@ -1,10 +1,10 @@
 package org.ebookdroid.core;
 
+import android.graphics.RectF;
+
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.Bitmaps;
 import org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason;
-
-import android.graphics.RectF;
 
 import java.util.ArrayList;
 import java.util.List;

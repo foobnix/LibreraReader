@@ -1,15 +1,15 @@
 package org.ebookdroid.ui.viewer;
 
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+
 import org.ebookdroid.common.settings.types.PageAlign;
 import org.ebookdroid.core.EventDraw;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.core.events.ZoomListener;
 import org.emdev.ui.progress.IProgressIndicator;
-
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 
 public interface IViewController extends ZoomListener {
 

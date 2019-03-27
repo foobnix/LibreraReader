@@ -1,10 +1,9 @@
 package org.ebookdroid.core;
 
 import org.ebookdroid.common.settings.SettingsManager;
+import org.emdev.utils.LengthUtils;
 
 import java.util.Queue;
-
-import org.emdev.utils.LengthUtils;
 
 public abstract class AbstractEventZoom<E extends AbstractEventZoom<E>> extends AbstractEvent {
 

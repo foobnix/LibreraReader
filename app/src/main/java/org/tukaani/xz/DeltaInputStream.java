@@ -9,9 +9,10 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
-import java.io.IOException;
 import org.tukaani.xz.delta.DeltaDecoder;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Decodes raw Delta-filtered data (no XZ headers).

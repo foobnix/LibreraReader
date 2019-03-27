@@ -1,9 +1,9 @@
 package org.ebookdroid.droids.djvu.codec;
 
+import org.ebookdroid.core.codec.OutlineLink;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.ebookdroid.core.codec.OutlineLink;
 
 public class DjvuOutline {
 

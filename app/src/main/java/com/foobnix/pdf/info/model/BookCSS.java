@@ -13,6 +13,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -47,56 +48,21 @@ public class BookCSS {
     public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
-    
-    public String lastBookPath;
+
 
     public String mp3BookPath;
-
-    
-    public String lastClosedActivity;
-
-    
-    public String lastMode;
-
     public String dirLastPath;
-
     public String pathSAF = "";
 
-    public long searchDate = 0;
 
-    
-    @IgnoreHashCode
-    public int lastBookPage = 0;
-
-    
-    public int tempBookPage = 0;
-
-    @IgnoreHashCode
-    
-    public volatile int lastBookParagraph = 0;
-
-    @IgnoreHashCode
-    
-    public String lastBookTitle;
-
-    
-    public int lastBookWidth = 0;
-    
-    public int lastBookHeight = 0;
-    
-    public int lastFontSize = 0;
-
-    public String lastBookLang = "";
 
     public boolean isEnableGdrive;
-
     public String syncRootID;
-
 
 
     public boolean isTextFormat() {
         try {
-            return ExtUtils.isTextFomat(lastBookPath);
+            return ExtUtils.isTextFomat(AppTemp.get().lastBookPath);
         } catch (Exception e) {
             return false;
         }
@@ -222,7 +188,7 @@ public class BookCSS {
 
     }
 
-    public void load(Context c) {
+    public void load1(Context c) {
         if (c == null) {
             return;
         }
@@ -260,8 +226,8 @@ public class BookCSS {
     public void checkBeforeExport(Context c) {
         if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER)) {
             fontFolder = null;
-            save(c);
             fontFolder = DEFAULT_FOLDER;
+            AppProfile.save(c);
         }
 
     }
@@ -369,8 +335,8 @@ public class BookCSS {
 
     public List<String> getAllFonts() {
         List<String> all = new ArrayList<String>();
-        if (BookCSS.get().lastBookPath != null) {
-            all.addAll(getAllFontsFromFolder(new File(BookCSS.get().lastBookPath).getParent()));
+        if (AppTemp.get().lastBookPath != null) {
+            all.addAll(getAllFontsFromFolder(new File(AppTemp.get().lastBookPath).getParent()));
         }
         all.add(ARIAL);
         all.add(COURIER);
@@ -389,8 +355,8 @@ public class BookCSS {
 
     public List<FontPack> getAllFontsPacks() {
         List<FontPack> all = new ArrayList<FontPack>();
-        if (BookCSS.get().lastBookPath != null) {
-            all.addAll(getAllFontsFiltered(new File(BookCSS.get().lastBookPath).getParent()));
+        if (AppTemp.get().lastBookPath != null) {
+            all.addAll(getAllFontsFiltered(new File(AppTemp.get().lastBookPath).getParent()));
         }
         all.add(new FontPack(ARIAL));
         all.add(new FontPack(COURIER));

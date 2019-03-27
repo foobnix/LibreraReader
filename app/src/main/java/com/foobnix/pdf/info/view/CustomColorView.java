@@ -1,15 +1,5 @@
 package com.foobnix.pdf.info.view;
 
-import java.util.List;
-
-import com.buzzingandroid.ui.HSVColorPickerDialog;
-import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
-import com.foobnix.StringResponse;
-import com.foobnix.android.utils.Dips;
-import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.wrapper.MagicHelper;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -20,6 +10,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.buzzingandroid.ui.HSVColorPickerDialog;
+import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
+import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import java.util.List;
 
 public class CustomColorView extends FrameLayout {
 

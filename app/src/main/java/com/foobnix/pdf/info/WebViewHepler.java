@@ -1,11 +1,5 @@
 package com.foobnix.pdf.info;
 
-import java.util.concurrent.locks.ReentrantLock;
-
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +7,12 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 public class WebViewHepler {
 

@@ -15,6 +15,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Https;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.CopyAsyncTask;
@@ -280,7 +281,7 @@ public class AndroidWhatsNew {
         if (TxtUtils.isEmpty(oldVersion) || !isEqualsFirstSecondDigit(currentVersion, oldVersion)) {
             show2(c);
             AppState.get().versionNew = currentVersion;
-            AppState.get().save(c);
+            AppProfile.save(c);
         }
     }
 

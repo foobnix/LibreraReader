@@ -1,11 +1,11 @@
 package org.emdev.ui.tasks;
 
+import android.app.AlertDialog;
+import android.content.Context;
+
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.view.Dialogs;
-
-import android.app.AlertDialog;
-import android.content.Context;
 
 public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params, String, Result> {
 

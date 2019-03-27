@@ -1,7 +1,12 @@
 package org.ebookdroid.core;
 
-import java.util.List;
-import java.util.Map;
+import android.graphics.Bitmap.Config;
+import android.graphics.PixelFormat;
+import android.graphics.PointF;
+import android.util.Pair;
+
+import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.pdf.info.model.AnnotationType;
 
 import org.ebookdroid.core.codec.Annotation;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -11,13 +16,8 @@ import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.pdf.info.model.AnnotationType;
-
-import android.graphics.Bitmap.Config;
-import android.graphics.PixelFormat;
-import android.graphics.PointF;
-import android.util.Pair;
+import java.util.List;
+import java.util.Map;
 
 public class DecodeServiceStub implements DecodeService {
 

@@ -1,12 +1,12 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.android.utils.Dips;
-import com.foobnix.android.utils.LOG;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 
 public class ScaledImageView extends ImageView {
     public ScaledImageView(final Context context, final AttributeSet attrs) {

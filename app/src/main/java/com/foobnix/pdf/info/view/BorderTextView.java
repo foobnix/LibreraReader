@@ -1,13 +1,13 @@
 package com.foobnix.pdf.info.view;
 
-import com.foobnix.android.utils.Dips;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.widget.TextView;
+
+import com.foobnix.android.utils.Dips;
 
 public class BorderTextView extends TextView {
 

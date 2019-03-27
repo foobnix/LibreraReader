@@ -16,15 +16,15 @@
 
 package net.lingala.zip4j.io;
 
+import net.lingala.zip4j.unzip.UnzipEngine;
+import net.lingala.zip4j.util.InternalZipConstants;
+import net.lingala.zip4j.util.Zip4jConstants;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
-
-import net.lingala.zip4j.unzip.UnzipEngine;
-import net.lingala.zip4j.util.InternalZipConstants;
-import net.lingala.zip4j.util.Zip4jConstants;
 
 public class InflaterInputStream extends PartInputStream {
 	

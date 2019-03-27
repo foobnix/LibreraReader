@@ -1,10 +1,10 @@
 package org.ebookdroid.core.codec;
 
-import java.util.List;
-import java.util.Map;
-
 import android.graphics.Bitmap;
 import android.graphics.RectF;
+
+import java.util.List;
+import java.util.Map;
 
 public interface CodecDocument {
 

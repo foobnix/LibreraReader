@@ -15,6 +15,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
@@ -150,7 +151,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
         bookPath = getBookPathFromActivity(activity);
 
-        BookCSS.get().lastBookPath = bookPath;
+        AppTemp.get().lastBookPath = bookPath;
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {

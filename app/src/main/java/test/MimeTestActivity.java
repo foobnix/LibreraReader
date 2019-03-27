@@ -1,8 +1,5 @@
 package test;
 
-import java.io.File;
-import java.util.Set;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +8,9 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.webkit.MimeTypeMap;
 import android.widget.TextView;
+
+import java.io.File;
+import java.util.Set;
 
 public class MimeTestActivity extends Activity {
 

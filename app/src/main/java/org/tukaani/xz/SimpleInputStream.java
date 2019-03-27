@@ -9,9 +9,10 @@
 
 package org.tukaani.xz;
 
-import java.io.InputStream;
-import java.io.IOException;
 import org.tukaani.xz.simple.SimpleFilter;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 class SimpleInputStream extends InputStream {
     private static final int FILTER_BUF_SIZE = 4096;

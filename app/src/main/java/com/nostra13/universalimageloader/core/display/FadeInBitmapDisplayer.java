@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+
 import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 import com.nostra13.universalimageloader.core.imageaware.ImageAware;
 

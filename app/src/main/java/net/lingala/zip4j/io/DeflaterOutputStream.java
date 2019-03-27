@@ -16,16 +16,16 @@
 
 package net.lingala.zip4j.io;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.zip.Deflater;
-
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipModel;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.InternalZipConstants;
 import net.lingala.zip4j.util.Zip4jConstants;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.zip.Deflater;
 
 public class DeflaterOutputStream extends CipherOutputStream {
 	
