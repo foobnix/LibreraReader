@@ -283,6 +283,7 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
 
+   
     public int readingMode = READING_MODE_SCROLL;
 
     public int helpHash = 0;
@@ -435,7 +436,9 @@ public class AppState {
 
     public String musicText = "Musician";
 
+   
     public boolean isCrop = false;
+
     public boolean isCropSymetry = false;
 
     public int cropTop = 0;
@@ -465,6 +468,7 @@ public class AppState {
     public String appLang = AppState.MY_SYSTEM_LANG;
     public float appFontScale = 1.0f;
 
+   
     public boolean isLocked = false;
 
 
@@ -479,7 +483,9 @@ public class AppState {
 
     public boolean isBookCoverEffect = false;
 
+   
     public int editWith = EDIT_PEN;
+
     public String annotationDrawColor = "";
     public String annotationTextColor = COLORS.get(2);
     public int editAlphaColor = 100;
@@ -630,8 +636,9 @@ public class AppState {
 
 
 
-
+@Objects.IgnoreCalculateHashCode
     public boolean isFirstTimeVertical = true;
+   
     public boolean isFirstTimeHorizontal = true;
 
     @IgnoreHashCode
