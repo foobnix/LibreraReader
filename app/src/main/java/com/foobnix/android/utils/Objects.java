@@ -22,9 +22,13 @@ public class Objects {
     public @interface IgnoreHashCode {
 
     }
+
     @Retention(RetentionPolicy.RUNTIME)
     public @interface IgnoreCalculateHashCode {
 
+    }
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface SaveToSharedPreferences {
     }
 
     public static String toJSONString(Object obj) {
@@ -182,7 +186,7 @@ public class Objects {
 
             try {
                 if (f.getType().equals(float.class)) {
-                    res.append(TxtUtils.substring(f.get(obj).toString(),4));
+                    res.append(TxtUtils.substring(f.get(obj).toString(),6));
                 }else {
                     res.append(f.get(obj));
                 }
@@ -219,6 +223,7 @@ public class Objects {
         }
 
     }
+
 
 
 }

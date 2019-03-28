@@ -48,6 +48,7 @@ public class GFile {
     public static final int PAGE_SIZE = 1000;
     public static final String SKIP = "skip";
     public static final String MY_SCOPE = DriveScopes.DRIVE_FILE;
+    public static final String LASTMODIFIED = "lastmodified";
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
@@ -109,6 +110,7 @@ public class GFile {
                             .setApplicationName(Apps.getApplicationName(c))
                             .build();
         }
+        sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
 
     }
 
@@ -140,7 +142,7 @@ public class GFile {
                         .build();
 
         LOG.d(TAG, "googleDriveService", " build");
-        sp = c.getSharedPreferences("lastmodified", Context.MODE_PRIVATE);
+        sp = c.getSharedPreferences(LASTMODIFIED, Context.MODE_PRIVATE);
 
     }
 
