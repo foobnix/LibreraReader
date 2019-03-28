@@ -26,6 +26,15 @@ public class AppTemp {
     public int lastFontSize = 0;
     public String lastBookLang = "";
 
+    public boolean isLocked = false;
+
+    public boolean isFirstTimeVertical = true;
+    public boolean isFirstTimeHorizontal = true;
+
+    public int readingMode = AppState.READING_MODE_SCROLL;
+
+
+
     transient  SharedPreferences sp;
 
     public void init(Context c){

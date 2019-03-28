@@ -26,6 +26,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -300,15 +301,15 @@ public class PageImaveView extends View {
                         imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
                         imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
                         isFirstZoomInOut = false;
-                        prevLock = AppState.get().isLocked;
-                        AppState.get().isLocked = false;
+                        prevLock = AppTemp.get().isLocked;
+                        AppTemp.get().isLocked = false;
                         invalidateAndMsg();
                         PageImageState.get().isAutoFit = false;
 
                     } else {
-                        AppState.get().isLocked = prevLock;
+                        AppTemp.get().isLocked = prevLock;
                         if (BookCSS.get().isTextFormat()) {
-                            AppState.get().isLocked = true;
+                            AppTemp.get().isLocked = true;
                         }
                         isLognPress = true;
                         PageImageState.get().isAutoFit = true;
@@ -352,7 +353,7 @@ public class PageImaveView extends View {
             if (AppState.get().selectedText != null) {
                 return false;
             }
-            if (AppState.get().isLocked) {
+            if (AppTemp.get().isLocked) {
                 return false;
             }
             if (isReadyForMove) {
@@ -419,7 +420,7 @@ public class PageImaveView extends View {
                         }
                     } else {
 
-                        if (AppState.get().isLocked) {
+                        if (AppTemp.get().isLocked) {
                             isReadyForMove = false;
                             isIgronerClick = false;
                             if (AppState.get().isEnableVerticalSwipe && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
@@ -450,7 +451,7 @@ public class PageImaveView extends View {
                             isMoveNextPrev = 0;
                         }
 
-                        if (!isBrightness && isReadyForMove && !AppState.get().isLocked) {
+                        if (!isBrightness && isReadyForMove && !AppTemp.get().isLocked) {
 
                             imageMatrix().postTranslate(dx, dy);
 
@@ -487,7 +488,7 @@ public class PageImaveView extends View {
                     final float values[] = new float[9];
                     imageMatrix().getValues(values);
 
-                    if (AppState.get().isZoomInOutWithLock || !AppState.get().isLocked) {
+                    if (AppState.get().isZoomInOutWithLock || !AppTemp.get().isLocked) {
                         LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
                         if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
                             imageMatrix().postScale(scale, scale, centerX, centerY);
@@ -496,7 +497,7 @@ public class PageImaveView extends View {
                     }
                     final float dx = centerX - cx;
                     final float dy = centerY - cy;
-                    if (AppState.get().isZoomInOutWithLock || !AppState.get().isLocked) {
+                    if (AppState.get().isZoomInOutWithLock || !AppTemp.get().isLocked) {
                         imageMatrix().postTranslate(dx, dy);
                         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                     }

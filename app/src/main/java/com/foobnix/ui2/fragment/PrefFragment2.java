@@ -50,6 +50,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -817,7 +818,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                        AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                         checkOpenWithSpinner();
                         return false;
                     }
@@ -828,7 +829,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                        AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                         checkOpenWithSpinner();
                         return false;
                     }
@@ -838,7 +839,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                        AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
                         checkOpenWithSpinner();
                         return false;
                     }
@@ -848,7 +849,7 @@ public class PrefFragment2 extends UIFragment {
 
                     @Override
                     public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
+                        AppTemp.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
                         checkOpenWithSpinner();
                         return false;
                     }
@@ -2031,13 +2032,13 @@ public class PrefFragment2 extends UIFragment {
 
     private void checkOpenWithSpinner() {
         String modId = AppState.get().nameVerticalMode;
-        if (AppState.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
             modId = AppState.get().nameMusicianMode;
-        } else if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
+        } else if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
             modId = AppState.get().nameHorizontalMode;
-        } else if (AppState.get().readingMode == AppState.READING_MODE_SCROLL) {
+        } else if (AppTemp.get().readingMode == AppState.READING_MODE_SCROLL) {
             modId = AppState.get().nameVerticalMode;
-        } else if (AppState.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
+        } else if (AppTemp.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
             modId = getString(R.string.tag_manager);
         }
 

@@ -22,6 +22,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -501,8 +502,8 @@ public class VerticalModeController extends DocumentController {
             ctr.getDocumentController().getView().scrollBy(x - w, y - h);
             ctr.getZoomModel().setZoom(zoom + 2f, false);
             commit();
-            isLocked = AppState.get().isLocked;
-            AppState.get().isLocked = false;
+            isLocked = AppTemp.get().isLocked;
+            AppTemp.get().isLocked = false;
         } else {
             ctr.getZoomModel().setZoom(currentZoom, false);
             if (pageN == ctr.getDocumentController().getFirstVisiblePage()) {
@@ -513,7 +514,7 @@ public class VerticalModeController extends DocumentController {
             }
 
             currentZoom = 0;
-            AppState.get().isLocked = isLocked;
+            AppTemp.get().isLocked = isLocked;
         }
     }
 

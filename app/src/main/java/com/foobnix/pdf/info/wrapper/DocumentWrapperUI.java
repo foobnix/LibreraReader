@@ -507,7 +507,7 @@ public class DocumentWrapperUI {
     public void updateLock() {
         // int mode = View.VISIBLE;
 
-        if (AppState.get().isLocked) {
+        if (AppTemp.get().isLocked) {
             lockUnlock.setImageResource(R.drawable.glyphicons_204_lock);
             lockUnlockTop.setImageResource(R.drawable.glyphicons_204_lock);
             // lockUnlock.setColorFilter(a.getResources().getColor(R.color.tint_yellow));
@@ -1444,7 +1444,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isLocked = !AppState.get().isLocked;
+            AppTemp.get().isLocked = !AppTemp.get().isLocked;
             updateLock();
         }
     };
@@ -1507,7 +1507,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().readingMode = AppState.READING_MODE_BOOK;
+            AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
             initUI(a);
             hideShow();
         }
@@ -1865,12 +1865,12 @@ public class DocumentWrapperUI {
     }
 
     public void showHelp() {
-        if (AppState.get().isFirstTimeVertical) {
+        if (AppTemp.get().isFirstTimeVertical) {
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    AppState.get().isFirstTimeVertical = false;
+                    AppTemp.get().isFirstTimeVertical = false;
                     AppState.get().isEditMode = true;
                     hideShow();
                     Views.showHelpToast(lockUnlock);

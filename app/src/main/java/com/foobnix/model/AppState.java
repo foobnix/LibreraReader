@@ -284,7 +284,6 @@ public class AppState {
     public final static int READING_MODE_TAG_MANAGER = 4;
 
    
-    public int readingMode = READING_MODE_SCROLL;
 
     public int helpHash = 0;
 
@@ -322,8 +321,7 @@ public class AppState {
     public boolean isEditMode = true;
     public boolean isFullScreen = true;
     public boolean isFullScreenMain = false;
-    @IgnoreHashCode
-    public boolean isAutoFit = false;
+
 
     public boolean isShowImages = true;
     public boolean isShowToolBar = true;
@@ -453,11 +451,6 @@ public class AppState {
     public boolean isDayNotInvert = true;
     public boolean isShowSearchBar = true;
 
-    public int cpTextLight = Color.BLACK;
-    public int cpBGLight = Color.WHITE;
-    public int cpTextBlack = Color.WHITE;
-    public int cpBGBlack = Color.BLACK;
-
     public boolean isUseBGImageDay = false;
     public boolean isUseBGImageNight = false;
     public String bgImageDayPath = MagicHelper.IMAGE_BG_1;
@@ -469,7 +462,6 @@ public class AppState {
     public float appFontScale = 1.0f;
 
    
-    public boolean isLocked = false;
 
 
     public boolean isPrefFormatMode = false;
@@ -484,7 +476,7 @@ public class AppState {
     public boolean isBookCoverEffect = false;
 
    
-    public int editWith = EDIT_PEN;
+    public int editWith = EDIT_NONE;
 
     public String annotationDrawColor = "";
     public String annotationTextColor = COLORS.get(2);
@@ -636,10 +628,7 @@ public class AppState {
 
 
 
-@Objects.IgnoreCalculateHashCode
-    public boolean isFirstTimeVertical = true;
-   
-    public boolean isFirstTimeHorizontal = true;
+
 
     @IgnoreHashCode
     public boolean isShowLongBackDialog = false;

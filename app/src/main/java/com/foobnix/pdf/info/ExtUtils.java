@@ -53,6 +53,7 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -722,15 +723,15 @@ public class ExtUtils {
             String ext = getFileExtension(file.getName().toLowerCase());
 
             if (AppState.get().prefScrollMode.contains(ext)) {
-                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             } else if (AppState.get().prefBookMode.contains(ext)) {
-                AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             } else if (AppState.get().prefMusicianMode.contains(ext)) {
-                AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             }
@@ -855,7 +856,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -864,7 +865,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -874,7 +875,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -918,7 +919,7 @@ public class ExtUtils {
         }
         LOG.d("showDocument", uri.getPath(), playlist);
 
-        if (AppState.get().readingMode == AppState.READING_MODE_BOOK) {
+        if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist);
             return;
         }
@@ -1410,11 +1411,11 @@ public class ExtUtils {
                         @Override
                         public void run() {
                             if (a instanceof VerticalViewActivity) {
-                                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                                 showDocumentWithoutDialog(a, (File) result, null);
 
                             } else if (a instanceof HorizontalViewActivity) {
-                                AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                                 showDocumentWithoutDialog(a, (File) result, null);
                             } else {
                                 showDocument(a, (File) result);

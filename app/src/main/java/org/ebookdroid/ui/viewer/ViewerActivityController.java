@@ -345,10 +345,10 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(file)) {
-                AppState.get().isLocked = true;
+                AppTemp.get().isLocked = true;
             } else {
                 if (AppState.get().isLockPDF) {
-                    AppState.get().isLocked = true;
+                    AppTemp.get().isLocked = true;
                 }
             }
         } catch (Exception e) {

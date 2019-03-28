@@ -24,6 +24,7 @@ import com.foobnix.drive.GFile;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -106,7 +107,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 AppState.get().isCrop = bs.cp;
                 AppState.get().isDouble = false;
                 AppState.get().isDoubleCoverAlone = false;
-                AppState.get().isLocked = bs.l;
+                AppTemp.get().isLocked = bs.l;
                 TempHolder.get().pageDelta = bs.d;
                 if (AppState.get().isCropPDF && !ExtUtils.isTextFomat(bs.path)) {
                     AppState.get().isCrop = true;

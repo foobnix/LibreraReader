@@ -20,6 +20,7 @@ import com.foobnix.drive.GFile;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
@@ -312,9 +313,9 @@ public class ShareDialog {
                         @Override
                         public void run() {
                             if (dc.isMusicianMode()) {
-                                AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                             } else {
-                                AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                             }
                             ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
@@ -329,9 +330,9 @@ public class ShareDialog {
                             @Override
                             public void run() {
                                 if (dc.isMusicianMode()) {
-                                    AppState.get().readingMode = AppState.READING_MODE_SCROLL;
+                                    AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
                                 } else {
-                                    AppState.get().readingMode = AppState.READING_MODE_BOOK;
+                                    AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                                 }
                                 ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
@@ -343,7 +344,7 @@ public class ShareDialog {
 
                         @Override
                         public void run() {
-                            AppState.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                            AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
                             ExtUtils.showDocumentWithoutDialog(a, file,  a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });

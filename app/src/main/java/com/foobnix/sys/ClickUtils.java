@@ -2,6 +2,7 @@ package com.foobnix.sys;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 
 public class ClickUtils {
     private int WIDHT_X, HEIGHT_Y;
@@ -24,8 +25,8 @@ public class ClickUtils {
     public void initMusician() {
         WIDHT_X = Dips.screenWidth();
         HEIGHT_Y = Dips.screenHeight();
-        border_side = AppState.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
-        border_top = AppState.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
+        border_side = AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenWidth() / 100 * AppState.get().tapzoneSize;
+        border_top = AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN ? 0 : Dips.screenHeight() / 100 * AppState.get().tapzoneSize;
     }
 
     public boolean isClickCenter(float x, float y) {

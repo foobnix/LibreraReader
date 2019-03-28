@@ -716,7 +716,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                AppState.get().isLocked = !AppState.get().isLocked;
+                AppTemp.get().isLocked = !AppTemp.get().isLocked;
                 updateLockMode();
             }
         });
@@ -900,7 +900,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         // moveCenter.setVisibility(View.GONE);
                     } else if (AppState.get().isLockPDF) {
                         // moveCenter.setVisibility(View.VISIBLE);
-                        AppState.get().isLocked = true;
+                        AppTemp.get().isLocked = true;
                     }
 
                     if (ExtUtils.isNoTextLayerForamt(dc.getCurrentBook().getPath())) {
@@ -1306,7 +1306,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateLockMode() {
-        if (AppState.get().isLocked) {
+        if (AppTemp.get().isLocked) {
             lockModelImage.setImageResource(R.drawable.glyphicons_204_lock);
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
@@ -1762,12 +1762,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void showHelp() {
-        if (AppState.get().isFirstTimeHorizontal) {
+        if (AppTemp.get().isFirstTimeHorizontal) {
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    AppState.get().isFirstTimeHorizontal = false;
+                    AppTemp.get().isFirstTimeHorizontal = false;
                     AppState.get().isEditMode = true;
                     hideShow();
                     Views.showHelpToast(lockModelImage);

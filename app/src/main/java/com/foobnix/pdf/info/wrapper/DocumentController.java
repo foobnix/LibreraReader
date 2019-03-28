@@ -325,15 +325,15 @@ public abstract class DocumentController {
     }
 
     public boolean isBookMode() {
-        return AppState.get().readingMode == AppState.READING_MODE_BOOK;
+        return AppTemp.get().readingMode == AppState.READING_MODE_BOOK;
     }
 
     public boolean isScrollMode() {
-        return AppState.get().readingMode == AppState.READING_MODE_SCROLL;
+        return AppTemp.get().readingMode == AppState.READING_MODE_SCROLL;
     }
 
     public boolean isMusicianMode() {
-        return AppState.get().readingMode == AppState.READING_MODE_MUSICIAN;
+        return AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN;
     }
 
     public void onResume() {
