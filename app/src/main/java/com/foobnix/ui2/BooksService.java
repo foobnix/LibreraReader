@@ -29,7 +29,6 @@ import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
-import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
@@ -120,7 +119,6 @@ public class BooksService extends IntentService {
                     try {
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
 
-                        SettingsManager.clearCache();
                         GFile.sycnronizeAll(this);
 
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));

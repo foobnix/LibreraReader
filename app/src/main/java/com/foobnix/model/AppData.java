@@ -139,7 +139,7 @@ public class AppData {
     }
 
 
-    public List<FileMeta> getAllRecent() {
+    public synchronized List<FileMeta> getAllRecent() {
         readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {

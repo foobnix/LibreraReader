@@ -323,16 +323,23 @@ public class GFile {
         //    is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
         //} else {
         // }
+        java.io.File temp = new java.io.File(file.getPath() + ".temp");
         try {
-            is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
-        } catch (IOException e) {
-            is = googleDriveService.files().get(fileId).executeAsInputStream();
+            try {
+                is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
+            } catch (IOException e) {
+                is = googleDriveService.files().get(fileId).executeAsInputStream();
+            }
+
+
+            final boolean result = IO.copyFile(is, temp);
+            if (result) {
+                IO.copyFile(temp, file);
+                setLastModifiedTime(file, lastModified);
+            }
+        } finally {
+            temp.delete();
         }
-
-        IO.copyFile(is, file);
-        //LOG.d(TAG, "downloadFile-lastModified before", file.lastModified(), lastModified, file.getName());
-
-        setLastModifiedTime(file, lastModified);
 
         //LOG.d(TAG, "downloadFile-lastModified after", file.lastModified(), lastModified, file.getName());
 

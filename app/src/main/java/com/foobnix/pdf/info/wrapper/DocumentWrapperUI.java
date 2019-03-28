@@ -1662,8 +1662,6 @@ public class DocumentWrapperUI {
             AppState.get().cutP = 50;
             AppState.get().isCut = !AppState.get().isCut;
 
-            dc.saveCurrentPageAsync();
-
             crop.setVisibility(AppState.get().isCut ? View.GONE : View.VISIBLE);
 
             SettingsManager.toggleCropMode(true);

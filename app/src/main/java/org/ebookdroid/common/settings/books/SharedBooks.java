@@ -65,14 +65,14 @@ public class SharedBooks {
     public static synchronized void save(AppBook bs) {
         final int hash = Objects.hashCode(bs);
         bs.h = hash;
-        final AppBook load = load(bs.path);
+        JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+        final AppBook load = load(obj, bs.path);
         if (load.h != hash) {
             load.h = hash;
 
-            LOG.d("SharedBooks-save", bs.path, hash);
+            LOG.d("SharedBooks-save", bs.path, hash, bs.p);
 
             try {
-                JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
                 final String fileName = ExtUtils.getFileName(bs.path);
                 obj.put(fileName, Objects.toJSONObject(bs));
                 IO.writeObjAsync(AppProfile.syncProgress, obj);

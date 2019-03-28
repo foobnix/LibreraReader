@@ -36,7 +36,6 @@ import com.foobnix.ui2.FileMetaCore;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.settings.SettingsManager;
-import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.core.DecodeService;
@@ -222,13 +221,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void onPause() {
         if (wrapperControlls != null) {
             wrapperControlls.onPause();
-        }
-
-        AppBook bookSettings = SettingsManager.getBookSettings();
-        if (bookSettings != null && pageCount > 0) {
-            bookSettings.currentPageChanged(documentModel.getCurrentIndex().docIndex, pageCount);
-            bookSettings.updateFromAppState();
-            SharedBooks.save(bookSettings);
         }
     }
 

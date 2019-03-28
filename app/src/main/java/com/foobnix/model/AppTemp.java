@@ -26,7 +26,7 @@ public class AppTemp {
     public int lastFontSize = 0;
     public String lastBookLang = "";
 
-    SharedPreferences sp;
+    transient  SharedPreferences sp;
 
     public void init(Context c){
          sp = c.getSharedPreferences("AppTemp", Context.MODE_PRIVATE);

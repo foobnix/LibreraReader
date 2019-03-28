@@ -172,7 +172,6 @@ public abstract class DocumentController {
     public abstract void onCloseActivityFinal(Runnable run);
 
 
-
     public abstract void onNightMode();
 
     public abstract void onCrop();
@@ -267,16 +266,20 @@ public abstract class DocumentController {
 
     }
 
-    public void closeActivity(){
+    public void closeActivity() {
         handler2.removeCallbacksAndMessages(null);
         handler.removeCallbacksAndMessages(null);
     }
 
     public void saveCurrentPage() {
-
+        AppBook bs = SettingsManager.getBookSettings();
+        if (bs != null) {
+            bs.updateFromAppState();
+            bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
+        }
 
         handler2.removeCallbacks(saveCurrentPageRunnable);
-        handler2.postDelayed(saveCurrentPageRunnable, 3000);
+        handler2.postDelayed(saveCurrentPageRunnable, 1000);
     }
 
     Runnable saveCurrentPageRunnable = new Runnable() {
@@ -286,22 +289,25 @@ public abstract class DocumentController {
         }
     };
 
-    public void saveCurrentPageAsync() {
+    private void saveCurrentPageAsync() {
         if (TempHolder.get().loadingCancelled) {
             LOG.d("Loading cancelled");
             return;
         }
         // int page = PageUrl.fakeToReal(currentPage);
-        LOG.d("_PAGE", "saveCurrentPage", getCurentPage(), getPageCount());
+        LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
         try {
             if (getPageCount() <= 0) {
                 LOG.d("_PAGE", "saveCurrentPage skip");
                 return;
             }
-            AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-            bs.updateFromAppState();
-            bs.currentPageChanged(getCurentPage(), getPageCount());
+            AppBook bs = SettingsManager.getBookSettings();
             SharedBooks.save(bs);
+
+            //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            //bs.updateFromAppState();
+            //bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
+            //SharedBooks.save(bs);
         } catch (Exception e) {
             LOG.e(e);
         }

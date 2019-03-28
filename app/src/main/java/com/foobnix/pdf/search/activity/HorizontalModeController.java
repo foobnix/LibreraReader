@@ -252,17 +252,19 @@ public abstract class HorizontalModeController extends DocumentController {
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
 
-        LOG.d("_PAGE", "getPageFromUriSingleRun", percent, pagesCount);
+        LOG.d("_PAGE", "getPageFromUriSingleRun1", percent, pagesCount);
         if (percent > 0.0f) {
             currentPage = (int) Math.round(pagesCount * percent) - 1;
-        } else if(pagesCount>0) {
+            LOG.d("_PAGE", "getPageFromUriSingleRun2", percent, pagesCount);
+
+        } else if (pagesCount > 0) {
             currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
+            LOG.d("_PAGE", "getPageFromUriSingleRun3", getBookPath(), pagesCount);
         }
 
-        LOG.d("_PAGE", "getPageFromUriSingleRun",currentPage);
+        LOG.d("_PAGE", "getPageFromUriSingleRun4", currentPage);
         return currentPage;
     }
-
 
 
     public int getOpenPageNumber() {
@@ -441,7 +443,7 @@ public abstract class HorizontalModeController extends DocumentController {
                     LOG.e(e);
                 }
 
-                saveCurrentPage();
+                //saveCurrentPage();
                 LOG.d("_PAGE", "SAVE", getCurentPage());
                 final Intent i = new Intent();
                 i.putExtra("page", getCurentPage());
@@ -458,7 +460,6 @@ public abstract class HorizontalModeController extends DocumentController {
 
     @Override
     public void onCloseActivityAdnShowInterstial() {
-        SettingsManager.clearCache();
         showInterstialAndClose();
 
     }

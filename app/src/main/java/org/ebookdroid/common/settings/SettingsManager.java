@@ -14,21 +14,12 @@ public class SettingsManager {
 
     static final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private volatile static AppBook current;
-    private volatile static String currentPath;
     static ListenerProxy listeners = new ListenerProxy(IBookSettingsChangeListener.class);
 
-
-    public static void clearCache() {
-        current = null;
-    }
 
     public static AppBook getBookSettings(final String fileName) {
         lock.writeLock().lock();
         try {
-            if (currentPath != null && current != null && fileName.equals(currentPath)) {
-                return current;
-            }
-            currentPath = fileName;
             LOG.d("load", fileName);
             current = SharedBooks.load(fileName);
             return current;
@@ -38,7 +29,6 @@ public class SettingsManager {
             lock.writeLock().unlock();
         }
     }
-
 
 
     public static AppBook getBookSettings() {
@@ -60,7 +50,6 @@ public class SettingsManager {
         try {
             if (current != null) {
                 current.cp = isCrop;
-                SharedBooks.save(current);
             }
         } finally {
             lock.writeLock().unlock();
@@ -98,7 +87,6 @@ public class SettingsManager {
         try {
             if (current != null) {
                 current.s = AppState.get().autoScrollSpeed;
-                SharedBooks.save(current);
             }
         } finally {
             lock.readLock().unlock();

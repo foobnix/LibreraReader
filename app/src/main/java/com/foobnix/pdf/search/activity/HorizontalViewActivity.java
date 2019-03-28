@@ -1325,7 +1325,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             onBC.underline(AppState.get().isEnableBC);
             // dc.getOutline(null, false);
-            dc.saveCurrentPageAsync();
+            //dc.saveCurrentPageAsync();
             createAdapter();
 
             loadUI();
@@ -1462,7 +1462,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppProfile.save(this);
         TempHolder.isSeaching = false;
         TempHolder.isActiveSpeedRead.set(false);
-        dc.saveCurrentPageAsync();
+        //dc.saveCurrentPageAsync();
         handler.postDelayed(closeRunnable, AppState.APP_CLOSE_AUTOMATIC);
         handlerTimer.removeCallbacks(updateTimePower);
         GFile.runSyncService(this);

@@ -55,7 +55,6 @@ public class AppBook implements CurrentPageListener {
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;
         }
-        page = page + 1;
         this.p = (float) page / pages;
         LOG.d("currentPageChanged", page, pages, p);
     }
@@ -65,14 +64,16 @@ public class AppBook implements CurrentPageListener {
             throw new RuntimeException("Error!!! " + pages);
         }
         if (this.p > 2) {//old import support
-            return new PageIndex((int)p, (int)p);
+            LOG.d("AppBook-getCurrentPage old", p,  pages);
+
         }
 
-        LOG.d("AppBook-getCurrentPage", pages);
         int p = (int) (pages * this.p);
         if (p > 0) {
             p = p - 1;
         }
+        LOG.d("AppBook-getCurrentPage", p, this.p, pages);
+
         return new PageIndex(p, p);
     }
 

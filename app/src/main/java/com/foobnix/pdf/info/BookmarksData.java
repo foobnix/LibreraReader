@@ -88,13 +88,13 @@ public class BookmarksData {
         }
 
 
-        Iterator<AppBookmark> iterator = all.iterator();
-        while (iterator.hasNext()) {
-            AppBookmark next = iterator.next();
-            if (next.getText().equals(quick)) {
-                iterator.remove();
-            }
-        }
+//        Iterator<AppBookmark> iterator = all.iterator();
+//        while (iterator.hasNext()) {
+//            AppBookmark next = iterator.next();
+//            if (next.getText().equals(quick)) {
+//                iterator.remove();
+//            }
+//        }
 
         LOG.d("getAll-size", all.size());
         Collections.sort(all, BY_TIME);
