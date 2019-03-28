@@ -42,7 +42,7 @@ public class AppProfile {
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
 
 
-    public static File SYNC_FOLDER;
+    public static File SYNC_FOLDER_PROFILE;
     public static File SYNC_FOLDER_BOOKS;
 
     static SharedPreferences sp;
@@ -60,18 +60,18 @@ public class AppProfile {
 
     public static void init(Context c) {
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
-        SYNC_FOLDER = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
-        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER, "Books");
+        SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
+        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_PROFILE, "Books");
 
-        syncRecent = new File(SYNC_FOLDER, "app-Recent.json");
-        syncFavorite = new File(SYNC_FOLDER, "app-Favorite.json");
-        syncTags = new File(SYNC_FOLDER, "app-Tags.json");
-        syncPlaylist = new File(SYNC_FOLDER, "playlists");
-        syncProgress = new File(SYNC_FOLDER, "app-Progress.json");
-        syncBookmarks = new File(AppProfile.SYNC_FOLDER, "app-Bookmarks.json");
+        syncRecent = new File(SYNC_FOLDER_PROFILE, "app-Recent.json");
+        syncFavorite = new File(SYNC_FOLDER_PROFILE, "app-Favorite.json");
+        syncTags = new File(SYNC_FOLDER_PROFILE, "app-Tags.json");
+        syncPlaylist = new File(SYNC_FOLDER_PROFILE, "playlists");
+        syncProgress = new File(SYNC_FOLDER_PROFILE, "app-Progress.json");
+        syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, "app-Bookmarks.json");
 
-        syncState = new File(SYNC_FOLDER, "app-State.json");
-        syncCSS = new File(SYNC_FOLDER, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
+        syncState = new File(SYNC_FOLDER_PROFILE, "app-State.json");
+        syncCSS = new File(SYNC_FOLDER_PROFILE, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
 
         load(c);
     }

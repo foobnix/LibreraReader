@@ -3931,7 +3931,7 @@ public class DragingDialogs {
                 // hypenLang.setVisibility(View.GONE);
                 // hypenLangLabel.setVisibility(View.GONE);
 
-                String lanuageByCode = DialogTranslateFromTo.getLanuageByCode(BookCSS.get().hypenLang);
+                String lanuageByCode = DialogTranslateFromTo.getLanuageByCode(AppTemp.get().hypenLang);
                 if(TxtUtils.isEmpty(lanuageByCode)){
                     hypenLang.setText(R.string.choose_);
                 }else {
@@ -3966,7 +3966,7 @@ public class DragingDialogs {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().hypenLang = code;
+                                    AppTemp.get().hypenLang = code;
                                     hypenLang.setText(titleLang);
                                     TxtUtils.underlineTextView(hypenLang);
                                     FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());

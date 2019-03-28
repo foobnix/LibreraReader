@@ -6,6 +6,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -28,7 +29,7 @@ public class DocxContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
+        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang + AppState.get().isDouble + AppState.get().isAccurateFontSize + BookCSS.get().isCapitalLetter;
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
         return cacheFile;
     }
@@ -61,9 +62,9 @@ public class DocxContext extends PdfContext {
                 result = converter.convertToHtml(new File(fileName));
 
                 String html = result.getValue();
-                if(BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang)){
+                if(BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)){
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
-                    HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+                    HypenUtils.applyLanguage(AppTemp.get().hypenLang);
                     HypenUtils.resetTokenizer();
                     html= HypenUtils.applyHypnes(html);
                 }

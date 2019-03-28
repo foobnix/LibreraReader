@@ -5,6 +5,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.MobiExtract;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -24,7 +25,7 @@ public class MobiContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileName) {
-        originalHashCode = (fileName + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang).hashCode();
+        originalHashCode = (fileName + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang).hashCode();
         cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, originalHashCode + "" + originalHashCode + ".epub");
         return cacheFile;
     }

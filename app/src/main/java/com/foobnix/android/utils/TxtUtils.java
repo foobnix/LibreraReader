@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
@@ -279,7 +279,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("[image]", "");
         if (AppState.get().isShowFooterNotesInText) {
             try {
-                String string = getLocaleStringResource(new Locale(BookCSS.get().hypenLang), R.string.foot_notes, LibreraApp.context);
+                String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
                 pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", ". " + string + ".");
             } catch (Exception e) {
                 LOG.e(e);

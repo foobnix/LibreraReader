@@ -4,8 +4,8 @@ import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
@@ -117,7 +117,7 @@ public class EpubExtractor extends BaseExtractor {
         ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
         zos.setLevel(0);
 
-        HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+        HypenUtils.applyLanguage(AppTemp.get().hypenLang);
 
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
             if (TempHolder.get().loadingCancelled) {

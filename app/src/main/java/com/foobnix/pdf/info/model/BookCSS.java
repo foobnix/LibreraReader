@@ -123,7 +123,6 @@ public class BookCSS {
     public boolean isAutoHypens;
 
     
-    public String hypenLang;
 
     public String linkColorDay;
     public String linkColorNight;
@@ -170,7 +169,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
-        hypenLang = null;
+        AppTemp.get().hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
@@ -553,7 +552,7 @@ public class BookCSS {
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
-        builder.append("isAutoHypens1" + isAutoHypens + hypenLang + "{}");
+        builder.append("isAutoHypens1" + isAutoHypens + AppTemp.get().hypenLang + "{}");
 
         builder.append("b>span,strong>span{font-weight:normal}");// fix chess
 
@@ -764,8 +763,8 @@ public class BookCSS {
         if (meta == null) {
             meta = FileMetaCore.createMetaIfNeed(bookPath, false);
         }
-        BookCSS.get().hypenLang = meta != null ? meta.getLang() : null;
-        LOG.d("detectLang", bookPath, BookCSS.get().hypenLang);
+        AppTemp.get().hypenLang = meta != null ? meta.getLang() : null;
+        LOG.d("detectLang", bookPath, AppTemp.get().hypenLang);
     }
 
 }

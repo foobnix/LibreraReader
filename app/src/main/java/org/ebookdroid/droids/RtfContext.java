@@ -3,6 +3,7 @@ package org.ebookdroid.droids;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.RtfExtract;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -17,7 +18,7 @@ public class RtfContext extends PdfContext {
 
 	@Override
 	public File getCacheFileName(String fileNameOriginal) {
-        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + BookCSS.get().hypenLang;
+        fileNameOriginal = fileNameOriginal + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang;
 		cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, fileNameOriginal.hashCode() + ".html");
 		return cacheFile;
 	}

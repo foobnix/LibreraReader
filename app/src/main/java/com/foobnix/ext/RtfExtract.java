@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.rtfparserkit.converter.text.AbstractTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
@@ -49,9 +50,9 @@ public class RtfExtract {
             IRtfSource source = new RtfStreamSource(is);
             IRtfParser parser = new StandardRtfParser();
 
-            boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(BookCSS.get().hypenLang);
+            boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang);
             if (isEnableHypens) {
-                HypenUtils.applyLanguage(BookCSS.get().hypenLang);
+                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
             }
 
             HypenUtils.resetTokenizer();

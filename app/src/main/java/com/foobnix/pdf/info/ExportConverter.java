@@ -24,7 +24,7 @@ public class ExportConverter {
 
 
     public static void copyPlaylists() {
-        File syncDir = new File(AppProfile.SYNC_FOLDER, "playlists");
+        File syncDir = new File(AppProfile.SYNC_FOLDER_PROFILE, "playlists");
         File oldDir = new File(AppProfile.DOWNLOADS_DIR, "Librera/Playlist");
         File[] list = oldDir.listFiles();
 

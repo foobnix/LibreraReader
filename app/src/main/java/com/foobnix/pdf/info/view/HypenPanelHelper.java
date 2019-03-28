@@ -26,7 +26,7 @@ public class HypenPanelHelper {
 
     public static void init(View parent, DocumentController dc) {
         View hyphenPanel = parent.findViewById(R.id.showHypenLangPanel);
-        hyphenPanel.setVisibility(TxtUtils.visibleIf(dc.isTextFormat() && BookCSS.get().isAutoHypens && TxtUtils.isEmpty(BookCSS.get().hypenLang)));
+        hyphenPanel.setVisibility(TxtUtils.visibleIf(dc.isTextFormat() && BookCSS.get().isAutoHypens && TxtUtils.isEmpty(AppTemp.get().hypenLang)));
 
 
         final TextView hypenLang = (TextView) parent.findViewById(R.id.hypenLang);
@@ -68,7 +68,7 @@ public class HypenPanelHelper {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            BookCSS.get().hypenLang = code;
+                            AppTemp.get().hypenLang = code;
                             AppTemp.get().lastBookLang = code;
                             hypenLang.setText(titleLang);
                             TxtUtils.underlineTextView(hypenLang);
@@ -90,7 +90,7 @@ public class HypenPanelHelper {
         hypenApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TxtUtils.isNotEmpty(BookCSS.get().hypenLang)) {
+                if (TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
                     dc.restartActivity();
                 }
             }

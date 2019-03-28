@@ -33,6 +33,9 @@ public class AppTemp {
 
     public int readingMode = AppState.READING_MODE_SCROLL;
 
+    public String hypenLang;
+
+
 
 
     transient  SharedPreferences sp;

@@ -26,7 +26,7 @@ public class MySharedPreferences implements SharedPreferences {
     public MySharedPreferences(String name) {
         LOG.d("MySharedPreferences begin", name);
         ;
-        File root = AppProfile.SYNC_FOLDER;
+        File root = AppProfile.SYNC_FOLDER_PROFILE;
         root.mkdirs();
 
         file = new File(root, name + ".json");

@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.BookType;
@@ -77,7 +77,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        LOG.d("Open-Document 2 LANG:", BookCSS.get().hypenLang, fileNameOriginal);
+        LOG.d("Open-Document 2 LANG:", AppTemp.get().hypenLang, fileNameOriginal);
 
         File cacheFileName = getCacheFileName(fileNameOriginal + getFileNameSalt(fileNameOriginal));
         if (!BookType.ODT.is(fileNameOriginal)) {
