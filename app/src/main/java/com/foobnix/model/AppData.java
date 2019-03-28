@@ -5,6 +5,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -143,6 +144,10 @@ public class AppData {
         readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : recent) {
+            if (Clouds.isLibreraSyncFile(s.getPath())) {
+                s.setPath(new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(s.getPath())).getPath());
+            }
+
             if (!new File(s.getPath()).isFile()) {
                 LOG.d("getAllRecent can't find file", s.getPath());
                 continue;

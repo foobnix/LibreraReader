@@ -1,10 +1,9 @@
 package com.foobnix.drive;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
@@ -33,14 +32,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class GFile {
     public static final int REQUEST_CODE_SIGN_IN = 1110;
@@ -115,6 +112,8 @@ public class GFile {
 
     }
 
+    static SharedPreferences sp;
+
     public static void buildDriveService(Context c) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(c);
         if (account == null) {
@@ -141,6 +140,7 @@ public class GFile {
                         .build();
 
         LOG.d(TAG, "googleDriveService", " build");
+        sp = c.getSharedPreferences("lastmodified", Context.MODE_PRIVATE);
 
     }
 
@@ -260,7 +260,7 @@ public class GFile {
             File metadata = new File()
                     .setParents(Collections.singletonList(roodId))
                     .setMimeType(ExtUtils.getMimeType(inFile))
-                    .setModifiedTime(new DateTime(inFile.lastModified()))
+                    .setModifiedTime(new DateTime(getLastModified(inFile)))
                     .setName(inFile.getName());
 
             LOG.d(TAG, "Create file", roodId, inFile.getName());
@@ -274,7 +274,7 @@ public class GFile {
         File metadata = new File()
                 .setParents(Collections.singletonList(roodId))
                 .setMimeType(ExtUtils.getMimeType(inFile))
-                .setModifiedTime(new DateTime(inFile.lastModified()))
+                .setModifiedTime(new DateTime(getLastModified(inFile)))
                 .setName(inFile.getName());
 
         LOG.d(TAG, "Create file", roodId, inFile.getName());
@@ -284,7 +284,7 @@ public class GFile {
 
     public static void uploadFile(String roodId, String fileId, final java.io.File inFile) throws IOException {
         debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
-        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
+        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(getLastModified(inFile)));
         FileContent contentStream = new FileContent("text/plain", inFile);
         LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
         googleDriveService.files().update(fileId, metadata, contentStream).execute();
@@ -345,17 +345,23 @@ public class GFile {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
-    public static boolean setLastModifiedTime(java.io.File file, long lastModified) {
-        if (lastModified > 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try {
-                Files.setLastModifiedTime(Paths.get(file.getPath()), FileTime.fromMillis(lastModified));
-            } catch (IOException e) {
-                LOG.e(e);
-                return false;
+    public static void setLastModifiedTime(java.io.File file, long lastModified) {
+        sp.edit().putLong(file.getPath() + file.lastModified(), lastModified).commit();
+    }
+
+    public static long getLastModified(java.io.File file) {
+        long l = sp.getLong(file.getPath() + file.lastModified(), file.lastModified());
+        final Set<String> strings = sp.getAll().keySet();
+        for (String key : strings) {
+            if (key.equals(file.getPath() + file.lastModified())) {
+                continue;
+            }
+
+            if (key.startsWith(file.getPath())) {
+                sp.edit().remove(key).commit();
             }
         }
-        return true;
+        return l;
     }
 
     public static void deleteBook(String rootId, String name) throws IOException {
@@ -402,6 +408,10 @@ public class GFile {
                 }
                 BookCSS.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
+            }
+            if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
+                sp.edit().clear().commit();
+                AppProfile.SYNC_FOLDER_ROOT.mkdirs();
             }
 
 
@@ -453,7 +463,7 @@ public class GFile {
                 }
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
-                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
+                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000) {
                     final java.io.File parentFile = local.getParentFile();
                     if (parentFile.exists()) {
                         parentFile.mkdirs();
@@ -482,7 +492,7 @@ public class GFile {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add.getId(), local);
-                } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
+                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000) {
                     uploadFile(syncId, remote.getId(), local);
                 }
 

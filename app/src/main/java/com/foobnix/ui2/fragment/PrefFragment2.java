@@ -233,7 +233,7 @@ public class PrefFragment2 extends UIFragment {
         });
         section8 = inflate.findViewById(R.id.section8);
         section9 = inflate.findViewById(R.id.section9);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        if (false) {
             section8.setVisibility(View.GONE);
             //syncFolder.setVisibility(View.GONE);
             isEnableGdrive.setVisibility(View.GONE);
