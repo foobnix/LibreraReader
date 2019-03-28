@@ -16,7 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class ExportConverter {
 
@@ -44,9 +46,6 @@ public class ExportConverter {
 
         IO.writeString(AppProfile.syncState, obj.getJSONObject("pdf").toString());
         IO.writeString(AppProfile.syncCSS, obj.getJSONObject("BookCSS").toString());
-        //add missing paths
-        IO.writeString(AppProfile.syncCSS, obj.getJSONObject("pdf").toString());
-
 
         AppProfile.load(c);
 
@@ -78,6 +77,7 @@ public class ExportConverter {
 
         JSONObject books = obj.getJSONObject("BOOKS");
         Iterator<String> keys = books.keys();
+        Map<String, Integer> cache = new HashMap<>();
         while (keys.hasNext()) {
 
             String stringObj = books.getString(keys.next());
@@ -100,11 +100,17 @@ public class ExportConverter {
 
             JSONObject currentPage = value.getJSONObject("currentPage");
             int pages = value.optInt("pages", 0);
+            final int docIndex = currentPage.getInt("docIndex") + 1;
             if (pages > 0) {
-                appBook.p = (float) (currentPage.getInt("docIndex") + 1) / pages;
+                appBook.p = (float) docIndex / pages;
+            } else if (docIndex >= 2) {//old import support
+                appBook.p = docIndex;
             }
             appBook.x = value.getInt("offsetX");
             appBook.y = value.getInt("offsetY");
+
+            cache.put(appBook.path, pages);
+            LOG.d("Export-PUT", appBook.path, pages);
 
 
             SharedBooks.save(appBook);
@@ -120,13 +126,19 @@ public class ExportConverter {
             String[] it = value.split("~");
 
             AppBookmark bookmark = new AppBookmark();
-            bookmark.setPath(it[0]);
+            final String path = it[0];
+            bookmark.setPath(path);
             bookmark.text = it[1];
             bookmark.t = Long.parseLong(it[4]);
             if (it.length > 5) {
                 bookmark.p = Float.parseFloat(it[5]);
+            } else {
+                try {
+                    bookmark.p = (float) Integer.parseInt(it[2]) / cache.get(path);
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
-
             BookmarksData.get().add(bookmark);
 
         }
@@ -134,4 +146,6 @@ public class ExportConverter {
 
     }
 
+
 }
+

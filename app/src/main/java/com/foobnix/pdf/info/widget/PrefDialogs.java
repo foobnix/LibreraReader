@@ -30,9 +30,6 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
-import com.foobnix.android.utils.StringDB;
-import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
@@ -42,11 +39,10 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
-
-import org.ebookdroid.common.settings.SettingsManager;
 
 import java.io.File;
 import java.util.Arrays;
@@ -177,52 +173,42 @@ public class PrefDialogs {
 
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
-                if (true) {
-
-                    try {
-                        ExportConverter.covertJSONtoNew(activity, new File(result1));
 
 
-                        activity.finish();
-                        MainTabs2.startActivity(activity, TempHolder.get().currentTab);
+                new AsyncProgressTask<Boolean>() {
 
-                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
-                        LOG.e(e);
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
+                        try {
+                            ExportConverter.covertJSONtoNew(activity, new File(result1));
+                        } catch (Exception e) {
+                            LOG.e(e);
+                            return false;
+                        }
+                        return true;
                     }
 
-                    result2.dismiss();
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        super.onPostExecute(result);
+                        if (result) {
+                            activity.finish();
+                            MainTabs2.startActivity(activity, TempHolder.get().currentTab);
 
-                    return true;
-                }
+                            Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
 
-                LOG.d("appFontScale0", AppState.get().appFontScale);
-                final String bookTagsInit = AppState.get().bookTags;
-                boolean result = false;//ExportSettingsManager.getInstance(activity).importAll(new File(result1));
+                        }
+                        result2.dismiss();
 
-                try {
-                    if (result) {
-                        AppProfile.load(activity);
-                        AppState.get().bookTags = StringDB.merge(bookTagsInit, AppState.get().bookTags);
-                        TintUtil.init();
-                        SettingsManager.clearCache();
-
-                        LOG.d("fontFolder2-1", BookCSS.get().fontFolder);
-
-                        activity.finish();
-                        MainTabs2.startActivity(activity, TempHolder.get().currentTab);
-
-                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
-
-                    } else {
-                        Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
                     }
-                } catch (Exception e) {
-                    LOG.e(e);
-                    Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
-                }
-                result2.dismiss();
+
+                    @Override
+                    public Context getContext() {
+                        return activity;
+                    }
+                }.execute();
                 return false;
             }
         });
