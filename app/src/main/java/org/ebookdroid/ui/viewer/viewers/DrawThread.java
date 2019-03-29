@@ -39,16 +39,11 @@ public class DrawThread extends Thread {
     public void run() {
         while (!stop.get()) {
             draw();
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     protected void draw() {
-        final ViewState viewState = takeLastTask(); // takeTask(250, TimeUnit.MILLISECONDS, useLastState);
+        final ViewState viewState = takeTask(250, TimeUnit.MILLISECONDS, false);
         if (viewState == null) {
             return;
         }
