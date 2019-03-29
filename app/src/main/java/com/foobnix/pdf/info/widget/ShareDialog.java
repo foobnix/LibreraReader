@@ -29,6 +29,7 @@ import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -397,7 +398,7 @@ public class ShareDialog {
                             try {
                                 final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
                                 boolean result = IO.copyFile(file, to);
-                                if (result) {
+                                if (result && BookCSS.get().isEnableGdrive) {
                                     GFile.upload(to);
                                     GFile.runSyncService(a);
                                 }

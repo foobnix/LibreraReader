@@ -3193,47 +3193,31 @@ public class DragingDialogs {
 
                 CheckBox isAllowTextSelection = (CheckBox) inflate.findViewById(R.id.isAllowTextSelection);
                 isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
-                isAllowTextSelection.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isAllowTextSelection = isChecked;
-                        if (isChecked) {
-                            TempHolder.get().isAllowTextSelectionFirstTime = true;
-                        }
+                isAllowTextSelection.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isAllowTextSelection = isChecked;
+                    if (isChecked) {
+                        TempHolder.get().isAllowTextSelectionFirstTime = true;
                     }
                 });
+
+                CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
+                isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
+                isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
 
                 CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
-                isZoomInOutWithVolueKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isZoomInOutWithVolueKeys = isChecked;
-                    }
-                });
+                isZoomInOutWithVolueKeys.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isZoomInOutWithVolueKeys = isChecked);
 
                 CheckBox isZoomInOutWithLock = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithLock);
                 isZoomInOutWithLock.setChecked(AppState.get().isZoomInOutWithLock);
-                isZoomInOutWithLock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isZoomInOutWithLock = isChecked;
-                    }
-                });
+                isZoomInOutWithLock.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isZoomInOutWithLock = isChecked);
 
                 final CustomSeek mouseWheelSpeed = (CustomSeek) inflate.findViewById(R.id.seekWheelSpeed);
                 mouseWheelSpeed.getTitleText().setSingleLine(false);
                 mouseWheelSpeed.init(1, 200, AppState.get().mouseWheelSpeed);
-                mouseWheelSpeed.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().mouseWheelSpeed = result;
-                        return false;
-                    }
+                mouseWheelSpeed.setOnSeekChanged(result -> {
+                    AppState.get().mouseWheelSpeed = result;
+                    return false;
                 });
 
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);

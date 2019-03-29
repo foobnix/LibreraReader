@@ -691,6 +691,9 @@ public class AppState {
     @IgnoreHashCode
     public int hashCode = 0;
 
+    @IgnoreHashCode
+    public boolean isSelectTexByTouch = false;
+
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;
     }

@@ -368,6 +368,14 @@ public class PageImaveView extends View {
         public void onLongPress(MotionEvent e) {
             isIgronerClick = true;
 
+            if(AppState.get().isSelectTexByTouch){
+                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
+                isLognPress = false;
+                AppState.get().selectedText = null;
+                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+                return;
+            }
+
             if (!AppState.get().isAllowTextSelection) {
                 if (TempHolder.get().isAllowTextSelectionFirstTime) {
                     Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
@@ -404,7 +412,13 @@ public class PageImaveView extends View {
                 y = event.getY();
                 brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
-                isLognPress = false;
+                if(AppState.get().isSelectTexByTouch) {
+                    isLognPress = true;
+                    xInit = x;
+                    yInit = y;
+                }else{
+                    isLognPress = false;
+                }
                 isMoveNextPrev = 0;
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
             } else if (action == MotionEvent.ACTION_MOVE) {

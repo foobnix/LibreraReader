@@ -292,6 +292,12 @@
             android:text="@string/allow_text_highlight" />
 
         <CheckBox
+            android:id="@+id/isSelectTexByTouch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_selection_with_a_light_touch" />
+
+        <CheckBox
             android:id="@+id/highlightByLetters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
