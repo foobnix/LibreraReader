@@ -621,7 +621,7 @@ public class Clouds {
         if(TxtUtils.isEmpty(path)){
             return false;
         }
-        return path.startsWith(AppProfile.SYNC_FOLDER_ROOT.getPath()) || new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path)).exists();
+        return path.startsWith(AppProfile.SYNC_FOLDER_BOOKS.getPath()) || new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path)).exists();
     }
 
     public static boolean showHideCloudImage(ImageView img, String path) {

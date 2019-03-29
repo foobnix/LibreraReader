@@ -117,6 +117,7 @@ public class TintUtil {
         drawable.setCornerRadius(RADIUS);
     }
 
+
     public static void setUITextColor(TextView textView, int color) {
         if (textView == null) {
             return;

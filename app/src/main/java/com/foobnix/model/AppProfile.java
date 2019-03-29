@@ -22,6 +22,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -29,6 +30,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.PasswordState;
+import com.foobnix.pdf.search.view.AsyncProgressSimpleTask;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -76,7 +78,7 @@ public class AppProfile {
         load(c);
     }
 
-    public static void load(Context c){
+    public static void load(Context c) {
         final boolean isLoaded = AppState.get().loadInit(c);
         if (isLoaded) {
             AppState.get().load(c);
@@ -89,7 +91,7 @@ public class AppProfile {
 
     }
 
-    public static void save(Context a){
+    public static void save(Context a) {
         DragingPopup.saveCache(a);
         PasswordState.get().save(a);
         AppState.get().save(a);
@@ -127,10 +129,25 @@ public class AppProfile {
         return file.mkdirs();
     }
 
-    public static boolean deleteProfiles(String name) {
-        final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
-        ExtUtils.deleteRecursive(file);
-        return true;
+    public static void deleteProfiles(Activity a, String name, ResultResponse<Boolean> result) {
+        new AsyncProgressSimpleTask(a, result) {
+
+            @Override
+            protected Boolean doInBackground(Object... objects) {
+                try {
+                    final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
+                    GFile.deleteRemoteFile(file);
+                    ExtUtils.deleteRecursive(file);
+                    GFile.runSyncService(a);
+                } catch (Exception e) {
+                    LOG.e(e);
+                    return false;
+                }
+                return true;
+            }
+
+        }.execute();
+
     }
 
 
@@ -172,10 +189,17 @@ public class AppProfile {
                             @Override
                             public void run() {
 
-                                deleteProfiles(tagName);
-                                profiles.clear();
-                                profiles.addAll(getAllProfiles());
-                                notifyDataSetChanged();
+                                deleteProfiles(a, tagName, new ResultResponse<Boolean>() {
+                                    @Override
+                                    public boolean onResultRecive(Boolean result) {
+                                        if (result) {
+                                            profiles.clear();
+                                            profiles.addAll(getAllProfiles());
+                                            notifyDataSetChanged();
+                                        }
+                                        return false;
+                                    }
+                                });
 
                             }
                         });
@@ -237,7 +261,7 @@ public class AppProfile {
 
     }
 
-    public static void addDialog(final Context a, final Runnable onRefresh) {
+    public static void addDialog(final Activity a, final Runnable onRefresh) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(R.string.profile);
 
@@ -290,6 +314,8 @@ public class AppProfile {
                 create.dismiss();
 
                 ceateProfiles(text);
+                GFile.runSyncService(a);
+
                 onRefresh.run();
 
                 Keyboards.close(edit);

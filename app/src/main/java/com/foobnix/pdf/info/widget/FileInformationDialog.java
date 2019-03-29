@@ -17,7 +17,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -38,11 +37,10 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.pdf.search.view.AsyncProgressSimpleTask;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
@@ -559,13 +557,14 @@ public class FileInformationDialog {
 
                 if (Clouds.isLibreraSyncFile(file)) {
 
-                    new AsyncProgressTask<Boolean>() {
 
+                    new AsyncProgressSimpleTask(a) {
 
                         @Override
                         protected Boolean doInBackground(Object... objects) {
                             try {
-                                GFile.deleteBook(BookCSS.get().syncRootID, file.getName());
+                                GFile.deleteRemoteFile(file);
+                                a.runOnUiThread(onDeleteAction);
                             } catch (Exception e) {
                                 LOG.e(e);
                                 return false;
@@ -573,23 +572,7 @@ public class FileInformationDialog {
                             return true;
                         }
 
-                        @Override
-                        protected void onPostExecute(Boolean result) {
-                            super.onPostExecute(result);
-                            if (result) {
-                                Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
-                                onDeleteAction.run();
-                            } else {
-                                Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
-                            }
-                        }
-
-                        @Override
-                        public Context getContext() {
-                            return a;
-                        }
                     }.execute();
-
 
                 } else {
                     onDeleteAction.run();

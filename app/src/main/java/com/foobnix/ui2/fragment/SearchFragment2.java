@@ -112,9 +112,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
 
-        TintUtil.setStrokeColor(searchEditText, colorTheme);
         TintUtil.setUITextColor(countBooks, colorTheme);
-        TintUtil.setUITextColor(searchEditText, colorTheme);
 
         TintUtil.setTintImageNoAlpha(cleanFilter, colorTheme);
         TintUtil.setTintImageNoAlpha(myAutoCompleteImage, colorTheme);
@@ -124,6 +122,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }else{
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
         }
+        TintUtil.setStrokeColor(searchEditText, colorTheme);
+        TintUtil.setUITextColor(searchEditText, colorTheme);
 
     }
 

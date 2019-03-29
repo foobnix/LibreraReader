@@ -576,7 +576,7 @@ public class ExtUtils {
     }
 
     public static String getFileName(String name) {
-        if(TxtUtils.isEmpty(name)){
+        if (TxtUtils.isEmpty(name)) {
             return "";
         }
         if (!name.contains("/")) {
@@ -1820,9 +1820,15 @@ public class ExtUtils {
     }
 
     public static void deleteRecursive(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory())
-            for (File child : fileOrDirectory.listFiles())
+        if (fileOrDirectory.isDirectory()) {
+            final File[] files = fileOrDirectory.listFiles();
+            if (files == null) {
+                return;
+            }
+            for (File child : files) {
                 deleteRecursive(child);
+            }
+        }
         fileOrDirectory.delete();
     }
 

@@ -174,8 +174,8 @@ public class GFile {
         return exeQF(txt, rootId, rootId, MIME_FOLDER);
     }
 
-    public static List<File> getFilesAll() throws Exception {
-        return exeQ("trashed = false");
+    public static List<File> getFilesAll(boolean withTrashed) throws Exception {
+        return withTrashed ? exeQ("") : exeQ("trashed = false");
     }
 
     public static File findLibreraSync() throws Exception {
@@ -366,7 +366,7 @@ public class GFile {
         return l;
     }
 
-    public static void deleteBook(String rootId, String name) throws IOException {
+    public static void deleteBookByName(String rootId, String name) throws IOException {
         name = name.replace("'", "\\'");
         final List<File> files = exeQF("'%s' in parents and name = '%s'", rootId, name);
         for (File f : files) {
@@ -375,6 +375,13 @@ public class GFile {
             debugOut += "\nDelete book: " + name;
             googleDriveService.files().update(f.getId(), metadata).execute();
         }
+    }
+
+    private static void deleteFile(File file, long lastModified) throws IOException {
+        File metadata = new File().setModifiedTime(new DateTime(lastModified)).setTrashed(true);
+        LOG.d("Delete", file.getName());
+        debugOut += "\nDelete: " + file.getName();
+        googleDriveService.files().update(file.getId(), metadata).execute();
     }
 
 
@@ -434,16 +441,33 @@ public class GFile {
         }
     }
 
+    public static boolean deleteRemoteFile(final java.io.File ioFile) {
+        try {
+            final File file = map2.get(ioFile);
+            if (file != null) {
+                deleteFile(file, System.currentTimeMillis());
+                return true;
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
+
+    static Map<java.io.File, File> map2 = new HashMap<>();
+
     private static void sync(String syncId, final java.io.File ioRoot) throws Exception {
-        final List<File> driveFiles = getFilesAll();
+        final List<File> driveFiles = getFilesAll(true);
         LOG.d(TAG, "getFilesAll", "end");
 
         Map<String, File> map = new HashMap<>();
-        Map<java.io.File, File> map2 = new HashMap<>();
+        map2.clear();
+
 
         for (File file : driveFiles) {
             map.put(file.getId(), file);
         }
+
         for (File file : driveFiles) {
             final String filePath = findFile(file, map);
 
@@ -452,11 +476,38 @@ public class GFile {
             }
 
             java.io.File local = new java.io.File(ioRoot, filePath);
-            map2.put(local, file);
+
+            final File other = map2.get(local);
+            if (other == null) {
+                map2.put(local, file);
+                LOG.d(TAG,"map2-put", file.getName(), file.getId(),file.getTrashed());
+            } else if (other.getTrashed() == true) {
+                map2.put(local, file);
+                LOG.d(TAG,"map2-put", file.getName(), file.getId(),file.getTrashed());
+
+            }
+
+
         }
+
+        for (java.io.File local : map2.keySet()) {
+            File remote = map2.get(local);
+            if (remote.getTrashed() && local.exists()) {
+                debugOut += "\nDelete local: " + local.getPath();
+                LOG.d(TAG, "Delete local", local.getPath());
+                ExtUtils.deleteRecursive(local);
+            }
+
+        }
+
+
         //upload second files
         for (File remote : driveFiles) {
-            //create local files
+            if (true == remote.getTrashed()) {
+                LOG.d(TAG, "Skip trashed", remote.getName());
+                continue;
+            }
+
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
                 final String filePath = findFile(remote, map);
                 if (filePath.startsWith(SKIP)) {
@@ -465,6 +516,8 @@ public class GFile {
                 }
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
+
+
                 if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000) {
                     final java.io.File parentFile = local.getParentFile();
                     if (parentFile.exists()) {
@@ -485,6 +538,9 @@ public class GFile {
         }
         for (java.io.File local : files) {
             File remote = map2.get(local);
+            if (remote!=null && remote.getTrashed() == true) {
+                remote = null;
+            }
             if (local.isDirectory()) {
                 if (remote == null) {
                     remote = createFolder(syncId, local.getName());
@@ -501,6 +557,12 @@ public class GFile {
 
             }
         }
+    }
+
+    public static void upload(java.io.File local) throws IOException {
+        final File remoteParent = map2.get(local.getParentFile());
+        final File firstTime = createFirstTime(remoteParent.getId(), local);
+        uploadFile(remoteParent.getId(), firstTime.getId(), local);
     }
 
 //    private static void syncUpload(String syncId, final java.io.File ioRoot, List<File> driveFiles) throws Exception {

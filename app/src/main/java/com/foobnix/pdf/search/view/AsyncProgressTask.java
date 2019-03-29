@@ -26,6 +26,7 @@ public abstract class AsyncProgressTask<T> extends AsyncTask<Object, Object, T> 
         } catch (Exception e) {
             LOG.d(e);
         }
+
     }
 
 }
