@@ -1627,7 +1627,7 @@ public class DragingDialogs {
                                         sp.edit().putString("last", app.activityInfo.name).commit();
 
 
-                                        //controller.clearSelectedText();
+                                        controller.clearSelectedText();
 
                                     }
                                 });
@@ -1717,7 +1717,6 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                controller.clearSelectedText();
                 AppState.get().selectedText = null;
             }
         });

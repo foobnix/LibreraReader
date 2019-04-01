@@ -146,8 +146,8 @@ public class GFile {
 
     }
 
-    public static List<File> exeQF(String q, String... args) throws IOException {
-        return exeQ(String.format(q, args));
+    public static List<File> exeQF(String q, String ... args) throws IOException {
+        return exeQ(String.format(q,  args));
     }
 
     public static List<File> exeQ(String q) throws IOException {
@@ -480,10 +480,10 @@ public class GFile {
             final File other = map2.get(local);
             if (other == null) {
                 map2.put(local, file);
-                LOG.d(TAG,"map2-put", file.getName(), file.getId(),file.getTrashed());
+                LOG.d(TAG, "map2-put", file.getName(), file.getId(), file.getTrashed());
             } else if (other.getTrashed() == true) {
                 map2.put(local, file);
-                LOG.d(TAG,"map2-put", file.getName(), file.getId(),file.getTrashed());
+                LOG.d(TAG, "map2-put", file.getName(), file.getId(), file.getTrashed());
 
             }
 
@@ -538,7 +538,7 @@ public class GFile {
         }
         for (java.io.File local : files) {
             File remote = map2.get(local);
-            if (remote!=null && remote.getTrashed() == true) {
+            if (remote != null && remote.getTrashed() == true) {
                 remote = null;
             }
             if (local.isDirectory()) {
