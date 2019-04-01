@@ -52,6 +52,7 @@ public class AppProfile {
 
     public static File syncRecent;
     public static File syncFavorite;
+    public static File syncExclude;
     public static File syncState;
     public static File syncTags;
     public static File syncCSS;
@@ -67,6 +68,7 @@ public class AppProfile {
 
         syncRecent = new File(SYNC_FOLDER_PROFILE, "app-Recent.json");
         syncFavorite = new File(SYNC_FOLDER_PROFILE, "app-Favorite.json");
+        syncExclude = new File(SYNC_FOLDER_PROFILE, "app-Exclude.json");
         syncTags = new File(SYNC_FOLDER_PROFILE, "app-Tags.json");
         syncPlaylist = new File(SYNC_FOLDER_PROFILE, "playlists");
         syncProgress = new File(SYNC_FOLDER_PROFILE, "app-Progress.json");
@@ -76,6 +78,9 @@ public class AppProfile {
         syncCSS = new File(SYNC_FOLDER_PROFILE, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
 
         load(c);
+
+
+
     }
 
     public static void load(Context c) {
@@ -129,7 +134,8 @@ public class AppProfile {
         return file.mkdirs();
     }
 
-    public static void deleteProfiles(Activity a, String name, ResultResponse<Boolean> result) {
+    public static void deleteProfiles(Activity a, String
+            name, ResultResponse<Boolean> result) {
         new AsyncProgressSimpleTask(a, result) {
 
             @Override

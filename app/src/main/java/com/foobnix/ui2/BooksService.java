@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
@@ -33,6 +34,7 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -233,6 +235,21 @@ public class BooksService extends IntentService {
                     }
                 }
                 AppTemp.get().searchDate = System.currentTimeMillis();
+
+
+                final List<String> allExcluded = AppData.get().getAllExcluded();
+                if (!TxtUtils.isListEmpty(allExcluded)) {
+                    final Iterator<FileMeta> iterator = itemsMeta.iterator();
+                    while (iterator.hasNext()) {
+                        final FileMeta next = iterator.next();
+                        if (allExcluded.contains(next.getPath())) {
+                            iterator.remove();
+                            LOG.d("Remove excluded", next.getPath());
+                        }
+
+                    }
+                }
+
 
                 for (FileMeta meta : itemsMeta) {
                     meta.setIsSearchBook(true);

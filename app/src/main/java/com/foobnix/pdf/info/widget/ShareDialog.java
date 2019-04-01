@@ -18,6 +18,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -376,6 +377,7 @@ public class ShareDialog {
                         //load.setIsStar(false);
                         //load.setTag(null);
                         AppDB.get().delete(load);
+                        AppData.get().addExclue(load.getPath());
                     }
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (!isMainTabs && which == i++) {

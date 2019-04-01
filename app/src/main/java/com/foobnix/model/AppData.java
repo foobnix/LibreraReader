@@ -26,6 +26,7 @@ public class AppData {
 
     private List<SimpleMeta> recent = new ArrayList<>();
     private List<SimpleMeta> favorites = new ArrayList<>();
+    private List<SimpleMeta> exclude = new ArrayList<>();
 
 
     static AppData inst = new AppData();
@@ -62,7 +63,25 @@ public class AppData {
         LOG.d("AppData addFavorite", s.getPath());
         writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
+    }
 
+    public List<String> getAllExcluded() {
+        readSimpleMeta(exclude, AppProfile.syncExclude, SimpleMeta.class);
+        ArrayList<String> res = new ArrayList<String>();
+        for (SimpleMeta s : exclude) {
+            res.add(s.getPath());
+        }
+        return res;
+    }
+
+
+    public void addExclue(String path) {
+        final SimpleMeta sm = new SimpleMeta(path);
+        exclude.remove(sm);
+        exclude.add(sm);
+        LOG.d("AppData addFavorite", path);
+        writeSimpleMeta(exclude, AppProfile.syncExclude);
+        LOG.d("Objects-save", "SAVE Favorite");
     }
 
     public void removeFavorite(SimpleMeta s) {
@@ -155,7 +174,7 @@ public class AppData {
 
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             meta.setIsRecent(true);
-            meta.setIsSearchBook(true);
+            //meta.setIsSearchBook(true);
             meta.setIsRecentTime(s.time);
             res.add(meta);
         }
