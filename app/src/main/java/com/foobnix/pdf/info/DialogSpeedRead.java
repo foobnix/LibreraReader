@@ -28,9 +28,9 @@ import java.util.List;
 
 public class DialogSpeedRead {
 
-    volatile static int currentWord = 0;
-    volatile static String[] words = new String[] { "" };
-    static String[] punctuations = { ".", ",", ";", ":", "?", "!" };
+    private volatile static int currentWord = 0;
+    volatile static String[] words = new String[]{""};
+    static String[] punctuations = {".", ",", ";", ":", "?", "!"};
 
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -142,6 +142,7 @@ public class DialogSpeedRead {
                     List<String> tempList = Arrays.asList(textForPage.split(" "));
                     List<String> res = new ArrayList<String>();
                     for (String item : tempList) {
+                        //currentWord = 0;
                         if (item.contains("-") && item.length() >= 10) {
                             String[] it = item.split("-");
                             res.add(it[0] + "-");
@@ -152,8 +153,9 @@ public class DialogSpeedRead {
 
                     }
                     words = res.toArray(new String[res.size()]);
-                    currentWord = 0;
+                    //currentWord = 0;
 
+                    LOG.d("currentWord", currentWord);
                     for (int i = currentWord; i < words.length; i++) {
                         if (!TempHolder.isActiveSpeedRead.get()) {
                             return;
@@ -298,7 +300,8 @@ public class DialogSpeedRead {
 
     private static void reset() {
         currentWord = 0;
-        words = new String[] { "" };
+        words = new String[]{""};
+        LOG.d("currentWord reset", 0);
     }
 
 }
