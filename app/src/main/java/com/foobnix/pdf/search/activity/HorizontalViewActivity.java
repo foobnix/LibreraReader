@@ -1382,6 +1382,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             LOG.d("Close App");
             if (dc != null) {
+                dc.saveCurrentPageAsync();
                 dc.onCloseActivityAdnShowInterstial();
                 dc.closeActivity();
             } else {
@@ -2291,6 +2292,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         nullAdapter();
+        dc.saveCurrentPageAsync();
         dc.onCloseActivityFinal(null);
         dc.closeActivity();
     }

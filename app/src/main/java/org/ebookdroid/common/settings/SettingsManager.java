@@ -2,7 +2,6 @@ package org.ebookdroid.common.settings;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppBook;
-import com.foobnix.model.AppState;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
@@ -42,28 +41,15 @@ public class SettingsManager {
     }
 
 
-    public static boolean toggleCropMode(boolean isCrop) {
-        if (current == null) {
-            return false;
-        }
-        lock.writeLock().lock();
-        try {
-            if (current != null) {
-                current.cp = isCrop;
-            }
-        } finally {
-            lock.writeLock().unlock();
-        }
-
-        return current.cp;
-    }
 
 
     public static void zoomChanged(final float zoom, final boolean committed) {
         lock.readLock().lock();
         try {
             if (current != null) {
+                LOG.d("zoom-chaged", zoom);
                 current.setZoom(zoom);
+                SharedBooks.save(current);
             }
         } finally {
             lock.readLock().unlock();
@@ -82,16 +68,6 @@ public class SettingsManager {
         }
     }
 
-    public static void storeBookSettings1() {
-        lock.readLock().lock();
-        try {
-            if (current != null) {
-                current.s = AppState.get().autoScrollSpeed;
-            }
-        } finally {
-            lock.readLock().unlock();
-        }
-    }
 
     public static void addListener(final Object l) {
         listeners.addListener(l);

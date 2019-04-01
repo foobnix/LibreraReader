@@ -73,7 +73,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.ebookdroid.common.settings.SettingsManager;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -365,6 +364,7 @@ public class DocumentWrapperUI {
         if (titleBar != null) {
             titleBar.removeCallbacks(null);
         }
+        dc.saveCurrentPageAsync();
         dc.onCloseActivityAdnShowInterstial();
         dc.closeActivity();
 
@@ -1664,7 +1664,6 @@ public class DocumentWrapperUI {
 
             crop.setVisibility(AppState.get().isCut ? View.GONE : View.VISIBLE);
 
-            SettingsManager.toggleCropMode(true);
 
             dc.onCrop();// crop false
             dc.updateRendering();

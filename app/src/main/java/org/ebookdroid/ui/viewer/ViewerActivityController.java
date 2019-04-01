@@ -409,7 +409,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void toggleCrop(boolean isCrop) {
-        SettingsManager.toggleCropMode(isCrop);
         getDocumentController().toggleRenderingEffects();
 
         final IViewController newDc = switchDocumentController(SettingsManager.getBookSettings());
@@ -495,9 +494,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 }
 
                 LOG.d("closeActivity 2");
-
-                SettingsManager.storeBookSettings1();
-
                 LOG.d("closeActivity 3");
                 getManagedComponent().finish();
 
@@ -514,7 +510,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     }
 
     public void closeActivity1(final ActionEx action) {
-        SettingsManager.storeBookSettings1();
         getManagedComponent().finish();
 
         System.gc();

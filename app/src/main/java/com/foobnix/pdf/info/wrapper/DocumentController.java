@@ -289,7 +289,7 @@ public abstract class DocumentController {
         }
     };
 
-    private void saveCurrentPageAsync() {
+    public void saveCurrentPageAsync() {
         if (TempHolder.get().loadingCancelled) {
             LOG.d("Loading cancelled");
             return;
