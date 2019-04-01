@@ -537,4 +537,10 @@
    <string name="system_brightness">בהירות המערכת</string>
    <string name="opening_books_in_the_specified_mode">פתיחת ספרים במצב שצוין</string>
    <string name="dark_oled">כהה</string>
+   <string name="profile">J</string>
+   <string name="new_profile">פרופיל חדש</string>
+   <string name="main">ראשי</string>
+   <string name="do_you_want_to_switch_profile_">לעבור לפרופיל אחר?</string>
+   <string name="sync_error">שגיאת סינכרון</string>
+   <string name="enable_text_selection_with_a_light_touch">לאפשר בחירת טקסט עם מגע קל</string>
 </resources>

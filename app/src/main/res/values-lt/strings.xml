@@ -537,4 +537,10 @@
    <string name="system_brightness">Sistemos ryškumas</string>
    <string name="opening_books_in_the_specified_mode">Knygų atidarymas nurodytu režimu</string>
    <string name="dark_oled">Tamsiai oled</string>
+   <string name="profile">Profilis</string>
+   <string name="new_profile">Naujas profilis</string>
+   <string name="main">Pagrindinis</string>
+   <string name="do_you_want_to_switch_profile_">Pereiti prie kito profilio?</string>
+   <string name="sync_error">Sinchronizavimo klaida</string>
+   <string name="enable_text_selection_with_a_light_touch">Įjungti teksto pasirinkimą lengvu prisilietimu</string>
 </resources>

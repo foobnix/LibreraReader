@@ -537,4 +537,10 @@
    <string name="system_brightness">Sistem parlaklığı</string>
    <string name="opening_books_in_the_specified_mode">Kitapların belirtilen modda açılması</string>
    <string name="dark_oled">Karanlık oled</string>
+   <string name="profile">Profil</string>
+   <string name="new_profile">Yeni profil</string>
+   <string name="main">Ana</string>
+   <string name="do_you_want_to_switch_profile_">Başka bir profile geçilsin mi?</string>
+   <string name="sync_error">Senkronizasyon hatası</string>
+   <string name="enable_text_selection_with_a_light_touch">Hafif bir dokunuşla metin seçimini etkinleştir</string>
 </resources>

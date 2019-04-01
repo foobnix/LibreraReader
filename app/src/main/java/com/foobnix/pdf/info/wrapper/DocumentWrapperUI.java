@@ -349,6 +349,11 @@ public class DocumentWrapperUI {
             return true;
         }
 
+//        if (PageImageState.get().hasSelectedWords()) {
+//            dc.clearSelectedText();
+//            return true;
+//        }
+
         return false;
 
     }

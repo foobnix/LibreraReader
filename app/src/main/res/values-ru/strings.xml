@@ -537,4 +537,10 @@
    <string name="system_brightness">Cистемное значение</string>
    <string name="opening_books_in_the_specified_mode">Всегда открывать указанные форматы книг в соответствующих режимах:</string>
    <string name="dark_oled">Черная (OLED)</string>
+   <string name="profile">Профиль</string>
+   <string name="new_profile">Новый профиль</string>
+   <string name="main">Главный</string>
+   <string name="do_you_want_to_switch_profile_">Переключиться на другой профиль?</string>
+   <string name="sync_error">Ошибка синхронизации</string>
+   <string name="enable_text_selection_with_a_light_touch">Включить выделение текста легким прикосновением</string>
 </resources>

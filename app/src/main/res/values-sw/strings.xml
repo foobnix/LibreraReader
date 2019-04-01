@@ -537,4 +537,10 @@
    <string name="system_brightness">Mwangaza wa mfumo</string>
    <string name="opening_books_in_the_specified_mode">Kufungua vitabu katika hali maalum</string>
    <string name="dark_oled">Oled giza</string>
+   <string name="profile">Maelezo mafupi</string>
+   <string name="new_profile">Maelezo mapya</string>
+   <string name="main">Kuu</string>
+   <string name="do_you_want_to_switch_profile_">Kubadili maelezo mengine?</string>
+   <string name="sync_error">Hifadhi ya kusawazisha</string>
+   <string name="enable_text_selection_with_a_light_touch">Fungua uteuzi wa maandishi na kugusa kwa mwanga</string>
 </resources>

@@ -203,7 +203,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
 
-
         // AppState.get().isCut = false;
         PageImageState.get().isShowCuttingLine = false;
 
@@ -733,8 +732,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         titleTxt.setText(HorizontalModeController.getTempTitle(this));
 
 
-
-
         loadinAsyncTask = new CopyAsyncTask() {
             AlertDialog dialog;
             private boolean isCancelled = false;
@@ -1006,7 +1003,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void showPagesHelper() {
         try {
             BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
@@ -1827,7 +1824,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     };
 
 
-
     Runnable clearFlags = new Runnable() {
 
         @Override
@@ -2183,6 +2179,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 isMyKey = true;
                 return true;
             }
+
+
             if (AppState.get().isZoomInOutWithVolueKeys) {
                 if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
                     dc.onZoomInc();
@@ -2222,6 +2220,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         isMyKey = true;
                         return true;
                     }
+                    if (PageImageState.get().hasSelectedWords()) {
+                        dc.clearSelectedText();
+                        isMyKey = true;
+                        return true;
+                    }
                     nextPage();
                     flippingTimer = 0;
                     isMyKey = true;
@@ -2231,12 +2234,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         isMyKey = true;
                         return true;
                     }
+                    if (PageImageState.get().hasSelectedWords()) {
+                        dc.clearSelectedText();
+                        isMyKey = true;
+                        return true;
+                    }
                     prevPage();
                     flippingTimer = 0;
                     isMyKey = true;
                     return true;
                 }
             }
+
+
         }
 
         return super.onKeyDown(keyCode, event);

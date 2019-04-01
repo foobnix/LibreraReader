@@ -537,4 +537,10 @@
    <string name="system_brightness">시스템 밝기</string>
    <string name="opening_books_in_the_specified_mode">지정된 모드로 책 열기</string>
    <string name="dark_oled">어두운 얼룩덜룩 한</string>
+   <string name="profile">윤곽</string>
+   <string name="new_profile">새 프로필</string>
+   <string name="main">본관</string>
+   <string name="do_you_want_to_switch_profile_">다른 프로필로 전환 하시겠습니까?</string>
+   <string name="sync_error">동기화 오류</string>
+   <string name="enable_text_selection_with_a_light_touch">가벼운 터치로 텍스트 선택 가능</string>
 </resources>

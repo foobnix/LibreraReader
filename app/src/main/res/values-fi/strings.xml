@@ -537,4 +537,10 @@
    <string name="system_brightness">Järjestelmän kirkkaus</string>
    <string name="opening_books_in_the_specified_mode">Kirjojen avaaminen määritetyssä tilassa</string>
    <string name="dark_oled">Tumma oled</string>
+   <string name="profile">Profiili</string>
+   <string name="new_profile">Uusi profiili</string>
+   <string name="main">Tärkein</string>
+   <string name="do_you_want_to_switch_profile_">Vaihtaa toiseen profiiliin?</string>
+   <string name="sync_error">Synkronointivirhe</string>
+   <string name="enable_text_selection_with_a_light_touch">Mahdollistaa tekstin valinnan kevyellä kosketuksella</string>
 </resources>

@@ -537,4 +537,10 @@
    <string name="system_brightness">Độ sáng hệ thống</string>
    <string name="opening_books_in_the_specified_mode">Mở sách ở chế độ chỉ định</string>
    <string name="dark_oled">Bóng tối</string>
+   <string name="profile">Hồ sơ</string>
+   <string name="new_profile">Hồ sơ mới</string>
+   <string name="main">Chủ yếu</string>
+   <string name="do_you_want_to_switch_profile_">Chuyển sang hồ sơ khác?</string>
+   <string name="sync_error">Lỗi đồng bộ hóa</string>
+   <string name="enable_text_selection_with_a_light_touch">Cho phép lựa chọn văn bản với một cú chạm nhẹ</string>
 </resources>

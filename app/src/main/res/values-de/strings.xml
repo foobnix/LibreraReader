@@ -537,4 +537,10 @@
    <string name="system_brightness">Systemhelligkeit</string>
    <string name="opening_books_in_the_specified_mode">Öffnen von Büchern im angegebenen Modus</string>
    <string name="dark_oled">Dunkles oled</string>
+   <string name="profile">Profil</string>
+   <string name="new_profile">Neues Profil</string>
+   <string name="main">Main</string>
+   <string name="do_you_want_to_switch_profile_">Zu einem anderen Profil wechseln?</string>
+   <string name="sync_error">Synchronisierungsfehler</string>
+   <string name="enable_text_selection_with_a_light_touch">Aktivieren Sie die Textauswahl mit einer leichten Berührung</string>
 </resources>

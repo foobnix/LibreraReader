@@ -537,4 +537,10 @@
    <string name="system_brightness">Jas systému</string>
    <string name="opening_books_in_the_specified_mode">Otvorenie kníh v určenom režime</string>
    <string name="dark_oled">Tmavá oled</string>
+   <string name="profile">Profil</string>
+   <string name="new_profile">Nový profil</string>
+   <string name="main">Hlavné</string>
+   <string name="do_you_want_to_switch_profile_">Prepnúť na iný profil?</string>
+   <string name="sync_error">Chyba synchronizácie</string>
+   <string name="enable_text_selection_with_a_light_touch">Voľba textu s ľahkým dotykom</string>
 </resources>

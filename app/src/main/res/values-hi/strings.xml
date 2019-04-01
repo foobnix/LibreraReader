@@ -537,4 +537,10 @@
    <string name="system_brightness">सिस्टम की चमक</string>
    <string name="opening_books_in_the_specified_mode">निर्दिष्ट मोड में किताबें खोलना</string>
    <string name="dark_oled">गहरे रंग का</string>
+   <string name="profile">प्रोफ़ाइल</string>
+   <string name="new_profile">नई प्रोफ़ाइल</string>
+   <string name="main">मुख्य</string>
+   <string name="do_you_want_to_switch_profile_">किसी अन्य प्रोफ़ाइल पर स्विच करें?</string>
+   <string name="sync_error">सिंक त्रुटि</string>
+   <string name="enable_text_selection_with_a_light_touch">एक हल्के स्पर्श के साथ पाठ चयन सक्षम करें</string>
 </resources>

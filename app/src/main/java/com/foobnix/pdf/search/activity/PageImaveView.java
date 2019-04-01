@@ -369,7 +369,7 @@ public class PageImaveView extends View {
             isIgronerClick = true;
 
             if(AppState.get().isSelectTexByTouch){
-                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
+                //EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
                 isLognPress = false;
                 AppState.get().selectedText = null;
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
@@ -414,7 +414,7 @@ public class PageImaveView extends View {
                 isReadyForMove = false;
                 if(AppState.get().isSelectTexByTouch) {
                     isLognPress = true;
-                    isIgronerClick = false;
+                    isIgronerClick = true;
                     xInit = x;
                     yInit = y;
                 }else{

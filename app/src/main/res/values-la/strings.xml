@@ -537,4 +537,10 @@
    <string name="system_brightness">Ratio claritas</string>
    <string name="opening_books_in_the_specified_mode">Foramen in libris certa modus</string>
    <string name="dark_oled">Tenebris OLED</string>
+   <string name="profile">Profile</string>
+   <string name="new_profile">Nova profile</string>
+   <string name="main">Pelagus</string>
+   <string name="do_you_want_to_switch_profile_">Switch ad alia profile?</string>
+   <string name="sync_error">Error sync</string>
+   <string name="enable_text_selection_with_a_light_touch">Textus lectio possit levi tactu</string>
 </resources>

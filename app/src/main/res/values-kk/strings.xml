@@ -537,4 +537,10 @@
    <string name="system_brightness">Жүйенің жарықтығы</string>
    <string name="opening_books_in_the_specified_mode">Көрсетілген режимде кітаптар ашу</string>
    <string name="dark_oled">Қараңғы</string>
+   <string name="profile">Профиль</string>
+   <string name="new_profile">Жаңа профиль</string>
+   <string name="main">Бастысы</string>
+   <string name="do_you_want_to_switch_profile_">Басқа профильге ауысу керек пе?</string>
+   <string name="sync_error">Синхрондау қатесі</string>
+   <string name="enable_text_selection_with_a_light_touch">Жеңіл таңдау арқылы мәтінді таңдауды қосыңыз</string>
 </resources>

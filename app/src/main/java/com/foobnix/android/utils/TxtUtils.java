@@ -878,7 +878,7 @@ public class TxtUtils {
         return SIMPLE_EMAIL_PATTERN.matcher(email).matches();
     }
 
-    public static boolean isListNotEmpty(List<?> objects) {
+    public static boolean isListNotEmpty(Collection<?> objects) {
         return objects != null && objects.size() >= 1;
     }
 

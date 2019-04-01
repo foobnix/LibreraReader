@@ -537,4 +537,10 @@
    <string name="system_brightness">Яскравість системи</string>
    <string name="opening_books_in_the_specified_mode">Відкриття книг у вказаному режимі</string>
    <string name="dark_oled">Темна олія</string>
+   <string name="profile">Профілю</string>
+   <string name="new_profile">Новий профіль</string>
+   <string name="main">Main</string>
+   <string name="do_you_want_to_switch_profile_">Перейти до іншого профілю?</string>
+   <string name="sync_error">Помилка синхронізації</string>
+   <string name="enable_text_selection_with_a_light_touch">Увімкніть вибір тексту легким дотиком</string>
 </resources>

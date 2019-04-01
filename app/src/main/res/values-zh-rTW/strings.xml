@@ -537,4 +537,10 @@
    <string name="system_brightness">系統亮度</string>
    <string name="opening_books_in_the_specified_mode">以指定模式打開書籍</string>
    <string name="dark_oled">黑暗有機電激光顯示</string>
+   <string name="profile">輪廓</string>
+   <string name="new_profile">新的配置文件</string>
+   <string name="main">主要</string>
+   <string name="do_you_want_to_switch_profile_">切換到另一個檔案？</string>
+   <string name="sync_error">同步錯誤</string>
+   <string name="enable_text_selection_with_a_light_touch">通過輕觸實現文本選擇</string>
 </resources>

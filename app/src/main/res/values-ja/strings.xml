@@ -537,4 +537,10 @@
    <string name="system_brightness">システムの明るさ</string>
    <string name="opening_books_in_the_specified_mode">指定されたモードで本を開く</string>
    <string name="dark_oled">ダークオイル</string>
+   <string name="profile">プロフィール</string>
+   <string name="new_profile">新しいプロフィール</string>
+   <string name="main">メイン</string>
+   <string name="do_you_want_to_switch_profile_">別のプロフィールに切り替えますか？</string>
+   <string name="sync_error">同期エラー</string>
+   <string name="enable_text_selection_with_a_light_touch">軽いタッチでテキスト選択を有効にする</string>
 </resources>

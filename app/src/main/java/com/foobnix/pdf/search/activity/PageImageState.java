@@ -60,6 +60,11 @@ public class PageImageState {
         selectedWords.clear();
     }
 
+    public boolean hasSelectedWords() {
+        return selectedWords.size() > 0;
+    }
+
+
     public Matrix getMatrix() {
         return matrix;
     }

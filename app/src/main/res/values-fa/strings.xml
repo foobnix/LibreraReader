@@ -537,4 +537,10 @@
    <string name="system_brightness">روشنایی سیستم</string>
    <string name="opening_books_in_the_specified_mode">باز کردن کتاب ها در حالت مشخص شده</string>
    <string name="dark_oled">تاریک است</string>
+   <string name="profile">مشخصات</string>
+   <string name="new_profile">مشخصات جدید</string>
+   <string name="main">اصلی</string>
+   <string name="do_you_want_to_switch_profile_">تغییر به نمایه دیگری</string>
+   <string name="sync_error">خطای همگام سازی</string>
+   <string name="enable_text_selection_with_a_light_touch">انتخاب متن با لمس نور را فعال کنید</string>
 </resources>

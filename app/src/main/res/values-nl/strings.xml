@@ -537,4 +537,10 @@
    <string name="system_brightness">Systeem helderheid</string>
    <string name="opening_books_in_the_specified_mode">Openen van boeken in de opgegeven modus</string>
    <string name="dark_oled">Donkere oled</string>
+   <string name="profile">Profiel</string>
+   <string name="new_profile">Nieuw profiel</string>
+   <string name="main">Hoofd</string>
+   <string name="do_you_want_to_switch_profile_">Overschakelen naar een ander profiel?</string>
+   <string name="sync_error">Synchronisatiefout</string>
+   <string name="enable_text_selection_with_a_light_touch">Schakel tekstselectie in met een lichte aanraking</string>
 </resources>
