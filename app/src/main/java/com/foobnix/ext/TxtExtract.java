@@ -66,9 +66,7 @@ public class TxtExtract {
         while ((line = input.readLine()) != null) {
             String outLn = null;
 
-            if(isJSON){
-                line = line.replace(",",", ");
-            }
+
 
             if (AppState.get().isPreText) {
 
@@ -101,6 +99,10 @@ public class TxtExtract {
                 }
 
             }
+            if(isJSON){
+                outLn = outLn.replace(",",",<br/>");
+            }
+
             // LOG.d("LINE", outLn);
             writer.println(outLn);
         }

@@ -1,6 +1,6 @@
 APK=/home/ivan-dev/Dropbox/FREE_PDF_APK/testing
 
-for DEVICE in $(adb devices | grep [0-9] | tr -s "\t " " " | cut -d " " -f 1)
+for DEVICE in $(adb devices | grep  -E -i 'abcaced|[0-9]' | tr -s "\t " " " | cut -d " " -f 1)
 do
 	  echo "--------------------------------------------------------"
 	  TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
