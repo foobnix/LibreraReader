@@ -106,6 +106,10 @@ public class VerticalViewPager extends CustomViewPager {
         if (!AppState.get().isEnableHorizontalSwipe) {
             return false;
         }
+        if(AppState.get().isSelectTexByTouch){
+            return false;
+        }
+
         if (value != null && !value.isFinished()) {
             return false;
         }
@@ -118,6 +122,9 @@ public class VerticalViewPager extends CustomViewPager {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (!AppState.get().isEnableHorizontalSwipe) {
+            return false;
+        }
+        if(AppState.get().isSelectTexByTouch){
             return false;
         }
 

@@ -414,6 +414,7 @@ public class PageImaveView extends View {
                 isReadyForMove = false;
                 if(AppState.get().isSelectTexByTouch) {
                     isLognPress = true;
+                    isIgronerClick = false;
                     xInit = x;
                     yInit = y;
                 }else{

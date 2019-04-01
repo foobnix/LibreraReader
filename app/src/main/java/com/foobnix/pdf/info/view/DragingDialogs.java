@@ -1430,6 +1430,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        controller.clearSelectedText();
                         closeDialog();
                         ListBoxHelper.showAddDialog(controller, null, null, editText.getText().toString().trim(), null);
                     }
@@ -1457,6 +1458,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        controller.clearSelectedText();
                         closeDialog();
                         final Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
@@ -1471,6 +1473,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        controller.clearSelectedText();
                         Context c = anchor.getContext();
                         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
                             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -1488,6 +1491,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
+                        controller.clearSelectedText();
                         closeDialog();
                         Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + editText.getText().toString().trim());
                     }
@@ -1497,11 +1501,13 @@ public class DragingDialogs {
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
                 if (onBookSearch != null) {
+
                     onBookSearch.setVisibility(selectedText != null && selectedText.contains(" ") ? View.GONE : View.VISIBLE);
                     onBookSearch.setOnClickListener(new View.OnClickListener() {
 
                         @Override
                         public void onClick(View v) {
+                            controller.clearSelectedText();
                             searchMenu(anchor, controller, selectedText);
                         }
                     });
