@@ -213,8 +213,7 @@ public class TTSEngine {
                     mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED + i);
 
                     ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp1);
-                    if (!big.endsWith(".")) {
-                        LOG.d("pageHTML-parts", i, "[playSilence]");
+                    if(AppState.get().ttsPauseDuration>0) {
                         ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
                     }
                     LOG.d("pageHTML-parts", i, big);

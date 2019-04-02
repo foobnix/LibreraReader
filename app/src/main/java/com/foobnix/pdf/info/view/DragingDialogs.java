@@ -547,7 +547,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 750; i += 50) {
+                        for (int i = 0; i <= 500; i += 10) {
                             final int j = i;
                             popupMenu.getMenu().add(i + " ms").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

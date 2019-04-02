@@ -297,7 +297,7 @@ public class AppState {
 
     public int flippingInterval = 10;
     public int ttsTimer = 60;
-    public int ttsPauseDuration = 350;
+    public int ttsPauseDuration = 50;
 
     public int transparencyUI = 245;
 
