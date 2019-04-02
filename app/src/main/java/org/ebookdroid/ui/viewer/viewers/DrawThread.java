@@ -3,6 +3,8 @@ package org.ebookdroid.ui.viewer.viewers;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import com.foobnix.android.utils.LOG;
+
 import org.ebookdroid.core.EventPool;
 import org.ebookdroid.core.ViewState;
 import org.emdev.utils.concurrent.Flag;
@@ -32,6 +34,7 @@ public class DrawThread extends Thread {
         try {
             this.join();
         } catch (final InterruptedException e) {
+            LOG.e(e);
         }
     }
 
@@ -52,13 +55,15 @@ public class DrawThread extends Thread {
             canvas = surfaceHolder.lockCanvas(null);
             EventPool.newEventDraw(viewState, canvas, null).process();
         } catch (final Throwable th) {
-            th.printStackTrace();
+            LOG.e(th);
         } finally {
             if (canvas != null) {
                 try {
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 } catch (Exception e) {
+                    LOG.e(e);
                 }
+
             }
         }
     }
@@ -80,6 +85,7 @@ public class DrawThread extends Thread {
                     } catch (Throwable ex) {
                         // Go to next attempt
                         ex.printStackTrace();
+                        LOG.e(ex);
                     }
                 }
             }
@@ -88,6 +94,7 @@ public class DrawThread extends Thread {
         } catch (Throwable ex) {
             // Go to next attempt
             ex.printStackTrace();
+            LOG.e(ex);
         }
         return task;
     }
@@ -97,6 +104,7 @@ public class DrawThread extends Thread {
         try {
             task = queue.poll(0, TimeUnit.MILLISECONDS);
         } catch (final Throwable ex) {
+            LOG.e(ex);
             // Go to next attempt
         }
         return task;
@@ -107,6 +115,7 @@ public class DrawThread extends Thread {
         try {
             task = queue.poll();
         } catch (final Throwable ex) {
+            LOG.e(ex);
             // Go to next attempt
         }
         return task;
@@ -125,10 +134,12 @@ public class DrawThread extends Thread {
                     }
                     break;
                 } catch (final Throwable ex) {
+                    LOG.e(ex);
                     // Go to next attempt
                 }
             }
         } catch (final Throwable ex) {
+            LOG.e(ex);
             // Go to next attempt
         }
         return task;
@@ -144,6 +155,7 @@ public class DrawThread extends Thread {
                 } catch (Throwable ex) {
                     // Go to next attempt
                     ex.printStackTrace();
+                    LOG.e(ex);
                 }
             }
         }

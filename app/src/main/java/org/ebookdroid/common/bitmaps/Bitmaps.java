@@ -8,6 +8,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region.Op;
+import android.os.Build;
 
 import org.ebookdroid.core.PagePaint;
 import org.emdev.utils.LengthUtils;
@@ -249,7 +250,12 @@ public class Bitmaps {
                 rect.top += sizeY;
                 rect.bottom += sizeY;
             }
-            canvas.clipRect(orig, Op.REPLACE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                canvas.clipRect(orig);
+            } else {
+                canvas.clipRect(orig, Op.REPLACE);
+            }
             //canvas.clipRect(orig, Op.DIFFERENCE);
             return res;
         } finally {
