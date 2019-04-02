@@ -56,7 +56,9 @@ public class BookCSS {
 
 
 
-    public boolean isEnableGdrive;
+    public boolean isEnableSync;
+    public boolean isSyncManualOnly;
+    public boolean isSyncWifiOnly;
     public String syncRootID;
 
 

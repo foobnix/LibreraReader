@@ -112,7 +112,7 @@ public class BooksService extends IntentService {
 
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
-                if (BookCSS.get().isEnableGdrive) {
+                if (BookCSS.get().isEnableSync) {
 
 
                     AppProfile.save(this);

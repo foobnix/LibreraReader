@@ -159,6 +159,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
             GoogleSignIn.getSignedInAccountFromIntent(data)
                     .addOnSuccessListener(googleAccount -> {
+                        BookCSS.get().isEnableSync = true;
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
@@ -168,7 +169,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                             {
                                 LOG.e(exception);
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                BookCSS.get().isEnableGdrive = false;
+                                BookCSS.get().isEnableSync = false;
                                 swipeRefreshLayout.setEnabled(false);
 
                             }
@@ -252,7 +253,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
-                GFile.runSyncService(MainTabs2.this);
+                GFile.runSyncService(MainTabs2.this, true);
             }
         });
 
@@ -324,14 +325,14 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             @Override
             public void onDrawerStateChanged(int arg0) {
-                LOG.d("drawerLayout-onDrawerStateChanged",arg0);
+                LOG.d("drawerLayout-onDrawerStateChanged", arg0);
 
             }
 
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
-                if (BookCSS.get().isEnableGdrive) {
+                if (BookCSS.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -340,7 +341,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
-                if (BookCSS.get().isEnableGdrive) {
+                if (BookCSS.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -352,7 +353,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 try {
                     tabFragments.get(pager.getCurrentItem()).onSelectFragment();
 
-                    if (BookCSS.get().isEnableGdrive) {
+                    if (BookCSS.get().isEnableSync) {
                         swipeRefreshLayout.setEnabled(true);
                     }
                 } catch (Exception e) {
@@ -573,7 +574,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-        swipeRefreshLayout.setEnabled(BookCSS.get().isEnableGdrive && GoogleSignIn.getLastSignedInAccount(this) != null);
+        swipeRefreshLayout.setEnabled(BookCSS.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
 
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
@@ -719,7 +720,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (BookCSS.get().isEnableGdrive) {
+            if (BookCSS.get().isEnableSync) {
                 swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
 

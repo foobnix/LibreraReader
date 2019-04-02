@@ -400,7 +400,7 @@ public class ShareDialog {
                             try {
                                 final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
                                 boolean result = IO.copyFile(file, to);
-                                if (result && BookCSS.get().isEnableGdrive) {
+                                if (result && BookCSS.get().isEnableSync) {
                                     GFile.upload(to);
                                     GFile.runSyncService(a);
                                 }

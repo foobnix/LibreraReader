@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Cambiar a otro perfil?</string>
    <string name="sync_error">Error de sincronización</string>
    <string name="enable_text_selection_with_a_light_touch">Habilitar selección de texto con un ligero toque</string>
+   <string name="sign_in">Registrarse</string>
+   <string name="sign_out">Desconectar</string>
+   <string name="manual_sync_only">Solo sincronización manual</string>
+   <string name="wifi_sync_only">Solo sincronización wifi</string>
+   <string name="sync_google_drive">Sincronizar (unidad de google)</string>
 </resources>

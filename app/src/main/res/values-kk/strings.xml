@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Басқа профильге ауысу керек пе?</string>
    <string name="sync_error">Синхрондау қатесі</string>
    <string name="enable_text_selection_with_a_light_touch">Жеңіл таңдау арқылы мәтінді таңдауды қосыңыз</string>
+   <string name="sign_in">Кіру</string>
+   <string name="sign_out">Шығу</string>
+   <string name="manual_sync_only">Қолмен синхрондау ғана</string>
+   <string name="wifi_sync_only">Тек Wi-Fi синхрондалуы</string>
+   <string name="sync_google_drive">Синхрондау (google drive)</string>
 </resources>

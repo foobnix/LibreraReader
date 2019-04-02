@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Váltson másik profilra?</string>
    <string name="sync_error">Szinkronizálási hiba</string>
    <string name="enable_text_selection_with_a_light_touch">Engedélyezze a szöveg kiválasztását könnyű érintéssel</string>
+   <string name="sign_in">Bejelentkezés</string>
+   <string name="sign_out">Kijelentkezés</string>
+   <string name="manual_sync_only">Csak manuális szinkronizálás</string>
+   <string name="wifi_sync_only">Csak wifi szinkronizálás</string>
+   <string name="sync_google_drive">Szinkronizálás (google meghajtó)</string>
 </resources>

@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Pereiti prie kito profilio?</string>
    <string name="sync_error">Sinchronizavimo klaida</string>
    <string name="enable_text_selection_with_a_light_touch">Įjungti teksto pasirinkimą lengvu prisilietimu</string>
+   <string name="sign_in">Prisijungti</string>
+   <string name="sign_out">Atsijungti</string>
+   <string name="manual_sync_only">Rankinis sinchronizavimas</string>
+   <string name="wifi_sync_only">„wifi“ sinchronizavimas</string>
+   <string name="sync_google_drive">Sinchronizuoti („Google“ diskas)</string>
 </resources>

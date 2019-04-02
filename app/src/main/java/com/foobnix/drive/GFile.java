@@ -60,7 +60,7 @@ public class GFile {
         if (account == null) {
             return "";
         }
-        return account.getDisplayName() + " (" + account.getEmail() + ")";
+        return TxtUtils.nullToEmpty(account.getDisplayName()) + " (" + account.getEmail() + ")";
 
     }
 
@@ -77,6 +77,8 @@ public class GFile {
     }
 
     public static void init(Activity c) {
+
+        logout(c);
 
         if (googleDriveService != null) {
             return;
@@ -146,8 +148,8 @@ public class GFile {
 
     }
 
-    public static List<File> exeQF(String q, String ... args) throws IOException {
-        return exeQ(String.format(q,  args));
+    public static List<File> exeQF(String q, String... args) throws IOException {
+        return exeQ(String.format(q, args));
     }
 
     public static List<File> exeQ(String q) throws IOException {
@@ -622,7 +624,23 @@ public class GFile {
 
 
     public static void runSyncService(Activity a) {
-        if (BookCSS.get().isEnableGdrive && !BooksService.isRunning) {
+        runSyncService(a, false);
+
+    }
+
+    public static void runSyncService(Activity a, boolean force) {
+
+
+        if (BookCSS.get().isEnableSync && !BooksService.isRunning) {
+            if (!force && BookCSS.get().isSyncManualOnly) {
+                LOG.d("runSyncService", "manual sync only");
+                return;
+            }
+            if (BookCSS.get().isSyncWifiOnly && !Apps.isWifiEnabled(a)) {
+                LOG.d("runSyncService", "wifi not available");
+                return;
+            }
+
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
             if (account != null) {
                 GFile.buildDriveService(a);

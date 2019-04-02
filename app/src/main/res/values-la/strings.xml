@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Switch ad alia profile?</string>
    <string name="sync_error">Error sync</string>
    <string name="enable_text_selection_with_a_light_touch">Textus lectio possit levi tactu</string>
+   <string name="sign_in">Inscribe</string>
+   <string name="sign_out">Exscribe</string>
+   <string name="manual_sync_only">Manual non sync</string>
+   <string name="wifi_sync_only">WiFi non sync</string>
+   <string name="sync_google_drive">Sync (coegi Google)</string>
 </resources>

@@ -84,6 +84,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -136,81 +137,76 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    View section1, section2, section3, section4, section5, section6, section7, section8,section9, overlay;
+    View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay;
 
 
     @Subscribe
     public void updateSyncInfo(GDriveSycnEvent event) {
         String gdriveInfo = GFile.getDisplayInfo(getActivity());
-        if (TxtUtils.isEmpty(gdriveInfo) || "null".equals(gdriveInfo)) {
-            syncInfo.setText(TxtUtils.fromHtml("<b>" + getString(R.string.user) + "</b>: " + "Please login to get started"));
-        } else {
-            syncInfo.setText(TxtUtils.fromHtml("<b>" + getString(R.string.user) + "</b>: " + gdriveInfo));
 
+        if (TxtUtils.isEmpty(gdriveInfo)) {
+            BookCSS.get().isEnableSync = false;
+            syncInfo.setVisibility(View.GONE);
+            singIn.setText(R.string.sign_in);
+            TxtUtils.underlineTextView(singIn);
+            singIn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GFile.init(getActivity());
+                    updateSyncInfo(null);
+                }
+            });
+        } else {
+            syncInfo.setVisibility(View.VISIBLE);
+            syncInfo.setText(gdriveInfo);
+            singIn.setText(R.string.sign_out);
+            TxtUtils.underlineTextView(singIn);
+
+            singIn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BookCSS.get().isEnableSync = false;
+                    BookCSS.get().syncRootID = "";
+                    GFile.logout(getActivity());
+                    updateSyncInfo(null);
+                }
+            });
         }
+
+        isEnableSync.setChecked(BookCSS.get().isEnableSync);
+
+
     }
 
-    TextView syncInfo;
+    TextView singIn, syncInfo;
+    CheckBox isEnableSync;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.preferences, container, false);
 
-//        TextView syncFolder = inflate.findViewById(R.id.syncFolder);
-//        syncFolder.setText(TxtUtils.fromHtml("<b>" + getString(R.string.folder) + "</b>: " + AppProfile.SYNC_FOLDER_ROOT.getPath()));
-//
-//        syncFolder.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-//
-//                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-//                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-//
-//                EventBus.getDefault().post(new OpenDirMessage(AppProfile.SYNC_FOLDER_ROOT.getPath()));
-//                closeLeftMenu();
-//            }
-//        });
 
+        singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
 
-        final CheckBox isEnableGdrive = (CheckBox) inflate.findViewById(R.id.isEnableGdrive);
-        isEnableGdrive.setChecked(BookCSS.get().isEnableGdrive);
-        isEnableGdrive.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-
-                BookCSS.get().isEnableGdrive = isChecked;
-                if (isChecked) {
-                    GFile.init(getActivity());
-                    updateSyncInfo(null);
-
-                } else {
-                    AlertDialogs.showDialog(getActivity(), "Are you sure to logout Google Drive and Syncronization?", getString(R.string.ok), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            syncInfo.setText("");
-                            BookCSS.get().isEnableGdrive = false;
-                            BookCSS.get().syncRootID = "";
-                            GFile.logout(getActivity());
-                            updateSyncInfo(null);
-
-                        }
-                    }, new Runnable() {
-                        @Override
-                        public void run() {
-                            BookCSS.get().isEnableGdrive = true;
-                            isEnableGdrive.setChecked(true);
-                        }
-                    });
-
-                }
+        isEnableSync = inflate.findViewById(R.id.isEnableSync);
+        isEnableSync.setChecked(BookCSS.get().isEnableSync);
+        isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            BookCSS.get().isEnableSync = isChecked;
+            if (isChecked && GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
+                GFile.init(getActivity());
             }
         });
+
+        final CheckBox isSyncManualOnly = inflate.findViewById(R.id.isSyncManualOnly);
+        isSyncManualOnly.setChecked(BookCSS.get().isSyncManualOnly);
+        isSyncManualOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncManualOnly = isChecked);
+
+        final CheckBox isSyncWifiOnly = inflate.findViewById(R.id.isSyncWifiOnly);
+        isSyncWifiOnly.setChecked(BookCSS.get().isSyncWifiOnly);
+        isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
 
         updateSyncInfo(null);
 
@@ -234,14 +230,6 @@ public class PrefFragment2 extends UIFragment {
         });
         section8 = inflate.findViewById(R.id.section8);
         section9 = inflate.findViewById(R.id.section9);
-        if (false) {
-            section8.setVisibility(View.GONE);
-            //syncFolder.setVisibility(View.GONE);
-            isEnableGdrive.setVisibility(View.GONE);
-            syncInfo.setVisibility(View.GONE);
-            inflate.findViewById(R.id.onSyncStart).setVisibility(View.GONE);
-            inflate.findViewById(R.id.onSyncDebug).setVisibility(View.GONE);
-        }
 
 
         // tabs position
@@ -280,7 +268,7 @@ public class PrefFragment2 extends UIFragment {
                     }
 
                     View library = LayoutInflater.from(getActivity()).inflate(R.layout.item_tab_line, null, false);
-                    if(AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK){
+                    if (AppState.get().appTheme == AppState.THEME_DARK_OLED || AppState.get().appTheme == AppState.THEME_DARK) {
                         library.setBackgroundColor(Color.BLACK);
                     }
 

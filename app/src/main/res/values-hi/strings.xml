@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">किसी अन्य प्रोफ़ाइल पर स्विच करें?</string>
    <string name="sync_error">सिंक त्रुटि</string>
    <string name="enable_text_selection_with_a_light_touch">एक हल्के स्पर्श के साथ पाठ चयन सक्षम करें</string>
+   <string name="sign_in">दाखिल करना</string>
+   <string name="sign_out">साइन आउट</string>
+   <string name="manual_sync_only">मैनुअल सिंक ही</string>
+   <string name="wifi_sync_only">वाईफाई सिंक केवल</string>
+   <string name="sync_google_drive">सिंक (Google ड्राइव)</string>
 </resources>

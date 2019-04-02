@@ -6,6 +6,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
@@ -121,4 +123,16 @@ public class Apps {
         new RuntimeException("can't find meta-data:" + name);
         return null;
     }
+
+    public static boolean isWifiEnabled(Context c) {
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

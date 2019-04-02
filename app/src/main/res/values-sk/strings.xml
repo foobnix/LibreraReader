@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Prepnúť na iný profil?</string>
    <string name="sync_error">Chyba synchronizácie</string>
    <string name="enable_text_selection_with_a_light_touch">Voľba textu s ľahkým dotykom</string>
+   <string name="sign_in">Prihlásiť sa</string>
+   <string name="sign_out">Odhlásiť Sa</string>
+   <string name="manual_sync_only">Iba manuálna synchronizácia</string>
+   <string name="wifi_sync_only">Iba synchronizácia cez wifi</string>
+   <string name="sync_google_drive">Synchronizácia (jednotka Google)</string>
 </resources>

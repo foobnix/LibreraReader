@@ -18,8 +18,8 @@
             android:id="@+id/section9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_search_second">
+            android:background="@drawable/bg_search_second"
+            android:gravity="center_vertical">
 
 
             <TextView
@@ -67,17 +67,16 @@
                 android:src="@drawable/googleg_standard_color_18" />
 
             <TextView
-                android:layout_marginLeft="10dip"
                 android:id="@+id/onProfile"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
                 android:text="BETA"
                 android:textSize="16sp" />
 
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -299,44 +298,88 @@
 
         </LinearLayout>
 
-        <TextView
+
+        <LinearLayout
             android:id="@+id/section8"
-            style="@style/textLinkWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
             android:background="@drawable/bg_search_second"
-            android:text="Syncronization" />
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_weight="0"
+                android:padding="2dip"
+                android:visibility="gone"
+                android:src="@drawable/gdrive" />
+
+            <TextView
+                style="@style/textLinkWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sync_google_drive" />
+
+
+            <TextView
+                android:id="@+id/signIn"
+                style="@style/textLinkWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:singleLine="true"
+                android:text="@string/sign_in" />
+
+
+        </LinearLayout>
 
 
         <TextView
+            android:padding="4dip"
             android:id="@+id/syncInfo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dip"
-            android:singleLine="true"
-            android:text="User: Ivan Ivanenko (librera.reader@gmail.com)" />
+            android:text="ivan@gmail.com" />
+
 
         <CheckBox
-            android:id="@+id/isEnableGdrive"
-            style="@style/textLinkStyle"
+            android:id="@+id/isEnableSync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enable Sync via Google Drive" />
+            android:text="@string/enable" />
+
+        <CheckBox
+            android:id="@+id/isSyncManualOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:text="@string/manual_sync_only" />
+
+        <CheckBox
+            android:id="@+id/isSyncWifiOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:text="@string/wifi_sync_only" />
+
 
         <Button
             android:id="@+id/onSyncStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
-            android:text="Start Synchronization" />
+            android:text="Start Synchronization"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/onSyncDebug"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dip"
-            android:text="Show Debug log" />
+            android:text="Show Debug log"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/section2"

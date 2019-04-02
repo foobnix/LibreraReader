@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">Vaihtaa toiseen profiiliin?</string>
    <string name="sync_error">Synkronointivirhe</string>
    <string name="enable_text_selection_with_a_light_touch">Mahdollistaa tekstin valinnan kevyellä kosketuksella</string>
+   <string name="sign_in">Kirjaudu sisään</string>
+   <string name="sign_out">Kirjaudu ulos</string>
+   <string name="manual_sync_only">Manuaalinen synkronointi</string>
+   <string name="wifi_sync_only">Wifi-synkronointi</string>
+   <string name="sync_google_drive">Synkronointi (google-asema)</string>
 </resources>

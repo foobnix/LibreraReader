@@ -543,4 +543,9 @@
    <string name="do_you_want_to_switch_profile_">التبديل إلى ملف تعريف آخر؟</string>
    <string name="sync_error">خطأ في المزامنة</string>
    <string name="enable_text_selection_with_a_light_touch">تمكين اختيار النص مع لمسة خفيفة</string>
+   <string name="sign_in">تسجيل الدخول</string>
+   <string name="sign_out">خروج</string>
+   <string name="manual_sync_only">المزامنة اليدوية فقط</string>
+   <string name="wifi_sync_only">Wifi مزامنة فقط</string>
+   <string name="sync_google_drive">مزامنة (محرك جوجل)</string>
 </resources>
