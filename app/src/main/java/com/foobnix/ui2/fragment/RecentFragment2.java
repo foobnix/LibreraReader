@@ -69,10 +69,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                     @Override
                     public void run() {
                         clearAllRecent.run();
-                        RecentUpates.updateAll(getActivity());
-                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
 
-                        AppData.get().clearRecents();
                     }
                 });
 
@@ -124,6 +121,12 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         @Override
         public void run() {
             AppDB.get().clearAllRecent();
+
+            RecentUpates.updateAll(getActivity());
+            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
+
+            AppData.get().clearRecents();
+
             populate();
         }
     };
