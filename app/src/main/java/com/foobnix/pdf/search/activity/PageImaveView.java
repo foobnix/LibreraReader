@@ -342,7 +342,9 @@ public class PageImaveView extends View {
             }
 
             return true;
-        };
+        }
+
+        ;
 
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
@@ -368,7 +370,7 @@ public class PageImaveView extends View {
         public void onLongPress(MotionEvent e) {
             isIgronerClick = true;
 
-            if(AppState.get().isSelectTexByTouch){
+            if (AppState.get().isSelectTexByTouch) {
                 //EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
                 isLognPress = false;
                 isIgronerClick = true;
@@ -414,12 +416,12 @@ public class PageImaveView extends View {
                 y = event.getY();
                 brightnessHelper.onActoinDown(x, y);
                 isReadyForMove = false;
-                if(AppState.get().isSelectTexByTouch) {
+                if (AppState.get().isSelectTexByTouch) {
                     isLognPress = true;
                     isIgronerClick = true;
                     xInit = x;
                     yInit = y;
-                }else{
+                } else {
                     isLognPress = false;
                 }
                 isMoveNextPrev = 0;
@@ -593,8 +595,15 @@ public class PageImaveView extends View {
                     } else {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                     }
-                } else if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
-                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
+                } else {
+
+                    if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
+                    } else if (AppState.get().isSelectTexByTouch && !new ClickUtils().isClickCenter(event.getX(), event.getY())) {
+                        EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
+                    }
+
+
                 }
 
                 isIgronerClick = false;
@@ -605,11 +614,15 @@ public class PageImaveView extends View {
             return true;
         }
 
-    };
+    }
+
+    ;
 
     public void invalidateAndMsg() {
         EventBus.getDefault().post(new InvalidateMessage());
-    };
+    }
+
+    ;
 
     Runnable scrolling = new Runnable() {
 
@@ -659,12 +672,14 @@ public class PageImaveView extends View {
     }
 
     static Paint rect = new Paint();
+
     static {
         rect.setColor(Color.DKGRAY);
         rect.setStrokeWidth(Dips.dpToPx(1));
         rect.setStyle(Style.STROKE);
 
     }
+
     int dp1 = Dips.dpToPx(1);
 
     @Override
