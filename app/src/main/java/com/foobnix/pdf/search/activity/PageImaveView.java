@@ -377,6 +377,9 @@ public class PageImaveView extends View {
                 AppState.get().selectedText = null;
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                 EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
+                LOG.d("PageImaveView MESSAGE_PERFORM_CLICK", 3);
+
+
                 return;
             }
 
@@ -441,7 +444,11 @@ public class PageImaveView extends View {
 
                         if (AppTemp.get().isLocked) {
                             isReadyForMove = false;
-                            isIgronerClick = false;
+                            if (AppState.get().isSelectTexByTouch) {
+                                isIgronerClick = true;
+                            } else {
+                                isIgronerClick = false;
+                            }
                             if (AppState.get().isEnableVerticalSwipe && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > Dips.DP_10) {
                                 if (AppState.get().isSwipeGestureReverse) {
                                     isMoveNextPrev = dy > 0 ? -1 : 1;
@@ -593,6 +600,7 @@ public class PageImaveView extends View {
                     } else if (pageLink != null) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_GOTO_PAGE_BY_LINK, target, pageLink.url));
                     } else {
+                        LOG.d("PageImaveView MESSAGE_PERFORM_CLICK", 1);
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                     }
                 } else {
@@ -600,6 +608,7 @@ public class PageImaveView extends View {
                     if (TxtUtils.isNotEmpty(AppState.get().selectedText)) {
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_SELECTED_TEXT));
                     } else if (AppState.get().isSelectTexByTouch && !new ClickUtils().isClickCenter(event.getX(), event.getY())) {
+                        LOG.d("PageImaveView MESSAGE_PERFORM_CLICK", 2);
                         EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, event.getX(), event.getY()));
                     }
 
