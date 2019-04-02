@@ -54,11 +54,13 @@ public class TTSEngine {
     }
 
     HashMap<String, String> map = new HashMap<String, String>();
+
     {
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, UTTERANCE_ID_DONE);
     }
 
     HashMap<String, String> mapTemp = new HashMap<String, String>();
+
     {
         mapTemp.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "Temp");
     }
@@ -213,9 +215,7 @@ public class TTSEngine {
                     mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED + i);
 
                     ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp1);
-                    if(AppState.get().ttsPauseDuration>0) {
-                        ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
-                    }
+                    ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);
                     LOG.d("pageHTML-parts", i, big);
                 }
             }
@@ -390,7 +390,9 @@ public class TTSEngine {
                     AppState.get().mp3seek = mp.getCurrentPosition();
                     LOG.d("Run timer-task");
                     EventBus.getDefault().post(new TtsStatus());
-                };
+                }
+
+                ;
             }, 1000, 1000);
 
         } catch (Exception e) {

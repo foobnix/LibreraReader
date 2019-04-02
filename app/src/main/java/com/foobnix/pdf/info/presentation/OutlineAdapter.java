@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -150,6 +151,13 @@ public class OutlineAdapter extends BaseAdapter {
         final OutlineLinkWrapper item = getItem(position);
         view.setText(item.getTitleAsString().trim());
         num.setText(TxtUtils.deltaPage(item.targetPage));
+
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            TxtUtils.bold(view);
+            TxtUtils.bold(num);
+            view.setTextColor(Color.BLACK);
+            num.setTextColor(Color.BLACK);
+        }
 
         if (item.targetPage <= 0) {
             num.setVisibility(View.INVISIBLE);

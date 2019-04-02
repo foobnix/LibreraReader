@@ -59,6 +59,13 @@ public class BookmarksAdapter extends BaseAdapter {
 
         pageView.setText(pageNumber);
 
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            TxtUtils.bold(textView);
+            TxtUtils.bold(pageView);
+            textView.setTextColor(Color.BLACK);
+            pageView.setTextColor(Color.BLACK);
+        }
+
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) pageView.getLayoutParams();
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
