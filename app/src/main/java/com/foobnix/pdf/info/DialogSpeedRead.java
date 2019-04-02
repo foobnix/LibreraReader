@@ -30,7 +30,7 @@ public class DialogSpeedRead {
 
     private volatile static int currentWord = 0;
     volatile static String[] words = new String[]{""};
-    static String[] punctuations = {".", ",", ";", ":", "?", "!"};
+    static String[] punctuations = {".", ";", ":", "?", "!"};
 
     public static void show(final Context a, final DocumentController dc) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -103,6 +103,8 @@ public class DialogSpeedRead {
 
         seekBarSpeed.addMyPopupMenu(menu);
         TxtUtils.setLinkTextColor(seekBarSpeed.getTitleText());
+
+        currentWord = 0;
 
         final Runnable task = new Runnable() {
 
@@ -208,11 +210,16 @@ public class DialogSpeedRead {
 
                         float wps = (float) AppState.get().fastReadSpeed / 60;
                         try {
-                            Thread.sleep((int) (1000 / wps) + k);
+                            int delta = (int) (1000 / wps) + k;
+                            final int wLen = wordFinal.length();
+                            delta = delta + wLen * wLen / 2;
+                            LOG.d("RSPV-Sleep", wordFinal, delta);
+                            Thread.sleep(delta);
                         } catch (Exception e) {
                             LOG.e(e);
                         }
                     }
+                    currentWord = 0;
                 }
             }
         };
