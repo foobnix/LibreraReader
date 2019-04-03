@@ -410,7 +410,7 @@ public class GFile {
     public static synchronized void sycnronizeAll(final Context c) throws Exception {
 
         try {
-            debugOut = "";
+            debugOut = "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(BookCSS.get().syncRootID)) {
@@ -428,7 +428,6 @@ public class GFile {
             }
 
 
-            debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             LOG.d("Begin");
 
             sync(BookCSS.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);

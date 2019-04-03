@@ -582,7 +582,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-        swipeRefreshLayout.setEnabled(BookCSS.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
+        if(swipeRefreshLayout!=null) {
+            swipeRefreshLayout.setEnabled(BookCSS.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
+        }
 
         try {
             tabFragments.get(pager.getCurrentItem()).onSelectFragment();
