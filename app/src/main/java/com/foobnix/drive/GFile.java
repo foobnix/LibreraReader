@@ -10,6 +10,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.BooksService;
@@ -75,6 +76,7 @@ public class GFile {
         GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
         client.signOut();
         googleDriveService = null;
+        AppTemp.get().syncTime = 0;
 
     }
 

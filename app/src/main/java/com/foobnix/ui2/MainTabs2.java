@@ -126,9 +126,12 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
+
+
         checkGoToPage(intent);
 
     }
+
 
 
     @Override
@@ -583,7 +586,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.updateAll();
         AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-        if(swipeRefreshLayout!=null) {
+        if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(BookCSS.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
         }
 

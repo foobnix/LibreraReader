@@ -36,7 +36,7 @@ public class AppData {
     }
 
 
-    public void addRecent(SimpleMeta s) {
+    public synchronized void addRecent(SimpleMeta s) {
 
         if (TxtUtils.isListNotEmpty(recent)) {
             Collections.sort(recent, FileMetaComparators.BY_RECENT_TIME_2);
@@ -51,13 +51,13 @@ public class AppData {
         LOG.d("Objects-save", "SAVE Recent");
     }
 
-    public void removeRecent(SimpleMeta s) {
+    public synchronized  void removeRecent(SimpleMeta s) {
         recent.remove(s);
         writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("AppData removeRecent", s.getPath());
     }
 
-    public void addFavorite(SimpleMeta s) {
+    public synchronized  void addFavorite(SimpleMeta s) {
         favorites.remove(s);
         favorites.add(s);
         LOG.d("AppData addFavorite", s.getPath());
@@ -65,7 +65,7 @@ public class AppData {
         LOG.d("Objects-save", "SAVE Favorite");
     }
 
-    public List<String> getAllExcluded() {
+    public synchronized  List<String> getAllExcluded() {
         readSimpleMeta(exclude, AppProfile.syncExclude, SimpleMeta.class);
         ArrayList<String> res = new ArrayList<String>();
         for (SimpleMeta s : exclude) {
@@ -75,7 +75,7 @@ public class AppData {
     }
 
 
-    public void addExclue(String path) {
+    public synchronized  void addExclue(String path) {
         final SimpleMeta sm = new SimpleMeta(path);
         exclude.remove(sm);
         exclude.add(sm);
@@ -84,31 +84,31 @@ public class AppData {
         LOG.d("Objects-save", "SAVE Favorite");
     }
 
-    public void removeFavorite(SimpleMeta s) {
+    public synchronized  void removeFavorite(SimpleMeta s) {
         favorites.remove(s);
         writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("AppData removeFavorite", s.getPath());
 
     }
 
-    public void clearRecents() {
+    public synchronized   void clearRecents() {
         recent.clear();
         writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
-    public void clearFavorites() {
+    public synchronized  void clearFavorites() {
         favorites.clear();
         writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
 
     }
 
-    public void loadFavorites() {
+    public synchronized  void loadFavorites() {
         readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
     }
 
-    public List<FileMeta> getAllSyncBooks() {
+    public synchronized  List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, null);
@@ -119,7 +119,7 @@ public class AppData {
 
     }
 
-    public List<FileMeta> getAllFavoriteFiles() {
+    public synchronized  List<FileMeta> getAllFavoriteFiles() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.getPath()).isFile()) {
@@ -136,7 +136,7 @@ public class AppData {
         return res;
     }
 
-    public List<FileMeta> getAllFavoriteFolders() {
+    public synchronized  List<FileMeta> getAllFavoriteFolders() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.getPath()).isDirectory()) {
