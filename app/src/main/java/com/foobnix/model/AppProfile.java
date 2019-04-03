@@ -30,7 +30,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.PasswordState;
-import com.foobnix.pdf.search.view.AsyncProgressSimpleTask;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -136,7 +136,7 @@ public class AppProfile {
 
     public static void deleteProfiles(Activity a, String
             name, ResultResponse<Boolean> result) {
-        new AsyncProgressSimpleTask(a, result) {
+        new AsyncProgressResultToastTask(a, result) {
 
             @Override
             protected Boolean doInBackground(Object... objects) {

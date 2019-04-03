@@ -40,7 +40,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
-import com.foobnix.pdf.search.view.AsyncProgressSimpleTask;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
@@ -558,7 +558,7 @@ public class FileInformationDialog {
                 if (Clouds.isLibreraSyncFile(file)) {
 
 
-                    new AsyncProgressSimpleTask(a) {
+                    new AsyncProgressResultToastTask(a) {
 
                         @Override
                         protected Boolean doInBackground(Object... objects) {

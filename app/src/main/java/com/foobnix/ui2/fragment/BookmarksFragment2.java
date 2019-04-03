@@ -44,9 +44,9 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     BookmarksAdapter2 bookmarksAdapter;
     View bookmarksSearchContainer, bookmarksClearFilter, topPanel;
-    TextView exportBookmarks, importBookmarks, search, allBookmarks;
+    TextView exportBookmarks, importBookmarks, allBookmarks;
     EditText bookmarksEditSearch;
-    ImageView onListGrid;
+    ImageView onListGrid, search;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -67,13 +67,13 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
         exportBookmarks = (TextView) view.findViewById(R.id.exportBookmarks);
         importBookmarks = (TextView) view.findViewById(R.id.importBookmarks);
-        search = (TextView) view.findViewById(R.id.search);
+        search = view.findViewById(R.id.search);
         allBookmarks = (TextView) view.findViewById(R.id.allBookmarks);
         TxtUtils.underlineTextView(allBookmarks).setOnClickListener(onCleanSearch);
 
         TxtUtils.underlineTextView(exportBookmarks).setOnClickListener(exportBookmarksClickListener);
         TxtUtils.underlineTextView(importBookmarks).setOnClickListener(importBookmarksClickListener);
-        TxtUtils.underlineTextView(search).setOnClickListener(searchBookmarks);
+        search.setOnClickListener(searchBookmarks);
         bookmarksSearchContainer.setVisibility(View.GONE);
 
         bookmarksClearFilter.setOnClickListener(onCleanSearch);

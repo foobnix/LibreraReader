@@ -37,7 +37,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
-import com.foobnix.pdf.search.view.AsyncProgressSimpleTask;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -393,7 +393,7 @@ public class ShareDialog {
                 } else if (!isPlaylist && which == i++) {
                     DialogsPlaylist.showPlaylistsDialog(a, null, file);
                 } else if (!isSyncronized && which == i++) {
-                    new AsyncProgressSimpleTask(a) {
+                    new AsyncProgressResultToastTask(a) {
 
                         @Override
                         protected Boolean doInBackground(Object... objects) {

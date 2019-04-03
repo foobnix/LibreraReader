@@ -9,17 +9,17 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.pdf.info.R;
 
-public abstract class AsyncProgressSimpleTask extends AsyncTask<Object, Object, Boolean> {
+public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Object, Boolean> {
 
     ProgressDialog dialog;
     Context c;
     ResultResponse<Boolean> onResult;
 
-    public AsyncProgressSimpleTask(Context c, ResultResponse<Boolean> onResult) {
+    public AsyncProgressResultToastTask(Context c, ResultResponse<Boolean> onResult) {
         this.c = c;
         this.onResult = onResult;
     }
-    public AsyncProgressSimpleTask(Context c) {
+    public AsyncProgressResultToastTask(Context c) {
         this.c = c;
     }
 

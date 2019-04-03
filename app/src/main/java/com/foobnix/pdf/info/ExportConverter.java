@@ -11,6 +11,11 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 
+import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.util.Zip4jConstants;
+
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -144,6 +149,26 @@ public class ExportConverter {
         }
 
 
+    }
+
+    public static void zipFolder(File input, File output) throws ZipException {
+        LOG.d("ZipFolder", input, output);
+        ZipFile zipFile = new ZipFile(output);
+
+        ZipParameters parameters = new ZipParameters();
+
+        parameters.setIncludeRootFolder(false);
+        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+
+        zipFile.addFolder(input, parameters);
+        //zipFile.createZipFile(input, parameters);
+    }
+
+    public static void unZipFolder(File input, File output) throws ZipException {
+        ZipFile zipFile = new ZipFile(input);
+        zipFile.extractAll(output.getPath());
+        LOG.d("UnZipFolder", input, output);
     }
 
 

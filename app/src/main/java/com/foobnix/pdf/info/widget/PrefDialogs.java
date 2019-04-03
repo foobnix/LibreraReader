@@ -30,6 +30,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
@@ -39,10 +40,12 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
-import com.foobnix.pdf.search.view.AsyncProgressTask;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
+
+import net.lingala.zip4j.exception.ZipException;
 
 import java.io.File;
 import java.util.Arrays;
@@ -50,6 +53,7 @@ import java.util.List;
 
 public class PrefDialogs {
 
+    public static final String EXPORT_BACKUP_ZIP = "-export-backup.zip";
     private static String lastPaht;
 
     private static String getLastPath() {
@@ -163,54 +167,50 @@ public class PrefDialogs {
     }
 
     public static void importDialog(final FragmentActivity activity) {
-        if (isBookSeriviceIsRunning(activity)) {
-            return;
-        }
-
-        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, ".JSON.txt");
+        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, EXPORT_BACKUP_ZIP);
 
         ChooserDialogFragment.chooseFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
 
-
-                new AsyncProgressTask<Boolean>() {
+                new AsyncProgressResultToastTask(activity) {
 
                     @Override
                     protected Boolean doInBackground(Object... objects) {
                         try {
-                            ExportConverter.covertJSONtoNew(activity, new File(result1));
+                            if (result1.endsWith(".json")) {
+                                ExportConverter.covertJSONtoNew(activity, new File(result1));
+                            } else if (result1.endsWith(EXPORT_BACKUP_ZIP)) {
+                                ExportConverter.unZipFolder(new File(result1), AppProfile.SYNC_FOLDER_ROOT);
+                            } else {
+                                return false;
+                            }
+                            return true;
                         } catch (Exception e) {
                             LOG.e(e);
                             return false;
+
                         }
-                        return true;
+
                     }
 
                     @Override
                     protected void onPostExecute(Boolean result) {
                         super.onPostExecute(result);
+                        result2.dismiss();
                         if (result) {
                             activity.finish();
                             MainTabs2.startActivity(activity, TempHolder.get().currentTab);
-
-                            Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(activity, activity.getString(R.string.import_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
-
                         }
-                        result2.dismiss();
 
-                    }
-
-                    @Override
-                    public Context getContext() {
-                        return activity;
                     }
                 }.execute();
+
+
                 return false;
             }
+
         });
 
     }
@@ -225,28 +225,28 @@ public class PrefDialogs {
 
 
     public static void exportDialog(final FragmentActivity activity) {
-        if (isBookSeriviceIsRunning(activity)) {
-            return;
-        }
-        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, "-Export-All.JSON.txt");
+        String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, EXPORT_BACKUP_ZIP);
         ChooserDialogFragment.createFile(activity, sampleName).setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
                 File toFile = new File(result1);
-                if (toFile == null || toFile.getName().trim().length() == 0) {
-                    Toast.makeText(activity, "Invalid File name", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
 
-                boolean result = false;//ExportSettingsManager.exportAll(toFile);
+                new AsyncProgressResultToastTask(activity) {
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
+                        try {
+                            ExportConverter.zipFolder(AppProfile.SYNC_FOLDER_ROOT, toFile);
+                            return true;
+                        } catch (ZipException e) {
+                            return false;
+                        } finally {
+                            activity.runOnUiThread(() -> result2.dismiss());
+                        }
+                    }
+                }.execute();
 
-                if (result) {
-                    Toast.makeText(activity, activity.getString(R.string.export_) + " " + activity.getString(R.string.success), Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(activity, activity.getString(R.string.export_) + " " + activity.getString(R.string.fail), Toast.LENGTH_LONG).show();
-                }
-                result2.dismiss();
+
                 return false;
             }
         });

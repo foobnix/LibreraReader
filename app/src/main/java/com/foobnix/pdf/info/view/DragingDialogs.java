@@ -2221,7 +2221,7 @@ public class DragingDialogs {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
                 titlePopupMenu = new MyPopupMenu(controller.getActivity(), null);
 
-                titlePopupMenu.getMenu().add(R.string.export_as_text).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                titlePopupMenu.getMenu().add(R.string.share).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -2229,28 +2229,28 @@ public class DragingDialogs {
                         return false;
                     }
                 });
-                titlePopupMenu.getMenu().add(R.string.export_as_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity(), controller.getCurrentBook());
-                        return false;
-                    }
-                });
-                titlePopupMenu.getMenu().add(R.string.import_from_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        ExtUtils.importAllBookmarksFromJson((FragmentActivity) controller.getActivity(), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                showBookmarksDialog(anchor, controller, onRefeshUI);
-                            }
-                        });
-                        return false;
-                    }
-                });
+//                titlePopupMenu.getMenu().add(R.string.export_as_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+//
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity(), controller.getCurrentBook());
+//                        return false;
+//                    }
+//                });
+//                titlePopupMenu.getMenu().add(R.string.import_from_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+//
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        ExtUtils.importAllBookmarksFromJson((FragmentActivity) controller.getActivity(), new Runnable() {
+//
+//                            @Override
+//                            public void run() {
+//                                showBookmarksDialog(anchor, controller, onRefeshUI);
+//                            }
+//                        });
+//                        return false;
+//                    }
+//                });
 
                 return a;
             }
