@@ -551,4 +551,5 @@
    <string name="sync_book">Synkronoi kirja</string>
    <string name="sync">Synkronoida</string>
    <string name="synchronized_folder">Synkronoitu kansio</string>
+   <string name="today">Tänään</string>
 </resources>

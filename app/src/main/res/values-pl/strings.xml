@@ -551,4 +551,5 @@
    <string name="sync_book">Zsynchronizować książkę</string>
    <string name="sync">Synchronizacja</string>
    <string name="synchronized_folder">Zsynchronizowany folder</string>
+   <string name="today">Dzisiaj</string>
 </resources>

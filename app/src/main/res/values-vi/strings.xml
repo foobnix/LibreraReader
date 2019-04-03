@@ -551,4 +551,5 @@
    <string name="sync_book">Đồng bộ một cuốn sách</string>
    <string name="sync">Đồng bộ hóa</string>
    <string name="synchronized_folder">Thư mục đồng bộ</string>
+   <string name="today">Hôm nay</string>
 </resources>

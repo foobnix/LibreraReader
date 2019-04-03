@@ -551,4 +551,5 @@
    <string name="sync_book">همگام سازی یک کتاب</string>
    <string name="sync">همگام سازی</string>
    <string name="synchronized_folder">پوشه همگام سازی شده</string>
+   <string name="today">امروز</string>
 </resources>

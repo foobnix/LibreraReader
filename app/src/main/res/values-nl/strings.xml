@@ -551,4 +551,5 @@
    <string name="sync_book">Een boek synchroniseren</string>
    <string name="sync">Synchroniseren</string>
    <string name="synchronized_folder">Gesynchroniseerde map</string>
+   <string name="today">Vandaag</string>
 </resources>

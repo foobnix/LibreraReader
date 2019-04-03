@@ -551,4 +551,5 @@
    <string name="sync_book">Кітапты синхрондау</string>
    <string name="sync">Синхрондау</string>
    <string name="synchronized_folder">Синхрондалған қалта</string>
+   <string name="today">Бүгін</string>
 </resources>

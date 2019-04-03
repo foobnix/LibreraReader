@@ -551,4 +551,5 @@
    <string name="sync_book">책을 동기화하다</string>
    <string name="sync">동조</string>
    <string name="synchronized_folder">동기화 된 폴더</string>
+   <string name="today">오늘</string>
 </resources>

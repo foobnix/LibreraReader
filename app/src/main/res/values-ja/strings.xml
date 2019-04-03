@@ -551,4 +551,5 @@
    <string name="sync_book">本を同期する</string>
    <string name="sync">同期する</string>
    <string name="synchronized_folder">同期フォルダ</string>
+   <string name="today">今日</string>
 </resources>

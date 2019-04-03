@@ -551,4 +551,5 @@
    <string name="sync_book">לסנכרן ספר</string>
    <string name="sync">סינכרון</string>
    <string name="synchronized_folder">תיקייה מסונכרנת - -</string>
+   <string name="today">היום</string>
 </resources>

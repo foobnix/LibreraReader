@@ -551,4 +551,5 @@
    <string name="sync_book">مزامنة كتاب</string>
    <string name="sync">مزامنة</string>
    <string name="synchronized_folder">مجلد متزامن</string>
+   <string name="today">اليوم</string>
 </resources>

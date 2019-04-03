@@ -551,4 +551,5 @@
    <string name="sync_book">Szinkronizál egy könyvet</string>
    <string name="sync">Szinkronizál</string>
    <string name="synchronized_folder">Szinkronizált mappát</string>
+   <string name="today">Ma</string>
 </resources>

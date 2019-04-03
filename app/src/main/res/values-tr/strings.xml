@@ -551,4 +551,5 @@
    <string name="sync_book">Bir kitabı senkronize et</string>
    <string name="sync">Senkronize etmek</string>
    <string name="synchronized_folder">Senkronize klasör</string>
+   <string name="today">Bugün</string>
 </resources>

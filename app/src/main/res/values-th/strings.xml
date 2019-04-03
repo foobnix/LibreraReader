@@ -551,4 +551,5 @@
    <string name="sync_book">ซิงค์หนังสือ</string>
    <string name="sync">ซิงค์</string>
    <string name="synchronized_folder">โฟลเดอร์ที่ซิงโครไนซ์</string>
+   <string name="today">ในวันนี้</string>
 </resources>

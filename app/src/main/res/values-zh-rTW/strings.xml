@@ -551,4 +551,5 @@
    <string name="sync_book">同步書籍</string>
    <string name="sync">同步</string>
    <string name="synchronized_folder">同步檔夾</string>
+   <string name="today">今天</string>
 </resources>

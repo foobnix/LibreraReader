@@ -551,4 +551,5 @@
    <string name="sync_book">Synkronisera en bok</string>
    <string name="sync">Synkronisera</string>
    <string name="synchronized_folder">Synkroniserad mapp</string>
+   <string name="today">I dag</string>
 </resources>

@@ -551,4 +551,5 @@
    <string name="sync_book">Sincronizați o carte</string>
    <string name="sync">Sincronizați</string>
    <string name="synchronized_folder">Folderul sincronizat</string>
+   <string name="today">Astăzi</string>
 </resources>
