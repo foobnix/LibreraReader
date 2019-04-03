@@ -542,10 +542,10 @@
    <string name="main">Utama</string>
    <string name="do_you_want_to_switch_profile_">Beralih ke profil lain?</string>
    <string name="sync_error">Kesalahan sinkronisasi</string>
-   <string name="enable_text_selection_with_a_light_touch">Aktifkan pemilihan teks dengan sentuhan ringan</string>
    <string name="sign_in">Masuk</string>
    <string name="sign_out">Keluar</string>
    <string name="manual_sync_only">Hanya sinkronisasi manual</string>
    <string name="wifi_sync_only">Sinkronisasi wifi saja</string>
    <string name="sync_google_drive">Sinkronisasi (google drive)</string>
+   <string name="single_tap_to_select_text">Ketuk sekali untuk memilih teks</string>
 </resources>

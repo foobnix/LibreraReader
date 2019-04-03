@@ -542,10 +542,10 @@
    <string name="main">Main</string>
    <string name="do_you_want_to_switch_profile_">Switch to another profile?</string>
    <string name="sync_error">Sync error</string>
-   <string name="enable_text_selection_with_a_light_touch">Single-tap to select text (caveat usor!)</string>
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
    <string name="manual_sync_only">Manual sync only</string>
    <string name="wifi_sync_only">Sync via WiFi only</string>
    <string name="sync_google_drive">Sync (Google Drive)</string>
+   <string name="single_tap_to_select_text">Single-tap to select text</string>
 </resources>

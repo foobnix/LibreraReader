@@ -542,10 +542,10 @@
    <string name="main">Chủ yếu</string>
    <string name="do_you_want_to_switch_profile_">Chuyển sang hồ sơ khác?</string>
    <string name="sync_error">Lỗi đồng bộ hóa</string>
-   <string name="enable_text_selection_with_a_light_touch">Cho phép lựa chọn văn bản với một cú chạm nhẹ</string>
    <string name="sign_in">Đăng nhập</string>
    <string name="sign_out">Đăng xuất</string>
    <string name="manual_sync_only">Chỉ đồng bộ hóa thủ công</string>
    <string name="wifi_sync_only">Chỉ đồng bộ wifi</string>
    <string name="sync_google_drive">Đồng bộ hóa (ổ đĩa google)</string>
+   <string name="single_tap_to_select_text">Nhấn một lần để chọn văn bản</string>
 </resources>

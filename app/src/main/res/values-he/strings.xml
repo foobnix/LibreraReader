@@ -542,10 +542,10 @@
    <string name="main">ראשי</string>
    <string name="do_you_want_to_switch_profile_">לעבור לפרופיל אחר?</string>
    <string name="sync_error">שגיאת סינכרון</string>
-   <string name="enable_text_selection_with_a_light_touch">לאפשר בחירת טקסט עם מגע קל</string>
    <string name="sign_in">היכנס</string>
    <string name="sign_out">התנתק</string>
    <string name="manual_sync_only">סינכרון ידני בלבד</string>
    <string name="wifi_sync_only">סינכרון WiFi בלבד - -</string>
    <string name="sync_google_drive">סנכרון (כונן Google)</string>
+   <string name="single_tap_to_select_text">הקש אחת כדי לבחור טקסט</string>
 </resources>

@@ -575,7 +575,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                        int[] items = { 1, 15, 30, 45, 60, 90, 120, 240, 360 };
+                        int[] items = {1, 15, 30, 45, 60, 90, 120, 240, 360};
                         for (final int i : items) {
                             popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -1104,7 +1104,9 @@ public class DragingDialogs {
                             adapter.notifyDataSetChanged();
                         }
 
-                    };
+                    }
+
+                    ;
                 };
 
                 onSearch.setOnClickListener(new View.OnClickListener() {
@@ -1497,7 +1499,7 @@ public class DragingDialogs {
                     }
                 });
 
-                View onBookSearch =  view.findViewById(R.id.onBookSearch);
+                View onBookSearch = view.findViewById(R.id.onBookSearch);
                 // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
                 // + " \"" + AppState.get().selectedText + "\"");
                 if (onBookSearch != null) {
@@ -1608,7 +1610,7 @@ public class DragingDialogs {
                                             intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
 
                                             controller.getActivity().startActivity(intentProccessText);
-                                            LOG.d("dict-intent",intentProccessText);
+                                            LOG.d("dict-intent", intentProccessText);
                                         } else if (searchList.contains(app)) {
                                             LOG.d("dict-intent", "searchList");
                                             intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -1619,7 +1621,7 @@ public class DragingDialogs {
                                             intentSearch.putExtra(Intent.EXTRA_TEXT, selecteText);
 
                                             controller.getActivity().startActivity(intentSearch);
-                                            LOG.d("dict-intent",intentSearch);
+                                            LOG.d("dict-intent", intentSearch);
                                         } else if (sendList.contains(app)) {
                                             LOG.d("dict-intent", "sendList");
                                             intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -1628,7 +1630,7 @@ public class DragingDialogs {
 
                                             intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
                                             controller.getActivity().startActivity(intentSend);
-                                            LOG.d("dict-intent",intentSend);
+                                            LOG.d("dict-intent", intentSend);
                                         }
                                         sp.edit().putString("last", app.activityInfo.name).commit();
 
@@ -1756,7 +1758,9 @@ public class DragingDialogs {
                     }
                 });
 
-            };
+            }
+
+            ;
 
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -1781,7 +1785,9 @@ public class DragingDialogs {
                         @Override
                         public PageUrl getPageUrl(int page) {
                             return PageUrl.buildSmall(currentBook.getPath(), page);
-                        };
+                        }
+
+                        ;
                     });
                 }
 
@@ -1931,7 +1937,9 @@ public class DragingDialogs {
                 AppState.get().annotationDrawColor = "";
                 drawView.setVisibility(View.GONE);
                 drawView.clear();
-            };
+            }
+
+            ;
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -2069,7 +2077,7 @@ public class DragingDialogs {
                 recyclerView.setLayoutManager(mLayoutManager);
                 recentAdapter.setAdapterType(FileMetaAdapter.ADAPTER_LIST);
                 recyclerView.setAdapter(recentAdapter);
-                recentAdapter.tempValue2 =FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
+                recentAdapter.tempValue2 = FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
 
                 List<FileMeta> all = AppData.get().getAllRecent();
                 FileMeta stars = new FileMeta();
@@ -2141,7 +2149,7 @@ public class DragingDialogs {
                 }
 
                 //if (appBookmark.p > 0) {
-                 //   controller.onScrollYPercent(appBookmark.p);
+                //   controller.onScrollYPercent(appBookmark.p);
                 //} else {
 
                 //}
@@ -2315,7 +2323,9 @@ public class DragingDialogs {
                                     @Override
                                     protected void onPreExecute() {
                                         dialog = ProgressDialog.show(controller.getActivity(), "", controller.getString(R.string.msg_loading));
-                                    };
+                                    }
+
+                                    ;
 
                                     @Override
                                     protected File doInBackground(Void... params) {
@@ -2344,7 +2354,9 @@ public class DragingDialogs {
                                             LOG.e(e);
                                         }
 
-                                    };
+                                    }
+
+                                    ;
                                 }.execute();
 
                             }
@@ -3207,6 +3219,7 @@ public class DragingDialogs {
 
                 CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
                 isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
+                isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
                 isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
 
                 CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
@@ -3804,7 +3817,9 @@ public class DragingDialogs {
             }
         });
         return dialog;
-    };
+    }
+
+    ;
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         final int initCssHash = BookCSS.get().toCssString().hashCode();
@@ -3921,9 +3936,9 @@ public class DragingDialogs {
                 // hypenLangLabel.setVisibility(View.GONE);
 
                 String lanuageByCode = DialogTranslateFromTo.getLanuageByCode(AppTemp.get().hypenLang);
-                if(TxtUtils.isEmpty(lanuageByCode)){
+                if (TxtUtils.isEmpty(lanuageByCode)) {
                     hypenLang.setText(R.string.choose_);
-                }else {
+                } else {
                     hypenLang.setText(lanuageByCode);
                 }
 
@@ -5082,8 +5097,8 @@ public class DragingDialogs {
                 // LOG.d("ojectAsString2", Objects.ojectAsString(AppState.get()));
 
                 if (//
-                appHash != Objects.hashCode(AppState.get()) || //
-                (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
+                        appHash != Objects.hashCode(AppState.get()) || //
+                                (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }

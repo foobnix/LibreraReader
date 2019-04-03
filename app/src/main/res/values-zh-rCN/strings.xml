@@ -542,10 +542,10 @@
    <string name="main">主要</string>
    <string name="do_you_want_to_switch_profile_">切换到另一个档案？</string>
    <string name="sync_error">同步错误</string>
-   <string name="enable_text_selection_with_a_light_touch">通过轻触实现文本选择</string>
    <string name="sign_in">登入</string>
    <string name="sign_out">登出</string>
    <string name="manual_sync_only">仅手动同步</string>
    <string name="wifi_sync_only">Wifi同步</string>
    <string name="sync_google_drive">同步（谷歌驱动器）</string>
+   <string name="single_tap_to_select_text">单击以选择文本</string>
 </resources>

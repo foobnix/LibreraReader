@@ -542,10 +542,10 @@
    <string name="main">A Principal</string>
    <string name="do_you_want_to_switch_profile_">Mudar para outro perfil?</string>
    <string name="sync_error">Erro de sincronização</string>
-   <string name="enable_text_selection_with_a_light_touch">Ativar a seleção de texto com um leve toque</string>
    <string name="sign_in">Assinar em</string>
    <string name="sign_out">Sair</string>
    <string name="manual_sync_only">Apenas sincronização manual</string>
    <string name="wifi_sync_only">Somente sincronização via wifi</string>
    <string name="sync_google_drive">Sync (google drive)</string>
+   <string name="single_tap_to_select_text">Toque único para selecionar texto</string>
 </resources>

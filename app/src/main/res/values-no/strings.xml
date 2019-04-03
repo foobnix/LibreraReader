@@ -542,10 +542,10 @@
    <string name="main">Hoved-</string>
    <string name="do_you_want_to_switch_profile_">Bytt til en annen profil?</string>
    <string name="sync_error">Synkroniseringsfeil</string>
-   <string name="enable_text_selection_with_a_light_touch">Aktiver tekstvalg med en lett berøring</string>
    <string name="sign_in">Logg inn</string>
    <string name="sign_out">Logg ut</string>
    <string name="manual_sync_only">Kun manuell synkronisering</string>
    <string name="wifi_sync_only">Kun wifi-synkronisering</string>
    <string name="sync_google_drive">Synkronisere (google-stasjon)</string>
+   <string name="single_tap_to_select_text">Enkelt trykk for å velge tekst</string>
 </resources>

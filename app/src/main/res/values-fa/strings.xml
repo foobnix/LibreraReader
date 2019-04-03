@@ -542,10 +542,10 @@
    <string name="main">اصلی</string>
    <string name="do_you_want_to_switch_profile_">تغییر به نمایه دیگری</string>
    <string name="sync_error">خطای همگام سازی</string>
-   <string name="enable_text_selection_with_a_light_touch">انتخاب متن با لمس نور را فعال کنید</string>
    <string name="sign_in">ورود</string>
    <string name="sign_out">خروج</string>
    <string name="manual_sync_only">فقط همگام سازی دستی</string>
    <string name="wifi_sync_only">فقط همگام سازی فای</string>
    <string name="sync_google_drive">همگام سازی (درایو گوگل)</string>
+   <string name="single_tap_to_select_text">تک متن را انتخاب کنید تا متن انتخاب شود</string>
 </resources>

@@ -542,10 +542,10 @@
    <string name="main">Hoofd</string>
    <string name="do_you_want_to_switch_profile_">Overschakelen naar een ander profiel?</string>
    <string name="sync_error">Synchronisatiefout</string>
-   <string name="enable_text_selection_with_a_light_touch">Schakel tekstselectie in met een lichte aanraking</string>
    <string name="sign_in">Aanmelden</string>
    <string name="sign_out">Afmelden</string>
    <string name="manual_sync_only">Alleen handmatige synchronisatie</string>
    <string name="wifi_sync_only">Alleen wifi-synchronisatie</string>
    <string name="sync_google_drive">Sync (google schijf)</string>
+   <string name="single_tap_to_select_text">Tik één keer om tekst te selecteren</string>
 </resources>

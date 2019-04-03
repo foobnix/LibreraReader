@@ -542,10 +542,10 @@
    <string name="main">Kuu</string>
    <string name="do_you_want_to_switch_profile_">Kubadili maelezo mengine?</string>
    <string name="sync_error">Hifadhi ya kusawazisha</string>
-   <string name="enable_text_selection_with_a_light_touch">Fungua uteuzi wa maandishi na kugusa kwa mwanga</string>
    <string name="sign_in">Weka sahihi</string>
    <string name="sign_out">Toka</string>
    <string name="manual_sync_only">Kusawazisha mwongozo tu</string>
    <string name="wifi_sync_only">Kusawazisha wifi tu</string>
    <string name="sync_google_drive">Kusawazisha (google drive)</string>
+   <string name="single_tap_to_select_text">Bomba moja ili kuchagua maandishi</string>
 </resources>

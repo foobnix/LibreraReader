@@ -542,10 +542,10 @@
    <string name="main">หลัก</string>
    <string name="do_you_want_to_switch_profile_">เปลี่ยนไปใช้โปรไฟล์อื่นหรือไม่</string>
    <string name="sync_error">ข้อผิดพลาดในการซิงค์</string>
-   <string name="enable_text_selection_with_a_light_touch">เปิดใช้งานการเลือกข้อความด้วยการสัมผัสที่เบา</string>
    <string name="sign_in">ลงชื่อเข้าใช้</string>
    <string name="sign_out">ออกจากระบบ</string>
    <string name="manual_sync_only">ซิงค์ด้วยตนเองเท่านั้น</string>
    <string name="wifi_sync_only">Wifi sync เท่านั้น</string>
    <string name="sync_google_drive">ซิงค์ (google ไดรฟ์)</string>
+   <string name="single_tap_to_select_text">แตะครั้งเดียวเพื่อเลือกข้อความ</string>
 </resources>

@@ -542,10 +542,10 @@
    <string name="main">Principal</string>
    <string name="do_you_want_to_switch_profile_">Treci la alt profil?</string>
    <string name="sync_error">Sincronizare eroare</string>
-   <string name="enable_text_selection_with_a_light_touch">Activați selecția textului cu o atingere ușoară</string>
    <string name="sign_in">Conectare</string>
    <string name="sign_out">Sign out</string>
    <string name="manual_sync_only">Sincronizarea manuală numai</string>
    <string name="wifi_sync_only">Wifi sincronizare numai</string>
    <string name="sync_google_drive">Sincronizare (unitate Google)</string>
+   <string name="single_tap_to_select_text">Atingeți singur pentru a selecta textul</string>
 </resources>

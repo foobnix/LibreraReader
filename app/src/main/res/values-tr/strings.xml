@@ -542,10 +542,10 @@
    <string name="main">Ana</string>
    <string name="do_you_want_to_switch_profile_">Başka bir profile geçilsin mi?</string>
    <string name="sync_error">Senkronizasyon hatası</string>
-   <string name="enable_text_selection_with_a_light_touch">Hafif bir dokunuşla metin seçimini etkinleştir</string>
    <string name="sign_in">Oturum aç</string>
    <string name="sign_out">Oturumu Kapat</string>
    <string name="manual_sync_only">Sadece manuel senkronizasyon</string>
    <string name="wifi_sync_only">Yalnızca wifi senkronizasyonu</string>
    <string name="sync_google_drive">Senkronizasyon (google drive)</string>
+   <string name="single_tap_to_select_text">Metni seçmek için tek dokunuşla</string>
 </resources>

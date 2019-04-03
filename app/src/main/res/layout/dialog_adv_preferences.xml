@@ -295,7 +295,7 @@
             android:id="@+id/isSelectTexByTouch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/enable_text_selection_with_a_light_touch" />
+            android:text="@string/single_tap_to_select_text" />
 
         <CheckBox
             android:id="@+id/highlightByLetters"

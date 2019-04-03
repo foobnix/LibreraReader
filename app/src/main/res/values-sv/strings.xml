@@ -542,10 +542,10 @@
    <string name="main">Huvud</string>
    <string name="do_you_want_to_switch_profile_">Byta till en annan profil?</string>
    <string name="sync_error">Synkroniseringsfel</string>
-   <string name="enable_text_selection_with_a_light_touch">Aktivera textval med en lätt beröring</string>
    <string name="sign_in">Logga in</string>
    <string name="sign_out">Logga ut</string>
    <string name="manual_sync_only">Manuell synkronisering bara</string>
    <string name="wifi_sync_only">Bara wifi-synkronisering</string>
    <string name="sync_google_drive">Synkronisera (google-enhet)</string>
+   <string name="single_tap_to_select_text">Tryck en gång för att välja text</string>
 </resources>

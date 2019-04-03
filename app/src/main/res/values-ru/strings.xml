@@ -542,10 +542,10 @@
    <string name="main">Главный</string>
    <string name="do_you_want_to_switch_profile_">Переключиться на другой профиль?</string>
    <string name="sync_error">Ошибка синхронизации</string>
-   <string name="enable_text_selection_with_a_light_touch">Включить выделение текста легким прикосновением</string>
    <string name="sign_in">Войти в систему</string>
    <string name="sign_out">Выход</string>
    <string name="manual_sync_only">Только ручная синхронизация</string>
    <string name="wifi_sync_only">Только Wi-Fi синхронизации</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
+   <string name="single_tap_to_select_text">Одно касание для выбора текста</string>
 </resources>
