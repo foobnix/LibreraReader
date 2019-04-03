@@ -169,7 +169,7 @@ public class Fb2Extractor extends BaseExtractor {
 
                     if (imageID != null && xpp.getName().equals("binary") && imageID.equals(xpp.getAttributeValue(null, "id"))) {
                         String text = xpp.nextText();
-                        if(text!=null) {
+                        if (text != null) {
                             decode = Base64.decode(text, Base64.DEFAULT);
                         }
                         break;
@@ -393,12 +393,12 @@ public class Fb2Extractor extends BaseExtractor {
                     if (xpp.getName().equals("a")) {
                         // String type = xpp.getAttributeValue(null, "type");
                         // if ("note".equals(type)) {
-                            isLink = true;
+                        isLink = true;
 
-                            link = xpp.getAttributeValue(null, "l:href");
-                            if (link == null) {
-                                link = xpp.getAttributeValue(null, "xlink:href");
-                            }
+                        link = xpp.getAttributeValue(null, "l:href");
+                        if (link == null) {
+                            link = xpp.getAttributeValue(null, "xlink:href");
+                        }
 
                         // }
                     } else if (xpp.getName().equals("section")) {
@@ -733,7 +733,11 @@ public class Fb2Extractor extends BaseExtractor {
                     value = value.replaceAll("^[0-9]+", "").trim();
 
                     out.append(" <t>[");
-                    out.append(value);
+                    if (AppState.get().appTheme == AppState.THEME_INK) {
+                        out.append("<i>" + value + "</i>");
+                    } else {
+                        out.append(value);
+                    }
                     out.append("]</t>");
                 }
             }
