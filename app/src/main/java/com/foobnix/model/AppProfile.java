@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -80,7 +81,6 @@ public class AppProfile {
         load(c);
 
 
-
     }
 
     public static void load(Context c) {
@@ -128,10 +128,19 @@ public class AppProfile {
         return res;
     }
 
-    public static boolean ceateProfiles(String name) {
+    public static void ceateProfiles(String name) {
         name = name.replace(" ", "");
         final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
-        return file.mkdirs();
+        file.mkdirs();
+
+
+        File state = new File(file, "app-State.json");
+        File css = new File(file, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
+
+        IO.writeObjAsync(state, new AppState());
+        IO.writeObjAsync(css, new BookCSS());
+        LOG.d("Profile Created");
+
     }
 
     public static void deleteProfiles(Activity a, String
