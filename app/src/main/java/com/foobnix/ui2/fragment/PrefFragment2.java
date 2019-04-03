@@ -180,6 +180,7 @@ public class PrefFragment2 extends UIFragment {
         }
 
         isEnableSync.setChecked(BookCSS.get().isEnableSync);
+        onSync(null);
 
 
     }

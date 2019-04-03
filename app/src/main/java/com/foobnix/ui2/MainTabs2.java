@@ -164,6 +164,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
                         swipeRefreshLayout.setEnabled(true);
+
                     })
                     .addOnFailureListener(exception ->
                             {
