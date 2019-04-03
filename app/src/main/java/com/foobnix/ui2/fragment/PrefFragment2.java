@@ -1356,21 +1356,9 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).setOnClickListener(new View.OnClickListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));
 
-            @Override
-            public void onClick(final View v) {
-                PrefDialogs.importDialog(getActivity());
-            }
-        });
-
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                PrefDialogs.exportDialog(getActivity());
-            }
-        });
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).setOnClickListener(v -> PrefDialogs.exportDialog(getActivity()));
 
         final CheckBox isAutomaticExport = (CheckBox) inflate.findViewById(R.id.isAutomaticExport);
         isAutomaticExport.setChecked(AppState.get().isAutomaticExport);

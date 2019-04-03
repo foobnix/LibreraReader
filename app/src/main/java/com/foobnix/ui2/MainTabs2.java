@@ -368,8 +368,16 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else {
             indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs2);
         }
+        indicator.addSwipeRefreshLayout(swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
         indicator.init();
+
+        indicator.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                LOG.d("OnFocusChangeListener", hasFocus);
+            }
+        });
 
 
         indicator.setViewPager(pager);

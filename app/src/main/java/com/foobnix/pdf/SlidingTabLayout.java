@@ -5,11 +5,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -19,6 +21,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
 /**
@@ -42,6 +45,11 @@ import com.foobnix.ui2.adapter.TabsAdapter2;
  */
 public class SlidingTabLayout extends HorizontalScrollView {
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    public void addSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
+        this.swipeRefreshLayout = swipeRefreshLayout;
+    }
 
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
@@ -114,6 +122,28 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     }
 
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        LOG.d("onTouchEvent-ev", ev);
+        if (swipeRefreshLayout != null && BookCSS.get().isEnableSync) {
+            final int action = ev.getAction();
+
+            switch (action & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_MOVE: {
+                    swipeRefreshLayout.setEnabled(false);
+                    break;
+                }
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL: {
+                    swipeRefreshLayout.setEnabled(true);
+                    break;
+                }
+            }
+        }
+        return super.onTouchEvent(ev);
+    }
 
     /**
      * Set the custom {@link TabColorizer} to be used.
@@ -201,7 +231,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         if (myPOS == POS_HORIZONTAL) {
             textView.setAllCaps(true);
-        }else {
+        } else {
             textView.setSingleLine();
             textView.setEllipsize(TextUtils.TruncateAt.END);
         }
