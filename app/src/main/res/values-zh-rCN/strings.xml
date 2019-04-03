@@ -537,18 +537,18 @@
    <string name="system_brightness">系统亮度</string>
    <string name="opening_books_in_the_specified_mode">以指定模式打开书籍</string>
    <string name="dark_oled">黑暗有机电激光显示</string>
-   <string name="profile">轮廓</string>
+   <string name="profile">配置文件</string>
    <string name="new_profile">新的配置文件</string>
    <string name="main">主要</string>
-   <string name="do_you_want_to_switch_profile_">切换到另一个档案？</string>
+   <string name="do_you_want_to_switch_profile_">您要切换配置文件吗？</string>
    <string name="sync_error">同步错误</string>
    <string name="sign_in">登入</string>
    <string name="sign_out">登出</string>
    <string name="manual_sync_only">仅手动同步</string>
-   <string name="wifi_sync_only">Wifi同步</string>
-   <string name="sync_google_drive">同步（谷歌驱动器）</string>
+   <string name="wifi_sync_only">仅WiFi同步</string>
+   <string name="sync_google_drive">同步谷歌云端硬盘</string>
    <string name="single_tap_to_select_text">单击以选择文本</string>
-   <string name="sync_book">同步一本书</string>
+   <string name="sync_book">同步书籍</string>
    <string name="sync">同步</string>
    <string name="synchronized_folder">同步文件夹</string>
 </resources>
