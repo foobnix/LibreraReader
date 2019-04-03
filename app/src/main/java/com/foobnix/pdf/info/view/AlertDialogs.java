@@ -128,10 +128,10 @@ public class AlertDialogs {
     }
 
     public static AlertDialog showViewDialog(final Activity c, final View child) {
-        return showViewDialog(c, child, null);
+        return showViewDialog(c, null, child);
     }
 
-    public static AlertDialog showViewDialog(final Activity c, final View child, Runnable ondissmiss) {
+    public static AlertDialog showViewDialog(final Activity c, Runnable ondissmiss, final View... childs) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setCancelable(true);
 
@@ -140,7 +140,10 @@ public class AlertDialogs {
         LinearLayout l = new LinearLayout(c);
         l.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
         l.setOrientation(LinearLayout.VERTICAL);
-        l.addView(child);
+
+        for (View child : childs) {
+            l.addView(child);
+        }
 
         scroll.addView(l);
         builder.setView(scroll);

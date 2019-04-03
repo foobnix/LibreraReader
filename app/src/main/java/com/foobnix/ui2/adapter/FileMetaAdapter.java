@@ -391,8 +391,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.path.setText(fileMeta.getPath());
 
             holder.starIcon.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
-            holder.imageCloud.setVisibility(Clouds.isLibreraSyncFile(fileMeta.getPath()) && !fileMeta.getPath().endsWith(Playlists.L_PLAYLIST) ? View.VISIBLE : View.GONE);
 
+            holder.imageCloud.setVisibility(View.GONE);
+            //holder.imageCloud.setImageResource(R.drawable.glyphicons_sync);
+            //TintUtil.setTintImageNoAlpha(holder.imageCloud, TintUtil.color);
+
+            //holder.imageCloud.setVisibility(Clouds.isLibreraSyncFile(fileMeta.getPath()) && !fileMeta.getPath().endsWith(Playlists.L_PLAYLIST) ? View.VISIBLE : View.GONE);
+
+            //Clouds.showHideCloudImage(holder.imageCloud, fileMeta.getPath());
 
             TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 

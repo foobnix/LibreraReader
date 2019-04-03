@@ -134,7 +134,7 @@
                     android:id="@+id/cloudImage"
                     android:layout_width="@dimen/wh_button_small"
                     android:layout_height="@dimen/wh_button_small"
-                    android:padding="4dip"
+                    android:padding="3dip"
                     android:src="@drawable/dropbox" />
 
                 <ImageView

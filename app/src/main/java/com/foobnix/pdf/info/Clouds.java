@@ -618,7 +618,7 @@ public class Clouds {
     }
 
     public static boolean isLibreraSyncFile(String path) {
-        if(TxtUtils.isEmpty(path)){
+        if (TxtUtils.isEmpty(path)) {
             return false;
         }
         return path.startsWith(AppProfile.SYNC_FOLDER_BOOKS.getPath()) || new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path)).exists();
@@ -630,7 +630,8 @@ public class Clouds {
 
         if (isLibreraSyncFile(path)) {
             img.setVisibility(View.VISIBLE);
-            img.setImageResource(R.mipmap.icon_pdf_reader);
+            img.setImageResource(R.drawable.glyphicons_748_synchronization);
+            TintUtil.setTintImageNoAlpha(img, TintUtil.cloudSyncColor);
             return true;
         } else {
             img.setVisibility(View.GONE);

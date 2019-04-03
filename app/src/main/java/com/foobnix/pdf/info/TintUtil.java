@@ -31,6 +31,7 @@ public class TintUtil {
     public static final int STROKE = Dips.dpToPx(1);
     public static int itAlpha = 245;
     public static int colorSecondTab = Color.parseColor("#ddffffff");// Color.parseColor("#9fd8bc");
+    public static int cloudSyncColor = Color.parseColor("#66bb6a");// Color.parseColor("#9fd8bc");
     public static int color = Color.parseColor(AppState.STYLE_COLORS.get(0));
     private static List<Drawable> drawables = new ArrayList<Drawable>();
     private static List<GradientDrawable> drawableFill = new ArrayList<GradientDrawable>();
@@ -50,7 +51,7 @@ public class TintUtil {
     static Random random = new Random();
 
     public static int randomColor() {
-        return Color.HSVToColor(new float[] { random.nextInt(360), random.nextFloat(), (3f + random.nextInt(4)) / 10f });
+        return Color.HSVToColor(new float[]{random.nextInt(360), random.nextFloat(), (3f + random.nextInt(4)) / 10f});
     }
 
     public static int randomColor(int hash) {
@@ -63,9 +64,9 @@ public class TintUtil {
             float value = Float.parseFloat(num.substring(2, 4)) / 100f;
 
             LOG.d("randomColor", hash, hue, sat, value);
-            return Color.HSVToColor(new float[] { hue, sat, Math.max(Math.min(0.1f, value), 0.5f) });
+            return Color.HSVToColor(new float[]{hue, sat, Math.max(Math.min(0.1f, value), 0.5f)});
         } catch (Exception e) {
-            return Color.HSVToColor(new float[] { new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f });
+            return Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
         }
     }
 
@@ -74,7 +75,7 @@ public class TintUtil {
     }
 
     public static int tintRandomColor() {
-        AppState.get().tintColor = Color.HSVToColor(new float[] { new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f });
+        AppState.get().tintColor = Color.HSVToColor(new float[]{new Random().nextInt(360), new Random().nextFloat(), (3f + new Random().nextInt(4)) / 10f});
         TintUtil.color = AppState.get().tintColor;
         return AppState.get().tintColor;
     }
@@ -108,7 +109,7 @@ public class TintUtil {
     public static void setBackgroundFillColorBottomRight(View textView, int color) {
         GradientDrawable drawable = (GradientDrawable) textView.getBackground().getCurrent();
         drawable.setColor(color);
-        drawable.setCornerRadii(new float[] { 0, 0, 0, 0, RADIUS * 2, RADIUS * 2, 0, 0 });
+        drawable.setCornerRadii(new float[]{0, 0, 0, 0, RADIUS * 2, RADIUS * 2, 0, 0});
     }
 
     public static void setStrokeColor(View textView, int color) {
@@ -143,7 +144,7 @@ public class TintUtil {
     public static Drawable setDrawableTint(Drawable drawable, int color) {
         try {
             drawable.setColorFilter(color, Mode.SRC_ATOP);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
         return drawable;
@@ -197,7 +198,9 @@ public class TintUtil {
 
     public static ImageView setTintImageWithAlpha(ImageView img, int color, int alpha) {
         img.setColorFilter(color, Mode.SRC_ATOP);
-        img.setAlpha(alpha);
+        if (alpha > 0) {
+            img.setAlpha(alpha);
+        }
         return img;
     }
 
@@ -265,8 +268,8 @@ public class TintUtil {
         pressed.setCornerRadius(RADIUS);
         pressed.setStroke(STROKE, Color.parseColor("#eeffffff"));
 
-        states.addState(new int[] { android.R.attr.state_pressed }, pressed);
-        states.addState(new int[] {}, normal);
+        states.addState(new int[]{android.R.attr.state_pressed}, pressed);
+        states.addState(new int[]{}, normal);
         if (Build.VERSION.SDK_INT >= 16) {
             txtView.setBackground(states);
         } else {

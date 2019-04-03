@@ -552,4 +552,5 @@
    <string name="sync">Sync</string>
    <string name="synchronized_folder">Synchronized folder</string>
    <string name="today">Today</string>
+   <string name="downloads">Downloads</string>
 </resources>

@@ -233,13 +233,20 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final CheckBox isSyncManualOnly = inflate.findViewById(R.id.isSyncManualOnly);
-        isSyncManualOnly.setChecked(BookCSS.get().isSyncManualOnly);
-        isSyncManualOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncManualOnly = isChecked);
+        inflate.findViewById(R.id.isEnableSyncSettings).setOnClickListener(v -> {
+            final CheckBox isSyncManualOnly = new CheckBox(getActivity());
+            isSyncManualOnly.setText(R.string.manual_sync_only);
+            isSyncManualOnly.setChecked(BookCSS.get().isSyncManualOnly);
+            isSyncManualOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncManualOnly = isChecked);
 
-        final CheckBox isSyncWifiOnly = inflate.findViewById(R.id.isSyncWifiOnly);
-        isSyncWifiOnly.setChecked(BookCSS.get().isSyncWifiOnly);
-        isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
+            final CheckBox isSyncWifiOnly = new CheckBox(getActivity());
+            isSyncWifiOnly.setText(R.string.wifi_sync_only);
+            isSyncWifiOnly.setChecked(BookCSS.get().isSyncWifiOnly);
+            isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
+
+            AlertDialogs.showViewDialog(getActivity(), null, isSyncManualOnly, isSyncWifiOnly);
+        });
+
 
         updateSyncInfo(null);
 

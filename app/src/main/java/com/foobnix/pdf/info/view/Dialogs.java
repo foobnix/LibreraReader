@@ -66,7 +66,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Dialogs {
 
-    public static void showSyncLOGDialog(Activity a){
+    public static void showSyncLOGDialog(Activity a) {
         TextView result = new TextView(a);
 
         final AtomicBoolean flag = new AtomicBoolean(true);
@@ -90,12 +90,12 @@ public class Dialogs {
         result.setMinWidth(Dips.dpToPx(1000));
         result.setMinHeight(Dips.dpToPx(1000));
 
-        AlertDialogs.showViewDialog(a, result, new Runnable() {
+        AlertDialogs.showViewDialog(a, new Runnable() {
             @Override
             public void run() {
                 flag.set(false);
             }
-        });
+        }, result);
     }
 
     public static void testWebView(final Activity a, final String path) {

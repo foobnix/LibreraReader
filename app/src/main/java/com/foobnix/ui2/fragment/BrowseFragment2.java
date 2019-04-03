@@ -301,24 +301,24 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-//                menu.getMenu().add("Librera").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-//
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        displayAnyPath(new File(AppProfile.DOWNLOADS_DIR, "Librera").getPath());
-//                        return false;
-//                    }
-//                }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        displayAnyPath(BookCSS.get().downlodsPath);
+                        return false;
+                    }
+                }).setIcon(R.drawable.glyphicons_591_folder_heart);
 
 
-                menu.getMenu().add(R.string.synchronized_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
                         return false;
                     }
-                }).setIcon(R.mipmap.icon_pdf_reader).active(true);
+                }).setIcon(R.drawable.glyphicons_sync);
 
                 // resources
 

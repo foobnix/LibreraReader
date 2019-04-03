@@ -345,28 +345,30 @@
             android:text="ivan@gmail.com" />
 
 
-        <CheckBox
-            android:id="@+id/isEnableSync"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enable" />
 
-        <CheckBox
-            android:id="@+id/isSyncManualOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:text="@string/manual_sync_only" />
-
-        <CheckBox
-            android:id="@+id/isSyncWifiOnly"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:text="@string/wifi_sync_only" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
 
 
+            <CheckBox
+                android:id="@+id/isEnableSync"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/enable" />
 
+
+            <ImageView
+                android:id="@+id/isEnableSyncSettings"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_137_cogwheel"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/section2"
@@ -1254,6 +1256,7 @@
         </LinearLayout>
 
         <FrameLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -1331,6 +1334,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"

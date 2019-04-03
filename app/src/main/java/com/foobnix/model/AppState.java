@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class AppState {
 
 
+
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 

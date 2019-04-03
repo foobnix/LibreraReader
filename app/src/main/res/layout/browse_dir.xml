@@ -56,7 +56,7 @@
                android:layout_weight="0"
                android:paddingLeft="4dip"
                android:paddingRight="4dip"
-               android:src="@mipmap/icon_pdf_reader" />
+               android:src="@drawable/glyphicons_748_synchronization" />
         </RelativeLayout>
 
         <LinearLayout
