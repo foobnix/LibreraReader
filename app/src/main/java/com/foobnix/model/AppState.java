@@ -755,6 +755,33 @@ public class AppState {
         return instance;
     }
 
+
+    public void defaults(Context a){
+        nameVerticalMode = a.getString(R.string.mode_vertical);
+        nameHorizontalMode = a.getString(R.string.mode_horizontally);
+        nameMusicianMode = a.getString(R.string.mode_musician);
+        musicText = a.getString(R.string.musician);
+
+        if (Dips.isEInk(a)) {
+            appTheme = AppState.THEME_INK;
+            isDayNotInvert = true;
+            isEditMode = true;
+            isRememberMode = false;
+            isReverseKeys = true;
+            isScrollAnimation = false;
+            tintColor = Color.BLACK;
+            bolderTextOnImage = true;
+            isEnableBC = true;
+            brigtnessImage = -50;
+            isZoomInOutWithLock = false;
+
+        }
+
+        if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
+            isShowWhatIsNewDialog = false;
+        }
+    }
+
     private boolean isLoaded = false;
     public boolean loadInit(final Context a) {
         boolean init = isLoaded;
@@ -762,30 +789,7 @@ public class AppState {
 
 
             if (!isLoaded) {
-                nameVerticalMode = a.getString(R.string.mode_vertical);
-                nameHorizontalMode = a.getString(R.string.mode_horizontally);
-                nameMusicianMode = a.getString(R.string.mode_musician);
-                musicText = a.getString(R.string.musician);
-
-                if (Dips.isEInk(a)) {
-                    AppState.get().appTheme = AppState.THEME_INK;
-                    AppState.get().isDayNotInvert = true;
-                    AppState.get().isEditMode = true;
-                    AppState.get().isRememberMode = false;
-                    AppState.get().isReverseKeys = true;
-                    AppState.get().isScrollAnimation = false;
-                    AppState.get().tintColor = Color.BLACK;
-                    AppState.get().bolderTextOnImage = true;
-                    AppState.get().isEnableBC = true;
-                    AppState.get().brigtnessImage = -50;
-                    isZoomInOutWithLock = false;
-
-                }
-
-                if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
-                    isShowWhatIsNewDialog = false;
-                }
-
+                defaults(a);
 
 //                try {
 //                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);

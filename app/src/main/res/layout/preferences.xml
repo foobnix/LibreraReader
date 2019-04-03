@@ -366,21 +366,7 @@
             android:text="@string/wifi_sync_only" />
 
 
-        <Button
-            android:id="@+id/onSyncStart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:text="Start Synchronization"
-            android:visibility="gone" />
 
-        <Button
-            android:id="@+id/onSyncDebug"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dip"
-            android:text="Show Debug log"
-            android:visibility="gone" />
 
         <TextView
             android:id="@+id/section2"

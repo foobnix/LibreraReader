@@ -16,6 +16,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -79,6 +80,7 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
+import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
@@ -89,10 +91,13 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class PrefFragment2 extends UIFragment {
@@ -167,6 +172,7 @@ public class PrefFragment2 extends UIFragment {
                 public void onClick(View v) {
                     BookCSS.get().isEnableSync = false;
                     BookCSS.get().syncRootID = "";
+                    AppTemp.get().syncTime = 0;
                     GFile.logout(getActivity());
                     updateSyncInfo(null);
                 }
@@ -181,6 +187,30 @@ public class PrefFragment2 extends UIFragment {
     TextView singIn, syncInfo, syncHeader;
     CheckBox isEnableSync;
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSync(MessageSync msg) {
+        if (AppTemp.get().syncTime > 0) {
+
+            final Date date = new Date(AppTemp.get().syncTime);
+            String format = "";
+            if (DateUtils.isToday(AppTemp.get().syncTime)) {
+                format = getString(R.string.today) + " " + DateFormat.getTimeInstance().format(date);
+            } else {
+                format = DateFormat.getDateTimeInstance().format(date);
+            }
+
+            String status = AppTemp.get().syncTimeStatus == MessageSync.STATE_SUCCESS ? getString(R.string.success) : getString(R.string.fail);
+            if (AppTemp.get().syncTimeStatus == MessageSync.STATE_VISIBLE) {
+                status = "...";
+            }
+
+            syncHeader.setText(getString(R.string.sync) + " (" + format + " - " + status + ")");
+        } else {
+            syncHeader.setText(R.string.sync_google_drive);
+
+        }
+    }
+
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -190,6 +220,8 @@ public class PrefFragment2 extends UIFragment {
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
         syncHeader = inflate.findViewById(R.id.syncHeader);
+        onSync(null);
+        syncHeader.setOnClickListener((in) -> Dialogs.showSyncLOGDialog(getActivity()));
 
 
         isEnableSync = inflate.findViewById(R.id.isEnableSync);
@@ -211,24 +243,7 @@ public class PrefFragment2 extends UIFragment {
 
         updateSyncInfo(null);
 
-        inflate.findViewById(R.id.onSyncStart).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (BooksService.isRunning) {
-                    Toast.makeText(getActivity(), "Service is running", Toast.LENGTH_SHORT).show();
-                } else {
-                    GFile.runSyncService(getActivity());
-                    Toast.makeText(getActivity(), "Start Synchronization", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        inflate.findViewById(R.id.onSyncDebug).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialogs.showSyncLOGDialog(getActivity());
 
-            }
-        });
         section8 = inflate.findViewById(R.id.section8);
         section9 = inflate.findViewById(R.id.section9);
 

@@ -120,9 +120,11 @@ public class BooksService extends IntentService {
 
                     try {
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
-
+                        AppTemp.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
                         GFile.sycnronizeAll(this);
 
+                        AppTemp.get().syncTime = System.currentTimeMillis();
+                        AppTemp.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
 
                         final File[] books = AppProfile.SYNC_FOLDER_BOOKS.listFiles();
@@ -133,6 +135,7 @@ public class BooksService extends IntentService {
                         }
 
                     } catch (Exception e) {
+                        AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                         LOG.e(e);
                     }

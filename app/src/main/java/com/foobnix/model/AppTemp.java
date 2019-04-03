@@ -33,6 +33,9 @@ public class AppTemp {
 
     public int readingMode = AppState.READING_MODE_SCROLL;
 
+    public long syncTime;
+    public int syncTimeStatus;
+
     public String hypenLang;
 
 

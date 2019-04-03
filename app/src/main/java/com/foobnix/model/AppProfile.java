@@ -128,7 +128,7 @@ public class AppProfile {
         return res;
     }
 
-    public static void ceateProfiles(String name) {
+    public static void ceateProfiles(Context c, String name) {
         name = name.replace(" ", "");
         final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
         file.mkdirs();
@@ -137,8 +137,12 @@ public class AppProfile {
         File state = new File(file, "app-State.json");
         File css = new File(file, "app-Css-[" + Build.MODEL.replace(" ", "_") + "].json");
 
-        IO.writeObjAsync(state, new AppState());
-        IO.writeObjAsync(css, new BookCSS());
+        final AppState appState = new AppState();
+        appState.defaults(c);
+        IO.writeObjAsync(state, appState);
+        final BookCSS bookCss = new BookCSS();
+        bookCss.resetToDefault(c);
+        IO.writeObjAsync(css, bookCss);
         LOG.d("Profile Created");
 
     }
@@ -328,7 +332,7 @@ public class AppProfile {
                 }
                 create.dismiss();
 
-                ceateProfiles(text);
+                ceateProfiles(a, text);
                 GFile.runSyncService(a);
 
                 onRefresh.run();

@@ -32,8 +32,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -426,7 +428,7 @@ public class GFile {
             }
 
 
-            debugOut += "\nBegin";
+            debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             LOG.d("Begin");
 
             sync(BookCSS.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
@@ -434,7 +436,8 @@ public class GFile {
             //updateLock(AppState.get().syncRootID, beginTime);
 
             LOG.d(TAG, "sycnronizeAll", "finished");
-            debugOut += "\nEnd";
+            debugOut += "\nEnd: " + DateFormat.getTimeInstance().format(new Date());
+            ;
 
         } catch (IOException e) {
             debugOut += "\nException: " + e.getMessage();
