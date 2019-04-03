@@ -42,11 +42,11 @@ public class AppProfile {
     public static final String PROFILE_PREFIX = "profile.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
+
+
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
-
-
+    public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
     public static File SYNC_FOLDER_PROFILE;
-    public static File SYNC_FOLDER_BOOKS;
 
     static SharedPreferences sp;
 
@@ -65,7 +65,7 @@ public class AppProfile {
     public static void init(Context c) {
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
-        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_PROFILE, "Books");
+        //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
 
         syncRecent = new File(SYNC_FOLDER_PROFILE, "app-Recent.json");
         syncFavorite = new File(SYNC_FOLDER_PROFILE, "app-Favorite.json");
