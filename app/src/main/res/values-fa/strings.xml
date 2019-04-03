@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">فقط همگام سازی فای</string>
    <string name="sync_google_drive">همگام سازی (درایو گوگل)</string>
    <string name="single_tap_to_select_text">تک متن را انتخاب کنید تا متن انتخاب شود</string>
+   <string name="sync_book">همگام سازی یک کتاب</string>
+   <string name="sync">همگام سازی</string>
+   <string name="synchronized_folder">پوشه همگام سازی شده</string>
 </resources>

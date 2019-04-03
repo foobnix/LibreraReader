@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Wifi sync เท่านั้น</string>
    <string name="sync_google_drive">ซิงค์ (google ไดรฟ์)</string>
    <string name="single_tap_to_select_text">แตะครั้งเดียวเพื่อเลือกข้อความ</string>
+   <string name="sync_book">ซิงค์หนังสือ</string>
+   <string name="sync">ซิงค์</string>
+   <string name="synchronized_folder">โฟลเดอร์ที่ซิงโครไนซ์</string>
 </resources>

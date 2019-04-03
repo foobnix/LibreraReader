@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Iba synchronizácia cez wifi</string>
    <string name="sync_google_drive">Synchronizácia (jednotka Google)</string>
    <string name="single_tap_to_select_text">Jedným klepnutím vyberte text</string>
+   <string name="sync_book">Synchronizovať knihu</string>
+   <string name="sync">Synchronizovať</string>
+   <string name="synchronized_folder">Synchronizovaný priečinok</string>
 </resources>

@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Chỉ đồng bộ wifi</string>
    <string name="sync_google_drive">Đồng bộ hóa (ổ đĩa google)</string>
    <string name="single_tap_to_select_text">Nhấn một lần để chọn văn bản</string>
+   <string name="sync_book">Đồng bộ một cuốn sách</string>
+   <string name="sync">Đồng bộ hóa</string>
+   <string name="synchronized_folder">Thư mục đồng bộ</string>
 </resources>

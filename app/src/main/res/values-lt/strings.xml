@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">„wifi“ sinchronizavimas</string>
    <string name="sync_google_drive">Sinchronizuoti („Google“ diskas)</string>
    <string name="single_tap_to_select_text">Vienu bakstelėjimu pasirinkite tekstą</string>
+   <string name="sync_book">Sinchronizuoti knygą</string>
+   <string name="sync">Sinchronizuoti</string>
+   <string name="synchronized_folder">Sinchronizuotas aplankas</string>
 </resources>

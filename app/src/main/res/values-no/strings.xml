@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Kun wifi-synkronisering</string>
    <string name="sync_google_drive">Synkronisere (google-stasjon)</string>
    <string name="single_tap_to_select_text">Enkelt trykk for å velge tekst</string>
+   <string name="sync_book">Synkroniser en bok</string>
+   <string name="sync">Synkron</string>
+   <string name="synchronized_folder">Synkronisert mappe</string>
 </resources>

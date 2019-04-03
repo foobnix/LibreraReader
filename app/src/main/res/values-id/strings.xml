@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Sinkronisasi wifi saja</string>
    <string name="sync_google_drive">Sinkronisasi (google drive)</string>
    <string name="single_tap_to_select_text">Ketuk sekali untuk memilih teks</string>
+   <string name="sync_book">Sinkronisasi buku</string>
+   <string name="sync">Sinkronkan</string>
+   <string name="synchronized_folder">Folder yang disinkronkan</string>
 </resources>

@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Wifi مزامنة فقط</string>
    <string name="sync_google_drive">مزامنة (محرك جوجل)</string>
    <string name="single_tap_to_select_text">بنقرة واحدة لتحديد النص</string>
+   <string name="sync_book">مزامنة كتاب</string>
+   <string name="sync">مزامنة</string>
+   <string name="synchronized_folder">مجلد متزامن</string>
 </resources>

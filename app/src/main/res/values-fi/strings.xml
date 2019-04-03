@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Wifi-synkronointi</string>
    <string name="sync_google_drive">Synkronointi (google-asema)</string>
    <string name="single_tap_to_select_text">Valitse teksti yhdellä napautuksella</string>
+   <string name="sync_book">Synkronoi kirja</string>
+   <string name="sync">Synkronoida</string>
+   <string name="synchronized_folder">Synkronoitu kansio</string>
 </resources>

@@ -178,7 +178,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    TextView singIn, syncInfo;
+    TextView singIn, syncInfo, syncHeader;
     CheckBox isEnableSync;
 
     @Override
@@ -189,6 +189,7 @@ public class PrefFragment2 extends UIFragment {
 
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
+        syncHeader = inflate.findViewById(R.id.syncHeader);
 
 
         isEnableSync = inflate.findViewById(R.id.isEnableSync);

@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Kusawazisha wifi tu</string>
    <string name="sync_google_drive">Kusawazisha (google drive)</string>
    <string name="single_tap_to_select_text">Bomba moja ili kuchagua maandishi</string>
+   <string name="sync_book">Kusawazisha kitabu</string>
+   <string name="sync">Kusawazisha</string>
+   <string name="synchronized_folder">Folda iliyosawazishwa</string>
 </resources>

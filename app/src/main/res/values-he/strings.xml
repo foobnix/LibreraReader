@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">סינכרון WiFi בלבד - -</string>
    <string name="sync_google_drive">סנכרון (כונן Google)</string>
    <string name="single_tap_to_select_text">הקש אחת כדי לבחור טקסט</string>
+   <string name="sync_book">לסנכרן ספר</string>
+   <string name="sync">סינכרון</string>
+   <string name="synchronized_folder">תיקייה מסונכרנת - -</string>
 </resources>

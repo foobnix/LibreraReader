@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Bara wifi-synkronisering</string>
    <string name="sync_google_drive">Synkronisera (google-enhet)</string>
    <string name="single_tap_to_select_text">Tryck en gång för att välja text</string>
+   <string name="sync_book">Synkronisera en bok</string>
+   <string name="sync">Synkronisera</string>
+   <string name="synchronized_folder">Synkroniserad mapp</string>
 </resources>

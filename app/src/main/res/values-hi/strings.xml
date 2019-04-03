@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">वाईफाई सिंक केवल</string>
    <string name="sync_google_drive">सिंक (Google ड्राइव)</string>
    <string name="single_tap_to_select_text">पाठ का चयन करने के लिए एकल-टैप करें</string>
+   <string name="sync_book">एक किताब सिंक करें</string>
+   <string name="sync">सिंक</string>
+   <string name="synchronized_folder">सिंक्रनाइज़ फ़ोल्डर</string>
 </resources>

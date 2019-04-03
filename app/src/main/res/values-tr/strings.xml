@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Yalnızca wifi senkronizasyonu</string>
    <string name="sync_google_drive">Senkronizasyon (google drive)</string>
    <string name="single_tap_to_select_text">Metni seçmek için tek dokunuşla</string>
+   <string name="sync_book">Bir kitabı senkronize et</string>
+   <string name="sync">Senkronize etmek</string>
+   <string name="synchronized_folder">Senkronize klasör</string>
 </resources>

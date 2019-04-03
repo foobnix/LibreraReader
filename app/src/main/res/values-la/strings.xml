@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">WiFi non sync</string>
    <string name="sync_google_drive">Sync (coegi Google)</string>
    <string name="single_tap_to_select_text">Unum eligere text-ICTUS</string>
+   <string name="sync_book">Sync liber</string>
+   <string name="sync">Sync</string>
+   <string name="synchronized_folder">Synchronized folder</string>
 </resources>

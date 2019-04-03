@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Csak wifi szinkronizálás</string>
    <string name="sync_google_drive">Szinkronizálás (google meghajtó)</string>
    <string name="single_tap_to_select_text">Egyetlen gombbal válassza ki a szöveget</string>
+   <string name="sync_book">Szinkronizál egy könyvet</string>
+   <string name="sync">Szinkronizál</string>
+   <string name="synchronized_folder">Szinkronizált mappát</string>
 </resources>

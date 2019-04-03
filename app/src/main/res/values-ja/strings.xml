@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">WiFi同期のみ</string>
    <string name="sync_google_drive">同期（Googleドライブ）</string>
    <string name="single_tap_to_select_text">シングルタップでテキストを選択</string>
+   <string name="sync_book">本を同期する</string>
+   <string name="sync">同期する</string>
+   <string name="synchronized_folder">同期フォルダ</string>
 </resources>

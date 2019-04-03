@@ -292,7 +292,7 @@ public class ShareDialog {
 
         final boolean isSyncronized = Clouds.isLibreraSyncFile(file);
         if (!isSyncronized) {
-            items.add("Add to GDrive (Sync)");
+            items.add(a.getString(R.string.sync_book));
         }
 
         if (isShowInfo) {

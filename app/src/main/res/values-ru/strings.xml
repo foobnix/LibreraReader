@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Только Wi-Fi синхронизации</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
    <string name="single_tap_to_select_text">Одно касание для выбора текста</string>
+   <string name="sync_book">Синхронизировать книгу</string>
+   <string name="sync">Синхронизировать</string>
+   <string name="synchronized_folder">Синхронизированная папка</string>
 </resources>

@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Alleen wifi-synchronisatie</string>
    <string name="sync_google_drive">Sync (google schijf)</string>
    <string name="single_tap_to_select_text">Tik één keer om tekst te selecteren</string>
+   <string name="sync_book">Een boek synchroniseren</string>
+   <string name="sync">Synchroniseren</string>
+   <string name="synchronized_folder">Gesynchroniseerde map</string>
 </resources>

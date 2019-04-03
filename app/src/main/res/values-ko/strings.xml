@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Wi-Fi 동기화 만</string>
    <string name="sync_google_drive">동기화 (Google 드라이브)</string>
    <string name="single_tap_to_select_text">텍스트를 선택하려면 한 번 탭하십시오.</string>
+   <string name="sync_book">책을 동기화하다</string>
+   <string name="sync">동조</string>
+   <string name="synchronized_folder">동기화 된 폴더</string>
 </resources>

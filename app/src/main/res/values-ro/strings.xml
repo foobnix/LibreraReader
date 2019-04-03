@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Wifi sincronizare numai</string>
    <string name="sync_google_drive">Sincronizare (unitate Google)</string>
    <string name="single_tap_to_select_text">Atingeți singur pentru a selecta textul</string>
+   <string name="sync_book">Sincronizați o carte</string>
+   <string name="sync">Sincronizați</string>
+   <string name="synchronized_folder">Folderul sincronizat</string>
 </resources>

@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Solo sincronizzazione wifi</string>
    <string name="sync_google_drive">Sincronizzazione (google drive)</string>
    <string name="single_tap_to_select_text">Tocca un solo tocco per selezionare il testo</string>
+   <string name="sync_book">Sincronizza un libro</string>
+   <string name="sync">Sincronizzare</string>
+   <string name="synchronized_folder">Cartella sincronizzata</string>
 </resources>

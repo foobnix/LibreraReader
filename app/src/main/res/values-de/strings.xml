@@ -548,4 +548,7 @@
    <string name="wifi_sync_only">Nur WiFi-Synchronisierung</string>
    <string name="sync_google_drive">Sync (Google-Laufwerk)</string>
    <string name="single_tap_to_select_text">Tippen Sie einmal, um Text auszuwählen</string>
+   <string name="sync_book">Ein Buch synchronisieren</string>
+   <string name="sync">Sync</string>
+   <string name="synchronized_folder">Synchronisierter Ordner</string>
 </resources>
