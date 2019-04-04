@@ -60,18 +60,17 @@
             android:gravity="center"
             android:padding="10dip">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:src="@drawable/googleg_standard_color_18" />
+            <TextView
+                android:id="@+id/profileLetter"
+                style="@style/textCircle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/onProfile"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
                 android:text="BETA"
                 android:textSize="16sp" />
 
@@ -312,8 +311,8 @@
                 android:layout_height="@dimen/wh_button_small"
                 android:layout_weight="0"
                 android:padding="2dip"
-                android:visibility="gone"
-                android:src="@drawable/gdrive" />
+                android:src="@drawable/gdrive"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/syncHeader"
@@ -338,25 +337,24 @@
 
 
         <TextView
-            android:padding="4dip"
             android:id="@+id/syncInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="4dip"
             android:text="ivan@gmail.com" />
-
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
 
 
             <CheckBox
                 android:id="@+id/isEnableSync"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/enable" />
 
 
@@ -1256,9 +1254,9 @@
         </LinearLayout>
 
         <FrameLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <CheckBox
                 android:id="@+id/isAutomaticExport"
@@ -1334,11 +1332,11 @@
 
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

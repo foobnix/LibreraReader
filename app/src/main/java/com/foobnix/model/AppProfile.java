@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -41,7 +43,6 @@ import java.util.List;
 public class AppProfile {
     public static final String PROFILE_PREFIX = "profile.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-
 
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
@@ -81,6 +82,21 @@ public class AppProfile {
         load(c);
 
 
+    }
+
+    public static Drawable getProfileColorDrawable(Context c, String profile) {
+        GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
+        AppState s = new AppState();
+        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/app-State.json");
+        IO.readObj(syncState, s);
+        background.setColor(s.tintColor);
+        return background;
+    }
+
+    public static Drawable getProfileColorDrawable(Context c, int color) {
+        GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
+        background.setColor(color);
+        return background;
     }
 
     public static void load(Context c) {
@@ -125,6 +141,7 @@ public class AppProfile {
                 res.add(file.getName().replace(PROFILE_PREFIX, ""));
             }
         }
+        Collections.sort(res, String.CASE_INSENSITIVE_ORDER);
         return res;
     }
 

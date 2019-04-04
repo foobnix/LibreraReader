@@ -16,6 +16,13 @@
         android:src="@drawable/document" />
 
     <TextView
+        android:id="@+id/profileLetter"
+        style="@style/textCircle"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+         />
+
+    <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

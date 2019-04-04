@@ -106,7 +106,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi";
-    private TextView curBrightness, themeColor;
+    private TextView curBrightness, themeColor,  profileLetter;
     private CheckBox isRememberDictionary;
 
     @Override
@@ -139,6 +139,12 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section7, TintUtil.color);
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
         TintUtil.setBackgroundFillColor(section9, TintUtil.color);
+
+        if(profileLetter!=null) {
+            final String p = AppProfile.getCurrent(getActivity());
+            profileLetter.setText(TxtUtils.getFirstLetter(p));
+            profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
+        }
 
     }
 
@@ -1946,14 +1952,24 @@ public class PrefFragment2 extends UIFragment {
 
 
         TextView onProfile = inflate.findViewById(R.id.onProfile);
-        onProfile.setText(AppProfile.getCurrent(getActivity()));
+
+        profileLetter = inflate.findViewById(R.id.profileLetter);
+
+
+        final String p = AppProfile.getCurrent(getActivity());
+
+        profileLetter.setText(TxtUtils.getFirstLetter(p));
+        profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), p));
+
+        onProfile.setText(p);
         TxtUtils.underlineTextView(onProfile);
         onProfile.setOnClickListener(v -> {
             MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
 
             List<String> all = AppProfile.getAllProfiles();
             for (String profile : all) {
-                popup.getMenu().add(profile).setOnMenuItemClickListener(menu -> {
+
+                popup.getMenu().setDrawable(TxtUtils.getFirstLetter(profile), AppProfile.getProfileColorDrawable(getActivity(), profile)).add(profile).setOnMenuItemClickListener(menu -> {
                     {
                         if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
 

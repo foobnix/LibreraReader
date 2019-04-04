@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
@@ -53,6 +54,8 @@ public class MyPopupMenu {
     public class Menu {
         String stringRes;
         int iconRes;
+        Drawable drawable;
+        String letter;
         OnMenuItemClickListener click;
         OnMenuItemClickListener onLongClick;
         private String fontPath;
@@ -76,6 +79,12 @@ public class MyPopupMenu {
 
         public Menu setIcon(int res) {
             this.iconRes = res;
+            return this;
+        }
+
+        public Menu setDrawable(String letter, Drawable d) {
+            this.drawable = d;
+            this.letter = letter;
             return this;
         }
 
@@ -139,6 +148,9 @@ public class MyPopupMenu {
             @Override
             public void populateView(View layout, int position, final Menu item) {
                 TextView textView = (TextView) layout.findViewById(R.id.text1);
+                TextView profileLetter = (TextView) layout.findViewById(R.id.profileLetter);
+                profileLetter.setVisibility(View.GONE);
+
                 textView.setText(item.stringRes);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
@@ -169,6 +181,11 @@ public class MyPopupMenu {
                             }
                         }
                     }
+                } else if (item.drawable != null) {
+                    profileLetter.setVisibility(View.VISIBLE);
+                    profileLetter.setText(item.letter);
+                    profileLetter.setBackgroundDrawable(item.drawable);
+                    imageView.setVisibility(View.GONE);
                 } else {
                     imageView.setVisibility(View.GONE);
                 }
