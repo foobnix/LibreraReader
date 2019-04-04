@@ -1819,17 +1819,24 @@ public class ExtUtils {
         return encoding == null ? "UTF-8" : encoding;
     }
 
-    public static void deleteRecursive(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory()) {
-            final File[] files = fileOrDirectory.listFiles();
-            if (files == null) {
-                return;
+    public static boolean deleteRecursive(File fileOrDirectory) {
+        try {
+            LOG.d("deleteRecursive", fileOrDirectory);
+            if (fileOrDirectory.isDirectory()) {
+                final File[] files = fileOrDirectory.listFiles();
+                if (files == null) {
+                    return true;
+                }
+                for (File child : files) {
+                    deleteRecursive(child);
+                }
             }
-            for (File child : files) {
-                deleteRecursive(child);
-            }
+            fileOrDirectory.delete();
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
         }
-        fileOrDirectory.delete();
+        return true;
     }
 
 }

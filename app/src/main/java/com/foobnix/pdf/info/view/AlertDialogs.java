@@ -2,11 +2,13 @@ package com.foobnix.pdf.info.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -14,6 +16,10 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 
 public class AlertDialogs {
+
+    public static void showResultToasts(Context c, boolean result) {
+        Toast.makeText(c, result ? R.string.success : R.string.fail, Toast.LENGTH_LONG).show();
+    }
 
     public static void openUrl(final Activity c, final String url) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);

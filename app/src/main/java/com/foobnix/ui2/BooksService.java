@@ -258,7 +258,7 @@ public class BooksService extends IntentService {
                     meta.setIsSearchBook(true);
                 }
 
-                itemsMeta.addAll(AppData.get().getAllRecent());
+
                 itemsMeta.addAll(AppData.get().getAllFavoriteFiles());
                 itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
 
