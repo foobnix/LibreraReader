@@ -733,11 +733,7 @@ public class Fb2Extractor extends BaseExtractor {
                     value = value.replaceAll("^[0-9]+", "").trim();
 
                     out.append(" <t>[");
-                    if (AppState.get().appTheme == AppState.THEME_INK) {
-                        out.append("<i>" + value + "</i>");
-                    } else {
-                        out.append(value);
-                    }
+                    out.append(value);
                     out.append("]</t>");
                 }
             }

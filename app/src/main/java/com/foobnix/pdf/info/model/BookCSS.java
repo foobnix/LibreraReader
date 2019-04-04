@@ -610,9 +610,9 @@ public class BookCSS {
         builder.append("}");
 
         if (AppState.get().isDayNotInvert) {
-            builder.append("t{color:" + linkColorDay + " !important;}");
+            builder.append("t{color:" + linkColorDay + " !important; font-style: italic;}");
         } else {
-            builder.append("t{color:" + linkColorNight + " !important;}");
+            builder.append("t{color:" + linkColorNight + " !important; font-style: italic;}");
         }
 
         if (documentStyle == STYLES_DOC_AND_USER || documentStyle == STYLES_ONLY_USER) {
