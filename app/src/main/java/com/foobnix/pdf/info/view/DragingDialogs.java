@@ -3198,6 +3198,8 @@ public class DragingDialogs {
                     }
                 });
 
+
+
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
                 isShowLongBackDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3208,19 +3210,46 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
+                highlightByLetters.setChecked(AppState.get().selectingByLetters);
+                highlightByLetters.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().selectingByLetters = isChecked;
+                    }
+                });
+
+
+
+                CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
+                isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
+                isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
+                isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
+
+
                 CheckBox isAllowTextSelection = (CheckBox) inflate.findViewById(R.id.isAllowTextSelection);
                 isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
                 isAllowTextSelection.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     AppState.get().isAllowTextSelection = isChecked;
                     if (isChecked) {
                         TempHolder.get().isAllowTextSelectionFirstTime = true;
-                    }
-                });
+                    }else{
+                        AppState.get().selectingByLetters = false;
+                        AppState.get().isSelectTexByTouch = false;
+                        isSelectTexByTouch.setChecked(false);
+                        highlightByLetters.setChecked(false);
 
-                CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
-                isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
-                isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
-                isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
+
+                    }
+
+                    highlightByLetters.setEnabled(isChecked);
+                    isSelectTexByTouch.setEnabled(isChecked);
+
+                });
+                highlightByLetters.setEnabled(AppState.get().isAllowTextSelection);
+                isSelectTexByTouch.setEnabled(AppState.get().isAllowTextSelection);
+
 
                 CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
@@ -3373,15 +3402,7 @@ public class DragingDialogs {
 
                 isSaveAnnotatationsAutomatically.setVisibility(!(AppTemp.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
-                highlightByLetters.setChecked(AppState.get().selectingByLetters);
-                highlightByLetters.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().selectingByLetters = isChecked;
-                    }
-                });
 
                 CheckBox isCutRTL = (CheckBox) inflate.findViewById(R.id.isCutRTL);
                 isCutRTL.setChecked(AppState.get().isCutRTL);
