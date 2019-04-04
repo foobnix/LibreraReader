@@ -157,11 +157,20 @@ public class ExportConverter {
 
         ZipParameters parameters = new ZipParameters();
 
-        parameters.setIncludeRootFolder(false);
+        //parameters.setIncludeRootFolder(false);
         parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
         parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
 
-        zipFile.addFolder(input, parameters);
+        final File[] files = input.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.getName().startsWith(AppProfile.PROFILE_PREFIX)) {
+                    zipFile.addFolder(file, parameters);
+                }
+            }
+        }
+
+
         //zipFile.createZipFile(input, parameters);
     }
 
