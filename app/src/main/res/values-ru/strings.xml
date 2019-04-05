@@ -79,7 +79,7 @@
    <string name="day">День</string>
    <string name="nigth">Ночь</string>
    <string name="___READING___SETTINGS___SECTION___"></string>
-   <string name="reading_settings">Настройки чтения</string>
+   <string name="reading_settings">Настр-ки чтения</string>
    <string name="folder_with_fonts">Папка со шрифтами</string>
    <string name="text_align">Выравнивать текст</string>
    <string name="width">По ширине</string>
@@ -123,7 +123,7 @@
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
-   <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (AMOLED-адаптация)</string>
+   <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (OLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Не открывать окно редактирования комментариев/пометок при тапах в области их расположения</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
@@ -542,12 +542,12 @@
    <string name="main">Главный</string>
    <string name="do_you_want_to_switch_profile_">Переключиться на другой профиль?</string>
    <string name="sync_error">Ошибка синхронизации</string>
-   <string name="sign_in">Войти в систему</string>
+   <string name="sign_in">Вход в аккаунт</string>
    <string name="sign_out">Выход</string>
-   <string name="manual_sync_only">Только ручная синхронизация</string>
-   <string name="wifi_sync_only">Только Wi-Fi синхронизации</string>
+   <string name="manual_sync_only">Cинхронизировать только вручную</string>
+   <string name="wifi_sync_only">Синхронизировать только по сети Wi-Fi</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
-   <string name="single_tap_to_select_text">Одно касание для выделения текста</string>
+   <string name="single_tap_to_select_text">Выделять текст коротким тапом вместо длинного</string>
    <string name="sync_book">Синхронизировать книгу</string>
    <string name="sync">Синхронизация</string>
    <string name="synchronized_folder">Синхронизированная папка</string>
