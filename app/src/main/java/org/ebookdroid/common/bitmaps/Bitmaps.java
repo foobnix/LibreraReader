@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Build;
+import android.graphics.Region;
 
 import com.foobnix.android.utils.LOG;
 
@@ -209,8 +209,9 @@ public class Bitmaps {
                 return false;
             }
 
-            //final Rect orig = canvas.getClipBounds();
-            //canvas.clipRect(cr.left - vb.x, cr.top - vb.y, cr.right - vb.x, cr.bottom - vb.y, Op.INTERSECT);
+            final Rect orig = canvas.getClipBounds();
+            canvas.clipRect(cr.left - vb.x, cr.top - vb.y, cr.right - vb.x, cr.bottom - vb.y, Region.Op.INTERSECT);
+            //canvas.drawColor(Color.GREEN);
 
             final float offsetX = tr.left - vb.x;
             final float offsetY = tr.top - vb.y;
@@ -253,12 +254,7 @@ public class Bitmaps {
                 rect.bottom += sizeY;
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-               // canvas.clipRect(orig, Op.REPLACE);
-            } else {
-                //canvas.clipRect(orig, Op.REPLACE);
-            }
-            //canvas.clipRect(orig, Op.DIFFERENCE);
+            canvas.clipRect(orig, Region.Op.REPLACE);
             return res;
         } finally {
             lock.readLock().unlock();

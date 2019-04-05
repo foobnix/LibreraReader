@@ -22,6 +22,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
@@ -265,6 +266,8 @@ public class ShareDialog {
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
+        final boolean isRemovedFromLibrary = AppData.get().getAllExcluded().contains(file.getPath());
+
         if (isMainTabs) {
             if (canDelete) {
                 items.add(a.getString(R.string.delete));
@@ -272,7 +275,9 @@ public class ShareDialog {
             if (canCopy) {
                 items.add(a.getString(R.string.copy));
             }
-            items.add(a.getString(R.string.remove_from_library));
+            if (!isRemovedFromLibrary) {
+                items.add(a.getString(R.string.remove_from_library));
+            }
         }
         if (!isMainTabs) {
             items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
@@ -370,15 +375,18 @@ public class ShareDialog {
                 } else if (isMainTabs && canCopy && which == i++) {
                     TempHolder.get().copyFromPath = file.getPath();
                     Toast.makeText(a, R.string.copy, Toast.LENGTH_SHORT).show();
-                } else if (isMainTabs && which == i++) {
+                } else if (isMainTabs && !isRemovedFromLibrary && which == i++) {
                     FileMeta load = AppDB.get().load(file.getPath());
                     if (load != null) {
-                        //load.setIsSearchBook(false);
-                        //load.setIsStar(false);
-                        //load.setTag(null);
-                        AppDB.get().delete(load);
-                        AppData.get().addExclue(load.getPath());
+                        load.setIsSearchBook(false);
+                        load.setIsStar(false);
+                        load.setTag(null);
+                        AppDB.get().update(load);
+
                     }
+                    AppData.get().removeFavorite(new SimpleMeta(load.getPath()));
+                    AppData.get().addExclue(load.getPath());
+
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (!isMainTabs && which == i++) {
                     if (dc != null) {

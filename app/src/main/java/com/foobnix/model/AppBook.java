@@ -16,7 +16,7 @@ public class AppBook implements CurrentPageListener {
     public boolean cp = false; //crop pages
     public boolean dp = false; //double pages
     public boolean dc = false; //double pages cover
-    public boolean l = false; //locked
+    public boolean l = true; //locked
 
     public float x; //offsetX
     public float y; //offsetY
@@ -26,11 +26,10 @@ public class AppBook implements CurrentPageListener {
     public int d = 0;//delta
     public float p; //percent
     @Objects.IgnoreCalculateHashCode
-    public long h;
+    public long h;//hash
 
 
     public AppBook() {
-
     }
 
     public AppBook(final String path) {

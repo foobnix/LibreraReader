@@ -1991,6 +1991,7 @@ public class PrefFragment2 extends UIFragment {
             popup.show();
 
         });
+        profileLetter.setOnClickListener(v -> onProfile.performClick());
 
         inflate.findViewById(R.id.onProfileEdit).setOnClickListener(v -> {
                     AppProfile.showDialog(getActivity(), profile -> {

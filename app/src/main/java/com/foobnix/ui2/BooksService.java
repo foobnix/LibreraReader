@@ -34,7 +34,6 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -240,22 +239,17 @@ public class BooksService extends IntentService {
                 AppTemp.get().searchDate = System.currentTimeMillis();
 
 
-                final List<String> allExcluded = AppData.get().getAllExcluded();
-                if (!TxtUtils.isListEmpty(allExcluded)) {
-                    final Iterator<FileMeta> iterator = itemsMeta.iterator();
-                    while (iterator.hasNext()) {
-                        final FileMeta next = iterator.next();
-                        if (allExcluded.contains(next.getPath())) {
-                            iterator.remove();
-                            LOG.d("Remove excluded", next.getPath());
-                        }
-
-                    }
-                }
-
-
                 for (FileMeta meta : itemsMeta) {
                     meta.setIsSearchBook(true);
+                }
+
+                final List<String> allExcluded = AppData.get().getAllExcluded();
+                if (TxtUtils.isListNotEmpty(allExcluded)) {
+                    for (FileMeta meta : itemsMeta) {
+                        if (allExcluded.contains(meta.getPath())) {
+                            meta.setIsSearchBook(false);
+                        }
+                    }
                 }
 
 
