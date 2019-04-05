@@ -252,6 +252,9 @@ public class MainTabs2 extends AdsFragmentActivity {
                 Dialogs.showSyncLOGDialog(MainTabs2.this);
             }
         });
+        fab.setBackgroundResource(R.drawable.bg_circular);
+        TintUtil.setDrawableTint(fab.getBackground().getCurrent(),TintUtil.cloudSyncColor);
+
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

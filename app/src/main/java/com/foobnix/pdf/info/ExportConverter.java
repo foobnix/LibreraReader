@@ -18,11 +18,14 @@ import net.lingala.zip4j.util.Zip4jConstants;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class ExportConverter {
@@ -180,6 +183,59 @@ public class ExportConverter {
         LOG.d("UnZipFolder", input, output);
     }
 
+    public static void mergeBookProgrss(File temp, File original) throws JSONException {
 
+        JSONObject f1 = IO.readJsonObject(temp);
+        JSONObject f2 = IO.readJsonObject(original);
+
+
+        final Iterator<String> keys = f1.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            if (!f2.has(key)) {
+                f2.put(key, f1.getJSONObject(key));
+                LOG.d("add-book", key);
+
+            } else {
+                final double p1 = f1.getJSONObject(key).optDouble("p", 0.0);
+                final double p2 = f2.getJSONObject(key).optDouble("p", 0.0);
+                double max = Math.max(p1, p2);
+
+                LOG.d("Merge-book", key, p1, p2, max);
+                f2.getJSONObject(key).put("p", max);
+            }
+        }
+
+        IO.writeObjAsync(original, f2);
+        temp.delete();
+        LOG.d("Merge-", temp, original);
+    }
+
+    public static SimpleMeta merge(SimpleMeta s1, SimpleMeta s2) {
+        if (s1.time > s2.time) {
+            return s1;
+        }
+        return s2;
+    }
+
+    public static void mergeSimpleMeta(File temp, File original) {
+        JSONObject f1 = IO.readJsonObject(temp);
+        JSONObject f2 = IO.readJsonObject(original);
+
+        List<SimpleMeta> res2 = new ArrayList<>();
+        AppData.readSimpleMeta(res2, original, SimpleMeta.class);
+
+
+        List<SimpleMeta> res1 = new ArrayList<>();
+        AppData.readSimpleMeta(res1, temp, SimpleMeta.class);
+
+        for (SimpleMeta s : res1) {
+            if (!res2.contains(s)) {
+                res2.add(s);
+                LOG.d("Merge-book", s.getPath());
+            }
+        }
+        AppData.writeSimpleMeta(res2, original);
+        LOG.d("Merge-", temp, original);
+    }
 }
-

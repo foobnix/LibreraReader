@@ -554,5 +554,6 @@
    <string name="today">Today</string>
    <string name="downloads">Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Delete the directory all the files in the directory?</string>
+    <string name="synchronized_books">Synchronized Books</string>
 
 </resources>

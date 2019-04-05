@@ -108,7 +108,6 @@
             android:layout_width="@dimen/wh_button_small"
             android:layout_height="@dimen/wh_button_small"
             android:layout_gravity="center_horizontal"
-            android:indeterminateTint="@color/white"
             android:indeterminateDrawable="@drawable/my_progress" />
 
 
