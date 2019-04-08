@@ -141,6 +141,15 @@ public class TintUtil {
         }
     }
 
+    public static Drawable setDrawableTint(Drawable drawable, int color, int alpha) {
+        try {
+            drawable.setColorFilter(color, Mode.SRC_ATOP);
+            drawable.setAlpha(alpha);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return drawable;
+    }
     public static Drawable setDrawableTint(Drawable drawable, int color) {
         try {
             drawable.setColorFilter(color, Mode.SRC_ATOP);
@@ -149,6 +158,7 @@ public class TintUtil {
         }
         return drawable;
     }
+
 
     public static void addTingBg(View textView) {
         if (!drawables1.contains(textView)) {

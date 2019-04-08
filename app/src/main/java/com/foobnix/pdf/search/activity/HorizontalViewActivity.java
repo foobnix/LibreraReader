@@ -108,6 +108,7 @@ import com.foobnix.ui2.MyContextWrapper;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -506,7 +507,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isDouble = false;
                         AppState.get().isDoubleCoverAlone = false;
                         AppState.get().isCut = false;
+
                         SettingsManager.getBookSettings().updateFromAppState();
+                        SharedBooks.save(SettingsManager.getBookSettings());
+
 
                         if (dc.isTextFormat()) {
                             nullAdapter();
@@ -531,7 +535,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppState.get().isDouble = true;
                         AppState.get().isCut = false;
                         AppState.get().isDoubleCoverAlone = false;
+
                         SettingsManager.getBookSettings().updateFromAppState();
+                        SharedBooks.save(SettingsManager.getBookSettings());
+
+
                         if (dc.isTextFormat()) {
                             nullAdapter();
                             dc.restartActivity();
@@ -557,6 +565,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCut = false;
                             AppState.get().isDoubleCoverAlone = true;
                             SettingsManager.getBookSettings().updateFromAppState();
+                            SharedBooks.save(SettingsManager.getBookSettings());
+
+
                             if (dc.isTextFormat()) {
                                 nullAdapter();
                                 dc.restartActivity();
@@ -583,6 +594,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppState.get().isCut = true;
                             // AppState.get().isCrop = false;
                             SettingsManager.getBookSettings().updateFromAppState();
+                            SharedBooks.save(SettingsManager.getBookSettings());
+
                             TTSEngine.get().stop();
 
                             // onCrop.underline(AppState.get().isCrop);
@@ -1095,6 +1108,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         AppState.get().isDoubleCoverAlone = false;
         AppState.get().isCut = false;
         SettingsManager.getBookSettings().updateFromAppState();
+        SharedBooks.save(SettingsManager.getBookSettings());
+
         nullAdapter();
         dc.restartActivity();
     }
@@ -1326,6 +1341,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             createAdapter();
 
             loadUI();
+            dc.onGoToPage(dc.getPageFromUriSingleRun() + 1);
         }
     };
     Runnable reloadDocBrigntness = new Runnable() {

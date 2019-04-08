@@ -859,7 +859,7 @@ public class AppState {
 
         int currentHash = Objects.hashCode(instance, false);
         if (currentHash != instance.hashCode) {
-            LOG.d("Objects-save", "SAVE AppState");
+            LOG.d("Objects-save", "SAVE AppState isDouble:", instance.isDouble);
             hashCode = currentHash;
             IO.writeObjAsync(AppProfile.syncState, instance);
         }

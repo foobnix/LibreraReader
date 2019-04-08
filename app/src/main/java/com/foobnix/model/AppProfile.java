@@ -43,6 +43,8 @@ import java.util.List;
 public class AppProfile {
     public static final String PROFILE_PREFIX = "profile.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    public static final String APP_PROGRESS_JSON = "app-Progress.json";
+    public static final String APP_RECENT_JSON = "app-Recent.json";
 
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
@@ -68,12 +70,12 @@ public class AppProfile {
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
 
-        syncRecent = new File(SYNC_FOLDER_PROFILE, "app-Recent.json");
+        syncRecent = new File(SYNC_FOLDER_PROFILE, APP_RECENT_JSON);
         syncFavorite = new File(SYNC_FOLDER_PROFILE, "app-Favorite.json");
         syncExclude = new File(SYNC_FOLDER_PROFILE, "app-Exclude.json");
         syncTags = new File(SYNC_FOLDER_PROFILE, "app-Tags.json");
         syncPlaylist = new File(SYNC_FOLDER_PROFILE, "playlists");
-        syncProgress = new File(SYNC_FOLDER_PROFILE, "app-Progress.json");
+        syncProgress = new File(SYNC_FOLDER_PROFILE, APP_PROGRESS_JSON);
         syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, "app-Bookmarks.json");
 
         syncState = new File(SYNC_FOLDER_PROFILE, "app-State.json");
@@ -112,7 +114,7 @@ public class AppProfile {
 
     }
 
-    public static void save(Context a) {
+    public static synchronized void save(Context a) {
         DragingPopup.saveCache(a);
         PasswordState.get().save(a);
         AppState.get().save(a);
@@ -174,6 +176,7 @@ public class AppProfile {
                     final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
                     GFile.deleteRemoteFile(file);
                     ExtUtils.deleteRecursive(file);
+                    Thread.sleep(1000);
                     GFile.runSyncService(a);
                 } catch (Exception e) {
                     LOG.e(e);

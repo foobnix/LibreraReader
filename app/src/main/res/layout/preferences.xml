@@ -43,15 +43,6 @@
                 android:textSize="@dimen/text_subtitle"
                 android:visibility="visible" />
 
-            <ImageView
-                android:id="@+id/onProfileEdit"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:padding="8dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/white" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -59,6 +50,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dip">
+
+            <ImageView
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:padding="8dip"
+                android:visibility="invisible" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/profileLetter"
@@ -73,6 +75,19 @@
                 android:layout_height="wrap_content"
                 android:text="BETA"
                 android:textSize="16sp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/onProfileEdit"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_137_cogwheel"
+                android:tint="@color/tint_gray" />
 
 
         </LinearLayout>

@@ -27,6 +27,7 @@ public class Objects {
     public @interface IgnoreCalculateHashCode {
 
     }
+
     @Retention(RetentionPolicy.RUNTIME)
     public @interface SaveToSharedPreferences {
     }
@@ -186,18 +187,17 @@ public class Objects {
 
             try {
                 if (f.getType().equals(float.class)) {
-                    res.append(TxtUtils.substring(f.get(obj).toString(),6));
-                }else {
-                    res.append(f.get(obj));
+                    res.append(f.getName() + ":" + TxtUtils.substring(f.get(obj).toString(), 6) + ",");
+                } else {
+                    res.append(f.getName() + ":" + f.get(obj) + ",");
                 }
             } catch (Exception e) {
                 LOG.e(e);
             }
 
         }
-        LOG.d(TAG, "hashCodeString", res.toString());
         int hashCode = res.toString().hashCode();
-        LOG.d(TAG, "hashCode", hashCode);
+        LOG.d(TAG, "hashCodeString", hashCode, res.toString());
         return hashCode;
     }
 
@@ -223,7 +223,6 @@ public class Objects {
         }
 
     }
-
 
 
 }

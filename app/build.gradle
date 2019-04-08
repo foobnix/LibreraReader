@@ -19,8 +19,6 @@ android {
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
-        //vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
     lintOptions {
@@ -222,12 +220,11 @@ android {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    //testImplementation 'com.android.support.test:runner:+'
-    //testImplementation "com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION"
-
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.android.support:multidex:1.0.3'
 
