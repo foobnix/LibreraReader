@@ -565,6 +565,7 @@ public class FileInformationDialog {
                             try {
                                 GFile.deleteRemoteFile(file);
                                 a.runOnUiThread(onDeleteAction);
+                                GFile.runSyncService(a);
                             } catch (Exception e) {
                                 LOG.e(e);
                                 return false;

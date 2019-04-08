@@ -51,7 +51,7 @@ public class GFile {
     public static final int PAGE_SIZE = 1000;
     public static final String SKIP = "skip";
     public static final String MY_SCOPE = DriveScopes.DRIVE_FILE;
-    public static final String LASTMODIFIED = "lastmodified";
+    public static final String LASTMODIFIED = "lastmodified2";
 
     public static com.google.api.services.drive.Drive googleDriveService;
 
@@ -524,7 +524,7 @@ public class GFile {
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
 
-                if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000) {
+                if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && remote.getSize().longValue() != local.length())) {
                     final java.io.File parentFile = local.getParentFile();
                     if (parentFile.exists()) {
                         parentFile.mkdirs();
@@ -556,7 +556,7 @@ public class GFile {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add.getId(), local);
-                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000) {
+                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000 && remote.getSize().longValue() != local.length()) {
                     uploadFile(syncId, remote.getId(), local);
                 }
 
@@ -571,45 +571,6 @@ public class GFile {
         uploadFile(remoteParent.getId(), firstTime.getId(), local);
     }
 
-//    private static void syncUpload(String syncId, final java.io.File ioRoot, List<File> driveFiles) throws Exception {
-//        LOG.d(TAG, "updaload", ioRoot.getName());
-//        final java.io.File[] files = ioRoot.listFiles();
-//        for (java.io.File file : files) {
-//            final String filePath = findFile(remote, map);
-//
-//
-//        }
-
-
-//        for (java.io.File file : toUpload) {
-//            if (file.isDirectory()) {
-//                File folder = createFolder(syncId, file.getName(), file.lastModified());
-//                sync(folder.getId(), file);
-//            } else if (file.isFile()) {
-//                final File syncFile = getFileInfo(syncId, file);
-//                uploadFile(syncId, syncFile.getId(), file);
-//            }
-//        }
-//    }
-//
-//        for (File remote : driveFiles) {
-//        java.io.File local = new java.io.File(ioRoot, remote.getName());
-//        if (MIME_FOLDER.equals(remote.getMimeType())) {
-//            if (!local.exists()) {
-//                debugOut += "\nCreate local folder: " + local.getName();
-//                local.mkdirs();
-//                setLastModifiedTime(local, remote.getModifiedTime().getValue());
-//            }
-//            sync(remote.getId(), local);
-//        } else {
-//            if (!local.exists() || remote.getModifiedTime().getValue() / 1000 > local.lastModified() / 1000) {
-//                downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
-//            } else if (remote.getModifiedTime().getValue() / 1000 < local.lastModified() / 1000) {
-//                uploadFile(syncId, remote.getId(), local);
-//            }
-//        }
-//    }
-    //   }
 
     private static String findFile(File file, Map<String, File> map) {
         if (file == null) {

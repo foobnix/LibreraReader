@@ -591,7 +591,7 @@ public class AppState {
 
     // perofrmance
     public int pagesInMemory = 3;
-    public float pageQuality = Build.VERSION.SDK_INT >= 24 ? 1.4f : 1.2f;
+    public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? 1.4f : 1.2f;
     public int rotate = 0;
     public int rotateViewPager = 0;
 
