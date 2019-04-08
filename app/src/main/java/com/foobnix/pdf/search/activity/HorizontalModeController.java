@@ -155,6 +155,8 @@ public abstract class HorizontalModeController extends DocumentController {
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
         if (bs != null) {
+            LOG.d("DocumentControllerHorizontalView-AppBook", "isDouble:",bs.dp);
+
             AppState.get().isCut = bs.sp;
             AppState.get().isCrop = bs.cp;
             AppState.get().isDouble = bs.dp;
@@ -252,13 +254,15 @@ public abstract class HorizontalModeController extends DocumentController {
         float percent = Intents.getFloatAndClear(activity.getIntent(), DocumentController.EXTRA_PERCENT);
 
 
-        LOG.d("_PAGE", "getPageFromUriSingleRun1", percent, pagesCount);
+
+
+        LOG.d("_PAGE", "getPageFromUriSingleRun1", percent, getPageCount());
         if (percent > 0.0f) {
-            currentPage = (int) Math.round(pagesCount * percent) - 1;
+            currentPage = (int) Math.round(getPageCount() * percent) - 1;
             LOG.d("_PAGE", "getPageFromUriSingleRun2", percent, pagesCount);
 
         } else if (pagesCount > 0) {
-            currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(pagesCount).viewIndex;
+            currentPage = SettingsManager.getBookSettings(getBookPath()).getCurrentPage(getPageCount()).viewIndex;
             LOG.d("_PAGE", "getPageFromUriSingleRun3", getBookPath(), pagesCount);
         }
 

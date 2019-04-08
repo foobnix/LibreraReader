@@ -114,7 +114,7 @@ public class AppProfile {
 
     }
 
-    public static void save(Context a) {
+    public static synchronized void save(Context a) {
         DragingPopup.saveCache(a);
         PasswordState.get().save(a);
         AppState.get().save(a);
