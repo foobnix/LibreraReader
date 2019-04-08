@@ -184,6 +184,7 @@ public class ExportConverter {
     }
 
     public static void mergeBookProgrss(File temp, File original) throws JSONException {
+        LOG.d("mergeBookProgrss", temp, original);
 
         JSONObject f1 = IO.readJsonObject(temp);
         JSONObject f2 = IO.readJsonObject(original);

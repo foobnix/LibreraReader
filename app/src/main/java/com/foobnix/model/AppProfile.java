@@ -176,7 +176,7 @@ public class AppProfile {
                     final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
                     GFile.deleteRemoteFile(file);
                     ExtUtils.deleteRecursive(file);
-                    GFile.runSyncService(a);
+                    //GFile.runSyncService(a);
                 } catch (Exception e) {
                     LOG.e(e);
                     return false;

@@ -43,6 +43,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
@@ -57,6 +58,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -1141,9 +1143,36 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         AlertDialogs.showOkDialog(a, getString(R.string.delete_the_directory_all_the_files_in_the_directory_), new Runnable() {
             @Override
             public void run() {
-                final boolean result = ExtUtils.deleteRecursive(new File(path));
-                AlertDialogs.showResultToasts(a, result);
-                resetFragment();
+                if (Clouds.isLibreraSyncRootFolder(path)) {
+
+
+                    new AsyncProgressResultToastTask(a) {
+
+                        @Override
+                        protected Boolean doInBackground(Object... objects) {
+                            try {
+                                GFile.deleteRemoteFile(new File(path));
+                                a.runOnUiThread(() -> {
+                                    final boolean result = ExtUtils.deleteRecursive(new File(path));
+                                    AlertDialogs.showResultToasts(a, result);
+                                    resetFragment();
+                                });
+                                //GFile.runSyncService(a);
+                            } catch (Exception e) {
+                                LOG.e(e);
+                                return false;
+                            }
+                            return true;
+                        }
+
+                    }.execute();
+
+                } else {
+                    final boolean result = ExtUtils.deleteRecursive(new File(path));
+                    AlertDialogs.showResultToasts(a, result);
+                    resetFragment();
+                }
+
 
             }
         });

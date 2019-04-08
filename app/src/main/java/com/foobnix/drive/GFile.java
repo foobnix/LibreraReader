@@ -11,6 +11,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppTemp;
+import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.BooksService;
@@ -290,12 +291,14 @@ public class GFile {
     }
 
 
-    public static void uploadFile(String roodId, String fileId, final java.io.File inFile) throws IOException {
+    public static void uploadFile(String roodId, File file, final java.io.File inFile) throws IOException {
         debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(getLastModified(inFile)));
         FileContent contentStream = new FileContent("text/plain", inFile);
         LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
-        googleDriveService.files().update(fileId, metadata, contentStream).execute();
+        googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
+        setLastModifiedTime(inFile, inFile.lastModified());
+        file.setModifiedTime(new DateTime(inFile.lastModified()));
     }
 
 
@@ -353,6 +356,27 @@ public class GFile {
 
     }
 
+    public static void downloadTemp(String fileId, java.io.File file) throws IOException {
+        LOG.d(TAG, "Download: " + file.getParentFile().getName() + "/" + file.getName());
+        debugOut += "\nDownload: " + file.getParentFile().getName() + "/" + file.getName();
+        InputStream is = null;
+        java.io.File temp = new java.io.File(file.getPath() + ".temp");
+        try {
+            try {
+                is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
+            } catch (IOException e) {
+                is = googleDriveService.files().get(fileId).executeAsInputStream();
+            }
+
+            final boolean result = IO.copyFile(is, temp);
+            if (result) {
+                IO.copyFile(temp, file);
+            }
+        } finally {
+            temp.delete();
+        }
+    }
+
     public static void setLastModifiedTime(java.io.File file, long lastModified) {
         sp.edit().putLong(file.getPath() + file.lastModified(), lastModified).commit();
     }
@@ -388,6 +412,7 @@ public class GFile {
         LOG.d("Delete", file.getName());
         debugOut += "\nDelete: " + file.getName();
         googleDriveService.files().update(file.getId(), metadata).execute();
+
     }
 
 
@@ -452,6 +477,7 @@ public class GFile {
             final File file = map2.get(ioFile);
             if (file != null) {
                 deleteFile(file, System.currentTimeMillis());
+                //Thread.sleep(5000);
                 return true;
             }
         } catch (Exception e) {
@@ -513,7 +539,7 @@ public class GFile {
                 LOG.d(TAG, "Skip trashed", remote.getName());
                 continue;
             }
-
+            boolean skip = false;
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
                 final String filePath = findFile(remote, map);
                 if (filePath.startsWith(SKIP)) {
@@ -524,17 +550,44 @@ public class GFile {
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
 
-                if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && remote.getSize().longValue() != local.length())) {
-                    final java.io.File parentFile = local.getParentFile();
-                    if (parentFile.exists()) {
-                        parentFile.mkdirs();
+                if (local.exists() && remote.getSize().longValue() != local.length()) {
+
+                    if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
+                        LOG.d("merge-" + local.getName());
+                        debugOut += "\n merge-" + local.getName();
+
+
+                        java.io.File merge = new java.io.File(local.getPath() + ".merge");
+                        downloadTemp(remote.getId(), merge);
+                        //merge
+                        ExportConverter.mergeBookProgrss(merge, local);
+                        merge.delete();
+                        uploadFile(syncId, remote, local);
+
+                        skip = true;
+
+                    } else if (local.getName().endsWith(AppProfile.APP_RECENT_JSON)) {
+                        LOG.d("merge-" + local.getName());
+                        debugOut += "\n merge-" + local.getName();
                     }
-                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+
+                }
+
+
+                if (!skip) {
+                    if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && remote.getSize().longValue() != local.length())) {
+                        final java.io.File parentFile = local.getParentFile();
+                        if (parentFile.exists()) {
+                            parentFile.mkdirs();
+                        }
+                        downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+                    }
                 }
             }
         }
-
         syncUpload(syncId, ioRoot, map2);
+
+
     }
 
     private static void syncUpload(String syncId, java.io.File ioRoot, Map<java.io.File, File> map2) throws IOException {
@@ -555,9 +608,9 @@ public class GFile {
             } else {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
-                    uploadFile(syncId, add.getId(), local);
+                    uploadFile(syncId, add, local);
                 } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000 && remote.getSize().longValue() != local.length()) {
-                    uploadFile(syncId, remote.getId(), local);
+                    uploadFile(syncId, remote, local);
                 }
 
 
@@ -568,7 +621,7 @@ public class GFile {
     public static void upload(java.io.File local) throws IOException {
         final File remoteParent = map2.get(local.getParentFile());
         final File firstTime = createFirstTime(remoteParent.getId(), local);
-        uploadFile(remoteParent.getId(), firstTime.getId(), local);
+        uploadFile(remoteParent.getId(), firstTime, local);
     }
 
 

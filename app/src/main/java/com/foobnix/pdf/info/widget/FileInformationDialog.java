@@ -555,7 +555,7 @@ public class FileInformationDialog {
             public void onClick(final DialogInterface dialog, final int id) {
 
 
-                if (Clouds.isLibreraSyncFile(file)) {
+                if (Clouds.isLibreraSyncRootFolder(file.getPath())) {
 
 
                     new AsyncProgressResultToastTask(a) {
@@ -565,7 +565,7 @@ public class FileInformationDialog {
                             try {
                                 GFile.deleteRemoteFile(file);
                                 a.runOnUiThread(onDeleteAction);
-                                GFile.runSyncService(a);
+                                //GFile.runSyncService(a);
                             } catch (Exception e) {
                                 LOG.e(e);
                                 return false;
