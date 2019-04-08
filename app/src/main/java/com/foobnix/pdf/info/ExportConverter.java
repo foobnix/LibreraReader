@@ -102,7 +102,7 @@ public class ExportConverter {
             appBook.cp = value.getBoolean("cropPages");
             appBook.dp = value.getBoolean("doublePages");
             appBook.dc = value.getBoolean("doublePagesCover");
-            appBook.l = value.getBoolean("isLocked");
+            appBook.setLock(value.getBoolean("isLocked"));
             appBook.s = value.getInt("speed");
             appBook.d = value.optInt("pageDelta", 0);
 

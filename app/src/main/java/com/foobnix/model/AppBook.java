@@ -8,6 +8,11 @@ import org.ebookdroid.core.PageIndex;
 import org.ebookdroid.core.events.CurrentPageListener;
 
 public class AppBook implements CurrentPageListener {
+    public static int LOCK_NONE = 0;
+    public static int LOCK_YES = 1;
+    public static int LOCK_NOT = 2;
+
+
     @Objects.IgnoreCalculateHashCode
     public transient String path;
     public int z = 100;//z
@@ -16,7 +21,7 @@ public class AppBook implements CurrentPageListener {
     public boolean cp = false; //crop pages
     public boolean dp = false; //double pages
     public boolean dc = false; //double pages cover
-    public boolean l = true; //locked
+    public int lock = LOCK_NONE;
 
     public float x; //offsetX
     public float y; //offsetY
@@ -41,9 +46,24 @@ public class AppBook implements CurrentPageListener {
         dp = AppState.get().isDouble;
         sp = AppState.get().isCut;
         dc = AppState.get().isDoubleCoverAlone;
-        l = AppTemp.get().isLocked;
         d = TempHolder.get().pageDelta;
         s = AppState.get().autoScrollSpeed;
+        setLock(AppTemp.get().isLocked);
+    }
+
+    public void setLock(Boolean lock) {
+        if (lock == null) {
+            this.lock = LOCK_NONE;
+        }
+        this.lock = lock ? LOCK_YES : LOCK_NOT;
+
+    }
+
+    public boolean getLock(boolean isTextFormat) {
+        if (lock == LOCK_NONE) {
+            return isTextFormat ? true : false;
+        }
+        return lock == LOCK_YES ? true : false;
     }
 
 
@@ -64,7 +84,7 @@ public class AppBook implements CurrentPageListener {
             throw new RuntimeException("Error!!! " + pages);
         }
         if (this.p > 2) {//old import support
-            LOG.d("AppBook-getCurrentPage old", p,  pages);
+            LOG.d("AppBook-getCurrentPage old", p, pages);
 
         }
 

@@ -103,13 +103,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bs != null) {
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
-                AppState.get().isCut = ExtUtils.isTextFomat(bs.path) ? false : bs.sp;
+                final boolean isTextFomat = ExtUtils.isTextFomat(bs.path);
+                AppState.get().isCut = isTextFomat ? false : bs.sp;
                 AppState.get().isCrop = bs.cp;
                 AppState.get().isDouble = false;
                 AppState.get().isDoubleCoverAlone = false;
-                AppTemp.get().isLocked = bs.l;
+                AppTemp.get().isLocked = bs.getLock(isTextFomat);
                 TempHolder.get().pageDelta = bs.d;
-                if (AppState.get().isCropPDF && !ExtUtils.isTextFomat(bs.path)) {
+                if (AppState.get().isCropPDF && !isTextFomat) {
                     AppState.get().isCrop = true;
                 }
             }
