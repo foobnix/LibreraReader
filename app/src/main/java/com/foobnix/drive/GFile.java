@@ -558,11 +558,16 @@ public class GFile {
 
 
                         java.io.File merge = new java.io.File(local.getPath() + ".merge");
-                        downloadTemp(remote.getId(), merge);
-                        //merge
-                        ExportConverter.mergeBookProgrss(merge, local);
-                        merge.delete();
-                        uploadFile(syncId, remote, local);
+                        try {
+                            downloadTemp(remote.getId(), merge);
+                            //merge
+                            ExportConverter.mergeBookProgrss(merge, local);
+                            uploadFile(syncId, remote, local);
+
+                        } finally {
+                            merge.delete();
+                        }
+
 
                         skip = true;
 

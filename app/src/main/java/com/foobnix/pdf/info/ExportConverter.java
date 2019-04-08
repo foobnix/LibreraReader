@@ -183,33 +183,42 @@ public class ExportConverter {
         LOG.d("UnZipFolder", input, output);
     }
 
-    public static void mergeBookProgrss(File temp, File original) throws JSONException {
+    public static boolean mergeBookProgrss(File temp, File original) throws JSONException {
         LOG.d("mergeBookProgrss", temp, original);
 
         JSONObject f1 = IO.readJsonObject(temp);
         JSONObject f2 = IO.readJsonObject(original);
 
 
+        boolean isMerged = false;
         final Iterator<String> keys = f1.keys();
         while (keys.hasNext()) {
             String key = keys.next();
             if (!f2.has(key)) {
                 f2.put(key, f1.getJSONObject(key));
-                LOG.d("add-book", key);
+                LOG.d("Merge-book-missing", key);
+                isMerged = true;
 
             } else {
-                final double p1 = f1.getJSONObject(key).optDouble("p", 0.0);
-                final double p2 = f2.getJSONObject(key).optDouble("p", 0.0);
-                double max = Math.max(p1, p2);
-
-                LOG.d("Merge-book", key, p1, p2, max);
-                f2.getJSONObject(key).put("p", max);
+                LOG.d("getJSONObject by key", key);
+                try {
+                    final long p1 = f1.getJSONObject(key).optLong("t", 0L);
+                    final long p2 = f2.getJSONObject(key).optLong("t", 0L);
+                    if (p1 > p2) {
+                        LOG.d("Merge-book-update", key, p1, p2);
+                        f2.put(key, f1.getJSONObject(key));
+                        isMerged = true;
+                    }
+                } catch (JSONException e) {
+                    LOG.e(e);
+                }
             }
         }
 
         IO.writeObjAsync(original, f2);
         temp.delete();
         LOG.d("Merge-", temp, original);
+        return isMerged;
     }
 
     public static SimpleMeta merge(SimpleMeta s1, SimpleMeta s2) {

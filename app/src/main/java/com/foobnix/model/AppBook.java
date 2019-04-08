@@ -32,6 +32,7 @@ public class AppBook implements CurrentPageListener {
     public float p; //percent
     @Objects.IgnoreCalculateHashCode
     public long h;//hash
+    public long t;
 
 
     public AppBook() {
@@ -77,6 +78,7 @@ public class AppBook implements CurrentPageListener {
         }
         this.p = (float) page / pages;
         LOG.d("currentPageChanged", page, pages, p);
+        t = System.currentTimeMillis();
     }
 
     public PageIndex getCurrentPage(int pages) {
