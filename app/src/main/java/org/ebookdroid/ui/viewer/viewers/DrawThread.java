@@ -46,7 +46,7 @@ public class DrawThread extends Thread {
     }
 
     protected void draw() {
-        final ViewState viewState = takeTask(250, TimeUnit.MILLISECONDS, false);
+        final ViewState viewState = takeTask(1000, TimeUnit.MILLISECONDS, false);
         if (viewState == null) {
             return;
         }
