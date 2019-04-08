@@ -446,6 +446,10 @@ public class TTSService extends Service {
                 return;
             }
 
+            AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
+            load.currentPageChanged( pageNumber+1,pageCount);
+            SharedBooks.save(load);
+
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
             page.recycle();
@@ -527,9 +531,7 @@ public class TTSService extends Service {
                         AppTemp.get().lastBookParagraph = 0;
                         playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
-                        load.currentPageChanged( AppTemp.get().lastBookPage + 1, dc.getPageCount());
-                        SharedBooks.save(load);
+
 
                     }
                 });
@@ -563,9 +565,7 @@ public class TTSService extends Service {
                         AppTemp.get().lastBookParagraph = 0;
                         playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
-                        AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
-                        load.currentPageChanged( AppTemp.get().lastBookPage + 1,dc.getPageCount());
-                        SharedBooks.save(load);
+
 
                     }
 

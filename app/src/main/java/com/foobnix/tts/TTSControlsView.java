@@ -6,10 +6,8 @@ import android.app.PendingIntent.CanceledException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -82,14 +80,14 @@ public class TTSControlsView extends FrameLayout {
         trackName.setVisibility(View.GONE);
 
         colorTint = Color.parseColor(AppState.get().isDayNotInvert ? BookCSS.get().linkColorDay : BookCSS.get().linkColorNight);
-
-        TintUtil.setTintImageWithAlpha(ttsStop, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsPlayPause, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsNext, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsPrev, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsDialog, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint);
-        TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint);
+        int alpha = 220;
+        TintUtil.setTintImageWithAlpha(ttsStop, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsPlayPause, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsNext, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsPrev, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsDialog, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsPrevTrack, colorTint, alpha);
+        TintUtil.setTintImageWithAlpha(ttsNextTrack, colorTint, alpha);
         TintUtil.setTintText(trackName, colorTint);
 
         ttsNext.setOnClickListener(new OnClickListener() {
@@ -155,14 +153,14 @@ public class TTSControlsView extends FrameLayout {
         seekMax = (TextView) view.findViewById(R.id.seekMax);
         layoutMp3 = view.findViewById(R.id.layoutMp3);
 
-        int tinColor = ColorUtils.setAlphaComponent(colorTint, 230);
 
-        seekMp3.getProgressDrawable().setColorFilter(tinColor, Mode.SRC_ATOP);
+        TintUtil.setDrawableTint(seekMp3.getProgressDrawable(), colorTint, alpha);
+
         if (Build.VERSION.SDK_INT >= 16) {
-            seekMp3.getThumb().setColorFilter(tinColor, Mode.SRC_ATOP);
+            TintUtil.setDrawableTint(seekMp3.getThumb(), colorTint, alpha);
         }
-        TintUtil.setTintText(seekCurrent, tinColor);
-        TintUtil.setTintText(seekMax, tinColor);
+        TintUtil.setTintText(seekCurrent, colorTint);
+        TintUtil.setTintText(seekMax, colorTint);
 
         layoutMp3.setVisibility(View.GONE);
         initMp3();

@@ -70,11 +70,7 @@ public class SharedBooks {
         if (load.h != hash) {
             load.h = hash;
 
-            //FirebaseDatabase.getInstance().getReference().child("progress").setValue(load);
-
-
-
-            LOG.d("SharedBooks-save", bs.path, hash, bs.p);
+            LOG.d("SharedBooks-save", bs.path, bs.p, load.h, bs.h);
 
             try {
                 final String fileName = ExtUtils.getFileName(bs.path);
