@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.foobnix.pdf.info.wrapper;
 
@@ -73,6 +73,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.ebookdroid.BookType;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -84,7 +85,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author iivanenko
- * 
  */
 public class DocumentWrapperUI {
 
@@ -416,6 +416,7 @@ public class DocumentWrapperUI {
         initToolBarPlusMinus();
 
         showHideHistory();
+
         updateLock();
 
         reverseKeysIndicator.setVisibility(AppState.get().isReverseKeys ? View.VISIBLE : View.GONE);
@@ -464,9 +465,6 @@ public class DocumentWrapperUI {
         } else {
             pagesBookmark.setVisibility(View.VISIBLE);
         }
-
-
-
 
 
         dc.saveCurrentPage();
@@ -1730,7 +1728,9 @@ public class DocumentWrapperUI {
             CloseAppDialog.showOnLongClickDialog(a, v, getController());
             hideAds();
             return true;
-        };
+        }
+
+        ;
     };
 
     public void hideAds() {
@@ -1844,7 +1844,7 @@ public class DocumentWrapperUI {
     }
 
     public void hideShowEditIcon() {
-        if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getName().toLowerCase(Locale.US).endsWith(".pdf")) {
+        if (dc != null && !BookType.PDF.is(dc.getCurrentBook().getPath())) {
             editTop2.setVisibility(View.GONE);
         } else if (AppState.get().isCrop || AppState.get().isCut) {
             editTop2.setVisibility(View.GONE);
@@ -1887,7 +1887,7 @@ public class DocumentWrapperUI {
     public void showPagesHelper() {
         try {
             BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }

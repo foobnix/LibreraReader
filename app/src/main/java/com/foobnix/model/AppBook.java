@@ -21,7 +21,7 @@ public class AppBook implements CurrentPageListener {
     public boolean cp = false; //crop pages
     public boolean dp = false; //double pages
     public boolean dc = false; //double pages cover
-    public int lock = LOCK_NONE;
+    public int lk = LOCK_NONE;
 
     public float x; //offsetX
     public float y; //offsetY
@@ -53,17 +53,17 @@ public class AppBook implements CurrentPageListener {
 
     public void setLock(Boolean lock) {
         if (lock == null) {
-            this.lock = LOCK_NONE;
+            this.lk = LOCK_NONE;
         }
-        this.lock = lock ? LOCK_YES : LOCK_NOT;
+        this.lk = lock ? LOCK_YES : LOCK_NOT;
 
     }
 
     public boolean getLock(boolean isTextFormat) {
-        if (lock == LOCK_NONE) {
+        if (lk == LOCK_NONE) {
             return isTextFormat ? true : false;
         }
-        return lock == LOCK_YES ? true : false;
+        return lk == LOCK_YES ? true : false;
     }
 
 

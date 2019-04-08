@@ -151,6 +151,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             final Uri uri = Uri.fromFile(file);
             controller.setCurrentBook(file);
+            wrapperControlls.hideShowEditIcon();
 
 
             controller.addRecent(uri);
