@@ -80,7 +80,7 @@
    <string name="nigth">Night</string>
    <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="reading_settings">Reading Settings</string>
-   <string name="folder_with_fonts">Fonts folder</string>
+   <string name="folder_with_fonts">Fonts</string>
    <string name="text_align">Text alignment</string>
    <string name="width">Justified</string>
    <string name="left">Left</string>
@@ -197,7 +197,7 @@
    <string name="port">Port</string>
    <string name="user">User</string>
    <string name="other_settings">Additional Settings</string>
-   <string name="folder_for_downloaded_books">Downloads folder</string>
+   <string name="folder_for_downloaded_books">Downloads</string>
    <string name="display_large_book_covers_in_the_catalog">Large book covers in catalogs</string>
    <string name="add_catalog">Add a Catalog</string>
    <string name="name">Name</string>
@@ -425,8 +425,8 @@
    <string name="close_book_and_application">Exit Librera</string>
    <string name="percent_and_number">Both</string>
    <string name="current_page">Progress indicator</string>
-   <string name="backup_folder">Backup folder</string>
-   <string name="audio_books_folder">Audio folder</string>
+   <string name="backup_folder">Backup</string>
+   <string name="audio_books_folder">Audio files</string>
    <string name="enable_contrast_and_brightness">Adjust manually</string>
    <string name="enable">Enable</string>
    <string name="link_color">Link Color</string>
@@ -545,7 +545,7 @@
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
    <string name="manual_sync_only">Manual sync only</string>
-   <string name="wifi_sync_only">Sync via WiFi only</string>
+   <string name="wifi_sync_only">Sync over WiFi only</string>
    <string name="sync_google_drive">Sync (Google Drive)</string>
    <string name="single_tap_to_select_text">Single-tap to select text</string>
    <string name="sync_book">Sync a book</string>
@@ -553,7 +553,6 @@
    <string name="synchronized_folder">Synchronized folder</string>
    <string name="today">Today</string>
    <string name="downloads">Downloads</string>
-   <string name="delete_the_directory_all_the_files_in_the_directory_">Delete the directory all the files in the directory?</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Folder is not empty. Delete anyway?</string>
     <string name="synchronized_books">Synchronized Books</string>
-
 </resources>
