@@ -552,4 +552,7 @@
    <string name="sync">Synkronisera</string>
    <string name="synchronized_folder">Synkroniserad mapp</string>
    <string name="today">I dag</string>
+   <string name="downloads">Nedladdningarna</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Mappen är inte tom. radera ändå?</string>
+   <string name="synchronized_books">Synkroniserade böcker</string>
 </resources>

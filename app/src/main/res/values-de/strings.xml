@@ -552,4 +552,7 @@
    <string name="sync">Sync</string>
    <string name="synchronized_folder">Synchronisierter Ordner</string>
    <string name="today">Heute</string>
+   <string name="downloads">Die Downloads</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Ordner ist nicht leer. trotzdem löschen?</string>
+   <string name="synchronized_books">Synchronisierte Bücher</string>
 </resources>

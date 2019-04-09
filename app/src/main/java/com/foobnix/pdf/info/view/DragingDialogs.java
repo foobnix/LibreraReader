@@ -2139,7 +2139,7 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
-                int page = PageUrl.realToFake(appBookmark.getPage(controller.getPageCount()));
+                int page = appBookmark.getPage(controller.getPageCount());
 
                 if (page != controller.getCurentPageFirst1()) {
                     final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());

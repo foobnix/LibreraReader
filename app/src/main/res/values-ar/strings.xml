@@ -552,4 +552,7 @@
    <string name="sync">مزامنة</string>
    <string name="synchronized_folder">مجلد متزامن</string>
    <string name="today">اليوم</string>
+   <string name="downloads">التنزيلات</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">المجلد ليس فارغا. حذف على أي حال؟</string>
+   <string name="synchronized_books">الكتب المتزامنة</string>
 </resources>

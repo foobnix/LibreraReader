@@ -552,4 +552,7 @@
    <string name="sync">ซิงค์</string>
    <string name="synchronized_folder">โฟลเดอร์ที่ซิงโครไนซ์</string>
    <string name="today">ในวันนี้</string>
+   <string name="downloads">การดาวน์โหลด</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">โฟลเดอร์ไม่ว่างเปล่า ลบต่อไปหรือไม่</string>
+   <string name="synchronized_books">หนังสือที่ทำข้อมูลให้ตรงกัน</string>
 </resources>

@@ -552,4 +552,7 @@
    <string name="sync">Sincronizzare</string>
    <string name="synchronized_folder">Cartella sincronizzata</string>
    <string name="today">Oggi</string>
+   <string name="downloads">I download</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">La cartella non è vuota cancellare comunque?</string>
+   <string name="synchronized_books">Libri sincronizzati</string>
 </resources>

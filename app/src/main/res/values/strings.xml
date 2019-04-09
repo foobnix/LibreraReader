@@ -554,5 +554,5 @@
    <string name="today">Today</string>
    <string name="downloads">Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder is not empty. Delete anyway?</string>
-    <string name="synchronized_books">Synchronized Books</string>
+   <string name="synchronized_books">Synchronized Books</string>
 </resources>

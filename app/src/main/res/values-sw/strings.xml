@@ -552,4 +552,7 @@
    <string name="sync">Kusawazisha</string>
    <string name="synchronized_folder">Folda iliyosawazishwa</string>
    <string name="today">Leo</string>
+   <string name="downloads">Downloads</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Folda si tupu. kufuta chochote?</string>
+   <string name="synchronized_books">Vitabu vinavyolingana</string>
 </resources>

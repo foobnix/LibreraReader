@@ -552,4 +552,7 @@
    <string name="sync">同步</string>
    <string name="synchronized_folder">同步档夹</string>
    <string name="today">今天</string>
+   <string name="downloads">下载</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">文件夹不为空。删除无论如何？</string>
+   <string name="synchronized_books">同步书籍</string>
 </resources>

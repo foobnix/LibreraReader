@@ -552,4 +552,7 @@
    <string name="sync">सिंक</string>
    <string name="synchronized_folder">सिंक्रनाइज़ फ़ोल्डर</string>
    <string name="today">आज</string>
+   <string name="downloads">डाउनलोड</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">फोल्डर खाली नहीं है। फिर भी हटाओ?</string>
+   <string name="synchronized_books">सिंक्रनाइज़ की गई पुस्तकें</string>
 </resources>

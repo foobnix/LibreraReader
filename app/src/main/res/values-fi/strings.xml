@@ -552,4 +552,7 @@
    <string name="sync">Synkronoida</string>
    <string name="synchronized_folder">Synkronoitu kansio</string>
    <string name="today">Tänään</string>
+   <string name="downloads">Lataukset</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Kansio ei ole tyhjä. poista silti?</string>
+   <string name="synchronized_books">Synkronoidut kirjat</string>
 </resources>

@@ -552,4 +552,7 @@
    <string name="sync">Senkronize etmek</string>
    <string name="synchronized_folder">Senkronize klasör</string>
    <string name="today">Bugün</string>
+   <string name="downloads">Indirmeler</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Klasör boş değil. Yine de silinsin mi?</string>
+   <string name="synchronized_books">Senkronize kitaplar</string>
 </resources>

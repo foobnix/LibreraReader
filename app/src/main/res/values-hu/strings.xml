@@ -552,4 +552,7 @@
    <string name="sync">Szinkronizál</string>
    <string name="synchronized_folder">Szinkronizált mappát</string>
    <string name="today">Ma</string>
+   <string name="downloads">A letöltések</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">A mappa nem üres. egyébként törölni?</string>
+   <string name="synchronized_books">Szinkronizált könyvek</string>
 </resources>

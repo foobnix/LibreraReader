@@ -552,4 +552,7 @@
    <string name="sync">همگام سازی</string>
    <string name="synchronized_folder">پوشه همگام سازی شده</string>
    <string name="today">امروز</string>
+   <string name="downloads">دانلود ها</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">پوشه خالی نیست به هر حال حذف شود</string>
+   <string name="synchronized_books">کتاب هماهنگ شده</string>
 </resources>

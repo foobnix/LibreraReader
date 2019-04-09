@@ -552,4 +552,7 @@
    <string name="sync">Синхронизация</string>
    <string name="synchronized_folder">Синхронизированная папка</string>
    <string name="today">Сегодня</string>
+   <string name="downloads">Загрузки</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пустая. удалить в любом случае?</string>
+   <string name="synchronized_books">Синхронизированные книги</string>
 </resources>

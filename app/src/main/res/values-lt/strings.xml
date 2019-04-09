@@ -552,4 +552,7 @@
    <string name="sync">Sinchronizuoti</string>
    <string name="synchronized_folder">Sinchronizuotas aplankas</string>
    <string name="today">Šiandien</string>
+   <string name="downloads">Parsisiųsti</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Aplankas nėra tuščias. bet kokiu atveju ištrinti?</string>
+   <string name="synchronized_books">Sinchronizuotos knygos</string>
 </resources>

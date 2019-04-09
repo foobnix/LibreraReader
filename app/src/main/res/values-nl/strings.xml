@@ -552,4 +552,7 @@
    <string name="sync">Synchroniseren</string>
    <string name="synchronized_folder">Gesynchroniseerde map</string>
    <string name="today">Vandaag</string>
+   <string name="downloads">De downloads</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Map is niet leeg. toch verwijderen?</string>
+   <string name="synchronized_books">Gesynchroniseerde boeken</string>
 </resources>

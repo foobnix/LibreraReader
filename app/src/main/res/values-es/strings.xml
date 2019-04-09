@@ -552,4 +552,7 @@
    <string name="sync">Sincronizar</string>
    <string name="synchronized_folder">Carpeta sincronizada</string>
    <string name="today">Hoy</string>
+   <string name="downloads">Las descargas</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Carpeta no está vacía. borrar de todos modos?</string>
+   <string name="synchronized_books">Libros sincronizados</string>
 </resources>

@@ -552,4 +552,7 @@
    <string name="sync">Synchronizacja</string>
    <string name="synchronized_folder">Zsynchronizowany folder</string>
    <string name="today">Dzisiaj</string>
+   <string name="downloads">Pliki do pobrania</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Folder nie jest pusty. usunąć mimo to?</string>
+   <string name="synchronized_books">Zsynchronizowane książki</string>
 </resources>

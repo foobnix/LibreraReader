@@ -552,4 +552,7 @@
    <string name="sync">Sinkronkan</string>
    <string name="synchronized_folder">Folder yang disinkronkan</string>
    <string name="today">Hari ini</string>
+   <string name="downloads">Unduhan</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Folder tidak kosong. hapus saja?</string>
+   <string name="synchronized_books">Buku yang disinkronkan</string>
 </resources>

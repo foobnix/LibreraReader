@@ -552,4 +552,7 @@
    <string name="sync">Синхрондау</string>
    <string name="synchronized_folder">Синхрондалған қалта</string>
    <string name="today">Бүгін</string>
+   <string name="downloads">Жүктеулер</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Қалта бос емес. бәрібір жою керек пе?</string>
+   <string name="synchronized_books">Синхрондалған кітаптар</string>
 </resources>

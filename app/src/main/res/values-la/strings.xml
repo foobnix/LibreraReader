@@ -552,4 +552,7 @@
    <string name="sync">Sync</string>
    <string name="synchronized_folder">Synchronized folder</string>
    <string name="today">Hodie</string>
+   <string name="downloads">Et downloads</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Folder est inanis. delete removes?</string>
+   <string name="synchronized_books">Librorum synchronized</string>
 </resources>

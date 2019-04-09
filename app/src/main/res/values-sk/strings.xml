@@ -552,4 +552,7 @@
    <string name="sync">Synchronizovať</string>
    <string name="synchronized_folder">Synchronizovaný priečinok</string>
    <string name="today">Dnes</string>
+   <string name="downloads">Sťahovania</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Priečinok nie je prázdny. zmazať aj tak?</string>
+   <string name="synchronized_books">Synchronizované knihy</string>
 </resources>

@@ -552,4 +552,7 @@
    <string name="sync">סינכרון</string>
    <string name="synchronized_folder">תיקייה מסונכרנת - -</string>
    <string name="today">היום</string>
+   <string name="downloads">הורדות</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">התיקיה אינה ריקה. למחוק בכל זאת?</string>
+   <string name="synchronized_books">ספרים מסונכרנים</string>
 </resources>

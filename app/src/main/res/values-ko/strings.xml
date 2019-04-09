@@ -552,4 +552,7 @@
    <string name="sync">동조</string>
    <string name="synchronized_folder">동기화 된 폴더</string>
    <string name="today">오늘</string>
+   <string name="downloads">다운로드</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">폴더가 비어 있지 않습니다. 어쨌든 삭제 하시겠습니까?</string>
+   <string name="synchronized_books">동기 도서</string>
 </resources>
