@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.GridLayoutManager.SpanSizeLookup;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,12 +20,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
@@ -35,6 +36,8 @@ import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
+import com.foobnix.ui2.fast.FastScrollStateChangeListener;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -61,10 +64,39 @@ public abstract class UIFragment<T> extends Fragment {
         handler = new Handler();
     }
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TxtUtils.updateAllLinks(view);
+
+        if (recyclerView instanceof FastScrollRecyclerView) {
+            swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefreshLayout);
+
+            ((FastScrollRecyclerView) recyclerView).setFastScrollStateChangeListener(new FastScrollStateChangeListener() {
+
+                @Override
+                public void onFastScrollStop() {
+                    ImageLoader.getInstance().resume();
+                    LOG.d("ImageLoader resume");
+                    if (BookCSS.get().isEnableSync) {
+                        swipeRefreshLayout.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void onFastScrollStart() {
+                    LOG.d("ImageLoader pause");
+                    ImageLoader.getInstance().pause();
+                    if (BookCSS.get().isEnableSync) {
+                        swipeRefreshLayout.setEnabled(false);
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
@@ -128,9 +160,14 @@ public abstract class UIFragment<T> extends Fragment {
         DefaultListeners.bindAdapterAuthorSerias(getActivity(), searchAdapter);
     }
 
+    private synchronized List<T> prepareDataInBackgroundSync() {
+        return prepareDataInBackground();
+    }
+
     public List<T> prepareDataInBackground() {
         return null;
     }
+
 
     public void populateDataInUI(List<T> items) {
 
@@ -221,14 +258,15 @@ public abstract class UIFragment<T> extends Fragment {
         // return;
         // }
 
-        if (AsyncTasks.isFinished(execute)) {
+        //if (AsyncTasks.isFinished(execute)) {
+        if (true) {
 
             execute = new AsyncTask<Object, Object, List<T>>() {
                 @Override
                 protected List<T> doInBackground(Object... params) {
                     try {
                         LOG.d("UIFragment", "prepareDataInBackground");
-                        return prepareDataInBackground();
+                        return prepareDataInBackgroundSync();
                     } catch (Exception e) {
                         LOG.e(e);
                         return new ArrayList<T>();
@@ -247,7 +285,9 @@ public abstract class UIFragment<T> extends Fragment {
                         }, 100);
 
                     }
-                };
+                }
+
+                ;
 
                 @Override
                 protected void onPostExecute(List<T> result) {

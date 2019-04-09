@@ -161,6 +161,7 @@ public class AppDB {
         if (!Android6.canWrite(c)) {
             return;
         }
+        LOG.d("Open-DB", appDB);
         DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, appDB);
 
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
@@ -175,6 +176,9 @@ public class AppDB {
         // QueryBuilder.LOG_SQL = true;
         // QueryBuilder.LOG_VALUES = true;
         // }
+
+
+
 
     }
 
@@ -264,7 +268,6 @@ public class AppDB {
         }
         return list.get(0);
     }
-
 
 
     public void addRecent(String path) {
@@ -366,6 +369,24 @@ public class AppDB {
             LOG.e(e);
         }
     }
+
+    public void refresh(FileMeta meta) {
+        try {
+            fileMetaDao.refresh(meta);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public void clearSession() {
+        try {
+            daoSession.clear();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+
 
     public synchronized void updateOrSave(FileMeta meta) {
         if (fileMetaDao.load(meta.getPath()) == null) {

@@ -125,7 +125,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             image = (ImageView) view.findViewById(R.id.browserItemIcon);
             cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
             star = (ImageView) view.findViewById(R.id.starIcon);
-            signIcon = (ImageView) view.findViewById(R.id.signIcon);
+            //signIcon = (ImageView) view.findViewById(R.id.signIcon);
             idProgressColor = view.findViewById(R.id.idProgressColor);
             idProgressBg = view.findViewById(R.id.idProgressBg);
             infoLayout = view.findViewById(R.id.infoLayout);
@@ -688,6 +688,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     t.setTextAppearance(holder.tags.getContext(), R.style.textLink);
                     TxtUtils.bold(t);
                     t.setText(tag + " ");
+                    t.setSingleLine();
                     t.setTextSize(12);
                     t.setGravity(Gravity.CENTER_VERTICAL);
 

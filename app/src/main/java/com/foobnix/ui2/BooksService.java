@@ -217,6 +217,8 @@ public class BooksService extends IntentService {
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
 
+                AppProfile.load(this);
+
                 IMG.clearDiscCache();
                 IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();

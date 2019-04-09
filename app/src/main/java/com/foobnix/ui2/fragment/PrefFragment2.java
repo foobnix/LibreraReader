@@ -106,7 +106,7 @@ public class PrefFragment2 extends UIFragment {
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
     private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi";
-    private TextView curBrightness, themeColor,  profileLetter;
+    private TextView curBrightness, themeColor, profileLetter;
     private CheckBox isRememberDictionary;
 
     @Override
@@ -127,6 +127,7 @@ public class PrefFragment2 extends UIFragment {
     public void resetFragment() {
     }
 
+
     @Override
     public void onTintChanged() {
         TintUtil.setStatusBarColor(getActivity(), TintUtil.color);
@@ -140,7 +141,7 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
         TintUtil.setBackgroundFillColor(section9, TintUtil.color);
 
-        if(profileLetter!=null) {
+        if (profileLetter != null) {
             final String p = AppProfile.getCurrent(getActivity());
             profileLetter.setText(TxtUtils.getFirstLetter(p));
             profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
@@ -235,8 +236,12 @@ public class PrefFragment2 extends UIFragment {
         isEnableSync.setChecked(BookCSS.get().isEnableSync);
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             BookCSS.get().isEnableSync = isChecked;
-            if (isChecked && GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
-                GFile.init(getActivity());
+            if (isChecked) {
+                if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
+                    GFile.init(getActivity());
+                } else {
+                    GFile.runSyncService(getActivity());
+                }
             }
         });
 

@@ -225,4 +225,17 @@ public class Objects {
     }
 
 
+
+    public static Object getInstanceValue(final Object classInstance, final String fieldName) throws SecurityException, NoSuchFieldException,
+            ClassNotFoundException, IllegalArgumentException, IllegalAccessException {
+
+        // Get the private field
+        final Field field = classInstance.getClass().getDeclaredField(fieldName);
+        // Allow modification on the field
+        field.setAccessible(true);
+        // Return the Obect corresponding to the field
+        return field.get(classInstance);
+
+    }
+
 }

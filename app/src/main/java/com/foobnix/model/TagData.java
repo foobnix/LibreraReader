@@ -62,12 +62,12 @@ public class TagData {
             try {
 
                 Tag tag = new Tag(key, obj.getString(key));
-                LOG.d("restoreTags",tag.path, tag.tags);
+                LOG.d("restoreTags-in",tag.path, tag.tags);
 
                 FileMeta load = AppDB.get().load(tag.getPath());
                 if (load != null) {
                     load.setTag(tag.tags);
-                    LOG.d("restoreTags", tag.getPath(), tag.tags);
+                    LOG.d("restoreTags-do", tag.getPath(), tag.tags);
                     AppDB.get().update(load);
                 }
             } catch (JSONException e) {
@@ -75,6 +75,7 @@ public class TagData {
             }
 
         }
+        AppDB.get().clearSession();
 
 
     }

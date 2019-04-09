@@ -2,12 +2,17 @@ package com.foobnix.pdf.search.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 
 public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Object, Boolean> {
 
@@ -19,6 +24,7 @@ public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Obj
         this.c = c;
         this.onResult = onResult;
     }
+
     public AsyncProgressResultToastTask(Context c) {
         this.c = c;
     }
@@ -26,7 +32,17 @@ public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Obj
     @Override
     protected void onPreExecute() {
         dialog = ProgressDialog.show(c, "", c.getString(R.string.please_wait));
+
+        try {
+            ProgressBar pr = (ProgressBar) Objects.getInstanceValue(dialog, "mProgress");
+            TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+
     }
+
 
     @Override
     protected void onPostExecute(Boolean result) {

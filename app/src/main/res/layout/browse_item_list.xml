@@ -107,15 +107,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dip"
                     android:layout_weight="0"
+
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal"><TextView
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content" android:text="#tag1, tag2" /></LinearLayout>
 
                 <TextView
                     android:id="@+id/browserPath"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dip"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="/path"
@@ -128,41 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:gravity="center_vertical"
+                android:weightSum="2"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/cloudImage"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:padding="3dip"
-                    android:src="@drawable/dropbox" />
-
-                <ImageView
-                    android:id="@+id/starIcon"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="0dip"
-                    android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:padding="4dip"
-                    android:src="@drawable/star_2"
-                    android:tint="@color/tint_gray" />
-
-
-                <ImageView
-                    android:id="@+id/signIcon"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="2dip"
-                    android:layout_marginBottom="0dip"
-                    android:layout_weight="0"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:padding="4dip"
-                    android:src="@drawable/sign"
-                    android:tint="@color/tint_gray"
-                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/browseDate"
@@ -170,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="6dip"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:singleLine="true"
                     android:text="12.03.2001"
                     android:textSize="@dimen/text_subtitle" />
@@ -182,6 +153,7 @@
                     android:layout_gravity="center_vertical"
                     android:singleLine="true"
                     android:text="PDF"
+                    android:layout_weight="1"
                     android:textAllCaps="true"
                     android:textSize="@dimen/text_subtitle"
                     android:textStyle="normal" />
@@ -192,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="6dip"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:singleLine="true"
                     android:text="123 Kb"
                     android:textSize="@dimen/text_subtitle" />
@@ -222,6 +194,26 @@
                     android:src="@drawable/glyphicons_208_remove_2"
                     android:tint="@color/lt_grey_dima1"
                     android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/cloudImage"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:padding="3dip"
+                    android:layout_weight="0"
+                    android:src="@drawable/dropbox" />
+
+                <ImageView
+                    android:id="@+id/starIcon"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="0dip"
+                    android:layout_weight="0"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="2dip"
+                    android:src="@drawable/star_2"
+                    android:tint="@color/tint_gray" />
 
                 <ImageView
                     android:id="@+id/itemMenu"

@@ -39,7 +39,7 @@ public class BookCSS {
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
 
-    public String searchPaths = Environment.getExternalStorageDirectory().getPath();
+    public String searchPaths;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Download").getPath();
     public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
@@ -187,6 +187,7 @@ public class BookCSS {
 
         LOG.d("BookCSS", "resetToDefault");
 
+
     }
 
     public void load1(Context c) {
@@ -197,6 +198,27 @@ public class BookCSS {
         resetToDefault(c);
 
         IO.readObj(AppProfile.syncCSS, instance);
+
+        try {
+            if(TxtUtils.isEmpty(instance.searchPaths)) {
+                List<String> extFolders = ExtUtils.getExternalStorageDirectories(c);
+
+                if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
+                    extFolders.add(Environment.getExternalStorageDirectory().getPath());
+                }
+                if (!extFolders.contains(ExtUtils.getSDPath())) {
+                    String sdPath = ExtUtils.getSDPath();
+                    if (sdPath != null) {
+                        extFolders.add(sdPath);
+                    }
+                }
+                instance.searchPaths = TxtUtils.joinList(",", extFolders);
+                //searchPaths = Environment.getExternalStorageDirectory().getPath();
+                LOG.d("searchPaths-all", searchPaths, instance.searchPaths);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
 
     }

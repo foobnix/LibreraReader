@@ -9,12 +9,18 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppTemp;
+import com.foobnix.model.TagData;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
+import com.foobnix.ui2.FileMetaCore;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -347,6 +353,13 @@ public class GFile {
             if (result) {
                 IO.copyFile(temp, file);
                 setLastModifiedTime(file, lastModified);
+
+                if(Clouds.isLibreraSyncFile(file.getPath())) {
+                    FileMeta meta = AppDB.get().getOrCreate(file.getPath());
+                    FileMetaCore.createMetaIfNeed(file.getPath(),true);
+                    IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+                }
+
             }
         } finally {
             temp.delete();
@@ -463,7 +476,11 @@ public class GFile {
 
             LOG.d(TAG, "sycnronizeAll", "finished");
             debugOut += "\nEnd: " + DateFormat.getTimeInstance().format(new Date());
-            ;
+
+
+
+            TagData.restoreTags();
+
 
         } catch (IOException e) {
             debugOut += "\nException: " + e.getMessage();

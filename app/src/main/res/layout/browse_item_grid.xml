@@ -80,15 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="bottom"
+                android:weightSum="2"
                 android:orientation="horizontal" >
-                
-                
-                <ImageView
-                android:id="@+id/cloudImage"
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:padding="3dip"
-                android:src="@drawable/dropbox" />
 
                 <TextView
                     android:id="@+id/browserExt"
@@ -97,7 +90,7 @@
                     android:layout_marginBottom="2dip"
                     android:layout_marginLeft="1dip"
                     android:layout_marginRight="2dip"
-                    android:layout_weight="0"
+                    android:layout_weight="1"
                     android:singleLine="true"
                     android:text="PDF"
                     android:textAllCaps="true"
@@ -140,6 +133,15 @@
                     android:textSize="@dimen/text_subtitle"
                     android:visibility="gone" />
 
+
+                <ImageView
+                    android:id="@+id/cloudImage"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:padding="3dip"
+                    android:layout_weight="0"
+                    android:src="@drawable/dropbox" />
+
                 <ImageView
                     android:id="@+id/starIcon"
                     style="@style/buttonWhite"
@@ -147,9 +149,10 @@
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
-                    android:padding="4dip"
+                    android:padding="2dip"
                     android:src="@drawable/star_2"
                     android:tint="@color/tint_gray" />
+
 
                 <ImageView
                     android:id="@+id/itemMenu"

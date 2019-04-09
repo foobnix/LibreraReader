@@ -781,6 +781,7 @@ public class AppState {
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }
+
     }
 
     private boolean isLoaded = false;
@@ -792,24 +793,6 @@ public class AppState {
             if (!isLoaded) {
                 defaults(a);
 
-//                try {
-//                    List<String> extFolders = ExtUtils.getExternalStorageDirectories(a);
-//
-//                    if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
-//                        extFolders.add(Environment.getExternalStorageDirectory().getPath());
-//                    }
-//                    if (!extFolders.contains(ExtUtils.getSDPath())) {
-//                        String sdPath = ExtUtils.getSDPath();
-//                        if (sdPath != null) {
-//                            extFolders.add(sdPath);
-//                        }
-//                    }
-//                    //searchPaths = TxtUtils.joinList(",", extFolders);
-//                    //searchPaths = Environment.getExternalStorageDirectory().getPath();
-//                    LOG.d("searchPaths", searchPaths);
-//                } catch (Exception e) {
-//                    LOG.e(e);
-//                }
 
                 load(a);
                 isLoaded = true;

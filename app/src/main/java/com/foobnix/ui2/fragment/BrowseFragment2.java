@@ -243,6 +243,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         View onBack = view.findViewById(R.id.onBack);
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
+
+
         paths = (LinearLayout) view.findViewById(R.id.paths);
         scroller = (HorizontalScrollView) view.findViewById(R.id.scroller);
         final View onHome = view.findViewById(R.id.onHome);

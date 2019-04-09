@@ -19,8 +19,12 @@ public class AppBook implements CurrentPageListener {
 
     public boolean sp = false;//split pages
     public boolean cp = false; //crop pages
-    public boolean dp = false; //double pages
+
+    public boolean dp = false; //double pages normal
+
     public boolean dc = false; //double pages cover
+
+
     public int lk = LOCK_NONE;
 
     public float x; //offsetX

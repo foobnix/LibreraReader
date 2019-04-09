@@ -57,9 +57,6 @@ import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
-import com.foobnix.ui2.fast.FastScrollStateChangeListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -187,20 +184,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         myAutoCompleteImage.setVisibility(View.GONE);
 
-        ((FastScrollRecyclerView) recyclerView).setFastScrollStateChangeListener(new FastScrollStateChangeListener() {
 
-            @Override
-            public void onFastScrollStop() {
-                ImageLoader.getInstance().resume();
-                LOG.d("ImageLoader resume");
-            }
-
-            @Override
-            public void onFastScrollStart() {
-                LOG.d("ImageLoader pause");
-                ImageLoader.getInstance().pause();
-            }
-        });
 
         searchEditText.addTextChangedListener(filterTextWatcher);
         searchEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
