@@ -262,11 +262,16 @@ public class ShareDialog {
         items.add(a.getString(R.string.open_with));
         items.add(a.getString(R.string.send_file));
         final boolean isExternalOrCloud = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath());
-        final boolean canDelete = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
+        boolean canDelete1 = ExtUtils.isExteralSD(file.getPath()) || Clouds.isCloud(file.getPath()) ? true : file.canWrite();
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
         final boolean isRemovedFromLibrary = AppData.get().getAllExcluded().contains(file.getPath());
+
+        if (file.getPath().contains(AppProfile.PROFILE_PREFIX)) {
+            canDelete1 = false;
+        }
+        final boolean canDelete = canDelete1;
 
         if (isMainTabs) {
             if (canDelete) {
