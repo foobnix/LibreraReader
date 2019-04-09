@@ -65,7 +65,7 @@ public class IMG {
         builder.decodingOptions(new Options());
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
-                .threadPoolSize(1)//
+                .threadPoolSize(4)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
