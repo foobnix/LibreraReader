@@ -15,7 +15,6 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -49,6 +48,8 @@ public class BookCSS {
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
 
 
+    public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
+    public String fontFolder = DEFAULT_FOLDER;
 
     public String mp3BookPath;
     public String dirLastPath;
@@ -75,8 +76,6 @@ public class BookCSS {
 
     public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
 
-    public static final String FONTS_DIR = "Fonts";
-
     public static final int TEXT_ALIGN_JUSTIFY = 0;
     public static final int TEXT_ALIGN_LEFT = 1;
     public static final int TEXT_ALIGN_RIGHT = 2;
@@ -94,7 +93,7 @@ public class BookCSS {
 
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
 
-    public static String DEFAULT_FOLDER = "";
+
 
     public int documentStyle = STYLES_DOC_AND_USER;
     public int marginTop;
@@ -112,7 +111,7 @@ public class BookCSS {
 
     public int textAlign;
 
-    public String fontFolder;
+
 
     public String displayFontName;
     public String normalFont;
@@ -194,7 +193,6 @@ public class BookCSS {
         if (c == null) {
             return;
         }
-        DEFAULT_FOLDER = FontExtractor.getFontsDir(c, FONTS_DIR).getPath();
         resetToDefault(c);
 
         IO.readObj(AppProfile.syncCSS, instance);
