@@ -113,6 +113,9 @@ public class IO {
 
     public static JSONObject readJsonObject(File file) {
         final String s = readString(file);
+        if(TxtUtils.isEmpty(s)){
+            return new JSONObject();
+        }
 
         try {
             return new JSONObject(s);

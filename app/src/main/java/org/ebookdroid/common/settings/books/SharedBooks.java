@@ -54,8 +54,13 @@ public class SharedBooks {
             if (!obj.has(key)) {
                 return bs;
             }
-            final JSONObject jsonObject = obj.getJSONObject(key);
-            Objects.loadFromJson(bs, jsonObject);
+            final JSONObject rootObj = obj.getJSONObject(key);
+            if(rootObj.has(AppProfile.DEVICE_MODEL)) {
+                final JSONObject deviceObj = rootObj.getJSONObject(AppProfile.DEVICE_MODEL);
+                Objects.loadFromJson(bs, deviceObj);
+            }
+            bs.p = (float) rootObj.optDouble("p", 0.0);
+            bs.t = rootObj.optLong("t", 0L);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -63,23 +68,27 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
-        final int hash = Objects.hashCode(bs);
-        bs.h = hash;
         JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
-        final AppBook load = load(obj, bs.path);
-        if (load.h != hash) {
-            load.h = hash;
+        try {
+            final String fileName = ExtUtils.getFileName(bs.path);
 
-            LOG.d("SharedBooks-save", bs.path, bs.p, load.h, bs.h);
+            JSONObject rootObj = obj.has(fileName) ? obj.getJSONObject(fileName) : new JSONObject();
+            rootObj.put("p", bs.p);
+            rootObj.put("t", bs.t);
 
-            try {
-                final String fileName = ExtUtils.getFileName(bs.path);
-                obj.put(fileName, Objects.toJSONObject(bs));
-                IO.writeObjAsync(AppProfile.syncProgress, obj);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
+            final JSONObject device = Objects.toJSONObject(bs);
+            device.remove("p");
+            device.remove("t");
 
+            rootObj.put(AppProfile.DEVICE_MODEL, device);
+
+            obj.put(fileName, rootObj);
+
+            IO.writeObjAsync(AppProfile.syncProgress, obj);
+        } catch (Exception e) {
+            LOG.e(e);
         }
+
+
     }
 }

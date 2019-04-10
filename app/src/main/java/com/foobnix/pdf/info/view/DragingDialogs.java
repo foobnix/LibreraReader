@@ -862,7 +862,7 @@ public class DragingDialogs {
                                     tts.udateButtons();
 
                                     TTSEngine.get().mp3Destroy();
-                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                                 } else {
                                     Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                                 }
@@ -1173,7 +1173,7 @@ public class DragingDialogs {
                 TextView footerNumber = (TextView) inflate.findViewById(R.id.footerNumber);
                 TextView goBack = (TextView) inflate.findViewById(R.id.goBack);
                 TextView text = (TextView) inflate.findViewById(R.id.text);
-                float size = Math.max(14, AppState.get().fontSizeSp * 0.85f);
+                float size = Math.max(14, BookCSS.get().fontSizeSp * 0.85f);
                 text.setTextSize(size);
                 LOG.d("FONT SIZE", size);
 
@@ -1452,7 +1452,7 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         TTSEngine.get().stop();
                         AppTemp.get().lastBookParagraph = 0;
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                     }
                 });
 
@@ -2342,7 +2342,7 @@ public class DragingDialogs {
                                                     TTSEngine.get().mp3Destroy();
                                                     BookCSS.get().mp3BookPath = aPath.getPath();
                                                     AppState.get().mp3seek = 0;
-                                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                                                 } else {
                                                     ExtUtils.openWith(anchor.getContext(), aPath);
                                                 }
@@ -4571,16 +4571,16 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek fontSizeSp = (CustomSeek) inflate.findViewById(R.id.fontSizeSp);
-                fontSizeSp.init(10, 70, AppState.get().fontSizeSp);
+                fontSizeSp.init(10, 70, BookCSS.get().fontSizeSp);
                 fontSizeSp.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        AppState.get().fontSizeSp = result;
+                        BookCSS.get().fontSizeSp = result;
                         return false;
                     }
                 });
-                fontSizeSp.setValueText("" + AppState.get().fontSizeSp);
+                fontSizeSp.setValueText("" + BookCSS.get().fontSizeSp);
 
                 inflate.findViewById(R.id.fontSizeLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);

@@ -11,6 +11,7 @@ import android.os.LocaleList;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 
 import java.util.Locale;
@@ -24,7 +25,7 @@ public class MyContextWrapper extends ContextWrapper {
     @TargetApi(24)
     public static ContextWrapper wrap(Context context) {
         String language = AppState.get().appLang;
-        final float scale = AppState.get().appFontScale;
+        final float scale = BookCSS.get().appFontScale;
 
         Resources res = context.getResources();
         Configuration configuration = res.getConfiguration();

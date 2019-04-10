@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
@@ -656,7 +657,7 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
-        pageCount = codeCache.getPageCount(w, h, AppState.get().fontSizeSp);
+        pageCount = codeCache.getPageCount(w, h, BookCSS.get().fontSizeSp);
         pathCache = path;
         whCache = h + w;
         return codeCache;

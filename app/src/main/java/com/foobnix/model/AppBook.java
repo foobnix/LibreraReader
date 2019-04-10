@@ -34,8 +34,6 @@ public class AppBook implements CurrentPageListener {
 
     public int d = 0;//delta
     public float p; //percent
-    @Objects.IgnoreCalculateHashCode
-    public long h;//hash
     public long t;
 
 

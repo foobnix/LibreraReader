@@ -354,9 +354,9 @@ public class GFile {
                 IO.copyFile(temp, file);
                 setLastModifiedTime(file, lastModified);
 
-                if(Clouds.isLibreraSyncFile(file.getPath())) {
+                if (Clouds.isLibreraSyncFile(file.getPath())) {
                     FileMeta meta = AppDB.get().getOrCreate(file.getPath());
-                    FileMetaCore.createMetaIfNeed(file.getPath(),true);
+                    FileMetaCore.createMetaIfNeed(file.getPath(), true);
                     IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                 }
 
@@ -478,7 +478,6 @@ public class GFile {
             debugOut += "\nEnd: " + DateFormat.getTimeInstance().format(new Date());
 
 
-
             TagData.restoreTags();
 
 
@@ -567,14 +566,14 @@ public class GFile {
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
 
-                if (local.exists() && remote.getSize().longValue() != local.length()) {
+                if (local.exists() && (remote.getModifiedTime().getValue() / 1000 != getLastModified(local) / 1000 || remote.getSize().longValue() != local.length())) {
 
                     if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
                         LOG.d("merge-" + local.getName());
-                        debugOut += "\n merge-" + local.getName();
+                        //debugOut += "\n merge-" + local.getName();
 
 
-                        java.io.File merge = new java.io.File(local.getPath() + ".merge");
+                        java.io.File merge = new java.io.File(local.getPath() + ".[merge]");
                         try {
                             downloadTemp(remote.getId(), merge);
                             //merge
@@ -588,9 +587,6 @@ public class GFile {
 
                         skip = true;
 
-                    } else if (local.getName().endsWith(AppProfile.APP_RECENT_JSON)) {
-                        LOG.d("merge-" + local.getName());
-                        debugOut += "\n merge-" + local.getName();
                     }
 
                 }

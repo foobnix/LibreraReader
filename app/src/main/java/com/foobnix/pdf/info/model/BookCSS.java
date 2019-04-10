@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Environment;
 
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
@@ -20,6 +21,8 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.droids.DocContext;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -50,6 +53,10 @@ public class BookCSS {
 
     public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
     public String fontFolder = DEFAULT_FOLDER;
+
+    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
+    public float appFontScale = 1.0f;
+
 
     public String mp3BookPath;
     public String dirLastPath;
@@ -189,13 +196,38 @@ public class BookCSS {
 
     }
 
+    public void save(Context c) {
+        if (c == null) {
+            return;
+        }
+
+//        int currentHash = Objects.hashCode(instance, false);
+//        if (currentHash != instance.hashCode) {
+//            LOG.d("Objects-save", "SAVE BookCSS");
+//            hashCode = currentHash;
+//
+//        }
+
+        JSONObject obj = IO.readJsonObject(AppProfile.syncCSS);
+        try {
+            obj.put(AppProfile.DEVICE_MODEL,Objects.toJSONObject(instance));
+        } catch (JSONException e) {
+            LOG.e(e);
+        }
+
+        IO.writeObjAsync(AppProfile.syncCSS, obj);
+    }
+
     public void load1(Context c) {
         if (c == null) {
             return;
         }
         resetToDefault(c);
 
-        IO.readObj(AppProfile.syncCSS, instance);
+        //
+        JSONObject obj = IO.readJsonObject(AppProfile.syncCSS);
+        Objects.loadFromJson(instance, obj.optJSONObject(AppProfile.DEVICE_MODEL));
+
 
         try {
             if(TxtUtils.isEmpty(instance.searchPaths)) {
@@ -221,18 +253,7 @@ public class BookCSS {
 
     }
 
-    public void save(Context c) {
-        if (c == null) {
-            return;
-        }
 
-        int currentHash = Objects.hashCode(instance, false);
-        if (currentHash != instance.hashCode) {
-            LOG.d("Objects-save", "SAVE BookCSS");
-            hashCode = currentHash;
-            IO.writeObjAsync(AppProfile.syncCSS, instance);
-        }
-    }
 
     public int position(String fontName) {
         try {

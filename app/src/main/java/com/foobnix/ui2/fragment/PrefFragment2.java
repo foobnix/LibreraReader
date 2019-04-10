@@ -783,7 +783,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView appFontScale = (TextView) inflate.findViewById(R.id.appFontScale);
-        appFontScale.setText(getFontName(AppState.get().appFontScale));
+        appFontScale.setText(getFontName(BookCSS.get().appFontScale));
         TxtUtils.underlineTextView(appFontScale);
         appFontScale.setOnClickListener(new OnClickListener() {
 
@@ -796,7 +796,7 @@ public class PrefFragment2 extends UIFragment {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().appFontScale = number;
+                            BookCSS.get().appFontScale = number;
                             AppProfile.save(getActivity());
                             onTheme();
                             return false;

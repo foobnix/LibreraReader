@@ -38,7 +38,6 @@ import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
-import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
@@ -406,28 +405,13 @@ public class ShareDialog {
                 } else if (!isPlaylist && which == i++) {
                     DialogsPlaylist.showPlaylistsDialog(a, null, file);
                 } else if (!isSyncronized && which == i++) {
-                    new AsyncProgressResultToastTask(a) {
-
-                        @Override
-                        protected Boolean doInBackground(Object... objects) {
-                            try {
-                                final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
-                                boolean result = IO.copyFile(file, to);
-                                if (result && BookCSS.get().isEnableSync) {
-                                    GFile.upload(to);
-                                    GFile.runSyncService(a);
-                                }
-                                TempHolder.listHash++;
-                                a.runOnUiThread(() -> EventBus.getDefault().post(new UpdateAllFragments()));
-                            } catch (Exception e) {
-                                LOG.e(e);
-                                return false;
-                            }
-                            return true;
-                        }
-                    }.execute();
-
-
+                    final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
+                    boolean result = IO.copyFile(file, to);
+                    if (result && BookCSS.get().isEnableSync) {
+                        GFile.runSyncService(a);
+                    }
+                    TempHolder.listHash++;
+                    EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }

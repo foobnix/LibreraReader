@@ -220,7 +220,7 @@ public class TTSService extends Service {
             }
         } else {
             if (controller != null) {
-                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), AppState.get().fontSizeSp, controller.getTitle());
+                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
             }
         }
     }
@@ -401,7 +401,7 @@ public class TTSService extends Service {
             }
             path = AppTemp.get().lastBookPath;
             cache = ImageExtractor.singleCodecContext(AppTemp.get().lastBookPath, "", AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight);
-            cache.getPageCount(AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight, AppState.get().fontSizeSp);
+            cache.getPageCount(AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight, BookCSS.get().fontSizeSp);
             wh = AppTemp.get().lastBookWidth + AppTemp.get().lastBookHeight;
             LOG.d(TAG, "CodecDocument new", AppTemp.get().lastBookPath, AppTemp.get().lastBookWidth, AppTemp.get().lastBookHeight);
             return cache;

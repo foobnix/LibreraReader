@@ -68,7 +68,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override
     public int getPageCount() {
         LOG.d("MuPdfDocument,getPageCount", getW(), getH());
-        return getPageCountWithException(documentHandle, getW(), getH(), AppState.get().fontSizeSp);
+        return getPageCountWithException(documentHandle, getW(), getH(), BookCSS.get().fontSizeSp);
     }
 
     @Override
@@ -244,7 +244,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private static native void free(long handle);
 
     private static synchronized int getPageCountWithException(final long handle) {
-        final int count = getPageCountSafe(handle, Dips.screenWidth(), Dips.screenHeight(), Dips.spToPx(AppState.get().fontSizeSp));
+        final int count = getPageCountSafe(handle, Dips.screenWidth(), Dips.screenHeight(), Dips.spToPx(BookCSS.get().fontSizeSp));
         if (count == 0) {
             throw new RuntimeException("Document is corrupted");
         }

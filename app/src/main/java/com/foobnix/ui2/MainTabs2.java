@@ -196,7 +196,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void attachBaseContext(Context context) {
         AppProfile.init(context);
-        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && AppState.get().appFontScale == 1.0f) {
+        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f) {
             LOG.d("attachBaseContext skip");
             super.attachBaseContext(context);
         } else {

@@ -173,10 +173,12 @@ public class PageImaveView extends View {
                     t = PageImageState.get().pagesLinks.get(page + 1);
                 }
 
-                for (PageLink l : t) {
-                    LOG.d("PageLinks targetPage after", l.targetPage);
-                    l.number = number;
-                    LOG.d("PageLinks targetPage before", l.targetPage);
+                if(t!=null) {
+                    for (PageLink l : t) {
+                        LOG.d("PageLinks targetPage after", l.targetPage);
+                        l.number = number;
+                        LOG.d("PageLinks targetPage before", l.targetPage);
+                    }
                 }
 
                 return t;

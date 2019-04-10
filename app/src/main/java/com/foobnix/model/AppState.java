@@ -460,7 +460,6 @@ public class AppState {
     public int bgImageNightTransparency = NIGHT_TRANSPARENCY;
 
     public String appLang = AppState.MY_SYSTEM_LANG;
-    public float appFontScale = 1.0f;
 
    
 
@@ -577,7 +576,6 @@ public class AppState {
 
     public int cutP = 50;
 
-    public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
     public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
@@ -808,6 +806,7 @@ public class AppState {
         if (a == null) {
             return;
         }
+
         IO.readObj(AppProfile.syncState, instance);
     }
 
