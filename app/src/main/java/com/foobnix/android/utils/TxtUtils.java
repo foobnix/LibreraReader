@@ -972,15 +972,6 @@ public class TxtUtils {
         return buf.toString();
     }
 
-    public static void setInkTextView(TextView... ts) {
-        if (AppState.get().appTheme == AppState.THEME_INK) {
-            for (TextView t : ts) {
-                if (t != null) {
-                    t.setTextColor(Color.BLACK);
-                }
-            }
-        }
-    }
 
     public static void updateinks(ViewGroup parent, int color) {
         int childCount = parent.getChildCount();
@@ -1000,11 +991,18 @@ public class TxtUtils {
     }
 
 
-    public static void setInkTextView(View parent) {
-        if (parent instanceof ViewGroup) {
-            updateinks((ViewGroup) parent, Color.BLACK);
+    public static void setInkTextView(View... parents) {
+        if (AppState.get().appTheme != AppState.THEME_INK) {
+            return;
         }
-
+        for (View parent : parents) {
+            if (parent instanceof ViewGroup) {
+                updateinks((ViewGroup) parent, Color.BLACK);
+            } else if (parent instanceof TextView) {
+                ((TextView) parent).setTextColor(Color.BLACK);
+            }
+        }
     }
+
 
 }

@@ -126,13 +126,6 @@ public class BooksService extends IntentService {
                         AppTemp.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
 
-                        final File[] books = AppProfile.SYNC_FOLDER_BOOKS.listFiles();
-                        if (books != null) {
-                            for (File file : books) {
-                                IMG.clearCache(file.getPath());
-                            }
-                        }
-
                     } catch (Exception e) {
                         AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));

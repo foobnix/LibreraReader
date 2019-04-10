@@ -157,6 +157,10 @@ public class MyPopupMenu {
                 if (TxtUtils.isNotEmpty(item.fontPath)) {
                     textView.setTypeface(BookCSS.getTypeFaceForFont(item.fontPath));
                 }
+                if(AppState.get().appTheme == AppState.THEME_INK){
+                    textView.setTextColor(Color.BLACK);
+                }
+
 
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
                 if (item.iconRes != 0) {

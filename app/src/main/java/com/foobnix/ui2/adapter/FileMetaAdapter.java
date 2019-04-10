@@ -378,6 +378,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.title.setText(fileMeta.getPathTxt());
             TintUtil.setTintImageWithAlpha(holder.image);
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
+
+            TxtUtils.setInkTextView(holder.title);
+
         } else if (holderAll instanceof NameDividerViewHolder) {
             final NameDividerViewHolder holder = (NameDividerViewHolder) holderAll;
             holder.title.setText(fileMeta.getTitle());
@@ -608,6 +611,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 adapter.getItemsList().addAll(allTags);
 
                 TxtUtils.underline(holder.starredName, AppState.get().recentTag + " (" + allTags.size() + ")");
+
 
             }
             adapter.notifyDataSetChanged();

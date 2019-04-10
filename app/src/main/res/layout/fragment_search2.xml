@@ -100,7 +100,7 @@
                 android:paddingLeft="8dip"
                 android:singleLine="true"
                 android:text="@string/by_path"
-                android:textColor="@color/tint_white"
+                android:textColor="@color/white"
                 android:textStyle="normal" />
 
             <ImageView
