@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
@@ -14,6 +15,7 @@ import android.text.Spanned;
 import android.text.SpannedString;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.foobnix.dao2.FileMeta;
@@ -970,5 +972,39 @@ public class TxtUtils {
         return buf.toString();
     }
 
+    public static void setInkTextView(TextView... ts) {
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            for (TextView t : ts) {
+                if (t != null) {
+                    t.setTextColor(Color.BLACK);
+                }
+            }
+        }
+    }
+
+    public static void updateinks(ViewGroup parent, int color) {
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = parent.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                updateinks((ViewGroup) child, color);
+            } else if (child instanceof TextView) {
+                final TextView it = (TextView) child;
+                if (it.getTextColors().getDefaultColor() != Color.WHITE) {
+                    it.setTextColor(color);
+                }
+            } else if (child instanceof CheckBox) {
+                ((CheckBox) child).setTextColor(color);
+            }
+        }
+    }
+
+
+    public static void setInkTextView(View parent) {
+        if (parent instanceof ViewGroup) {
+            updateinks((ViewGroup) parent, Color.BLACK);
+        }
+
+    }
 
 }

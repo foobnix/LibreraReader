@@ -70,7 +70,12 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         TxtUtils.updateAllLinks(view);
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            TxtUtils.setInkTextView(view);
+        }
 
         if (recyclerView instanceof FastScrollRecyclerView) {
             swipeRefreshLayout = getActivity().findViewById(R.id.swipeRefreshLayout);

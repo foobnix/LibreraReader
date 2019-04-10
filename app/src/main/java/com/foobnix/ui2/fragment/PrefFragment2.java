@@ -147,6 +147,11 @@ public class PrefFragment2 extends UIFragment {
             profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
         }
 
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            TxtUtils.setInkTextView(inflate.getRootView());
+        }
+
+
     }
 
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay;
@@ -2024,6 +2029,8 @@ public class PrefFragment2 extends UIFragment {
     private void onEink() {
         AppState.get().appTheme = AppState.THEME_INK;
         AppState.get().blueLightAlpha = 0;
+        AppState.get().tintColor = Color.BLACK;
+        TintUtil.color = Color.BLACK;
 
         onTintChanged();
         sendNotifyTintChanged();

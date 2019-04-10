@@ -416,6 +416,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             TintUtil.setTintImageWithAlpha(holder.starIcon, holder.starIcon.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
+
             if (onStarClickListener != null) {
                 holder.starIcon.setOnClickListener(new OnClickListener() {
 
@@ -474,6 +475,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
                 holder.parent.setBackgroundColor(Color.BLACK);
             }
+
+           TxtUtils.setInkTextView(holder.title,holder.path, holder.play, holder.count);
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {
             final StarsLayoutViewHolder holder = (StarsLayoutViewHolder) holderAll;
@@ -973,9 +976,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
             }
         }
+        TxtUtils.setInkTextView(holder.title, holder.author, holder.path, holder.browserExt, holder.size, holder.date, holder.series, holder.idPercentText);
 
         return fileMeta;
     }
+
 
     @Override
     public String getSectionText(int position) {

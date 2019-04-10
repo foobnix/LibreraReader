@@ -845,8 +845,14 @@ public class ExtUtils {
             }
         });
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.select_the_reading_mode);
+
+        if (AppState.get().appTheme == AppState.THEME_INK) {
+            TxtUtils.setInkTextView(view);
+        }
+
         builder.setView(view);
         builder.setCancelable(true);
         final AlertDialog dialog = builder.show();

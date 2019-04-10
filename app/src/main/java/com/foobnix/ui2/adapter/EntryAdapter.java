@@ -107,7 +107,6 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             }
 
 
-
         } else {
             holder.content.setVisibility(View.GONE);
             holder.expand.setVisibility(View.GONE);
@@ -320,9 +319,12 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         bindItemClickAndLongClickListeners(holder.parent, entry);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
             holder.parent.setBackgroundColor(Color.BLACK);
         }
+
+
+        TxtUtils.setInkTextView(holder.title, holder.content, holder.author, holder.category, holder.expand);
     }
 
     @Override

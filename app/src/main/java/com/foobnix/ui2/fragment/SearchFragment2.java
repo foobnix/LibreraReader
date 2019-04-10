@@ -122,6 +122,16 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         TintUtil.setStrokeColor(searchEditText, colorTheme);
         TintUtil.setUITextColor(searchEditText, colorTheme);
 
+        if (AppState.get().appTheme == AppState.THEME_INK){
+            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
+            TintUtil.setStrokeColor(searchEditText, Color.BLACK);
+            TintUtil.setUITextColor(searchEditText, Color.BLACK);
+            countBooks.setTextColor(Color.BLACK);
+
+        }
+
+
+
     }
 
     public void onGridList() {

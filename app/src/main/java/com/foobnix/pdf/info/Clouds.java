@@ -27,6 +27,7 @@ import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.MainTabs2;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -638,7 +639,10 @@ public class Clouds {
         if (isLibreraSyncFile(path)) {
             img.setVisibility(View.VISIBLE);
             img.setImageResource(R.drawable.glyphicons_748_synchronization);
-            TintUtil.setTintImageNoAlpha(img, TintUtil.cloudSyncColor);
+            //TintUtil.setTintImageNoAlpha(img, TintUtil.cloudSyncColor);
+
+            TintUtil.setTintImageWithAlpha(img, img.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+
             return true;
         } else {
             img.setVisibility(View.GONE);
