@@ -127,11 +127,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
-
         checkGoToPage(intent);
 
     }
-
 
 
     @Override
@@ -253,9 +251,11 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         });
         fab.setBackgroundResource(R.drawable.bg_circular);
-        TintUtil.setDrawableTint(fab.getBackground().getCurrent(),TintUtil.cloudSyncColor);
+        TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -362,7 +362,12 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                     if (BookCSS.get().isEnableSync) {
                         swipeRefreshLayout.setEnabled(true);
+                        swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
+
                     }
+                    TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
+
+
                 } catch (Exception e) {
                     LOG.e(e);
                 }
