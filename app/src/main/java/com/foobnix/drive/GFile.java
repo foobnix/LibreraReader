@@ -409,19 +409,9 @@ public class GFile {
         return l;
     }
 
-    public static void deleteBookByName(String rootId, String name) throws IOException {
-        name = name.replace("'", "\\'");
-        final List<File> files = exeQF("'%s' in parents and name = '%s'", rootId, name);
-        for (File f : files) {
-            File metadata = new File().setTrashed(true);
-            LOG.d("Delete book", name);
-            debugOut += "\nDelete book: " + name;
-            googleDriveService.files().update(f.getId(), metadata).execute();
-        }
-    }
 
     private static void deleteFile(File file, long lastModified) throws IOException {
-        File metadata = new File().setModifiedTime(new DateTime(lastModified)).setTrashed(true);
+        File metadata = new File().setTrashedTime(new DateTime(lastModified)).setModifiedTime(new DateTime(lastModified)).setTrashed(true);
         LOG.d("Delete", file.getName());
         debugOut += "\nDelete: " + file.getName();
         googleDriveService.files().update(file.getId(), metadata).execute();
@@ -540,7 +530,8 @@ public class GFile {
 
         for (java.io.File local : map2.keySet()) {
             File remote = map2.get(local);
-            if (remote.getTrashed() && local.exists()) {
+            LOG.d("CHECK-to-REMOVE", local.getPath(), remote.getModifiedTime().getValue(), getLastModified(local));
+            if (remote.getTrashed() && local.exists() && remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000) {
                 debugOut += "\nDelete local: " + local.getPath();
                 LOG.d(TAG, "Delete local", local.getPath());
                 ExtUtils.deleteRecursive(local);

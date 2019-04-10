@@ -5,7 +5,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -19,6 +18,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class AppData {
@@ -37,27 +37,32 @@ public class AppData {
 
 
     public synchronized void addRecent(SimpleMeta s) {
-
         if (TxtUtils.isListNotEmpty(recent)) {
             Collections.sort(recent, FileMetaComparators.BY_RECENT_TIME_2);
-            if (s.getPath().equals(recent.get(0).getPath())) {
+            final String name1 = ExtUtils.getFileName(s.getPath());
+            final String name2 = ExtUtils.getFileName(recent.get(0).getPath());
+            if (name1.equals(name2)) {
                 LOG.d("Skip-recent");
                 return;
             }
         }
         recent.remove(s);
-        recent.add(s);
+
+        final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
+        recent.remove(syncMeta);
+        recent.add(syncMeta);
+
         writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
-    public synchronized  void removeRecent(SimpleMeta s) {
+    public synchronized void removeRecent(SimpleMeta s) {
         recent.remove(s);
         writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("AppData removeRecent", s.getPath());
     }
 
-    public synchronized  void addFavorite(SimpleMeta s) {
+    public synchronized void addFavorite(SimpleMeta s) {
         favorites.remove(s);
         favorites.add(s);
         LOG.d("AppData addFavorite", s.getPath());
@@ -65,7 +70,7 @@ public class AppData {
         LOG.d("Objects-save", "SAVE Favorite");
     }
 
-    public synchronized  List<String> getAllExcluded() {
+    public synchronized List<String> getAllExcluded() {
         readSimpleMeta(exclude, AppProfile.syncExclude, SimpleMeta.class);
         ArrayList<String> res = new ArrayList<String>();
         for (SimpleMeta s : exclude) {
@@ -75,7 +80,7 @@ public class AppData {
     }
 
 
-    public synchronized  void addExclue(String path) {
+    public synchronized void addExclue(String path) {
         final SimpleMeta sm = new SimpleMeta(path);
         exclude.remove(sm);
         exclude.add(sm);
@@ -84,31 +89,31 @@ public class AppData {
         LOG.d("Objects-save", "SAVE Favorite");
     }
 
-    public synchronized  void removeFavorite(SimpleMeta s) {
+    public synchronized void removeFavorite(SimpleMeta s) {
         favorites.remove(s);
         writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("AppData removeFavorite", s.getPath());
 
     }
 
-    public synchronized   void clearRecents() {
+    public synchronized void clearRecents() {
         recent.clear();
         writeSimpleMeta(recent, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
-    public synchronized  void clearFavorites() {
+    public synchronized void clearFavorites() {
         favorites.clear();
         writeSimpleMeta(favorites, AppProfile.syncFavorite);
         LOG.d("Objects-save", "SAVE Favorite");
 
     }
 
-    public synchronized  void loadFavorites() {
+    public synchronized void loadFavorites() {
         readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
     }
 
-    public synchronized  List<FileMeta> getAllSyncBooks() {
+    public synchronized List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, null);
@@ -119,7 +124,7 @@ public class AppData {
 
     }
 
-    public synchronized  List<FileMeta> getAllFavoriteFiles() {
+    public synchronized List<FileMeta> getAllFavoriteFiles() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.getPath()).isFile()) {
@@ -136,7 +141,7 @@ public class AppData {
         return res;
     }
 
-    public synchronized  List<FileMeta> getAllFavoriteFolders() {
+    public synchronized List<FileMeta> getAllFavoriteFolders() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.getPath()).isDirectory()) {
@@ -162,10 +167,12 @@ public class AppData {
     public synchronized List<FileMeta> getAllRecent() {
         readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
         List<FileMeta> res = new ArrayList<>();
-        for (SimpleMeta s : recent) {
-            if (Clouds.isLibreraSyncFile(s.getPath())) {
-                s.setPath(new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(s.getPath())).getPath());
-            }
+
+
+        final Iterator<SimpleMeta> iterator = recent.iterator();
+        while (iterator.hasNext()) {
+            SimpleMeta s = SimpleMeta.SyncSimpleMeta(iterator.next());
+
 
             if (!new File(s.getPath()).isFile()) {
                 LOG.d("getAllRecent can't find file", s.getPath());

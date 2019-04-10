@@ -8,7 +8,6 @@ public class SimpleMeta implements MyPath.RelativePath {
 
     public String path;
     public long time;
-    public int state;
 
 
     public SimpleMeta() {
@@ -24,6 +23,10 @@ public class SimpleMeta implements MyPath.RelativePath {
         this.path = MyPath.toRelative(path);
     }
 
+    public static SimpleMeta SyncSimpleMeta(SimpleMeta s) {
+        return new SimpleMeta(MyPath.getSyncPath(s.getPath()), s.time);
+    }
+
     public String getPath() {
         return MyPath.toAbsolute(path);
     }
@@ -34,7 +37,7 @@ public class SimpleMeta implements MyPath.RelativePath {
 
     @Override
     public boolean equals(Object obj) {
-        return obj != null && ((SimpleMeta) obj).path.equals(path) ;
+        return obj != null && ((SimpleMeta) obj).path.equals(path);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class SimpleMeta implements MyPath.RelativePath {
 
     @Override
     public String toString() {
-        return "SimpleMeta:" + path + ":" + time + ":" + state;
+        return "SimpleMeta:" + path + ":" + time;
 
     }
 }

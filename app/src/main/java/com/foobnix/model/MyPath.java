@@ -2,6 +2,8 @@ package com.foobnix.model;
 
 import android.os.Environment;
 
+import com.foobnix.pdf.info.ExtUtils;
+
 import java.io.File;
 
 public class MyPath {
@@ -45,6 +47,15 @@ public class MyPath {
         }
         return path.replace(INTERNAL_PREFIX, INTERNAL_ROOT);
     }
+
+    public static String getSyncPath(String path) {
+        if (path == null) {
+            return null;
+        }
+        final File syncBook = new File(AppProfile.SYNC_FOLDER_BOOKS, ExtUtils.getFileName(path));
+        return syncBook.isFile() ? syncBook.getPath() : path;
+    }
+
 
     public interface RelativePath {
         String getPath();
