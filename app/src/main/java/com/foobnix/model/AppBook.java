@@ -15,26 +15,21 @@ public class AppBook implements CurrentPageListener {
 
     @Objects.IgnoreCalculateHashCode
     public transient String path;
-    public int z = 100;//z
 
+    public int z = 100;//z
     public boolean sp = false;//split pages
     public boolean cp = false; //crop pages
-
     public boolean dp = false; //double pages normal
-
     public boolean dc = false; //double pages cover
-
-
     public int lk = LOCK_NONE;
-
     public float x; //offsetX
     public float y; //offsetY
-
     public int s = AppState.get().autoScrollSpeed; //speed
-
     public int d = 0;//delta
+
     public float p; //percent
     public long t;
+    public String ln;
 
 
     public AppBook() {

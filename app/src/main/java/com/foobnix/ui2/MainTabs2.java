@@ -523,16 +523,23 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
+
         try {
             if (msg.state == MessageSync.STATE_VISIBLE) {
-                fab.setVisibility(View.VISIBLE);
+                if (BookCSS.get().isShowSyncWheel) {
+                    fab.setVisibility(View.VISIBLE);
+                }
                 swipeRefreshLayout.setRefreshing(false);
             } else if (msg.state == MessageSync.STATE_FAILE) {
-                fab.setVisibility(View.GONE);
+                if (BookCSS.get().isShowSyncWheel) {
+                    fab.setVisibility(View.GONE);
+                }
                 swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
             } else {
-                fab.setVisibility(View.GONE);
+                if (BookCSS.get().isShowSyncWheel) {
+                    fab.setVisibility(View.GONE);
+                }
                 swipeRefreshLayout.setRefreshing(false);
 
             }

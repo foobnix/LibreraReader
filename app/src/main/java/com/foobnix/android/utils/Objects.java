@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -160,13 +162,28 @@ public class Objects {
 
     }
 
-    public static int hashCode(Object o) {
-        return hashCode(o, true);
+    public static int appHash() {
+        return Objects.hashCode(BookCSS.get(), AppState.get(), AppTemp.get().hypenLang);
+    }
+
+    public static int hashCode(Object... objects) {
+        int res = 0;
+        for (Object o : objects) {
+            res += hashCode(o, true);
+        }
+        return res;
     }
 
     static String hashStringID = "hashCode";
 
     public static int hashCode(Object obj, boolean ignoreSomeHash) {
+        if (obj == null) {
+            return 0;
+        } else if (obj instanceof String) {
+            return obj.hashCode();
+        } else if (obj instanceof Integer) {
+            return (int) obj;
+        }
         StringBuilder res = new StringBuilder();
 
         final Field[] declaredFields = obj.getClass().getDeclaredFields();
@@ -223,7 +240,6 @@ public class Objects {
         }
 
     }
-
 
 
     public static Object getInstanceValue(final Object classInstance, final String fieldName) throws SecurityException, NoSuchFieldException,

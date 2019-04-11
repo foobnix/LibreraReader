@@ -55,12 +55,14 @@ public class SharedBooks {
                 return bs;
             }
             final JSONObject rootObj = obj.getJSONObject(key);
-            if(rootObj.has(AppProfile.DEVICE_MODEL)) {
+            if (rootObj.has(AppProfile.DEVICE_MODEL)) {
                 final JSONObject deviceObj = rootObj.getJSONObject(AppProfile.DEVICE_MODEL);
                 Objects.loadFromJson(bs, deviceObj);
             }
             bs.p = (float) rootObj.optDouble("p", 0.0);
             bs.t = rootObj.optLong("t", 0L);
+            bs.ln = rootObj.optString("ln", null);
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -75,10 +77,12 @@ public class SharedBooks {
             JSONObject rootObj = obj.has(fileName) ? obj.getJSONObject(fileName) : new JSONObject();
             rootObj.put("p", bs.p);
             rootObj.put("t", bs.t);
+            rootObj.put("ln", bs.ln);
 
             final JSONObject device = Objects.toJSONObject(bs);
             device.remove("p");
             device.remove("t");
+            device.remove("ln");
 
             rootObj.put(AppProfile.DEVICE_MODEL, device);
 

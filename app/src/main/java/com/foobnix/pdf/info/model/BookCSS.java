@@ -12,6 +12,7 @@ import com.foobnix.android.utils.Objects.IgnoreHashCode;
 import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -20,6 +21,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.DocContext;
 
 import java.io.File;
@@ -61,10 +63,11 @@ public class BookCSS {
     public String pathSAF = "";
 
 
-
     public boolean isEnableSync;
     public boolean isSyncManualOnly;
     public boolean isSyncWifiOnly;
+    public boolean isShowSyncWheel = true;
+
     public String syncRootID;
 
 
@@ -99,7 +102,6 @@ public class BookCSS {
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
 
 
-
     public int documentStyle = STYLES_DOC_AND_USER;
     public int marginTop;
     public int marginRight;
@@ -117,7 +119,6 @@ public class BookCSS {
     public int textAlign;
 
 
-
     public String displayFontName;
     public String normalFont;
     public String boldFont;
@@ -128,7 +129,6 @@ public class BookCSS {
 
     public boolean isAutoHypens;
 
-    
 
     public String linkColorDay;
     public String linkColorNight;
@@ -204,7 +204,7 @@ public class BookCSS {
         IO.readObj(AppProfile.syncCSS, instance);
 
         try {
-            if(TxtUtils.isEmpty(instance.searchPaths)) {
+            if (TxtUtils.isEmpty(instance.searchPaths)) {
                 List<String> extFolders = ExtUtils.getExternalStorageDirectories(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
@@ -793,6 +793,11 @@ public class BookCSS {
         }
         AppTemp.get().hypenLang = meta != null ? meta.getLang() : null;
         LOG.d("detectLang", bookPath, AppTemp.get().hypenLang);
+
+        final AppBook load = SharedBooks.load(bookPath);
+        load.ln = AppTemp.get().hypenLang;
+        SharedBooks.save(load);
+
     }
 
 }

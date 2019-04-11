@@ -3121,8 +3121,8 @@ public class DragingDialogs {
 
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         AppProfile.save(controller.getActivity());
-        final int cssHash = Objects.hashCode(BookCSS.get());
-        final int appHash = Objects.hashCode(AppState.get());
+
+        final int initHash = Objects.appHash();
 
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
@@ -3133,7 +3133,7 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        if (appHash != Objects.hashCode(AppState.get())) {
+                        if (initHash != Objects.appHash()) {
                             AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
 
                                 @Override
@@ -3199,7 +3199,6 @@ public class DragingDialogs {
                 });
 
 
-
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
                 isShowLongBackDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -3221,7 +3220,6 @@ public class DragingDialogs {
                 });
 
 
-
                 CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
                 isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
                 isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
@@ -3234,7 +3232,7 @@ public class DragingDialogs {
                     AppState.get().isAllowTextSelection = isChecked;
                     if (isChecked) {
                         TempHolder.get().isAllowTextSelectionFirstTime = true;
-                    }else{
+                    } else {
                         AppState.get().selectingByLetters = false;
                         AppState.get().isSelectTexByTouch = false;
                         isSelectTexByTouch.setChecked(false);
@@ -3401,7 +3399,6 @@ public class DragingDialogs {
                 });
 
                 isSaveAnnotatationsAutomatically.setVisibility(!(AppTemp.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
-
 
 
                 CheckBox isCutRTL = (CheckBox) inflate.findViewById(R.id.isCutRTL);
@@ -3827,9 +3824,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                boolean one = appHash != Objects.hashCode(AppState.get());
-                boolean two = controller.isTextFormat() && cssHash != Objects.hashCode(BookCSS.get());
-                if (one || two) {
+                if (initHash != Objects.appHash()) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }
@@ -3843,8 +3838,7 @@ public class DragingDialogs {
     ;
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int initCssHash = Objects.hashCode(BookCSS.get());
-        final int initAppHash = Objects.hashCode(AppState.get());
+        final int initHash = Objects.appHash();
 
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
@@ -3855,7 +3849,7 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        if (initCssHash != Objects.hashCode(BookCSS.get())){
+                        if (initHash != Objects.appHash()) {
                             AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
 
                                 @Override
@@ -4340,7 +4334,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (initCssHash != Objects.hashCode(BookCSS.get()) || initAppHash != Objects.hashCode(AppState.get())) {
+                if (initHash != Objects.appHash()) {
                     AppProfile.save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();
@@ -4353,8 +4347,8 @@ public class DragingDialogs {
     }
 
     public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int cssHash =  Objects.hashCode(BookCSS.get());
-        final int appHash = Objects.hashCode(AppState.get());
+        final int initHash = Objects.appHash();
+
 
         // LOG.d("ojectAsString1", Objects.ojectAsString(AppState.get()));
 
@@ -5117,9 +5111,7 @@ public class DragingDialogs {
             public void run() {
                 // LOG.d("ojectAsString2", Objects.ojectAsString(AppState.get()));
 
-                if (//
-                        appHash != Objects.hashCode(AppState.get()) || //
-                                (controller.isTextFormat() && cssHash != Objects.hashCode(BookCSS.get()))) {
+                if (initHash != Objects.appHash()) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }
