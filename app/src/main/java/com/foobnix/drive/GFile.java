@@ -170,7 +170,7 @@ public class GFile {
         do {
             //debugOut += "\n:" + q;
 
-            final FileList list = googleDriveService.files().list().setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).execute();
+            final FileList list = googleDriveService.files().list().setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
             debugOut += "\nGet remote files info: " + list.getFiles().size();
@@ -188,7 +188,7 @@ public class GFile {
     }
 
     public static List<File> getFilesAll(boolean withTrashed) throws Exception {
-        return withTrashed ? exeQ("") : exeQ("trashed = false");
+        return withTrashed ? exeQ("") : exeQ("trashed = false or");
     }
 
     public static File findLibreraSync() throws Exception {
