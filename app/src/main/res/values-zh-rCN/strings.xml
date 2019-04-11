@@ -550,9 +550,9 @@
    <string name="single_tap_to_select_text">单击选择文本</string>
    <string name="sync_book">同步书籍</string>
    <string name="sync">同步</string>
-   <string name="synchronized_folder">已同步的档夹</string>
+   <string name="synchronized_folder">同步档夹</string>
    <string name="today">今天</string>
    <string name="downloads">下载</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">档夹不是空的。仍要删除？</string>
-   <string name="synchronized_books">已同步的书籍</string>
+   <string name="synchronized_books">同步书籍</string>
 </resources>
