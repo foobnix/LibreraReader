@@ -34,7 +34,6 @@ import java.util.concurrent.TimeUnit;
 public class AppState {
 
 
-
     public static final String PROXY_HTTP = "HTTP";
     public static final String PROXY_SOCKS = "SOCKS";
 
@@ -228,11 +227,6 @@ public class AppState {
 
     public final static int MAX_SPEED = 149;
 
-    public final static int SORT_BY_PATH = 0;
-    public final static int SORT_BY_NAME = 1;
-    public final static int SORT_BY_SIZE = 2;
-    public final static int SORT_BY_DATE = 3;
-
     public final static int MODE_GRID = 1;
     public final static int MODE_LIST = 2;
     public final static int MODE_COVERS = 3;
@@ -284,7 +278,6 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
 
-   
 
     public int helpHash = 0;
 
@@ -435,15 +428,11 @@ public class AppState {
 
     public String musicText = "Musician";
 
-   
-
-
 
     public int cropTop = 0;
     public int cropBottom = 0;
     public int cropLeft = 0;
     public int cropRigth = 0;
-
 
 
     public boolean isDayNotInvert = true;
@@ -458,8 +447,6 @@ public class AppState {
 
     public String appLang = AppState.MY_SYSTEM_LANG;
 
-   
-
 
     public boolean isPrefFormatMode = false;
     public String prefScrollMode = PREF_SCROLL_MODE;
@@ -472,7 +459,7 @@ public class AppState {
 
     public boolean isBookCoverEffect = false;
 
-   
+
     public int editWith = EDIT_NONE;
 
     public String annotationDrawColor = "";
@@ -498,8 +485,6 @@ public class AppState {
     // public int widgetHeigth = 100;
     public int widgetType = WIDGET_LIST;
     public int widgetItemsCount = 4;
-
-    public int widgetSize = WIDGET_SIZE.get(1);
 
     @IgnoreHashCode
     public String rememberDict1 = "web:Google Translate";
@@ -536,7 +521,6 @@ public class AppState {
     public String fileToDelete;
 
     public int mp3seek = 0;
-
 
 
     public int colorDayText = COLOR_BLACK;
@@ -576,7 +560,6 @@ public class AppState {
     public volatile int statusBarTextSizeAdv = Dips.isXLargeScreen() ? 16 : 14;
     public volatile int statusBarTextSizeEasy = Dips.isXLargeScreen() ? 16 : 12;
     public volatile int progressLineHeight = Dips.isXLargeScreen() ? 8 : 4;
-
 
 
     public String versionNew = "";
@@ -622,10 +605,6 @@ public class AppState {
 
     public long installationDate = System.currentTimeMillis();
 
-
-
-
-
     @IgnoreHashCode
     public boolean isShowLongBackDialog = false;
 
@@ -641,9 +620,6 @@ public class AppState {
 
     public boolean isCropBookCovers = true;
     public boolean isBorderAndShadow = true;
-
-    public boolean isBrowseImages = false;
-
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));
     public int coverSmallSize = 80;
 
@@ -752,7 +728,7 @@ public class AppState {
     }
 
 
-    public void defaults(Context a){
+    public void defaults(Context a) {
         nameVerticalMode = a.getString(R.string.mode_vertical);
         nameHorizontalMode = a.getString(R.string.mode_horizontally);
         nameMusicianMode = a.getString(R.string.mode_musician);
@@ -780,6 +756,7 @@ public class AppState {
     }
 
     private boolean isLoaded = false;
+
     public boolean loadInit(final Context a) {
         boolean init = isLoaded;
         try {
@@ -830,7 +807,6 @@ public class AppState {
     }
 
 
-
     public void save(final Context a) {
         if (a == null) {
             return;
@@ -842,7 +818,6 @@ public class AppState {
             IO.writeObjAsync(AppProfile.syncState, instance);
         }
     }
-
 
 
 }
