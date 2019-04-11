@@ -616,27 +616,24 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
         onCrop.setVisibility(isTextFomat && !AppState.get().isCrop ? View.GONE : View.VISIBLE);
-        onCrop.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(final View v) {
-                DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
+        final Runnable onCropChange = () -> {
+            SettingsManager.getBookSettings().cp = AppState.get().isCrop;
+            reloadDocBrigntness.run();
+            onCrop.underline(AppState.get().isCrop);
 
-                    @Override
-                    public void run() {
-                        SettingsManager.getBookSettings().cp = AppState.get().isCrop;
-                        reloadDocBrigntness.run();
-                        onCrop.underline(AppState.get().isCrop);
+            PageImageState.get().isAutoFit = true;
+            EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
 
-                        PageImageState.get().isAutoFit = true;
-                        EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
+            AppState.get().isEditMode = false;
+            hideShow();
+        };
 
-                        AppState.get().isEditMode = false;
-                        hideShow();
-                    }
-                });
-
-            }
+        onCrop.setOnClickListener(v -> DragingDialogs.customCropDialog(anchor, dc, onCropChange));
+        onCrop.setOnLongClickListener(v -> {
+            AppState.get().isCrop = !AppState.get().isCrop;
+            onCropChange.run();
+            return true;
         });
 
         final View bookMenu = findViewById(R.id.bookMenu);

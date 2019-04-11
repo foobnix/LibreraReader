@@ -727,6 +727,7 @@ public class DocumentWrapperUI {
 
         crop = (UnderlineImageView) a.findViewById(R.id.crop);
         crop.setOnClickListener(onCrop);
+        crop.setOnLongClickListener(onCropLong);
 
         if (AppState.get().isCut) {
             crop.setVisibility(View.GONE);
@@ -1615,6 +1616,21 @@ public class DocumentWrapperUI {
                     hideShowEditIcon();
                 }
             });
+        }
+    };
+    public View.OnLongClickListener onCropLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(View v) {
+            AppState.get().isCrop = !AppState.get().isCrop;
+
+            dc.onCrop();
+            updateUI();
+
+            AppState.get().isEditMode = false;
+            hideShow();
+            hideShowEditIcon();
+            return true;
         }
     };
 
