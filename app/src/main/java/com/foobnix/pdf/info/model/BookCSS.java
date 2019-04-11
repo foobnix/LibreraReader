@@ -21,8 +21,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.droids.DocContext;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -196,27 +194,6 @@ public class BookCSS {
 
     }
 
-    public void save(Context c) {
-        if (c == null) {
-            return;
-        }
-
-//        int currentHash = Objects.hashCode(instance, false);
-//        if (currentHash != instance.hashCode) {
-//            LOG.d("Objects-save", "SAVE BookCSS");
-//            hashCode = currentHash;
-//
-//        }
-
-        JSONObject obj = IO.readJsonObject(AppProfile.syncCSS);
-        try {
-            obj.put(AppProfile.DEVICE_MODEL,Objects.toJSONObject(instance));
-        } catch (JSONException e) {
-            LOG.e(e);
-        }
-
-        IO.writeObjAsync(AppProfile.syncCSS, obj);
-    }
 
     public void load1(Context c) {
         if (c == null) {
@@ -224,10 +201,7 @@ public class BookCSS {
         }
         resetToDefault(c);
 
-        //
-        JSONObject obj = IO.readJsonObject(AppProfile.syncCSS);
-        Objects.loadFromJson(instance, obj.optJSONObject(AppProfile.DEVICE_MODEL));
-
+        IO.readObj(AppProfile.syncCSS, instance);
 
         try {
             if(TxtUtils.isEmpty(instance.searchPaths)) {
@@ -253,7 +227,18 @@ public class BookCSS {
 
     }
 
+    public void save(Context c) {
+        if (c == null) {
+            return;
+        }
 
+        int currentHash = Objects.hashCode(instance, false);
+        if (currentHash != instance.hashCode) {
+            LOG.d("Objects-save", "SAVE BookCSS");
+            hashCode = currentHash;
+            IO.writeObjAsync(AppProfile.syncCSS, instance);
+        }
+    }
 
     public int position(String fontName) {
         try {

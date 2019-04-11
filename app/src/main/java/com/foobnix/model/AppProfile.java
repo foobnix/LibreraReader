@@ -80,7 +80,7 @@ public class AppProfile {
         syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, "app-Bookmarks.json");
 
         syncState = new File(SYNC_FOLDER_PROFILE, "app-State.json");
-        syncCSS = new File(SYNC_FOLDER_PROFILE, "app-Css.json");
+        syncCSS = new File(SYNC_FOLDER_PROFILE, "app-Css-[" + DEVICE_MODEL + "].json");
 
         load(c);
 
@@ -155,7 +155,7 @@ public class AppProfile {
 
 
         File state = new File(file, "app-State.json");
-        File css = new File(file, "app-Css.json");
+        File css = new File(file, "app-Css-[" + DEVICE_MODEL + "].json");
 
         final AppState appState = new AppState();
         appState.defaults(c);
