@@ -470,12 +470,12 @@
    <string name="do_you_want_to_delete_this_file_">确认删除文件？</string>
    <string name="logout">登出</string>
    <string name="cloud_not_connected">云未连接</string>
-   <string name="cloud_sync_folder">云同步文件夹</string>
+   <string name="cloud_sync_folder">云同步档夹</string>
    <string name="clouds">云盘</string>
    <string name="librera_cloud">Librera云</string>
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
-   <string name="never">决不</string>
+   <string name="never">从不</string>
    <string name="general_settings">常规设置</string>
    <string name="cyclic_scrolling_return_to_1_page_">启用循环翻页</string>
    <string name="normalize_font_size">规范字体大小</string>
@@ -483,7 +483,7 @@
    <string name="display_sub_chapters_on_the_progress_line">章节刻度标记</string>
    <string name="enable_vertical_gesture">垂直翻页手势</string>
    <string name="enable_horizontal_gesture">水平翻页手势</string>
-   <string name="pause_duration">暂停持续时间</string>
+   <string name="pause_duration">停顿持续时间</string>
    <string name="voice">语音</string>
    <string name="capital_letter">大写字母</string>
    <string name="show_the_capital_letter">显示大写字母</string>
@@ -502,7 +502,7 @@
    <string name="message">信息</string>
    <string name="exit_application">退出程序</string>
    <string name="exit_application_question">退出程序？</string>
-   <string name="open_folder_as_a_book">以书籍方式打开文件夹</string>
+   <string name="open_folder_as_a_book">书籍方式打开档夹</string>
    <string name="read_out_loud_with_tts">语音朗读</string>
    <string name="allow_minimum_brightness">允许最小亮度</string>
    <string name="select">选择</string>
@@ -522,7 +522,7 @@
    <string name="read_by_sentences">按句子读</string>
    <string name="do_not_read_characters">不读字符</string>
    <string name="show_in_scroll_mode">滚动模式显示</string>
-   <string name="display_bookmark_text_instead_of_number">显示书签文本而不是数字</string>
+   <string name="display_bookmark_text_instead_of_number">显示书签文本而非数字</string>
    <string name="export_as_text">导出为文本</string>
    <string name="export_as_backup_json_">导出为备份（json）</string>
    <string name="import_from_backup_json_">从备份导入（json）</string>
@@ -535,7 +535,7 @@
    <string name="the_file_already_exists_">该文件已存在。</string>
    <string name="please_wait_books_are_being_processed_">请稍候，正在处理书籍</string>
    <string name="system_brightness">系统亮度</string>
-   <string name="opening_books_in_the_specified_mode">以指定模式打开书籍</string>
+   <string name="opening_books_in_the_specified_mode">指定模式打开书籍</string>
    <string name="dark_oled">黑暗有机电激光显示</string>
    <string name="profile">配置文件</string>
    <string name="new_profile">新的配置文件</string>
@@ -547,12 +547,12 @@
    <string name="manual_sync_only">仅手动同步</string>
    <string name="wifi_sync_only">仅WiFi同步</string>
    <string name="sync_google_drive">同步谷歌云端硬盘</string>
-   <string name="single_tap_to_select_text">单击以选择文本</string>
+   <string name="single_tap_to_select_text">单击选择文本</string>
    <string name="sync_book">同步书籍</string>
    <string name="sync">同步</string>
    <string name="synchronized_folder">同步档夹</string>
    <string name="today">今天</string>
    <string name="downloads">下载</string>
-   <string name="delete_the_directory_all_the_files_in_the_directory_">文件夹不为空。删除无论如何？</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">档夹不是空的。仍要删除？</string>
    <string name="synchronized_books">同步书籍</string>
 </resources>
