@@ -121,7 +121,6 @@ public class AppData {
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
         return res;
-
     }
 
     public synchronized List<FileMeta> getAllFavoriteFiles() {

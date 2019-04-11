@@ -59,7 +59,9 @@ public class SearchCore {
 
     private static void search(File root, List<String> exts, List<FileMeta> items) {
         if (root.isFile() && endWith(root.getName(), exts)) {
-            items.add(new FileMeta(root.getPath()));
+            final FileMeta e = new FileMeta(root.getPath());
+            e.setTitle(root.getName());
+            items.add(e);
             return;
         } else if (root.isFile()) {
             return;
@@ -80,7 +82,9 @@ public class SearchCore {
 
                 search(file, exts, items);
             } else if (endWith(file.getName(), exts)) {
-                items.add(new FileMeta(file.getPath()));
+                final FileMeta e = new FileMeta(file.getPath());
+                e.setTitle(file.getName());
+                items.add(e);
             }
         }
         return;

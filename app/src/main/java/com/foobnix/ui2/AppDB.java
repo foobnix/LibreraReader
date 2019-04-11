@@ -178,8 +178,6 @@ public class AppDB {
         // }
 
 
-
-
     }
 
     //public void dropCreateTables(Context c) {
@@ -336,6 +334,14 @@ public class AppDB {
         }
     }
 
+    public void setIsSearchBook(String path, boolean value) {
+        final FileMeta load = AppDB.get().load(path);
+        if (load != null) {
+            load.setIsSearchBook(value);
+            AppDB.get().update(load);
+        }
+    }
+
     public FileMeta load(String path) {
         if (fileMetaDao == null) {
             return null;
@@ -385,7 +391,6 @@ public class AppDB {
             LOG.e(e);
         }
     }
-
 
 
     public synchronized void updateOrSave(FileMeta meta) {

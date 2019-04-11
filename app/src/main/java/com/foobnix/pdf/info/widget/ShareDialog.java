@@ -40,6 +40,7 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
@@ -408,8 +409,14 @@ public class ShareDialog {
                     final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
                     boolean result = IO.copyFile(file, to);
                     if (result && BookCSS.get().isEnableSync) {
+
+                        AppDB.get().setIsSearchBook(file.getPath(), false);
+                        FileMetaCore.createMetaIfNeed(to.getPath(), true);
+
                         GFile.runSyncService(a);
                     }
+
+
                     TempHolder.listHash++;
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (isShowInfo && which == i++) {

@@ -239,11 +239,25 @@ public class BooksService extends IntentService {
                 }
 
                 final List<String> allExcluded = AppData.get().getAllExcluded();
+
                 if (TxtUtils.isListNotEmpty(allExcluded)) {
                     for (FileMeta meta : itemsMeta) {
                         if (allExcluded.contains(meta.getPath())) {
                             meta.setIsSearchBook(false);
                         }
+                    }
+                }
+
+                final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
+                if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+                    for (FileMeta meta : itemsMeta) {
+                        for (FileMeta sync : allSyncBooks) {
+                            if (meta.getTitle().equals(sync.getTitle()) && !meta.getPath().equals(sync.getPath())) {
+                                meta.setIsSearchBook(false);
+                                LOG.d(TAG, "remove-dublicate", meta.getPath());
+                            }
+                        }
+
                     }
                 }
 
