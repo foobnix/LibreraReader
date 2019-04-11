@@ -3121,7 +3121,7 @@ public class DragingDialogs {
 
     public static DragingPopup performanceSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
         AppProfile.save(controller.getActivity());
-        final int cssHash = BookCSS.get().toCssString().hashCode();
+        final int cssHash = Objects.hashCode(BookCSS.get());
         final int appHash = Objects.hashCode(AppState.get());
 
         DragingPopup dialog = new DragingPopup(R.string.advanced_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -3828,7 +3828,7 @@ public class DragingDialogs {
             @Override
             public void run() {
                 boolean one = appHash != Objects.hashCode(AppState.get());
-                boolean two = controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode();
+                boolean two = controller.isTextFormat() && cssHash != Objects.hashCode(BookCSS.get());
                 if (one || two) {
                     if (onRefresh != null) {
                         onRefresh.run();
@@ -3843,7 +3843,7 @@ public class DragingDialogs {
     ;
 
     public static DragingPopup moreBookSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int initCssHash = BookCSS.get().toCssString().hashCode();
+        final int initCssHash = Objects.hashCode(BookCSS.get());
         final int initAppHash = Objects.hashCode(AppState.get());
 
         DragingPopup dialog = new DragingPopup(R.string.reading_settings, anchor, PREF_WIDTH, PREF_HEIGHT) {
@@ -3855,7 +3855,7 @@ public class DragingDialogs {
 
                     @Override
                     public void run() {
-                        if (initCssHash != BookCSS.get().toCssString().hashCode()) {
+                        if (initCssHash != Objects.hashCode(BookCSS.get())){
                             AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
 
                                 @Override
@@ -4340,7 +4340,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                if (initCssHash != BookCSS.get().toCssString().hashCode() || initAppHash != Objects.hashCode(AppState.get())) {
+                if (initCssHash != Objects.hashCode(BookCSS.get()) || initAppHash != Objects.hashCode(AppState.get())) {
                     AppProfile.save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();
@@ -4353,7 +4353,7 @@ public class DragingDialogs {
     }
 
     public static DragingPopup preferences(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
-        final int cssHash = BookCSS.get().toCssString().hashCode();
+        final int cssHash =  Objects.hashCode(BookCSS.get());
         final int appHash = Objects.hashCode(AppState.get());
 
         // LOG.d("ojectAsString1", Objects.ojectAsString(AppState.get()));
@@ -5119,7 +5119,7 @@ public class DragingDialogs {
 
                 if (//
                         appHash != Objects.hashCode(AppState.get()) || //
-                                (controller.isTextFormat() && cssHash != BookCSS.get().toCssString().hashCode())) {
+                                (controller.isTextFormat() && cssHash != Objects.hashCode(BookCSS.get()))) {
                     if (onRefresh != null) {
                         onRefresh.run();
                     }

@@ -173,6 +173,7 @@ public class TTSNotification {
 
     public static void hideNotification() {
         try {
+            LOG.d("Notification hideNotification");
             NotificationManager nm = (NotificationManager) LibreraApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
             nm.cancel(NOT_ID);
         } catch (Exception e) {
@@ -181,6 +182,7 @@ public class TTSNotification {
     }
 
     public static void showLast() {
+        LOG.d("Notification showLast");
         if (TTSEngine.get().isShutdown()) {
             hideNotification();
         } else if (handler != null) {

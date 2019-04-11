@@ -45,7 +45,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
-public class TTSService extends Service {
+public class TTSService extends Service{
 
     public static final String EXTRA_PATH = "EXTRA_PATH";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
@@ -133,6 +133,10 @@ public class TTSService extends Service {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
+        //setSessionToken(mMediaSessionCompat.getSessionToken());
+
+
+
         // mMediaSessionCompat.setPlaybackState(new
         // PlaybackStateCompat.Builder().setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE).setState(PlaybackStateCompat.STATE_CONNECTING,
         // 0, 0f).build());
@@ -177,6 +181,8 @@ public class TTSService extends Service {
             TTSNotification.showLast();
         }
     };
+
+
 
     boolean isPlaying;
     OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
@@ -283,9 +289,11 @@ public class TTSService extends Service {
             }
             EventBus.getDefault().post(new TtsStatus());
 
+            TTSNotification.hideNotification();
+            stopForeground(true);
             stopSelf();
 
-            return START_NOT_STICKY;
+            return START_STICKY;
 
         }
 
@@ -307,7 +315,7 @@ public class TTSService extends Service {
 
         }
         if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
-
+            
             if (TTSEngine.get().isMp3PlayPause()) {
                 return START_STICKY;
             }
@@ -320,7 +328,7 @@ public class TTSService extends Service {
         }
 
         if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
-
+            
             if (TTSEngine.get().isMp3PlayPause()) {
 
                 return START_STICKY;
@@ -334,7 +342,7 @@ public class TTSService extends Service {
             TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
-
+            
             if (TTSEngine.get().isMp3()) {
                 TTSEngine.get().mp3Next();
                 return START_STICKY;
@@ -347,7 +355,7 @@ public class TTSService extends Service {
             }
         }
         if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
-
+            
             if (TTSEngine.get().isMp3()) {
                 TTSEngine.get().mp3Prev();
                 return START_STICKY;
@@ -366,7 +374,7 @@ public class TTSService extends Service {
                 return START_STICKY;
             }
 
-            mMediaSessionCompat.setActive(true);
+            
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppTemp.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
@@ -415,6 +423,7 @@ public class TTSService extends Service {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
+        mMediaSessionCompat.setActive(true);
         if (pageNumber != -1) {
             isActivated = true;
             EventBus.getDefault().post(new MessagePageNumber(pageNumber));
@@ -597,7 +606,14 @@ public class TTSService extends Service {
 
         isActivated = false;
         TempHolder.get().timerFinishTime = 0;
+
+
+        //mAudioManager.abandonAudioFocus(listener);
+
+        //mMediaSessionCompat.setCallback(null);
         mMediaSessionCompat.setActive(false);
+        mMediaSessionCompat.release();
+
         if (cache != null) {
             cache.recycle();
         }
