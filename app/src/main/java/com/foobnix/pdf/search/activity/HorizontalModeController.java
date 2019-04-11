@@ -75,8 +75,8 @@ public abstract class HorizontalModeController extends DocumentController {
         udpateImageSize(w, h);
 
         if (isTextFormat) {
-            AppState.get().isCrop = false;
-            AppState.get().isCut = false;
+            AppTemp.get().isCrop = false;
+            AppTemp.get().isCut = false;
             AppTemp.get().isLocked = true;
         }
     }
@@ -157,15 +157,15 @@ public abstract class HorizontalModeController extends DocumentController {
         if (bs != null) {
             LOG.d("DocumentControllerHorizontalView-AppBook", "isDouble:",bs.dp);
 
-            AppState.get().isCut = bs.sp;
-            AppState.get().isCrop = bs.cp;
-            AppState.get().isDouble = bs.dp;
-            AppState.get().isDoubleCoverAlone = bs.dc;
+            AppTemp.get().isCut = bs.sp;
+            AppTemp.get().isCrop = bs.cp;
+            AppTemp.get().isDouble = bs.dp;
+            AppTemp.get().isDoubleCoverAlone = bs.dc;
             AppTemp.get().isLocked = bs.getLock(isTextFormat);
             TempHolder.get().pageDelta = bs.d;
 
             if (AppState.get().isCropPDF && !isTextFormat) {
-                AppState.get().isCrop = true;
+                AppTemp.get().isCrop = true;
             }
         }
 
@@ -177,7 +177,7 @@ public abstract class HorizontalModeController extends DocumentController {
             if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
                 String string = matrixSP.getString(bookPath.hashCode() + "", "");
                 LOG.d("MATRIX", "READ STR", string);
-                if (TxtUtils.isEmpty(string) || AppState.get().isCut || AppState.get().isCrop) {
+                if (TxtUtils.isEmpty(string) || AppTemp.get().isCut || AppTemp.get().isCrop) {
                     PageImageState.get().needAutoFit = true;
                 } else {
                     PageImageState.get().needAutoFit = false;
@@ -190,7 +190,7 @@ public abstract class HorizontalModeController extends DocumentController {
             }
         }
 
-        if (AppState.get().isDouble && isTextFormat) {
+        if (AppTemp.get().isDouble && isTextFormat) {
             imageWidth = Dips.screenWidth() / 2;
         }
 

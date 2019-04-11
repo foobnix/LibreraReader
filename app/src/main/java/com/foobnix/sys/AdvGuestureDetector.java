@@ -339,7 +339,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return;
         }
         Vibro.vibrate();
-        if (AppState.get().isCut || AppState.get().isCrop) {
+        if (AppTemp.get().isCut || AppTemp.get().isCrop) {
             Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work, Toast.LENGTH_LONG).show();
             return;
         }

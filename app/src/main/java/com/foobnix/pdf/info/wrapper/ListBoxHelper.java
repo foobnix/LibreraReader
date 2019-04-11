@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.model.AppBookmark;
-import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -24,7 +24,7 @@ public class ListBoxHelper {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         final int curentPageFirst1 = PageUrl.fakeToReal(controller.getCurentPageFirst1());
 
-        if (AppState.get().isCut) {
+        if (AppTemp.get().isCut) {
             builder.setTitle(a.getString(R.string.bookmark_on_page_) + " " + curentPageFirst1 + " (" + controller.getCurentPageFirst1() + ")");
         } else {
             builder.setTitle(a.getString(R.string.bookmark_on_page_) + " " + curentPageFirst1);

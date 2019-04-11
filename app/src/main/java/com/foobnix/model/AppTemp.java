@@ -38,7 +38,11 @@ public class AppTemp {
 
     public String hypenLang;
 
-
+    public boolean isCut = false;
+    public boolean isDouble = false;
+    public boolean isDoubleCoverAlone = false;
+    public boolean isCrop = false;
+    public boolean isCropSymetry = false;
 
 
     transient  SharedPreferences sp;

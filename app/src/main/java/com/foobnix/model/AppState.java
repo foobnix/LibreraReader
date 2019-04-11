@@ -436,18 +436,15 @@ public class AppState {
     public String musicText = "Musician";
 
    
-    public boolean isCrop = false;
 
-    public boolean isCropSymetry = false;
+
 
     public int cropTop = 0;
     public int cropBottom = 0;
     public int cropLeft = 0;
     public int cropRigth = 0;
 
-    public boolean isCut = false;
-    public boolean isDouble = false;
-    public boolean isDoubleCoverAlone = false;
+
 
     public boolean isDayNotInvert = true;
     public boolean isShowSearchBar = true;
@@ -841,7 +838,6 @@ public class AppState {
 
         int currentHash = Objects.hashCode(instance, false);
         if (currentHash != instance.hashCode) {
-            LOG.d("Objects-save", "SAVE AppState isDouble:", instance.isDouble);
             hashCode = currentHash;
             IO.writeObjAsync(AppProfile.syncState, instance);
         }

@@ -137,8 +137,8 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void onCrop() {
         try {
-            // AppState.get().isCrop = !AppState.get().isCrop;
-            ctr.toggleCrop(AppState.get().isCrop);
+            // AppTemp.get().isCrop = !AppTemp.get().isCrop;
+            ctr.toggleCrop(AppTemp.get().isCrop);
         } catch (final Exception e) {
             e.printStackTrace();
         }

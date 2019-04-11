@@ -203,7 +203,7 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropTop = result;
                         onCropChange.run();
-                        if (AppState.get().isCropSymetry) {
+                        if (AppTemp.get().isCropSymetry) {
                             marginBottom.reset(result);
                         }
                         return false;
@@ -217,7 +217,7 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropBottom = result;
                         onCropChange.run();
-                        if (AppState.get().isCropSymetry) {
+                        if (AppTemp.get().isCropSymetry) {
                             marginTop.reset(result);
                         }
                         return false;
@@ -234,7 +234,7 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropLeft = result;
                         onCropChange.run();
-                        if (AppState.get().isCropSymetry) {
+                        if (AppTemp.get().isCropSymetry) {
                             marginRight.reset(result);
                         }
                         return false;
@@ -248,7 +248,7 @@ public class DragingDialogs {
                     public boolean onResultRecive(int result) {
                         AppState.get().cropRigth = result;
                         onCropChange.run();
-                        if (AppState.get().isCropSymetry) {
+                        if (AppTemp.get().isCropSymetry) {
                             marginLeft.reset(result);
                         }
                         return false;
@@ -256,12 +256,12 @@ public class DragingDialogs {
                 });
 
                 CheckBox isCropSymetry = (CheckBox) inflate.findViewById(R.id.isCropSymetry);
-                isCropSymetry.setChecked(AppState.get().isCropSymetry);
+                isCropSymetry.setChecked(AppTemp.get().isCropSymetry);
                 isCropSymetry.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isCropSymetry = isChecked;
+                        AppTemp.get().isCropSymetry = isChecked;
                         if (isChecked) {
                             marginBottom.reset(marginTop.getCurrentValue());
                             marginRight.reset(marginLeft.getCurrentValue());
@@ -270,12 +270,12 @@ public class DragingDialogs {
                 });
 
                 final CheckBox isEnableCrop = (CheckBox) inflate.findViewById(R.id.isEnableCrop);
-                isEnableCrop.setChecked(AppState.get().isCrop);
+                isEnableCrop.setChecked(AppTemp.get().isCrop);
                 isEnableCrop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isEnableCrop) {
-                        AppState.get().isCrop = isEnableCrop;
+                        AppTemp.get().isCrop = isEnableCrop;
                         onCropChange.run();
                     }
                 });
@@ -294,7 +294,7 @@ public class DragingDialogs {
                         AppState.get().cropLeft = result;
                         AppState.get().cropRigth = result;
 
-                        AppState.get().isCrop = true;
+                        AppTemp.get().isCrop = true;
                         isEnableCrop.setChecked(true);
                         onCropChange.run();
 
@@ -406,11 +406,11 @@ public class DragingDialogs {
 
                     @Override
                     public void onClick(View v) {
-                        AppState.get().isCrop = !AppState.get().isCrop;
+                        AppTemp.get().isCrop = !AppTemp.get().isCrop;
                         SettingsManager.getBookSettings().updateFromAppState();
                         updateUIRefresh.run();
 
-                        if (AppState.get().isCrop) {
+                        if (AppTemp.get().isCrop) {
                             TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                         } else {
                             TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
@@ -418,7 +418,7 @@ public class DragingDialogs {
                     }
                 });
 
-                if (AppState.get().isCrop) {
+                if (AppTemp.get().isCrop) {
                     TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
                 } else {
                     TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
@@ -1181,7 +1181,7 @@ public class DragingDialogs {
 
                 goTo.setText(controller.getString(R.string.go_to_page_dialog) + " " + page);
                 text.setText(controller.getFootNote(selectedText));
-                if (page == -1 || page == 0 || AppState.get().isDouble) {
+                if (page == -1 || page == 0 || AppTemp.get().isDouble) {
                     goTo.setVisibility(View.GONE);
                     goBack.setVisibility(View.GONE);
                 }
@@ -1774,7 +1774,7 @@ public class DragingDialogs {
                 final GridView grid = (GridView) view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
-                if (AppState.get().isDouble && !controller.isTextFormat()) {
+                if (AppTemp.get().isDouble && !controller.isTextFormat()) {
                     dpToPx = dpToPx * 2;
                 }
                 grid.setColumnWidth(dpToPx);
@@ -2510,7 +2510,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         PageImageState.get().isShowCuttingLine = false;
-                        AppState.get().isCut = false;
+                        AppTemp.get().isCut = false;
                         AppBook bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
                         boolean wasSplit = bookSettings.sp;
                         bookSettings.sp = false;
@@ -2529,8 +2529,8 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         PageImageState.get().isShowCuttingLine = false;
-                        AppState.get().isCut = true;
-                        AppState.get().isCrop = false;
+                        AppTemp.get().isCut = true;
+                        AppTemp.get().isCrop = false;
                         boolean init = SettingsManager.getBookSettings().sp;
                         SettingsManager.getBookSettings().updateFromAppState();
                         onRefreshDoc.run();
@@ -4428,18 +4428,18 @@ public class DragingDialogs {
 
                 final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
                 // isCrop.setVisibility(controller.isTextFormat() ||
-                // AppState.get().isCut ? View.GONE : View.VISIBLE);
+                // AppTemp.get().isCut ? View.GONE : View.VISIBLE);
                 isCrop.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
-                        AppState.get().isCrop = !AppState.get().isCrop;
+                        AppTemp.get().isCrop = !AppTemp.get().isCrop;
                         SettingsManager.getBookSettings().updateFromAppState();
-                        TintUtil.setTintImageWithAlpha(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                        TintUtil.setTintImageWithAlpha(isCrop, !AppTemp.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                         updateUIRefresh.run();
                     }
                 });
-                TintUtil.setTintImageWithAlpha(isCrop, !AppState.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                TintUtil.setTintImageWithAlpha(isCrop, !AppTemp.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
                 // bookCut.setVisibility(controller.isTextFormat() ? View.GONE :
@@ -4453,7 +4453,7 @@ public class DragingDialogs {
 
                             @Override
                             public boolean onResultRecive(Integer result) {
-                                TintUtil.setTintImageWithAlpha(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                                TintUtil.setTintImageWithAlpha(bookCut, !AppTemp.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
                                 SettingsManager.getBookSettings().updateFromAppState();
                                 EventBus.getDefault().post(new InvalidateMessage());
                                 return false;
@@ -4461,7 +4461,7 @@ public class DragingDialogs {
                         });
                     }
                 });
-                TintUtil.setTintImageWithAlpha(bookCut, !AppState.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                TintUtil.setTintImageWithAlpha(bookCut, !AppTemp.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 inflate.findViewById(R.id.onFullScreen).setOnClickListener(new View.OnClickListener() {
 

@@ -4,6 +4,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
@@ -194,7 +195,7 @@ public class DocumentModel extends ListenerProxy {
                 if (TempHolder.get().loadingCancelled) {
                     return;
                 }
-                if (!AppState.get().isCut) {
+                if (!AppTemp.get().isCut) {
                     CodecPageInfo cpi = infos[docIndex] != null ? infos[docIndex] : defCpi;
 
                     final Page page = new Page(base, new PageIndex(docIndex, viewIndex++), PageType.FULL_PAGE, cpi);

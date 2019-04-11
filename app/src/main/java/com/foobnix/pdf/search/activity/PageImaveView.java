@@ -111,10 +111,10 @@ public class PageImaveView extends View {
 
     public TextWord[][] getPageText(int number) {
         try {
-            if (AppState.get().isDouble && number != 0) {
+            if (AppTemp.get().isDouble && number != 0) {
 
                 int page = pageNumber * 2;
-                if (AppState.get().isDoubleCoverAlone) {
+                if (AppTemp.get().isDoubleCoverAlone) {
                     page--;
                 }
 
@@ -144,7 +144,7 @@ public class PageImaveView extends View {
     }
 
     public synchronized List<PageLink> getPageLinks(int number) {
-        if (AppState.get().isCut || AppState.get().isCrop) {
+        if (AppTemp.get().isCut || AppTemp.get().isCrop) {
             return Collections.emptyList();
         }
 
@@ -159,10 +159,10 @@ public class PageImaveView extends View {
     public synchronized List<PageLink> getPageLinksInner(int number) {
 
         try {
-            if (AppState.get().isDouble && number != 0) {
+            if (AppTemp.get().isDouble && number != 0) {
 
                 int page = pageNumber * 2;
-                if (AppState.get().isDoubleCoverAlone) {
+                if (AppTemp.get().isDoubleCoverAlone) {
                     page--;
                 }
 
@@ -394,7 +394,7 @@ public class PageImaveView extends View {
             }
 
             Vibro.vibrate();
-            if (AppState.get().isCut || AppState.get().isCrop) {
+            if (AppTemp.get().isCut || AppTemp.get().isCrop) {
                 Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -587,7 +587,7 @@ public class PageImaveView extends View {
                     PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
                     if (pageLink != null) {
                         target = pageLink.targetPage;
-                        if (AppState.get().isDouble && target != -1) {
+                        if (AppTemp.get().isDouble && target != -1) {
                             target = pageLink.targetPage / 2;
                         }
                         TempHolder.get().linkPage = target;
@@ -712,7 +712,7 @@ public class PageImaveView extends View {
                 imageDrawable.draw(canvas);
             }
 
-            if (PageImageState.get().isShowCuttingLine && AppState.get().isCut == false) {
+            if (PageImageState.get().isShowCuttingLine && AppTemp.get().isCut == false) {
                 int offset = drawableWidth * AppState.get().cutP / 100;
                 canvas.drawLine(offset, 0, offset, drawableHeight, paintWrods);
             }
@@ -728,13 +728,13 @@ public class PageImaveView extends View {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 
-            if (!AppState.get().isCut && !AppState.get().isCrop) {
+            if (!AppTemp.get().isCut && !AppTemp.get().isCrop) {
 
                 paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
                 paintWrods.setAlpha(60);
 
                 if (!BookCSS.get().isTextFormat()) {
-                    if (AppState.get().isDouble) {
+                    if (AppTemp.get().isDouble) {
                         for (PageLink pl : getPageLinks(1)) {
                             drawLink(canvas, pl);
                         }
@@ -870,7 +870,7 @@ public class PageImaveView extends View {
         x1 = x1 / scaleX;
 
         int firstNumber = 0;
-        if (AppState.get().isDouble) {
+        if (AppTemp.get().isDouble) {
             firstNumber = x1 < drawableWidth / 2 ? 1 : 2;
         }
 
@@ -897,7 +897,7 @@ public class PageImaveView extends View {
     }
 
     public String selectText(float x1, float y1, float xInit, float yInit) {
-        if (!AppState.get().isDouble && getPageText(0) == null) {
+        if (!AppTemp.get().isDouble && getPageText(0) == null) {
             LOG.d("get pag No page text", pageNumber);
             return null;
         }
@@ -937,7 +937,7 @@ public class PageImaveView extends View {
         TextWord prevWord = null;
 
         int firstNumber = 0;
-        if (AppState.get().isDouble) {
+        if (AppTemp.get().isDouble) {
             firstNumber = xInit < drawableWidth / 2 ? 1 : 2;
         }
         TempHolder.get().textFromPage = firstNumber;

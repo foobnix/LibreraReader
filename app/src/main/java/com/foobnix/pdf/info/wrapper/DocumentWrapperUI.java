@@ -442,16 +442,16 @@ public class DocumentWrapperUI {
             } else {
                 onBC.setVisibility(View.GONE);
             }
-            if (AppState.get().isCrop) {
+            if (AppTemp.get().isCrop) {
                 crop.setVisibility(View.VISIBLE);
             }
-            if (AppState.get().isCut) {
+            if (AppTemp.get().isCut) {
                 cut.setVisibility(View.VISIBLE);
             }
         }
 
-        crop.underline(AppState.get().isCrop);
-        cut.underline(AppState.get().isCut);
+        crop.underline(AppTemp.get().isCrop);
+        cut.underline(AppTemp.get().isCut);
 
         progressDraw.updateProgress(current - 1);
 
@@ -729,7 +729,7 @@ public class DocumentWrapperUI {
         crop.setOnClickListener(onCrop);
         crop.setOnLongClickListener(onCropLong);
 
-        if (AppState.get().isCut) {
+        if (AppTemp.get().isCut) {
             crop.setVisibility(View.GONE);
         }
 
@@ -739,7 +739,7 @@ public class DocumentWrapperUI {
 
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
-        onModeChange.setImageResource(AppState.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
+        onModeChange.setImageResource(AppTemp.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -1063,7 +1063,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            if (AppState.get().isCut) {
+            if (AppTemp.get().isCut) {
                 onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                 onCut.onClick(null);
                 return;
@@ -1390,12 +1390,12 @@ public class DocumentWrapperUI {
     };
 
     public void showSearchDialog() {
-        if (AppState.get().isCut) {
+        if (AppTemp.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-            AppState.get().isCut = !false;
+            AppTemp.get().isCut = !false;
             onCut.onClick(null);
         }
-        if (AppState.get().isCrop) {
+        if (AppTemp.get().isCrop) {
             onCrop.onClick(null);
         }
 
@@ -1457,7 +1457,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            if (AppState.get().isCrop) {
+            if (AppTemp.get().isCrop) {
                 onCrop.onClick(null);
             }
 
@@ -1622,7 +1622,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(View v) {
-            AppState.get().isCrop = !AppState.get().isCrop;
+            AppTemp.get().isCrop = !AppTemp.get().isCrop;
 
             dc.onCrop();
             updateUI();
@@ -1650,7 +1650,7 @@ public class DocumentWrapperUI {
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                    AppState.get().isCut = !false;
+                    AppTemp.get().isCut = !false;
                     onCut.onClick(null);
                     hideShowEditIcon();
                     return false;
@@ -1662,7 +1662,7 @@ public class DocumentWrapperUI {
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                    AppState.get().isCut = !true;
+                    AppTemp.get().isCut = !true;
                     onCut.onClick(null);
                     hideShowEditIcon();
                     return false;
@@ -1677,11 +1677,11 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppState.get().isCrop = false; // no crop with cut
+            AppTemp.get().isCrop = false; // no crop with cut
             AppState.get().cutP = 50;
-            AppState.get().isCut = !AppState.get().isCut;
+            AppTemp.get().isCut = !AppTemp.get().isCut;
 
-            crop.setVisibility(AppState.get().isCut ? View.GONE : View.VISIBLE);
+            crop.setVisibility(AppTemp.get().isCut ? View.GONE : View.VISIBLE);
 
 
             dc.onCrop();// crop false
@@ -1862,7 +1862,7 @@ public class DocumentWrapperUI {
     public void hideShowEditIcon() {
         if (dc != null && !BookType.PDF.is(dc.getCurrentBook().getPath())) {
             editTop2.setVisibility(View.GONE);
-        } else if (AppState.get().isCrop || AppState.get().isCut) {
+        } else if (AppTemp.get().isCrop || AppTemp.get().isCut) {
             editTop2.setVisibility(View.GONE);
         } else {
             boolean passwordProtected = dc.isPasswordProtected();

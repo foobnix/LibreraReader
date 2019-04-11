@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -53,7 +54,7 @@ public class BookmarksAdapter extends BaseAdapter {
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
 
-        String pageNumber = TxtUtils.deltaPage(AppState.get().isCut ? bookmark.getPage(controller.getPageCount()) * 2 : bookmark.getPage(controller.getPageCount()));
+        String pageNumber = TxtUtils.deltaPage(AppTemp.get().isCut ? bookmark.getPage(controller.getPageCount()) * 2 : bookmark.getPage(controller.getPageCount()));
         titleView.setVisibility(View.GONE);
         textView.setText(bookmark.getPage(controller.getPageCount()) + ": " + bookmark.text);
 

@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
 import org.json.JSONObject;
@@ -57,12 +58,12 @@ public class PageUrl {
     }
 
     public static int realToFake(int page) {
-        if (AppState.get().isCut)
+        if (AppTemp.get().isCut)
             return page * 2;
 
-        if (AppState.get().isDouble) {
+        if (AppTemp.get().isDouble) {
             int i = page / 2 + page % 2;
-            if (AppState.get().isDoubleCoverAlone && page % 2 == 0) {
+            if (AppTemp.get().isDoubleCoverAlone && page % 2 == 0) {
                 i++;
             }
             return i;
@@ -71,10 +72,10 @@ public class PageUrl {
     }
 
     public static int fakeToReal(int page) {
-        if (AppState.get().isCut)
+        if (AppTemp.get().isCut)
             return page / 2 + page % 2;
 
-        if (AppState.get().isDouble)
+        if (AppTemp.get().isDouble)
             return page * 2;
 
         return page;
@@ -83,15 +84,15 @@ public class PageUrl {
     public static PageUrl build(String path, int page, int w, int h) {
         PageUrl url = new PageUrl();
         url.setPath(path);
-        url.setPage(AppState.get().isCut ? page / 2 : page);
-        url.setWidth(AppState.get().isCut ? (int) (w * 2) : w);
-        url.setHeight(AppState.get().isCut ? (int) (h * 2) : h);
+        url.setPage(AppTemp.get().isCut ? page / 2 : page);
+        url.setWidth(AppTemp.get().isCut ? (int) (w * 2) : w);
+        url.setHeight(AppTemp.get().isCut ? (int) (h * 2) : h);
         url.setInvert(!AppState.get().isDayNotInvert);
-        url.setCrop(AppState.get().isCrop);
+        url.setCrop(AppTemp.get().isCrop);
         url.setRotate(AppState.get().rotate);
         url.setCutp(AppState.get().cutP);
 
-        if (AppState.get().isCut) {
+        if (AppTemp.get().isCut) {
             if (AppState.get().isCutRTL) {
                 url.setNumber(page % 2 == 0 ? 2 : 1);
             } else {
@@ -99,9 +100,9 @@ public class PageUrl {
             }
         }
 
-        if (AppState.get().isDouble && !(AppState.get().isDoubleCoverAlone && page == 0)) {
+        if (AppTemp.get().isDouble && !(AppTemp.get().isDoubleCoverAlone && page == 0)) {
             url.setPage(page * 2);
-            url.setDouble(AppState.get().isDouble);
+            url.setDouble(AppTemp.get().isDouble);
 
             if (!ExtUtils.isTextFomat(path)) {
                 url.setWidth((int) (w * 0.7));
