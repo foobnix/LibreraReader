@@ -38,7 +38,12 @@ public class DocContext extends PdfContext {
 
         if (!cacheFile.isFile()) {
             String outputTemp = cacheFile.getPath() + ".tmp";
-            LibMobi.convertDocToHtml(fileName, outputTemp);
+            final int res = LibMobi.convertDocToHtml(fileName, outputTemp);
+            LOG.d("convertDocToHtml",res);
+            if (res == 0) {
+                return new RtfContext().openDocumentInner(fileName, password);
+            }
+
 
             try {
                 FileInputStream in = new FileInputStream(outputTemp);

@@ -364,6 +364,6 @@ Java_com_foobnix_libmobi_LibMobi_convertDocToHtml(JNIEnv *env, jclass clazz, jst
 	BOOL res = bProcessFile(fullpath);
 	fprintf( stdout,"</body></html>");
 	fclose (stdout);
-
-    return 1;
+    if(res) return 1;
+    return 0;
 }
