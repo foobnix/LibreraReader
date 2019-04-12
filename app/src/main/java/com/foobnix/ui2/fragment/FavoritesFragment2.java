@@ -195,7 +195,6 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        AppData.get().loadFavorites();
 
         List<FileMeta> all = new ArrayList<FileMeta>();
 
@@ -223,6 +222,8 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
             all.add(empy);
         }
+
+        AppData.get().loadFavorites();
 
         all.addAll(AppData.get().getAllFavoriteFolders());
 

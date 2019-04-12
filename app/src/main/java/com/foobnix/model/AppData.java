@@ -37,17 +37,6 @@ public class AppData {
 
 
     public synchronized void addRecent(SimpleMeta s) {
-        if (TxtUtils.isListNotEmpty(recent)) {
-            Collections.sort(recent, FileMetaComparators.BY_RECENT_TIME_2);
-            final String name1 = ExtUtils.getFileName(s.getPath());
-            final String name2 = ExtUtils.getFileName(recent.get(0).getPath());
-            if (name1.equals(name2)) {
-                LOG.d("Skip-recent");
-                return;
-            }
-        }
-        recent.remove(s);
-
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
         recent.remove(syncMeta);
         recent.add(syncMeta);
@@ -126,12 +115,16 @@ public class AppData {
     public synchronized List<FileMeta> getAllFavoriteFiles() {
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
+            s = SimpleMeta.SyncSimpleMeta(s);
+
             if (new File(s.getPath()).isFile()) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
-                res.add(meta);
+                if (!res.contains(meta)) {
+                    res.add(meta);
+                }
             }
         }
         SharedBooks.updateProgress(res);
@@ -172,17 +165,19 @@ public class AppData {
         while (iterator.hasNext()) {
             SimpleMeta s = SimpleMeta.SyncSimpleMeta(iterator.next());
 
-
             if (!new File(s.getPath()).isFile()) {
                 LOG.d("getAllRecent can't find file", s.getPath());
                 continue;
             }
 
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
-            meta.setIsRecent(true);
-            //meta.setIsSearchBook(true);
             meta.setIsRecentTime(s.time);
-            res.add(meta);
+            //meta.setIsRecent(true);
+
+            if (!res.contains(meta)) {
+                res.add(meta);
+            }
+
         }
         SharedBooks.updateProgress(res);
         Collections.sort(res, FileMetaComparators.BY_RECENT_TIME);
