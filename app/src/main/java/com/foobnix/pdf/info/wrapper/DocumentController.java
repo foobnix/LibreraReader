@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
@@ -217,7 +218,7 @@ public abstract class DocumentController {
     }
 
     public float getPercentage() {
-        return (float) (getCurentPageFirst1() + 0.0001) / getPageCount();
+        return MyMath.percent(getCurentPageFirst1(), getPageCount());
     }
 
 

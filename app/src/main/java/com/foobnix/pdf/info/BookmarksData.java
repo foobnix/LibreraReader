@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
@@ -65,12 +66,12 @@ public class BookmarksData {
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            if(!AppProfile.syncBookmarks.isFile()){
+            if (!AppProfile.syncBookmarks.isFile()) {
                 return all;
             }
             JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
 
-            if(!AppProfile.syncBookmarks.isFile()){
+            if (!AppProfile.syncBookmarks.isFile()) {
                 return all;
             }
 
@@ -130,7 +131,12 @@ public class BookmarksData {
     }
 
     public boolean hasBookmark(String lastBookPath, int page, int pages) {
-        //TODO Implement
+        final List<AppBookmark> bookmarksByBook = getBookmarksByBook(lastBookPath);
+        for (AppBookmark appBookmark : bookmarksByBook) {
+            if (Math.abs(appBookmark.getPercent() - MyMath.percent(page, pages)) < 0.001) {
+                return true;
+            }
+        }
         return false;
     }
 

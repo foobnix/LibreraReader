@@ -44,8 +44,10 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-public class TTSService extends Service{
+public class TTSService extends Service {
 
     public static final String EXTRA_PATH = "EXTRA_PATH";
     public static final String EXTRA_ANCHOR = "EXTRA_ANCHOR";
@@ -91,41 +93,35 @@ public class TTSService extends Service{
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override
             public boolean onMediaButtonEvent(Intent intent) {
-                LOG.d(TAG, "onMediaButtonEvent", isActivated, intent);
-                if (isActivated) {
-                    KeyEvent event = (KeyEvent) intent.getExtras().get(Intent.EXTRA_KEY_EVENT);
-                    LOG.d(TAG, "onMediaButtonEvent", "event", event);
+                KeyEvent event = (KeyEvent) intent.getExtras().get(Intent.EXTRA_KEY_EVENT);
 
-                    if (KeyEvent.ACTION_UP != event.getAction()) {
-                        return isActivated;
-                    }
+                boolean isPlaying = TTSEngine.get().isPlaying();
 
-                    boolean isPlaying = TTSEngine.get().isPlaying();
+                LOG.d(TAG, "onMediaButtonEvent", "isActivated", isActivated, "isPlaying", isPlaying, "event", event);
 
-                    if (KeyEvent.KEYCODE_HEADSETHOOK == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE == event.getKeyCode()) {
 
+                final List<Integer> list = Arrays.asList(KeyEvent.KEYCODE_HEADSETHOOK, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_STOP, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE);
+
+                if (KeyEvent.ACTION_DOWN == event.getAction() && list.contains(event.getKeyCode())) {
+                    LOG.d(TAG, "onMediaButtonEvent", "isPlaying", isPlaying, "isFastBookmarkByTTS", AppState.get().isFastBookmarkByTTS);
+
+                    if (AppState.get().isFastBookmarkByTTS) {
                         if (isPlaying) {
-                            if (AppState.get().isFastBookmarkByTTS) {
-                                TTSEngine.get().fastTTSBookmakr(getBaseContext(), 0, 0);
-                            } else {
-                                TTSEngine.get().stop();
-                            }
+                            TTSEngine.get().fastTTSBookmakr(getBaseContext(), AppTemp.get().lastBookPage + 1, pageCount);
                         } else {
                             playPage("", AppTemp.get().lastBookPage, null);
                         }
-                    } else if (KeyEvent.KEYCODE_MEDIA_STOP == event.getKeyCode() || KeyEvent.KEYCODE_MEDIA_PAUSE == event.getKeyCode()) {
-                        TTSEngine.get().stop();
-                    } else if (KeyEvent.KEYCODE_MEDIA_PLAY == event.getKeyCode()) {
-                        if (!isPlaying) {
+                    } else {
+                        if (isPlaying) {
+                            TTSEngine.get().stop();
+                        } else {
                             playPage("", AppTemp.get().lastBookPage, null);
-                        } else if (AppState.get().isFastBookmarkByTTS) {
-                            TTSEngine.get().fastTTSBookmakr(getBaseContext(), 0, 0);
                         }
-
                     }
-                    TTSNotification.showLast();
                 }
-                return isActivated;
+                TTSNotification.showLast();
+                //  }
+                return true;
             }
 
         });
@@ -136,7 +132,6 @@ public class TTSService extends Service{
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
         //setSessionToken(mMediaSessionCompat.getSessionToken());
-
 
 
         // mMediaSessionCompat.setPlaybackState(new
@@ -176,14 +171,15 @@ public class TTSService extends Service{
 
     }
 
+
     private final BroadcastReceiver blueToothReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            LOG.d("blueToothReceiver", intent);
             TTSEngine.get().stop();
             TTSNotification.showLast();
         }
     };
-
 
 
     boolean isPlaying;
@@ -317,7 +313,7 @@ public class TTSService extends Service{
 
         }
         if (TTSNotification.TTS_PAUSE.equals(intent.getAction())) {
-            
+
             if (TTSEngine.get().isMp3PlayPause()) {
                 return START_STICKY;
             }
@@ -330,7 +326,7 @@ public class TTSService extends Service{
         }
 
         if (TTSNotification.TTS_PLAY.equals(intent.getAction())) {
-            
+
             if (TTSEngine.get().isMp3PlayPause()) {
 
                 return START_STICKY;
@@ -344,7 +340,7 @@ public class TTSService extends Service{
             TTSNotification.showLast();
         }
         if (TTSNotification.TTS_NEXT.equals(intent.getAction())) {
-            
+
             if (TTSEngine.get().isMp3()) {
                 TTSEngine.get().mp3Next();
                 return START_STICKY;
@@ -357,7 +353,7 @@ public class TTSService extends Service{
             }
         }
         if (TTSNotification.TTS_PREV.equals(intent.getAction())) {
-            
+
             if (TTSEngine.get().isMp3()) {
                 TTSEngine.get().mp3Prev();
                 return START_STICKY;
@@ -376,7 +372,7 @@ public class TTSService extends Service{
                 return START_STICKY;
             }
 
-            
+
             int pageNumber = intent.getIntExtra(EXTRA_INT, -1);
             AppTemp.get().lastBookPath = intent.getStringExtra(EXTRA_PATH);
             String anchor = intent.getStringExtra(EXTRA_ANCHOR);
@@ -422,10 +418,12 @@ public class TTSService extends Service{
     }
 
     int emptyPageCount = 0;
+    int pageCount;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
         mMediaSessionCompat.setActive(true);
+        LOG.d("playPage", preText, pageNumber, anchor);
         if (pageNumber != -1) {
             isActivated = true;
             EventBus.getDefault().post(new MessagePageNumber(pageNumber));
@@ -436,7 +434,7 @@ public class TTSService extends Service{
                 return;
             }
 
-            int pageCount = dc.getPageCount();
+            pageCount = dc.getPageCount();
             LOG.d(TAG, "CodecDocument PageCount", pageNumber, pageCount);
             if (pageNumber >= pageCount) {
 
@@ -458,7 +456,7 @@ public class TTSService extends Service{
             }
 
             AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
-            load.currentPageChanged( pageNumber+1,pageCount);
+            load.currentPageChanged(pageNumber + 1, pageCount);
             SharedBooks.save(load);
 
             CodecPage page = dc.getPage(pageNumber);
@@ -543,7 +541,6 @@ public class TTSService extends Service{
                         playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
 
-
                     }
                 });
             } else {
@@ -577,7 +574,6 @@ public class TTSService extends Service{
                         playPage(secondPart, AppTemp.get().lastBookPage + 1, null);
 
 
-
                     }
 
                 });
@@ -595,16 +591,21 @@ public class TTSService extends Service{
     }
 
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+
         unregisterReceiver(blueToothReceiver);
         if (wakeLock.isHeld()) {
             wakeLock.release();
         }
-        TTSNotification.hideNotification();
+
+        TTSEngine.get().stop();
         TTSEngine.get().shutdown();
+
+        TTSNotification.hideNotification();
+
 
         isActivated = false;
         TempHolder.get().timerFinishTime = 0;

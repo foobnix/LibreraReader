@@ -12,6 +12,7 @@ import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
@@ -286,17 +287,23 @@ public class TTSEngine {
 
     }
 
-    public static void fastTTSBookmakr(Context c, float percent, int pages) {
-        int page = AppTemp.get().lastBookPage + 1;
+    public static void fastTTSBookmakr(Context c, int page, int pages) {
+        LOG.d("fastTTSBookmakr", page, pages);
+
+        if (pages == 0) {
+            LOG.d("fastTTSBookmakr skip");
+            return;
+        }
         boolean hasBookmark = BookmarksData.get().hasBookmark(AppTemp.get().lastBookPath, page, pages);
 
         if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(AppTemp.get().lastBookPath, c.getString(R.string.fast_bookmark), percent);
+            final AppBookmark bookmark = new AppBookmark(AppTemp.get().lastBookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
             BookmarksData.get().add(bookmark);
 
         }
         Vibro.vibrate();
-        LOG.d("Fast-bookmark", AppTemp.get().lastBookPage);
+        String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
+        Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
     }
 
     public synchronized boolean isPlaying() {
@@ -388,7 +395,7 @@ public class TTSEngine {
                 @Override
                 public void run() {
                     AppState.get().mp3seek = mp.getCurrentPosition();
-                    LOG.d("Run timer-task");
+                    //LOG.d("Run timer-task");
                     EventBus.getDefault().post(new TtsStatus());
                 }
 

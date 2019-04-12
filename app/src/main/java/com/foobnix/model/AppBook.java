@@ -1,6 +1,7 @@
 package com.foobnix.model;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.sys.TempHolder;
 
@@ -73,10 +74,12 @@ public class AppBook implements CurrentPageListener {
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;
         }
-        this.p = (float) page / pages;
+        this.p = MyMath.percent(page, pages);
         LOG.d("currentPageChanged", page, pages, p);
         t = System.currentTimeMillis();
     }
+
+
 
     public PageIndex getCurrentPage(int pages) {
         if (pages <= 0) {
