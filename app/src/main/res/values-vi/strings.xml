@@ -555,4 +555,7 @@
    <string name="downloads">Các bản tải xuống</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Thư mục không trống. xóa bằng cách nào?</string>
    <string name="synchronized_books">Sách đồng bộ</string>
+   <string name="show_sync_wheel">Hiển thị bánh xe đồng bộ</string>
+   <string name="publication_date">Ngày xuất bản</string>
+   <string name="empy">Trống</string>
 </resources>

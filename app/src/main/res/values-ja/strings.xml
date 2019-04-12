@@ -555,4 +555,7 @@
    <string name="downloads">ダウンロード</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">フォルダは空ではありません。とにかく削除しますか？</string>
    <string name="synchronized_books">同期書籍</string>
+   <string name="show_sync_wheel">同期ホイールを表示</string>
+   <string name="publication_date">発行日</string>
+   <string name="empy">空の</string>
 </resources>

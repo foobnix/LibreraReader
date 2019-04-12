@@ -555,4 +555,7 @@
    <string name="downloads">Descărcările</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Dosarul nu este gol. șterge oricum?</string>
    <string name="synchronized_books">Cărți sincronizate</string>
+   <string name="show_sync_wheel">Afișați rotița de sincronizare</string>
+   <string name="publication_date">Data publicării</string>
+   <string name="empy">Gol</string>
 </resources>

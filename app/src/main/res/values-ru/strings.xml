@@ -555,4 +555,7 @@
    <string name="downloads">Загрузки</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пустая. удалить в любом случае?</string>
    <string name="synchronized_books">Синхронизированные книги</string>
+   <string name="show_sync_wheel">Показать колесо синхронизации</string>
+   <string name="publication_date">Дата публикации</string>
+   <string name="empy">Пустой</string>
 </resources>

@@ -555,4 +555,7 @@
    <string name="downloads">Lataukset</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Kansio ei ole tyhjä. poista silti?</string>
    <string name="synchronized_books">Synkronoidut kirjat</string>
+   <string name="show_sync_wheel">Näytä synkronointipyörä</string>
+   <string name="publication_date">Julkaisupäivämäärä</string>
+   <string name="empy">Tyhjä</string>
 </resources>

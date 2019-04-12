@@ -555,4 +555,7 @@
    <string name="downloads">การดาวน์โหลด</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">โฟลเดอร์ไม่ว่างเปล่า ลบต่อไปหรือไม่</string>
    <string name="synchronized_books">หนังสือที่ทำข้อมูลให้ตรงกัน</string>
+   <string name="show_sync_wheel">แสดงวงล้อซิงค์</string>
+   <string name="publication_date">วันที่ตีพิมพ์</string>
+   <string name="empy">ว่างเปล่า</string>
 </resources>

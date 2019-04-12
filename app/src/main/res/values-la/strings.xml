@@ -555,4 +555,7 @@
    <string name="downloads">Et downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder est inanis. delete removes?</string>
    <string name="synchronized_books">Librorum synchronized</string>
+   <string name="show_sync_wheel">Ostende sync rotam</string>
+   <string name="publication_date">Publication diem</string>
+   <string name="empy">Inanis</string>
 </resources>

@@ -555,4 +555,7 @@
    <string name="downloads">Indirmeler</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Klasör boş değil. Yine de silinsin mi?</string>
    <string name="synchronized_books">Senkronize kitaplar</string>
+   <string name="show_sync_wheel">Senkronizasyon tekerleğini göster</string>
+   <string name="publication_date">Yayın tarihi</string>
+   <string name="empy">Boş</string>
 </resources>

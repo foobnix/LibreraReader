@@ -555,4 +555,7 @@
    <string name="downloads">التنزيلات</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">المجلد ليس فارغا. حذف على أي حال؟</string>
    <string name="synchronized_books">الكتب المتزامنة</string>
+   <string name="show_sync_wheel">عرض عجلة المزامنة</string>
+   <string name="publication_date">تاريخ النشر</string>
+   <string name="empy">فارغة</string>
 </resources>

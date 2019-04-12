@@ -555,4 +555,7 @@
    <string name="downloads">Unduhan</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder tidak kosong. hapus saja?</string>
    <string name="synchronized_books">Buku yang disinkronkan</string>
+   <string name="show_sync_wheel">Tampilkan roda sinkronisasi</string>
+   <string name="publication_date">Tanggal penerbitan</string>
+   <string name="empy">Kosong</string>
 </resources>

@@ -555,4 +555,7 @@
    <string name="downloads">Sťahovania</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Priečinok nie je prázdny. zmazať aj tak?</string>
    <string name="synchronized_books">Synchronizované knihy</string>
+   <string name="show_sync_wheel">Zobraziť synchronizačné koleso</string>
+   <string name="publication_date">Dátum publikácie</string>
+   <string name="empy">Prázdny</string>
 </resources>

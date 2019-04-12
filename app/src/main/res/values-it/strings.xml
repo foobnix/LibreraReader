@@ -555,4 +555,7 @@
    <string name="downloads">I download</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">La cartella non è vuota cancellare comunque?</string>
    <string name="synchronized_books">Libri sincronizzati</string>
+   <string name="show_sync_wheel">Mostra la rotella di sincronizzazione</string>
+   <string name="publication_date">Data di pubblicazione</string>
+   <string name="empy">Vuoto</string>
 </resources>

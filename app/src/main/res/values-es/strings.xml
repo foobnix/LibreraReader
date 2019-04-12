@@ -555,4 +555,7 @@
    <string name="downloads">Las descargas</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Carpeta no está vacía. borrar de todos modos?</string>
    <string name="synchronized_books">Libros sincronizados</string>
+   <string name="show_sync_wheel">Mostrar la rueda de sincronización</string>
+   <string name="publication_date">Fecha de publicación</string>
+   <string name="empy">Vacío</string>
 </resources>

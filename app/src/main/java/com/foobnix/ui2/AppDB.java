@@ -47,7 +47,9 @@ public class AppDB {
         AUTHOR(FileMetaDao.Properties.Author, AppState.MODE_AUTHORS), //
         TAGS(FileMetaDao.Properties.Tag, AppState.MODE_USER_TAGS), //
         KEYWRODS(FileMetaDao.Properties.Keyword, AppState.MODE_KEYWORDS), //
-        LANGUAGES(FileMetaDao.Properties.Lang, AppState.MODE_LANGUAGES);
+        LANGUAGES(FileMetaDao.Properties.Lang, AppState.MODE_LANGUAGES),
+        YEAR(FileMetaDao.Properties.Year, AppState.MODE_PUBLICATION_DATE),
+        PUBLISHER(FileMetaDao.Properties.Publisher, AppState.MODE_PUBLISHER);
         // ANNOT(FileMetaDao.Properties.Annotation, -1); //
         // REGEX(FileMetaDao.Properties.Path, -1);//
         //
@@ -102,7 +104,10 @@ public class AppDB {
         SERIES_INDEX(7, R.string.by_number_in_serie, FileMetaDao.Properties.SIndex), //
         PAGES(8, R.string.by_number_of_pages, FileMetaDao.Properties.Pages), //
         EXT(9, R.string.by_extension, FileMetaDao.Properties.Ext), //
-        LANGUAGE(10, R.string.language, FileMetaDao.Properties.Lang);//
+        LANGUAGE(10, R.string.language, FileMetaDao.Properties.Lang),//
+        PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.Year),//
+        PUBLISHER(12, R.string.publisher, FileMetaDao.Properties.Publisher);//
+
 
         private final int index;
         private final int resName;

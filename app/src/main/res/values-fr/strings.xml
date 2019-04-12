@@ -555,4 +555,7 @@
    <string name="downloads">Les téléchargements</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Le dossier n\'est pas vide. supprimer quand même?</string>
    <string name="synchronized_books">Livres synchronisés</string>
+   <string name="show_sync_wheel">Afficher la roue de synchronisation</string>
+   <string name="publication_date">Date de publication</string>
+   <string name="empy">Vide</string>
 </resources>

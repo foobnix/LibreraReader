@@ -555,4 +555,7 @@
    <string name="downloads">Die Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Ordner ist nicht leer. trotzdem löschen?</string>
    <string name="synchronized_books">Synchronisierte Bücher</string>
+   <string name="show_sync_wheel">Sync-Rad anzeigen</string>
+   <string name="publication_date">Veröffentlichungsdatum</string>
+   <string name="empy">Leeren</string>
 </resources>

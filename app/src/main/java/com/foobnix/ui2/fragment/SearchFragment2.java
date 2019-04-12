@@ -114,22 +114,21 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         TintUtil.setTintImageNoAlpha(cleanFilter, colorTheme);
         TintUtil.setTintImageNoAlpha(myAutoCompleteImage, colorTheme);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
-        }else{
+        } else {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
         }
         TintUtil.setStrokeColor(searchEditText, colorTheme);
         TintUtil.setUITextColor(searchEditText, colorTheme);
 
-        if (AppState.get().appTheme == AppState.THEME_INK){
+        if (AppState.get().appTheme == AppState.THEME_INK) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
             TintUtil.setStrokeColor(searchEditText, Color.BLACK);
             TintUtil.setUITextColor(searchEditText, Color.BLACK);
             countBooks.setTextColor(Color.BLACK);
 
         }
-
 
 
     }
@@ -188,12 +187,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        if(AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)){
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
         }
 
         myAutoCompleteImage.setVisibility(View.GONE);
-
 
 
         searchEditText.addTextChangedListener(filterTextWatcher);
@@ -571,15 +569,24 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 }
             }
 
-            if (AppState.get().sortBy == SORT_BY.PATH.getIndex() || AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
+            if (//
+                    AppState.get().sortBy == SORT_BY.PATH.getIndex() ||//
+                            AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex() ||//
+                            AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex() ||
+                            AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {//
+
                 List<FileMeta> res = new ArrayList<FileMeta>();
                 String last = null;
 
                 String extDir = Environment.getExternalStorageDirectory().getPath();
 
                 for (FileMeta it : searchBy) {
-                    String parentName = null;
-                    if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
+                    String parentName = "";
+                    if (AppState.get().sortBy == SORT_BY.PUBLISHER.getIndex()) {
+                        parentName = "" + it.getPublisher();
+                    } else if (AppState.get().sortBy == SORT_BY.PUBLICATION_YEAR.getIndex()) {
+                        parentName = "" + it.getYear();
+                    } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
                         parentName = it.getParentPath();
                         parentName = parentName.replace(extDir, "");
                     } else if (AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
@@ -696,6 +703,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
                 searchEditText.setHint(R.string.language);
                 empty = EMPTY_ID + getActivity().getString(R.string.no_language);
+            } else if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
+                searchEditText.setHint(R.string.publication_date);
+                empty = EMPTY_ID + getActivity().getString(R.string.empy);
+            } else if (AppState.get().libraryMode == AppState.MODE_PUBLISHER) {
+                searchEditText.setHint(R.string.publisher);
+                empty = EMPTY_ID + getActivity().getString(R.string.empy);
             }
 
             authorsAdapter.clearItems();
@@ -721,6 +734,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 list = res;
 
             }
+            if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
+                Collections.reverse(list);
+            }
+
             list.add(0, empty);
             authorsAdapter.getItemsList().addAll(list);
             authorsAdapter.notifyDataSetChanged();
@@ -781,10 +798,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         @Override
         public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
             if (//
-            AppState.get().libraryMode == AppState.MODE_GRID || //
-            AppState.get().libraryMode == AppState.MODE_LIST || //
-            AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
-            AppState.get().libraryMode == AppState.MODE_COVERS//
+                    AppState.get().libraryMode == AppState.MODE_GRID || //
+                            AppState.get().libraryMode == AppState.MODE_LIST || //
+                            AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
+                            AppState.get().libraryMode == AppState.MODE_COVERS//
             ) {
                 handler.removeCallbacks(sortAndSeach);
                 handler.removeCallbacks(hideKeyboard);
@@ -843,7 +860,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.string.serie, //
                 R.string.keywords, //
                 R.string.language, //
-                R.string.my_tags //
+                R.string.my_tags,
+                R.string.publisher,
+                R.string.publication_date//
         );
 
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, //
@@ -855,7 +874,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 R.drawable.glyphicons_710_list_numbered, //
                 R.drawable.glyphicons_67_keywords, //
                 R.drawable.glyphicons_basic_417_globe, //
-                R.drawable.glyphicons_67_tags);
+                R.drawable.glyphicons_67_tags,
+                R.drawable.glyphicons_4_thumbs_up,
+                R.drawable.glyphicons_2_book_open
+        );
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, //
                 AppState.MODE_GRID, //
                 AppState.MODE_COVERS, //
@@ -864,7 +886,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 AppState.MODE_SERIES, //
                 AppState.MODE_KEYWORDS, //
                 AppState.MODE_LANGUAGES, //
-                AppState.MODE_USER_TAGS); //
+                AppState.MODE_USER_TAGS,
+                AppState.MODE_PUBLISHER,
+                AppState.MODE_PUBLICATION_DATE); //
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
@@ -875,7 +899,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
 
-                    if (Arrays.asList(AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
+                    if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
                         searchEditText.setText("");
                     }
 

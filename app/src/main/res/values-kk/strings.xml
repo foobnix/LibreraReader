@@ -555,4 +555,7 @@
    <string name="downloads">Жүктеулер</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Қалта бос емес. бәрібір жою керек пе?</string>
    <string name="synchronized_books">Синхрондалған кітаптар</string>
+   <string name="show_sync_wheel">Синхрондау дөңгелегін көрсету</string>
+   <string name="publication_date">Жариялау күні</string>
+   <string name="empy">Бос</string>
 </resources>
