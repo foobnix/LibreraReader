@@ -118,6 +118,8 @@ public class TTSService extends Service{
                     } else if (KeyEvent.KEYCODE_MEDIA_PLAY == event.getKeyCode()) {
                         if (!isPlaying) {
                             playPage("", AppTemp.get().lastBookPage, null);
+                        } else if (AppState.get().isFastBookmarkByTTS) {
+                            TTSEngine.get().fastTTSBookmakr(getBaseContext(), 0, 0);
                         }
 
                     }
