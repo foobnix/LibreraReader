@@ -300,10 +300,12 @@ public class TTSEngine {
             final AppBookmark bookmark = new AppBookmark(AppTemp.get().lastBookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
             BookmarksData.get().add(bookmark);
 
+            String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
+            Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
+
         }
         Vibro.vibrate();
-        String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
-        Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
+
     }
 
     public synchronized boolean isPlaying() {

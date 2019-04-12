@@ -240,6 +240,7 @@ public class TTSService extends Service {
         AppTemp.get().lastBookTitle = title;
         AppTemp.get().lastBookPage = page;
 
+
         Intent intent = playBookIntent(page, path, anchor);
 
         if (Build.VERSION.SDK_INT >= 26) {
@@ -346,6 +347,7 @@ public class TTSService extends Service {
                 return START_STICKY;
             }
 
+            AppTemp.get().lastBookParagraph = 0;
             TTSEngine.get().stop();
             playPage("", AppTemp.get().lastBookPage + 1, null);
             if (!wakeLock.isHeld()) {
@@ -359,6 +361,7 @@ public class TTSService extends Service {
                 return START_STICKY;
             }
 
+            AppTemp.get().lastBookParagraph = 0;
             TTSEngine.get().stop();
             playPage("", AppTemp.get().lastBookPage - 1, null);
             if (!wakeLock.isHeld()) {
