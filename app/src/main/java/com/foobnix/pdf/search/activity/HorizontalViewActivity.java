@@ -211,7 +211,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         setContentView(R.layout.activity_horiziontal_view);
 
-        Android6.checkPermissions(this, false);
+        if (!Android6.canWrite(this)) {
+            Android6.checkPermissions(this, true);
+            return;
+        }
 
         findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 

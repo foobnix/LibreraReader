@@ -55,7 +55,7 @@ public class ExportConverter {
         IO.writeString(AppProfile.syncState, obj.getJSONObject("pdf").toString());
         IO.writeString(AppProfile.syncCSS, obj.getJSONObject("BookCSS").toString());
 
-        AppProfile.load(c);
+        AppProfile.init(c);
 
         JSONArray recent = obj.getJSONArray("Recent");
         long t = System.currentTimeMillis();

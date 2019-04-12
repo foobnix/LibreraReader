@@ -26,6 +26,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -68,8 +69,14 @@ public class AppProfile {
     public static File syncBookmarks;
 
 
+    public static boolean isInit = false;
+
     public static void init(Context c) {
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
+
+        if (!Android6.canWrite(c)) {
+            return;
+        }
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
 
@@ -84,7 +91,16 @@ public class AppProfile {
         syncState = new File(SYNC_FOLDER_PROFILE, APP_STATE + "-" + DEVICE_MODEL + ".json");
         syncCSS = new File(SYNC_FOLDER_PROFILE, APP_CSS + "-" + DEVICE_MODEL + ".json");
 
-        load(c);
+        final boolean isLoaded = AppState.get().loadInit(c);
+        if (isLoaded) {
+            AppState.get().load(c);
+        }
+        TintUtil.init();
+        BookCSS.get().load1(c);
+        AppTemp.get().init(c);
+        PasswordState.get().load(c);
+        DragingPopup.loadCache(c);
+        isInit = true;
 
 
     }
@@ -104,25 +120,15 @@ public class AppProfile {
         return background;
     }
 
-    public static void load(Context c) {
-        final boolean isLoaded = AppState.get().loadInit(c);
-        if (isLoaded) {
-            AppState.get().load(c);
-        }
-        TintUtil.init();
-        BookCSS.get().load1(c);
-        AppTemp.get().init(c);
-        PasswordState.get().load(c);
-        DragingPopup.loadCache(c);
-
-    }
 
     public static synchronized void save(Context a) {
-        DragingPopup.saveCache(a);
-        PasswordState.get().save(a);
-        AppState.get().save(a);
-        BookCSS.get().save(a);
-        AppTemp.get().save();
+        if(isInit) {
+            DragingPopup.saveCache(a);
+            PasswordState.get().save(a);
+            AppState.get().save(a);
+            BookCSS.get().save(a);
+            AppTemp.get().save();
+        }
     }
 
     public static String getCurrent(Context c) {

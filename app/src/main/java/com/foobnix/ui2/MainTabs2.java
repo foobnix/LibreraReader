@@ -218,6 +218,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onCreate(savedInstanceState);
         //FirebaseAnalytics.getInstance(this);
 
+        if (!Android6.canWrite(this)) {
+            Android6.checkPermissions(this, true);
+            return;
+        }
+
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;
         }

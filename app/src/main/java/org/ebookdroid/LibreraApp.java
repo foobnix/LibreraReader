@@ -48,7 +48,6 @@ public class LibreraApp extends MultiDexApplication {
 
         AppProfile.init(this);
 
-
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
             int initNative = StructuredText.initNative();
             LOG.d("initNative", initNative);
