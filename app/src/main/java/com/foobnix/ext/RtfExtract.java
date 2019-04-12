@@ -48,7 +48,16 @@ public class RtfExtract {
 
             InputStream is = new FileInputStream(inputPath);
             IRtfSource source = new RtfStreamSource(is);
-            IRtfParser parser = new StandardRtfParser();
+            IRtfParser parser = new StandardRtfParser() {
+                @Override
+                public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
+                    try {
+                        super.processCommand(command, parameter, hasParameter, optional);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                }
+            };
 
             boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang);
             if (isEnableHypens) {
@@ -61,6 +70,7 @@ public class RtfExtract {
                 boolean isImage;
                 String format = "jpg";
                 int counter = 0;
+
 
                 @Override
                 public void processExtractedText(String text) {
@@ -171,14 +181,24 @@ public class RtfExtract {
                 @Override
                 // http://latex2rtf.sourceforge.net/rtfspec_62.html
                 public void processCommand(Command command, int parameter, boolean hasParameter, boolean optional) {
-                    super.processCommand(command, parameter, hasParameter, optional);
+                    try {
+                        super.processCommand(command, parameter, hasParameter, optional);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+
+
                     if (command == Command.cbpat || command == Command.line) {
                         writer.write("<br/>");
                     }
 
                     //writer.write("[" + command + "]");
 
-                    stack.add(command);
+                    if (parameter == 0 && (command == Command.i || command == Command.b)) {
+                        //skip
+                    } else {
+                        stack.add(command);
+                    }
 
                     if (command == Command.pngblip) {
                         isImage = true;
