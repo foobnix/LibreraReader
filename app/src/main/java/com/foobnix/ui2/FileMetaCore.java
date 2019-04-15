@@ -206,7 +206,7 @@ public class FileMetaCore {
             ebookMeta.setTitle(ebookMeta.getTitle() + " [" + ebookMeta.getsIndex() + "]");
         }
 
-        if (path.endsWith(".zip") && !path.endsWith("fb2.zip")) {
+        if (path.endsWith(".zip") && !unZipPath.endsWith("fb2")) {
             ebookMeta.setTitle("{" + fileNameOriginal + "} " + ebookMeta.getTitle());
         }
 

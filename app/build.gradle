@@ -47,11 +47,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "boolean", "IS_BETA", "false"
         }
         debug {
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "boolean", "IS_BETA", "true"
         }
 
 
@@ -103,6 +101,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         pro {
             dimension "version"
@@ -116,6 +115,7 @@ android {
                     admobBannerId : "",
                     admobFullId   : ""
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         pdf_classic {
             dimension "version"
@@ -129,6 +129,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/5364245672",
                     admobFullId   : "ca-app-pub-8347903083053959/7763820878"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         ebooka {
             dimension "version"
@@ -142,6 +143,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/6159730856",
                     admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         pdf_v2 {
             dimension "version"
@@ -155,6 +157,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/6705625294",
                     admobFullId   : "ca-app-pub-8347903083053959/1346267659"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         tts_reader {
             dimension "version"
@@ -168,6 +171,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/2702801102",
                     admobFullId   : "ca-app-pub-8347903083053959/4602986382"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         epub_reader {
             dimension "version"
@@ -181,6 +185,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/1553370961",
                     admobFullId   : "ca-app-pub-8347903083053959/6163356354"
             ]
+            buildConfigField "boolean", "IS_BETA", "false"
         }
         fdroid {
             dimension "version"
@@ -195,6 +200,7 @@ android {
                     admobFullId   : ""
             ]
             versionNameSuffix '-fdroid'
+            buildConfigField "boolean", "IS_BETA", "false"
         }
 
     }
