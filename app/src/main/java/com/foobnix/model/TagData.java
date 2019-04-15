@@ -49,6 +49,16 @@ public class TagData {
         }
     }
 
+    public static String getTags(String path) {
+        try {
+            JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+            return obj.getString(MyPath.toRelative(path));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
+    }
+
     public static void restoreTags() {
         LOG.d("restoreTags");
 
@@ -62,7 +72,7 @@ public class TagData {
             try {
 
                 Tag tag = new Tag(key, obj.getString(key));
-                LOG.d("restoreTags-in",tag.path, tag.tags);
+                LOG.d("restoreTags-in", tag.path, tag.tags);
 
                 FileMeta load = AppDB.get().load(tag.getPath());
                 if (load != null) {

@@ -23,6 +23,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
@@ -412,6 +413,9 @@ public class ShareDialog {
 
                         AppDB.get().setIsSearchBook(file.getPath(), false);
                         FileMetaCore.createMetaIfNeed(to.getPath(), true);
+
+                        String tags = TagData.getTags(file.getPath());
+                        TagData.saveTags(to.getPath(), tags);
 
                         GFile.runSyncService(a);
                     }
