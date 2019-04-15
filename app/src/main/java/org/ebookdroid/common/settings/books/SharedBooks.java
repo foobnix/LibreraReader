@@ -70,6 +70,10 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
+        if(bs==null){
+            LOG.d("Can't save AppBook");
+            return;
+        }
         JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
         try {
             final String fileName = ExtUtils.getFileName(bs.path);
