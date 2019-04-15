@@ -77,6 +77,10 @@ public class AppProfile {
         if (!Android6.canWrite(c)) {
             return;
         }
+        if (isInit) {
+            save(c);
+        }
+
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
 
@@ -122,7 +126,7 @@ public class AppProfile {
 
 
     public static synchronized void save(Context a) {
-        if(isInit) {
+        if (isInit) {
             DragingPopup.saveCache(a);
             PasswordState.get().save(a);
             AppState.get().save(a);
