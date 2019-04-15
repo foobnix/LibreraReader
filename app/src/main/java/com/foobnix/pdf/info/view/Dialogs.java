@@ -588,7 +588,7 @@ public class Dialogs {
                 Keyboards.close(edit);
                 Keyboards.hideNavigation((Activity) a);
 
-                AppState.get().bookTags = StringDB.add(AppState.get().bookTags, text);
+                StringDB.add(AppState.get().bookTags, text, (db) -> AppState.get().bookTags = db);
                 if (onRefresh != null) {
                     onRefresh.run();
                 }
@@ -654,7 +654,7 @@ public class Dialogs {
                                 checked.clear();
 
                                 LOG.d("AppState.get().bookTags before", AppState.get().bookTags);
-                                AppState.get().bookTags = StringDB.delete(AppState.get().bookTags, tagName);
+                                StringDB.delete(AppState.get().bookTags, tagName, (db) -> AppState.get().bookTags = db);
 
                                 tags.clear();
                                 tags.addAll(getAllTags(tag));
@@ -663,7 +663,7 @@ public class Dialogs {
 
                                 List<FileMeta> allWithTag = AppDB.get().getAllWithTag(tagName);
                                 for (FileMeta meta : allWithTag) {
-                                    meta.setTag(StringDB.delete(meta.getTag(), tagName));
+                                    StringDB.delete(meta.getTag(), tagName, (db) -> meta.setTag(db));
                                     TagData.saveTags(meta);
                                 }
                                 AppDB.get().updateAll(allWithTag);
@@ -715,12 +715,13 @@ public class Dialogs {
         if (fileMeta != null) {
 
             builder.setPositiveButton(R.string.apply, new AlertDialog.OnClickListener() {
+                String res = "";
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String res = "";
+                    res = "";
                     for (int i : checked) {
-                        res = StringDB.add(res, tags.get(i));
+                        StringDB.add(res, tags.get(i), (db) -> res = db);
                     }
                     LOG.d("showTagsDialog", res);
                     if (fileMeta != null) {
@@ -739,12 +740,13 @@ public class Dialogs {
 
         if (isReadBookOption) {
             builder.setNeutralButton(R.string.read_a_book, new AlertDialog.OnClickListener() {
+                String res = "";
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String res = "";
+                    res = "";
                     for (int i : checked) {
-                        res = StringDB.add(res, tags.get(i));
+                        StringDB.add(res, tags.get(i), (db) -> res = db);
                     }
                     LOG.d("showTagsDialog", res);
                     if (fileMeta != null) {

@@ -244,7 +244,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
 
 
-
         paths = (LinearLayout) view.findViewById(R.id.paths);
         scroller = (HorizontalScrollView) view.findViewById(R.id.scroller);
         final View onHome = view.findViewById(R.id.onHome);
@@ -344,7 +343,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                BookCSS.get().pathSAF = StringDB.delete(BookCSS.get().pathSAF, saf);
+                                StringDB.delete(BookCSS.get().pathSAF, saf, (db) -> BookCSS.get().pathSAF = db);
                                 return false;
                             }
                         }).setIcon(R.drawable.glyphicons_146_folder_plus);

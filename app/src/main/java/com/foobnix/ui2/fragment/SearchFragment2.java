@@ -358,7 +358,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         autocomplitions.remove(item);
                         items.remove(item);
 
-                        AppState.get().myAutoCompleteDb = StringDB.delete(AppState.get().myAutoCompleteDb, item);
+                        StringDB.delete(AppState.get().myAutoCompleteDb, item, (db) -> AppState.get().myAutoCompleteDb = db);
                         notifyDataSetChanged();
                     }
                 });
@@ -776,7 +776,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             String txt = searchEditText.getText().toString().trim();
             if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !StringDB.contains(AppState.get().myAutoCompleteDb, txt)) {
                 if (!searchAdapter.getItemsList().isEmpty()) {
-                    AppState.get().myAutoCompleteDb = StringDB.add(AppState.get().myAutoCompleteDb, txt);
+                    StringDB.add(AppState.get().myAutoCompleteDb, txt, (db) -> AppState.get().myAutoCompleteDb = db);
                     autocomplitions.add(txt);
                     updateFilterListAdapter();
                     myAutoCompleteImage.setVisibility(View.VISIBLE);
