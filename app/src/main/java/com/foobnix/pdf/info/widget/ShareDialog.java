@@ -440,9 +440,14 @@ public class ShareDialog {
 
         });
         create.show();
+//        MyPopupMenu menu = new MyPopupMenu(a, null);
+//
+//        menu.getMenu(R.drawable.glyphicons_basic_578_share, R.string.share, () -> ExtUtils.openPDFInTextReflow(a, file, page + 1, dc));
+//        menu.getMenu(R.drawable.glyphicons_2_book_open, R.string.open_with, () -> ExtUtils.openPDFInTextReflow(a, file, page + 1, dc));
+//
+//        menu.show();
     }
 
-    ;
 
     public static void showAddToCloudDialog(final Activity a, final File file) {
         final AlertDialog.Builder inner = new AlertDialog.Builder(a);

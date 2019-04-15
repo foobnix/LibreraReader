@@ -1,10 +1,12 @@
 package com.foobnix.pdf.info.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -15,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
+import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
@@ -121,28 +124,6 @@ public class MyPopupMenu {
         }
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
-        p1.setModal(true);
-        p1.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss() {
-                p1.dismiss();
-                if (isTabsActivity) {
-                    if (AppState.get().isFullScreenMain) {
-                        Keyboards.hideNavigation((Activity) c);
-                    }
-                } else {
-                    if (AppState.get().isFullScreen) {
-                        Keyboards.hideNavigation((Activity) c);
-                    }
-                }
-                if (onDismissListener != null) {
-                    onDismissListener.onDismiss();
-                }
-
-            }
-
-        });
 
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
             @Override
@@ -157,7 +138,7 @@ public class MyPopupMenu {
                 if (TxtUtils.isNotEmpty(item.fontPath)) {
                     textView.setTypeface(BookCSS.getTypeFaceForFont(item.fontPath));
                 }
-                if(AppState.get().appTheme == AppState.THEME_INK){
+                if (AppState.get().appTheme == AppState.THEME_INK) {
                     textView.setTextColor(Color.BLACK);
                 }
 
@@ -227,20 +208,55 @@ public class MyPopupMenu {
             }
         };
 
-        p1.setAnchorView(anchor);
+        if (anchor != null) {
 
-        p1.setAdapter(a);
+            p1.setModal(true);
+            p1.setOnDismissListener(new OnDismissListener() {
 
-        try {
-            p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
-        } catch (Exception e) {
-            p1.setWidth(200);
-        }
+                @Override
+                public void onDismiss() {
+                    p1.dismiss();
+                    if (isTabsActivity) {
+                        if (AppState.get().isFullScreenMain) {
+                            Keyboards.hideNavigation((Activity) c);
+                        }
+                    } else {
+                        if (AppState.get().isFullScreen) {
+                            Keyboards.hideNavigation((Activity) c);
+                        }
+                    }
+                    if (onDismissListener != null) {
+                        onDismissListener.onDismiss();
+                    }
 
-        p1.show();
+                }
 
-        if (pos != -1) {
-            p1.setSelection(pos - 2);
+            });
+
+
+            p1.setAnchorView(anchor);
+
+
+            p1.setAdapter(a);
+
+            try {
+                p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
+            } catch (Exception e) {
+                p1.setWidth(200);
+            }
+
+            p1.show();
+
+            if (pos != -1) {
+                p1.setSelection(pos - 2);
+            }
+        } else {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+            ListView list = new ListView(c);
+            list.setDivider(null);
+            list.setAdapter(a);
+            builder.setView(list);
+            builder.show();
         }
 
     }
@@ -282,6 +298,23 @@ public class MyPopupMenu {
     public Menu getMenu() {
         Menu m = new Menu();
         list.add(m);
+        return m;
+    }
+
+    public Menu getMenu(int icon, int text, Runnable run) {
+        Menu m = new Menu();
+        m.setIcon(icon);
+        m.add(text);
+        m.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                run.run();
+                return true;
+            }
+        });
+
+        list.add(m);
+
         return m;
     }
 
