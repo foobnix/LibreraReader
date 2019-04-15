@@ -15,6 +15,10 @@ public class StringDB {
         if (TxtUtils.isEmpty(text)) {
             return db;
         }
+        if (db == null) {
+            db = "";
+        }
+
         text = text.replace(DIVIDER, "").trim();
         db = db + text + DIVIDER;
         return db;

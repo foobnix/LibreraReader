@@ -38,6 +38,7 @@ import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
@@ -150,7 +151,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         autocomplitions.add(CMD_KEYCODE);
         autocomplitions.add(CMD_EDIT_AUTO_COMPLETE);
 
-        autocomplitions.addAll(AppState.get().myAutoComplete);
+        autocomplitions.addAll(StringDB.asList(AppState.get().myAutoCompleteDb));
 
         updateFilterListAdapter();
     }
@@ -340,7 +341,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         final ListView list = new ListView(getActivity());
 
-        final List<String> items = new ArrayList<String>(AppState.get().myAutoComplete);
+        final List<String> items = new ArrayList<String>(StringDB.asList(AppState.get().myAutoCompleteDb));
         Collections.sort(items);
         BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(getActivity(), R.layout.path_item, items) {
             @Override
@@ -356,7 +357,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     public void onClick(View v) {
                         autocomplitions.remove(item);
                         items.remove(item);
-                        AppState.get().myAutoComplete.remove(item);
+
+                        AppState.get().myAutoCompleteDb = StringDB.delete(AppState.get().myAutoCompleteDb, item);
                         notifyDataSetChanged();
                     }
                 });
@@ -772,9 +774,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         @Override
         public void run() {
             String txt = searchEditText.getText().toString().trim();
-            if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !AppState.get().myAutoComplete.contains(txt)) {
+            if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !StringDB.contains(AppState.get().myAutoCompleteDb, txt)) {
                 if (!searchAdapter.getItemsList().isEmpty()) {
-                    AppState.get().myAutoComplete.add(txt);
+                    AppState.get().myAutoCompleteDb = StringDB.add(AppState.get().myAutoCompleteDb, txt);
                     autocomplitions.add(txt);
                     updateFilterListAdapter();
                     myAutoCompleteImage.setVisibility(View.VISIBLE);
@@ -815,7 +817,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             myAutoCompleteImage.setVisibility(View.GONE);
             handler.removeCallbacks(saveAutoComplete);
 
-            if (AppState.get().myAutoComplete.contains(s.toString().trim())) {
+            if (StringDB.contains(AppState.get().myAutoCompleteDb, s.toString().trim())) {
                 myAutoCompleteImage.setVisibility(View.VISIBLE);
             } else {
                 handler.postDelayed(saveAutoComplete, 10000);

@@ -66,7 +66,6 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.MessagePageNumber;
 import com.foobnix.tts.TTSControlsView;
 import com.foobnix.tts.TTSEngine;
-import com.foobnix.tts.TTSNotification;
 import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
@@ -325,8 +324,8 @@ public class DocumentWrapperUI {
                 TTSEngine.get().playCurrent();
                 anchor.setTag("");
             }
-            TTSNotification.showLast();
-            DragingDialogs.textToSpeachDialog(anchor, dc);
+            //TTSNotification.showLast();
+            //DragingDialogs.textToSpeachDialog(anchor, dc);
             return true;
         }
 

@@ -24,11 +24,9 @@ import com.foobnix.ui2.AppDB;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class AppState {
@@ -657,7 +655,7 @@ public class AppState {
     public boolean isAutomaticExport = false;
     public boolean isDisplayAllFilesInFolder = false;
 
-    public Set<String> myAutoComplete = new HashSet<String>();
+    public String myAutoCompleteDb="";
 
     public String bookTags = "";
     public String recentTag = "";
