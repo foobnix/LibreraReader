@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -86,6 +87,35 @@ public class DialogSpeedRead {
         textWord.setTextSize(AppState.get().fastReadFontSize);
         textWord.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
         TxtUtils.underlineTextView(textWord);
+
+        textWord.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                MyPopupMenu menu = new MyPopupMenu(textWord);
+                menu.getMenu().add(R.string.share).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                    final Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, textWord.getText().toString().trim());
+                    a.startActivity(Intent.createChooser(intent, a.getString(R.string.share)));
+                    return true;
+                });
+                menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+
+                    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+                        clipboard.setText(textWord.getText().toString().trim());
+                    } else {
+                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+                        android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
+                        clipboard.setPrimaryClip(clip);
+                    }
+                    return true;
+                });
+                menu.show();
+
+                return true;
+            }
+        });
 
         final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
         List<Integer> values = Arrays.asList(100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 700);
