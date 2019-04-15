@@ -10,6 +10,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
@@ -47,6 +49,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@TargetApi(Build.VERSION_CODES.O)
 public class TTSService extends Service {
 
     public static final String EXTRA_PATH = "EXTRA_PATH";
@@ -86,7 +89,15 @@ public class TTSService extends Service {
             // AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN).setOnAudioFocusChangeListener(listener).build());
         } else {
         }
-        mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mAudioManager.requestAudioFocus(audioFocusRequest);
+        } else {
+            mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        }
+
+        //mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+
 
         mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag");
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
@@ -183,12 +194,16 @@ public class TTSService extends Service {
 
 
     boolean isPlaying;
-    OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
+    final OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
 
         @Override
         public void onAudioFocusChange(int focusChange) {
             LOG.d("onAudioFocusChange", focusChange);
             if (!AppState.get().stopReadingOnCall) {
+                return;
+            }
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                LOG.d("Ingore Duck");
                 return;
             }
 
@@ -204,6 +219,17 @@ public class TTSService extends Service {
             }
         }
     };
+    final AudioFocusRequest audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+            .setAudioAttributes(
+                    new AudioAttributes.Builder()
+                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                            .setLegacyStreamType(AudioManager.STREAM_MUSIC)
+                            .build())
+            .setAcceptsDelayedFocusGain(true)
+            .setWillPauseWhenDucked(false)
+            .setOnAudioFocusChangeListener(listener)
+            .build();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -615,6 +641,12 @@ public class TTSService extends Service {
 
 
         //mAudioManager.abandonAudioFocus(listener);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mAudioManager.abandonAudioFocusRequest(audioFocusRequest);
+        } else {
+            mAudioManager.abandonAudioFocus(listener);
+        }
 
         //mMediaSessionCompat.setCallback(null);
         mMediaSessionCompat.setActive(false);
