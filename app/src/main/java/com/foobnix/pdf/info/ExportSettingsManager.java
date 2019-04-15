@@ -49,9 +49,9 @@ public class ExportSettingsManager {
             root.put("ViewerPreferences", exportToJSon("ViewerPreferences", ViewerPreferences, null, null));
             root.put("BookCSS", exportToJSon("BookCSS", BookCSS, null, null));
 
-            root.put("Recent", fileMetaToJSON(AppDB.get().getRecent()));
-            root.put("StarsBook", fileMetaToJSON(AppDB.get().getStarsFiles()));
-            root.put("StarsFolder", fileMetaToJSON(AppDB.get().getStarsFolder()));
+            root.put("Recent", fileMetaToJSON(AppDB.get().getRecentDeprecated()));
+            root.put("StarsBook", fileMetaToJSON(AppDB.get().getStarsFilesDeprecated()));
+            root.put("StarsFolder", fileMetaToJSON(AppDB.get().getStarsFoldersDeprecated()));
 
             root.put("TAGS", fileMetaTagToJSON(AppDB.get().getAllWithTag()));
 

@@ -11,6 +11,7 @@ import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
@@ -50,9 +51,9 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onDataSetChanged() {
         if (AppState.get().isStarsInWidget) {
-            recent = AppDB.get().getStarsFiles();
+            recent = AppData.get().getAllFavoriteFiles();
         } else {
-            recent = AppDB.get().getRecent();
+            recent = AppData.get().getAllRecent();
         }
         AppDB.removeClouds(recent);
     }

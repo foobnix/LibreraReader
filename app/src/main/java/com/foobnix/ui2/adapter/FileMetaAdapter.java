@@ -28,6 +28,7 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -503,7 +504,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
-            List<FileMeta> allStars = AppDB.get().getStarsFiles();
+            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
 
             final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta();
 
@@ -531,7 +532,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             TxtUtils.underline(holder.starredName, STARRED);
 
                             adapter.getItemsList().clear();
-                            List<FileMeta> allStars = AppDB.get().getStarsFiles();
+                            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
                             adapter.getItemsList().addAll(allStars);
                             adapter.notifyDataSetChanged();
 

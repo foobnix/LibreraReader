@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -138,9 +139,9 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private void updateList(final RemoteViews remoteViews) {
         List<FileMeta> recent = null;
         if (AppState.get().isStarsInWidget) {
-            recent = AppDB.get().getStarsFiles();
+            recent = AppData.get().getAllFavoriteFiles();
         } else {
-            recent = AppDB.get().getRecent();
+            recent = AppData.get().getAllRecent();
         }
         AppDB.removeClouds(recent);
 

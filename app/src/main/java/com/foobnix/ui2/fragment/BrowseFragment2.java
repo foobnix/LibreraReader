@@ -44,6 +44,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
@@ -343,7 +344,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                StringDB.delete(BookCSS.get().pathSAF, saf, (db) -> BookCSS.get().pathSAF = db);
+                                StringDB.delete(BookCSS.get().pathSAF, saf, (String db) -> BookCSS.get().pathSAF = db);
                                 return false;
                             }
                         }).setIcon(R.drawable.glyphicons_146_folder_plus);
@@ -351,7 +352,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
                 // stars
-                List<FileMeta> starFolders = AppDB.get().getStarsFolder();
+                List<FileMeta> starFolders = AppData.get().getAllFavoriteFolders();
                 List<String> names = new ArrayList<String>();
                 for (FileMeta f : starFolders) {
                     names.add(f.getPath());

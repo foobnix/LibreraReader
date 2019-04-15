@@ -217,7 +217,7 @@ public class AppDB {
         fileMetaDao.deleteByKey(metaByPath);
     }
 
-    public List<FileMeta> getRecent() {
+    public List<FileMeta> getRecentDeprecated() {
         try {
             List<FileMeta> list = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsRecent.eq(1)).orderDesc(FileMetaDao.Properties.IsRecentTime).list();
             return removeNotExist(list);
@@ -451,13 +451,13 @@ public class AppDB {
         return result;
     }
 
-    public List<FileMeta> getStarsFiles() {
+    public List<FileMeta> getStarsFilesDeprecated() {
         QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
         List<FileMeta> list = where.where(FileMetaDao.Properties.IsStar.eq(1), where.or(FileMetaDao.Properties.CusType.isNull(), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_FILE))).orderDesc(FileMetaDao.Properties.IsStarTime).list();
         return removeNotExist(list);
     }
 
-    public List<FileMeta> getStarsFolder() {
+    public List<FileMeta> getStarsFoldersDeprecated() {
         return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1), FileMetaDao.Properties.CusType.eq(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY)).orderAsc(FileMetaDao.Properties.PathTxt).list();
     }
 
@@ -474,7 +474,7 @@ public class AppDB {
     }
 
     public void clearAllRecent() {
-        List<FileMeta> recent = getRecent();
+        List<FileMeta> recent = getRecentDeprecated();
         for (FileMeta meta : recent) {
             meta.setIsRecent(false);
         }

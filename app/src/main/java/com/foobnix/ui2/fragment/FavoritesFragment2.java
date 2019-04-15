@@ -69,11 +69,11 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
-                        for (FileMeta f : AppDB.get().getStarsFolder()) {
+                        for (FileMeta f : AppDB.get().getStarsFilesDeprecated()) {
                             f.setIsStar(false);
                             AppDB.get().update(f);
                         }
-                        for (FileMeta f : AppDB.get().getStarsFiles()) {
+                        for (FileMeta f : AppDB.get().getStarsFoldersDeprecated()) {
                             f.setIsStar(false);
                             AppDB.get().update(f);
                         }
