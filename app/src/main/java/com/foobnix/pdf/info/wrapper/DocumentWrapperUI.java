@@ -321,7 +321,8 @@ public class DocumentWrapperUI {
                     TTSEngine.get().stop();
                 }
             } else {
-                TTSEngine.get().playCurrent();
+                //TTSEngine.get().playCurrent();
+                TTSService.playPause(dc.getActivity(), dc);
                 anchor.setTag("");
             }
             //TTSNotification.showLast();

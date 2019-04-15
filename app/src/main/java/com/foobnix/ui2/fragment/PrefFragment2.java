@@ -1552,6 +1552,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().isStarsInWidget = false;
                         widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
                         TxtUtils.underlineTextView(widgetForRecent);
+
                         RecentUpates.updateAll(getActivity());
                         return false;
                     }
@@ -1565,6 +1566,7 @@ public class PrefFragment2 extends UIFragment {
                         AppState.get().isStarsInWidget = true;
                         widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
                         TxtUtils.underlineTextView(widgetForRecent);
+
                         RecentUpates.updateAll(getActivity());
                         return false;
                     }
@@ -1996,6 +1998,7 @@ public class PrefFragment2 extends UIFragment {
                                 public void run() {
                                     AppProfile.saveCurrent(getActivity(), profile);
                                     AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
+                                    RecentUpates.updateAll(getActivity());
                                     onTheme();
                                 }
                             });

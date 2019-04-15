@@ -77,9 +77,7 @@ public class AppProfile {
         if (!Android6.canWrite(c)) {
             return;
         }
-        if (isInit) {
-            save(c);
-        }
+
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
@@ -112,7 +110,7 @@ public class AppProfile {
     public static Drawable getProfileColorDrawable(Context c, String profile) {
         GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
         AppState s = new AppState();
-        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/app-State.json");
+        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/" + APP_STATE + "-" + DEVICE_MODEL + ".json");
         IO.readObj(syncState, s);
         background.setColor(s.tintColor);
         return background;

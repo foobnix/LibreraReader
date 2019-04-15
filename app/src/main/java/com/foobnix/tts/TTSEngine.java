@@ -324,9 +324,6 @@ public class TTSEngine {
         }
     }
 
-    public void playCurrent() {
-        speek(text);
-    }
 
     public boolean hasNoEngines() {
         try {

@@ -13,6 +13,7 @@ import android.os.Build;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.IMG;
@@ -35,6 +36,8 @@ public class RecentUpates {
         if (c == null) {
             return;
         }
+
+        AppProfile.save(c);
 
         LOG.d("RecentUpates", "MUPDF!", c.getClass());
         try {

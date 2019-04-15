@@ -287,7 +287,7 @@ public class TTSControlsView extends FrameLayout {
         if (ttsPlayPause != null) {
             update.run();
             handler.removeCallbacksAndMessages(null);
-            handler.postDelayed(update, 250);
+            handler.postDelayed(update, 500);
         }
     }
 

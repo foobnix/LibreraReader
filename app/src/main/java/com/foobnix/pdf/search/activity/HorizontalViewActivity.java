@@ -2222,7 +2222,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         TTSEngine.get().stop();
                     }
                 } else {
-                    TTSEngine.get().playCurrent();
+                    //TTSEngine.get().playCurrent();
+                    TTSService.playPause(dc.getActivity(), dc);
+
                     anchor.setTag("");
                 }
                 //TTSNotification.showLast();

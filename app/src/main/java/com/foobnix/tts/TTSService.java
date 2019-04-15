@@ -130,6 +130,7 @@ public class TTSService extends Service {
                         }
                     }
                 }
+                EventBus.getDefault().post(new TtsStatus());
                 TTSNotification.showLast();
                 //  }
                 return true;
@@ -217,6 +218,7 @@ public class TTSService extends Service {
                     playPage("", AppTemp.get().lastBookPage, null);
                 }
             }
+            EventBus.getDefault().post(new TtsStatus());
         }
     };
     final AudioFocusRequest audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
@@ -486,7 +488,9 @@ public class TTSService extends Service {
 
             AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
             load.currentPageChanged(pageNumber + 1, pageCount);
+
             SharedBooks.save(load);
+            AppProfile.save(this);
 
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
@@ -612,6 +616,7 @@ public class TTSService extends Service {
 
             TTSEngine.get().speek(firstPart);
 
+            LOG.d("TtsStatus send");
             EventBus.getDefault().post(new TtsStatus());
 
             TTSNotification.showLast();
