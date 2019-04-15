@@ -283,12 +283,14 @@ public class AppDB {
             return;
         }
         LOG.d("Add Recent", path);
-        FileMeta load = getOrCreate(path);
-        load.setIsRecent(true);
-        load.setIsRecentTime(System.currentTimeMillis());
-        fileMetaDao.update(load);
+        if (!path.endsWith("json")) {
+            FileMeta load = getOrCreate(path);
+            load.setIsRecent(true);
+            load.setIsRecentTime(System.currentTimeMillis());
+            fileMetaDao.update(load);
 
-        AppData.get().addRecent(new SimpleMeta(path, System.currentTimeMillis()));
+            AppData.get().addRecent(new SimpleMeta(path, System.currentTimeMillis()));
+        }
 
     }
 

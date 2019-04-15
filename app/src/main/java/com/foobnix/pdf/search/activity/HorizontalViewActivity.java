@@ -55,7 +55,7 @@ import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -825,7 +825,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
-                if (AppsConfig.IS_BETA) {
+                if (BuildConfig.IS_BETA) {
                     long time = System.currentTimeMillis() - start;
                     float sec = (float) time / 1000;
                     modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
@@ -2046,7 +2046,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         prev = AppState.get().isEditMode;
 
-        if (AppsConfig.IS_BETA && animated) {
+        if (BuildConfig.IS_BETA && animated) {
             modeName.setText(R.string.mode_horizontally);
         }
 
@@ -2222,7 +2222,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         TTSEngine.get().stop();
                     }
                 } else {
-                    //TTSEngine.get().playCurrent();
+                    //FTTSEngine.get().playCurrent();
                     TTSService.playPause(dc.getActivity(), dc);
 
                     anchor.setTag("");

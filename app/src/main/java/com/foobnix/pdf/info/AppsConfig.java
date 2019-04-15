@@ -7,7 +7,6 @@ import android.os.Build;
 
 public class AppsConfig {
 
-    public static final boolean IS_BETA = false;
     public static int MUPDF_1_11 = 111;
     public static int MUPDF_1_12 = 112;
     public static int MUPDF_VERSION = MUPDF_1_11;

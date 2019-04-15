@@ -51,7 +51,7 @@ android {
         }
         debug {
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "boolean", "IS_BETA", "false"
+            buildConfigField "boolean", "IS_BETA", "true"
         }
 
 

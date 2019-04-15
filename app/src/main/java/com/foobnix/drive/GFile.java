@@ -618,7 +618,7 @@ public class GFile {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add, local);
-                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000 && remote.getSize().longValue() != local.length()) {
+                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000 /*&& remote.getSize().longValue() != local.length()*/) {
                     uploadFile(syncId, remote, local);
                 }
 
