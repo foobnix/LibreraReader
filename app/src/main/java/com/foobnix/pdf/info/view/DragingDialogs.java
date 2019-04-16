@@ -139,6 +139,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
@@ -3989,6 +3990,12 @@ public class DragingDialogs {
                                         load.setLang(code);
                                         AppDB.get().update(load);
                                     }
+                                    final AppBook load1 = SharedBooks.load(load.getPath());
+                                    if (load1 != null) {
+                                        load.setLang(code);
+                                        SharedBooks.save(load1);
+                                    }
+
                                     return false;
                                 }
                             });

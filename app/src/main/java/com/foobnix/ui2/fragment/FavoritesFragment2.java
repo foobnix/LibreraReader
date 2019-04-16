@@ -234,17 +234,21 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_NONE);
             all.add(empy);
-        }
-        all.addAll(allFavoriteFiles);
 
-        {
+            all.addAll(allFavoriteFiles);
+        }
+
+        final List<FileMeta> allSyncBooks = AppData.get().getAllSyncBooks();
+        if (TxtUtils.isListNotEmpty(allSyncBooks)) {
+
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
             empy.setTitle(getString(R.string.synchronized_books));
             all.add(empy);
-        }
 
-        all.addAll(AppData.get().getAllSyncBooks());
+
+            all.addAll(allSyncBooks);
+        }
 
         return all;
     }

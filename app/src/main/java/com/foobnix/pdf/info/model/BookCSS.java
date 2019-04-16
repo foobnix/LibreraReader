@@ -794,12 +794,12 @@ public class BookCSS {
         AppTemp.get().hypenLang = meta != null ? meta.getLang() : null;
         LOG.d("detectLang", bookPath, AppTemp.get().hypenLang);
 
-        final AppBook load = SharedBooks.load(bookPath);
-        if (load != null) {
-            load.ln = AppTemp.get().hypenLang;
-            SharedBooks.save(load);
+        if (TxtUtils.isEmpty(AppTemp.get().hypenLang)) {
+            final AppBook load = SharedBooks.load(bookPath);
+            if (load != null) {
+                AppTemp.get().hypenLang = load.ln;
+            }
         }
-
     }
 
 }
