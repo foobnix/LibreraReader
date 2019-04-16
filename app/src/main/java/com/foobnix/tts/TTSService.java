@@ -72,7 +72,6 @@ public class TTSService extends Service {
     MediaSessionCompat mMediaSessionCompat;
     boolean isActivated;
 
-    @TargetApi(24)
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
@@ -84,14 +83,9 @@ public class TTSService extends Service {
 
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        if (Build.VERSION.SDK_INT >= 26) {
-            // mAudioManager.requestAudioFocus(new
-            // AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN).setOnAudioFocusChangeListener(listener).build());
-        } else {
-        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mAudioManager.requestAudioFocus(audioFocusRequest);
+            mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);
         } else {
             mAudioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         }
@@ -221,17 +215,24 @@ public class TTSService extends Service {
             EventBus.getDefault().post(new TtsStatus());
         }
     };
-    final AudioFocusRequest audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
-            .setAudioAttributes(
-                    new AudioAttributes.Builder()
-                            .setUsage(AudioAttributes.USAGE_MEDIA)
-                            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                            .setLegacyStreamType(AudioManager.STREAM_MUSIC)
-                            .build())
-            .setAcceptsDelayedFocusGain(true)
-            .setWillPauseWhenDucked(false)
-            .setOnAudioFocusChangeListener(listener)
-            .build();
+
+    Object audioFocusRequest;
+
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                    .setAudioAttributes(
+                            new AudioAttributes.Builder()
+                                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                    .setLegacyStreamType(AudioManager.STREAM_MUSIC)
+                                    .build())
+                    .setAcceptsDelayedFocusGain(true)
+                    .setWillPauseWhenDucked(false)
+                    .setOnAudioFocusChangeListener(listener)
+                    .build();
+        }
+    }
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -648,7 +649,7 @@ public class TTSService extends Service {
         //mAudioManager.abandonAudioFocus(listener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            mAudioManager.abandonAudioFocusRequest(audioFocusRequest);
+            mAudioManager.abandonAudioFocusRequest((AudioFocusRequest) audioFocusRequest);
         } else {
             mAudioManager.abandonAudioFocus(listener);
         }
