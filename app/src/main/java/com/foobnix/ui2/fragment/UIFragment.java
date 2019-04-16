@@ -165,7 +165,7 @@ public abstract class UIFragment<T> extends Fragment {
         DefaultListeners.bindAdapterAuthorSerias(getActivity(), searchAdapter);
     }
 
-    private synchronized List<T> prepareDataInBackgroundSync() {
+    private List<T> prepareDataInBackgroundSync() {
         return prepareDataInBackground();
     }
 
@@ -253,18 +253,65 @@ public abstract class UIFragment<T> extends Fragment {
 
     AsyncTask<Object, Object, List<T>> execute;
 
+    volatile boolean inProgress = false;
+
     public void populate() {
-        if (true) {
-            // return;
+        if (inProgress) {
+            LOG.d("IN_PROGRESS");
+            return;
         }
-
-        // if (isInProgress()) {
-        // AsyncTasks.toastPleaseWait(getActivity());
-        // return;
-        // }
-
-        //if (AsyncTasks.isFinished(execute)) {
         if (true) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressBar != null) {
+                                handler.postDelayed(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        progressBar.setVisibility(View.VISIBLE);
+                                    }
+                                }, 100);
+                            }
+                        }
+                    });
+
+
+                    final List<T> result;
+                    try {
+                        inProgress = true;
+                        result = prepareDataInBackgroundSync();
+                    } finally {
+                        inProgress = false;
+
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (progressBar != null) {
+                                handler.removeCallbacksAndMessages(null);
+                                progressBar.setVisibility(View.GONE);
+                            }
+                            if (getActivity() != null) {
+                                try {
+                                    populateDataInUI(result);
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+                            }
+
+                        }
+                    });
+                }
+            }).start();
+
+        } else {
 
             execute = new AsyncTask<Object, Object, List<T>>() {
                 @Override
@@ -288,11 +335,9 @@ public abstract class UIFragment<T> extends Fragment {
                                 progressBar.setVisibility(View.VISIBLE);
                             }
                         }, 100);
-
                     }
                 }
 
-                ;
 
                 @Override
                 protected void onPostExecute(List<T> result) {
@@ -309,10 +354,8 @@ public abstract class UIFragment<T> extends Fragment {
                     }
                 }
             }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            // AsyncTasks.toastPleaseWait(getActivity());
-            LOG.d("SKIP task");
         }
+
     }
 
     public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {

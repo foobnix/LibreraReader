@@ -267,14 +267,12 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void notifyFragment() {
-        if (recentAdapter != null) {
-            recentAdapter.notifyDataSetChanged();
-        }
+        populate();
     }
 
     @Override
     public void resetFragment() {
+        onGridList();
         populate();
     }
-
 }
