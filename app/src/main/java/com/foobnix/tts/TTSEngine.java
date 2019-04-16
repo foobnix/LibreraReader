@@ -345,6 +345,15 @@ public class TTSEngine {
         return "---";
     }
 
+    public int getEngineCount() {
+        try {
+            return ttsEngine.getEngines().size();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return 0;
+    }
+
     public String getCurrentEngineName() {
         try {
             if (ttsEngine != null) {

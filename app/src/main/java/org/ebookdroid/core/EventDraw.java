@@ -77,7 +77,9 @@ public class EventDraw implements IEvent {
             } else {
                 viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
             }
-            canvas.drawRect(canvas.getClipBounds(), viewState.paint.backgroundFillPaint);
+            if(canvas!=null) {
+                canvas.drawRect(canvas.getClipBounds(), viewState.paint.backgroundFillPaint);
+            }
 
             viewState.ctrl.drawView(this);
             return viewState;

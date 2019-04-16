@@ -28,7 +28,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
 
     public class BookmarksViewHolder extends RecyclerView.ViewHolder {
         public TextView page, text, title;
-        public View remove;
+        public ImageView remove;
         public CardView parent;
         public ImageView image;
 
@@ -42,6 +42,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             parent = (CardView) view;
         }
     }
+
 
     @Override
     public BookmarksViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -65,6 +66,8 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
                 onDeleteClickListener.onResultRecive(item);
             }
         });
+        holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_208_remove_2 : R.drawable.glyphicons_basic_578_share);
+        TintUtil.setTintImageNoAlpha(holder.remove, holder.remove.getResources().getColor(R.color.lt_grey_dima));
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);
@@ -77,10 +80,10 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         holder.page.setTextColor(Color.WHITE);
         if (withPageNumber) {
             holder.page.setVisibility(View.VISIBLE);
-            holder.remove.setVisibility(View.VISIBLE);
+            // holder.remove.setVisibility(View.VISIBLE);
         } else {
             holder.page.setVisibility(View.GONE);
-            holder.remove.setVisibility(View.GONE);
+            //holder.remove.setVisibility(View.GONE);
         }
 
         IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {

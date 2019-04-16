@@ -306,8 +306,12 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         @Override
         public boolean onResultRecive(AppBookmark result) {
-            BookmarksData.get().remove(result);
-            populate();
+            if (bookmarksAdapter.withPageNumber) {
+                BookmarksData.get().remove(result);
+                populate();
+            } else {
+                ExtUtils.sendBookmarksTo(getActivity(), new File(result.getPath()));
+            }
             return false;
         }
     };

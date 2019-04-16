@@ -24,6 +24,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -134,7 +135,11 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                TTSService.playPause(context, controller);
+                if (TTSEngine.get().getEngineCount() == 0) {
+                    Urls.openTTS(getContext());
+                } else {
+                    TTSService.playPause(context, controller);
+                }
             }
         });
         ttsPlayPause.setOnLongClickListener(new OnLongClickListener() {
@@ -287,7 +292,7 @@ public class TTSControlsView extends FrameLayout {
         if (ttsPlayPause != null) {
             update.run();
             handler.removeCallbacksAndMessages(null);
-            handler.postDelayed(update, 500);
+            handler.postDelayed(update, 200);
         }
     }
 
