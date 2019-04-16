@@ -347,6 +347,10 @@ public class TTSEngine {
 
     public int getEngineCount() {
         try {
+            if (ttsEngine == null || ttsEngine.getEngines() == null) {
+                return -1;
+            }
+
             return ttsEngine.getEngines().size();
         } catch (Exception e) {
             LOG.e(e);
