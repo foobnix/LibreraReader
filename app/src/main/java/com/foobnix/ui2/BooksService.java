@@ -132,8 +132,11 @@ public class BooksService extends IntentService {
                         LOG.e(e);
                     }
 
-                    TempHolder.get().listHash++;
-                    EventBus.getDefault().post(new UpdateAllFragments());
+                    if (GFile.isNeedUpdate) {
+                        LOG.d("GFILE-isNeedUpdate", GFile.isNeedUpdate);
+                        TempHolder.get().listHash++;
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                    }
 
                     //onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
                 }

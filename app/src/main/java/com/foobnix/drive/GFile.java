@@ -437,9 +437,12 @@ public class GFile {
     }
 
 
+    public static volatile boolean isNeedUpdate = false;
+
     public static synchronized void sycnronizeAll(final Context c) throws Exception {
 
         try {
+            isNeedUpdate = false;
             debugOut = "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
@@ -535,6 +538,7 @@ public class GFile {
                 debugOut += "\nDelete local: " + local.getPath();
                 LOG.d(TAG, "Delete local", local.getPath());
                 ExtUtils.deleteRecursive(local);
+                isNeedUpdate = true;
             }
 
         }
@@ -590,6 +594,7 @@ public class GFile {
                             parentFile.mkdirs();
                         }
                         downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+                        isNeedUpdate = true;
                     }
                 }
             }
