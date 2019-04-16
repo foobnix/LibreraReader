@@ -172,14 +172,14 @@
    <string name="no_language">Без выявленного языка</string>
    <string name="without_series">Вне серий</string>
    <string name="folders">Папки</string>
-   <string name="recent">Недавние</string>
+   <string name="recent">Недавнее</string>
    <string name="clear_all">Очистить все</string>
    <string name="search_history_and_autocomplete">История поиска и автозаполнение</string>
    <string name="press_any_key">Нажмите на любую клавишу</string>
    <string name="restore_default_keys">Вернуть значения клавиш по умолчанию</string>
    <string name="next_keys">Клавиши СЛЕД.:</string>
    <string name="prev_keys">Клавиши ПРЕД.:</string>
-   <string name="starred">Избранные</string>
+   <string name="starred">Избранное</string>
    <string name="bookmarks">Закладки</string>
    <string name="back">Назад</string>
    <string name="import_bookmarks">Импорт закладок</string>
@@ -441,7 +441,7 @@
    <string name="by_number_of_pages">Число страниц</string>
    <string name="by_number_in_serie">Номер в серии</string>
    <string name="by_extension">Тип файла</string>
-   <string name="recent_favorites_tags">Недавние, избранные, теги</string>
+   <string name="recent_favorites_tags">Избранные/недавние книги</string>
    <string name="line_spacing">Межстрочный интервал</string>
    <string name="paragraph_spacing">Интервал между абзацами</string>
    <string name="indent">Красная строка</string>
@@ -531,7 +531,7 @@
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
    <string name="paste">Вставить</string>
    <string name="move">Переместить</string>
-   <string name="tag_manager">Менеджер тегов</string>
+   <string name="tag_manager">Тегирование</string>
    <string name="the_file_already_exists_">Такой файл уже существует</string>
    <string name="please_wait_books_are_being_processed_">Пожалуйста, подождите, пока обновится библиотека</string>
    <string name="system_brightness">Cистемное значение</string>
@@ -549,13 +549,13 @@
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
    <string name="single_tap_to_select_text">Выделять текст коротким тапом вместо длинного</string>
    <string name="sync_book">Синхронизировать книгу</string>
-   <string name="sync">Синхронизация</string>
+   <string name="sync">Синхрониз. файлы</string>
    <string name="synchronized_folder">Синхронизированная папка</string>
    <string name="today">Сегодня</string>
    <string name="downloads">Загрузки</string>
-   <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пустая. удалить в любом случае?</string>
+   <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пуста. Всё равно удалить?</string>
    <string name="synchronized_books">Синхронизированные книги</string>
-   <string name="show_sync_wheel">Показать колесо синхронизации</string>
-   <string name="publication_date">Дата публикации</string>
-   <string name="empy">Пустой</string>
+   <string name="show_sync_wheel">Показывать крутящееся колёсико синхронизации</string>
+   <string name="publication_date">Год издания</string>
+   <string name="empy">Пусто</string>
 </resources>
