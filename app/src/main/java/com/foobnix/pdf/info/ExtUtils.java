@@ -1187,10 +1187,10 @@ public class ExtUtils {
 
         if (bookmarksByBook != null && !bookmarksByBook.isEmpty()) {
             final StringBuilder result = new StringBuilder();
-            result.append(a.getString(R.string.bookmarks) + "\n\n");
+            //result.append(a.getString(R.string.bookmarks) + "\n\n");
             result.append(file.getName() + "\n\n");
             for (final AppBookmark book : bookmarksByBook) {
-                result.append(String.format("* %s\n", book.getText()));
+                result.append(String.format("*%s\n", book.getText().trim()));
             }
             intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         }
