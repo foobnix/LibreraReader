@@ -2207,6 +2207,7 @@ public class PrefFragment2 extends UIFragment {
         if (getActivity() == null) {
             return;
         }
+        AppProfile.save(getActivity());
         closeLeftMenu();
 
         getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));

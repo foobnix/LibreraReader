@@ -3,6 +3,7 @@ package org.ebookdroid.common.settings.books;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
@@ -27,6 +28,9 @@ public class SharedBooks {
 
                     if (bookObj != null) {
                         AppBook book = load(obj, meta.getPath());
+                        if (TxtUtils.isNotEmpty(book.ln)) {
+                            meta.setLang(book.ln);
+                        }
                         meta.setIsRecentProgress(book.p);
                         LOG.d("SharedBooks-updateProgress", meta.getPath(), book.p);
                     }
@@ -70,7 +74,7 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
-        if(bs==null){
+        if (bs == null) {
             LOG.d("Can't save AppBook");
             return;
         }

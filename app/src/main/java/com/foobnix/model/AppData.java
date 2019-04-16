@@ -100,6 +100,7 @@ public class AppData {
 
     public synchronized void loadFavorites() {
         readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
+
     }
 
     public synchronized List<FileMeta> getAllSyncBooks() {
@@ -146,9 +147,6 @@ public class AppData {
                 res.add(meta);
             }
         }
-
-        SharedBooks.updateProgress(res);
-
 
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
