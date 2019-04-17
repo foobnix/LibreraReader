@@ -283,7 +283,7 @@ public class AppDB {
             return;
         }
         LOG.d("Add Recent", path);
-        if (!path.endsWith("json")) {
+        if (!path.endsWith("json") && !path.endsWith("temp.txt")) {
             FileMeta load = getOrCreate(path);
             load.setIsRecent(true);
             load.setIsRecentTime(System.currentTimeMillis());

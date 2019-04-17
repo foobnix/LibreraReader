@@ -40,6 +40,19 @@ public class BookmarksData {
         }
     }
 
+    public void save(List<AppBookmark> bookmarks, File path) {
+        try {
+            JSONObject obj = new JSONObject();
+            for (AppBookmark bookmark : bookmarks) {
+                final String fileName = ExtUtils.getFileName(bookmark.path);
+                obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
+            }
+            IO.writeObjAsync(path, obj);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
 
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);
@@ -60,17 +73,20 @@ public class BookmarksData {
     }
 
     public List<AppBookmark> getAll(Context c) {
-        String quick = c.getString(R.string.fast_bookmark);
+        return getAll(AppProfile.syncBookmarks);
+    }
+
+    public List<AppBookmark> getAll(File path) {
 
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            if (!AppProfile.syncBookmarks.isFile()) {
+            if (!path.isFile()) {
                 return all;
             }
-            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
+            JSONObject obj = IO.readJsonObject(path);
 
-            if (!AppProfile.syncBookmarks.isFile()) {
+            if (!path.isFile()) {
                 return all;
             }
 

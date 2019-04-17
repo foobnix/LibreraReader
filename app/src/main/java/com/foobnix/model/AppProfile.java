@@ -47,8 +47,10 @@ public class AppProfile {
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_RECENT_JSON = "app-Recent.json";
     public static final String DEVICE_MODEL = Build.MODEL.replace(" ", "_");
+
     public static final String APP_CSS = "app-CSS";
     public static final String APP_STATE = "app-State";
+    public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
 
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
@@ -96,7 +98,7 @@ public class AppProfile {
         syncTags = new File(SYNC_FOLDER_PROFILE, "app-Tags.json");
         syncPlaylist = new File(SYNC_FOLDER_PROFILE, "playlists");
         syncProgress = new File(SYNC_FOLDER_PROFILE, APP_PROGRESS_JSON);
-        syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, "app-Bookmarks.json");
+        syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, APP_BOOKMARKS_JSON);
 
         syncState = new File(SYNC_FOLDER_PROFILE, APP_STATE + "-" + DEVICE_MODEL + ".json");
         syncCSS = new File(SYNC_FOLDER_PROFILE, APP_CSS + "-" + DEVICE_MODEL + ".json");

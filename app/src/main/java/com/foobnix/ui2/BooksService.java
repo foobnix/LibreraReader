@@ -56,6 +56,7 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppProfile.init(this);
     }
 
     public static String TAG = "BooksService";

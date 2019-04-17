@@ -174,7 +174,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                AppProfile.save(controller.getActivity());
+
 
             }
         });
@@ -467,7 +467,7 @@ public class DragingDialogs {
 
             @Override
             public void run() {
-                AppProfile.save(controller.getActivity());
+
 
             }
 
@@ -980,7 +980,6 @@ public class DragingDialogs {
             @Override
             public void run() {
                 controller.stopTimer();
-                AppProfile.save(controller.getActivity());
 
             }
         });
@@ -4338,7 +4337,6 @@ public class DragingDialogs {
             @Override
             public void run() {
                 if (initHash != Objects.appHash()) {
-                    AppProfile.save(controller.getActivity());
                     if (onRefresh != null) {
                         onRefresh.run();
                     }

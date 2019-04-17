@@ -228,6 +228,18 @@ public class ExportConverter {
         return s2;
     }
 
+    public static void mergeBookmarks(File temp, File original) {
+        final List<AppBookmark> temp1 = BookmarksData.get().getAll(temp);
+        final List<AppBookmark> all1 = BookmarksData.get().getAll(original);
+        for (AppBookmark it : temp1) {
+            if (!all1.contains(it)) {
+                all1.add(it);
+            }
+        }
+        BookmarksData.get().save(all1, original);
+        LOG.d("merge bookmarks");
+    }
+
     public static void mergeSimpleMeta(File temp, File original) {
         JSONObject f1 = IO.readJsonObject(temp);
         JSONObject f2 = IO.readJsonObject(original);

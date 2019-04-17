@@ -47,7 +47,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class GFile {
     public static final int REQUEST_CODE_SIGN_IN = 1110;
@@ -299,12 +298,19 @@ public class GFile {
 
     public static void uploadFile(String roodId, File file, final java.io.File inFile) throws IOException {
         debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
+
+        setLastModifiedTime(inFile, inFile.lastModified());
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(getLastModified(inFile)));
         FileContent contentStream = new FileContent("text/plain", inFile);
-        LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
-        googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
-        setLastModifiedTime(inFile, inFile.lastModified());
+
+
         file.setModifiedTime(new DateTime(inFile.lastModified()));
+        googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
+
+
+        LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
+
+
     }
 
 
@@ -391,22 +397,33 @@ public class GFile {
     }
 
     public static void setLastModifiedTime(java.io.File file, long lastModified) {
+        if (file.isFile()) {
+            for (String key : sp.getAll().keySet()) {
+                if (key.startsWith(file.getPath())) {
+                    sp.edit().remove(key).commit();
+                    LOG.d("hasLastModified remove", key);
+                }
+            }
+        }
         sp.edit().putLong(file.getPath() + file.lastModified(), lastModified).commit();
+        LOG.d("hasLastModified put", file.getPath() + file.lastModified(), lastModified);
+
+    }
+
+    public static boolean hasLastModified(java.io.File file) {
+        for (String key : sp.getAll().keySet()) {
+            if (key.startsWith(file.getPath())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static long getLastModified(java.io.File file) {
-        long l = sp.getLong(file.getPath() + file.lastModified(), file.lastModified());
-        final Set<String> strings = sp.getAll().keySet();
-        for (String key : strings) {
-            if (key.equals(file.getPath() + file.lastModified())) {
-                continue;
-            }
-
-            if (key.startsWith(file.getPath())) {
-                sp.edit().remove(key).commit();
-            }
+        if (file.lastModified() == 0) {
+            return 0;
         }
-        return l;
+        return sp.getLong(file.getPath() + file.lastModified(), file.lastModified());
     }
 
 
@@ -458,6 +475,7 @@ public class GFile {
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
                 sp.edit().clear().commit();
                 AppProfile.SYNC_FOLDER_ROOT.mkdirs();
+                debugOut += "/n Create root folder";
             }
 
 
@@ -525,16 +543,13 @@ public class GFile {
             } else if (other.getTrashed() == true) {
                 map2.put(local, file);
                 LOG.d(TAG, "map2-put", file.getName(), file.getId(), file.getTrashed());
-
             }
-
-
         }
 
         for (java.io.File local : map2.keySet()) {
             File remote = map2.get(local);
             LOG.d("CHECK-to-REMOVE", local.getPath(), remote.getModifiedTime().getValue(), getLastModified(local));
-            if (remote.getTrashed() && local.exists() && remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000) {
+            if (remote.getTrashed() && local.exists() && compareModifiedTime(remote, local) > 0) {
                 debugOut += "\nDelete local: " + local.getPath();
                 LOG.d(TAG, "Delete local", local.getPath());
                 ExtUtils.deleteRecursive(local);
@@ -546,7 +561,7 @@ public class GFile {
 
         //upload second files
         for (File remote : driveFiles) {
-            if (true == remote.getTrashed()) {
+            if (remote.getTrashed()) {
                 LOG.d(TAG, "Skip trashed", remote.getName());
                 continue;
             }
@@ -560,48 +575,54 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
-
-                if (local.exists() && (remote.getModifiedTime().getValue() / 1000 != getLastModified(local) / 1000 || remote.getSize().longValue() != local.length())) {
-
-                    if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
+                if (!hasLastModified(local) && local.length() == remote.getSize().longValue()) {
+                    setLastModifiedTime(local, remote.getModifiedTime().getValue());
+                    skip = true;
+                    debugOut += "\n skip: " + local.getName();
+                } else if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON) || local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
+                    if (local.length() != remote.getSize().longValue()) {
                         LOG.d("merge-" + local.getName());
-                        //debugOut += "\n merge-" + local.getName();
-
-
+                        debugOut += "\n merge: " + local.getName();
                         java.io.File merge = new java.io.File(local.getPath() + ".[merge]");
                         try {
                             downloadTemp(remote.getId(), merge);
                             //merge
-                            ExportConverter.mergeBookProgrss(merge, local);
+                            if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
+                                ExportConverter.mergeBookProgrss(merge, local);
+                            } else if (local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
+                                ExportConverter.mergeBookmarks(merge, local);
+                            }
                             uploadFile(syncId, remote, local);
-
+                            isNeedUpdate = true;
                         } finally {
                             merge.delete();
                         }
-
-
                         skip = true;
-
                     }
-
                 }
 
 
-                if (!skip) {
-                    if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && (local.getPath().endsWith("json") || remote.getSize().longValue() != local.length()))) {
-                        final java.io.File parentFile = local.getParentFile();
-                        if (parentFile.exists()) {
-                            parentFile.mkdirs();
-                        }
-                        downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
-                        isNeedUpdate = true;
+                if (!skip && compareModifiedTime(remote, local) > 0) {
+                    final java.io.File parentFile = local.getParentFile();
+                    if (parentFile.exists()) {
+                        parentFile.mkdirs();
                     }
+                    downloadFile(remote.getId(), local, remote.getModifiedTime().getValue());
+                    isNeedUpdate = true;
                 }
             }
         }
         syncUpload(syncId, ioRoot, map2);
+    }
 
+    public static long compareModifiedTime(File remote, java.io.File local) {
+        if (!remote.getName().endsWith("json")) {
+            if (remote.getSize().longValue() == local.length()) {
+                return 0;
+            }
+        }
 
+        return remote.getModifiedTime().getValue() - getLastModified(local);
     }
 
     private static void syncUpload(String syncId, java.io.File ioRoot, Map<java.io.File, File> map2) throws IOException {
@@ -623,7 +644,7 @@ public class GFile {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add, local);
-                } else if (remote.getModifiedTime().getValue() / 1000 < getLastModified(local) / 1000 && (local.getPath().endsWith("json") || remote.getSize().longValue() != local.length())) {
+                } else if (compareModifiedTime(remote, local) < 0) {
                     uploadFile(syncId, remote, local);
                 }
 
