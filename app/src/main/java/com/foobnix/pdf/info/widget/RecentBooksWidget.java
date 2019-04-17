@@ -45,6 +45,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
+        AppProfile.init(context);
 
         if (intent.getAction().equals(ACTION_MY)) {
 
@@ -94,7 +95,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        AppProfile.init(context);
+
         for (int widgetId : appWidgetIds) {
             RemoteViews remoteViews = null;
             if (Build.VERSION.SDK_INT >= 16 && AppState.get().widgetType == AppState.WIDGET_GRID) {

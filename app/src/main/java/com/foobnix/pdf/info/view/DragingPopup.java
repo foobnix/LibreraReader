@@ -18,6 +18,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -413,6 +414,7 @@ public abstract class DragingPopup {
         }
         Keyboards.close(anchor);
         Keyboards.hideNavigation((Activity) anchor.getContext());
+        AppProfile.save(anchor.getContext());
     }
 
 

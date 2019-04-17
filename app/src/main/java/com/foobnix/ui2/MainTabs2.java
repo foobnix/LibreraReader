@@ -670,9 +670,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         ImageLoader.getInstance().clearAllTasks();
 
-        if (Android6.canWrite(this)) {
-            AppProfile.save(this);
-        }
+        AppProfile.save(this);
 
     }
 

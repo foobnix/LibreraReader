@@ -69,14 +69,22 @@ public class AppProfile {
     public static File syncBookmarks;
 
 
-    public static boolean isInit = false;
+    public static String profile = "";
 
     public static void init(Context c) {
+
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
 
         if (!Android6.canWrite(c)) {
             return;
         }
+
+        if (profile.equals(getCurrent(c))) {
+            LOG.d("AppProfile skip", profile);
+            return;
+        }
+        profile = getCurrent(c);
+        LOG.d("AppProfile init", profile);
 
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
@@ -102,9 +110,6 @@ public class AppProfile {
         AppTemp.get().init(c);
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
-        isInit = true;
-
-
     }
 
     public static Drawable getProfileColorDrawable(Context c, String profile) {
@@ -124,7 +129,13 @@ public class AppProfile {
 
 
     public static synchronized void save(Context a) {
-        if (isInit) {
+        if (a == null) {
+            return;
+        }
+        if (!Android6.canWrite(a)) {
+            return;
+        }
+        if (TxtUtils.isNotEmpty(profile)) {
             DragingPopup.saveCache(a);
             PasswordState.get().save(a);
             AppState.get().save(a);

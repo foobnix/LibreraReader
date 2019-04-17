@@ -37,6 +37,8 @@ public class AppData {
 
 
     public synchronized void addRecent(SimpleMeta s) {
+        readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
+
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
         recent.remove(syncMeta);
         recent.add(syncMeta);
@@ -114,6 +116,10 @@ public class AppData {
     }
 
     public synchronized List<FileMeta> getAllFavoriteFiles() {
+        if (favorites.isEmpty()) {
+            loadFavorites();
+        }
+
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             s = SimpleMeta.SyncSimpleMeta(s);
@@ -156,6 +162,7 @@ public class AppData {
 
     public synchronized List<FileMeta> getAllRecent() {
         readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
+        LOG.d("getAllRecent",AppProfile.syncRecent);
         List<FileMeta> res = new ArrayList<>();
 
 

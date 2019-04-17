@@ -588,7 +588,7 @@ public class GFile {
 
 
                 if (!skip) {
-                    if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && remote.getSize().longValue() != local.length())) {
+                    if (!local.exists() || (remote.getModifiedTime().getValue() / 1000 > getLastModified(local) / 1000 && (local.getPath().endsWith("json") || remote.getSize().longValue() != local.length()))) {
                         final java.io.File parentFile = local.getParentFile();
                         if (parentFile.exists()) {
                             parentFile.mkdirs();
