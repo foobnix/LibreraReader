@@ -173,12 +173,12 @@ public class AppProfile {
 
     public static void ceateProfiles(Context c, String name) {
         name = name.replace(" ", "");
-        final File file = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
-        file.mkdirs();
+        final File profileFolder = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
+        profileFolder.mkdirs();
 
 
-        File state = new File(SYNC_FOLDER_PROFILE, APP_STATE + "-" + DEVICE_MODEL + ".json");
-        File css = new File(SYNC_FOLDER_PROFILE, APP_CSS + "-" + DEVICE_MODEL + ".json");
+        File state = new File(profileFolder, APP_STATE + "-" + DEVICE_MODEL + ".json");
+        File css = new File(profileFolder, APP_CSS + "-" + DEVICE_MODEL + ".json");
 
         final AppState appState = new AppState();
         appState.defaults(c);

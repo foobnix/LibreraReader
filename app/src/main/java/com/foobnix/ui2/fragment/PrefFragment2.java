@@ -2199,6 +2199,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onTheme() {
+        AppProfile.clear();
         getActivity().finish();
         MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
     }
