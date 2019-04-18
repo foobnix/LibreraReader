@@ -15,6 +15,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -30,7 +31,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         public TextView page, text, title;
         public ImageView remove;
         public CardView parent;
-        public ImageView image;
+        public ImageView image, cloudImage;
 
         public BookmarksViewHolder(View view) {
             super(view);
@@ -38,6 +39,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             title = (TextView) view.findViewById(R.id.title);
             text = (TextView) view.findViewById(R.id.text);
             image = (ImageView) view.findViewById(R.id.image);
+            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
             remove = view.findViewById(R.id.remove);
             parent = (CardView) view;
         }
@@ -93,6 +95,9 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
 
             }
         });
+
+        Clouds.showHideCloudImage(holder.cloudImage, item.getPath());
+
 
         if (!AppState.get().isBorderAndShadow) {
             holder.parent.setBackgroundColor(Color.TRANSPARENT);
