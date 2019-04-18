@@ -201,7 +201,9 @@ public class MyPopupMenu {
 
                     @Override
                     public void onClick(View v) {
-                        item.click.onMenuItemClick(null);
+                        if(item.click!=null) {
+                            item.click.onMenuItemClick(null);
+                        }
                         try {
                             p1.dismiss();
                         } catch (Exception e) {

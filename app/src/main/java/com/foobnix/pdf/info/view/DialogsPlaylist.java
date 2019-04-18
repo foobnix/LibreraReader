@@ -299,9 +299,12 @@ public class DialogsPlaylist {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    LOG.d("play-click", file);
                     update.run();
 
                     FileMeta f = new FileMeta(Playlists.getFile(file).getPath());
+                    LOG.d("play-click meta", f.getPath());
+
                     ExtUtils.openFile((Activity) a, f);
 
                 }
@@ -321,6 +324,7 @@ public class DialogsPlaylist {
 
         final TextView playListName = (TextView) a.findViewById(R.id.playListName);
         final TextView playListNameEdit = (TextView) a.findViewById(R.id.playListNameEdit);
+        final View playListParent = a.findViewById(R.id.playListParent);
 
 
         // TxtUtils.updateAllLinks((ViewGroup) playListNameEdit.getParent());
@@ -329,12 +333,14 @@ public class DialogsPlaylist {
         playListName.setVisibility(View.GONE);
         playListNameEdit.setVisibility(View.GONE);
         playlistRecycleView.setVisibility(View.GONE);
+        playListParent.setVisibility(View.GONE);
 
         final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
 
         if (TxtUtils.isNotEmpty(palylistPath)) {
             playListName.setText(Playlists.formatPlaylistName(palylistPath));
             playListName.setVisibility(View.VISIBLE);
+            playListParent.setVisibility(View.VISIBLE);
             playListNameEdit.setVisibility(View.VISIBLE);
             playlistRecycleView.setVisibility(View.VISIBLE);
         }
@@ -360,7 +366,7 @@ public class DialogsPlaylist {
 
                         @Override
                         public void run() {
-                            ExtUtils.showDocumentWithoutDialog(a, new File(s),  palylistPath);
+                            ExtUtils.showDocumentWithoutDialog(a, new File(s), palylistPath);
                         }
                     });
                 }

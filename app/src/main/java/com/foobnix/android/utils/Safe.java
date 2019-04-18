@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.foobnix.pdf.info.IMG;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.Random;
@@ -27,6 +28,21 @@ public class Safe {
                     ImageLoader.getInstance().clearAllTasks();
                     action.run();
                 }
+            }
+
+            @Override
+            public void onLoadingCancelled(String imageUri, View view) {
+                super.onLoadingCancelled(imageUri, view);
+                LOG.d(TXT_SAFE_RUN, "onLoadingCancelled", imageUri, "action", action);
+                if (action != null) {
+                    action.run();
+                }
+            }
+
+            @Override
+            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                super.onLoadingFailed(imageUri, view, failReason);
+                LOG.d(TXT_SAFE_RUN, "onLoadingFailed", imageUri, "action", action);
             }
         });
 

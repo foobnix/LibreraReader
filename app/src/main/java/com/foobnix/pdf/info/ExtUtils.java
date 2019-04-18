@@ -265,6 +265,7 @@ public class ExtUtils {
         File file = new File(meta.getPath());
 
         if (ExtUtils.isExteralSD(meta.getPath())) {
+            LOG.d("openFile isExteralSD");
             CacheZipUtils.removeFiles(CacheZipUtils.ATTACHMENTS_CACHE_DIR.listFiles());
             Uri uri = Uri.parse(meta.getPath());
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, meta.getTitle());
@@ -286,15 +287,17 @@ public class ExtUtils {
         if (ExtUtils.doifFileExists(a, file)) {
 
             if (ExtUtils.isZip(file)) {
-
+                LOG.d("openFile isExteralSD zip");
                 if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
                     ExtUtils.showDocument(a, file);
                 } else {
                     ZipDialog.show(a, Uri.fromFile(file), null);
                 }
             } else if (ExtUtils.isNotSupportedFile(file)) {
+                LOG.d("openFile isExteralSD isNotSupportedFile");
                 ExtUtils.openWith(a, file);
             } else {
+                LOG.d("openFile isExteralSD normal");
                 ExtUtils.showDocument(a, file);
             }
         }
