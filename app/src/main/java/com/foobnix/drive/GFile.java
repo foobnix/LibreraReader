@@ -617,7 +617,7 @@ public class GFile {
 
     public static long compareModifiedTime(File remote, java.io.File local) {
         if (!remote.getName().endsWith("json")) {
-            if (remote.getSize().longValue() == local.length()) {
+            if (remote.getSize()!=null && remote.getSize().longValue() == local.length()) {
                 return 0;
             }
         }

@@ -31,6 +31,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
@@ -233,6 +234,7 @@ public class PrefDialogs {
             @Override
             public boolean onResultRecive(String result1, Dialog result2) {
                 File toFile = new File(result1);
+                AppState.get().save(activity);
 
                 new AsyncProgressResultToastTask(activity) {
                     @Override
