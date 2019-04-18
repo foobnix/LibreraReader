@@ -95,7 +95,7 @@ public class IO {
                 LOG.d("IO", "Skip write empy to file", file.getPath());
                 return false;
             }
-            LOG.d("IO", "write to file");
+            LOG.d("IO", "write to file", file);
             new File(file.getParent()).mkdirs();
             if (string == null) {
                 string = "";

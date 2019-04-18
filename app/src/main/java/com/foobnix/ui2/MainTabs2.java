@@ -65,7 +65,6 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
-import com.foobnix.ui2.fragment.CloudsFragment2;
 import com.foobnix.ui2.fragment.OpdsFragment2;
 import com.foobnix.ui2.fragment.PrefFragment2;
 import com.foobnix.ui2.fragment.RecentFragment2;
@@ -284,6 +283,13 @@ public class MainTabs2 extends AdsFragmentActivity {
                     tabFragments.add(tab.getClazz().newInstance());
                 }
             }
+            if (tabFragments.size() == 0) {
+                AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
+                for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
+                    tabFragments.add(tab.getClazz().newInstance());
+                }
+            }
+
         } catch (Exception e) {
             LOG.e(e);
             Toast.makeText(MainTabs2.this, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
@@ -293,7 +299,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             tabFragments.add(new BookmarksFragment2());
             tabFragments.add(new OpdsFragment2());
             tabFragments.add(new PrefFragment2());
-            tabFragments.add(new CloudsFragment2());
+            //tabFragments.add(new CloudsFragment2());
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 

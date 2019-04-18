@@ -3356,6 +3356,13 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
                         AppState.get().isCustomizeBgAndColors = isChecked;
+                        if (!isChecked) {
+                            AppState.get().colorDayText = AppState.COLOR_BLACK;
+                            AppState.get().colorDayBg = AppState.COLOR_WHITE;
+
+                            AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                            AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                        }
                     }
                 });
                 final CheckBox isReplaceWhite = (CheckBox) inflate.findViewById(R.id.isReplaceWhite);
@@ -3367,6 +3374,8 @@ public class DragingDialogs {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         AppState.get().isReplaceWhite = isChecked;
+
+
                     }
                 });
 
@@ -4108,7 +4117,7 @@ public class DragingDialogs {
 
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
                 int maxMargin = Dips.isLargeOrXLargeScreen() ? 200 : 30;
-                marginTop.init(-10, maxMargin, BookCSS.get().marginTop);
+                marginTop.init(0, maxMargin, BookCSS.get().marginTop);
                 marginTop.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
@@ -4119,7 +4128,7 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
-                marginBottom.init(-10, maxMargin, BookCSS.get().marginBottom);
+                marginBottom.init(0, maxMargin, BookCSS.get().marginBottom);
                 marginBottom.setOnSeekChanged(new IntegerResponse() {
 
                     @Override

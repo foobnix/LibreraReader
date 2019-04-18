@@ -387,4 +387,8 @@ public class AppProfile {
             }
         });
     }
+
+    public static void clear() {
+        profile ="";
+    }
 }

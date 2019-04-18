@@ -200,6 +200,8 @@ public class PrefDialogs {
                         super.onPostExecute(result);
                         result2.dismiss();
                         if (result) {
+                            AppProfile.clear();
+                            AppProfile.save(activity);
                             activity.finish();
                             MainTabs2.startActivity(activity, TempHolder.get().currentTab);
                         }
