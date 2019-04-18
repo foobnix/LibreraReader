@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Show sync wheel</string>
    <string name="publication_date">Publicatie datum</string>
    <string name="empy">Leeg</string>
+   <string name="show_quick_bookmarks">Toon snel favorieten</string>
+   <string name="show_only_available_books">Toon alleen beschikbare boeken</string>
 </resources>

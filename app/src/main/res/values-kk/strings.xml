@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Синхрондау дөңгелегін көрсету</string>
    <string name="publication_date">Жариялау күні</string>
    <string name="empy">Бос</string>
+   <string name="show_quick_bookmarks">Жылдам бетбелгілерді көрсету</string>
+   <string name="show_only_available_books">Тек қол жетімді кітаптарды көрсетіңіз</string>
 </resources>

@@ -7,6 +7,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppState;
 
 import org.json.JSONObject;
 
@@ -72,9 +73,31 @@ public class BookmarksData {
         return getBookmarksByBook(file.getPath());
     }
 
-    public List<AppBookmark> getAll(Context c) {
-        return getAll(AppProfile.syncBookmarks);
+    public synchronized List<AppBookmark> getAll(Context c) {
+        final List<AppBookmark> all = getAll(AppProfile.syncBookmarks);
+        final Iterator<AppBookmark> iterator = all.iterator();
+        String fast = c.getString(R.string.fast_bookmark);
+        while (iterator.hasNext()) {
+            final AppBookmark next = iterator.next();
+
+            if (AppState.get().isShowOnlyAvailabeBooks) {
+                if (!new File(next.getPath()).isFile()) {
+                    iterator.remove();
+                    continue;
+                }
+            }
+
+            if (!AppState.get().isShowFastBookmarks) {
+                if (fast.equals(next.text)) {
+                    iterator.remove();
+                }
+
+            }
+
+        }
+        return all;
     }
+
 
     public List<AppBookmark> getAll(File path) {
 

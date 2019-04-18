@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Rodyti sinchronizavimo ratą</string>
    <string name="publication_date">Paskelbimo data</string>
    <string name="empy">Tuščia</string>
+   <string name="show_quick_bookmarks">Rodyti sparčias žymes</string>
+   <string name="show_only_available_books">Rodyti tik turimas knygas</string>
 </resources>

@@ -19,6 +19,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBookmark;
@@ -101,6 +102,24 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             public void onClick(View v) {
                 popupMenu(onListGrid);
             }
+        });
+
+        view.findViewById(R.id.onSettings).setOnClickListener(v -> {
+            MyPopupMenu menu = new MyPopupMenu(v);
+            menu.getMenu().addCheckbox(getString(R.string.show_quick_bookmarks), AppState.get().isShowFastBookmarks, (a, is) -> {
+                AppState.get().isShowFastBookmarks = is;
+                populate();
+                LOG.d("show--show_quick_bookmarks");
+
+            });
+            menu.getMenu().addCheckbox(getString(R.string.show_only_available_books), AppState.get().isShowOnlyAvailabeBooks, (a, is) -> {
+                AppState.get().isShowOnlyAvailabeBooks = is;
+                populate();
+                LOG.d("show--_only_available_books");
+            });
+
+            menu.show();
+
         });
 
         populate();

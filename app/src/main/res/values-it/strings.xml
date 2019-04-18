@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Mostra la rotella di sincronizzazione</string>
    <string name="publication_date">Data di pubblicazione</string>
    <string name="empy">Vuoto</string>
+   <string name="show_quick_bookmarks">Mostra segnalibri rapidi</string>
+   <string name="show_only_available_books">Mostra solo i libri disponibili</string>
 </resources>

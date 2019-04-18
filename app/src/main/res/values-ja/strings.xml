@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">同期ホイールを表示</string>
    <string name="publication_date">発行日</string>
    <string name="empy">空の</string>
+   <string name="show_quick_bookmarks">クイックブックマークを表示</string>
+   <string name="show_only_available_books">利用可能な本のみを表示</string>
 </resources>

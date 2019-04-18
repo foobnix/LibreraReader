@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Näytä synkronointipyörä</string>
    <string name="publication_date">Julkaisupäivämäärä</string>
    <string name="empy">Tyhjä</string>
+   <string name="show_quick_bookmarks">Näyttää nopeat kirjanmerkit</string>
+   <string name="show_only_available_books">Näyttää vain käytettävissä olevat kirjat</string>
 </resources>

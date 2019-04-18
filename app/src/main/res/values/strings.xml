@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Show sync wheel</string>
    <string name="publication_date">Publication Date</string>
    <string name="empy">Empty</string>
+   <string name="show_quick_bookmarks">Show quick bookmarks</string>
+   <string name="show_only_available_books">Show only available books</string>
 </resources>

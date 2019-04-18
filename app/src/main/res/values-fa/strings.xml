@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">چرخ همگام سازی نشان می دهد</string>
    <string name="publication_date">تاریخ انتشار</string>
    <string name="empy">خالی</string>
+   <string name="show_quick_bookmarks">نشانکهای سریع را نشان بده</string>
+   <string name="show_only_available_books">فقط کتابهای موجود را نشان می دهد</string>
 </resources>

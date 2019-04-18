@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Ostende sync rotam</string>
    <string name="publication_date">Publication diem</string>
    <string name="empy">Inanis</string>
+   <string name="show_quick_bookmarks">Ostende velox bookmarks</string>
+   <string name="show_only_available_books">Tantum ostendere praesto librorum</string>
 </resources>

@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Hiển thị bánh xe đồng bộ</string>
    <string name="publication_date">Ngày xuất bản</string>
    <string name="empy">Trống</string>
+   <string name="show_quick_bookmarks">Hiển thị dấu trang nhanh</string>
+   <string name="show_only_available_books">Chỉ hiển thị những cuốn sách có sẵn</string>
 </resources>

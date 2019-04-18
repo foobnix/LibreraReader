@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Visa synkroniseringshjulet</string>
    <string name="publication_date">Publiceringsdatum</string>
    <string name="empy">Tömma</string>
+   <string name="show_quick_bookmarks">Visa snabba bokmärken</string>
+   <string name="show_only_available_books">Visa bara tillgängliga böcker</string>
 </resources>

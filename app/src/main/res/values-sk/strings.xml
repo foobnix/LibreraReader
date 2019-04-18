@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Zobraziť synchronizačné koleso</string>
    <string name="publication_date">Dátum publikácie</string>
    <string name="empy">Prázdny</string>
+   <string name="show_quick_bookmarks">Zobraziť rýchle záložky</string>
+   <string name="show_only_available_books">Zobraziť iba dostupné knihy</string>
 </resources>

@@ -84,6 +84,21 @@
             android:textSize="14sp"
             android:visibility="invisible" />
 
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onSettings"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_back_to_all_catalogs"
+            android:src="@drawable/glyphicons_137_cogwheel" />
+
         <View
             android:layout_width="1dip"
             android:layout_height="match_parent"

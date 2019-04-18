@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">싱크 휠 표시</string>
    <string name="publication_date">발행일</string>
    <string name="empy">빈</string>
+   <string name="show_quick_bookmarks">빠른 북마크 표시</string>
+   <string name="show_only_available_books">사용 가능한 서적 만 표시</string>
 </resources>

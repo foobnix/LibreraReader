@@ -13,6 +13,8 @@ import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
@@ -61,8 +63,13 @@ public class MyPopupMenu {
         String letter;
         OnMenuItemClickListener click;
         OnMenuItemClickListener onLongClick;
+
         private String fontPath;
         Boolean active;
+
+        String checkboxString;
+        boolean checkboxState;
+        CompoundButton.OnCheckedChangeListener checkedChangeListener;
 
         public Menu add(int res) {
             this.stringRes = c.getString(res);
@@ -71,6 +78,13 @@ public class MyPopupMenu {
 
         public Menu add(String name) {
             this.stringRes = name;
+            return this;
+        }
+
+        public Menu addCheckbox(String name, boolean state, CompoundButton.OnCheckedChangeListener listener) {
+            this.checkboxString = name;
+            this.checkboxState = state;
+            this.checkedChangeListener = listener;
             return this;
         }
 
@@ -140,6 +154,15 @@ public class MyPopupMenu {
                 }
                 if (AppState.get().appTheme == AppState.THEME_INK) {
                     textView.setTextColor(Color.BLACK);
+                }
+
+                CheckBox checkbox1 = (CheckBox) layout.findViewById(R.id.checkbox1);
+                if(TxtUtils.isNotEmpty(item.checkboxString)){
+                    checkbox1.setVisibility(View.VISIBLE);
+                    checkbox1.setText(item.checkboxString);
+                    checkbox1.setOnCheckedChangeListener(null);
+                    checkbox1.setChecked(item.checkboxState);
+                    checkbox1.setOnCheckedChangeListener(item.checkedChangeListener);
                 }
 
 

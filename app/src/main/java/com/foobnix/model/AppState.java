@@ -618,6 +618,10 @@ public class AppState {
 
     public boolean isStarsInWidget = false;
 
+
+    public boolean isShowFastBookmarks = true;
+    public boolean isShowOnlyAvailabeBooks = false;
+
     public boolean isCropBookCovers = true;
     public boolean isBorderAndShadow = true;
     public int coverBigSize = (int) (((Dips.screenWidthDP() / (Dips.screenWidthDP() / 120)) - 8) * (Dips.isXLargeScreen() ? 1.5f : 1));

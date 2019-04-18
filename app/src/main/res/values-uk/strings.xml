@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Показати колесо синхронізації</string>
    <string name="publication_date">Дата публікації</string>
    <string name="empy">Порожній</string>
+   <string name="show_quick_bookmarks">Показувати швидкі закладки</string>
+   <string name="show_only_available_books">Показувати лише наявні книги</string>
 </resources>

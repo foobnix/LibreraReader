@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">عرض عجلة المزامنة</string>
    <string name="publication_date">تاريخ النشر</string>
    <string name="empy">فارغة</string>
+   <string name="show_quick_bookmarks">عرض إشارات مرجعية سريعة</string>
+   <string name="show_only_available_books">عرض الكتب المتاحة فقط</string>
 </resources>

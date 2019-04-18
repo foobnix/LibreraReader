@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Senkronizasyon tekerleğini göster</string>
    <string name="publication_date">Yayın tarihi</string>
    <string name="empy">Boş</string>
+   <string name="show_quick_bookmarks">Hızlı yer imlerini göster</string>
+   <string name="show_only_available_books">Sadece mevcut kitapları göster</string>
 </resources>

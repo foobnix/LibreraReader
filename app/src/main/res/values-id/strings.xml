@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">Tampilkan roda sinkronisasi</string>
    <string name="publication_date">Tanggal penerbitan</string>
    <string name="empy">Kosong</string>
+   <string name="show_quick_bookmarks">Tampilkan bookmark cepat</string>
+   <string name="show_only_available_books">Hanya tampilkan buku yang tersedia</string>
 </resources>

@@ -558,4 +558,6 @@
    <string name="show_sync_wheel">הצג גלגל סינכרון</string>
    <string name="publication_date">תאריך פרסום</string>
    <string name="empy">ריק</string>
+   <string name="show_quick_bookmarks">להראות סימניות מהירה - -</string>
+   <string name="show_only_available_books">הצג רק ספרים זמינים</string>
 </resources>
