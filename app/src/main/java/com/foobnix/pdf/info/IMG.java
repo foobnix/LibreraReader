@@ -21,6 +21,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -68,6 +69,7 @@ public class IMG {
                 .threadPoolSize(4)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
+                .memoryCache(new WeakMemoryCache())//
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
                 .imageDownloader(ImageExtractor.getInstance(context))//
                 .build();
