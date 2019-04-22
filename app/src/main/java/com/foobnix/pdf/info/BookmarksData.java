@@ -74,7 +74,7 @@ public class BookmarksData {
     }
 
     public synchronized List<AppBookmark> getAll(Context c) {
-        final List<AppBookmark> all = getAll(AppProfile.syncBookmarks);
+        final List<AppBookmark> all = getAll();
         final Iterator<AppBookmark> iterator = all.iterator();
         String fast = c.getString(R.string.fast_bookmark);
         while (iterator.hasNext()) {
@@ -99,20 +99,15 @@ public class BookmarksData {
     }
 
 
-    public List<AppBookmark> getAll(File path) {
+    private List<AppBookmark> getAll() {
 
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            if (!path.isFile()) {
-                return all;
-            }
+
             for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
                 JSONObject obj = IO.readJsonObject(file);
 
-                if (!path.isFile()) {
-                    return all;
-                }
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {

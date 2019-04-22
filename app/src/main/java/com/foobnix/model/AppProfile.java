@@ -52,6 +52,7 @@ public class AppProfile {
     public static final String APP_EXCLUDE_JSON = "app-Exclude.json";
     public static final String APP_FAVORITE_JSON = "app-Favorite.json";
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
+    public static final String APP_PROGRESS_JSON = "app-Progress.json";
 
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
@@ -100,7 +101,7 @@ public class AppProfile {
         syncTags = new File(SYNC_FOLDER_DEVICE_PROFILE, "app-Tags.json");
         syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
         syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);
-        syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, "app-Progress.json");
+        syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_PROGRESS_JSON);
         syncRecent = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_RECENT_JSON);
 
         syncState = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_STATE_JSON);
@@ -117,7 +118,10 @@ public class AppProfile {
         DragingPopup.loadCache(c);
     }
 
+
     public static List<File> getAllFiles(String name) {
+
+
         List<File> list = new ArrayList<>();
         final File[] files = AppProfile.SYNC_FOLDER_PROFILE.listFiles();
         if (files == null) {
@@ -131,6 +135,7 @@ public class AppProfile {
                 }
             }
         }
+
         return list;
     }
 
