@@ -14,6 +14,7 @@
    <string name="landscape_180">Odwrócona pozioma</string>
    <string name="portrait_180">Odwrócona pionowa</string>
    <string name="system_language">Język systemu</string>
+   <string name="system">System</string>
    <string name="small">Mała</string>
    <string name="normal">Normalna</string>
    <string name="large">Duża</string>

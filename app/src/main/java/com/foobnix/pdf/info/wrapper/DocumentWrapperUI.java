@@ -455,10 +455,12 @@ public class DocumentWrapperUI {
 
         progressDraw.updateProgress(current - 1);
 
-        dc.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
-        handler.removeCallbacks(clearFlags);
-        handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+        if (AppState.get().inactivityTime > 0) {
+            dc.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+            handler.removeCallbacks(clearFlags);
+            handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+        }
 
         if (AppState.get().isAutoScroll) {
             pagesBookmark.setVisibility(View.GONE);

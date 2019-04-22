@@ -14,6 +14,7 @@
    <string name="landscape_180">Landscape (flipped)</string>
    <string name="portrait_180">Portrait (flipped)</string>
    <string name="system_language">System</string>
+   <string name="system">System</string>
    <string name="small">Small</string>
    <string name="normal">Normal</string>
    <string name="large">Large</string>
