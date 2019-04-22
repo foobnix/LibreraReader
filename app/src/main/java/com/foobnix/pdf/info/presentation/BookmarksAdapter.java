@@ -49,6 +49,8 @@ public class BookmarksAdapter extends BaseAdapter {
         final TextView pageView = (TextView) view.findViewById(R.id.page);
         final TextView titleView = (TextView) view.findViewById(R.id.title);
         final ImageView image = (ImageView) view.findViewById(R.id.image);
+        final ImageView cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
+        cloudImage.setVisibility(View.GONE);
         final View deleteView = view.findViewById(R.id.remove);
         ((View) image.getParent()).setVisibility(View.GONE);
         ViewCompat.setElevation(((View) image.getParent()), 0);

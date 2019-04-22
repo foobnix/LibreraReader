@@ -37,13 +37,15 @@ public class AppData {
 
 
     public synchronized void addRecent(SimpleMeta s) {
-        readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
+        List<SimpleMeta> current = new ArrayList<>();
+
+        setSimpleMeta(current, AppProfile.syncRecent, SimpleMeta.class);
 
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
-        recent.remove(syncMeta);
-        recent.add(syncMeta);
+        current.remove(syncMeta);
+        current.add(syncMeta);
 
-        writeSimpleMeta(recent, AppProfile.syncRecent);
+        writeSimpleMeta(current, AppProfile.syncRecent);
         LOG.d("Objects-save", "SAVE Recent");
     }
 
@@ -62,7 +64,12 @@ public class AppData {
     }
 
     public synchronized List<String> getAllExcluded() {
-        readSimpleMeta(exclude, AppProfile.syncExclude, SimpleMeta.class);
+        exclude.clear();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_EXCLUDE_JSON)) {
+            addSimpleMeta(exclude, file, SimpleMeta.class);
+        }
+
+
         ArrayList<String> res = new ArrayList<String>();
         for (SimpleMeta s : exclude) {
             res.add(s.getPath());
@@ -101,7 +108,10 @@ public class AppData {
     }
 
     public synchronized void loadFavorites() {
-        readSimpleMeta(favorites, AppProfile.syncFavorite, SimpleMeta.class);
+        favorites.clear();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_FAVORITE_JSON)) {
+            addSimpleMeta(favorites, file, SimpleMeta.class);
+        }
 
     }
 
@@ -161,8 +171,12 @@ public class AppData {
 
 
     public synchronized List<FileMeta> getAllRecent() {
-        readSimpleMeta(recent, AppProfile.syncRecent, SimpleMeta.class);
-        LOG.d("getAllRecent",AppProfile.syncRecent);
+        recent.clear();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_RECENT_JSON)) {
+            addSimpleMeta(recent, file, SimpleMeta.class);
+        }
+
+        LOG.d("getAllRecent");
         List<FileMeta> res = new ArrayList<>();
 
 
@@ -191,8 +205,18 @@ public class AppData {
     }
 
 
-    public static <T> void readSimpleMeta(List<T> list, File file, Class<T> clazz) {
-        list.clear();
+    public static <T> void setSimpleMeta(List<T> list, File file, Class<T> clazz) {
+        readSimpleMeta1(list, file, clazz, true);
+    }
+
+    public static <T> void addSimpleMeta(List<T> list, File file, Class<T> clazz) {
+        readSimpleMeta1(list, file, clazz, false);
+    }
+
+    private static <T> void readSimpleMeta1(List<T> list, File file, Class<T> clazz, boolean clear) {
+        if (clear) {
+            list.clear();
+        }
         if (!file.exists()) {
             return;
         }

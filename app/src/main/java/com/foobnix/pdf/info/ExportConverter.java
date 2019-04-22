@@ -243,11 +243,11 @@ public class ExportConverter {
         JSONObject f2 = IO.readJsonObject(original);
 
         List<SimpleMeta> res2 = new ArrayList<>();
-        AppData.readSimpleMeta(res2, original, SimpleMeta.class);
+        AppData.setSimpleMeta(res2, original, SimpleMeta.class);
 
 
         List<SimpleMeta> res1 = new ArrayList<>();
-        AppData.readSimpleMeta(res1, temp, SimpleMeta.class);
+        AppData.setSimpleMeta(res1, temp, SimpleMeta.class);
 
         for (SimpleMeta s : res1) {
             if (!res2.contains(s)) {

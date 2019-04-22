@@ -14,7 +14,6 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppTemp;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -579,27 +578,28 @@ public class GFile {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
                     debugOut += "\n skip: " + local.getName();
-                } else if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON) || local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
-                    if (local.length() != remote.getSize().longValue()) {
-                        LOG.d("merge-" + local.getName());
-                        debugOut += "\n merge: " + local.getName();
-                        java.io.File merge = new java.io.File(local.getPath() + ".[merge]");
-                        try {
-                            downloadTemp(remote.getId(), merge);
-                            //merge
-                            if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
-                                ExportConverter.mergeBookProgrss(merge, local);
-                            } else if (local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
-                                ExportConverter.mergeBookmarks(merge, local);
-                            }
-                            uploadFile(syncId, remote, local);
-                            isNeedUpdate = true;
-                        } finally {
-                            merge.delete();
-                        }
-                        skip = true;
-                    }
                 }
+//                } else if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON) || local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
+//                    if (local.length() != remote.getSize().longValue()) {
+//                        LOG.d("merge-" + local.getName());
+//                        debugOut += "\n merge: " + local.getName();
+//                        java.io.File merge = new java.io.File(local.getPath() + ".[merge]");
+//                        try {
+//                            downloadTemp(remote.getId(), merge);
+//                            //merge
+//                            if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
+//                                ExportConverter.mergeBookProgrss(merge, local);
+//                            } else if (local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
+//                                ExportConverter.mergeBookmarks(merge, local);
+//                            }
+//                            uploadFile(syncId, remote, local);
+//                            isNeedUpdate = true;
+//                        } finally {
+//                            merge.delete();
+//                        }
+//                        skip = true;
+//                    }
+//                }
 
 
                 if (!skip && compareModifiedTime(remote, local) > 0) {
