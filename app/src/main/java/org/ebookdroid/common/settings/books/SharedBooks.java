@@ -12,6 +12,7 @@ import com.foobnix.ui2.AppDB;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.List;
 
 public class SharedBooks {
@@ -19,33 +20,29 @@ public class SharedBooks {
 
     public static synchronized void updateProgress(List<FileMeta> list) {
 
-        JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
         for (FileMeta meta : list) {
             try {
-                final String fileName = ExtUtils.getFileName(meta.getPath());
-                if (obj.has(fileName)) {
-                    final JSONObject bookObj = obj.getJSONObject(fileName);
-
-                    if (bookObj != null) {
-                        AppBook book = load(obj, meta.getPath());
-                        if (TxtUtils.isNotEmpty(book.ln)) {
-                            meta.setLang(book.ln);
-                        }
-                        meta.setIsRecentProgress(book.p);
-                        LOG.d("SharedBooks-updateProgress", meta.getPath(), book.p);
-                    }
-                }
+                AppBook book = SharedBooks.load(meta.getPath());
+                meta.setIsRecentProgress(book.p);
             } catch (Exception e) {
                 LOG.e(e);
             }
         }
         AppDB.get().updateAll(list);
-
     }
 
     public static synchronized AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
-        return load(IO.readJsonObject(AppProfile.syncProgress), fileName);
+
+        AppBook res = new AppBook(fileName);
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
+            final AppBook load = load(IO.readJsonObject(file), fileName);
+            if (load.t > res.t) {
+                res.path = fileName;
+                res = load;
+            }
+        }
+        return res;
 
     }
 
@@ -59,14 +56,7 @@ public class SharedBooks {
                 return bs;
             }
             final JSONObject rootObj = obj.getJSONObject(key);
-            if (rootObj.has(AppProfile.DEVICE_MODEL)) {
-                final JSONObject deviceObj = rootObj.getJSONObject(AppProfile.DEVICE_MODEL);
-                Objects.loadFromJson(bs, deviceObj);
-            }
-            bs.p = (float) rootObj.optDouble("p", 0.0);
-            bs.t = rootObj.optLong("t", 0L);
-            bs.ln = rootObj.optString("ln", null);
-
+            Objects.loadFromJson(bs, rootObj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -74,28 +64,14 @@ public class SharedBooks {
     }
 
     public static synchronized void save(AppBook bs) {
-        if (bs == null) {
+        if (bs == null || TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
             return;
         }
         JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
         try {
             final String fileName = ExtUtils.getFileName(bs.path);
-
-            JSONObject rootObj = obj.has(fileName) ? obj.getJSONObject(fileName) : new JSONObject();
-            rootObj.put("p", bs.p);
-            rootObj.put("t", bs.t);
-            rootObj.put("ln", bs.ln);
-
-            final JSONObject device = Objects.toJSONObject(bs);
-            device.remove("p");
-            device.remove("t");
-            device.remove("ln");
-
-            rootObj.put(AppProfile.DEVICE_MODEL, device);
-
-            obj.put(fileName, rootObj);
-
+            obj.put(fileName, Objects.toJSONObject(bs));
             IO.writeObjAsync(AppProfile.syncProgress, obj);
         } catch (Exception e) {
             LOG.e(e);

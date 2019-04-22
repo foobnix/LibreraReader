@@ -935,9 +935,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             if (searchText.startsWith("@")) {
                 try {
                     prevText.pop();
-                    if(prevText.empty()){
-                        return false;
-                    }
+
                     String pop = prevText.pop();
                     LOG.d("pop", pop);
                     if (TxtUtils.isNotEmpty(pop)) {
@@ -945,6 +943,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         searchAndOrderAsync();
                         return true;
                     }
+
                 } catch (EmptyStackException e) {
                     LOG.e(e);
                 }

@@ -74,7 +74,7 @@ public class BookmarksData {
     }
 
     public synchronized List<AppBookmark> getAll(Context c) {
-        final List<AppBookmark> all = getAll(AppProfile.syncBookmarks);
+        final List<AppBookmark> all = getAll();
         final Iterator<AppBookmark> iterator = all.iterator();
         String fast = c.getString(R.string.fast_bookmark);
         while (iterator.hasNext()) {
@@ -99,28 +99,25 @@ public class BookmarksData {
     }
 
 
-    public List<AppBookmark> getAll(File path) {
+    private List<AppBookmark> getAll() {
 
         List<AppBookmark> all = new ArrayList<>();
 
         try {
-            if (!path.isFile()) {
-                return all;
-            }
-            JSONObject obj = IO.readJsonObject(path);
 
-            if (!path.isFile()) {
-                return all;
-            }
+            for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
+                JSONObject obj = IO.readJsonObject(file);
 
-            final Iterator<String> keys = obj.keys();
-            while (keys.hasNext()) {
-                final String next = keys.next();
 
-                AppBookmark appBookmark = new AppBookmark();
-                final JSONObject local = obj.getJSONObject(next);
-                Objects.loadFromJson(appBookmark, local);
-                all.add(appBookmark);
+                final Iterator<String> keys = obj.keys();
+                while (keys.hasNext()) {
+                    final String next = keys.next();
+
+                    AppBookmark appBookmark = new AppBookmark();
+                    final JSONObject local = obj.getJSONObject(next);
+                    Objects.loadFromJson(appBookmark, local);
+                    all.add(appBookmark);
+                }
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -145,23 +142,26 @@ public class BookmarksData {
 
         List<AppBookmark> all = new ArrayList<>();
 
-        try {
-            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
 
-            final Iterator<String> keys = obj.keys();
-            while (keys.hasNext()) {
-                final String next = keys.next();
+        for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
+            JSONObject obj = IO.readJsonObject(file);
+            try {
+                final Iterator<String> keys = obj.keys();
+                while (keys.hasNext()) {
+                    final String next = keys.next();
 
-                AppBookmark appBookmark = new AppBookmark();
-                final JSONObject local = obj.getJSONObject(next);
-                Objects.loadFromJson(appBookmark, local);
-                if (appBookmark.getPath().equals(path)) {
-                    all.add(appBookmark);
+                    AppBookmark appBookmark = new AppBookmark();
+                    final JSONObject local = obj.getJSONObject(next);
+                    Objects.loadFromJson(appBookmark, local);
+                    if (appBookmark.getPath().equals(path)) {
+                        all.add(appBookmark);
+                    }
                 }
+            } catch (Exception e) {
+                LOG.e(e);
             }
-        } catch (Exception e) {
-            LOG.e(e);
         }
+
 
         LOG.d("getBookmarksByBook", path, all.size());
         Collections.sort(all, BY_PERCENT);

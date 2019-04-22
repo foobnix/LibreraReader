@@ -14,6 +14,7 @@
    <string name="landscape_180">横屏（180°）</string>
    <string name="portrait_180">竖屏（180°）</string>
    <string name="system_language">系统</string>
+   <string name="system">系统</string>
    <string name="small">小</string>
    <string name="normal">正常</string>
    <string name="large">大</string>

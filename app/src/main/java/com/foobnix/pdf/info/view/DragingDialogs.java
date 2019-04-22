@@ -41,6 +41,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -3495,13 +3496,27 @@ public class DragingDialogs {
 
                 ///
                 final TextView inactivityTime = (TextView) inflate.findViewById(R.id.inactivityTime);
-                inactivityTime.setText("" + AppState.get().inactivityTime);
+                inactivityTime.setText(AppState.get().inactivityTime == -1 ? controller.getString(R.string.system) : "" + AppState.get().inactivityTime);
                 TxtUtils.underlineTextView(inactivityTime);
                 inactivityTime.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+
+                        popupMenu.getMenu().add("" + controller.getString(R.string.system)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                AppState.get().inactivityTime = -1;
+                                controller.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                                inactivityTime.setText(R.string.system);
+                                TxtUtils.underlineTextView(inactivityTime);
+                                return false;
+                            }
+                        });
+
                         List<Integer> times = Arrays.asList(1, 2, 3, 4, 5, 10, 20, 30, 60);
                         for (int i : times) {
                             final int number = i;

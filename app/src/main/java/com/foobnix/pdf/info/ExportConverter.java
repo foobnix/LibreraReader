@@ -18,14 +18,11 @@ import net.lingala.zip4j.util.Zip4jConstants;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class ExportConverter {
@@ -181,81 +178,7 @@ public class ExportConverter {
         LOG.d("UnZipFolder", input, output);
     }
 
-    public static boolean mergeBookProgrss(File temp, File original) throws JSONException {
-        LOG.d("mergeBookProgrss", temp, original);
-
-        JSONObject f1 = IO.readJsonObject(temp);
-        JSONObject f2 = IO.readJsonObject(original);
 
 
-        boolean isMerged = false;
-        final Iterator<String> keys = f1.keys();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            if (!f2.has(key)) {
-                f2.put(key, f1.getJSONObject(key));
-                LOG.d("Merge-book-missing", key);
-                isMerged = true;
 
-            } else {
-                LOG.d("getJSONObject by key", key);
-                try {
-                    final long p1 = f1.getJSONObject(key).optLong("t", 0L);
-                    final long p2 = f2.getJSONObject(key).optLong("t", 0L);
-                    if (p1 > p2) {
-                        LOG.d("Merge-book-update", key, p1, p2);
-                        f2.put(key, f1.getJSONObject(key));
-                        isMerged = true;
-                    }
-                } catch (JSONException e) {
-                    LOG.e(e);
-                }
-            }
-        }
-
-        IO.writeObjAsync(original, f2);
-        temp.delete();
-        LOG.d("Merge-", temp, original);
-        return isMerged;
-    }
-
-    public static SimpleMeta merge(SimpleMeta s1, SimpleMeta s2) {
-        if (s1.time > s2.time) {
-            return s1;
-        }
-        return s2;
-    }
-
-    public static void mergeBookmarks(File temp, File original) {
-        final List<AppBookmark> temp1 = BookmarksData.get().getAll(temp);
-        final List<AppBookmark> all1 = BookmarksData.get().getAll(original);
-        for (AppBookmark it : temp1) {
-            if (!all1.contains(it)) {
-                all1.add(it);
-            }
-        }
-        BookmarksData.get().save(all1, original);
-        LOG.d("merge bookmarks");
-    }
-
-    public static void mergeSimpleMeta(File temp, File original) {
-        JSONObject f1 = IO.readJsonObject(temp);
-        JSONObject f2 = IO.readJsonObject(original);
-
-        List<SimpleMeta> res2 = new ArrayList<>();
-        AppData.readSimpleMeta(res2, original, SimpleMeta.class);
-
-
-        List<SimpleMeta> res1 = new ArrayList<>();
-        AppData.readSimpleMeta(res1, temp, SimpleMeta.class);
-
-        for (SimpleMeta s : res1) {
-            if (!res2.contains(s)) {
-                res2.add(s);
-                LOG.d("Merge-book", s.getPath());
-            }
-        }
-        AppData.writeSimpleMeta(res2, original);
-        LOG.d("Merge-", temp, original);
-    }
 }

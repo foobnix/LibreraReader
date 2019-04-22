@@ -14,6 +14,7 @@
    <string name="landscape_180">Paysage (180)</string>
    <string name="portrait_180">Portrait (180)</string>
    <string name="system_language">Langue du système</string>
+   <string name="system">Système</string>
    <string name="small">Petit</string>
    <string name="normal">Normal</string>
    <string name="large">Grand</string>

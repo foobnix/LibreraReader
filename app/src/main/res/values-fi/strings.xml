@@ -14,6 +14,7 @@
    <string name="landscape_180">Maisema (180)</string>
    <string name="portrait_180">Muotokuva (180)</string>
    <string name="system_language">Järjestelmäkieli</string>
+   <string name="system">Järjestelmä</string>
    <string name="small">Pieni</string>
    <string name="normal">Normaali</string>
    <string name="large">Suuri</string>

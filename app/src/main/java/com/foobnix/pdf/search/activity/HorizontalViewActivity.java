@@ -1813,10 +1813,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
 
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
-            handler.removeCallbacks(clearFlags);
-            handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+             if (AppState.get().inactivityTime > 0) {
+                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                 LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+                 handler.removeCallbacks(clearFlags);
+                 handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+             }
 
             LOG.d("onPageSelected", pos);
 

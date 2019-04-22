@@ -43,19 +43,22 @@ import java.util.List;
 
 public class AppProfile {
     public static final String PROFILE_PREFIX = "profile.";
+    public static final String DEVICE_PREFIX = "device.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static final String APP_PROGRESS_JSON = "app-Progress.json";
+    public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
+    public static final String APP_STATE_JSON = "app-State.json";
+    public static final String APP_CSS_JSON = "app-CSS.json";
     public static final String APP_RECENT_JSON = "app-Recent.json";
-    public static final String DEVICE_MODEL = Build.MODEL.replace(" ", "_");
-
-    public static final String APP_CSS = "app-CSS";
-    public static final String APP_STATE = "app-State";
+    public static final String APP_EXCLUDE_JSON = "app-Exclude.json";
+    public static final String APP_FAVORITE_JSON = "app-Favorite.json";
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
+    public static final String APP_PROGRESS_JSON = "app-Progress.json";
 
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
     public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
     public static File SYNC_FOLDER_PROFILE;
+    public static File SYNC_FOLDER_DEVICE_PROFILE;
 
     static SharedPreferences sp;
 
@@ -90,18 +93,19 @@ public class AppProfile {
 
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
-        //SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
+        SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);
+        SYNC_FOLDER_DEVICE_PROFILE.mkdirs();
 
-        syncRecent = new File(SYNC_FOLDER_PROFILE, APP_RECENT_JSON);
-        syncFavorite = new File(SYNC_FOLDER_PROFILE, "app-Favorite.json");
-        syncExclude = new File(SYNC_FOLDER_PROFILE, "app-Exclude.json");
-        syncTags = new File(SYNC_FOLDER_PROFILE, "app-Tags.json");
-        syncPlaylist = new File(SYNC_FOLDER_PROFILE, "playlists");
-        syncProgress = new File(SYNC_FOLDER_PROFILE, APP_PROGRESS_JSON);
-        syncBookmarks = new File(AppProfile.SYNC_FOLDER_PROFILE, APP_BOOKMARKS_JSON);
+        syncFavorite = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_FAVORITE_JSON);
+        syncExclude = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_EXCLUDE_JSON);
+        syncTags = new File(SYNC_FOLDER_DEVICE_PROFILE, "app-Tags.json");
+        syncPlaylist = new File(SYNC_FOLDER_DEVICE_PROFILE, "playlists");
+        syncBookmarks = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_BOOKMARKS_JSON);
+        syncProgress = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_PROGRESS_JSON);
+        syncRecent = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_RECENT_JSON);
 
-        syncState = new File(SYNC_FOLDER_PROFILE, APP_STATE + "-" + DEVICE_MODEL + ".json");
-        syncCSS = new File(SYNC_FOLDER_PROFILE, APP_CSS + "-" + DEVICE_MODEL + ".json");
+        syncState = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_STATE_JSON);
+        syncCSS = new File(SYNC_FOLDER_DEVICE_PROFILE, APP_CSS_JSON);
 
         final boolean isLoaded = AppState.get().loadInit(c);
         if (isLoaded) {
@@ -114,10 +118,31 @@ public class AppProfile {
         DragingPopup.loadCache(c);
     }
 
+
+    public static List<File> getAllFiles(String name) {
+
+
+        List<File> list = new ArrayList<>();
+        final File[] files = AppProfile.SYNC_FOLDER_PROFILE.listFiles();
+        if (files == null) {
+            return list;
+        }
+        for (File f : files) {
+            if (f.isDirectory() && f.getName().startsWith(DEVICE_PREFIX)) {
+                File file = new File(f, name);
+                if (file.isFile()) {
+                    list.add(file);
+                }
+            }
+        }
+
+        return list;
+    }
+
     public static Drawable getProfileColorDrawable(Context c, String profile) {
         GradientDrawable background = (GradientDrawable) c.getResources().getDrawable(R.drawable.bg_circular);
         AppState s = new AppState();
-        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/" + APP_STATE + "-" + DEVICE_MODEL + ".json");
+        File syncState = new File(AppProfile.SYNC_FOLDER_ROOT, PROFILE_PREFIX + profile + "/" + DEVICE_MODEL + "/" + APP_STATE_JSON);
         IO.readObj(syncState, s);
         background.setColor(s.tintColor);
         return background;
@@ -173,12 +198,12 @@ public class AppProfile {
 
     public static void ceateProfiles(Context c, String name) {
         name = name.replace(" ", "");
-        final File profileFolder = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name);
+        final File profileFolder = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + name + "/" + DEVICE_MODEL);
         profileFolder.mkdirs();
 
 
-        File state = new File(profileFolder, APP_STATE + "-" + DEVICE_MODEL + ".json");
-        File css = new File(profileFolder, APP_CSS + "-" + DEVICE_MODEL + ".json");
+        File state = new File(profileFolder, APP_STATE_JSON);
+        File css = new File(profileFolder, APP_CSS_JSON);
 
         final AppState appState = new AppState();
         appState.defaults(c);
@@ -389,6 +414,6 @@ public class AppProfile {
     }
 
     public static void clear() {
-        profile ="";
+        profile = "";
     }
 }
