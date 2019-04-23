@@ -23,12 +23,6 @@ import java.util.List;
 
 public class AppData {
 
-
-    private List<SimpleMeta> recent = new ArrayList<>();
-    private List<SimpleMeta> favorites = new ArrayList<>();
-    private List<SimpleMeta> exclude = new ArrayList<>();
-
-
     static AppData inst = new AppData();
 
     public static AppData get() {
@@ -36,84 +30,78 @@ public class AppData {
     }
 
 
-    public synchronized void addRecent(SimpleMeta s) {
-        List<SimpleMeta> current = new ArrayList<>();
-
-        setSimpleMeta(current, AppProfile.syncRecent, SimpleMeta.class);
+    public synchronized void add(SimpleMeta s, File file) {
+        List<SimpleMeta> current = getSimpleMeta(file);
 
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);
         current.remove(syncMeta);
         current.add(syncMeta);
 
-        writeSimpleMeta(current, AppProfile.syncRecent);
-        LOG.d("Objects-save", "SAVE Recent");
+        writeSimpleMeta(current, file);
+        LOG.d("Objects-save-add", "SAVE Recent");
     }
 
-    public synchronized void removeRecent(SimpleMeta s) {
-        recent.remove(s);
-        writeSimpleMeta(recent, AppProfile.syncRecent);
-        LOG.d("AppData removeRecent", s.getPath());
-    }
-
-    public synchronized void addFavorite(SimpleMeta s) {
-        favorites.remove(s);
-        favorites.add(s);
-        LOG.d("AppData addFavorite", s.getPath());
-        writeSimpleMeta(favorites, AppProfile.syncFavorite);
-        LOG.d("Objects-save", "SAVE Favorite");
-    }
-
-    public synchronized List<String> getAllExcluded() {
-        exclude.clear();
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_EXCLUDE_JSON)) {
-            addSimpleMeta(exclude, file, SimpleMeta.class);
-        }
-
-
-        ArrayList<String> res = new ArrayList<String>();
-        for (SimpleMeta s : exclude) {
-            res.add(s.getPath());
-        }
-        return res;
-    }
-
-
-    public synchronized void addExclue(String path) {
-        final SimpleMeta sm = new SimpleMeta(path);
-        exclude.remove(sm);
-        exclude.add(sm);
-        LOG.d("AppData addFavorite", path);
-        writeSimpleMeta(exclude, AppProfile.syncExclude);
-        LOG.d("Objects-save", "SAVE Favorite");
-    }
-
-    public synchronized void removeFavorite(SimpleMeta s) {
-        favorites.remove(s);
-        writeSimpleMeta(favorites, AppProfile.syncFavorite);
+    public synchronized void removeIt(SimpleMeta s) {
+        List<SimpleMeta> res = getSimpleMeta(s.file);
+        res.remove(s);
+        writeSimpleMeta(res, s.file);
         LOG.d("AppData removeFavorite", s.getPath());
-
     }
 
-    public synchronized void clearRecents() {
-        recent.clear();
-        writeSimpleMeta(recent, AppProfile.syncRecent);
-        LOG.d("Objects-save", "SAVE Recent");
-    }
-
-    public synchronized void clearFavorites() {
-        favorites.clear();
-        writeSimpleMeta(favorites, AppProfile.syncFavorite);
-        LOG.d("Objects-save", "SAVE Favorite");
-
-    }
-
-    public synchronized void loadFavorites() {
-        favorites.clear();
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_FAVORITE_JSON)) {
-            addSimpleMeta(favorites, file, SimpleMeta.class);
+    public void removeAll(FileMeta meta, String name) {
+        SimpleMeta s = new SimpleMeta(meta.getPath());
+        for (File file : AppProfile.getAllFiles(name)) {
+            List<SimpleMeta> res = getSimpleMeta(file);
+            if (res.contains(s)) {
+                res.remove(s);
+                writeSimpleMeta(res, file);
+            }
         }
-
     }
+
+    public void removeRecent(FileMeta meta) {
+        removeAll(meta, AppProfile.APP_RECENT_JSON);
+    }
+
+    public void removeFavorite(FileMeta meta) {
+        removeAll(meta, AppProfile.APP_FAVORITE_JSON);
+    }
+
+    public void clearAll(String name) {
+        for (File file : AppProfile.getAllFiles(name)) {
+            addSimpleMeta(new ArrayList<>(), file);
+        }
+    }
+
+
+    private synchronized List<SimpleMeta> getAll(String name) {
+        List<SimpleMeta> exclude = new ArrayList<>();
+        for (File file : AppProfile.getAllFiles(name)) {
+            addSimpleMeta(exclude, file);
+        }
+        return exclude;
+    }
+
+    public void addRecent(SimpleMeta simpleMeta) {
+        add(simpleMeta, AppProfile.syncRecent);
+    }
+
+    public void addFavorite(SimpleMeta simpleMeta) {
+        add(simpleMeta, AppProfile.syncFavorite);
+    }
+
+    public void addExclue(String path) {
+        add(new SimpleMeta(path), AppProfile.syncExclude);
+    }
+
+    public void clearFavorites() {
+        clearAll(AppProfile.APP_FAVORITE_JSON);
+    }
+
+    public void clearRecents() {
+        clearAll(AppProfile.APP_RECENT_JSON);
+    }
+
 
     public synchronized List<FileMeta> getAllSyncBooks() {
         List<FileMeta> res = new ArrayList<>();
@@ -126,9 +114,7 @@ public class AppData {
     }
 
     public synchronized List<FileMeta> getAllFavoriteFiles() {
-        if (favorites.isEmpty()) {
-            loadFavorites();
-        }
+        List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
@@ -151,6 +137,8 @@ public class AppData {
     }
 
     public synchronized List<FileMeta> getAllFavoriteFolders() {
+        List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
+
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
             if (new File(s.getPath()).isDirectory()) {
@@ -171,10 +159,8 @@ public class AppData {
 
 
     public synchronized List<FileMeta> getAllRecent() {
-        recent.clear();
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_RECENT_JSON)) {
-            addSimpleMeta(recent, file, SimpleMeta.class);
-        }
+        List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
+
 
         LOG.d("getAllRecent");
         List<FileMeta> res = new ArrayList<>();
@@ -204,16 +190,22 @@ public class AppData {
         return res;
     }
 
-
-    public static <T> void setSimpleMeta(List<T> list, File file, Class<T> clazz) {
-        readSimpleMeta1(list, file, clazz, true);
+    public synchronized List<SimpleMeta> getAllExcluded() {
+        return getSimpleMeta(AppProfile.syncExclude);
     }
 
-    public static <T> void addSimpleMeta(List<T> list, File file, Class<T> clazz) {
-        readSimpleMeta1(list, file, clazz, false);
+
+    public static List<SimpleMeta> getSimpleMeta(File file) {
+        List<SimpleMeta> list = new ArrayList<>();
+        readSimpleMeta1(list, file, true);
+        return list;
     }
 
-    private static <T> void readSimpleMeta1(List<T> list, File file, Class<T> clazz, boolean clear) {
+    public static void addSimpleMeta(List<SimpleMeta> list, File file) {
+        readSimpleMeta1(list, file, false);
+    }
+
+    private static void readSimpleMeta1(List<SimpleMeta> list, File file, boolean clear) {
         if (clear) {
             list.clear();
         }
@@ -228,7 +220,8 @@ public class AppData {
         try {
             JSONArray array = new JSONArray(in);
             for (int i = 0; i < array.length(); i++) {
-                T meta = clazz.newInstance();
+                SimpleMeta meta = new SimpleMeta();
+                meta.file = file;
                 Objects.loadFromJson(meta, array.getJSONObject(i));
                 list.add(meta);
             }
@@ -237,9 +230,9 @@ public class AppData {
         }
     }
 
-    public static <T> void writeSimpleMeta(List<T> list, File file) {
+    public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
         JSONArray array = new JSONArray();
-        for (T meta : list) {
+        for (SimpleMeta meta : list) {
             JSONObject o = Objects.toJSONObject(meta);
             array.put(o);
             LOG.d("writeSimpleMeta", o);
@@ -247,5 +240,16 @@ public class AppData {
         IO.writeObjAsync(file, array);
 
     }
+
+    public static List<SimpleMeta> convert(List<String> list) {
+        List<SimpleMeta> res = new ArrayList<>();
+        for (String string : list) {
+            res.add(new SimpleMeta(string));
+        }
+        return res;
+
+    }
+
+
 }
 

@@ -6,6 +6,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 
@@ -56,14 +57,14 @@ public class BookmarksData {
 
 
     public void remove(AppBookmark bookmark) {
-        LOG.d("BookmarksData", "remove", bookmark.p, bookmark.text);
+        LOG.d("BookmarksData", "remove",bookmark.t, bookmark.file);
 
         try {
-            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
+            JSONObject obj = IO.readJsonObject(bookmark.file);
             if (obj.has("" + bookmark.t)) {
                 obj.remove("" + bookmark.t);
             }
-            IO.writeObjAsync(AppProfile.syncBookmarks, obj);
+            IO.writeObjAsync(bookmark.file, obj);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -114,6 +115,7 @@ public class BookmarksData {
                     final String next = keys.next();
 
                     AppBookmark appBookmark = new AppBookmark();
+                    appBookmark.file = file;
                     final JSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
                     all.add(appBookmark);
@@ -151,6 +153,7 @@ public class BookmarksData {
                     final String next = keys.next();
 
                     AppBookmark appBookmark = new AppBookmark();
+                    appBookmark.file = file;
                     final JSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
                     if (appBookmark.getPath().equals(path)) {
@@ -201,7 +204,8 @@ public class BookmarksData {
 
 
     public void cleanBookmarks() {
-        IO.writeObj(AppProfile.syncBookmarks.getPath(), "{}");
+        //IO.writeObj(AppProfile.syncBookmarks.getPath(), "{}");
+        AppData.get().clearAll(AppProfile.APP_BOOKMARKS_JSON);
     }
 
 

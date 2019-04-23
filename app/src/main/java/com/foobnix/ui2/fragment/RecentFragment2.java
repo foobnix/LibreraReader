@@ -19,7 +19,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
-import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -107,7 +106,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                 new File(result.getPath()).delete();
                 LOG.d("Delete cache recent file", result.getPath());
             }
-            AppData.get().removeRecent(new SimpleMeta(result.getPath()));
+            AppData.get().removeRecent(result);
 
             populate();
             RecentUpates.updateAll(getActivity());

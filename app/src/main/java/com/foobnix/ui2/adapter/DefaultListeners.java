@@ -466,7 +466,7 @@ public class DefaultListeners {
                 if (fileMeta.getIsStar()) {
                     AppData.get().addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
                 } else {
-                    AppData.get().removeFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
+                    AppData.get().removeFavorite(fileMeta);
                 }
 
                 fileMeta.setIsStarTime(System.currentTimeMillis());

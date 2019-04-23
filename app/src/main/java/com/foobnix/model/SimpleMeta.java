@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import java.io.File;
+
 public class SimpleMeta implements MyPath.RelativePath {
 
     public static int STATE_NORMAL = 0;
@@ -8,6 +10,9 @@ public class SimpleMeta implements MyPath.RelativePath {
 
     public String path;
     public long time;
+
+
+    transient public File file;
 
 
     public SimpleMeta() {

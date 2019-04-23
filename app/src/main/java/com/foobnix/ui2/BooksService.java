@@ -16,6 +16,7 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppTemp;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExportConverter;
@@ -242,11 +243,11 @@ public class BooksService extends IntentService {
                     meta.setIsSearchBook(true);
                 }
 
-                final List<String> allExcluded = AppData.get().getAllExcluded();
+                final List<SimpleMeta> allExcluded = AppData.get().getAllExcluded();
 
                 if (TxtUtils.isListNotEmpty(allExcluded)) {
                     for (FileMeta meta : itemsMeta) {
-                        if (allExcluded.contains(meta.getPath())) {
+                        if (allExcluded.contains(new SimpleMeta(meta.getPath()))) {
                             meta.setIsSearchBook(false);
                         }
                     }

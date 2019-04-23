@@ -267,7 +267,7 @@ public class ShareDialog {
         final boolean canCopy = !ExtUtils.isExteralSD(file.getPath()) && !Clouds.isCloud(file.getPath());
         final boolean isShowInfo = !ExtUtils.isExteralSD(file.getPath());
 
-        final boolean isRemovedFromLibrary = AppData.get().getAllExcluded().contains(file.getPath());
+        final boolean isRemovedFromLibrary = AppData.get().getAllExcluded().contains(new SimpleMeta(file.getPath()));
 
         if (file.getPath().contains(AppProfile.PROFILE_PREFIX)) {
             canDelete1 = false;
@@ -389,9 +389,11 @@ public class ShareDialog {
                         load.setTag(null);
                         AppDB.get().update(load);
 
+                        AppData.get().removeFavorite(load);
+                        AppData.get().addExclue(load.getPath());
+
                     }
-                    AppData.get().removeFavorite(new SimpleMeta(load.getPath()));
-                    AppData.get().addExclue(load.getPath());
+
 
                     EventBus.getDefault().post(new UpdateAllFragments());
                 } else if (!isMainTabs && which == i++) {

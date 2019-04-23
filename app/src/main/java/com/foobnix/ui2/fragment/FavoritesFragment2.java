@@ -223,8 +223,6 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
             all.add(empy);
         }
 
-        AppData.get().loadFavorites();
-
         all.addAll(AppData.get().getAllFavoriteFolders());
 
 

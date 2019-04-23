@@ -91,15 +91,11 @@ public class IO {
 
     public static boolean writeString(File file, String string) {
         try {
-            if (string == null || "".equals(string) || "{}".equals(string)) {
-                LOG.d("IO", "Skip write empy to file", file.getPath());
-                return false;
-            }
-            LOG.d("IO", "write to file", file);
-            new File(file.getParent()).mkdirs();
             if (string == null) {
                 string = "";
             }
+            LOG.d("IO", "write to file", file);
+            new File(file.getParent()).mkdirs();
 
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             out.write(string.getBytes());
