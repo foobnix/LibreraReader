@@ -18,12 +18,15 @@ import java.util.List;
 public class SharedBooks {
 
 
-    public static synchronized void updateProgress(List<FileMeta> list) {
+    public static synchronized void updateProgress(List<FileMeta> list, boolean updateTime) {
 
         for (FileMeta meta : list) {
             try {
                 AppBook book = SharedBooks.load(meta.getPath());
                 meta.setIsRecentProgress(book.p);
+                if (updateTime) {
+                    meta.setIsRecentTime(book.t);
+                }
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -51,6 +54,7 @@ public class SharedBooks {
         }
         if (original != null) {
             original.p = res.p;
+            original.t = Math.max(res.t, original.t);
             return original;
         }
 

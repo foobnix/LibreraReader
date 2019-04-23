@@ -29,7 +29,7 @@ public class AppBook implements CurrentPageListener {
     public int d = 0;//delta
 
     public float p; //percent
-    public long t;
+    public long t;//time
     public String ln;
 
 

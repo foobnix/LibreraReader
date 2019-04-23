@@ -49,7 +49,7 @@ public class AppData {
     }
 
     public void removeAll(FileMeta meta, String name) {
-        SimpleMeta s = new SimpleMeta(meta.getPath());
+        SimpleMeta s = SimpleMeta.SyncSimpleMeta(meta.getPath());
         for (File file : AppProfile.getAllFiles(name)) {
             List<SimpleMeta> res = getSimpleMeta(file);
             if (res.contains(s)) {
@@ -130,7 +130,7 @@ public class AppData {
                 }
             }
         }
-        SharedBooks.updateProgress(res);
+        SharedBooks.updateProgress(res,false);
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
         return res;
@@ -177,21 +177,25 @@ public class AppData {
 
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             meta.setIsRecentTime(s.time);
+
             //meta.setIsRecent(true);
+
+            LOG.d("meta-aa",meta.getPath(), s.time);
 
             if (!res.contains(meta)) {
                 res.add(meta);
             }
 
+
         }
-        SharedBooks.updateProgress(res);
+        SharedBooks.updateProgress(res, false);
         Collections.sort(res, FileMetaComparators.BY_RECENT_TIME);
         Collections.reverse(res);
         return res;
     }
 
     public synchronized List<SimpleMeta> getAllExcluded() {
-        return getSimpleMeta(AppProfile.syncExclude);
+        return getAll(AppProfile.APP_EXCLUDE_JSON);
     }
 
 

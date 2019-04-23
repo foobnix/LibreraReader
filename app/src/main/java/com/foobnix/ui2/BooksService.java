@@ -202,7 +202,7 @@ public class BooksService extends IntentService {
 
                     }
 
-                    SharedBooks.updateProgress(list);
+                    SharedBooks.updateProgress(list,true);
                     AppDB.get().updateAll(list);
 
                     AppTemp.get().searchDate = System.currentTimeMillis();
@@ -247,7 +247,7 @@ public class BooksService extends IntentService {
 
                 if (TxtUtils.isListNotEmpty(allExcluded)) {
                     for (FileMeta meta : itemsMeta) {
-                        if (allExcluded.contains(new SimpleMeta(meta.getPath()))) {
+                        if (allExcluded.contains(SimpleMeta.SyncSimpleMeta(meta.getPath()))) {
                             meta.setIsSearchBook(false);
                         }
                     }
@@ -293,7 +293,7 @@ public class BooksService extends IntentService {
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
-                SharedBooks.updateProgress(itemsMeta);
+                SharedBooks.updateProgress(itemsMeta,true);
                 AppDB.get().updateAll(itemsMeta);
 
 

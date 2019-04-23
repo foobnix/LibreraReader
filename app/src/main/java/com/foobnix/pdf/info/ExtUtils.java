@@ -578,6 +578,10 @@ public class ExtUtils {
         return name.substring(0, name.lastIndexOf("."));
     }
 
+    public static boolean isEqualFileNames(String name1, String name2) {
+        return getFileName(name1).equals(getFileName(name2));
+
+    }
     public static String getFileName(String name) {
         if (TxtUtils.isEmpty(name)) {
             return "";

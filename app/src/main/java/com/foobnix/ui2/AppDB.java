@@ -106,7 +106,8 @@ public class AppDB {
         EXT(9, R.string.by_extension, FileMetaDao.Properties.Ext), //
         LANGUAGE(10, R.string.language, FileMetaDao.Properties.Lang),//
         PUBLICATION_YEAR(11, R.string.publication_date, FileMetaDao.Properties.Year),//
-        PUBLISHER(12, R.string.publisher, FileMetaDao.Properties.Publisher);//
+        PUBLISHER(12, R.string.publisher, FileMetaDao.Properties.Publisher),//
+        RECENT_TIME(13, R.string.recent, FileMetaDao.Properties.IsRecentTime);//
 
 
         private final int index;
@@ -496,7 +497,7 @@ public class AppDB {
         LOG.d("getAllWithTag", tagName);
         try {
             QueryBuilder<FileMeta> where = fileMetaDao.queryBuilder();
-            where =  where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"),FileMetaDao.Properties.IsSearchBook.eq(1));
+            where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"), FileMetaDao.Properties.IsSearchBook.eq(1));
             //where = where.where(SEARCH_IN.TAGS.getProperty().like("%" + tagName + StringDB.DIVIDER + "%"));
             return where.list();
         } catch (Exception e) {
@@ -563,6 +564,10 @@ public class AppDB {
                 }
             }
             where = where.where(FileMetaDao.Properties.IsSearchBook.eq(1));
+
+            if (sortby == SORT_BY.RECENT_TIME) {
+                where = where.where(FileMetaDao.Properties.IsRecentTime.ge(1));
+            }
 
             if (isAsc) {
                 return where.orderAsc(sortby.getProperty()).list();
