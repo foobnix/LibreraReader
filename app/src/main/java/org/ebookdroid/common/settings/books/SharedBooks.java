@@ -35,13 +35,25 @@ public class SharedBooks {
         LOG.d("SharedBooks-load", fileName);
 
         AppBook res = new AppBook(fileName);
+        AppBook original = null;
+
         for (File file : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
             final AppBook load = load(IO.readJsonObject(file), fileName);
+            load.path = fileName;
+
+            if (file.equals(AppProfile.syncProgress) && load != null) {
+                original = load;
+            }
+
             if (load.t > res.t) {
-                res.path = fileName;
                 res = load;
             }
         }
+        if (original != null) {
+            original.p = res.p;
+            return original;
+        }
+
         return res;
 
     }
