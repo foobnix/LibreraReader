@@ -34,7 +34,6 @@ public class BookmarksData {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text);
         try {
             JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
-            final String fileName = ExtUtils.getFileName(bookmark.path);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
             IO.writeObjAsync(AppProfile.syncBookmarks, obj);
         } catch (Exception e) {
@@ -42,11 +41,11 @@ public class BookmarksData {
         }
     }
 
+
     public void save(List<AppBookmark> bookmarks, File path) {
         try {
             JSONObject obj = new JSONObject();
             for (AppBookmark bookmark : bookmarks) {
-                final String fileName = ExtUtils.getFileName(bookmark.path);
                 obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
             }
             IO.writeObjAsync(path, obj);

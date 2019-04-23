@@ -781,7 +781,9 @@ public class Dialogs {
 
     private static List<String> getAllTags(final String tag) {
         Collection<String> res = new LinkedHashSet<String>();
+
         res.addAll(StringDB.asList(AppState.get().bookTags));
+
         res.addAll(StringDB.asList(tag));
         res.addAll(AppDB.get().getAll(SEARCH_IN.TAGS));
 

@@ -360,6 +360,7 @@ public class GFile {
                 setLastModifiedTime(file, lastModified);
 
                 if (Clouds.isLibreraSyncFile(file.getPath())) {
+                    IMG.clearCache(file.getPath());
                     FileMeta meta = AppDB.get().getOrCreate(file.getPath());
                     FileMetaCore.createMetaIfNeed(file.getPath(), true);
                     IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());

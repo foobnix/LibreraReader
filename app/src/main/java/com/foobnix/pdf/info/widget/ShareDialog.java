@@ -18,13 +18,16 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
+import com.foobnix.model.MyPath;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
@@ -418,6 +421,12 @@ public class ShareDialog {
 
                         String tags = TagData.getTags(file.getPath());
                         TagData.saveTags(to.getPath(), tags);
+
+                        final List<AppBookmark> bookmarks = BookmarksData.get().getBookmarksByBook(file.getPath());
+                        for (AppBookmark appBookmark : bookmarks) {
+                            appBookmark.path = MyPath.toRelative(to.getPath());
+                            BookmarksData.get().add(appBookmark);
+                        }
 
                         GFile.runSyncService(a);
                     }
