@@ -69,7 +69,7 @@ public class AppData {
 
     public void clearAll(String name) {
         for (File file : AppProfile.getAllFiles(name)) {
-            addSimpleMeta(new ArrayList<>(), file);
+            writeSimpleMeta(new ArrayList<>(), file);
         }
     }
 
