@@ -45,6 +45,7 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.FontExtractor;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -734,8 +735,9 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (pager != null) {
             int currentItem = pager.getCurrentItem();
-            pager.setAdapter(adapter);
+            //pager.setAdapter(adapter); //WHY???
             pager.setCurrentItem(currentItem);
+            IMG.clearMemoryCache();
         }
         activateAds();
 

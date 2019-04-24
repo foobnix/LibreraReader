@@ -62,15 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/cloudImage"
-                    android:layout_width="@dimen/wh_button_small"
-                    android:layout_height="@dimen/wh_button_small"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="0"
-                    android:padding="3dip"
-                    android:src="@drawable/dropbox" />
+
 
                 <TextView
                     android:id="@+id/title"
@@ -78,9 +70,34 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:ellipsize="end"
+                    android:layout_weight="1"
                     android:singleLine="true"
                     android:text="Title"
                     android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/cloudImage"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="4dip"
+                    android:layout_weight="0"
+                    android:padding="3dip"
+                    android:src="@drawable/dropbox" />
+
+
+                <ImageView
+                    android:id="@+id/remove"
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="4dip"
+                    android:src="@drawable/glyphicons_208_remove_2"
+                    android:tint="@color/lt_grey_dima" />
             </LinearLayout>
 
             <TextView
@@ -95,16 +112,7 @@
         </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/remove"
-            android:layout_width="@dimen/wh_button_small"
-            android:layout_height="@dimen/wh_button_small"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="4dip"
-            android:src="@drawable/glyphicons_208_remove_2"
-            android:tint="@color/lt_grey_dima" />
+
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

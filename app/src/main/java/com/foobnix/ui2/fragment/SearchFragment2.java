@@ -173,6 +173,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
 
+        LOG.d("SearchFragment2 onCreateView");
+
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
 
         handler = new Handler();
@@ -984,4 +986,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderAsync();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        LOG.d("SearchFragment2 onDestroy");
+
+    }
 }

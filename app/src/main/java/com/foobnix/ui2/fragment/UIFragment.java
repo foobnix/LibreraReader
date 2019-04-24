@@ -58,6 +58,7 @@ public abstract class UIFragment<T> extends Fragment {
 
     View adFrame;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
