@@ -34,7 +34,7 @@ public class SharedBooks {
         AppDB.get().updateAll(list);
     }
 
-    public static synchronized AppBook load(String fileName) {
+    public static  AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
 
         AppBook res = new AppBook(fileName);
@@ -55,9 +55,11 @@ public class SharedBooks {
         if (original != null) {
             original.p = res.p;
             original.t = Math.max(res.t, original.t);
+            LOG.d("SharedBooks-load1 original", fileName);
             return original;
         }
 
+        LOG.d("SharedBooks-load1 general",fileName);
         return res;
 
     }

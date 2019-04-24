@@ -303,6 +303,7 @@ public abstract class DocumentController {
                 return;
             }
             AppBook bs = SettingsManager.getBookSettings();
+            bs.updateFromAppState();
             SharedBooks.save(bs);
 
             //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());

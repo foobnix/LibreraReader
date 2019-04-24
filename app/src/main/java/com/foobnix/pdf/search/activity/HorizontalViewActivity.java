@@ -1432,6 +1432,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void nullAdapter() {
         if (viewPager != null) {
             try {
+                dc.saveCurrentPageAsync();
                 ImageLoader.getInstance().clearAllTasks();
                 closeDialogs();
                 viewPager.setAdapter(null);
