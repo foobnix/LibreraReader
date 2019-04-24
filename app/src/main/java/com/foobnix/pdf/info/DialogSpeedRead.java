@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
@@ -109,6 +110,7 @@ public class DialogSpeedRead {
                         android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
                         clipboard.setPrimaryClip(clip);
                     }
+                    Toast.makeText(a, R.string.copy_text, Toast.LENGTH_SHORT).show();
                     return true;
                 });
                 menu.show();

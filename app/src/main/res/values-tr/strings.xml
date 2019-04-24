@@ -561,4 +561,8 @@
    <string name="empy">Boş</string>
    <string name="show_quick_bookmarks">Hızlı yer imlerini göster</string>
    <string name="show_only_available_books">Sadece mevcut kitapları göster</string>
+   <string name="share_as_text">Metin olarak paylaş</string>
+   <string name="share_as_image">Resim olarak paylaş</string>
+   <string name="copy_text">Metni kopyala</string>
+   <string name="show_fast_scroll">Hızlı kaydırma göster</string>
 </resources>

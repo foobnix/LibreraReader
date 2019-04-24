@@ -561,4 +561,8 @@
    <string name="empy">Vide</string>
    <string name="show_quick_bookmarks">Afficher des signets rapides</string>
    <string name="show_only_available_books">Afficher uniquement les livres disponibles</string>
+   <string name="share_as_text">Partager en texte</string>
+   <string name="share_as_image">Partager comme image</string>
+   <string name="copy_text">Copier le texte</string>
+   <string name="show_fast_scroll">Montrer défilement rapide</string>
 </resources>

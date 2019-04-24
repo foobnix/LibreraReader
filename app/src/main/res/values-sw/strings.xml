@@ -561,4 +561,8 @@
    <string name="empy">Tupu</string>
    <string name="show_quick_bookmarks">Onyesha alama za haraka</string>
    <string name="show_only_available_books">Onyesha vitabu vinavyopatikana tu</string>
+   <string name="share_as_text">Kushiriki kama maandiko</string>
+   <string name="share_as_image">Shiriki kama picha</string>
+   <string name="copy_text">Nakala ya nakala</string>
+   <string name="show_fast_scroll">Onyesha haraka kitabu</string>
 </resources>

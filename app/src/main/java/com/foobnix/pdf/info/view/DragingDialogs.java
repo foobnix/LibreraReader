@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
+import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,6 +30,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.ClipboardManager;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -1486,6 +1488,7 @@ public class DragingDialogs {
                             android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", editText.getText().toString().trim());
                             clipboard.setPrimaryClip(clip);
                         }
+                        Toast.makeText(c, R.string.copy_text, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
                 });
@@ -1732,36 +1735,28 @@ public class DragingDialogs {
 
     }
 
-    public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController controller) {
+    public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController dc) {
         DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             View searchLayout;
+            GridView grid;
 
             @Override
             public void beforeCreate() {
                 setTitlePopupIcon(R.drawable.glyphicons_518_option_vertical);
                 titlePopupMenu = new MyPopupMenu(anchor.getContext(), anchor);
-                titlePopupMenu.getMenu().add(R.string.hide_search_bar).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isShowSearchBar = false;
-                        searchLayout.setVisibility(View.GONE);
-                        return false;
-                    }
-                });
-                titlePopupMenu.getMenu().add(R.string.show_search_bar).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isShowSearchBar = true;
-                        searchLayout.setVisibility(View.VISIBLE);
-                        return false;
-                    }
+                titlePopupMenu.getMenu().addCheckbox(dc.getString(R.string.show_search_bar), AppState.get().isShowSearchBar, (buttonView, isChecked) -> {
+                    AppState.get().isShowSearchBar = isChecked;
+                    searchLayout.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+                    beforeCreate();
                 });
 
+                titlePopupMenu.getMenu().addCheckbox(dc.getString(R.string.show_fast_scroll), AppState.get().isShowFastScroll, (buttonView, isChecked) -> {
+                    AppState.get().isShowFastScroll = isChecked;
+                    grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
+                    beforeCreate();
+                });
             }
-
-            ;
 
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -1771,18 +1766,19 @@ public class DragingDialogs {
 
                 final EditText number = (EditText) view.findViewById(R.id.edit1);
                 number.clearFocus();
-                number.setText("" + controller.getCurentPageFirst1());
-                final GridView grid = (GridView) view.findViewById(R.id.grid1);
+                number.setText("" + dc.getCurentPageFirst1());
+                grid = (GridView) view.findViewById(R.id.grid1);
                 int dpToPx = Dips.dpToPx(AppState.get().coverSmallSize);
 
-                if (AppTemp.get().isDouble && !controller.isTextFormat()) {
+                if (AppTemp.get().isDouble && !dc.isTextFormat()) {
                     dpToPx = dpToPx * 2;
                 }
                 grid.setColumnWidth(dpToPx);
+                grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
 
-                final File currentBook = controller.getCurrentBook();
+                final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
-                    grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), controller.getPageCount(), controller.getCurentPageFirst1() - 1) {
+                    grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), dc.getPageCount(), dc.getCurentPageFirst1() - 1) {
                         @Override
                         public PageUrl getPageUrl(int page) {
                             return PageUrl.buildSmall(currentBook.getPath(), page);
@@ -1796,7 +1792,7 @@ public class DragingDialogs {
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        controller.onGoToPage(position + 1);
+                        dc.onGoToPage(position + 1);
                         ((PageThumbnailAdapter) grid.getAdapter()).setCurrentPage(position);
                         ((PageThumbnailAdapter) grid.getAdapter()).notifyDataSetChanged();
                     }
@@ -1807,18 +1803,40 @@ public class DragingDialogs {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                         Vibro.vibrate();
-                        if (grid.isFastScrollEnabled()) {
-                            grid.setFastScrollEnabled(false);
-                            grid.setFastScrollAlwaysVisible(false);
-                        } else {
-                            grid.setFastScrollEnabled(true);
-                            grid.setFastScrollAlwaysVisible(false);
-                        }
+
+
+                        MyPopupMenu menu = new MyPopupMenu(view);
+                        menu.getMenu().add(R.string.share_as_text).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                            final Intent intent = new Intent(Intent.ACTION_SEND);
+                            intent.setType("text/plain");
+                            intent.putExtra(Intent.EXTRA_TEXT, dc.getTextForPage(position));
+                            dc.getActivity().startActivity(Intent.createChooser(intent, dc.getActivity().getString(R.string.share)));
+                            return true;
+                        });
+                        menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_1_picture).setOnMenuItemClickListener((it) -> {
+                            ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
+                            return true;
+                        });
+                        menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                                ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                clipboard.setText(dc.getTextForPage(position));
+                            } else {
+                                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
+                                clipboard.setPrimaryClip(clip);
+                            }
+                            Toast.makeText(dc.getActivity(), R.string.copy_text, Toast.LENGTH_SHORT).show();
+                            return true;
+                        });
+                        menu.show();
+
                         return true;
                     }
                 });
 
-                grid.setSelection(controller.getCurentPage() - 1);
+                grid.setSelection(dc.getCurentPage() - 1);
 
                 grid.setOnScrollListener(new OnScrollListener() {
 
@@ -1829,8 +1847,8 @@ public class DragingDialogs {
 
                     @Override
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                        LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - controller.getCurentPage()));
-                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - controller.getCurentPage()) < 20) {
+                        LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - dc.getCurentPage()));
+                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - dc.getCurentPage()) < 20) {
                             // searchLayout.setVisibility(View.VISIBLE);
                         } else {
                             // searchLayout.setVisibility(View.GONE);
@@ -1853,7 +1871,7 @@ public class DragingDialogs {
                     }
                 });
 
-                onSearch.setOnClickListener(new View.OnClickListener() {
+                onSearch.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1865,9 +1883,9 @@ public class DragingDialogs {
                                 txt = txt.replace("%", "").replace(",", ".");
                                 float parseFloat = Float.parseFloat(txt);
                                 if (parseFloat > 100) {
-                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(dc.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                                 }
-                                page = (int) (controller.getPageCount() * parseFloat) / 100;
+                                page = (int) (dc.getPageCount() * parseFloat) / 100;
                                 page = page + 1;
                             } else {
                                 page = Integer.valueOf(txt);
@@ -1878,8 +1896,8 @@ public class DragingDialogs {
                             number.setText("1");
                         }
 
-                        if (page >= 0 && page <= controller.getPageCount()) {
-                            controller.onGoToPage(page);
+                        if (page >= 0 && page <= dc.getPageCount()) {
+                            dc.onGoToPage(page);
                             grid.setSelection(page - 1);
                             Keyboards.close(number);
                         }

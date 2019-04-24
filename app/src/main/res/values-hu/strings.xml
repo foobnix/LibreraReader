@@ -561,4 +561,8 @@
    <string name="empy">Üres</string>
    <string name="show_quick_bookmarks">Gyors könyvjelzők megjelenítése</string>
    <string name="show_only_available_books">Csak a rendelkezésre álló könyvek megjelenítése</string>
+   <string name="share_as_text">Megosztani szövegként</string>
+   <string name="share_as_image">Megosztani képként</string>
+   <string name="copy_text">Szöveg másolása</string>
+   <string name="show_fast_scroll">Gyors görgetés</string>
 </resources>

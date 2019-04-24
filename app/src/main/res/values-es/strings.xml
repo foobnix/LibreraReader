@@ -561,4 +561,8 @@
    <string name="empy">Vacío</string>
    <string name="show_quick_bookmarks">Mostrar marcadores rápidos</string>
    <string name="show_only_available_books">Mostrar solo libros disponibles</string>
+   <string name="share_as_text">Compartir como texto</string>
+   <string name="share_as_image">Compartir como imagen</string>
+   <string name="copy_text">Copiar texto</string>
+   <string name="show_fast_scroll">Mostrar desplazamiento rápido</string>
 </resources>

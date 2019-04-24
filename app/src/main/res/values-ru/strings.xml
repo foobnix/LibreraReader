@@ -561,4 +561,8 @@
    <string name="empy">Пусто</string>
    <string name="show_quick_bookmarks">Показывать быстрые закладки</string>
    <string name="show_only_available_books">Показывать только доступные книги</string>
+   <string name="share_as_text">Поделиться как текст</string>
+   <string name="share_as_image">Поделиться как изображение</string>
+   <string name="copy_text">Скопировать текст</string>
+   <string name="show_fast_scroll">Показать быструю прокрутку</string>
 </resources>

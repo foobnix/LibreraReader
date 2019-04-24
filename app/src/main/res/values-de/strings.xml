@@ -561,4 +561,8 @@
    <string name="empy">Leeren</string>
    <string name="show_quick_bookmarks">Zeigen Sie schnell Lesezeichen an</string>
    <string name="show_only_available_books">Nur verfügbare Bücher anzeigen</string>
+   <string name="share_as_text">Als Text freigeben</string>
+   <string name="share_as_image">Als Bild freigeben</string>
+   <string name="copy_text">Text kopieren</string>
+   <string name="show_fast_scroll">Schnelles Scrollen anzeigen</string>
 </resources>

@@ -561,4 +561,8 @@
    <string name="empy">Inanis</string>
    <string name="show_quick_bookmarks">Ostende velox bookmarks</string>
    <string name="show_only_available_books">Tantum ostendere praesto librorum</string>
+   <string name="share_as_text">Ut participes illud</string>
+   <string name="share_as_image">Participes ad imaginem</string>
+   <string name="copy_text">Exemplum illud</string>
+   <string name="show_fast_scroll">Celeriter ostendere volumen</string>
 </resources>

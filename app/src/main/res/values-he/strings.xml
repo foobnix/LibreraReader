@@ -561,4 +561,8 @@
    <string name="empy">ריק</string>
    <string name="show_quick_bookmarks">להראות סימניות מהירה - -</string>
    <string name="show_only_available_books">הצג רק ספרים זמינים</string>
+   <string name="share_as_text">שתף כטקסט</string>
+   <string name="share_as_image">לשתף תמונה</string>
+   <string name="copy_text">העתק טקסט</string>
+   <string name="show_fast_scroll">להראות גלילה מהירה</string>
 </resources>

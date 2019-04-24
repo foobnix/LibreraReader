@@ -561,4 +561,8 @@
    <string name="empy">Pusty</string>
    <string name="show_quick_bookmarks">Pokaż szybkie zakładki</string>
    <string name="show_only_available_books">Pokaż tylko dostępne książki</string>
+   <string name="share_as_text">Udostępnij jako tekst</string>
+   <string name="share_as_image">Udostępnij jako obraz</string>
+   <string name="copy_text">Skopiuj tekst</string>
+   <string name="show_fast_scroll">Pokaż szybkie przewijanie</string>
 </resources>

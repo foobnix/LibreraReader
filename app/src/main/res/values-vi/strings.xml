@@ -561,4 +561,8 @@
    <string name="empy">Trống</string>
    <string name="show_quick_bookmarks">Hiển thị dấu trang nhanh</string>
    <string name="show_only_available_books">Chỉ hiển thị những cuốn sách có sẵn</string>
+   <string name="share_as_text">Chia sẻ dưới dạng văn bản</string>
+   <string name="share_as_image">Chia sẻ như hình ảnh</string>
+   <string name="copy_text">Sao chép văn bản</string>
+   <string name="show_fast_scroll">Hiển thị cuộn nhanh</string>
 </resources>

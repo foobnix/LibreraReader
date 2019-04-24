@@ -561,4 +561,8 @@
    <string name="empy">빈</string>
    <string name="show_quick_bookmarks">빠른 북마크 표시</string>
    <string name="show_only_available_books">사용 가능한 서적 만 표시</string>
+   <string name="share_as_text">텍스트로 공유</string>
+   <string name="share_as_image">이미지로 공유하다</string>
+   <string name="copy_text">텍스트 복사</string>
+   <string name="show_fast_scroll">빠른 스크롤을 보여라.</string>
 </resources>

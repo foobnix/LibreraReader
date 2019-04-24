@@ -561,4 +561,8 @@
    <string name="empy">Tømme</string>
    <string name="show_quick_bookmarks">Vis raske bokmerker</string>
    <string name="show_only_available_books">Vis bare tilgjengelige bøker</string>
+   <string name="share_as_text">Dele som tekst</string>
+   <string name="share_as_image">Dele som bilde</string>
+   <string name="copy_text">Kopiere tekst</string>
+   <string name="show_fast_scroll">Vis rask rulle</string>
 </resources>

@@ -561,4 +561,8 @@
    <string name="empy">Tyhjä</string>
    <string name="show_quick_bookmarks">Näyttää nopeat kirjanmerkit</string>
    <string name="show_only_available_books">Näyttää vain käytettävissä olevat kirjat</string>
+   <string name="share_as_text">Jaa tekstinä</string>
+   <string name="share_as_image">Jakaa kuvan</string>
+   <string name="copy_text">Kopioi tekstiä</string>
+   <string name="show_fast_scroll">Näyttää nopeasti selaus</string>
 </resources>

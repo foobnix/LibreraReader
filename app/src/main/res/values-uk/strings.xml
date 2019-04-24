@@ -561,4 +561,8 @@
    <string name="empy">Порожній</string>
    <string name="show_quick_bookmarks">Показувати швидкі закладки</string>
    <string name="show_only_available_books">Показувати лише наявні книги</string>
+   <string name="share_as_text">Поділитися як текст</string>
+   <string name="share_as_image">Поділитися як зображення</string>
+   <string name="copy_text">Копіювати текст</string>
+   <string name="show_fast_scroll">Показати швидкий прокручування</string>
 </resources>

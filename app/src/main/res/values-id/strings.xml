@@ -561,4 +561,8 @@
    <string name="empy">Kosong</string>
    <string name="show_quick_bookmarks">Tampilkan bookmark cepat</string>
    <string name="show_only_available_books">Hanya tampilkan buku yang tersedia</string>
+   <string name="share_as_text">Bagikan sebagai teks</string>
+   <string name="share_as_image">Bagikan sebagai gambar</string>
+   <string name="copy_text">Salin teks</string>
+   <string name="show_fast_scroll">Tampilkan gulir cepat</string>
 </resources>

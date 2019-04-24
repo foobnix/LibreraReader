@@ -561,4 +561,8 @@
    <string name="empy">Tuščia</string>
    <string name="show_quick_bookmarks">Rodyti sparčias žymes</string>
    <string name="show_only_available_books">Rodyti tik turimas knygas</string>
+   <string name="share_as_text">Dalintis kaip tekstas</string>
+   <string name="share_as_image">Dalintis kaip vaizdas</string>
+   <string name="copy_text">Kopijuoti tekstą</string>
+   <string name="show_fast_scroll">Rodyti greitą slinktį</string>
 </resources>

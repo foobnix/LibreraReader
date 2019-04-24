@@ -561,4 +561,8 @@
    <string name="empy">खाली</string>
    <string name="show_quick_bookmarks">त्वरित बुकमार्क दिखाएं</string>
    <string name="show_only_available_books">केवल उपलब्ध पुस्तकें दिखाएं</string>
+   <string name="share_as_text">पाठ के रूप में साझा करें</string>
+   <string name="share_as_image">छवि के रूप में साझा करें</string>
+   <string name="copy_text">पाठ कॉपी करें</string>
+   <string name="show_fast_scroll">तेजी से स्क्रॉल दिखाओ</string>
 </resources>

@@ -561,4 +561,8 @@
    <string name="empy">ว่างเปล่า</string>
    <string name="show_quick_bookmarks">แสดงบุ๊กมาร์กอย่างรวดเร็ว</string>
    <string name="show_only_available_books">แสดงเฉพาะหนังสือที่มี</string>
+   <string name="share_as_text">แบ่งปันเป็นข้อความ</string>
+   <string name="share_as_image">แบ่งปันเป็นรูปภาพ</string>
+   <string name="copy_text">คัดลอกข้อความ</string>
+   <string name="show_fast_scroll">แสดงการเลื่อนอย่างรวดเร็ว</string>
 </resources>

@@ -561,4 +561,8 @@
    <string name="empy">Tömma</string>
    <string name="show_quick_bookmarks">Visa snabba bokmärken</string>
    <string name="show_only_available_books">Visa bara tillgängliga böcker</string>
+   <string name="share_as_text">Dela som text</string>
+   <string name="share_as_image">Dela som bild</string>
+   <string name="copy_text">Kopiera text</string>
+   <string name="show_fast_scroll">Visa snabb bläddring</string>
 </resources>

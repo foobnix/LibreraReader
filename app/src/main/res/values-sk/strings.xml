@@ -561,4 +561,8 @@
    <string name="empy">Prázdny</string>
    <string name="show_quick_bookmarks">Zobraziť rýchle záložky</string>
    <string name="show_only_available_books">Zobraziť iba dostupné knihy</string>
+   <string name="share_as_text">Zdieľať ako text</string>
+   <string name="share_as_image">Zdieľať ako obrázok</string>
+   <string name="copy_text">Kopírovať text</string>
+   <string name="show_fast_scroll">Zobraziť rýchle rolovanie</string>
 </resources>

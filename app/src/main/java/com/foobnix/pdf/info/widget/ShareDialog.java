@@ -288,9 +288,6 @@ public class ShareDialog {
                 items.add(a.getString(R.string.remove_from_library));
             }
         }
-        if (!isMainTabs) {
-            items.add(a.getString(R.string.send_snapshot_of_the_page) + " " + (Math.max(page, 0) + 1) + "");
-        }
 
         if (!isExternalOrCloud) {
             items.add(a.getString(R.string.add_tags));
@@ -399,13 +396,7 @@ public class ShareDialog {
 
 
                     EventBus.getDefault().post(new UpdateAllFragments());
-                } else if (!isMainTabs && which == i++) {
-                    if (dc != null) {
-                        ExtUtils.sharePage(a, file, page, dc.getPageUrl(page).toString());
-                    } else {
-                        ExtUtils.sharePage(a, file, page, null);
-                    }
-                } else if (!isExternalOrCloud && which == i++) {
+                }else if (!isExternalOrCloud && which == i++) {
                     Dialogs.showTagsDialog(a, file, false, null);
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
                     showAddToCloudDialog(a, file);

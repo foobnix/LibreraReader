@@ -561,4 +561,8 @@
    <string name="empy">Бос</string>
    <string name="show_quick_bookmarks">Жылдам бетбелгілерді көрсету</string>
    <string name="show_only_available_books">Тек қол жетімді кітаптарды көрсетіңіз</string>
+   <string name="share_as_text">Мәтін ретінде бөлісу</string>
+   <string name="share_as_image">Сурет ретінде бөлісу</string>
+   <string name="copy_text">Мәтінді көшіру</string>
+   <string name="show_fast_scroll">Жылдам айналдыруды көрсетіңіз</string>
 </resources>

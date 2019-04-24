@@ -561,4 +561,8 @@
    <string name="empy">Leeg</string>
    <string name="show_quick_bookmarks">Toon snel favorieten</string>
    <string name="show_only_available_books">Toon alleen beschikbare boeken</string>
+   <string name="share_as_text">Delen als tekst</string>
+   <string name="share_as_image">Deel als afbeelding</string>
+   <string name="copy_text">Kopieer tekst</string>
+   <string name="show_fast_scroll">Toon snel scrollen</string>
 </resources>

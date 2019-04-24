@@ -561,4 +561,8 @@
    <string name="empy">Gol</string>
    <string name="show_quick_bookmarks">Afișați marcaje rapide</string>
    <string name="show_only_available_books">Afișați numai cărțile disponibile</string>
+   <string name="share_as_text">Împărtășiți ca text</string>
+   <string name="share_as_image">Împărtășiți imaginea</string>
+   <string name="copy_text">Copiază textul</string>
+   <string name="show_fast_scroll">Afișează scroll-ul rapid</string>
 </resources>

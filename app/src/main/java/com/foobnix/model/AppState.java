@@ -437,6 +437,7 @@ public class AppState {
 
     public boolean isDayNotInvert = true;
     public boolean isShowSearchBar = true;
+    public boolean isShowFastScroll = true;
 
     public boolean isUseBGImageDay = false;
     public boolean isUseBGImageNight = false;
