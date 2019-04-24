@@ -617,7 +617,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         try {
-            tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+            final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
+            uiFragment.onSelectFragment();
+
+
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -744,11 +747,17 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
+        UIFragment uiFragment = null;
 
         @Override
         public void onPageSelected(int pos) {
-            tabFragments.get(pos).onSelectFragment();
+            uiFragment = tabFragments.get(pos);
+            uiFragment.onSelectFragment();
             TempHolder.get().currentTab = pos;
+
+            LOG.d("onPageSelected", uiFragment);
+
+
         }
 
         @Override
@@ -758,11 +767,24 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (BookCSS.get().isEnableSync) {
+            if (BookCSS.get().isEnableSync && swipeRefreshLayout != null) {
                 swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
+            LOG.d("onPageSelected onPageScrollStateChanged", state);
+            if (state == ViewPager.SCROLL_STATE_IDLE) {
+                check();
+            }
 
+        }
 
+        public void check() {
+            if (BookCSS.get().isEnableSync && swipeRefreshLayout != null) {
+                if (uiFragment instanceof PrefFragment2) {
+                    swipeRefreshLayout.setEnabled(false);
+                } else {
+                    swipeRefreshLayout.setEnabled(true);
+                }
+            }
         }
     };
     private SlidingTabLayout indicator;

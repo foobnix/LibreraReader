@@ -301,6 +301,7 @@ public class PrefFragment2 extends UIFragment {
         };
 
         final int timeout = 1500;
+        final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
 
         final Runnable dragLinear = new Runnable() {
 
@@ -325,6 +326,10 @@ public class PrefFragment2 extends UIFragment {
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             handler.removeCallbacks(ask2);
                             handler.postDelayed(ask2, timeout);
+
+                            if(tab == UITab.PrefFragment){
+                                isshowPrefAsMenu.setChecked(!isChecked);
+                            }
                         }
                     });
                     ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
@@ -359,7 +364,6 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
         isshowPrefAsMenu.setChecked(AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#0"));
         isshowPrefAsMenu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -372,6 +376,7 @@ public class PrefFragment2 extends UIFragment {
                 } else {
                     AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
                 }
+                dragLinear.run();
             }
         });
 
