@@ -1144,6 +1144,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
+            dc.saveCurrentPageAsync();
             updateUI(viewPager.getCurrentItem());
             showHideInfoToolBar();
             updateSeekBarColorAndSize();
@@ -1432,7 +1433,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void nullAdapter() {
         if (viewPager != null) {
             try {
-                dc.saveCurrentPageAsync();
+
                 ImageLoader.getInstance().clearAllTasks();
                 closeDialogs();
                 viewPager.setAdapter(null);

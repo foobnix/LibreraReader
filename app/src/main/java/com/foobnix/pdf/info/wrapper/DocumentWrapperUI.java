@@ -1553,12 +1553,14 @@ public class DocumentWrapperUI {
         public void onClick(final View v) {
             AppState.get().isFullScreen = !AppState.get().isFullScreen;
             ((ImageView) v).setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
-            DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
+
 
             if (dc.isTextFormat()) {
                 onRefresh.run();
                 dc.restartActivity();
             }
+
+            DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
         }
     };
     public View.OnClickListener onScreenMode = new View.OnClickListener() {
@@ -1718,6 +1720,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void run() {
+            dc.saveCurrentPageAsync();
             initToolBarPlusMinus();
             updateSeekBarColorAndSize();
             hideShow();
