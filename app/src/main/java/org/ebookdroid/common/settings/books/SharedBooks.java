@@ -48,18 +48,18 @@ public class SharedBooks {
                 original = load;
             }
 
-            if (load.t > res.t) {
+            if (load.t >= res.t) {
                 res = load;
             }
         }
         if (original != null) {
             original.p = res.p;
             original.t = Math.max(res.t, original.t);
-            LOG.d("SharedBooks-load1 original", fileName);
+            LOG.d("SharedBooks-load1 original", fileName, res.p);
             return original;
         }
 
-        LOG.d("SharedBooks-load1 general",fileName);
+        LOG.d("SharedBooks-load1 general",fileName, res.p);
         return res;
 
     }

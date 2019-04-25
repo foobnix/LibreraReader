@@ -51,7 +51,11 @@ public class BookmarksAdapter extends BaseAdapter {
         final ImageView image = (ImageView) view.findViewById(R.id.image);
         final ImageView cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
         cloudImage.setVisibility(View.GONE);
-        final View deleteView = view.findViewById(R.id.remove);
+        final View deleteView = view.findViewById(R.id.remove2);
+        deleteView.setVisibility(View.VISIBLE);
+        view.findViewById(R.id.remove).setVisibility(View.GONE);
+
+
         ((View) image.getParent()).setVisibility(View.GONE);
         ViewCompat.setElevation(((View) image.getParent()), 0);
         view.setBackgroundColor(Color.TRANSPARENT);
