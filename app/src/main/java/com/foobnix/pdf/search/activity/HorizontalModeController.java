@@ -66,14 +66,14 @@ public abstract class HorizontalModeController extends DocumentController {
     public HorizontalModeController(Activity activity, int w, int h) {
         super(activity);
 
-        udpateImageSize(w, h);
+        isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
+        udpateImageSize(isTextFormat, w, h);
 
         matrixSP = activity.getSharedPreferences("matrix", Context.MODE_PRIVATE);
 
         PageImageState.get().cleanSelectedWords();
         PageImageState.get().pagesText.clear();
 
-        isTextFormat = ExtUtils.isTextFomat(activity.getIntent());
 
         if (isTextFormat) {
             AppTemp.get().isCrop = false;
@@ -106,9 +106,9 @@ public abstract class HorizontalModeController extends DocumentController {
         String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
-        codeDocument = ImageExtractor.getNewCodecContext(getBookPath(), pasw, imageWidth, imageHeight);
+        codeDocument = ImageExtractor.getNewCodecContext(bookPath, pasw, imageWidth, imageHeight);
         if (codeDocument != null) {
-            pagesCount = codeDocument.getPageCount();
+            pagesCount = codeDocument.getPageCount(imageWidth, imageHeight, BookCSS.get().fontSizeSp);
         } else {
             pagesCount = 0;
         }
@@ -136,7 +136,7 @@ public abstract class HorizontalModeController extends DocumentController {
 
 
         if (percent > 0.0f) {
-            currentPage =  Math.round(pagesCount * percent) - 1;
+            currentPage = Math.round(pagesCount * percent) - 1;
         } else if (pagesCount > 0) {
             currentPage = bs.getCurrentPage(getPageCount()).viewIndex;
         }
@@ -173,7 +173,7 @@ public abstract class HorizontalModeController extends DocumentController {
         onGoToPage(page2);
     }
 
-    public void udpateImageSize(int w, int h) {
+    public void udpateImageSize(boolean isTextFormat,int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
@@ -230,7 +230,6 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
 
-
     public int getCurrentPage() {
         return currentPage;
     }
@@ -243,7 +242,6 @@ public abstract class HorizontalModeController extends DocumentController {
     public int getCurentPageFirst1() {
         return currentPage + 1;
     }
-
 
 
     public int getOpenPageNumber() {

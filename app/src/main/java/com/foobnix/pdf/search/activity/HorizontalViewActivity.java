@@ -1342,7 +1342,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             createAdapter();
 
             loadUI();
-            dc.onGoToPage(dc.getCurentPage()+1);
+            dc.onGoToPage(dc.getCurentPage() + 1);
         }
     };
     Runnable reloadDocBrigntness = new Runnable() {
@@ -1662,7 +1662,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         };
-       // dc.init(this);
+        // dc.init(this);
         dc.initAnchor(anchor);
     }
 
@@ -1815,12 +1815,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
 
-             if (AppState.get().inactivityTime > 0) {
-                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                 LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
-                 handler.removeCallbacks(clearFlags);
-                 handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
-             }
+            if (AppState.get().inactivityTime > 0) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+                handler.removeCallbacks(clearFlags);
+                handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
+            }
 
             LOG.d("onPageSelected", pos);
 
@@ -1919,7 +1919,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         } else {
             Keyboards.hideNavigationOnCreate(this);
-            dc.udpateImageSize(viewPager.getWidth(), viewPager.getHeight());
+            dc.udpateImageSize(dc.isTextFormat(), viewPager.getWidth(), viewPager.getHeight());
             onRotateScreen();
         }
 

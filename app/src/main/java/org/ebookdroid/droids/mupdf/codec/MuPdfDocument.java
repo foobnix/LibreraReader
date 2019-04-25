@@ -67,7 +67,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     public int getPageCount() {
-        LOG.d("MuPdfDocument,getPageCount", getW(), getH());
+        LOG.d("MuPdfDocument,getPageCount", getW(), getH(), BookCSS.get().fontSizeSp);
         return getPageCountWithException(documentHandle, getW(), getH(), BookCSS.get().fontSizeSp);
     }
 

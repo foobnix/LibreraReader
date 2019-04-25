@@ -642,14 +642,6 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
-        // CacheZipUtils.cacheLock.lock();
-        // try {
-        // String zipPath = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
-        // LOG.d("getCodecContext", zipPath);
-        // codeCache = ctx.openDocument(zipPath, passw);
-        // } finally {
-        // CacheZipUtils.cacheLock.unlock();
-        // }
 
         TempHolder.get().loadingCancelled = false;
         codeCache = codecContex.openDocument(path, passw);
@@ -658,6 +650,7 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
+        LOG.d("CodecContext-fontSizeSp", w, h, BookCSS.get().fontSizeSp);
         pageCount = codeCache.getPageCount(w, h, BookCSS.get().fontSizeSp);
         pathCache = path;
         whCache = h + w;
