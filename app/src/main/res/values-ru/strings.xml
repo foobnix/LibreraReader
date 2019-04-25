@@ -545,14 +545,14 @@
    <string name="sync_error">Ошибка синхронизации</string>
    <string name="sign_in">Вход в аккаунт</string>
    <string name="sign_out">Выход</string>
-   <string name="manual_sync_only">Cинхронизировать только вручную</string>
-   <string name="wifi_sync_only">Синхронизировать только по сети Wi-Fi</string>
+   <string name="manual_sync_only">Cинхронизировать только выборочно (вручную)</string>
+   <string name="wifi_sync_only">Синхронизировать все данные при подключении к сети Wi-Fi</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
    <string name="single_tap_to_select_text">Выделять текст коротким тапом вместо длинного</string>
    <string name="sync_book">Синхронизировать книгу</string>
-   <string name="sync">Синхрониз. файлы</string>
+   <string name="sync">Синхронизация</string>
    <string name="synchronized_folder">Синхронизированная папка</string>
-   <string name="today">Сегодня</string>
+   <string name="today">Сегодня, </string>
    <string name="downloads">Загрузки</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пуста. Всё равно удалить?</string>
    <string name="synchronized_books">Синхронизированные книги</string>
@@ -561,8 +561,8 @@
    <string name="empy">Пусто</string>
    <string name="show_quick_bookmarks">Показывать быстрые закладки</string>
    <string name="show_only_available_books">Показывать только доступные книги</string>
-   <string name="share_as_text">Поделиться как текст</string>
-   <string name="share_as_image">Поделиться как изображение</string>
+   <string name="share_as_text">Поделиться в виде текста</string>
+   <string name="share_as_image">Поделиться в виде изображения</string>
    <string name="copy_text">Скопировать текст</string>
-   <string name="show_fast_scroll">Показать быструю прокрутку</string>
+   <string name="show_fast_scroll">Отображать бегунок быстрой прокрутки</string>
 </resources>
