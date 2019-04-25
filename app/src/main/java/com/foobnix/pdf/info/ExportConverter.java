@@ -44,6 +44,7 @@ public class ExportConverter {
 
     public static void covertJSONtoNew(Context c, File file) throws Exception {
         LOG.d("covertJSONtoNew", file);
+        SharedBooks.cache.clear();
 
         String st = IO.readString(file);
         JSONObject obj = new JSONObject(st);

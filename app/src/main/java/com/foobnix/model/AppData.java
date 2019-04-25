@@ -113,7 +113,7 @@ public class AppData {
         return res;
     }
 
-    public synchronized List<FileMeta> getAllFavoriteFiles() {
+    public  List<FileMeta> getAllFavoriteFiles() {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -136,7 +136,7 @@ public class AppData {
         return res;
     }
 
-    public synchronized List<FileMeta> getAllFavoriteFolders() {
+    public  List<FileMeta> getAllFavoriteFolders() {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();

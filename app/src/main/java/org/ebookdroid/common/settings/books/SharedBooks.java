@@ -36,7 +36,7 @@ public class SharedBooks {
         AppDB.get().updateAll(list);
     }
 
-    static Map<String, AppBook> cache = new HashMap<>();
+    public static Map<String, AppBook> cache = new HashMap<>();
 
     public static AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);

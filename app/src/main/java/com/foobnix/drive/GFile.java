@@ -35,6 +35,8 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -365,6 +367,7 @@ public class GFile {
                     FileMetaCore.createMetaIfNeed(file.getPath(), true);
                     IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                 }
+                SharedBooks.cache.clear();
 
             }
         } finally {
