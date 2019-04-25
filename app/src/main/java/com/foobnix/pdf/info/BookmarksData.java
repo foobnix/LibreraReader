@@ -31,7 +31,7 @@ public class BookmarksData {
 
 
     public void add(AppBookmark bookmark) {
-        LOG.d("BookmarksData", "add", bookmark.p, bookmark.text);
+        LOG.d("BookmarksData", "add", bookmark.p, bookmark.text, bookmark.path);
         try {
             JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));

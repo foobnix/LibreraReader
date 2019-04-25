@@ -117,7 +117,7 @@ public class ExportConverter {
             LOG.d("Export-PUT", appBook.path, pages);
 
 
-            SharedBooks.save(appBook);
+            SharedBooks.save(appBook, false);
 
 
         }
@@ -178,8 +178,6 @@ public class ExportConverter {
         zipFile.extractAll(output.getPath());
         LOG.d("UnZipFolder", input, output);
     }
-
-
 
 
 }

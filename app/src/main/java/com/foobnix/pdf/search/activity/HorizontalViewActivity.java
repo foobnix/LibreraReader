@@ -378,6 +378,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
+                if (dc == null) {
+                    return;
+                }
                 AppState.get().isFullScreen = !AppState.get().isFullScreen;
                 onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
                 DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().isFullScreen);
@@ -397,6 +400,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
+                if (dc == null) {
+                    return;
+                }
                 v.setEnabled(false);
                 AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
                 nullAdapter();
@@ -2324,7 +2330,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         nullAdapter();
-        if(dc!=null) {
+        if (dc != null) {
             dc.saveCurrentPageAsync();
             dc.onCloseActivityFinal(null);
             dc.closeActivity();
