@@ -24,6 +24,9 @@ public class BookmarkPanel {
 
     public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel, final DocumentController dc, final View pagesBookmark, final String quickBookmark) {
         pageshelper.removeAllViews();
+        if (dc == null) {
+            return;
+        }
 
         if (AppState.get().isShowBookmarsPanelInMusicMode && dc.isMusicianMode()) {
             musicButtonPanel.setVisibility(View.VISIBLE);

@@ -18,6 +18,7 @@ public class HtmlContext extends PdfContext {
         try {
             return openDocumentInnerForce(fileName, password, false);
         } catch (Exception e) {
+            LOG.e(e);
             return openDocumentInnerForce(fileName, password, true);
         }
     }

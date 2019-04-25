@@ -618,8 +618,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         try {
-            final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
-            uiFragment.onSelectFragment();
+            if(pager!=null) {
+                final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
+                uiFragment.onSelectFragment();
+            }
 
 
         } catch (Exception e) {
