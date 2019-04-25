@@ -923,7 +923,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     loadUI();
 
                     // AppState.get().isEditMode = false; //remember last
-                    int pageFromUri = dc.getPageFromUriSingleRun();
+                    int pageFromUri = dc.getCurentPage();
                     updateUI(pageFromUri);
                     hideShow();
 
@@ -1342,7 +1342,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             createAdapter();
 
             loadUI();
-            dc.onGoToPage(dc.getPageFromUriSingleRun() + 1);
+            dc.onGoToPage(dc.getCurentPage()+1);
         }
     };
     Runnable reloadDocBrigntness = new Runnable() {
@@ -1662,7 +1662,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         };
-        dc.init(this);
+       // dc.init(this);
         dc.initAnchor(anchor);
     }
 

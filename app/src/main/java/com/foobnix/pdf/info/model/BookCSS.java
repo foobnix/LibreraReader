@@ -236,7 +236,7 @@ public class BookCSS {
         if (currentHash != instance.hashCode) {
             LOG.d("Objects-save", "SAVE BookCSS");
             hashCode = currentHash;
-            IO.writeObjAsync(AppProfile.syncCSS, instance);
+            IO.writeObj(AppProfile.syncCSS, instance);
         }
     }
 

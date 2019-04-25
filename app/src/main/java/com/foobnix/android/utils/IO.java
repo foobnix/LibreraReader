@@ -19,23 +19,10 @@ import java.io.OutputStream;
 
 public class IO {
 
-    public static void writeObj(String file, Object o) {
-        writeObj(new File(file), o);
-    }
 
+    public static void writeObj(File file, Object o) {
+        new Thread(() -> writeObjAsync(file, o)).start();
 
-    private static void writeObj(File file, Object o) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                writeObjAsync(file, o);
-            }
-        }).start();
-
-    }
-
-    public static void writeObjAsync(String file, Object o) {
-        writeObjAsync(new File(file), o);
     }
 
     public static void writeObjAsync(File file, Object o) {
@@ -63,10 +50,6 @@ public class IO {
 //            LOG.e(e);
 //        }
 
-    }
-
-    public static void readObj(String file, Object o) {
-        readObj(new File(file), o);
     }
 
     public static void readObj(File file, Object o) {

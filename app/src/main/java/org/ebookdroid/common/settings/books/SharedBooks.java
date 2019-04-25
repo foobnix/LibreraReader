@@ -13,7 +13,9 @@ import com.foobnix.ui2.AppDB;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SharedBooks {
 
@@ -34,8 +36,15 @@ public class SharedBooks {
         AppDB.get().updateAll(list);
     }
 
-    public static  AppBook load(String fileName) {
+    static Map<String, AppBook> cache = new HashMap<>();
+
+    public static AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
+
+        if (cache.containsKey(fileName)) {
+            LOG.d("SharedBooks-load-from-cache", fileName);
+            return cache.get(fileName);
+        }
 
         AppBook res = new AppBook(fileName);
         AppBook original = null;
@@ -56,15 +65,17 @@ public class SharedBooks {
             original.p = res.p;
             original.t = Math.max(res.t, original.t);
             LOG.d("SharedBooks-load1 original", fileName, res.p);
+            cache.put(fileName, original);
             return original;
         }
 
-        LOG.d("SharedBooks-load1 general",fileName, res.p);
+        LOG.d("SharedBooks-load1 general", fileName, res.p);
+        cache.put(fileName, res);
         return res;
 
     }
 
-    public static synchronized AppBook load(JSONObject obj, String fileName) {
+    private static AppBook load(JSONObject obj, String fileName) {
         AppBook bs = new AppBook(fileName);
         try {
 
@@ -81,7 +92,7 @@ public class SharedBooks {
         return bs;
     }
 
-    public static synchronized void save(AppBook bs) {
+    public static void save(AppBook bs) {
         if (bs == null || TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
             return;
@@ -90,7 +101,8 @@ public class SharedBooks {
         try {
             final String fileName = ExtUtils.getFileName(bs.path);
             obj.put(fileName, Objects.toJSONObject(bs));
-            IO.writeObjAsync(AppProfile.syncProgress, obj);
+            cache.put(fileName, bs);
+            IO.writeObj(AppProfile.syncProgress, obj);
         } catch (Exception e) {
             LOG.e(e);
         }

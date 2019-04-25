@@ -19,8 +19,9 @@ public class SettingsManager {
     public static AppBook getBookSettings(final String fileName) {
         lock.writeLock().lock();
         try {
-            LOG.d("load", fileName);
+
             current = SharedBooks.load(fileName);
+            LOG.d("load-getBookSettings", current.p, fileName);
             return current;
         } catch (Exception e) {
             return current;

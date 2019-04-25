@@ -820,7 +820,7 @@ public class AppState {
         int currentHash = Objects.hashCode(instance, false);
         if (currentHash != instance.hashCode) {
             hashCode = currentHash;
-            IO.writeObjAsync(AppProfile.syncState, instance);
+            IO.writeObj(AppProfile.syncState, instance);
         }
     }
 
