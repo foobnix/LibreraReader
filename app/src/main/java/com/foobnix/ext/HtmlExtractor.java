@@ -1,5 +1,6 @@
 package com.foobnix.ext;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
@@ -40,6 +41,16 @@ public class HtmlExtractor {
             HypenUtils.resetTokenizer();
 
             boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize || force;
+            if (!accurate) {
+                File root = new File(inputPath).getParentFile();
+                for (File f : root.listFiles()) {
+                    if (ExtUtils.isImageFile(f)) {
+                        IO.copyFile(f, new File(outputDir, f.getName()));
+                        LOG.d("Copy images", f.getName());
+                    }
+                }
+            }
+
             if (accurate) {
                 boolean isBody = false;
                 while ((line = input.readLine()) != null) {
@@ -79,8 +90,8 @@ public class HtmlExtractor {
             // String string = html.toString();
             if (accurate) {
                 string = "<html><head></head><body style='text-align:justify;'><br/>" + string + "</body></html>";
-            }else{
-                string = string.replace("HTML","html").replace("BODY","body");
+            } else {
+                string = string.replace("HTML", "html").replace("BODY", "body");
             }
             // string = string.replace("\">", "\"/>");
             string = string.replace("<br>", "<br/>");
