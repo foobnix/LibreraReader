@@ -2,6 +2,7 @@ package com.foobnix.model;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ui2.AppDB;
 
@@ -10,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 
 public class TagData {
 
@@ -45,7 +47,7 @@ public class TagData {
             JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
             obj.put(MyPath.toRelative(path), tags);
             IO.writeObjAsync(AppProfile.syncTags, obj);
-            LOG.d("saveTags", tags,path);
+            LOG.d("saveTags", tags, path);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -64,6 +66,13 @@ public class TagData {
     public static void restoreTags() {
         LOG.d("restoreTags");
 
+        final List<FileMeta> allWithTag = AppDB.get().getAllWithTag();
+        for (FileMeta m : allWithTag) {
+            m.setTag(null);
+        }
+        AppDB.get().updateAll(allWithTag);
+
+
         for (File file : AppProfile.getAllFiles(AppProfile.APP_TAGS_JSON)) {
             JSONObject obj = IO.readJsonObject(file);
 
@@ -79,8 +88,14 @@ public class TagData {
 
                     FileMeta load = AppDB.get().load(tag.getPath());
                     if (load != null) {
-                        load.setTag(tag.tags);
-                        LOG.d("restoreTags-do", tag.getPath(), tag.tags);
+                        if (load.getTag() != null) {
+                            load.setTag(StringDB.merge(load.getTag(), tag.tags));
+                            LOG.d("restoreTags-do-merge", tag.getPath(), load.getTag());
+                        } else {
+                            load.setTag(tag.tags);
+                            LOG.d("restoreTags-do", tag.getPath(), tag.tags);
+
+                        }
                         AppDB.get().update(load);
                     }
                 } catch (JSONException e) {
