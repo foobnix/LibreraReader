@@ -45,9 +45,9 @@ public class TxtExtract {
         writer.println("<!DOCTYPE html>");
         writer.println("<html>");
         if (AppState.get().isPreText) {
-            writer.println("<head><style>@page{margin:0px 0.5em} pre{margin:0px;white-space:pre !important;} {body:margin:0px;}</style></head>");
+            writer.println("<head><style>@page{margin:0px 0.5em} pre{margin:0px;white-space:pre !important;} {body:margin:0px}</style></head>");
         } else {
-            writer.println("<head><style>p,p+p{margin:0;}</style></head>");
+            writer.println("<head><style>p,p+p{margin:0}</style></head>");
         }
         writer.println("<body>");
 
@@ -88,7 +88,7 @@ public class TxtExtract {
 
                 } else {
                     if (line.trim().length() == 0) {
-                        outLn = "<br/>";
+                        outLn = "<p>&nbsp;</p>";
                     } else if (TxtUtils.isLineStartEndUpperCase(line)) {
                         outLn = "<b>" + format(line) + "</b>";
                     } else if (line.contains("Title:")) {

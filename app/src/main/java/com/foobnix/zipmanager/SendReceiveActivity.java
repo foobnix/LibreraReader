@@ -5,11 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.jsoup.Jsoup;
@@ -68,28 +70,58 @@ public class SendReceiveActivity extends Activity {
                 Uri uri = Uri.parse((String) text);
                 if (uri != null && uri.getScheme() != null && (uri.getScheme().equalsIgnoreCase("http") || uri.getScheme().equalsIgnoreCase("https"))) {
                     try {
+
                         final Object waiter = new Object();
                         Thread thread = new Thread() {
                             @Override
                             public void run() {
                                 try {
-                                    Document document = Jsoup.connect((String) text).userAgent("Mozilla/5.0 (jsoup)").timeout(30000).get();
-                                    String title = (document.title() + text).replaceAll("[^\\w]+", " ");
-                                    if (title.length() > 51) {
-                                        title = title.substring(0, 50) + System.currentTimeMillis();
+
+                                    final String httpResponse = OPDS.getHttpResponse((String) text);
+                                    boolean isText = false;
+                                    if (!httpResponse.contains("<html")) {
+                                        isText = true;
                                     }
-                                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), title + ".html");
-                                    FileOutputStream fileOutputStream = new FileOutputStream(file);
-                                    String outerHtml = document.outerHtml();
-                                    fileOutputStream.write(outerHtml.getBytes());
-                                    fileOutputStream.flush();
-                                    fileOutputStream.close();
-                                    getIntent().setData(Uri.fromFile(file));
-                                    synchronized (waiter) {
-                                        LOG.d("save notify", file, file.getAbsolutePath());
-                                        waiter.notify();
+                                    //Document document = Jsoup.connect((String) text).userAgent("Mozilla/5.0 (jsoup)").timeout(30000).get();
+                                    if (isText) {
+                                        String title = TxtUtils.substringSmart(httpResponse, 30);
+                                        title = TxtUtils.fixFileName(title);
+                                        File file = new File(BookCSS.get().downlodsPath, title + ".txt");
+                                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                        LOG.d("outerHtml-text", httpResponse);
+                                        fileOutputStream.write(httpResponse.getBytes());
+                                        fileOutputStream.flush();
+                                        fileOutputStream.close();
+                                        getIntent().setData(Uri.fromFile(file));
+                                        synchronized (waiter) {
+                                            LOG.d("save notify", file, file.getAbsolutePath());
+                                            waiter.notify();
+                                        }
+                                        LOG.d("save ready", file, file.getAbsolutePath());
+                                    } else {
+                                        Document document = Jsoup.parse(httpResponse);
+
+                                        String title = (document.title() + text).replaceAll("[^\\w]+", " ");
+                                        if (title.length() > 51) {
+                                            title = title.substring(0, 50) + System.currentTimeMillis();
+                                        }
+
+                                        File file = new File(BookCSS.get().downlodsPath, title + ".html");
+
+
+                                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                        String outerHtml = document.outerHtml();
+                                        LOG.d("outerHtml-html", outerHtml);
+                                        fileOutputStream.write(outerHtml.getBytes());
+                                        fileOutputStream.flush();
+                                        fileOutputStream.close();
+                                        getIntent().setData(Uri.fromFile(file));
+                                        synchronized (waiter) {
+                                            LOG.d("save notify", file, file.getAbsolutePath());
+                                            waiter.notify();
+                                        }
+                                        LOG.d("save ready", file, file.getAbsolutePath());
                                     }
-                                    LOG.d("save ready", file, file.getAbsolutePath());
                                 } catch (Throwable throwable) {
                                     throwable.printStackTrace();
                                 }
@@ -105,7 +137,7 @@ public class SendReceiveActivity extends Activity {
                     }
                 } else {
 
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "temp.txt");
+                    File file = new File(BookCSS.get().downlodsPath, "temp.txt");
                     try {
                         FileOutputStream fileOutputStream = new FileOutputStream(file);
                         fileOutputStream.write(text.toString().getBytes());
