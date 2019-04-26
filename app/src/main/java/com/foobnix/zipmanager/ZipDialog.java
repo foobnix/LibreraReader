@@ -25,9 +25,7 @@ import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -109,18 +107,7 @@ public class ZipDialog {
         try {
 
 
-            File file = new File(uri.getPath());
-            ZipArchiveInputStream zipInputStream = null;
-            if (file.isFile()) {
-                LOG.d("extractFile-from1", uri.getPath());
-
-                zipInputStream = new ZipArchiveInputStream(file.getPath());
-            } else {
-                LOG.d("extractFile-from2", uri.getPath());
-
-                InputStream openInputStream = getStream(a, uri);
-                zipInputStream = new ZipArchiveInputStream(openInputStream);
-            }
+            ZipArchiveInputStream zipInputStream = getStream(a, uri);
 
 
             ArchiveEntry nextEntry = null;
@@ -153,14 +140,14 @@ public class ZipDialog {
         return list;
     }
 
-    private static InputStream getStream(final Activity a, final Uri uri) {
+    private static ZipArchiveInputStream getStream(final Activity a, final Uri uri) {
         try {
             LOG.d("getStream", uri);
             File file = new File(uri.getPath());
             if (file.isFile()) {
-                return new FileInputStream(file);
+                return new ZipArchiveInputStream(file.getPath());
             }
-            return a.getContentResolver().openInputStream(uri);
+            return new ZipArchiveInputStream(a.getContentResolver().openInputStream(uri));
         } catch (Exception e) {
             return null;
         }
@@ -221,18 +208,8 @@ public class ZipDialog {
 
             // CacheZipUtils.removeFiles(CacheZipUtils.CACHE_UN_ZIP_DIR.listFiles());
 
-            File file = new File(uri.getPath());
-            ZipArchiveInputStream zipInputStream = null;
-            if (file.isFile()) {
-                LOG.d("extractFile-from1", uri.getPath());
+            ZipArchiveInputStream zipInputStream = getStream(a, uri);
 
-                zipInputStream = new ZipArchiveInputStream(file.getPath());
-            } else {
-                LOG.d("extractFile-from2", uri.getPath());
-
-                InputStream openInputStream = getStream(a, uri);
-                zipInputStream = new ZipArchiveInputStream(openInputStream);
-            }
 
             ArchiveEntry nextEntry = null;
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {

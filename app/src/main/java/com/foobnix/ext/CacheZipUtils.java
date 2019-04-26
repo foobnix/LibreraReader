@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class CacheZipUtils {
@@ -186,18 +185,18 @@ public class CacheZipUtils {
         }
     }
 
-    public static Pair<Boolean, String> isSingleAndSupportEntry(InputStream is) {
+    public static Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
         String name = "";
         try {
 
-            ZipInputStream zipInputStream = new ZipInputStream(is);
             boolean find = false;
-            ZipEntry nextEntry = null;
+            ArchiveEntry nextEntry = null;
 
             while ((nextEntry = zipInputStream.getNextEntry()) != null) {
                 if (nextEntry.isDirectory()) {
                     continue;
                 }
+
                 name = nextEntry.getName();
                 if (find) {
                     zipInputStream.close();
