@@ -556,7 +556,7 @@
    <string name="downloads">Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder is not empty. Delete anyway?</string>
    <string name="synchronized_books">Synced Books</string>
-   <string name="show_sync_wheel">Animate sync progress</string>
+   <string name="show_sync_wheel">Animate sync progress wheel</string>
    <string name="publication_date">Publication Date</string>
    <string name="empy">Empty</string>
    <string name="show_quick_bookmarks">Show quick bookmarks</string>
@@ -564,5 +564,5 @@
    <string name="share_as_text">Share as text</string>
    <string name="share_as_image">Share as image</string>
    <string name="copy_text">Copy text</string>
-   <string name="show_fast_scroll">Show navigation bar</string>
+   <string name="show_fast_scroll">Show scrolling bar</string>
 </resources>
