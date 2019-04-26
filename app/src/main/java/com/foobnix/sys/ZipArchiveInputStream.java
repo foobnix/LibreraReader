@@ -64,13 +64,12 @@ public class ZipArchiveInputStream extends InputStream {
     @Override
     public void close() throws IOException {
         // CacheZipUtils.cacheLock.unlock();
-
-        if (tempFile != null) {
-            tempFile.delete();
-        }
         closeStream();
     }
     public void release(){
+        if (tempFile != null) {
+            tempFile.delete();
+        }
         closeStream();
         if (zp != null) {
             zp = null;
