@@ -561,8 +561,8 @@
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">显示快速书签</string>
    <string name="show_only_available_books">只显示可用的书籍</string>
-   <string name="share_as_text">分享为文字</string>
-   <string name="share_as_image">分享为形象</string>
-   <string name="copy_text">复制文字</string>
+   <string name="share_as_text">分享为文本</string>
+   <string name="share_as_image">分享为图像</string>
+   <string name="copy_text">复制文本</string>
    <string name="show_fast_scroll">显示快速滚动</string>
 </resources>
