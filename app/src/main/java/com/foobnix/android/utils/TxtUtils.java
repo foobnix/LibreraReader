@@ -530,6 +530,8 @@ public class TxtUtils {
             int index = str.indexOf(" ", len);
             if (index > 0) {
                 return str.substring(0, index);
+            } else {
+                return str.substring(0, len);
             }
         }
         return str;
