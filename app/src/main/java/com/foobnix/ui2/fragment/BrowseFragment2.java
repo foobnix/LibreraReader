@@ -130,7 +130,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setTintImageWithAlpha(openAsbookImage, TintUtil.color == Color.BLACK && AppState.get().appTheme == AppState.THEME_DARK_OLED ? Color.WHITE : TintUtil.color);
+        TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
     }
 
@@ -148,7 +148,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onClose = view.findViewById(R.id.onClose);
         openAsBook = view.findViewById(R.id.openAsBook);
         openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
-        TintUtil.setTintImageWithAlpha(openAsbookImage, TintUtil.color == Color.BLACK && AppState.get().appTheme == AppState.THEME_DARK_OLED ? Color.WHITE : TintUtil.color);
+        TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         starIcon = (ImageView) view.findViewById(R.id.starIcon);
         starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
@@ -1118,7 +1118,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         } else {
             starIconDir.setImageResource(R.drawable.star_2);
         }
-        TintUtil.setTintImageWithAlpha(starIconDir);
+        TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         starIconDir.setOnClickListener(new OnClickListener() {
 
@@ -1134,7 +1134,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 } else {
                     starIconDir.setImageResource(R.drawable.star_2);
                 }
-                TintUtil.setTintImageWithAlpha(starIconDir);
+                TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
             }
         });
 

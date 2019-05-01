@@ -88,6 +88,7 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
             buildConfigField "boolean", "IS_BETA", "true"
+            buildConfigField "boolean", "IS_BETA_SEND_REPORTS", "true"
         }
         librera {
             dimension "version"

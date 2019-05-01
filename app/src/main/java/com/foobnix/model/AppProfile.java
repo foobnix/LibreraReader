@@ -36,6 +36,8 @@ import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,6 +119,7 @@ public class AppProfile {
         AppTemp.get().init(c);
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
+        SharedBooks.cache.clear();
     }
 
 

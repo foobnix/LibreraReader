@@ -162,7 +162,7 @@ public class FileInformationDialog {
         if (TxtUtils.isListNotEmpty(objects)) {
             for (AppBookmark b : objects) {
                 if (!fast.equals(b.getText())) {
-                    lines.append(b.getPercent() * 100 + "%" + ": " + b.getText());
+                    lines.append(b.getText());
                     lines.append("\n");
                 }
             }

@@ -16,7 +16,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dip" >
+        android:padding="4dip" >
 
        <RelativeLayout
             android:layout_width="@dimen/wh_button"
