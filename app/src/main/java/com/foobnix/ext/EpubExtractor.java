@@ -132,6 +132,8 @@ public class EpubExtractor extends BaseExtractor {
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
                 Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream);
 
+
+
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);

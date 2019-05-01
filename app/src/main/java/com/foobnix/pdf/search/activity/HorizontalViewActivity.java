@@ -698,7 +698,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.preferences(anchor, dc, onRefresh, reloadDoc);
+                if(dc!=null) {
+                    DragingDialogs.preferences(anchor, dc, onRefresh, reloadDoc);
+                }
             }
         });
 
@@ -853,6 +855,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     Toast.makeText(HorizontalViewActivity.this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                     AppState.get().isEditMode = true;
                     hideShow();
+                    onClose.setVisibility(View.VISIBLE);
                     return;
                 }
 
@@ -1080,6 +1083,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     private boolean closeDialogs() {
+        if (dc == null) {
+            return false;
+        }
         return dc.closeDialogs();
     }
 
@@ -2334,6 +2340,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             dc.saveCurrentPageAsync();
             dc.onCloseActivityFinal(null);
             dc.closeActivity();
+        } else {
+            finish();
         }
     }
 

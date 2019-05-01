@@ -81,7 +81,9 @@ public class MobiContext extends PdfContext {
                     } catch (Exception e) {
                         LOG.e(e);
                     }
-                };
+                }
+
+                ;
             }.start();
         }
 
