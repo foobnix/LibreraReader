@@ -703,6 +703,7 @@ public class AppState {
         providers.put("Academic.ru", String.format("https://dic.academic.ru/searchall.php?SWord=%s", text));
         providers.put("Treccani.it", String.format("http://www.treccani.it/vocabolario/ricerca/%s", text));
         providers.put("Deepl.com", String.format("https://www.deepl.com/translator#%s/%s/%s", from, ln, text));
+        providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
         return providers;
     }
 
