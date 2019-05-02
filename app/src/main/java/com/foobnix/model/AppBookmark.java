@@ -1,5 +1,7 @@
 package com.foobnix.model;
 
+import com.foobnix.android.utils.LOG;
+
 import java.io.File;
 
 public class AppBookmark implements MyPath.RelativePath {
@@ -23,6 +25,7 @@ public class AppBookmark implements MyPath.RelativePath {
     }
 
     public int getPage(int pages) {
+        LOG.d("MyMath getPage",p, pages);
         return Math.round(p * pages);
     }
 

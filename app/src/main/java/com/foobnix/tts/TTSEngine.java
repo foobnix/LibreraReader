@@ -287,24 +287,32 @@ public class TTSEngine {
 
     }
 
-    public static void fastTTSBookmakr(Context c, int page, int pages) {
+
+    public static AppBookmark fastTTSBookmakr(DocumentController dc) {
+        return fastTTSBookmakr(dc.getActivity(),dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
+
+    }
+
+    public static AppBookmark fastTTSBookmakr(Context c, String bookPath, int page, int pages) {
         LOG.d("fastTTSBookmakr", page, pages);
 
         if (pages == 0) {
             LOG.d("fastTTSBookmakr skip");
-            return;
+            return null;
         }
-        boolean hasBookmark = BookmarksData.get().hasBookmark(AppTemp.get().lastBookPath, page, pages);
+        boolean hasBookmark = BookmarksData.get().hasBookmark(bookPath, page, pages);
 
         if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(AppTemp.get().lastBookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
+            final AppBookmark bookmark = new AppBookmark(bookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
             BookmarksData.get().add(bookmark);
 
             String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
             Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
-
+            return bookmark;
         }
         Vibro.vibrate();
+        return null;
+
 
     }
 

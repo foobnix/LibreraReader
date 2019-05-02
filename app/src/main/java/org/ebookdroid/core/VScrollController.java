@@ -18,7 +18,7 @@ public class VScrollController extends AbstractScrollController {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#calculateCurrentPage(org.ebookdroid.core.ViewState)
      */
     @Override
@@ -44,7 +44,7 @@ public class VScrollController extends AbstractScrollController {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#getScrollLimits()
      */
     @Override
@@ -78,16 +78,17 @@ public class VScrollController extends AbstractScrollController {
 
         final float zoom = getBase().getZoomModel().getZoom();
 
-        final int bottom = lpo != null ? (int) lpo.getBounds(zoom).top - model.getPageCount() * 2 : 0;
+        final RectF bounds = lpo.getBounds(zoom);
+        final int bottom = lpo != null ? (int) (bounds.top - (bounds.bottom - bounds.top)) : 0;
 
         return bottom;
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#invalidatePageSizes(org.ebookdroid.ui.viewer.IViewController.InvalidateSizeReason,
-     *      org.ebookdroid.core.Page)
+     * org.ebookdroid.core.Page)
      */
     @Override
     public synchronized final void invalidatePageSizes(final InvalidateSizeReason reason, final Page changedPage) {
@@ -125,9 +126,9 @@ public class VScrollController extends AbstractScrollController {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#calcPageBounds(org.ebookdroid.core.Page,
-     *      int, int)
+     * int, int)
      */
     @Override
     public RectF calcPageBounds(final PageAlign pageAlign, final float pageAspectRatio, final int width, final int height) {

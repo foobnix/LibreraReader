@@ -123,10 +123,11 @@ public class TTSNotification {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
             }
 
-            remoteViews.setInt(R.id.ttsPlay, "setColorFilter", TintUtil.color);
-            remoteViews.setInt(R.id.ttsNext, "setColorFilter", TintUtil.color);
-            remoteViews.setInt(R.id.ttsPrev, "setColorFilter", TintUtil.color);
-            remoteViews.setInt(R.id.ttsStop, "setColorFilter", TintUtil.color);
+            final int color = TintUtil.color == Color.BLACK ? Color.LTGRAY : TintUtil.color;
+            remoteViews.setInt(R.id.ttsPlay, "setColorFilter", color);
+            remoteViews.setInt(R.id.ttsNext, "setColorFilter", color);
+            remoteViews.setInt(R.id.ttsPrev, "setColorFilter", color);
+            remoteViews.setInt(R.id.ttsStop, "setColorFilter", color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
             String pageNumber = "(" + page + "/" + maxPages + ")";
@@ -146,7 +147,7 @@ public class TTSNotification {
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
-                    .setColor(Color.LTGRAY)
+                    .setColor(color)
                     // .setLargeIcon(bookImage) //
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //

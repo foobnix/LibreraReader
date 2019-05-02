@@ -2121,22 +2121,7 @@ public class DragingDialogs {
     }
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
-        Vibro.vibrate();
-        List<AppBookmark> objects = BookmarksData.get().getBookmarksByBook(controller.getCurrentBook());
-        int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
-
-        for (AppBookmark all : objects) {
-            if (all.getPage(controller.getPageCount()) == page) {
-                Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
-                return;
-            }
-        }
-
-        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), controller.getPercentage());
-        BookmarksData.get().add(bookmark);
-
-        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
-        Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
+       TTSEngine.fastTTSBookmakr(controller);
 
     }
 
@@ -2144,7 +2129,7 @@ public class DragingDialogs {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller);
 
-        final View.OnClickListener onAdd = new View.OnClickListener() {
+        final View.OnClickListener onAddBookmark = new View.OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -2160,18 +2145,6 @@ public class DragingDialogs {
                 final AppBookmark appBookmark = objects.get(position);
                 int page = appBookmark.getPage(controller.getPageCount());
 
-                if (page != controller.getCurentPageFirst1()) {
-                    final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());
-                    LOG.d("onItemClick: Bookmark", offsetY);
-                    controller.getLinkHistory().clear();
-                    controller.getLinkHistory().add(offsetY);
-                }
-
-                //if (appBookmark.p > 0) {
-                //   controller.onScrollYPercent(appBookmark.p);
-                //} else {
-
-                //}
                 controller.onGoToPage(page);
 
                 onRefeshUI.run();
@@ -2200,36 +2173,19 @@ public class DragingDialogs {
                 contentList.setAdapter(bookmarksAdapter);
                 contentList.setOnItemClickListener(onItem);
                 contentList.setOnItemLongClickListener(onBooksLong);
-                a.findViewById(R.id.addBookmark).setOnClickListener(onAdd);
+                a.findViewById(R.id.addBookmarkNormal).setOnClickListener(onAddBookmark);
 
-                final View.OnClickListener onAddPAge = new View.OnClickListener() {
+                final View.OnClickListener onQuickBookmark = new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
-                        int page = PageUrl.fakeToReal(controller.getCurentPageFirst1());
-
-                        for (AppBookmark all : objects) {
-                            if (all.getPage(controller.getPageCount()) == page) {
-                                Toast.makeText(controller.getActivity(), R.string.bookmark_for_this_page_already_exists, Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                        }
-
-                        final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), controller.getString(R.string.fast_bookmark), controller.getPercentage());
-                        BookmarksData.get().add(bookmark);
-
-                        objects.clear();
-                        objects.addAll(BookmarksData.get().getBookmarksByBook(controller.getCurrentBook()));
-                        bookmarksAdapter.notifyDataSetChanged();
-
+                        TTSEngine.fastTTSBookmakr(controller);
                         closeDialog();
-                        String TEXT = controller.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + controller.getString(R.string.page) + " " + page + "";
-                        Toast.makeText(controller.getActivity(), TEXT, Toast.LENGTH_SHORT).show();
                         onRefeshUI.run();
                     }
                 };
 
-                a.findViewById(R.id.addPageBookmark).setOnClickListener(onAddPAge);
+                a.findViewById(R.id.addPageBookmarkQuick).setOnClickListener(onQuickBookmark);
 
                 objects.clear();
 
@@ -2244,28 +2200,6 @@ public class DragingDialogs {
                         () -> ExtUtils.sendBookmarksTo(controller.getActivity(), controller.getCurrentBook())
                 );
 
-//                titlePopupMenu.getMenu().add(R.string.export_as_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-//
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        ExtUtils.exportAllBookmarksToJson((FragmentActivity) controller.getActivity(), controller.getCurrentBook());
-//                        return false;
-//                    }
-//                });
-//                titlePopupMenu.getMenu().add(R.string.import_from_backup_json_).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-//
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        ExtUtils.importAllBookmarksFromJson((FragmentActivity) controller.getActivity(), new Runnable() {
-//
-//                            @Override
-//                            public void run() {
-//                                showBookmarksDialog(anchor, controller, onRefeshUI);
-//                            }
-//                        });
-//                        return false;
-//                    }
-//                });
 
                 return a;
             }

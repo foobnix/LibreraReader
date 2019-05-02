@@ -78,9 +78,9 @@ public class VerticalModeController extends DocumentController {
         return ctr.getView().getWidth();
     }
 
-    @Override
-    public float getPercentage() {
+    public float getPercentage1() {
         float p = (float) ctr.getView().getScrollY() / ctr.getDocumentController().getBottomScrollLimit();
+
 
         LOG.d("getPercentage-", ctr.getView().getScrollY(), ctr.getDocumentController().getBottomScrollLimit());
         LOG.d("getPercentage-", p);
@@ -88,8 +88,15 @@ public class VerticalModeController extends DocumentController {
         // return super.getPercentage();
     }
 
+
     @Override
     public void onScrollYPercent(float value) {
+        if (true) {
+            int page = (int) value * getPageCount();
+            ctr.getDocumentController().goToPage(page);
+            return;
+        }
+
         int res = Math.round(ctr.getDocumentController().getBottomScrollLimit() * value);
         ctr.getView().scrollTo(ctr.getView().getScrollX(), res);
         LOG.d("getPercentage-Scroll to", value, ctr.getDocumentController().getBottomScrollLimit(), res);
@@ -372,6 +379,7 @@ public class VerticalModeController extends DocumentController {
     Thread t = new Thread();
 
     long begin = 0;
+
     @Override
     public void onAutoScroll() {
         if (t.isAlive()) {
@@ -641,7 +649,9 @@ public class VerticalModeController extends DocumentController {
                             ctr.closeActivity(null);
                         }
                     });
-                };
+                }
+
+                ;
             });
             builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                 @Override
@@ -771,12 +781,12 @@ public class VerticalModeController extends DocumentController {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
-                    case KeyEvent.KEYCODE_DPAD_CENTER:
-                    case KeyEvent.KEYCODE_ENTER:
-                        onOkListener.onClick(dialog, 0);
-                        return true;
-                    default:
-                        break;
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            onOkListener.onClick(dialog, 0);
+                            return true;
+                        default:
+                            break;
                     }
                 }
                 return false;
