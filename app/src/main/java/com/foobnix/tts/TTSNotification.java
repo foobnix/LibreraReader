@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -145,6 +146,7 @@ public class TTSNotification {
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
+                    .setColor(Color.LTGRAY)
                     // .setLargeIcon(bookImage) //
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
