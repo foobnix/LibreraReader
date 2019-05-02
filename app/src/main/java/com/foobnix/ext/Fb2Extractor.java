@@ -685,7 +685,9 @@ public class Fb2Extractor extends BaseExtractor {
                 isValidXMLChecked = true;
                 isValidXML = line.contains("<");
                 LOG.d("isValidXML", isValidXML, line);
-                writer.print("<html><body>");
+                if(!isValidXML) {
+                    writer.print("<html><body>");
+                }
             }
 
 

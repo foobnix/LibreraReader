@@ -51,7 +51,7 @@
         android:layout_marginTop="10dip"
         android:id="@+id/prefRestore"
         android:layout_width="match_parent"
-        android:text="@string/restore_defaults_full"
+        android:text="@string/restore_defaults_short"
         android:layout_height="wrap_content" />
 
 

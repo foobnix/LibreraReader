@@ -137,6 +137,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
+        ((FastScrollRecyclerView)recyclerView).myConfiguration();
     }
 
     @Override
