@@ -592,7 +592,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         parentName = "" + it.getYear();
                     } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
                         parentName = it.getParentPath();
-                        parentName = parentName.replace(extDir, "");
+                        if(parentName!=null) {
+                            parentName = parentName.replace(extDir, "");
+                        }
                     } else if (AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
                         String lang = it.getLang();
                         if (TxtUtils.isEmpty(lang)) {
@@ -601,7 +603,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             parentName = DialogTranslateFromTo.getLanuageByCode(lang);
                         }
                     }
-                    if (!parentName.equals(last)) {
+                    if (parentName!=null && !parentName.equals(last)) {
                         FileMeta fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
