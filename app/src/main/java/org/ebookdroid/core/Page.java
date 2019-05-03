@@ -43,6 +43,8 @@ public class Page {
     public List<Annotation> annotations;
 
     public RectF selectionAnnotion;
+    public boolean isLastPage = false;
+
 
     public Page(final IActivityController base, final PageIndex index, final PageType pt, final CodecPageInfo cpi) {
         this.base = base;

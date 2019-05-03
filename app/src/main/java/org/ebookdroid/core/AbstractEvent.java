@@ -31,6 +31,11 @@ public abstract class AbstractEvent implements IEvent {
         ctrl.lastVisiblePage = viewState.pages.lastVisible;
 
         for (final Page page : ctrl.model.getPages()) {
+            if(page.index.viewIndex==ctrl.lastVisiblePage) {
+                page.isLastPage = true;
+            }else{
+                page.isLastPage = false;
+            }
             process(page);
         }
 

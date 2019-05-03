@@ -11,7 +11,9 @@ import android.text.TextPaint;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -34,6 +36,7 @@ public class EventDraw implements IEvent {
     final RectF fixedPageBounds = new RectF();
 
     private IActivityController base;
+
 
     Paint paintWrods = new Paint();
 
@@ -125,6 +128,13 @@ public class EventDraw implements IEvent {
         if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
             canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.top - dp1, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
         }
+
+        if(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
+            rect.setColor(TintUtil.color);
+            rect.setStyle(Style.FILL);
+            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_10, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
+        }
+
 
         // TODO Draw there
         // drawLine(page);
