@@ -95,7 +95,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        if (BuildConfig.IS_BETA && BuildConfig.IS_BETA_SEND_REPORTS) {
+        if (BuildConfig.IS_BETA_SEND_REPORTS && !BuildConfig.LOG) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {

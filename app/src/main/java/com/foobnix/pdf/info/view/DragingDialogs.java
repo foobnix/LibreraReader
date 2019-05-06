@@ -722,7 +722,6 @@ public class DragingDialogs {
                     }
                 });
 
-                final EditText ttsDoNotReadChars = (EditText) view.findViewById(R.id.ttsDoNotReadChars);
                 final EditText ttsSentecesDivs = (EditText) view.findViewById(R.id.ttsSentecesDivs);
 
 
@@ -748,8 +747,7 @@ public class DragingDialogs {
                                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                                 // TxtUtils.underlineTextView(textEngine);
-                                AppState.get().ttsSkipChars = AppState.SKIP_TTS_CHARS;
-                                ttsDoNotReadChars.setText(AppState.get().ttsSkipChars);
+
 
                                 AppState.get().ttsSentecesDivs = AppState.TTS_PUNCUATIONS;
                                 ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
@@ -794,27 +792,24 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                     }
                 });
-                // skip text
-                ttsDoNotReadChars.setText(AppState.get().ttsSkipChars);
-                ttsDoNotReadChars.addTextChangedListener(new SmallTextWatcher() {
 
-                    @Override
-                    public void onTextChanged(String text) {
-                        AppState.get().ttsSkipChars = text;
-                        TTSEngine.get().stop();
-                    }
-                });
-                ttsDoNotReadChars.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
 
-                CheckBox ttsDoNotReadCharsEnable = (CheckBox) view.findViewById(R.id.ttsDoNotReadCharsEnable);
-                ttsDoNotReadCharsEnable.setChecked(AppState.get().ttsDoNotReadCharsEnable);
-                ttsDoNotReadCharsEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                CheckBox isEnalbeTTSReplacements = (CheckBox) view.findViewById(R.id.isEnalbeTTSReplacements);
+                isEnalbeTTSReplacements.setChecked(AppState.get().isEnalbeTTSReplacements);
+                isEnalbeTTSReplacements.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().ttsDoNotReadCharsEnable = isChecked;
-                        ttsDoNotReadChars.setEnabled(AppState.get().ttsDoNotReadCharsEnable);
+                        AppState.get().isEnalbeTTSReplacements = isChecked;
                         TTSEngine.get().stop();
+                    }
+                });
+
+                TxtUtils.underlineTextView(view.findViewById(R.id.replaces)).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TTSEngine.get().stop();
+                       Dialogs.replaceTTSDialog(activity);
                     }
                 });
 

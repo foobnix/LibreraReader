@@ -289,7 +289,7 @@ public class TTSEngine {
 
 
     public static AppBookmark fastTTSBookmakr(DocumentController dc) {
-        return fastTTSBookmakr(dc.getActivity(),dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
+        return fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
 
     }
 
@@ -344,7 +344,7 @@ public class TTSEngine {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public String getCurrentLang() {
         try {
-            if (ttsEngine != null && Build.VERSION.SDK_INT >= 21) {
+            if (ttsEngine != null && ttsEngine.getDefaultVoice() != null && Build.VERSION.SDK_INT >= 21) {
                 return ttsEngine.getDefaultVoice().getLocale().getDisplayLanguage();
             }
         } catch (Exception e) {

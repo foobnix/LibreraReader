@@ -25,12 +25,14 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -293,10 +295,24 @@ public class TxtUtils {
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
-        if (AppState.get().ttsDoNotReadCharsEnable) {
-            for (int i = 0; i < AppState.get().ttsSkipChars.length(); i++) {
-                String s = String.valueOf(AppState.get().ttsSkipChars.charAt(i));
-                pageHTML = pageHTML.replace(s, " ");
+        if (AppState.get().isEnalbeTTSReplacements) {
+            try {
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
+
+                final Iterator<String> keys = jsonObject.keys();
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    String value = jsonObject.getString(key);
+
+                    }
+
+                for (int i = 0; i < AppState.get().ttsSkipChars.length(); i++) {
+                    String s = String.valueOf(AppState.get().ttsSkipChars.charAt(i));
+                    pageHTML = pageHTML.replace(s, " ");
+                }
+
+            }catch (Exception e){
+                LOG.e(e);
             }
 
         }

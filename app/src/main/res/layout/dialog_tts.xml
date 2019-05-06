@@ -2,13 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="2dip" >
+        android:padding="2dip">
 
         <TextView
             android:id="@+id/ttsPage"
@@ -22,15 +22,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/ttsSettings"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minEms="2"
                 android:minWidth="110dip"
+                android:minEms="2"
                 android:text="@string/voice" />
 
             <TextView
@@ -73,24 +73,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            myseek:text="@string/speed1" >
-        </com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/speed1"></com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/seekBarPitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            myseek:text="@string/pitch1" >
-        </com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/pitch1"></com.foobnix.pdf.info.view.CustomSeek>
 
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/seekVolume"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            myseek:text="@string/sound_volume" >
-        </com.foobnix.pdf.info.view.CustomSeek>
+            myseek:text="@string/sound_volume"></com.foobnix.pdf.info.view.CustomSeek>
 
         <TextView
             android:id="@+id/restore_defaults"
@@ -129,7 +126,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dip" >
+            android:padding="3dip">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,7 +146,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dip" >
+            android:padding="3dip">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -188,18 +185,27 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dip" />
 
-        <CheckBox
-            android:id="@+id/ttsDoNotReadCharsEnable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/do_not_read_characters" />
 
-        <EditText
-            android:id="@+id/ttsDoNotReadChars"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dip" />
-        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:id="@+id/isEnalbeTTSReplacements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable" />
+
+            <TextView
+                android:id="@+id/replaces"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/replacements" />
+
+        </LinearLayout>
+
+
         <CheckBox
             android:id="@+id/ttsTunnOnLastWord"
             android:layout_width="wrap_content"

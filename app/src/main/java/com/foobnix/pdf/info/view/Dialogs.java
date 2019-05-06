@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,9 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +69,150 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Dialogs {
+
+
+    public static void replaceTTSDialog(Activity activity) {
+        LinearLayout l = new LinearLayout(activity);
+        l.setOrientation(LinearLayout.VERTICAL);
+        l.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+
+
+        try {
+            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements);
+
+            final Iterator<String> keys = jsonObject.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                String value = jsonObject.getString(key);
+
+                LinearLayout h = new LinearLayout(activity);
+                h.setOrientation(LinearLayout.HORIZONTAL);
+
+                EditText from = new EditText(activity);
+                from.setWidth(Dips.DP_200);
+                from.setText(key);
+                from.setSingleLine();
+
+
+                TextView text = new TextView(activity);
+                text.setText(activity.getString(R.string.to));
+                l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+
+
+                EditText to = new EditText(activity);
+                to.setWidth(Dips.DP_120);
+                to.setText(value);
+                to.setSingleLine();
+                to.setHint("_");
+
+                h.addView(from);
+                h.addView(text);
+                h.addView(to);
+                l.addView(h);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        TextView add = new TextView(activity, null, R.style.textLink);
+        add.setText(R.string.add);
+        TxtUtils.underlineTextView(add);
+        add.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LinearLayout h = new LinearLayout(activity);
+                h.setOrientation(LinearLayout.HORIZONTAL);
+
+                EditText from = new EditText(activity);
+                from.setWidth(Dips.DP_200);
+                from.setSingleLine();
+
+
+                TextView text = new TextView(activity);
+                text.setText(activity.getString(R.string.to));
+                l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+
+
+                EditText to = new EditText(activity);
+                to.setWidth(Dips.DP_120);
+                to.setSingleLine();
+                to.setHint("_");
+
+                h.addView(from);
+                h.addView(text);
+                h.addView(to);
+                l.addView(h);
+            }
+        });
+        l.addView(add);
+
+        TextView restore = new TextView(activity, null, R.style.textLink);
+        restore.setText(R.string.restore_defaults_short);
+        TxtUtils.underlineTextView(restore);
+        l.addView(restore);
+
+
+        ScrollView scroll = new ScrollView(activity);
+        scroll.addView(l);
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(R.string.replacements);
+        builder.setCancelable(true);
+        builder.setView(scroll);
+        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+            }
+        });
+        builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(final DialogInterface dialog, final int id) {
+                JSONObject res = new JSONObject();
+
+                for (int i = 0; i < l.getChildCount(); i++) {
+                    final View childAt = l.getChildAt(i);
+                    if (childAt instanceof LinearLayout) {
+                        final LinearLayout line = (LinearLayout) childAt;
+                        String from = ((EditText) line.getChildAt(0)).getText().toString();
+                        String to = ((EditText) line.getChildAt(2)).getText().toString();
+                        try {
+                            if (TxtUtils.isNotEmpty(from)) {
+                                res.put(from, to);
+                            }
+                        } catch (JSONException e) {
+                            LOG.e(e);
+                        }
+                    }
+                }
+                AppState.get().lineTTSReplacements = res.toString();
+                LOG.d("lineTTSReplacements", AppState.get().lineTTSReplacements);
+
+
+            }
+        });
+        final AlertDialog create = builder.create();
+
+        restore.setOnClickListener((a) -> {
+            AppState.get().lineTTSReplacements = AppState.TTS_REPLACEMENTS;
+            create.dismiss();
+            replaceTTSDialog(activity);
+        });
+
+
+        create.setOnDismissListener(new OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.hideNavigation(activity);
+            }
+        });
+
+        create.show();
+    }
 
     public static void showSyncLOGDialog(Activity a) {
         TextView result = new TextView(a);
