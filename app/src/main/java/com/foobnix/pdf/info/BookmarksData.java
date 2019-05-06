@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+
 public class BookmarksData {
 
 
@@ -32,6 +33,11 @@ public class BookmarksData {
 
     public void add(AppBookmark bookmark) {
         LOG.d("BookmarksData", "add", bookmark.p, bookmark.text, bookmark.path);
+
+
+        if (bookmark.p > 1) {
+            bookmark.p = 0;
+        }
         try {
             JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
@@ -42,21 +48,9 @@ public class BookmarksData {
     }
 
 
-    public void save(List<AppBookmark> bookmarks, File path) {
-        try {
-            JSONObject obj = new JSONObject();
-            for (AppBookmark bookmark : bookmarks) {
-                obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
-            }
-            IO.writeObjAsync(path, obj);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
 
     public void remove(AppBookmark bookmark) {
-        LOG.d("BookmarksData", "remove",bookmark.t, bookmark.file);
+        LOG.d("BookmarksData", "remove", bookmark.t, bookmark.file);
 
         try {
             JSONObject obj = IO.readJsonObject(bookmark.file);

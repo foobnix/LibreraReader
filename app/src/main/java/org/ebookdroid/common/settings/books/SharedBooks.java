@@ -93,8 +93,9 @@ public class SharedBooks {
     }
 
     public static void save(AppBook bs) {
-        save(bs,true);
+        save(bs, true);
     }
+
     public static synchronized void save(AppBook bs, boolean inThread) {
         if (bs == null || TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
@@ -102,12 +103,16 @@ public class SharedBooks {
         }
         JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
         try {
+            if (bs.p > 1) {
+                bs.p = 0;
+            }
+
             final String fileName = ExtUtils.getFileName(bs.path);
             obj.put(fileName, Objects.toJSONObject(bs));
             cache.put(fileName, bs);
-            if(inThread) {
+            if (inThread) {
                 IO.writeObj(AppProfile.syncProgress, obj);
-            }else{
+            } else {
                 IO.writeObjAsync(AppProfile.syncProgress, obj);
             }
         } catch (Exception e) {

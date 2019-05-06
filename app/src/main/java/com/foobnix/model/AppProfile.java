@@ -127,6 +127,10 @@ public class AppProfile {
 
 
         List<File> list = new ArrayList<>();
+        if(AppProfile.SYNC_FOLDER_PROFILE==null){
+            return list;
+        }
+
         final File[] files = AppProfile.SYNC_FOLDER_PROFILE.listFiles();
         if (files == null) {
             return list;

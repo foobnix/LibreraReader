@@ -143,9 +143,7 @@ public class ExportConverter {
                     LOG.e(e);
                 }
             }
-            if (bookmark.p > 1) {
-                bookmark.p = 0;
-            }
+
 
             BookmarksData.get().add(bookmark);
 
