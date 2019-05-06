@@ -29,15 +29,14 @@ public class ExportConverter {
 
 
     public static void copyPlaylists() {
-        File syncDir = new File(AppProfile.SYNC_FOLDER_PROFILE, "playlists");
         File oldDir = new File(AppProfile.DOWNLOADS_DIR, "Librera/Playlist");
         File[] list = oldDir.listFiles();
 
         if (list != null) {
-            syncDir.mkdirs();
+            AppProfile.syncPlaylist.mkdirs();
             for (File file : list) {
                 LOG.d("copyPlaylists", file.getPath());
-                IO.copyFile(file, new File(syncDir, file.getName()));
+                IO.copyFile(file, new File(AppProfile.syncPlaylist, file.getName()));
             }
         }
     }

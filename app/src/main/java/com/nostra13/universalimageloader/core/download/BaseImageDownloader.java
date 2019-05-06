@@ -84,9 +84,9 @@ public class BaseImageDownloader implements ImageDownloader {
 	@Override
 	public InputStream getStream(String imageUri, Object extra) throws IOException {
 		switch (Scheme.ofUri(imageUri)) {
-			case HTTP:
-			case HTTPS:
-				return getStreamFromNetwork(imageUri, extra);
+			//case HTTP:
+			//case HTTPS:
+			//	return getStreamFromNetwork(imageUri, extra);
 			case FILE:
 				return getStreamFromFile(imageUri, extra);
 			case CONTENT:
