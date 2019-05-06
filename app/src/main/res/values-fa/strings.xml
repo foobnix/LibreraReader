@@ -565,4 +565,5 @@
    <string name="share_as_image">به عنوان تصویر به اشتراک بگذارید</string>
    <string name="copy_text">متن را کپی کنید</string>
    <string name="show_fast_scroll">نشان می دهد اسکرول سریع</string>
+   <string name="replacements">جایگزین</string>
 </resources>

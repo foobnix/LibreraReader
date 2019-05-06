@@ -565,4 +565,5 @@
    <string name="share_as_image">Сурет ретінде бөлісу</string>
    <string name="copy_text">Мәтінді көшіру</string>
    <string name="show_fast_scroll">Жылдам айналдыруды көрсетіңіз</string>
+   <string name="replacements">Ауыстыру</string>
 </resources>

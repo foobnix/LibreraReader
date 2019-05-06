@@ -565,4 +565,5 @@
    <string name="share_as_image">Dalintis kaip vaizdas</string>
    <string name="copy_text">Kopijuoti tekstą</string>
    <string name="show_fast_scroll">Rodyti greitą slinktį</string>
+   <string name="replacements">Pakeitimai</string>
 </resources>

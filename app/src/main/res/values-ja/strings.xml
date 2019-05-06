@@ -565,4 +565,5 @@
    <string name="share_as_image">画像として共有</string>
    <string name="copy_text">テキストをコピーする</string>
    <string name="show_fast_scroll">高速スクロールを表示</string>
+   <string name="replacements">代替品</string>
 </resources>

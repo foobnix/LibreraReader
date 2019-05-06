@@ -565,4 +565,5 @@
    <string name="share_as_image">Dele som bilde</string>
    <string name="copy_text">Kopiere tekst</string>
    <string name="show_fast_scroll">Vis rask rulle</string>
+   <string name="replacements">Erstatninger</string>
 </resources>

@@ -565,4 +565,5 @@
    <string name="share_as_image">Jakaa kuvan</string>
    <string name="copy_text">Kopioi tekstiä</string>
    <string name="show_fast_scroll">Näyttää nopeasti selaus</string>
+   <string name="replacements">Vaihdot</string>
 </resources>

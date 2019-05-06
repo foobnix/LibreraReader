@@ -565,4 +565,5 @@
    <string name="share_as_image">Resim olarak paylaş</string>
    <string name="copy_text">Metni kopyala</string>
    <string name="show_fast_scroll">Hızlı kaydırma göster</string>
+   <string name="replacements">Değiştirmeleri</string>
 </resources>

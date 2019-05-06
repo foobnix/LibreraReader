@@ -95,7 +95,7 @@ public class Dialogs {
 
 
                 TextView text = new TextView(activity);
-                text.setText(activity.getString(R.string.to));
+                text.setText(" -> ");
                 l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
@@ -116,6 +116,8 @@ public class Dialogs {
 
         TextView add = new TextView(activity, null, R.style.textLink);
         add.setText(R.string.add);
+        add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+
         TxtUtils.underlineTextView(add);
         add.setOnClickListener(new OnClickListener() {
             @Override
@@ -130,7 +132,7 @@ public class Dialogs {
 
 
                 TextView text = new TextView(activity);
-                text.setText(activity.getString(R.string.to));
+                text.setText(" -> ");
                 l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
@@ -148,6 +150,8 @@ public class Dialogs {
         l.addView(add);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
+        restore.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+
         restore.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(restore);
         l.addView(restore);

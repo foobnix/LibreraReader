@@ -565,4 +565,5 @@
    <string name="share_as_image">Condividi come immagine</string>
    <string name="copy_text">Copia testo</string>
    <string name="show_fast_scroll">Mostra scorrimento veloce</string>
+   <string name="replacements">Sostituzioni</string>
 </resources>

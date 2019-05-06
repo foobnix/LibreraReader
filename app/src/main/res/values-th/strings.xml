@@ -565,4 +565,5 @@
    <string name="share_as_image">แบ่งปันเป็นรูปภาพ</string>
    <string name="copy_text">คัดลอกข้อความ</string>
    <string name="show_fast_scroll">แสดงการเลื่อนอย่างรวดเร็ว</string>
+   <string name="replacements">ทดแทน</string>
 </resources>

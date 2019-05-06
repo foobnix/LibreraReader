@@ -565,4 +565,5 @@
    <string name="share_as_image">לשתף תמונה</string>
    <string name="copy_text">העתק טקסט</string>
    <string name="show_fast_scroll">להראות גלילה מהירה</string>
+   <string name="replacements">תחליפים</string>
 </resources>

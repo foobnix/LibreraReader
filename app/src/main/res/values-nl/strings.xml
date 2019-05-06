@@ -565,4 +565,5 @@
    <string name="share_as_image">Deel als afbeelding</string>
    <string name="copy_text">Kopieer tekst</string>
    <string name="show_fast_scroll">Toon snel scrollen</string>
+   <string name="replacements">Vervangingen</string>
 </resources>

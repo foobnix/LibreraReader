@@ -565,4 +565,5 @@
    <string name="share_as_image">Chia sẻ như hình ảnh</string>
    <string name="copy_text">Sao chép văn bản</string>
    <string name="show_fast_scroll">Hiển thị cuộn nhanh</string>
+   <string name="replacements">Thay thế</string>
 </resources>

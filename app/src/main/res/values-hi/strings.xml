@@ -565,4 +565,5 @@
    <string name="share_as_image">छवि के रूप में साझा करें</string>
    <string name="copy_text">पाठ कॉपी करें</string>
    <string name="show_fast_scroll">तेजी से स्क्रॉल दिखाओ</string>
+   <string name="replacements">प्रतिस्थापन</string>
 </resources>

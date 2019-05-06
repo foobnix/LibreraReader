@@ -565,4 +565,5 @@
    <string name="share_as_image">Împărtășiți imaginea</string>
    <string name="copy_text">Copiază textul</string>
    <string name="show_fast_scroll">Afișează scroll-ul rapid</string>
+   <string name="replacements">Înlocuiri</string>
 </resources>

@@ -565,4 +565,5 @@
    <string name="share_as_image">Udostępnij jako obraz</string>
    <string name="copy_text">Skopiuj tekst</string>
    <string name="show_fast_scroll">Pokaż szybkie przewijanie</string>
+   <string name="replacements">Części zamienne</string>
 </resources>

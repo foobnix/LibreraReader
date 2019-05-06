@@ -565,4 +565,5 @@
    <string name="share_as_image">分享為圖像</string>
    <string name="copy_text">複製文本</string>
    <string name="show_fast_scroll">顯示快速滾動</string>
+   <string name="replacements">替代品</string>
 </resources>

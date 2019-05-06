@@ -565,4 +565,5 @@
    <string name="share_as_image">Megosztani képként</string>
    <string name="copy_text">Szöveg másolása</string>
    <string name="show_fast_scroll">Gyors görgetés</string>
+   <string name="replacements">Pótlások</string>
 </resources>

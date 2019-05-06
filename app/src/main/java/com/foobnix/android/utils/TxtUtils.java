@@ -299,21 +299,27 @@ public class TxtUtils {
             try {
                 JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
 
-                final Iterator<String> keys = jsonObject.keys();
+                final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();
-                    String value = jsonObject.getString(key);
+                    String value = obj.getString(key);
+                    if (key.startsWith("[") && key.endsWith("]")) {
+                        for (int i = 1; i < key.length() - 1; i++) {
+                            String s = String.valueOf(key.charAt(i));
+                            pageHTML = pageHTML.replace(s, value);
+                        }
 
+                    } else {
+                        pageHTML = pageHTML.replace(key, value);
                     }
-
-                for (int i = 0; i < AppState.get().ttsSkipChars.length(); i++) {
-                    String s = String.valueOf(AppState.get().ttsSkipChars.charAt(i));
-                    pageHTML = pageHTML.replace(s, " ");
                 }
 
-            }catch (Exception e){
+
+            } catch (Exception e) {
                 LOG.e(e);
             }
+            LOG.d("pageHTML [after replacments] ", pageHTML);
+
 
         }
 

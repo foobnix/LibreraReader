@@ -565,4 +565,5 @@
    <string name="share_as_image">이미지로 공유하다</string>
    <string name="copy_text">텍스트 복사</string>
    <string name="show_fast_scroll">빠른 스크롤을 보여라.</string>
+   <string name="replacements">대체</string>
 </resources>

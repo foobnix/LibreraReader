@@ -565,4 +565,5 @@
    <string name="share_as_image">Dela som bild</string>
    <string name="copy_text">Kopiera text</string>
    <string name="show_fast_scroll">Visa snabb bläddring</string>
+   <string name="replacements">Ersättare</string>
 </resources>

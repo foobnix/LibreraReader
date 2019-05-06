@@ -565,6 +565,5 @@
    <string name="share_as_image">Share as image</string>
    <string name="copy_text">Copy text</string>
    <string name="show_fast_scroll">Show scrollbar</string>
-    <string name="to">To</string>
-    <string name="replacements">Replacements</string>
+   <string name="replacements">Replacements</string>
 </resources>
