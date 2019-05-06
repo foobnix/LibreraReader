@@ -27,6 +27,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -127,7 +128,7 @@ public class AppProfile {
 
 
         List<File> list = new ArrayList<>();
-        if(AppProfile.SYNC_FOLDER_PROFILE==null){
+        if (AppProfile.SYNC_FOLDER_PROFILE == null) {
             return list;
         }
 
@@ -180,7 +181,7 @@ public class AppProfile {
     }
 
     public static String getCurrent(Context c) {
-        return sp.getString(PROFILE_PREFIX, LOG.isEnable ? "BETA" : c.getString(R.string.main));
+        return sp.getString(PROFILE_PREFIX, BuildConfig.IS_BETA ? "BETA" : "Librera");
     }
 
     public static void saveCurrent(Context c, String name) {
