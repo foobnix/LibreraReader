@@ -15,7 +15,6 @@ import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
-import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -160,13 +159,8 @@ public class AppDB {
 
     }
 
-    public boolean isOpen;
 
     public void open(Context c, String appDB) {
-        isOpen = false;
-        if (!Android6.canWrite(c)) {
-            return;
-        }
         LOG.d("Open-DB", appDB);
         DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, appDB);
 
@@ -176,7 +170,6 @@ public class AppDB {
         daoSession = daoMaster.newSession();
 
         fileMetaDao = daoSession.getFileMetaDao();
-        isOpen = true;
 
         // if (c.getResources().getBoolean(R.bool.is_log_enable)) {
         // QueryBuilder.LOG_SQL = true;
@@ -358,6 +351,9 @@ public class AppDB {
     }
 
     public FileMeta getOrCreate(String path) {
+        if (fileMetaDao == null) {
+            return new FileMeta(path);
+        }
 
         FileMeta load = fileMetaDao.load(path);
         try {

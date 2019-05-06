@@ -72,6 +72,14 @@ public class OPDS {
 
     }
 
+    public static String getHttpResponseNoException(String url) {
+        try {
+            return getHttpResponse(url);
+        } catch (IOException e) {
+            return "";
+        }
+
+    }
     public static String getHttpResponse(String url) throws IOException {
 
         Request request = new Request.Builder()//

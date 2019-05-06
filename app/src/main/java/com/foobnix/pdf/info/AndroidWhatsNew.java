@@ -12,13 +12,11 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.Apps;
-import com.foobnix.android.utils.Https;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
-import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.view.AlertDialogs;
 
 import java.io.BufferedReader;
@@ -234,41 +232,42 @@ public class AndroidWhatsNew {
             return;
         }
 
+
         final String url = "https://www.dropbox.com/s/gom54hvrhei3o85/version.txt?raw=1";
 
-        new CopyAsyncTask() {
+
+        LOG.d("checkForNewBeta");
+        new Thread() {
             @Override
-            protected Object doInBackground(Object... params) {
-                return Https.getUrlContents(url);
-            }
+            public void run() {
 
-            @Override
-            protected void onPostExecute(Object result) {
+                final String result = OPDS.getHttpResponseNoException(url);
+                LOG.d("checkForNewBeta result",result);
+                c.runOnUiThread(() -> {
+                    try {
+                        if (result == null || TxtUtils.isEmpty("" + result)) {
+                            return;
+                        }
 
-                LOG.d("checkForNewBeta",result,Apps.getVersionName(c));
+                        final String my = Apps.getVersionName(c);
+                        if (my.equals(result)) {
+                            return;
+                        }
 
-                try {
-                if (result == null || TxtUtils.isEmpty("" + result)) {
-                    return;
-                }
+                        AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.open_in_browser), new Runnable() {
 
-                final String my = Apps.getVersionName(c);
-                if (my.equals(result)) {
-                    return;
-                }
-
-                AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.open_in_browser), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        Urls.open(c, "http://beta.librera.mobi");
+                            @Override
+                            public void run() {
+                                Urls.open(c, "http://beta.librera.mobi");
+                            }
+                        });
+                    } catch (Exception e) {
+                        LOG.e(e);
                     }
                 });
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
             }
-        }.execute();
+        }.start();
+
 
     }
 

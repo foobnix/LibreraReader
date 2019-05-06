@@ -8,7 +8,9 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.ui2.FileMetaCore;
@@ -30,6 +32,13 @@ public class OpenerActivity extends Activity {
         }
 
         super.onCreate(savedInstanceState);
+
+
+        if (!Android6.canWrite(this)) {
+            Android6.checkPermissions(this, true);
+            return;
+        }
+        AppProfile.init(this);
 
         if (getIntent() == null || getIntent().getData() == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
@@ -78,6 +87,11 @@ public class OpenerActivity extends Activity {
         FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, meta);
         LOG.d("OpenerActivity", "open file", meta.getPath());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
     @Override
