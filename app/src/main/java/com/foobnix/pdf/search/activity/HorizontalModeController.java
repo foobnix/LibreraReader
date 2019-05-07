@@ -173,7 +173,7 @@ public abstract class HorizontalModeController extends DocumentController {
         onGoToPage(page2);
     }
 
-    public void udpateImageSize(boolean isTextFormat,int w, int h) {
+    public void udpateImageSize(boolean isTextFormat, int w, int h) {
         LOG.d("udpateImageSize", w, h, isTextFormat);
         imageWidth = isTextFormat ? w : (int) (Math.min(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
         imageHeight = isTextFormat ? h : (int) (Math.max(Dips.screenWidth(), Dips.screenHeight()) * AppState.get().pageQuality);
@@ -303,7 +303,22 @@ public abstract class HorizontalModeController extends DocumentController {
             LOG.e(e);
         }
         return "";
+    }
 
+    @Override
+    public String getPageHtml() {
+        try {
+            CodecPage codecPage = codeDocument.getPage(getCurentPageFirst1() - 1);
+            if (!codecPage.isRecycled()) {
+                String pageHTML = codecPage.getPageHTML();
+                pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+                return pageHTML;
+
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
     }
 
     @Override

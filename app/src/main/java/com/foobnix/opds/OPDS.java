@@ -31,6 +31,7 @@ import okhttp3.CacheControl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class OPDS {
     public static final String CODE_401 = "401";
@@ -80,6 +81,7 @@ public class OPDS {
         }
 
     }
+
     public static String getHttpResponse(String url) throws IOException {
 
         Request request = new Request.Builder()//
@@ -131,6 +133,58 @@ public class OPDS {
 
         String string = response.body().string();
         return string;
+    }
+
+    public static ResponseBody getHttpResponseBody(String url) throws IOException {
+
+        Request request = new Request.Builder()//
+                .header("User-Agent", USER_AGENT)
+
+                .cacheControl(new CacheControl.Builder()//
+                        .maxAge(10, TimeUnit.MINUTES)//
+                        .build())//
+                .url(url)//
+                .build();//
+
+        Response response = client//
+                .newCall(request)//
+                .execute();
+
+        LOG.d("Header: >>", url);
+        LOG.d("Header: Status code:", response.code());
+
+        for (int i = 0; i < response.headers().size(); i++) {
+            String name = response.headers().name(i);
+            String value = response.headers().value(i);
+            LOG.d("Header: ", name, value);
+        }
+
+        if (response.code() == 401 && TxtUtils.isEmpty(TempHolder.get().login)) {
+            return response.body();
+        } else {
+
+            Credentials credentials = new Credentials(TempHolder.get().login, TempHolder.get().password);
+            final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
+            final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
+
+            DispatchingAuthenticator authenticator = new DispatchingAuthenticator.Builder()//
+                    .with("digest", digestAuthenticator)//
+                    .with("basic", basicAuthenticator)//
+                    .build();
+
+            client = builder //
+                    .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                    .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
+                    .build();
+
+            response = client.newCall(request).execute();
+
+            if (response.code() == 401) {
+                return response.body();
+            }
+        }
+
+        return response.body();
     }
 
     public static Feed getFeed(String url) {

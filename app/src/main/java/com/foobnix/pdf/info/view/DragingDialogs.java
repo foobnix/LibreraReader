@@ -809,7 +809,15 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
-                       Dialogs.replaceTTSDialog(activity);
+                        Dialogs.replaceTTSDialog(activity);
+                    }
+                });
+
+                TxtUtils.underlineTextView(view.findViewById(R.id.showDebug)).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialogs.showTTSDebug(controller);
+
                     }
                 });
 
@@ -2116,7 +2124,7 @@ public class DragingDialogs {
     }
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
-       TTSEngine.fastTTSBookmakr(controller);
+        TTSEngine.fastTTSBookmakr(controller);
 
     }
 

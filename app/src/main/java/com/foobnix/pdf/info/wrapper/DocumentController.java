@@ -607,6 +607,9 @@ public abstract class DocumentController {
 
     public abstract String getTextForPage(int page);
 
+    public abstract String getPageHtml();
+
+
     public abstract List<PageLink> getLinksForPage(int page);
 
     public void onAnnotationTap(long pageHander, int page, int index) {

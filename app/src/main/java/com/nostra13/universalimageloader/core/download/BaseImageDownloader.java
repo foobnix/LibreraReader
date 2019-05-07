@@ -27,6 +27,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 
+import com.foobnix.opds.OPDS;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ContentLengthInputStream;
 import com.nostra13.universalimageloader.utils.IoUtilsUIL;
@@ -84,9 +85,9 @@ public class BaseImageDownloader implements ImageDownloader {
 	@Override
 	public InputStream getStream(String imageUri, Object extra) throws IOException {
 		switch (Scheme.ofUri(imageUri)) {
-			//case HTTP:
-			//case HTTPS:
-			//	return getStreamFromNetwork(imageUri, extra);
+			case HTTP:
+			case HTTPS:
+				return getStreamFromNetwork2(imageUri, extra);
 			case FILE:
 				return getStreamFromFile(imageUri, extra);
 			case CONTENT:
@@ -134,6 +135,9 @@ public class BaseImageDownloader implements ImageDownloader {
 		}
 
 		return new ContentLengthInputStream(new BufferedInputStream(imageStream, BUFFER_SIZE), conn.getContentLength());
+	}
+	protected InputStream getStreamFromNetwork2(String imageUri, Object extra) throws IOException {
+		return OPDS.getHttpResponseBody(imageUri).byteStream();
 	}
 
 	/**

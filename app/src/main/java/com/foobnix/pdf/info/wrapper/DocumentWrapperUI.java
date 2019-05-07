@@ -44,6 +44,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.UiSystemUtils;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.AnchorHelper;
 import com.foobnix.pdf.info.view.BookmarkPanel;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -796,6 +797,11 @@ public class DocumentWrapperUI {
 
         textToSpeach = (ImageView) a.findViewById(R.id.textToSpeach);
         textToSpeach.setOnClickListener(onTextToSpeach);
+        textToSpeach.setOnLongClickListener(v -> {
+            AlertDialogs.showTTSDebug(dc);
+            hideShow();
+            return true;
+        });
 
         drawView = (DrawView) a.findViewById(R.id.drawView);
 

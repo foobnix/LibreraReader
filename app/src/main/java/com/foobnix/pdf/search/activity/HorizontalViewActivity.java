@@ -491,6 +491,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
+        textToSpeach.setOnLongClickListener(v -> {
+            AlertDialogs.showTTSDebug(dc);
+            hideShow();
+            return true;
+        });
         ttsActive = findViewById(R.id.ttsActive);
 
         // ttsActive.setOnClickListener(new View.OnClickListener() {

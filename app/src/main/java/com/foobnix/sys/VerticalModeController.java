@@ -331,6 +331,15 @@ public class VerticalModeController extends DocumentController {
     }
 
     @Override
+    public synchronized String getPageHtml() {
+        String pageHTML = ctr.getDecodeService().getPageHTML(getCurentPageFirst1()-1);
+        pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+        return pageHTML;
+    }
+
+
+
+    @Override
     public List<PageLink> getLinksForPage(int page) {
         return ctr.getDecodeService().getLinksForPage(page);
     }

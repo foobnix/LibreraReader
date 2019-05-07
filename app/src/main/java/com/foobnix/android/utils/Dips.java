@@ -34,13 +34,16 @@ public class Dips {
     public final static int DP_60 = Dips.dpToPx(60);
     public final static int DP_80 = Dips.dpToPx(80);
     public final static int DP_90 = Dips.dpToPx(90);
+    public final static int DP_100 = Dips.dpToPx(100);
+
     public final static int DP_120 = Dips.dpToPx(120);
     public final static int DP_800 = Dips.dpToPx(800);
     public final static int DP_600 = Dips.dpToPx(600);
     public final static int DP_400 = Dips.dpToPx(400);
     public final static int DP_300 = Dips.dpToPx(300);
     public final static int DP_200 = Dips.dpToPx(200);
-    public final static int DP_100 = Dips.dpToPx(100);
+    public final static int DP_1000 = Dips.dpToPx(100);
+
 
     private static WindowManager wm;
     static Context context;
