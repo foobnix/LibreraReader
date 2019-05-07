@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +40,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.UI;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
@@ -80,14 +82,24 @@ public class Dialogs {
         root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
 
 
-        TextView dictText = new TextView(activity);
+        LinearLayout dicts = UI.verticalLayout(activity);
+
         if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
-            dictText.setText(BookCSS.get().dictPath);
-            dictText.setVisibility(View.VISIBLE);
-        } else {
-            dictText.setVisibility(View.GONE);
+            final List<String> strings = StringDB.asList(BookCSS.get().dictPath);
+            for (String s : strings) {
+                final TextView text = UI.text(activity, s);
+                text.setSingleLine();
+                text.setEllipsize(TextUtils.TruncateAt.START);
+                text.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+
+                text.setOnClickListener(a -> StringDB.delete(BookCSS.get().dictPath, s, result -> {
+                    BookCSS.get().dictPath = result;
+                    text.setVisibility(View.GONE);
+                }));
+                dicts.addView(text);
+            }
         }
-        root.addView(dictText);
+        root.addView(dicts);
 
 
         try {
@@ -169,21 +181,26 @@ public class Dialogs {
         TxtUtils.underlineTextView(addDict);
         addDict.setOnClickListener(v -> {
             ChooserDialogFragment.chooseFile((FragmentActivity) activity, ".txt").setOnSelectListener((result1, result2) -> {
-                BookCSS.get().dictPath = result1;
-                dictText.setText(BookCSS.get().dictPath);
-                dictText.setVisibility(View.VISIBLE);
+                if (!StringDB.contains(BookCSS.get().dictPath, result1)) {
+                    StringDB.add(BookCSS.get().dictPath, result1, result ->
+                            BookCSS.get().dictPath = result);
+
+
+                    final TextView text = UI.text(activity, result1);
+                    text.setSingleLine();
+                    text.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+                    text.setEllipsize(TextUtils.TruncateAt.START);
+                    text.setOnClickListener(a -> StringDB.delete(BookCSS.get().dictPath, result1, result3 -> {
+                        BookCSS.get().dictPath = result3;
+                        text.setVisibility(View.GONE);
+                    }));
+                    dicts.addView(text);
+
+                    Vibro.vibrate();
+                }
                 result2.dismiss();
                 return false;
             });
-        });
-        addDict.setOnLongClickListener(a -> {
-            BookCSS.get().dictPath = null;
-            dictText.setVisibility(View.GONE);
-            return true;
-        });
-        dictText.setOnClickListener(a -> {
-            BookCSS.get().dictPath = null;
-            dictText.setVisibility(View.GONE);
         });
 
 
@@ -211,6 +228,7 @@ public class Dialogs {
             public void onClick(final DialogInterface dialog, final int id) {
             }
         });
+
         builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
 
             @Override
@@ -221,6 +239,9 @@ public class Dialogs {
                     final View childAt = root.getChildAt(i);
                     if (childAt instanceof LinearLayout) {
                         final LinearLayout line = (LinearLayout) childAt;
+                        if (line.getOrientation() == LinearLayout.VERTICAL) {
+                            continue;
+                        }
                         String from = ((EditText) line.getChildAt(0)).getText().toString();
                         String to = ((EditText) line.getChildAt(2)).getText().toString();
                         try {

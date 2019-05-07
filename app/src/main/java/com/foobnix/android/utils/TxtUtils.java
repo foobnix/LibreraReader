@@ -355,33 +355,37 @@ public class TxtUtils {
         dict1.clear();
         dict2.clear();
 
-        try {
-            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(BookCSS.get().dictPath)));
-            String line;
-            while ((line = input.readLine()) != null) {
-                if (TxtUtils.isEmpty(line)) {
-                    continue;
-                } else if (line.startsWith("#")) {
-                    continue;
-                } else if (line.startsWith("*\"")) {
-                    String parts[] = line.split("\" \"");
-                    String r1 = parts[0].substring(2);
-                    String r2 = parts[1].substring(0, parts[1].length() - 1);
-                    LOG.d("pageHTML-replaceAll", r1, r2);
+        final List<String> dicts = StringDB.asList(BookCSS.get().dictPath);
+        for (String dict : dicts) {
+            try {
+                LOG.d("pageHTML-dict", dict);
+                BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(dict)));
+                String line;
+                while ((line = input.readLine()) != null) {
+                    if (TxtUtils.isEmpty(line)) {
+                        continue;
+                    } else if (line.startsWith("#")) {
+                        continue;
+                    } else if (line.startsWith("*\"")) {
+                        String parts[] = line.split("\" \"");
+                        String r1 = parts[0].substring(2);
+                        String r2 = parts[1].substring(0, parts[1].length() - 1);
+                        LOG.d("pageHTML-replaceAll", r1, r2);
 
-                    dict1.put(r1, r2);
+                        dict1.put(r1, r2);
 
-                } else if (line.startsWith("\"")) {
-                    String parts[] = line.split("\" \"");
-                    String r1 = parts[0].substring(1);
-                    String r2 = parts[1].substring(0, parts[1].length() - 1);
-                    LOG.d("pageHTML-replace", r1, r2);
-                    dict2.put(r1, r2);
+                    } else if (line.startsWith("\"")) {
+                        String parts[] = line.split("\" \"");
+                        String r1 = parts[0].substring(1);
+                        String r2 = parts[1].substring(0, parts[1].length() - 1);
+                        LOG.d("pageHTML-replace", r1, r2);
+                        dict2.put(r1, r2);
+                    }
                 }
+                input.close();
+            } catch (Exception e) {
+                LOG.e(e);
             }
-            input.close();
-        } catch (Exception e) {
-            LOG.e(e);
         }
 
     }

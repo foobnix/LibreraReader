@@ -19,6 +19,9 @@ public class StringDB {
         if (db == null) {
             db = "";
         }
+        if (!db.endsWith(DIVIDER)) {
+            db += DIVIDER;
+        }
 
         text = text.replace(DIVIDER, "").trim();
         db = db + text + DIVIDER;
