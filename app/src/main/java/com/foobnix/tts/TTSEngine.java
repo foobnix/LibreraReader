@@ -126,6 +126,7 @@ public class TTSEngine {
     public void stop() {
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
+            TxtUtils.dictHash = "";
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {

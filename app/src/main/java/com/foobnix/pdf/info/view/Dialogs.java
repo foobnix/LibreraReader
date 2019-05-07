@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,8 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.WebViewHepler;
+import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -72,9 +75,19 @@ public class Dialogs {
 
 
     public static void replaceTTSDialog(Activity activity) {
-        LinearLayout l = new LinearLayout(activity);
-        l.setOrientation(LinearLayout.VERTICAL);
-        l.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+        LinearLayout root = new LinearLayout(activity);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+
+
+        TextView dictText = new TextView(activity);
+        if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
+            dictText.setText(BookCSS.get().dictPath);
+            dictText.setVisibility(View.VISIBLE);
+        } else {
+            dictText.setVisibility(View.GONE);
+        }
+        root.addView(dictText);
 
 
         try {
@@ -96,7 +109,7 @@ public class Dialogs {
 
                 TextView text = new TextView(activity);
                 text.setText(" -> ");
-                l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+                root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
                 EditText to = new EditText(activity);
@@ -108,14 +121,14 @@ public class Dialogs {
                 h.addView(from);
                 h.addView(text);
                 h.addView(to);
-                l.addView(h);
+                root.addView(h);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         TextView add = new TextView(activity, null, R.style.textLink);
-        add.setText(R.string.add);
+        add.setText("Add rule");
         add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
 
         TxtUtils.underlineTextView(add);
@@ -133,7 +146,7 @@ public class Dialogs {
 
                 TextView text = new TextView(activity);
                 text.setText(" -> ");
-                l.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
+                root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
 
 
                 EditText to = new EditText(activity);
@@ -144,21 +157,43 @@ public class Dialogs {
                 h.addView(from);
                 h.addView(text);
                 h.addView(to);
-                l.addView(h);
+                root.addView(h);
             }
         });
-        l.addView(add);
+        root.addView(add);
+
+
+        TextView addDict = new TextView(activity, null, R.style.textLink);
+        addDict.setText("Add dictionary");
+        addDict.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+        TxtUtils.underlineTextView(addDict);
+        addDict.setOnClickListener(v -> {
+            ChooserDialogFragment.chooseFile((FragmentActivity) activity, ".txt").setOnSelectListener((result1, result2) -> {
+                BookCSS.get().dictPath = result1;
+                dictText.setText(BookCSS.get().dictPath);
+                dictText.setVisibility(View.VISIBLE);
+                result2.dismiss();
+                return false;
+            });
+        });
+        addDict.setOnLongClickListener(a -> {
+            BookCSS.get().dictPath = null;
+            dictText.setVisibility(View.GONE);
+            return true;
+        });
+
+        root.addView(addDict);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
         restore.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
 
         restore.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(restore);
-        l.addView(restore);
+        root.addView(restore);
 
 
         ScrollView scroll = new ScrollView(activity);
-        scroll.addView(l);
+        scroll.addView(root);
 
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -177,8 +212,8 @@ public class Dialogs {
             public void onClick(final DialogInterface dialog, final int id) {
                 JSONObject res = new JSONObject();
 
-                for (int i = 0; i < l.getChildCount(); i++) {
-                    final View childAt = l.getChildAt(i);
+                for (int i = 0; i < root.getChildCount(); i++) {
+                    final View childAt = root.getChildAt(i);
                     if (childAt instanceof LinearLayout) {
                         final LinearLayout line = (LinearLayout) childAt;
                         String from = ((EditText) line.getChildAt(0)).getText().toString();
@@ -281,7 +316,8 @@ public class Dialogs {
 
     }
 
-    public static void customValueDialog(final Context a, final int initValue, final IntegerResponse reponse) {
+    public static void customValueDialog(final Context a, final int initValue,
+                                         final IntegerResponse reponse) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(R.string.custom_value);
 
@@ -442,7 +478,8 @@ public class Dialogs {
 
     }
 
-    public static void showEditDialog(final Context c, String title, String init, final ResultResponse<String> onresult) {
+    public static void showEditDialog(final Context c, String title, String init,
+                                      final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
         final EditText input = new EditText(c);
@@ -487,7 +524,8 @@ public class Dialogs {
 
     }
 
-    public static void showDeltaPage(final FrameLayout anchor, final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
+    public static void showDeltaPage(final FrameLayout anchor,
+                                     final DocumentController controller, final int pageNumber, final Runnable reloadUI) {
         Vibro.vibrate();
         String txt = controller.getString(R.string.set_the_current_page_number);
 
@@ -751,7 +789,8 @@ public class Dialogs {
         });
     }
 
-    public static void showTagsDialog(final Activity a, final File file, final boolean isReadBookOption, final Runnable refresh) {
+    public static void showTagsDialog(final Activity a, final File file,
+                                      final boolean isReadBookOption, final Runnable refresh) {
         final FileMeta fileMeta = file == null ? null : AppDB.get().getOrCreate(file.getPath());
         final String tag = file == null ? "" : fileMeta.getTag();
 

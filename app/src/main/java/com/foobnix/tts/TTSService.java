@@ -519,8 +519,8 @@ public class TTSService extends Service {
             emptyPageCount = 0;
 
             String[] parts = TxtUtils.getParts(pageHTML);
-            String firstPart = AppState.get().ttsTunnOnLastWord ? pageHTML : parts[0];
-            final String secondPart = AppState.get().ttsTunnOnLastWord ? "" : parts[1];
+            String firstPart = pageNumber + 1 >= pageCount || AppState.get().ttsTunnOnLastWord ? pageHTML : parts[0];
+            final String secondPart = pageNumber + 1 >= pageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
 
             if (TxtUtils.isNotEmpty(preText)) {
                 preText = TxtUtils.replaceLast(preText, "-", "");

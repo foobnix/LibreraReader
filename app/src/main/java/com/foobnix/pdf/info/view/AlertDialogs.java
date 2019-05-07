@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -183,8 +182,6 @@ public class AlertDialogs {
         t.setMinWidth(Dips.DP_800);
         //t.setMinHeight(Dips.DP_800);
         String textForPage = controller.getPageHtml();
-        textForPage = textForPage.replace(TxtUtils.TTS_PAUSE+" ", "<|\n");
-        textForPage = textForPage.replace(TxtUtils.TTS_PAUSE, "<|\n");
         t.setText(textForPage);
         final AlertDialog alertDialog = AlertDialogs.showViewDialog(controller.getActivity(), t);
         t.setOnClickListener(a -> alertDialog.dismiss());

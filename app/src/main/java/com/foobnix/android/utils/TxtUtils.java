@@ -22,16 +22,21 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -41,7 +46,7 @@ import java.util.regex.Pattern;
 
 public class TxtUtils {
 
-    public static final String TTS_PAUSE = "<pause>";
+    public static final String TTS_PAUSE = "‡";
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
@@ -281,7 +286,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("[image]", "");
-        if (AppState.get().isShowFooterNotesInText) {
+        if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
                 String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
                 pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", ". " + string + ".");
@@ -296,6 +301,19 @@ public class TxtUtils {
         LOG.d("pageHTML [after] ", pageHTML);
 
         if (AppState.get().isEnalbeTTSReplacements) {
+            if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
+                loadReplayceDict();
+                for (String key : dict1.keySet()) {
+                    pageHTML = pageHTML.replaceAll(key, dict1.get(key));
+                    //LOG.d("pageHTML-replacedict1", key, pageHTML);
+                }
+                for (String key : dict2.keySet()) {
+                    pageHTML = pageHTML.replace(key, dict2.get(key));
+                    //LOG.d("pageHTML-replacedict2", key, pageHTML);
+
+                }
+            }
+
             try {
                 JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
 
@@ -320,10 +338,52 @@ public class TxtUtils {
             }
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
-
         }
 
         return pageHTML;
+    }
+
+    public static Map<String, String> dict1 = new HashMap<>();
+    public static Map<String, String> dict2 = new HashMap<>();
+    public static String dictHash = "";
+
+    public static void loadReplayceDict() {
+        if (dictHash.equals(BookCSS.get().dictPath)) {
+            return;
+        }
+        dictHash = BookCSS.get().dictPath;
+        dict1.clear();
+        dict2.clear();
+
+        try {
+            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(BookCSS.get().dictPath)));
+            String line;
+            while ((line = input.readLine()) != null) {
+                if (TxtUtils.isEmpty(line)) {
+                    continue;
+                } else if (line.startsWith("#")) {
+                    continue;
+                } else if (line.startsWith("*\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(2);
+                    String r2 = parts[1].substring(0, parts[1].length() - 1);
+                    LOG.d("pageHTML-replaceAll", r1, r2);
+
+                    dict1.put(r1, r2);
+
+                } else if (line.startsWith("\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(1);
+                    String r2 = parts[1].substring(0, parts[1].length() - 1);
+                    LOG.d("pageHTML-replace", r1, r2);
+                    dict2.put(r1, r2);
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
