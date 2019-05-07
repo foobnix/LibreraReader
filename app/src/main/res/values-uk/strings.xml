@@ -566,4 +566,6 @@
    <string name="copy_text">Копіювати текст</string>
    <string name="show_fast_scroll">Показати швидкий прокручування</string>
    <string name="replacements">Заміни</string>
+   <string name="add_dictionary">Додати словник</string>
+   <string name="add_rule">Додати правило</string>
 </resources>

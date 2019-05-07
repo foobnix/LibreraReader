@@ -566,4 +566,6 @@
    <string name="copy_text">Copy text</string>
    <string name="show_fast_scroll">Show scrollbar</string>
    <string name="replacements">Replacements</string>
+   <string name="add_dictionary">Add dictionary</string>
+   <string name="add_rule">Add rule</string>
 </resources>

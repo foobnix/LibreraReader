@@ -566,4 +566,6 @@
    <string name="copy_text">Text kopieren</string>
    <string name="show_fast_scroll">Schnelles Scrollen anzeigen</string>
    <string name="replacements">Ersatz</string>
+   <string name="add_dictionary">Wörterbuch hinzufügen</string>
+   <string name="add_rule">Regel hinzufügen</string>
 </resources>

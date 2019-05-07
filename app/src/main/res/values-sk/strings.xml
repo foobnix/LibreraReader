@@ -566,4 +566,6 @@
    <string name="copy_text">Kopírovať text</string>
    <string name="show_fast_scroll">Zobraziť rýchle rolovanie</string>
    <string name="replacements">Náhrady</string>
+   <string name="add_dictionary">Pridať slovník</string>
+   <string name="add_rule">Pridať pravidlo</string>
 </resources>

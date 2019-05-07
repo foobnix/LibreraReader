@@ -566,4 +566,6 @@
    <string name="copy_text">Скопировать текст</string>
    <string name="show_fast_scroll">Отображать бегунок быстрой прокрутки</string>
    <string name="replacements">Замены</string>
+   <string name="add_dictionary">Добавить словарь</string>
+   <string name="add_rule">Добавить правило</string>
 </resources>

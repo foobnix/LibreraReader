@@ -128,7 +128,7 @@ public class Dialogs {
         }
 
         TextView add = new TextView(activity, null, R.style.textLink);
-        add.setText("Add rule");
+        add.setText(activity.getString(R.string.add_rule));
         add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
 
         TxtUtils.underlineTextView(add);
@@ -164,7 +164,7 @@ public class Dialogs {
 
 
         TextView addDict = new TextView(activity, null, R.style.textLink);
-        addDict.setText("Add dictionary");
+        addDict.setText(activity.getString(R.string.add_dictionary));
         addDict.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
         TxtUtils.underlineTextView(addDict);
         addDict.setOnClickListener(v -> {
@@ -181,6 +181,11 @@ public class Dialogs {
             dictText.setVisibility(View.GONE);
             return true;
         });
+        dictText.setOnClickListener(a -> {
+            BookCSS.get().dictPath = null;
+            dictText.setVisibility(View.GONE);
+        });
+
 
         root.addView(addDict);
 
