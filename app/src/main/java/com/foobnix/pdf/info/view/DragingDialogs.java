@@ -4068,8 +4068,10 @@ public class DragingDialogs {
                 });
 
                 final CustomSeek emptyLine = (CustomSeek) inflate.findViewById(R.id.emptyLine);
-                boolean isShow = BookType.FB2.is(controller.getCurrentBook().getPath());// || //
-                // BookType.HTML.is(controller.getCurrentBook().getPath()) || //
+                boolean isShow =
+                        //
+                        BookType.FB2.is(controller.getCurrentBook().getPath()) || //
+                                BookType.DOCX.is(controller.getCurrentBook().getPath());
                 // BookType.TXT.is(controller.getCurrentBook().getPath());//
 
                 emptyLine.setVisibility(isShow ? View.VISIBLE : View.GONE);

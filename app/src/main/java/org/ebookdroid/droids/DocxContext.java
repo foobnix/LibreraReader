@@ -38,23 +38,23 @@ public class DocxContext extends PdfContext {
     public CodecDocument openDocumentInner(String fileName, String password) {
         if (!cacheFile.isFile()) {
             DocumentConverter converter = new DocumentConverter().
-            imageConverter(new ImageConverter.ImgElement() {
-                @Override
-                public Map<String, String> convert(Image image) throws IOException {
+                    imageConverter(new ImageConverter.ImgElement() {
+                        @Override
+                        public Map<String, String> convert(Image image) throws IOException {
 
 
-                    String imageName = cacheFile.getName()+"+"+image.hashCode()+"." +image.getContentType().replace("image/","");
-                    LOG.d("ImageConverter name", imageName);
+                            String imageName = cacheFile.getName() + "+" + image.hashCode() + "." + image.getContentType().replace("image/", "");
+                            LOG.d("ImageConverter name", imageName);
 
-                    FileOutputStream out = new FileOutputStream(new File(cacheFile.getParent(),imageName));
-                    IOUtils.copyClose(image.getInputStream(), out);
+                            FileOutputStream out = new FileOutputStream(new File(cacheFile.getParent(), imageName));
+                            IOUtils.copyClose(image.getInputStream(), out);
 
 
-                    Map<String, String> map = new HashMap<>();
-                    map.put("src",imageName);
-                    return map;
-                }
-            });
+                            Map<String, String> map = new HashMap<>();
+                            map.put("src", imageName);
+                            return map;
+                        }
+                    });
 
 
             Result<String> result = null;
@@ -62,11 +62,12 @@ public class DocxContext extends PdfContext {
                 result = converter.convertToHtml(new File(fileName));
 
                 String html = result.getValue();
-                if(BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)){
+                html = html.replace("<br /><br />", "<empty-line />");
+                if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
                     LOG.d("docx-isAutoHypens", BookCSS.get().isAutoHypens);
                     HypenUtils.applyLanguage(AppTemp.get().hypenLang);
                     HypenUtils.resetTokenizer();
-                    html= HypenUtils.applyHypnes(html);
+                    html = HypenUtils.applyHypnes(html);
                 }
 
                 FileOutputStream out = new FileOutputStream(cacheFile);

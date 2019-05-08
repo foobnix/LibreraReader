@@ -614,7 +614,7 @@ public class BookCSS {
         builder.append("subtitle{text-align:center !important; text-indent:0px !important;}");
         builder.append("image{text-align:center; text-indent:0px;}");
         builder.append("section+section>title{page-break-before:always;}");
-        builder.append(String.format("empty-line{padding-top:%s;}", em(emptyLine)));
+        builder.append(String.format("empty-line{display:block; padding:%s;}", em(emptyLine)));
         builder.append("epigraph{text-align:right; margin-left:2em;font-style: italic;}");
 
         builder.append("text-author{font-style: italic;font-weight: bold;}");
