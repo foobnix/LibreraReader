@@ -10,6 +10,8 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.DaoMaster;
 import com.foobnix.dao2.DaoSession;
 import com.foobnix.dao2.DatabaseUpgradeHelper;
+import com.foobnix.dao2.DictMeta;
+import com.foobnix.dao2.DictMetaDao;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
@@ -23,6 +25,7 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fragment.SearchFragment2;
 
 import org.greenrobot.greendao.Property;
+import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.File;
@@ -149,6 +152,8 @@ public class AppDB {
 
     private FileMetaDao fileMetaDao;
     private DaoSession daoSession;
+    private DictMetaDao dictMetaDao;
+
 
     public FileMetaDao getDao() {
         return fileMetaDao;
@@ -171,13 +176,41 @@ public class AppDB {
 
         fileMetaDao = daoSession.getFileMetaDao();
 
-        // if (c.getResources().getBoolean(R.bool.is_log_enable)) {
-        // QueryBuilder.LOG_SQL = true;
-        // QueryBuilder.LOG_VALUES = true;
-        // }
-
-
+        if (true) {
+            QueryBuilder.LOG_SQL = true;
+            QueryBuilder.LOG_VALUES = true;
+        }
     }
+
+    public void openDictDB(Context c, String path) {
+        DaoMaster.OpenHelper helper = new DaoMaster.OpenHelper(c, path) {
+            @Override
+            public void onCreate(Database db) {
+                //super.onCreate(db);
+            }
+        };
+
+        SQLiteDatabase readableDatabase = helper.getReadableDatabase();
+        DaoMaster daoMaster = new DaoMaster(readableDatabase);
+        DaoSession daoSession = daoMaster.newSession();
+
+        dictMetaDao = daoSession.getDictMetaDao();
+        LOG.d("openDictDB open", path);
+    }
+
+    public String findDict(String key) {
+        key = key.toLowerCase();
+        LOG.d("openDictDB findDict key", key);
+
+        final List<DictMeta> list = dictMetaDao.queryBuilder().where(DictMetaDao.Properties.Key.eq(key)).list();
+        if (TxtUtils.isListNotEmpty(list)) {
+            final String value = list.get(0).getValue();
+            LOG.d("openDictDB findDict value", value);
+            return value;
+        }
+        return key;
+    }
+
 
     //public void dropCreateTables(Context c) {
     //    DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, DB_NAME);

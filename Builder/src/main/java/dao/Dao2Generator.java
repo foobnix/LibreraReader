@@ -1,10 +1,10 @@
 package dao;
 
-import java.io.IOException;
-
 import org.greenrobot.greendao.generator.DaoGenerator;
 import org.greenrobot.greendao.generator.Entity;
 import org.greenrobot.greendao.generator.Schema;
+
+import java.io.IOException;
 
 public class Dao2Generator {
 
@@ -50,7 +50,17 @@ public class Dao2Generator {
         note.addStringProperty("isbn");
         note.addStringProperty("parentPath").indexAsc("parentPath_asc", false).indexDesc("parentPath_desc", false);
 
-        new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/LirbiReader/EBookDroid/src");
+
+
+        Entity dict = schema.addEntity("DictMeta");
+        dict.addStringProperty("key").primaryKey();
+        dict.addStringProperty("value");
+
+        new DaoGenerator().generateAll(schema, "/home/ivan-dev/git/LibreraReader/app/src/main/java");
+
+
+
+
     }
 
 }

@@ -19,11 +19,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.LibreraApp;
 import org.json.JSONObject;
@@ -301,9 +303,35 @@ public class TxtUtils {
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
+
         if (AppState.get().isEnalbeTTSReplacements) {
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
+                //String split[] = pageHTML.split(" ");
+                if (hasDB) {
+                    StringBuilder res = new StringBuilder();
+                    HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
+
+                        @Override
+                        public void findOther(char ch) {
+                            res.append(ch);
+                        }
+
+                        @Override
+                        public void findText(String w) {
+                            if (w.length() <= 3) {
+                                res.append(w);
+                            } else {
+                                String dict = AppDB.get().findDict(w);
+                                res.append(replaceNagolos(dict));
+                            }
+                        }
+
+                    });
+                    pageHTML = res.toString();
+                }
+
+
                 for (String key : dict1.keySet()) {
                     pageHTML = pageHTML.replaceAll(key, dict1.get(key));
                     //LOG.d("pageHTML-replacedict1", key, pageHTML);
@@ -329,6 +357,10 @@ public class TxtUtils {
                         }
 
                     } else {
+                        if (value.contains("*")) {
+                            value = replaceNagolos(value);
+                        }
+
                         pageHTML = pageHTML.replace(key, value);
                     }
                 }
@@ -344,20 +376,49 @@ public class TxtUtils {
         return pageHTML;
     }
 
+    public static String replaceNagolos(String dict) {
+        dict = dict.replace("а*", "а́");
+        dict = dict.replace("о*", "о́");
+        dict = dict.replace("и*", "и́");
+        dict = dict.replace("у*", "у́");
+        dict = dict.replace("е*", "е́");
+        dict = dict.replace("ы*", "ы́");
+        dict = dict.replace("э*", "э́́");
+        dict = dict.replace("я*", "я́́́");
+        dict = dict.replace("ю*", "ю́́́́́");
+        dict = dict.replace("ё*", "ё́́́́");
+        return dict;
+    }
+
     public static Map<String, String> dict1 = new HashMap<>();
     public static Map<String, String> dict2 = new HashMap<>();
     public static String dictHash = "";
+    public static boolean hasDB = false;
 
     public static void loadReplayceDict() {
         if (dictHash.equals(BookCSS.get().dictPath)) {
             return;
         }
         dictHash = BookCSS.get().dictPath;
+        hasDB = false;
         dict1.clear();
         dict2.clear();
 
         final List<String> dicts = StringDB.asList(BookCSS.get().dictPath);
+
         for (String dict : dicts) {
+
+            if (TxtUtils.isEmpty(dict)) {
+                continue;
+            }
+
+            if (dict.endsWith(".db")) {
+                AppDB.get().openDictDB(LibreraApp.context, dict);
+                hasDB = true;
+                continue;
+
+            }
+
             try {
                 LOG.d("pageHTML-dict", dict);
                 BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(dict)));
