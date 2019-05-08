@@ -188,7 +188,12 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void onNextPage(final boolean animate) {
-        final int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
+        int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
+
+        LOG.d("onNextPage",page, getPageCount());
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount() ) {
+            page = 0;
+        }
         ctr.getDocumentController().goToPage(page, animate);
 
 
@@ -335,12 +340,11 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public synchronized String getPageHtml() {
-        String pageHTML = ctr.getDecodeService().getPageHTML(getCurentPageFirst1()-1);
+        String pageHTML = ctr.getDecodeService().getPageHTML(getCurentPageFirst1() - 1);
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
         pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, "<|\n");
         return pageHTML;
     }
-
 
 
     @Override

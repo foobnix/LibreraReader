@@ -132,7 +132,7 @@ public class EventDraw implements IEvent {
         if(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
             rect.setColor(TintUtil.color);
             rect.setStyle(Style.FILL);
-            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_10, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
+            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_40, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
         }
 
 
