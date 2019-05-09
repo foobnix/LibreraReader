@@ -19,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
@@ -314,8 +313,9 @@ public class TxtUtils {
                 if (TxtUtils.isEmpty(it)) {
                     continue;
                 }
-                final String key = it.replace("*", "");
-                final String value = replaceNagolos(it);
+                String key = it.replace("*", "");
+                key = replaceAccentReverse(key);
+                final String value = replaceAccent(it);
                 pageHTML = pageHTML.replace(key, value);
                 LOG.d("pageHTML-replace-accent", key, value);
             }
@@ -327,31 +327,31 @@ public class TxtUtils {
                 loadReplayceDict();
                 //String split[] = pageHTML.split(" ");
                 //if (hasDB) {
-                StringBuilder res = new StringBuilder();
-                HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
-
-                    @Override
-                    public void findOther(char ch) {
-                        res.append(ch);
-                    }
-
-                    @Override
-                    public void findText(String w) {
-                        if (w.length() <= 3) {
-                            res.append(w);
-                        } else {
-                            //String dict = AppDB.get().findDict(w);
-                            //res.append(replaceNagolos(dict));
-                            w = w.toLowerCase();
-                            String s = dict2.get(w);
-                            if (s == null) s = w;
-                            res.append(s);
-
-                        }
-                    }
-
-                });
-                pageHTML = res.toString();
+//                StringBuilder res = new StringBuilder();
+//                HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
+//
+//                    @Override
+//                    public void findOther(char ch) {
+//                        res.append(ch);
+//                    }
+//
+//                    @Override
+//                    public void findText(String w) {
+//                        if (w.length() <= 3) {
+//                            res.append(w);
+//                        } else {
+//                            //String dict = AppDB.get().findDict(w);
+//                            //res.append(replaceAccent(dict));
+//                            w = w.toLowerCase();
+//                            String s = dict2.get(w);
+//                            if (s == null) s = w;
+//                            res.append(s);
+//
+//                        }
+//                    }
+//
+//                });
+//                pageHTML = res.toString();
                 LOG.d("pageHTML [6]", pageHTML);
 
                 // }
@@ -359,15 +359,12 @@ public class TxtUtils {
 
                 for (String key : dict1.keySet()) {
                     pageHTML = pageHTML.replaceAll(key, dict1.get(key));
-                    //LOG.d("pageHTML-replacedict1", key, pageHTML);
                 }
                 LOG.d("pageHTML [7]", pageHTML);
 
-//                for (String key : dict2.keySet()) {
-//
-//                    //LOG.d("pageHTML-replacedict2", key, pageHTML);
-//
-//                }
+                for (String key : dict2.keySet()) {
+                    pageHTML = pageHTML.replace(key, dict2.get(key));
+                }
             }
 
             try {
@@ -385,14 +382,13 @@ public class TxtUtils {
 
                     } else {
                         if (value.contains("*")) {
-                            value = replaceNagolos(value);
+                            value = replaceAccent(value);
                         }
 
                         pageHTML = pageHTML.replace(key, value);
                     }
                 }
                 LOG.d("pageHTML [8]", pageHTML);
-
 
 
             } catch (Exception e) {
@@ -410,23 +406,34 @@ public class TxtUtils {
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
         }
-
-
-
         return pageHTML;
     }
 
-    public static String replaceNagolos(String dict) {
-        dict = dict.replace("а*", "а́");
-        dict = dict.replace("о*", "о́");
-        dict = dict.replace("и*", "и́");
-        dict = dict.replace("у*", "у́");
-        dict = dict.replace("е*", "е́");
-        dict = dict.replace("ы*", "ы́");
-        dict = dict.replace("э*", "э́́");
-        dict = dict.replace("я*", "я́́́");
-        dict = dict.replace("ю*", "ю́́́́́");
-        dict = dict.replace("ё*", "ё́́́́");
+    public static String replaceAccent(String dict) {
+        dict = dict.replace("A*", "а́").replace("а*", "а́");
+        dict = dict.replace("О*", "о́").replace("о*", "о́");
+        dict = dict.replace("И*", "и́").replace("и*", "и́");
+        dict = dict.replace("У*", "у́").replace("у*", "у́");
+        dict = dict.replace("У*", "е́").replace("е*", "е́");
+        dict = dict.replace("Ы*", "ы́").replace("ы*", "ы́");
+        dict = dict.replace("Э*", "э́́").replace("э*", "э́́");
+        dict = dict.replace("Я*", "я́́́").replace("я*", "я́́́");
+        dict = dict.replace("Ю*", "ю́́́́́").replace("ю*", "ю́́́́́");
+        dict = dict.replace("Ё*", "ё́́́́").replace("ё*", "ё́́́́");
+        return dict;
+    }
+
+    public static String replaceAccentReverse(String dict) {
+        dict = dict.replace("а́", "а");
+        dict = dict.replace("о́", "о");
+        dict = dict.replace("и́", "и");
+        dict = dict.replace("у́", "у");
+        dict = dict.replace("е́", "е");
+        dict = dict.replace("ы́", "ы");
+        dict = dict.replace("э́́", "э");
+        dict = dict.replace("я́́́", "я");
+        dict = dict.replace("ю́́́́́", "ю");
+        dict = dict.replace("ё́́́́", "ё");
         return dict;
     }
 
@@ -461,6 +468,7 @@ public class TxtUtils {
 
             try {
                 LOG.d("pageHTML-dict", dict);
+                LOG.d("pageHTML-dict", dict);
                 BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(dict)));
                 String line;
                 while ((line = input.readLine()) != null) {
@@ -471,7 +479,8 @@ public class TxtUtils {
                     } else if (line.startsWith("*\"")) {
                         String parts[] = line.split("\" \"");
                         String r1 = parts[0].substring(2);
-                        String r2 = parts[1].substring(0, parts[1].length() - 1);
+                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                        r2 = replaceAccent(r2);
                         LOG.d("pageHTML-replaceAll", r1, r2);
 
                         dict1.put(r1, r2);
@@ -479,7 +488,8 @@ public class TxtUtils {
                     } else if (line.startsWith("\"")) {
                         String parts[] = line.split("\" \"");
                         String r1 = parts[0].substring(1);
-                        String r2 = parts[1].substring(0, parts[1].length() - 2);
+                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                        r2 = replaceAccent(r2);
                         LOG.d("pageHTML-replace", r1, r2);
                         dict2.put(r1, r2);
                     }
