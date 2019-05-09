@@ -568,4 +568,5 @@
    <string name="replacements">بدلاء</string>
    <string name="add_dictionary">اضافة القاموس</string>
    <string name="add_rule">أضف القاعدة</string>
+   <string name="emphasis">تشديد</string>
 </resources>

@@ -568,4 +568,5 @@
    <string name="replacements">جایگزین</string>
    <string name="add_dictionary">اضافه کردن فرهنگ لغت</string>
    <string name="add_rule">اضافه کردن قانون</string>
+   <string name="emphasis">تاکید</string>
 </resources>

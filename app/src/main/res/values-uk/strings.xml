@@ -568,4 +568,5 @@
    <string name="replacements">Заміни</string>
    <string name="add_dictionary">Додати словник</string>
    <string name="add_rule">Додати правило</string>
+   <string name="emphasis">Акцент</string>
 </resources>

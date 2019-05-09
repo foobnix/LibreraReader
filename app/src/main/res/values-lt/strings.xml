@@ -568,4 +568,5 @@
    <string name="replacements">Pakeitimai</string>
    <string name="add_dictionary">Pridėti žodyną</string>
    <string name="add_rule">Pridėti taisyklę</string>
+   <string name="emphasis">Pabrėžimas</string>
 </resources>

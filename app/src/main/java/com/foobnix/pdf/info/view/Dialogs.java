@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -139,6 +140,14 @@ public class Dialogs {
             e.printStackTrace();
         }
 
+        root.addView(UI.text(activity, activity.getString(R.string.emphasis)));
+        EditText lineTTSAccents = new EditText(activity);
+        lineTTSAccents.setGravity(Gravity.TOP);
+        lineTTSAccents.setLines(3);
+        lineTTSAccents.setText(AppState.get().lineTTSAccents);
+
+        root.addView(lineTTSAccents);
+
         TextView add = new TextView(activity, null, R.style.textLink);
         add.setText(activity.getString(R.string.add_rule));
         add.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
@@ -234,7 +243,7 @@ public class Dialogs {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
                 JSONObject res = new JSONObject();
-
+                AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
                 for (int i = 0; i < root.getChildCount(); i++) {
                     final View childAt = root.getChildAt(i);
                     if (childAt instanceof LinearLayout) {
@@ -251,6 +260,8 @@ public class Dialogs {
                         } catch (JSONException e) {
                             LOG.e(e);
                         }
+
+
                     }
                 }
                 AppState.get().lineTTSReplacements = res.toString();
@@ -263,6 +274,9 @@ public class Dialogs {
 
         restore.setOnClickListener((a) -> {
             AppState.get().lineTTSReplacements = AppState.TTS_REPLACEMENTS;
+            AppState.get().lineTTSAccents = AppState.TTS_ACCENTS;
+            BookCSS.get().dictPath = "";
+
             create.dismiss();
             replaceTTSDialog(activity);
         });

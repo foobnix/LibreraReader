@@ -126,7 +126,7 @@ public class TTSEngine {
     public void stop() {
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
-            TxtUtils.dictHash = "";
+
 
             if (ttsEngine != null) {
                 if (Build.VERSION.SDK_INT >= 15) {
@@ -142,6 +142,7 @@ public class TTSEngine {
 
     public void stopDestroy() {
         LOG.d(TAG, "stop");
+        TxtUtils.dictHash = "";
         synchronized (helpObject) {
             if (ttsEngine != null) {
                 ttsEngine.shutdown();
@@ -211,7 +212,13 @@ public class TTSEngine {
 
                 String big = parts[i];
                 big = big.trim();
+
                 if (TxtUtils.isNotEmpty(big)) {
+                    if (big.length() == 1 && !Character.isLetterOrDigit(big.charAt(0))) {
+                        LOG.d("Skip: " + big);
+                        continue;
+
+                    }
 
                     HashMap<String, String> mapTemp1 = new HashMap<String, String>();
                     mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED + i);

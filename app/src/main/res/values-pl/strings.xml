@@ -568,4 +568,5 @@
    <string name="replacements">Części zamienne</string>
    <string name="add_dictionary">Dodaj słownik</string>
    <string name="add_rule">Dodaj regułę</string>
+   <string name="emphasis">Nacisk</string>
 </resources>

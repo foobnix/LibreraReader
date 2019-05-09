@@ -568,4 +568,5 @@
    <string name="replacements">Replacements</string>
    <string name="add_dictionary">Add dictionary</string>
    <string name="add_rule">Add rule</string>
+   <string name="emphasis">Emphasis</string>
 </resources>

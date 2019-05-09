@@ -278,69 +278,96 @@ public class TxtUtils {
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", TTS_PAUSE);
 
-        if (AppState.get().ttsReadBySentences) {
-            for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
-                String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
-            }
+        LOG.d("pageHTML [1]", pageHTML);
 
-        }
 
         pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("[image]", "");
+
+        LOG.d("pageHTML [2", pageHTML);
+
         if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
                 String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
-                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", ". " + string + ".");
+                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);
             }
         }
+
+        LOG.d("pageHTML [3]", pageHTML);
+
 
         pageHTML = replaceEndLine(pageHTML);
         pageHTML = pageHTML.replace("  ", " ");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
+        LOG.d("pageHTML [4]", pageHTML);
 
         if (AppState.get().isEnalbeTTSReplacements) {
+
+            final List<String> line = StringDB.asList(AppState.get().lineTTSAccents);
+            for (String it : line) {
+                it = it.trim();
+                if (TxtUtils.isEmpty(it)) {
+                    continue;
+                }
+                final String key = it.replace("*", "");
+                final String value = replaceNagolos(it);
+                pageHTML = pageHTML.replace(key, value);
+                LOG.d("pageHTML-replace-accent", key, value);
+            }
+
+            LOG.d("pageHTML [5]", pageHTML);
+
+
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
                 //String split[] = pageHTML.split(" ");
-                if (hasDB) {
-                    StringBuilder res = new StringBuilder();
-                    HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
+                //if (hasDB) {
+                StringBuilder res = new StringBuilder();
+                HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
 
-                        @Override
-                        public void findOther(char ch) {
-                            res.append(ch);
+                    @Override
+                    public void findOther(char ch) {
+                        res.append(ch);
+                    }
+
+                    @Override
+                    public void findText(String w) {
+                        if (w.length() <= 3) {
+                            res.append(w);
+                        } else {
+                            //String dict = AppDB.get().findDict(w);
+                            //res.append(replaceNagolos(dict));
+                            w = w.toLowerCase();
+                            String s = dict2.get(w);
+                            if (s == null) s = w;
+                            res.append(s);
+
                         }
+                    }
 
-                        @Override
-                        public void findText(String w) {
-                            if (w.length() <= 3) {
-                                res.append(w);
-                            } else {
-                                String dict = AppDB.get().findDict(w);
-                                res.append(replaceNagolos(dict));
-                            }
-                        }
+                });
+                pageHTML = res.toString();
+                LOG.d("pageHTML [6]", pageHTML);
 
-                    });
-                    pageHTML = res.toString();
-                }
+                // }
 
 
                 for (String key : dict1.keySet()) {
                     pageHTML = pageHTML.replaceAll(key, dict1.get(key));
                     //LOG.d("pageHTML-replacedict1", key, pageHTML);
                 }
-                for (String key : dict2.keySet()) {
-                    pageHTML = pageHTML.replace(key, dict2.get(key));
-                    //LOG.d("pageHTML-replacedict2", key, pageHTML);
+                LOG.d("pageHTML [7]", pageHTML);
 
-                }
+//                for (String key : dict2.keySet()) {
+//
+//                    //LOG.d("pageHTML-replacedict2", key, pageHTML);
+//
+//                }
             }
 
             try {
@@ -364,14 +391,27 @@ public class TxtUtils {
                         pageHTML = pageHTML.replace(key, value);
                     }
                 }
+                LOG.d("pageHTML [8]", pageHTML);
+
 
 
             } catch (Exception e) {
                 LOG.e(e);
             }
+
+            if (AppState.get().ttsReadBySentences) {
+                for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
+                    String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
+                    pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
+                }
+
+            }
+
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
         }
+
+
 
         return pageHTML;
     }
@@ -439,7 +479,7 @@ public class TxtUtils {
                     } else if (line.startsWith("\"")) {
                         String parts[] = line.split("\" \"");
                         String r1 = parts[0].substring(1);
-                        String r2 = parts[1].substring(0, parts[1].length() - 1);
+                        String r2 = parts[1].substring(0, parts[1].length() - 2);
                         LOG.d("pageHTML-replace", r1, r2);
                         dict2.put(r1, r2);
                     }
@@ -449,6 +489,7 @@ public class TxtUtils {
                 LOG.e(e);
             }
         }
+
 
     }
 

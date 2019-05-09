@@ -568,4 +568,5 @@
    <string name="replacements">Vaihdot</string>
    <string name="add_dictionary">Lisää sanakirja</string>
    <string name="add_rule">Lisää sääntö</string>
+   <string name="emphasis">Painotus</string>
 </resources>

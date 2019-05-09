@@ -568,4 +568,5 @@
    <string name="replacements">Vervangingen</string>
    <string name="add_dictionary">Voeg woordenboek toe</string>
    <string name="add_rule">Regel toevoegen</string>
+   <string name="emphasis">Nadruk</string>
 </resources>

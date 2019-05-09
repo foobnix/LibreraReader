@@ -194,8 +194,9 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static final String TTS_REPLACEMENTS = "{'[()\"«»*”“—–/]':' ', '[?!:;]':',' , 'Librera':'librera'}";
+    public static final String TTS_REPLACEMENTS = "{'[()\"«»*”“/[]]':' ', '[?!:;]':',' , 'Librera':'librera'}";
     public static final String TTS_PUNCUATIONS = ".;:!?";
+    public static final String TTS_ACCENTS = "у реки*, все ре*ки";
 
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     // public static String DEFAULTS_TABS_ORDER =
@@ -397,6 +398,9 @@ public class AppState {
 
     @IgnoreHashCode
     public String lineTTSReplacements = TTS_REPLACEMENTS;
+
+    @IgnoreHashCode
+    public String lineTTSAccents = TTS_ACCENTS;
 
 
     public List<Integer> nextKeys = NEXT_KEYS;

@@ -568,4 +568,5 @@
    <string name="replacements">Ersättare</string>
    <string name="add_dictionary">Lägg till ordlista</string>
    <string name="add_rule">Lägg till regel</string>
+   <string name="emphasis">Betoning</string>
 </resources>

@@ -568,4 +568,5 @@
    <string name="replacements">Reemplazos</string>
    <string name="add_dictionary">Agregar diccionario</string>
    <string name="add_rule">Añadir regla</string>
+   <string name="emphasis">Énfasis</string>
 </resources>

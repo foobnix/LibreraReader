@@ -568,4 +568,5 @@
    <string name="replacements">替代品</string>
    <string name="add_dictionary">添加字典</string>
    <string name="add_rule">添加规则</string>
+   <string name="emphasis">重点</string>
 </resources>
