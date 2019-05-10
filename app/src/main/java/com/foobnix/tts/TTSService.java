@@ -500,16 +500,15 @@ public class TTSService extends Service {
                 return;
             }
 
-            AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
-            load.currentPageChanged(pageNumber + 1, pageCount);
 
-            SharedBooks.save(load);
-            AppProfile.save(this);
+
 
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
             page.recycle();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
+
+
 
             if (TxtUtils.isNotEmpty(anchor)) {
                 int indexOf = pageHTML.indexOf(anchor);
@@ -626,14 +625,26 @@ public class TTSService extends Service {
                 });
             }
 
-            TTSNotification.show(AppTemp.get().lastBookPath, pageNumber + 1, dc.getPageCount());
 
             TTSEngine.get().speek(firstPart);
 
+            TTSNotification.show(AppTemp.get().lastBookPath, pageNumber + 1, dc.getPageCount());
             LOG.d("TtsStatus send");
             EventBus.getDefault().post(new TtsStatus());
 
             TTSNotification.showLast();
+
+            new Thread(() -> {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+                AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
+                load.currentPageChanged(pageNumber + 1, pageCount);
+
+                SharedBooks.save(load, false);
+                AppProfile.save(this);
+            }).start();
 
         }
     }

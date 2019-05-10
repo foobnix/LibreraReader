@@ -395,17 +395,20 @@ public class TxtUtils {
                 LOG.e(e);
             }
 
-            if (AppState.get().ttsReadBySentences) {
-                for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
-                    String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                    pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
-                }
 
-            }
 
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
         }
+
+        if (AppState.get().ttsReadBySentences) {
+            for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
+                String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
+                pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
+            }
+
+        }
+
         return pageHTML;
     }
 
