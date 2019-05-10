@@ -92,7 +92,7 @@
    <string name="document_styles">Document</string>
    <string name="user_styles">User-defined</string>
    <string name="automatic_hyphenation">Enable hyphenation</string>
-   <string name="empty_line">Empty Line</string>
+   <string name="empty_line">Stanza break</string>
    <string name="margin_width">Page margins</string>
    <string name="top">Top</string>
    <string name="bottom">Bottom</string>
@@ -568,5 +568,5 @@
    <string name="replacements">Replacements</string>
    <string name="add_dictionary">Add dictionary</string>
    <string name="add_rule">Add rule</string>
-   <string name="emphasis">Emphasis</string>
+   <string name="emphasis">Stress mark(s)</string>
 </resources>
