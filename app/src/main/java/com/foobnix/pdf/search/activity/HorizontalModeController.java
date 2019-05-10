@@ -106,6 +106,10 @@ public abstract class HorizontalModeController extends DocumentController {
         String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
+        if (AppTemp.get().isDouble && isTextFormat) {
+            imageWidth = Dips.screenWidth() / 2;
+        }
+
         codeDocument = ImageExtractor.getNewCodecContext(bookPath, pasw, imageWidth, imageHeight);
         if (codeDocument != null) {
             pagesCount = codeDocument.getPageCount(imageWidth, imageHeight, BookCSS.get().fontSizeSp);
@@ -160,9 +164,7 @@ public abstract class HorizontalModeController extends DocumentController {
             }
         }
 
-        if (AppTemp.get().isDouble && isTextFormat) {
-            imageWidth = Dips.screenWidth() / 2;
-        }
+
 
     }
 
