@@ -3,6 +3,8 @@ package org.ebookdroid.core;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import com.foobnix.android.utils.Dips;
+
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.ui.viewer.IView;
 
@@ -22,15 +24,17 @@ public class EventGotoPage implements IEvent {
         this.viewState = new ViewState(ctrl);
         this.ctrl = ctrl;
         this.model = viewState.model;
-        this.centerPage = true;
+        this.centerPage = toPage == 0 || Dips.isHorizontal() ? false : true;
         this.toPageIndex = toPage;
         this.offsetX = 0;
         this.offsetY = 0;
         this.animte = animate;
+
+
     }
 
     public EventGotoPage(final AbstractViewController ctrl, final int viewIndex, final float offsetX,
-            final float offsetY) {
+                         final float offsetY) {
         this.viewState = new ViewState(ctrl);
         this.ctrl = ctrl;
         this.model = viewState.model;
@@ -57,7 +61,6 @@ public class EventGotoPage implements IEvent {
         }
 
 
-
         final IView view = ctrl.getView();
 
         final int scrollX = view.getScrollX();
@@ -68,9 +71,9 @@ public class EventGotoPage implements IEvent {
         final int top = Math.round(p.y);
 
         if (isScrollRequired(left, top, scrollX, scrollY)) {
-            if(animte){
+            if (animte) {
                 view.startPageScroll(0, top - scrollY);
-            }else{
+            } else {
                 view.scrollTo(left, top);
             }
             return new ViewState(ctrl);

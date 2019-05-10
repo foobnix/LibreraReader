@@ -30,10 +30,11 @@ public abstract class AbstractEvent implements IEvent {
         ctrl.firstVisiblePage = viewState.pages.firstVisible;
         ctrl.lastVisiblePage = viewState.pages.lastVisible;
 
-        for (final Page page : ctrl.model.getPages()) {
-            if(page.index.viewIndex==ctrl.lastVisiblePage) {
+        final Page[] pages = ctrl.model.getPages();
+        for (final Page page : pages) {
+            if (page.index.viewIndex == pages.length-1) {
                 page.isLastPage = true;
-            }else{
+            } else {
                 page.isLastPage = false;
             }
             process(page);
@@ -70,7 +71,7 @@ public abstract class AbstractEvent implements IEvent {
      * {@inheritDoc}
      *
      * @see org.ebookdroid.core.IEvent#process(org.ebookdroid.core.ViewState, org.ebookdroid.core.PageTree,
-     *      org.ebookdroid.core.PageTreeLevel)
+     * org.ebookdroid.core.PageTreeLevel)
      */
     @Override
     public boolean process(final PageTree nodes, final PageTreeLevel level) {

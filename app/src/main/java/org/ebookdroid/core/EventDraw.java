@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
+import android.support.v4.graphics.ColorUtils;
 import android.text.TextPaint;
 
 import com.foobnix.android.utils.Dips;
@@ -80,7 +81,7 @@ public class EventDraw implements IEvent {
             } else {
                 viewState.paint.backgroundFillPaint.setColor(MagicHelper.ligtherColor(MagicHelper.getBgColor()));
             }
-            if(canvas!=null) {
+            if (canvas != null) {
                 canvas.drawRect(canvas.getClipBounds(), viewState.paint.backgroundFillPaint);
             }
 
@@ -92,12 +93,14 @@ public class EventDraw implements IEvent {
     }
 
     static Paint rect = new Paint();
+
     static {
         rect.setColor(Color.DKGRAY);
         rect.setStrokeWidth(Dips.dpToPx(1));
         rect.setStyle(Style.STROKE);
 
     }
+
     int dp1 = Dips.dpToPx(1);
 
     @Override
@@ -129,17 +132,19 @@ public class EventDraw implements IEvent {
             canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.top - dp1, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
         }
 
-        if(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
-            rect.setColor(TintUtil.color);
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
+            rect.setColor(ColorUtils.setAlphaComponent(TintUtil.color, 100));
             rect.setStyle(Style.FILL);
-            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_40, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
+            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_25, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
+            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_200 - Dips.DP_5, fixedPageBounds.right + dp1, fixedPageBounds.bottom - Dips.DP_200, rect);
+
         }
 
 
         // TODO Draw there
         // drawLine(page);
         if (!BookCSS.get().isTextFormat()) {
-        drawPageLinks(page);
+            drawPageLinks(page);
         }
         // drawSomething(page);
         // drawHighlights(page);
