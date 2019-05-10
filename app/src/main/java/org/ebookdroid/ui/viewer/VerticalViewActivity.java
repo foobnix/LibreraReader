@@ -404,6 +404,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
         return super.onKeyUp(keyCode, event);
     }
+    long keyTimeout = 0;
 
     @Override
     public boolean onKeyDown(final int keyCode, final KeyEvent event) {
@@ -414,6 +415,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             isMyKey = true;
             return true;
         }
+
+        if (repeatCount == 0 && System.currentTimeMillis() - keyTimeout < 250) {
+            LOG.d("onKeyDown timeout", System.currentTimeMillis() - keyTimeout);
+            isMyKey = true;
+            return true;
+        }
+
+        keyTimeout = System.currentTimeMillis();
 
 
         if (getController().getWrapperControlls().dispatchKeyEventDown(event)) {

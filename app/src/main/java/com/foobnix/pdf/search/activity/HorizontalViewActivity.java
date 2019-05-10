@@ -703,7 +703,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                if(dc!=null) {
+                if (dc != null) {
                     DragingDialogs.preferences(anchor, dc, onRefresh, reloadDoc);
                 }
             }
@@ -2199,6 +2199,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         return super.onKeyUp(keyCode, event);
     }
 
+    long keyTimeout = 0;
+
     @Override
     public boolean onKeyDown(final int keyCode1, final KeyEvent event) {
 
@@ -2216,6 +2218,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 isMyKey = true;
                 return true;
             }
+            if (repeatCount == 0 && System.currentTimeMillis() - keyTimeout < 250) {
+                LOG.d("onKeyDown timeout", System.currentTimeMillis() - keyTimeout);
+                isMyKey = true;
+                return true;
+            }
+
+            keyTimeout = System.currentTimeMillis();
 
 
             if (AppState.get().isZoomInOutWithVolueKeys) {
@@ -2233,7 +2242,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             }
 
-            LOG.d("onKeyDown", keyCode, repeatCount);
+            LOG.d("onKeyDown", keyCode, repeatCount, System.currentTimeMillis());
 
             if (AppState.get().isUseVolumeKeys && KeyEvent.KEYCODE_HEADSETHOOK == keyCode) {
                 if (TTSEngine.get().isPlaying()) {
