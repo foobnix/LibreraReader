@@ -107,23 +107,36 @@ public class TTSService extends Service {
 
                 final List<Integer> list = Arrays.asList(KeyEvent.KEYCODE_HEADSETHOOK, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_STOP, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE);
 
-                if (KeyEvent.ACTION_DOWN == event.getAction() && list.contains(event.getKeyCode())) {
-                    LOG.d(TAG, "onMediaButtonEvent", "isPlaying", isPlaying, "isFastBookmarkByTTS", AppState.get().isFastBookmarkByTTS);
+                if (KeyEvent.ACTION_DOWN == event.getAction()) {
+                    if (list.contains(event.getKeyCode())) {
+                        LOG.d(TAG, "onMediaButtonEvent", "isPlaying", isPlaying, "isFastBookmarkByTTS", AppState.get().isFastBookmarkByTTS);
 
-                    if (AppState.get().isFastBookmarkByTTS) {
-                        if (isPlaying) {
-                            TTSEngine.get().fastTTSBookmakr(getBaseContext(), AppTemp.get().lastBookPath, AppTemp.get().lastBookPage + 1, pageCount);
+                        if (AppState.get().isFastBookmarkByTTS) {
+                            if (isPlaying) {
+                                TTSEngine.get().fastTTSBookmakr(getBaseContext(), AppTemp.get().lastBookPath, AppTemp.get().lastBookPage + 1, pageCount);
+                            } else {
+                                playPage("", AppTemp.get().lastBookPage, null);
+                            }
                         } else {
-                            playPage("", AppTemp.get().lastBookPage, null);
+                            if (isPlaying) {
+                                TTSEngine.get().stop();
+                            } else {
+                                playPage("", AppTemp.get().lastBookPage, null);
+                            }
                         }
-                    } else {
-                        if (isPlaying) {
-                            TTSEngine.get().stop();
-                        } else {
-                            playPage("", AppTemp.get().lastBookPage, null);
-                        }
+                    } else if (KeyEvent.KEYCODE_MEDIA_NEXT == event.getKeyCode()) {
+                        TTSEngine.get().stop();
+                        playPage("", AppTemp.get().lastBookPage + 1, null);
+
+                    } else if (KeyEvent.KEYCODE_MEDIA_PREVIOUS == event.getKeyCode()) {
+                        TTSEngine.get().stop();
+                        playPage("", AppTemp.get().lastBookPage - 1, null);
+
+
                     }
                 }
+
+
                 EventBus.getDefault().post(new TtsStatus());
                 TTSNotification.showLast();
                 //  }
