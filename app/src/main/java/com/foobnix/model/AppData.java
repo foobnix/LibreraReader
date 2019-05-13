@@ -108,7 +108,7 @@ public class AppData {
 
         SearchCore.search(res, AppProfile.SYNC_FOLDER_BOOKS, null);
 
-        Collections.sort(res, FileMetaComparators.BY_DATE);
+        Collections.sort(res, FileMetaComparators.BY_SYNC_DATE);
         Collections.reverse(res);
         return res;
     }

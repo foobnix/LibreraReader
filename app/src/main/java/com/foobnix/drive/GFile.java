@@ -542,21 +542,25 @@ public class GFile {
             final File other = map2.get(local);
             if (other == null) {
                 map2.put(local, file);
-                LOG.d(TAG, "map2-put", file.getName(), file.getId(), file.getTrashed());
-            } else if (other.getTrashed() == true) {
+                LOG.d(TAG, "map2-put-1", file.getName(), file.getId(), file.getTrashed());
+            } else if (file.getModifiedTime().getValue() > other.getModifiedTime().getValue()) {
                 map2.put(local, file);
-                LOG.d(TAG, "map2-put", file.getName(), file.getId(), file.getTrashed());
+                LOG.d(TAG, "map2-put-2", file.getName(), file.getId(), file.getModifiedTime(), file.getTrashed());
             }
         }
 
         for (java.io.File local : map2.keySet()) {
             File remote = map2.get(local);
-            LOG.d("CHECK-to-REMOVE", local.getPath(), remote.getModifiedTime().getValue(), getLastModified(local));
-            if (remote.getTrashed() && local.exists() && compareModifiedTime(remote, local) > 0) {
-                debugOut += "\nDelete local: " + local.getPath();
-                LOG.d(TAG, "Delete local", local.getPath());
-                ExtUtils.deleteRecursive(local);
-                isNeedUpdate = true;
+            if (remote.getTrashed() && local.exists()) {
+
+                LOG.d("CHECK-to-REMOVE", local.getPath(), remote.getModifiedTime().getValue(), getLastModified(local));
+
+                if (remote.getModifiedTime().getValue() - getLastModified(local) > 0) {
+                    debugOut += "\nDelete local: " + local.getPath();
+                    LOG.d(TAG, "Delete locale", local.getPath());
+                    ExtUtils.deleteRecursive(local);
+                    isNeedUpdate = true;
+                }
             }
 
         }
@@ -581,7 +585,8 @@ public class GFile {
                 if (!hasLastModified(local) && local.length() == remote.getSize().longValue()) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
-                    debugOut += "\n skip: " + local.getName();
+                    //debugOut += "\n skip: " + local.getName();
+                    LOG.d(TAG, "Skip", local.getName());
                 }
 //                } else if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON) || local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
 //                    if (local.length() != remote.getSize().longValue()) {
@@ -606,7 +611,7 @@ public class GFile {
 //                }
 
 
-                if (!skip && compareModifiedTime(remote, local) > 0) {
+                if (!skip && compareBySizeModifiedTime(remote, local) > 0) {
                     final java.io.File parentFile = local.getParentFile();
                     if (parentFile.exists()) {
                         parentFile.mkdirs();
@@ -619,9 +624,9 @@ public class GFile {
         syncUpload(syncId, ioRoot, map2);
     }
 
-    public static long compareModifiedTime(File remote, java.io.File local) {
+    public static long compareBySizeModifiedTime(File remote, java.io.File local) {
         if (!remote.getName().endsWith("json")) {
-            if (remote.getSize()!=null && remote.getSize().longValue() == local.length()) {
+            if (remote.getSize() != null && remote.getSize().longValue() == local.length()) {
                 return 0;
             }
         }
@@ -648,7 +653,7 @@ public class GFile {
                 if (remote == null) {
                     File add = createFirstTime(syncId, local);
                     uploadFile(syncId, add, local);
-                } else if (compareModifiedTime(remote, local) < 0) {
+                } else if (compareBySizeModifiedTime(remote, local) < 0) {
                     uploadFile(syncId, remote, local);
                 }
 

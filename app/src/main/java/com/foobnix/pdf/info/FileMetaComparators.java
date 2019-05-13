@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.drive.GFile;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -41,6 +42,17 @@ public class FileMetaComparators {
         public int compare(FileMeta o1, FileMeta o2) {
             try {
                 return compareLong(o1.getDate(), o2.getDate());
+            } catch (Exception e) {
+                return 0;
+            }
+        }
+    };
+
+    public static Comparator<FileMeta> BY_SYNC_DATE = new Comparator<FileMeta>() {
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return compareLong(GFile.getLastModified(new File(o1.getPath())), GFile.getLastModified(new File(o2.getPath())));
             } catch (Exception e) {
                 return 0;
             }

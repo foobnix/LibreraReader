@@ -46,7 +46,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            buildConfigField "boolean", "LOG", "false"
+            buildConfigField "boolean", "LOG", "true"
         }
         debug {
             buildConfigField "boolean", "LOG", "true"
