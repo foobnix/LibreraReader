@@ -75,7 +75,7 @@ public class TTSNotification {
 
     }
 
-    public static void show(String bookPath, int page, int maxPages) {
+    public static Notification show(String bookPath, int page, int maxPages) {
         bookPath1 = bookPath;
         page1 = page;
         pageCount = maxPages;
@@ -168,9 +168,10 @@ public class TTSNotification {
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
+            return n;
         } catch (Exception e) {
             LOG.e(e);
-            return;
+            return null;
         }
     }
 

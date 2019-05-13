@@ -113,7 +113,7 @@ public class TTSService extends Service {
 
                         if (AppState.get().isFastBookmarkByTTS) {
                             if (isPlaying) {
-                                TTSEngine.get().fastTTSBookmakr(getBaseContext(), AppTemp.get().lastBookPath, AppTemp.get().lastBookPage + 1, pageCount);
+                                TTSEngine.get().fastTTSBookmakr(getBaseContext(), AppTemp.get().lastBookPath, AppTemp.get().lastBookPage + 1, AppTemp.get().lastBookPageCount);
                             } else {
                                 playPage("", AppTemp.get().lastBookPage, null);
                             }
@@ -174,13 +174,21 @@ public class TTSService extends Service {
             }
         }
 
-        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
-                .setContentTitle("Librera") //
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                .setContentText("TTS").build();
 
-        startForeground(TTSNotification.NOT_ID, notification);
+        if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
+            startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
+        } else {
+            PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
+                    //.setContentTitle(Apps.getApplicationName(this)) //
+                    .setContentText(getString(R.string.please_wait))
+                    .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                    .build();
+
+            startForeground(TTSNotification.NOT_ID, notification);
+        }
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
@@ -463,7 +471,6 @@ public class TTSService extends Service {
     }
 
     int emptyPageCount = 0;
-    int pageCount;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
@@ -479,9 +486,9 @@ public class TTSService extends Service {
                 return;
             }
 
-            pageCount = dc.getPageCount();
-            LOG.d(TAG, "CodecDocument PageCount", pageNumber, pageCount);
-            if (pageNumber >= pageCount) {
+            AppTemp.get().lastBookPageCount = dc.getPageCount();
+            LOG.d(TAG, "CodecDocument PageCount", pageNumber, AppTemp.get().lastBookPageCount);
+            if (pageNumber >= AppTemp.get().lastBookPageCount) {
 
                 TempHolder.get().timerFinishTime = 0;
 
@@ -501,13 +508,10 @@ public class TTSService extends Service {
             }
 
 
-
-
             CodecPage page = dc.getPage(pageNumber);
             String pageHTML = page.getPageHTML();
             page.recycle();
             pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
-
 
 
             if (TxtUtils.isNotEmpty(anchor)) {
@@ -531,8 +535,8 @@ public class TTSService extends Service {
             emptyPageCount = 0;
 
             String[] parts = TxtUtils.getParts(pageHTML);
-            String firstPart = pageNumber + 1 >= pageCount || AppState.get().ttsTunnOnLastWord ? pageHTML : parts[0];
-            final String secondPart = pageNumber + 1 >= pageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
+            String firstPart = pageNumber + 1 >= AppTemp.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? pageHTML : parts[0];
+            final String secondPart = pageNumber + 1 >= AppTemp.get().lastBookPageCount || AppState.get().ttsTunnOnLastWord ? "" : parts[1];
 
             if (TxtUtils.isNotEmpty(preText)) {
                 preText = TxtUtils.replaceLast(preText, "-", "");
@@ -640,7 +644,7 @@ public class TTSService extends Service {
                 } catch (InterruptedException e) {
                 }
                 AppBook load = SharedBooks.load(AppTemp.get().lastBookPath);
-                load.currentPageChanged(pageNumber + 1, pageCount);
+                load.currentPageChanged(pageNumber + 1, AppTemp.get().lastBookPageCount);
 
                 SharedBooks.save(load, false);
                 AppProfile.save(this);

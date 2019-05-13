@@ -403,25 +403,27 @@ public class TxtUtils {
 
         }
 
-        loadShotList();
-
-        for (String r : shortList) {
-            String r1 = " " + r;
-            String r2 = " " + r.replace(".", "{dot}");
-            pageHTML = pageHTML.replace(r1, r2);
-        }
-
-
-        pageHTML = pageHTML.replaceAll("( \\S)([.])", " $1{dot}");
-
         if (AppState.get().ttsReadBySentences) {
+            loadShotList();
+
+            for (String r : shortList) {
+                String r1 = " " + r;
+                String r2 = " " + r.replace(".", "{dot}");
+                pageHTML = pageHTML.replace(r1, r2);
+            }
+
+
+            pageHTML = pageHTML.replaceAll("( \\S)([.])", " $1{dot}");
+
+
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
                 String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
                 pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
             }
 
+
+            pageHTML = pageHTML.replace("{dot}", ".");
         }
-        pageHTML = pageHTML.replace("{dot}", ".");
 
 
         return pageHTML;
@@ -445,8 +447,7 @@ public class TxtUtils {
 
                 }
             }
-
-
+            input.close();
         } catch (IOException e) {
             LOG.e(e);
         }

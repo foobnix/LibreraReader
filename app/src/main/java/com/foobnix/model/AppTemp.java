@@ -18,6 +18,7 @@ public class AppTemp {
     public String lastMode;
     public long searchDate = 0;
     public int lastBookPage = 0;
+    public int lastBookPageCount = 0;
     public int tempBookPage = 0;
     public volatile int lastBookParagraph = 0;
     public String lastBookTitle;
