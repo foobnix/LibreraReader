@@ -36,7 +36,7 @@
    <string name="search_for_text_in_documents">多文檔搜文本</string>
    <string name="search_in_the_subfolders">子文件夾</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文檔轉換</string>
+   <string name="document_converter_online_">文檔格式轉換</string>
    <string name="book_covers">書籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列數</string>
@@ -84,8 +84,8 @@
    <string name="folder_with_fonts">字體路徑</string>
    <string name="text_align">文本對齊</string>
    <string name="width">兩邊對齊</string>
-   <string name="left">左邊空白</string>
-   <string name="right">右邊空白</string>
+   <string name="left">左邊</string>
+   <string name="right">右邊</string>
    <string name="center">中央對齊</string>
    <string name="custom_css">自定義CSS</string>
    <string name="styles">樣式</string>
@@ -94,8 +94,8 @@
    <string name="automatic_hyphenation">自動斷字</string>
    <string name="empty_line">標題間距</string>
    <string name="margin_width">頁邊空白</string>
-   <string name="top">上邊空白</string>
-   <string name="bottom">下邊空白</string>
+   <string name="top">上邊</string>
+   <string name="bottom">下邊</string>
    <string name="links_color_day">鏈接顏色（白天）</string>
    <string name="links_color_night">鏈接顏色（夜晚）</string>
    <string name="___ADVANCED___SETTINGS___SECTION___">高級設置</string>
@@ -244,9 +244,9 @@
    <string name="___CONTEXT___MENU___SECTION___">上下文選單</string>
    <string name="select_the_reading_mode">閱讀模式</string>
    <string name="convert_to">轉換為</string>
-   <string name="mode_vertical">滾動翻頁</string>
-   <string name="mode_horizontally">仿真翻頁</string>
-   <string name="mode_musician">演奏樂譜</string>
+   <string name="mode_vertical">滾動模式</string>
+   <string name="mode_horizontally">書籍模式</string>
+   <string name="mode_musician">樂師模式</string>
    <string name="save">保存</string>
    <string name="remember_choice">記住選擇</string>
    <string name="edit">編輯</string>
@@ -465,7 +465,7 @@
    <string name="book">書名</string>
    <string name="information">資訊</string>
    <string name="file_path">路徑</string>
-   <string name="year">出版年份</string>
+   <string name="year">年份</string>
    <string name="publisher">出版者</string>
    <string name="do_you_want_to_download_the_file_">需要下載文件？</string>
    <string name="do_you_want_to_delete_this_file_">確認刪除文件？</string>
@@ -539,7 +539,7 @@
    <string name="opening_books_in_the_specified_mode">指定模式打開書籍</string>
    <string name="dark_oled">黑暗有機電激光顯示</string>
    <string name="profile">配置檔</string>
-   <string name="new_profile">新的配置檔</string>
+   <string name="new_profile">新建配置檔</string>
    <string name="main">主要</string>
    <string name="do_you_want_to_switch_profile_">您要切換配置檔嗎？</string>
    <string name="sync_error">同步錯誤</string>
@@ -557,7 +557,7 @@
    <string name="delete_the_directory_all_the_files_in_the_directory_">檔夾不為空。仍要刪除？</string>
    <string name="synchronized_books">同步書籍</string>
    <string name="show_sync_wheel">顯示同步輪</string>
-   <string name="publication_date">發布日期</string>
+   <string name="publication_date">出版日期</string>
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">顯示快速書籤</string>
    <string name="show_only_available_books">只顯示可用的書籍</string>
@@ -565,8 +565,8 @@
    <string name="share_as_image">分享為圖像</string>
    <string name="copy_text">複製文本</string>
    <string name="show_fast_scroll">顯示快速滾動</string>
-   <string name="replacements">替代品</string>
+   <string name="replacements">替代</string>
    <string name="add_dictionary">添加字典</string>
    <string name="add_rule">添加規則</string>
-   <string name="emphasis">重點</string>
+   <string name="emphasis">強調</string>
 </resources>
