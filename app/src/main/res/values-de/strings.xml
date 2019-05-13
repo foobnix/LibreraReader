@@ -72,7 +72,7 @@
    <string name="bold_italic_font">Fett und kursiv</string>
    <string name="font_for_headers">Schriftart für Überschriften</string>
    <string name="enable_volume_keys">Lautstärketasten aktivieren</string>
-   <string name="reverse_keys">Reverse-Tasten</string>
+   <string name="reverse_keys">Bedeutung von Fußpedal- und Lautstärketasten umkehren</string>
    <string name="screen_orientation">Bildschirmausrichtung</string>
    <string name="open_in_the_dictionary">Im Wörterbuch nachschauen</string>
    <string name="remember_dictionary">Wörterbuch beibehalten</string>
@@ -104,7 +104,7 @@
    <string name="direction_of_reading_rtl_">Leserichtung rechts => links</string>
    <string name="left_to_rigth">Links nach rechts</string>
    <string name="right_to_left">Rechts nach links</string>
-   <string name="right_page_then_left_page_rtl_">Erst rechte, dann linke Seite (RTL)</string>
+   <string name="right_page_then_left_page_rtl_">Im Dokument von rechts nach links lesen (RTL)</string>
    <string name="rotate_page">Seite drehen</string>
    <string name="rotate_default">Standardeinstellung</string>
    <string name="tap_zone_size">Größe der Tippzone</string>
@@ -232,7 +232,7 @@
    <string name="incorrect_value">Falscher Wert</string>
    <string name="this_directory_is_already_in_the_list">Dieses Verzeichnis ist bereits in der Liste</string>
    <string name="you_neet_to_apply_the_new_settings">Sie müssen die neuen Einstellungen anwenden</string>
-   <string name="block_page_movement_horizontally">Horizontale Seitenbewegung blockieren</string>
+   <string name="block_page_movement_horizontally">Horizontale Seitenbewegung blockieren </string>
    <string name="there_are_no_email_applications_installed_">E-Mail-Anwendung nicht installiert.</string>
    <string name="file_not_found">Datei nicht gefunden</string>
    <string name="you_need_grant_permission">Sie benötigen Rechte für externen Speicher</string>
@@ -291,16 +291,16 @@
    <string name="go_to_page_dialog">Gehe zu Seite</string>
    <string name="bookmark_with_text">Lesezeichen mit Text</string>
    <string name="fast_bookmark">Schnell Lesezeichen</string>
-   <string name="content_of_book">Inhaltsverzeichnis</string>
+   <string name="content_of_book">Inhaltsverzeichnis aktuelles Dokument</string>
    <string name="heading_and_subheadings">Überschrift und Kapitel</string>
    <string name="headings_only">Nur Überschriften</string>
-   <string name="one_page">Eine Seite</string>
-   <string name="two_pages">Zwei Seiten</string>
+   <string name="one_page">Bildschirm = eine Seite</string>
+   <string name="two_pages">Bildschirm = zwei Seiten</string>
    <string name="two_pages_cover">Cover, zwei Seiten</string>
-   <string name="half_page">Halbe Seite</string>
+   <string name="half_page">Bildschirm = halbe Seite</string>
    <string name="by_pages">Seitenweise</string>
    <string name="by_screans">Bildschirmweise</string>
-   <string name="of_screen">Bildschirm</string>
+   <string name="of_screen">des Bildschirms</string>
    <string name="custom_value">Benutzerdefinierter Wert</string>
    <string name="automatic_page_flipping">Automatischer Seitenwechsel</string>
    <string name="interval_sec_">Intervall (sec)</string>
@@ -439,9 +439,9 @@
    <string name="no_tag">Keine Markierung</string>
    <string name="add_tag">Markierung hinzufügen</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Möchten Sie diese Markierung aus allen Büchern löschen?</string>
-   <string name="by_number_of_pages">Per Seitenzahl</string>
-   <string name="by_number_in_serie">Per Nummer in der Serie</string>
-   <string name="by_extension">Per Erweiterung</string>
+   <string name="by_number_of_pages">per Seitenzahl</string>
+   <string name="by_number_in_serie">per Nummer in der Serie</string>
+   <string name="by_extension">per Erweiterung</string>
    <string name="recent_favorites_tags">Kürzlich gesetzte Favoriten, Markierungen</string>
    <string name="line_spacing">Zeilenabstand</string>
    <string name="paragraph_spacing">Absatzabstand</string>
@@ -565,8 +565,4 @@
    <string name="share_as_image">Als Bild teilen</string>
    <string name="copy_text">Text kopieren</string>
    <string name="show_fast_scroll">Schnelles Scrollen anzeigen</string>
-   <string name="replacements">Ersatz</string>
-   <string name="add_dictionary">Wörterbuch hinzufügen</string>
-   <string name="add_rule">Regel hinzufügen</string>
-   <string name="emphasis">Betonung</string>
 </resources>

@@ -190,12 +190,12 @@ public class VerticalModeController extends DocumentController {
     public void onNextPage(final boolean animate) {
         int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
 
-        if (AppState.get().isLoopAutoplay) {
+       // if (AppState.get().isLoopAutoplay) {
             LOG.d("onNextPage", page, getPageCount());
             if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount()) {
                 page = 0;
             }
-        }
+        //}
         ctr.getDocumentController().goToPage(page, animate);
 
 
@@ -205,12 +205,12 @@ public class VerticalModeController extends DocumentController {
     public void onPrevPage(final boolean animate) {
         int page = ctr.getDocumentModel().getCurrentDocPageIndex() - 1;
 
-        if (AppState.get().isLoopAutoplay) {
+       // if (AppState.get().isLoopAutoplay) {
             LOG.d("onPrevPage", page, getPageCount());
             if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == -1) {
                 page = getPageCount() - 1;
             }
-        }
+        //}
 
         ctr.getDocumentController().goToPage(page, animate);
     }
