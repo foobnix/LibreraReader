@@ -441,7 +441,8 @@ public class TxtUtils {
             BufferedReader input = new BufferedReader(new InputStreamReader(open));
             String line;
             while ((line = input.readLine()) != null) {
-                if (line.trim().length() > 3) {
+                if (line.trim().length() > 2) {
+                    line = line.trim();
                     shortList.add(line);
                     shortList.add(TxtUtils.firstUppercase(line));
                     LOG.d("loadShotList-line", line);
