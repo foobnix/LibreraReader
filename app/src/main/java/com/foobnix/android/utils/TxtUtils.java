@@ -31,10 +31,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.Character.UnicodeBlock;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -396,10 +399,20 @@ public class TxtUtils {
             }
 
 
-
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
         }
+
+        loadShotList();
+
+        for (String r : shortList) {
+            String r1 = " " + r;
+            String r2 = " " + r.replace(".", "{dot}");
+            pageHTML = pageHTML.replace(r1, r2);
+        }
+
+
+        pageHTML = pageHTML.replaceAll("( \\S)([.])", " $1{dot}");
 
         if (AppState.get().ttsReadBySentences) {
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -408,8 +421,35 @@ public class TxtUtils {
             }
 
         }
+        pageHTML = pageHTML.replace("{dot}", ".");
+
 
         return pageHTML;
+    }
+
+    static List<String> shortList = new ArrayList<>();
+
+    public static void loadShotList() {
+        try {
+            if (!shortList.isEmpty()) {
+                return;
+            }
+
+            final InputStream open = LibreraApp.context.getAssets().open("dict/Librera_Сокращения.txt");
+            BufferedReader input = new BufferedReader(new InputStreamReader(open));
+            String line;
+            while ((line = input.readLine()) != null) {
+                if (line.trim().length() > 2) {
+                    shortList.add(line);
+                    LOG.d("loadShotList-line", line);
+
+                }
+            }
+
+
+        } catch (IOException e) {
+            LOG.e(e);
+        }
     }
 
     public static String replaceAccent(String dict) {
