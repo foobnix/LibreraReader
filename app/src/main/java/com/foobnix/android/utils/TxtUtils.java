@@ -443,6 +443,7 @@ public class TxtUtils {
             while ((line = input.readLine()) != null) {
                 if (line.trim().length() > 2) {
                     shortList.add(line);
+                    shortList.add(TxtUtils.firstUppercase(line));
                     LOG.d("loadShotList-line", line);
 
                 }

@@ -306,8 +306,15 @@ public class GFile {
 
 
         file.setModifiedTime(new DateTime(inFile.lastModified()));
-        googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
+        try {
+            googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
+        } catch (Exception e) {
+            LOG.e(e);
+            contentStream = new FileContent(ExtUtils.getMimeType(inFile), inFile);
+            googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
+
+        }
 
         LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
 
