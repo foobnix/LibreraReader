@@ -1449,7 +1449,12 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         TTSEngine.get().stop();
-                        TTSEngine.get().speek(editText.getText().toString().trim());
+
+                        String text = editText.getText().toString().trim();
+                        text = TxtUtils.replaceHTMLforTTS(text);
+                        text = text.replace(TxtUtils.TTS_PAUSE, "");
+
+                        TTSEngine.get().speek(text);
                     }
                 });
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {

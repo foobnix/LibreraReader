@@ -391,6 +391,8 @@ public class TxtUtils {
                         pageHTML = pageHTML.replace(key, value);
                     }
                 }
+
+
                 LOG.d("pageHTML [8]", pageHTML);
 
 
@@ -402,6 +404,13 @@ public class TxtUtils {
             LOG.d("pageHTML [after replacments] ", pageHTML);
 
         }
+
+        pageHTML = pageHTML.replace(" ,", ",");
+        pageHTML = pageHTML.replace(",,", ",");
+
+        pageHTML = pageHTML.replace(".,", ".");
+        pageHTML = pageHTML.replace(",.", ".");
+        pageHTML = pageHTML.replace("..", ".");
 
         if (AppState.get().ttsReadBySentences) {
             loadShotList();
@@ -424,6 +433,7 @@ public class TxtUtils {
 
             pageHTML = pageHTML.replace("{dot}", ".");
         }
+
 
 
         return pageHTML;

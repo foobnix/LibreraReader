@@ -194,7 +194,7 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static final String TTS_REPLACEMENTS = "{'[()\"«»*”“/[]]':' ', '[?!:;–|—|―]':',' , 'Lib.':'Librera'}";
+    public static final String TTS_REPLACEMENTS = "{'[()\"«»*”“/[]]':' ', '[?!:;–|—|―]':',' , 'Lib.':'Libréra'}";
     public static final String TTS_PUNCUATIONS = ".;:!?";
     public static final String TTS_ACCENTS = "";
 

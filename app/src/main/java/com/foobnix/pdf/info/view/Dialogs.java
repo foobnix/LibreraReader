@@ -47,6 +47,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -140,13 +141,16 @@ public class Dialogs {
             e.printStackTrace();
         }
 
-        root.addView(UI.text(activity, activity.getString(R.string.emphasis)));
         EditText lineTTSAccents = new EditText(activity);
-        lineTTSAccents.setGravity(Gravity.TOP);
-        lineTTSAccents.setLines(3);
-        lineTTSAccents.setText(AppState.get().lineTTSAccents);
 
-        root.addView(lineTTSAccents);
+        if ("ru".equals(AppTemp.get().hypenLang)) {
+            root.addView(UI.text(activity, activity.getString(R.string.emphasis)));
+            lineTTSAccents.setGravity(Gravity.TOP);
+            lineTTSAccents.setLines(3);
+            lineTTSAccents.setText(AppState.get().lineTTSAccents);
+
+            root.addView(lineTTSAccents);
+        }
 
         TextView add = new TextView(activity, null, R.style.textLink);
         add.setText(activity.getString(R.string.add_rule));
@@ -165,6 +169,7 @@ public class Dialogs {
                 from.setSingleLine();
 
 
+
                 TextView text = new TextView(activity);
                 text.setText(" -> ");
                 root.setPadding(Dips.DP_10, Dips.DP_0, Dips.DP_10, Dips.DP_0);
@@ -178,7 +183,7 @@ public class Dialogs {
                 h.addView(from);
                 h.addView(text);
                 h.addView(to);
-                root.addView(h);
+                root.addView(h, root.getChildCount() - 3);
             }
         });
         root.addView(add);
