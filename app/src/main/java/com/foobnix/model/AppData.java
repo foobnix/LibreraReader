@@ -75,11 +75,11 @@ public class AppData {
 
 
     private synchronized List<SimpleMeta> getAll(String name) {
-        List<SimpleMeta> exclude = new ArrayList<>();
+        List<SimpleMeta> result = new ArrayList<>();
         for (File file : AppProfile.getAllFiles(name)) {
-            addSimpleMeta(exclude, file);
+            addSimpleMeta(result, file);
         }
-        return exclude;
+        return result;
     }
 
     public void addRecent(SimpleMeta simpleMeta) {
@@ -113,7 +113,7 @@ public class AppData {
         return res;
     }
 
-    public  List<FileMeta> getAllFavoriteFiles() {
+    public List<FileMeta> getAllFavoriteFiles() {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -130,13 +130,13 @@ public class AppData {
                 }
             }
         }
-        SharedBooks.updateProgress(res,false);
+        SharedBooks.updateProgress(res, false);
         Collections.sort(res, FileMetaComparators.BY_DATE);
         Collections.reverse(res);
         return res;
     }
 
-    public  List<FileMeta> getAllFavoriteFolders() {
+    public List<FileMeta> getAllFavoriteFolders() {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -176,11 +176,14 @@ public class AppData {
             }
 
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
-            meta.setIsRecentTime(s.time);
+            if (meta.getIsRecent() != null && meta.getIsRecentTime() < s.time) {
+                meta.setIsRecentTime(s.time);
+                //AppDB.get().update(meta);
+            }
 
             //meta.setIsRecent(true);
 
-            LOG.d("meta-aa",meta.getPath(), s.time);
+            LOG.d("meta-aa", meta.getPath(), s.time);
 
             if (!res.contains(meta)) {
                 res.add(meta);
@@ -227,6 +230,7 @@ public class AppData {
                 SimpleMeta meta = new SimpleMeta();
                 meta.file = file;
                 Objects.loadFromJson(meta, array.getJSONObject(i));
+
                 list.add(meta);
             }
         } catch (Exception e) {

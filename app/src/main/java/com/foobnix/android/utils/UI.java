@@ -23,4 +23,11 @@ public class UI {
         l.setText(text);
         return l;
     }
+
+    public static TextView uText(Activity a, String text) {
+        TextView l = new TextView(a);
+        l.setText(text);
+        TxtUtils.underlineTextView(l);
+        return l;
+    }
 }

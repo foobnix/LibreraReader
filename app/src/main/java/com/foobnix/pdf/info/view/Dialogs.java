@@ -146,7 +146,7 @@ public class Dialogs {
         if ("ru".equals(AppTemp.get().hypenLang)) {
             root.addView(UI.text(activity, activity.getString(R.string.emphasis)));
             lineTTSAccents.setGravity(Gravity.TOP);
-            lineTTSAccents.setLines(3);
+            lineTTSAccents.setLines(2);
             lineTTSAccents.setText(AppState.get().lineTTSAccents);
 
             root.addView(lineTTSAccents);
@@ -167,7 +167,6 @@ public class Dialogs {
                 EditText from = new EditText(activity);
                 from.setWidth(Dips.DP_200);
                 from.setSingleLine();
-
 
 
                 TextView text = new TextView(activity);
@@ -322,12 +321,15 @@ public class Dialogs {
         result.setMinWidth(Dips.dpToPx(1000));
         result.setMinHeight(Dips.dpToPx(1000));
 
+        TextView t = UI.uText(a, "Clear debug log");
+        t.setOnClickListener(v -> GFile.debugOut = "");
+
         AlertDialogs.showViewDialog(a, new Runnable() {
             @Override
             public void run() {
                 flag.set(false);
             }
-        }, result);
+        }, t, result);
     }
 
     public static void testWebView(final Activity a, final String path) {

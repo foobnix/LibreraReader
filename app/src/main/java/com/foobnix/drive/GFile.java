@@ -170,7 +170,7 @@ public class GFile {
         do {
             //debugOut += "\n:" + q;
 
-            final FileList list = googleDriveService.files().list().setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
+            final FileList list = googleDriveService.files().list().setSpaces("drive").setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
             debugOut += "\nGet remote files info: " + list.getFiles().size();
@@ -188,7 +188,7 @@ public class GFile {
     }
 
     public static List<File> getFilesAll(boolean withTrashed) throws Exception {
-        return withTrashed ? exeQ("") : exeQ("trashed = false or");
+        return withTrashed ? exeQ("") : exeQ("trashed = false");
     }
 
     public static File findLibreraSync() throws Exception {
@@ -310,6 +310,7 @@ public class GFile {
             googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
         } catch (Exception e) {
             LOG.e(e);
+            debugOut += "\nErorr upload";
             contentStream = new FileContent(ExtUtils.getMimeType(inFile), inFile);
             googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
@@ -470,14 +471,16 @@ public class GFile {
 
         try {
             isNeedUpdate = false;
-            debugOut = "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
+            debugOut += "\n ----------------------------------";
+            debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
             if (TxtUtils.isEmpty(BookCSS.get().syncRootID)) {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
-                if (syncRoot == null) {
+                if (syncRoot == null || syncRoot.getTrashed() == true) {
                     syncRoot = GFile.createFolder("root", "Librera");
+                    debugOut += "\n Create remote [Librera]";
                 }
                 BookCSS.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
@@ -485,7 +488,7 @@ public class GFile {
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
                 sp.edit().clear().commit();
                 AppProfile.SYNC_FOLDER_ROOT.mkdirs();
-                debugOut += "/n Create root folder";
+                debugOut += "\n Create local [Librera]";
             }
 
 
@@ -589,33 +592,12 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
-                if (!hasLastModified(local) && local.length() == remote.getSize().longValue()) {
+                if (!hasLastModified(local) || local.length() == remote.getSize().longValue()) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
                     //debugOut += "\n skip: " + local.getName();
                     LOG.d(TAG, "Skip", local.getName());
                 }
-//                } else if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON) || local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
-//                    if (local.length() != remote.getSize().longValue()) {
-//                        LOG.d("merge-" + local.getName());
-//                        debugOut += "\n merge: " + local.getName();
-//                        java.io.File merge = new java.io.File(local.getPath() + ".[merge]");
-//                        try {
-//                            downloadTemp(remote.getId(), merge);
-//                            //merge
-//                            if (local.getName().endsWith(AppProfile.APP_PROGRESS_JSON)) {
-//                                ExportConverter.mergeBookProgrss(merge, local);
-//                            } else if (local.getName().endsWith(AppProfile.APP_BOOKMARKS_JSON)) {
-//                                ExportConverter.mergeBookmarks(merge, local);
-//                            }
-//                            uploadFile(syncId, remote, local);
-//                            isNeedUpdate = true;
-//                        } finally {
-//                            merge.delete();
-//                        }
-//                        skip = true;
-//                    }
-//                }
 
 
                 if (!skip && compareBySizeModifiedTime(remote, local) > 0) {
@@ -648,9 +630,9 @@ public class GFile {
         }
         for (java.io.File local : files) {
             File remote = map2.get(local);
-            if (remote != null && remote.getTrashed() == true) {
-                remote = null;
-            }
+//            if (remote != null && remote.getTrashed() == true) {
+//                remote = null;
+//            }
             if (local.isDirectory()) {
                 if (remote == null) {
                     remote = createFolder(syncId, local.getName());
