@@ -435,7 +435,6 @@ public class TxtUtils {
         }
 
 
-
         return pageHTML;
     }
 
@@ -531,6 +530,8 @@ public class TxtUtils {
                     if (TxtUtils.isEmpty(line)) {
                         continue;
                     } else if (line.startsWith("#")) {
+                        continue;
+                    } else if (line.endsWith("256")) {
                         continue;
                     } else if (line.startsWith("*\"")) {
                         String parts[] = line.split("\" \"");
