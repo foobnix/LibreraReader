@@ -1,12 +1,12 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
-   <string name="library_settings">Bibliothekseinstellungen</string>
+   <string name="library_settings">Auswahl angezeigter Dokumententypen</string>
    <string name="scan_device_for_new_books">Gerät nach Dokumenten durchsuchen</string>
    <string name="add_folder">Ordner hinzufügen</string>
    <string name="archives">Archiv</string>
    <string name="other">Andere</string>
    <string name="you_need_to_update_the_library">Sie müssen die Bibliothek aktualisieren</string>
-   <string name="in_the_author_s_name_first_the_surname">Im Namen des Autors, zuerst den Nachnamen</string>
+   <string name="in_the_author_s_name_first_the_surname">Beim Namen des Autors zuerst den Nachnamen</string>
    <string name="orientation">Orientierung</string>
    <string name="automatic">Automatisch</string>
    <string name="landscape">Querformat</string>
@@ -37,15 +37,15 @@
    <string name="search_in_the_subfolders">Suche in Unterordnern</string>
    <string name="stop">Halt</string>
    <string name="document_converter_online_">Dokumentenkonverter (online)</string>
-   <string name="book_covers">Buchtitelbilder</string>
+   <string name="book_covers">Titelbilder in Dateilisten</string>
    <string name="cover_image_size">Titelbildgröße</string>
    <string name="column_count">Anzahl der Spalten</string>
-   <string name="show_book_covers">Titelbilder anzeigen</string>
-   <string name="enable_effect_of_the_book_cover">Titelbilder aktivieren</string>
+   <string name="show_book_covers">Titelbildbereiche in Liste vorsehen</string>
+   <string name="enable_effect_of_the_book_cover">Titelbilder nicht aktivieren</string>
    <string name="crop_images_in_the_book_cover">Zuschneiden von Bildern in Titelbildern</string>
-   <string name="borders_and_shadow_around_the_book_cover">Rahmen und Schatten um Titelbilder</string>
-   <string name="tabs_position">Tabulator-Position</string>
-   <string name="show_preferences_tab_in_the_left_menu">Im linken Menü Registerkarte Einstellungen anzeigen</string>
+   <string name="borders_and_shadow_around_the_book_cover">Dokumente in Liste abgrenzen</string>
+   <string name="tabs_position">Dateilistenmenü</string>
+   <string name="show_preferences_tab_in_the_left_menu">Im Dateilistenmenü Einstellungen ermöglichen</string>
    <string name="visible">Sichtbar</string>
    <string name="application_user_guide_">Benutzerhandbuch</string>
    <string name="import_or_export_application_settings_to_json_file">Importieren oder Exportieren von Einstellungen per JSON-Datei</string>
