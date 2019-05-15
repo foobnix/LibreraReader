@@ -83,6 +83,7 @@ public class GFile {
         GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
         client.signOut();
         googleDriveService = null;
+        BookCSS.get().syncRootID = "";
         AppTemp.get().syncTime = 0;
 
     }
@@ -302,7 +303,7 @@ public class GFile {
 
         setLastModifiedTime(inFile, inFile.lastModified());
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(getLastModified(inFile)));
-        FileContent contentStream = new FileContent("text/plain", inFile);
+        FileContent contentStream = new FileContent(ExtUtils.getMimeType(inFile), inFile);
 
 
         file.setModifiedTime(new DateTime(inFile.lastModified()));
@@ -484,7 +485,29 @@ public class GFile {
                 }
                 BookCSS.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
+            } else {
+//                try {
+//                    final File execute = GFile.googleDriveService.files().get(BookCSS.get().syncRootID).execute();
+//                    if (execute.getTrashed() == true) {
+//                        File syncRoot = GFile.createFolder("root", "Librera");
+//                        debugOut += "\n Create remote [Librera]";
+//                        BookCSS.get().syncRootID = syncRoot.getId();
+//                        AppProfile.save(c);
+//                    }
+//                } catch (GoogleJsonResponseException e) {
+//                    LOG.e(e);
+//                    if (e.getDetails().getCode() == 404) {
+//                        File syncRoot = GFile.createFolder("root", "Librera");
+//                        debugOut += "\n Create remote [Librera]";
+//                        BookCSS.get().syncRootID = syncRoot.getId();
+//                        AppProfile.save(c);
+//                    }
+//                }
+
+
             }
+
+
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
                 sp.edit().clear().commit();
                 AppProfile.SYNC_FOLDER_ROOT.mkdirs();
@@ -531,6 +554,15 @@ public class GFile {
     private static void sync(String syncId, final java.io.File ioRoot) throws Exception {
         final List<File> driveFiles = getFilesAll(true);
         LOG.d(TAG, "getFilesAll", "end");
+//        if (LOG.isEnable) {
+//            FileWriter out = new FileWriter(new java.io.File(BookCSS.get().downlodsPath, "dump-sync.txt"));
+//            for (File file : driveFiles) {
+//                out.write(file.toString() + "\n");
+//            }
+//            out.flush();
+//            out.close();
+//        }
+
 
         Map<String, File> map = new HashMap<>();
         map2.clear();
