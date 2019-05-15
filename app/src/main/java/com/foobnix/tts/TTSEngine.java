@@ -207,7 +207,7 @@ public class TTSEngine {
 
         if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
             String[] parts = text.split(TxtUtils.TTS_PAUSE);
-            ttsEngine.speak(" ", TextToSpeech.QUEUE_FLUSH, mapTemp);
+            ttsEngine.playSilence(0l, TextToSpeech.QUEUE_FLUSH, mapTemp);
             for (int i = AppTemp.get().lastBookParagraph; i < parts.length; i++) {
 
                 String big = parts[i];
