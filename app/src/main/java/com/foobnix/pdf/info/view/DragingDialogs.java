@@ -543,7 +543,11 @@ public class DragingDialogs {
                 // TxtUtils.underlineTextView(ttsLang);
 
                 final TextView ttsPauseDuration = (TextView) view.findViewById(R.id.ttsPauseDuration);
-                ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                if (AppState.get().ttsPauseDuration > 1000) {
+                    ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration / 1000 + " sec");
+                } else {
+                    ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                }
                 TxtUtils.underlineTextView(ttsPauseDuration);
 
                 ttsPauseDuration.setOnClickListener(new OnClickListener() {
@@ -551,7 +555,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 500; i += 10) {
+                        for (int i = 0; i <= 500; i += (i <= 100 ? 10 : 25)) {
                             final int j = i;
                             popupMenu.getMenu().add(i + " ms").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -560,6 +564,21 @@ public class DragingDialogs {
                                     TTSEngine.get().stop();
                                     AppState.get().ttsPauseDuration = j;
                                     ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                                    TxtUtils.underlineTextView(ttsPauseDuration);
+                                    return false;
+                                }
+                            });
+                        }
+
+                        for (int i = 1; i <= 10; i += 1) {
+                            final int j = i;
+                            popupMenu.getMenu().add(i + " sec").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    TTSEngine.get().stop();
+                                    AppState.get().ttsPauseDuration = j * 1000;
+                                    ttsPauseDuration.setText("" + j + " sec");
                                     TxtUtils.underlineTextView(ttsPauseDuration);
                                     return false;
                                 }
