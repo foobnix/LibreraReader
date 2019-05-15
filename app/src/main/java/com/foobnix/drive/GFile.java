@@ -307,16 +307,7 @@ public class GFile {
 
 
         file.setModifiedTime(new DateTime(inFile.lastModified()));
-        try {
-            googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
-        } catch (Exception e) {
-            LOG.e(e);
-            debugOut += "\nErorr upload";
-            contentStream = new FileContent(ExtUtils.getMimeType(inFile), inFile);
-            googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
-
-
-        }
+        googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
         LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
 
@@ -468,7 +459,9 @@ public class GFile {
 
     public static volatile boolean isNeedUpdate = false;
 
+
     public static synchronized void sycnronizeAll(final Context c) throws Exception {
+
 
         try {
             isNeedUpdate = false;
@@ -506,6 +499,9 @@ public class GFile {
 
 
             }
+
+
+            //googleDriveService.files().update( BookCSS.get().syncRootID, metadata).execute();
 
 
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
@@ -551,7 +547,16 @@ public class GFile {
 
     static Map<java.io.File, File> map2 = new HashMap<>();
 
-    private static void sync(String syncId, final java.io.File ioRoot) throws Exception {
+    public static long timeout = 0;
+
+    private static void sync(final String syncId, final java.io.File ioRoot) throws Exception {
+
+        if (System.currentTimeMillis() - timeout < 20 * 1000) {
+            debugOut += "\n 20 sec time-out";
+            return;
+        }
+        timeout = System.currentTimeMillis();
+
         final List<File> driveFiles = getFilesAll(true);
         LOG.d(TAG, "getFilesAll", "end");
 //        if (LOG.isEnable) {
@@ -711,6 +716,7 @@ public class GFile {
 
     }
 
+
     public static void runSyncService(Activity a, boolean force) {
 
 
@@ -731,7 +737,9 @@ public class GFile {
             }
         }
 
+
     }
+
 
 }
 
