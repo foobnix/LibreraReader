@@ -418,12 +418,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_fillPageLinkTargetPoint(
 	jint res = 1;
 	return res;
 }
+static int fontSize = 0;
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEnv *env,
 		jclass clazz, jlong handle, jint width, jint height, jint size) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	fz_try(doc->ctx)
 	{
+	    fontSize = size;
+	    DEBUG("fontSize set %d", fontSize);
+
 		fz_layout_document(doc->ctx, doc->document, width, height, size);
 		return (fz_count_pages(doc->ctx, doc->document));
 	}
@@ -1685,9 +1689,18 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			int is_mono = fz_font_is_monospaced(ctx, font) && fz_font_is_monospaced(ctx, font2);
 
 
+
+	        int fs = block->lines->first_span->text->style->size;
+	        DEBUG("fontSize get %d", fs);
+
+            if(fs > fontSize){
+			    fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->first_span->text->style->size);
+			}
+
 			if (is_bold) fz_write_printf(ctx,out,"<b>");
 			if (is_italic) fz_write_printf(ctx,out,"<i>");
 			if (is_mono) fz_write_printf(ctx,out,"<tt>");
+
 
 			for (line = block->lines; line < block->lines + block->len; line++)
 			{
@@ -1704,6 +1717,9 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 				{
 
 					fz_font *s_font = span->text->style->font;
+
+
+
 
 					int is_pause_span = !is_pause_line &&( fz_font_is_bold(ctx,s_font) || fz_font_is_italic(ctx,s_font));
 
@@ -1751,6 +1767,11 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 				}
 
 			}
+			if(block->lines->first_span->text->style->size > fontSize){
+			fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->last_span->text->style->size);
+			}
+
+
 			if (is_bold) {fz_write_printf(ctx,out,"</b>"); fz_write_printf(ctx,out,"<pause>");}
 			if (is_italic) {fz_write_printf(ctx,out,"</i>"); fz_write_printf(ctx,out,"<pause>");}
 			if (is_mono) fz_write_printf(ctx,out,"</tt>");
