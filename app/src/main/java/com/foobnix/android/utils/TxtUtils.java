@@ -264,6 +264,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE + TTS_PAUSE, " ");
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE, " ");
         pageHTML = pageHTML.replace("<end-line>", " ");
+        pageHTML = pageHTML.replace("<end-block>", TTS_PAUSE);
 
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)

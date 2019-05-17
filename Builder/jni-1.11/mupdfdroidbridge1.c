@@ -1778,6 +1778,9 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			fz_write_printf(ctx,out,"</p>");
 			//fz_printf(ctx, out, "<br/>");
 		}
+		if(block_n < page->len-1){
+		    fz_write_printf(ctx,out,"<end-block>");
+		}
 	}
 
 }
