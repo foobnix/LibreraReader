@@ -570,4 +570,5 @@
    <string name="add_rule">添加規則</string>
    <string name="emphasis">強調</string>
    <string name="with_cutout">與切口</string>
+   <string name="screen">屏幕</string>
 </resources>

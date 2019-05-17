@@ -570,4 +570,5 @@
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>
    <string name="with_cutout">С вырезом</string>
+   <string name="screen">Экран</string>
 </resources>

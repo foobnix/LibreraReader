@@ -570,4 +570,5 @@
    <string name="add_rule">규칙 추가</string>
    <string name="emphasis">힘</string>
    <string name="with_cutout">컷 아웃과 함께</string>
+   <string name="screen">화면</string>
 </resources>

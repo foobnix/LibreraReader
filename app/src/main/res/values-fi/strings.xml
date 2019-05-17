@@ -570,4 +570,5 @@
    <string name="add_rule">Lisää sääntö</string>
    <string name="emphasis">Painotus</string>
    <string name="with_cutout">Leikkauksella</string>
+   <string name="screen">Kuvaruutu</string>
 </resources>

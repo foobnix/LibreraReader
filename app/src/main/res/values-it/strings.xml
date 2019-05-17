@@ -570,4 +570,5 @@
    <string name="add_rule">Aggiungi regola</string>
    <string name="emphasis">Enfasi</string>
    <string name="with_cutout">Con il ritaglio</string>
+   <string name="screen">Schermo</string>
 </resources>

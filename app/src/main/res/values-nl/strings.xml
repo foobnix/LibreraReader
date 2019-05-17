@@ -570,4 +570,5 @@
    <string name="add_rule">Regel toevoegen</string>
    <string name="emphasis">Nadruk</string>
    <string name="with_cutout">Met uitsparing</string>
+   <string name="screen">Scherm</string>
 </resources>

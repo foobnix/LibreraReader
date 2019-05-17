@@ -570,4 +570,5 @@
    <string name="add_rule">ルールを追加</string>
    <string name="emphasis">強調</string>
    <string name="with_cutout">切り欠き付き</string>
+   <string name="screen">画面</string>
 </resources>

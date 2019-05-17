@@ -570,4 +570,5 @@
    <string name="add_rule">Legg til regel</string>
    <string name="emphasis">Vektlegging</string>
    <string name="with_cutout">Med utskjæring</string>
+   <string name="screen">Skjerm</string>
 </resources>

@@ -570,4 +570,5 @@
    <string name="add_rule">Ajouter une règle</string>
    <string name="emphasis">Accentuation</string>
    <string name="with_cutout">Avec découpe</string>
+   <string name="screen">Écran</string>
 </resources>

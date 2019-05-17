@@ -570,4 +570,5 @@
    <string name="add_rule">Add rule</string>
    <string name="emphasis">Stress mark(s)</string>
    <string name="with_cutout">With cutout</string>
+   <string name="screen">Screen</string>
 </resources>

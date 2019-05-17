@@ -570,4 +570,5 @@
    <string name="add_rule">Dodaj regułę</string>
    <string name="emphasis">Nacisk</string>
    <string name="with_cutout">Z wycięciem</string>
+   <string name="screen">Ekran</string>
 </resources>

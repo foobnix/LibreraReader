@@ -570,4 +570,5 @@
    <string name="add_rule">Adicionar regra</string>
    <string name="emphasis">Ênfase</string>
    <string name="with_cutout">Com recorte</string>
+   <string name="screen">Tela</string>
 </resources>
