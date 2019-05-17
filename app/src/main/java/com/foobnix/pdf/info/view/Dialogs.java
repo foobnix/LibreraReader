@@ -189,7 +189,7 @@ public class Dialogs {
 
 
         TextView addDict = new TextView(activity, null, R.style.textLink);
-        addDict.setText(activity.getString(R.string.add_dictionary));
+        addDict.setText(activity.getString(R.string.add_dictionary)+" (.txt @Voice)");
         addDict.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
         TxtUtils.underlineTextView(addDict);
         addDict.setOnClickListener(v -> {
