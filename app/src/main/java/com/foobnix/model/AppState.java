@@ -773,7 +773,6 @@ public class AppState {
             isEnableBC = true;
             brigtnessImage = -50;
             isZoomInOutWithLock = false;
-
         }
 
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {

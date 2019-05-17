@@ -940,15 +940,15 @@ public class ExtUtils {
         final Intent intent = new Intent(c, VerticalViewActivity.class);
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+            if (percent > 0f) {
+                Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
         intent.setData(checkPlaylisturi(uri, intent, playlist));
 
-//        if (percent > 0f) {
-//            Intents.putFloat(intent,DocumentController.EXTRA_PERCENT, percent);
-//
-//        }
+
         c.startActivity(intent);
     }
 
