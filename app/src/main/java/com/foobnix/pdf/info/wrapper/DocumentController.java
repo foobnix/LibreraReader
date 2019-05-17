@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MyMath;
@@ -39,6 +40,7 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
@@ -474,6 +476,34 @@ public abstract class DocumentController {
         try {
             a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+            }
+
+            Keyboards.hideNavigation(a);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void runFullScreenCutOut(final Activity a) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+            }
+
             Keyboards.hideNavigation(a);
         } catch (Exception e) {
             LOG.e(e);
@@ -489,10 +519,64 @@ public abstract class DocumentController {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+            }
+
         } catch (Exception e) {
             LOG.e(e);
         }
     }
+
+    public static void chooseFullScreen(final Activity a, final int mode) {
+        if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
+            runFullScreen(a);
+        } else if (mode == AppState.FULL_SCREEN_NORMAL) {
+            runNormalScreen(a);
+        } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+            runFullScreenCutOut(a);
+        }
+    }
+
+    public static String getFullScreenName(final Activity a, final int mode) {
+        switch (mode) {
+            case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
+                return a.getString(R.string.with_cutout);
+            case AppState.FULL_SCREEN_NORMAL:
+                return a.getString(R.string.normal);
+            case AppState.FULL_SCREEN_FULLSCREEN:
+                return a.getString(R.string.full_screen);
+        }
+        return "-";
+    }
+
+    public static void showFullScreenPopup(Activity a, View v, IntegerResponse response) {
+        List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
+
+        MyPopupMenu popup = new MyPopupMenu(a, v);
+        for (int id : ids)
+
+            if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
+                // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
+                popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
+                    response.onResultRecive(id);
+                    return false;
+                });
+                //}
+            } else {
+                popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
+                    response.onResultRecive(id);
+                    return false;
+                });
+
+            }
+        popup.show();
+    }
+
 
     public static void chooseFullScreen(final Activity a, final boolean isFullscren) {
         if (isFullscren) {

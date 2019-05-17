@@ -327,7 +327,7 @@ public class PrefFragment2 extends UIFragment {
                             handler.removeCallbacks(ask2);
                             handler.postDelayed(ask2, timeout);
 
-                            if(tab == UITab.PrefFragment){
+                            if (tab == UITab.PrefFragment) {
                                 isshowPrefAsMenu.setChecked(!isChecked);
                             }
                         }
@@ -531,108 +531,85 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView onFullScreen = (TextView) inflate.findViewById(R.id.fullscreen);
-        onFullScreen.setText(AppState.get().isFullScreenMain ? R.string.yes : R.string.no);
+
+        onFullScreen.setText(DocumentController.getFullScreenName(getActivity(), AppState.get().fullScreenMainMode));
+
         TxtUtils.underlineTextView(onFullScreen);
 
-        onFullScreen.setOnClickListener(new OnClickListener() {
+        onFullScreen.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(final View v) {
 
-                MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
-                popup.getMenu().add(R.string.yes).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            DocumentController.showFullScreenPopup(getActivity(), v, id -> {
+                AppState.get().fullScreenMainMode = id;
+                onFullScreen.setText(DocumentController.getFullScreenName(getActivity(), AppState.get().fullScreenMainMode));
+                TxtUtils.underlineTextView(onFullScreen);
+                DocumentController.chooseFullScreen(getActivity(), AppState.get().fullScreenMainMode);
+                return true;
+            });
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isFullScreenMain = true;
 
-                        onFullScreen.setText(R.string.yes);
-                        TxtUtils.underlineTextView(onFullScreen);
-                        DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
-                        return false;
-                    }
-                });
-
-                popup.getMenu().add(R.string.no).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().isFullScreenMain = false;
-
-                        onFullScreen.setText(R.string.no);
-                        TxtUtils.underlineTextView(onFullScreen);
-                        DocumentController.chooseFullScreen(getActivity(), AppState.get().isFullScreenMain);
-                        return false;
-                    }
-                });
-
-                popup.show();
-
-            }
         });
 
         final TextView tapPositionTop = (TextView) inflate.findViewById(R.id.tapPositionTop);
         tapPositionTop.setText(AppState.get().tapPositionTop ? R.string.top : R.string.bottom);
         TxtUtils.underlineTextView(tapPositionTop);
 
-        tapPositionTop.setOnClickListener(new OnClickListener() {
+        tapPositionTop.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(final View v) {
+            MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
+            popup.getMenu().add(R.string.top).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
-                popup.getMenu().add(R.string.top).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AppState.get().tapPositionTop = true;
+                    onTheme();
+                    return false;
+                }
+            });
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().tapPositionTop = true;
-                        onTheme();
-                        return false;
-                    }
-                });
+            popup.getMenu().add(R.string.bottom).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                popup.getMenu().add(R.string.bottom).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AppState.get().tapPositionTop = false;
+                    onTheme();
+                    return false;
+                }
+            });
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().tapPositionTop = false;
-                        onTheme();
-                        return false;
-                    }
-                });
+            popup.show();
 
-                popup.show();
-
-            }
         });
 
         screenOrientation = (TextView) inflate.findViewById(R.id.screenOrientation);
         screenOrientation.setText(DocumentController.getRotationText());
         TxtUtils.underlineTextView(screenOrientation);
 
-        screenOrientation.setOnClickListener(new OnClickListener() {
+        screenOrientation.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                PopupMenu menu = new PopupMenu(v.getContext(), v);
-                for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
-                    final int j = i;
-                    final int name = DocumentController.orientationTexts.get(i);
-                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                     OnClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().orientation = DocumentController.orientationIds.get(j);
-                            screenOrientation.setText(DocumentController.orientationTexts.get(j));
-                            TxtUtils.underlineTextView(screenOrientation);
-                            DocumentController.doRotation(getActivity());
-                            return false;
-                        }
-                    });
-                }
-                menu.show();
-            }
-        });
+                                                         @Override
+                                                         public void onClick(View v) {
+                                                             PopupMenu menu = new PopupMenu(v.getContext(), v);
+                                                             for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
+                                                                 final int j = i;
+                                                                 final int name = DocumentController.orientationTexts.get(i);
+                                                                 menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                                                     @Override
+                                                                     public boolean onMenuItemClick(MenuItem item) {
+                                                                         AppState.get().orientation = DocumentController.orientationIds.get(j);
+                                                                         screenOrientation.setText(DocumentController.orientationTexts.get(j));
+                                                                         TxtUtils.underlineTextView(screenOrientation);
+                                                                         DocumentController.doRotation(getActivity());
+                                                                         return false;
+                                                                     }
+                                                                 });
+                                                             }
+                                                             menu.show();
+                                                         }
+                                                     });
 
         // inflate.findViewById(R.id.onHelpTranslate).setOnClickListener(new
         // OnClickListener() {
@@ -644,418 +621,460 @@ public class PrefFragment2 extends UIFragment {
         // }
         // });
 
-        inflate.findViewById(R.id.onKeyCode).setOnClickListener(new OnClickListener() {
+        inflate.findViewById(R.id.onKeyCode).
 
-            @Override
-            public void onClick(final View v) {
-                new KeyCodeDialog(getActivity(), onCloseDialog);
-            }
-        });
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        new KeyCodeDialog(getActivity(), onCloseDialog);
+                    }
+                });
 
         themeColor = (TextView) inflate.findViewById(R.id.themeColor);
-        themeColor.setOnClickListener(new OnClickListener() {
+        themeColor.setOnClickListener(new
 
-            @Override
-            public void onClick(final View v) {
+                                              OnClickListener() {
 
-                PopupMenu p = new PopupMenu(getContext(), themeColor);
-                p.getMenu().add(R.string.light).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                  @Override
+                                                  public void onClick(final View v) {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().appTheme = AppState.THEME_LIGHT;
+                                                      PopupMenu p = new PopupMenu(getContext(), themeColor);
+                                                      p.getMenu().add(R.string.light).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        AppState.get().contrastImage = 0;
-                        AppState.get().brigtnessImage = 0;
-                        AppState.get().bolderTextOnImage = false;
-                        AppState.get().isEnableBC = false;
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().appTheme = AppState.THEME_LIGHT;
 
-                        AppProfile.save(getActivity());
+                                                              AppState.get().contrastImage = 0;
+                                                              AppState.get().brigtnessImage = 0;
+                                                              AppState.get().bolderTextOnImage = false;
+                                                              AppState.get().isEnableBC = false;
 
-                        IMG.clearDiscCache();
-                        IMG.clearMemoryCache();
-                        onTheme();
+                                                              AppProfile.save(getActivity());
 
-                        return false;
-                    }
-                });
-                p.getMenu().add(R.string.black).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                              IMG.clearDiscCache();
+                                                              IMG.clearMemoryCache();
+                                                              onTheme();
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().appTheme = AppState.THEME_DARK;
+                                                              return false;
+                                                          }
+                                                      });
+                                                      p.getMenu().add(R.string.black).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        AppState.get().contrastImage = 0;
-                        AppState.get().brigtnessImage = 0;
-                        AppState.get().bolderTextOnImage = false;
-                        AppState.get().isEnableBC = false;
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().appTheme = AppState.THEME_DARK;
 
-                        AppProfile.save(getActivity());
+                                                              AppState.get().contrastImage = 0;
+                                                              AppState.get().brigtnessImage = 0;
+                                                              AppState.get().bolderTextOnImage = false;
+                                                              AppState.get().isEnableBC = false;
 
-                        IMG.clearDiscCache();
-                        IMG.clearMemoryCache();
+                                                              AppProfile.save(getActivity());
 
-                        onTheme();
-                        return false;
-                    }
-                });
-                p.getMenu().add(R.string.dark_oled).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                              IMG.clearDiscCache();
+                                                              IMG.clearMemoryCache();
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AppState.get().appTheme = AppState.THEME_DARK_OLED;
+                                                              onTheme();
+                                                              return false;
+                                                          }
+                                                      });
+                                                      p.getMenu().add(R.string.dark_oled).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        AppState.get().contrastImage = 0;
-                        AppState.get().brigtnessImage = 0;
-                        AppState.get().bolderTextOnImage = false;
-                        AppState.get().isEnableBC = false;
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
+                                                              AppState.get().appTheme = AppState.THEME_DARK_OLED;
 
-                        AppProfile.save(getActivity());
+                                                              AppState.get().contrastImage = 0;
+                                                              AppState.get().brigtnessImage = 0;
+                                                              AppState.get().bolderTextOnImage = false;
+                                                              AppState.get().isEnableBC = false;
 
-                        IMG.clearDiscCache();
-                        IMG.clearMemoryCache();
+                                                              AppProfile.save(getActivity());
 
-                        onTheme();
-                        return false;
-                    }
-                });
-                p.getMenu().add("Ink").setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                              IMG.clearDiscCache();
+                                                              IMG.clearMemoryCache();
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
+                                                              onTheme();
+                                                              return false;
+                                                          }
+                                                      });
+                                                      p.getMenu().add("Ink").setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        IMG.clearDiscCache();
-                        IMG.clearMemoryCache();
+                                                          @Override
+                                                          public boolean onMenuItemClick(MenuItem item) {
 
-                        onEink();
-                        return false;
-                    }
-                });
-                p.show();
-            }
-        });
+                                                              IMG.clearDiscCache();
+                                                              IMG.clearMemoryCache();
+
+                                                              onEink();
+                                                              return false;
+                                                          }
+                                                      });
+                                                      p.show();
+                                                  }
+                                              });
 
         final TextView hypenLang = (TextView) inflate.findViewById(R.id.appLang);
         hypenLang.setText(DialogTranslateFromTo.getLanuageByCode(AppState.get().appLang));
         TxtUtils.underlineTextView(hypenLang);
 
-        hypenLang.setOnClickListener(new OnClickListener() {
+        hypenLang.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
+                                             OnClickListener() {
 
-                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                                                 @Override
+                                                 public void onClick(View v) {
 
-                final List<String> codes = Arrays.asList(//
-                        "en", "ar", "de", "es", "fa", "fi", "fr", "he", //
-                        "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
-                        "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-                        "sw", "th", "tr", "uk", "vi", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
-                List<String> langs = new ArrayList<String>();
-                for (String code : codes) {
-                    langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
-                }
-                Collections.sort(langs);
+                                                     final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                popupMenu.getMenu().add(R.string.system_language).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                     final List<String> codes = Arrays.asList(//
+                                                             "en", "ar", "de", "es", "fa", "fi", "fr", "he", //
+                                                             "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
+                                                             "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
+                                                             "sw", "th", "tr", "uk", "vi", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+                                                     List<String> langs = new ArrayList<String>();
+                                                     for (String code : codes) {
+                                                         langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
+                                                     }
+                                                     Collections.sort(langs);
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        TxtUtils.underlineTextView(hypenLang);
-                        AppState.get().appLang = AppState.MY_SYSTEM_LANG;
-                        TempHolder.get().forseAppLang = true;
-                        MyContextWrapper.wrap(getContext());
-                        AppProfile.save(getActivity());
-                        onTheme();
-                        return false;
-                    }
-                });
+                                                     popupMenu.getMenu().add(R.string.system_language).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                for (int i = 0; i < langs.size(); i++) {
-                    String all[] = langs.get(i).split(":");
-                    final String name = all[0];
-                    final String code = all[1];
-                    popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                         @Override
+                                                         public boolean onMenuItemClick(MenuItem item) {
+                                                             TxtUtils.underlineTextView(hypenLang);
+                                                             AppState.get().appLang = AppState.MY_SYSTEM_LANG;
+                                                             TempHolder.get().forseAppLang = true;
+                                                             MyContextWrapper.wrap(getContext());
+                                                             AppProfile.save(getActivity());
+                                                             onTheme();
+                                                             return false;
+                                                         }
+                                                     });
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().appLang = code;
-                            TxtUtils.underlineTextView(hypenLang);
-                            AppProfile.save(getActivity());
-                            onTheme();
-                            return false;
-                        }
-                    });
-                }
-                popupMenu.show();
+                                                     for (int i = 0; i < langs.size(); i++) {
+                                                         String all[] = langs.get(i).split(":");
+                                                         final String name = all[0];
+                                                         final String code = all[1];
+                                                         popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-            }
-        });
+                                                             @Override
+                                                             public boolean onMenuItemClick(MenuItem item) {
+                                                                 AppState.get().appLang = code;
+                                                                 TxtUtils.underlineTextView(hypenLang);
+                                                                 AppProfile.save(getActivity());
+                                                                 onTheme();
+                                                                 return false;
+                                                             }
+                                                         });
+                                                     }
+                                                     popupMenu.show();
+
+                                                 }
+                                             });
 
         final TextView appFontScale = (TextView) inflate.findViewById(R.id.appFontScale);
-        appFontScale.setText(getFontName(BookCSS.get().appFontScale));
+        appFontScale.setText(
+
+                getFontName(BookCSS.get().appFontScale));
         TxtUtils.underlineTextView(appFontScale);
-        appFontScale.setOnClickListener(new OnClickListener() {
+        appFontScale.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                for (float i = 0.7f; i < 2.1f; i += 0.1) {
-                    final float number = i;
-                    popupMenu.getMenu().add(getFontName(number)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                OnClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            BookCSS.get().appFontScale = number;
-                            AppProfile.save(getActivity());
-                            onTheme();
-                            return false;
-                        }
-                    });
-                }
-                popupMenu.show();
-            }
-        });
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                                                        for (float i = 0.7f; i < 2.1f; i += 0.1) {
+                                                            final float number = i;
+                                                            popupMenu.getMenu().add(getFontName(number)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                                                @Override
+                                                                public boolean onMenuItemClick(MenuItem item) {
+                                                                    BookCSS.get().appFontScale = number;
+                                                                    AppProfile.save(getActivity());
+                                                                    onTheme();
+                                                                    return false;
+                                                                }
+                                                            });
+                                                        }
+                                                        popupMenu.show();
+                                                    }
+                                                });
 
         final TextView onMail = (TextView) inflate.findViewById(R.id.onMailSupport);
-        onMail.setText(TxtUtils.underline(getString(R.string.my_email)));
+        onMail.setText(TxtUtils.underline(
 
-        onMail.setOnClickListener(new OnClickListener() {
-            @Override
+                getString(R.string.my_email)));
 
-            public void onClick(final View v) {
-                onEmail();
-            }
-        });
+        onMail.setOnClickListener(new
+
+                                          OnClickListener() {
+                                              @Override
+
+                                              public void onClick(final View v) {
+                                                  onEmail();
+                                              }
+                                          });
 
         rememberMode = (CheckBox) inflate.findViewById(R.id.isRememberMode);
         rememberMode.setChecked(AppState.get().isRememberMode);
-        rememberMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        rememberMode.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isRememberMode = isChecked;
-            }
-        });
+                                                        OnCheckedChangeListener() {
+
+                                                            @Override
+                                                            public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                         final boolean isChecked) {
+                                                                AppState.get().isRememberMode = isChecked;
+                                                            }
+                                                        });
 
         selectedOpenMode = (TextView) inflate.findViewById(R.id.selectedOpenMode);
-        selectedOpenMode.setOnClickListener(new OnClickListener() {
+        selectedOpenMode.setOnClickListener(new
 
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
+                                                    OnClickListener() {
 
-                if (Build.VERSION.SDK_INT <= 10) {
-                    Toast.makeText(selectedOpenMode.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                final PopupMenu popupMenu = new PopupMenu(selectedOpenMode.getContext(), selectedOpenMode);
+                                                        @SuppressLint("NewApi")
+                                                        @Override
+                                                        public void onClick(View v) {
 
-                final MenuItem advanced_mode = popupMenu.getMenu().add(AppState.get().nameVerticalMode);
-                advanced_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                            if (Build.VERSION.SDK_INT <= 10) {
+                                                                Toast.makeText(selectedOpenMode.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
+                                                                return;
+                                                            }
+                                                            final PopupMenu popupMenu = new PopupMenu(selectedOpenMode.getContext(), selectedOpenMode);
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
-                        checkOpenWithSpinner();
-                        return false;
-                    }
-                });
+                                                            final MenuItem advanced_mode = popupMenu.getMenu().add(AppState.get().nameVerticalMode);
+                                                            advanced_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                final MenuItem easy_mode = popupMenu.getMenu().add(AppState.get().nameHorizontalMode);
-                easy_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                                @Override
+                                                                public boolean onMenuItemClick(final MenuItem item) {
+                                                                    AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                                                                    checkOpenWithSpinner();
+                                                                    return false;
+                                                                }
+                                                            });
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
-                        checkOpenWithSpinner();
-                        return false;
-                    }
-                });
-                final MenuItem music_mode = popupMenu.getMenu().add(AppState.get().nameMusicianMode);
-                music_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                            final MenuItem easy_mode = popupMenu.getMenu().add(AppState.get().nameHorizontalMode);
+                                                            easy_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
-                        checkOpenWithSpinner();
-                        return false;
-                    }
-                });
-                final MenuItem tags = popupMenu.getMenu().add(getString(R.string.tag_manager));
-                tags.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                                @Override
+                                                                public boolean onMenuItemClick(final MenuItem item) {
+                                                                    AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                                                                    checkOpenWithSpinner();
+                                                                    return false;
+                                                                }
+                                                            });
+                                                            final MenuItem music_mode = popupMenu.getMenu().add(AppState.get().nameMusicianMode);
+                                                            music_mode.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppTemp.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
-                        checkOpenWithSpinner();
-                        return false;
-                    }
-                });
-                popupMenu.show();
+                                                                @Override
+                                                                public boolean onMenuItemClick(final MenuItem item) {
+                                                                    AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                                                                    checkOpenWithSpinner();
+                                                                    return false;
+                                                                }
+                                                            });
+                                                            final MenuItem tags = popupMenu.getMenu().add(getString(R.string.tag_manager));
+                                                            tags.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-            }
-        });
+                                                                @Override
+                                                                public boolean onMenuItemClick(final MenuItem item) {
+                                                                    AppTemp.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
+                                                                    checkOpenWithSpinner();
+                                                                    return false;
+                                                                }
+                                                            });
+                                                            popupMenu.show();
 
-        inflate.findViewById(R.id.moreModeSettings).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_custom_reading_modes, null, false);
-                builder.setView(view);
+                                                        }
+                                                    });
 
-                EditText prefScrollMode = view.findViewById(R.id.prefScrollMode);
-                EditText prefBookMode = view.findViewById(R.id.prefBookMode);
-                EditText prefMusicianMode = view.findViewById(R.id.prefMusicianMode);
+        inflate.findViewById(R.id.moreModeSettings).
 
-                prefScrollMode.setText(AppState.get().prefScrollMode);
-                prefBookMode.setText(AppState.get().prefBookMode);
-                prefMusicianMode.setText(AppState.get().prefMusicianMode);
-
-                CheckBox isPrefFormatMode = view.findViewById(R.id.isPrefFormatMode);
-                isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
-
-                view.findViewById(R.id.prefRestore).setOnClickListener(new OnClickListener() {
+                setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), getString(R.string.ok), new Runnable() {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_custom_reading_modes, null, false);
+                        builder.setView(view);
+
+                        EditText prefScrollMode = view.findViewById(R.id.prefScrollMode);
+                        EditText prefBookMode = view.findViewById(R.id.prefBookMode);
+                        EditText prefMusicianMode = view.findViewById(R.id.prefMusicianMode);
+
+                        prefScrollMode.setText(AppState.get().prefScrollMode);
+                        prefBookMode.setText(AppState.get().prefBookMode);
+                        prefMusicianMode.setText(AppState.get().prefMusicianMode);
+
+                        CheckBox isPrefFormatMode = view.findViewById(R.id.isPrefFormatMode);
+                        isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
+
+                        view.findViewById(R.id.prefRestore).setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), getString(R.string.ok), new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        AppState.get().isPrefFormatMode = false;
+                                        AppState.get().prefScrollMode = AppState.PREF_SCROLL_MODE;
+                                        AppState.get().prefBookMode = AppState.PREF_BOOK_MODE;
+                                        AppState.get().prefMusicianMode = AppState.PREF_MUSIC_MODE;
+
+                                        isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
+                                        prefScrollMode.setText(AppState.get().prefScrollMode);
+                                        prefBookMode.setText(AppState.get().prefBookMode);
+                                        prefMusicianMode.setText(AppState.get().prefMusicianMode);
+                                    }
+                                }, null);
+
+
+                            }
+                        });
+
+                        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
                             @Override
-                            public void run() {
-                                AppState.get().isPrefFormatMode = false;
-                                AppState.get().prefScrollMode = AppState.PREF_SCROLL_MODE;
-                                AppState.get().prefBookMode = AppState.PREF_BOOK_MODE;
-                                AppState.get().prefMusicianMode = AppState.PREF_MUSIC_MODE;
-
-                                isPrefFormatMode.setChecked(AppState.get().isPrefFormatMode);
-                                prefScrollMode.setText(AppState.get().prefScrollMode);
-                                prefBookMode.setText(AppState.get().prefBookMode);
-                                prefMusicianMode.setText(AppState.get().prefMusicianMode);
+                            public void onClick(final DialogInterface dialog, final int id) {
+                                Keyboards.close(prefScrollMode);
+                                AppState.get().isPrefFormatMode = isPrefFormatMode.isChecked();
+                                AppState.get().prefScrollMode = prefScrollMode.getText().toString();
+                                AppState.get().prefBookMode = prefBookMode.getText().toString();
+                                AppState.get().prefMusicianMode = prefMusicianMode.getText().toString();
                             }
-                        }, null);
+                        });
+                        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
+                            @Override
+                            public void onClick(final DialogInterface dialog, final int id) {
 
+                            }
+                        });
+                        builder.show();
                     }
                 });
-
-                builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int id) {
-                        Keyboards.close(prefScrollMode);
-                        AppState.get().isPrefFormatMode = isPrefFormatMode.isChecked();
-                        AppState.get().prefScrollMode = prefScrollMode.getText().toString();
-                        AppState.get().prefBookMode = prefBookMode.getText().toString();
-                        AppState.get().prefMusicianMode = prefMusicianMode.getText().toString();
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(final DialogInterface dialog, final int id) {
-
-                    }
-                });
-                builder.show();
-            }
-        });
 
         checkOpenWithSpinner();
 
         final CheckBox isCropBookCovers = (CheckBox) inflate.findViewById(R.id.isCropBookCovers);
         isCropBookCovers.setOnCheckedChangeListener(null);
         isCropBookCovers.setChecked(AppState.get().isCropBookCovers);
-        isCropBookCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isCropBookCovers.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isCropBookCovers = isChecked;
-                TempHolder.listHash++;
+                                                            OnCheckedChangeListener() {
 
-            }
-        });
+                                                                @Override
+                                                                public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                             final boolean isChecked) {
+                                                                    AppState.get().isCropBookCovers = isChecked;
+                                                                    TempHolder.listHash++;
+
+                                                                }
+                                                            });
 
         final CheckBox isBookCoverEffect = (CheckBox) inflate.findViewById(R.id.isBookCoverEffect);
         isBookCoverEffect.setOnCheckedChangeListener(null);
         isBookCoverEffect.setChecked(AppState.get().isBookCoverEffect);
-        isBookCoverEffect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isBookCoverEffect.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isBookCoverEffect = isChecked;
-                ImageLoader.getInstance().clearMemoryCache();
-                ImageLoader.getInstance().clearDiskCache();
-                TempHolder.listHash++;
-                if (isChecked) {
-                    isCropBookCovers.setEnabled(false);
-                    isCropBookCovers.setChecked(true);
-                } else {
-                    isCropBookCovers.setEnabled(true);
-                }
-            }
-        });
+                                                             OnCheckedChangeListener() {
+
+                                                                 @Override
+                                                                 public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                              final boolean isChecked) {
+                                                                     AppState.get().isBookCoverEffect = isChecked;
+                                                                     ImageLoader.getInstance().clearMemoryCache();
+                                                                     ImageLoader.getInstance().clearDiskCache();
+                                                                     TempHolder.listHash++;
+                                                                     if (isChecked) {
+                                                                         isCropBookCovers.setEnabled(false);
+                                                                         isCropBookCovers.setChecked(true);
+                                                                     } else {
+                                                                         isCropBookCovers.setEnabled(true);
+                                                                     }
+                                                                 }
+                                                             });
 
         final CheckBox isBorderAndShadow = (CheckBox) inflate.findViewById(R.id.isBorderAndShadow);
         isBorderAndShadow.setOnCheckedChangeListener(null);
         isBorderAndShadow.setChecked(AppState.get().isBorderAndShadow);
-        isBorderAndShadow.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isBorderAndShadow.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isBorderAndShadow = isChecked;
-                TempHolder.listHash++;
+                                                             OnCheckedChangeListener() {
 
-            }
-        });
+                                                                 @Override
+                                                                 public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                              final boolean isChecked) {
+                                                                     AppState.get().isBorderAndShadow = isChecked;
+                                                                     TempHolder.listHash++;
+
+                                                                 }
+                                                             });
 
         final CheckBox isShowImages = (CheckBox) inflate.findViewById(R.id.isShowImages);
         isShowImages.setOnCheckedChangeListener(null);
         isShowImages.setChecked(AppState.get().isShowImages);
-        isShowImages.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isShowImages.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isShowImages = isChecked;
-                TempHolder.listHash++;
-                isCropBookCovers.setEnabled(AppState.get().isShowImages);
-                isBookCoverEffect.setEnabled(AppState.get().isShowImages);
-                isBorderAndShadow.setEnabled(AppState.get().isShowImages);
+                                                        OnCheckedChangeListener() {
 
-            }
-        });
+                                                            @Override
+                                                            public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                         final boolean isChecked) {
+                                                                AppState.get().isShowImages = isChecked;
+                                                                TempHolder.listHash++;
+                                                                isCropBookCovers.setEnabled(AppState.get().isShowImages);
+                                                                isBookCoverEffect.setEnabled(AppState.get().isShowImages);
+                                                                isBorderAndShadow.setEnabled(AppState.get().isShowImages);
+
+                                                            }
+                                                        });
         isCropBookCovers.setEnabled(AppState.get().isShowImages);
         isBookCoverEffect.setEnabled(AppState.get().isShowImages);
         isBorderAndShadow.setEnabled(AppState.get().isShowImages);
 
         CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
         isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
-        isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isLoopAutoplay.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isLoopAutoplay = isChecked;
-            }
-        });
+                                                          OnCheckedChangeListener() {
+
+                                                              @Override
+                                                              public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                           final boolean isChecked) {
+                                                                  AppState.get().isLoopAutoplay = isChecked;
+                                                              }
+                                                          });
 
         CheckBox isOpenLastBook = (CheckBox) inflate.findViewById(R.id.isOpenLastBook);
         isOpenLastBook.setChecked(AppState.get().isOpenLastBook);
-        isOpenLastBook.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isOpenLastBook.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isOpenLastBook = isChecked;
-            }
-        });
+                                                          OnCheckedChangeListener() {
+
+                                                              @Override
+                                                              public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                           final boolean isChecked) {
+                                                                  AppState.get().isOpenLastBook = isChecked;
+                                                              }
+                                                          });
 
         CheckBox isShowCloseAppDialog = (CheckBox) inflate.findViewById(R.id.isShowCloseAppDialog);
         isShowCloseAppDialog.setChecked(AppState.get().isShowCloseAppDialog);
-        isShowCloseAppDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isShowCloseAppDialog.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isShowCloseAppDialog = isChecked;
-            }
-        });
+                                                                OnCheckedChangeListener() {
+
+                                                                    @Override
+                                                                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                                 final boolean isChecked) {
+                                                                        AppState.get().isShowCloseAppDialog = isChecked;
+                                                                    }
+                                                                });
 
         final Runnable ask = new Runnable() {
 
@@ -1075,271 +1094,362 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-        inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(new OnClickListener() {
+        inflate.findViewById(R.id.moreLybraryettings).
 
-            @Override
-            public void onClick(View v) {
-                final CheckBox check = new CheckBox(v.getContext());
-                check.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
-
-                final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), check);
-
-                check.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
-
-                check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isAuthorTitleFromMetaPDF = isChecked;
-                        handler.removeCallbacksAndMessages(null);
-                        handler.postDelayed(ask, timeout);
-                        handler.postDelayed(new Runnable() {
+                    public void onClick(View v) {
+                        final CheckBox check = new CheckBox(v.getContext());
+                        check.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
+
+                        final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), check);
+
+                        check.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
+
+                        check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                             @Override
-                            public void run() {
-                                d.dismiss();
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                AppState.get().isAuthorTitleFromMetaPDF = isChecked;
+                                handler.removeCallbacksAndMessages(null);
+                                handler.postDelayed(ask, timeout);
+                                handler.postDelayed(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        d.dismiss();
+                                    }
+                                }, timeout);
                             }
-                        }, timeout);
+                        });
+
                     }
                 });
-
-            }
-        });
 
         final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
         isFirstSurname.setChecked(AppState.get().isFirstSurname);
-        isFirstSurname.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isFirstSurname.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isFirstSurname = isChecked;
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                                                          OnCheckedChangeListener() {
+
+                                                              @Override
+                                                              public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                           final boolean isChecked) {
+                                                                  AppState.get().isFirstSurname = isChecked;
+                                                                  handler.removeCallbacks(ask);
+                                                                  handler.postDelayed(ask, timeout);
+                                                              }
+                                                          });
 
         ////
-        ((CheckBox) inflate.findViewById(R.id.supportPDF)).setChecked(AppState.get().supportPDF);
-        ((CheckBox) inflate.findViewById(R.id.supportPDF)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        ((CheckBox) inflate.findViewById(R.id.supportPDF)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportPDF = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setChecked(AppState.get().supportPDF);
+        ((CheckBox) inflate.findViewById(R.id.supportPDF)).
 
-        ((CheckBox) inflate.findViewById(R.id.supportXPS)).setChecked(AppState.get().supportXPS);
-        ((CheckBox) inflate.findViewById(R.id.supportXPS)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportXPS = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportPDF = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
 
-        ((CheckBox) inflate.findViewById(R.id.supportDJVU)).setChecked(AppState.get().supportDJVU);
-        ((CheckBox) inflate.findViewById(R.id.supportDJVU)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        ((CheckBox) inflate.findViewById(R.id.supportXPS)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportDJVU = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
-        ((CheckBox) inflate.findViewById(R.id.supportEPUB)).setChecked(AppState.get().supportEPUB);
-        ((CheckBox) inflate.findViewById(R.id.supportEPUB)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setChecked(AppState.get().supportXPS);
+        ((CheckBox) inflate.findViewById(R.id.supportXPS)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportEPUB = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
-        ((CheckBox) inflate.findViewById(R.id.supportFB2)).setChecked(AppState.get().supportFB2);
-        ((CheckBox) inflate.findViewById(R.id.supportFB2)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportFB2 = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportXPS = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
 
-        ((CheckBox) inflate.findViewById(R.id.supportTXT)).setChecked(AppState.get().supportTXT);
-        ((CheckBox) inflate.findViewById(R.id.supportTXT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        ((CheckBox) inflate.findViewById(R.id.supportDJVU)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportTXT = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setChecked(AppState.get().supportDJVU);
+        ((CheckBox) inflate.findViewById(R.id.supportDJVU)).
 
-        ((CheckBox) inflate.findViewById(R.id.supportMOBI)).setChecked(AppState.get().supportMOBI);
-        ((CheckBox) inflate.findViewById(R.id.supportMOBI)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportMOBI = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportDJVU = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+        ((CheckBox) inflate.findViewById(R.id.supportEPUB)).
 
-        ((CheckBox) inflate.findViewById(R.id.supportRTF)).setChecked(AppState.get().supportRTF);
-        ((CheckBox) inflate.findViewById(R.id.supportRTF)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setChecked(AppState.get().supportEPUB);
+        ((CheckBox) inflate.findViewById(R.id.supportEPUB)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportRTF = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setChecked(AppState.get().supportDOCX);
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportEPUB = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+        ((CheckBox) inflate.findViewById(R.id.supportFB2)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportDOCX = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setChecked(AppState.get().supportFB2);
+        ((CheckBox) inflate.findViewById(R.id.supportFB2)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportFB2 = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+
+        ((CheckBox) inflate.findViewById(R.id.supportTXT)).
+
+                setChecked(AppState.get().supportTXT);
+        ((CheckBox) inflate.findViewById(R.id.supportTXT)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportTXT = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+
+        ((CheckBox) inflate.findViewById(R.id.supportMOBI)).
+
+                setChecked(AppState.get().supportMOBI);
+        ((CheckBox) inflate.findViewById(R.id.supportMOBI)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportMOBI = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+
+        ((CheckBox) inflate.findViewById(R.id.supportRTF)).
+
+                setChecked(AppState.get().supportRTF);
+        ((CheckBox) inflate.findViewById(R.id.supportRTF)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportRTF = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).
+
+                setChecked(AppState.get().supportDOCX);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportDOCX = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
 
 
-        ((CheckBox) inflate.findViewById(R.id.supportODT)).setChecked(AppState.get().supportODT);
-        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).setText(AppsConfig.isDOCXSupported ? "DOC/DOCX" : "DOC");
-        ((CheckBox) inflate.findViewById(R.id.supportODT)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        ((CheckBox) inflate.findViewById(R.id.supportODT)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportODT = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setChecked(AppState.get().supportODT);
+        ((CheckBox) inflate.findViewById(R.id.supportDOCX)).
 
-        ((CheckBox) inflate.findViewById(R.id.supportCBZ)).setChecked(AppState.get().supportCBZ);
-        ((CheckBox) inflate.findViewById(R.id.supportCBZ)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                setText(AppsConfig.isDOCXSupported ? "DOC/DOCX" : "DOC");
+        ((CheckBox) inflate.findViewById(R.id.supportODT)).
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportCBZ = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportODT = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
+
+        ((CheckBox) inflate.findViewById(R.id.supportCBZ)).
+
+                setChecked(AppState.get().supportCBZ);
+        ((CheckBox) inflate.findViewById(R.id.supportCBZ)).
+
+                setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                 final boolean isChecked) {
+                        AppState.get().supportCBZ = isChecked;
+                        ExtUtils.updateSearchExts();
+                        handler.removeCallbacks(ask);
+                        handler.postDelayed(ask, timeout);
+                    }
+                });
 
         CheckBox supportZIP = (CheckBox) inflate.findViewById(R.id.supportZIP);
         supportZIP.setChecked(AppState.get().supportZIP);
-        supportZIP.setText(getString(R.string.archives) + " (ZIP/RAR/...)");
-        supportZIP.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        supportZIP.setText(
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportZIP = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                getString(R.string.archives) + " (ZIP/RAR/...)");
+        supportZIP.setOnCheckedChangeListener(new
+
+                                                      OnCheckedChangeListener() {
+
+                                                          @Override
+                                                          public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                       final boolean isChecked) {
+                                                              AppState.get().supportZIP = isChecked;
+                                                              ExtUtils.updateSearchExts();
+                                                              handler.removeCallbacks(ask);
+                                                              handler.postDelayed(ask, timeout);
+                                                          }
+                                                      });
 
         CheckBox supportOther = (CheckBox) inflate.findViewById(R.id.supportOther);
         supportOther.setChecked(AppState.get().supportOther);
-        supportOther.setText(getString(R.string.other) + " (CHM/...)");
-        supportOther.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        supportOther.setText(
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().supportOther = isChecked;
-                ExtUtils.updateSearchExts();
-                handler.removeCallbacks(ask);
-                handler.postDelayed(ask, timeout);
-            }
-        });
+                getString(R.string.other) + " (CHM/...)");
+        supportOther.setOnCheckedChangeListener(new
+
+                                                        OnCheckedChangeListener() {
+
+                                                            @Override
+                                                            public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                         final boolean isChecked) {
+                                                                AppState.get().supportOther = isChecked;
+                                                                ExtUtils.updateSearchExts();
+                                                                handler.removeCallbacks(ask);
+                                                                handler.postDelayed(ask, timeout);
+                                                            }
+                                                        });
 
         CheckBox isDisplayAllFilesInFolder = (CheckBox) inflate.findViewById(R.id.isDisplayAllFilesInFolder);
         isDisplayAllFilesInFolder.setChecked(AppState.get().isDisplayAllFilesInFolder);
-        isDisplayAllFilesInFolder.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isDisplayAllFilesInFolder.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isDisplayAllFilesInFolder = isChecked;
-                TempHolder.listHash++;
-            }
-        });
+                                                                     OnCheckedChangeListener() {
+
+                                                                         @Override
+                                                                         public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                                      final boolean isChecked) {
+                                                                             AppState.get().isDisplayAllFilesInFolder = isChecked;
+                                                                             TempHolder.listHash++;
+                                                                         }
+                                                                     });
         // app password
         final CheckBox isAppPassword = (CheckBox) inflate.findViewById(R.id.isAppPassword);
         isAppPassword.setChecked(PasswordState.get().isAppPassword);
-        isAppPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isAppPassword.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                PasswordState.get().isAppPassword = isChecked;
-                if (isChecked && TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                    PasswordDialog.showDialog(getActivity(), true, new Runnable() {
+                                                         OnCheckedChangeListener() {
 
-                        @Override
-                        public void run() {
-                            if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                                isAppPassword.setChecked(false);
-                            }
-                        }
-                    });
-                }
-            }
-        });
+                                                             @Override
+                                                             public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                          final boolean isChecked) {
+                                                                 PasswordState.get().isAppPassword = isChecked;
+                                                                 if (isChecked && TxtUtils.isEmpty(PasswordState.get().appPassword)) {
+                                                                     PasswordDialog.showDialog(getActivity(), true, new Runnable() {
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword)).setOnClickListener(new OnClickListener() {
+                                                                         @Override
+                                                                         public void run() {
+                                                                             if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
+                                                                                 isAppPassword.setChecked(false);
+                                                                             }
+                                                                         }
+                                                                     });
+                                                                 }
+                                                             }
+                                                         });
 
-            @Override
-            public void onClick(View v) {
-                PasswordDialog.showDialog(getActivity(), true, new Runnable() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword)).
+
+                setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void run() {
-                        if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                            isAppPassword.setChecked(false);
-                        }
+                    public void onClick(View v) {
+                        PasswordDialog.showDialog(getActivity(), true, new Runnable() {
+
+                            @Override
+                            public void run() {
+                                if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
+                                    isAppPassword.setChecked(false);
+                                }
+                            }
+                        });
                     }
                 });
-            }
-        });
 
         // What is new
         CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);
         showWhatIsNew.setChecked(AppState.get().isShowWhatIsNewDialog);
-        showWhatIsNew.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        showWhatIsNew.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isShowWhatIsNewDialog = isChecked;
-            }
-        });
+                                                         OnCheckedChangeListener() {
+
+                                                             @Override
+                                                             public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                          final boolean isChecked) {
+                                                                 AppState.get().isShowWhatIsNewDialog = isChecked;
+                                                             }
+                                                         });
 
         final TextView whatIsNew = (TextView) inflate.findViewById(R.id.whatIsNew);
-        whatIsNew.setText(getActivity().getString(R.string.what_is_new_in) + " " + Apps.getApplicationName(getActivity()) + " " + Apps.getVersionName(getActivity()));
+        whatIsNew.setText(
+
+                getActivity().
+
+                        getString(R.string.what_is_new_in) + " " + Apps.getApplicationName(
+
+                        getActivity()) + " " + Apps.getVersionName(
+
+                        getActivity()));
         TxtUtils.underlineTextView(whatIsNew);
         whatIsNew.setOnClickListener(new View.OnClickListener() {
 
@@ -1362,23 +1472,28 @@ public class PrefFragment2 extends UIFragment {
         ch.setChecked(AppState.get().isReverseKeys);
         ch.setOnCheckedChangeListener(reverseListener);
 
-        inflate.findViewById(R.id.onColorChoser).setOnClickListener(new OnClickListener() {
+        inflate.findViewById(R.id.onColorChoser).
 
-            @Override
-            public void onClick(final View v) {
-            }
-        });
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                    }
+                });
+
         initKeys();
 
         searchPaths = (TextView) inflate.findViewById(R.id.searchPaths);
         searchPaths.setText(TxtUtils.underline(BookCSS.get().searchPaths.replace(",", "<br>")));
-        searchPaths.setOnClickListener(new OnClickListener() {
+        searchPaths.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                onFolderConfigDialog();
-            }
-        });
+                                               OnClickListener() {
+
+                                                   @Override
+                                                   public void onClick(View v) {
+                                                       onFolderConfigDialog();
+                                                   }
+                                               });
 
         TextView addFolder = (TextView) inflate.findViewById(R.id.onConfigPath);
         TxtUtils.underlineTextView(addFolder);
@@ -1390,110 +1505,130 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).setOnClickListener(v -> PrefDialogs.importDialog(getActivity()));
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.importButton)).
 
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).setOnClickListener(v -> PrefDialogs.exportDialog(getActivity()));
+                setOnClickListener(v -> PrefDialogs.importDialog(
+
+                        getActivity()));
+
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.exportButton)).
+
+                setOnClickListener(v -> PrefDialogs.exportDialog(
+
+                        getActivity()));
 
         final CheckBox isAutomaticExport = (CheckBox) inflate.findViewById(R.id.isAutomaticExport);
         isAutomaticExport.setChecked(AppState.get().isAutomaticExport);
-        isAutomaticExport.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isAutomaticExport.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppState.get().isAutomaticExport = isChecked;
-            }
-        });
+                                                             OnCheckedChangeListener() {
+
+                                                                 @Override
+                                                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                                     AppState.get().isAutomaticExport = isChecked;
+                                                                 }
+                                                             });
         // folders
 
         final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);
         TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
-        fontFolder.setOnClickListener(new OnClickListener() {
+        fontFolder.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().fontFolder).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        BookCSS.get().fontFolder = nPath;
-                        TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
-                        dialog.dismiss();
-                        return false;
-                    }
-                });
-            }
-        });
+                                              OnClickListener() {
+
+                                                  @Override
+                                                  public void onClick(View v) {
+                                                      ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().fontFolder).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                          @Override
+                                                          public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                              BookCSS.get().fontFolder = nPath;
+                                                              TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
+                                                              dialog.dismiss();
+                                                              return false;
+                                                          }
+                                                      });
+                                                  }
+                                              });
 
         final TextView downloadFolder = (TextView) inflate.findViewById(R.id.downloadFolder);
         TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
-        downloadFolder.setOnClickListener(new OnClickListener() {
+        downloadFolder.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        BookCSS.get().downlodsPath = nPath;
-                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
-                        dialog.dismiss();
-                        return false;
-                    }
-                });
-            }
-        });
+                                                  OnClickListener() {
+
+                                                      @Override
+                                                      public void onClick(View v) {
+                                                          ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                              @Override
+                                                              public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                                  BookCSS.get().downlodsPath = nPath;
+                                                                  TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
+                                                                  dialog.dismiss();
+                                                                  return false;
+                                                              }
+                                                          });
+                                                      }
+                                                  });
 
         final TextView syncPath = (TextView) inflate.findViewById(R.id.syncPath);
         TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
-        syncPath.setOnClickListener(new OnClickListener() {
+        syncPath.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().syncDropboxPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        BookCSS.get().syncDropboxPath = nPath;
-                        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
-                        dialog.dismiss();
-                        return false;
-                    }
-                });
-            }
-        });
+                                            OnClickListener() {
+
+                                                @Override
+                                                public void onClick(View v) {
+                                                    ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().syncDropboxPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                        @Override
+                                                        public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                            BookCSS.get().syncDropboxPath = nPath;
+                                                            TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
+                                                            dialog.dismiss();
+                                                            return false;
+                                                        }
+                                                    });
+                                                }
+                                            });
 
         final TextView ttsFolder = (TextView) inflate.findViewById(R.id.ttsFolder);
         TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
-        ttsFolder.setOnClickListener(new OnClickListener() {
+        ttsFolder.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        BookCSS.get().ttsSpeakPath = nPath;
-                        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
-                        dialog.dismiss();
-                        return false;
-                    }
-                });
-            }
-        });
+                                             OnClickListener() {
+
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                         @Override
+                                                         public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                             BookCSS.get().ttsSpeakPath = nPath;
+                                                             TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
+                                                             dialog.dismiss();
+                                                             return false;
+                                                         }
+                                                     });
+                                                 }
+                                             });
 
         final TextView backupPath = (TextView) inflate.findViewById(R.id.backupFolder);
         TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
-        backupPath.setOnClickListener(new OnClickListener() {
+        backupPath.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().backupPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                    @Override
-                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                        BookCSS.get().backupPath = nPath;
-                        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
-                        dialog.dismiss();
-                        return false;
-                    }
-                });
-            }
-        });
+                                              OnClickListener() {
+
+                                                  @Override
+                                                  public void onClick(View v) {
+                                                      ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().backupPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                          @Override
+                                                          public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                              BookCSS.get().backupPath = nPath;
+                                                              TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
+                                                              dialog.dismiss();
+                                                              return false;
+                                                          }
+                                                      });
+                                                  }
+                                              });
 
         // Widget Configuration
 
@@ -1501,207 +1636,225 @@ public class PrefFragment2 extends UIFragment {
         widgetLayout.setText(AppState.get().widgetType == AppState.WIDGET_LIST ? R.string.list : R.string.grid);
         TxtUtils.underlineTextView(widgetLayout);
 
-        widgetLayout.setOnClickListener(new OnClickListener() {
+        widgetLayout.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                                                OnClickListener() {
 
-                final MenuItem recent = popupMenu.getMenu().add(R.string.list);
-                recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().widgetType = AppState.WIDGET_LIST;
-                        widgetLayout.setText(R.string.list);
-                        TxtUtils.underlineTextView(widgetLayout);
-                        RecentUpates.updateAll(getActivity());
-                        return false;
-                    }
-                });
+                                                        final MenuItem recent = popupMenu.getMenu().add(R.string.list);
+                                                        recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                final MenuItem starred = popupMenu.getMenu().add(R.string.grid);
-                starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                            @Override
+                                                            public boolean onMenuItemClick(final MenuItem item) {
+                                                                AppState.get().widgetType = AppState.WIDGET_LIST;
+                                                                widgetLayout.setText(R.string.list);
+                                                                TxtUtils.underlineTextView(widgetLayout);
+                                                                RecentUpates.updateAll(getActivity());
+                                                                return false;
+                                                            }
+                                                        });
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().widgetType = AppState.WIDGET_GRID;
-                        widgetLayout.setText(R.string.grid);
-                        TxtUtils.underlineTextView(widgetLayout);
-                        RecentUpates.updateAll(getActivity());
-                        return false;
-                    }
-                });
+                                                        final MenuItem starred = popupMenu.getMenu().add(R.string.grid);
+                                                        starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                popupMenu.show();
+                                                            @Override
+                                                            public boolean onMenuItemClick(final MenuItem item) {
+                                                                AppState.get().widgetType = AppState.WIDGET_GRID;
+                                                                widgetLayout.setText(R.string.grid);
+                                                                TxtUtils.underlineTextView(widgetLayout);
+                                                                RecentUpates.updateAll(getActivity());
+                                                                return false;
+                                                            }
+                                                        });
 
-            }
+                                                        popupMenu.show();
 
-        });
+                                                    }
+
+                                                });
 
         final TextView widgetForRecent = (TextView) inflate.findViewById(R.id.widgetForRecent);
         widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
         TxtUtils.underlineTextView(widgetForRecent);
 
-        widgetForRecent.setOnClickListener(new OnClickListener() {
+        widgetForRecent.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                final PopupMenu popupMenu = new PopupMenu(widgetForRecent.getContext(), widgetForRecent);
+                                                   OnClickListener() {
 
-                final MenuItem recent = popupMenu.getMenu().add(R.string.recent);
-                recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           final PopupMenu popupMenu = new PopupMenu(widgetForRecent.getContext(), widgetForRecent);
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().isStarsInWidget = false;
-                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-                        TxtUtils.underlineTextView(widgetForRecent);
+                                                           final MenuItem recent = popupMenu.getMenu().add(R.string.recent);
+                                                           recent.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        RecentUpates.updateAll(getActivity());
-                        return false;
-                    }
-                });
+                                                               @Override
+                                                               public boolean onMenuItemClick(final MenuItem item) {
+                                                                   AppState.get().isStarsInWidget = false;
+                                                                   widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
+                                                                   TxtUtils.underlineTextView(widgetForRecent);
 
-                final MenuItem starred = popupMenu.getMenu().add(R.string.starred);
-                starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                                   RecentUpates.updateAll(getActivity());
+                                                                   return false;
+                                                               }
+                                                           });
 
-                    @Override
-                    public boolean onMenuItemClick(final MenuItem item) {
-                        AppState.get().isStarsInWidget = true;
-                        widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
-                        TxtUtils.underlineTextView(widgetForRecent);
+                                                           final MenuItem starred = popupMenu.getMenu().add(R.string.starred);
+                                                           starred.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                        RecentUpates.updateAll(getActivity());
-                        return false;
-                    }
-                });
+                                                               @Override
+                                                               public boolean onMenuItemClick(final MenuItem item) {
+                                                                   AppState.get().isStarsInWidget = true;
+                                                                   widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
+                                                                   TxtUtils.underlineTextView(widgetForRecent);
 
-                popupMenu.show();
+                                                                   RecentUpates.updateAll(getActivity());
+                                                                   return false;
+                                                               }
+                                                           });
 
-            }
+                                                           popupMenu.show();
 
-        });
+                                                       }
+
+                                                   });
 
         final TextView widgetItemsCount = (TextView) inflate.findViewById(R.id.widgetItemsCount);
         widgetItemsCount.setText("" + AppState.get().widgetItemsCount);
         TxtUtils.underlineTextView(widgetItemsCount);
-        widgetItemsCount.setOnClickListener(new OnClickListener() {
+        widgetItemsCount.setOnClickListener(new
 
-            @SuppressLint("NewApi")
-            @Override
-            public void onClick(View v) {
-                PopupMenu p = new PopupMenu(getContext(), columsCount);
-                for (int i = 1; i <= 50; i++) {
-                    final int k = i;
-                    p.getMenu().add("" + k).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                    OnClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().widgetItemsCount = k;
-                            widgetItemsCount.setText("" + k);
-                            TxtUtils.underlineTextView(widgetItemsCount);
-                            return false;
-                        }
-                    });
-                }
+                                                        @SuppressLint("NewApi")
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            PopupMenu p = new PopupMenu(getContext(), columsCount);
+                                                            for (int i = 1; i <= 50; i++) {
+                                                                final int k = i;
+                                                                p.getMenu().add("" + k).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                p.show();
-            }
-        });
+                                                                    @Override
+                                                                    public boolean onMenuItemClick(MenuItem item) {
+                                                                        AppState.get().widgetItemsCount = k;
+                                                                        widgetItemsCount.setText("" + k);
+                                                                        TxtUtils.underlineTextView(widgetItemsCount);
+                                                                        return false;
+                                                                    }
+                                                                });
+                                                            }
+
+                                                            p.show();
+                                                        }
+                                                    });
 
         // dictionary
         isRememberDictionary = (CheckBox) inflate.findViewById(R.id.isRememberDictionary);
         isRememberDictionary.setChecked(AppState.get().isRememberDictionary);
-        isRememberDictionary.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        isRememberDictionary.setOnCheckedChangeListener(new
 
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                AppState.get().isRememberDictionary = isChecked;
-            }
-        });
+                                                                OnCheckedChangeListener() {
+
+                                                                    @Override
+                                                                    public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                                 final boolean isChecked) {
+                                                                        AppState.get().isRememberDictionary = isChecked;
+                                                                    }
+                                                                });
 
         selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);
         selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
-        selectedDictionaly.setOnClickListener(new OnClickListener() {
+        selectedDictionaly.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                DialogTranslateFromTo.show(getActivity(), false, new Runnable() {
+                                                      OnClickListener() {
 
-                    @Override
-                    public void run() {
-                        selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
-                    }
-                }, false);
-            }
-        });
+                                                          @Override
+                                                          public void onClick(View v) {
+                                                              DialogTranslateFromTo.show(getActivity(), false, new Runnable() {
+
+                                                                  @Override
+                                                                  public void run() {
+                                                                      selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
+                                                                  }
+                                                              }, false);
+                                                          }
+                                                      });
 
         textDayColor = (TextView) inflate.findViewById(R.id.onDayColor);
-        textDayColor.setOnClickListener(new OnClickListener() {
+        textDayColor.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                new ColorsDialog(getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, true, new ColorsDialogResult() {
+                                                OnClickListener() {
 
-                    @Override
-                    public void onChooseColor(int colorText, int colorBg) {
-                        textDayColor.setTextColor(colorText);
-                        textDayColor.setBackgroundColor(colorBg);
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        new ColorsDialog(getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, true, new ColorsDialogResult() {
 
-                        AppState.get().colorDayText = colorText;
-                        AppState.get().colorDayBg = colorBg;
+                                                            @Override
+                                                            public void onChooseColor(int colorText, int colorBg) {
+                                                                textDayColor.setTextColor(colorText);
+                                                                textDayColor.setBackgroundColor(colorBg);
 
-                        ImageLoader.getInstance().clearDiskCache();
-                        ImageLoader.getInstance().clearMemoryCache();
-                    }
-                });
-            }
-        });
+                                                                AppState.get().colorDayText = colorText;
+                                                                AppState.get().colorDayBg = colorBg;
+
+                                                                ImageLoader.getInstance().clearDiskCache();
+                                                                ImageLoader.getInstance().clearMemoryCache();
+                                                            }
+                                                        });
+                                                    }
+                                                });
 
         textNigthColor = (TextView) inflate.findViewById(R.id.onNigthColor);
-        textNigthColor.setOnClickListener(new OnClickListener() {
+        textNigthColor.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                new ColorsDialog(getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, true, new ColorsDialogResult() {
+                                                  OnClickListener() {
 
-                    @Override
-                    public void onChooseColor(int colorText, int colorBg) {
-                        textNigthColor.setTextColor(colorText);
-                        textNigthColor.setBackgroundColor(colorBg);
+                                                      @Override
+                                                      public void onClick(View v) {
+                                                          new ColorsDialog(getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, true, new ColorsDialogResult() {
 
-                        AppState.get().colorNigthText = colorText;
-                        AppState.get().colorNigthBg = colorBg;
+                                                              @Override
+                                                              public void onChooseColor(int colorText, int colorBg) {
+                                                                  textNigthColor.setTextColor(colorText);
+                                                                  textNigthColor.setBackgroundColor(colorBg);
 
-                    }
-                });
-            }
-        });
+                                                                  AppState.get().colorNigthText = colorText;
+                                                                  AppState.get().colorNigthBg = colorBg;
+
+                                                              }
+                                                          });
+                                                      }
+                                                  });
 
         TextView onDefalt = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor));
-        onDefalt.setOnClickListener(new OnClickListener() {
+        onDefalt.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                AppState.get().colorDayText = AppState.COLOR_BLACK;
-                AppState.get().colorDayBg = AppState.COLOR_WHITE;
+                                            OnClickListener() {
 
-                textDayColor.setTextColor(AppState.COLOR_BLACK);
-                textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
+                                                @Override
+                                                public void onClick(View v) {
+                                                    AppState.get().colorDayText = AppState.COLOR_BLACK;
+                                                    AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                                    textDayColor.setTextColor(AppState.COLOR_BLACK);
+                                                    textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
 
-                textNigthColor.setTextColor(AppState.COLOR_WHITE);
-                textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
-            }
-        });
+                                                    AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                                                    AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+
+                                                    textNigthColor.setTextColor(AppState.COLOR_WHITE);
+                                                    textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
+                                                }
+                                            });
 
         LinearLayout colorsLine = (LinearLayout) inflate.findViewById(R.id.colorsLine);
         colorsLine.removeAllViews();
 
-        for (String color : AppState.STYLE_COLORS) {
+        for (
+                String color : AppState.STYLE_COLORS) {
             View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
             view.setBackgroundColor(Color.TRANSPARENT);
             final int intColor = Color.parseColor(color);
@@ -1730,249 +1883,294 @@ public class PrefFragment2 extends UIFragment {
         View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
         view.setBackgroundColor(Color.TRANSPARENT);
         final ImageView img = (ImageView) view.findViewById(R.id.itColor);
-        img.setColorFilter(getResources().getColor(R.color.tint_gray));
+        img.setColorFilter(
+
+                getResources().
+
+                        getColor(R.color.tint_gray));
         img.setImageResource(R.drawable.glyphicons_433_plus);
         img.setBackgroundColor(AppState.get().userColor);
-        colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
+        colorsLine.addView(view, new
 
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new HSVColorPickerDialog(getContext(), AppState.get().userColor, new OnColorSelectedListener() {
+                LayoutParams(Dips.dpToPx(30), Dips.
 
-                    @Override
-                    public void colorSelected(Integer color) {
-                        AppState.get().userColor = color;
-                        AppState.get().tintColor = color;
-                        TintUtil.color = color;
-                        img.setBackgroundColor(color);
+                dpToPx(30)));
 
-                        onTintChanged();
-                        sendNotifyTintChanged();
+        view.setOnClickListener(new
 
-                        AppProfile.save(getActivity());
+                                        OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                new HSVColorPickerDialog(getContext(), AppState.get().userColor, new OnColorSelectedListener() {
 
-                        TempHolder.listHash++;
+                                                    @Override
+                                                    public void colorSelected(Integer color) {
+                                                        AppState.get().userColor = color;
+                                                        AppState.get().tintColor = color;
+                                                        TintUtil.color = color;
+                                                        img.setBackgroundColor(color);
 
-                    }
-                }).show();
+                                                        onTintChanged();
+                                                        sendNotifyTintChanged();
 
-            }
-        });
+                                                        AppProfile.save(getActivity());
 
-        underline(inflate.findViewById(R.id.linksColor)).setOnClickListener(new OnClickListener() {
+                                                        TempHolder.listHash++;
 
-            @Override
-            public void onClick(final View v) {
-                closeLeftMenu();
-                Dialogs.showLinksColorDialog(getActivity(), new Runnable() {
+                                                    }
+                                                }).show();
 
-                    @Override
-                    public void run() {
-                        TempHolder.listHash++;
-                        onTintChanged();
-                        sendNotifyTintChanged();
-                        ((MainTabs2) getActivity()).updateCurrentFragment();
+                                            }
+                                        });
 
-                        TxtUtils.updateAllLinks(inflate.getRootView());
+        underline(inflate.findViewById(R.id.linksColor)).
 
-                    }
-                });
-            }
-        });
-
-        underline(inflate.findViewById(R.id.onContrast)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                Dialogs.showContrastDialogByUrl(getActivity(), new Runnable() {
+                setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void run() {
-                        ImageLoader.getInstance().clearDiskCache();
-                        ImageLoader.getInstance().clearMemoryCache();
-                        TempHolder.listHash++;
-                        notifyFragment();
+                    public void onClick(final View v) {
+                        closeLeftMenu();
+                        Dialogs.showLinksColorDialog(getActivity(), new Runnable() {
 
+                            @Override
+                            public void run() {
+                                TempHolder.listHash++;
+                                onTintChanged();
+                                sendNotifyTintChanged();
+                                ((MainTabs2) getActivity()).updateCurrentFragment();
+
+                                TxtUtils.updateAllLinks(inflate.getRootView());
+
+                            }
+                        });
                     }
                 });
-            }
-        });
 
-        underline(inflate.findViewById(R.id.onRateIt)).setOnClickListener(new OnClickListener() {
+        underline(inflate.findViewById(R.id.onContrast)).
 
-            @Override
-            public void onClick(final View v) {
-                Urls.rateIT(getActivity());
-            }
-        });
-        underline(inflate.findViewById(R.id.openWeb)).setOnClickListener(new OnClickListener() {
+                setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(final View v) {
-                Urls.open(getActivity(), WWW_SITE);
-            }
-        });
-        underline(inflate.findViewById(R.id.openBeta)).setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        Dialogs.showContrastDialogByUrl(getActivity(), new Runnable() {
 
-            @Override
-            public void onClick(final View v) {
-                Urls.open(getActivity(), WWW_BETA_SITE);
-            }
-        });
-        underline(inflate.findViewById(R.id.openWiki)).setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void run() {
+                                ImageLoader.getInstance().clearDiskCache();
+                                ImageLoader.getInstance().clearMemoryCache();
+                                TempHolder.listHash++;
+                                notifyFragment();
 
-            @Override
-            public void onClick(final View v) {
-                Urls.open(getActivity(), WWW_WIKI_SITE);
-            }
-        });
+                            }
+                        });
+                    }
+                });
 
-        underline(inflate.findViewById(R.id.onTelegram)).setOnClickListener(new OnClickListener() {
+        underline(inflate.findViewById(R.id.onRateIt)).
 
-            @Override
-            public void onClick(final View v) {
-                Urls.open(getActivity(), "https://t.me/LibreraReader");
-            }
-        });
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.rateIT(getActivity());
+                    }
+                });
+
+        underline(inflate.findViewById(R.id.openWeb)).
+
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.open(getActivity(), WWW_SITE);
+                    }
+                });
+
+        underline(inflate.findViewById(R.id.openBeta)).
+
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.open(getActivity(), WWW_BETA_SITE);
+                    }
+                });
+
+        underline(inflate.findViewById(R.id.openWiki)).
+
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.open(getActivity(), WWW_WIKI_SITE);
+                    }
+                });
+
+        underline(inflate.findViewById(R.id.onTelegram)).
+
+                setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.open(getActivity(), "https://t.me/LibreraReader");
+                    }
+                });
 
         TextView proText = (TextView) inflate.findViewById(R.id.downloadPRO);
         TxtUtils.underlineTextView(proText);
-        ((View) proText.getParent()).setOnClickListener(new OnClickListener() {
+        ((View) proText.getParent()).
 
-            @Override
-            public void onClick(final View v) {
-                Urls.openPdfPro(getActivity());
-            }
-        });
+                setOnClickListener(new OnClickListener() {
 
-        if (AppsConfig.checkIsProInstalled(getActivity())) {
+                    @Override
+                    public void onClick(final View v) {
+                        Urls.openPdfPro(getActivity());
+                    }
+                });
+
+        if (AppsConfig.checkIsProInstalled(
+
+                getActivity())) {
             ((View) proText.getParent()).setVisibility(View.GONE);
         }
 
-        inflate.findViewById(R.id.cleanRecent).setOnClickListener(new View.OnClickListener() {
+        inflate.findViewById(R.id.cleanRecent).
 
-            @Override
-            public void onClick(final View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-                builder.setMessage(getString(R.string.clear_all_recent) + "?");
-                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                setOnClickListener(new View.OnClickListener() {
 
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //BookmarksData.get().cleanRecent();
+                    public void onClick(final View v) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                        builder.setMessage(getString(R.string.clear_all_recent) + "?");
+                        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //BookmarksData.get().cleanRecent();
+                            }
+                        });
+                        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        });
+                        builder.show();
                     }
                 });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+        inflate.findViewById(R.id.cleanBookmarks).
+
+                setOnClickListener(new View.OnClickListener() {
 
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
+                    public void onClick(final View v) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                        builder.setMessage(getString(R.string.clear_all_bookmars) + "?");
+                        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                BookmarksData.get().cleanBookmarks();
+
+                            }
+                        });
+                        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        });
+                        builder.show();
 
                     }
                 });
-                builder.show();
-            }
-        });
-
-        inflate.findViewById(R.id.cleanBookmarks).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-                builder.setMessage(getString(R.string.clear_all_bookmars) + "?");
-                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        BookmarksData.get().cleanBookmarks();
-
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-                builder.show();
-
-            }
-        });
 
         // licences link
-        underline(inflate.findViewById(R.id.libraryLicenses)).setOnClickListener(new OnClickListener() {
+        underline(inflate.findViewById(R.id.libraryLicenses)).
 
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                alert.setTitle(R.string.licenses_for_libraries);
+                setOnClickListener(new OnClickListener() {
 
-                WebView wv = new WebView(getActivity());
-                wv.loadUrl("file:///android_asset/licenses.html");
-                wv.setWebViewClient(new WebViewClient() {
                     @Override
-                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                        view.loadUrl(url);
-                        return true;
+                    public void onClick(View v) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                        alert.setTitle(R.string.licenses_for_libraries);
+
+                        WebView wv = new WebView(getActivity());
+                        wv.loadUrl("file:///android_asset/licenses.html");
+                        wv.setWebViewClient(new WebViewClient() {
+                            @Override
+                            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                                view.loadUrl(url);
+                                return true;
+                            }
+                        });
+
+                        alert.setView(wv);
+                        alert.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog create = alert.create();
+                        create.setOnDismissListener(new OnDismissListener() {
+
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                Keyboards.hideNavigation(getActivity());
+                            }
+                        });
+                        create.show();
                     }
                 });
 
-                alert.setView(wv);
-                alert.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog create = alert.create();
-                create.setOnDismissListener(new OnDismissListener() {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.docSearch)).
+
+                setOnClickListener(new OnClickListener() {
 
                     @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        Keyboards.hideNavigation(getActivity());
+                    public void onClick(View v) {
+                        MultyDocSearchDialog.show(getActivity());
                     }
                 });
-                create.show();
-            }
-        });
-
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.docSearch)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                MultyDocSearchDialog.show(getActivity());
-            }
-        });
         // convert
         final TextView docConverter = (TextView) inflate.findViewById(R.id.docConverter);
         TxtUtils.underlineTextView(docConverter);
-        docConverter.setOnClickListener(new OnClickListener() {
+        docConverter.setOnClickListener(new
 
-            @Override
-            public void onClick(View v) {
-                PopupMenu p = new PopupMenu(getContext(), v);
-                for (final String id : AppState.CONVERTERS.keySet()) {
-                    p.getMenu().add("" + getActivity().getString(R.string.convert_to) + " " + id).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                                OnClickListener() {
 
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            ShareDialog.showsItemsDialog(getActivity(), getActivity().getString(R.string.convert_to) + " " + id, AppState.CONVERTERS.get(id));
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        PopupMenu p = new PopupMenu(getContext(), v);
+                                                        for (final String id : AppState.CONVERTERS.keySet()) {
+                                                            p.getMenu().add("" + getActivity().getString(R.string.convert_to) + " " + id).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                            return false;
-                        }
-                    });
+                                                                @Override
+                                                                public boolean onMenuItemClick(MenuItem item) {
+                                                                    ShareDialog.showsItemsDialog(getActivity(), getActivity().getString(R.string.convert_to) + " " + id, AppState.CONVERTERS.get(id));
 
-                }
-                p.show();
-            }
-        });
+                                                                    return false;
+                                                                }
+                                                            });
 
-        overlay = getActivity().findViewById(R.id.overlay);
+                                                        }
+                                                        p.show();
+                                                    }
+                                                });
+
+        overlay =
+
+                getActivity().
+
+                        findViewById(R.id.overlay);
 
 
         TextView onProfile = inflate.findViewById(R.id.onProfile);
@@ -1983,11 +2181,15 @@ public class PrefFragment2 extends UIFragment {
         final String p = AppProfile.getCurrent(getActivity());
 
         profileLetter.setText(TxtUtils.getFirstLetter(p));
-        profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), p));
+        profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(
+
+                getActivity(), p));
 
         onProfile.setText(p);
         TxtUtils.underlineTextView(onProfile);
-        onProfile.setOnClickListener(v -> {
+        onProfile.setOnClickListener(v ->
+
+        {
             MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
 
             List<String> all = AppProfile.getAllProfiles();
@@ -2018,23 +2220,27 @@ public class PrefFragment2 extends UIFragment {
         });
         profileLetter.setOnClickListener(v -> onProfile.performClick());
 
-        inflate.findViewById(R.id.onProfileEdit).setOnClickListener(v -> {
-                    AppProfile.showDialog(getActivity(), profile -> {
-                        if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
-                            AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+        inflate.findViewById(R.id.onProfileEdit).
 
-                                @Override
-                                public void run() {
-                                    AppProfile.saveCurrent(getActivity(), profile);
-                                    AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
-                                    onTheme();
+                setOnClickListener(v ->
+
+                        {
+                            AppProfile.showDialog(getActivity(), profile -> {
+                                if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
+                                    AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            AppProfile.saveCurrent(getActivity(), profile);
+                                            AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
+                                            onTheme();
+                                        }
+                                    });
                                 }
+                                return false;
                             });
                         }
-                        return false;
-                    });
-                }
-        );
+                );
 
 
         return inflate;

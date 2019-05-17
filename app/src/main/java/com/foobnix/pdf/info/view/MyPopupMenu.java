@@ -242,11 +242,11 @@ public class MyPopupMenu {
                 public void onDismiss() {
                     p1.dismiss();
                     if (isTabsActivity) {
-                        if (AppState.get().isFullScreenMain) {
+                        if (AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_FULLSCREEN) {
                             Keyboards.hideNavigation((Activity) c);
                         }
                     } else {
-                        if (AppState.get().isFullScreen) {
+                        if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN) {
                             Keyboards.hideNavigation((Activity) c);
                         }
                     }

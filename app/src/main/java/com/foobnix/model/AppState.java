@@ -105,6 +105,11 @@ public class AppState {
     public static final int THEME_INK = 3;
 
 
+    public static final int FULL_SCREEN_NORMAL = 0;
+    public static final int FULL_SCREEN_FULLSCREEN = 1;
+    public static final int FULL_SCREEN_FULLSCREEN_CUTOUT = 2;
+
+
     public static List<Integer> NEXT_KEYS = Arrays.asList(//
             KeyEvent.KEYCODE_VOLUME_UP, //
             KeyEvent.KEYCODE_PAGE_UP, //
@@ -322,8 +327,11 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isEditMode = true;
-    public boolean isFullScreen = true;
-    public boolean isFullScreenMain = false;
+    //public boolean isFullScreen = true;
+    //public boolean isFullScreenMain = false;
+
+    public int fullScreenMode = FULL_SCREEN_NORMAL;
+    public int fullScreenMainMode = FULL_SCREEN_NORMAL;
 
 
     public boolean isShowImages = true;

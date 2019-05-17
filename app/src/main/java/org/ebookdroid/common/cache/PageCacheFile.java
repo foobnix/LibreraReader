@@ -23,7 +23,7 @@ public class PageCacheFile extends File {
 
     public static PageCacheFile getPageFile(final String path, int pages) {
         long lastModified = new File(path).lastModified();
-        final String md5 = StringUtils.md5(path + lastModified + pages + AppState.get().isFullScreen);
+        final String md5 = StringUtils.md5(path + lastModified + pages + (AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN));
         LOG.d("getPageFile", "LAST" + md5);
         final File cacheDir = CacheZipUtils.CACHE_RECENT;
         LOG.d("PageCacheFile-getPageFile");
@@ -83,7 +83,7 @@ public class PageCacheFile extends File {
                     }
                 }
             } catch (final IOException ex) {
-               LOG.e(ex);
+                LOG.e(ex);
             } finally {
                 try {
                     out.close();

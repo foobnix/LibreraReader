@@ -569,4 +569,5 @@
    <string name="add_dictionary">Szótár hozzáadása</string>
    <string name="add_rule">Szabály hozzáadása</string>
    <string name="emphasis">Hangsúly</string>
+   <string name="with_cutout">Kivágással</string>
 </resources>

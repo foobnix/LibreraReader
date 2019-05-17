@@ -569,4 +569,5 @@
    <string name="add_dictionary">Pridėti žodyną</string>
    <string name="add_rule">Pridėti taisyklę</string>
    <string name="emphasis">Pabrėžimas</string>
+   <string name="with_cutout">Su išjungimu</string>
 </resources>

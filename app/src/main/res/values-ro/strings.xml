@@ -569,4 +569,5 @@
    <string name="add_dictionary">Adăugați dicționarul</string>
    <string name="add_rule">Adăugați regula</string>
    <string name="emphasis">Accent</string>
+   <string name="with_cutout">Cu decupaj</string>
 </resources>

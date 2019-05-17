@@ -26,19 +26,19 @@ public class MenuBuilderM {
 
         addOrientationMenu(view, a, popupMenu);
 
-        final MenuItem fullscren = popupMenu.getMenu().add(R.string.full_screen);
-        fullscren.setCheckable(true);
-        fullscren.setChecked(AppState.get().isFullScreen);
-        fullscren.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClick(final MenuItem item) {
-                AppState.get().isFullScreen = !AppState.get().isFullScreen;
-                fullscren.setChecked(AppState.get().isFullScreen);
-                DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
-                return false;
-            }
-        });
+//        final MenuItem fullscren = popupMenu.getMenu().add(R.string.full_screen);
+//        fullscren.setCheckable(true);
+//        fullscren.setChecked(AppState.get().fullScreen);
+//        fullscren.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+//
+//            @Override
+//            public boolean onMenuItemClick(final MenuItem item) {
+//                AppState.get().isFullScreen = !AppState.get().isFullScreen;
+//                fullscren.setChecked(AppState.get().isFullScreen);
+//                DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
+//                return false;
+//            }
+//        });
 
         final MenuItem keys = popupMenu.getMenu().add(R.string.reverse_keys);
         keys.setCheckable(true);

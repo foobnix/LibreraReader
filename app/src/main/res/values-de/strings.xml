@@ -232,7 +232,7 @@
    <string name="incorrect_value">Falscher Wert</string>
    <string name="this_directory_is_already_in_the_list">Dieses Verzeichnis ist bereits in der Liste</string>
    <string name="you_neet_to_apply_the_new_settings">Sie müssen die neuen Einstellungen anwenden</string>
-   <string name="block_page_movement_horizontally">Horizontale Seitenbewegung blockieren </string>
+   <string name="block_page_movement_horizontally">Horizontale Seitenbewegung blockieren</string>
    <string name="there_are_no_email_applications_installed_">E-Mail-Anwendung nicht installiert.</string>
    <string name="file_not_found">Datei nicht gefunden</string>
    <string name="you_need_grant_permission">Sie benötigen Rechte für externen Speicher</string>
@@ -300,7 +300,7 @@
    <string name="half_page">Bildschirm = halbe Seite</string>
    <string name="by_pages">Seitenweise</string>
    <string name="by_screans">Bildschirmweise</string>
-   <string name="of_screen">des Bildschirms</string>
+   <string name="of_screen">Des Bildschirms</string>
    <string name="custom_value">Benutzerdefinierter Wert</string>
    <string name="automatic_page_flipping">Automatischer Seitenwechsel</string>
    <string name="interval_sec_">Intervall (sec)</string>
@@ -439,9 +439,9 @@
    <string name="no_tag">Keine Markierung</string>
    <string name="add_tag">Markierung hinzufügen</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Möchten Sie diese Markierung aus allen Büchern löschen?</string>
-   <string name="by_number_of_pages">per Seitenzahl</string>
-   <string name="by_number_in_serie">per Nummer in der Serie</string>
-   <string name="by_extension">per Erweiterung</string>
+   <string name="by_number_of_pages">Per Seitenzahl</string>
+   <string name="by_number_in_serie">Per Nummer in der Serie</string>
+   <string name="by_extension">Per Erweiterung</string>
    <string name="recent_favorites_tags">Kürzlich gesetzte Favoriten, Markierungen</string>
    <string name="line_spacing">Zeilenabstand</string>
    <string name="paragraph_spacing">Absatzabstand</string>
@@ -565,4 +565,9 @@
    <string name="share_as_image">Als Bild teilen</string>
    <string name="copy_text">Text kopieren</string>
    <string name="show_fast_scroll">Schnelles Scrollen anzeigen</string>
+   <string name="replacements">Ersatz</string>
+   <string name="add_dictionary">Wörterbuch hinzufügen</string>
+   <string name="add_rule">Regel hinzufügen</string>
+   <string name="emphasis">Stressmarke (n)</string>
+   <string name="with_cutout">Mit ausschnitt</string>
 </resources>

@@ -68,7 +68,7 @@ public class VerticalModeController extends DocumentController {
     public VerticalModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
         this.ctr = ctr;
-        CoreSettings.getInstance().fullScreen = AppState.get().isFullScreen;
+        CoreSettings.getInstance().fullScreen = AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN;
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
     }
@@ -190,11 +190,11 @@ public class VerticalModeController extends DocumentController {
     public void onNextPage(final boolean animate) {
         int page = ctr.getDocumentModel().getCurrentDocPageIndex() + 1;
 
-       // if (AppState.get().isLoopAutoplay) {
-            LOG.d("onNextPage", page, getPageCount());
-            if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount()) {
-                page = 0;
-            }
+        // if (AppState.get().isLoopAutoplay) {
+        LOG.d("onNextPage", page, getPageCount());
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount()) {
+            page = 0;
+        }
         //}
         ctr.getDocumentController().goToPage(page, animate);
 
@@ -205,11 +205,11 @@ public class VerticalModeController extends DocumentController {
     public void onPrevPage(final boolean animate) {
         int page = ctr.getDocumentModel().getCurrentDocPageIndex() - 1;
 
-       // if (AppState.get().isLoopAutoplay) {
-            LOG.d("onPrevPage", page, getPageCount());
-            if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == -1) {
-                page = getPageCount() - 1;
-            }
+        // if (AppState.get().isLoopAutoplay) {
+        LOG.d("onPrevPage", page, getPageCount());
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == -1) {
+            page = getPageCount() - 1;
+        }
         //}
 
         ctr.getDocumentController().goToPage(page, animate);

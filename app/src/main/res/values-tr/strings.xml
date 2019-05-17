@@ -569,4 +569,5 @@
    <string name="add_dictionary">Sözlük ekle</string>
    <string name="add_rule">Kural ekle</string>
    <string name="emphasis">Vurgu</string>
+   <string name="with_cutout">Kesikli</string>
 </resources>

@@ -749,7 +749,7 @@ public class DocumentWrapperUI {
 
         ImageView fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
         fullscreen.setOnClickListener(onFull);
-        fullscreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
+        fullscreen.setImageResource(R.drawable.glyphicons_488_fit_image_to_frame);
 
         onCloseBook = a.findViewById(R.id.close);
         onCloseBook.setOnClickListener(onClose);
@@ -1165,7 +1165,7 @@ public class DocumentWrapperUI {
     }
 
     public void showHideHavigationBar() {
-        if (!AppState.get().isEditMode && AppState.get().isFullScreen) {
+        if (!AppState.get().isEditMode && AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN) {
             Keyboards.hideNavigation(a);
         }
     }
@@ -1334,7 +1334,7 @@ public class DocumentWrapperUI {
 
         // hideSeekBarInReadMode();
         // showHideHavigationBar();
-        DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().isFullScreen);
+        DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().fullScreenMode);
         showPagesHelper();
     }
 
@@ -1557,26 +1557,18 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            AppState.get().isFullScreen = !AppState.get().isFullScreen;
-            ((ImageView) v).setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
-
-
-            if (dc.isTextFormat()) {
-                onRefresh.run();
-                dc.restartActivity();
-            }
-
-            DocumentController.chooseFullScreen(a, AppState.get().isFullScreen);
+            DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
+                AppState.get().fullScreenMode = id;
+                if (dc.isTextFormat()) {
+                    onRefresh.run();
+                    dc.restartActivity();
+                }
+                DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
+                return true;
+            });
         }
     };
-    public View.OnClickListener onScreenMode = new View.OnClickListener() {
 
-        @Override
-        public void onClick(final View arg0) {
-            a.finish();
-            a.startActivity(a.getIntent());
-        }
-    };
 
     public View.OnClickListener onBCclick = new View.OnClickListener() {
 

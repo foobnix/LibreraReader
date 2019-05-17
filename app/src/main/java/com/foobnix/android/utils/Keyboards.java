@@ -40,9 +40,9 @@ public class Keyboards {
             if (a == null) {
                 return;
             }
-            if (a instanceof MainTabs2 && !AppState.get().isFullScreenMain) {
+            if (a instanceof MainTabs2 && !(AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_FULLSCREEN)) {
                 return;
-            } else if (!AppState.get().isFullScreen) {
+            } else if (AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             }
 
@@ -75,7 +75,7 @@ public class Keyboards {
 
     public static void hideNavigationOnCreate(final Activity a) {
         try {
-            if (!AppState.get().isFullScreen) {
+            if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             }
             final View decorView = a.getWindow().getDecorView();

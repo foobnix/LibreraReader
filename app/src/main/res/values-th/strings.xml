@@ -569,4 +569,5 @@
    <string name="add_dictionary">เพิ่มพจนานุกรม</string>
    <string name="add_rule">เพิ่มกฎ</string>
    <string name="emphasis">ความสำคัญ</string>
+   <string name="with_cutout">ด้วยการตัด</string>
 </resources>

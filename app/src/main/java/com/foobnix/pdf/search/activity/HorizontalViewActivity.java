@@ -381,19 +381,24 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 if (dc == null) {
                     return;
                 }
-                AppState.get().isFullScreen = !AppState.get().isFullScreen;
-                onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
-                DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().isFullScreen);
-                if (dc.isTextFormat()) {
-                    if (onRefresh != null) {
-                        onRefresh.run();
+
+                DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
+                    AppState.get().fullScreenMode = id;
+                    DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().fullScreenMode);
+                    if (dc.isTextFormat()) {
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                        nullAdapter();
+                        dc.restartActivity();
                     }
-                    nullAdapter();
-                    dc.restartActivity();
-                }
+                    return true;
+                });
+
+
             }
         });
-        onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
+        //onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
 
         ImageView dayNightButton = (ImageView) findViewById(R.id.bookNight);
         dayNightButton.setOnClickListener(new View.OnClickListener() {
@@ -1464,7 +1469,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     protected void onResume() {
         super.onResume();
 
-        DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+        DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
         DocumentController.doRotation(this);
 
         if (clickUtils != null) {
@@ -2076,7 +2081,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             bottomBar.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
             adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
 
-            DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+            DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
             return;
         }
 
@@ -2160,7 +2165,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         if (pagerAdapter != null) {
-            DocumentController.chooseFullScreen(this, AppState.get().isFullScreen);
+            DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
             pagerAdapter.notifyDataSetChanged();
         }
     }

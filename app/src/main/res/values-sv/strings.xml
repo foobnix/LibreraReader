@@ -569,4 +569,5 @@
    <string name="add_dictionary">Lägg till ordlista</string>
    <string name="add_rule">Lägg till regel</string>
    <string name="emphasis">Betoning</string>
+   <string name="with_cutout">Med utklipp</string>
 </resources>

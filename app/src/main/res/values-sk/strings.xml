@@ -569,4 +569,5 @@
    <string name="add_dictionary">Pridať slovník</string>
    <string name="add_rule">Pridať pravidlo</string>
    <string name="emphasis">Dôraz</string>
+   <string name="with_cutout">S výrezom</string>
 </resources>

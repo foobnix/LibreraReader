@@ -188,7 +188,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onResume();
         DocumentController.doRotation(this);
 
-        if (AppState.get().isFullScreen) {
+        if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN) {
             Keyboards.hideNavigation(this);
         }
         getController().onResume();

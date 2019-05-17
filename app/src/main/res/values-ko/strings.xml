@@ -569,4 +569,5 @@
    <string name="add_dictionary">사전 추가</string>
    <string name="add_rule">규칙 추가</string>
    <string name="emphasis">힘</string>
+   <string name="with_cutout">컷 아웃과 함께</string>
 </resources>

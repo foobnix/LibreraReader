@@ -569,4 +569,5 @@
    <string name="add_dictionary">शब्दकोश जोड़ें</string>
    <string name="add_rule">नियम जोड़ें</string>
    <string name="emphasis">ज़ोर</string>
+   <string name="with_cutout">कटआउट के साथ</string>
 </resources>

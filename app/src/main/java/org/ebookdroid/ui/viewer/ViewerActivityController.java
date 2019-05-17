@@ -120,7 +120,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
     public void afterCreate(VerticalViewActivity a) {
         final VerticalViewActivity activity = getManagedComponent();
 
-        DocumentController.chooseFullScreen(activity, AppState.get().isFullScreen);
+        DocumentController.chooseFullScreen(activity, AppState.get().fullScreenMode);
 
         if (++loadingCount == 1) {
             documentModel = ActivityControllerStub.DM_STUB;

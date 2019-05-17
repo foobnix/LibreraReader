@@ -569,4 +569,5 @@
    <string name="add_dictionary">辞書を追加</string>
    <string name="add_rule">ルールを追加</string>
    <string name="emphasis">強調</string>
+   <string name="with_cutout">切り欠き付き</string>
 </resources>

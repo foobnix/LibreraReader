@@ -4469,19 +4469,23 @@ public class DragingDialogs {
                 });
                 TintUtil.setTintImageWithAlpha(bookCut, !AppTemp.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
-                inflate.findViewById(R.id.onFullScreen).setOnClickListener(new View.OnClickListener() {
+                inflate.findViewById(R.id.onFullScreen).setOnClickListener(v -> {
 
-                    @Override
-                    public void onClick(final View v) {
-                        AppState.get().isFullScreen = !AppState.get().isFullScreen;
-                        DocumentController.chooseFullScreen(controller.getActivity(), AppState.get().isFullScreen);
+
+                    DocumentController.showFullScreenPopup(controller.getActivity(), v, id -> {
+                        AppState.get().fullScreenMode = id;
+                        DocumentController.chooseFullScreen(controller.getActivity(), AppState.get().fullScreenMode);
                         if (controller.isTextFormat()) {
                             if (onRefresh != null) {
                                 onRefresh.run();
                             }
                             controller.restartActivity();
                         }
-                    }
+                        return true;
+                    });
+
+
+
                 });
                 View tts = inflate.findViewById(R.id.onTTS);
                 tts.setOnClickListener(new View.OnClickListener() {

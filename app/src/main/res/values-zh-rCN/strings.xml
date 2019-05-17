@@ -569,4 +569,5 @@
    <string name="add_dictionary">添加字典</string>
    <string name="add_rule">添加规则</string>
    <string name="emphasis">强调</string>
+   <string name="with_cutout">与切口</string>
 </resources>
