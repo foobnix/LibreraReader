@@ -8,3 +8,13 @@ version: 0
 
 By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
 
+**New Features**
+
+* Sync with Google Drive (progress, bookmarks, books)
+* Profiles
+* The replaces, stress mark(s), RegEx rules in TTS
+
+**Bug Fixes**
+
+ 
+
