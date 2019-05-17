@@ -431,7 +431,10 @@ public class TxtUtils {
             }
 
 
-            pageHTML = pageHTML.replaceAll("( \\S)([.])", " $1{dot}");
+            pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\. ", "  $1{dot}$2{dot}$3{dot} ");
+            pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,4})\\. ", "  $1{dot}$2{dot} ");
+            pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. (\\S{1,2})\\. ", "  $1{dot} $2{dot} ");
+            pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. ", " $1{dot} ");
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -459,7 +462,7 @@ public class TxtUtils {
             BufferedReader input = new BufferedReader(new InputStreamReader(open));
             String line;
             while ((line = input.readLine()) != null) {
-                if (line.trim().length() > 2) {
+                if (line.trim().length() > 3) {
                     line = line.trim();
                     shortList.add(line);
                     shortList.add(TxtUtils.firstUppercase(line));
