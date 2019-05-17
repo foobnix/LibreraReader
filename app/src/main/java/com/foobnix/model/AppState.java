@@ -148,10 +148,18 @@ public class AppState {
             "#CDDC39"//
     );
 
-    public static final List<String> STYLE_COLORS = Arrays.asList(//
+    public static final List<String> STYLE_COLORS_1 = Arrays.asList(//
             "#008760", //
             "#007dc7", //
             "#ff001e", //
+            "#000000" //
+
+    );
+
+    public static final List<String> STYLE_COLORS = Arrays.asList(//
+            "#7e007e", //
+            "#a4632f", //
+            "#477e52", //
             "#000000" //
 
     );
