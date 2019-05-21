@@ -322,8 +322,9 @@ public class TxtUtils {
         }else{
 
             pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
-            pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
         }
+        pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
+
 
         LOG.d("pageHTML [3]", pageHTML);
 
