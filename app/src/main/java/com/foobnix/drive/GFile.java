@@ -551,11 +551,11 @@ public class GFile {
 
     private static void sync(final String syncId, final java.io.File ioRoot) throws Exception {
 
-        if (System.currentTimeMillis() - timeout < 20 * 1000) {
-            debugOut += "\n 20 sec time-out";
-            return;
-        }
-        timeout = System.currentTimeMillis();
+//        if (System.currentTimeMillis() - timeout < 10 * 1000) {
+//            debugOut += "\n 10 sec time-out";
+//            return;
+//        }
+//        timeout = System.currentTimeMillis();
 
         final List<File> driveFiles = getFilesAll(true);
         LOG.d(TAG, "getFilesAll", "end");

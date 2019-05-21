@@ -263,6 +263,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("- <end-line>", "");
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE + TTS_PAUSE, " ");
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE, " ");
+        pageHTML = pageHTML.replaceAll("<end-line>(\\S)", "$1");
         pageHTML = pageHTML.replace("<end-line>", " ");
         pageHTML = pageHTML.replace("<end-block>", TTS_PAUSE);
 

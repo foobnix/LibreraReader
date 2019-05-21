@@ -527,6 +527,7 @@ public class EpubExtractor extends BaseExtractor {
                                 if (attr.startsWith("#")) {
                                     attr = name + attr;
                                 }
+                                LOG.d("link-item-text",attr, text);
                                 if (!TxtUtils.isFooterNote(text)) {
                                     LOG.d("Skip text", text);
                                     continue;
@@ -561,7 +562,8 @@ public class EpubExtractor extends BaseExtractor {
                     String name = nextEntry.getName();
                     for (String fileName : files) {
 
-                        if (name.endsWith(fileName)) {
+                        LOG.d("PARSE FILE NAME begin", name);
+                        if (ExtUtils.getFileName(name).endsWith(ExtUtils.getFileName(fileName))) {
                             LOG.d("PARSE FILE NAME", name);
                             // System.out.println("file: " + name);
                             Parser xmlParser = Parser.xmlParser();
