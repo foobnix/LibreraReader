@@ -1490,7 +1490,7 @@ public class ExtUtils {
 
                     out.write("<a id=\"" + i + "\"></a>");
 
-                    html = TxtUtils.replaceEndLine(html);
+                    html = TxtUtils.replacePDFEndLine(html);
 
                     int startImage = html.indexOf(IMAGE_BEGIN);
                     while (startImage >= 0) {
