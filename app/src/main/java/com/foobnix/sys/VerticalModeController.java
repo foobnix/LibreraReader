@@ -233,13 +233,18 @@ public class VerticalModeController extends DocumentController {
         } else {
             ctr.getDocumentController().getView().scrollBy(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-        int after = ctr.getDocumentController().getView().getScrollY();
 
-        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-            LOG.d(" before == after", before, after);
-            //ctr.getDocumentController().getView().scrollTo(ctr.getDocumentController().getView().getScrollX(), 0);
-            onScrollY(0);
-        }
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int after = ctr.getDocumentController().getView().getScrollY();
+                if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                    ctr.getDocumentController().getView().stopScroller();
+                    ctr.getDocumentController().goToPage(0);
+                }
+            }
+        }, 100);
+
 
     }
 
@@ -253,13 +258,18 @@ public class VerticalModeController extends DocumentController {
         } else {
             ctr.getDocumentController().getView().scrollBy(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         }
-        int after = ctr.getDocumentController().getView().getScrollY();
 
-
-        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-            ctr.getDocumentController().goToPage(getPageCount(), false);
-        }
-
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int after = ctr.getDocumentController().getView().getScrollY();
+                LOG.d(" before == after", before, after);
+                if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                    ctr.getDocumentController().getView().stopScroller();
+                    ctr.getDocumentController().goToPage(getPageCount()-1);
+                }
+            }
+        }, 100);
     }
 
     @Override

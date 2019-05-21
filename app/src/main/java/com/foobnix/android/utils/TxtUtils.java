@@ -274,12 +274,8 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("- <end-line>", "");
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE + TTS_PAUSE, " ");
         pageHTML = pageHTML.replace("<end-line>" + TTS_PAUSE, " ");
-        pageHTML = pageHTML.replaceAll("<end-line>(\\S)", "$1");
         pageHTML = pageHTML.replace("<end-line>", " ");
         pageHTML = pageHTML.replace("<end-block>", TTS_PAUSE);
-
-        pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
-        pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
 
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)
@@ -314,6 +310,8 @@ public class TxtUtils {
 
         LOG.d("pageHTML [2", pageHTML);
 
+        pageHTML = pageHTML.replaceAll("<end-line>(\\S)", "$1");
+
         if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
                 String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
@@ -321,6 +319,10 @@ public class TxtUtils {
             } catch (Exception e) {
                 LOG.e(e);
             }
+        }else{
+
+            pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
+            pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
         }
 
         LOG.d("pageHTML [3]", pageHTML);
