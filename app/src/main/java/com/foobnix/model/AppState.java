@@ -477,7 +477,7 @@ public class AppState {
 
 
     @IgnoreHashCode
-    public boolean isLoopAutoplay = false;
+    public volatile boolean isLoopAutoplay = false;
 
     public boolean isBookCoverEffect = false;
 

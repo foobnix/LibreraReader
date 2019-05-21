@@ -278,6 +278,9 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<end-line>", " ");
         pageHTML = pageHTML.replace("<end-block>", TTS_PAUSE);
 
+        pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
+        pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
+
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)
         pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>$", "");

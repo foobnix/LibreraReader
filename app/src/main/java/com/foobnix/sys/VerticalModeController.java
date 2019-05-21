@@ -225,21 +225,39 @@ public class VerticalModeController extends DocumentController {
     public void onNextScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
         LOG.d("nextScreenScrollBy", nextScreenScrollBy, "animate", animate);
+
+
+        int before = ctr.getDocumentController().getView().getScrollY();
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {
             ctr.getDocumentController().getView().scrollBy(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         }
+        int after = ctr.getDocumentController().getView().getScrollY();
+
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+            LOG.d(" before == after", before, after);
+            //ctr.getDocumentController().getView().scrollTo(ctr.getDocumentController().getView().getScrollX(), 0);
+            onScrollY(0);
+        }
+
     }
 
     @Override
     public void onPrevScreen(boolean animate) {
         int nextScreenScrollBy = AppState.get().nextScreenScrollBy;
+        int before = ctr.getDocumentController().getView().getScrollY();
 
         if (animate) {
             ctr.getDocumentController().getView().startPageScroll(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         } else {
             ctr.getDocumentController().getView().scrollBy(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
+        }
+        int after = ctr.getDocumentController().getView().getScrollY();
+
+
+        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+            ctr.getDocumentController().goToPage(getPageCount(), false);
         }
 
     }
