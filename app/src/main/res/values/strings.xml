@@ -568,7 +568,7 @@
    <string name="replacements">Replacements</string>
    <string name="add_dictionary">Add dictionary</string>
    <string name="add_rule">Add rule</string>
-   <string name="emphasis">Stress mark(s)</string>
-   <string name="with_cutout">With cutout</string>
+   <string name="emphasis">Manual Stress Mark(s)</string>
+   <string name="with_cutout">Notched</string>
    <string name="screen">Screen</string>
 </resources>
