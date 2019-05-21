@@ -432,6 +432,7 @@ public class TxtUtils {
             }
 
 
+            pageHTML = pageHTML.replaceAll(" (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\. ", "  $1{dot}$2{dot}$3{dot}$4{dot} ");
             pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\. ", "  $1{dot}$2{dot}$3{dot} ");
             pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,4})\\. ", "  $1{dot}$2{dot} ");
             pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. (\\S{1,2})\\. ", "  $1{dot} $2{dot} ");
