@@ -260,6 +260,10 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("-<end-line>" ,  "");
         pageHTML = pageHTML.replace("- <end-line>", "");
         pageHTML = pageHTML.replace("<end-line>", " ");
+
+        pageHTML = pageHTML.replace("<pause>", "");
+        pageHTML = pageHTML.replace("<end-block>", "");
+        pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>", "");
         return  pageHTML;
     }
 
