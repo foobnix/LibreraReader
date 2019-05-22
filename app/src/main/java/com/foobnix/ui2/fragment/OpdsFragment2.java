@@ -120,7 +120,10 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 continue;
             }
             String[] it = line.split(",");
-            res.add(new Entry(it[0], it[1], it[2], it[3], true));
+            final Entry e = new Entry(it[0], it[1], it[2], it[3], true);
+            e.appState = line + ";";
+            res.add(e);
+
         }
         if (hasStars) {
             res.add(0, new Entry(SamlibOPDS.ROOT_FAVORITES, getString(R.string.favorites), getString(R.string.my_favorites_links), "assets://opds/star_1.png", true));
@@ -137,7 +140,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
-        ((FastScrollRecyclerView)recyclerView).myConfiguration();
+        ((FastScrollRecyclerView) recyclerView).myConfiguration();
     }
 
     @Override

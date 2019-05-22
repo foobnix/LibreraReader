@@ -26,7 +26,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Link;
-import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -121,9 +120,9 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     onRemoveLinkClickListener.onResultRecive(entry);
                 }
             });
-            if (SamlibOPDS.isSamlibUrl(entry.homeUrl)) {
-                holder.remove.setVisibility(View.GONE);
-            }
+            //if (SamlibOPDS.isSamlibUrl(entry.homeUrl)) {
+            //    holder.remove.setVisibility(View.GONE);
+           // }
         } else {
 
             holder.remove.setVisibility(View.GONE);
