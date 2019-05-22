@@ -2,6 +2,7 @@ package org.ebookdroid.core.codec;
 
 import android.graphics.Bitmap;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.sys.TempHolder;
 
 import java.util.ArrayList;
@@ -25,10 +26,19 @@ public abstract class AbstractCodecDocument implements CodecDocument {
         return documentHandle;
     }
 
+    CodecPage pageCache;
+    int pageNuberCache = -1;
+
     @Override
     public CodecPage getPage(int pageNuber) {
-        CodecPage pageInner = getPageInner(pageNuber);
-        return pageInner;
+        if (pageNuber == pageNuberCache) {
+            LOG.d("getPage-cache",pageNuber);
+            return pageCache;
+        }
+
+        pageNuberCache = pageNuber;
+        pageCache = getPageInner(pageNuber);
+        return pageCache;
     }
 
     @Override

@@ -280,7 +280,7 @@ public class TTSEngine {
         String pageName = "page-" + df.format(page + 1);
         final String wav = new File(folder, pageName + WAV).getPath();
         String fileText = controller.getTextForPage(page);
-        controller.recyclePage(page+1);
+        controller.recyclePage(page);
 
 
         LOG.d("synthesizeToFile", fileText);

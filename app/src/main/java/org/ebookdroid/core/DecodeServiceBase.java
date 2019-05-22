@@ -96,16 +96,16 @@ public class DecodeServiceBase implements DecodeService {
     public int getPixelFormat() {
         final Config cfg = getBitmapConfig();
         switch (cfg) {
-        case ALPHA_8:
-            return PixelFormat.A_8;
-        case ARGB_4444:
-            return PixelFormat.RGBA_4444;
-        case RGB_565:
-            return PixelFormat.RGB_565;
-        case ARGB_8888:
-            return PixelFormat.RGBA_8888;
-        default:
-            return PixelFormat.RGB_565;
+            case ALPHA_8:
+                return PixelFormat.A_8;
+            case ARGB_4444:
+                return PixelFormat.RGBA_4444;
+            case RGB_565:
+                return PixelFormat.RGB_565;
+            case ARGB_8888:
+                return PixelFormat.RGBA_8888;
+            default:
+                return PixelFormat.RGB_565;
         }
     }
 
@@ -210,19 +210,19 @@ public class DecodeServiceBase implements DecodeService {
         Thread t = new Thread() {
             @Override
             public void run() {
-                PageSearcher pageSearcher= new PageSearcher();
+                PageSearcher pageSearcher = new PageSearcher();
                 pageSearcher.setTextForSearch(text);
                 pageSearcher.setListener(new PageSearcher.OnWordSearched() {
                     @Override
                     public void onSearch(TextWord word, Object data) {
-                        if (!(data instanceof Page))return;
+                        if (!(data instanceof Page)) return;
                         Page page = (Page) data;
-                        if (page.selectedText==null||page.selectedText.size()<=0){
+                        if (page.selectedText == null || page.selectedText.size() <= 0) {
                             response.onResultRecive(page.index.docIndex);
                             LOG.d("Find on page", page.index.docIndex, text);
                         }
-                        if (page.selectedText==null)page.selectedText=new ArrayList<>();
-                        if (!page.selectedText.contains(word))page.selectedText.add(word);
+                        if (page.selectedText == null) page.selectedText = new ArrayList<>();
+                        if (!page.selectedText.contains(word)) page.selectedText.add(word);
                     }
                 });
                 for (Page page : pages) {
@@ -267,7 +267,9 @@ public class DecodeServiceBase implements DecodeService {
                 response.onResultRecive(-1);
                 finish.run();
                 TempHolder.isSeaching = false;
-            };
+            }
+
+            ;
 
         };
         t.start();
@@ -444,7 +446,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     private synchronized CodecPageHolder getPageHolder(final long taskId, final int pageIndex) {
-        for (final Iterator<Map.Entry<Integer, CodecPageHolder>> i = getPages().entrySet().iterator(); i.hasNext();) {
+        for (final Iterator<Map.Entry<Integer, CodecPageHolder>> i = getPages().entrySet().iterator(); i.hasNext(); ) {
             final Map.Entry<Integer, CodecPageHolder> entry = i.next();
             final int index = entry.getKey();
             final CodecPageHolder ref = entry.getValue();
@@ -927,18 +929,26 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public TextWord[][] getTextForPage(int page) {
-        if (codecDocument == null || codecDocument.getPage(page) == null) {
+        if (codecDocument == null) {
             return null;
         }
-        return codecDocument.getPage(page).getText();
+        final CodecPage page1 = codecDocument.getPage(page);
+        if (page1 == null) {
+            return null;
+        }
+        return page1.getText();
     }
 
     @Override
     public String getPageHTML(int page) {
-        if (codecDocument == null || codecDocument.getPage(page) == null) {
+        if (codecDocument == null) {
             return null;
         }
-        return codecDocument.getPage(page).getPageHTML();
+        final CodecPage page1 = codecDocument.getPage(page);
+        if (page1 == null) {
+            return null;
+        }
+        return page1.getPageHTML();
     }
 
     @Override
