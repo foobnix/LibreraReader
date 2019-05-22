@@ -332,6 +332,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
 
                     for (final String saf : safs) {
+                        LOG.d("saf", saf);
+                        if (TxtUtils.isEmpty(saf)) {
+                            continue;
+                        }
                         String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
                         menu.getMenu().add(fileName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
