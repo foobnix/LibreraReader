@@ -571,4 +571,5 @@
    <string name="emphasis">Betoning</string>
    <string name="with_cutout">Med utklipp</string>
    <string name="screen">Skärm</string>
+   <string name="please_enter_more_characters_to_search">Vänligen ange fler tecken att söka.</string>
 </resources>

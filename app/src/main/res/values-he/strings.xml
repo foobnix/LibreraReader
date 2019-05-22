@@ -571,4 +571,5 @@
    <string name="emphasis">דגש</string>
    <string name="with_cutout">עם ניתוק</string>
    <string name="screen">מסך</string>
+   <string name="please_enter_more_characters_to_search">אנא הזן תווים נוספים לחיפוש.</string>
 </resources>

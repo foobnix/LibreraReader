@@ -571,4 +571,5 @@
    <string name="emphasis">Dôraz</string>
    <string name="with_cutout">S výrezom</string>
    <string name="screen">Plátno</string>
+   <string name="please_enter_more_characters_to_search">Zadajte viac znakov na vyhľadávanie.</string>
 </resources>

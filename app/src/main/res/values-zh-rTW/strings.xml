@@ -571,4 +571,5 @@
    <string name="emphasis">強調</string>
    <string name="with_cutout">與切口</string>
    <string name="screen">屏幕</string>
+   <string name="please_enter_more_characters_to_search">請輸入更多字符進行搜索。</string>
 </resources>

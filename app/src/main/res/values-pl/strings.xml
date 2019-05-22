@@ -571,4 +571,5 @@
    <string name="emphasis">Nacisk</string>
    <string name="with_cutout">Z wycięciem</string>
    <string name="screen">Ekran</string>
+   <string name="please_enter_more_characters_to_search">Proszę wprowadzić więcej znaków do wyszukiwania.</string>
 </resources>

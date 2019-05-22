@@ -571,4 +571,5 @@
    <string name="emphasis">ความสำคัญ</string>
    <string name="with_cutout">ด้วยการตัด</string>
    <string name="screen">จอภาพ</string>
+   <string name="please_enter_more_characters_to_search">โปรดป้อนอักขระเพิ่มเติมเพื่อค้นหา</string>
 </resources>

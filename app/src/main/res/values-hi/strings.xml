@@ -571,4 +571,5 @@
    <string name="emphasis">ज़ोर</string>
    <string name="with_cutout">कटआउट के साथ</string>
    <string name="screen">स्क्रीन</string>
+   <string name="please_enter_more_characters_to_search">कृपया खोज के लिए और वर्ण दर्ज करें।</string>
 </resources>

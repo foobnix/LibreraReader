@@ -644,6 +644,7 @@ public class DragingDialogs {
                     public void onInit(int status) {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
+                        TxtUtils.bold(ttsLang);
 
                     }
                 });
@@ -654,12 +655,14 @@ public class DragingDialogs {
                     public void run() {
                         textEngine.setText(TTSEngine.get().getCurrentEngineName());
                         ttsLang.setText(TTSEngine.get().getCurrentLang());
+                        TxtUtils.bold(ttsLang);
 
                     }
                 });
 
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
+                TxtUtils.bold(ttsLang);
 
                 TxtUtils.underlineTextView(view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
 
@@ -1144,6 +1147,7 @@ public class DragingDialogs {
                         }
                         String searchString = searchEdit.getText().toString().trim();
                         if (searchString.length() < 2) {
+                            Toast.makeText(controller.getActivity(),R.string.please_enter_more_characters_to_search,Toast.LENGTH_SHORT).show();
                             return;
                         }
                         TempHolder.isSeaching = true;

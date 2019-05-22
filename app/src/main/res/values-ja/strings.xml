@@ -571,4 +571,5 @@
    <string name="emphasis">強調</string>
    <string name="with_cutout">切り欠き付き</string>
    <string name="screen">画面</string>
+   <string name="please_enter_more_characters_to_search">さらに検索する文字を入力してください。</string>
 </resources>

@@ -571,4 +571,5 @@
    <string name="emphasis">Énfasis</string>
    <string name="with_cutout">Con recorte</string>
    <string name="screen">Pantalla</string>
+   <string name="please_enter_more_characters_to_search">Por favor, introduzca más caracteres para buscar.</string>
 </resources>

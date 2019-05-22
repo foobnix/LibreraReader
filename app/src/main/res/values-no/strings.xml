@@ -571,4 +571,5 @@
    <string name="emphasis">Vektlegging</string>
    <string name="with_cutout">Med utskjæring</string>
    <string name="screen">Skjerm</string>
+   <string name="please_enter_more_characters_to_search">Vennligst skriv inn flere tegn for å søke.</string>
 </resources>

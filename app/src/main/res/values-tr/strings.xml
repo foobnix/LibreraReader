@@ -571,4 +571,5 @@
    <string name="emphasis">Vurgu</string>
    <string name="with_cutout">Kesikli</string>
    <string name="screen">Ekran</string>
+   <string name="please_enter_more_characters_to_search">Lütfen aramak için daha fazla karakter girin.</string>
 </resources>
