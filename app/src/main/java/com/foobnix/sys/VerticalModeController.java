@@ -36,6 +36,7 @@ import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.codec.Annotation;
+import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.core.codec.PageLink;
 import org.ebookdroid.droids.mupdf.codec.MuPdfLinks;
@@ -71,6 +72,20 @@ public class VerticalModeController extends DocumentController {
         CoreSettings.getInstance().fullScreen = AppState.get().fullScreenMode == AppState.FULL_SCREEN_FULLSCREEN;
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
+    }
+
+
+    @Override
+    public void recyclePage(int pageNumber) {
+        if (ctr == null) {
+            return;
+        }
+        try {
+            CodecPage page = ctr.getDecodeService().getCodecDocument().getPage(pageNumber);
+            page.recycle();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Override

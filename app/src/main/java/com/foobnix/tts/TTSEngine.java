@@ -280,7 +280,10 @@ public class TTSEngine {
         String pageName = "page-" + df.format(page + 1);
         final String wav = new File(folder, pageName + WAV).getPath();
         String fileText = controller.getTextForPage(page);
+        controller.recyclePage(page+1);
 
+
+        LOG.d("synthesizeToFile", fileText);
         ttsEngine.synthesizeToFile(fileText, map, wav);
 
         TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {

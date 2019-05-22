@@ -40,9 +40,9 @@ public class Keyboards {
             if (a == null) {
                 return;
             }
-            if (a instanceof MainTabs2 && !(AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_FULLSCREEN)) {
+            if (a instanceof MainTabs2 && AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
-            } else if (AppState.get().fullScreenMainMode == AppState.FULL_SCREEN_NORMAL) {
+            } else if (AppState.get().fullScreenMode == AppState.FULL_SCREEN_NORMAL) {
                 return;
             }
 

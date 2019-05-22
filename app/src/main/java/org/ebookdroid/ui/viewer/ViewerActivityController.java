@@ -60,7 +60,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ViewerActivityController extends ActionController<VerticalViewActivity> implements IActivityController, DecodingProgressListener, CurrentPageListener, IBookSettingsChangeListener {
 
-    private static final String E_MAIL_ATTACHMENT = "[E-mail Attachment]";
 
     private final AtomicReference<IViewController> ctrl = new AtomicReference<IViewController>(ViewContollerStub.STUB);
 
@@ -77,8 +76,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
     private String m_fileName;
     private String title;
-
-    private String currentSearchPattern;
 
     private DocumentWrapperUI wrapperControlls;
 

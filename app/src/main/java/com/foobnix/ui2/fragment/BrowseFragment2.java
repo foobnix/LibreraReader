@@ -669,133 +669,139 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     @Override
     public List<FileMeta> prepareDataInBackground() {
 
-        if (displayPath.startsWith(Clouds.PREFIX_CLOUD)) {
-            cloudStorage = Clouds.get().cloud(displayPath);
-            String cloudPath = Clouds.getPath(displayPath);
-            if (TxtUtils.isEmpty(cloudPath)) {
-                cloudPath = "/";
-            }
-            LOG.d("Open clound path", cloudPath);
-            List<CloudMetaData> items = cloudStorage.getChildren(cloudPath);
+        try {
 
-            List<FileMeta> result = new ArrayList<FileMeta>();
+            if (displayPath.startsWith(Clouds.PREFIX_CLOUD)) {
+                cloudStorage = Clouds.get().cloud(displayPath);
+                String cloudPath = Clouds.getPath(displayPath);
+                if (TxtUtils.isEmpty(cloudPath)) {
+                    cloudPath = "/";
+                }
+                LOG.d("Open clound path", cloudPath);
+                List<CloudMetaData> items = cloudStorage.getChildren(cloudPath);
 
-            for (CloudMetaData cl : items) {
-                String path = cl.getPath();
-                String name = cl.getName();
-                Long modifiedAt = cl.getModifiedAt();
-                long size = cl.getSize();
+                List<FileMeta> result = new ArrayList<FileMeta>();
 
-                LOG.d("CloudMetaData", path, name, modifiedAt, size, cl.getImageMetaData());
+                for (CloudMetaData cl : items) {
+                    String path = cl.getPath();
+                    String name = cl.getName();
+                    Long modifiedAt = cl.getModifiedAt();
+                    long size = cl.getSize();
 
-                FileMeta meta = new FileMeta(Clouds.getPrefix(displayPath) + path);
+                    LOG.d("CloudMetaData", path, name, modifiedAt, size, cl.getImageMetaData());
 
-                if (cl.getFolder()) {
-                    meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                    FileMeta meta = new FileMeta(Clouds.getPrefix(displayPath) + path);
+
+                    if (cl.getFolder()) {
+                        meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                    }
+
+                    meta.setTitle(name);
+                    meta.setPathTxt(name);
+
+                    meta.setSize(size);
+                    meta.setSizeTxt(ExtUtils.readableFileSize(size));
+
+                    if (modifiedAt != null) {
+                        meta.setDate(modifiedAt);
+                        meta.setDateTxt(ExtUtils.getDateFormat(modifiedAt));
+                    }
+                    meta.setState(FileMetaCore.STATE_FULL);
+
+                    result.add(meta);
                 }
 
-                meta.setTitle(name);
-                meta.setPathTxt(name);
-
-                meta.setSize(size);
-                meta.setSizeTxt(ExtUtils.readableFileSize(size));
-
-                if (modifiedAt != null) {
-                    meta.setDate(modifiedAt);
-                    meta.setDateTxt(ExtUtils.getDateFormat(modifiedAt));
-                }
-                meta.setState(FileMetaCore.STATE_FULL);
-
-                result.add(meta);
+                return result;
             }
 
-            return result;
-        }
+            if (ExtUtils.isExteralSD(getInitPath())) {
 
-        if (ExtUtils.isExteralSD(getInitPath())) {
+                List<FileMeta> items = new ArrayList<FileMeta>();
 
-            List<FileMeta> items = new ArrayList<FileMeta>();
+                Uri uri = Uri.parse(displayPath);
 
-            Uri uri = Uri.parse(displayPath);
+                ContentResolver contentResolver = getActivity().getContentResolver();
+                Uri childrenUri = null;
 
-            ContentResolver contentResolver = getActivity().getContentResolver();
-            Uri childrenUri = null;
+                childrenUri = ExtUtils.getChildUri(getContext(), uri);
 
-            childrenUri = ExtUtils.getChildUri(getContext(), uri);
+                if (childrenUri != null) {
 
-            if (childrenUri != null) {
+                    LOG.d("newNode uri >> ", uri);
+                    LOG.d("newNode childrenUri >> ", childrenUri);
 
-                LOG.d("newNode uri >> ", uri);
-                LOG.d("newNode childrenUri >> ", childrenUri);
+                    Cursor childCursor = contentResolver.query(childrenUri, new String[]{ //
+                                    Document.COLUMN_DISPLAY_NAME, //
+                                    Document.COLUMN_DOCUMENT_ID, //
+                                    Document.COLUMN_ICON, //
+                                    Document.COLUMN_LAST_MODIFIED, //
+                                    Document.COLUMN_MIME_TYPE, //
+                                    Document.COLUMN_SIZE, //
+                                    Document.COLUMN_SUMMARY, //
+                            }, //
+                            null, null, null); //
+                    try {
+                        while (childCursor.moveToNext()) {
+                            String COLUMN_DISPLAY_NAME = childCursor.getString(0);
+                            String COLUMN_DOCUMENT_ID = childCursor.getString(1);
+                            String COLUMN_ICON = childCursor.getString(2);
+                            String COLUMN_LAST_MODIFIED = childCursor.getString(3);
+                            String COLUMN_MIME_TYPE = childCursor.getString(4);
+                            String COLUMN_SIZE = childCursor.getString(5);
+                            String COLUMN_SUMMARY = childCursor.getString(6);
 
-                Cursor childCursor = contentResolver.query(childrenUri, new String[]{ //
-                                Document.COLUMN_DISPLAY_NAME, //
-                                Document.COLUMN_DOCUMENT_ID, //
-                                Document.COLUMN_ICON, //
-                                Document.COLUMN_LAST_MODIFIED, //
-                                Document.COLUMN_MIME_TYPE, //
-                                Document.COLUMN_SIZE, //
-                                Document.COLUMN_SUMMARY, //
-                        }, //
-                        null, null, null); //
-                try {
-                    while (childCursor.moveToNext()) {
-                        String COLUMN_DISPLAY_NAME = childCursor.getString(0);
-                        String COLUMN_DOCUMENT_ID = childCursor.getString(1);
-                        String COLUMN_ICON = childCursor.getString(2);
-                        String COLUMN_LAST_MODIFIED = childCursor.getString(3);
-                        String COLUMN_MIME_TYPE = childCursor.getString(4);
-                        String COLUMN_SIZE = childCursor.getString(5);
-                        String COLUMN_SUMMARY = childCursor.getString(6);
+                            LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
 
-                        LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
+                            FileMeta meta = new FileMeta();
+                            meta.setAuthor(SearchFragment2.EMPTY_ID);
 
-                        FileMeta meta = new FileMeta();
-                        meta.setAuthor(SearchFragment2.EMPTY_ID);
+                            final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
+                            meta.setPath(newNode.toString());
+                            LOG.d("newNode", newNode);
 
-                        final Uri newNode = DocumentsContract.buildDocumentUriUsingTree(uri, COLUMN_DOCUMENT_ID);
-                        meta.setPath(newNode.toString());
-                        LOG.d("newNode", newNode);
-
-                        if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
-                            meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
-                            meta.setPathTxt(COLUMN_DISPLAY_NAME);
-                            meta.setTitle(COLUMN_DISPLAY_NAME);
-
-                        } else {
-                            try {
-                                if (COLUMN_SIZE != null) {
-                                    long size = Long.parseLong(COLUMN_SIZE);
-                                    meta.setSize(size);
-                                    meta.setSizeTxt(ExtUtils.readableFileSize(size));
-                                }
-                                if (COLUMN_LAST_MODIFIED != null) {
-                                    meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
-                                }
-                            } catch (Exception e) {
-                                LOG.e(e);
-                            }
-                            meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
-
-                            if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
-                                meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));
-                            } else {
+                            if (Document.MIME_TYPE_DIR.equals(COLUMN_MIME_TYPE)) {
+                                meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                                meta.setPathTxt(COLUMN_DISPLAY_NAME);
                                 meta.setTitle(COLUMN_DISPLAY_NAME);
+
+                            } else {
+                                try {
+                                    if (COLUMN_SIZE != null) {
+                                        long size = Long.parseLong(COLUMN_SIZE);
+                                        meta.setSize(size);
+                                        meta.setSizeTxt(ExtUtils.readableFileSize(size));
+                                    }
+                                    if (COLUMN_LAST_MODIFIED != null) {
+                                        meta.setDateTxt(ExtUtils.getDateFormat(Long.parseLong(COLUMN_LAST_MODIFIED)));
+                                    }
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+                                meta.setExt(ExtUtils.getFileExtension(COLUMN_DISPLAY_NAME));
+
+                                if (BookType.FB2.is(COLUMN_DISPLAY_NAME)) {
+                                    meta.setTitle(TxtUtils.encode1251(COLUMN_DISPLAY_NAME));
+                                } else {
+                                    meta.setTitle(COLUMN_DISPLAY_NAME);
+                                }
+
                             }
+                            items.add(meta);
 
                         }
-                        items.add(meta);
-
+                    } finally {
+                        closeQuietly(childCursor);
                     }
-                } finally {
-                    closeQuietly(childCursor);
                 }
-            }
-            return items;
+                return items;
 
-        } else {
-            return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT);
+            } else {
+                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT);
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
+        return Collections.emptyList();
     }
 
     @Override

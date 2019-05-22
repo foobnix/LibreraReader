@@ -783,8 +783,5 @@ public abstract class DocumentController {
 
     public abstract void centerHorizontal();
 
-    public void recyclePage(int page) {
-
-    }
-
+    public abstract void recyclePage(int page);
 }
