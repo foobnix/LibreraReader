@@ -136,7 +136,7 @@ android {
             dimension "version"
             applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
-                    appName     : "Ebooka Reader",
+                    appName     : "eBooka",
                     appIcon     : "@mipmap/icon_pdf_droid",
                     appRoundIcon: "@mipmap/launcher_droid",
                     appGdriveKey  : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
