@@ -310,7 +310,7 @@ public class TxtUtils {
 
         LOG.d("pageHTML [2", pageHTML);
 
-        pageHTML = pageHTML.replaceAll("<end-line>(\\S)", "$1");
+        pageHTML = pageHTML.replace("<end-line>.", ".");
 
         if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
@@ -320,7 +320,6 @@ public class TxtUtils {
                 LOG.e(e);
             }
         }else{
-
             pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
         }
         pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
@@ -330,6 +329,8 @@ public class TxtUtils {
 
 
         pageHTML = replaceEndLine(pageHTML);
+
+
         pageHTML = pageHTML.replace("  ", " ");
         pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
@@ -455,6 +456,7 @@ public class TxtUtils {
             pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,4})\\. ", "  $1{dot}$2{dot} ");
             pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. (\\S{1,2})\\. ", "  $1{dot} $2{dot} ");
             pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. ", " $1{dot} ");
+            pageHTML = pageHTML.replaceAll("(\\d*)\\.(\\d+)", "$1{dot}$2"); //skip numbers 3.3 .343
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
