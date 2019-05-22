@@ -93,7 +93,7 @@ public class DocumentWrapperUI {
     String bookTitle;
 
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
-    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon;
+    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon,  fullscreen;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent;
@@ -747,9 +747,10 @@ public class DocumentWrapperUI {
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
 
-        ImageView fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
+         fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
         fullscreen.setOnClickListener(onFull);
-        fullscreen.setImageResource(R.drawable.glyphicons_488_fit_image_to_frame);
+        fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
+
 
         onCloseBook = a.findViewById(R.id.close);
         onCloseBook.setOnClickListener(onClose);
@@ -1559,13 +1560,15 @@ public class DocumentWrapperUI {
         public void onClick(final View v) {
             DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
                 AppState.get().fullScreenMode = id;
+                fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
+
                 if (dc.isTextFormat()) {
                     onRefresh.run();
                     dc.restartActivity();
                 }
                 DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
                 return true;
-            });
+            },AppState.get().fullScreenMode);
         }
     };
 

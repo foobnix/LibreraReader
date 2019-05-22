@@ -4486,7 +4486,7 @@ public class DragingDialogs {
                             controller.restartActivity();
                         }
                         return true;
-                    });
+                    }, AppState.get().fullScreenMode);
 
 
 

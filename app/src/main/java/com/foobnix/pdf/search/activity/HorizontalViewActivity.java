@@ -385,6 +385,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
                     AppState.get().fullScreenMode = id;
                     DocumentController.chooseFullScreen(HorizontalViewActivity.this, AppState.get().fullScreenMode);
+                    onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
                     if (dc.isTextFormat()) {
                         if (onRefresh != null) {
                             onRefresh.run();
@@ -393,12 +394,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         dc.restartActivity();
                     }
                     return true;
-                });
+                }, AppState.get().fullScreenMode);
 
 
             }
         });
-        //onFullScreen.setImageResource(AppState.get().isFullScreen ? R.drawable.glyphicons_487_fit_frame_to_image : R.drawable.glyphicons_488_fit_image_to_frame);
+        onFullScreen.setImageResource(DocumentController.getFullScreenIcon(HorizontalViewActivity.this, AppState.get().fullScreenMode));
 
         ImageView dayNightButton = (ImageView) findViewById(R.id.bookNight);
         dayNightButton.setOnClickListener(new View.OnClickListener() {

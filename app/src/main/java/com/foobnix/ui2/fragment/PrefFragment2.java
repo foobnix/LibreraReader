@@ -545,7 +545,7 @@ public class PrefFragment2 extends UIFragment {
                 TxtUtils.underlineTextView(onFullScreen);
                 DocumentController.chooseFullScreen(getActivity(), AppState.get().fullScreenMainMode);
                 return true;
-            });
+            },AppState.get().fullScreenMainMode);
 
 
         });
