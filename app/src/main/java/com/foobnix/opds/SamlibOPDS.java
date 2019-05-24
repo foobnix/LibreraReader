@@ -500,7 +500,7 @@ public class SamlibOPDS {
 
     private static String getHTTP(String url) {
         try {
-            return OPDS.getHttpResponse(url);
+            return OPDS.getHttpResponse(url,"","");
         } catch (Exception e) {
             return null;
         }

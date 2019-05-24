@@ -2,10 +2,13 @@ package com.foobnix.pdf.info.widget;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +28,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
-import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -34,18 +36,38 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class AddCatalogDialog {
 
-    public static void showDialogLogin(final Activity a, final Runnable onRefresh) {
-        LOG.d("showDialogLogin");
+    public static final String OPDS = "opds";
+
+    public static void showDialogLogin(final Activity a, String url, final Runnable onRefresh) {
+        LOG.d("showDialogLogin", url);
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
         builder.setTitle(R.string.authentication_required);
         View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_add_catalog_login, null, false);
 
+        final SharedPreferences sp = a.getSharedPreferences(OPDS, Context.MODE_PRIVATE);
+
         final EditText login = (EditText) dialog.findViewById(R.id.login);
+
         final EditText password = (EditText) dialog.findViewById(R.id.password);
+        password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        final String string = sp.getString(url, "");
+        if (TxtUtils.isNotEmpty(string)) {
+            try {
+                final String[] split = string.split(TxtUtils.TTS_PAUSE);
+                TempHolder.get().login = split[0];
+                TempHolder.get().password = split[1];
+                LOG.d("showDialogLogin GET", url);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
 
         login.setText(TempHolder.get().login);
         password.setText(TempHolder.get().password);
+
 
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
@@ -77,6 +99,10 @@ public class AddCatalogDialog {
 
                 TempHolder.get().login = l;
                 TempHolder.get().password = p;
+
+                sp.edit().putString(url, l + TxtUtils.TTS_PAUSE + p).commit();
+                LOG.d("showDialogLogin SAVE", url);
+
                 infoDialog.dismiss();
                 onRefresh.run();
             }
@@ -197,14 +223,16 @@ public class AddCatalogDialog {
                 asyncTask = new AsyncTask() {
                     @Override
                     protected Object doInBackground(Object... params) {
-                        return OPDS.getFeed(feedUrl);
+                        return com.foobnix.opds.OPDS.getFeed(feedUrl, a);
                     }
 
                     @Override
                     protected void onPreExecute() {
                         progressBar.setVisibility(View.VISIBLE);
                         image.setVisibility(View.GONE);
-                    };
+                    }
+
+
 
                     @Override
                     protected void onPostExecute(Object result) {
@@ -212,7 +240,7 @@ public class AddCatalogDialog {
                             progressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
                                 if (result != null && ((Feed) result).isNeedLoginPassword) {
-                                    AddCatalogDialog.showDialogLogin(a, new Runnable() {
+                                    AddCatalogDialog.showDialogLogin(a, feedUrl, new Runnable() {
 
                                         @Override
                                         public void run() {

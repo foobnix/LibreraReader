@@ -78,7 +78,7 @@ public class SendReceiveActivity extends Activity {
                             public void run() {
                                 try {
 
-                                    final String httpResponse = OPDS.getHttpResponse((String) text);
+                                    final String httpResponse = OPDS.getHttpResponse((String) text,"","");
                                     boolean isText = false;
                                     if (TxtUtils.isNotEmpty(httpResponse) && !httpResponse.contains("<html")) {
                                         isText = true;

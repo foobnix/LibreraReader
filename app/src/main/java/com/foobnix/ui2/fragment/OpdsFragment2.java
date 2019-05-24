@@ -702,7 +702,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                 return samlibResult;
             }
 
-            Feed feed = OPDS.getFeed(url);
+            Feed feed = OPDS.getFeed(url, getContext());
             if (feed == null) {
                 return Collections.emptyList();
             }
@@ -777,13 +777,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public void populateDataInUI(List<Entry> entries) {
         if (isNeedLoginPassword) {
-            AddCatalogDialog.showDialogLogin(getActivity(), new Runnable() {
-
-                @Override
-                public void run() {
-                    populate();
-                }
-            });
+            AddCatalogDialog.showDialogLogin(getActivity(),url, () -> populate());
             return;
         }
 

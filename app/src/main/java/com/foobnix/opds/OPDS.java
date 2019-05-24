@@ -1,5 +1,8 @@
 package com.foobnix.opds;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
 import com.burgstaller.okhttp.DispatchingAuthenticator;
@@ -12,6 +15,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.widget.AddCatalogDialog;
 import com.foobnix.sys.TempHolder;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -75,14 +79,15 @@ public class OPDS {
 
     public static String getHttpResponseNoException(String url) {
         try {
-            return getHttpResponse(url);
+            return getHttpResponse(url, "", "");
         } catch (IOException e) {
             return "";
         }
 
     }
 
-    public static String getHttpResponse(String url) throws IOException {
+    public static String getHttpResponse(String url, String login, String password) throws IOException {
+        LOG.d("getHttpResponse", login, password);
 
         Request request = new Request.Builder()//
                 .header("User-Agent", USER_AGENT)
@@ -106,11 +111,11 @@ public class OPDS {
             LOG.d("Header: ", name, value);
         }
 
-        if (response.code() == 401 && TxtUtils.isEmpty(TempHolder.get().login)) {
+        if (response.code() == 401 && TxtUtils.isEmpty(login)) {
             return CODE_401;
         } else {
 
-            Credentials credentials = new Credentials(TempHolder.get().login, TempHolder.get().password);
+            Credentials credentials = new Credentials(login, password);
             final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
             final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
 
@@ -119,15 +124,27 @@ public class OPDS {
                     .with("basic", basicAuthenticator)//
                     .build();
 
+
             client = builder //
                     .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
                     .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                     .build();
 
+            LOG.d("getHttpResponse Credentials", login, password);
+
+
             response = client.newCall(request).execute();
 
             if (response.code() == 401) {
-                return CODE_401;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    LOG.e(e);
+                }
+                response = client.newCall(request).execute();
+                if (response.code() == 401) {
+                    return CODE_401;
+                }
             }
         }
 
@@ -187,12 +204,29 @@ public class OPDS {
         return response.body();
     }
 
-    public static Feed getFeed(String url) {
+    public static Feed getFeed(String url, Context c) {
         try {
             if (url.endsWith(SamlibOPDS.LIBRERA_MOBI)) {
                 return null;
             }
-            String res = getHttpResponse(url);
+            final SharedPreferences sp = c.getSharedPreferences(AddCatalogDialog.OPDS, android.content.Context.MODE_PRIVATE);
+            final String string = sp.getString(url, "");
+            String res = "";
+            if (TxtUtils.isNotEmpty(string)) {
+                try {
+                    final String[] split = string.split(TxtUtils.TTS_PAUSE);
+                    String login = split[0];
+                    String password = split[1];
+                    res = getHttpResponse(url, login, password);
+                } catch (Exception e) {
+                    LOG.e(e);
+                    res = getHttpResponse(url, "", "");
+                }
+            } else {
+                res = getHttpResponse(url, "", "");
+            }
+
+
             if (res.equals(CODE_401)) {
                 Feed feed = new Feed();
                 feed.isNeedLoginPassword = true;
