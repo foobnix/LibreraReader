@@ -32,8 +32,10 @@ public abstract class AbstractCodecDocument implements CodecDocument {
     @Override
     public CodecPage getPage(int pageNuber) {
         if (pageNuber == pageNuberCache) {
-            LOG.d("getPage-cache",pageNuber);
-            return pageCache;
+            LOG.d("getPage-cache", pageNuber);
+            if (pageCache != null && !pageCache.isRecycled()) {
+                return pageCache;
+            }
         }
 
         pageNuberCache = pageNuber;
