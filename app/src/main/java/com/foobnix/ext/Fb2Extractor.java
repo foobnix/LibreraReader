@@ -685,7 +685,7 @@ public class Fb2Extractor extends BaseExtractor {
                 isValidXMLChecked = true;
                 isValidXML = line.contains("<");
                 LOG.d("isValidXML", isValidXML, line);
-                if(!isValidXML) {
+                if (!isValidXML) {
                     writer.print("<html><body>");
                 }
             }
@@ -760,7 +760,7 @@ public class Fb2Extractor extends BaseExtractor {
                     value = value.replaceAll("^[0-9]+", "").trim();
 
                     out.append(" <t>[");
-                    out.append(value);
+                    out.append(TxtUtils.escapeHtml(value));
                     out.append("]</t>");
                 }
             }

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
@@ -29,12 +30,14 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -79,6 +82,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
+    private static final String CMD_MARGIN = "@@keycode_margin";
+
 
     public static int NONE = -1;
 
@@ -149,6 +154,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         }
 
         autocomplitions.add(CMD_KEYCODE);
+        autocomplitions.add(CMD_MARGIN);
         autocomplitions.add(CMD_EDIT_AUTO_COMPLETE);
 
         autocomplitions.addAll(StringDB.asList(AppState.get().myAutoCompleteDb));
@@ -592,7 +598,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                         parentName = "" + it.getYear();
                     } else if (AppState.get().sortBy == SORT_BY.PATH.getIndex()) {
                         parentName = it.getParentPath();
-                        if(parentName!=null) {
+                        if (parentName != null) {
                             parentName = parentName.replace(extDir, "");
                         }
                     } else if (AppState.get().sortBy == SORT_BY.LANGUAGE.getIndex()) {
@@ -603,7 +609,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             parentName = DialogTranslateFromTo.getLanuageByCode(lang);
                         }
                     }
-                    if (parentName!=null && !parentName.equals(last)) {
+                    if (parentName != null && !parentName.equals(last)) {
                         FileMeta fm = new FileMeta();
                         fm.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
                         fm.setTitle(parentName);
@@ -641,6 +647,14 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             new KeyCodeDialog(getActivity(), null);
             searchEditText.setText("");
         }
+        if (CMD_MARGIN.equals(txt)) {
+            SwipeRefreshLayout layout =  getActivity().findViewById(R.id.swipeRefreshLayout);
+            final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) layout.getLayoutParams();
+            layoutParams.rightMargin = Dips.screenWidth() / 4;
+            layout.setLayoutParams(layoutParams);
+            searchEditText.setText("");
+        }
+
 
         if (CMD_EDIT_AUTO_COMPLETE.equals(txt)) {
             searchEditText.setText("");
