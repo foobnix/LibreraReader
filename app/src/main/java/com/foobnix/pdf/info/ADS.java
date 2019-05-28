@@ -43,6 +43,9 @@ public class ADS {
     public static void activateAdmobSmartBanner(final Activity a, AdView adView) {
         try {
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
+            if(frame==null){
+                return;
+            }
             frame.removeAllViews();
             frame.setVisibility(View.GONE);
 

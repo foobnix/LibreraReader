@@ -422,6 +422,12 @@
             android:layout_height="wrap_content"
             android:text="@string/enable_vibration_for_some_actions" />
 
+        <CheckBox
+            android:id="@+id/isExperimental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enable_experimental_features" />
+
         <com.foobnix.pdf.info.view.CustomSeek
             android:id="@+id/decodingThreadPriority"
             android:layout_width="match_parent"

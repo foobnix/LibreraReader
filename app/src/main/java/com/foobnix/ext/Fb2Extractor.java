@@ -666,7 +666,7 @@ public class Fb2Extractor extends BaseExtractor {
         return line;
     }
 
-    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out) throws Exception {
+    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         PrintWriter writer = new PrintWriter(out);
@@ -676,6 +676,10 @@ public class Fb2Extractor extends BaseExtractor {
 
         boolean isValidXML = false;
         boolean isValidXMLChecked = false;
+
+        String svg = "";
+        boolean findSVG = false;
+        int svgNumbver = 0;
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -697,6 +701,35 @@ public class Fb2Extractor extends BaseExtractor {
 
             // LOG.d("gen-in", line);
             line = accurateLine(line);
+
+            if (AppState.get().isExperimental && svgs != null) {
+                if (line.contains("<svg")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<svg"));
+
+                } else if (line.contains("</svg>")) {
+                    LOG.d("SVG", svg);
+                    svg += line.substring(0, line.indexOf("</svg>") + 6);
+
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+
+                } else if (findSVG) {
+                    svg += line;
+                }
+            }
+
+
             if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
                 line = HypenUtils.applyHypnes(line);
             }

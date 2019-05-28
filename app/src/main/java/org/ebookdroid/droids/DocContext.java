@@ -50,7 +50,7 @@ public class DocContext extends PdfContext {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(cacheFile));
 
                 HypenUtils.applyLanguage(AppTemp.get().hypenLang);
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out);
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(in), null, out, null,null);
                 out.close();
                 in.close();
 

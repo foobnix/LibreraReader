@@ -572,4 +572,5 @@
    <string name="with_cutout">Notched</string>
    <string name="screen">Screen</string>
    <string name="please_enter_more_characters_to_search">Please enter more characters to search.</string>
+    <string name="enable_experimental_features">Enable experimental features</string>
 </resources>

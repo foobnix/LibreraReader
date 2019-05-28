@@ -241,6 +241,14 @@
                 <category android:name="android.intent.category.LAUNCHER1" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="test.SvgActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="com.foobnix.ui2.MainTabs2"

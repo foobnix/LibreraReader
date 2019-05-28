@@ -3299,6 +3299,15 @@ public class DragingDialogs {
                         AppState.get().isVibration = isChecked;
                     }
                 });
+                CheckBox isExperimental = (CheckBox) inflate.findViewById(R.id.isExperimental);
+                isExperimental.setChecked(AppState.get().isExperimental);
+                isExperimental.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isExperimental = isChecked;
+                    }
+                });
 
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);

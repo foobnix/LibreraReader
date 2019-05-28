@@ -617,6 +617,8 @@ public class AppState {
     @IgnoreHashCode
     public boolean isVibration = true;
 
+    public boolean isExperimental = true;
+
     @IgnoreHashCode
     public boolean isLockPDF = false;
 

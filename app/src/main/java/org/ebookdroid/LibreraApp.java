@@ -9,6 +9,7 @@ import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ADS;
@@ -64,6 +65,8 @@ public class LibreraApp extends MultiDexApplication {
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);
+
+        WebViewUtils.init(this);
 
         Clouds.get().init(this);
 
