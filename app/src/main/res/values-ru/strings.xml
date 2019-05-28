@@ -122,7 +122,7 @@
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц в стороны при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
-   <string name="db_auto_center_horizontally">Выровнить по горизонтали</string>
+   <string name="db_auto_center_horizontally">Выровнять по горизонтали</string>
    <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (OLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Не открывать окно редактирования комментариев/пометок при тапах в области их расположения</string>
@@ -130,7 +130,7 @@
    <string name="selecting_text_by_letters">Использовать побуквенное выделение текста (для иероглифических языков)</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой границы экрана</string>
-   <string name="scroll_speed">Прокр. текста колёс. мыши</string>
+   <string name="scroll_speed">Прокр. текста колес. мыши</string>
    <string name="page_quality">Кач-во прорисовки стр-ц</string>
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
