@@ -334,7 +334,7 @@ public class ImageExtractor implements ImageDownloader {
         return bitmap;
     }
 
-    public Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
+    public static Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
         final Rect rootRect = new Rect(0, 0, sample.getWidth(), sample.getHeight());
         RectF rectCrop = PageCropper.getCropBounds(sample, rootRect, new RectF(0, 0, 1f, 1f));
         int x = (int) (bitmap.getWidth() * rectCrop.left);

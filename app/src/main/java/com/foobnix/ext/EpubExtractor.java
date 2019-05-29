@@ -154,11 +154,14 @@ public class EpubExtractor extends BaseExtractor {
 
                 //final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
                 //IO.writeString(file, svgs.get(key));
-                WebViewUtils.renterToZip(key, svgs.get(key), zos, lock);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                WebViewUtils.renterToPng(key, svgs.get(key), out, lock, 50);
 
                 synchronized (lock) {
-                    lock.wait(2000);
+                    lock.wait();
                 }
+
+                Fb2Extractor.writeToZipNoClose(zos, key, new ByteArrayInputStream(out.toByteArray()));
 
 
             }

@@ -6,15 +6,14 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.sys.ImageExtractor;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.zip.ZipOutputStream;
+import java.io.OutputStream;
 
 
 public class WebViewUtils {
@@ -26,7 +25,7 @@ public class WebViewUtils {
     public static void init(Context activity) {
         web = new WebView(activity);
         //web.setPadding(0, 0, 0, 0);
-        web.getSettings().setJavaScriptEnabled(false);
+        web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setSupportZoom(false);
         web.getSettings().setLoadWithOverviewMode(true);
         web.getSettings().setUseWideViewPort(true);
@@ -34,7 +33,7 @@ public class WebViewUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             WebView.enableSlowWholeDocumentDraw();
         }
-        //web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        web.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         //web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         //web.setScrollbarFadingEnabled(false);
@@ -45,33 +44,27 @@ public class WebViewUtils {
     }
 
 
-    public static void renterToZip(String name, String content, ZipOutputStream zos, Object lock) {
+    public static void renterToPng(String name, String content, OutputStream os, Object lock, int delay) {
 
 
         Runnable execute = new Runnable() {
             @Override
             public void run() {
                 try {
-                    int wh = Dips.screenMinWH();
                     LOG.d("web.getContentHeight()", web.getContentHeight());
 
-                    Bitmap bitmap = Bitmap.createBitmap(wh, (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
+                    Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
                     Canvas c = new Canvas(bitmap);
                     web.draw(c);
 
-
-                    ByteArrayOutputStream os = new ByteArrayOutputStream();
+                    bitmap = ImageExtractor.cropBitmap(bitmap,bitmap);
 
                     Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
                     bitmap.compress(format, 100, os);
                     bitmap.recycle();
-                    try {
-                        LOG.d("SVG: writeToZipNoClose", name);
-                        Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(os.toByteArray()));
 
-                    } catch (IOException e) {
-                        LOG.e(e);
-                    }
+
+
                 } finally {
                     synchronized (lock) {
                         lock.notify();
@@ -82,6 +75,7 @@ public class WebViewUtils {
         };
 
         handler.post(() -> {
+            LOG.d("loadData-content", content);
             web.loadData(content, "text/html", "utf-8");
 
             web.setWebViewClient(new WebViewClient() {
@@ -92,15 +86,25 @@ public class WebViewUtils {
                 }
 
                 @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    return super.shouldOverrideUrlLoading(view, request);
+                }
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return true;
+                }
+
+
+                @Override
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(view, url);
-                    handler.postDelayed(execute, 50);
+                    handler.postDelayed(execute, delay);
 
                 }
             });
 
         });
-
 
 
     }
