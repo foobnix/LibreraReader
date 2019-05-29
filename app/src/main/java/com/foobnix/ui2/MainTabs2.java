@@ -84,6 +84,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import test.SvgActivity;
+
 
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
@@ -218,10 +220,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onCreate(savedInstanceState);
         //FirebaseAnalytics.getInstance(this);
 
-//        if(true) {
-//            startActivity(new Intent(this, SvgActivity.class));
-//            return;
-//        }
+        if(false) {
+            startActivity(new Intent(this, SvgActivity.class));
+            return;
+        }
 
         if (!Android6.canWrite(this)) {
             Android6.checkPermissions(this, true);

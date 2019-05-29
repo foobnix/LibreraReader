@@ -33,7 +33,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -100,6 +99,7 @@ public class EpubExtractor extends BaseExtractor {
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
                 Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+
             }
 
         }
@@ -147,11 +147,20 @@ public class EpubExtractor extends BaseExtractor {
         }
 
         if (AppState.get().isExperimental) {
-            List<String> ordered = new ArrayList<>(svgs.keySet());
-            Collections.sort(ordered);
-            for (String key : ordered) {
-                WebViewUtils.renterToZip(key, svgs.get(key), zos);
-                Thread.sleep(1000);
+            Object lock = new Object();
+
+            for (String key : svgs.keySet()) {
+
+
+                //final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
+                //IO.writeString(file, svgs.get(key));
+                WebViewUtils.renterToZip(key, svgs.get(key), zos, lock);
+
+                synchronized (lock) {
+                    lock.wait();
+                }
+
+
             }
         }
 

@@ -680,6 +680,7 @@ public class Fb2Extractor extends BaseExtractor {
         String svg = "";
         boolean findSVG = false;
         int svgNumbver = 0;
+        String defs = "";
 
         while ((line = input.readLine()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -713,6 +714,11 @@ public class Fb2Extractor extends BaseExtractor {
                     svg += line.substring(0, line.indexOf("</svg>") + 6);
 
 
+                    svg = svg.replace("<defs>", "<defs>" + defs);
+                    svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
+                    defs = defs + TxtUtils.getStringInTag(svg, "defs");
+                    LOG.d("DEFS:", defs);
+
                     final String imageName = name + "-" + svgNumbver + ".png";
                     final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
                     svgs.put(imageName, svg);
@@ -720,6 +726,8 @@ public class Fb2Extractor extends BaseExtractor {
                     LOG.d("SVG:", imageName, svg);
 
                     line += "<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
 
                     findSVG = false;
                     svg = "";

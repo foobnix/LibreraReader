@@ -58,6 +58,20 @@ public class TxtUtils {
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
 
+    //<a> asdfsadf </a>
+    public static String getStringInTag(String string, String tag) {
+        String start = "<" + tag + ">";
+        String end = "</" + tag + ">";
+        int i1 = string.indexOf(start);
+        int i2 = string.indexOf(end);
+
+        if (i1 >= 0 && i2 > i1) {
+            return string.substring(i1 + start.length(), i2);
+        }
+
+        return "";
+    }
+
     public static String trim(String string) {
         if (string == null) {
             return null;
@@ -257,14 +271,14 @@ public class TxtUtils {
     }
 
     public static String replacePDFEndLine(String pageHTML) {
-        pageHTML = pageHTML.replace("-<end-line>" ,  "");
+        pageHTML = pageHTML.replace("-<end-line>", "");
         pageHTML = pageHTML.replace("- <end-line>", "");
         pageHTML = pageHTML.replace("<end-line>", " ");
 
         pageHTML = pageHTML.replace("<pause>", "");
         pageHTML = pageHTML.replace("<end-block>", "");
         pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>", "");
-        return  pageHTML;
+        return pageHTML;
     }
 
     public static String replaceEndLine(String pageHTML) {
@@ -319,7 +333,7 @@ public class TxtUtils {
             } catch (Exception e) {
                 LOG.e(e);
             }
-        }else{
+        } else {
             pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
         }
         pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
@@ -1295,8 +1309,6 @@ public class TxtUtils {
             }
         }
     }
-
-
 
 
 }

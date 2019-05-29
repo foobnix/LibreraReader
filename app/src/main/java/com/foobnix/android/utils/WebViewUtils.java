@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Looper;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.foobnix.ext.Fb2Extractor;
 
@@ -18,15 +17,23 @@ import java.util.zip.ZipOutputStream;
 
 public class WebViewUtils {
 
-    static WebView web;
+    static public WebView web;
 
     public static android.os.Handler handler = new Handler(Looper.getMainLooper());
 
     public static void init(Context activity) {
         web = new WebView(activity);
+        //web.setPadding(0, 0, 0, 0);
         web.getSettings().setJavaScriptEnabled(false);
         web.getSettings().setSupportZoom(false);
-        web.layout(0, 0, Dips.screenWidth(), Dips.screenHeight());
+        web.getSettings().setLoadWithOverviewMode(true);
+        web.getSettings().setUseWideViewPort(true);
+        //web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        //web.setScrollbarFadingEnabled(false);
+        //web.setInitialScale(1);
+
+
+        web.layout(0, 0, Dips.screenMinWH(), Dips.screenMinWH());
     }
 
     public interface WebViewResponse {
@@ -36,48 +43,36 @@ public class WebViewUtils {
     }
 
 
-    public static void renterToZip(String name, String text, ZipOutputStream zos) {
+    public static void renterToZip(String name, String content, ZipOutputStream zos, Object lock) {
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
+        handler.post(() -> web.loadData(content, "text/html", "utf-8"));
 
+        handler.postDelayed(() -> {
+            int wh = Dips.screenMinWH();
 
-                web.loadData(text, "text/html", "utf-8");
-
-
-                web.setWebViewClient(new WebViewClient() {
-
-                    @Override
-                    public void onPageCommitVisible(WebView view, String url) {
-                        super.onPageCommitVisible(view, url);
+            Bitmap bitmap = Bitmap.createBitmap(wh, Math.min(wh, web.getContentHeight() + Dips.DP_50), Bitmap.Config.ARGB_8888);
+            Canvas c = new Canvas(bitmap);
+            web.draw(c);
 
 
-                        int wh = Dips.screenMinWH();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-                        Bitmap bitmap = Bitmap.createBitmap(wh, Math.max(wh, view.getContentHeight() + Dips.DP_50), Bitmap.Config.ARGB_8888);
-                        Canvas c = new Canvas(bitmap);
-                        view.draw(c);
+            Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
+            bitmap.compress(format, 100, os);
+            bitmap.recycle();
+            try {
+                LOG.d("SVG: writeToZipNoClose", name);
+                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(os.toByteArray()));
 
-
-                        ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-                        Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
-                        bitmap.compress(format, 80, os);
-                        bitmap.recycle();
-                        try {
-                            LOG.d("SVG: writeToZipNoClose", name);
-                            Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(os.toByteArray()));
-
-                        } catch (IOException e) {
-                            LOG.e(e);
-                        }
-
-                    }
-                });
-
+            } catch (IOException e) {
+                LOG.e(e);
             }
-        });
+            synchronized (lock) {
+                lock.notify();
+            }
+
+        }, 500);
+
     }
 
 
