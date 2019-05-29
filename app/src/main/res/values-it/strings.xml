@@ -572,4 +572,5 @@
    <string name="with_cutout">Con il ritaglio</string>
    <string name="screen">Schermo</string>
    <string name="please_enter_more_characters_to_search">Per favore inserisci più caratteri da cercare.</string>
+   <string name="enable_experimental_features">Abilita funzionalità sperimentali</string>
 </resources>

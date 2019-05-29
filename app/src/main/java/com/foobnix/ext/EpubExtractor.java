@@ -157,7 +157,7 @@ public class EpubExtractor extends BaseExtractor {
                 WebViewUtils.renterToZip(key, svgs.get(key), zos, lock);
 
                 synchronized (lock) {
-                    lock.wait();
+                    lock.wait(2000);
                 }
 
 

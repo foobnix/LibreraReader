@@ -572,4 +572,5 @@
    <string name="with_cutout">Leikkauksella</string>
    <string name="screen">Kuvaruutu</string>
    <string name="please_enter_more_characters_to_search">Kirjoita lisää merkkejä hakuun.</string>
+   <string name="enable_experimental_features">Ota käyttöön kokeelliset ominaisuudet</string>
 </resources>

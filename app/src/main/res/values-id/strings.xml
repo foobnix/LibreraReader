@@ -572,4 +572,5 @@
    <string name="with_cutout">Dengan guntingan</string>
    <string name="screen">Layar</string>
    <string name="please_enter_more_characters_to_search">Silakan masukkan lebih banyak karakter untuk dicari.</string>
+   <string name="enable_experimental_features">Aktifkan fitur eksperimental</string>
 </resources>

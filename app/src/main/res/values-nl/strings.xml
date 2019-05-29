@@ -572,4 +572,5 @@
    <string name="with_cutout">Met uitsparing</string>
    <string name="screen">Scherm</string>
    <string name="please_enter_more_characters_to_search">Voer alstublieft meer tekens in om te zoeken.</string>
+   <string name="enable_experimental_features">Schakel experimentele functies in</string>
 </resources>

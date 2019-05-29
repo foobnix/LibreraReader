@@ -572,4 +572,5 @@
    <string name="with_cutout">Kivágással</string>
    <string name="screen">Képernyő</string>
    <string name="please_enter_more_characters_to_search">Írjon be további karaktereket a kereséshez.</string>
+   <string name="enable_experimental_features">Engedélyezze a kísérleti funkciókat</string>
 </resources>

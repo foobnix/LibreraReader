@@ -572,4 +572,5 @@
    <string name="with_cutout">З вирізом</string>
    <string name="screen">Екрані</string>
    <string name="please_enter_more_characters_to_search">Введіть більше символів для пошуку.</string>
+   <string name="enable_experimental_features">Включити експериментальні функції</string>
 </resources>

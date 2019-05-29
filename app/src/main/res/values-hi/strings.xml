@@ -572,4 +572,5 @@
    <string name="with_cutout">कटआउट के साथ</string>
    <string name="screen">स्क्रीन</string>
    <string name="please_enter_more_characters_to_search">कृपया खोज के लिए और वर्ण दर्ज करें।</string>
+   <string name="enable_experimental_features">प्रयोगात्मक सुविधाओं को सक्षम करें</string>
 </resources>

@@ -572,4 +572,5 @@
    <string name="with_cutout">与切口</string>
    <string name="screen">屏幕</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符进行搜索。</string>
+   <string name="enable_experimental_features">启用实验功能</string>
 </resources>

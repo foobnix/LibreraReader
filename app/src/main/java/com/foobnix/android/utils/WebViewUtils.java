@@ -3,9 +3,11 @@ package com.foobnix.android.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.foobnix.ext.Fb2Extractor;
 
@@ -28,6 +30,12 @@ public class WebViewUtils {
         web.getSettings().setSupportZoom(false);
         web.getSettings().setLoadWithOverviewMode(true);
         web.getSettings().setUseWideViewPort(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            WebView.enableSlowWholeDocumentDraw();
+        }
+        //web.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+
         //web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         //web.setScrollbarFadingEnabled(false);
         //web.setInitialScale(1);
@@ -39,17 +47,15 @@ public class WebViewUtils {
 
     public static void renterToZip(String name, String content, ZipOutputStream zos, Object lock) {
 
-        handler.post(() -> web.loadData("", "text/html", "utf-8"));
-        handler.post(() -> web.loadData(content, "text/html", "utf-8"));
-
 
         Runnable execute = new Runnable() {
             @Override
             public void run() {
                 try {
                     int wh = Dips.screenMinWH();
+                    LOG.d("web.getContentHeight()", web.getContentHeight());
 
-                    Bitmap bitmap = Bitmap.createBitmap(wh, Math.min(wh, web.getContentHeight() + Dips.DP_50), Bitmap.Config.ARGB_8888);
+                    Bitmap bitmap = Bitmap.createBitmap(wh, (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
                     Canvas c = new Canvas(bitmap);
                     web.draw(c);
 
@@ -75,19 +81,26 @@ public class WebViewUtils {
             }
         };
 
-        Runnable check = new Runnable() {
+        handler.post(() -> {
+            web.loadData(content, "text/html", "utf-8");
 
-            @Override
-            public void run() {
-                if (web.getContentHeight() > 2) {
-                    handler.post(execute);
-                } else {
-                    handler.postDelayed(this, 100);
+            web.setWebViewClient(new WebViewClient() {
+
+                @Override
+                public void onPageCommitVisible(WebView view, String url) {
+                    super.onPageCommitVisible(view, url);
                 }
-            }
-        };
 
-        handler.postDelayed(check, 300);
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    handler.postDelayed(execute, 50);
+
+                }
+            });
+
+        });
+
 
 
     }

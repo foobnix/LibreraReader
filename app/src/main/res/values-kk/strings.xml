@@ -572,4 +572,5 @@
    <string name="with_cutout">Бар</string>
    <string name="screen">Экран</string>
    <string name="please_enter_more_characters_to_search">Іздеу үшін көп таңбаларды енгізіңіз.</string>
+   <string name="enable_experimental_features">Эксперименттік мүмкіндіктерді қосыңыз</string>
 </resources>

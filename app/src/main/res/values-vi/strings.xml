@@ -572,4 +572,5 @@
    <string name="with_cutout">Với sự cắt bỏ</string>
    <string name="screen">Màn</string>
    <string name="please_enter_more_characters_to_search">Vui lòng nhập thêm ký tự để tìm kiếm.</string>
+   <string name="enable_experimental_features">Cho phép các tính năng thử nghiệm</string>
 </resources>

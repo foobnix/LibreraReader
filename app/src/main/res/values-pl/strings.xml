@@ -572,4 +572,5 @@
    <string name="with_cutout">Z wycięciem</string>
    <string name="screen">Ekran</string>
    <string name="please_enter_more_characters_to_search">Proszę wprowadzić więcej znaków do wyszukiwania.</string>
+   <string name="enable_experimental_features">Włącz funkcje eksperymentalne</string>
 </resources>

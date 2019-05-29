@@ -572,4 +572,5 @@
    <string name="with_cutout">با برش</string>
    <string name="screen">صفحه نمایش</string>
    <string name="please_enter_more_characters_to_search">لطفا کاراکترهای بیشتری را برای جستجو وارد کنید</string>
+   <string name="enable_experimental_features">ویژگی های تجربی را فعال کنید</string>
 </resources>

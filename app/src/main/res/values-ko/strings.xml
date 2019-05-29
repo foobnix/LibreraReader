@@ -572,4 +572,5 @@
    <string name="with_cutout">컷 아웃과 함께</string>
    <string name="screen">화면</string>
    <string name="please_enter_more_characters_to_search">검색 할 문자를 더 입력하십시오.</string>
+   <string name="enable_experimental_features">실험 기능 사용</string>
 </resources>

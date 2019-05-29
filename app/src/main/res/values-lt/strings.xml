@@ -572,4 +572,5 @@
    <string name="with_cutout">Su išjungimu</string>
    <string name="screen">Ekranas</string>
    <string name="please_enter_more_characters_to_search">Prašom įvesti daugiau simbolių.</string>
+   <string name="enable_experimental_features">Įgalinti eksperimentines funkcijas</string>
 </resources>

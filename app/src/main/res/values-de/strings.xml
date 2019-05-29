@@ -572,4 +572,5 @@
    <string name="with_cutout">Mit ausschnitt</string>
    <string name="screen">Bildschirm</string>
    <string name="please_enter_more_characters_to_search">Bitte geben Sie weitere Zeichen ein, um zu suchen.</string>
+   <string name="enable_experimental_features">Experimentelle Funktionen aktivieren</string>
 </resources>

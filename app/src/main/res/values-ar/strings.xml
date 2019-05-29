@@ -572,4 +572,5 @@
    <string name="with_cutout">مع انقطاع</string>
    <string name="screen">شاشة</string>
    <string name="please_enter_more_characters_to_search">يرجى إدخال المزيد من الشخصيات للبحث.</string>
+   <string name="enable_experimental_features">تمكين الميزات التجريبية</string>
 </resources>

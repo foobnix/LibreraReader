@@ -572,4 +572,5 @@
    <string name="with_cutout">Kesikli</string>
    <string name="screen">Ekran</string>
    <string name="please_enter_more_characters_to_search">Lütfen aramak için daha fazla karakter girin.</string>
+   <string name="enable_experimental_features">Deneysel özellikleri etkinleştir</string>
 </resources>

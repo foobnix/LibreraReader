@@ -572,4 +572,5 @@
    <string name="with_cutout">S výrezom</string>
    <string name="screen">Plátno</string>
    <string name="please_enter_more_characters_to_search">Zadajte viac znakov na vyhľadávanie.</string>
+   <string name="enable_experimental_features">Povoliť experimentálne funkcie</string>
 </resources>
