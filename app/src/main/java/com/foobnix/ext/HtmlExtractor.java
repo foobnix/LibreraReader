@@ -109,7 +109,7 @@ public class HtmlExtractor {
                         String footer = "</body>\n" +
                                 "</html> ";
 
-                        WebViewUtils.renterToPng(imageName, head+svg+footer, out, lock, 750);
+                        WebViewUtils.renterToPng(imageName, head+svg+footer, out, lock, 1000);
 
                         synchronized (lock) {
                             lock.wait();
