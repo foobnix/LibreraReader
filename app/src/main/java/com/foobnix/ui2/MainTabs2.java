@@ -220,7 +220,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onCreate(savedInstanceState);
         //FirebaseAnalytics.getInstance(this);
 
-        if(false) {
+        if(true) {
             startActivity(new Intent(this, SvgActivity.class));
             return;
         }

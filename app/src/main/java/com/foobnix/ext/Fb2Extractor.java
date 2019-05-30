@@ -714,10 +714,16 @@ public class Fb2Extractor extends BaseExtractor {
                     svg += line.substring(0, line.indexOf("</svg>") + 6);
 
 
+                    String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
+
                     svg = svg.replace("<defs>", "<defs>" + defs);
                     svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
-                    defs = defs + TxtUtils.getStringInTag(svg, "defs");
+                    if (TxtUtils.isNotEmpty(defsCurrent)) {
+                        defs = defs + defsCurrent;
+                    }
                     LOG.d("DEFS:", defs);
+
+                    //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
 
                     final String imageName = name + "-" + svgNumbver + ".png";
                     final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";

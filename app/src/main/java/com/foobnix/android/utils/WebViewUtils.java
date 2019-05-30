@@ -11,8 +11,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.foobnix.sys.ImageExtractor;
-
 import java.io.OutputStream;
 
 
@@ -57,7 +55,7 @@ public class WebViewUtils {
                     Canvas c = new Canvas(bitmap);
                     web.draw(c);
 
-                    bitmap = ImageExtractor.cropBitmap(bitmap,bitmap);
+                    //bitmap = ImageExtractor.cropBitmap(bitmap,bitmap);
 
                     Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
                     bitmap.compress(format, 100, os);

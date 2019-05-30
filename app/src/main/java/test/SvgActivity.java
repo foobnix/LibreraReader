@@ -18,6 +18,35 @@ public class SvgActivity extends Activity {
         try {
             //ImageView img = new ImageView(this);
 
+            String svg = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gb=\"https://gobooks.com\" version=\"1.1\" viewBox=\"0 0 216 192\">\n" +
+                    "\t<defs>\n" +
+                    "\t\t<circle id=\"b\" r=\"11.5\" fill=\"black\" stroke=\"black\" stroke-width=\"1\"/>\n" +
+                    "\t\t<circle id=\"w\" r=\"11.5\" fill=\"white\" stroke=\"black\" stroke-width=\"1\"/>\n" +
+                    "\t\t<circle id=\"h\" r=\"3\" fill=\"black\"/>\n" +
+                    "\t\t<polygon id=\"tb\" points=\"0,-11.04 -9.912,5.04 9.912,5.04\" stroke=\"white\" stroke-width=\"1.286\" fill=\"none\"/>\n" +
+                    "\t\t<polygon id=\"tw\" points=\"0,-11.04 -9.912,5.04 9.912,5.04\" stroke=\"black\" stroke-width=\"1.286\" fill=\"none\"/>\n" +
+                    "\t</defs>\n" +
+                    "\t<style type=\"text/css\">\n" +
+                    ".bt { font-size: 18px; font-family: Helvetica; font-weight: 500; fill: black; text-anchor: middle; alignment-baseline: central; letter-spacing: -0.05em; }</style>\n" +
+                    "\t<path d=\"M12,0V192M36,0V192M60,0V192M84,0V192M108,0V192M132,0V122.88M132,141.12V192M156,0V192M180,0V192M204,0V192M0,12H216M0,36H216M0,60H216M0,84H216M0,108H216M0,132H122.88M141.12,132H216M0,156H216M0,180H216\" stroke=\"black\" stroke-width=\"1.0\"/>\n" +
+                    "\t<use x=\"108\" y=\"36\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"36\" y=\"60\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"60\" y=\"60\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"84\" y=\"60\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"108\" y=\"60\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"204\" y=\"60\" xlink:href=\"#h\"/>\n" +
+                    "\t<use x=\"36\" y=\"84\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"60\" y=\"84\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"84\" y=\"84\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"108\" y=\"84\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"132\" y=\"84\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"132\" y=\"84\" xlink:href=\"#tb\"/>\n" +
+                    "\t<use x=\"108\" y=\"108\" xlink:href=\"#w\"/>\n" +
+                    "\t<use x=\"60\" y=\"132\" xlink:href=\"#b\"/>\n" +
+                    "\t<use x=\"84\" y=\"132\" xlink:href=\"#b\"/>\n" +
+                    "\t<text x=\"132\" y=\"132\" class=\"bt\">a</text>\n" +
+                    "</svg>";
+
 
             String str = "<html>\n" +
                     "       <head>\n" +
@@ -37,7 +66,7 @@ public class SvgActivity extends Activity {
 
             final WebView web = WebViewUtils.web;
 
-            web.loadData(str, "text/html", "utf-8");
+            web.loadData(svg, "text/html", "utf-8");
 
 
 
