@@ -6,15 +6,29 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.webkit.WebResourceRequest;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
+import com.foobnix.sys.ImageExtractor;
 
 import java.io.OutputStream;
 
 
 public class WebViewUtils {
+
+    public static class WebAppInterface {
+        Runnable run;
+
+        WebAppInterface(Runnable run) {
+            this.run = run;
+        }
+
+        @JavascriptInterface
+        public void finish() {
+            run.run();
+        }
+    }
 
     static public WebView web;
 
@@ -42,7 +56,24 @@ public class WebViewUtils {
     }
 
 
-    public static void renterToPng(String name, String content, OutputStream os, Object lock, int delay) {
+    public static void renterToPng(String name, String content, OutputStream os, Object lock, boolean crop) {
+        String h, f;
+        if (content.trim().startsWith("<math")) {
+            h = "<html><head>\n" +
+                    "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML\"></script>\n" +
+                    "<script type=\"text/javascript\"> MathJax.Hub.Register.StartupHook(\"End\",function () { android.finish() }); </script>\n" +
+                    "</head><body>";
+
+
+            f = "</body></html>";
+
+        } else {
+            h = "<html><head>\n" +
+                    "</head><body onload=\" android.finish() \">";
+            f = "</body></html>";
+        }
+
+        final String contentWrapper = h + content + f;
 
 
         Runnable execute = new Runnable() {
@@ -55,12 +86,13 @@ public class WebViewUtils {
                     Canvas c = new Canvas(bitmap);
                     web.draw(c);
 
-                    //bitmap = ImageExtractor.cropBitmap(bitmap,bitmap);
+                    if (crop) {
+                        bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
+                    }
 
                     Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
                     bitmap.compress(format, 100, os);
                     bitmap.recycle();
-
 
 
                 } finally {
@@ -73,34 +105,35 @@ public class WebViewUtils {
         };
 
         handler.post(() -> {
-            LOG.d("loadData-content", content);
-            web.loadData(content, "text/html", "utf-8");
+            LOG.d("loadData-content", contentWrapper);
+            web.loadData(contentWrapper, "text/html", "utf-8");
 
-            web.setWebViewClient(new WebViewClient() {
+            web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 250)), "android");
 
-                @Override
-                public void onPageCommitVisible(WebView view, String url) {
-                    super.onPageCommitVisible(view, url);
-                }
-
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                    return super.shouldOverrideUrlLoading(view, request);
-                }
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    view.loadUrl(url);
-                    return true;
-                }
-
-
-                @Override
-                public void onPageFinished(WebView view, String url) {
-                    super.onPageFinished(view, url);
-                    handler.postDelayed(execute, delay);
-
-                }
-            });
+//            web.setWebViewClient(new WebViewClient() {
+//
+//                @Override
+//                public void onPageCommitVisible(WebView view, String url) {
+//                    super.onPageCommitVisible(view, url);
+//
+//                }
+//
+//                @Override
+//                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                    view.loadUrl(url);
+//                    LOG.d("shouldOverrideUrlLoading", url);
+//                    return true;
+//                }
+//
+//
+//                @Override
+//                public void onPageFinished(WebView view, String url) {
+//                    super.onPageFinished(view, url);
+//                    //s handler.postDelayed(execute, delay);
+//                    handler.postDelayed(execute, 50);
+//
+//                }
+//            });
 
         });
 

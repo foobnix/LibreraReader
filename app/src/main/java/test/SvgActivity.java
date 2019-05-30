@@ -1,10 +1,15 @@
 package test;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.webkit.ConsoleMessage;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.WebViewUtils;
@@ -48,26 +53,442 @@ public class SvgActivity extends Activity {
                     "</svg>";
 
 
-            String str = "<html>\n" +
+            String mathml = "<html>\n" +
                     "       <head>\n" +
-                    "          <meta charset = \"UTF-8\">\n" +
-                    "          <title>MathML Examples</title>\n" +
-                    "    \n" +
-                    "          <script type=\"text/javascript\" async\n" +
-                    "          src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML\">\n" +
+                    "          <script type=\"text/javascript\" \n" +
+                    "          src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML\">\n" +
+                    //"          src=\"**token**MathJax-2.7.5/MathJax.js?config=MML_CHTML\">\n" +
                     "        </script>\n" +
-                    "    \n" +
-                    "       </head>\n" +
-                    "    \t\n" +
-                    "       <body><math xmlns = \"http://www.w3.org/1998/Math/MathML\">\t\t         <mrow>            <mi>A</mi>            <mo>=</mo>\t\t\t            <mfenced open = \"[\" close=\"]\">\t\t\t               <mtable>                  <mtr>                     <mtd><mi>x</mi></mtd>                     <mtd><mi>y</mi></mtd>                  </mtr>\t\t\t\t\t                  <mtr>                     <mtd><mi>z</mi></mtd>                     <mtd><mi>w</mi></mtd>                  </mtr>               </mtable>                           </mfenced>         </mrow>      </math></body>\n" +
-                    "    </html>";
+                    "<script type=\"text/javascript\"> MathJax.Hub.Register.StartupHook(\"End\",function () {  android.showToast(\"finish\"); }); </script>\n" +
 
+                    "       </head>\n" +
+                    "       <body>" +
+                    "<math alttext=\"Alternative text not available\" xmlns=\"http://www.w3.org/1998/Math/MathML\">\n" +
+                    "                                        <mi>T</mi>\n" +
+                    "                                        <mo class=\"MathClass-punc\">:</mo>\n" +
+                    "                                        <msup>\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mi>ℂ</mi>\n" +
+                    "                                            </mrow>\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mn>5</mn>\n" +
+                    "                                            </mrow>\n" +
+                    "                                        </msup>\n" +
+                    "                                        <mo class=\"MathClass-rel\">→</mo>\n" +
+                    "                                        <msup>\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mi>ℂ</mi>\n" +
+                    "                                            </mrow>\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mn>5</mn>\n" +
+                    "                                            </mrow>\n" +
+                    "                                        </msup>\n" +
+                    "                                        <mo class=\"MathClass-punc\">,</mo>\n" +
+                    "                                        <mspace width=\"1em\" class=\"quad\"></mspace>\n" +
+                    "                                        <mi>T</mi>\n" +
+                    "                                        <mfenced separators=\"\" open=\"(\" close=\")\">\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mfenced separators=\"\" open=\"[\" close=\"]\">\n" +
+                    "                                                    <mrow>\n" +
+                    "                                                        <mtable style=\"text-align:axis;\" equalrows=\"false\" columnlines=\"none none none none none none none none none none none\" equalcolumns=\"false\" class=\"array\">\n" +
+                    "                                                            <mtr>\n" +
+                    "                                                                <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                                    <msub>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mi>x</mi>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mn>1</mn>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                    </msub>\n" +
+                    "                                                                </mtd>\n" +
+                    "                                                            </mtr>\n" +
+                    "                                                            <mtr>\n" +
+                    "                                                                <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                                    <msub>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mi>x</mi>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mn>2</mn>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                    </msub>\n" +
+                    "                                                                </mtd>\n" +
+                    "                                                            </mtr>\n" +
+                    "                                                            <mtr>\n" +
+                    "                                                                <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                                    <msub>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mi>x</mi>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mn>3</mn>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                    </msub>\n" +
+                    "                                                                </mtd>\n" +
+                    "                                                            </mtr>\n" +
+                    "                                                            <mtr>\n" +
+                    "                                                                <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                                    <msub>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mi>x</mi>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mn>4</mn>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                    </msub>\n" +
+                    "                                                                </mtd>\n" +
+                    "                                                            </mtr>\n" +
+                    "                                                            <mtr>\n" +
+                    "                                                                <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                                    <msub>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mi>x</mi>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                        <mrow>\n" +
+                    "                                                                            <mn>5</mn>\n" +
+                    "                                                                        </mrow>\n" +
+                    "                                                                    </msub>\n" +
+                    "                                                                </mtd>\n" +
+                    "                                                            </mtr>\n" +
+                    "                                                        </mtable>\n" +
+                    "                                                    </mrow>\n" +
+                    "                                                </mfenced>\n" +
+                    "                                            </mrow>\n" +
+                    "                                        </mfenced>\n" +
+                    "                                        <mo class=\"MathClass-rel\">=</mo>\n" +
+                    "                                        <mfenced separators=\"\" open=\"[\" close=\"]\">\n" +
+                    "                                            <mrow>\n" +
+                    "                                                <mtable style=\"text-align:axis;\" equalrows=\"false\" columnlines=\"none none none none none none none none none none none\" equalcolumns=\"false\" class=\"array\">\n" +
+                    "                                                    <mtr>\n" +
+                    "                                                        <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>6</mn>\n" +
+                    "                                                            <mn>5</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>1</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>2</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>0</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>3</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <mn>6</mn>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>4</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <mn>0</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>5</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                        </mtd>\n" +
+                    "                                                    </mtr>\n" +
+                    "                                                    <mtr>\n" +
+                    "                                                        <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                            <mn>3</mn>\n" +
+                    "                                                            <mn>6</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>1</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>7</mn>\n" +
+                    "                                                            <mn>3</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>2</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>3</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>5</mn>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>4</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>6</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>5</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                        </mtd>\n" +
+                    "                                                    </mtr>\n" +
+                    "                                                    <mtr>\n" +
+                    "                                                        <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>1</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>2</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>5</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>3</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <mn>0</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>4</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>5</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                        </mtd>\n" +
+                    "                                                    </mtr>\n" +
+                    "                                                    <mtr>\n" +
+                    "                                                        <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                            <mn>3</mn>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>1</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>6</mn>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>2</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>3</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>3</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <mn>0</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>4</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>8</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>5</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                        </mtd>\n" +
+                    "                                                    </mtr>\n" +
+                    "                                                    <mtr>\n" +
+                    "                                                        <mtd class=\"array\" columnalign=\"center\">\n" +
+                    "                                                            <mn>1</mn>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>1</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>2</mn>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>2</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>3</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">+</mo>\n" +
+                    "                                                            <mn>4</mn>\n" +
+                    "                                                            <mn>9</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>4</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                            <mo class=\"MathClass-bin\">−</mo>\n" +
+                    "                                                            <mn>5</mn>\n" +
+                    "                                                            <msub>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mi>x</mi>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                                <mrow>\n" +
+                    "                                                                    <mn>5</mn>\n" +
+                    "                                                                </mrow>\n" +
+                    "                                                            </msub>\n" +
+                    "                                                        </mtd>\n" +
+                    "                                                    </mtr>\n" +
+                    "                                                </mtable>\n" +
+                    "                                            </mrow>\n" +
+                    "                                        </mfenced>\n" +
+                    "                                    </math>" +
+                    "</body>\n" +
+                    "    </html>";
 
 
             final WebView web = WebViewUtils.web;
 
-            web.loadData(svg, "text/html", "utf-8");
+            class WebAppInterface {
+                Context mContext;
 
+                /** Instantiate the interface and set the context */
+                WebAppInterface(Context c) {
+                    mContext = c;
+                }
+
+                /** Show a toast from the web page */
+                @JavascriptInterface
+                public void showToast(String toast) {
+                    Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+                }
+            }
+            web.addJavascriptInterface(new WebAppInterface(this), "android");
+
+
+            web.setWebChromeClient(new WebChromeClient() {
+
+
+                @Override
+                public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                    LOG.d("WebView", consoleMessage.message());
+                    return true;
+                }
+            });
+
+            LOG.d("mathml",mathml);
+            web.loadData(mathml, "text/html", "utf-8");
 
 
             setContentView(web);
@@ -77,6 +498,8 @@ public class SvgActivity extends Activity {
         }
 
     }
+
+
 
     public static Bitmap screenshot(WebView webview) {
 

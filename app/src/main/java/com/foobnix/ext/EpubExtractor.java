@@ -155,7 +155,7 @@ public class EpubExtractor extends BaseExtractor {
                 //final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
                 //IO.writeString(file, svgs.get(key));
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
-                WebViewUtils.renterToPng(key, svgs.get(key), out, lock, 50);
+                WebViewUtils.renterToPng(key, svgs.get(key), out, lock, false);
 
                 synchronized (lock) {
                     lock.wait();

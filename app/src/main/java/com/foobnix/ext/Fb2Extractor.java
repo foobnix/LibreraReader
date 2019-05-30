@@ -708,10 +708,14 @@ public class Fb2Extractor extends BaseExtractor {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<svg"));
+                } else if (line.contains("<math")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<math"));
 
                 } else if (line.contains("</svg>")) {
                     LOG.d("SVG", svg);
-                    svg += line.substring(0, line.indexOf("</svg>") + 6);
+                    svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
 
 
                     String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
@@ -734,6 +738,21 @@ public class Fb2Extractor extends BaseExtractor {
                     line += "<img src=\"" + imageName2 + "\" />";
                     //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
                     //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+                } else if (line.contains("</math>")) {
+
+                    svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG-MATH:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
 
                     findSVG = false;
                     svg = "";
@@ -818,7 +837,8 @@ public class Fb2Extractor extends BaseExtractor {
 
 
     @Deprecated
-    private static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader inputStream) throws Exception {
+    private static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader
+                                                                           inputStream) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -1013,23 +1033,27 @@ public class Fb2Extractor extends BaseExtractor {
                 "</navPoint>"; //
     }
 
-    public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws IOException {
+    public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws
+            IOException {
         zos.putNextEntry(new ZipEntry(name));
         zipCopy(stream, zos);
     }
 
-    public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws IOException {
+    public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
+            IOException {
         zos.putNextEntry(new ZipEntry(name));
         zipCopyNoClose(stream, zos);
     }
 
-    public static void writeToZip(ZipOutputStream zos, String name, String content) throws IOException {
+    public static void writeToZip(ZipOutputStream zos, String name, String content) throws
+            IOException {
         writeToZip(zos, name, new ByteArrayInputStream(content.getBytes()));
     }
 
     private static final int BUFFER_SIZE = 16 * 1024;
 
-    public static void zipCopy(InputStream inputStream, OutputStream zipStream) throws IOException {
+    public static void zipCopy(InputStream inputStream, OutputStream zipStream) throws
+            IOException {
 
         byte[] bytesIn = new byte[BUFFER_SIZE];
         int read = 0;
@@ -1039,7 +1063,8 @@ public class Fb2Extractor extends BaseExtractor {
         inputStream.close();
     }
 
-    public static void zipCopyNoClose(InputStream inputStream, OutputStream zipStream) throws IOException {
+    public static void zipCopyNoClose(InputStream inputStream, OutputStream zipStream) throws
+            IOException {
 
         byte[] bytesIn = new byte[BUFFER_SIZE];
         int read = 0;

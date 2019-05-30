@@ -98,18 +98,7 @@ public class HtmlExtractor {
 
                         FileOutputStream out = new FileOutputStream(new File(CacheZipUtils.CACHE_BOOK_DIR, imageName));
 
-                        String head = "\n" +
-                                "<html>\n" +
-                                "   <head>\n" +
-                                "      <script type=\"text/javascript\" async\n" +
-                                "      src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML\">\n" +
-                                "    </script>\n" +
-                                "   </head>\n" +
-                                "   <body>";
-                        String footer = "</body>\n" +
-                                "</html> ";
-
-                        WebViewUtils.renterToPng(imageName, head+svg+footer, out, lock, 1000);
+                        WebViewUtils.renterToPng(imageName, svg, out, lock, true);
 
                         synchronized (lock) {
                             lock.wait();
