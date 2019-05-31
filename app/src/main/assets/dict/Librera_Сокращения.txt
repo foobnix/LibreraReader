@@ -1209,7 +1209,10 @@ appl.
 applic.
 applica.
 appos.
+approx.
+appt.
 apr.
+apt.
 arab.
 arb.
 arch.
@@ -1250,6 +1253,7 @@ authen.
 autobiog.
 autobiogr.
 aux.
+ave.
 avg.
 avgg.
 avggg.
@@ -1273,6 +1277,7 @@ biog.
 biogr.
 biol.
 bks.
+blvd.
 bmt.
 bon.
 bord.
@@ -1444,6 +1449,7 @@ cumbld.
 cvr.
 cwt.
 cycl.
+cyn.
 cytol.
 dan.
 dat.
@@ -1559,6 +1565,7 @@ esd.
 esp.
 ess.
 essent.
+est.
 establ.
 esth.
 etc.
@@ -1898,6 +1905,7 @@ mon.
 monum.
 morphol.
 mrimonium.
+mrs.
 mrt.
 mss.
 mtg.
@@ -2433,4 +2441,3 @@ zeitschr.
 zeph.
 zoogeogr.
 zool.
-
