@@ -10,8 +10,6 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.foobnix.sys.ImageExtractor;
-
 import java.io.OutputStream;
 
 
@@ -56,8 +54,9 @@ public class WebViewUtils {
     }
 
 
-    public static void renterToPng(String name, String content, OutputStream os, Object lock, boolean crop) {
+    public static void renterToPng(String name, String content, OutputStream os, Object lock) {
         String h, f;
+        boolean isMath = false;
         if (content.trim().startsWith("<math")) {
             h = "<html><head>\n" +
                     "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML\"></script>\n" +
@@ -66,11 +65,12 @@ public class WebViewUtils {
 
 
             f = "</body></html>";
-
+            isMath = true;
         } else {
             h = "<html><head>\n" +
                     "</head><body onload=\" android.finish() \">";
             f = "</body></html>";
+            isMath = false;
         }
 
         final String contentWrapper = h + content + f;
@@ -86,9 +86,9 @@ public class WebViewUtils {
                     Canvas c = new Canvas(bitmap);
                     web.draw(c);
 
-                    if (crop) {
-                        bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
-                    }
+
+                    //bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
+
 
                     Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
                     bitmap.compress(format, 100, os);
@@ -107,33 +107,7 @@ public class WebViewUtils {
         handler.post(() -> {
             LOG.d("loadData-content", contentWrapper);
             web.loadData(contentWrapper, "text/html", "utf-8");
-
-            web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 250)), "android");
-
-//            web.setWebViewClient(new WebViewClient() {
-//
-//                @Override
-//                public void onPageCommitVisible(WebView view, String url) {
-//                    super.onPageCommitVisible(view, url);
-//
-//                }
-//
-//                @Override
-//                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                    view.loadUrl(url);
-//                    LOG.d("shouldOverrideUrlLoading", url);
-//                    return true;
-//                }
-//
-//
-//                @Override
-//                public void onPageFinished(WebView view, String url) {
-//                    super.onPageFinished(view, url);
-//                    //s handler.postDelayed(execute, delay);
-//                    handler.postDelayed(execute, 50);
-//
-//                }
-//            });
+            web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 50)), "android");
 
         });
 

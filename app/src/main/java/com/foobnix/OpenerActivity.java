@@ -1,10 +1,13 @@
 package com.foobnix;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
@@ -52,18 +55,42 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Mime", getIntent().getType());
         //LOG.d("OpenerActivity Mime", getIntent().getData().);
 
+
         File file = new File(getIntent().getData().getPath());
         if (!file.isFile()) {
             try {
 
+
                 BookType mime = BookType.getByMimeType(getIntent().getType());
 
-                if (mime.getExt() == null) {
+                String ext = mime != null && TxtUtils.isNotEmpty(mime.getExt()) ? mime.getExt() : ExtUtils.getFileExtension(getIntent().getData().getPath());
+
+                if (ext == null || ext.length() == 1) {
+                    try {
+                        Cursor cursor = getContentResolver().query(getIntent().getData(), new String[]{
+                                MediaStore.MediaColumns.DISPLAY_NAME
+                        }, null, null, null);
+                        cursor.moveToFirst();
+                        int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
+                        if (nameIndex >= 0) {
+                            ext = ExtUtils.getFileExtension(cursor.getString(nameIndex));
+                            LOG.d("OpenerActivity name", ext);
+
+                        }
+                        cursor.close();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                }
+
+
+                if (ext == null) {
                     Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
-                String name = getIntent().getData().getPath().hashCode() + "." + mime.getExt();
+
+                String name = getIntent().getData().getPath().hashCode() + "." + ext;
 
                 LOG.d("OpenerActivity", "cache", name);
 

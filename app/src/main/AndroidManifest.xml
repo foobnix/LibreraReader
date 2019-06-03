@@ -60,9 +60,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="file"  />
-                <data android:scheme="content"  />
-                <data android:host="*"  />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
 
                 <data android:mimeType="application/x-compressed" />
                 <data android:mimeType="application/x-compressed-zip" />
@@ -86,15 +86,15 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
 
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="file"  />
-                <data android:scheme="content"  />
-                <data android:host="*"  />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
 
                 <data android:mimeType="application/x-fictionbook+xml" />
                 <data android:mimeType="application/x-fictionbook" />
@@ -105,6 +105,7 @@
                 <data android:mimeType="application/fb2" />
                 <data android:mimeType="application/epub" />
                 <data android:mimeType="application/epub+zip" />
+                <data android:mimeType="application/mobi" />
                 <data android:mimeType="application/pdf" />
                 <data android:mimeType="application/x-mobipocket-ebook" />
                 <data android:mimeType="application/x-palm-database" />
@@ -129,6 +130,7 @@
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                 <data android:mimeType="application/msword" />
+                <data android:mimeType="application/octet-stream" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -137,9 +139,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
 
-                <data android:scheme="file"  />
-                <data android:scheme="content"  />
-                <data android:host="*"  />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
 
                 <data android:pathPattern=".*\\.txt" />
                 <data android:pathPattern=".*\\.epub" />
@@ -163,6 +165,21 @@
                 <data android:pathPattern=".*\\.odt" />
                 <data android:pathPattern=".*\\.docx" />
                 <data android:pathPattern=".*\\.doc" />
+
+
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_" />
+                <category android:name="android.intent.category.DEFAULT_" />
+                <category android:name="android.intent.category.BROWSABLE_" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+                <data android:mimeType="*/*"  />
+
+
 
             </intent-filter>
         </activity>
@@ -216,7 +233,6 @@
         </activity>
 
 
-
         <activity
             android:name="com.foobnix.ui2.CloudrailActivity"
             android:launchMode="singleTask"
@@ -260,6 +276,7 @@
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>

@@ -43,7 +43,7 @@ public class HtmlExtractor {
 
             boolean accurate = !LOG.isEnable || AppState.get().isAccurateFontSize || force;
 
-            accurate = false;
+            //accurate = false;
 
             if (!accurate) {
                 File root = new File(inputPath).getParentFile();
@@ -76,43 +76,45 @@ public class HtmlExtractor {
                 int svgNumbver = 0;
 
                 while ((line = input.readLine()) != null) {
-                    if (line.contains("<math")) {
-                        svgNumbver++;
-                        findSVG = true;
-                        svg = line.substring(line.indexOf("<math"));
 
-                        LOG.d("MathMl", "begin");
+                    if (AppState.get().isExperimental) {
+                        if (line.contains("<math")) {
+                            svgNumbver++;
+                            findSVG = true;
+                            svg = line.substring(line.indexOf("<math"));
 
-                    } else if (line.contains("</math>")) {
+                            LOG.d("MathMl", "begin");
 
-                        svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+                        } else if (line.contains("</math>")) {
 
-                        final String imageName = "test" + "-" + svgNumbver + ".png";
+                            svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
 
-                        line += "<img src=\"" + imageName + "\" />";
+                            final String imageName = "test" + "-" + svgNumbver + ".png";
 
-                        LOG.d("MathMl", svg);
-                        LOG.d("MathMl", "end");
+                            line += "<img src=\"" + imageName + "\" />";
 
-                        Object lock = new Object();
+                            LOG.d("MathMl", svg);
+                            LOG.d("MathMl", "end");
 
-                        FileOutputStream out = new FileOutputStream(new File(CacheZipUtils.CACHE_BOOK_DIR, imageName));
+                            Object lock = new Object();
 
-                        WebViewUtils.renterToPng(imageName, svg, out, lock, true);
+                            FileOutputStream out = new FileOutputStream(new File(CacheZipUtils.CACHE_BOOK_DIR, imageName));
 
-                        synchronized (lock) {
-                            lock.wait();
+                            WebViewUtils.renterToPng(imageName, svg, out, lock);
+
+                            synchronized (lock) {
+                                lock.wait();
+                            }
+                            out.flush();
+                            out.close();
+
+
+                            findSVG = false;
+                            svg = "";
+
+                        } else if (findSVG) {
+                            svg += line;
                         }
-                        out.flush();
-                        out.close();
-
-
-
-                        findSVG = false;
-                        svg = "";
-
-                    } else if (findSVG) {
-                        svg += line;
                     }
 
 
