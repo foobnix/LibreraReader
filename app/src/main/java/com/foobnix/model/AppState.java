@@ -161,10 +161,17 @@ public class AppState {
 
     );
 
-    public static final List<String> STYLE_COLORS = Arrays.asList(//
+    public static final List<String> STYLE_COLORS_2 = Arrays.asList(//
             "#7e007e", //
             "#a4632f", //
             "#477e52", //
+            "#000000" //
+
+    );
+    public static final List<String> STYLE_COLORS = Arrays.asList(//
+            "#3949AB", //
+            "#EA5964", //
+            "#00897B", //
             "#000000" //
 
     );
@@ -617,7 +624,7 @@ public class AppState {
     @IgnoreHashCode
     public boolean isVibration = true;
 
-    public boolean isExperimental = true;
+    public boolean isExperimental = false;
 
     @IgnoreHashCode
     public boolean isLockPDF = false;

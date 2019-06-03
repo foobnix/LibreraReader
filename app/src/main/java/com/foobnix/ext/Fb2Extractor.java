@@ -704,6 +704,8 @@ public class Fb2Extractor extends BaseExtractor {
             line = accurateLine(line);
 
             if (AppState.get().isExperimental && svgs != null) {
+
+                line = line.replace("m:", "");//.replace("svg:", "");
                 if (line.contains("<svg")) {
                     svgNumbver++;
                     findSVG = true;
@@ -712,7 +714,6 @@ public class Fb2Extractor extends BaseExtractor {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<math"));
-
                 } else if (line.contains("</svg>")) {
                     LOG.d("SVG", svg);
                     svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
@@ -756,7 +757,6 @@ public class Fb2Extractor extends BaseExtractor {
 
                     findSVG = false;
                     svg = "";
-
                 } else if (findSVG) {
                     svg += line;
                 }

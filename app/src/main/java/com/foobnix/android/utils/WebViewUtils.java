@@ -60,8 +60,19 @@ public class WebViewUtils {
         String h, f;
         final boolean isMath;
         if (content.trim().startsWith("<math")) {
-            h = "<html><head>\n" +
-                    "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML\"></script>\n" +
+            h = "<html><head>" +
+
+                    "   <script type=\"text/x-mathjax-config\">" +
+                    "        MathJax.Hub.Config({" +
+                    "            showMathMenu: false," +
+                    "            messageStyle: \"none\"," +
+                    "            showProcessingMessages: true," +
+                    "            jax: [\"input/MathML\", \"output/PreviewHTML\"]," +
+                    "            extensions: [\"mml2jax.js\"]" +
+                    "          });" +
+                    "      </script>" +
+
+                    "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js\"></script>\n" +
                     "<script type=\"text/javascript\"> MathJax.Hub.Register.StartupHook(\"End\",function () { android.finish() }); </script>\n" +
                     "</head><body>";
 
@@ -75,7 +86,7 @@ public class WebViewUtils {
             isMath = false;
         }
 
-        final String contentWrapper = h + content + f;
+        final String contentWrapper = h + content.replace("m:", "") + f;
 
 
         Runnable execute = new Runnable() {
@@ -113,6 +124,7 @@ public class WebViewUtils {
             LOG.d("loadData-content", contentWrapper);
             web.loadData(contentWrapper, "text/html", "utf-8");
             web.addJavascriptInterface(new WebAppInterface(() -> handler.postDelayed(execute, 50)), "android");
+
 
         });
 

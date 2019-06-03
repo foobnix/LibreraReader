@@ -554,7 +554,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     fab.setVisibility(View.GONE);
                 }
                 swipeRefreshLayout.setRefreshing(false);
-                Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
             } else {
                 if (BookCSS.get().isShowSyncWheel) {
                     fab.setVisibility(View.GONE);
