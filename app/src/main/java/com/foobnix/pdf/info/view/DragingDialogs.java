@@ -3300,6 +3300,7 @@ public class DragingDialogs {
                     }
                 });
                 CheckBox isExperimental = (CheckBox) inflate.findViewById(R.id.isExperimental);
+                isExperimental.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
                 isExperimental.setText(isExperimental.getText() + " (SVG, MathML)");
                 isExperimental.setChecked(AppState.get().isExperimental);
                 isExperimental.setOnCheckedChangeListener(new OnCheckedChangeListener() {

@@ -10,6 +10,8 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.foobnix.sys.ImageExtractor;
+
 import java.io.OutputStream;
 
 
@@ -56,7 +58,7 @@ public class WebViewUtils {
 
     public static void renterToPng(String name, String content, OutputStream os, Object lock) {
         String h, f;
-        boolean isMath = false;
+        final boolean isMath;
         if (content.trim().startsWith("<math")) {
             h = "<html><head>\n" +
                     "<script type=\"text/javascript\"src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_CHTML\"></script>\n" +
@@ -83,16 +85,19 @@ public class WebViewUtils {
                     LOG.d("web.getContentHeight()", web.getContentHeight());
 
                     Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
-                    Canvas c = new Canvas(bitmap);
-                    web.draw(c);
+                    if (bitmap.getHeight() > 0 && bitmap.getWidth() > 0) {
+                        Canvas c = new Canvas(bitmap);
+                        web.draw(c);
 
-
-                    //bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
-
-
-                    Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
-                    bitmap.compress(format, 100, os);
-                    bitmap.recycle();
+                        if (isMath) {
+                            bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
+                        }
+                        Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
+                        bitmap.compress(format, 100, os);
+                        bitmap.recycle();
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
 
 
                 } finally {
