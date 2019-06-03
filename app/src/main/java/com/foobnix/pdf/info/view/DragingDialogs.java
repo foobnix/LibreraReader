@@ -1147,7 +1147,7 @@ public class DragingDialogs {
                         }
                         String searchString = searchEdit.getText().toString().trim();
                         if (searchString.length() < 2) {
-                            Toast.makeText(controller.getActivity(),R.string.please_enter_more_characters_to_search,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
                             return;
                         }
                         TempHolder.isSeaching = true;
@@ -3300,6 +3300,7 @@ public class DragingDialogs {
                     }
                 });
                 CheckBox isExperimental = (CheckBox) inflate.findViewById(R.id.isExperimental);
+                isExperimental.setText(isExperimental.getText() + " (SVG, MathML)");
                 isExperimental.setChecked(AppState.get().isExperimental);
                 isExperimental.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -4496,7 +4497,6 @@ public class DragingDialogs {
                         }
                         return true;
                     }, AppState.get().fullScreenMode);
-
 
 
                 });
