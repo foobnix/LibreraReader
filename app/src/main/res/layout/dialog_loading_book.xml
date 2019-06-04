@@ -6,8 +6,8 @@
     android:orientation="horizontal"
     android:padding="5dip" >
 
-    <ProgressBar
-        android:id="@+id/progressBarLoading"
+    <com.foobnix.pdf.info.view.MyProgressBar
+        android:id="@+id/MyProgressBarLoading"
         android:saveEnabled="false"
         android:layout_weight="0"
         android:layout_width="wrap_content"

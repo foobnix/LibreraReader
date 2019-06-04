@@ -31,7 +31,6 @@ import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +56,7 @@ import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
+import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
@@ -571,9 +571,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         displayAnyPath(getInitPath());
         onTintChanged();
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBarBrowse);
-        progressBar.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
+        MyProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarBrowse);
+        MyProgressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         final View bankSpace = view.findViewById(R.id.bankSpace);
 

@@ -56,8 +56,8 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <ProgressBar
-            android:id="@+id/progressBarBrowse"
+        <com.foobnix.pdf.info.view.MyProgressBar
+            android:id="@+id/MyProgressBarBrowse"
                     android:saveEnabled="false"
             
             android:layout_width="@dimen/wh_button"

@@ -18,7 +18,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -26,6 +25,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
@@ -51,7 +51,7 @@ public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
 
     Handler handler;
-    protected volatile ProgressBar progressBar;
+    protected volatile MyProgressBar MyProgressBar;
     protected RecyclerView recyclerView;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
@@ -249,7 +249,7 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public boolean isInProgress() {
-        return progressBar != null && progressBar.getVisibility() == View.VISIBLE;
+        return MyProgressBar != null && MyProgressBar.getVisibility() == View.VISIBLE;
     }
 
     AsyncTask<Object, Object, List<T>> execute;
@@ -273,12 +273,12 @@ public abstract class UIFragment<T> extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (progressBar != null) {
+                            if (MyProgressBar != null) {
                                 handler.postDelayed(new Runnable() {
 
                                     @Override
                                     public void run() {
-                                        progressBar.setVisibility(View.VISIBLE);
+                                        MyProgressBar.setVisibility(View.VISIBLE);
                                     }
                                 }, 100);
                             }
@@ -301,9 +301,9 @@ public abstract class UIFragment<T> extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (progressBar != null) {
+                            if (MyProgressBar != null) {
                                 handler.removeCallbacksAndMessages(null);
-                                progressBar.setVisibility(View.GONE);
+                                MyProgressBar.setVisibility(View.GONE);
                             }
                             try {
                                 populateDataInUI(result);
@@ -332,12 +332,12 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 protected void onPreExecute() {
-                    if (progressBar != null) {
+                    if (MyProgressBar != null) {
                         handler.postDelayed(new Runnable() {
 
                             @Override
                             public void run() {
-                                progressBar.setVisibility(View.VISIBLE);
+                                MyProgressBar.setVisibility(View.VISIBLE);
                             }
                         }, 100);
                     }
@@ -346,9 +346,9 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 protected void onPostExecute(List<T> result) {
-                    if (progressBar != null) {
+                    if (MyProgressBar != null) {
                         handler.removeCallbacksAndMessages(null);
-                        progressBar.setVisibility(View.GONE);
+                        MyProgressBar.setVisibility(View.GONE);
                     }
                     if (getActivity() != null) {
                         try {

@@ -63,7 +63,6 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -914,11 +913,11 @@ public class DragingDialogs {
                         View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
                         final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
                         final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
-                        final ProgressBar progressBar1 = (ProgressBar) inflate.findViewById(R.id.progressBarTTS);
+                        final MyProgressBar MyProgressBar1 = (MyProgressBar) inflate.findViewById(R.id.MyProgressBarTTS);
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
 
-                        progressBar1.setVisibility(View.GONE);
+                        MyProgressBar1.setVisibility(View.GONE);
                         progressText.setText("");
 
                         ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
@@ -958,7 +957,7 @@ public class DragingDialogs {
                             @Override
                             public void onClick(View v) {
                                 TempHolder.isRecordTTS = false;
-                                progressBar1.setVisibility(View.GONE);
+                                MyProgressBar1.setVisibility(View.GONE);
                             }
                         });
 
@@ -968,7 +967,7 @@ public class DragingDialogs {
                             public void onClick(View v) {
                                 if (!TempHolder.isRecordTTS) {
                                     TempHolder.isRecordTTS = true;
-                                    progressBar1.setVisibility(View.VISIBLE);
+                                    MyProgressBar1.setVisibility(View.VISIBLE);
                                     TTSEngine.get().speakToFile(controller, info);
                                 }
                             }
@@ -1024,7 +1023,7 @@ public class DragingDialogs {
                 final EditText searchEdit = (EditText) view.findViewById(R.id.edit1);
                 searchEdit.setText(text);
 
-                final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBarSearch);
+                final MyProgressBar MyProgressBar = (MyProgressBar) view.findViewById(R.id.progressBarSearch);
                 final TextView searchingMsg = (TextView) view.findViewById(R.id.searching);
                 final GridView gridView = (GridView) view.findViewById(R.id.grid1);
                 gridView.setColumnWidth(Dips.dpToPx(80));
@@ -1102,7 +1101,7 @@ public class DragingDialogs {
                     public void handleMessage(android.os.Message msg) {
                         int pageNumber = msg.what;
                         LOG.d("Receive page", pageNumber);
-                        progressBar.setVisibility(View.GONE);
+                        MyProgressBar.setVisibility(View.GONE);
                         gridView.setVisibility(View.VISIBLE);
 
                         if (pageNumber < -1) {
@@ -1155,7 +1154,7 @@ public class DragingDialogs {
                         searchingMsg.setText(R.string.searching_please_wait_);
                         searchingMsg.setVisibility(View.VISIBLE);
 
-                        progressBar.setVisibility(View.VISIBLE);
+                        MyProgressBar.setVisibility(View.VISIBLE);
                         gridView.setVisibility(View.GONE);
                         adapter.getItems().clear();
                         adapter.notifyDataSetChanged();

@@ -100,7 +100,7 @@
             android:visibility="visible" />
 
 
-        <ProgressBar
+        <com.foobnix.pdf.info.view.MyProgressBar
             android:id="@+id/fab"
             android:layout_alignParentRight="true"
             android:layout_margin="4dip"

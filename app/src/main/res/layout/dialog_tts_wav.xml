@@ -23,11 +23,11 @@
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <ProgressBar
+            <com.foobnix.pdf.info.view.MyProgressBar
                 android:visibility="gone"
                         android:saveEnabled="false"
                 
-                android:id="@+id/progressBarTTS"
+                android:id="@+id/MyProgressBarTTS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

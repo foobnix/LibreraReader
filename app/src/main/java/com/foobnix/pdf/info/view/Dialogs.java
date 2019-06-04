@@ -26,7 +26,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -497,7 +496,7 @@ public class Dialogs {
             View view = LayoutInflater.from(c).inflate(R.layout.dialog_loading_book, null, false);
             final TextView text = (TextView) view.findViewById(R.id.text1);
 
-            ProgressBar pr = (ProgressBar) view.findViewById(R.id.progressBarLoading);
+            MyProgressBar pr = (MyProgressBar) view.findViewById(R.id.MyProgressBarLoading);
             pr.setSaveEnabled(false);
             pr.setSaveFromParentEnabled(false);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);

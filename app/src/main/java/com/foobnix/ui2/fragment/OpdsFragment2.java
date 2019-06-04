@@ -26,7 +26,6 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +51,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.AddCatalogDialog;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.sys.TempHolder;
@@ -156,9 +156,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         pathContainer = view.findViewById(R.id.pathContainer);
         view1 = view.findViewById(R.id.view1);
         view2 = view.findViewById(R.id.view2);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBarOPDS);
-        progressBar.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
+        MyProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarOPDS);
+        MyProgressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         onPlus.setOnClickListener(new OnClickListener() {
 
@@ -619,14 +619,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         @Override
                         protected void onPreExecute() {
-                            progressBar.setVisibility(View.VISIBLE);
+                            MyProgressBar.setVisibility(View.VISIBLE);
                         }
 
                         ;
 
                         @Override
                         protected void onPostExecute(Object result) {
-                            progressBar.setVisibility(View.GONE);
+                            MyProgressBar.setVisibility(View.GONE);
                             if ((Boolean) result == false) {
                                 Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
                                 // Urls.openWevView(getActivity(), link.href, null);

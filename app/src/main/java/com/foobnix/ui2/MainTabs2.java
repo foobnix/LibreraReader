@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +51,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
+import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -206,7 +206,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     Handler handler;
-    ProgressBar fab;
+    MyProgressBar fab;
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override

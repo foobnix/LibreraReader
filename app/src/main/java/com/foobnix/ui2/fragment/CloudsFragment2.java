@@ -86,16 +86,16 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
 
-        progressBar = view.findViewById(R.id.progressBarClouds);
-        progressBar.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
+        MyProgressBar = view.findViewById(R.id.MyProgressBarClouds);
+        MyProgressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         onRefresh = view.findViewById(R.id.onRefreshDropbox);
         onRefresh.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+                MyProgressBar.setVisibility(View.VISIBLE);
                 getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
 
             }
@@ -139,7 +139,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                             getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
-                            progressBar.setVisibility(View.VISIBLE);
+                            MyProgressBar.setVisibility(View.VISIBLE);
                         }
                         updateImages();
                     }
@@ -164,7 +164,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
 
                         } else {
-                            progressBar.setVisibility(View.VISIBLE);
+                            MyProgressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
                         updateImages();
@@ -191,7 +191,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
 
                         } else {
-                            progressBar.setVisibility(View.VISIBLE);
+                            MyProgressBar.setVisibility(View.VISIBLE);
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
                         }
                         updateImages();
@@ -225,7 +225,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void notifyUpdateFragment(MessageSyncFinish event) {
-        progressBar.setVisibility(View.GONE);
+        MyProgressBar.setVisibility(View.GONE);
         populate();
     }
 

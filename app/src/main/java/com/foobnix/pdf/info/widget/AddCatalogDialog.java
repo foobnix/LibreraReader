@@ -16,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.AsyncTasks;
@@ -31,6 +30,7 @@ import com.foobnix.opds.Hrefs;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -126,8 +126,8 @@ public class AddCatalogDialog {
 
         final EditText name = (EditText) dialog.findViewById(R.id.name);
         final EditText description = (EditText) dialog.findViewById(R.id.description);
-        final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBarAdd);
-        TintUtil.setDrawableTint(progressBar.getIndeterminateDrawable().getCurrent(), TintUtil.color);
+        final MyProgressBar MyProgressBar = (MyProgressBar) dialog.findViewById(R.id.MyProgressBarAdd);
+        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), TintUtil.color);
         final ImageView image = (ImageView) dialog.findViewById(R.id.image);
         final CheckBox addAsWEb = (CheckBox) dialog.findViewById(R.id.addAsWEb);
         addAsWEb.setVisibility(View.GONE);
@@ -144,7 +144,7 @@ public class AddCatalogDialog {
             }
         }
 
-        progressBar.setVisibility(View.GONE);
+        MyProgressBar.setVisibility(View.GONE);
         image.setVisibility(View.GONE);
 
         builder.setView(dialog);
@@ -228,7 +228,7 @@ public class AddCatalogDialog {
 
                     @Override
                     protected void onPreExecute() {
-                        progressBar.setVisibility(View.VISIBLE);
+                        MyProgressBar.setVisibility(View.VISIBLE);
                         image.setVisibility(View.GONE);
                     }
 
@@ -237,7 +237,7 @@ public class AddCatalogDialog {
                     @Override
                     protected void onPostExecute(Object result) {
                         try {
-                            progressBar.setVisibility(View.GONE);
+                            MyProgressBar.setVisibility(View.GONE);
                             if (result == null || ((Feed) result).entries.isEmpty()) {
                                 if (result != null && ((Feed) result).isNeedLoginPassword) {
                                     AddCatalogDialog.showDialogLogin(a, feedUrl, new Runnable() {

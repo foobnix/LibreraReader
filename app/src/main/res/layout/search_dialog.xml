@@ -52,7 +52,7 @@
       
         android:visibility="gone" />
 
-    <ProgressBar
+    <com.foobnix.pdf.info.view.MyProgressBar
                 android:saveEnabled="false"
         
         android:id="@+id/progressBarSearch"

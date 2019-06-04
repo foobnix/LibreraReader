@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
     
     <LinearLayout
         android:id="@+id/cloudsLayout"
@@ -126,8 +125,8 @@
             android:text="@string/clear_all"
             android:visibility="gone" />
 
-        <ProgressBar
-            android:id="@+id/progressBarClouds"
+        <com.foobnix.pdf.info.view.MyProgressBar
+            android:id="@+id/MyProgressBarClouds"
                     android:saveEnabled="false"
             
             android:layout_width="@dimen/wh_button"
