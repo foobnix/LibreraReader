@@ -910,9 +910,11 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+            return make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE);
+
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+			return make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE);
+
 
 		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
