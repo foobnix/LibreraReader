@@ -52,7 +52,7 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getIntent().getData().getPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
-        LOG.d("OpenerActivity ConentName", getContentName());
+        LOG.d("OpenerActivity ConentName", getContentName(this));
 
 
         File file = new File(getIntent().getData().getPath());
@@ -60,7 +60,7 @@ public class OpenerActivity extends Activity {
             try {
                 BookType bookType = BookType.getByMimeType(getIntent().getType());
 
-                String name1 = getContentName();
+                String name1 = getContentName(this);
                 String name2 = getIntent().getData().getPath();
                 String name3 = bookType != null ? bookType.getExt() : null;
 
@@ -113,9 +113,9 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity", "open file", meta.getPath());
     }
 
-    public String getContentName() {
+    public static String getContentName(Activity a) {
         try {
-            Cursor cursor = getContentResolver().query(getIntent().getData(), new String[]{MediaStore.MediaColumns.DISPLAY_NAME}, null, null, null);
+            Cursor cursor = a.getContentResolver().query(a.getIntent().getData(), new String[]{MediaStore.MediaColumns.DISPLAY_NAME}, null, null, null);
             cursor.moveToFirst();
             int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
             if (nameIndex >= 0) {

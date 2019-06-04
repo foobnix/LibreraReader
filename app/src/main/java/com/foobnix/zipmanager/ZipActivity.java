@@ -29,9 +29,14 @@ public class ZipActivity extends Activity {
         LOG.d("ZipActivity Scheme", getIntent().getScheme());
         LOG.d("ZipActivity Mime", getIntent().getType());
 
-        final String path = getIntent().getData().getPath();
 
-        if(BookType.isSupportedExtByPath(path) && !BookType.ZIP.is(path)){
+        final String path = getIntent().getData().getPath();
+        final String contentName = OpenerActivity.getContentName(this);
+
+        LOG.d("ZipActivity contentName", contentName);
+
+        if ((BookType.isSupportedExtByPath(path) || BookType.isSupportedExtByPath(contentName) ||
+                BookType.getByMimeType(getIntent().getType()) != null) && !BookType.ZIP.is(path)) {
             final Intent intent = new Intent(this, OpenerActivity.class);
             intent.setData(getIntent().getData());
             startActivity(intent);
