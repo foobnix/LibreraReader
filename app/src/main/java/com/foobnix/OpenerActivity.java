@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
@@ -53,35 +52,33 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getIntent().getData().getPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
-        //LOG.d("OpenerActivity Mime", getIntent().getData().);
+        LOG.d("OpenerActivity ConentName", getContentName());
 
 
         File file = new File(getIntent().getData().getPath());
         if (!file.isFile()) {
             try {
+                BookType bookType = BookType.getByMimeType(getIntent().getType());
 
+                String name1 = getContentName();
+                String name2 = getIntent().getData().getPath();
+                String name3 = bookType != null ? bookType.getExt() : null;
 
-                BookType mime = BookType.getByMimeType(getIntent().getType());
+                LOG.d("OpenerActivity ==============");
+                LOG.d("OpenerActivity getContentName", name1);
+                LOG.d("OpenerActivity getPath", name2);
+                LOG.d("OpenerActivity getByMimeType", name3);
 
-                String ext = mime != null && TxtUtils.isNotEmpty(mime.getExt()) ? mime.getExt() : ExtUtils.getFileExtension(getIntent().getData().getPath());
-
-                if (ext == null || ext.length() == 1) {
-                    try {
-                        Cursor cursor = getContentResolver().query(getIntent().getData(), new String[]{
-                                MediaStore.MediaColumns.DISPLAY_NAME
-                        }, null, null, null);
-                        cursor.moveToFirst();
-                        int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
-                        if (nameIndex >= 0) {
-                            ext = ExtUtils.getFileExtension(cursor.getString(nameIndex));
-                            LOG.d("OpenerActivity name", ext);
-
-                        }
-                        cursor.close();
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
+                String ext = "";
+                if (BookType.isSupportedExtByPath(name2)) {
+                    ext = ExtUtils.getFileExtension(name2);
+                } else if (BookType.isSupportedExtByPath(name1)) {
+                    ext = ExtUtils.getFileExtension(name1);
+                } else if (name3 != null) {
+                    ext = name3;
                 }
+
+                LOG.d("OpenerActivity final ext", ext);
 
 
                 if (ext == null) {
@@ -114,6 +111,22 @@ public class OpenerActivity extends Activity {
         FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, meta);
         LOG.d("OpenerActivity", "open file", meta.getPath());
+    }
+
+    public String getContentName() {
+        try {
+            Cursor cursor = getContentResolver().query(getIntent().getData(), new String[]{MediaStore.MediaColumns.DISPLAY_NAME}, null, null, null);
+            cursor.moveToFirst();
+            int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
+            if (nameIndex >= 0) {
+                return cursor.getString(nameIndex);
+
+            }
+            cursor.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return "";
     }
 
     @Override

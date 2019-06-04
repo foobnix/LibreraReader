@@ -66,7 +66,7 @@ public class WebViewUtils {
                     "        MathJax.Hub.Config({" +
                     "            showMathMenu: false," +
                     "            messageStyle: \"none\"," +
-                    "            showProcessingMessages: true," +
+                    "            showProcessingMessages: false," +
                     "            jax: [\"input/MathML\", \"output/PreviewHTML\"]," +
                     "            extensions: [\"mml2jax.js\"]" +
                     "          });" +

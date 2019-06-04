@@ -1,14 +1,12 @@
 package com.foobnix.ext;
 
 import com.BaseExtractor;
-import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
@@ -164,10 +162,10 @@ public class EpubExtractor extends BaseExtractor {
                     lock.wait(2000);
                 }
 
-                if (BuildConfig.LOG) {
-                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
-                    IO.writeString(file, svgs.get(key));
-                }
+//                if (BuildConfig.LOG) {
+//                    final File file = new File(CacheZipUtils.CACHE_BOOK_DIR, key + ".svg");
+//                    IO.writeString(file, svgs.get(key));
+//                }
 
                 Fb2Extractor.writeToZipNoClose(zos, key, new ByteArrayInputStream(out.toByteArray()));
 
