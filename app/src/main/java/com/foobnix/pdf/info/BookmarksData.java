@@ -64,6 +64,9 @@ public class BookmarksData {
     }
 
     public List<AppBookmark> getBookmarksByBook(File file) {
+        if(file==null){
+            return new ArrayList<>();
+        }
         return getBookmarksByBook(file.getPath());
     }
 

@@ -895,7 +895,7 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 		float x = fz_css_strtof(value->data, &p);
 
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
-			return isFont? make_number(x <1 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
+			return isFont? make_number(x < 0.5 ? 0.5: x, N_SCALE) : make_number(x, N_SCALE);
 
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);

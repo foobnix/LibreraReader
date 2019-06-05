@@ -49,7 +49,7 @@ public enum BookType {
 
     MOBI(MobiContext.class, true, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
 
-    TXT(TxtContext.class, true, Arrays.asList("txt", "playlist"), Arrays.asList("text/plain")),
+    TXT(TxtContext.class, true, Arrays.asList("txt", "playlist","log"), Arrays.asList("text/plain")),
 
     JSON(TxtContext.class, true, Arrays.asList("json"), Arrays.asList("application/json")),
 

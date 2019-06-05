@@ -70,7 +70,9 @@
                 <data android:mimeType="application/zip" />
             </intent-filter>
         </activity>
-        <activity android:name="com.foobnix.zipmanager.SendReceiveActivity">
+        <activity android:name="com.foobnix.zipmanager.SendReceiveActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -144,6 +146,7 @@
                 <data android:host="*" />
 
                 <data android:pathPattern=".*\\.txt" />
+                <data android:pathPattern=".*\\.log" />
                 <data android:pathPattern=".*\\.epub" />
                 <data android:pathPattern=".*\\.fb2" />
                 <data android:pathPattern=".*\\fb2.zip" />
