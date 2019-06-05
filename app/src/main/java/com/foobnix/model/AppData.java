@@ -117,6 +117,9 @@ public class AppData {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
+
+        AppDB.get().clearAllFavorites();
+
         for (SimpleMeta s : favorites) {
             s = SimpleMeta.SyncSimpleMeta(s);
 
@@ -125,9 +128,9 @@ public class AppData {
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
-                if (!res.contains(meta)) {
-                    res.add(meta);
-                }
+                res.remove(meta);
+                res.add(meta);
+                AppDB.get().update(meta);
             }
         }
         SharedBooks.updateProgress(res, false);
@@ -178,17 +181,11 @@ public class AppData {
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             if (meta.getIsRecent() != null && meta.getIsRecentTime() < s.time) {
                 meta.setIsRecentTime(s.time);
-                //AppDB.get().update(meta);
+                AppDB.get().update(meta);
             }
 
-            //meta.setIsRecent(true);
-
-            LOG.d("meta-aa", meta.getPath(), s.time);
-
-            if (!res.contains(meta)) {
-                res.add(meta);
-            }
-
+            res.remove(meta);
+            res.add(meta);
 
         }
         SharedBooks.updateProgress(res, false);

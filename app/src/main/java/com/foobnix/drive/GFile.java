@@ -302,7 +302,7 @@ public class GFile {
         debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
 
         setLastModifiedTime(inFile, inFile.lastModified());
-        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(getLastModified(inFile)));
+        File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
         FileContent contentStream = new FileContent(ExtUtils.getMimeType(inFile), inFile);
 
 
@@ -629,7 +629,7 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
-                if (!hasLastModified(local) || local.length() == remote.getSize().longValue()) {
+                if (!hasLastModified(local) && local.length() == remote.getSize().longValue()) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
                     //debugOut += "\n skip: " + local.getName();
@@ -653,11 +653,14 @@ public class GFile {
     public static long compareBySizeModifiedTime(File remote, java.io.File local) {
         if (!remote.getName().endsWith("json")) {
             if (remote.getSize() != null && remote.getSize().longValue() == local.length()) {
+                LOG.d("compareBySizeModifiedTime-1: 0", remote.getName(), local.getPath());
                 return 0;
             }
         }
 
-        return remote.getModifiedTime().getValue() - getLastModified(local);
+        final long res = remote.getModifiedTime().getValue() - getLastModified(local);
+        LOG.d("compareBySizeModifiedTime-2: " + res, remote.getName(), local.getPath());
+        return res;
     }
 
     private static void syncUpload(String syncId, java.io.File ioRoot, Map<java.io.File, File> map2) throws IOException {
@@ -686,12 +689,6 @@ public class GFile {
 
             }
         }
-    }
-
-    public static void upload(java.io.File local) throws IOException {
-        final File remoteParent = map2.get(local.getParentFile());
-        final File firstTime = createFirstTime(remoteParent.getId(), local);
-        uploadFile(remoteParent.getId(), firstTime, local);
     }
 
 

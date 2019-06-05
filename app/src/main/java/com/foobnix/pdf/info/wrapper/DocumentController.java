@@ -569,7 +569,7 @@ public abstract class DocumentController {
     public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
             List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
 
             MyPopupMenu popup = new MyPopupMenu(a, v);
@@ -600,14 +600,6 @@ public abstract class DocumentController {
         }
     }
 
-
-    public static void chooseFullScreen(final Activity a, final boolean isFullscren) {
-        if (isFullscren) {
-            runFullScreen(a);
-        } else {
-            runNormalScreen(a);
-        }
-    }
 
     private static void applyTheme(final Activity a) {
         if (AppState.get().appTheme == AppState.THEME_LIGHT) {

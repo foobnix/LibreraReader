@@ -26,6 +26,7 @@ public class IO {
     }
 
     public static void writeObjAsync(File file, Object o) {
+        LOG.d("writeObjAsync", file.getPath());
         if (o instanceof JSONObject || o instanceof JSONArray) {
             LOG.d("writeObjAsync", "JSONObject");
             IO.writeString(file, o.toString());

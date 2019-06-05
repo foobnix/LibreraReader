@@ -513,6 +513,14 @@ public class AppDB {
         fileMetaDao.updateInTx(recent);
 
     }
+    public void clearAllFavorites() {
+        List<FileMeta> recent = getRecentDeprecated();
+        for (FileMeta meta : recent) {
+            meta.setIsStar(false);
+        }
+        fileMetaDao.updateInTx(recent);
+
+    }
 
     public void clearAllStars() {
         List<FileMeta> stars = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1)).list();
