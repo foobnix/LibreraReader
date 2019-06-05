@@ -181,8 +181,11 @@ public class AppData {
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             if (meta.getIsRecent() != null && meta.getIsRecentTime() < s.time) {
                 meta.setIsRecentTime(s.time);
-                AppDB.get().update(meta);
+            }else{
+                meta.setIsRecentTime(s.time);
             }
+            meta.setIsRecent(true);
+            AppDB.get().update(meta);
 
             res.remove(meta);
             res.add(meta);

@@ -413,6 +413,11 @@ public class ShareDialog {
                         String tags = TagData.getTags(file.getPath());
                         TagData.saveTags(to.getPath(), tags);
 
+                        boolean isRecent = AppData.get().getAllRecent().contains(new FileMeta(file.getPath()));
+                        if(isRecent) {
+                            AppData.get().addRecent(new SimpleMeta(file.getPath()));
+                        }
+
                         final List<AppBookmark> bookmarks = BookmarksData.get().getBookmarksByBook(file.getPath());
                         for (AppBookmark appBookmark : bookmarks) {
                             appBookmark.path = MyPath.toRelative(to.getPath());
