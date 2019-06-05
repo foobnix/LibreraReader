@@ -171,8 +171,6 @@
                 <data android:pathPattern=".*\\.docx" />
                 <data android:pathPattern=".*\\.doc" />
                 <data android:pathPattern=".*\\.xps" />
-
-
             </intent-filter>
 
             <intent-filter>
