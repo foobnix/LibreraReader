@@ -133,6 +133,8 @@
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                 <data android:mimeType="application/msword" />
                 <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/vnd.ms-xpsdocument" />
+                <data android:mimeType="application/oxps" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -168,6 +170,7 @@
                 <data android:pathPattern=".*\\.odt" />
                 <data android:pathPattern=".*\\.docx" />
                 <data android:pathPattern=".*\\.doc" />
+                <data android:pathPattern=".*\\.xps" />
 
 
             </intent-filter>

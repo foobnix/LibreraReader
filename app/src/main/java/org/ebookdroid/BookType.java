@@ -32,7 +32,7 @@ import java.util.Map;
 
 public enum BookType {
 
-    PDF(PdfContext.class, false, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf")),
+    PDF(PdfContext.class, false, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
     TIFF(PdfContext.class, false, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
     CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
