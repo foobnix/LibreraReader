@@ -162,7 +162,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
             GoogleSignIn.getSignedInAccountFromIntent(data)
                     .addOnSuccessListener(googleAccount -> {
-                        BookCSS.get().isEnableSync = true;
+                        AppTemp.get().isEnableSync = true;
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
@@ -173,7 +173,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                             {
                                 LOG.e(exception);
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                BookCSS.get().isEnableSync = false;
+                                AppTemp.get().isEnableSync = false;
                                 swipeRefreshLayout.setEnabled(false);
 
                             }
@@ -358,7 +358,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
-                if (BookCSS.get().isEnableSync) {
+                if (AppTemp.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -367,7 +367,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
-                if (BookCSS.get().isEnableSync) {
+                if (AppTemp.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -379,7 +379,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 try {
                     tabFragments.get(pager.getCurrentItem()).onSelectFragment();
 
-                    if (BookCSS.get().isEnableSync) {
+                    if (AppTemp.get().isEnableSync) {
                         swipeRefreshLayout.setEnabled(true);
                         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
@@ -621,7 +621,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setEnabled(BookCSS.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
+            swipeRefreshLayout.setEnabled(AppTemp.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(this) != null);
         }
 
         try {
@@ -779,7 +779,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (BookCSS.get().isEnableSync && swipeRefreshLayout != null) {
+            if (AppTemp.get().isEnableSync && swipeRefreshLayout != null) {
                 swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
             LOG.d("onPageSelected onPageScrollStateChanged", state);
@@ -790,7 +790,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         public void check() {
-            if (BookCSS.get().isEnableSync && swipeRefreshLayout != null) {
+            if (AppTemp.get().isEnableSync && swipeRefreshLayout != null) {
                 if (uiFragment instanceof PrefFragment2) {
                     swipeRefreshLayout.setEnabled(false);
                 } else {

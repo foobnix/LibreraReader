@@ -45,6 +45,10 @@ public class AppTemp {
     public boolean isCrop = false;
     public boolean isCropSymetry = false;
 
+    public boolean isEnableSync;
+    public String syncRootID;
+
+
 
     transient  SharedPreferences sp;
 

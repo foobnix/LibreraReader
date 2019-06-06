@@ -23,8 +23,8 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
@@ -87,7 +87,7 @@ public abstract class UIFragment<T> extends Fragment {
                 public void onFastScrollStop() {
                     ImageLoader.getInstance().resume();
                     LOG.d("ImageLoader resume");
-                    if (BookCSS.get().isEnableSync) {
+                    if (AppTemp.get().isEnableSync) {
                         swipeRefreshLayout.setEnabled(true);
                     }
                 }
@@ -96,7 +96,7 @@ public abstract class UIFragment<T> extends Fragment {
                 public void onFastScrollStart() {
                     LOG.d("ImageLoader pause");
                     ImageLoader.getInstance().pause();
-                    if (BookCSS.get().isEnableSync) {
+                    if (AppTemp.get().isEnableSync) {
                         swipeRefreshLayout.setEnabled(false);
                     }
                 }

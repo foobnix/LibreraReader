@@ -83,7 +83,7 @@ public class GFile {
         GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
         client.signOut();
         googleDriveService = null;
-        BookCSS.get().syncRootID = "";
+        AppTemp.get().syncRootID = "";
         AppTemp.get().syncTime = 0;
 
     }
@@ -469,22 +469,22 @@ public class GFile {
             debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
-            if (TxtUtils.isEmpty(BookCSS.get().syncRootID)) {
+            if (TxtUtils.isEmpty(AppTemp.get().syncRootID)) {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null || syncRoot.getTrashed() == true) {
                     syncRoot = GFile.createFolder("root", "Librera");
                     debugOut += "\n Create remote [Librera]";
                 }
-                BookCSS.get().syncRootID = syncRoot.getId();
+                AppTemp.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
             } else {
 //                try {
-//                    final File execute = GFile.googleDriveService.files().get(BookCSS.get().syncRootID).execute();
+//                    final File execute = GFile.googleDriveService.files().get(AppTemp.get().syncRootID).execute();
 //                    if (execute.getTrashed() == true) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
 //                        debugOut += "\n Create remote [Librera]";
-//                        BookCSS.get().syncRootID = syncRoot.getId();
+//                        AppTemp.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
 //                } catch (GoogleJsonResponseException e) {
@@ -492,7 +492,7 @@ public class GFile {
 //                    if (e.getDetails().getCode() == 404) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
 //                        debugOut += "\n Create remote [Librera]";
-//                        BookCSS.get().syncRootID = syncRoot.getId();
+//                        AppTemp.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
 //                }
@@ -501,7 +501,7 @@ public class GFile {
             }
 
 
-            //googleDriveService.files().update( BookCSS.get().syncRootID, metadata).execute();
+            //googleDriveService.files().update( AppTemp.get().syncRootID, metadata).execute();
 
 
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
@@ -513,7 +513,7 @@ public class GFile {
 
             LOG.d("Begin");
 
-            sync(BookCSS.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
+            sync(AppTemp.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
 
             //updateLock(AppState.get().syncRootID, beginTime);
 
@@ -700,7 +700,7 @@ public class GFile {
             return SKIP;
         }
 
-        if (file.getId().equals(BookCSS.get().syncRootID)) {
+        if (file.getId().equals(AppTemp.get().syncRootID)) {
             return "";
         }
 
@@ -717,7 +717,7 @@ public class GFile {
     public static void runSyncService(Activity a, boolean force) {
 
 
-        if (BookCSS.get().isEnableSync && !BooksService.isRunning) {
+        if (AppTemp.get().isEnableSync && !BooksService.isRunning) {
             if (!force && BookCSS.get().isSyncManualOnly) {
                 LOG.d("runSyncService", "manual sync only");
                 return;

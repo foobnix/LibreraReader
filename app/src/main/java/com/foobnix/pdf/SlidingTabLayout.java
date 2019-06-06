@@ -20,8 +20,8 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
 /**
@@ -126,7 +126,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         LOG.d("onTouchEvent-ev", ev);
-        if (swipeRefreshLayout != null && BookCSS.get().isEnableSync) {
+        if (swipeRefreshLayout != null && AppTemp.get().isEnableSync) {
             final int action = ev.getAction();
 
             switch (action & MotionEvent.ACTION_MASK) {

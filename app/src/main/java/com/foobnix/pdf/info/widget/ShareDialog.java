@@ -35,7 +35,6 @@ import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -405,7 +404,7 @@ public class ShareDialog {
                 } else if (!isSyncronized && which == i++) {
                     final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
                     boolean result = IO.copyFile(file, to);
-                    if (result && BookCSS.get().isEnableSync) {
+                    if (result && AppTemp.get().isEnableSync) {
 
                         AppDB.get().setIsSearchBook(file.getPath(), false);
                         FileMetaCore.createMetaIfNeed(to.getPath(), true);

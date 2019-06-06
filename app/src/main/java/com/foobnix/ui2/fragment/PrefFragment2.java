@@ -162,7 +162,7 @@ public class PrefFragment2 extends UIFragment {
         String gdriveInfo = GFile.getDisplayInfo(getActivity());
 
         if (TxtUtils.isEmpty(gdriveInfo)) {
-            BookCSS.get().isEnableSync = false;
+            AppTemp.get().isEnableSync = false;
             syncInfo.setVisibility(View.GONE);
             singIn.setText(R.string.sign_in);
             TxtUtils.underlineTextView(singIn);
@@ -182,8 +182,8 @@ public class PrefFragment2 extends UIFragment {
             singIn.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    BookCSS.get().isEnableSync = false;
-                    BookCSS.get().syncRootID = "";
+                    AppTemp.get().isEnableSync = false;
+                    AppTemp.get().syncRootID = "";
                     AppTemp.get().syncTime = 0;
                     GFile.logout(getActivity());
                     updateSyncInfo(null);
@@ -191,7 +191,7 @@ public class PrefFragment2 extends UIFragment {
             });
         }
 
-        isEnableSync.setChecked(BookCSS.get().isEnableSync);
+        isEnableSync.setChecked(AppTemp.get().isEnableSync);
         onSync(null);
 
 
@@ -242,9 +242,9 @@ public class PrefFragment2 extends UIFragment {
 
 
         isEnableSync = inflate.findViewById(R.id.isEnableSync);
-        isEnableSync.setChecked(BookCSS.get().isEnableSync);
+        isEnableSync.setChecked(AppTemp.get().isEnableSync);
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            BookCSS.get().isEnableSync = isChecked;
+            AppTemp.get().isEnableSync = isChecked;
             if (isChecked) {
                 if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
                     GFile.init(getActivity());

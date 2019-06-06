@@ -65,12 +65,10 @@ public class BookCSS {
     public String pathSAF = "";
 
 
-    public boolean isEnableSync;
     public boolean isSyncManualOnly;
     public boolean isSyncWifiOnly;
     public boolean isShowSyncWheel = true;
 
-    public String syncRootID;
 
 
     public boolean isTextFormat() {
