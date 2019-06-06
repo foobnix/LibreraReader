@@ -580,7 +580,9 @@ public class AppState {
     public boolean isShowCloseAppDialog = true;
 
     public boolean isFirstSurname = false;
+
     public boolean isAuthorTitleFromMetaPDF = false;
+    public boolean isShowOnlyOriginalFileNames = false;
 
     public boolean isOLED = false;
 

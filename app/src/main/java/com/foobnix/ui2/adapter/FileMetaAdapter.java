@@ -480,7 +480,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.BLACK);
             }
 
-           TxtUtils.setInkTextView(holder.title,holder.path, holder.play, holder.count);
+            TxtUtils.setInkTextView(holder.title, holder.path, holder.play, holder.count);
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {
             final StarsLayoutViewHolder holder = (StarsLayoutViewHolder) holderAll;
@@ -981,6 +981,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.title.setText("[" + fileMeta.getSIndex() + "] " + fileMeta.getTitle());
             }
         }
+        if (AppState.get().isShowOnlyOriginalFileNames) {
+            holder.path.setVisibility(View.INVISIBLE);
+            holder.author.setVisibility(View.GONE);
+            if (holder.series != null) {
+                holder.series.setVisibility(View.GONE);
+            }
+        }
+
         TxtUtils.setInkTextView(holder.title, holder.author, holder.path, holder.browserExt, holder.size, holder.date, holder.series, holder.idPercentText);
 
         return fileMeta;

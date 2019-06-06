@@ -573,4 +573,5 @@
    <string name="screen">Screen</string>
    <string name="please_enter_more_characters_to_search">Need a longer search string!</string>
    <string name="enable_experimental_features">Enable experimental features</string>
+    <string name="display_original_file_names_without_metadata">Display original file names (without metadata)</string>
 </resources>

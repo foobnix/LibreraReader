@@ -90,6 +90,8 @@ public class FileMetaCore {
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 
+
+
         if (Clouds.isCacheFileExist(path)) {
             path = Clouds.getCacheFile(path).getPath();
         }
@@ -129,6 +131,13 @@ public class FileMetaCore {
         EbookMeta ebookMeta = EbookMeta.Empty();
         String fileName = ExtUtils.getFileName(unZipPath);
         String fileNameOriginal = ExtUtils.getFileName(path);
+
+        if(AppState.get().isShowOnlyOriginalFileNames){
+            ebookMeta.setTitle(fileName);
+            return ebookMeta;
+        }
+
+
         if (BookType.FB2.is(unZipPath)) {
             fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
             fileName = TxtUtils.encode1251(fileNameOriginal);

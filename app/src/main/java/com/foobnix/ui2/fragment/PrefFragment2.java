@@ -197,7 +197,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    TextView singIn, syncInfo,syncInfo2, syncHeader;
+    TextView singIn, syncInfo, syncInfo2, syncHeader;
     CheckBox isEnableSync;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -549,7 +549,7 @@ public class PrefFragment2 extends UIFragment {
                 TxtUtils.underlineTextView(onFullScreen);
                 DocumentController.chooseFullScreen(getActivity(), AppState.get().fullScreenMainMode);
                 return true;
-            },AppState.get().fullScreenMainMode);
+            }, AppState.get().fullScreenMainMode);
 
 
         });
@@ -1098,38 +1098,39 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-        inflate.findViewById(R.id.moreLybraryettings).
+        inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(v -> {
+            final CheckBox isAuthorTitleFromMetaPDF = new CheckBox(v.getContext());
+            isAuthorTitleFromMetaPDF.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
 
-                setOnClickListener(new OnClickListener() {
+            final CheckBox isShowOnlyOriginalFileNames = new CheckBox(v.getContext());
+            isShowOnlyOriginalFileNames.setText(R.string.display_original_file_names_without_metadata);
+
+            final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null, isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF);
+
+            isAuthorTitleFromMetaPDF.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
+            isShowOnlyOriginalFileNames.setChecked(AppState.get().isShowOnlyOriginalFileNames);
+
+
+            final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
+                AppState.get().isAuthorTitleFromMetaPDF = isAuthorTitleFromMetaPDF.isChecked();
+                AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
+
+
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(ask, timeout);
+                handler.postDelayed(new Runnable() {
 
                     @Override
-                    public void onClick(View v) {
-                        final CheckBox check = new CheckBox(v.getContext());
-                        check.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
-
-                        final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), check);
-
-                        check.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
-
-                        check.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                AppState.get().isAuthorTitleFromMetaPDF = isChecked;
-                                handler.removeCallbacksAndMessages(null);
-                                handler.postDelayed(ask, timeout);
-                                handler.postDelayed(new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        d.dismiss();
-                                    }
-                                }, timeout);
-                            }
-                        });
-
+                    public void run() {
+                        d.dismiss();
                     }
-                });
+                }, timeout);
+            };
+
+            isAuthorTitleFromMetaPDF.setOnCheckedChangeListener(listener);
+            isShowOnlyOriginalFileNames.setOnCheckedChangeListener(listener);
+
+        });
 
         final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
         isFirstSurname.setChecked(AppState.get().isFirstSurname);
