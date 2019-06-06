@@ -299,7 +299,7 @@ public class GFile {
 
 
     public static void uploadFile(String roodId, File file, final java.io.File inFile) throws IOException {
-        debugOut += "\nUpload: " + inFile.getParentFile().getName() + "/" + inFile.getName();
+        debugOut += "\nUpload: " + inFile.getParentFile().getParentFile().getName() + "/" +inFile.getParentFile().getName()+"/" + inFile.getName();
 
         setLastModifiedTime(inFile, inFile.lastModified());
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
@@ -309,7 +309,7 @@ public class GFile {
         file.setModifiedTime(new DateTime(inFile.lastModified()));
         googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
-        LOG.d(TAG, "Upload: " + inFile.getParentFile().getName() + "/" + inFile.getName());
+        LOG.d(TAG, "Upload: " + inFile.getParentFile().getParentFile().getName() + "/" +inFile.getParentFile().getName()+"/" + inFile.getName());
 
 
     }
@@ -340,8 +340,8 @@ public class GFile {
 
 
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
-        LOG.d(TAG, "Download: " + file.getParentFile().getName() + "/" + file.getName());
-        debugOut += "\nDownload: " + file.getParentFile().getName() + "/" + file.getName();
+        LOG.d(TAG, "Download: " + file.getParentFile().getParentFile().getName() + "/" + file.getName());
+        debugOut += "\nDownload: " + file.getParentFile().getParentFile().getName() + "/" +file.getParentFile().getName() + "/" + file.getName();
         InputStream is = null;
         //if (!file.getPath().endsWith("json")) {
         //    is = googleDriveService.files().get(fileId).executeMediaAsInputStream();

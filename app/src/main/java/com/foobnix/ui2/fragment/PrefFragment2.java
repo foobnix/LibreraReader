@@ -197,7 +197,7 @@ public class PrefFragment2 extends UIFragment {
 
     }
 
-    TextView singIn, syncInfo, syncHeader;
+    TextView singIn, syncInfo,syncInfo2, syncHeader;
     CheckBox isEnableSync;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -217,8 +217,11 @@ public class PrefFragment2 extends UIFragment {
                 status = "...";
             }
 
-            syncHeader.setText(getString(R.string.sync) + " (" + format + " - " + status + ")");
+            syncInfo2.setText(format + " - " + status);
+            syncInfo2.setVisibility(View.VISIBLE);
         } else {
+            syncInfo2.setText("");
+            syncInfo2.setVisibility(View.GONE);
             syncHeader.setText(R.string.sync_google_drive);
 
         }
@@ -232,6 +235,7 @@ public class PrefFragment2 extends UIFragment {
 
         singIn = inflate.findViewById(R.id.signIn);
         syncInfo = inflate.findViewById(R.id.syncInfo);
+        syncInfo2 = inflate.findViewById(R.id.syncInfo2);
         syncHeader = inflate.findViewById(R.id.syncHeader);
         onSync(null);
         syncHeader.setOnClickListener((in) -> Dialogs.showSyncLOGDialog(getActivity()));

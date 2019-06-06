@@ -28,6 +28,7 @@ import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.BookmarksData;
@@ -580,6 +581,7 @@ public class FileInformationDialog {
 
                 } else {
                     onDeleteAction.run();
+                    AppData.get().removeRecent(new FileMeta(file.getPath()));
                 }
 
             }

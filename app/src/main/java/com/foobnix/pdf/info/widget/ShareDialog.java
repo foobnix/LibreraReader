@@ -396,7 +396,7 @@ public class ShareDialog {
 
 
                     EventBus.getDefault().post(new UpdateAllFragments());
-                }else if (!isExternalOrCloud && which == i++) {
+                } else if (!isExternalOrCloud && which == i++) {
                     Dialogs.showTagsDialog(a, file, false, null);
                 } else if (AppsConfig.isCloudsEnable && which == i++) {
                     showAddToCloudDialog(a, file);
@@ -413,9 +413,12 @@ public class ShareDialog {
                         String tags = TagData.getTags(file.getPath());
                         TagData.saveTags(to.getPath(), tags);
 
-                        boolean isRecent = AppData.get().getAllRecent().contains(new FileMeta(file.getPath()));
-                        if(isRecent) {
-                            AppData.get().addRecent(new SimpleMeta(file.getPath()));
+                        boolean isRecent = AppData.contains(AppData.get().getAllRecent(), file.getPath());
+                        LOG.d("isRecent", isRecent, file.getPath());
+
+                        if (isRecent) {
+                            AppData.get().removeRecent(new FileMeta(file.getPath()));
+                            AppData.get().addRecent(new SimpleMeta(to.getPath()));
                         }
 
                         final List<AppBookmark> bookmarks = BookmarksData.get().getBookmarksByBook(file.getPath());

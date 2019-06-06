@@ -705,7 +705,7 @@ public class Fb2Extractor extends BaseExtractor {
 
             if (AppState.get().isExperimental && svgs != null) {
 
-                line = line.replace("m:", "");//.replace("svg:", "");
+                line = line.replace("<m:", "<");
                 if (line.contains("<svg")) {
                     svgNumbver++;
                     findSVG = true;

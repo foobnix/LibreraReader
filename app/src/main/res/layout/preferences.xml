@@ -358,6 +358,13 @@
             android:padding="4dip"
             android:text="ivan@gmail.com" />
 
+        <TextView
+            android:id="@+id/syncInfo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dip"
+            android:text="ivan@gmail.com" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

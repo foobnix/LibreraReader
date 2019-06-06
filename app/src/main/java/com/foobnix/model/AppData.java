@@ -38,7 +38,7 @@ public class AppData {
         current.add(syncMeta);
 
         writeSimpleMeta(current, file);
-        LOG.d("Objects-save-add", "SAVE Recent");
+        LOG.d("Objects-save-add", "SAVE Recent", s.getPath());
     }
 
     public synchronized void removeIt(SimpleMeta s) {
@@ -50,7 +50,8 @@ public class AppData {
 
     public void removeAll(FileMeta meta, String name) {
         SimpleMeta s = SimpleMeta.SyncSimpleMeta(meta.getPath());
-        for (File file : AppProfile.getAllFiles(name)) {
+        final List<File> allFiles = AppProfile.getAllFiles(name);
+        for (File file : allFiles) {
             List<SimpleMeta> res = getSimpleMeta(file);
             if (res.contains(s)) {
                 res.remove(s);
@@ -60,6 +61,7 @@ public class AppData {
     }
 
     public void removeRecent(FileMeta meta) {
+        LOG.d("removeRecent", meta.getPath());
         removeAll(meta, AppProfile.APP_RECENT_JSON);
     }
 
@@ -68,7 +70,8 @@ public class AppData {
     }
 
     public void clearAll(String name) {
-        for (File file : AppProfile.getAllFiles(name)) {
+        final List<File> allFiles = AppProfile.getAllFiles(name);
+        for (File file : allFiles) {
             writeSimpleMeta(new ArrayList<>(), file);
         }
     }
@@ -76,13 +79,17 @@ public class AppData {
 
     private synchronized List<SimpleMeta> getAll(String name) {
         List<SimpleMeta> result = new ArrayList<>();
-        for (File file : AppProfile.getAllFiles(name)) {
+        final List<File> allFiles = AppProfile.getAllFiles(name);
+        for (File file : allFiles) {
             addSimpleMeta(result, file);
         }
         return result;
     }
 
     public void addRecent(SimpleMeta simpleMeta) {
+        if (simpleMeta.time == 0) {
+            simpleMeta.time = System.currentTimeMillis();
+        }
         add(simpleMeta, AppProfile.syncRecent);
     }
 
@@ -160,6 +167,15 @@ public class AppData {
         return res;
     }
 
+    public static boolean contains(List<FileMeta> list, String path) {
+        for (FileMeta f : list) {
+            if (ExtUtils.getFileName(f.getPath()).equals(ExtUtils.getFileName(path))) {
+                return true;
+            }
+        }
+        return false;
+
+    }
 
     public synchronized List<FileMeta> getAllRecent() {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
@@ -181,7 +197,7 @@ public class AppData {
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
             if (meta.getIsRecent() != null && meta.getIsRecentTime() < s.time) {
                 meta.setIsRecentTime(s.time);
-            }else{
+            } else {
                 meta.setIsRecentTime(s.time);
             }
             meta.setIsRecent(true);
