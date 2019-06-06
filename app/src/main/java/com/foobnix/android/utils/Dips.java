@@ -19,6 +19,7 @@ import java.util.Locale;
 public class Dips {
 
     public final static int DP_0 = 0;
+    public final static int DP_1= Dips.dpToPx(1);
     public final static int DP_2 = Dips.dpToPx(2);
     public final static int DP_3 = Dips.dpToPx(3);
     public final static int DP_4 = Dips.dpToPx(4);

@@ -14,7 +14,6 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -96,12 +95,11 @@ public class EventDraw implements IEvent {
 
     static {
         rect.setColor(Color.DKGRAY);
-        rect.setStrokeWidth(Dips.dpToPx(1));
+        rect.setStrokeWidth(Dips.DP_1);
         rect.setStyle(Style.STROKE);
 
     }
 
-    int dp1 = Dips.dpToPx(1);
 
     @Override
     public boolean process(final Page page) {
@@ -129,14 +127,19 @@ public class EventDraw implements IEvent {
             canvas.drawBitmap(MagicHelper.getBackgroundImage(), m, p);
         }
         if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
-            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.top - dp1, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
+            canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.top - Dips.DP_1, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
         }
 
         if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
-            rect.setColor(ColorUtils.setAlphaComponent(TintUtil.color, 100));
+            rect.setColor(ColorUtils.setAlphaComponent(Color.RED, 150));
             rect.setStyle(Style.FILL);
-            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_25, fixedPageBounds.right + dp1, fixedPageBounds.bottom + dp1, rect);
-            canvas.drawRect(fixedPageBounds.left - dp1, fixedPageBounds.bottom - Dips.DP_200 - Dips.DP_5, fixedPageBounds.right + dp1, fixedPageBounds.bottom - Dips.DP_200, rect);
+            canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_25, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
+            canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4 - Dips.DP_5, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4, rect);
+
+        } else if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+            rect.setColor(ColorUtils.setAlphaComponent(Color.GRAY, 200));
+            rect.setStyle(Style.FILL);
+            canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_2, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
 
         }
 
