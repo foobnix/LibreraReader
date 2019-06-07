@@ -434,8 +434,11 @@ public class Fb2Extractor extends BaseExtractor {
                             map.put(key, link.trim());
                             LOG.d("getFooterNotes", key, ">", link);
 
-                            isLink = false;
+
                             key = "";
+                        }
+                        if (isLink) {
+                            isLink = false;
                         }
                     }
                 }

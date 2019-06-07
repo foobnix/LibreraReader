@@ -177,6 +177,14 @@ public class FileMetaComparators {
         }
     };
 
+
+    public static Comparator<SimpleMeta> SIMPLE_META_BY_TIME = new Comparator<SimpleMeta>() {
+        @Override
+        public int compare(SimpleMeta o1, SimpleMeta o2) {
+            return compareLong(o2.time, o1.time);
+        }
+    };
+
     public static int compareInt(int x, int y) {
         return (x < y) ? -1 : ((x == y) ? 0 : 1);
     }

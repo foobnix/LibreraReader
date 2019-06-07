@@ -106,10 +106,15 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
                 new File(result.getPath()).delete();
                 LOG.d("Delete cache recent file", result.getPath());
             }
+
+
+
+            RecentUpates.updateAll(getActivity());
             AppData.get().removeRecent(result);
 
             populate();
-            RecentUpates.updateAll(getActivity());
+
+
 
             return false;
         }

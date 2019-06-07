@@ -2,7 +2,6 @@ package com.foobnix.model;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.pdf.info.ExtUtils;
@@ -13,13 +12,16 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class AppData {
 
@@ -38,7 +40,7 @@ public class AppData {
         current.add(syncMeta);
 
         writeSimpleMeta(current, file);
-        LOG.d("Objects-save-add", "SAVE Recent", s.getPath());
+        LOG.d("Objects-save-add", "SAVE Recent", s.getPath(), file.getPath(), s.time);
     }
 
     public synchronized void removeIt(SimpleMeta s) {
@@ -49,12 +51,19 @@ public class AppData {
     }
 
     public void removeAll(FileMeta meta, String name) {
-        SimpleMeta s = SimpleMeta.SyncSimpleMeta(meta.getPath());
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
             List<SimpleMeta> res = getSimpleMeta(file);
-            if (res.contains(s)) {
-                res.remove(s);
+            boolean find = false;
+            final Iterator<SimpleMeta> iterator = res.iterator();
+            while (iterator.hasNext()) {
+                SimpleMeta it = iterator.next();
+                if (ExtUtils.getFileName(it.getPath()).equals(ExtUtils.getFileName(meta.getPath()))) {
+                    iterator.remove();
+                    find = true;
+                }
+            }
+            if (find) {
                 writeSimpleMeta(res, file);
             }
         }
@@ -179,15 +188,13 @@ public class AppData {
 
     public synchronized List<FileMeta> getAllRecent() {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
-
+        Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
 
         LOG.d("getAllRecent");
         List<FileMeta> res = new ArrayList<>();
 
-
-        final Iterator<SimpleMeta> iterator = recent.iterator();
-        while (iterator.hasNext()) {
-            SimpleMeta s = SimpleMeta.SyncSimpleMeta(iterator.next());
+        for (SimpleMeta it : recent) {
+            SimpleMeta s = SimpleMeta.SyncSimpleMeta(it);
 
             if (!new File(s.getPath()).isFile()) {
                 LOG.d("getAllRecent can't find file", s.getPath());
@@ -195,21 +202,14 @@ public class AppData {
             }
 
             FileMeta meta = AppDB.get().getOrCreate(s.getPath());
-            if (meta.getIsRecent() != null && meta.getIsRecentTime() < s.time) {
-                meta.setIsRecentTime(s.time);
-            } else {
-                meta.setIsRecentTime(s.time);
+            if (res.contains(meta)) {
+                continue;
             }
-            meta.setIsRecent(true);
-            AppDB.get().update(meta);
-
-            res.remove(meta);
+            meta.setIsRecentTime(s.time);
             res.add(meta);
-
         }
+
         SharedBooks.updateProgress(res, false);
-        Collections.sort(res, FileMetaComparators.BY_RECENT_TIME);
-        Collections.reverse(res);
         return res;
     }
 
@@ -217,6 +217,7 @@ public class AppData {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
     }
 
+    static Map<String, List<SimpleMeta>> cacheSM = new HashMap<>();
 
     public static List<SimpleMeta> getSimpleMeta(File file) {
         List<SimpleMeta> list = new ArrayList<>();
@@ -235,6 +236,8 @@ public class AppData {
         if (!file.exists()) {
             return;
         }
+
+
         String in = IO.readString(file);
         if (TxtUtils.isEmpty(in)) {
             return;
@@ -243,25 +246,37 @@ public class AppData {
         try {
             JSONArray array = new JSONArray(in);
             for (int i = 0; i < array.length(); i++) {
+                final JSONObject it = array.getJSONObject(i);
                 SimpleMeta meta = new SimpleMeta();
+                meta.path = it.optString(SimpleMeta.JSON_PATH);
+                meta.time = it.optLong(SimpleMeta.JSON_TIME);
                 meta.file = file;
-                Objects.loadFromJson(meta, array.getJSONObject(i));
-
                 list.add(meta);
             }
         } catch (Exception e) {
             LOG.e(e);
         }
+
+
     }
 
     public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
         JSONArray array = new JSONArray();
         for (SimpleMeta meta : list) {
-            JSONObject o = Objects.toJSONObject(meta);
+            JSONObject o = new JSONObject();
+            try {
+                o.put(SimpleMeta.JSON_PATH, meta.path);
+                o.put(SimpleMeta.JSON_TIME, meta.time);
+            } catch (JSONException e) {
+                LOG.e(e);
+            }
             array.put(o);
             LOG.d("writeSimpleMeta", o);
         }
+        //cacheSM.remove(file.getPath() + file.lastModified());
         IO.writeObjAsync(file, array);
+        //cacheSM.put(file.getPath() + file.lastModified(), list);
+
 
     }
 

@@ -320,6 +320,7 @@ public abstract class UIFragment<T> extends Fragment {
             });
         };
         executorService.submit(target);
+        //new Thread(target).start();
     }
 
     public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {

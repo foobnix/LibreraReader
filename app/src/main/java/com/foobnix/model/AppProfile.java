@@ -141,6 +141,7 @@ public class AppProfile {
                 File file = new File(f, name);
                 if (file.isFile()) {
                     list.add(file);
+                    LOG.d("getAllFiles", file);
                 }
             }
         }
