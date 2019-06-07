@@ -49,19 +49,20 @@ public class OpenerActivity extends Activity {
 
         LOG.d("OpenerActivity", getIntent());
         LOG.d("OpenerActivity Data", getIntent().getData());
-        LOG.d("OpenerActivity Path", getIntent().getData().getPath());
+
+        LOG.d("OpenerActivity Path", getDataPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
         LOG.d("OpenerActivity ConentName", getContentName(this));
 
 
-        File file = new File(getIntent().getData().getPath());
+        File file = new File(getDataPath());
         if (!file.isFile()) {
             try {
                 BookType bookType = BookType.getByMimeType(getIntent().getType());
 
                 String name1 = getContentName(this);
-                String name2 = getIntent().getData().getPath();
+                String name2 = getDataPath();
                 String name3 = bookType != null ? bookType.getExt() : null;
 
                 LOG.d("OpenerActivity ==============");
@@ -87,7 +88,7 @@ public class OpenerActivity extends Activity {
                 }
 
 
-                String name = getIntent().getData().getPath().hashCode() + "." + ext;
+                String name = getDataPath().hashCode() + "." + ext;
 
                 LOG.d("OpenerActivity", "cache", name);
 
@@ -111,6 +112,14 @@ public class OpenerActivity extends Activity {
         FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, meta);
         LOG.d("OpenerActivity", "open file", meta.getPath());
+    }
+
+    private String getDataPath() {
+        if (getIntent().getData() == null) {
+            return "";
+        }
+
+        return getIntent().getData().getPath();
     }
 
     public static String getContentName(Activity a) {
