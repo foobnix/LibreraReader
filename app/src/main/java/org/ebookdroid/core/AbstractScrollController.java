@@ -28,6 +28,12 @@ public abstract class AbstractScrollController extends AbstractViewController {
     }
 
     @Override
+    public ViewState goToPageAndCenter(int page) {
+        return new EventGotoPage(this, page, false, true).process();
+
+    }
+
+    @Override
     public final ViewState goToPage(final int toPage, boolean animate) {
         return new EventGotoPage(this, toPage, animate).process();
     }

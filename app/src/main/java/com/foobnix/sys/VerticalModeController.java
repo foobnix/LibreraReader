@@ -603,10 +603,12 @@ public class VerticalModeController extends DocumentController {
         ctr.getZoomModel().initZoom(1);
         ctr.getZoomModel().commit();
 
-        ctr.getDocumentController().goToPage(curentPage, 0, 0);
-        ctr.getDocumentController().goToPage(curentPage);
+        //ctr.getDocumentController().goToPage(curentPage, 0, 0);
+        ctr.getDocumentController().goToPageAndCenter(curentPage);
+        //ctr.getDocumentController().goToPageAndCenter(curentPage);
 
-        ctr.getDocumentController().toggleRenderingEffects();
+
+        //ctr.getDocumentController().toggleRenderingEffects();
     }
 
     @Override

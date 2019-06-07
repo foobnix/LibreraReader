@@ -21,6 +21,9 @@ public class ViewContollerStub implements IViewController {
     public void zoomChanged(final float oldZoom, final float newZoom, final boolean committed) {
     }
 
+
+
+
     @Override
     public boolean isInitialized() {
         return false;
@@ -33,6 +36,11 @@ public class ViewContollerStub implements IViewController {
 
     @Override
     public ViewState goToPage(final int page) {
+        return null;
+    }
+
+    @Override
+    public ViewState goToPageAndCenter(int page) {
         return null;
     }
 

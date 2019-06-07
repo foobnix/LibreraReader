@@ -22,6 +22,8 @@ public interface IViewController extends ZoomListener {
     /* Page related methods */
     ViewState goToPage(int page);
 
+    ViewState goToPageAndCenter(int page);
+
     ViewState goToPage(int page, boolean animate);
 
     ViewState goToPage(int page, float offsetX, float offsetY);
