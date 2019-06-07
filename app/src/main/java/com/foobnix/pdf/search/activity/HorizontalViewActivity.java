@@ -895,17 +895,23 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             final String txt = input.getText().toString();
                             if (TxtUtils.isNotEmpty(txt)) {
                                 dialog.dismiss();
-                                dc.onCloseActivityFinal(new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
-                                        startActivity(getIntent());
-                                    }
-                                });
+                                final Runnable runnable = () -> {
+                                    getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
+                                    startActivity(getIntent());
+                                };
+                                if(dc!=null) {
+                                    dc.onCloseActivityFinal(runnable);
+                                }else{
+                                    runnable.run();
+                                }
 
                             } else {
-                                dc.onCloseActivityFinal(null);
+                                if(dc==null){
+                                    HorizontalViewActivity.this.finish();
+                                }else {
+                                    dc.onCloseActivityFinal(null);
+                                }
                             }
                         }
                     });
