@@ -45,6 +45,10 @@ public abstract class AbstractCodecContext implements CodecContext {
             removeTempFiles();
             return null;
         }
+
+
+
+
         return openDocument;
     }
 

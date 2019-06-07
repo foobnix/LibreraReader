@@ -223,12 +223,14 @@ public class DocumentModel extends ListenerProxy {
         int pagesCount = base.getDecodeService().getPageCount();
         final PageCacheFile pagesFile = PageCacheFile.getPageFile(bs.path, pagesCount);
 
+
         try {
             if (pagesCount > 0) {
                 FileMeta meta = AppDB.get().load(bs.path);
                 if (meta != null) {
                     meta.setPages(pagesCount);
                     AppDB.get().update(meta);
+                    LOG.d("update openDocument.getPageCount()", bs.path, pagesCount);
                 }
             }
         } catch (Exception e) {

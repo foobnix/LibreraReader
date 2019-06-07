@@ -13,13 +13,16 @@ import android.widget.TextView;
 
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
+import com.foobnix.model.MyPath;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -57,6 +60,13 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         final AppBookmark item = getItem(position);
 
         holder.page.setText(TxtUtils.percentFormatInt(item.getPercent()));
+        FileMeta m = AppDB.get().load(MyPath.toAbsolute(item.path));
+
+        if (m != null && m.getPages() != null && m.getPages() > 0) {
+            holder.page.setText(""+Math.round(item.getPercent() * m.getPages()));
+        }
+
+
         holder.title.setText(ExtUtils.getFileName(item.getPath()));
 
 
