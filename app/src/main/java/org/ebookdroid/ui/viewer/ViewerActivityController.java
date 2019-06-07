@@ -132,6 +132,11 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
             FileMeta meta = FileMetaCore.createMetaIfNeed(m_fileName, false);
             title = meta.getTitle();
+            if (TxtUtils.isEmpty(title)) {
+                title = ExtUtils.getFileName(m_fileName);
+            }
+            LOG.d("Book-title", title);
+
 
 
             if (codecType == null) {
@@ -161,6 +166,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 wrapperControlls.showSelectTextMenu();
             }
 
+            wrapperControlls.setTitle(title);
         }
         wrapperControlls.updateUI();
 
@@ -329,6 +335,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
         wrapperControlls.setTitle(title);
         controller.setTitle(title);
+
     }
 
     public void createWrapper(Activity a) {

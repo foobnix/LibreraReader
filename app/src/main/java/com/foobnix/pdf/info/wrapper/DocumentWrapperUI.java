@@ -93,7 +93,7 @@ public class DocumentWrapperUI {
     String bookTitle;
 
     TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
-    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon,  fullscreen;
+    ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
     View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent;
@@ -504,10 +504,12 @@ public class DocumentWrapperUI {
     public void showChapter() {
         if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
             bookName.setText(bookTitle + " " + TxtUtils.LONG_DASH1 + " " + dc.getCurrentChapter().trim());
+            LOG.d("bookName.setText(1)", bookTitle);
         } else {
             bookName.setText(bookTitle);
-
+            LOG.d("bookName.setText(2)", bookTitle);
         }
+
     }
 
     public void updateLock() {
@@ -747,7 +749,7 @@ public class DocumentWrapperUI {
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
 
-         fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
+        fullscreen = (ImageView) a.findViewById(R.id.fullscreen);
         fullscreen.setOnClickListener(onFull);
         fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
 
@@ -1568,7 +1570,7 @@ public class DocumentWrapperUI {
                 }
                 DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
                 return true;
-            },AppState.get().fullScreenMode);
+            }, AppState.get().fullScreenMode);
         }
     };
 
@@ -1861,6 +1863,7 @@ public class DocumentWrapperUI {
 
     public void setTitle(final String title) {
         this.bookTitle = title;
+
         hideShowEditIcon();
 
     }
