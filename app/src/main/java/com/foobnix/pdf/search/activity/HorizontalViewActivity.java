@@ -469,7 +469,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.showContent(anchor, dc);
+                if(dc!=null) {
+                    DragingDialogs.showContent(anchor, dc);
+                }
             }
         });
         findViewById(R.id.onBookmarks).setOnClickListener(onBookmarks);

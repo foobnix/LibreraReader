@@ -2238,6 +2238,7 @@ public class DragingDialogs {
 
     public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
 
+
         final OnItemClickListener onClickContent = new OnItemClickListener() {
 
             @Override
@@ -2272,6 +2273,9 @@ public class DragingDialogs {
             @Override
             public View getContentView(LayoutInflater inflater) {
                 View view = inflater.inflate(R.layout.dialog_recent_books, null, false);
+                if (controller == null) {
+                    return view;
+                }
 
                 LinearLayout attachemnts = (LinearLayout) view.findViewById(R.id.mediaAttachments);
                 List<String> mediaAttachments = controller.getMediaAttachments();
