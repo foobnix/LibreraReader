@@ -43,6 +43,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     FileMetaAdapter recentAdapter;
     ImageView onListGrid;
     View panelRecent;
+    String syncronizedBooksTitle;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -53,6 +54,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_starred, container, false);
 
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         panelRecent = view.findViewById(R.id.panelRecent);
 
@@ -60,6 +62,9 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
+
+        syncronizedBooksTitle = getString(R.string.synchronized_books);
+
 
         TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
 
@@ -241,7 +246,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-            empy.setTitle(getString(R.string.synchronized_books));
+            empy.setTitle(syncronizedBooksTitle);
             all.add(empy);
 
 
