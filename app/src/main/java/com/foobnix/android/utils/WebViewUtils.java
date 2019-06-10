@@ -43,6 +43,7 @@ public class WebViewUtils {
         }
 
         try {
+
             web = new WebView(activity);
             //web.setPadding(0, 0, 0, 0);
             web.getSettings().setJavaScriptEnabled(true);
@@ -72,7 +73,6 @@ public class WebViewUtils {
             synchronized (lock) {
                 lock.notify();
             }
-
             return;
         }
 

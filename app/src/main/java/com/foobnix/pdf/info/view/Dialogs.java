@@ -42,6 +42,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.UI;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
@@ -517,6 +518,11 @@ public class Dialogs {
 
             AlertDialog dialog = builder.show();
             dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+            if(AppState.get().isExperimental){
+                WebViewUtils.init(c);
+            }
+
             return dialog;
         } catch (Exception e) {
             return null;
