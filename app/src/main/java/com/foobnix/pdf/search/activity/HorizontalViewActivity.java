@@ -469,7 +469,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                if(dc!=null) {
+                if (dc != null) {
                     DragingDialogs.showContent(anchor, dc);
                 }
             }
@@ -886,7 +886,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
-                            dc.onCloseActivityFinal(null);
+                            if (dc != null) {
+                                dc.onCloseActivityFinal(null);
+                            } else {
+                                HorizontalViewActivity.this.finish();
+                            }
                         }
 
                     });
@@ -899,19 +903,20 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                                 dialog.dismiss();
 
                                 final Runnable runnable = () -> {
+                                    HorizontalViewActivity.this.finish();
                                     getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
                                     startActivity(getIntent());
                                 };
-                                if(dc!=null) {
+                                if (dc != null) {
                                     dc.onCloseActivityFinal(runnable);
-                                }else{
+                                } else {
                                     runnable.run();
                                 }
 
                             } else {
-                                if(dc==null){
+                                if (dc == null) {
                                     HorizontalViewActivity.this.finish();
-                                }else {
+                                } else {
                                     dc.onCloseActivityFinal(null);
                                 }
                             }
