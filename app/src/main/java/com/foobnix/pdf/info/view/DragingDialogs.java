@@ -2116,6 +2116,10 @@ public class DragingDialogs {
     }
 
     public static void recentBooks(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
+
         new DragingPopup(R.string.recent_favorites_tags, anchor, PREF_WIDTH, PREF_HEIGHT) {
 
             @Override

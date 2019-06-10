@@ -122,6 +122,12 @@ public class CloseAppDialog {
     }
 
     public static void showOnLongClickDialog(final Activity a, View v, final DocumentController c) {
+        if (c == null) {
+            if (a != null) {
+                a.finish();
+            }
+            return;
+        }
 
         List<String> items = new ArrayList<String>();
         items.add(c.getString(R.string.close_book)); //

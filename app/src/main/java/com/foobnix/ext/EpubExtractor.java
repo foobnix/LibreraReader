@@ -13,6 +13,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 
+import org.ebookdroid.LibreraApp;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -147,6 +148,10 @@ public class EpubExtractor extends BaseExtractor {
         }
 
         if (AppState.get().isExperimental) {
+
+            WebViewUtils.init(LibreraApp.context);
+
+
             Object lock = new Object();
 
             for (String key : svgs.keySet()) {

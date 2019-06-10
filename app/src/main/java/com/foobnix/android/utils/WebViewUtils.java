@@ -35,28 +35,47 @@ public class WebViewUtils {
     public static android.os.Handler handler = new Handler(Looper.getMainLooper());
 
     public static void init(Context activity) {
-        web = new WebView(activity);
-        //web.setPadding(0, 0, 0, 0);
-        web.getSettings().setJavaScriptEnabled(true);
-        web.getSettings().setSupportZoom(false);
-        web.getSettings().setLoadWithOverviewMode(true);
-        web.getSettings().setUseWideViewPort(true);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            WebView.enableSlowWholeDocumentDraw();
+        if (activity == null) {
+            return;
         }
-        web.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        if (web != null) {
+            return;
+        }
 
-        //web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        //web.setScrollbarFadingEnabled(false);
-        //web.setInitialScale(1);
+        try {
+            web = new WebView(activity);
+            //web.setPadding(0, 0, 0, 0);
+            web.getSettings().setJavaScriptEnabled(true);
+            web.getSettings().setSupportZoom(false);
+            web.getSettings().setLoadWithOverviewMode(true);
+            web.getSettings().setUseWideViewPort(true);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                WebView.enableSlowWholeDocumentDraw();
+            }
+            web.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+
+            //web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+            //web.setScrollbarFadingEnabled(false);
+            //web.setInitialScale(1);
 
 
-        web.layout(0, 0, Dips.screenMinWH(), Dips.screenMinWH());
+            web.layout(0, 0, Dips.screenMinWH(), Dips.screenMinWH());
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
 
     public static void renterToPng(String name, String content, OutputStream os, Object lock) {
+        if (web == null) {
+            synchronized (lock) {
+                lock.notify();
+            }
+
+            return;
+        }
+
         String h, f;
         final boolean isMath;
         if (content.trim().startsWith("<math")) {

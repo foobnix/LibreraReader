@@ -10,6 +10,7 @@ import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
+import org.ebookdroid.LibreraApp;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -78,6 +79,7 @@ public class HtmlExtractor {
                 while ((line = input.readLine()) != null) {
 
                     if (AppState.get().isExperimental) {
+                        WebViewUtils.init(LibreraApp.context);
                         if (line.contains("<math")) {
                             svgNumbver++;
                             findSVG = true;
