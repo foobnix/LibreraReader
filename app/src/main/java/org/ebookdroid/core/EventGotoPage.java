@@ -3,8 +3,6 @@ package org.ebookdroid.core;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-import com.foobnix.android.utils.Dips;
-
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.ui.viewer.IView;
 
@@ -24,7 +22,7 @@ public class EventGotoPage implements IEvent {
         this.viewState = new ViewState(ctrl);
         this.ctrl = ctrl;
         this.model = viewState.model;
-        this.centerPage = toPage == 0 || Dips.isHorizontal() ? false : true;
+        this.centerPage = false;
         this.toPageIndex = toPage;
         this.offsetX = 0;
         this.offsetY = 0;
