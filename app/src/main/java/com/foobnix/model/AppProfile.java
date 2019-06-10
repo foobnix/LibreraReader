@@ -80,6 +80,8 @@ public class AppProfile {
 
     public static String profile = "";
 
+
+
     public static void init(Context c) {
 
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
@@ -425,5 +427,6 @@ public class AppProfile {
 
     public static void clear() {
         profile = "";
+        AppState.get().isLoaded = false;
     }
 }

@@ -792,7 +792,8 @@ public class AppState {
 
     }
 
-    private boolean isLoaded = false;
+
+    public boolean isLoaded = false;
 
     public boolean loadInit(final Context a) {
         boolean init = isLoaded;

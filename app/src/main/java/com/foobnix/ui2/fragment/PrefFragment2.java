@@ -43,6 +43,7 @@ import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -2224,6 +2225,32 @@ public class PrefFragment2 extends UIFragment {
 
         });
         profileLetter.setOnClickListener(v -> onProfile.performClick());
+
+        final View.OnLongClickListener onDefaultProfile = v -> {
+            AlertDialogs.showOkDialog(getActivity(), getString(R.string.restore_defaults_full), new Runnable() {
+                @Override
+                public void run() {
+                    //AppProfile.clear();
+
+                    final BookCSS b = new BookCSS();
+                    b.resetToDefault(getActivity());
+                    IO.writeObjAsync(AppProfile.syncCSS, b);
+
+                    final AppState o = new AppState();
+                    o.defaults(getActivity());
+
+                    IO.writeObjAsync(AppProfile.syncState, o);
+
+                    //AppProfile.init(getActivity());
+
+                    onTheme();
+                }
+            });
+
+            return true;
+        };
+        onProfile.setOnLongClickListener(onDefaultProfile);
+        profileLetter.setOnLongClickListener(onDefaultProfile);
 
         inflate.findViewById(R.id.onProfileEdit).
 
