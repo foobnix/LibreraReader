@@ -141,9 +141,13 @@ public class DefaultListeners {
 
                 // final File item = new File(result.getPath());
                 if (isFolder) {
+                    final int currentTabIndex = UITab.getCurrentTabIndex(UITab.BrowseFragment);
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
 
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, currentTabIndex);//
+
+                    LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder7, currentTabIndex);
+
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
 
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));

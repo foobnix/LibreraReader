@@ -81,9 +81,13 @@ public enum UITab {
 
     public static int getCurrentTabIndex(UITab tab) {
         List<UITab> ordered = getOrdered(AppState.get().tabsOrder7);
+        int count = -1;
         for (int i = 0; i < ordered.size(); i++) {
+            if (ordered.get(i).isVisible) {
+                count++;
+            }
             if (ordered.get(i) == tab) {
-                return i;
+                return count;
             }
         }
         return 0;
