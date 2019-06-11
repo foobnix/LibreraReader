@@ -133,6 +133,7 @@ public class Apps {
         }
         return false;
     }
+
     public static boolean isIntetConnected(Context c) {
         ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);

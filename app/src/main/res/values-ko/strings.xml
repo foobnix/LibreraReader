@@ -573,4 +573,6 @@
    <string name="screen">화면</string>
    <string name="please_enter_more_characters_to_search">검색 할 문자를 더 입력하십시오.</string>
    <string name="enable_experimental_features">실험 기능 사용</string>
+   <string name="display_original_file_names_without_metadata">원본 파일 이름 표시 (메타 데이터 없음)</string>
+   <string name="use_fingerprint_as_the_password">지문을 암호로 사용하십시오.</string>
 </resources>

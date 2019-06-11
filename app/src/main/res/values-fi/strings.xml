@@ -573,4 +573,6 @@
    <string name="screen">Kuvaruutu</string>
    <string name="please_enter_more_characters_to_search">Kirjoita lisää merkkejä hakuun.</string>
    <string name="enable_experimental_features">Ota käyttöön kokeelliset ominaisuudet</string>
+   <string name="display_original_file_names_without_metadata">Näytä alkuperäiset tiedostonimet (ilman metatietoja)</string>
+   <string name="use_fingerprint_as_the_password">Käyttää salasanana sormenjälkiä</string>
 </resources>

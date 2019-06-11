@@ -573,4 +573,6 @@
    <string name="screen">شاشة</string>
    <string name="please_enter_more_characters_to_search">يرجى إدخال المزيد من الشخصيات للبحث.</string>
    <string name="enable_experimental_features">تمكين الميزات التجريبية</string>
+   <string name="display_original_file_names_without_metadata">عرض أسماء الملفات الأصلية (بدون بيانات التعريف)</string>
+   <string name="use_fingerprint_as_the_password">استخدام بصمة ككلمة المرور</string>
 </resources>

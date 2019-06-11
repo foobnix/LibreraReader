@@ -573,4 +573,6 @@
    <string name="screen">Skärm</string>
    <string name="please_enter_more_characters_to_search">Vänligen ange fler tecken att söka.</string>
    <string name="enable_experimental_features">Aktivera experimentella funktioner</string>
+   <string name="display_original_file_names_without_metadata">Visa ursprungliga filnamn (utan metadata)</string>
+   <string name="use_fingerprint_as_the_password">Använd fingeravtryck som lösenord</string>
 </resources>

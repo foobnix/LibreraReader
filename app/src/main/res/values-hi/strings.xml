@@ -573,4 +573,6 @@
    <string name="screen">स्क्रीन</string>
    <string name="please_enter_more_characters_to_search">कृपया खोज के लिए और वर्ण दर्ज करें।</string>
    <string name="enable_experimental_features">प्रयोगात्मक सुविधाओं को सक्षम करें</string>
+   <string name="display_original_file_names_without_metadata">मूल फ़ाइल नाम प्रदर्शित करें (मेटाडेटा के बिना)</string>
+   <string name="use_fingerprint_as_the_password">पासवर्ड के रूप में फिंगरप्रिंट का उपयोग करें</string>
 </resources>

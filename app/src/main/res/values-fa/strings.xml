@@ -573,4 +573,6 @@
    <string name="screen">صفحه نمایش</string>
    <string name="please_enter_more_characters_to_search">لطفا کاراکترهای بیشتری را برای جستجو وارد کنید</string>
    <string name="enable_experimental_features">ویژگی های تجربی را فعال کنید</string>
+   <string name="display_original_file_names_without_metadata">نمایش نام فایل اصلی (بدون ابرداده)</string>
+   <string name="use_fingerprint_as_the_password">استفاده از اثر انگشت به عنوان رمز عبور</string>
 </resources>

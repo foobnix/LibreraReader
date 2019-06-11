@@ -573,4 +573,6 @@
    <string name="screen">Екрані</string>
    <string name="please_enter_more_characters_to_search">Введіть більше символів для пошуку.</string>
    <string name="enable_experimental_features">Включити експериментальні функції</string>
+   <string name="display_original_file_names_without_metadata">Відображати назви оригінальних файлів (без метаданих)</string>
+   <string name="use_fingerprint_as_the_password">Використовуйте відбиток пальця як пароль</string>
 </resources>

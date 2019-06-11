@@ -573,4 +573,6 @@
    <string name="screen">Màn</string>
    <string name="please_enter_more_characters_to_search">Vui lòng nhập thêm ký tự để tìm kiếm.</string>
    <string name="enable_experimental_features">Cho phép các tính năng thử nghiệm</string>
+   <string name="display_original_file_names_without_metadata">Hiển thị tên tệp gốc (không có siêu dữ liệu)</string>
+   <string name="use_fingerprint_as_the_password">Sử dụng dấu vân tay làm mật khẩu</string>
 </resources>

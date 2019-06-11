@@ -1362,75 +1362,45 @@ public class PrefFragment2 extends UIFragment {
         supportOther.setText(
 
                 getString(R.string.other) + " (CHM/...)");
-        supportOther.setOnCheckedChangeListener(new
-
-                                                        OnCheckedChangeListener() {
-
-                                                            @Override
-                                                            public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                         final boolean isChecked) {
-                                                                AppState.get().supportOther = isChecked;
-                                                                ExtUtils.updateSearchExts();
-                                                                handler.removeCallbacks(ask);
-                                                                handler.postDelayed(ask, timeout);
-                                                            }
-                                                        });
+        supportOther.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            AppState.get().supportOther = isChecked;
+            ExtUtils.updateSearchExts();
+            handler.removeCallbacks(ask);
+            handler.postDelayed(ask, timeout);
+        });
 
         CheckBox isDisplayAllFilesInFolder = (CheckBox) inflate.findViewById(R.id.isDisplayAllFilesInFolder);
         isDisplayAllFilesInFolder.setChecked(AppState.get().isDisplayAllFilesInFolder);
-        isDisplayAllFilesInFolder.setOnCheckedChangeListener(new
-
-                                                                     OnCheckedChangeListener() {
-
-                                                                         @Override
-                                                                         public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                                      final boolean isChecked) {
-                                                                             AppState.get().isDisplayAllFilesInFolder = isChecked;
-                                                                             TempHolder.listHash++;
-                                                                         }
-                                                                     });
+        isDisplayAllFilesInFolder.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            AppState.get().isDisplayAllFilesInFolder = isChecked;
+            TempHolder.listHash++;
+        });
         // app password
         final CheckBox isAppPassword = (CheckBox) inflate.findViewById(R.id.isAppPassword);
-        isAppPassword.setChecked(PasswordState.get().isAppPassword);
-        isAppPassword.setOnCheckedChangeListener(new
+        isAppPassword.setChecked(PasswordState.get().hasPassword() && AppState.get().isAppPassword);
+        isAppPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
-                                                         OnCheckedChangeListener() {
+            if (isChecked && PasswordState.get().hasPassword()) {
+                AppState.get().isAppPassword = true;
+            } else if (!PasswordState.get().hasPassword()) {
+                PasswordDialog.showDialog(getActivity(), true, () ->
+                        isAppPassword.setChecked(PasswordState.get().hasPassword())
+                );
+            } else {
+                AppState.get().isAppPassword = false;
+                isAppPassword.setChecked(false);
+            }
+        });
 
-                                                             @Override
-                                                             public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                          final boolean isChecked) {
-                                                                 PasswordState.get().isAppPassword = isChecked;
-                                                                 if (isChecked && TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                                                                     PasswordDialog.showDialog(getActivity(), true, new Runnable() {
-
-                                                                         @Override
-                                                                         public void run() {
-                                                                             if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                                                                                 isAppPassword.setChecked(false);
-                                                                             }
-                                                                         }
-                                                                     });
-                                                                 }
-                                                             }
-                                                         });
-
-        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword)).
-
-                setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        PasswordDialog.showDialog(getActivity(), true, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                if (TxtUtils.isEmpty(PasswordState.get().appPassword)) {
-                                    isAppPassword.setChecked(false);
-                                }
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.appPassword)).setOnClickListener(v ->
+                PasswordDialog.showDialog(getActivity(), true, () -> {
+                            if (PasswordState.get().hasPassword()) {
+                                isAppPassword.setChecked(true);
+                                AppState.get().isAppPassword = true;
                             }
-                        });
-                    }
-                });
+                        }
+                )
+        );
 
         // What is new
         CheckBox showWhatIsNew = (CheckBox) inflate.findViewById(R.id.isShowWhatIsNewDialog);

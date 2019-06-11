@@ -573,4 +573,6 @@
    <string name="screen">Tela</string>
    <string name="please_enter_more_characters_to_search">Por favor, insira mais caracteres para pesquisar.</string>
    <string name="enable_experimental_features">Habilitar recursos experimentais</string>
+   <string name="display_original_file_names_without_metadata">Exibir nomes de arquivos originais (sem metadados)</string>
+   <string name="use_fingerprint_as_the_password">Usar impressão digital como senha</string>
 </resources>

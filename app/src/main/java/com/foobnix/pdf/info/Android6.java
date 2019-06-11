@@ -18,6 +18,9 @@ import com.foobnix.android.utils.LOG;
 public class Android6 {
 
     public static final int MY_PERMISSIONS_REQUEST_WES = 1;
+    public static final int MY_PERMISSIONS_REQUEST_FINGER_PRINT = 2;
+
+
 
     public static boolean canWrite(Context c) {
         if (Build.VERSION.SDK_INT >= 23) {

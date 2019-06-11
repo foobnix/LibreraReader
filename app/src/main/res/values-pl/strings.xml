@@ -573,4 +573,6 @@
    <string name="screen">Ekran</string>
    <string name="please_enter_more_characters_to_search">Proszę wprowadzić więcej znaków do wyszukiwania.</string>
    <string name="enable_experimental_features">Włącz funkcje eksperymentalne</string>
+   <string name="display_original_file_names_without_metadata">Wyświetl oryginalne nazwy plików (bez metadanych)</string>
+   <string name="use_fingerprint_as_the_password">Użyj odcisku palca jako hasła</string>
 </resources>

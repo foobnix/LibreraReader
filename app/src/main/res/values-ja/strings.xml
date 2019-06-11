@@ -573,4 +573,6 @@
    <string name="screen">画面</string>
    <string name="please_enter_more_characters_to_search">さらに検索する文字を入力してください。</string>
    <string name="enable_experimental_features">実験機能を有効にする</string>
+   <string name="display_original_file_names_without_metadata">元のファイル名を表示する（メタデータなしで）</string>
+   <string name="use_fingerprint_as_the_password">パスワードとして指紋を使う</string>
 </resources>

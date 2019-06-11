@@ -573,4 +573,6 @@
    <string name="screen">Schermo</string>
    <string name="please_enter_more_characters_to_search">Per favore inserisci più caratteri da cercare.</string>
    <string name="enable_experimental_features">Abilita funzionalità sperimentali</string>
+   <string name="display_original_file_names_without_metadata">Mostra i nomi dei file originali (senza metadati)</string>
+   <string name="use_fingerprint_as_the_password">Utilizzare l\'impronta digitale come password</string>
 </resources>

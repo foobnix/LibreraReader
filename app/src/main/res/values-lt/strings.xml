@@ -573,4 +573,6 @@
    <string name="screen">Ekranas</string>
    <string name="please_enter_more_characters_to_search">Prašom įvesti daugiau simbolių.</string>
    <string name="enable_experimental_features">Įgalinti eksperimentines funkcijas</string>
+   <string name="display_original_file_names_without_metadata">Rodyti originalius failų pavadinimus (be metaduomenų)</string>
+   <string name="use_fingerprint_as_the_password">Naudoti slaptažodį kaip slaptažodį</string>
 </resources>

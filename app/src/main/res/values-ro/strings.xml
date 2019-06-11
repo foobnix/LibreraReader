@@ -573,4 +573,6 @@
    <string name="screen">Ecran</string>
    <string name="please_enter_more_characters_to_search">Introduceți mai multe caractere pentru a căuta.</string>
    <string name="enable_experimental_features">Permiteți caracteristicile experimentale</string>
+   <string name="display_original_file_names_without_metadata">Afișați nume de fișier originale (fără metadate)</string>
+   <string name="use_fingerprint_as_the_password">Utilizați amprenta ca parolă</string>
 </resources>

@@ -573,4 +573,6 @@
    <string name="screen">Écran</string>
    <string name="please_enter_more_characters_to_search">Veuillez entrer plus de caractères à rechercher.</string>
    <string name="enable_experimental_features">Activer les fonctionnalités expérimentales</string>
+   <string name="display_original_file_names_without_metadata">Afficher les noms de fichiers d\'origine (sans métadonnées)</string>
+   <string name="use_fingerprint_as_the_password">Utiliser l\'empreinte digitale comme mot de passe</string>
 </resources>

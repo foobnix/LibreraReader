@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.Objects;
+import com.foobnix.android.utils.TxtUtils;
 
 public class PasswordState {
 
@@ -14,8 +15,15 @@ public class PasswordState {
     }
 
     private static final String PASSWORD_STATE = "PasswordState";
-    public boolean isAppPassword = false;
+
+    public boolean isFingerPrintPassword = false;
     public String appPassword = "";
+
+
+    public boolean hasPassword(){
+        return TxtUtils.isNotEmpty(PasswordState.get().appPassword) || PasswordState.get().isFingerPrintPassword;
+
+    }
 
     public void save(final Context a) {
         if (a == null) {

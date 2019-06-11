@@ -573,4 +573,6 @@
    <string name="screen">Képernyő</string>
    <string name="please_enter_more_characters_to_search">Írjon be további karaktereket a kereséshez.</string>
    <string name="enable_experimental_features">Engedélyezze a kísérleti funkciókat</string>
+   <string name="display_original_file_names_without_metadata">Az eredeti fájlnevek megjelenítése (metaadatok nélkül)</string>
+   <string name="use_fingerprint_as_the_password">Jelszóként ujjlenyomatot használjon</string>
 </resources>

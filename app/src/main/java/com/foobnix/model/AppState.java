@@ -229,6 +229,8 @@ public class AppState {
     public int uiTextColor = Color.BLUE;
     public int uiTextColorUser = Color.MAGENTA;
 
+
+
     public int statusBarColorDay = Color.parseColor(TEXT_COLOR_DAY);
     public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
 
@@ -702,6 +704,7 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isSelectTexByTouch = false;
+    public boolean isAppPassword;
 
     public List<Integer> getNextKeys() {
         return isReverseKeys ? prevKeys : nextKeys;

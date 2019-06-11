@@ -573,5 +573,6 @@
    <string name="screen">Screen</string>
    <string name="please_enter_more_characters_to_search">Need a longer search string!</string>
    <string name="enable_experimental_features">Enable experimental features</string>
-    <string name="display_original_file_names_without_metadata">Display original file names (without metadata)</string>
+   <string name="display_original_file_names_without_metadata">Display original file names (without metadata)</string>
+   <string name="use_fingerprint_as_the_password">Use fingerprint as the password</string>
 </resources>

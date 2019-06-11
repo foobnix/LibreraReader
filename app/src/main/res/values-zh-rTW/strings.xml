@@ -573,4 +573,6 @@
    <string name="screen">屏幕</string>
    <string name="please_enter_more_characters_to_search">請輸入更多字符進行搜索。</string>
    <string name="enable_experimental_features">啟用實驗功能</string>
+   <string name="display_original_file_names_without_metadata">顯示原始文件名（無元數據）</string>
+   <string name="use_fingerprint_as_the_password">使用指紋作為密碼</string>
 </resources>

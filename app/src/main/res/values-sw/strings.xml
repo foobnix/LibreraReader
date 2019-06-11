@@ -573,4 +573,6 @@
    <string name="screen">Skrini</string>
    <string name="please_enter_more_characters_to_search">Tafadhali ingiza wahusika zaidi ili utafute.</string>
    <string name="enable_experimental_features">Itawezesha vipengele vya majaribio</string>
+   <string name="display_original_file_names_without_metadata">Onyesha majina ya faili ya awali (bila metadata)</string>
+   <string name="use_fingerprint_as_the_password">Tumia alama za kidole kama nenosiri</string>
 </resources>

@@ -573,4 +573,6 @@
    <string name="screen">Экран</string>
    <string name="please_enter_more_characters_to_search">Іздеу үшін көп таңбаларды енгізіңіз.</string>
    <string name="enable_experimental_features">Эксперименттік мүмкіндіктерді қосыңыз</string>
+   <string name="display_original_file_names_without_metadata">Бастапқы файл атауларын көрсету (метадеректер жоқ)</string>
+   <string name="use_fingerprint_as_the_password">Саусақ ізін құпия сөз ретінде пайдаланыңыз</string>
 </resources>

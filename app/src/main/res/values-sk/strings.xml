@@ -573,4 +573,6 @@
    <string name="screen">Plátno</string>
    <string name="please_enter_more_characters_to_search">Zadajte viac znakov na vyhľadávanie.</string>
    <string name="enable_experimental_features">Povoliť experimentálne funkcie</string>
+   <string name="display_original_file_names_without_metadata">Zobraziť pôvodné názvy súborov (bez metadát)</string>
+   <string name="use_fingerprint_as_the_password">Ako heslo použite odtlačok prsta</string>
 </resources>
