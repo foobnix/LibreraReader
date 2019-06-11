@@ -706,66 +706,65 @@ public class Fb2Extractor extends BaseExtractor {
             // LOG.d("gen-in", line);
             line = accurateLine(line);
 
-            if (AppState.get().isExperimental) {
-
-                if (svgs != null) {
-
-                    line = line.replace("<m:", "<");
-                    if (line.contains("<svg")) {
-                        svgNumbver++;
-                        findSVG = true;
-                        svg = line.substring(line.indexOf("<svg"));
-                    } else if (line.contains("<math")) {
-                        svgNumbver++;
-                        findSVG = true;
-                        svg = line.substring(line.indexOf("<math"));
-                    } else if (line.contains("</svg>")) {
-                        LOG.d("SVG", svg);
-                        svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
+            if (AppState.get().isExperimental && svgs != null) {
 
 
-                        String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
-
-                        svg = svg.replace("<defs>", "<defs>" + defs);
-                        svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
-                        if (TxtUtils.isNotEmpty(defsCurrent)) {
-                            defs = defs + defsCurrent;
-                        }
-                        LOG.d("DEFS:", defs);
-
-                        //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
-
-                        final String imageName = name + "-" + svgNumbver + ".png";
-                        final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                        svgs.put(imageName, svg);
-
-                        LOG.d("SVG:", imageName, svg);
-
-                        line += "<img src=\"" + imageName2 + "\" />";
-                        //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
-                        //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
-
-                        findSVG = false;
-                        svg = "";
-                    } else if (line.contains("</math>")) {
-
-                        svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+                line = line.replace("<m:", "<");
+                if (line.contains("<svg")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<svg"));
+                } else if (line.contains("<math")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<math"));
+                } else if (line.contains("</svg>")) {
+                    LOG.d("SVG", svg);
+                    svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
 
 
-                        final String imageName = name + "-" + svgNumbver + ".png";
-                        final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                        svgs.put(imageName, svg);
+                    String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
 
-                        LOG.d("SVG-MATH:", imageName, svg);
-
-                        line += "<img src=\"" + imageName2 + "\" />";
-
-                        findSVG = false;
-                        svg = "";
-                    } else if (findSVG) {
-                        svg += line;
+                    svg = svg.replace("<defs>", "<defs>" + defs);
+                    svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
+                    if (TxtUtils.isNotEmpty(defsCurrent)) {
+                        defs = defs + defsCurrent;
                     }
+                    LOG.d("DEFS:", defs);
+
+                    //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+                } else if (line.contains("</math>")) {
+
+                    svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG-MATH:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+                } else if (findSVG) {
+                    svg += line;
                 }
+
             }
 
 
