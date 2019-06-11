@@ -1422,6 +1422,10 @@ public class DocumentWrapperUI {
     };
 
     public void onAutoScrollClick() {
+        if (dc.isVisibleDialog()) {
+            return;
+        }
+
         AppState.get().isAutoScroll = !AppState.get().isAutoScroll;
         // changeAutoScrollButton();
         dc.onAutoScroll();

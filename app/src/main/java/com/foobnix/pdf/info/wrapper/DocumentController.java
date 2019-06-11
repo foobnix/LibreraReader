@@ -412,6 +412,11 @@ public abstract class DocumentController {
         }
     }
 
+
+    public boolean isVisibleDialog() {
+        return anchor != null && anchor.getVisibility() == View.VISIBLE;
+    }
+
     public boolean closeDialogs() {
         if (anchor == null) {
             return false;

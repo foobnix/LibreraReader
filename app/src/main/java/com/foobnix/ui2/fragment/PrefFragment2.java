@@ -2242,8 +2242,9 @@ public class PrefFragment2 extends UIFragment {
                     IO.writeObjAsync(AppProfile.syncState, o);
 
                     //AppProfile.init(getActivity());
-
+                    getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
                     onTheme();
+
                 }
             });
 

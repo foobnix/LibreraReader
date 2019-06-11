@@ -286,6 +286,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         tabFragments = new ArrayList<UIFragment>();
 
         try {
+
             for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
                 if (tab.isVisible()) {
                     tabFragments.add(tab.getClazz().newInstance());
