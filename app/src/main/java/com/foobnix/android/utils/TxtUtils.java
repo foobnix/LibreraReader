@@ -329,7 +329,7 @@ public class TxtUtils {
         if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
                 String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
-                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", TTS_PAUSE + string + TTS_PAUSE);
+                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -673,6 +673,7 @@ public class TxtUtils {
         return input.replaceAll(from + "$", to);
     }
 
+
     public static String replaceFirst(String input, String from, String to) {
         return input.replaceAll("^" + from, to);
     }
@@ -732,6 +733,7 @@ public class TxtUtils {
     }
 
     @TargetApi(24)
+
     public static Spanned underline(final String text) {
         try {
             return Html.fromHtml("<u>" + text + "</u>");
