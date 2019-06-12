@@ -724,6 +724,7 @@ public class DecodeServiceBase implements DecodeService {
         private void shutdownInner() {
 
             LOG.d("Begin shutdown 1");
+            run.set(false);
 
             for (final CodecPageHolder ref : getPages().values()) {
                 ref.recycle(-3, true);
@@ -741,7 +742,7 @@ public class DecodeServiceBase implements DecodeService {
             LOG.d("Begin shutdown 4");
             codecContext.recycle();
             LOG.d("Begin shutdown 5");
-            run.set(false);
+
             LOG.d("Begin shutdown 6");
 
             ImageExtractor.clearCodeDocument();
