@@ -48,11 +48,16 @@ public class SendReceiveActivity extends Activity {
     }
 
     private void startShareIntent() {
-        getIntent().setAction(Intent.ACTION_VIEW);
-        getIntent().setData(getIntent().getData());
-        getIntent().setClass(this, OpenerActivity.class);
-        startActivity(getIntent());
-        finish();
+        try {
+            getIntent().setAction(Intent.ACTION_VIEW);
+            getIntent().setData(getIntent().getData());
+            getIntent().setClass(this, OpenerActivity.class);
+            startActivity(getIntent());
+            finish();
+        } catch (Exception e) {
+            LOG.e(e);
+            finish();
+        }
     }
 
     private void updateIntent() {
@@ -78,7 +83,7 @@ public class SendReceiveActivity extends Activity {
                             public void run() {
                                 try {
 
-                                    final String httpResponse = OPDS.getHttpResponse((String) text,"","");
+                                    final String httpResponse = OPDS.getHttpResponse((String) text, "", "");
                                     boolean isText = false;
                                     if (TxtUtils.isNotEmpty(httpResponse) && !httpResponse.contains("<html")) {
                                         isText = true;
