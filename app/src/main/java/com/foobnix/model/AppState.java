@@ -452,6 +452,10 @@ public class AppState {
 
     @IgnoreHashCode
     public boolean isShowRectangularTapZones = true;
+    @IgnoreHashCode
+    public boolean isShowLastPageRed = true;
+    @IgnoreHashCode
+    public boolean isShowLineDividing = true;
 
     @IgnoreHashCode
     public boolean isShowBookmarsPanelText = true;

@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">백업으로 내보내기 (json)</string>
    <string name="import_from_backup_json_">백업에서 가져 오기 (json)</string>
    <string name="additional_bookmarks_bar">추가 북마크 바</string>
-   <string name="show_rectangular_tap_zones">직사각형 탭 영역 표시</string>
    <string name="turn_the_page_on_the_last_word">마지막 단어에 페이지를 넘기다.</string>
    <string name="paste">풀</string>
    <string name="move">움직임</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">실험 기능 사용</string>
    <string name="display_original_file_names_without_metadata">원본 파일 이름 표시 (메타 데이터 없음)</string>
    <string name="use_fingerprint_as_the_password">지문을 암호로 사용하십시오.</string>
+   <string name="show_tap_zones_on_screen">화면에 탭 영역 표시</string>
+   <string name="show_the_last_page_with_the_red_line">빨간색 선으로 마지막 페이지를 보여라.</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">더 많은 페이지 대비 선분 표시</string>
 </resources>

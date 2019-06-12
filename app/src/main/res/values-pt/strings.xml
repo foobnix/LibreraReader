@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Exportar como backup (json)</string>
    <string name="import_from_backup_json_">Importar do backup (json)</string>
    <string name="additional_bookmarks_bar">Barra de favoritos adicionais</string>
-   <string name="show_rectangular_tap_zones">Mostre zonas de torneira retangulares</string>
    <string name="turn_the_page_on_the_last_word">Virar a página na última palavra</string>
    <string name="paste">Colar</string>
    <string name="move">Mover</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Habilitar recursos experimentais</string>
    <string name="display_original_file_names_without_metadata">Exibir nomes de arquivos originais (sem metadados)</string>
    <string name="use_fingerprint_as_the_password">Usar impressão digital como senha</string>
+   <string name="show_tap_zones_on_screen">Mostre as zonas da torneira na tela</string>
+   <string name="show_the_last_page_with_the_red_line">Mostre a última página com a linha vermelha</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Mostra linhas divisórias em páginas com mais contraste</string>
 </resources>

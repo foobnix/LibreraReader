@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Exportera som backup (json)</string>
    <string name="import_from_backup_json_">Importera från backup (json)</string>
    <string name="additional_bookmarks_bar">Ytterligare bokmärkesfältet</string>
-   <string name="show_rectangular_tap_zones">Visa rektangulära kranzoner</string>
    <string name="turn_the_page_on_the_last_word">Vänd sidan på sista ordet</string>
    <string name="paste">Klistra</string>
    <string name="move">Flytta</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Aktivera experimentella funktioner</string>
    <string name="display_original_file_names_without_metadata">Visa ursprungliga filnamn (utan metadata)</string>
    <string name="use_fingerprint_as_the_password">Använd fingeravtryck som lösenord</string>
+   <string name="show_tap_zones_on_screen">Visa kretszoner på skärmen</string>
+   <string name="show_the_last_page_with_the_red_line">Visa den sista sidan med den röda linjen</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Visa delningslinjer på sidor mer kontrast</string>
 </resources>

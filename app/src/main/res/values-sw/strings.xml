@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Kuuza nje kama salama (json)</string>
    <string name="import_from_backup_json_">Kuagiza kutoka kwa hifadhi (json)</string>
    <string name="additional_bookmarks_bar">Bar ya ziada ya alama</string>
-   <string name="show_rectangular_tap_zones">Onyesha maeneo ya bomba ya mstatili</string>
    <string name="turn_the_page_on_the_last_word">Weka ukurasa kwenye neno la mwisho</string>
    <string name="paste">Weka</string>
    <string name="move">Hoja</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Itawezesha vipengele vya majaribio</string>
    <string name="display_original_file_names_without_metadata">Onyesha majina ya faili ya awali (bila metadata)</string>
    <string name="use_fingerprint_as_the_password">Tumia alama za kidole kama nenosiri</string>
+   <string name="show_tap_zones_on_screen">Onyesha kanda za bomba kwenye skrini</string>
+   <string name="show_the_last_page_with_the_red_line">Onyesha ukurasa wa mwisho na mstari mwekundu</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Onyesha mistari ya kugawa kwenye kurasa tofauti zaidi</string>
 </resources>

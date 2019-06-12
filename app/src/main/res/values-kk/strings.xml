@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Сақтық көшірме ретінде экспорттау (json)</string>
    <string name="import_from_backup_json_">Сақтық көшірмеден импорттау (json)</string>
    <string name="additional_bookmarks_bar">Қосымша бетбелгілер жолағы</string>
-   <string name="show_rectangular_tap_zones">Тік төртбұрыш аймақтарын көрсетіңіз</string>
    <string name="turn_the_page_on_the_last_word">Бетті соңғы сөзге айналдырыңыз</string>
    <string name="paste">Паста</string>
    <string name="move">Жылжытыңыз</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Эксперименттік мүмкіндіктерді қосыңыз</string>
    <string name="display_original_file_names_without_metadata">Бастапқы файл атауларын көрсету (метадеректер жоқ)</string>
    <string name="use_fingerprint_as_the_password">Саусақ ізін құпия сөз ретінде пайдаланыңыз</string>
+   <string name="show_tap_zones_on_screen">Экрандағы сенсорлық аймақтарды көрсету</string>
+   <string name="show_the_last_page_with_the_red_line">Соңғы бетті қызыл сызықпен көрсетіңіз</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Беттердегі бөлгіш сызықтарды контрастын көрсету</string>
 </resources>

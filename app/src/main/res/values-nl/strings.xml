@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Exporteren als back-up (json)</string>
    <string name="import_from_backup_json_">Importeren vanuit back-up (json)</string>
    <string name="additional_bookmarks_bar">Extra bladwijzerbalk</string>
-   <string name="show_rectangular_tap_zones">Toon rechthoekige tikzones</string>
    <string name="turn_the_page_on_the_last_word">Draai de pagina op het laatste woord</string>
    <string name="paste">Pasta</string>
    <string name="move">Verhuizing</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Schakel experimentele functies in</string>
    <string name="display_original_file_names_without_metadata">Originele bestandsnamen weergeven (zonder metagegevens)</string>
    <string name="use_fingerprint_as_the_password">Gebruik vingerafdruk als wachtwoord</string>
+   <string name="show_tap_zones_on_screen">Toon tikzones op het scherm</string>
+   <string name="show_the_last_page_with_the_red_line">Toon de laatste pagina met de rode lijn</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Toon scheidslijnen op pagina\'s meer contrast</string>
 </resources>

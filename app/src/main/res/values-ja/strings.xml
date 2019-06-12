@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">バックアップとしてエクスポート（json）</string>
    <string name="import_from_backup_json_">バックアップからインポート（json）</string>
    <string name="additional_bookmarks_bar">追加のブックマークバー</string>
-   <string name="show_rectangular_tap_zones">長方形のタップゾーンを表示</string>
    <string name="turn_the_page_on_the_last_word">最後の単語でページをめくる</string>
    <string name="paste">ペースト</string>
    <string name="move">動く</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">実験機能を有効にする</string>
    <string name="display_original_file_names_without_metadata">元のファイル名を表示する（メタデータなしで）</string>
    <string name="use_fingerprint_as_the_password">パスワードとして指紋を使う</string>
+   <string name="show_tap_zones_on_screen">画面にタップゾーンを表示する</string>
+   <string name="show_the_last_page_with_the_red_line">最後のページを赤い線で表示する</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
 </resources>

@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Eksporter som backup (json)</string>
    <string name="import_from_backup_json_">Importere fra backup (json)</string>
    <string name="additional_bookmarks_bar">Ekstra bokmerker bar</string>
-   <string name="show_rectangular_tap_zones">Vis rektangulære trykksoner</string>
    <string name="turn_the_page_on_the_last_word">Vri siden på siste ord</string>
    <string name="paste">Lim inn</string>
    <string name="move">Bevege seg</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Aktiver eksperimentelle funksjoner</string>
    <string name="display_original_file_names_without_metadata">Vis originale filnavn (uten metadata)</string>
    <string name="use_fingerprint_as_the_password">Bruk fingeravtrykk som passord</string>
+   <string name="show_tap_zones_on_screen">Vis trykksoner på skjermen</string>
+   <string name="show_the_last_page_with_the_red_line">Vis den siste siden med den røde linjen</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Vis delelinjer på sider mer kontrast</string>
 </resources>

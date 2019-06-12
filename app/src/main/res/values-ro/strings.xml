@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Export ca backup (json)</string>
    <string name="import_from_backup_json_">Import din backup (json)</string>
    <string name="additional_bookmarks_bar">Bara de marcaje suplimentare</string>
-   <string name="show_rectangular_tap_zones">Arată zone de robinet dreptunghiulare</string>
    <string name="turn_the_page_on_the_last_word">Întoarceți pagina la ultimul cuvânt</string>
    <string name="paste">Pastă</string>
    <string name="move">Mișcare</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Permiteți caracteristicile experimentale</string>
    <string name="display_original_file_names_without_metadata">Afișați nume de fișier originale (fără metadate)</string>
    <string name="use_fingerprint_as_the_password">Utilizați amprenta ca parolă</string>
+   <string name="show_tap_zones_on_screen">Afișați zonele de atingere pe ecran</string>
+   <string name="show_the_last_page_with_the_red_line">Afișați ultima pagină cu linia roșie</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Afișarea liniilor de divizare pe pagini mai mult contrast</string>
 </resources>

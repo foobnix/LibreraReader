@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Експортувати як резервну копію (json)</string>
    <string name="import_from_backup_json_">Імпортувати з резервної копії (json)</string>
    <string name="additional_bookmarks_bar">Додаткова панель закладок</string>
-   <string name="show_rectangular_tap_zones">Показувати прямокутні зони перегортання сторінки</string>
    <string name="turn_the_page_on_the_last_word">Перегортати сторінку на останньому слові</string>
    <string name="paste">Пасти</string>
    <string name="move">Рухатися</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Включити експериментальні функції</string>
    <string name="display_original_file_names_without_metadata">Відображати назви оригінальних файлів (без метаданих)</string>
    <string name="use_fingerprint_as_the_password">Використовуйте відбиток пальця як пароль</string>
+   <string name="show_tap_zones_on_screen">Показувати зони торкання на екрані</string>
+   <string name="show_the_last_page_with_the_red_line">Показувати останню сторінку червоною лінією</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Показувати розділові лінії на сторінках, які мають більше контрасту</string>
 </resources>

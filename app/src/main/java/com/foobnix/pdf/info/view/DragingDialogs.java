@@ -2733,16 +2733,35 @@ public class DragingDialogs {
 
                 CheckBox isShowRectangularTapZones = (CheckBox) inflate.findViewById(R.id.isShowRectangularTapZones);
                 isShowRectangularTapZones.setVisibility(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-
                 isShowRectangularTapZones.setChecked(AppState.get().isShowRectangularTapZones);
-                isShowRectangularTapZones.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowRectangularTapZones.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowRectangularTapZones = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                });
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowRectangularTapZones = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                CheckBox isShowLineDividing = (CheckBox) inflate.findViewById(R.id.isShowLineDividing);
+                isShowLineDividing.setVisibility(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
+                isShowLineDividing.setChecked(AppState.get().isShowLineDividing);
+                isShowLineDividing.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowLineDividing = isChecked;
+                    if (onRefresh != null) {
+                        controller.updateRendering();
+                        //onRefresh.run();
+                    }
+                });
+
+
+                CheckBox isShowLastPageRed = (CheckBox) inflate.findViewById(R.id.isShowLastPageRed);
+                isShowLastPageRed.setVisibility(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
+                isShowLastPageRed.setChecked(AppState.get().isShowLastPageRed);
+                isShowLastPageRed.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowLastPageRed = isChecked;
+                    if (onRefresh != null) {
+                        controller.updateRendering();
+                        //onRefresh.run();
+
                     }
                 });
 

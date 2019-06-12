@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">导出为备份（json）</string>
    <string name="import_from_backup_json_">从备份导入（json）</string>
    <string name="additional_bookmarks_bar">阅读模式附加书签栏</string>
-   <string name="show_rectangular_tap_zones">矩形点击区域</string>
    <string name="turn_the_page_on_the_last_word">最后一字翻页</string>
    <string name="paste">粘贴</string>
    <string name="move">移动</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">启用实验功能</string>
    <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
+   <string name="show_tap_zones_on_screen">在屏幕上显示分区</string>
+   <string name="show_the_last_page_with_the_red_line">用红线显示最后一页</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">显示页面上的分界线更具对比度</string>
 </resources>

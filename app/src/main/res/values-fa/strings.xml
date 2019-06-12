@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">صادرات به عنوان پشتیبان (json)</string>
    <string name="import_from_backup_json_">وارد کردن از نسخه پشتیبان (json)</string>
    <string name="additional_bookmarks_bar">نوار نشانکهای اضافی</string>
-   <string name="show_rectangular_tap_zones">مناطق کوه مستطیلی را نشان می دهد</string>
    <string name="turn_the_page_on_the_last_word">صفحه را روی آخرین کلمه بنویسید</string>
    <string name="paste">چسباندن</string>
    <string name="move">حرکت</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">ویژگی های تجربی را فعال کنید</string>
    <string name="display_original_file_names_without_metadata">نمایش نام فایل اصلی (بدون ابرداده)</string>
    <string name="use_fingerprint_as_the_password">استفاده از اثر انگشت به عنوان رمز عبور</string>
+   <string name="show_tap_zones_on_screen">مناطق شیری روی صفحه نمایش نشان می دهد</string>
+   <string name="show_the_last_page_with_the_red_line">آخرین صفحه را با خط قرمز نشان می دهد</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">نشان می دهد خطوط تقسیم در صفحات بیشتر کنتراست</string>
 </resources>

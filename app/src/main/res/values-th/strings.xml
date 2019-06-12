@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">ส่งออกเป็นการสำรองข้อมูล (json)</string>
    <string name="import_from_backup_json_">นำเข้าจากการสำรองข้อมูล (json)</string>
    <string name="additional_bookmarks_bar">แถบบุ๊กมาร์กเพิ่มเติม</string>
-   <string name="show_rectangular_tap_zones">แสดงพื้นที่ก๊อกสี่เหลี่ยม</string>
    <string name="turn_the_page_on_the_last_word">เปลี่ยนหน้าเป็นคำสุดท้าย</string>
    <string name="paste">แปะ</string>
    <string name="move">ย้าย</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">เปิดใช้งานคุณลักษณะทดลอง</string>
    <string name="display_original_file_names_without_metadata">แสดงชื่อไฟล์ต้นฉบับ (โดยไม่มีข้อมูลเมตา)</string>
    <string name="use_fingerprint_as_the_password">ใช้ลายนิ้วมือเป็นรหัสผ่าน</string>
+   <string name="show_tap_zones_on_screen">แสดง tap-zones บนหน้าจอ</string>
+   <string name="show_the_last_page_with_the_red_line">แสดงหน้าสุดท้ายด้วยเส้นสีแดง</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">แสดงเส้นแบ่งบนหน้าเว็บที่มีความคมชัดมากขึ้น</string>
 </resources>

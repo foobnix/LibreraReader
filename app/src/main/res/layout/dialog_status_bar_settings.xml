@@ -132,7 +132,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:text="@string/show_rectangular_tap_zones" />
+            android:text="@string/show_tap_zones_on_screen" />
+
+        <CheckBox
+            android:id="@+id/isShowLastPageRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_the_last_page_with_the_red_line" />
+
+        <CheckBox
+            android:id="@+id/isShowLineDividing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_dividing_lines_on_pages_more_contrast" />
 
         <LinearLayout
             android:id="@+id/statusBarPositionParent"

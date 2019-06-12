@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Yedek olarak dışa aktar (json)</string>
    <string name="import_from_backup_json_">Yedekten içe aktarma (json)</string>
    <string name="additional_bookmarks_bar">Ek yer imleri çubuğu</string>
-   <string name="show_rectangular_tap_zones">Dikdörtgen musluk bölgelerini göster</string>
    <string name="turn_the_page_on_the_last_word">Sayfayı son kelimeye çevir</string>
    <string name="paste">Yapıştırmak</string>
    <string name="move">Hareket</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Deneysel özellikleri etkinleştir</string>
    <string name="display_original_file_names_without_metadata">Orijinal dosya adlarını göster (meta veri olmadan)</string>
    <string name="use_fingerprint_as_the_password">Şifre olarak parmak izi kullan</string>
+   <string name="show_tap_zones_on_screen">Dokunma bölgelerini ekranda göster</string>
+   <string name="show_the_last_page_with_the_red_line">Son sayfayı kırmızı çizgiyle göster</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
 </resources>

@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Export ako záloha (json)</string>
    <string name="import_from_backup_json_">Import zo zálohy (json)</string>
    <string name="additional_bookmarks_bar">Ďalší blok záložiek</string>
-   <string name="show_rectangular_tap_zones">Zobraziť obdĺžnikové zóny ťuknutia</string>
    <string name="turn_the_page_on_the_last_word">Otočte stránku na posledné slovo</string>
    <string name="paste">Pasta</string>
    <string name="move">Sťahovať</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Povoliť experimentálne funkcie</string>
    <string name="display_original_file_names_without_metadata">Zobraziť pôvodné názvy súborov (bez metadát)</string>
    <string name="use_fingerprint_as_the_password">Ako heslo použite odtlačok prsta</string>
+   <string name="show_tap_zones_on_screen">Na obrazovke zobrazte zóny s ťuknutím</string>
+   <string name="show_the_last_page_with_the_red_line">Zobrazí poslednú stránku s červenou čiarou</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Zobrazujú deliace čiary na stránkach viac kontrastu</string>
 </resources>

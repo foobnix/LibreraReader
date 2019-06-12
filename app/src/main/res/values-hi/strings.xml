@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">बैकअप के रूप में निर्यात (json)</string>
    <string name="import_from_backup_json_">बैकअप से आयात (json)</string>
    <string name="additional_bookmarks_bar">अतिरिक्त बुकमार्क बार</string>
-   <string name="show_rectangular_tap_zones">आयताकार नल क्षेत्र दिखाएँ</string>
    <string name="turn_the_page_on_the_last_word">पृष्ठ को अंतिम शब्द पर चालू करें</string>
    <string name="paste">पेस्ट</string>
    <string name="move">चाल</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">प्रयोगात्मक सुविधाओं को सक्षम करें</string>
    <string name="display_original_file_names_without_metadata">मूल फ़ाइल नाम प्रदर्शित करें (मेटाडेटा के बिना)</string>
    <string name="use_fingerprint_as_the_password">पासवर्ड के रूप में फिंगरप्रिंट का उपयोग करें</string>
+   <string name="show_tap_zones_on_screen">स्क्रीन पर टैप-ज़ोन दिखाएं</string>
+   <string name="show_the_last_page_with_the_red_line">अंतिम पृष्ठ को लाल रेखा के साथ दिखाएं</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">अधिक विपरीत पृष्ठों पर विभाजन रेखाएं दिखाएं</string>
 </resources>

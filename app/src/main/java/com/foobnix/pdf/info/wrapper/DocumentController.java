@@ -69,7 +69,7 @@ public abstract class DocumentController {
 
     public final static List<Integer> orientationIds = Arrays.asList(//
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
-            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //onCrop
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT//

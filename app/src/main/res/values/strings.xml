@@ -528,7 +528,6 @@
    <string name="export_as_backup_json_">Export to JSON file</string>
    <string name="import_from_backup_json_">Import from JSON file</string>
    <string name="additional_bookmarks_bar">Bookmarks Ribbon</string>
-   <string name="show_rectangular_tap_zones">Indicate tap zones</string>
    <string name="turn_the_page_on_the_last_word">Break at page turn</string>
    <string name="paste">Paste</string>
    <string name="move">Move</string>
@@ -575,4 +574,7 @@
    <string name="enable_experimental_features">Enable experimental features</string>
    <string name="display_original_file_names_without_metadata">Display original file names (without metadata)</string>
    <string name="use_fingerprint_as_the_password">Use fingerprint as the password</string>
+   <string name="show_tap_zones_on_screen">Show tap-zones on screen</string>
+   <string name="show_the_last_page_with_the_red_line">Show the last page with the red line</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Show dividing lines on pages more contrast</string>
 </resources>

@@ -4,9 +4,7 @@
     package="com.foobnix.pdf.info"
     android:installLocation="auto"
     android:versionCode="941"
-    android:versionName="7.12.87">
-
-    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
+    android:versionName="7.12.87"><uses-sdk tools:overrideLibrary="android.support.customtabs" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
