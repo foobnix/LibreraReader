@@ -342,6 +342,9 @@ public class GFile {
 
 
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
+
+        //file = new java.io.File(TxtUtils.fixFilePath(file.getPath()));
+
         LOG.d(TAG, "Download: " + file.getParentFile().getParentFile().getName() + "/" + file.getName());
         debugOut += "\nDownload: " + file.getParentFile().getParentFile().getName() + "/" + file.getParentFile().getName() + "/" + file.getName();
         InputStream is = null;
@@ -585,7 +588,7 @@ public class GFile {
             if (filePath.startsWith(SKIP)) {
                 continue;
             }
-            filePath = TxtUtils.fixFilePath(filePath);
+            //filePath = TxtUtils.fixFilePath(filePath);
 
             java.io.File local = new java.io.File(ioRoot, filePath);
 
@@ -630,7 +633,7 @@ public class GFile {
                     continue;
                 }
 
-                filePath = TxtUtils.fixFilePath(filePath);
+                //filePath = TxtUtils.fixFilePath(filePath);
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 

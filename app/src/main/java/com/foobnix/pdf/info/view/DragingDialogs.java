@@ -1766,6 +1766,9 @@ public class DragingDialogs {
     }
 
     public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController dc) {
+        if (dc == null) {
+            return null;
+        }
         DragingPopup popup = new DragingPopup(R.string.go_to_page_dialog, anchor, 300, 400) {
             View searchLayout;
             GridView grid;

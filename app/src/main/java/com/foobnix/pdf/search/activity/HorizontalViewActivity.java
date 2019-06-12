@@ -14,6 +14,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -134,7 +135,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     HorizontalModeController dc;
 
-    Handler handler, handlerTimer;
+    Handler handler = new Handler(Looper.getMainLooper());
+    Handler flippingHandler = new Handler(Looper.getMainLooper());
+    Handler handlerTimer = new Handler(Looper.getMainLooper());
+
     CopyAsyncTask loadinAsyncTask;
 
     Dialog rotatoinDialog;
@@ -160,7 +164,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     ClickUtils clickUtils;
 
-    Handler flippingHandler;
     int flippingTimer = 0;
 
     protected void onCreateTest(final Bundle savedInstanceState) {
@@ -175,9 +178,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         LOG.d("getRequestedOrientation", AppState.get().orientation, getRequestedOrientation());
 
-        handler = new Handler();
-        handlerTimer = new Handler();
-        flippingHandler = new Handler();
+
         flippingTimer = 0;
 
         long crateBegin = System.currentTimeMillis();
@@ -519,6 +520,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
+                if (dc == null) {
+                    return;
+                }
+
                 MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
                 p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -1964,6 +1969,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void authoFit() {
+        if (handler == null) {
+            return;
+        }
         handler.postDelayed(new Runnable() {
 
             @Override
