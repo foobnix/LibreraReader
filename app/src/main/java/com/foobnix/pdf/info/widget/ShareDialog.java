@@ -417,7 +417,13 @@ public class ShareDialog {
 
                         if (isRecent) {
                             AppData.get().removeRecent(new FileMeta(file.getPath()));
-                            AppData.get().addRecent(new SimpleMeta(to.getPath()));
+
+                            final FileMeta load = AppDB.get().load(file.getPath());
+                            if (load != null && load.getIsRecentTime() != null) {
+                                AppData.get().addRecent(new SimpleMeta(to.getPath(), load.getIsRecentTime()));
+                            } else {
+                                AppData.get().addRecent(new SimpleMeta(to.getPath()));
+                            }
                         }
 
                         final List<AppBookmark> bookmarks = BookmarksData.get().getBookmarksByBook(file.getPath());

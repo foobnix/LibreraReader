@@ -52,6 +52,7 @@ import java.util.Map;
 public class GFile {
     public static final int REQUEST_CODE_SIGN_IN = 1110;
 
+
     public static final String MIME_FOLDER = "application/vnd.google-apps.folder";
 
     public static final String TAG = "GFile";
@@ -299,7 +300,7 @@ public class GFile {
 
 
     public static void uploadFile(String roodId, File file, final java.io.File inFile) throws IOException {
-        debugOut += "\nUpload: " + inFile.getParentFile().getParentFile().getName() + "/" +inFile.getParentFile().getName()+"/" + inFile.getName();
+        debugOut += "\nUpload: " + inFile.getParentFile().getParentFile().getName() + "/" + inFile.getParentFile().getName() + "/" + inFile.getName();
 
         setLastModifiedTime(inFile, inFile.lastModified());
         File metadata = new File().setName(inFile.getName()).setModifiedTime(new DateTime(inFile.lastModified()));
@@ -309,7 +310,7 @@ public class GFile {
         file.setModifiedTime(new DateTime(inFile.lastModified()));
         googleDriveService.files().update(file.getId(), metadata, contentStream).execute();
 
-        LOG.d(TAG, "Upload: " + inFile.getParentFile().getParentFile().getName() + "/" +inFile.getParentFile().getName()+"/" + inFile.getName());
+        LOG.d(TAG, "Upload: " + inFile.getParentFile().getParentFile().getName() + "/" + inFile.getParentFile().getName() + "/" + inFile.getName());
 
 
     }
@@ -339,9 +340,10 @@ public class GFile {
     }
 
 
+
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
         LOG.d(TAG, "Download: " + file.getParentFile().getParentFile().getName() + "/" + file.getName());
-        debugOut += "\nDownload: " + file.getParentFile().getParentFile().getName() + "/" +file.getParentFile().getName() + "/" + file.getName();
+        debugOut += "\nDownload: " + file.getParentFile().getParentFile().getName() + "/" + file.getParentFile().getName() + "/" + file.getName();
         InputStream is = null;
         //if (!file.getPath().endsWith("json")) {
         //    is = googleDriveService.files().get(fileId).executeMediaAsInputStream();
@@ -578,11 +580,12 @@ public class GFile {
         }
 
         for (File file : driveFiles) {
-            final String filePath = findFile(file, map);
+             String filePath = findFile(file, map);
 
             if (filePath.startsWith(SKIP)) {
                 continue;
             }
+            filePath = TxtUtils.fixFilePath(filePath);
 
             java.io.File local = new java.io.File(ioRoot, filePath);
 
@@ -621,11 +624,13 @@ public class GFile {
             }
             boolean skip = false;
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
-                final String filePath = findFile(remote, map);
+                 String filePath = findFile(remote, map);
                 if (filePath.startsWith(SKIP)) {
                     LOG.d(TAG, "Skip", filePath);
                     continue;
                 }
+
+                filePath = TxtUtils.fixFilePath(filePath);
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
@@ -651,7 +656,7 @@ public class GFile {
     }
 
     public static long compareBySizeModifiedTime(File remote, java.io.File local) {
-        if (!remote.getName().endsWith("json")) {
+        if (!(remote.getName().endsWith("json") || remote.getName().endsWith("playlist"))) {
             if (remote.getSize() != null && remote.getSize().longValue() == local.length()) {
                 LOG.d("compareBySizeModifiedTime-1: 0", remote.getName(), local.getPath());
                 return 0;

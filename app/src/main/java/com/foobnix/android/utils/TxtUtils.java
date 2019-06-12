@@ -646,7 +646,12 @@ public class TxtUtils {
     }
 
     public static String fixFileName(String fileName) {
-        fileName = fileName.replaceAll("[\\\\/:*?\"<>|]", "_");
+        fileName = fileName.replaceAll("[\\/:*?\"'<>|]", "_");
+        return fileName;
+
+    }
+    public static String fixFilePath(String fileName) {
+        fileName = fileName.replaceAll("[':*?\"<>|]", "_");
         return fileName;
 
     }
