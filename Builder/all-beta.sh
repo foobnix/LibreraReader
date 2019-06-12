@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dropbox stop
+
 
 ./link_to_mupdf_1.11.sh
 
@@ -17,4 +17,6 @@ cd Builder
 ./install_all.sh
 ./clear-cache.sh
 
+dropbox stop
+sleep 10
 dropbox start

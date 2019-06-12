@@ -339,15 +339,13 @@ public class MainTabs2 extends AdsFragmentActivity {
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         adapter = new TabsAdapter2(this, tabFragments);
-        pager = (ViewPager)
-
-                findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
         }
 
-        pager.setOffscreenPageLimit(5);
+        pager.setOffscreenPageLimit(10);
         pager.addOnPageChangeListener(onPageChangeListener);
 
         drawerLayout.addDrawerListener(new DrawerListener() {
