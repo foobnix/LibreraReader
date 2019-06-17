@@ -2004,4 +2004,7 @@ public class DocumentWrapperUI {
         }
     }
 
+    public void onLoadBookFinish() {
+        onCloseBook.setVisibility(View.VISIBLE);
+    }
 }

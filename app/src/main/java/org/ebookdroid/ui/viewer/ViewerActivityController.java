@@ -621,6 +621,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                     closeActivity(null);
                     return;
                 }
+
+
+                wrapperControlls.onLoadBookFinish();
                 if (result == null) {
                     try {
                         getDocumentController().show();

@@ -483,13 +483,21 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     };
 
     private void seachAll() {
-        searchAdapter.clearItems();
-        searchAdapter.notifyDataSetChanged();
-        getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+        try {
+            searchAdapter.clearItems();
+            searchAdapter.notifyDataSetChanged();
+            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     public void checkForDeleteBooks() {
-        getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+        try {
+            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 
     @Override
@@ -648,7 +656,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             searchEditText.setText("");
         }
         if (CMD_MARGIN.equals(txt)) {
-            SwipeRefreshLayout layout =  getActivity().findViewById(R.id.swipeRefreshLayout);
+            SwipeRefreshLayout layout = getActivity().findViewById(R.id.swipeRefreshLayout);
             final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) layout.getLayoutParams();
             layoutParams.rightMargin = Dips.screenWidth() / 4;
             layout.setLayoutParams(layoutParams);
