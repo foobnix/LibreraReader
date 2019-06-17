@@ -4,7 +4,9 @@
     package="com.foobnix.pdf.info"
     android:installLocation="auto"
     android:versionCode="941"
-    android:versionName="7.12.87"><uses-sdk tools:overrideLibrary="android.support.customtabs" />
+    android:versionName="7.12.87">
+
+    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -12,8 +14,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
 
     <application
@@ -70,9 +71,9 @@
                 <data android:mimeType="application/zip" />
             </intent-filter>
         </activity>
-        <activity android:name="com.foobnix.zipmanager.SendReceiveActivity"
-            android:launchMode="singleTask"
-            >
+        <activity
+            android:name="com.foobnix.zipmanager.SendReceiveActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -117,24 +118,28 @@
                 <data android:mimeType="application/x-rtf" />
                 <data android:mimeType="application/azw" />
                 <data android:mimeType="application/azw3" />
-                <data android:mimeType="text/rtf" />
-                <data android:mimeType="text/richtext" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="multipart/related" />
-                <data android:mimeType="message/rfc822" />
                 <data android:mimeType="application/x-mimearchive" />
-                <data android:mimeType="image/djvu" />
-                <data android:mimeType="image/vnd.djvu" />
-                <data android:mimeType="image/x-djvu" />
-                <data android:mimeType="image/x.djvu" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="image/tiff" />
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                 <data android:mimeType="application/msword" />
                 <data android:mimeType="application/octet-stream" />
                 <data android:mimeType="application/vnd.ms-xpsdocument" />
                 <data android:mimeType="application/oxps" />
+
+                <data android:mimeType="text/rtf" />
+                <data android:mimeType="text/richtext" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="text/x-log" />
+
+                <data android:mimeType="multipart/related" />
+                <data android:mimeType="message/rfc822" />
+
+                <data android:mimeType="image/djvu" />
+                <data android:mimeType="image/vnd.djvu" />
+                <data android:mimeType="image/x-djvu" />
+                <data android:mimeType="image/x.djvu" />
+                <data android:mimeType="image/tiff" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -175,14 +180,14 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW_" />
+
                 <category android:name="android.intent.category.DEFAULT_" />
                 <category android:name="android.intent.category.BROWSABLE_" />
 
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:host="*" />
-                <data android:mimeType="*/*"  />
-
+                <data android:mimeType="*/*" />
 
 
             </intent-filter>

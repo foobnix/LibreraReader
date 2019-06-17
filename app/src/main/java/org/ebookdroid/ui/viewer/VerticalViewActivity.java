@@ -258,10 +258,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
+        super.onDestroy();
     }
 
     Dialog rotatoinDialog;

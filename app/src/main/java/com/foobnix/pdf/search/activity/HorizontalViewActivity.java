@@ -1449,7 +1449,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+
         if (loadinAsyncTask != null) {
             try {
                 loadinAsyncTask.cancel(true);
@@ -1468,6 +1468,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         // AppTemp.get().isCut = false;
         PageImageState.get().clearResouces();
+
+
+        super.onDestroy();
+
+
 
     }
 

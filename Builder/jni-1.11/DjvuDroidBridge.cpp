@@ -260,7 +260,7 @@ jobject get_djvu_hyperlink_mapping(JNIEnv *jenv, ddjvu_document_t* djvu_document
 
 }
 
-jobject djvu_links_get_links(JNIEnv *jenv, ddjvu_document_t* djvu_document, int page)
+jobject djvu_links_get_links(JNIEnv *jenv, ddjvu_document_t* djvu_document, jint page)
 {
 
     DEBUG_PRINT("djvu_links_get_links %d", page);

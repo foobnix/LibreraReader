@@ -340,7 +340,6 @@ public class GFile {
     }
 
 
-
     public static void downloadFile(String fileId, java.io.File file, long lastModified) throws IOException {
 
         //file = new java.io.File(TxtUtils.fixFilePath(file.getPath()));
@@ -583,7 +582,7 @@ public class GFile {
         }
 
         for (File file : driveFiles) {
-             String filePath = findFile(file, map);
+            String filePath = findFile(file, map);
 
             if (filePath.startsWith(SKIP)) {
                 continue;
@@ -627,7 +626,7 @@ public class GFile {
             }
             boolean skip = false;
             if (!MIME_FOLDER.equals(remote.getMimeType())) {
-                 String filePath = findFile(remote, map);
+                String filePath = findFile(remote, map);
                 if (filePath.startsWith(SKIP)) {
                     LOG.d(TAG, "Skip", filePath);
                     continue;
@@ -724,22 +723,25 @@ public class GFile {
 
     public static void runSyncService(Activity a, boolean force) {
 
+        try {
+            if (AppTemp.get().isEnableSync && !BooksService.isRunning) {
+                if (!force && BookCSS.get().isSyncManualOnly) {
+                    LOG.d("runSyncService", "manual sync only");
+                    return;
+                }
+                if (BookCSS.get().isSyncWifiOnly && !Apps.isWifiEnabled(a)) {
+                    LOG.d("runSyncService", "wifi not available");
+                    return;
+                }
 
-        if (AppTemp.get().isEnableSync && !BooksService.isRunning) {
-            if (!force && BookCSS.get().isSyncManualOnly) {
-                LOG.d("runSyncService", "manual sync only");
-                return;
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
+                if (account != null) {
+                    GFile.buildDriveService(a);
+                    a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_RUN_SYNCRONICATION));
+                }
             }
-            if (BookCSS.get().isSyncWifiOnly && !Apps.isWifiEnabled(a)) {
-                LOG.d("runSyncService", "wifi not available");
-                return;
-            }
-
-            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
-            if (account != null) {
-                GFile.buildDriveService(a);
-                a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_RUN_SYNCRONICATION));
-            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
 
 

@@ -702,7 +702,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         GFile.timeout = 0;
         GFile.runSyncService(this);
 
@@ -733,6 +732,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
         EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     @Override

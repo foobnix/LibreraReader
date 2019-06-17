@@ -156,6 +156,9 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
+                        if (getActivity() == null) {
+                            return;
+                        }
                         if (isDrive) {
                             Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                                     .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
