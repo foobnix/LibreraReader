@@ -572,9 +572,9 @@
    <string name="screen">Screen</string>
    <string name="please_enter_more_characters_to_search">Need a longer search string!</string>
    <string name="enable_experimental_features">Enable experimental features</string>
-   <string name="display_original_file_names_without_metadata">Display original file names (without metadata)</string>
-   <string name="use_fingerprint_as_the_password">Use fingerprint as the password</string>
-   <string name="show_tap_zones_on_screen">Show tap-zones on screen</string>
-   <string name="show_the_last_page_with_the_red_line">Show the last page with the red line</string>
-   <string name="show_dividing_lines_on_pages_more_contrast">Show dividing lines on pages more contrast</string>
+   <string name="display_original_file_names_without_metadata">Ignore metadata (display filenames only)</string>
+   <string name="use_fingerprint_as_the_password">Allow fingerprint authentication</string>
+   <string name="show_tap_zones_on_screen">Delineate tap zones (dotted line)</string>
+   <string name="show_the_last_page_with_the_red_line">Mark last page with red stripes</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Highlight page separators</string>
 </resources>
