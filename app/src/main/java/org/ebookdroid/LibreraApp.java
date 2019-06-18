@@ -95,7 +95,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        if (BuildConfig.IS_BETA_SEND_REPORTS && !BuildConfig.LOG) {
+        if (false && !BuildConfig.LOG) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {
@@ -114,7 +114,7 @@ public class LibreraApp extends MultiDexApplication {
                         log = log + Build.BRAND + "/n";
                         log = log + Build.MODEL + "/n";
                         log = log + Build.VERSION.SDK_INT + "/n";
-                        Apps.onCrashEmail(context, log,  context.getString(R.string.application_error_please_send_this_report_by_emial));
+                        Apps.onCrashEmail(context, log, context.getString(R.string.application_error_please_send_this_report_by_emial));
 
                         System.exit(1);
 

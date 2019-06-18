@@ -2,6 +2,7 @@ package com.foobnix.pdf.info.wrapper;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.ui2.fragment.BookmarksFragment2;
 import com.foobnix.ui2.fragment.BrowseFragment2;
 import com.foobnix.ui2.fragment.CloudsFragment2;
@@ -106,6 +107,9 @@ public enum UITab {
     }
 
     public boolean isVisible() {
+        if (BuildConfig.IS_FDROID && (this == UITab.OpdsFragment || this == UITab.CloudsFragment)) {
+            return false;
+        }
         return isVisible;
     }
 

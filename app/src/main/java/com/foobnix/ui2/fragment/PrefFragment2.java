@@ -56,6 +56,7 @@ import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -279,6 +280,9 @@ public class PrefFragment2 extends UIFragment {
 
 
         section8 = inflate.findViewById(R.id.section8);
+
+        section8.setVisibility(BuildConfig.IS_FDROID ? View.GONE : View.VISIBLE);
+
         section9 = inflate.findViewById(R.id.section9);
 
 
@@ -314,7 +318,11 @@ public class PrefFragment2 extends UIFragment {
             public void run() {
                 dragLinearLayout.removeAllViews();
                 for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
-                    if (Apps.getVersionName(getActivity()).endsWith("-fdroid") && tab == UITab.CloudsFragment) {
+                    if (BuildConfig.IS_FDROID && tab == UITab.CloudsFragment) {
+                        continue;
+                    }
+
+                    if (BuildConfig.IS_FDROID && tab == UITab.OpdsFragment) {
                         continue;
                     }
 

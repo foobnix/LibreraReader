@@ -91,6 +91,11 @@ public class AndroidWhatsNew {
 
     public static void show2(final Context c) {
 
+        if(BuildConfig.IS_FDROID){
+            Urls.open(c, getLangUrl(c));
+            return;
+        }
+
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew2, null, false);
 
         final WebView wv = inflate.findViewById(R.id.webView2);
