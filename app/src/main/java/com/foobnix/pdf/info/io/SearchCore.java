@@ -24,6 +24,7 @@ public class SearchCore {
             return true;
         }
 
+
         for (String ext : exts) {
             if (name.endsWith(ext)) {
                 return true;
@@ -81,7 +82,7 @@ public class SearchCore {
                 }
 
                 search(file, exts, items);
-            } else if (endWith(file.getName(), exts)) {
+            } else if (file.length() > 0 && endWith(file.getName(), exts)) {
                 final FileMeta e = new FileMeta(file.getPath());
                 e.setTitle(file.getName());
                 items.add(e);
