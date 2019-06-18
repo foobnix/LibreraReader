@@ -206,7 +206,7 @@ android {
                     admobAppId    : "ca-app-pub-8347903083053959~8118779310",
                     admobBannerId : "ca-app-pub-8347903083053959/1553370961",
                     admobFullId   : "ca-app-pub-8347903083053959/6163356354",
-                    removeInternet   : "true"
+                    removeInternet   : "fasle"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
