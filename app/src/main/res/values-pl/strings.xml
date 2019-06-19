@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Pokaż strefy zaczepów na ekranie</string>
    <string name="show_the_last_page_with_the_red_line">Pokaż ostatnią stronę czerwoną linią</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Pokaż linie podziału na stronach większy kontrast</string>
+   <string name="clear_log">Wyczyść log</string>
 </resources>

@@ -90,7 +90,7 @@ android {
             ]
 
             buildConfigField "boolean", "IS_BETA", "true"
-            buildConfigField "boolean", "IS_FDROID", "true"
+            buildConfigField "boolean", "IS_FDROID", "false"
 
         }
         librera {

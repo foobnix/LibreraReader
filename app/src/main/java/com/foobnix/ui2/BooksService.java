@@ -84,6 +84,7 @@ public class BooksService extends IntentService {
         if (intent == null) {
             return;
         }
+
         try {
             if (isRunning) {
                 LOG.d(TAG, "BooksService", "Is-running");

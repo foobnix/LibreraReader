@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Rodyti ekrano zonose</string>
    <string name="show_the_last_page_with_the_red_line">Rodyti paskutinį puslapį su raudona linija</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Rodyti skirtingas linijas puslapiuose, daugiau kontrasto</string>
+   <string name="clear_log">Aiškus žurnalas</string>
 </resources>

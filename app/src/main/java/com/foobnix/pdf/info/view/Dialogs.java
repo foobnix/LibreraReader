@@ -321,7 +321,8 @@ public class Dialogs {
         result.setMinWidth(Dips.dpToPx(1000));
         result.setMinHeight(Dips.dpToPx(1000));
 
-        TextView t = UI.uText(a, "Clear debug log");
+        TextView t = UI.uText(a, a.getString(R.string.clear_log));
+        t.setTextSize(16);
         t.setOnClickListener(v -> GFile.debugOut = "");
 
         AlertDialogs.showViewDialog(a, new Runnable() {

@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Показывать тап-зоны на экране</string>
    <string name="show_the_last_page_with_the_red_line">Показать последнюю страницу с красной линией</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Показывать разделительные линии на страницах более контрастно</string>
+   <string name="clear_log">Очистить журнал</string>
 </resources>

@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">画面にタップゾーンを表示する</string>
    <string name="show_the_last_page_with_the_red_line">最後のページを赤い線で表示する</string>
    <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
+   <string name="clear_log">クリアログ</string>
 </resources>

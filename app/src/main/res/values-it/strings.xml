@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Mostra le zone di tocco sullo schermo</string>
    <string name="show_the_last_page_with_the_red_line">Mostra l\'ultima pagina con la linea rossa</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linee di divisione su pagine più contrastanti</string>
+   <string name="clear_log">Pulisci il registro</string>
 </resources>

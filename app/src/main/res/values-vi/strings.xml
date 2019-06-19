@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Hiển thị vùng tap trên màn hình</string>
    <string name="show_the_last_page_with_the_red_line">Hiển thị trang cuối cùng với dòng màu đỏ</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Hiển thị đường phân chia trên các trang tương phản hơn</string>
+   <string name="clear_log">Xóa nhật ký</string>
 </resources>

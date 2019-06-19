@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Afișați zonele de atingere pe ecran</string>
    <string name="show_the_last_page_with_the_red_line">Afișați ultima pagină cu linia roșie</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Afișarea liniilor de divizare pe pagini mai mult contrast</string>
+   <string name="clear_log">Curăță Jurnalul</string>
 </resources>

@@ -48,8 +48,6 @@ public class AppTemp {
     public boolean isEnableSync;
     public String syncRootID;
 
-
-
     transient  SharedPreferences sp;
 
     public void init(Context c){

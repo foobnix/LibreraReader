@@ -1468,7 +1468,9 @@ public class PrefFragment2 extends UIFragment {
         initKeys();
 
         searchPaths = (TextView) inflate.findViewById(R.id.searchPaths);
-        searchPaths.setText(TxtUtils.underline(BookCSS.get().searchPaths.replace(",", "<br>")));
+        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
+        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+        searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
         searchPaths.setOnClickListener(new
 
                                                OnClickListener() {
@@ -2308,12 +2310,18 @@ public class PrefFragment2 extends UIFragment {
 
     public void onFolderConfigDialog() {
         BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
+        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
+        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
 
             @Override
             public void run() {
                 BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-                searchPaths.setText(TxtUtils.underline(BookCSS.get().searchPaths.replace(",", "<br>")));
+                BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
+                BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+
+                searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
                 saveChanges();
                 LOG.d("Save Changes", 2);
             }

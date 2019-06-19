@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Tampilkan zona ketuk di layar</string>
    <string name="show_the_last_page_with_the_red_line">Perlihatkan halaman terakhir dengan garis merah</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Menunjukkan garis pemisah pada halaman yang lebih kontras</string>
+   <string name="clear_log">Menghapus log</string>
 </resources>

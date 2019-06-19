@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">مناطق شیری روی صفحه نمایش نشان می دهد</string>
    <string name="show_the_last_page_with_the_red_line">آخرین صفحه را با خط قرمز نشان می دهد</string>
    <string name="show_dividing_lines_on_pages_more_contrast">نشان می دهد خطوط تقسیم در صفحات بیشتر کنتراست</string>
+   <string name="clear_log">روشن ورود</string>
 </resources>

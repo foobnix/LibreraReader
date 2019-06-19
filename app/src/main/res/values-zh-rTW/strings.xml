@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">在屏幕上顯示分區</string>
    <string name="show_the_last_page_with_the_red_line">用紅線顯示最後一頁</string>
    <string name="show_dividing_lines_on_pages_more_contrast">顯示頁面上的分界線更具對比度</string>
+   <string name="clear_log">清除日誌</string>
 </resources>

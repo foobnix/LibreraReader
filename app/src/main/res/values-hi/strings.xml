@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">स्क्रीन पर टैप-ज़ोन दिखाएं</string>
    <string name="show_the_last_page_with_the_red_line">अंतिम पृष्ठ को लाल रेखा के साथ दिखाएं</string>
    <string name="show_dividing_lines_on_pages_more_contrast">अधिक विपरीत पृष्ठों पर विभाजन रेखाएं दिखाएं</string>
+   <string name="clear_log">अभिलेख साफ करो</string>
 </resources>

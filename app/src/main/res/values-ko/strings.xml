@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">화면에 탭 영역 표시</string>
    <string name="show_the_last_page_with_the_red_line">빨간색 선으로 마지막 페이지를 보여라.</string>
    <string name="show_dividing_lines_on_pages_more_contrast">더 많은 페이지 대비 선분 표시</string>
+   <string name="clear_log">로그 지우기</string>
 </resources>

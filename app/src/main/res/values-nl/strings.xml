@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Toon tikzones op het scherm</string>
    <string name="show_the_last_page_with_the_red_line">Toon de laatste pagina met de rode lijn</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Toon scheidslijnen op pagina\'s meer contrast</string>
+   <string name="clear_log">Logboek opschonen</string>
 </resources>

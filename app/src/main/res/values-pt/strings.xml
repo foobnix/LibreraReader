@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Mostre as zonas da torneira na tela</string>
    <string name="show_the_last_page_with_the_red_line">Mostre a última página com a linha vermelha</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linhas divisórias em páginas com mais contraste</string>
+   <string name="clear_log">Log clara</string>
 </resources>

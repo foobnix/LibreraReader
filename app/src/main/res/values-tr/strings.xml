@@ -577,4 +577,5 @@
    <string name="show_tap_zones_on_screen">Dokunma bölgelerini ekranda göster</string>
    <string name="show_the_last_page_with_the_red_line">Son sayfayı kırmızı çizgiyle göster</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
+   <string name="clear_log">Günlüğü temizle</string>
 </resources>
