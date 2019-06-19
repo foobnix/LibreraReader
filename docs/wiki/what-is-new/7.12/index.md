@@ -93,8 +93,4 @@ Could be useful for musicians and for those who study foreign languages.
 
 
 
-# What is new in Librera Book Reader
-
-* [Version 7.12](/wiki/what-is-new/7.12/)
-* [Version 7.11](/wiki/what-is-new/7.11/)
-* [Version 7.10](/wiki/what-is-new/7.10/)
+{% include versions.md %}

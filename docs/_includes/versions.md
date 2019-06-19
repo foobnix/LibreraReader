@@ -1,0 +1,5 @@
+* [Librera 8.1](/wiki/what-is-new/8.1/)
+* [Librera 8.0](/wiki/what-is-new/8.0/)
+* [Librera 7.12](/wiki/what-is-new/7.12/)
+* [Librera 7.11](/wiki/what-is-new/7.11/)
+* [Librera 7.10](/wiki/what-is-new/7.10/)
