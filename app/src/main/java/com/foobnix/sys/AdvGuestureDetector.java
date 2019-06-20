@@ -114,7 +114,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.GestureDetector.SimpleOnGestureListener#onDoubleTap(android.view.MotionEvent)
      */
     @Override
@@ -245,9 +245,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.GestureDetector.SimpleOnGestureListener#onFling(android.view.MotionEvent,
-     *      android.view.MotionEvent, float, float)
+     * android.view.MotionEvent, float, float)
      */
     @Override
     public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
@@ -285,9 +285,9 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.GestureDetector.SimpleOnGestureListener#onScroll(android.view.MotionEvent,
-     *      android.view.MotionEvent, float, float)
+     * android.view.MotionEvent, float, float)
      */
     long t;
 
@@ -304,7 +304,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         long delta = System.currentTimeMillis() - t;
-        if (delta > 50) {
+        long value = AppTemp.get().isLocked ? 15 : 50;
+        if (delta > value) {
             t = System.currentTimeMillis();
             if (isNoLock() || (e2.getPointerCount() == 2 && !(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
                 avc.getView().scrollBy(d1, d2);
@@ -325,7 +326,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.GestureDetector.SimpleOnGestureListener#onLongPress(android.view.MotionEvent)
      */
     @Override
@@ -368,13 +369,14 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerPinch(float,
-     *      float)
+     * float)
      */
 
     long time = 0;
     float factor1 = 1;
+
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         LOG.d("onTwoFingerPinch", oldDistance, newDistance);
@@ -400,7 +402,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerPinchEnd()
      */
     @Override
@@ -419,7 +421,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.common.touch.IMultiTouchListener#onTwoFingerTap()
      */
     @Override
