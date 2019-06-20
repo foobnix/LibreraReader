@@ -8,30 +8,31 @@ version: 1
 
 By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
 
-**New Features**
+**New Features and Improvements**
 
-* Sync with Google Drive (progress, bookmarks, books)
-* Profiles
-* The replaces, stress mark(s), RegEx rules in TTS
-* More settings in Musician mode
+* Syncing across Android devices via Google Drive (reading progress, bookmarks, etc.)
+* Multiple profiles
+* TTS: character replacements, manual stress marks, RegEx rules
+* Additional settings and navigation in Musician's mode
+* Additional functions reachable through UI
+* Miscellaneous improvements to UI and functionality 
 
+# Syncing via Google Drive
 
-# Sync with Google Drive
+Syncing is intended to be used on multiple Android devices connected to Google Drive. While reading a book, you will be able to pick up on your tablet at night right where you left off on your phone during the day. Syncing is supported by **all** apps of the Librera family. And it's FREE.
 
-Sync allow you to sync everything in the cloud and read the same book on many devices 
-with saving progress. Sync if FREE in all Librera apps. 
+You can sync the following parameters:
 
-* Sync Reading progress of all books (synced and not synced) If you can the same book name on other
-devices progress will be synced automatically
-* Sync bookmarks
-* Sync Recent list
-* Sync Favorite books and tags
+* Reading Progress for all the books you're currently reading (either synced or not). Keep the filenames the same across all your devices, and your books will be synced automatically
+* Bookmarks
+* Recent list
+* Favorites and tags
 
-Sync examples
+Examples of Syncing
 
-* Enable Sync with Google Drive
-* Click book menu to sync a book
-* All synced books in Favorites tab
+* Enable Syncing via Google Drive (need to have your Google credentials handy)
+* To sync a book, invoke its menu and choose _Sync_
+* All your books in the Favorites tab will be synced
 
 ||||
 |-|-|-|
@@ -40,61 +41,59 @@ Sync examples
  
 # Profiles
 
-Profiles is like a separate app installation with different settings, books, book progress, bookmarks.
-You can create and delete profiles. All Librera apps use the same profiles in all apps.
-Profiles stored in the internal device memory /sdcard/Librera/profile.[NAME]
-In this folder all settings, bookmarks, progress stored in the json files.
-You can view it but do not modify manually.
+Using profiles is like having multiple instances of Librera installed on your device, each with its separate settings, booklists, reading progresses, and bookmarks. You are allowed to create new profiles and delete old ones. All apps of the Librera family have this feature.
 
-**Long click** on profile name will show dialog to restore default settings (bookmarks and progress not clear)
+Profiles are stored in the device's internal  memory  at /sdcard/Librera/profile.[NAME]. Their settings, bookmarks, reading progresses are stored in JSON files, which may be viewed w/ any JSON-viewer (refrain from modifying them, though!).
+
+A **long press** on a profile name will pop up an alert window for you to restore its default (initial) settings (your bookmarks and reading progresses will remain intact).
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-# The replaces in TTS
+# TTS Replacements and Dictionaries
 
-* Enable "Repalces" and then add rules.
-* Add rule to replace all chars in list for other one "[/.,]" -> ""
-* Replace one word to other "lib" - > "Librera"
-* Add stress marks (if TTS engine support it) "Librera" -> "Libréra"
-* Show result text with replaces in the dialog
-* Support external @Voice Aloud .txt RegEx replaces file
+* Tap "Replacements" in **TTS Settings** and add a new reading rule.
+* Replace a set of characters (in brackets) w/ a single character to be either read or ignored
+* Replace one word for another, e.g., "lib" -> "Librera"
+* Add stress marks manually (if your TTS engine supports it): "Librera" -> "Libréra"
+* Tap "Show" to see the replacements results
+* Add an external dictionary: Librera supports @Voice Aloud and .txt RegEx replacements files
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
 
-# More settings in Musician mode
+# Additional Settings in Musician's Mode
 
-* Show\hide tap zones rectangles
-* Mark last page with red lines (small and big one)
-* Highlight pages separations
-* Click next page on the last page go to the first page
-* Click back on the first page to go the last page 
+* Show\hide tap zones (delineated w/ dotted lines)
+* Mark last page w/ red stripes (narrow and wide ones)
+* Highlight page separators for better readability
+* Navigate from first to last page by tapping Previous Page zone
+* Navigate from last to first page by tapping Next Page zone
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-# UI Improvements
+# Additional Functions and Improvements to UI
 
-* Share\copy page as imge\text (long click on page preview)
-* Support for Notched (Cutout) screens
-* Sort book by **Publisher** and **Publication date**
+* Share\copy pages as images\text (long-press on a page thumbnail in the _Go to Page_ window)
+* Support for notched screens
+* New sorting parameters: sort by **Publisher** and **Publication date**
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
 
-# Others
+# Miscellaneous
 
-* Support MathML and SVG (Enable in advanced options, first book load is very slow)
-* Library option to ignore fetch metadata from the books
-* Finger password to open app (Android 9+)
-* Set turn off screen timeout in minutes or system value 
+* Support for MathML and SVG. Enable it in Advanced options (may slow down initial book loading)
+* Option to ignore metadata in the Library view (only filenames will be used)
+* Allow fingerprint to be used instead of password (Android 9+)
+* Allow system Sleep value to be used to turn off screen 
 
 
 {% include versions.md %}
