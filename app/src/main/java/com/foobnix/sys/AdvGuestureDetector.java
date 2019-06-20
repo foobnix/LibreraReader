@@ -304,7 +304,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         long delta = System.currentTimeMillis() - t;
-        long value = AppTemp.get().isLocked ? 15 : 50;
+        long value = AppTemp.get().isLocked ? 20 : 50;
         if (delta > value) {
             t = System.currentTimeMillis();
             if (isNoLock() || (e2.getPointerCount() == 2 && !(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
