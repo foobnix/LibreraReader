@@ -46,10 +46,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            buildConfigField "boolean", "LOG", "true"
         }
         debug {
-            buildConfigField "boolean", "LOG", "true"
         }
 
 
@@ -91,6 +89,7 @@ android {
 
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "true"
 
         }
         librera {
@@ -108,6 +107,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         pro {
@@ -125,6 +125,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         pdf_classic {
@@ -142,6 +143,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         ebooka {
@@ -159,6 +161,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         pdf_v2 {
@@ -176,6 +179,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         tts_reader {
@@ -193,6 +197,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         epub_reader {
@@ -210,6 +215,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         fdroid {
@@ -228,6 +234,7 @@ android {
             versionNameSuffix '-fdroid'
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "true"
+            buildConfigField "boolean", "LOG", "false"
         }
 
     }

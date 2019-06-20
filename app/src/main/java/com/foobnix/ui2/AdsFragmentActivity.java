@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
@@ -56,14 +57,24 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
 
     @Override
     protected void onResume() {
+        try {
+            myAds.resume();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         super.onResume();
-        myAds.resume();
+
         // sampleServer.run();
     }
 
     @Override
     protected void onPause() {
-        myAds.pause();
+
+        try {
+            myAds.pause();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         super.onPause();
         // sampleServer.stop();
     }
