@@ -48,6 +48,10 @@ public class BookmarkPanel {
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {
+            if (appBookmark == dc.floatingBookmark) {
+                appBookmark.p = dc.floatingBookmark.p;
+            }
+
             final int num = appBookmark.getPage(dc.getPageCount());
             TextView t = new TextView(pageshelper.getContext());
             boolean isQuick = appBookmark.text.equals(quickBookmark);
@@ -58,6 +62,11 @@ public class BookmarkPanel {
             } else {
                 t.setText("" + (num));
             }
+
+            if (appBookmark.isF) {
+                t.setText(t.getText() + " :{" + appBookmark.getPage(dc.getPageCount()) + "}");
+            }
+
             t.setSingleLine();
             t.setGravity(Gravity.CENTER);
             t.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
@@ -75,6 +84,12 @@ public class BookmarkPanel {
                     //    dc.onScrollYPercent(appBookmark.getPercent());
                     //} else {
                     //}
+                    if (appBookmark.isF) {
+                        dc.floatingBookmark = appBookmark;
+                    } else {
+                        dc.floatingBookmark = null;
+                    }
+
                     dc.onGoToPage(num);
                 }
             });

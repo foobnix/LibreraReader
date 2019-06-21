@@ -28,6 +28,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -94,6 +95,8 @@ public abstract class DocumentController {
     public Handler handler2 = new Handler(Looper.getMainLooper());
 
     public long readTimeStart;
+
+    public AppBookmark floatingBookmark;
 
     public DocumentController(final Activity activity) {
         this.activity = activity;

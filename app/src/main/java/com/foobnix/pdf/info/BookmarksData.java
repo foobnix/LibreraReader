@@ -49,6 +49,8 @@ public class BookmarksData {
 
 
 
+
+
     public void remove(AppBookmark bookmark) {
         LOG.d("BookmarksData", "remove", bookmark.t, bookmark.file);
 
@@ -203,6 +205,7 @@ public class BookmarksData {
         //IO.writeObj(AppProfile.syncBookmarks.getPath(), "{}");
         AppData.get().clearAll(AppProfile.APP_BOOKMARKS_JSON);
     }
+
 
 
 }

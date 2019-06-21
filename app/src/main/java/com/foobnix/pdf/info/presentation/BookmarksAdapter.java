@@ -31,12 +31,14 @@ public class BookmarksAdapter extends BaseAdapter {
     private int muxnumberOfLines = 3;
     private String higlightText;
     private DocumentController controller;
+    private Runnable onRefresh;
 
-    public BookmarksAdapter(Context context, List<AppBookmark> objects, boolean submenu, DocumentController controller) {
+    public BookmarksAdapter(Context context, List<AppBookmark> objects, boolean submenu, DocumentController controller, Runnable onRefresh) {
         this.context = context;
         this.objects = objects;
         this.submenu = submenu;
         this.controller = controller;
+        this.onRefresh = onRefresh;
     }
 
     @Override
@@ -62,7 +64,12 @@ public class BookmarksAdapter extends BaseAdapter {
 
         String pageNumber = TxtUtils.deltaPage(AppTemp.get().isCut ? bookmark.getPage(controller.getPageCount()) * 2 : bookmark.getPage(controller.getPageCount()));
         titleView.setVisibility(View.GONE);
-        textView.setText(bookmark.getPage(controller.getPageCount()) + ": " + bookmark.text);
+
+        if (bookmark.isF) {
+            textView.setText("{" + bookmark.getPage(controller.getPageCount()) + "}" + ": " + bookmark.text);
+        } else {
+            textView.setText(bookmark.getPage(controller.getPageCount()) + ": " + bookmark.text);
+        }
 
         pageView.setText(pageNumber);
 
@@ -87,6 +94,10 @@ public class BookmarksAdapter extends BaseAdapter {
                 BookmarksData.get().remove(bookmark);
                 objects.remove(bookmark);
                 notifyDataSetChanged();
+
+                if(onRefresh!=null){
+                    onRefresh.run();
+                }
             }
         });
 

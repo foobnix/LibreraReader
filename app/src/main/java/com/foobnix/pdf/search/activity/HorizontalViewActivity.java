@@ -56,6 +56,7 @@ import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
@@ -124,7 +125,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    TextView toastBrightnessText, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
+    TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
     View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
@@ -238,6 +239,23 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         anchorX = (ImageView) findViewById(R.id.anchorX);
         anchorY = (ImageView) findViewById(R.id.anchorY);
+        floatingBookmarkTextView = findViewById(R.id.floatingBookmark);
+        floatingBookmarkTextView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dc != null && dc.floatingBookmark != null) {
+                    dc.onGoToPage(dc.floatingBookmark.getPage(dc.getPageCount()));
+                }
+            }
+        });
+        floatingBookmarkTextView.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                dc.floatingBookmark = null;
+                onRefresh.run();
+                return true;
+            }
+        });
 
         TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
         TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
@@ -1473,7 +1491,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         super.onDestroy();
 
 
-
     }
 
     public void nullAdapter() {
@@ -1767,6 +1784,18 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         LOG.d("_PAGE", "Update UI", page);
         dc.saveCurrentPage();
+
+        if (dc.floatingBookmark != null) {
+            dc.floatingBookmark.p = dc.getPercentage();
+            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1()+"}");
+            floatingBookmarkTextView.setVisibility(View.VISIBLE);
+
+            BookmarksData.get().add(dc.floatingBookmark);
+            showPagesHelper();
+        } else {
+            floatingBookmarkTextView.setVisibility(View.GONE);
+        }
+
     }
 
     public void loadUI() {
@@ -2348,6 +2377,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         // Toast.makeText(this, "onBackPressed", Toast.LENGTH_SHORT).show();
         if (isInterstialShown()) {
             onFinishActivity();
+            return;
+        }
+        if(dc.floatingBookmark!=null){
+            dc.floatingBookmark = null;
+            onRefresh.run();
             return;
         }
 

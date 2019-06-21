@@ -2169,7 +2169,7 @@ public class DragingDialogs {
 
     public static void showBookmarksDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
-        final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller);
+        final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller, onRefeshUI);
 
         final View.OnClickListener onAddBookmark = new View.OnClickListener() {
 
@@ -2185,6 +2185,12 @@ public class DragingDialogs {
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
                 final AppBookmark appBookmark = objects.get(position);
+                if (appBookmark.isF) {
+                    controller.floatingBookmark = appBookmark;
+                } else {
+                    controller.floatingBookmark = null;
+                }
+
                 int page = appBookmark.getPage(controller.getPageCount());
 
                 controller.onGoToPage(page);
@@ -2197,8 +2203,7 @@ public class DragingDialogs {
 
             @Override
             public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-                ListBoxHelper.showEditDeleteDialog(objects.get(position), controller, bookmarksAdapter, objects);
-                onRefeshUI.run();
+                ListBoxHelper.showEditDeleteDialog(objects.get(position), controller, bookmarksAdapter, objects, onRefeshUI);
                 return true;
             }
 

@@ -10,6 +10,8 @@ public class AppBookmark implements MyPath.RelativePath {
 
     public float p;
     public long t;
+    public boolean isF = false;
+
     transient public File file;
 
     public AppBookmark() {
@@ -22,6 +24,7 @@ public class AppBookmark implements MyPath.RelativePath {
         this.text = text;
         this.p = percent;
         t = System.currentTimeMillis();
+
     }
 
     public int getPage(int pages) {

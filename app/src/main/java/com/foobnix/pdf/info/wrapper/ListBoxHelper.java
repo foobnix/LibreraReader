@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.Gravity;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.model.AppBookmark;
@@ -23,6 +25,9 @@ public class ListBoxHelper {
 
         builder.setTitle(a.getString(R.string.bookmark_on_page_) + " " + controller.getCurentPageFirst1());
 
+        LinearLayout layout = new LinearLayout(a);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
         final EditText editText = new EditText(a);
         // editText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES |
         // InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -32,7 +37,15 @@ public class ListBoxHelper {
         editText.setText(text);
         editText.requestFocus();
 
-        builder.setView(editText);
+
+        CheckBox isFloat = new CheckBox(a);
+        isFloat.setText(a.getString(R.string.floating));
+
+
+        layout.addView(editText);
+        layout.addView(isFloat);
+
+        builder.setView(layout);
 
         builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
@@ -41,6 +54,7 @@ public class ListBoxHelper {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
                         final AppBookmark bookmark = new AppBookmark(controller.getCurrentBook().getPath(), text, controller.getPercentage());
+                        bookmark.isF = isFloat.isChecked();
                         BookmarksData.get().add(bookmark);
                         if (objects != null) {
                             objects.add(0, bookmark);
@@ -80,17 +94,30 @@ public class ListBoxHelper {
         BookmarksData.get().add(bookmark);
     }
 
-    public static void showEditDeleteDialog(final AppBookmark bookmark, DocumentController controller, final BookmarksAdapter bookmarksAdapter, final List<AppBookmark> objects) {
+    public static void showEditDeleteDialog(final AppBookmark bookmark, DocumentController controller, final BookmarksAdapter bookmarksAdapter, final List<AppBookmark> objects, Runnable onRefresh) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());
         builder.setTitle(controller.getActivity().getString(R.string.bookmark_on_page_) + " " + controller.getCurentPage());
+
+
+        LinearLayout layout = new LinearLayout(controller.getActivity());
+        layout.setOrientation(LinearLayout.VERTICAL);
+
         final EditText editText = new EditText(controller.getActivity());
         editText.setLines(6);
         editText.setGravity(Gravity.TOP);
         editText.setText(bookmark.getText());
         editText.requestFocus();
 
-        builder.setView(editText);
+
+        CheckBox isFloat = new CheckBox(controller.getActivity());
+        isFloat.setText(controller.getString(R.string.floating));
+        isFloat.setChecked(bookmark.isF);
+
+        layout.addView(editText);
+        layout.addView(isFloat);
+
+        builder.setView(layout);
 
         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             @Override
@@ -99,11 +126,17 @@ public class ListBoxHelper {
                     final String text = editText.getText().toString();
                     if (text != null && !text.trim().equals("")) {
                         bookmark.text = text;
-                        BookmarksData.get().remove(bookmark);
+                        //BookmarksData.get().remove(bookmark);
+                        bookmark.isF = isFloat.isChecked();
                         BookmarksData.get().add(bookmark);
 
                         bookmarksAdapter.notifyDataSetChanged();
                         Keyboards.close(editText);
+
+                        if(onRefresh!=null){
+                            onRefresh.run();
+                        }
+
                     }
                 } catch (final Exception e) {
                 }
@@ -125,6 +158,10 @@ public class ListBoxHelper {
                 BookmarksData.get().remove(bookmark);
                 objects.remove(bookmark);
                 bookmarksAdapter.notifyDataSetChanged();
+
+                if(onRefresh!=null){
+                    onRefresh.run();
+                }
 
                 dialog.dismiss();
             }
