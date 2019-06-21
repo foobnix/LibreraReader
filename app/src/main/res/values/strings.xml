@@ -219,7 +219,7 @@
    <string name="apply">Apply</string>
    <string name="cancel">Cancel</string>
    <string name="close">Close</string>
-   <string name="restore_defaults_full">Restore default?</string>
+   <string name="restore_defaults_full">Restore default settings?</string>
    <string name="send_file_to">Send file to</string>
    <string name="apply_a_new_screen_orientation_">Apply new screen orientation?</string>
    <string name="send_mail">Send email</string>
