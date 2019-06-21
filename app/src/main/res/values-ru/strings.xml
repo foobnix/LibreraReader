@@ -544,8 +544,8 @@
    <string name="sync_error">Ошибка синхронизации</string>
    <string name="sign_in">Вход в аккаунт</string>
    <string name="sign_out">Выход</string>
-   <string name="manual_sync_only">Cинхронизировать только выборочно (вручную)</string>
-   <string name="wifi_sync_only">Синхронизировать все данные при подключении к сети Wi-Fi</string>
+   <string name="manual_sync_only">Cинхронизировать только вручную</string>
+   <string name="wifi_sync_only">Синхронизировать только по Wi-Fi</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
    <string name="single_tap_to_select_text">Выделять текст коротким тапом вместо длинного</string>
    <string name="sync_book">Синхронизировать книгу</string>
@@ -555,7 +555,7 @@
    <string name="downloads">Загрузки</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пуста. Всё равно удалить?</string>
    <string name="synchronized_books">Синхронизированные книги</string>
-   <string name="show_sync_wheel">Показывать крутящееся колёсико синхронизации</string>
+   <string name="show_sync_wheel">Показывать индикатор синхронизации</string>
    <string name="publication_date">Год издания</string>
    <string name="empy">Пусто</string>
    <string name="show_quick_bookmarks">Показывать быстрые закладки</string>
