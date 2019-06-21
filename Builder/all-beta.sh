@@ -7,9 +7,9 @@
 cd ../
 
 ./gradlew clean incVersion
-#./gradlew assembleBetaRelease
-./gradlew assembleLibreraRelease
-#./gradlew assembleFdroidRelease
+
+./gradlew assembleBetaRelease
+
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
@@ -18,6 +18,6 @@ cd Builder
 ./install_all.sh
 ./clear-cache.sh
 
-dropbox stop
-sleep 10
-dropbox start
+#dropbox stop
+#sleep 10
+#dropbox start

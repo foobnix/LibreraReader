@@ -484,6 +484,11 @@ public class DragingDialogs {
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller, final String textToRead) {
 
+
+        if (controller == null) {
+            return;
+        }
+
         if (TTSEngine.get().hasNoEngines()) {
             Urls.openTTS(controller.getActivity());
             return;

@@ -4,7 +4,13 @@
 
 cd ../
 
-./gradlew assembleLibreraRelease
+./gradlew clean incVersion
+
+./gradlew assembleBetaRelease
+./gradlew assembleEbookaRelease
+./gradlew assembleTts_readerRelease
+
+
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
