@@ -636,7 +636,7 @@ public class GFile {
 
                 java.io.File local = new java.io.File(ioRoot, filePath);
 
-                if (!hasLastModified(local) && local.length() == remote.getSize().longValue()) {
+                if (!hasLastModified(local) || (!local.getName().endsWith(".json") && local.length() == remote.getSize().longValue())) {
                     setLastModifiedTime(local, remote.getModifiedTime().getValue());
                     skip = true;
                     //debugOut += "\n skip: " + local.getName();

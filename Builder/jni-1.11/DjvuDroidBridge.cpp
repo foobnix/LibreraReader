@@ -228,6 +228,8 @@ jobject get_djvu_hyperlink_mapping(JNIEnv *jenv, ddjvu_document_t* djvu_document
         return hl;
     }
 
+
+
     jclass pagelinkClass = jenv->FindClass("org/ebookdroid/core/codec/PageLink");
     if (!pagelinkClass)
     {
@@ -247,7 +249,13 @@ jobject get_djvu_hyperlink_mapping(JNIEnv *jenv, ddjvu_document_t* djvu_document
 
     jstring jstr = jenv->NewStringUTF(url);
 
-    hl = jenv->NewObject(pagelinkClass, plInitMethodId, jstr, (jint) type, points);
+    DEBUG_PRINT("DjvuLibre: Hyperlink url: %s len: %d", url, len);
+
+
+
+
+
+    hl = jenv->NewObject(pagelinkClass, plInitMethodId, jstr, points);
 
     jenv->DeleteLocalRef(jstr);
     jenv->DeleteLocalRef(points);

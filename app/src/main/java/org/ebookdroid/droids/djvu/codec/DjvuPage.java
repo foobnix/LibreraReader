@@ -205,12 +205,13 @@ public class DjvuPage extends AbstractCodecPage {
         return pageHandle == 0;
     }
 
-    @Override
-    public List<PageLink> getPageLinks() {
+
+    public List<PageLink> getPageLinks2() {
         return Collections.emptyList();
     }
 
-    public List<PageLink> getPageLinks1() {
+    @Override
+    public synchronized List<PageLink> getPageLinks() {
         TempHolder.lock.lock();
         try {
             final List<PageLink> links = getPageLinks(docHandle, pageNo);
