@@ -36,6 +36,7 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
+import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -92,7 +93,7 @@ public class DocumentWrapperUI {
     Activity a;
     String bookTitle;
 
-    TextView toastBrightnessText, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
+    TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
@@ -205,6 +206,12 @@ public class DocumentWrapperUI {
         if (AppState.get().isAutoScroll) {
             AppState.get().isAutoScroll = false;
             updateUI();
+            return true;
+        }
+
+        if(dc.floatingBookmark!=null){
+            dc.floatingBookmark = null;
+            onRefresh.run();
             return true;
         }
 
@@ -473,6 +480,17 @@ public class DocumentWrapperUI {
         dc.saveCurrentPage();
         //SharedBooks.save(bs);
 
+        if (dc.floatingBookmark != null) {
+            dc.floatingBookmark.p = dc.getPercentage();
+            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1()+"}");
+            floatingBookmarkTextView.setVisibility(View.VISIBLE);
+
+            BookmarksData.get().add(dc.floatingBookmark);
+            showPagesHelper();
+        } else {
+            floatingBookmarkTextView.setVisibility(View.GONE);
+        }
+
     }
 
     public void hideShowPrevNext() {
@@ -598,10 +616,27 @@ public class DocumentWrapperUI {
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
-        dc.initAnchor(anchor);
 
         anchorX = (ImageView) a.findViewById(R.id.anchorX);
         anchorY = (ImageView) a.findViewById(R.id.anchorY);
+
+        floatingBookmarkTextView = a.findViewById(R.id.floatingBookmark);
+        floatingBookmarkTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dc.floatingBookmark = null;
+                onRefresh.run();
+                onBookmarks.onClick(v);
+            }
+        });
+        floatingBookmarkTextView.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                dc.floatingBookmark = null;
+                onRefresh.run();
+                return true;
+            }
+        });
 
         TintUtil.setTintImageWithAlpha(anchorX, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);
         TintUtil.setTintImageWithAlpha(anchorY, AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW, 150);

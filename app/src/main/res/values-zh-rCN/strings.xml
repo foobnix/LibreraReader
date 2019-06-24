@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">用红线显示最后一页</string>
    <string name="show_dividing_lines_on_pages_more_contrast">显示页面上的分界线更具对比度</string>
    <string name="clear_log">清除日志</string>
+   <string name="floating_bookmark">浮动书签</string>
 </resources>

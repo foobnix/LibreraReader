@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">Son sayfayı kırmızı çizgiyle göster</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
    <string name="clear_log">Günlüğü temizle</string>
+   <string name="floating_bookmark">Kayan yer imi</string>
 </resources>

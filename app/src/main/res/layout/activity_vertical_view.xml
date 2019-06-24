@@ -134,7 +134,22 @@
         android:layout_below="@+id/document_title_bar"
         android:layout_centerHorizontal="true" />
 
-
+    <TextView
+        android:id="@+id/floatingBookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/wh_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="4dip"
+        android:layout_marginBottom="20dip"
+        android:background="@drawable/bg_border_ltgray_dash2"
+        android:gravity="center"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:singleLine="true"
+        android:text="718"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
     <FrameLayout

@@ -39,7 +39,7 @@ public class ListBoxHelper {
 
 
         CheckBox isFloat = new CheckBox(a);
-        isFloat.setText(a.getString(R.string.floating));
+        isFloat.setText(a.getString(R.string.floating_bookmark));
 
 
         layout.addView(editText);
@@ -111,7 +111,7 @@ public class ListBoxHelper {
 
 
         CheckBox isFloat = new CheckBox(controller.getActivity());
-        isFloat.setText(controller.getString(R.string.floating));
+        isFloat.setText(controller.getString(R.string.floating_bookmark));
         isFloat.setChecked(bookmark.isF);
 
         layout.addView(editText);

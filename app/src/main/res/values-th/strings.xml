@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">แสดงหน้าสุดท้ายด้วยเส้นสีแดง</string>
    <string name="show_dividing_lines_on_pages_more_contrast">แสดงเส้นแบ่งบนหน้าเว็บที่มีความคมชัดมากขึ้น</string>
    <string name="clear_log">บันทึกที่ชัดเจน</string>
+   <string name="floating_bookmark">บุ๊คมาร์คลอย</string>
 </resources>

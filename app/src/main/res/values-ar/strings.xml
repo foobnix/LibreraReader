@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">اعرض الصفحة الأخيرة بالخط الأحمر</string>
    <string name="show_dividing_lines_on_pages_more_contrast">عرض خطوط تقسيم على الصفحات أكثر تباينًا</string>
    <string name="clear_log">سجل نظيف</string>
+   <string name="floating_bookmark">المرجعية العائمة</string>
 </resources>

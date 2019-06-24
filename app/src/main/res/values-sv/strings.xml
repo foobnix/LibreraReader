@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">Visa den sista sidan med den röda linjen</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Visa delningslinjer på sidor mer kontrast</string>
    <string name="clear_log">Rensa logg</string>
+   <string name="floating_bookmark">Flytande bokmärke</string>
 </resources>

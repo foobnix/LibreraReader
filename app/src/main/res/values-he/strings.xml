@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">הצג את העמוד האחרון עם הקו האדום</string>
    <string name="show_dividing_lines_on_pages_more_contrast">הצג שורות המפרידות על דפים יותר ניגודיות</string>
    <string name="clear_log">יומן ברור</string>
+   <string name="floating_bookmark">סימניה צף</string>
 </resources>

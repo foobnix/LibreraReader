@@ -48,9 +48,6 @@ public class BookmarkPanel {
 
         List<AppBookmark> all = BookmarksData.get().getBookmarksByBook(dc.getCurrentBook());
         for (final AppBookmark appBookmark : all) {
-            if (appBookmark == dc.floatingBookmark) {
-                appBookmark.p = dc.floatingBookmark.p;
-            }
 
             final int num = appBookmark.getPage(dc.getPageCount());
             TextView t = new TextView(pageshelper.getContext());

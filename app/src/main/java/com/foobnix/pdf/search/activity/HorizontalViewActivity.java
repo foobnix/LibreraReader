@@ -243,9 +243,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         floatingBookmarkTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dc != null && dc.floatingBookmark != null) {
-                    dc.onGoToPage(dc.floatingBookmark.getPage(dc.getPageCount()));
-                }
+                dc.floatingBookmark = null;
+                onRefresh.run();
+                onBookmarks.onClick(v);
             }
         });
         floatingBookmarkTextView.setOnLongClickListener(new OnLongClickListener() {

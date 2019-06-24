@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">Mostra l\'ultima pagina con la linea rossa</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linee di divisione su pagine più contrastanti</string>
    <string name="clear_log">Pulisci il registro</string>
+   <string name="floating_bookmark">Segnalibro mobile</string>
 </resources>

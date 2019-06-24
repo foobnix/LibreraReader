@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">Marquer la dernière page avec des lignes rouges</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Séparateurs de pages plus visibles</string>
    <string name="clear_log">Effacer le journal</string>
+   <string name="floating_bookmark">Signet flottant</string>
 </resources>

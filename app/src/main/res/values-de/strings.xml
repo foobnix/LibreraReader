@@ -578,4 +578,5 @@
    <string name="show_the_last_page_with_the_red_line">Zeige die letzte Seite mit der roten Linie</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Trennlinien auf Seiten kontrastreicher anzeigen</string>
    <string name="clear_log">Protokoll löschen</string>
+   <string name="floating_bookmark">Schwebendes Lesezeichen</string>
 </resources>
