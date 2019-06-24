@@ -11,6 +11,7 @@ import android.support.v4.graphics.ColorUtils;
 import android.text.TextPaint;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
@@ -198,6 +199,10 @@ public class EventDraw implements IEvent {
     }
 
     protected void drawPageBackground(final Page page) {
+        if(canvas==null){
+            LOG.d("canvas is null");
+        }
+
         fixedPageBounds.set(pageBounds);
         fixedPageBounds.offset(-viewState.viewBase.x, -viewState.viewBase.y);
 

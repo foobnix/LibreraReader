@@ -2417,6 +2417,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             handler.removeCallbacksAndMessages(null);
         }
         nullAdapter();
+
         if (dc != null) {
             dc.saveCurrentPageAsync();
             dc.onCloseActivityFinal(null);

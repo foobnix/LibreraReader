@@ -83,6 +83,10 @@ public class ImageLoader {
     protected ImageLoader() {
     }
 
+    public int getTaskCount(){
+        return engine.getTaskCount();
+    }
+
     /**
      * Initializes ImageLoader instance with configuration.<br />
      * If configurations was set before ( {@link #isInited()} == true) then this

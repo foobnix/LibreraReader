@@ -12,12 +12,22 @@ import java.util.Random;
 
 public class Safe {
 
-    public static final String TXT_SAFE_RUN = "SAFE_RUN-";
+    public static final String TXT_SAFE_RUN = "file://SAFE_RUN-";
 
     static Random r = new Random();
 
+
     public static void run(final Runnable action) {
-        LOG.d(TXT_SAFE_RUN, "run");
+
+        final int taskCount = ImageLoader.getInstance().getTaskCount();
+        if (taskCount == 0) {
+            LOG.d(TXT_SAFE_RUN, "run direct");
+            action.run();
+            return;
+        }
+
+        LOG.d(TXT_SAFE_RUN, "run background : tasks "+taskCount);
+
         ImageLoader.getInstance().clearAllTasks();
         LOG.d(TXT_SAFE_RUN, "clearAllTasks");
         ImageLoader.getInstance().loadImage(TXT_SAFE_RUN, IMG.noneOptions, new SimpleImageLoadingListener() {

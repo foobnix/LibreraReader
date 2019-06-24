@@ -86,7 +86,7 @@ public class ImagePageFragment extends Fragment {
     int loadImageId;
 
     public void loadImage() {
-        if (getPriority() > 2 || isDetached() || !isVisible()) {
+        if (getPriority() > 2 || isDetached() || !isAdded() || !isVisible()) {
             LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority(), "page");
             return;
         }
