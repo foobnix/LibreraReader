@@ -22,7 +22,7 @@ public class BookmarkPanel {
 
     private static final int SIZE = Dips.DP_40;
 
-    public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel, final DocumentController dc, final View pagesBookmark, final String quickBookmark) {
+    public static void showPagesHelper(final LinearLayout pageshelper, final View musicButtonPanel, final DocumentController dc, final View pagesBookmark, final String quickBookmark, final Runnable onRefresh) {
         pageshelper.removeAllViews();
         if (dc == null) {
             return;
@@ -98,8 +98,13 @@ public class BookmarkPanel {
 
                         @Override
                         public void run() {
+                            if (appBookmark.isF) {
+                                dc.floatingBookmark = null;
+                                onRefresh.run();
+                            }
                             BookmarksData.get().remove(appBookmark);
-                            showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+                            showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark, onRefresh);
+
                         }
                     });
 

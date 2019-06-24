@@ -96,7 +96,7 @@ public abstract class DocumentController {
 
     public long readTimeStart;
 
-    public AppBookmark floatingBookmark;
+    public volatile  AppBookmark floatingBookmark;
 
     public DocumentController(final Activity activity) {
         this.activity = activity;

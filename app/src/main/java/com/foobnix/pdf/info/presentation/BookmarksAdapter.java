@@ -91,11 +91,17 @@ public class BookmarksAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
+                if (bookmark.isF) {
+                    controller.floatingBookmark = null;
+                }
+
                 BookmarksData.get().remove(bookmark);
+
+
                 objects.remove(bookmark);
                 notifyDataSetChanged();
 
-                if(onRefresh!=null){
+                if (onRefresh != null) {
                     onRefresh.run();
                 }
             }

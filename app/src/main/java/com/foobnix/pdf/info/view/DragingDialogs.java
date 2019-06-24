@@ -2184,6 +2184,8 @@ public class DragingDialogs {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 
+
+
                 final AppBookmark appBookmark = objects.get(position);
                 if (appBookmark.isF) {
                     controller.floatingBookmark = appBookmark;
@@ -2191,11 +2193,15 @@ public class DragingDialogs {
                     controller.floatingBookmark = null;
                 }
 
+                LOG.d("onItem", appBookmark);
+
                 int page = appBookmark.getPage(controller.getPageCount());
 
                 controller.onGoToPage(page);
 
                 onRefeshUI.run();
+
+
             }
         };
 

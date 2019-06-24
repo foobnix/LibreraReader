@@ -480,6 +480,7 @@ public class DocumentWrapperUI {
         dc.saveCurrentPage();
         //SharedBooks.save(bs);
 
+        LOG.d("dc.floatingBookmark",dc.floatingBookmark);
         if (dc.floatingBookmark != null) {
             dc.floatingBookmark.p = dc.getPercentage();
             floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1()+"}");
@@ -1525,6 +1526,7 @@ public class DocumentWrapperUI {
                 public void run() {
                     showHideHistory();
                     showPagesHelper();
+                    updateUI();
                 }
             });
         }
@@ -1950,7 +1952,7 @@ public class DocumentWrapperUI {
 
     public void showPagesHelper() {
         try {
-            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark, onRefresh);
         } catch (Exception e) {
             LOG.e(e);
         }

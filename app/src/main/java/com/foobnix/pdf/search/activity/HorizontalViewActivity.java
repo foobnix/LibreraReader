@@ -1071,7 +1071,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void showPagesHelper() {
         try {
-            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark);
+            BookmarkPanel.showPagesHelper(pageshelper, musicButtonPanel, dc, pagesBookmark, quickBookmark, onRefresh);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1088,6 +1088,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 public void run() {
                     showHideHistory();
                     showPagesHelper();
+                    updateUI(dc.getCurrentPage());
                 }
             });
         }
