@@ -63,7 +63,7 @@ class ImageLoaderEngine {
         taskExecutor = configuration.taskExecutor;
         taskExecutorForCachedImages = configuration.taskExecutorForCachedImages;
 
-        // taskDistributor = DefaultConfigurationFactory.createTaskDistributor();
+        //taskDistributor = DefaultConfigurationFactory.createTaskDistributor();
     }
 
     public int getTaskCount() {
