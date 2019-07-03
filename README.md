@@ -36,7 +36,7 @@ sudo apt-get install mesa-common-dev libxcursor-dev  libxrandr-dev libxinerama-d
 
 MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11-source.tar.xz)
 
-MuPDF changed source ./LibreraReader/Builder/jni-1.11/
+MuPDF changed source `./LibreraReader/Builder/jni-1.11/`
 
 * EbookDroid
 * djvulibre
