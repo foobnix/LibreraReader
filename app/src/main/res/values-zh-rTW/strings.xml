@@ -570,13 +570,13 @@
    <string name="emphasis">強調</string>
    <string name="with_cutout">與剪切塊</string>
    <string name="screen">屏幕</string>
-   <string name="please_enter_more_characters_to_search">請輸入更多字符進行搜索。</string>
+   <string name="please_enter_more_characters_to_search">請輸入更多字符以進行搜索。</string>
    <string name="enable_experimental_features">啟用實驗功能</string>
-   <string name="display_original_file_names_without_metadata">顯示原始文件名（無元數據）</string>
+   <string name="display_original_file_names_without_metadata">顯示原始文件名稱（無元數據）</string>
    <string name="use_fingerprint_as_the_password">使用指紋作為密碼</string>
-   <string name="show_tap_zones_on_screen">在屏幕上顯示分區</string>
-   <string name="show_the_last_page_with_the_red_line">用紅線顯示最後一頁</string>
-   <string name="show_dividing_lines_on_pages_more_contrast">顯示頁面上的分界線更具對比度</string>
+   <string name="show_tap_zones_on_screen">在屏上顯示點擊區</string>
+   <string name="show_the_last_page_with_the_red_line">用紅線來顯示末頁</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">頁面上顯示分界線（更具對比）</string>
    <string name="clear_log">清除日誌</string>
    <string name="floating_bookmark">浮動書籤</string>
 </resources>
