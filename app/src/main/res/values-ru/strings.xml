@@ -570,13 +570,13 @@
    <string name="emphasis">Ударение(-я)</string>
    <string name="with_cutout">С вырезом</string>
    <string name="screen">Экран</string>
-   <string name="please_enter_more_characters_to_search">Пожалуйста, введите больше символов для поиска.</string>
+   <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
    <string name="enable_experimental_features">Включить экспериментальные функции</string>
-   <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без метаданных)</string>
+   <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
    <string name="use_fingerprint_as_the_password">Использовать отпечаток пальца в качестве пароля</string>
-   <string name="show_tap_zones_on_screen">Показывать тап-зоны на экране</string>
-   <string name="show_the_last_page_with_the_red_line">Показать последнюю страницу с красной линией</string>
-   <string name="show_dividing_lines_on_pages_more_contrast">Показывать разделительные линии на страницах более контрастно</string>
+   <string name="show_tap_zones_on_screen">Показывать и использовать наэкранные тап-зоны</string>
+   <string name="show_the_last_page_with_the_red_line">Чертить красную линию после самой последней страницы</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">Обозначать межстраничные разделительные линии более контрастно</string>
    <string name="clear_log">Очистить журнал</string>
-   <string name="floating_bookmark">Плавающая закладка</string>
+   <string name="floating_bookmark">"Плавающая" закладка</string>
 </resources>
