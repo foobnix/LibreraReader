@@ -570,13 +570,13 @@
    <string name="emphasis">强调</string>
    <string name="with_cutout">与剪切块</string>
    <string name="screen">屏幕</string>
-   <string name="please_enter_more_characters_to_search">请输入更多字符进行搜索。</string>
+   <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
    <string name="enable_experimental_features">启用实验功能</string>
-   <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>
+   <string name="display_original_file_names_without_metadata">显示原始文件名称（无元数据）</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
-   <string name="show_tap_zones_on_screen">在屏幕上显示分区</string>
-   <string name="show_the_last_page_with_the_red_line">用红线显示最后一页</string>
-   <string name="show_dividing_lines_on_pages_more_contrast">显示页面上的分界线更具对比度</string>
+   <string name="show_tap_zones_on_screen">在屏上显示点击区</string>
+   <string name="show_the_last_page_with_the_red_line">用红线来显示末页</string>
+   <string name="show_dividing_lines_on_pages_more_contrast">页面上显示分界线（更具对比）</string>
    <string name="clear_log">清除日志</string>
    <string name="floating_bookmark">浮动书签</string>
 </resources>
