@@ -110,30 +110,6 @@
                     android:textSize="@dimen/text_subtitle"
                     android:textStyle="italic" />
 
-                <TextView
-                    android:id="@+id/browserPath"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="2dip"
-                    android:layout_weight="0"
-                    android:singleLine="true"
-                    android:text=""
-                    android:textSize="@dimen/text_subtitle"
-                    android:visibility="invisible" />
-
-                <TextView
-                    android:id="@+id/browserSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dip"
-                    android:layout_weight="0"
-                    android:singleLine="true"
-                    android:text="4Kb"
-                    android:textSize="@dimen/text_subtitle"
-                    android:visibility="gone" />
-
-
                 <ImageView
                     android:id="@+id/cloudImage"
                     android:layout_width="@dimen/wh_button_small"

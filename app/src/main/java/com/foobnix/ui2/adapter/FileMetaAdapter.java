@@ -741,14 +741,18 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.tags.setVisibility(View.GONE);
             }
         }
-        holder.path.setText(fileMeta.getPathTxt());
+        if (holder.path != null) {
+            holder.path.setText(fileMeta.getPathTxt());
+        }
 
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
-        if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
-            holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
-        } else {
-            holder.size.setText(fileMeta.getSizeTxt());
+        if (holder.size != null) {
+            if (fileMeta.getPages() != null && fileMeta.getPages() != 0) {
+                holder.size.setText(fileMeta.getSizeTxt() + " (" + fileMeta.getPages() + ")");
+            } else {
+                holder.size.setText(fileMeta.getSizeTxt());
 
+            }
         }
         if (holder.date != null) {
             holder.date.setText(fileMeta.getDateTxt());
@@ -840,8 +844,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
         if (adapterType == ADAPTER_GRID || adapterType == ADAPTER_COVERS) {
-            holder.path.setVisibility(View.GONE);
-            holder.size.setVisibility(View.GONE);
+            if (holder.path != null) {
+                holder.path.setVisibility(View.GONE);
+            }
+            if (holder.size != null) {
+                holder.size.setVisibility(View.GONE);
+            }
 
             int sizeDP = AppState.get().coverBigSize;
             if (tempValue == TEMP_VALUE_STAR_GRID_ITEM) {
@@ -982,7 +990,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (AppState.get().isShowOnlyOriginalFileNames) {
-            holder.path.setVisibility(View.INVISIBLE);
+            if(holder.path!=null) {
+                holder.path.setVisibility(View.INVISIBLE);
+            }
             holder.author.setVisibility(View.GONE);
             if (holder.series != null) {
                 holder.series.setVisibility(View.GONE);
