@@ -105,7 +105,7 @@ android {
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "true"
+            buildConfigField "boolean", "LOG", "false"
 
         }
         pro {
