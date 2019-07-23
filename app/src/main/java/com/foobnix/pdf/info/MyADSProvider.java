@@ -32,7 +32,7 @@ public class MyADSProvider {
         }
     }
 
-    public void activate(final Activity a, final Runnable finish) {
+    public void activate(final Activity a, boolean withInterstitial, final Runnable finish) {
         this.a = a;
 
         if (AppsConfig.checkIsProInstalled(a)) {
@@ -42,17 +42,18 @@ public class MyADSProvider {
 
         ADS.activateAdmobSmartBanner(a, adView);
 
-        if (handler == null) {
-            return;
-        }
+        if(withInterstitial) {
+            if (handler == null) {
+                return;
+            }
 
-        handler.removeCallbacksAndMessages(null);
+            handler.removeCallbacksAndMessages(null);
 
-        Runnable r = new Runnable() {
+            Runnable r = new Runnable() {
 
-            @Override
-            public void run() {
-                try {
+                @Override
+                public void run() {
+                    try {
                         mInterstitialAd = new InterstitialAd(a);
                         mInterstitialAd.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_FULLSCREEN_ID"));
                         mInterstitialAd.setAdListener(new AdListener() {
@@ -62,17 +63,18 @@ public class MyADSProvider {
                             }
                         });
                         mInterstitialAd.loadAd(ADS.adRequest);
-                } catch (Exception e) {
-                    LOG.e(e);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
                 }
-            }
 
-        };
-        LOG.d("ADS post delay postDelayed", intetrstialTimeout);
-        if (LOG.isEnable) {
-            handler.postDelayed(r, 0);
-        } else {
-            handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
+            };
+            LOG.d("ADS post delay postDelayed", intetrstialTimeout);
+            if (LOG.isEnable) {
+                handler.postDelayed(r, 0);
+            } else {
+                handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
+            }
         }
 
     }

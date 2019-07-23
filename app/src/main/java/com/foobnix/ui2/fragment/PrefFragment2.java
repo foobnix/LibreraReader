@@ -539,7 +539,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
-                ((MainTabs2) getActivity()).showInterstial();
+                getActivity().finish();
             }
         });
 

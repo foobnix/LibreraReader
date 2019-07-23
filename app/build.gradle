@@ -83,8 +83,7 @@ android {
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
 
             buildConfigField "boolean", "IS_BETA", "true"
@@ -102,12 +101,11 @@ android {
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
+            buildConfigField "boolean", "LOG", "true"
 
         }
         pro {
@@ -120,8 +118,7 @@ android {
                     appGdriveKey  : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
                     admobAppId    : "",
                     admobBannerId : "",
-                    admobFullId   : "",
-                    removeInternet: "false"
+                    admobFullId   : ""
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -138,8 +135,7 @@ android {
                     appGdriveKey  : "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8457312875",
                     admobBannerId : "ca-app-pub-8347903083053959/5364245672",
-                    admobFullId   : "ca-app-pub-8347903083053959/7763820878",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/7763820878"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -156,8 +152,7 @@ android {
                     appGdriveKey  : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5153060505",
                     admobBannerId : "ca-app-pub-8347903083053959/6159730856",
-                    admobFullId   : "ca-app-pub-8347903083053959/2346153515",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -174,8 +169,7 @@ android {
                     appGdriveKey  : "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5943988213",
                     admobBannerId : "ca-app-pub-8347903083053959/6705625294",
-                    admobFullId   : "ca-app-pub-8347903083053959/1346267659",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/1346267659"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -192,8 +186,7 @@ android {
                     appGdriveKey  : "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~1533135764",
                     admobBannerId : "ca-app-pub-8347903083053959/2702801102",
-                    admobFullId   : "ca-app-pub-8347903083053959/4602986382",
-                    removeInternet: "false"
+                    admobFullId   : "ca-app-pub-8347903083053959/4602986382"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -210,8 +203,7 @@ android {
                     appGdriveKey  : "961762082517-p6b2kqqimju6rlp314mu56lipvq2m68r.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8118779310",
                     admobBannerId : "ca-app-pub-8347903083053959/1553370961",
-                    admobFullId   : "ca-app-pub-8347903083053959/6163356354",
-                    removeInternet: "fasle"
+                    admobFullId   : "ca-app-pub-8347903083053959/6163356354"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -228,8 +220,7 @@ android {
                     appGdriveKey  : "",
                     admobAppId    : "",
                     admobBannerId : "",
-                    admobFullId   : "",
-                    removeInternet: "remove"
+                    admobFullId   : ""
             ]
             versionNameSuffix '-fdroid'
             buildConfigField "boolean", "IS_BETA", "false"

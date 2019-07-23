@@ -91,6 +91,7 @@ import test.SvgActivity;
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
 
+
     private static final String TAG = "MainTabs";
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
@@ -188,6 +189,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
+        withInterstitial = false;
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
         GFile.runSyncService(this);
@@ -220,7 +222,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         super.onCreate(savedInstanceState);
         //FirebaseAnalytics.getInstance(this);
 
-        if(false) {
+        if (false) {
             startActivity(new Intent(this, SvgActivity.class));
             return;
         }
@@ -626,7 +628,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         try {
-            if(pager!=null) {
+            if (pager != null) {
                 final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
                 uiFragment.onSelectFragment();
             }
@@ -818,10 +820,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (isInterstialShown()) {
-            onFinishActivity();
-            return;
-        }
 
         if (drawerLayout != null && drawerLayout.isDrawerOpen(Gravity.START)) {
             drawerLayout.closeDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
@@ -835,7 +833,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             CloseAppDialog.show(this, closeActivityRunnable);
         } else {
-            finish();
+            closeActivityRunnable.run();
         }
     }
 
@@ -843,7 +841,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         @Override
         public void run() {
-            showInterstial();
+//            TTSNotification.hideNotification();
+//            TTSEngine.get().shutdown();
+//            adsPause();
+            finish();
         }
     };
 

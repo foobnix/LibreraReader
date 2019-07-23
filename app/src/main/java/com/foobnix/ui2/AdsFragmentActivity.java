@@ -38,6 +38,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
     }
+    protected  boolean withInterstitial = true;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
     }
 
     public void activateAds() {
-        myAds.activate(this, onFinish);
+        myAds.activate(this, withInterstitial, onFinish);
     }
 
     @Override
