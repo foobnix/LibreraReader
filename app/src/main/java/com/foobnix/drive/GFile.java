@@ -172,7 +172,7 @@ public class GFile {
         do {
             //debugOut += "\n:" + q;
 
-            final FileList list = googleDriveService.files().list().setSpaces("drive").setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
+            final FileList list = (FileList) googleDriveService.files().list().setSpaces("drive").setQ(q).setPageToken(nextPageToken).setFields("nextPageToken, files(*)").setPageSize(PAGE_SIZE).setOrderBy("modifiedTime").execute();
             nextPageToken = list.getNextPageToken();
             res.addAll(list.getFiles());
             debugOut += "\nGet remote files info: " + list.getFiles().size();

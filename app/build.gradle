@@ -304,15 +304,6 @@ dependencies {
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
 
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
-
-    implementation 'com.google.http-client:google-http-client-gson:1.28.0'
-    implementation('com.google.api-client:google-api-client-android:1.28.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-drive:v3-rev156-1.25.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -338,7 +329,8 @@ dependencies {
     epub_readerImplementation 'com.google.firebase:firebase-core:16+'
 
 
-    proImplementation 'com.google.firebase:firebase-core:16+'
+    //proImplementation 'com.google.firebase:firebase-core:16+'
+
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
@@ -350,6 +342,21 @@ dependencies {
     tts_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     pdf_classicImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     epub_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+
+
+    //F-DROID REMOVE THIS LINES BEGIN
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+    implementation 'com.google.http-client:google-http-client-gson:1.28.0'
+    implementation('com.google.api-client:google-api-client-android:1.28.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    implementation('com.google.apis:google-api-services-drive:v3-rev156-1.25.0') {
+        exclude group: 'org.apache.httpcomponents'
+    }
+    //F-DROID REMOVE THIS LINES END
+
+
 }
 
 
@@ -401,4 +408,5 @@ task incVersion() {
 
 }
 
+//F-DROID REMOVE THIS LINE
 apply plugin: 'com.google.gms.google-services'
