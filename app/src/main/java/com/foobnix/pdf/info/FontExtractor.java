@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
+import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -62,13 +63,19 @@ public class FontExtractor {
                             } else {
                                 LOG.d("extractFonts NO");
                             }
+                        } else if (BuildConfig.IS_FDROID) {
+                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(FONT_LOCAL_ZIP));
+                            copyFontsFromZip();
+                            LOG.d("copy fonts for IS_FDROID");
                         }
                     }
                 } catch (Exception e) {
                     LOG.e(e);
                 }
 
-            };
+            }
+
+            ;
         }.start();
 
     }
@@ -135,7 +142,9 @@ public class FontExtractor {
                     protected void onPreExecute() {
                         progressDialog = ProgressDialog.show(a, "", a.getString(R.string.please_wait));
 
-                    };
+                    }
+
+                    ;
 
                     @Override
                     protected Object doInBackground(Object... params) {
@@ -197,7 +206,9 @@ public class FontExtractor {
                         if (hasZipFonts() && label2 != null) {
                             label2.performClick();
                         }
-                    };
+                    }
+
+                    ;
 
                 }.execute();
             }

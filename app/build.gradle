@@ -6,8 +6,8 @@ ext {
     db = Integer.parseInt(appDB)
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]"
-    
-    
+
+
 }
 
 android {
@@ -84,7 +84,7 @@ android {
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
 
             buildConfigField "boolean", "IS_BETA", "true"
@@ -96,14 +96,14 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName     : "Librera Reader",
-                    appIcon     : "@mipmap/icon_pdf_reader",
-                    appRoundIcon: "@mipmap/icon_pdf_reader",
+                    appName       : "Librera Reader",
+                    appIcon       : "@mipmap/icon_pdf_reader",
+                    appRoundIcon  : "@mipmap/icon_pdf_reader",
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -114,14 +114,14 @@ android {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName     : "Librera PRO",
-                    appIcon     : "@mipmap/icon_pdf_pro",
-                    appRoundIcon: "@mipmap/icon_pdf_pro",
+                    appName       : "Librera PRO",
+                    appIcon       : "@mipmap/icon_pdf_pro",
+                    appRoundIcon  : "@mipmap/icon_pdf_pro",
                     appGdriveKey  : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
                     admobAppId    : "",
                     admobBannerId : "",
                     admobFullId   : "",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -132,14 +132,14 @@ android {
             dimension "version"
             applicationId "classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
             manifestPlaceholders = [
-                    appName     : "PDF Reader",
-                    appIcon     : "@mipmap/icon_pdf_classic",
-                    appRoundIcon: "@mipmap/launcher_classic",
+                    appName       : "PDF Reader",
+                    appIcon       : "@mipmap/icon_pdf_classic",
+                    appRoundIcon  : "@mipmap/launcher_classic",
                     appGdriveKey  : "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8457312875",
                     admobBannerId : "ca-app-pub-8347903083053959/5364245672",
                     admobFullId   : "ca-app-pub-8347903083053959/7763820878",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -150,14 +150,14 @@ android {
             dimension "version"
             applicationId "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
             manifestPlaceholders = [
-                    appName     : "eBooka",
-                    appIcon     : "@mipmap/icon_pdf_droid",
-                    appRoundIcon: "@mipmap/launcher_droid",
+                    appName       : "eBooka",
+                    appIcon       : "@mipmap/icon_pdf_droid",
+                    appRoundIcon  : "@mipmap/launcher_droid",
                     appGdriveKey  : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5153060505",
                     admobBannerId : "ca-app-pub-8347903083053959/6159730856",
                     admobFullId   : "ca-app-pub-8347903083053959/2346153515",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -168,14 +168,14 @@ android {
             dimension "version"
             applicationId "pdf.pdf.reader"
             manifestPlaceholders = [
-                    appName     : "PDF Reader",
-                    appIcon     : "@mipmap/icon_pdf_2",
-                    appRoundIcon: "@mipmap/launcher_pdf_v2",
+                    appName       : "PDF Reader",
+                    appIcon       : "@mipmap/icon_pdf_2",
+                    appRoundIcon  : "@mipmap/launcher_pdf_v2",
                     appGdriveKey  : "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5943988213",
                     admobBannerId : "ca-app-pub-8347903083053959/6705625294",
                     admobFullId   : "ca-app-pub-8347903083053959/1346267659",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -186,14 +186,14 @@ android {
             dimension "version"
             applicationId "tts.reader"
             manifestPlaceholders = [
-                    appName     : "TTS Reader",
-                    appIcon     : "@mipmap/icon_tts_reader_app",
-                    appRoundIcon: "@mipmap/launcher_tts_reader_app",
+                    appName       : "TTS Reader",
+                    appIcon       : "@mipmap/icon_tts_reader_app",
+                    appRoundIcon  : "@mipmap/launcher_tts_reader_app",
                     appGdriveKey  : "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~1533135764",
                     admobBannerId : "ca-app-pub-8347903083053959/2702801102",
                     admobFullId   : "ca-app-pub-8347903083053959/4602986382",
-                    removeInternet   : "false"
+                    removeInternet: "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -204,14 +204,14 @@ android {
             dimension "version"
             applicationId "epub.reader"
             manifestPlaceholders = [
-                    appName     : "Epub Reader",
-                    appIcon     : "@mipmap/icon_epub_reader",
-                    appRoundIcon: "@mipmap/launcher_epub_reader",
+                    appName       : "Epub Reader",
+                    appIcon       : "@mipmap/icon_epub_reader",
+                    appRoundIcon  : "@mipmap/launcher_epub_reader",
                     appGdriveKey  : "961762082517-p6b2kqqimju6rlp314mu56lipvq2m68r.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8118779310",
                     admobBannerId : "ca-app-pub-8347903083053959/1553370961",
                     admobFullId   : "ca-app-pub-8347903083053959/6163356354",
-                    removeInternet   : "fasle"
+                    removeInternet: "fasle"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -222,14 +222,14 @@ android {
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
-                    appName     : "Librera PRO",
-                    appIcon     : "@mipmap/icon_pdf_pro",
-                    appRoundIcon: "@mipmap/icon_pdf_pro",
+                    appName       : "Librera PRO",
+                    appIcon       : "@mipmap/icon_pdf_pro",
+                    appRoundIcon  : "@mipmap/icon_pdf_pro",
                     appGdriveKey  : "",
                     admobAppId    : "",
                     admobBannerId : "",
                     admobFullId   : "",
-                    removeInternet   : "remove"
+                    removeInternet: "remove"
             ]
             versionNameSuffix '-fdroid'
             buildConfigField "boolean", "IS_BETA", "false"
@@ -257,6 +257,7 @@ android {
     }
 
 
+    sourceSets { fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] } }
 }
 
 dependencies {
@@ -283,7 +284,7 @@ dependencies {
     //implementation 'com.google.firebase:firebase-database:16.1.0'
 
 
-    implementation ('org.greenrobot:greendao:3.2.2'){
+    implementation('org.greenrobot:greendao:3.2.2') {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.2.2'
@@ -297,7 +298,6 @@ dependencies {
 
     //implementation 'com.google.cloud:google-cloud-texttospeech:+'
     //implementation 'net.sourceforge.argparse4j:argparse4j:0.8.1'
-
 
 
     implementation 'org.zwobble.mammoth:mammoth:1.4.0'
@@ -321,7 +321,6 @@ dependencies {
     betaImplementation project(':pro')
     //betaImplementation 'com.google.firebase:firebase-ads:17+'
     //betaImplementation 'com.google.firebase:firebase-core:16+'
-
 
 
     libreraImplementation 'com.google.firebase:firebase-ads:17+'
