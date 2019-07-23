@@ -31,6 +31,7 @@ import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
@@ -43,6 +44,8 @@ import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.ExportConverter;
+import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -61,6 +64,7 @@ import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.activity.msg.MsgCloseMainTabs;
+import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.adapter.TabsAdapter2;
@@ -231,6 +235,45 @@ public class MainTabs2 extends AdsFragmentActivity {
             Android6.checkPermissions(this, true);
             return;
         }
+
+        //import settings
+
+
+        File oldConfig = new File(AppProfile.DOWNLOADS_DIR, "Librera/backup-8.0.json");
+        if (!oldConfig.exists()) {
+            new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
+                @Override
+                public boolean onResultRecive(Boolean result) {
+                    MainTabs2.this.finish();
+                    MainTabs2.this.startActivity(getIntent());
+                    return false;
+                }
+            }) {
+                @Override
+                protected Boolean doInBackground(Object... objects) {
+                    try {
+                        oldConfig.getParentFile().mkdirs();
+                        AppDB.get().open(MainTabs2.this, AppDB.DB_NAME);
+                        AppProfile.SYNC_FOLDER_ROOT.mkdirs();
+
+                        ExportSettingsManager.exportAll(MainTabs2.this, oldConfig);
+                        try {
+                            ExportConverter.covertJSONtoNew(MainTabs2.this, oldConfig);
+                            ExportConverter.copyPlaylists();
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                        AppProfile.clear();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
+                    return true;
+                }
+            }.execute();
+
+            return;
+        }
+
 
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;

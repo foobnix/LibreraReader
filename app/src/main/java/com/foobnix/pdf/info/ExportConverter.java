@@ -132,15 +132,27 @@ public class ExportConverter {
             final String path = it[0];
             bookmark.setPath(path);
             bookmark.text = it[1];
-            bookmark.t = Long.parseLong(it[4]);
-            if (it.length > 5) {
-                bookmark.p = Float.parseFloat(it[5]);
-            } else {
-                try {
-                    bookmark.p = (float) Integer.parseInt(it[2]) / cache.get(path);
-                } catch (Exception e) {
-                    LOG.e(e);
+            try {
+                bookmark.t = Long.parseLong(it[4]);
+            } catch (Exception e) {
+                LOG.d("Error covertJSONtoNew", value);
+                LOG.e(e);
+            }
+            try {
+                bookmark.t = Long.parseLong(it[4]);
+                if (it.length > 5) {
+                    bookmark.p = Float.parseFloat(it[5]);
+                } else {
+                    try {
+                        bookmark.p = (float) Integer.parseInt(it[2]) / cache.get(path);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
                 }
+            } catch (Exception e) {
+                LOG.d("Error covertJSONtoNew", value);
+
+                LOG.e(e);
             }
 
 

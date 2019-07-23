@@ -19,8 +19,6 @@ import com.foobnix.model.AppTemp;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
-import com.foobnix.pdf.info.ExportConverter;
-import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -95,22 +93,6 @@ public class BooksService extends IntentService {
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
             //TESET
-
-
-            File oldConfig = new File(AppProfile.DOWNLOADS_DIR, "Librera/backup-8.0.json");
-            if (!oldConfig.exists()) {
-                oldConfig.getParentFile().mkdirs();
-                AppDB.get().open(this, AppDB.DB_NAME);
-                AppProfile.SYNC_FOLDER_ROOT.mkdirs();
-                ExportSettingsManager.exportAll(this, oldConfig);
-                try {
-                    ExportConverter.covertJSONtoNew(this, oldConfig);
-                    ExportConverter.copyPlaylists();
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-                AppDB.get().open(this, AppProfile.getCurrent(this));
-            }
 
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
