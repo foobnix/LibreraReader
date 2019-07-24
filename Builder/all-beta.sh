@@ -9,8 +9,8 @@ cd ../
 ./gradlew clean incVersion
 
 ./gradlew assembleBetaRelease
-#./gradlew assembleProRelease
-#./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
+./gradlew assembleLibreraRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

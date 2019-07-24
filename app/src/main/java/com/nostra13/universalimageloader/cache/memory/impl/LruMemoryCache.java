@@ -29,6 +29,7 @@ public class LruMemoryCache implements MemoryCache {
      */
     private int size;
 
+
     /**
      * @param maxSize Maximum sum of the sizes of the Bitmaps in this cache
      */

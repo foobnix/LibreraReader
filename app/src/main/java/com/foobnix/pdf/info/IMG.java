@@ -22,7 +22,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache2;
 import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
@@ -73,13 +73,15 @@ public class IMG {
         if (DefaultConfigurationFactory.hasHoneycomb() && DefaultConfigurationFactory.isLargeHeap(context)) {
             memoryClass = DefaultConfigurationFactory.getLargeMemoryClass(am);
         }
-        final long memoryCacheSize = 1024 * 1024 * memoryClass / 3;//8
+        final long memoryCacheSize = 1024 * 1024 * memoryClass / 5;//8
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
                 .threadPoolSize(4)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
-                .memoryCache(new LruMemoryCache(memoryCacheSize))//DefaultConfigFactory createMemoryCache
+                .memoryCache(new LruMemoryCache2())
+                //.memoryCache(new LruMemoryCache(memoryCacheSize))//DefaultConfigFactory createMemoryCache
+                //.memoryCache(new WeakMemoryCache())
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
                 .imageDownloader(ImageExtractor.getInstance(context))//
                 .build();
