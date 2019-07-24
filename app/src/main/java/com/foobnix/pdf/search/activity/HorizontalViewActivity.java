@@ -1788,7 +1788,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         if (dc.floatingBookmark != null) {
             dc.floatingBookmark.p = dc.getPercentage();
-            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1()+"}");
+            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1() + "}");
             floatingBookmarkTextView.setVisibility(View.VISIBLE);
 
             BookmarksData.get().add(dc.floatingBookmark);
@@ -2380,7 +2380,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             onFinishActivity();
             return;
         }
-        if(dc.floatingBookmark!=null){
+        if (dc != null && dc.floatingBookmark != null) {
             dc.floatingBookmark = null;
             onRefresh.run();
             return;

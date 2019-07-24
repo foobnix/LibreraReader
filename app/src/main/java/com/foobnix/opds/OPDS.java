@@ -80,7 +80,7 @@ public class OPDS {
     public static String getHttpResponseNoException(String url) {
         try {
             return getHttpResponse(url, "", "");
-        } catch (IOException e) {
+        } catch (Exception e) {
             return "";
         }
 

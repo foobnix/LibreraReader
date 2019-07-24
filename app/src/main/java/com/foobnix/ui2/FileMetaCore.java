@@ -71,7 +71,7 @@ public class FileMetaCore {
 
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
-        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
+        if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
             EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
@@ -89,7 +89,6 @@ public class FileMetaCore {
     }
 
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
-
 
 
         if (Clouds.isCacheFileExist(path)) {
@@ -132,7 +131,7 @@ public class FileMetaCore {
         String fileName = ExtUtils.getFileName(unZipPath);
         String fileNameOriginal = ExtUtils.getFileName(path);
 
-        if(AppState.get().isShowOnlyOriginalFileNames){
+        if (AppState.get().isShowOnlyOriginalFileNames) {
             ebookMeta.setTitle(fileName);
             return ebookMeta;
         }
