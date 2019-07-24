@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,7 +22,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -65,11 +67,19 @@ public class IMG {
         builder.considerExifParams(false);
         builder.decodingOptions(new Options());
 
+
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        int memoryClass = am.getMemoryClass();
+        if (DefaultConfigurationFactory.hasHoneycomb() && DefaultConfigurationFactory.isLargeHeap(context)) {
+            memoryClass = DefaultConfigurationFactory.getLargeMemoryClass(am);
+        }
+        final long memoryCacheSize = 1024 * 1024 * memoryClass / 3;//8
+
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
                 .threadPoolSize(4)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
-                .memoryCache(new WeakMemoryCache())//
+                .memoryCache(new LruMemoryCache(memoryCacheSize))//DefaultConfigFactory createMemoryCache
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
                 .imageDownloader(ImageExtractor.getInstance(context))//
                 .build();
@@ -289,7 +299,7 @@ public class IMG {
     public static String getRealPathFromURI(final Context c, final Uri contentURI) {
         final Cursor cursor = c.getContentResolver().query(contentURI, null, null, null, null);
         if (cursor == null) { // Source is Dropbox or other similar local file
-                              // path
+            // path
             return contentURI.getPath();
         } else {
             cursor.moveToFirst();
