@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
@@ -81,6 +82,8 @@ public class ExportConverter {
         JSONObject books = obj.getJSONObject("BOOKS");
         Iterator<String> keys = books.keys();
         Map<String, Integer> cache = new HashMap<>();
+
+        JSONObject resObj = IO.readJsonObject(AppProfile.syncProgress);
         while (keys.hasNext()) {
 
             String stringObj = books.getString(keys.next());
@@ -116,13 +119,21 @@ public class ExportConverter {
             LOG.d("Export-PUT", appBook.path, pages);
 
 
-            SharedBooks.save(appBook, false);
+            //SharedBooks.save(appBook, false);
 
-
+            if (appBook.p > 1) {
+                appBook.p = 0;
+            }
+            final String fileName = ExtUtils.getFileName(appBook.path);
+            resObj.put(fileName, Objects.toJSONObject(appBook));
         }
+        IO.writeObj(AppProfile.syncProgress, resObj);
 
         JSONObject bookmarks = obj.getJSONObject("ViewerPreferences");
         Iterator<String> bKeys = bookmarks.keys();
+
+        JSONObject resObj2 = IO.readJsonObject(AppProfile.syncBookmarks);
+
         while (bKeys.hasNext()) {
             String value = bookmarks.getString(bKeys.next());
             LOG.d(value);
@@ -155,10 +166,15 @@ public class ExportConverter {
                 LOG.e(e);
             }
 
+            if (bookmark.p > 1) {
+                bookmark.p = 0;
+            }
 
-            BookmarksData.get().add(bookmark);
-
+            resObj2.put("" + bookmark.t, Objects.toJSONObject(bookmark));
         }
+
+        IO.writeObjAsync(AppProfile.syncBookmarks, resObj2);
+
         SharedBooks.cache.clear();
 
     }
