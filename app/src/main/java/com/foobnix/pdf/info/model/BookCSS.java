@@ -43,7 +43,7 @@ public class BookCSS {
 
     public String searchPaths;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
-    public String downlodsPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Download").getPath();
+    public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
     public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
     public String backupPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Backup").getPath();
     public String syncDropboxPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();

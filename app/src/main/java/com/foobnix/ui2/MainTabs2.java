@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -239,7 +240,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         //import settings
 
 
-        File oldConfig = new File(AppProfile.DOWNLOADS_DIR, "Librera/backup-8.0.json");
+        File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ","_") + "-backup-v8.0.json");
         if (!oldConfig.exists()) {
             new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
                 @Override

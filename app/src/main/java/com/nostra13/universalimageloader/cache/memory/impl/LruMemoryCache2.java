@@ -6,6 +6,7 @@ import android.support.v4.util.LruCache;
 import com.nostra13.universalimageloader.cache.memory.MemoryCache;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * A cache that holds strong references to a limited number of Bitmaps. Each time a Bitmap is accessed, it is moved to
@@ -46,8 +47,7 @@ public class LruMemoryCache2 implements MemoryCache {
 
     @Override
     public Collection<String> keys() {
-        //LOG.d("LruMemoryCache2 keys");
-        throw new IllegalArgumentException("Collection<String> keys");
+        return Collections.emptyList();
     }
 
     @Override
