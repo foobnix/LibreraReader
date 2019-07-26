@@ -16,7 +16,7 @@ cd ../
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleTts_readerRelease
 
-./gradlew assembleFdroidRelease
+#./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
