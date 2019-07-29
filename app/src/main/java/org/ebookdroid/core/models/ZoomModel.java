@@ -1,5 +1,7 @@
 package org.ebookdroid.core.models;
 
+import com.foobnix.android.utils.LOG;
+
 import org.ebookdroid.core.events.ZoomListener;
 import org.emdev.utils.MathUtils;
 import org.emdev.utils.listeners.ListenerProxy;
@@ -24,6 +26,7 @@ public class ZoomModel extends ListenerProxy {
     public void initZoom(final float zoom) {
         this.initialZoom = this.currentZoom = adjust(zoom);
         isCommited = true;
+        LOG.d("init-zoom", zoom);
     }
 
     public void setZoom(final float zoom) {
@@ -33,7 +36,7 @@ public class ZoomModel extends ListenerProxy {
         if (newZoom != oldZoom) {
             isCommited = false;
             this.currentZoom = newZoom;
-            this.<ZoomListener> getListener().zoomChanged(oldZoom, newZoom, false);
+            this.<ZoomListener>getListener().zoomChanged(oldZoom, newZoom, false);
         }
     }
 
@@ -43,7 +46,7 @@ public class ZoomModel extends ListenerProxy {
         if (newZoom != oldZoom) {
             isCommited = commitImmediately;
             this.currentZoom = newZoom;
-            this.<ZoomListener> getListener().zoomChanged(oldZoom, newZoom, commitImmediately);
+            this.<ZoomListener>getListener().zoomChanged(oldZoom, newZoom, commitImmediately);
             if (commitImmediately) {
                 this.initialZoom = this.currentZoom;
             }
@@ -64,9 +67,9 @@ public class ZoomModel extends ListenerProxy {
 
     public void commit() {
         // if (!isCommited) {
-            isCommited = true;
-            this.<ZoomListener> getListener().zoomChanged(initialZoom, currentZoom, true);
-            initialZoom = currentZoom;
+        isCommited = true;
+        this.<ZoomListener>getListener().zoomChanged(initialZoom, currentZoom, true);
+        initialZoom = currentZoom;
         // }
     }
 

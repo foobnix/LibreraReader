@@ -110,6 +110,10 @@ public class SharedBooks {
             final String fileName = ExtUtils.getFileName(bs.path);
             obj.put(fileName, Objects.toJSONObject(bs));
             cache.put(fileName, bs);
+
+            LOG.d("goToPage-save", bs.p, bs.x, bs.y, bs.z);
+
+
             if (inThread) {
                 IO.writeObj(AppProfile.syncProgress, obj);
             } else {
