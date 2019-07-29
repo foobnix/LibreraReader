@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
@@ -240,39 +241,42 @@ public class MainTabs2 extends AdsFragmentActivity {
         //import settings
 
 
-        File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ", "_") + "-backup-v8.0.json");
-        if (!oldConfig.exists()) {
-            new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
-                @Override
-                public boolean onResultRecive(Boolean result) {
-                    MainTabs2.this.finish();
-                    MainTabs2.this.startActivity(getIntent());
-                    return false;
-                }
-            }) {
-                @Override
-                protected Boolean doInBackground(Object... objects) {
-                    try {
-                        oldConfig.getParentFile().mkdirs();
-                        AppDB.get().open(MainTabs2.this, AppDB.DB_NAME);
-                        AppProfile.SYNC_FOLDER_ROOT.mkdirs();
-
-                        ExportSettingsManager.exportAll(MainTabs2.this, oldConfig);
+        SharedPreferences BOOKS = getSharedPreferences("BOOKS", Context.MODE_PRIVATE);
+        if (BOOKS.getAll() != null && !BOOKS.getAll().isEmpty()) {
+            File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ", "_") + "-backup-v8.0.json");
+            if (!oldConfig.exists()) {
+                new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
+                    @Override
+                    public boolean onResultRecive(Boolean result) {
+                        MainTabs2.this.finish();
+                        MainTabs2.this.startActivity(getIntent());
+                        return false;
+                    }
+                }) {
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
                         try {
-                            ExportConverter.covertJSONtoNew(MainTabs2.this, oldConfig);
-                            ExportConverter.copyPlaylists();
+                            oldConfig.getParentFile().mkdirs();
+                            AppDB.get().open(MainTabs2.this, AppDB.DB_NAME);
+                            AppProfile.SYNC_FOLDER_ROOT.mkdirs();
+
+                            ExportSettingsManager.exportAll(MainTabs2.this, oldConfig);
+                            try {
+                                ExportConverter.covertJSONtoNew(MainTabs2.this, oldConfig);
+                                ExportConverter.copyPlaylists();
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                            AppProfile.clear();
                         } catch (Exception e) {
                             LOG.e(e);
                         }
-                        AppProfile.clear();
-                    } catch (Exception e) {
-                        LOG.e(e);
+                        return true;
                     }
-                    return true;
-                }
-            }.execute();
+                }.execute();
 
-            return;
+                return;
+            }
         }
 
 
