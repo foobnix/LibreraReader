@@ -150,7 +150,12 @@ public class AppData {
             }
         }
         SharedBooks.updateProgress(res, false);
-        Collections.sort(res, FileMetaComparators.BY_DATE);
+        try {
+            Collections.sort(res, FileMetaComparators.BY_DATE);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
         Collections.reverse(res);
         return res;
     }

@@ -68,7 +68,9 @@ public class ImageLoader {
 
     private volatile static ImageLoader instance;
 
-    /** Returns singleton class instance */
+    /**
+     * Returns singleton class instance
+     */
     public static ImageLoader getInstance() {
         if (instance == null) {
             synchronized (ImageLoader.class) {
@@ -83,7 +85,10 @@ public class ImageLoader {
     protected ImageLoader() {
     }
 
-    public int getTaskCount(){
+    public int getTaskCount() {
+        if (engine == null) {
+            return 0;
+        }
         return engine.getTaskCount();
     }
 
@@ -94,10 +99,8 @@ public class ImageLoader {
      * To force initialization with new configuration you should
      * {@linkplain #destroy() destroy ImageLoader} at first.
      *
-     * @param configuration
-     *            {@linkplain ImageLoaderConfiguration ImageLoader configuration}
-     * @throws IllegalArgumentException
-     *             if <b>configuration</b> parameter is null
+     * @param configuration {@linkplain ImageLoaderConfiguration ImageLoader configuration}
+     * @throws IllegalArgumentException if <b>configuration</b> parameter is null
      */
     public synchronized void init(ImageLoaderConfiguration configuration) {
         if (configuration == null) {
@@ -129,17 +132,13 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri        Image URI (i.e. "http://site.com/image.png",
+     *                   "file:///mnt/sdcard/image.png")
+     * @param imageAware {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                   Image aware view} which should display image
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware) {
         displayImage(uri, imageAware, null, null, null);
@@ -153,21 +152,16 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri        Image URI (i.e. "http://site.com/image.png",
+     *                   "file:///mnt/sdcard/image.png")
+     * @param imageAware {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                   Image aware view} which should display image
+     * @param listener   {@linkplain ImageLoadingListener Listener} for image loading
+     *                   process. Listener fires events on UI thread if this method is
+     *                   called on UI thread.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware, ImageLoadingListener listener) {
         displayImage(uri, imageAware, null, listener, null);
@@ -179,23 +173,18 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri        Image URI (i.e. "http://site.com/image.png",
+     *                   "file:///mnt/sdcard/image.png")
+     * @param imageAware {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                   Image aware view} which should display image
+     * @param options    {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                   Options} for image decoding and displaying. If <b>null</b> -
+     *                   default display image options
+     *                   {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                   from configuration} will be used.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware, DisplayImageOptions options) {
         displayImage(uri, imageAware, options, null, null);
@@ -207,27 +196,21 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri        Image URI (i.e. "http://site.com/image.png",
+     *                   "file:///mnt/sdcard/image.png")
+     * @param imageAware {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                   Image aware view} which should display image
+     * @param options    {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                   Options} for image decoding and displaying. If <b>null</b> -
+     *                   default display image options
+     *                   {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                   from configuration} will be used.
+     * @param listener   {@linkplain ImageLoadingListener Listener} for image loading
+     *                   process. Listener fires events on UI thread if this method is
+     *                   called on UI thread.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware, DisplayImageOptions options, ImageLoadingListener listener) {
         displayImage(uri, imageAware, options, listener, null);
@@ -239,34 +222,27 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @param progressListener
-     *            {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
-     *            Listener} for image loading progress. Listener fires events on UI
-     *            thread if this method is called on UI thread. Caching on disk
-     *            should be enabled in
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            options} to make this listener work.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri              Image URI (i.e. "http://site.com/image.png",
+     *                         "file:///mnt/sdcard/image.png")
+     * @param imageAware       {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                         Image aware view} which should display image
+     * @param options          {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         Options} for image decoding and displaying. If <b>null</b> -
+     *                         default display image options
+     *                         {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                         from configuration} will be used.
+     * @param listener         {@linkplain ImageLoadingListener Listener} for image loading
+     *                         process. Listener fires events on UI thread if this method is
+     *                         called on UI thread.
+     * @param progressListener {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
+     *                         Listener} for image loading progress. Listener fires events on UI
+     *                         thread if this method is called on UI thread. Caching on disk
+     *                         should be enabled in
+     *                         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         options} to make this listener work.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware, DisplayImageOptions options, ImageLoadingListener listener, ImageLoadingProgressListener progressListener) {
         displayImage(uri, imageAware, options, null, listener, progressListener);
@@ -278,37 +254,29 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageAware
-     *            {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            Image aware view} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @param targetSize
-     *            {@linkplain ImageSize} Image target size. If <b>null</b> - size
-     *            will depend on the view
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @param progressListener
-     *            {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
-     *            Listener} for image loading progress. Listener fires events on UI
-     *            thread if this method is called on UI thread. Caching on disk
-     *            should be enabled in
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            options} to make this listener work.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageAware</b> is null
+     * @param uri              Image URI (i.e. "http://site.com/image.png",
+     *                         "file:///mnt/sdcard/image.png")
+     * @param imageAware       {@linkplain com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                         Image aware view} which should display image
+     * @param options          {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         Options} for image decoding and displaying. If <b>null</b> -
+     *                         default display image options
+     *                         {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                         from configuration} will be used.
+     * @param targetSize       {@linkplain ImageSize} Image target size. If <b>null</b> - size
+     *                         will depend on the view
+     * @param listener         {@linkplain ImageLoadingListener Listener} for image loading
+     *                         process. Listener fires events on UI thread if this method is
+     *                         called on UI thread.
+     * @param progressListener {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
+     *                         Listener} for image loading progress. Listener fires events on UI
+     *                         thread if this method is called on UI thread. Caching on disk
+     *                         should be enabled in
+     *                         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         options} to make this listener work.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageAware</b> is null
      */
     public void displayImage(String uri, ImageAware imageAware, DisplayImageOptions options, ImageSize targetSize, ImageLoadingListener listener, ImageLoadingProgressListener progressListener) {
         checkConfiguration();
@@ -383,16 +351,12 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri       Image URI (i.e. "http://site.com/image.png",
+     *                  "file:///mnt/sdcard/image.png")
+     * @param imageView {@link ImageView} which should display image
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView) {
         displayImage(uri, new ImageViewAware(imageView), null, null, null);
@@ -406,16 +370,12 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri       Image URI (i.e. "http://site.com/image.png",
+     *                  "file:///mnt/sdcard/image.png")
+     * @param imageView {@link ImageView} which should display image
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView, ImageSize targetImageSize) {
         displayImage(uri, new ImageViewAware(imageView), null, targetImageSize, null, null);
@@ -427,22 +387,17 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri       Image URI (i.e. "http://site.com/image.png",
+     *                  "file:///mnt/sdcard/image.png")
+     * @param imageView {@link ImageView} which should display image
+     * @param options   {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                  Options} for image decoding and displaying. If <b>null</b> -
+     *                  default display image options
+     *                  {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                  from configuration} will be used.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
         displayImage(uri, new ImageViewAware(imageView), options, null, null);
@@ -456,20 +411,15 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri       Image URI (i.e. "http://site.com/image.png",
+     *                  "file:///mnt/sdcard/image.png")
+     * @param imageView {@link ImageView} which should display image
+     * @param listener  {@linkplain ImageLoadingListener Listener} for image loading
+     *                  process. Listener fires events on UI thread if this method is
+     *                  called on UI thread.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView, ImageLoadingListener listener) {
         displayImage(uri, new ImageViewAware(imageView), null, listener, null);
@@ -481,26 +431,20 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri       Image URI (i.e. "http://site.com/image.png",
+     *                  "file:///mnt/sdcard/image.png")
+     * @param imageView {@link ImageView} which should display image
+     * @param options   {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                  Options} for image decoding and displaying. If <b>null</b> -
+     *                  default display image options
+     *                  {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                  from configuration} will be used.
+     * @param listener  {@linkplain ImageLoadingListener Listener} for image loading
+     *                  process. Listener fires events on UI thread if this method is
+     *                  called on UI thread.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options, ImageLoadingListener listener) {
         displayImage(uri, imageView, options, listener, null);
@@ -512,33 +456,26 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param imageView
-     *            {@link ImageView} which should display image
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @param progressListener
-     *            {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
-     *            Listener} for image loading progress. Listener fires events on UI
-     *            thread if this method is called on UI thread. Caching on disk
-     *            should be enabled in
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            options} to make this listener work.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
-     * @throws IllegalArgumentException
-     *             if passed <b>imageView</b> is null
+     * @param uri              Image URI (i.e. "http://site.com/image.png",
+     *                         "file:///mnt/sdcard/image.png")
+     * @param imageView        {@link ImageView} which should display image
+     * @param options          {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         Options} for image decoding and displaying. If <b>null</b> -
+     *                         default display image options
+     *                         {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                         from configuration} will be used.
+     * @param listener         {@linkplain ImageLoadingListener Listener} for image loading
+     *                         process. Listener fires events on UI thread if this method is
+     *                         called on UI thread.
+     * @param progressListener {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
+     *                         Listener} for image loading progress. Listener fires events on UI
+     *                         thread if this method is called on UI thread. Caching on disk
+     *                         should be enabled in
+     *                         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         options} to make this listener work.
+     * @throws IllegalStateException    if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                                  before
+     * @throws IllegalArgumentException if passed <b>imageView</b> is null
      */
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options, ImageLoadingListener listener, ImageLoadingProgressListener progressListener) {
         displayImage(uri, new ImageViewAware(imageView), options, listener, progressListener);
@@ -551,16 +488,13 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @param uri      Image URI (i.e. "http://site.com/image.png",
+     *                 "file:///mnt/sdcard/image.png")
+     * @param listener {@linkplain ImageLoadingListener Listener} for image loading
+     *                 process. Listener fires events on UI thread if this method is
+     *                 called on UI thread.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public void loadImage(String uri, ImageLoadingListener listener) {
         loadImage(uri, null, null, listener, null);
@@ -573,22 +507,18 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param targetImageSize
-     *            Minimal size for {@link Bitmap} which will be returned in
-     *            {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
-     *            callback}. Downloaded image will be decoded and scaled to
-     *            {@link Bitmap} of the size which is <b>equal or larger</b>
-     *            (usually a bit larger) than incoming targetImageSize.
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @param uri             Image URI (i.e. "http://site.com/image.png",
+     *                        "file:///mnt/sdcard/image.png")
+     * @param targetImageSize Minimal size for {@link Bitmap} which will be returned in
+     *                        {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
+     *                        callback}. Downloaded image will be decoded and scaled to
+     *                        {@link Bitmap} of the size which is <b>equal or larger</b>
+     *                        (usually a bit larger) than incoming targetImageSize.
+     * @param listener        {@linkplain ImageLoadingListener Listener} for image loading
+     *                        process. Listener fires events on UI thread if this method is
+     *                        called on UI thread.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public void loadImage(String uri, ImageSize targetImageSize, ImageLoadingListener listener) {
         loadImage(uri, targetImageSize, null, listener, null);
@@ -601,22 +531,18 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.<br />
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @param uri      Image URI (i.e. "http://site.com/image.png",
+     *                 "file:///mnt/sdcard/image.png")
+     * @param options  {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                 Options} for image decoding and displaying. If <b>null</b> -
+     *                 default display image options
+     *                 {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                 from configuration} will be used.<br />
+     * @param listener {@linkplain ImageLoadingListener Listener} for image loading
+     *                 process. Listener fires events on UI thread if this method is
+     *                 called on UI thread.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public int loadImage(String uri, DisplayImageOptions options, ImageLoadingListener listener) {
         return loadImage(uri, null, options, listener, null);
@@ -629,28 +555,23 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param targetImageSize
-     *            Minimal size for {@link Bitmap} which will be returned in
-     *            {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
-     *            callback}. Downloaded image will be decoded and scaled to
-     *            {@link Bitmap} of the size which is <b>equal or larger</b>
-     *            (usually a bit larger) than incoming targetImageSize.
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.<br />
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @param uri             Image URI (i.e. "http://site.com/image.png",
+     *                        "file:///mnt/sdcard/image.png")
+     * @param targetImageSize Minimal size for {@link Bitmap} which will be returned in
+     *                        {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
+     *                        callback}. Downloaded image will be decoded and scaled to
+     *                        {@link Bitmap} of the size which is <b>equal or larger</b>
+     *                        (usually a bit larger) than incoming targetImageSize.
+     * @param options         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                        Options} for image decoding and displaying. If <b>null</b> -
+     *                        default display image options
+     *                        {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                        from configuration} will be used.<br />
+     * @param listener        {@linkplain ImageLoadingListener Listener} for image loading
+     *                        process. Listener fires events on UI thread if this method is
+     *                        called on UI thread.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public void loadImage(String uri, ImageSize targetImageSize, DisplayImageOptions options, ImageLoadingListener listener) {
         loadImage(uri, targetImageSize, options, listener, null);
@@ -663,35 +584,29 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param targetImageSize
-     *            Minimal size for {@link Bitmap} which will be returned in
-     *            {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
-     *            callback}. Downloaded image will be decoded and scaled to
-     *            {@link Bitmap} of the size which is <b>equal or larger</b>
-     *            (usually a bit larger) than incoming targetImageSize.
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and displaying. If <b>null</b> -
-     *            default display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.<br />
-     * @param listener
-     *            {@linkplain ImageLoadingListener Listener} for image loading
-     *            process. Listener fires events on UI thread if this method is
-     *            called on UI thread.
-     * @param progressListener
-     *            {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
-     *            Listener} for image loading progress. Listener fires events on UI
-     *            thread if this method is called on UI thread. Caching on disk
-     *            should be enabled in
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            options} to make this listener work.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @param uri              Image URI (i.e. "http://site.com/image.png",
+     *                         "file:///mnt/sdcard/image.png")
+     * @param targetImageSize  Minimal size for {@link Bitmap} which will be returned in
+     *                         {@linkplain ImageLoadingListener#onLoadingComplete(String, android.view.View, android.graphics.Bitmap)}
+     *                         callback}. Downloaded image will be decoded and scaled to
+     *                         {@link Bitmap} of the size which is <b>equal or larger</b>
+     *                         (usually a bit larger) than incoming targetImageSize.
+     * @param options          {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         Options} for image decoding and displaying. If <b>null</b> -
+     *                         default display image options
+     *                         {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                         from configuration} will be used.<br />
+     * @param listener         {@linkplain ImageLoadingListener Listener} for image loading
+     *                         process. Listener fires events on UI thread if this method is
+     *                         called on UI thread.
+     * @param progressListener {@linkplain com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener
+     *                         Listener} for image loading progress. Listener fires events on UI
+     *                         thread if this method is called on UI thread. Caching on disk
+     *                         should be enabled in
+     *                         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                         options} to make this listener work.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public int loadImage(String uri, ImageSize targetImageSize, DisplayImageOptions options, ImageLoadingListener listener, ImageLoadingProgressListener progressListener) {
         checkConfiguration();
@@ -715,14 +630,12 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
+     * @param uri Image URI (i.e. "http://site.com/image.png",
      *            "file:///mnt/sdcard/image.png")
      * @return Result image Bitmap. Can be <b>null</b> if image loading/decoding was
-     *         failed or cancelled.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * failed or cancelled.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public Bitmap loadImageSync(String uri) {
         return loadImageSync(uri, null, null);
@@ -733,20 +646,17 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and scaling. If <b>null</b> - default
-     *            display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
+     * @param uri     Image URI (i.e. "http://site.com/image.png",
+     *                "file:///mnt/sdcard/image.png")
+     * @param options {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                Options} for image decoding and scaling. If <b>null</b> - default
+     *                display image options
+     *                {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                from configuration} will be used.
      * @return Result image Bitmap. Can be <b>null</b> if image loading/decoding was
-     *         failed or cancelled.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * failed or cancelled.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public Bitmap loadImageSync(String uri, DisplayImageOptions options) {
         return loadImageSync(uri, null, options);
@@ -760,19 +670,16 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param targetImageSize
-     *            Minimal size for {@link Bitmap} which will be returned. Downloaded
-     *            image will be decoded and scaled to {@link Bitmap} of the size
-     *            which is <b>equal or larger</b> (usually a bit larger) than
-     *            incoming targetImageSize.
+     * @param uri             Image URI (i.e. "http://site.com/image.png",
+     *                        "file:///mnt/sdcard/image.png")
+     * @param targetImageSize Minimal size for {@link Bitmap} which will be returned. Downloaded
+     *                        image will be decoded and scaled to {@link Bitmap} of the size
+     *                        which is <b>equal or larger</b> (usually a bit larger) than
+     *                        incoming targetImageSize.
      * @return Result image Bitmap. Can be <b>null</b> if image loading/decoding was
-     *         failed or cancelled.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * failed or cancelled.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public Bitmap loadImageSync(String uri, ImageSize targetImageSize) {
         return loadImageSync(uri, targetImageSize, null);
@@ -783,25 +690,21 @@ public class ImageLoader {
      * <b>NOTE:</b> {@link #init(ImageLoaderConfiguration)} method must be called
      * before this method call
      *
-     * @param uri
-     *            Image URI (i.e. "http://site.com/image.png",
-     *            "file:///mnt/sdcard/image.png")
-     * @param targetImageSize
-     *            Minimal size for {@link Bitmap} which will be returned. Downloaded
-     *            image will be decoded and scaled to {@link Bitmap} of the size
-     *            which is <b>equal or larger</b> (usually a bit larger) than
-     *            incoming targetImageSize.
-     * @param options
-     *            {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
-     *            Options} for image decoding and scaling. If <b>null</b> - default
-     *            display image options
-     *            {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
-     *            from configuration} will be used.
+     * @param uri             Image URI (i.e. "http://site.com/image.png",
+     *                        "file:///mnt/sdcard/image.png")
+     * @param targetImageSize Minimal size for {@link Bitmap} which will be returned. Downloaded
+     *                        image will be decoded and scaled to {@link Bitmap} of the size
+     *                        which is <b>equal or larger</b> (usually a bit larger) than
+     *                        incoming targetImageSize.
+     * @param options         {@linkplain com.nostra13.universalimageloader.core.DisplayImageOptions
+     *                        Options} for image decoding and scaling. If <b>null</b> - default
+     *                        display image options
+     *                        {@linkplain ImageLoaderConfiguration.Builder#defaultDisplayImageOptions(DisplayImageOptions)
+     *                        from configuration} will be used.
      * @return Result image Bitmap. Can be <b>null</b> if image loading/decoding was
-     *         failed or cancelled.
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * failed or cancelled.
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public Bitmap loadImageSync(String uri, ImageSize targetImageSize, DisplayImageOptions options) {
         if (options == null) {
@@ -817,8 +720,7 @@ public class ImageLoader {
     /**
      * Checks if ImageLoader's configuration was initialized
      *
-     * @throws IllegalStateException
-     *             if configuration wasn't initialized
+     * @throws IllegalStateException if configuration wasn't initialized
      */
     private void checkConfiguration() {
         if (configuration == null) {
@@ -826,7 +728,9 @@ public class ImageLoader {
         }
     }
 
-    /** Sets a default loading listener for all display and loading tasks. */
+    /**
+     * Sets a default loading listener for all display and loading tasks.
+     */
     public void setDefaultLoadingListener(ImageLoadingListener listener) {
         defaultListener = listener == null ? new SimpleImageLoadingListener() : listener;
     }
@@ -834,9 +738,8 @@ public class ImageLoader {
     /**
      * Returns memory cache
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public MemoryCache getMemoryCache() {
         checkConfiguration();
@@ -846,9 +749,8 @@ public class ImageLoader {
     /**
      * Clears memory cache
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public void clearMemoryCache() {
         checkConfiguration();
@@ -858,9 +760,8 @@ public class ImageLoader {
     /**
      * Returns disk cache
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      * @deprecated Use {@link #getDiskCache()} instead
      */
     @Deprecated
@@ -871,9 +772,8 @@ public class ImageLoader {
     /**
      * Returns disk cache
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public DiskCache getDiskCache() {
         checkConfiguration();
@@ -883,9 +783,8 @@ public class ImageLoader {
     /**
      * Clears disk cache.
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      * @deprecated Use {@link #clearDiskCache()} instead
      */
     @Deprecated
@@ -896,9 +795,8 @@ public class ImageLoader {
     /**
      * Clears disk cache.
      *
-     * @throws IllegalStateException
-     *             if {@link #init(ImageLoaderConfiguration)} method wasn't called
-     *             before
+     * @throws IllegalStateException if {@link #init(ImageLoaderConfiguration)} method wasn't called
+     *                               before
      */
     public void clearDiskCache() {
         checkConfiguration();
@@ -927,9 +825,8 @@ public class ImageLoader {
      * {@link com.nostra13.universalimageloader.core.imageaware.ImageAware
      * ImageAware}.
      *
-     * @param imageAware
-     *            {@link com.nostra13.universalimageloader.core.imageaware.ImageAware
-     *            ImageAware} for which display task will be cancelled
+     * @param imageAware {@link com.nostra13.universalimageloader.core.imageaware.ImageAware
+     *                   ImageAware} for which display task will be cancelled
      */
     public void cancelDisplayTask(ImageAware imageAware) {
         engine.cancelDisplayTaskFor(imageAware);
@@ -943,9 +840,8 @@ public class ImageLoader {
      * Cancel the task of loading and displaying image for passed
      * {@link android.widget.ImageView ImageView}.
      *
-     * @param imageView
-     *            {@link android.widget.ImageView ImageView} for which display task
-     *            will be cancelled
+     * @param imageView {@link android.widget.ImageView ImageView} for which display task
+     *                  will be cancelled
      */
     public void cancelDisplayTask(ImageView imageView) {
         engine.cancelDisplayTaskFor(new ImageViewAware(imageView));
@@ -958,10 +854,9 @@ public class ImageLoader {
      * {@link ImageLoadingListener#onLoadingFailed(String, View, FailReason)}
      * callback will be fired with {@link FailReason.FailType#NETWORK_DENIED}
      *
-     * @param denyNetworkDownloads
-     *            pass <b>true</b> - to deny engine to download images from the
-     *            network; <b>false</b> - to allow engine to download images from
-     *            network.
+     * @param denyNetworkDownloads pass <b>true</b> - to deny engine to download images from the
+     *                             network; <b>false</b> - to allow engine to download images from
+     *                             network.
      */
     public void denyNetworkDownloads(boolean denyNetworkDownloads) {
         engine.denyNetworkDownloads(denyNetworkDownloads);
@@ -973,9 +868,8 @@ public class ImageLoader {
      * <a href="http://code.google.com/p/android/issues/detail?id=6066">this known
      * problem</a> or not.
      *
-     * @param handleSlowNetwork
-     *            pass <b>true</b> - to use {@link FlushedInputStream} for network
-     *            downloads; <b>false</b> - otherwise.
+     * @param handleSlowNetwork pass <b>true</b> - to use {@link FlushedInputStream} for network
+     *                          downloads; <b>false</b> - otherwise.
      */
     public void handleSlowNetwork(boolean handleSlowNetwork) {
         engine.handleSlowNetwork(handleSlowNetwork);
@@ -990,7 +884,9 @@ public class ImageLoader {
         engine.pause();
     }
 
-    /** Resumes waiting "load&display" tasks */
+    /**
+     * Resumes waiting "load&display" tasks
+     */
     public void resume() {
         engine.resume();
     }

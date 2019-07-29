@@ -186,6 +186,9 @@ public class DragingDialogs {
     }
 
     public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
+        if (controller == null) {
+            return;
+        }
 
         DragingPopup dialog = new DragingPopup(R.string.crop_white_borders, anchor, 360, 400) {
 
@@ -2184,7 +2187,6 @@ public class DragingDialogs {
         final OnItemClickListener onItem = new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-
 
 
                 final AppBookmark appBookmark = objects.get(position);

@@ -667,7 +667,12 @@ public class ExtUtils {
     }
 
     public static String getDateFormat(File file) {
-        return dateFormat.format(file.lastModified());
+        try {
+            return dateFormat.format(file.lastModified());
+        }catch (Exception e){
+            LOG.e(e);
+            return "" + file.lastModified();
+        }
     }
 
     public static String getDateFormat(long datetime) {

@@ -650,6 +650,7 @@ public class TxtUtils {
         return fileName;
 
     }
+
     public static String fixFilePath(String fileName) {
         fileName = fileName.replaceAll("[':*?\"<>|]", "_");
         return fileName;
@@ -680,7 +681,11 @@ public class TxtUtils {
 
 
     public static String replaceFirst(String input, String from, String to) {
-        return input.replaceAll("^" + from, to);
+        try {
+            return input.replaceAll("^" + from, to);
+        } catch (Exception e) {
+            return input;
+        }
     }
 
     public static String getFileMetaBookName(FileMeta fileMeta) {

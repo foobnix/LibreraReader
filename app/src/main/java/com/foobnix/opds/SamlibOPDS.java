@@ -30,7 +30,11 @@ public class SamlibOPDS {
     public static final String ROOT_FAVORITES = "My:Favorites";
 
     public static boolean isSamlibUrl(String url) {
-        return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS) || url.startsWith(ROOT_FAVORITES);
+        try {
+            return url.startsWith(ROOT) || url.startsWith(ROOT_AWARDS) || url.startsWith(ROOT_FAVORITES);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private static List<Entry> getHomeAwards() {
@@ -500,7 +504,7 @@ public class SamlibOPDS {
 
     private static String getHTTP(String url) {
         try {
-            return OPDS.getHttpResponse(url,"","");
+            return OPDS.getHttpResponse(url, "", "");
         } catch (Exception e) {
             return null;
         }
