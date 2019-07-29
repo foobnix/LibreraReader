@@ -382,6 +382,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             TxtUtils.setInkTextView(holder.title);
 
+            if (AppState.get().appTheme == AppState.THEME_DARK_OLED && tempValue2 != TEMP2_RECENT_FROM_BOOK) {
+                holder.parent.setBackgroundColor(Color.BLACK);
+            }
+
+
         } else if (holderAll instanceof NameDividerViewHolder) {
             final NameDividerViewHolder holder = (NameDividerViewHolder) holderAll;
             holder.title.setText(fileMeta.getTitle());

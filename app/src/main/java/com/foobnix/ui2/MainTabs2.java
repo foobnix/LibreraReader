@@ -240,7 +240,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         //import settings
 
 
-        File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ","_") + "-backup-v8.0.json");
+        File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ", "_") + "-backup-v8.0.json");
         if (!oldConfig.exists()) {
             new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
                 @Override
@@ -389,6 +389,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
+        }
+
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+            pager.setBackgroundColor(Color.BLACK);
         }
 
         pager.setOffscreenPageLimit(10);

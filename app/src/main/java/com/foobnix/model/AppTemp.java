@@ -32,7 +32,7 @@ public class AppTemp {
     public boolean isFirstTimeVertical = true;
     public boolean isFirstTimeHorizontal = true;
 
-    public int readingMode = AppState.READING_MODE_SCROLL;
+    public int readingMode = AppState.READING_MODE_BOOK;
 
     public long syncTime;
     public int syncTimeStatus;

@@ -121,6 +121,9 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         imageOneDrive = view.findViewById(R.id.imageOneDrive);
 
         View dropbox = view.findViewById(R.id.dropbox);
+
+
+
         dropbox.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -147,7 +150,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        view.findViewById(R.id.gdrive).setOnClickListener(new OnClickListener() {
+        final View gdrive = view.findViewById(R.id.gdrive);
+        gdrive.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -176,7 +180,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             }
         });
 
-        view.findViewById(R.id.oneDrive).setOnClickListener(new OnClickListener() {
+        final View onedrive = view.findViewById(R.id.oneDrive);
+        onedrive.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(final View v) {
@@ -202,6 +207,12 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                 });
             }
         });
+
+        if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
+            dropbox.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+            gdrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+            onedrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+        }
 
         return view;
     }

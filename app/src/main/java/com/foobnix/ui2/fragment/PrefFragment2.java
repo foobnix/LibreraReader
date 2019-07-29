@@ -372,7 +372,6 @@ public class PrefFragment2 extends UIFragment {
                 }
                 AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
                 LOG.d("tabsApply", AppState.get().tabsOrder7);
-                AppProfile.save(getActivity());
                 onTheme();
             }
         });
@@ -403,7 +402,6 @@ public class PrefFragment2 extends UIFragment {
                     public void run() {
                         AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
                         isshowPrefAsMenu.setChecked(false);
-                        AppProfile.save(getActivity());
                         onTheme();
                     }
                 });
@@ -664,7 +662,6 @@ public class PrefFragment2 extends UIFragment {
                                                               AppState.get().bolderTextOnImage = false;
                                                               AppState.get().isEnableBC = false;
 
-                                                              AppProfile.save(getActivity());
 
                                                               IMG.clearDiscCache();
                                                               IMG.clearMemoryCache();
@@ -684,7 +681,6 @@ public class PrefFragment2 extends UIFragment {
                                                               AppState.get().bolderTextOnImage = false;
                                                               AppState.get().isEnableBC = false;
 
-                                                              AppProfile.save(getActivity());
 
                                                               IMG.clearDiscCache();
                                                               IMG.clearMemoryCache();
@@ -704,7 +700,6 @@ public class PrefFragment2 extends UIFragment {
                                                               AppState.get().bolderTextOnImage = false;
                                                               AppState.get().isEnableBC = false;
 
-                                                              AppProfile.save(getActivity());
 
                                                               IMG.clearDiscCache();
                                                               IMG.clearMemoryCache();
@@ -761,7 +756,6 @@ public class PrefFragment2 extends UIFragment {
                                                              AppState.get().appLang = AppState.MY_SYSTEM_LANG;
                                                              TempHolder.get().forseAppLang = true;
                                                              MyContextWrapper.wrap(getContext());
-                                                             AppProfile.save(getActivity());
                                                              onTheme();
                                                              return false;
                                                          }
@@ -777,7 +771,6 @@ public class PrefFragment2 extends UIFragment {
                                                              public boolean onMenuItemClick(MenuItem item) {
                                                                  AppState.get().appLang = code;
                                                                  TxtUtils.underlineTextView(hypenLang);
-                                                                 AppProfile.save(getActivity());
                                                                  onTheme();
                                                                  return false;
                                                              }
@@ -807,7 +800,6 @@ public class PrefFragment2 extends UIFragment {
                                                                 @Override
                                                                 public boolean onMenuItemClick(MenuItem item) {
                                                                     BookCSS.get().appFontScale = number;
-                                                                    AppProfile.save(getActivity());
                                                                     onTheme();
                                                                     return false;
                                                                 }
@@ -2429,6 +2421,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onTheme() {
+        AppProfile.save(getActivity());
         AppProfile.clear();
         getActivity().finish();
         MainTabs2.startActivity(getActivity(), TempHolder.get().currentTab);
