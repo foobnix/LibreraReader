@@ -2172,6 +2172,9 @@ public class DragingDialogs {
     }
 
     public static void showBookmarksDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefeshUI) {
+        if (controller == null) {
+            return;
+        }
         final List<AppBookmark> objects = new ArrayList<AppBookmark>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller, onRefeshUI);
 

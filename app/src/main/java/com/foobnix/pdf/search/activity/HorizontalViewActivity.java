@@ -243,6 +243,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         floatingBookmarkTextView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (dc == null) {
+                    return;
+                }
                 dc.floatingBookmark = null;
                 onRefresh.run();
                 onBookmarks.onClick(v);
@@ -251,6 +254,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         floatingBookmarkTextView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                if (dc == null) {
+                    return true;
+                }
                 dc.floatingBookmark = null;
                 onRefresh.run();
                 return true;

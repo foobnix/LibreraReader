@@ -37,9 +37,13 @@ public class Urls {
             return;
         }
         LOG.d(">>> open", url);
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        a.startActivity(browserIntent);
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            browserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            a.startActivity(browserIntent);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     public static void openWevView(final Context a, String url, final Runnable onClose) {
