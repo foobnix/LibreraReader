@@ -492,7 +492,15 @@ public class DocumentWrapperUI {
             floatingBookmarkTextView.setVisibility(View.GONE);
         }
 
-        TempHolder.get().documentTitleBarHeight = documentTitleBar.getHeight();
+        try {
+            if (!dc.isTextFormat()) {
+                TempHolder.get().documentTitleBarHeight = documentTitleBar.getHeight();
+            } else {
+                TempHolder.get().documentTitleBarHeight = 0;
+            }
+        } catch (Exception e) {
+            TempHolder.get().documentTitleBarHeight = 0;
+        }
 
     }
 

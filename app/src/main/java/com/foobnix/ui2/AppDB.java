@@ -450,11 +450,13 @@ public class AppDB {
     }
 
     public void updateAll(List<FileMeta> list) {
-        long time = System.currentTimeMillis();
-        LOG.d("udpdate all begin");
-        fileMetaDao.updateInTx(list);
-        long end = System.currentTimeMillis() - time;
-        LOG.d("update all end", end / 1000, list.size());
+        if (fileMetaDao != null) {
+            long time = System.currentTimeMillis();
+            LOG.d("udpdate all begin");
+            fileMetaDao.updateInTx(list);
+            long end = System.currentTimeMillis() - time;
+            LOG.d("update all end", end / 1000, list.size());
+        }
     }
 
     public List<String> getAll(SEARCH_IN in) {
@@ -513,6 +515,7 @@ public class AppDB {
         fileMetaDao.updateInTx(recent);
 
     }
+
     public void clearAllFavorites() {
         List<FileMeta> recent = getRecentDeprecated();
         for (FileMeta meta : recent) {

@@ -786,6 +786,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
         EventBus.getDefault().unregister(this);
+
+        ImageLoader.getInstance().clearMemoryCache();
+        ImageLoader.getInstance().clearAllTasks();
         super.onDestroy();
     }
 
