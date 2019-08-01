@@ -3,6 +3,9 @@ package org.ebookdroid.core;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.sys.TempHolder;
+
 import org.ebookdroid.core.models.DocumentModel;
 import org.ebookdroid.ui.viewer.IView;
 
@@ -74,6 +77,12 @@ public class EventGotoPage implements IEvent {
         final int scrollY = view.getScrollY();
 
         final PointF p = calculateScroll(page, scrollX, scrollY);
+
+        if (!centerPage) {
+            p.y -= TempHolder.get().documentTitleBarHeight;
+            LOG.d("documentTitleBarHeight", TempHolder.get().documentTitleBarHeight);
+        }
+
         final int left = Math.round(p.x);
         final int top = Math.round(p.y);
 

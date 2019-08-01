@@ -97,7 +97,7 @@ public class DocumentWrapperUI {
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
-    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent;
+    View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
@@ -209,7 +209,7 @@ public class DocumentWrapperUI {
             return true;
         }
 
-        if(dc.floatingBookmark!=null){
+        if (dc.floatingBookmark != null) {
             dc.floatingBookmark = null;
             onRefresh.run();
             return true;
@@ -480,10 +480,10 @@ public class DocumentWrapperUI {
         dc.saveCurrentPage();
         //SharedBooks.save(bs);
 
-        LOG.d("dc.floatingBookmark",dc.floatingBookmark);
+        LOG.d("dc.floatingBookmark", dc.floatingBookmark);
         if (dc.floatingBookmark != null) {
             dc.floatingBookmark.p = dc.getPercentage();
-            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1()+"}");
+            floatingBookmarkTextView.setText("{" + dc.getCurentPageFirst1() + "}");
             floatingBookmarkTextView.setVisibility(View.VISIBLE);
 
             BookmarksData.get().add(dc.floatingBookmark);
@@ -491,6 +491,8 @@ public class DocumentWrapperUI {
         } else {
             floatingBookmarkTextView.setVisibility(View.GONE);
         }
+
+        TempHolder.get().documentTitleBarHeight = documentTitleBar.getHeight();
 
     }
 
@@ -604,6 +606,7 @@ public class DocumentWrapperUI {
         a.findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 
         parentParent = a.findViewById(R.id.parentParent);
+        documentTitleBar = a.findViewById(R.id.document_title_bar);
         linkHistory = (ImageView) a.findViewById(R.id.linkHistory);
         linkHistory.setOnClickListener(onLinkHistory);
 

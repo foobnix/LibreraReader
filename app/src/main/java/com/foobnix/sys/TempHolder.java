@@ -34,6 +34,8 @@ public class TempHolder {
     public int textFromPage = 0;
     public String copyFromPath = null;
 
+    public int documentTitleBarHeight;
+
     public static TempHolder get() {
         return inst;
     }
