@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 
 import com.foobnix.android.utils.ResultResponse;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public abstract class AppRecycleAdapter<K, T extends RecyclerView.ViewHolder> ex
     }
 
     public void clearItems() {
-        ImageLoader.getInstance().stop();
+        //ImageLoader.getInstance().stop();
         if (items != null) {
             items.clear();
         }

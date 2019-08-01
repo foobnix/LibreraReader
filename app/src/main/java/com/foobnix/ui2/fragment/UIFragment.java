@@ -203,6 +203,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        ImageLoader.getInstance().resume();
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);

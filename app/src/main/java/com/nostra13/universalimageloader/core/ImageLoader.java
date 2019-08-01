@@ -881,14 +881,18 @@ public class ImageLoader {
      * Already running tasks are not paused.
      */
     public void pause() {
-        engine.pause();
+        if(engine!=null) {
+            engine.pause();
+        }
     }
 
     /**
      * Resumes waiting "load&display" tasks
      */
     public void resume() {
-        engine.resume();
+        if(engine!=null) {
+            engine.resume();
+        }
     }
 
     /**

@@ -49,8 +49,10 @@ public class IMG {
     public static Drawable bookBGNoMark;
     public static Context context;
 
+
     public static void init(Context context) {
-        IMG.context = context;
+
+                IMG.context = context;
 
         bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
         bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
