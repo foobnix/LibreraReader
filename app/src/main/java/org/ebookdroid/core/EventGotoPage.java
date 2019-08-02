@@ -107,7 +107,8 @@ public class EventGotoPage implements IEvent {
         if (centerPage) {
             return new PointF(offsetX * width, bounds.top - (viewRect.height() - height) / 2);
         }
-        return new PointF(scrollX + offsetX * width, bounds.top + offsetY * height);
+        //return new PointF(scrollX + offsetX * width, bounds.top + offsetY * height);
+        return new PointF(offsetX * width, bounds.top + offsetY * height);
 
     }
 
