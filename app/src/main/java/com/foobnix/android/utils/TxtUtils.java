@@ -341,6 +341,24 @@ public class TxtUtils {
 
         LOG.d("pageHTML [3]", pageHTML);
 
+        if (AppState.get().isEnalbeTTSReplacements) {
+            try {
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
+
+                final Iterator<String> keys = obj.keys();
+                while (keys.hasNext()) {
+                    String key = keys.next();
+                    String value = obj.optString(key);
+                    if (key.startsWith("<") && key.endsWith(">")) {
+                        pageHTML = pageHTML.replace(key, value);
+                        LOG.d("System-replace", key, value);
+                    }
+
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
 
         pageHTML = replaceEndLine(pageHTML);
 
