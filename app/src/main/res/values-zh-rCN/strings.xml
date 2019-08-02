@@ -33,10 +33,10 @@
    <string name="show_the_dialog_what_is_new_for_updates">显示更新记录</string>
    <string name="what_is_new_in">关于</string>
    <string name="full_list_of_changes_with_images_web_pdf_">下载官网PDF格式更新记录...</string>
-   <string name="search_for_text_in_documents">多文档搜文本</string>
+   <string name="search_for_text_in_documents">搜索文本</string>
    <string name="search_in_the_subfolders">子文件夹</string>
    <string name="stop">停止</string>
-   <string name="document_converter_online_">文档格式转换</string>
+   <string name="document_converter_online_">文档在线转换</string>
    <string name="book_covers">书籍封面</string>
    <string name="cover_image_size">封面大小</string>
    <string name="column_count">列数</string>
@@ -263,8 +263,8 @@
    <string name="___SORT___AND___VIEW___SECTION___">排序视窗</string>
    <string name="by_path">路径</string>
    <string name="folder">档夹</string>
-   <string name="by_file_name">文件</string>
-   <string name="by_size">大小</string>
+   <string name="by_file_name">文件名</string>
+   <string name="by_size">文件大小</string>
    <string name="by_date">日期</string>
    <string name="by_title">书名</string>
    <string name="by_author">作者</string>
@@ -440,7 +440,7 @@
    <string name="add_tag">创建标签</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">确认从所有书籍中删除这个标签？</string>
    <string name="by_number_of_pages">页数</string>
-   <string name="by_number_in_serie">书号</string>
+   <string name="by_number_in_serie">丛书编号</string>
    <string name="by_extension">格式</string>
    <string name="recent_favorites_tags">最近与收藏与标签</string>
    <string name="line_spacing">行目间距</string>
@@ -458,7 +458,7 @@
    <string name="no_keywords">无标引</string>
    <string name="my_tags">标签</string>
    <string name="crop_borders_symmetrically">裁剪边界对称</string>
-   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">从元标签中显示PDF书的作者和书名</string>
+   <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">从PDF元标签显示作者和书名</string>
    <string name="meta_tags">元标签</string>
    <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO  - 无广告的书籍阅读程序，安装它可以在此应用程序中删除广告</string>
    <string name="annotation">简介</string>
@@ -559,7 +559,7 @@
    <string name="publication_date">出版日期</string>
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">显示快速书签</string>
-   <string name="show_only_available_books">只显示可用的书籍</string>
+   <string name="show_only_available_books">仅显可用书籍</string>
    <string name="share_as_text">分享为文本</string>
    <string name="share_as_image">分享为图像</string>
    <string name="copy_text">复制文本</string>
@@ -572,7 +572,7 @@
    <string name="screen">屏幕</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
    <string name="enable_experimental_features">启用实验功能</string>
-   <string name="display_original_file_names_without_metadata">显示原始文件名称（无元数据）</string>
+   <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>
    <string name="use_fingerprint_as_the_password">使用指纹作为密码</string>
    <string name="show_tap_zones_on_screen">在屏上显示点击区</string>
    <string name="show_the_last_page_with_the_red_line">用红线来显示末页</string>
