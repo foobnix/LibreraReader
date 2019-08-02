@@ -68,8 +68,8 @@ A **long press** on a profile name will pop up an alert window for you to restor
 # Additional Settings in Musician's Mode
 
 * Show\hide tap zones (delineated w/ dotted lines)
-* Mark last page w/ red stripes (narrow and wide ones)
-* Highlight page separators for better readability
+* Indicate last page w/ red stripes (narrow and wide ones)
+* Highlight page separators to improve readability
 * Navigate from first to last page by tapping Previous Page zone
 * Navigate from last to first page by tapping Next Page zone
 
@@ -90,10 +90,11 @@ A **long press** on a profile name will pop up an alert window for you to restor
 
 # Miscellaneous
 
-* Support for MathML and SVG. Enable it in Advanced options (may slow down initial book loading)
+* Support for MathML and SVG formats. Enable it in Advanced options (may slow down initial book loading)
 * Option to ignore metadata in the Library view (only filenames will be used)
+* Movable bookmark, with a floating indicator (automatically bookmarks your current reading position and allows you to jump back to it, via floater in the bottom-right corner, after temporary visits to other parts and sections of the book). To initiate (add) a movable bookmark, check the **Floating** box
 * Allow fingerprint to be used instead of password (Android 9+)
-* Allow system Sleep value to be used to turn off screen 
+* Allow the system sleep timeout to be used for turning screen off 
 
 
 {% include versions.md %}
