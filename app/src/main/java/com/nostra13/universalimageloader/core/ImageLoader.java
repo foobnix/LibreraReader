@@ -68,6 +68,8 @@ public class ImageLoader {
 
     private volatile static ImageLoader instance;
 
+    Handler handler = new Handler(Looper.getMainLooper());
+
     /**
      * Returns singleton class instance
      */
@@ -881,16 +883,27 @@ public class ImageLoader {
      * Already running tasks are not paused.
      */
     public void pause() {
-        if(engine!=null) {
+        if (engine != null) {
+            handler.removeCallbacks(postResume);
+            handler.postDelayed(postResume, 1000);
             engine.pause();
+
         }
     }
+
+    Runnable postResume = new Runnable() {
+        @Override
+        public void run() {
+            engine.resume();
+        }
+    };
 
     /**
      * Resumes waiting "load&display" tasks
      */
     public void resume() {
-        if(engine!=null) {
+        if (engine != null) {
+            handler.removeCallbacks(postResume);
             engine.resume();
         }
     }

@@ -77,6 +77,7 @@ public class PauseOnScrollListener implements OnScrollListener {
 			case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
 				if (pauseOnScroll) {
 					imageLoader.pause();
+
 				}
 				break;
 			case OnScrollListener.SCROLL_STATE_FLING:
