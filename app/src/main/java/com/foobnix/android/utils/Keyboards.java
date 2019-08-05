@@ -54,10 +54,11 @@ public class Keyboards {
                         public void run() {
                             try {
                                 parent.invalidate();
+                                LOG.d("invalidateEink", parent.getId());
                             } catch (Exception e) {
                                 LOG.e(e);
                             }
-                            LOG.d("invalidateEink", parent.getId());
+
                         }
                     }, 100);
                 }
