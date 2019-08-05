@@ -525,8 +525,16 @@ public class PrefFragment2 extends UIFragment {
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             String version = packageInfo.versionName;
-            if(Dips.isEInk(getActivity())){
-                version+= " INK";
+            if (Dips.isEInk(getActivity())) {
+                version += " INK";
+            }
+            if (BuildConfig.IS_BETA) {
+                version += "\n MODEL: " + Build.MODEL;
+                version += "\n BRAND: " + Build.BRAND;
+                version += "\n PRODUCT: " + Build.PRODUCT;
+                version += "\n MANUFACTURER: " + Build.MANUFACTURER;
+                version += "\n DEVICE: " + Build.DEVICE;
+                version += "\n REFRESH: " + Dips.getRefreshRate(getActivity());
             }
 
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:
@@ -743,7 +751,7 @@ public class PrefFragment2 extends UIFragment {
                                                      final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
                                                      final List<String> codes = Arrays.asList(//
-                                                             "en", "ar","cs", "de", "es", "fa", "fi", "fr", "he", //
+                                                             "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
                                                              "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
                                                              "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
                                                              "sw", "th", "tr", "uk", "vi", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
@@ -1465,8 +1473,8 @@ public class PrefFragment2 extends UIFragment {
         initKeys();
 
         searchPaths = (TextView) inflate.findViewById(R.id.searchPaths);
-        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
-        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
+        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
         searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
         searchPaths.setOnClickListener(new
 
@@ -2307,16 +2315,16 @@ public class PrefFragment2 extends UIFragment {
 
     public void onFolderConfigDialog() {
         BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
-        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
+        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
 
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
 
             @Override
             public void run() {
                 BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-                BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths,",","");
-                BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths,",","");
+                BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
+                BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
 
                 searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
                 saveChanges();
