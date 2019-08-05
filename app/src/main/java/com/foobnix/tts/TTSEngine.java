@@ -327,6 +327,10 @@ public class TTSEngine {
 
     }
 
+    public synchronized boolean isTempPausing() {
+        return mp != null || ttsEngine != null;
+    }
+
     public synchronized boolean isPlaying() {
         if (TempHolder.isRecordTTS) {
             return false;

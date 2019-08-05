@@ -2035,7 +2035,7 @@ public class DocumentWrapperUI {
         }
 
         if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
+            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
         }
 
     }

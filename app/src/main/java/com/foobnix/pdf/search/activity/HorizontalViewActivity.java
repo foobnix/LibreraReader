@@ -1537,7 +1537,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         if (ttsActive != null) {
-            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isPlaying()));
+            ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
         }
 
     }
