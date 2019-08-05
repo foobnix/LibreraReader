@@ -2195,17 +2195,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     adFrame.setVisibility(View.VISIBLE);
                     adFrame.setTag(null);
 
-
-                    if(Dips.isEInk(HorizontalViewActivity.this)) {
-
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                actionBar.invalidate();
-                                bottomBar.invalidate();
-                            }
-                        }, 100);
-                    }
+                    Keyboards.invalidateEink(HorizontalViewActivity.this);
 
                 }
             });
@@ -2234,6 +2224,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     actionBar.setVisibility(View.GONE);
                     bottomBar.setVisibility(View.GONE);
                     adFrame.setVisibility(View.GONE);
+
+                    Keyboards.invalidateEink(HorizontalViewActivity.this);
 
                 }
 

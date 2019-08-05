@@ -1388,6 +1388,7 @@ public class DocumentWrapperUI {
         showPagesHelper();
 
 
+        Keyboards.invalidateEink(a);
         //try eink fix
 
     }
@@ -1437,15 +1438,8 @@ public class DocumentWrapperUI {
 
 
 
-        if(Dips.isEInk(a)) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    menuLayout.invalidate();
-                    bottomBar.invalidate();
-                }
-            }, 100);
-        }
+
+
         // if (AppState.get().isAutoScroll &&
         // AppState.get().isEditMode) {
         // seekSpeedLayot.setVisibility(View.VISIBLE);

@@ -33,6 +33,29 @@ public class Keyboards {
         InputMethodManager inputManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         // inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+
+        invalidateEink(currentFocus.getContext());
+
+    }
+
+    public static void invalidateEink(Context c) {
+        try {
+            if (Dips.isEInk(c)) {
+                final View decorView = ((Activity) c).getWindow().getDecorView();
+                if (decorView != null) {
+                    decorView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            decorView.invalidate();
+                            LOG.d("invalidateEink", decorView.getId());
+                        }
+                    }, 100);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
     }
 
     public static void hideNavigation(final Activity a) {

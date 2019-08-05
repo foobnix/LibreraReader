@@ -405,11 +405,11 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 	fz_try(ctx)
 	{
 		buf = fz_read_archive_entry(ctx, zip, path);
-#if FZ_ENABLE_SVG
+//#if FZ_ENABLE_SVG
 		if (strstr(path, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf);
 		else
-#endif
+//#endif
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
