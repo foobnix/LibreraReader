@@ -703,6 +703,7 @@ public class PrefFragment2 extends UIFragment {
                                                               AppState.get().brigtnessImage = 0;
                                                               AppState.get().bolderTextOnImage = false;
                                                               AppState.get().isEnableBC = false;
+                                                              AppState.get().tintColor = Color.BLACK;
 
 
                                                               IMG.clearDiscCache();
