@@ -3,6 +3,8 @@ package com.foobnix.android.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -11,6 +13,9 @@ import com.foobnix.model.AppState;
 import com.foobnix.ui2.MainTabs2;
 
 public class Keyboards {
+
+    static Handler handler = new Handler(Looper.getMainLooper());
+
     public static void hideAlways(Activity context) {
         context.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -34,20 +39,25 @@ public class Keyboards {
         // inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
 
-        invalidateEink(currentFocus.getContext());
+        //invalidateEink(currentFocus.getContext());
 
     }
 
-    public static void invalidateEink(Context c) {
+
+    public static void invalidateEink(View parent) {
         try {
-            if (Dips.isEInk(c)) {
-                final View decorView = ((Activity) c).getWindow().getDecorView();
-                if (decorView != null) {
-                    decorView.postDelayed(new Runnable() {
+
+            if (parent != null) {
+                if (Dips.isEInk(parent.getContext())) {
+                    parent.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            decorView.invalidate();
-                            LOG.d("invalidateEink", decorView.getId());
+                            try {
+                                parent.invalidate();
+                            } catch (Exception e) {
+                                LOG.e(e);
+                            }
+                            LOG.d("invalidateEink", parent.getId());
                         }
                     }, 100);
                 }

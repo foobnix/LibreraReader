@@ -1151,7 +1151,7 @@ public class DocumentWrapperUI {
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
             dc.onGoToPage(progress + 1);
-            updateUI();
+            //updateUI();
         }
     };
 
@@ -1211,6 +1211,7 @@ public class DocumentWrapperUI {
     public void doShowHideWrapperControlls() {
         AppState.get().isEditMode = !AppState.get().isEditMode;
         hideShow();
+        Keyboards.invalidateEink(parentParent);
 
     }
 
@@ -1388,7 +1389,6 @@ public class DocumentWrapperUI {
         showPagesHelper();
 
 
-        Keyboards.invalidateEink(a);
         //try eink fix
 
     }
@@ -1863,6 +1863,10 @@ public class DocumentWrapperUI {
         LOG.d("nextChose");
         dc.checkReadingTimer();
 
+        if (AppState.get().isEditMode) {
+            AppState.get().isEditMode = false;
+        }
+
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             dc.onNextPage(animate);
         } else {
@@ -1871,10 +1875,8 @@ public class DocumentWrapperUI {
             }
             dc.onNextScreen(animate);
         }
-        if (AppState.get().isEditMode) {
-            AppState.get().isEditMode = false;
-        }
-        updateUI();
+
+        //updateUI();
 
     }
 
@@ -1885,6 +1887,10 @@ public class DocumentWrapperUI {
     public void prevChose(boolean animate, int repeatCount) {
         dc.checkReadingTimer();
 
+        if (AppState.get().isEditMode) {
+            AppState.get().isEditMode = false;
+        }
+
         if (AppState.get().nextScreenScrollBy == AppState.NEXT_SCREEN_SCROLL_BY_PAGES) {
             dc.onPrevPage(animate);
         } else {
@@ -1893,10 +1899,8 @@ public class DocumentWrapperUI {
             }
             dc.onPrevScreen(animate);
         }
-        if (AppState.get().isEditMode) {
-            AppState.get().isEditMode = false;
-        }
-        updateUI();
+
+        //updateUI();
     }
 
     public View.OnClickListener onPrevPage = new View.OnClickListener() {

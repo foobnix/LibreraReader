@@ -2195,7 +2195,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     adFrame.setVisibility(View.VISIBLE);
                     adFrame.setTag(null);
 
-                    Keyboards.invalidateEink(HorizontalViewActivity.this);
+                    Keyboards.invalidateEink(parentParent);
 
                 }
             });
@@ -2225,7 +2225,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomBar.setVisibility(View.GONE);
                     adFrame.setVisibility(View.GONE);
 
-                    Keyboards.invalidateEink(HorizontalViewActivity.this);
+                    Keyboards.invalidateEink(parentParent);
 
                 }
 

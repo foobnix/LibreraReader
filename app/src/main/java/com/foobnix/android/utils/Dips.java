@@ -92,7 +92,7 @@ public class Dips {
 
     public static boolean isEInk(Context context) {
         boolean isEink = getRefreshRate(context) < 30.0;
-        if (isEink) {
+        if (true || isEink) {
             return true;
         }
         String brand = Build.BRAND.toLowerCase(Locale.US);
