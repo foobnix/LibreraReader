@@ -524,7 +524,11 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            final String version = packageInfo.versionName;
+            String version = packageInfo.versionName;
+            if(Dips.isEInk(getActivity())){
+                version+= " INK";
+            }
+
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:
             // %s (%s)", getString(R.string.version), version, AppsConfig.MUPDF_VERSION));
             ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s: %s", getString(R.string.version), version));

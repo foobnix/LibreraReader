@@ -96,7 +96,19 @@ public class Dips {
             return true;
         }
         String brand = Build.BRAND.toLowerCase(Locale.US);
-        if (brand.contains("onyx") || brand.contains("icarus") || brand.contains("likebook")) {
+        if (
+                brand.contains("unknown") ||
+                        brand.contains("icarus") ||
+                        brand.contains("nook") ||
+                        brand.contains("inkbook") ||
+                        brand.contains("boyue") ||
+                        brand.contains("boeye") ||
+                        brand.contains("energysistem") ||
+                        brand.contains("crema") ||
+                        brand.contains("energy") ||
+                        brand.contains("onyx") ||
+                        brand.contains("tolino") ||
+                        brand.contains("likebook")) {
             return true;
         }
         return false;

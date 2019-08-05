@@ -2195,6 +2195,18 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     adFrame.setVisibility(View.VISIBLE);
                     adFrame.setTag(null);
 
+
+                    if(Dips.isEInk(HorizontalViewActivity.this)) {
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                actionBar.invalidate();
+                                bottomBar.invalidate();
+                            }
+                        }, 100);
+                    }
+
                 }
             });
 

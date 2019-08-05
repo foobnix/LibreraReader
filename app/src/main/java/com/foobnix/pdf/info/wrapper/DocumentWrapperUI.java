@@ -1386,6 +1386,10 @@ public class DocumentWrapperUI {
         // showHideHavigationBar();
         DocumentController.chooseFullScreen(dc.getActivity(), AppState.get().fullScreenMode);
         showPagesHelper();
+
+
+        //try eink fix
+
     }
 
     public void hide() {
@@ -1431,6 +1435,17 @@ public class DocumentWrapperUI {
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
 
+
+
+        if(Dips.isEInk(a)) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    menuLayout.invalidate();
+                    bottomBar.invalidate();
+                }
+            }, 100);
+        }
         // if (AppState.get().isAutoScroll &&
         // AppState.get().isEditMode) {
         // seekSpeedLayot.setVisibility(View.VISIBLE);
