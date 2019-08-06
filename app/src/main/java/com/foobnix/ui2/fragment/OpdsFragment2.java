@@ -607,6 +607,8 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                 sink.writeAll(response.body().source());
                                 sink.close();
 
+                                outStream.close();
+
                                 LOG.d("Download finish");
 
                             } catch (Exception e) {

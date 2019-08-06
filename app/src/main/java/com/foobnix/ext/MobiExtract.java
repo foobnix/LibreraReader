@@ -26,7 +26,8 @@ public class MobiExtract {
         File file = new File(path);
         try {
 
-            MobiParserIS parse = new MobiParserIS(new FileInputStream(file));
+            final FileInputStream is = new FileInputStream(file);
+            MobiParserIS parse = new MobiParserIS(is);
             try {
                 String title = parse.getTitle();
                 String author = parse.getAuthor();
@@ -54,6 +55,7 @@ public class MobiExtract {
 
                 return ebookMeta;
             } finally {
+                is.close();
                 parse.close();
             }
 

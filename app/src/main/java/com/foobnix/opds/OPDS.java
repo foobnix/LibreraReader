@@ -102,6 +102,8 @@ public class OPDS {
                 .newCall(request)//
                 .execute();
 
+
+
         LOG.d("Header: >>", url);
         LOG.d("Header: Status code:", response.code());
 
@@ -112,6 +114,7 @@ public class OPDS {
         }
 
         if (response.code() == 401 && TxtUtils.isEmpty(login)) {
+            response.close();
             return CODE_401;
         } else {
 
@@ -132,7 +135,7 @@ public class OPDS {
 
             LOG.d("getHttpResponse Credentials", login, password);
 
-
+            response.close();
             response = client.newCall(request).execute();
 
             if (response.code() == 401) {
@@ -142,13 +145,16 @@ public class OPDS {
                     LOG.e(e);
                 }
                 response = client.newCall(request).execute();
+
                 if (response.code() == 401) {
+                    response.close();
                     return CODE_401;
                 }
             }
         }
 
         String string = response.body().string();
+        response.close();
         return string;
     }
 
@@ -166,6 +172,8 @@ public class OPDS {
         Response response = client//
                 .newCall(request)//
                 .execute();
+
+
 
         LOG.d("Header: >>", url);
         LOG.d("Header: Status code:", response.code());
@@ -194,6 +202,7 @@ public class OPDS {
                     .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
                     .build();
 
+            response.close();
             response = client.newCall(request).execute();
 
             if (response.code() == 401) {

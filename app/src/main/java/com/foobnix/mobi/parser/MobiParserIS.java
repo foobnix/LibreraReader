@@ -24,7 +24,7 @@ public class MobiParserIS {
     public String encoding;
     public String fullName;
     public String locale;
-    public InputStream raw;
+    public InputStream raw, raw1;
     public int firstImageIndex;
     public int lastContentIndex;
     public EXTH exth = new EXTH();
@@ -128,6 +128,7 @@ public class MobiParserIS {
 
     public void close() {
         try {
+            raw1.close();
             raw.close();
         } catch (IOException e) {
             LOG.e(e);
@@ -135,6 +136,7 @@ public class MobiParserIS {
     }
 
     public MobiParserIS(InputStream is) throws Exception {
+        raw1 = is;
         is = new BufferedInputStream(is);
         is.mark(16 * 1024);
         raw = is;
@@ -297,6 +299,9 @@ public class MobiParserIS {
         } else {
             for (int i = firstImageIndex; i < lastContentIndex; i++) {
                 byte[] img = getRecordByIndex(i);
+                if (img == null) {
+                    return null;
+                }
                 if ((img[0] & 0xff) == 0xFF && (img[1] & 0xff) == 0xD8) {
                     return img;
                 }

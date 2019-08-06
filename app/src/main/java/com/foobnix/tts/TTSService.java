@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
@@ -162,9 +163,20 @@ public class TTSService extends Service {
         if (Build.VERSION.SDK_INT >= 24) {
             MediaPlayer mp = new MediaPlayer();
             try {
-                mp.setDataSource(getAssets().openFd("silence.mp3"));
+                final AssetFileDescriptor afd = getAssets().openFd("silence.mp3");
+                mp.setDataSource(afd);
                 mp.prepareAsync();
                 mp.start();
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        try {
+                            afd.close();
+                        } catch (IOException e) {
+                            LOG.e(e);
+                        }
+                    }
+                });
 
                 LOG.d("silence");
             } catch (IOException e) {

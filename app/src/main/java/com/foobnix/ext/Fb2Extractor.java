@@ -142,7 +142,8 @@ public class Fb2Extractor extends BaseExtractor {
         byte[] decode = null;
         try {
             XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(new FileInputStream(path), "UTF-8");
+            final FileInputStream inputStream = new FileInputStream(path);
+            xpp.setInput(inputStream, "UTF-8");
 
             int eventType = xpp.getEventType();
             String imageID = null;
@@ -177,6 +178,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 eventType = xpp.next();
             }
+            inputStream.close();
         } catch (Exception e) {
             LOG.e(e, path);
         }
@@ -232,7 +234,8 @@ public class Fb2Extractor extends BaseExtractor {
             // }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(new FileInputStream(inputFile), findHeaderEncoding(inputFile));
+            final FileInputStream inputStream = new FileInputStream(inputFile);
+            xpp.setInput(inputStream, findHeaderEncoding(inputFile));
 
             String bookTitle = null;
 
@@ -324,6 +327,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
                 eventType = xpp.next();
             }
+            inputStream.close();
 
             genre = genre.replace(",,", ",") + ",";
             authors = TxtUtils.replaceFirst(authors, ", ", "");
@@ -364,6 +368,7 @@ public class Fb2Extractor extends BaseExtractor {
                 // ebookMeta.setPagesCount((int) fileSize / 512);
                 return ebookMeta;
             }
+
         } catch (Exception e) {
             LOG.e(e, "!!!!", inputFile);
         }
@@ -376,7 +381,8 @@ public class Fb2Extractor extends BaseExtractor {
         try {
 
             XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(new FileInputStream(inputFile), findHeaderEncoding(inputFile));
+            final FileInputStream inputStream = new FileInputStream(inputFile);
+            xpp.setInput(inputStream, findHeaderEncoding(inputFile));
             int eventType = xpp.getEventType();
 
             String sectionId = null;
@@ -445,6 +451,7 @@ public class Fb2Extractor extends BaseExtractor {
 
                 eventType = xpp.next();
             }
+            inputStream.close();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -470,7 +477,8 @@ public class Fb2Extractor extends BaseExtractor {
     public boolean convert(String inputFile, String toName, boolean fixHTML, Map<String, String> notes) {
 
         try {
-            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(toName)));
+            final FileOutputStream out = new FileOutputStream(new File(toName));
+            ZipOutputStream zos = new ZipOutputStream(out);
             zos.setLevel(0);
 
             writeToZip(zos, "mimetype", "application/epub+zip");
@@ -487,6 +495,7 @@ public class Fb2Extractor extends BaseExtractor {
             writeToZip(zos, "OEBPS/fb2.fb2", new ByteArrayInputStream(generateFb2File.toByteArray()));
             LOG.d("Fb2Context convert true");
             zos.close();
+            out.close();
             return true;
         } catch (Exception e) {
             LOG.d("Fb2Context convert false error");
@@ -909,7 +918,8 @@ public class Fb2Extractor extends BaseExtractor {
     public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
         XmlPullParser xpp = XmlParser.buildPullParser();
 
-        xpp.setInput(new FileInputStream(fb2), encoding);
+        final FileInputStream inputStream = new FileInputStream(fb2);
+        xpp.setInput(inputStream, encoding);
         int eventType = xpp.getEventType();
 
         boolean isTitle = false;
@@ -963,6 +973,7 @@ public class Fb2Extractor extends BaseExtractor {
             }
             eventType = xpp.next();
         }
+        inputStream.close();
         if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(DIVIDER)) {
             titles.remove(titles.size() - 1);
         }

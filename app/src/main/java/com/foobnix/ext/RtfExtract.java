@@ -20,6 +20,7 @@ import net.arnx.wmf2svg.gdi.svg.SvgGdi;
 import net.arnx.wmf2svg.gdi.wmf.WmfParser;
 import net.arnx.wmf2svg.util.ImageUtil;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -231,7 +232,8 @@ public class RtfExtract {
     public static byte[] getImageCover(String path) {
         try {
 
-            final FileInputStream fileInputStream = new FileInputStream(path);
+            final FileInputStream in = new FileInputStream(path);
+            final BufferedInputStream fileInputStream = new BufferedInputStream(in);
             IRtfSource source = new RtfStreamSource(fileInputStream);
             IRtfParser parser = new StandardRtfParser();
 
@@ -245,6 +247,7 @@ public class RtfExtract {
                     if (decode == null && pict) {
                         decode = HexUtils.parseHexString(string);
                         try {
+                            in.close();
                             fileInputStream.close();
                         } catch (IOException e) {
                             LOG.e(e);
@@ -260,9 +263,12 @@ public class RtfExtract {
                 }
 
             });
+            in.close();
+            fileInputStream.close();
         } catch (Exception e) {
             LOG.e(e);
         }
+
 
         return decode;
 

@@ -42,6 +42,7 @@ public class JsonHelper {
             while ((line = r.readLine()) != null) {
                 total.append(line);
             }
+            inputStream.close();
             return total.toString();
         } catch (Exception e) {
             LOG.e(e);

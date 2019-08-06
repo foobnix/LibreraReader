@@ -60,7 +60,8 @@ public class CalirbeExtractor {
             }
 
             XmlPullParser xpp = XmlParser.buildPullParser();
-            xpp.setInput(new FileInputStream(metadata), "UTF-8");
+            final FileInputStream inputStream = new FileInputStream(metadata);
+            xpp.setInput(inputStream, "UTF-8");
 
             int eventType = xpp.getEventType();
 
@@ -137,6 +138,7 @@ public class CalirbeExtractor {
                 }
                 eventType = xpp.next();
             }
+            inputStream.close();
         } catch (Exception e) {
             LOG.e(e);
         }
