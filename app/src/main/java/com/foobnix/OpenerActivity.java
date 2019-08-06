@@ -128,7 +128,9 @@ public class OpenerActivity extends Activity {
             cursor.moveToFirst();
             int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
             if (nameIndex >= 0) {
-                return cursor.getString(nameIndex);
+                final String string = cursor.getString(nameIndex);
+                cursor.close();
+                return string;
 
             }
             cursor.close();

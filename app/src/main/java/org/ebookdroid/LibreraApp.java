@@ -44,15 +44,6 @@ public class LibreraApp extends MultiDexApplication {
     public void onCreate() {
 
         if (BuildConfig.DEBUG) {
-            LOG.d("StrictMode enable");
-//            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-//                    //.detectDiskReads()
-//                    //.detectDiskWrites()
-//                   // .detectNetwork()   // or .detectAll() for all detectable problems
-//                    //.detectAll()
-//                    .penaltyLog()
-//                    //.penaltyDeath()
-//                    .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects()
