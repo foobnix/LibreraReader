@@ -96,16 +96,18 @@ public class SharedBooks {
         save(bs, true);
     }
 
-    static float pcache = -1;
+    static int phash = -1;
 
     public static void save(AppBook bs, boolean inThread) {
 
-        if (bs.p == pcache) {
-            LOG.d("SharedBooks-Save", "skip");
+        int hash = bs.hashCode();
+        if (phash == hash) {
+            LOG.d("SharedBooks-Save", "skip", hash);
             return;
         }
-        pcache = bs.p;
-        LOG.d("SharedBooks-Save", "inThread " + inThread, bs.p);
+        phash = hash;
+        LOG.d("SharedBooks-Save", "inThread " + inThread);
+
 
         if (bs == null || TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
@@ -119,10 +121,11 @@ public class SharedBooks {
             }
 
             final String fileName = ExtUtils.getFileName(bs.path);
-            obj.put(fileName, Objects.toJSONObject(bs));
+            final JSONObject value = Objects.toJSONObject(bs);
+            obj.put(fileName, value);
             cache.put(fileName, bs);
 
-            LOG.d("goToPage-save", bs.p, bs.x, bs.y, bs.z);
+            LOG.d("SharedBooks-Save", value);
 
 
             if (inThread) {

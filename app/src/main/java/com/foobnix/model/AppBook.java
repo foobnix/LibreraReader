@@ -32,6 +32,12 @@ public class AppBook implements CurrentPageListener {
     public long t;//time
     public String ln;
 
+    @Override
+    public int hashCode() {
+        final String s = "" + path + z + sp + cp + dp + dc + lk + (int) (x * 100) + (int) (y * 100) + this.s + d + p + ln;
+        LOG.d("hashCode-appbook", s);
+        return s.hashCode();
+    }
 
     public AppBook() {
     }
@@ -78,7 +84,6 @@ public class AppBook implements CurrentPageListener {
         LOG.d("currentPageChanged", page, pages, p);
         t = System.currentTimeMillis();
     }
-
 
 
     public PageIndex getCurrentPage(int pages) {
