@@ -165,12 +165,19 @@ public class AppDB {
     }
 
 
+    DatabaseUpgradeHelper helper;
+
     public void open(Context c, String appDB) {
         LOG.d("Open-DB", appDB);
-        DatabaseUpgradeHelper helper = new DatabaseUpgradeHelper(c, appDB);
+        if(helper!=null) {
+            helper.close();
+        }
+        helper = new DatabaseUpgradeHelper(c, appDB);
+
 
         SQLiteDatabase writableDatabase = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(writableDatabase);
+
 
         daoSession = daoMaster.newSession();
 
