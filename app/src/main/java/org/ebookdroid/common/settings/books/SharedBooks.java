@@ -96,12 +96,23 @@ public class SharedBooks {
         save(bs, true);
     }
 
-    public static synchronized void save(AppBook bs, boolean inThread) {
+    static float pcache = -1;
+
+    public static void save(AppBook bs, boolean inThread) {
+
+        if (bs.p == pcache) {
+            LOG.d("SharedBooks-Save", "skip");
+            return;
+        }
+        pcache = bs.p;
+        LOG.d("SharedBooks-Save", "inThread " + inThread, bs.p);
+
         if (bs == null || TxtUtils.isEmpty(bs.path)) {
             LOG.d("Can't save AppBook");
             return;
         }
-        JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+        final JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+
         try {
             if (bs.p > 1) {
                 bs.p = 0;

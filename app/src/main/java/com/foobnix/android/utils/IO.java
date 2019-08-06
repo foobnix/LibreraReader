@@ -26,16 +26,18 @@ public class IO {
     }
 
     public static void writeObjAsync(File file, Object o) {
-        LOG.d("writeObjAsync", file.getPath());
-        if (o instanceof JSONObject || o instanceof JSONArray) {
-            LOG.d("writeObjAsync", "JSONObject");
-            IO.writeString(file, o.toString());
-        } else if (o instanceof String) {
-            LOG.d("writeObjAsync", "String");
-            IO.writeString(file, (String) o);
-        } else {
-            //LOG.d("writeObjAsync", "Class", o.getClass().getName());
-            IO.writeString(file, Objects.toJSONString(o));
+        synchronized (file) {
+            LOG.d("writeObjAsync", file.getPath());
+            if (o instanceof JSONObject || o instanceof JSONArray) {
+                LOG.d("writeObjAsync", "JSONObject");
+                IO.writeString(file, o.toString());
+            } else if (o instanceof String) {
+                LOG.d("writeObjAsync", "String");
+                IO.writeString(file, (String) o);
+            } else {
+                //LOG.d("writeObjAsync", "Class", o.getClass().getName());
+                IO.writeString(file, Objects.toJSONString(o));
+            }
         }
 
 //        try {
@@ -92,15 +94,17 @@ public class IO {
     }
 
     public static JSONObject readJsonObject(File file) {
-        final String s = readString(file);
-        if(TxtUtils.isEmpty(s)){
-            return new JSONObject();
-        }
+        synchronized (file) {
+            final String s = readString(file);
+            if (TxtUtils.isEmpty(s)) {
+                return new JSONObject();
+            }
 
-        try {
-            return new JSONObject(s);
-        } catch (JSONException e) {
-            return new JSONObject();
+            try {
+                return new JSONObject(s);
+            } catch (JSONException e) {
+                return new JSONObject();
+            }
         }
     }
 

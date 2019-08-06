@@ -55,6 +55,12 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+//        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+//                .setSmallIcon(R.drawable.glyphicons_529_database_search) //
+//                .setContentText(getString(R.string.searching_please_wait_))
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+//                .build();
+//        startForeground(123234,notification);
         AppProfile.init(this);
     }
 
@@ -301,7 +307,7 @@ public class BooksService extends IntentService {
         } finally {
             isRunning = false;
         }
-
+        //stopSelf();
     }
 
     Runnable timer = new Runnable() {
