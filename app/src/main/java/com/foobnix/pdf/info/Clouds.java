@@ -23,6 +23,7 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.ui2.BooksService;
@@ -227,6 +228,13 @@ public class Clouds {
     public void init(Context c) {
         this.context = c;
         try {
+
+            if (!UITab.isShowCloudsPreferences()) {
+                LOG.d("Clouds-is not active");
+                return;
+            }
+
+            LOG.d("Clouds-is active");
 
             CloudRail.setAppKey("5817abf0c40abf10ce9a04c5");
 

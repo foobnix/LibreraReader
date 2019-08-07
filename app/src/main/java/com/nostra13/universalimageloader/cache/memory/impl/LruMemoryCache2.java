@@ -22,7 +22,7 @@ public class LruMemoryCache2 implements MemoryCache {
 
     final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
-    LruCache<String, Bitmap> cache = new LruCache<>(maxMemory / 6);
+    LruCache<String, Bitmap> cache = new LruCache<>(maxMemory / 4);
 
     @Override
     public boolean put(String key, Bitmap value) {

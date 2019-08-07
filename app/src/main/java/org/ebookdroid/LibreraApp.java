@@ -3,7 +3,6 @@ package org.ebookdroid;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import android.os.StrictMode;
 import android.support.multidex.MultiDexApplication;
 
 import com.artifex.mupdf.fitz.StructuredText;
@@ -43,19 +42,13 @@ public class LibreraApp extends MultiDexApplication {
     @Override
     public void onCreate() {
 
-        if (BuildConfig.DEBUG) {
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-//                    .detectLeakedSqlLiteObjects()
-//                    .detectLeakedClosableObjects()
-//                    .detectActivityLeaks()
-//                    .detectLeakedRegistrationObjects()
-//                    .detectFileUriExposure()
-//                    .detectContentUriWithoutPermission()
-                    .detectAll()
-                    .penaltyLog()
-                    .penaltyDeath()
-                    .build());
-        }
+//        if (BuildConfig.DEBUG) {
+//            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                    .detectAll()
+//                    .penaltyLog()
+//                    .penaltyDeath()
+//                    .build());
+//        }
 
         super.onCreate();
 

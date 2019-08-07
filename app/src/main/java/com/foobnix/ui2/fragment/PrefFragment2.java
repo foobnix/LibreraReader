@@ -57,6 +57,7 @@ import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
@@ -343,6 +344,7 @@ public class PrefFragment2 extends UIFragment {
                             if (tab == UITab.PrefFragment) {
                                 isshowPrefAsMenu.setChecked(!isChecked);
                             }
+
                         }
                     });
                     ((ImageView) library.findViewById(R.id.image1)).setImageResource(tab.getIcon());
@@ -372,6 +374,10 @@ public class PrefFragment2 extends UIFragment {
                 }
                 AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
                 LOG.d("tabsApply", AppState.get().tabsOrder7);
+
+                if (UITab.isShowCloudsPreferences()) {
+                    Clouds.get().init(getActivity());
+                }
                 onTheme();
             }
         });
@@ -2434,6 +2440,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onTheme() {
+        IMG.clearMemoryCache();
         AppProfile.save(getActivity());
         AppProfile.clear();
         getActivity().finish();
