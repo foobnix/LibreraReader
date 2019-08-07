@@ -4,9 +4,13 @@
 
 cd ../
 
+./gradlew clean incVersion
+
 ./gradlew assembleBetaRelease
+
 ./gradlew assembleLibreraRelease
-./gradlew assembleLibreraPRO
+./gradlew assembleProRelease
+
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
 
