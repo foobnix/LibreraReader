@@ -355,7 +355,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             getmTabStrip().onViewPagerPageChanged(position, positionOffset);
-            LOG.d("positionOffset", positionOffset);
+            //LOG.d("positionOffset", positionOffset);
             if (positionOffset > 0.6) {
                 updateIcons(position + 1);
             } else {

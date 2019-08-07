@@ -191,10 +191,11 @@ public class BooksService extends IntentService {
 
                     }
 
-                    SharedBooks.updateProgress(list,true);
+                    //SharedBooks.updateProgress(list,true);
                     AppDB.get().updateAll(list);
 
                     AppTemp.get().searchDate = System.currentTimeMillis();
+                    AppTemp.get().save();
                     sendFinishMessage();
                 }
 

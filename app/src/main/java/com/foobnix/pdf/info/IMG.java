@@ -1,6 +1,5 @@
 package com.foobnix.pdf.info;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -23,7 +22,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache2;
-import com.nostra13.universalimageloader.core.DefaultConfigurationFactory;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -70,12 +68,12 @@ public class IMG {
         builder.decodingOptions(new Options());
 
 
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        int memoryClass = am.getMemoryClass();
-        if (DefaultConfigurationFactory.hasHoneycomb() && DefaultConfigurationFactory.isLargeHeap(context)) {
-            memoryClass = DefaultConfigurationFactory.getLargeMemoryClass(am);
-        }
-        final long memoryCacheSize = 1024 * 1024 * memoryClass / 5;//8
+//        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+//        int memoryClass = am.getMemoryClass();
+//        if (DefaultConfigurationFactory.hasHoneycomb() && DefaultConfigurationFactory.isLargeHeap(context)) {
+//            memoryClass = DefaultConfigurationFactory.getLargeMemoryClass(am);
+//        }
+//        final long memoryCacheSize = 1024 * 1024 * memoryClass / 6;//8
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
                 .threadPoolSize(4)//

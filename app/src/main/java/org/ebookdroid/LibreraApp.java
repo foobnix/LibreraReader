@@ -45,13 +45,13 @@ public class LibreraApp extends MultiDexApplication {
 
         if (BuildConfig.DEBUG) {
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects()
-                    .detectActivityLeaks()
-                    .detectLeakedRegistrationObjects()
-                    .detectFileUriExposure()
-                    .detectContentUriWithoutPermission()
-                  //  .detectAll()
+//                    .detectLeakedSqlLiteObjects()
+//                    .detectLeakedClosableObjects()
+//                    .detectActivityLeaks()
+//                    .detectLeakedRegistrationObjects()
+//                    .detectFileUriExposure()
+//                    .detectContentUriWithoutPermission()
+                    .detectAll()
                     .penaltyLog()
                     .penaltyDeath()
                     .build());
