@@ -3558,6 +3558,8 @@ public class DragingDialogs {
                                 controller.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 inactivityTime.setText(R.string.system);
                                 TxtUtils.underlineTextView(inactivityTime);
+                                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear", AppState.get().inactivityTime);
+
                                 return false;
                             }
                         });
@@ -3569,9 +3571,13 @@ public class DragingDialogs {
 
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
+                                    controller.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
                                     AppState.get().inactivityTime = number;
                                     inactivityTime.setText("" + AppState.get().inactivityTime);
                                     TxtUtils.underlineTextView(inactivityTime);
+                                    LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","add", AppState.get().inactivityTime);
+
                                     return false;
                                 }
                             });

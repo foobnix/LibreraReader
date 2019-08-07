@@ -465,7 +465,7 @@ public class DocumentWrapperUI {
 
         if (AppState.get().inactivityTime > 0) {
             dc.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", "add",AppState.get().inactivityTime);
             handler.removeCallbacks(clearFlags);
             handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
         }
@@ -523,7 +523,7 @@ public class DocumentWrapperUI {
         public void run() {
             try {
                 dc.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
             } catch (Exception e) {
                 LOG.e(e);
             }

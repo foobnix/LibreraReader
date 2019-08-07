@@ -1532,9 +1532,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             dc.goToPageByTTS();
         }
 
-        handler.removeCallbacks(closeRunnable);
-        handlerTimer.post(updateTimePower);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+            handler.removeCallbacks(closeRunnable);
+            handlerTimer.post(updateTimePower);
+
+        if(AppState.get().inactivityTime!=-1) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", "add",AppState.get().inactivityTime);
+
+        }
 
         if (ttsActive != null) {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
@@ -1899,7 +1905,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             if (AppState.get().inactivityTime > 0) {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+                LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", "add",AppState.get().inactivityTime);
                 handler.removeCallbacks(clearFlags);
                 handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
             }
@@ -1932,7 +1938,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             try {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", dc.getActivity().getWindow().getAttributes().flags);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear", AppState.get().inactivityTime);
             } catch (Exception e) {
                 LOG.e(e);
             }

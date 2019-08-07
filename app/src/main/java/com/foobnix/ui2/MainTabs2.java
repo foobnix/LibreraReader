@@ -670,7 +670,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+       //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear");
+
+
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
         AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
@@ -740,7 +744,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         ImageLoader.getInstance().clearAllTasks();
 

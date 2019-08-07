@@ -195,7 +195,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (handler != null) {
             handler.removeCallbacks(closeRunnable);
         }
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if(AppState.get().inactivityTime!=-1) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","add",AppState.get().inactivityTime);
+        }
 
     }
 
