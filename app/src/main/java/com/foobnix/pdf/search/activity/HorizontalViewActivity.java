@@ -1938,7 +1938,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         public void run() {
             try {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear", AppState.get().inactivityTime);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear");
             } catch (Exception e) {
                 LOG.e(e);
             }
