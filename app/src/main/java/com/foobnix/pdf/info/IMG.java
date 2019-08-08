@@ -71,7 +71,7 @@ public class IMG {
 
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         int memoryClass = am.getMemoryClass();
-        final int memoryCacheSize = 1024 * 1024 * memoryClass / 6;//8
+        final int memoryCacheSize = 1024 * 1024 * memoryClass / 8;//8
         LOG.d("memoryCacheSize 1", memoryCacheSize);
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//

@@ -319,8 +319,8 @@ dependencies {
     pdf_classicImplementation 'com.google.firebase:firebase-core:16+'
     epub_readerImplementation 'com.google.firebase:firebase-core:16+'
 
-
-    //proImplementation 'com.google.firebase:firebase-core:16+'
+    //optional for statistics
+    proImplementation 'com.google.firebase:firebase-core:16+'
 
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
