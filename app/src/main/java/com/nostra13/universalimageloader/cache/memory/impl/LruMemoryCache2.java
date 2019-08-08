@@ -20,9 +20,12 @@ import java.util.Collections;
  */
 public class LruMemoryCache2 implements MemoryCache {
 
-    final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
-    LruCache<String, Bitmap> cache = new LruCache<>(maxMemory / 4);
+    final LruCache<String, Bitmap> cache;
+
+    public LruMemoryCache2(int size) {
+        cache = new LruCache<String, Bitmap>(size);
+    }
 
     @Override
     public boolean put(String key, Bitmap value) {

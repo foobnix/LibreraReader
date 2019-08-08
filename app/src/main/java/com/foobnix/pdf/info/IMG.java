@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,7 +22,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.ImageExtractor;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache2;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -50,7 +51,7 @@ public class IMG {
 
     public static void init(Context context) {
 
-                IMG.context = context;
+        IMG.context = context;
 
         bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
         bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
@@ -68,20 +69,18 @@ public class IMG {
         builder.decodingOptions(new Options());
 
 
-//        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-//        int memoryClass = am.getMemoryClass();
-//        if (DefaultConfigurationFactory.hasHoneycomb() && DefaultConfigurationFactory.isLargeHeap(context)) {
-//            memoryClass = DefaultConfigurationFactory.getLargeMemoryClass(am);
-//        }
-//        final long memoryCacheSize = 1024 * 1024 * memoryClass / 6;//8
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        int memoryClass = am.getMemoryClass();
+        final int memoryCacheSize = 1024 * 1024 * memoryClass / 6;//8
+        LOG.d("memoryCacheSize 1", memoryCacheSize);
 
         final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)//
                 .threadPoolSize(4)//
                 .threadPriority(Thread.NORM_PRIORITY)//
                 .defaultDisplayImageOptions(builder.build())//
-                //.memoryCache(new LruMemoryCache2())
+                .memoryCache(new LruMemoryCache2(memoryCacheSize))
                 //.memoryCache(new LruMemoryCache(memoryCacheSize))//DefaultConfigFactory createMemoryCache
-                .memoryCache(new WeakMemoryCache())
+                //.memoryCache(new WeakMemoryCache())
                 .diskCache(new UnlimitedDiskCache(new File(context.getExternalCacheDir(), "Images-1")))//
                 .imageDownloader(ImageExtractor.getInstance(context))//
                 .build();

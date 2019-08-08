@@ -32,7 +32,7 @@ public class AppData {
     }
 
 
-    public synchronized void add(SimpleMeta s, File file) {
+    public void add(SimpleMeta s, File file) {
         List<SimpleMeta> current = getSimpleMeta(file);
 
         final SimpleMeta syncMeta = SimpleMeta.SyncSimpleMeta(s);

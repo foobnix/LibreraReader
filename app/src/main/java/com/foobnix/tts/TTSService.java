@@ -77,6 +77,23 @@ public class TTSService extends Service {
     public void onCreate() {
         LOG.d(TAG, "Create");
 
+        if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
+            startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
+        } else {
+            PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
+                    //.setContentTitle(Apps.getApplicationName(this)) //
+                    .setContentText(getString(R.string.please_wait))
+                    .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                    .build();
+
+            startForeground(TTSNotification.NOT_ID, notification);
+        }
+
+        //
+
         PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
         wakeLock = myPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Librera:TTSServiceLock");
 
@@ -187,20 +204,6 @@ public class TTSService extends Service {
         }
 
 
-        if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
-            startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
-        } else {
-            PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
-                    //.setContentTitle(Apps.getApplicationName(this)) //
-                    .setContentText(getString(R.string.please_wait))
-                    .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                    .build();
-
-            startForeground(TTSNotification.NOT_ID, notification);
-        }
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
