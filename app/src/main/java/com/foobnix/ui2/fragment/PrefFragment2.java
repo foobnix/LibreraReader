@@ -2233,7 +2233,13 @@ public class PrefFragment2 extends UIFragment {
                     IO.writeObjAsync(AppProfile.syncState, o);
 
                     //AppProfile.init(getActivity());
-                    getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+                    final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL);
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        getActivity().startForegroundService(service);
+                    } else {
+                        getActivity().startService(service);
+
+                    }
                     onTheme();
 
                 }

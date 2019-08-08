@@ -27,6 +27,7 @@ import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
@@ -83,7 +84,7 @@ public class TTSService extends Service {
             PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
             Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
-                    //.setContentTitle(Apps.getApplicationName(this)) //
+                    .setContentTitle(Apps.getApplicationName(this)) //
                     .setContentText(getString(R.string.please_wait))
                     .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)//

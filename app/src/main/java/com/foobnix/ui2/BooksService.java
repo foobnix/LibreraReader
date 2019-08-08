@@ -1,12 +1,15 @@
 package com.foobnix.ui2;
 
 import android.app.IntentService;
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.media.session.MediaSessionCompat;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -21,6 +24,7 @@ import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
@@ -28,6 +32,7 @@ import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
+import com.foobnix.tts.TTSNotification;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
@@ -55,12 +60,14 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-//        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-//                .setSmallIcon(R.drawable.glyphicons_529_database_search) //
-//                .setContentText(getString(R.string.searching_please_wait_))
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-//                .build();
-//        startForeground(123234,notification);
+        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                .setSmallIcon(R.drawable.glyphicons_748_synchronization1) //
+                .setContentTitle(Apps.getApplicationName(this)) //
+                .setContentText(getString(R.string.please_wait_books_are_being_processed_))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                .build();
+
+        startForeground(TTSNotification.NOT_ID, notification);
         AppProfile.init(this);
     }
 

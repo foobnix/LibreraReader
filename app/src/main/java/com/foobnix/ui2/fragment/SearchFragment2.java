@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -314,6 +315,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onGridList();
 
         if (AppDB.get().getCount() == 0) {
+            //detect crash here! not start second time!!!
             seachAll();
         } else {
             checkForDeleteBooks();
@@ -486,7 +488,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
-            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+            final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL);
+            if (Build.VERSION.SDK_INT >= 26) {
+                getActivity().startForegroundService(service);
+            } else {
+                getActivity().startService(service);
+
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -494,7 +502,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
-            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED));
+            final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED);
+            if (Build.VERSION.SDK_INT >= 26) {
+                getActivity().startForegroundService(service);
+            } else {
+                getActivity().startService(service);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }

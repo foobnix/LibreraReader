@@ -63,6 +63,7 @@ public class SearchCore {
             final FileMeta e = new FileMeta(root.getPath());
             e.setTitle(root.getName());
             items.add(e);
+            LOG.d("find-root", root.getPath());
             return;
         } else if (root.isFile()) {
             return;
@@ -74,18 +75,30 @@ public class SearchCore {
             return;
         }
         for (File file : listFiles) {
+            if (file.isHidden()) {
+                LOG.d("find-skip-hidden", file.getPath());
+                continue;
+            }
             if (file.isDirectory()) {
+                LOG.d("find-add-folder", file.getPath());
+
+                if (file.getPath().endsWith("/Г")) {
+                    LOG.d("find-debug-skip", file.getPath());
+
+                    continue;
+                }
                 if (!findOnce && file.getPath().endsWith("/Android/data")) {
-                    LOG.d("Skip path1", file.getPath());
+                    LOG.d("find-skip-folder", file.getPath());
                     findOnce = true;
                     continue;
                 }
-
                 search(file, exts, items);
             } else if (file.length() > 0 && endWith(file.getName(), exts)) {
+                LOG.d("find-add-file", file.getPath());
                 final FileMeta e = new FileMeta(file.getPath());
                 e.setTitle(file.getName());
                 items.add(e);
+
             }
         }
         return;

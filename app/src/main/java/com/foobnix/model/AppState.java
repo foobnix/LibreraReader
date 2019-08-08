@@ -574,7 +574,7 @@ public class AppState {
     public boolean supportDOCX = true;
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
-    public boolean supportZIP = false;
+    public boolean supportZIP = true;
     public boolean supportOther = false;
 
     public boolean supportTXT = false;
