@@ -51,7 +51,8 @@ public class TTSNotification {
 
     private static final String KEY_TEXT_REPLY = "key_text_reply";
 
-    public static final int NOT_ID = 123123;
+    public static final int NOT_ID = 10;
+    public static final int NOT_ID_2 = 11;
 
     static String bookPath1;
     static int page1;

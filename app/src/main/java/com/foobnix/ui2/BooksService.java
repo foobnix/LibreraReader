@@ -67,7 +67,7 @@ public class BooksService extends IntentService {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
                 .build();
 
-        startForeground(TTSNotification.NOT_ID, notification);
+        startForeground(TTSNotification.NOT_ID_2, notification);
         AppProfile.init(this);
     }
 
@@ -224,6 +224,10 @@ public class BooksService extends IntentService {
 
                 handler.post(timer);
 
+
+                AppTemp.get().searchDate = System.currentTimeMillis();
+                AppTemp.get().save();
+
                 for (final String path : BookCSS.get().searchPaths.split(",")) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
@@ -234,6 +238,7 @@ public class BooksService extends IntentService {
                     }
                 }
                 AppTemp.get().searchDate = System.currentTimeMillis();
+                AppTemp.get().save();
 
 
                 for (FileMeta meta : itemsMeta) {

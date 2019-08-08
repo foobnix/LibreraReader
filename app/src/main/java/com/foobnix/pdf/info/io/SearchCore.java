@@ -82,11 +82,13 @@ public class SearchCore {
             if (file.isDirectory()) {
                 LOG.d("find-add-folder", file.getPath());
 
-                if (file.getPath().endsWith("/Г")) {
-                    LOG.d("find-debug-skip", file.getPath());
-
-                    continue;
+                if(LOG.isEnable) {
+                    if (file.getPath().endsWith("/Г")) {
+                        LOG.d("find-debug-skip", file.getPath());
+                        continue;
+                    }
                 }
+
                 if (!findOnce && file.getPath().endsWith("/Android/data")) {
                     LOG.d("find-skip-folder", file.getPath());
                     findOnce = true;
