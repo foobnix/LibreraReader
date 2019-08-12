@@ -5,8 +5,12 @@ do
 	  echo "--------------------------------------------------------"
 	  TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
 	  MODEL=$(adb -s ${DEVICE} shell getprop ro.product.model)
-	  echo "DEVICE: ${DEVICE} ${MODEL}"
+	  echo "DEVICE: |${DEVICE} ${MODEL}|"
 	  echo "CPU: ${TYPE}"
+
+	if [[ $TYPE == "List " ]]; then
+        continue
+    fi
 
 	if [[ $TYPE == *"arm64"* ]]; then
 		echo "TYPE: arm64"
