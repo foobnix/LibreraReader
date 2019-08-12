@@ -27,12 +27,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static android.os.Build.VERSION.SDK_INT;
+
 public class AndroidWhatsNew {
 
-    public static final String DETAIL_URL_RU = "https://librera.mobi/wiki";
+    public static final String DETAIL_URL_RU = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
-    private static final String WIKI_URL = "https://librera.mobi/wiki/what-is-new/%s/";
+    private static final String WIKI_URL = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki/what-is-new/%s/";
 
     public static String getLangUrl(Context c) {
         String versionName = Apps.getVersionName(c);
@@ -91,7 +93,7 @@ public class AndroidWhatsNew {
 
     public static void show2(final Context c) {
 
-        if(BuildConfig.IS_FDROID){
+        if (BuildConfig.IS_FDROID) {
             Urls.open(c, getLangUrl(c));
             return;
         }
@@ -247,7 +249,7 @@ public class AndroidWhatsNew {
             public void run() {
 
                 final String result = OPDS.getHttpResponseNoException(url);
-                LOG.d("checkForNewBeta result",result);
+                LOG.d("checkForNewBeta result", result);
                 c.runOnUiThread(() -> {
                     try {
                         if (result == null || TxtUtils.isEmpty("" + result)) {

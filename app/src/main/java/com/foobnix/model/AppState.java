@@ -230,7 +230,6 @@ public class AppState {
     public int uiTextColorUser = Color.MAGENTA;
 
 
-
     public int statusBarColorDay = Color.parseColor(TEXT_COLOR_DAY);
     public int statusBarColorNight = Color.parseColor(TEXT_COLOR_NIGHT);
 
@@ -613,7 +612,8 @@ public class AppState {
     @IgnoreHashCode
     public int tapzoneSize = Dips.isXLargeScreen() ? 15 : 25;
 
-    public int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
+
+    public transient int allocatedMemorySize = (int) MemoryUtils.RECOMENDED_MEMORY_SIZE;
 
     @IgnoreHashCode
     public boolean isScrollAnimation = true;

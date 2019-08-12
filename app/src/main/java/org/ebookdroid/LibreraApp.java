@@ -92,7 +92,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Height", Dips.screenHeight());
 
         try {
-            if (LOG.isEnable) {
+            if (BuildConfig.DEBUG) {
                 String myID = ADS.getByTestID(this);
                 ADS.adRequest = new AdRequest.Builder()//
                         .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
@@ -104,7 +104,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-        if (false && !BuildConfig.LOG) {
+        if (false) {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, final Throwable e) {

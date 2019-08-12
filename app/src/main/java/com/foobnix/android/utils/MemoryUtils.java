@@ -4,15 +4,14 @@ public class MemoryUtils {
 
     public static long MAX_MEMORY_SIZE = Runtime.getRuntime().maxMemory();
     public static long RECOMENDED_MEMORY_SIZE = getRecomendedAllocatedSizeInMB();
-    public static boolean IS_SMALL_MEMORY_SIZE = RECOMENDED_MEMORY_SIZE <= 16;
 
     public static long getRecomendedAllocatedSizeInMB() {
-        long recomended = getMaxSizeInMB() / 2;
+        long recomended = getMaxSizeInMB() / 3;
         if (recomended <= 16) {
             return 16;
         }
-        if (recomended >= 256) {
-            return recomended;
+        if (recomended >= 128) {
+            return 128;
         }
         return recomended;
     }

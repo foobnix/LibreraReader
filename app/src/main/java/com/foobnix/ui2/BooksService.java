@@ -180,20 +180,21 @@ public class BooksService extends IntentService {
                         }
                     }
 
+                    LOG.d("BooksService find count", localMeta.size());
                     for (FileMeta meta : localMeta) {
 
                         File file = new File(meta.getPath());
 
                         if (file.lastModified() >= AppTemp.get().searchDate) {
                             if (AppDB.get().getDao().hasKey(meta)) {
-                                LOG.d(TAG, "Skip book", file.getPath());
+                                LOG.d(TAG, "Skip book", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
                                 continue;
                             }
 
                             FileMetaCore.createMetaIfNeed(meta.getPath(), true);
                             LOG.d(TAG, "BooksService", "insert", meta.getPath());
                         } else {
-                            //LOG.d("BooksService file old", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
+                            //LOG.d("BooksService file exist", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
                         }
 
                     }
@@ -203,7 +204,6 @@ public class BooksService extends IntentService {
 
                     AppTemp.get().searchDate = System.currentTimeMillis();
                     AppTemp.get().save();
-                    sendFinishMessage();
                 }
 
                 Clouds.get().syncronizeGet();
@@ -295,7 +295,7 @@ public class BooksService extends IntentService {
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
-                SharedBooks.updateProgress(itemsMeta,true);
+                SharedBooks.updateProgress(itemsMeta, true);
                 AppDB.get().updateAll(itemsMeta);
 
 

@@ -1,5 +1,8 @@
 package org.ebookdroid.common.settings;
 
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+
 public class CoreSettings {
 
     private static CoreSettings current;
@@ -22,7 +25,6 @@ public class CoreSettings {
     public boolean bitmapFileringEnabled;
     public boolean textureReuseEnabled;
     public boolean reloadDuringZoom;
-    public int pdfStorageSize;
 
     /* =============== DjVU Format-specific settings =============== */
     public int djvuRenderingMode;
@@ -41,14 +43,14 @@ public class CoreSettings {
         decodingThreadPriority = Thread.NORM_PRIORITY; // 7
         drawThreadPriority = Thread.NORM_PRIORITY; // 6
 
-        bitmapSize = 9;// 6-64,7-128,8-256,9-512,10-1024
+        bitmapSize = Dips.screenMinWH() > 1050 ? 9 : 8;// 6-64,7-128,8-256,9-512,10-1024
         bitmapFileringEnabled = false;
         textureReuseEnabled = false;// !!!
         reloadDuringZoom = false;
-        pdfStorageSize = 64;// 16-128
 
         /* =============== DjVU Format-specific settings =============== */
         djvuRenderingMode = 0;// 0-color,1-black,2 color only, 3 mask, 4 backgroud, 5 foreground
+        LOG.d("bitmapSize", bitmapSize);
     }
 
 

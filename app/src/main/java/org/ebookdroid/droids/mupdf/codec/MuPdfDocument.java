@@ -220,6 +220,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
         try {
             TempHolder.lock.lock();
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
+           // int allocatedMemory = CoreSettings.get().pdfStorageSize;
             LOG.d("allocatedMemory", AppState.get().allocatedMemorySize, " MB " + allocatedMemory);
             final long open = open(allocatedMemory, format, fname, pwd, css, BookCSS.get().documentStyle == BookCSS.STYLES_ONLY_USER ? 0 : 1);
             LOG.d("TEST", "Open document " + fname + " " + open);

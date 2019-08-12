@@ -291,7 +291,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         if (holderAll instanceof FileMetaViewHolder) {
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
             ImageLoader.getInstance().cancelDisplayTask(holder.image);
-            LOG.d("onViewRecycled");
+            //ImageLoader.getInstance().cancelDisplayTask(holder.image);
+            //LOG.d("onViewRecycled");
         }
     }
 

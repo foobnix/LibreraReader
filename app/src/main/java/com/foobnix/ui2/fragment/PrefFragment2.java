@@ -269,7 +269,7 @@ public class PrefFragment2 extends UIFragment {
             isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
 
             final CheckBox isShowSyncWheel = new CheckBox(getActivity());
-            isShowSyncWheel.setText(getString(R.string.show_sync_wheel));
+            isShowSyncWheel.setText(getString(R.string.manual_sync_animation));
             isShowSyncWheel.setChecked(BookCSS.get().isShowSyncWheel);
             isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isShowSyncWheel = isChecked);
 

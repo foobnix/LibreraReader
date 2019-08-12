@@ -300,9 +300,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    betaImplementation project(':pro')
-    //betaImplementation 'com.google.firebase:firebase-ads:17+'
-    //betaImplementation 'com.google.firebase:firebase-core:16+'
+    //betaImplementation project(':pro')
+    betaImplementation 'com.google.firebase:firebase-ads:17+'
+    betaImplementation 'com.google.firebase:firebase-core:16+'
 
 
     libreraImplementation 'com.google.firebase:firebase-ads:17+'
