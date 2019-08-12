@@ -555,7 +555,6 @@
    <string name="downloads">A letöltések</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">A mappa nem üres. egyébként törölni?</string>
    <string name="synchronized_books">Szinkronizált könyvek</string>
-   <string name="show_sync_wheel">Szinkronizáló kerék megjelenítése</string>
    <string name="publication_date">Közzététel dátuma</string>
    <string name="empy">Üres</string>
    <string name="show_quick_bookmarks">Gyors könyvjelzők megjelenítése</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Mutasson szétválasztó vonalakat az oldalakon, kontrasztot</string>
    <string name="clear_log">Napló törlése</string>
    <string name="floating_bookmark">Úszó könyvjelző</string>
+   <string name="manual_sync_animation">Kézi szinkronizálás (húzza az induláshoz)</string>
 </resources>

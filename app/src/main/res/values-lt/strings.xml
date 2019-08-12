@@ -555,7 +555,6 @@
    <string name="downloads">Parsisiųsti</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Aplankas nėra tuščias. bet kokiu atveju ištrinti?</string>
    <string name="synchronized_books">Sinchronizuotos knygos</string>
-   <string name="show_sync_wheel">Rodyti sinchronizavimo ratą</string>
    <string name="publication_date">Paskelbimo data</string>
    <string name="empy">Tuščia</string>
    <string name="show_quick_bookmarks">Rodyti sparčias žymes</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Rodyti skirtingas linijas puslapiuose, daugiau kontrasto</string>
    <string name="clear_log">Aiškus žurnalas</string>
    <string name="floating_bookmark">Plaukiojanti žyma</string>
+   <string name="manual_sync_animation">Rankinis sinchronizavimas (patraukite, kad pradėtumėte)</string>
 </resources>

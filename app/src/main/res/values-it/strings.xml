@@ -555,7 +555,6 @@
    <string name="downloads">I download</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">La cartella non è vuota cancellare comunque?</string>
    <string name="synchronized_books">Libri sincronizzati</string>
-   <string name="show_sync_wheel">Mostra la rotella di sincronizzazione</string>
    <string name="publication_date">Data di pubblicazione</string>
    <string name="empy">Vuoto</string>
    <string name="show_quick_bookmarks">Mostra segnalibri rapidi</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linee di divisione su pagine più contrastanti</string>
    <string name="clear_log">Pulisci il registro</string>
    <string name="floating_bookmark">Segnalibro mobile</string>
+   <string name="manual_sync_animation">Sincronizzazione manuale (tirare per iniziare)</string>
 </resources>

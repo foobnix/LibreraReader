@@ -555,7 +555,6 @@
    <string name="downloads">Nedladdningarna</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Mappen är inte tom. radera ändå?</string>
    <string name="synchronized_books">Synkroniserade böcker</string>
-   <string name="show_sync_wheel">Visa synkroniseringshjulet</string>
    <string name="publication_date">Publiceringsdatum</string>
    <string name="empy">Tömma</string>
    <string name="show_quick_bookmarks">Visa snabba bokmärken</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Visa delningslinjer på sidor mer kontrast</string>
    <string name="clear_log">Rensa logg</string>
    <string name="floating_bookmark">Flytande bokmärke</string>
+   <string name="manual_sync_animation">Manuell synkronisering (dra för att starta)</string>
 </resources>

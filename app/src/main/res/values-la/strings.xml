@@ -555,7 +555,6 @@
    <string name="downloads">Et downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder est inanis. delete removes?</string>
    <string name="synchronized_books">Librorum synchronized</string>
-   <string name="show_sync_wheel">Ostende sync rotam</string>
    <string name="publication_date">Publication diem</string>
    <string name="empy">Inanis</string>
    <string name="show_quick_bookmarks">Ostende velox bookmarks</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Dividentes vero ostendit lineae in plures paginas</string>
    <string name="clear_log">Patet iniuriarum</string>
    <string name="floating_bookmark">Top fluens,</string>
+   <string name="manual_sync_animation">Sync manual (trahere incipere)</string>
 </resources>

@@ -555,7 +555,6 @@
    <string name="downloads">Stažené</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Složka není prázdná. Stejně smazat?</string>
    <string name="synchronized_books">Synchronizované knihy</string>
-   <string name="show_sync_wheel">Animovat průběh synchronizace</string>
    <string name="publication_date">Datum publikace</string>
    <string name="empy">Prázdný</string>
    <string name="show_quick_bookmarks">Zobrazit rychlé záložky</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Zvýraznit oddělovače stránek</string>
    <string name="clear_log">Vymazat protokol</string>
    <string name="floating_bookmark">Plovoucí</string>
+   <string name="manual_sync_animation">Ruční synchronizace</string>
 </resources>

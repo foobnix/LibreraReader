@@ -555,7 +555,6 @@
    <string name="downloads">ダウンロード</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">フォルダは空ではありません。とにかく削除しますか？</string>
    <string name="synchronized_books">同期書籍</string>
-   <string name="show_sync_wheel">同期ホイールを表示</string>
    <string name="publication_date">発行日</string>
    <string name="empy">空の</string>
    <string name="show_quick_bookmarks">クイックブックマークを表示</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
    <string name="clear_log">クリアログ</string>
    <string name="floating_bookmark">フローティングブックマーク</string>
+   <string name="manual_sync_animation">手動同期（プルして開始）</string>
 </resources>

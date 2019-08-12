@@ -555,7 +555,6 @@
    <string name="downloads">Os downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Pasta não está vazia. apagar mesmo assim?</string>
    <string name="synchronized_books">Livros sincronizados</string>
-   <string name="show_sync_wheel">Mostre a roda de sincronização</string>
    <string name="publication_date">Data de publicação</string>
    <string name="empy">Esvaziar</string>
    <string name="show_quick_bookmarks">Mostrar marcadores rápidos</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linhas divisórias em páginas com mais contraste</string>
    <string name="clear_log">Log clara</string>
    <string name="floating_bookmark">Marcador flutuante</string>
+   <string name="manual_sync_animation">Sincronização manual (puxe para iniciar)</string>
 </resources>

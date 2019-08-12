@@ -555,7 +555,6 @@
    <string name="downloads">다운로드</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">폴더가 비어 있지 않습니다. 어쨌든 삭제 하시겠습니까?</string>
    <string name="synchronized_books">동기 도서</string>
-   <string name="show_sync_wheel">싱크 휠 표시</string>
    <string name="publication_date">발행일</string>
    <string name="empy">빈</string>
    <string name="show_quick_bookmarks">빠른 북마크 표시</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">더 많은 페이지 대비 선분 표시</string>
    <string name="clear_log">로그 지우기</string>
    <string name="floating_bookmark">떠있는 북마크</string>
+   <string name="manual_sync_animation">수동 동기화 (시작하여 당기기)</string>
 </resources>

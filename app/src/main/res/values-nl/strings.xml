@@ -555,7 +555,6 @@
    <string name="downloads">De downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Map is niet leeg. toch verwijderen?</string>
    <string name="synchronized_books">Gesynchroniseerde boeken</string>
-   <string name="show_sync_wheel">Show sync wheel</string>
    <string name="publication_date">Publicatie datum</string>
    <string name="empy">Leeg</string>
    <string name="show_quick_bookmarks">Toon snel favorieten</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Toon scheidslijnen op pagina\'s meer contrast</string>
    <string name="clear_log">Logboek opschonen</string>
    <string name="floating_bookmark">Zwevende bladwijzer</string>
+   <string name="manual_sync_animation">Handmatige synchronisatie (trekken om te starten)</string>
 </resources>

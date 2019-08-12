@@ -555,7 +555,6 @@
    <string name="downloads">Завантаження</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не порожня. все одно видалити?</string>
    <string name="synchronized_books">Синхронізовані книги</string>
-   <string name="show_sync_wheel">Показати колесо синхронізації</string>
    <string name="publication_date">Дата публікації</string>
    <string name="empy">Порожній</string>
    <string name="show_quick_bookmarks">Показувати швидкі закладки</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Показувати розділові лінії на сторінках, які мають більше контрасту</string>
    <string name="clear_log">Очистити журнал</string>
    <string name="floating_bookmark">Плаваючою закладкою</string>
+   <string name="manual_sync_animation">Ручна синхронізація (потягніть до початку)</string>
 </resources>

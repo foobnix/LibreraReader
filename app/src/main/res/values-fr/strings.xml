@@ -555,7 +555,6 @@
    <string name="downloads">Les téléchargements</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Le dossier n\'est pas vide. Supprimer quand même?</string>
    <string name="synchronized_books">Livres synchronisés</string>
-   <string name="show_sync_wheel">Afficher la roue de synchronisation</string>
    <string name="publication_date">Date de publication</string>
    <string name="empy">Vide</string>
    <string name="show_quick_bookmarks">Afficher les signets rapides</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Séparateurs de pages plus visibles</string>
    <string name="clear_log">Effacer le journal</string>
    <string name="floating_bookmark">Signet flottant</string>
+   <string name="manual_sync_animation">Synchronisation manuelle (tirez pour commencer)</string>
 </resources>

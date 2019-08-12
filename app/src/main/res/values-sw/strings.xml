@@ -555,7 +555,6 @@
    <string name="downloads">Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folda si tupu. kufuta chochote?</string>
    <string name="synchronized_books">Vitabu vinavyolingana</string>
-   <string name="show_sync_wheel">Onyesha gurudumu la usawazishaji</string>
    <string name="publication_date">Tarehe ya kuchapishwa</string>
    <string name="empy">Tupu</string>
    <string name="show_quick_bookmarks">Onyesha alama za haraka</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Onyesha mistari ya kugawa kwenye kurasa tofauti zaidi</string>
    <string name="clear_log">Logi wazi</string>
    <string name="floating_bookmark">Alama ya kugeuka</string>
+   <string name="manual_sync_animation">Usawazishaji mwongozo (vuta kuanza)</string>
 </resources>

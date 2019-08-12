@@ -555,7 +555,6 @@
    <string name="downloads">Lataukset</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Kansio ei ole tyhjä. poista silti?</string>
    <string name="synchronized_books">Synkronoidut kirjat</string>
-   <string name="show_sync_wheel">Näytä synkronointipyörä</string>
    <string name="publication_date">Julkaisupäivämäärä</string>
    <string name="empy">Tyhjä</string>
    <string name="show_quick_bookmarks">Näyttää nopeat kirjanmerkit</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Näytä sivujen jakolinjat kontrastina</string>
    <string name="clear_log">Selkeä loki</string>
    <string name="floating_bookmark">Kelluva kirjanmerkki</string>
+   <string name="manual_sync_animation">Manuaalinen synkronointi (vedä aloittamiseen)</string>
 </resources>

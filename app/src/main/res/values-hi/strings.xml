@@ -555,7 +555,6 @@
    <string name="downloads">डाउनलोड</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">फोल्डर खाली नहीं है। फिर भी हटाओ?</string>
    <string name="synchronized_books">सिंक्रनाइज़ की गई पुस्तकें</string>
-   <string name="show_sync_wheel">सिंक पहिया दिखाएं</string>
    <string name="publication_date">प्रकाशन तिथि</string>
    <string name="empy">खाली</string>
    <string name="show_quick_bookmarks">त्वरित बुकमार्क दिखाएं</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">अधिक विपरीत पृष्ठों पर विभाजन रेखाएं दिखाएं</string>
    <string name="clear_log">अभिलेख साफ करो</string>
    <string name="floating_bookmark">अस्थायी बुकमार्क</string>
+   <string name="manual_sync_animation">मैनुअल सिंक (शुरू करने के लिए खींच)</string>
 </resources>

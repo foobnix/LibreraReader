@@ -555,7 +555,6 @@
    <string name="downloads">Загрузки</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Папка не пуста. Всё равно удалить?</string>
    <string name="synchronized_books">Синхронизированные книги</string>
-   <string name="show_sync_wheel">Показывать индикатор синхронизации</string>
    <string name="publication_date">Год издания</string>
    <string name="empy">Пусто</string>
    <string name="show_quick_bookmarks">Показывать быстрые закладки</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Обозначать межстраничные разделительные линии более контрастно</string>
    <string name="clear_log">Очистить журнал</string>
    <string name="floating_bookmark">"Плавающая" закладка</string>
+   <string name="manual_sync_animation">Ручная синхронизация (потяните, чтобы начать)</string>
 </resources>

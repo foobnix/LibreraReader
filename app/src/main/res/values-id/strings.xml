@@ -555,7 +555,6 @@
    <string name="downloads">Unduhan</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Folder tidak kosong. hapus saja?</string>
    <string name="synchronized_books">Buku yang disinkronkan</string>
-   <string name="show_sync_wheel">Tampilkan roda sinkronisasi</string>
    <string name="publication_date">Tanggal penerbitan</string>
    <string name="empy">Kosong</string>
    <string name="show_quick_bookmarks">Tampilkan bookmark cepat</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Menunjukkan garis pemisah pada halaman yang lebih kontras</string>
    <string name="clear_log">Menghapus log</string>
    <string name="floating_bookmark">Bookmark mengambang</string>
+   <string name="manual_sync_animation">Sinkronisasi manual (tarik untuk memulai)</string>
 </resources>

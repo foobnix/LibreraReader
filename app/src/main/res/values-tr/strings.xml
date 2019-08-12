@@ -555,7 +555,6 @@
    <string name="downloads">Indirmeler</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Klasör boş değil. Yine de silinsin mi?</string>
    <string name="synchronized_books">Senkronize kitaplar</string>
-   <string name="show_sync_wheel">Senkronizasyon tekerleğini göster</string>
    <string name="publication_date">Yayın tarihi</string>
    <string name="empy">Boş</string>
    <string name="show_quick_bookmarks">Hızlı yer imlerini göster</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
    <string name="clear_log">Günlüğü temizle</string>
    <string name="floating_bookmark">Kayan yer imi</string>
+   <string name="manual_sync_animation">Manuel senkronizasyon (başlatmak için çekin)</string>
 </resources>

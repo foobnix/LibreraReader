@@ -555,7 +555,6 @@
    <string name="downloads">Các bản tải xuống</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Thư mục không trống. xóa bằng cách nào?</string>
    <string name="synchronized_books">Sách đồng bộ</string>
-   <string name="show_sync_wheel">Hiển thị bánh xe đồng bộ</string>
    <string name="publication_date">Ngày xuất bản</string>
    <string name="empy">Trống</string>
    <string name="show_quick_bookmarks">Hiển thị dấu trang nhanh</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Hiển thị đường phân chia trên các trang tương phản hơn</string>
    <string name="clear_log">Xóa nhật ký</string>
    <string name="floating_bookmark">Dấu trang nổi</string>
+   <string name="manual_sync_animation">Đồng bộ hóa thủ công (kéo để bắt đầu)</string>
 </resources>

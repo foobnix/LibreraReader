@@ -555,7 +555,6 @@
    <string name="downloads">Downloads</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Ordner ist nicht leer. Trotzdem mit den enthaltenen Dokumenten löschen?</string>
    <string name="synchronized_books">Synchronisierte Bücher</string>
-   <string name="show_sync_wheel">Sync-Rad anzeigen</string>
    <string name="publication_date">Veröffentlichungsdatum</string>
    <string name="empy">Leeren</string>
    <string name="show_quick_bookmarks">Zeigen Sie schnell Lesezeichen an</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Trennlinien auf Seiten kontrastreicher anzeigen</string>
    <string name="clear_log">Protokoll löschen</string>
    <string name="floating_bookmark">Schwebendes Lesezeichen</string>
+   <string name="manual_sync_animation">Manuelle Synchronisierung (zum Starten ziehen)</string>
 </resources>

@@ -555,7 +555,6 @@
    <string name="downloads">Descărcările</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">Dosarul nu este gol. șterge oricum?</string>
    <string name="synchronized_books">Cărți sincronizate</string>
-   <string name="show_sync_wheel">Afișați rotița de sincronizare</string>
    <string name="publication_date">Data publicării</string>
    <string name="empy">Gol</string>
    <string name="show_quick_bookmarks">Afișați marcaje rapide</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Afișarea liniilor de divizare pe pagini mai mult contrast</string>
    <string name="clear_log">Curăță Jurnalul</string>
    <string name="floating_bookmark">Marcaj plutitor</string>
+   <string name="manual_sync_animation">Sincronizare manuală (trageți pentru a începe)</string>
 </resources>

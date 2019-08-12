@@ -555,7 +555,6 @@
    <string name="downloads">下載</string>
    <string name="delete_the_directory_all_the_files_in_the_directory_">檔夾不為空。仍要刪除？</string>
    <string name="synchronized_books">同步書籍</string>
-   <string name="show_sync_wheel">顯示同步輪</string>
    <string name="publication_date">出版日期</string>
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">顯示快速書籤</string>
@@ -579,4 +578,5 @@
    <string name="show_dividing_lines_on_pages_more_contrast">頁面上顯示分界線（更具對比）</string>
    <string name="clear_log">清除日誌</string>
    <string name="floating_bookmark">浮動書籤</string>
+   <string name="manual_sync_animation">手動同步（拉動啟動）</string>
 </resources>
