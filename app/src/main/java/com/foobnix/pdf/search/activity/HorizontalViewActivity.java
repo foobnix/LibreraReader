@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -1595,6 +1596,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Subscribe
     public void onEvent(MessageEvent ev) {
+
+        if(currentScrollState != ViewPager.SCROLL_STATE_IDLE){
+            LOG.d("Skip event");
+            return;
+        }
+
         clickUtils.init();
         LOG.d("MessageEvent", ev.getMessage(), ev.getX(), ev.getY());
         if (ev.getMessage().equals(MessageEvent.MESSAGE_CLOSE_BOOK)) {
@@ -1926,11 +1933,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void onPageScrollStateChanged(int arg0) {
-            // TODO Auto-generated method stub
-
+            currentScrollState = arg0;
         }
     };
 
+    private int currentScrollState;
 
     Runnable clearFlags = new Runnable() {
 
