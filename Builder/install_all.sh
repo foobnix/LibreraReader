@@ -1,16 +1,19 @@
+#!/usr/bin/env bash
 APK=/home/ivan-dev/Dropbox/FREE_PDF_APK/testing
 
 for DEVICE in $(adb devices | grep  -E -i '[abcdf0-9]' | tr -s "\t " " " | cut -d " " -f 1)
 do
-	  echo "--------------------------------------------------------"
-	  TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
-	  MODEL=$(adb -s ${DEVICE} shell getprop ro.product.model)
-	  echo "DEVICE: |${DEVICE} ${MODEL}|"
-	  echo "CPU: ${TYPE}"
 
-	if [[ $TYPE == "List " ]]; then
+    if [[ $DEVICE == "List" ]]; then
         continue
     fi
+
+	  echo "----------------------------------"
+	  TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
+	  MODEL=$(adb -s ${DEVICE} shell getprop ro.product.model)
+	  echo "DEVICE: ${DEVICE}-[${MODEL}]"
+	  echo "CPU: ${TYPE}"
+
 
 	if [[ $TYPE == *"arm64"* ]]; then
 		echo "TYPE: arm64"
@@ -22,6 +25,7 @@ do
 		echo "TYPE: x86"
 	    FILES=$APK/*x86*.apk
 	fi
+	echo ""
 
   for f in $FILES
 	do
