@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.foobnix.android.utils.LOG;
@@ -34,7 +33,8 @@ public abstract class AsyncProgressResultToastTask extends AsyncTask<Object, Obj
         dialog = ProgressDialog.show(c, "", c.getString(R.string.please_wait));
 
         try {
-            ProgressBar pr = (ProgressBar) Objects.getInstanceValue(dialog, "mProgress");
+            android.widget.ProgressBar pr = (android.widget.ProgressBar) Objects.getInstanceValue(dialog, "mProgress");
+            pr.setSaveEnabled(false);
             TintUtil.setDrawableTint(pr.getIndeterminateDrawable().getCurrent(), AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
         } catch (Exception e) {
             LOG.e(e);

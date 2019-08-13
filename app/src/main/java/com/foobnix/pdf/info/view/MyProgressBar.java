@@ -4,11 +4,10 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.widget.ProgressBar;
 
 import com.foobnix.android.utils.LOG;
 
-public class MyProgressBar extends ProgressBar {
+public class MyProgressBar extends android.widget.ProgressBar {
 
     public MyProgressBar(Context context) {
         super(context);
