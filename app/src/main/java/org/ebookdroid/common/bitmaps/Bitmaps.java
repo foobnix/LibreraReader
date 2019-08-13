@@ -210,7 +210,9 @@ public class Bitmaps {
             }
 
             final Rect orig = canvas.getClipBounds();
+            canvas.save();
             canvas.clipRect(cr.left - vb.x, cr.top - vb.y, cr.right - vb.x, cr.bottom - vb.y, Region.Op.INTERSECT);
+
             //canvas.drawColor(Color.GREEN);
 
             final float offsetX = tr.left - vb.x;
@@ -254,7 +256,13 @@ public class Bitmaps {
                 rect.bottom += sizeY;
             }
 
-            canvas.clipRect(orig, Region.Op.REPLACE);
+            //canvas.clipRect(orig, Region.Op.REPLACE);
+
+            canvas.restore();
+
+            //canvas.save();
+            //canvas.clipRect(orig);
+            //canvas.restore();
             return res;
         } finally {
             lock.readLock().unlock();
