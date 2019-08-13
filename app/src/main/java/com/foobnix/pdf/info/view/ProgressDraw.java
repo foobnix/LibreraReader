@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;

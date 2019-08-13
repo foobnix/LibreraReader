@@ -3,8 +3,9 @@ package com.foobnix.pdf.info;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.support.v4.util.Pair;
 import android.widget.Toast;
+
+import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;

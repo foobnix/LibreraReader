@@ -7,8 +7,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.RectF;
-import android.support.v4.graphics.ColorUtils;
 import android.text.TextPaint;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;

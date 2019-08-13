@@ -130,7 +130,7 @@
             android:src="@drawable/glyphicons_114_justify" />
     </LinearLayout>
 
-   <android.support.v7.widget.CardView 
+   <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dv"
@@ -192,7 +192,7 @@
             android:tint="@color/tint_gray" />
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
 
     <FrameLayout
         android:layout_width="match_parent"

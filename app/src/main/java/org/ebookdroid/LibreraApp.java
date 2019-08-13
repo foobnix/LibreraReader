@@ -3,7 +3,8 @@ package org.ebookdroid;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import android.support.multidex.MultiDexApplication;
+
+import androidx.multidex.MultiDexApplication;
 
 import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Apps;

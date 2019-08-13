@@ -18,10 +18,11 @@ package com.foobnix.ui2.fast;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.TintUtil;

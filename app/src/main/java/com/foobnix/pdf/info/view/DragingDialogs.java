@@ -27,9 +27,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech.OnInitListener;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.ClipboardManager;
 import android.text.Html;
 import android.text.format.DateFormat;
@@ -69,6 +66,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemAdapter;

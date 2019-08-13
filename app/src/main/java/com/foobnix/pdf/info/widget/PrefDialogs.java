@@ -9,7 +9,6 @@ import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;

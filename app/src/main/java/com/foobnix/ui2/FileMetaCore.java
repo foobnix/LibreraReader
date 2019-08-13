@@ -1,7 +1,8 @@
 package com.foobnix.ui2;
 
 import android.app.Activity;
-import android.support.v4.util.Pair;
+
+import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;

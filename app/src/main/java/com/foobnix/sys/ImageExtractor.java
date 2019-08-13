@@ -13,9 +13,10 @@ import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.RequiresApi;
 import android.util.Base64;
 import android.util.Pair;
+
+import androidx.annotation.RequiresApi;
 
 import com.BaseExtractor;
 import com.foobnix.android.utils.Dips;

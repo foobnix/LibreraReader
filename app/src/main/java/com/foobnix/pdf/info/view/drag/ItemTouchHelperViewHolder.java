@@ -1,6 +1,6 @@
 package com.foobnix.pdf.info.view.drag;
 
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 public interface ItemTouchHelperViewHolder {
 

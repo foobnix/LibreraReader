@@ -14,11 +14,11 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode codeNumber
         versionName versionNumber
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
     lintOptions {
@@ -249,25 +249,34 @@ android {
 
 
     sourceSets { fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] } }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2+'
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    implementation 'com.android.support:appcompat-v7:28+'
-    implementation 'com.android.support:recyclerview-v7:28+'
-    implementation 'com.android.support:cardview-v7:28+'
-    implementation 'com.android.support:support-v4:28+'
-    implementation 'com.android.support:customtabs:28+'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //implementation 'androidx.browser:browser:1.0.0'
+    //implementation 'com.getbase:floatingactionbutton:1.10.1'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
 
@@ -297,12 +306,12 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
     //betaImplementation project(':pro')
-    betaImplementation 'com.google.firebase:firebase-ads:17+'
-    betaImplementation 'com.google.firebase:firebase-core:16+'
+    betaImplementation 'com.google.firebase:firebase-ads:18+'
+    betaImplementation 'com.google.firebase:firebase-core:17+'
 
 
     libreraImplementation 'com.google.firebase:firebase-ads:17+'
@@ -336,13 +345,13 @@ dependencies {
 
 
     //F-DROID REMOVE THIS LINES BEGIN
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
-    implementation 'com.google.http-client:google-http-client-gson:1.28.0'
-    implementation('com.google.api-client:google-api-client-android:1.28.0') {
+    implementation 'com.google.http-client:google-http-client-gson:1.30.2'
+    implementation('com.google.api-client:google-api-client-android:1.30.2') {
         exclude group: 'org.apache.httpcomponents'
     }
-    implementation('com.google.apis:google-api-services-drive:v3-rev156-1.25.0') {
+    implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
         exclude group: 'org.apache.httpcomponents'
     }
     //F-DROID REMOVE THIS LINES END

@@ -8,7 +8,6 @@ import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Color;
 import android.os.Handler;
 import android.provider.Settings.SettingNotFoundException;
-import android.support.v4.graphics.ColorUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +17,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;

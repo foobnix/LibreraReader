@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.util.Pair;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.SpannedString;
@@ -17,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import androidx.core.util.Pair;
 
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;

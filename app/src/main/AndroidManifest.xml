@@ -6,7 +6,7 @@
     android:versionCode="941"
     android:versionName="7.12.87">
 
-    <uses-sdk tools:overrideLibrary="android.support.customtabs" />
+   <!-- <uses-sdk tools:overrideLibrary="android.support.customtabs" /> -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -42,7 +42,7 @@
             android:value="${appGdriveKey}" />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -227,7 +227,7 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="android.support.v4.media.session.MediaButtonReceiver">
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>

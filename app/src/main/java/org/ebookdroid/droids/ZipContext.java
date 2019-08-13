@@ -1,6 +1,6 @@
 package org.ebookdroid.droids;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;

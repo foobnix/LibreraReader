@@ -4,7 +4,8 @@ import android.annotation.TargetApi;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.MyADSProvider;

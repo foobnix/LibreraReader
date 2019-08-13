@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:orientation="vertical" >
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/imageParent"
             android:layout_width="wrap_content"
             android:layout_height="150dip"
@@ -36,7 +36,7 @@
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:padding="0dip" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
         <FrameLayout
             android:id="@+id/title2Parent"
@@ -143,4 +143,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

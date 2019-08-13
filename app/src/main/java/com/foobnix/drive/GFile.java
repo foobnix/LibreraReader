@@ -161,8 +161,20 @@ public class GFile {
 
     }
 
-    public static List<File> exeQF(String q, String... args) throws IOException {
-        return exeQ(String.format(q, args));
+    public static List<File> exeQF(String q, String arg1) throws IOException {
+        return exeQ(String.format(q, arg1));
+    }
+
+    public static List<File> exeQF(String q, String arg1, String arg2) throws IOException {
+        return exeQ(String.format(q, arg1, arg2));
+    }
+
+    public static List<File> exeQF(String q, String arg1, String arg2, String arg3, String arg4) throws IOException {
+        return exeQ(String.format(q, arg1, arg2, arg3, arg4));
+    }
+
+    public static List<File> exeQF(String q, String arg1, String arg2, String arg3) throws IOException {
+        return exeQ(String.format(q, arg1, arg2, arg3));
     }
 
     public static List<File> exeQ(String q) throws IOException {

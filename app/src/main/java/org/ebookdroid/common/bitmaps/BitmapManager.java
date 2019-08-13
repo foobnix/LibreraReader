@@ -3,7 +3,8 @@ package org.ebookdroid.common.bitmaps;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.v4.util.LruCache;
+
+import androidx.collection.LruCache;
 
 import com.foobnix.android.utils.LOG;
 

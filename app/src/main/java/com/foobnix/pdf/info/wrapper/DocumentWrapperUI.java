@@ -11,7 +11,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v4.graphics.ColorUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -25,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;

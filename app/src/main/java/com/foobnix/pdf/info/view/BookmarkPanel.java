@@ -1,12 +1,13 @@
 package com.foobnix.pdf.info.view;
 
 import android.graphics.Typeface;
-import android.support.v4.view.ViewPager.LayoutParams;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager.LayoutParams;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.TxtUtils;

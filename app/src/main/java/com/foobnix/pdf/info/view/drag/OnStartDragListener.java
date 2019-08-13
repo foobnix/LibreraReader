@@ -1,6 +1,6 @@
 package com.foobnix.pdf.info.view.drag;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface OnStartDragListener {
 

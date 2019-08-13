@@ -1,6 +1,6 @@
 package com.foobnix.opds;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
