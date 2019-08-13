@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -17,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 public class ADS {
     private static final String TAG = "ADS";
@@ -32,7 +34,7 @@ public class ADS {
                 return;
             }
             View adFrame = a.findViewById(R.id.adFrame);
-            if(adFrame.getVisibility() == View.VISIBLE) {
+            if (adFrame.getVisibility() == View.VISIBLE) {
                 adFrame.setVisibility(View.INVISIBLE);
             }
         } catch (Exception e) {
@@ -44,7 +46,7 @@ public class ADS {
         try {
             LOG.d("activateAdmobSmartBanner");
             final FrameLayout frame = (FrameLayout) a.findViewById(R.id.adFrame);
-            if(frame==null){
+            if (frame == null) {
                 return;
             }
             frame.removeAllViews();
@@ -56,7 +58,17 @@ public class ADS {
             }
             adView = new AdView(a);
             //adView.setAdSize(AdSize.SMART_BANNER);
-            adView.setAdSize(AdSize.BANNER);
+            //AdSize adSize = new AdSize(Dips.screenWidth(), Dips.DP_80);
+
+            //final AdSize size = AdSize.getCurrentOrientationBannerAdSizeWithWidth(a, Dips.screenWidth());
+
+            //LOG.d("getCurrentOrientationBannerAdSizeWithWidth", size.getWidth(), size.getHeight(), size.getHeightInPixels(a));
+
+            if (Dips.isVertical()) {
+                adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
+            } else {
+                adView.setAdSize(AdSize.FULL_BANNER);
+            }
             adView.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_BANNER_ID"));
 
             adView.loadAd(adRequest);
@@ -64,7 +76,7 @@ public class ADS {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(int arg0) {
-                    LOG.d("failed ads",arg0);
+                    LOG.d("failed ads", arg0);
                     frame.removeAllViews();
                     frame.setVisibility(View.GONE);
                 }
@@ -75,6 +87,8 @@ public class ADS {
                 }
 
             });
+
+
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
             params.gravity = Gravity.CENTER_HORIZONTAL;
@@ -86,7 +100,6 @@ public class ADS {
         }
 
     }
-
 
 
     public static void onPauseAll(AdView adView) {
@@ -101,7 +114,7 @@ public class ADS {
         }
     }
 
-    public static void destoryAll( AdView adView) {
+    public static void destoryAll(AdView adView) {
         if (adView != null) {
             adView.destroy();
             adView = null;
