@@ -70,7 +70,7 @@ void waitAndHandleMessages(JNIEnv *env, jlong contextHandle)
 extern "C" jlong Java_org_ebookdroid_droids_djvu_codec_DjvuContext_create(JNIEnv *env, jclass cls)
 {
     ddjvu_context_t* context = ddjvu_context_create(DJVU_DROID);
-    DEBUG_PRINT("Creating context: %x", context);
+    //DEBUG_PRINT("Creating context: %x", context);
     return (jlong) context;
 }
 

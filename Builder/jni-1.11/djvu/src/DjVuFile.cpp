@@ -260,7 +260,7 @@ DjVuFile::~DjVuFile(void)
   // which will be very-very bad as we're being destroyed
   get_portcaster()->del_port(this);
   
-  // Unregister the trigger (we don't want it to be called and attempt
+  // Un the trigger (we don't want it to be called and attempt
   // to access the destroyed object)
   if (data_pool)
     data_pool->del_trigger(static_trigger_cb, this);

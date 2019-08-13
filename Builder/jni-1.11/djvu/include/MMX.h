@@ -86,16 +86,16 @@ namespace DJVU {
 
     \begin{description}
     \item[MMXrr( insn, srcreg, dstreg)] 
-       Encode a register to register MMX instruction 
+       Encode a  to  MMX instruction
        (e.g. #paddw# or #punpcklwd#).
     \item[MMXar( insn, addr, dstreg )]
-       Encode a memory to register MMX instruction 
+       Encode a memory to  MMX instruction
        (e.g. #moveq# from memory).
     \item[MMXra( insn, srcreg, addr )]
-       Encode a register to memory MMX instruction 
+       Encode a  to memory MMX instruction
        (e.g. #moveq# to memory).
     \item[MMXir( insn, imm, dstreg )]
-       Encode a immediate to register MMX instruction 
+       Encode a immediate to  MMX instruction
        (e.g #psraw#).
     \item[MMXemms]
        Execute the #EMMS# instruction to reset the FPU state.
@@ -172,9 +172,9 @@ typedef struct{ char c[8]; } MMX_t;
 #define MMXir(op,imm,dst) \
   __asm { op dst,imm }
 #define MMXar(op,addr,dst) \
-  { register __int64 var=*(__int64*)(addr); __asm { op dst,var } }
+  {  __int64 var=*(__int64*)(addr); __asm { op dst,var } }
 #define MMXra(op,src,addr) \
-  { register __int64 var; __asm { op [var],src };  *(__int64*)addr = var; } 
+  {  __int64 var; __asm { op [var],src };  *(__int64*)addr = var; }
 // Probably not as efficient as GCC macros
 #define MMX 1
 #endif

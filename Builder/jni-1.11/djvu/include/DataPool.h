@@ -519,7 +519,7 @@ public:
    void		add_trigger(int thresh, 
                             void (* callback)(void *), void * cl_data);
 
-      /** Use this function to unregister callbacks, which are no longer
+      /** Use this function to un callbacks, which are no longer
 	  needed. {\bf Note!} It's important to do it when the client
 	  is about to be destroyed. */
    void		del_trigger(void (* callback)(void *), void *  cl_data);

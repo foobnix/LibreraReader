@@ -294,13 +294,13 @@ jpeg_make_d_derived_tbl (j_decompress_ptr cinfo, boolean isDC, int tblno,
 
 GLOBAL(boolean)
 jpeg_fill_bit_buffer (bitread_working_state * state,
-		      register bit_buf_type get_buffer, register int bits_left,
+		       bit_buf_type get_buffer,  int bits_left,
 		      int nbits)
 /* Load up the bit buffer to a depth of at least nbits */
 {
   /* Copy heavily used state fields into locals (hopefully registers) */
-  register const JOCTET * next_input_byte = state->next_input_byte;
-  register size_t bytes_in_buffer = state->bytes_in_buffer;
+   const JOCTET * next_input_byte = state->next_input_byte;
+   size_t bytes_in_buffer = state->bytes_in_buffer;
   j_decompress_ptr cinfo = state->cinfo;
 
   /* Attempt to load at least MIN_GET_BITS bits into get_buffer. */
@@ -309,7 +309,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 
   if (cinfo->unread_marker == 0) {	/* cannot advance past a marker */
     while (bits_left < MIN_GET_BITS) {
-      register int c;
+       int c;
 
       /* Attempt to read a byte */
       if (bytes_in_buffer == 0) {
@@ -399,7 +399,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 
 #define GET_BYTE \
 { \
-  register int c0, c1; \
+   int c0, c1; \
   c0 = GETJOCTET(*buffer++); \
   c1 = GETJOCTET(*buffer); \
   /* Pre-execute most common case */ \
@@ -420,7 +420,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 
 #if __WORDSIZE == 64 || defined(_WIN64)
 
-/* Pre-fetch 48 bytes, because the holding register is 64-bit */
+/* Pre-fetch 48 bytes, because the holding  is 64-bit */
 #define FILL_BIT_BUFFER_FAST \
   if (bits_left < 16) { \
     GET_BYTE GET_BYTE GET_BYTE GET_BYTE GET_BYTE GET_BYTE \
@@ -428,7 +428,7 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 
 #else
 
-/* Pre-fetch 16 bytes, because the holding register is 32-bit */
+/* Pre-fetch 16 bytes, because the holding  is 32-bit */
 #define FILL_BIT_BUFFER_FAST \
   if (bits_left < 16) { \
     GET_BYTE GET_BYTE \
@@ -444,11 +444,11 @@ jpeg_fill_bit_buffer (bitread_working_state * state,
 
 GLOBAL(int)
 jpeg_huff_decode (bitread_working_state * state,
-		  register bit_buf_type get_buffer, register int bits_left,
+		   bit_buf_type get_buffer,  int bits_left,
 		  d_derived_tbl * htbl, int min_bits)
 {
-  register int l = min_bits;
-  register INT32 code;
+   int l = min_bits;
+   INT32 code;
 
   /* HUFF_DECODE has determined that the code is at least min_bits */
   /* bits long, so fetch that many bits in one swoop. */
@@ -566,7 +566,7 @@ decode_mcu_slow (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     JBLOCKROW block = MCU_data[blkn];
     d_derived_tbl * dctbl = entropy->dc_cur_tbls[blkn];
     d_derived_tbl * actbl = entropy->ac_cur_tbls[blkn];
-    register int s, k, r;
+     int s, k, r;
 
     /* Decode a single block's worth of coefficients */
 
@@ -663,7 +663,7 @@ decode_mcu_fast (j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
     JBLOCKROW block = MCU_data[blkn];
     d_derived_tbl * dctbl = entropy->dc_cur_tbls[blkn];
     d_derived_tbl * actbl = entropy->ac_cur_tbls[blkn];
-    register int s, k, r, l;
+     int s, k, r, l;
 
     HUFF_DECODE_FAST(s, l, dctbl);
     if (s) {

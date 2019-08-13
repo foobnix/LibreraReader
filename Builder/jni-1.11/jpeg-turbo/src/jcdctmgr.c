@@ -336,9 +336,9 @@ start_pass_fdctmgr (j_compress_ptr cinfo)
 METHODDEF(void)
 convsamp (JSAMPARRAY sample_data, JDIMENSION start_col, DCTELEM * workspace)
 {
-  register DCTELEM *workspaceptr;
-  register JSAMPROW elemptr;
-  register int elemr;
+   DCTELEM *workspaceptr;
+   JSAMPROW elemptr;
+   int elemr;
 
   workspaceptr = workspace;
   for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -355,7 +355,7 @@ convsamp (JSAMPARRAY sample_data, JDIMENSION start_col, DCTELEM * workspace)
     *workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
 #else
     {
-      register int elemc;
+       int elemc;
       for (elemc = DCTSIZE; elemc > 0; elemc--)
         *workspaceptr++ = GETJSAMPLE(*elemptr++) - CENTERJSAMPLE;
     }
@@ -448,9 +448,9 @@ forward_DCT (j_compress_ptr cinfo, jpeg_component_info * compptr,
 METHODDEF(void)
 convsamp_float (JSAMPARRAY sample_data, JDIMENSION start_col, FAST_FLOAT * workspace)
 {
-  register FAST_FLOAT *workspaceptr;
-  register JSAMPROW elemptr;
-  register int elemr;
+   FAST_FLOAT *workspaceptr;
+   JSAMPROW elemptr;
+   int elemr;
 
   workspaceptr = workspace;
   for (elemr = 0; elemr < DCTSIZE; elemr++) {
@@ -466,7 +466,7 @@ convsamp_float (JSAMPARRAY sample_data, JDIMENSION start_col, FAST_FLOAT * works
     *workspaceptr++ = (FAST_FLOAT)(GETJSAMPLE(*elemptr++) - CENTERJSAMPLE);
 #else
     {
-      register int elemc;
+       int elemc;
       for (elemc = DCTSIZE; elemc > 0; elemc--)
         *workspaceptr++ = (FAST_FLOAT)
                           (GETJSAMPLE(*elemptr++) - CENTERJSAMPLE);
@@ -479,9 +479,9 @@ convsamp_float (JSAMPARRAY sample_data, JDIMENSION start_col, FAST_FLOAT * works
 METHODDEF(void)
 quantize_float (JCOEFPTR coef_block, FAST_FLOAT * divisors, FAST_FLOAT * workspace)
 {
-  register FAST_FLOAT temp;
-  register int i;
-  register JCOEFPTR output_ptr = coef_block;
+   FAST_FLOAT temp;
+   int i;
+   JCOEFPTR output_ptr = coef_block;
 
   for (i = 0; i < DCTSIZE2; i++) {
     /* Apply the quantization and scaling factor */

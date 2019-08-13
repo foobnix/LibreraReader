@@ -987,7 +987,7 @@ Java_com_foobnix_libmobi_LibMobi_convertToEpub(JNIEnv *env, jclass clazz, jstrin
 
 	FILE *file = fopen(fullpath, "rb");
 	if (file == NULL) {
-		printf("Error opening file: %s (%s)\n", fullpath);
+		printf("Error opening file: %s\n", fullpath);
 		mobi_free(m);
 		return ERROR;
 	}

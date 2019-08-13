@@ -1591,7 +1591,7 @@ DjVuDocEditor::unfile_thumbnails(void)
 void
 DjVuDocEditor::file_thumbnails(void)
       // The purpose of this function is to create files containing
-      // thumbnail images and register them in DjVmDir.
+      // thumbnail images and  them in DjVmDir.
       // If some of the thumbnail images are missing, they'll
       // be generated with generate_thumbnails()
 {

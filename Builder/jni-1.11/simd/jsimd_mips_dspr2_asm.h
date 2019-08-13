@@ -120,7 +120,7 @@ LEAF_MIPS32R2(symbol)                                   \
 
 /*
  * Checks if stack offset is big enough for storing/restoring regs_num
- * number of register to/from stack. Stack offset must be greater than
+ * number of  to/from stack. Stack offset must be greater than
  * or equal to the number of bytes needed for storing registers (regs_num*4).
  * Since MIPS ABI allows usage of first 16 bytes of stack frame (this is
  * preserved for input arguments of the functions, already stored in a0-a3),

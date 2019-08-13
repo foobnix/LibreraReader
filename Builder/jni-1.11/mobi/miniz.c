@@ -930,7 +930,7 @@ typedef unsigned char mz_validate_uint32[sizeof(mz_uint32) == 4 ? 1 : -1];
 typedef unsigned char mz_validate_uint64[sizeof(mz_uint64) == 8 ? 1 : -1];
 
 #include <string.h>
-#define NDEBUG
+#define NDEBUG_1
 #include <assert.h>
 
 #define MZ_ASSERT(x) assert(x)
@@ -2555,7 +2555,7 @@ if ((d->m_dict[probe_pos + match_len] == c0) && (d->m_dict[probe_pos + match_len
     
 #if MINIZ_USE_UNALIGNED_LOADS_AND_STORES && MINIZ_LITTLE_ENDIAN
     static mz_bool tdefl_compress_fast(tdefl_compressor *d) {
-        // Faster, minimally featured LZRW1-style match+parse loop with better register utilization. Intended for applications where raw throughput is valued more highly than ratio.
+        // Faster, minimally featured LZRW1-style match+parse loop with better  utilization. Intended for applications where raw throughput is valued more highly than ratio.
         mz_uint lookahead_pos = d->m_lookahead_pos, lookahead_size = d->m_lookahead_size, dict_size = d->m_dict_size, total_lz_bytes = d->m_total_lz_bytes, num_flags_left = d->m_num_flags_left;
         mz_uint8 *pLZ_code_buf = d->m_pLZ_code_buf, *pLZ_flags = d->m_pLZ_flags;
         mz_uint cur_pos = lookahead_pos & TDEFL_LZ_DICT_SIZE_MASK;

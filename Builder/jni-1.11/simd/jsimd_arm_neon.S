@@ -2222,7 +2222,7 @@ asm_function jsimd_quantize_neon
  * Upsample 16 source pixels to 32 destination pixels. The new 16 source
  * pixels are loaded to q0. The previous 16 source pixels are in q1. The
  * shifted-by-one source pixels are constructed in q2 by using q0 and q1.
- * Register d28 is used for multiplication by 3. Register q15 is used
+ *  d28 is used for multiplication by 3.  q15 is used
  * for adding +1 bias.
  */
 .macro upsample16 OUTPTR, INPTR

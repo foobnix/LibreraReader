@@ -559,7 +559,7 @@ decompress_smooth_data (j_decompress_ptr cinfo, JSAMPIMAGE output_buf)
 	next_block_row = buffer_ptr;
       else
 	next_block_row = buffer[block_row+1];
-      /* We fetch the surrounding DC values using a sliding-register approach.
+      /* We fetch the surrounding DC values using a sliding- approach.
        * Initialize all nine here so as to do the right thing on narrow pics.
        */
       DC1 = DC2 = DC3 = (int) prev_block_row[0][0];

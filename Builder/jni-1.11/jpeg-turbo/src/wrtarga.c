@@ -101,9 +101,9 @@ put_pixel_rows (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo,
 /* used for unquantized full-color output */
 {
   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
-  register JSAMPROW inptr;
-  register char * outptr;
-  register JDIMENSION col;
+   JSAMPROW inptr;
+   char * outptr;
+   JDIMENSION col;
 
   inptr = dest->pub.buffer[0];
   outptr = dest->iobuffer;
@@ -122,9 +122,9 @@ put_gray_rows (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo,
 /* used for grayscale OR quantized color output */
 {
   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
-  register JSAMPROW inptr;
-  register char * outptr;
-  register JDIMENSION col;
+   JSAMPROW inptr;
+   char * outptr;
+   JDIMENSION col;
 
   inptr = dest->pub.buffer[0];
   outptr = dest->iobuffer;
@@ -145,10 +145,10 @@ put_demapped_gray (j_decompress_ptr cinfo, djpeg_dest_ptr dinfo,
 		   JDIMENSION rows_supplied)
 {
   tga_dest_ptr dest = (tga_dest_ptr) dinfo;
-  register JSAMPROW inptr;
-  register char * outptr;
-  register JSAMPROW color_map0 = cinfo->colormap[0];
-  register JDIMENSION col;
+   JSAMPROW inptr;
+   char * outptr;
+   JSAMPROW color_map0 = cinfo->colormap[0];
+   JDIMENSION col;
 
   inptr = dest->pub.buffer[0];
   outptr = dest->iobuffer;

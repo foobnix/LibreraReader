@@ -71,8 +71,8 @@ LOCAL(int)
 read_byte (bmp_source_ptr sinfo)
 /* Read next byte from BMP file */
 {
-  register FILE *infile = sinfo->pub.input_file;
-  register int c;
+   FILE *infile = sinfo->pub.input_file;
+   int c;
 
   if ((c = getc(infile)) == EOF)
     ERREXIT(sinfo->cinfo, JERR_INPUT_EOF);
@@ -123,11 +123,11 @@ get_8bit_row (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
 /* This version is for reading 8-bit colormap indexes */
 {
   bmp_source_ptr source = (bmp_source_ptr) sinfo;
-  register JSAMPARRAY colormap = source->colormap;
+   JSAMPARRAY colormap = source->colormap;
   JSAMPARRAY image_ptr;
-  register int t;
-  register JSAMPROW inptr, outptr;
-  register JDIMENSION col;
+   int t;
+   JSAMPROW inptr, outptr;
+   JDIMENSION col;
 
   /* Fetch next row from virtual array */
   source->source_row--;
@@ -155,8 +155,8 @@ get_24bit_row (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
 {
   bmp_source_ptr source = (bmp_source_ptr) sinfo;
   JSAMPARRAY image_ptr;
-  register JSAMPROW inptr, outptr;
-  register JDIMENSION col;
+   JSAMPROW inptr, outptr;
+   JDIMENSION col;
 
   /* Fetch next row from virtual array */
   source->source_row--;
@@ -186,8 +186,8 @@ get_32bit_row (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
 {
   bmp_source_ptr source = (bmp_source_ptr) sinfo;
   JSAMPARRAY image_ptr;
-  register JSAMPROW inptr, outptr;
-  register JDIMENSION col;
+   JSAMPROW inptr, outptr;
+   JDIMENSION col;
 
   /* Fetch next row from virtual array */
   source->source_row--;
@@ -221,8 +221,8 @@ METHODDEF(JDIMENSION)
 preload_image (j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
 {
   bmp_source_ptr source = (bmp_source_ptr) sinfo;
-  register FILE *infile = source->pub.input_file;
-  register JSAMPROW out_ptr;
+   FILE *infile = source->pub.input_file;
+   JSAMPROW out_ptr;
   JSAMPARRAY image_ptr;
   JDIMENSION row;
   cd_progress_ptr progress = (cd_progress_ptr) cinfo->progress;
