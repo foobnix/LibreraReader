@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.widget;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -107,7 +108,7 @@ public class ColorsDialog {
                 }
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, result, MagicHelper.getImagePath(isDayMode));
                 textPreview.setText("");
-                textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
                 return false;
             }
         });
@@ -146,7 +147,7 @@ public class ColorsDialog {
 
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), MagicHelper.IMAGE_BG_1);
                 textPreview.setText("");
-                textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
 
             }
         });
@@ -162,7 +163,8 @@ public class ColorsDialog {
 
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), MagicHelper.IMAGE_BG_2);
                 textPreview.setText("");
-                textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
+
 
             }
         });
@@ -178,7 +180,8 @@ public class ColorsDialog {
 
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), MagicHelper.IMAGE_BG_3);
                 textPreview.setText("");
-                textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
+
 
             }
         });
@@ -203,7 +206,8 @@ public class ColorsDialog {
 
                         Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), nPath);
                         textPreview.setText("");
-                        textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                        textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
+
 
                         dialog.dismiss();
                         return false;
@@ -261,7 +265,7 @@ public class ColorsDialog {
 
                 Bitmap bg = MagicHelper.updateTextViewBG(textPreview2, imageTransparency.getCurrentValue(), MagicHelper.getImagePath(isDayMode));
                 textPreview.setText("");
-                textPreview.setBackgroundDrawable(new BitmapDrawable(bg));
+                textPreview.setBackground(new BitmapDrawable(Resources.getSystem(),bg));
 
             }
         });

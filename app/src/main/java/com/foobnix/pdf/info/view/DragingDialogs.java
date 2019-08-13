@@ -163,6 +163,9 @@ public class DragingDialogs {
     public static final String EDIT_COLORS_PANEL = "editColorsPanel";
 
     public static void samble(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
 
         DragingPopup dialog = new DragingPopup(R.string.loading_failed, anchor, 300, 440) {
 
@@ -355,6 +358,9 @@ public class DragingDialogs {
     }
 
     public static void contrastAndBrigtness(final FrameLayout anchor, final DocumentController controller, final Runnable onRealod, final Runnable onRestart) {
+        if (controller == null) {
+            return;
+        }
 
         DragingPopup dialog = new DragingPopup(R.string.contrast_and_brightness, anchor, 300, 280) {
 
@@ -373,6 +379,9 @@ public class DragingDialogs {
     }
 
     public static void onMoveDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
+        if (controller == null) {
+            return;
+        }
 
         DragingPopup dialog = new DragingPopup(controller.getString(R.string.page_position), anchor, 280, 250) {
 
@@ -484,12 +493,13 @@ public class DragingDialogs {
     }
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
         textToSpeachDialog(anchor, controller, "");
     }
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller, final String textToRead) {
-
-
         if (controller == null) {
             return;
         }
@@ -1025,6 +1035,10 @@ public class DragingDialogs {
     }
 
     public static void searchMenu(final FrameLayout anchor, final DocumentController controller, final String text) {
+        if (controller == null) {
+            return;
+        }
+
         DragingPopup dialog = new DragingPopup(R.string.search, anchor, 250, 150) {
             @Override
             public View getContentView(LayoutInflater inflater) {
@@ -1974,6 +1988,9 @@ public class DragingDialogs {
     }
 
     public static void editColorsPanel(final FrameLayout anchor, final DocumentController controller, final DrawView drawView, final boolean force) {
+        if (controller == null) {
+            return;
+        }
         drawView.setOnFinishDraw(new Runnable() {
 
             @Override
@@ -2168,6 +2185,9 @@ public class DragingDialogs {
     }
 
     public static void addBookmarksLong(final FrameLayout anchor, final DocumentController controller) {
+        if (controller == null) {
+            return;
+        }
         TTSEngine.fastTTSBookmakr(controller);
 
     }
@@ -2445,6 +2465,10 @@ public class DragingDialogs {
 
     public static void sliceDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefreshDoc, final ResultResponse<Integer> onMoveCut) {
 
+        if (controller == null) {
+            return;
+        }
+
         new DragingPopup(anchor.getContext().getString(R.string.split_pages_in_two), anchor, 300, 200) {
             SeekBar seek;
             EditText editPercent;
@@ -2571,6 +2595,9 @@ public class DragingDialogs {
     }
 
     public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
+        if (controller == null) {
+            return;
+        }
 
         new DragingPopup(anchor.getContext().getString(R.string.automatic_page_flipping), anchor, 300, 380) {
 
@@ -3559,7 +3586,7 @@ public class DragingDialogs {
                                 controller.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 inactivityTime.setText(R.string.system);
                                 TxtUtils.underlineTextView(inactivityTime);
-                                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","clear", AppState.get().inactivityTime);
+                                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear", AppState.get().inactivityTime);
 
                                 return false;
                             }
@@ -3577,7 +3604,7 @@ public class DragingDialogs {
                                     AppState.get().inactivityTime = number;
                                     inactivityTime.setText("" + AppState.get().inactivityTime);
                                     TxtUtils.underlineTextView(inactivityTime);
-                                    LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","add", AppState.get().inactivityTime);
+                                    LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
 
                                     return false;
                                 }

@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info.wrapper;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
@@ -11,6 +12,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 
@@ -209,7 +211,7 @@ public class MagicHelper {
     }
 
     public static Drawable getBgImageDrawable(String name) {
-        final BitmapDrawable background = new BitmapDrawable(loadBitmap(name));
+        final BitmapDrawable background = new BitmapDrawable(Resources.getSystem(), loadBitmap(name));
         background.setAlpha(AppState.get().bgImageDayTransparency);
         return background;
     }
@@ -224,11 +226,19 @@ public class MagicHelper {
     }
 
     public static Drawable getBgImageDayDrawable(boolean withAlpa) {
-        return new BitmapDrawable(updateWithBackground(loadBitmap(AppState.get().bgImageDayPath), withAlpa ? AppState.get().bgImageDayTransparency : AppState.DAY_TRANSPARENCY, Color.WHITE));
+        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageDayPath), withAlpa ? AppState.get().bgImageDayTransparency : AppState.DAY_TRANSPARENCY, Color.WHITE);
+        if (bitmap == null) {
+            return new ColorDrawable(Color.WHITE);
+        }
+        return new BitmapDrawable(Resources.getSystem(), bitmap);
     }
 
     public static Drawable getBgImageNightDrawable(boolean withAlpa) {
-        return new BitmapDrawable(updateWithBackground(loadBitmap(AppState.get().bgImageNightPath), withAlpa ? AppState.get().bgImageNightTransparency : AppState.NIGHT_TRANSPARENCY, Color.BLACK));
+        final Bitmap bitmap = updateWithBackground(loadBitmap(AppState.get().bgImageNightPath), withAlpa ? AppState.get().bgImageNightTransparency : AppState.NIGHT_TRANSPARENCY, Color.BLACK);
+        if (bitmap == null) {
+            return new ColorDrawable(Color.BLACK);
+        }
+        return new BitmapDrawable(Resources.getSystem(), bitmap);
     }
 
     static Bitmap bg1;
@@ -246,17 +256,20 @@ public class MagicHelper {
     }
 
     public static Bitmap loadBitmap(String name) {
+        LOG.d("loadBitmap", name);
         if (TxtUtils.isEmpty(name)) {
-            return null;
+            return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
-        BitmapFactory.Options opt = new BitmapFactory.Options();
-        opt.inPreferredConfig = Config.RGB_565;
+
 
         if (name.startsWith("/") && !new File(name).exists()) {
             return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
 
         if (name.startsWith("/")) {
+
+            BitmapFactory.Options opt = new BitmapFactory.Options();
+            opt.inPreferredConfig = Config.RGB_565;
             return BitmapFactory.decodeFile(name, opt);
         }
         try {
@@ -267,7 +280,7 @@ public class MagicHelper {
             return res;
         } catch (Exception e) {
             LOG.e(e);
-            return null;
+            return loadBitmap(MagicHelper.IMAGE_BG_1);
         }
     }
 
@@ -331,6 +344,10 @@ public class MagicHelper {
     }
 
     public static Bitmap updateWithBackground(Bitmap bitmap, int alpha, int color) {
+        if (bitmap == null) {
+            return null;
+        }
+
         Paint p = new Paint();
         p.setAlpha(alpha);
 
@@ -397,6 +414,7 @@ public class MagicHelper {
     public static final int addB = Color.blue(myColorIng);
 
     public static float[] myColorHSL = new float[3];
+
     static {
         ColorUtils.colorToHSL(myColorIng, myColorHSL);
     }
@@ -709,7 +727,8 @@ public class MagicHelper {
         }
     }
 
-    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast, int brigtness) {
+    public static Bitmap createQuickContrastAndBrightness(Bitmap src, int contrast,
+                                                          int brigtness) {
         int[] arr = new int[src.getWidth() * src.getHeight()];
         src.getPixels(arr, 0, src.getWidth(), 0, 0, src.getWidth(), src.getHeight());
         quickContrast3(arr, contrast, brigtness);
@@ -837,7 +856,7 @@ public class MagicHelper {
                     lum = 255;
                 }
                 brightnessContrastMap[i] = (lum << 16) + (lum << 8) + lum; // compose
-                                                                           // greyscale
+                // greyscale
             }
             simpleHash = hash;
         }
