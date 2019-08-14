@@ -68,10 +68,12 @@ public class FileMetaCore {
     }
 
     public static FileMeta createMetaIfNeed(String path, final boolean isSearhcBook) {
-        LOG.d("createMetaIfNeed", path);
 
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
+
+        LOG.d("BooksService createMetaIfNeed", path, fileMeta.getState());
+
         if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
             EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
@@ -83,7 +85,7 @@ public class FileMetaCore {
             }
 
             AppDB.get().update(fileMeta);
-            LOG.d("checkOrCreateMetaInfo", "UPDATE", path);
+            LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
         }
         return fileMeta;
 

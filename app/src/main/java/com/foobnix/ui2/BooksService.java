@@ -144,8 +144,9 @@ public class BooksService extends IntentService {
 
 
             if (ACTION_REMOVE_DELETED.equals(intent.getAction())) {
-                List<FileMeta> list = AppDB.get().getAll();
-                for (FileMeta meta : list) {
+                List<FileMeta> all = AppDB.get().getAll();
+
+                for (FileMeta meta : all) {
                     if (meta == null) {
                         continue;
                     }
@@ -156,55 +157,34 @@ public class BooksService extends IntentService {
 
                     File bookFile = new File(meta.getPath());
                     if (ExtUtils.isMounted(bookFile)) {
-                        LOG.d("isMounted", bookFile);
                         if (!bookFile.exists()) {
                             AppDB.get().delete(meta);
-                            LOG.d(TAG, "Delete-setIsSearchBook", meta.getPath());
+                            LOG.d("BooksService Delete-setIsSearchBook", meta.getPath());
                         }
                     }
 
                 }
                 sendFinishMessage();
 
-                LOG.d("BooksService , searchDate", AppTemp.get().searchDate, BookCSS.get().searchPaths);
-                if (AppTemp.get().searchDate != 0) {
 
-                    List<FileMeta> localMeta = new LinkedList<FileMeta>();
+                List<FileMeta> localMeta = new LinkedList<FileMeta>();
 
-                    for (final String path : BookCSS.get().searchPaths.split(",")) {
-                        if (path != null && path.trim().length() > 0) {
-                            final File root = new File(path);
-                            if (root.isDirectory()) {
-                                LOG.d(TAG, "Searcin in " + root.getPath());
-                                SearchCore.search(localMeta, root, ExtUtils.seachExts);
-                            }
+                for (final String path : BookCSS.get().searchPaths.split(",")) {
+                    if (path != null && path.trim().length() > 0) {
+                        final File root = new File(path);
+                        if (root.isDirectory()) {
+                            LOG.d(TAG, "Searcin in " + root.getPath());
+                            SearchCore.search(localMeta, root, ExtUtils.seachExts);
                         }
                     }
+                }
 
-                    LOG.d("BooksService find count", localMeta.size());
-                    for (FileMeta meta : localMeta) {
 
-                        File file = new File(meta.getPath());
-
-                        if (file.lastModified() >= AppTemp.get().searchDate) {
-                            if (AppDB.get().getDao().hasKey(meta)) {
-                                LOG.d(TAG, "Skip book", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
-                                continue;
-                            }
-
-                            FileMetaCore.createMetaIfNeed(meta.getPath(), true);
-                            LOG.d(TAG, "BooksService", "insert", meta.getPath());
-                        } else {
-                            //LOG.d("BooksService file exist", file.getPath(), file.lastModified(), AppTemp.get().searchDate);
-                        }
-
+                for (FileMeta meta : localMeta) {
+                    if (!all.contains(meta)) {
+                        FileMetaCore.createMetaIfNeed(meta.getPath(), true);
+                        LOG.d("BooksService add book", meta.getPath());
                     }
-
-                    //SharedBooks.updateProgress(list,true);
-                    AppDB.get().updateAll(list);
-
-                    AppTemp.get().searchDate = System.currentTimeMillis();
-                    AppTemp.get().save();
                 }
 
                 Clouds.get().syncronizeGet();
@@ -226,9 +206,6 @@ public class BooksService extends IntentService {
                 handler.post(timer);
 
 
-                AppTemp.get().searchDate = System.currentTimeMillis();
-                AppTemp.get().save();
-
                 for (final String path : BookCSS.get().searchPaths.split(",")) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
@@ -238,8 +215,6 @@ public class BooksService extends IntentService {
                         }
                     }
                 }
-                AppTemp.get().searchDate = System.currentTimeMillis();
-                AppTemp.get().save();
 
 
                 for (FileMeta meta : itemsMeta) {

@@ -16,7 +16,6 @@ public class AppTemp {
     public String lastBookPath;
     public String lastClosedActivity;
     public String lastMode;
-    public long searchDate = 0;
     public int lastBookPage = 0;
     public int lastBookPageCount = 0;
     public int tempBookPage = 0;

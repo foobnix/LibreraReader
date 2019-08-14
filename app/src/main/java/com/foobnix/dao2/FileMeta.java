@@ -1,5 +1,7 @@
 package com.foobnix.dao2;
 
+import androidx.annotation.Nullable;
+
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
@@ -340,6 +342,9 @@ public class FileMeta {
         this.parentPath = parentPath;
     }
 
-
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return obj != null && path.equals(((FileMeta) obj).path);
+    }
 
 }
