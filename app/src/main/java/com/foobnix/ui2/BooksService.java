@@ -173,7 +173,7 @@ public class BooksService extends IntentService {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
-                            LOG.d(TAG, "Searcin in " + root.getPath());
+                            LOG.d(TAG, "Search in " + root.getPath());
                             SearchCore.search(localMeta, root, ExtUtils.seachExts);
                         }
                     }
@@ -187,8 +187,9 @@ public class BooksService extends IntentService {
                     }
                 }
 
-                Clouds.get().syncronizeGet();
                 sendFinishMessage();
+                Clouds.get().syncronizeGet();
+
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
