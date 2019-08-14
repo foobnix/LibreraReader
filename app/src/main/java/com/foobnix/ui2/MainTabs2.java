@@ -47,6 +47,7 @@ import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.FontExtractor;
@@ -242,6 +243,8 @@ public class MainTabs2 extends AdsFragmentActivity {
             Android6.checkPermissions(this, true);
             return;
         }
+
+        Clouds.get().init(this);
 
         //import settings
 

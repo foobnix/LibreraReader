@@ -14,7 +14,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 28
         versionCode codeNumber
         versionName versionNumber
@@ -275,6 +275,8 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //implementation 'com.google.android.material:material:1.0.0'
+
     //implementation 'androidx.browser:browser:1.0.0'
     //implementation 'com.getbase:floatingactionbutton:1.10.1'
 
@@ -311,7 +313,9 @@ dependencies {
 
     //betaImplementation project(':pro')
     betaImplementation 'com.google.firebase:firebase-ads:18+'
-    betaImplementation 'com.google.firebase:firebase-core:17+'
+
+    //optional for statistics
+    //betaImplementation 'com.google.firebase:firebase-core:17+'
 
 
     libreraImplementation 'com.google.firebase:firebase-ads:18+'
@@ -321,6 +325,7 @@ dependencies {
     pdf_classicImplementation 'com.google.firebase:firebase-ads:18+'
     epub_readerImplementation 'com.google.firebase:firebase-ads:18+'
 
+    //optional for statistics
     libreraImplementation 'com.google.firebase:firebase-core:17+'
     pdf_v2Implementation 'com.google.firebase:firebase-core:17+'
     ebookaImplementation 'com.google.firebase:firebase-core:17+'

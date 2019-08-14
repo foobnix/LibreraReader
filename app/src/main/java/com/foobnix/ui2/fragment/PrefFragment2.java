@@ -542,6 +542,7 @@ public class PrefFragment2 extends UIFragment {
                 version += "\n MANUFACTURER: " + Build.MANUFACTURER;
                 version += "\n DEVICE: " + Build.DEVICE;
                 version += "\n REFRESH: " + Dips.getRefreshRate(getActivity());
+                version += "\n WxH: " + Dips.screenWidthDP() + " x " + Dips.screenHeightDP();
             }
 
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:

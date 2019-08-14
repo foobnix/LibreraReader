@@ -23,9 +23,6 @@ public class AppsConfig {
         if (a == null) {
             return false;
         }
-        if (BuildConfig.IS_BETA) {
-            return false;
-        }
 
         boolean is_pro = isPackageExisted(a, PRO_LIBRERA_READER);
         return is_pro;

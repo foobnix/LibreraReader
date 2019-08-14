@@ -15,7 +15,6 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
-import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -74,8 +73,6 @@ public class LibreraApp extends MultiDexApplication {
         CacheZipUtils.init(this);
         ExtUtils.init(this);
         IMG.init(this);
-
-        Clouds.get().init(this);
 
         LOG.d("Build", "Build.MANUFACTURER", Build.MANUFACTURER);
         LOG.d("Build", "Build.PRODUCT", Build.PRODUCT);

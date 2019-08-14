@@ -65,7 +65,11 @@ public class ADS {
             //LOG.d("getCurrentOrientationBannerAdSizeWithWidth", size.getWidth(), size.getHeight(), size.getHeightInPixels(a));
 
             if (Dips.isVertical()) {
-                adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
+                if (Dips.screenHeightDP() >= 720) {
+                    adView.setAdSize(new Random().nextBoolean() ? AdSize.LARGE_BANNER : AdSize.BANNER);
+                } else {
+                    adView.setAdSize(AdSize.BANNER);
+                }
             } else {
                 adView.setAdSize(AdSize.FULL_BANNER);
             }
