@@ -87,7 +87,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName       : "Beta " + versionNumber,
+                    appName       : "Librera (beta " + versionNumber +")",
                     appIcon       : "@mipmap/icon_pdf_reader",
                     appRoundIcon  : "@mipmap/icon_pdf_reader",
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -304,7 +304,7 @@ dependencies {
     //optional for statistics
     betaImplementation 'com.google.firebase:firebase-core:17.0.1'
     //optional for statistics
-    proImplementation 'com.google.firebase:firebase-core:17.0.1'
+    //proImplementation 'com.google.firebase:firebase-core:17.0.1'
 
 
     libreraImplementation 'com.google.firebase:firebase-ads:18.1.1'

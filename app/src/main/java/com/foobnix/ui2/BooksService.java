@@ -61,14 +61,16 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                .setSmallIcon(R.drawable.glyphicons_748_synchronization1) //
-                .setContentTitle(Apps.getApplicationName(this)) //
-                .setContentText(getString(R.string.please_wait_books_are_being_processed_))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                .build();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                    .setSmallIcon(R.drawable.glyphicons_748_synchronization1) //
+                    .setContentTitle(Apps.getApplicationName(this)) //
+                    .setContentText(getString(R.string.please_wait_books_are_being_processed_))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                    .build();
 
-        startForeground(TTSNotification.NOT_ID_2, notification);
+            startForeground(TTSNotification.NOT_ID_2, notification);
+        }
         AppProfile.init(this);
     }
 

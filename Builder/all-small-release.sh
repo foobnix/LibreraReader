@@ -15,8 +15,9 @@ cd ../
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
 
-#./gradlew assemblePdf_classicRelease
+
 #./gradlew assembleEpub_readerRelease
+#./gradlew assemblePdf_classicRelease
 #./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta
