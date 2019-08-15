@@ -21,9 +21,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+
+    configurations {
+        all {
+            exclude module: 'httpclient'
+            exclude module: 'commons-logging'
+        }
+    }
+
     lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
+        //disable 'MissingTranslation'
+        abortOnError true
+        ignoreWarnings true
+        checkReleaseBuilds true
 
     }
     testOptions {

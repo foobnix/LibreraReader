@@ -11,6 +11,5 @@
        <dimen name="title_wh_padding">6sp</dimen>
      <dimen name="title_h_adv">16sp</dimen>
      
-     <string name="ads_banner_size">FULL_WIDTHx420</string>
-    
+
 </resources>

@@ -12,8 +12,6 @@
     <dimen name="title_h_adv">13sp</dimen>
     <dimen name="sub_checkbox">35dip</dimen>
 
-    <string name="ads_banner_size">FULL_WIDTHx320</string>
-
     <declare-styleable name="CustomSeek">
         <attr name="text" format="string" />
         <attr name="textColor" format="string" />

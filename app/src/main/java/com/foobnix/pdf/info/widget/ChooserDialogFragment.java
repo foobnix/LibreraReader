@@ -75,11 +75,11 @@ public class ChooserDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, android.view.ViewGroup container, android.os.Bundle savedInstanceState) {
         setRetainInstance(true);
         FrameLayout frame = new FrameLayout(getContext());
-        frame.setId(0x13);
+        frame.setId(R.id.metaGenreID);
 
         final BrowseFragment2 fr = BrowseFragment2.newInstance(getArguments());
 
-        getChildFragmentManager().beginTransaction().replace(0x13, fr, "fr").commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.metaGenreID, fr, "fr").commit();
 
         fr.setOnCloseAction(new ResultResponse<String>() {
 

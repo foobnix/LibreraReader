@@ -234,7 +234,7 @@ public class DialogsPlaylist {
         RecyclerView recyclerView = new RecyclerView(a);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         final List<String> res = Playlists.getPlaylistItems(file);

@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -378,10 +378,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
+                if (drawerLayout.isDrawerOpen(GravityCompat.START))
+                    drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
                 else
-                    drawerLayout.openDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
+                    drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
 
             }
         });
@@ -887,8 +887,8 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     public void onBackPressed() {
 
-        if (drawerLayout != null && drawerLayout.isDrawerOpen(Gravity.START)) {
-            drawerLayout.closeDrawer(Gravity.START, AppState.get().appTheme != AppState.THEME_INK);
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
             return;
         }
 

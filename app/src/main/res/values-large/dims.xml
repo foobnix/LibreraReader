@@ -9,9 +9,7 @@
       <dimen name="title_wh_padding">5sp</dimen>
      <dimen name="title_h_adv">14sp</dimen>
      
-     
-     <string name="ads_banner_size">FULL_WIDTHx360</string>
-     
+
      <dimen name="sort_by_size">120dip</dimen>
      
      <dimen name="speed_size">100dip</dimen>

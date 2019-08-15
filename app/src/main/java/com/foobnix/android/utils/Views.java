@@ -2,7 +2,10 @@ package com.foobnix.android.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
@@ -315,6 +318,14 @@ public class Views {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+
+    public static void setBackground(View view, Bitmap bitmap) {
+        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            view.setBackgroundDrawable(new BitmapDrawable(bitmap));
+        } else {
+            view.setBackground(new BitmapDrawable(Resources.getSystem(), bitmap));
+        }
     }
 
 }
