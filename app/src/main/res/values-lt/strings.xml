@@ -544,7 +544,6 @@
    <string name="sync_error">Sinchronizavimo klaida</string>
    <string name="sign_in">Prisijungti</string>
    <string name="sign_out">Atsijungti</string>
-   <string name="manual_sync_only">Rankinis sinchronizavimas</string>
    <string name="wifi_sync_only">„wifi“ sinchronizavimas</string>
    <string name="sync_google_drive">Sinchronizuoti („Google“ diskas)</string>
    <string name="single_tap_to_select_text">Vienu bakstelėjimu pasirinkite tekstą</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Rodyti skirtingas linijas puslapiuose, daugiau kontrasto</string>
    <string name="clear_log">Aiškus žurnalas</string>
    <string name="floating_bookmark">Plaukiojanti žyma</string>
-   <string name="manual_sync_animation">Rankinis sinchronizavimas (patraukite, kad pradėtumėte)</string>
+   <string name="animate_sync_progress">Rodyti sinchronizavimo eigos animacija</string>
+   <string name="pull_to_start_sync">Traukti, kad pradėtumėte sinchronizavimą</string>
 </resources>

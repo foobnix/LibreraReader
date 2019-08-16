@@ -544,7 +544,6 @@
    <string name="sync_error">Senkronizasyon hatası</string>
    <string name="sign_in">Oturum aç</string>
    <string name="sign_out">Oturumu Kapat</string>
-   <string name="manual_sync_only">Sadece manuel senkronizasyon</string>
    <string name="wifi_sync_only">Yalnızca wifi senkronizasyonu</string>
    <string name="sync_google_drive">Senkronizasyon (google drive)</string>
    <string name="single_tap_to_select_text">Metni seçmek için tek dokunuşla</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Sayfalarda daha fazla kontrast çizgileri göster</string>
    <string name="clear_log">Günlüğü temizle</string>
    <string name="floating_bookmark">Kayan yer imi</string>
-   <string name="manual_sync_animation">Manuel senkronizasyon (başlatmak için çekin)</string>
+   <string name="animate_sync_progress">Senkronizasyon ilerleme animasyonu göster</string>
+   <string name="pull_to_start_sync">Senkronizasyonu başlatmak için çekin</string>
 </resources>

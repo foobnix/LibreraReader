@@ -65,9 +65,10 @@ public class BookCSS {
     public String pathSAF = "";
 
 
-    public boolean isSyncManualOnly;
     public boolean isSyncWifiOnly;
-    public boolean isShowSyncWheel = true;
+
+    public boolean isSyncPullToRefresh = true;
+    public boolean isSyncAnimation = true;
 
 
 

@@ -544,7 +544,6 @@
    <string name="sync_error">שגיאת סינכרון</string>
    <string name="sign_in">היכנס</string>
    <string name="sign_out">התנתק</string>
-   <string name="manual_sync_only">סינכרון ידני בלבד</string>
    <string name="wifi_sync_only">סינכרון WiFi בלבד - -</string>
    <string name="sync_google_drive">סנכרון (כונן Google)</string>
    <string name="single_tap_to_select_text">הקש אחת כדי לבחור טקסט</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">הצג שורות המפרידות על דפים יותר ניגודיות</string>
    <string name="clear_log">יומן ברור</string>
    <string name="floating_bookmark">סימניה צף</string>
-   <string name="manual_sync_animation">סנכרון ידני (משיכה להתחלה)</string>
+   <string name="animate_sync_progress">הצג אנימציית התקדמות סינכרון</string>
+   <string name="pull_to_start_sync">משוך כדי להתחיל לסנכרן</string>
 </resources>

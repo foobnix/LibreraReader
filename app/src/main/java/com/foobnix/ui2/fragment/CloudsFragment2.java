@@ -97,7 +97,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 MyProgressBar.setVisibility(View.VISIBLE);
-                getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+                BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
 
             }
         });
@@ -124,7 +124,6 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         View dropbox = view.findViewById(R.id.dropbox);
 
 
-
         dropbox.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -142,7 +141,8 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
                             EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
                         } else {
                             Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                            getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+                            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
+
                             MyProgressBar.setVisibility(View.VISIBLE);
                         }
                         updateImages();

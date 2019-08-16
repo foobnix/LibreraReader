@@ -2,7 +2,6 @@ package com.foobnix.drive;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.Apps;
@@ -737,10 +736,10 @@ public class GFile {
 
         try {
             if (AppTemp.get().isEnableSync && !BooksService.isRunning) {
-                if (!force && BookCSS.get().isSyncManualOnly) {
-                    LOG.d("runSyncService", "manual sync only");
-                    return;
-                }
+//                if (!force && BookCSS.get().isSyncPullToRefresh) {
+//                    LOG.d("runSyncService", "manual sync only");
+//                    return;
+//                }
                 if (BookCSS.get().isSyncWifiOnly && !Apps.isWifiEnabled(a)) {
                     LOG.d("runSyncService", "wifi not available");
                     return;
@@ -749,7 +748,7 @@ public class GFile {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(a);
                 if (account != null) {
                     GFile.buildDriveService(a);
-                    a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_RUN_SYNCRONICATION));
+                    BooksService.startForeground(a, BooksService.ACTION_RUN_SYNCRONICATION);
                 }
             }
         } catch (Exception e) {

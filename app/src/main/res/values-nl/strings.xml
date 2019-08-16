@@ -544,7 +544,6 @@
    <string name="sync_error">Synchronisatiefout</string>
    <string name="sign_in">Aanmelden</string>
    <string name="sign_out">Afmelden</string>
-   <string name="manual_sync_only">Alleen handmatige synchronisatie</string>
    <string name="wifi_sync_only">Alleen wifi-synchronisatie</string>
    <string name="sync_google_drive">Sync (google schijf)</string>
    <string name="single_tap_to_select_text">Tik één keer om tekst te selecteren</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Toon scheidslijnen op pagina\'s meer contrast</string>
    <string name="clear_log">Logboek opschonen</string>
    <string name="floating_bookmark">Zwevende bladwijzer</string>
-   <string name="manual_sync_animation">Handmatige synchronisatie (trekken om te starten)</string>
+   <string name="animate_sync_progress">Toon synchronisatie voortgang animatie</string>
+   <string name="pull_to_start_sync">Trek om te beginnen met synchroniseren</string>
 </resources>

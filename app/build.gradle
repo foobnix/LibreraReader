@@ -87,7 +87,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName       : "Librera (beta " + versionNumber +")",
+                    appName       : "Beta Librera",
                     appIcon       : "@mipmap/icon_pdf_reader",
                     appRoundIcon  : "@mipmap/icon_pdf_reader",
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",

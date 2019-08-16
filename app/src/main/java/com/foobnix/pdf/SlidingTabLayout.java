@@ -24,7 +24,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
 
 /**
@@ -135,14 +135,12 @@ public class SlidingTabLayout extends HorizontalScrollView {
             switch (action & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
                 case MotionEvent.ACTION_MOVE: {
-                    if (AppTemp.get().isEnableSync && BookCSS.get().isShowSyncWheel) {
-                        swipeRefreshLayout.setEnabled(false);
-                    }
+                    swipeRefreshLayout.setEnabled(false);
                     break;
                 }
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL: {
-                    if (AppTemp.get().isEnableSync && BookCSS.get().isShowSyncWheel) {
+                    if (MainTabs2.isPullToRefreshEnable(getContext(), swipeRefreshLayout)) {
                         swipeRefreshLayout.setEnabled(true);
                     }
 

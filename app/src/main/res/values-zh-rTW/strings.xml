@@ -544,7 +544,6 @@
    <string name="sync_error">同步錯誤</string>
    <string name="sign_in">登入</string>
    <string name="sign_out">登出</string>
-   <string name="manual_sync_only">僅手動同步</string>
    <string name="wifi_sync_only">僅WiFi同步</string>
    <string name="sync_google_drive">同步谷歌雲端硬盤</string>
    <string name="single_tap_to_select_text">單擊選擇文本</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">頁面上顯示分界線（更具對比）</string>
    <string name="clear_log">清除日誌</string>
    <string name="floating_bookmark">浮動書籤</string>
-   <string name="manual_sync_animation">手動同步（拉動啟動）</string>
+   <string name="animate_sync_progress">顯示同步進度動畫</string>
+   <string name="pull_to_start_sync">拉開始同步</string>
 </resources>

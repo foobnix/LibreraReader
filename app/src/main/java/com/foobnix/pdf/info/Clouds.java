@@ -2,7 +2,6 @@ package com.foobnix.pdf.info;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
@@ -95,7 +94,7 @@ public class Clouds {
     }
 
     public static void runSync(Activity a) {
-        a.startService(new Intent(a, BooksService.class).setAction(BooksService.ACTION_SYNC_DROPBOX));
+        BooksService.startForeground(a, BooksService.ACTION_SYNC_DROPBOX);
     }
 
     public static File getCacheFile(String path) {

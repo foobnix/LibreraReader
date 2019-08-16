@@ -259,10 +259,10 @@ public class PrefFragment2 extends UIFragment {
         });
 
         inflate.findViewById(R.id.isEnableSyncSettings).setOnClickListener(v -> {
-            final CheckBox isSyncManualOnly = new CheckBox(getActivity());
-            isSyncManualOnly.setText(R.string.manual_sync_only);
-            isSyncManualOnly.setChecked(BookCSS.get().isSyncManualOnly);
-            isSyncManualOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncManualOnly = isChecked);
+            final CheckBox isSyncPullToRefresh = new CheckBox(getActivity());
+            isSyncPullToRefresh.setText(R.string.pull_to_start_sync);
+            isSyncPullToRefresh.setChecked(BookCSS.get().isSyncPullToRefresh);
+            isSyncPullToRefresh.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncPullToRefresh = isChecked);
 
             final CheckBox isSyncWifiOnly = new CheckBox(getActivity());
             isSyncWifiOnly.setText(R.string.wifi_sync_only);
@@ -270,11 +270,11 @@ public class PrefFragment2 extends UIFragment {
             isSyncWifiOnly.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncWifiOnly = isChecked);
 
             final CheckBox isShowSyncWheel = new CheckBox(getActivity());
-            isShowSyncWheel.setText(getString(R.string.manual_sync_animation));
-            isShowSyncWheel.setChecked(BookCSS.get().isShowSyncWheel);
-            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isShowSyncWheel = isChecked);
+            isShowSyncWheel.setText(getString(R.string.animate_sync_progress));
+            isShowSyncWheel.setChecked(BookCSS.get().isSyncAnimation);
+            isShowSyncWheel.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isSyncAnimation = isChecked);
 
-            AlertDialogs.showViewDialog(getActivity(), null, isSyncManualOnly, isSyncWifiOnly, isShowSyncWheel);
+            AlertDialogs.showViewDialog(getActivity(), null, isSyncPullToRefresh, isSyncWifiOnly, isShowSyncWheel);
         });
 
 
@@ -2235,13 +2235,7 @@ public class PrefFragment2 extends UIFragment {
                     IO.writeObjAsync(AppProfile.syncState, o);
 
                     //AppProfile.init(getActivity());
-                    final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL);
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        getActivity().startForegroundService(service);
-                    } else {
-                        getActivity().startService(service);
-
-                    }
+                    BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
                     onTheme();
 
                 }
@@ -2462,7 +2456,9 @@ public class PrefFragment2 extends UIFragment {
         AppProfile.save(getActivity());
         closeLeftMenu();
 
-        getActivity().startService(new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
+
+        BooksService.startForeground(getActivity(),BooksService.ACTION_SEARCH_ALL);
+
 
         Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
                 .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//

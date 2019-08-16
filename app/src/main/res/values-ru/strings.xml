@@ -544,7 +544,6 @@
    <string name="sync_error">Ошибка синхронизации</string>
    <string name="sign_in">Вход в аккаунт</string>
    <string name="sign_out">Выход</string>
-   <string name="manual_sync_only">Cинхронизировать только вручную</string>
    <string name="wifi_sync_only">Синхронизировать только по Wi-Fi</string>
    <string name="sync_google_drive">Синхронизация (Google Drive)</string>
    <string name="single_tap_to_select_text">Выделять текст коротким тапом вместо длинного</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Обозначать межстраничные разделительные линии более контрастно</string>
    <string name="clear_log">Очистить журнал</string>
    <string name="floating_bookmark">"Плавающая" закладка</string>
-   <string name="manual_sync_animation">Ручная синхронизация (потяните, чтобы начать)</string>
+   <string name="animate_sync_progress">Показать анимацию прогресса синхронизации</string>
+   <string name="pull_to_start_sync">Потяните, чтобы начать синхронизацию</string>
 </resources>

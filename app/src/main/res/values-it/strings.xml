@@ -544,7 +544,6 @@
    <string name="sync_error">Errore di sincronizzazione</string>
    <string name="sign_in">Registrati</string>
    <string name="sign_out">Disconnessione</string>
-   <string name="manual_sync_only">Solo sincronizzazione manuale</string>
    <string name="wifi_sync_only">Solo sincronizzazione wifi</string>
    <string name="sync_google_drive">Sincronizzazione (google drive)</string>
    <string name="single_tap_to_select_text">Tocca un solo tocco per selezionare il testo</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Mostra linee di divisione su pagine più contrastanti</string>
    <string name="clear_log">Pulisci il registro</string>
    <string name="floating_bookmark">Segnalibro mobile</string>
-   <string name="manual_sync_animation">Sincronizzazione manuale (tirare per iniziare)</string>
+   <string name="animate_sync_progress">Mostra l\'animazione dell\'avanzamento della sincronizzazione</string>
+   <string name="pull_to_start_sync">Tirare per avviare la sincronizzazione</string>
 </resources>

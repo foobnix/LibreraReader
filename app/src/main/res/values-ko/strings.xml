@@ -544,7 +544,6 @@
    <string name="sync_error">동기화 오류</string>
    <string name="sign_in">로그인</string>
    <string name="sign_out">로그 아웃하다</string>
-   <string name="manual_sync_only">수동 동기화 만</string>
    <string name="wifi_sync_only">Wi-Fi 동기화 만</string>
    <string name="sync_google_drive">동기화 (Google 드라이브)</string>
    <string name="single_tap_to_select_text">텍스트를 선택하려면 한 번 탭하십시오.</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">더 많은 페이지 대비 선분 표시</string>
    <string name="clear_log">로그 지우기</string>
    <string name="floating_bookmark">떠있는 북마크</string>
-   <string name="manual_sync_animation">수동 동기화 (시작하여 당기기)</string>
+   <string name="animate_sync_progress">동기화 진행 애니메이션 표시</string>
+   <string name="pull_to_start_sync">당겨 동기화 시작</string>
 </resources>

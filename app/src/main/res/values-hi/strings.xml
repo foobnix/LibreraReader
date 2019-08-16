@@ -544,7 +544,6 @@
    <string name="sync_error">सिंक त्रुटि</string>
    <string name="sign_in">दाखिल करना</string>
    <string name="sign_out">साइन आउट</string>
-   <string name="manual_sync_only">मैनुअल सिंक ही</string>
    <string name="wifi_sync_only">वाईफाई सिंक केवल</string>
    <string name="sync_google_drive">सिंक (Google ड्राइव)</string>
    <string name="single_tap_to_select_text">पाठ का चयन करने के लिए एकल-टैप करें</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">अधिक विपरीत पृष्ठों पर विभाजन रेखाएं दिखाएं</string>
    <string name="clear_log">अभिलेख साफ करो</string>
    <string name="floating_bookmark">अस्थायी बुकमार्क</string>
-   <string name="manual_sync_animation">मैनुअल सिंक (शुरू करने के लिए खींच)</string>
+   <string name="animate_sync_progress">दिखाएँ सिंक प्रगति एनीमेशन</string>
+   <string name="pull_to_start_sync">सिंक्रनाइज़ करना प्रारंभ करने के लिए खींचें</string>
 </resources>

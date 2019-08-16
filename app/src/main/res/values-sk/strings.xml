@@ -544,7 +544,6 @@
    <string name="sync_error">Chyba synchronizácie</string>
    <string name="sign_in">Prihlásiť sa</string>
    <string name="sign_out">Odhlásiť Sa</string>
-   <string name="manual_sync_only">Iba manuálna synchronizácia</string>
    <string name="wifi_sync_only">Iba synchronizácia cez wifi</string>
    <string name="sync_google_drive">Synchronizácia (jednotka Google)</string>
    <string name="single_tap_to_select_text">Jedným klepnutím vyberte text</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Zobrazujú deliace čiary na stránkach viac kontrastu</string>
    <string name="clear_log">Jasné log</string>
    <string name="floating_bookmark">Plávajúca záložka</string>
-   <string name="manual_sync_animation">Manuálna synchronizácia (spustenie môžete spustiť)</string>
+   <string name="animate_sync_progress">Zobraziť animáciu postupu synchronizácie</string>
+   <string name="pull_to_start_sync">Potiahnutím spustíte synchronizáciu</string>
 </resources>

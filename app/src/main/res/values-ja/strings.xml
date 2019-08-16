@@ -544,7 +544,6 @@
    <string name="sync_error">同期エラー</string>
    <string name="sign_in">サインイン</string>
    <string name="sign_out">サインアウト</string>
-   <string name="manual_sync_only">手動同期のみ</string>
    <string name="wifi_sync_only">WiFi同期のみ</string>
    <string name="sync_google_drive">同期（Googleドライブ）</string>
    <string name="single_tap_to_select_text">シングルタップでテキストを選択</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">よりコントラストの高いページに分割線を表示する</string>
    <string name="clear_log">クリアログ</string>
    <string name="floating_bookmark">フローティングブックマーク</string>
-   <string name="manual_sync_animation">手動同期（プルして開始）</string>
+   <string name="animate_sync_progress">同期進行アニメーションを表示</string>
+   <string name="pull_to_start_sync">プルして同期を開始</string>
 </resources>

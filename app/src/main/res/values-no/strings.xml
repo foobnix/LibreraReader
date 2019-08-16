@@ -544,7 +544,6 @@
    <string name="sync_error">Synkroniseringsfeil</string>
    <string name="sign_in">Logg inn</string>
    <string name="sign_out">Logg ut</string>
-   <string name="manual_sync_only">Kun manuell synkronisering</string>
    <string name="wifi_sync_only">Kun wifi-synkronisering</string>
    <string name="sync_google_drive">Synkronisere (google-stasjon)</string>
    <string name="single_tap_to_select_text">Enkelt trykk for å velge tekst</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Vis delelinjer på sider mer kontrast</string>
    <string name="clear_log">Tøm Logg</string>
    <string name="floating_bookmark">Flytende bokmerke</string>
-   <string name="manual_sync_animation">Manuell synkronisering (trekke til start)</string>
+   <string name="animate_sync_progress">Vis synkroniseringsfremgangsmåte</string>
+   <string name="pull_to_start_sync">Trekke for å starte synkronisering</string>
 </resources>

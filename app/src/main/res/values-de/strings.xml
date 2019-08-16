@@ -544,7 +544,6 @@
    <string name="sync_error">Synchronisierungsfehler</string>
    <string name="sign_in">Einloggen</string>
    <string name="sign_out">Ausloggen</string>
-   <string name="manual_sync_only">Nur manuelle Synchronisierung</string>
    <string name="wifi_sync_only">Nur WiFi-Synchronisierung</string>
    <string name="sync_google_drive">Synchronisieren mit Google-Laufwerk</string>
    <string name="single_tap_to_select_text">Einmal tippen, um Text auszuwählen</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Trennlinien auf Seiten kontrastreicher anzeigen</string>
    <string name="clear_log">Protokoll löschen</string>
    <string name="floating_bookmark">Schwebendes Lesezeichen</string>
-   <string name="manual_sync_animation">Manuelle Synchronisierung (zum Starten ziehen)</string>
+   <string name="animate_sync_progress">Synchronisierungsfortschrittsanimation anzeigen</string>
+   <string name="pull_to_start_sync">Ziehen Sie, um die Synchronisierung zu starten</string>
 </resources>

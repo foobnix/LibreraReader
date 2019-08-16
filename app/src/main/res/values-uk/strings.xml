@@ -544,7 +544,6 @@
    <string name="sync_error">Помилка синхронізації</string>
    <string name="sign_in">Увійти</string>
    <string name="sign_out">Вийти з аккаунта</string>
-   <string name="manual_sync_only">Лише ручна синхронізація</string>
    <string name="wifi_sync_only">Лише синхронізація Wi-Fi</string>
    <string name="sync_google_drive">Синхронізація (диск google)</string>
    <string name="single_tap_to_select_text">Натисніть один раз, щоб вибрати текст</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Показувати розділові лінії на сторінках, які мають більше контрасту</string>
    <string name="clear_log">Очистити журнал</string>
    <string name="floating_bookmark">Плаваючою закладкою</string>
-   <string name="manual_sync_animation">Ручна синхронізація (потягніть до початку)</string>
+   <string name="animate_sync_progress">Показати анімацію прогресу синхронізації</string>
+   <string name="pull_to_start_sync">Потягніть, щоб почати синхронізацію</string>
 </resources>

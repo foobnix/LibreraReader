@@ -544,7 +544,6 @@
    <string name="sync_error">ข้อผิดพลาดในการซิงค์</string>
    <string name="sign_in">ลงชื่อเข้าใช้</string>
    <string name="sign_out">ออกจากระบบ</string>
-   <string name="manual_sync_only">ซิงค์ด้วยตนเองเท่านั้น</string>
    <string name="wifi_sync_only">Wifi sync เท่านั้น</string>
    <string name="sync_google_drive">ซิงค์ (google ไดรฟ์)</string>
    <string name="single_tap_to_select_text">แตะครั้งเดียวเพื่อเลือกข้อความ</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">แสดงเส้นแบ่งบนหน้าเว็บที่มีความคมชัดมากขึ้น</string>
    <string name="clear_log">บันทึกที่ชัดเจน</string>
    <string name="floating_bookmark">บุ๊คมาร์คลอย</string>
-   <string name="manual_sync_animation">ซิงค์แบบแมนนวล (ดึงเพื่อเริ่ม)</string>
+   <string name="animate_sync_progress">แสดงภาพเคลื่อนไหวความคืบหน้าในการซิงค์</string>
+   <string name="pull_to_start_sync">ดึงเพื่อเริ่มการซิงค์</string>
 </resources>

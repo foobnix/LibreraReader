@@ -544,7 +544,6 @@
    <string name="sync_error">خطای همگام سازی</string>
    <string name="sign_in">ورود</string>
    <string name="sign_out">خروج</string>
-   <string name="manual_sync_only">فقط همگام سازی دستی</string>
    <string name="wifi_sync_only">فقط همگام سازی فای</string>
    <string name="sync_google_drive">همگام سازی (درایو گوگل)</string>
    <string name="single_tap_to_select_text">تک متن را انتخاب کنید تا متن انتخاب شود</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">نشان می دهد خطوط تقسیم در صفحات بیشتر کنتراست</string>
    <string name="clear_log">روشن ورود</string>
    <string name="floating_bookmark">نشانه شناور</string>
-   <string name="manual_sync_animation">همگام سازی دستی (کشیدن برای شروع)</string>
+   <string name="animate_sync_progress">نمایش انیمیشن پیشرفت همگام سازی</string>
+   <string name="pull_to_start_sync">برای شروع همگام سازی ، بکشید</string>
 </resources>

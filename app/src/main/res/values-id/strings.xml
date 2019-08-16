@@ -544,7 +544,6 @@
    <string name="sync_error">Kesalahan sinkronisasi</string>
    <string name="sign_in">Masuk</string>
    <string name="sign_out">Keluar</string>
-   <string name="manual_sync_only">Hanya sinkronisasi manual</string>
    <string name="wifi_sync_only">Sinkronisasi wifi saja</string>
    <string name="sync_google_drive">Sinkronisasi (google drive)</string>
    <string name="single_tap_to_select_text">Ketuk sekali untuk memilih teks</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Menunjukkan garis pemisah pada halaman yang lebih kontras</string>
    <string name="clear_log">Menghapus log</string>
    <string name="floating_bookmark">Bookmark mengambang</string>
-   <string name="manual_sync_animation">Sinkronisasi manual (tarik untuk memulai)</string>
+   <string name="animate_sync_progress">Tampilkan sinkronisasi kemajuan animasi</string>
+   <string name="pull_to_start_sync">Tarik untuk mulai menyinkronkan</string>
 </resources>

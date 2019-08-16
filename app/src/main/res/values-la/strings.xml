@@ -544,7 +544,6 @@
    <string name="sync_error">Error sync</string>
    <string name="sign_in">Inscribe</string>
    <string name="sign_out">Exscribe</string>
-   <string name="manual_sync_only">Manual non sync</string>
    <string name="wifi_sync_only">WiFi non sync</string>
    <string name="sync_google_drive">Sync (coegi Google)</string>
    <string name="single_tap_to_select_text">Unum eligere text-ICTUS</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Dividentes vero ostendit lineae in plures paginas</string>
    <string name="clear_log">Patet iniuriarum</string>
    <string name="floating_bookmark">Top fluens,</string>
-   <string name="manual_sync_animation">Sync manual (trahere incipere)</string>
+   <string name="animate_sync_progress">Progressus animationem ostendere sync</string>
+   <string name="pull_to_start_sync">Syncing trahere incipere</string>
 </resources>

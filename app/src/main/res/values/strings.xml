@@ -544,7 +544,6 @@
    <string name="sync_error">Sync error</string>
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
-   <string name="manual_sync_only">Manual sync only</string>
    <string name="wifi_sync_only">Sync over WiFi only</string>
    <string name="sync_google_drive">Sync (Google Drive)</string>
    <string name="single_tap_to_select_text">Single-tap to select text</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Highlight page separators</string>
    <string name="clear_log">Clear log</string>
    <string name="floating_bookmark">Floating</string>
-   <string name="manual_sync_animation">Manual sync (pull to start)</string>
+   <string name="animate_sync_progress">Show sync progress animation</string>
+   <string name="pull_to_start_sync">Pull to start syncing</string>
 </resources>

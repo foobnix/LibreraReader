@@ -544,7 +544,6 @@
    <string name="sync_error">Synkronointivirhe</string>
    <string name="sign_in">Kirjaudu sisään</string>
    <string name="sign_out">Kirjaudu ulos</string>
-   <string name="manual_sync_only">Manuaalinen synkronointi</string>
    <string name="wifi_sync_only">Wifi-synkronointi</string>
    <string name="sync_google_drive">Synkronointi (google-asema)</string>
    <string name="single_tap_to_select_text">Valitse teksti yhdellä napautuksella</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Näytä sivujen jakolinjat kontrastina</string>
    <string name="clear_log">Selkeä loki</string>
    <string name="floating_bookmark">Kelluva kirjanmerkki</string>
-   <string name="manual_sync_animation">Manuaalinen synkronointi (vedä aloittamiseen)</string>
+   <string name="animate_sync_progress">Näytä synkronoinnin edistymisanimaatio</string>
+   <string name="pull_to_start_sync">Vedä aloittaaksesi synkronoinnin</string>
 </resources>

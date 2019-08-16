@@ -544,7 +544,6 @@
    <string name="sync_error">Erreur de synchronisation</string>
    <string name="sign_in">Connexion</string>
    <string name="sign_out">Déconnexion</string>
-   <string name="manual_sync_only">Synchronisation manuelle seulement</string>
    <string name="wifi_sync_only">Sync par Wifi seulement</string>
    <string name="sync_google_drive">Sync (google drive)</string>
    <string name="single_tap_to_select_text">Appuyer une seule fois pour sélectionner du texte</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Séparateurs de pages plus visibles</string>
    <string name="clear_log">Effacer le journal</string>
    <string name="floating_bookmark">Signet flottant</string>
-   <string name="manual_sync_animation">Synchronisation manuelle (tirez pour commencer)</string>
+   <string name="animate_sync_progress">Afficher l\'animation de progression de la synchronisation</string>
+   <string name="pull_to_start_sync">Tirez pour commencer la synchronisation</string>
 </resources>

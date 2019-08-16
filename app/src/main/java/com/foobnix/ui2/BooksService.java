@@ -1,9 +1,11 @@
 package com.foobnix.ui2;
 
+import android.app.Activity;
 import android.app.IntentService;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.media.session.MediaSessionCompat;
 
@@ -34,6 +36,7 @@ import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSNotification;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
@@ -54,6 +57,7 @@ public class BooksService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isStartForeground = false;
         LOG.d("BooksService", "onDestroy");
     }
 
@@ -61,17 +65,6 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                    .setSmallIcon(R.drawable.glyphicons_748_synchronization1) //
-                    .setContentTitle(Apps.getApplicationName(this)) //
-                    .setContentText(getString(R.string.please_wait_books_are_being_processed_))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                    .build();
-
-            startForeground(TTSNotification.NOT_ID_2, notification);
-        }
-        AppProfile.init(this);
     }
 
     public static String TAG = "BooksService";
@@ -93,8 +86,26 @@ public class BooksService extends IntentService {
 
     public static volatile boolean isRunning = false;
 
+    boolean isStartForeground = false;
+
     @Override
     protected void onHandleIntent(Intent intent) {
+
+        if (!isStartForeground) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                        .setSmallIcon(R.drawable.glyphicons_748_synchronization1) //
+                        .setContentTitle(Apps.getApplicationName(this)) //
+                        .setContentText(getString(R.string.please_wait_books_are_being_processed_))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                        .build();
+
+                startForeground(TTSNotification.NOT_ID_2, notification);
+            }
+            AppProfile.init(this);
+            isStartForeground = true;
+        }
+
         if (intent == null) {
             return;
         }
@@ -126,7 +137,10 @@ public class BooksService extends IntentService {
                         AppTemp.get().syncTime = System.currentTimeMillis();
                         AppTemp.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
-
+                    } catch (UserRecoverableAuthIOException e) {
+                        GFile.logout(this);
+                        AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
+                        EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                     } catch (Exception e) {
                         AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
@@ -139,7 +153,6 @@ public class BooksService extends IntentService {
                         EventBus.getDefault().post(new UpdateAllFragments());
                     }
 
-                    //onHandleIntent(new Intent(this, BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL));
                 }
 
             }
@@ -166,8 +179,6 @@ public class BooksService extends IntentService {
                     }
 
                 }
-                sendFinishMessage();
-
 
                 List<FileMeta> localMeta = new LinkedList<FileMeta>();
 
@@ -344,6 +355,17 @@ public class BooksService extends IntentService {
     private void sendBuildingLibrary() {
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_BUILD_LIBRARY);
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
+    }
+
+    public static void startForeground(Activity a, String action) {
+        final Intent intent = new Intent(a, BooksService.class).setAction(action);
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            a.startForegroundService(intent);
+        } else {
+            a.startService(intent);
+
+        }
     }
 
 }

@@ -544,7 +544,6 @@
    <string name="sync_error">خطأ في المزامنة</string>
    <string name="sign_in">تسجيل الدخول</string>
    <string name="sign_out">خروج</string>
-   <string name="manual_sync_only">المزامنة اليدوية فقط</string>
    <string name="wifi_sync_only">Wifi مزامنة فقط</string>
    <string name="sync_google_drive">مزامنة (محرك جوجل)</string>
    <string name="single_tap_to_select_text">بنقرة واحدة لتحديد النص</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">عرض خطوط تقسيم على الصفحات أكثر تباينًا</string>
    <string name="clear_log">سجل نظيف</string>
    <string name="floating_bookmark">المرجعية العائمة</string>
-   <string name="manual_sync_animation">المزامنة اليدوية (السحب لبدء)</string>
+   <string name="animate_sync_progress">تظهر الرسوم المتحركة التقدم المزامنة</string>
+   <string name="pull_to_start_sync">سحب لبدء المزامنة</string>
 </resources>

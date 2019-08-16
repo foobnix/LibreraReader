@@ -544,7 +544,6 @@
    <string name="sync_error">Chyba synchronizace</string>
    <string name="sign_in">Přihlásit se</string>
    <string name="sign_out">Odhlásit se</string>
-   <string name="manual_sync_only">Pouze manuální synchronizace</string>
    <string name="wifi_sync_only">Synchronizace pouze přes WiFi</string>
    <string name="sync_google_drive">Synchronizace (Disk Google)</string>
    <string name="single_tap_to_select_text">Vybrat text jedním klepnutím</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Zvýraznit oddělovače stránek</string>
    <string name="clear_log">Vymazat protokol</string>
    <string name="floating_bookmark">Plovoucí</string>
-   <string name="manual_sync_animation">Ruční synchronizace</string>
+   <string name="animate_sync_progress">Zobrazit animaci průběhu synchronizace</string>
+   <string name="pull_to_start_sync">Tahem zahájíte synchronizaci</string>
 </resources>

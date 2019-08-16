@@ -544,7 +544,6 @@
    <string name="sync_error">Синхрондау қатесі</string>
    <string name="sign_in">Кіру</string>
    <string name="sign_out">Шығу</string>
-   <string name="manual_sync_only">Қолмен синхрондау ғана</string>
    <string name="wifi_sync_only">Тек Wi-Fi синхрондалуы</string>
    <string name="sync_google_drive">Синхрондау (google drive)</string>
    <string name="single_tap_to_select_text">Мәтінді таңдау үшін бір рет түртіңіз</string>
@@ -578,5 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Беттердегі бөлгіш сызықтарды контрастын көрсету</string>
    <string name="clear_log">Таза журналы</string>
    <string name="floating_bookmark">Өзгермелі бетбелгі</string>
-   <string name="manual_sync_animation">Қолмен синхрондау (бастау үшін тартыңыз)</string>
+   <string name="animate_sync_progress">Синхрондау барысының анимациясын көрсету</string>
+   <string name="pull_to_start_sync">Синхрондауды бастау үшін тартыңыз</string>
 </resources>

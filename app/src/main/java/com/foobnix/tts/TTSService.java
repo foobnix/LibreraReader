@@ -79,20 +79,6 @@ public class TTSService extends Service {
     public void onCreate() {
         LOG.d(TAG, "Create");
 
-        if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
-            startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
-        } else {
-            PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
-                    .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
-                    .setContentTitle(Apps.getApplicationName(this)) //
-                    .setContentText(getString(R.string.please_wait))
-                    .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
-                    .build();
-
-            startForeground(TTSNotification.NOT_ID, notification);
-        }
 
         //
 
@@ -204,7 +190,6 @@ public class TTSService extends Service {
 
             }
         }
-
 
 
         IntentFilter filter = new IntentFilter();
@@ -327,9 +312,32 @@ public class TTSService extends Service {
         return intent;
     }
 
+    boolean isStartForeground = false;
+
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if (!isStartForeground) {
+
+            if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
+                startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
+            } else {
+                PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
+                        .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
+                        .setContentTitle(Apps.getApplicationName(this)) //
+                        .setContentText(getString(R.string.please_wait))
+                        .addAction(R.drawable.glyphicons_208_remove_2, getString(R.string.stop), stopDestroy)//
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)//
+                        .build();
+
+                startForeground(TTSNotification.NOT_ID, notification);
+            }
+            isStartForeground = true;
+        }
+
+
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);
         LOG.d(TAG, "onStartCommand", intent);
         if (intent == null) {
@@ -675,7 +683,7 @@ public class TTSService extends Service {
     public void onDestroy() {
         super.onDestroy();
 
-
+        isStartForeground = false;
         unregisterReceiver(blueToothReceiver);
         if (wakeLock.isHeld()) {
             wakeLock.release();

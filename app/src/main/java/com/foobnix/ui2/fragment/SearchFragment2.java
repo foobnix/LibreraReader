@@ -8,7 +8,6 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -489,13 +488,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
-            final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_SEARCH_ALL);
-            if (Build.VERSION.SDK_INT >= 26) {
-                getActivity().startForegroundService(service);
-            } else {
-                getActivity().startService(service);
-
-            }
+            BooksService.startForeground(getActivity(),BooksService.ACTION_SEARCH_ALL);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -503,12 +496,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
-            final Intent service = new Intent(getActivity(), BooksService.class).setAction(BooksService.ACTION_REMOVE_DELETED);
-            if (Build.VERSION.SDK_INT >= 26) {
-                getActivity().startForegroundService(service);
-            } else {
-                getActivity().startService(service);
-            }
+            BooksService.startForeground(getActivity(),BooksService.ACTION_REMOVE_DELETED);
         } catch (Exception e) {
             LOG.e(e);
         }
