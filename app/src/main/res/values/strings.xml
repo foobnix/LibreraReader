@@ -577,6 +577,6 @@
    <string name="show_dividing_lines_on_pages_more_contrast">Highlight page separators</string>
    <string name="clear_log">Clear log</string>
    <string name="floating_bookmark">Floating</string>
-   <string name="animate_sync_progress">Show sync progress animation</string>
-   <string name="pull_to_start_sync">Pull to start syncing</string>
+   <string name="animate_sync_progress">Animate sync progress</string>
+   <string name="pull_to_start_sync">Pull screen down to start syncing</string>
 </resources>
