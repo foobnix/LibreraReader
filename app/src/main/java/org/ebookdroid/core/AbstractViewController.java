@@ -10,6 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppState;
+import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -104,7 +105,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#getView()
      */
     @Override
@@ -114,7 +115,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#getBase()
      */
     @Override
@@ -139,7 +140,7 @@ public abstract class AbstractViewController extends AbstractComponentController
     }
 
     /**
-     * 
+     *
      */
     @Override
     public final void onDestroy() {
@@ -148,7 +149,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#show()
      */
     @Override
@@ -163,7 +164,11 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             final AppBook bs = SettingsManager.getBookSettings();
             final Page page = bs.getCurrentPage(getBase().getDocumentModel().getPageCount()).getActualPage(model, bs);
-            final int toPage = page != null ? page.index.viewIndex : 0;
+             int toPage = page != null ? page.index.viewIndex : 0;
+
+            if (toPage > 0 && AppTemp.get().isCut) {
+                toPage = toPage / 2;
+            }
 
             goToPage(toPage, bs.x, bs.y);
 
@@ -179,9 +184,9 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.core.events.ZoomListener#zoomChanged(float, float,
-     *      boolean)
+     * boolean)
      */
     @Override
     public final void zoomChanged(final float oldZoom, final float newZoom, final boolean committed) {
@@ -212,7 +217,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#updateMemorySettings()
      */
     @Override
@@ -238,7 +243,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#onTouchEvent(android.view.MotionEvent)
      */
     @Override
@@ -254,9 +259,9 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#onLayoutChanged(boolean,
-     *      boolean, android.graphics.Rect, android.graphics.Rect)
+     * boolean, android.graphics.Rect, android.graphics.Rect)
      */
     @Override
     public boolean onLayoutChanged(final boolean layoutChanged, final boolean layoutLocked, final Rect oldLaout, final Rect newLayout) {
@@ -271,7 +276,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#toggleRenderingEffects()
      */
     @Override
@@ -281,7 +286,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#invalidateScroll()
      */
     @Override
@@ -294,9 +299,8 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * Sets the page align flag.
-     * 
-     * @param align
-     *            the new flag indicating align
+     *
+     * @param align the new flag indicating align
      */
     @Override
     public final void setAlign(final PageAlign align) {
@@ -305,7 +309,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * Checks if view is initialized.
-     * 
+     *
      * @return true, if is initialized
      */
     protected final boolean isShown() {
@@ -314,7 +318,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#getFirstVisiblePage()
      */
     @Override
@@ -324,7 +328,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#getLastVisiblePage()
      */
     @Override
@@ -334,7 +338,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#redrawView()
      */
     @Override
@@ -344,7 +348,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IViewController#redrawView(org.ebookdroid.core.ViewState)
      */
     @Override
@@ -388,7 +392,7 @@ public abstract class AbstractViewController extends AbstractComponentController
         LOG.d("Add Word page", "----", firstVisiblePage, lastVisiblePage + 1);
         for (final Page page : model.getPages(firstVisiblePage, lastVisiblePage + 1)) {
             if (draw)
-            page.selectedText.clear();
+                page.selectedText.clear();
             LOG.d("Add Word page", page.hashCode());
             final RectF bounds = page.getBounds(zoom);
             TextWord prevWord = null;
@@ -417,14 +421,14 @@ public abstract class AbstractViewController extends AbstractComponentController
 
                                 if (!isHyphenWorld) {
                                     if (draw)
-                                    page.selectedText.add(line);
+                                        page.selectedText.add(line);
                                 }
 
                                 LOG.d("Add Word", line.w);
 
                                 if (isHyphenWorld && TxtUtils.isNotEmpty(line.w)) {
                                     if (draw)
-                                    page.selectedText.add(line);
+                                        page.selectedText.add(line);
                                     isHyphenWorld = false;
                                 }
 
@@ -680,7 +684,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onDoubleTap(android.view.MotionEvent)
          */
         @Override
@@ -690,7 +694,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onDown(android.view.MotionEvent)
          */
         @Override
@@ -701,9 +705,9 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onFling(android.view.MotionEvent,
-         *      android.view.MotionEvent, float, float)
+         * android.view.MotionEvent, float, float)
          */
         @Override
         public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
@@ -722,9 +726,9 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onScroll(android.view.MotionEvent,
-         *      android.view.MotionEvent, float, float)
+         * android.view.MotionEvent, float, float)
          */
         @Override
         public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
@@ -741,7 +745,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onSingleTapUp(android.view.MotionEvent)
          */
         @Override
@@ -751,7 +755,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onSingleTapConfirmed(android.view.MotionEvent)
          */
         @Override
@@ -761,7 +765,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
         /**
          * {@inheritDoc}
-         * 
+         *
          * @see android.view.GestureDetector.SimpleOnGestureListener#onLongPress(android.view.MotionEvent)
          */
         @Override
