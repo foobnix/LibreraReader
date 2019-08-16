@@ -1728,6 +1728,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
     };
 
+
     public void initAsync(int w, int h) {
         dc = new HorizontalModeController(this, w, h) {
             @Override

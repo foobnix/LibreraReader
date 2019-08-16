@@ -78,8 +78,7 @@ public class TTSService extends Service {
     @Override
     public void onCreate() {
         LOG.d(TAG, "Create");
-
-
+        startMyForeground();
         //
 
         PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
@@ -314,10 +313,7 @@ public class TTSService extends Service {
 
     boolean isStartForeground = false;
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
+    public void startMyForeground() {
         if (!isStartForeground) {
 
             if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
@@ -336,6 +332,13 @@ public class TTSService extends Service {
             }
             isStartForeground = true;
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        startMyForeground();
 
 
         MediaButtonReceiver.handleIntent(mMediaSessionCompat, intent);

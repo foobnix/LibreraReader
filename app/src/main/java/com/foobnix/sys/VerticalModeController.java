@@ -625,6 +625,7 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public void updateRendering() {
+
         ctr.getDocumentController().toggleRenderingEffects();
     }
 

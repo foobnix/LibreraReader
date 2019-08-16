@@ -138,7 +138,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             LOG.d("Book-title", title);
 
 
-
             if (codecType == null) {
                 if (getActivity() != null) {
                     Toast.makeText(getActivity(), Apps.getApplicationName(getActivity()) + " " + getActivity().getString(R.string.application_cannot_open_the_book), Toast.LENGTH_LONG).show();
@@ -199,7 +198,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
 
                 if (percent > 0f) {
-                    controller.onGoToPage((int) Math.round(getDocumentModel().getPageCount() * percent));
+                    LOG.d("startDecoding-onGoToPage", pageCount);
+                    controller.onGoToPage(Math.round(pageCount * percent));
+
                 }
 
 

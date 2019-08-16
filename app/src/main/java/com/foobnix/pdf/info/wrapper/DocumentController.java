@@ -96,7 +96,7 @@ public abstract class DocumentController {
 
     public long readTimeStart;
 
-    public volatile  AppBookmark floatingBookmark;
+    public volatile AppBookmark floatingBookmark;
 
     public DocumentController(final Activity activity) {
         this.activity = activity;
@@ -231,9 +231,7 @@ public abstract class DocumentController {
         return null;
     }
 
-    public void updateRendering() {
-
-    }
+    public abstract void updateRendering();
 
     public void goToPageByTTS() {
         try {

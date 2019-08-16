@@ -65,6 +65,7 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
+        startMyForeground();
     }
 
     public static String TAG = "BooksService";
@@ -88,9 +89,7 @@ public class BooksService extends IntentService {
 
     boolean isStartForeground = false;
 
-    @Override
-    protected void onHandleIntent(Intent intent) {
-
+    public void startMyForeground(){
         if (!isStartForeground) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
@@ -105,6 +104,13 @@ public class BooksService extends IntentService {
             AppProfile.init(this);
             isStartForeground = true;
         }
+    }
+
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        startMyForeground();
+
 
         if (intent == null) {
             return;

@@ -166,9 +166,12 @@ public abstract class HorizontalModeController extends DocumentController {
         }
 
 
-
     }
 
+    @Override
+    public void updateRendering() {
+
+    }
 
     @Override
     public void onScrollYPercent(float value) {
