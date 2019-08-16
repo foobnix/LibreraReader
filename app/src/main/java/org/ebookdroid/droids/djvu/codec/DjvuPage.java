@@ -8,6 +8,7 @@ import android.graphics.RectF;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
@@ -212,6 +213,9 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public synchronized List<PageLink> getPageLinks() {
+        if (!AppState.get().isAllowTextSelection) {
+            return Collections.emptyList();
+        }
         TempHolder.lock.lock();
         try {
             final List<PageLink> links = getPageLinks(docHandle, pageNo);
@@ -339,6 +343,9 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
+        if (!AppState.get().isAllowTextSelection) {
+            return new TextWord[0][0];
+        }
         try {
             List<PageTextBox> boxs = getPageText1();
             if (TxtUtils.isListEmpty(boxs)) {
