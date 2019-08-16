@@ -240,6 +240,9 @@ public class ExtUtils {
             result.add(".cbr");
         }
         if (AppState.get().supportZIP) {
+            result.add(".zip");
+        }
+        if (AppState.get().supportArch) {
             result.addAll(archiveExts);
         }
         if (AppState.get().supportOther) {

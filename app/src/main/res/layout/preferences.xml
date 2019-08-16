@@ -243,12 +243,23 @@
                 android:textSize="11sp" />
 
             <CheckBox
+                android:id="@+id/supportZIP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="90dip"
+                android:text="ZIP"
+                android:textSize="11sp" />
+
+            <CheckBox
                 android:id="@+id/supportTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="110dp"
                 android:text="HTML/TXT"
                 android:textSize="11sp" />
+
+
+
 
 
         </LinearLayout>
@@ -271,8 +282,10 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
+
+
                 <CheckBox
-                    android:id="@+id/supportZIP"
+                    android:id="@+id/supportArch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="110dp"

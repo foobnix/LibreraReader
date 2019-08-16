@@ -176,13 +176,13 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void onSrollLeft() {
         // ctr.getDocumentController().getView().startPageScroll(5, 0);
-        ctr.getDocumentController().getView().scrollBy(5, 0);
+        ctr.getDocumentController().getView().scrollBy(Dips.DP_3, 0);
     }
 
     @Override
     public void onSrollRight() {
         // ctr.getDocumentController().getView().startPageScroll(-5, 0);
-        ctr.getDocumentController().getView().scrollBy(-5, 0);
+        ctr.getDocumentController().getView().scrollBy(-1 * Dips.DP_3, 0);
     }
 
     @Override
@@ -281,7 +281,7 @@ public class VerticalModeController extends DocumentController {
                 LOG.d(" before == after", before, after);
                 if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
                     ctr.getDocumentController().getView().stopScroller();
-                    ctr.getDocumentController().goToPage(getPageCount()-1);
+                    ctr.getDocumentController().goToPage(getPageCount() - 1);
                 }
             }
         }, 100);

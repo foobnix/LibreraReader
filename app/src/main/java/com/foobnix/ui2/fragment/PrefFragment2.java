@@ -1361,10 +1361,7 @@ public class PrefFragment2 extends UIFragment {
 
         CheckBox supportZIP = (CheckBox) inflate.findViewById(R.id.supportZIP);
         supportZIP.setChecked(AppState.get().supportZIP);
-        supportZIP.setText(
-
-                getString(R.string.archives) + " (ZIP/RAR/...)");
-        supportZIP.setOnCheckedChangeListener(new
+               supportZIP.setOnCheckedChangeListener(new
 
                                                       OnCheckedChangeListener() {
 
@@ -1372,6 +1369,25 @@ public class PrefFragment2 extends UIFragment {
                                                           public void onCheckedChanged(final CompoundButton buttonView,
                                                                                        final boolean isChecked) {
                                                               AppState.get().supportZIP = isChecked;
+                                                              ExtUtils.updateSearchExts();
+                                                              handler.removeCallbacks(ask);
+                                                              handler.postDelayed(ask, timeout);
+                                                          }
+                                                      });
+
+        CheckBox supportArch = (CheckBox) inflate.findViewById(R.id.supportArch);
+        supportArch.setChecked(AppState.get().supportArch);
+        supportArch.setText(
+
+                getString(R.string.archives) + " (RAR/7z/...)");
+        supportArch.setOnCheckedChangeListener(new
+
+                                                      OnCheckedChangeListener() {
+
+                                                          @Override
+                                                          public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                       final boolean isChecked) {
+                                                              AppState.get().supportArch = isChecked;
                                                               ExtUtils.updateSearchExts();
                                                               handler.removeCallbacks(ask);
                                                               handler.postDelayed(ask, timeout);

@@ -495,7 +495,7 @@ public class DocumentWrapperUI {
 
         try {
             if (!dc.isTextFormat()) {
-                TempHolder.get().documentTitleBarHeight = documentTitleBar.getHeight()+Dips.DP_1;
+                TempHolder.get().documentTitleBarHeight = documentTitleBar.getHeight();
             } else {
                 TempHolder.get().documentTitleBarHeight = 0;
             }

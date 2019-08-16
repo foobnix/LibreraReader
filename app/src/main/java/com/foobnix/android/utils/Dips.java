@@ -95,6 +95,7 @@ public class Dips {
         if (isEink) {
             return true;
         }
+
         String brand = Build.BRAND.toLowerCase(Locale.US);
         if (
                 brand.contains("unknown") ||

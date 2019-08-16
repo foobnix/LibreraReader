@@ -72,7 +72,7 @@ public class AppState {
 
     public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt".split(", ");
     public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
-    public static final String[] OTHER_ARCH_EXT = ".img, .zip, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
+    public static final String[] OTHER_ARCH_EXT = ".img, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
 
     public static int COLOR_WHITE = Color.WHITE;
     // public static int COLOR_BLACK = Color.parseColor("#030303");
@@ -574,6 +574,7 @@ public class AppState {
     public boolean supportMOBI = true;
     public boolean supportCBZ = false;
     public boolean supportZIP = true;
+    public boolean supportArch = false;
     public boolean supportOther = false;
 
     public boolean supportTXT = false;
