@@ -302,7 +302,7 @@ dependencies {
     betaImplementation 'com.google.firebase:firebase-ads:18.1.1'
 
     //optional for statistics
-    betaImplementation 'com.google.firebase:firebase-core:17.0.1'
+   // betaImplementation 'com.google.firebase:firebase-core:17.0.1'
     //optional for statistics
     //proImplementation 'com.google.firebase:firebase-core:17.0.1'
 
@@ -314,12 +314,13 @@ dependencies {
     pdf_classicImplementation 'com.google.firebase:firebase-ads:18.1.1'
     epub_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
 
-    libreraImplementation 'com.google.firebase:firebase-core:17.0.1'
-    pdf_v2Implementation 'com.google.firebase:firebase-core:17.0.1'
-    ebookaImplementation 'com.google.firebase:firebase-core:17.0.1'
-    tts_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
-    pdf_classicImplementation 'com.google.firebase:firebase-core:17.0.1'
-    epub_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
+    //optional for statistics
+//    libreraImplementation 'com.google.firebase:firebase-core:17.0.1'
+//    pdf_v2Implementation 'com.google.firebase:firebase-core:17.0.1'
+//    ebookaImplementation 'com.google.firebase:firebase-core:17.0.1'
+//    tts_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
+//    pdf_classicImplementation 'com.google.firebase:firebase-core:17.0.1'
+//    epub_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
 
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
