@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
+import com.foobnix.android.utils.Dips;
+
 public class AppsConfig {
 
     public static int MUPDF_1_11 = 111;
@@ -22,6 +24,10 @@ public class AppsConfig {
     public static boolean checkIsProInstalled(final Context a) {
         if (a == null) {
             return false;
+        }
+        if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk(a)) {
+            //no ads for old android and eink
+            return true;
         }
 
         boolean is_pro = isPackageExisted(a, PRO_LIBRERA_READER);
