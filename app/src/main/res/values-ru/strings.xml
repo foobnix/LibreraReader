@@ -96,10 +96,10 @@
    <string name="margin_width">Ширина отступов</string>
    <string name="top">Сверху</string>
    <string name="bottom">Снизу</string>
-   <string name="links_color_day">Цв. примеч-й (\"День\")</string>
-   <string name="links_color_night">Цв. примеч-й (\"Ночь\")</string>
+   <string name="links_color_day">Цвет примеч-й (\"День\")</string>
+   <string name="links_color_night">Цвет примеч-й (\"Ночь\")</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
-   <string name="advanced_settings">Расширен. функции</string>
+   <string name="advanced_settings">Расширенные функции</string>
    <string name="direction_of_scrolling">Прокрутка текста</string>
    <string name="direction_of_reading_rtl_">Направление чтения (RTL)</string>
    <string name="left_to_rigth">Слева направо</string>
