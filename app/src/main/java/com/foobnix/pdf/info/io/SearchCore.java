@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class SearchCore {
+
+    public static String NOMEDIA = ".nomedia";
+
     public static boolean endWith(String name, List<String> exts) {
         if (exts == null) {
             return true;
@@ -79,14 +82,13 @@ public class SearchCore {
                 LOG.d("find-skip-hidden", file.getPath());
                 continue;
             }
+
             if (file.isDirectory()) {
                 LOG.d("find-add-folder", file.getPath());
 
-                if(LOG.isEnable) {
-                    if (file.getPath().endsWith("/Г")) {
-                        LOG.d("find-debug-skip", file.getPath());
-                        continue;
-                    }
+                if (new File(file, NOMEDIA).isFile()) {
+                    LOG.d("find-skip NOMEDIA", file.getPath());
+                    continue;
                 }
 
                 if (!findOnce && file.getPath().endsWith("/Android/data")) {
