@@ -108,7 +108,7 @@ public class EventGotoPage implements IEvent {
             return new PointF(offsetX * width, bounds.top - (viewRect.height() - height) / 2);
         }
         //return new PointF(scrollX + offsetX * width, bounds.top + offsetY * height);
-        return new PointF(offsetX * width, bounds.top + offsetY * height);
+        return new PointF(scrollX, bounds.top + offsetY * height);
 
     }
 
