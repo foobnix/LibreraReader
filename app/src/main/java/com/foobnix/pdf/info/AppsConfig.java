@@ -6,6 +6,9 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 public class AppsConfig {
 
@@ -23,15 +26,28 @@ public class AppsConfig {
 
     public static boolean checkIsProInstalled(final Context a) {
         if (a == null) {
-            return false;
+            LOG.d("no-ads error context null");
+            return true;
+        }
+        if (!isGooglePlayServicesAvailable(a)) {
+            //no ads for old android and eink
+            LOG.d("no-ads isGooglePlayServicesAvailable not available");
+            return true;
         }
         if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk(a)) {
+            LOG.d("no-ads old device or eink");
             //no ads for old android and eink
             return true;
         }
 
         boolean is_pro = isPackageExisted(a, PRO_LIBRERA_READER);
         return is_pro;
+    }
+
+    public static boolean isGooglePlayServicesAvailable(Context context) {
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context);
+        return resultCode == ConnectionResult.SUCCESS;
     }
 
     public static boolean isPackageExisted(final Context a, final String targetPackage) {

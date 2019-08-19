@@ -267,8 +267,10 @@ public class MainTabs2 extends AdsFragmentActivity {
                 new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
                     @Override
                     public boolean onResultRecive(Boolean result) {
-                        MainTabs2.this.finish();
-                        MainTabs2.this.startActivity(getIntent());
+                        if (MainTabs2.this != null) {
+                            MainTabs2.this.finish();
+                            MainTabs2.this.startActivity(getIntent());
+                        }
                         return false;
                     }
                 }) {

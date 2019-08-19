@@ -54,7 +54,9 @@ public class LibreraApp extends MultiDexApplication {
 
         //new FileMeta().equals() remember!!!
 
-        MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+        if (!AppsConfig.checkIsProInstalled(this)) {
+            MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+        }
 
         context = getApplicationContext();
 
