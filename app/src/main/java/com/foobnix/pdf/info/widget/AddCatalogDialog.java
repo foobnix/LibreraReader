@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.InputType;
@@ -99,9 +100,8 @@ public class AddCatalogDialog {
 
                 TempHolder.get().login = l;
                 TempHolder.get().password = p;
-
-                sp.edit().putString(url, l + TxtUtils.TTS_PAUSE + p).commit();
-                LOG.d("showDialogLogin SAVE", url);
+                sp.edit().putString(Uri.parse(url).getHost(), l + TxtUtils.TTS_PAUSE + p).commit();
+                LOG.d("showDialogLogin SAVE", Uri.parse(url).getHost(),url);
 
                 infoDialog.dismiss();
                 onRefresh.run();

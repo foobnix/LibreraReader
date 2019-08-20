@@ -2,6 +2,7 @@ package com.foobnix.opds;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import com.burgstaller.okhttp.AuthenticationCacheInterceptor;
 import com.burgstaller.okhttp.CachingAuthenticatorDecorator;
@@ -87,7 +88,7 @@ public class OPDS {
     }
 
     public static String getHttpResponse(String url, String login, String password) throws IOException {
-        LOG.d("getHttpResponse", login, password);
+        LOG.d("getHttpResponse", url, login, password);
 
         Request request = new Request.Builder()//
                 .header("User-Agent", USER_AGENT)
@@ -101,7 +102,6 @@ public class OPDS {
         Response response = client//
                 .newCall(request)//
                 .execute();
-
 
 
         LOG.d("Header: >>", url);
@@ -118,35 +118,62 @@ public class OPDS {
             return CODE_401;
         } else {
 
-            Credentials credentials = new Credentials(login, password);
-            final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
-            final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
+            {
+                Credentials credentials = new Credentials(login, password);
+                final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
+                final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
 
-            DispatchingAuthenticator authenticator = new DispatchingAuthenticator.Builder()//
-                    .with("digest", digestAuthenticator)//
-                    .with("basic", basicAuthenticator)//
-                    .build();
+                DispatchingAuthenticator authenticator = new DispatchingAuthenticator.Builder()//
+                        .with("digest", digestAuthenticator)//
+                        .with("basic", basicAuthenticator)//
+                        .build();
 
 
-            client = builder //
-                    .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
-                    .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
-                    .build();
+                client = builder //
+                        .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                        .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
+                        .build();
 
-            LOG.d("getHttpResponse Credentials", login, password);
+                LOG.d("getHttpResponse Credentials", login, password);
 
-            response.close();
-            response = client.newCall(request).execute();
+                response.close();
+                response = client.newCall(request).execute();
 
-            if (response.code() == 401) {
+                LOG.d("getHttpResponse response.code 1", response.code());
+            }
+
+
+
+            if (response.code() == 401 || response.code() == 400) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     LOG.e(e);
                 }
-                response = client.newCall(request).execute();
+                response.close();
 
-                if (response.code() == 401) {
+                {
+                    Credentials credentials = new Credentials(login, password);
+                    final BasicAuthenticator basicAuthenticator = new BasicAuthenticator(credentials);
+                    final DigestAuthenticator digestAuthenticator = new DigestAuthenticator(credentials);
+
+                    DispatchingAuthenticator authenticator = new DispatchingAuthenticator.Builder()//
+                            .with("digest", digestAuthenticator)//
+                            .with("basic", basicAuthenticator)//
+                            .build();
+
+
+                    client = builder //
+                            .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
+                            .addInterceptor(new AuthenticationCacheInterceptor(authCache)) //
+                            .build();
+
+                    response = client.newCall(request).execute();
+                }
+
+                LOG.d("getHttpResponse response.code 2", response.code());
+
+                if (response.code() == 401 || response.code() == 400) {
                     response.close();
                     return CODE_401;
                 }
@@ -174,7 +201,6 @@ public class OPDS {
                 .execute();
 
 
-
         LOG.d("Header: >>", url);
         LOG.d("Header: Status code:", response.code());
 
@@ -196,6 +222,7 @@ public class OPDS {
                     .with("digest", digestAuthenticator)//
                     .with("basic", basicAuthenticator)//
                     .build();
+
 
             client = builder //
                     .authenticator(new CachingAuthenticatorDecorator(authenticator, authCache)) //
@@ -219,7 +246,9 @@ public class OPDS {
                 return null;
             }
             final SharedPreferences sp = c.getSharedPreferences(AddCatalogDialog.OPDS, android.content.Context.MODE_PRIVATE);
-            final String string = sp.getString(url, "");
+            final String host = Uri.parse(url).getHost();
+            LOG.d("uri-host", host);
+            final String string = sp.getString(host, "");
             String res = "";
             if (TxtUtils.isNotEmpty(string)) {
                 try {
@@ -236,7 +265,8 @@ public class OPDS {
             }
 
 
-            if (res.equals(CODE_401)) {
+            if (res.equals(CODE_401) || res.equals("400")) {
+                authCache.clear();
                 Feed feed = new Feed();
                 feed.isNeedLoginPassword = true;
                 return feed;
@@ -250,7 +280,7 @@ public class OPDS {
     }
 
     public static Feed getFeedByXml(String xmlString) throws Exception {
-        LOG.d(xmlString);
+        LOG.d("getFeedByXml", xmlString);
 
         XmlPullParser xpp = XmlParser.buildPullParser();
         xpp.setInput(new StringReader(xmlString));
