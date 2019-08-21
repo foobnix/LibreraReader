@@ -294,7 +294,7 @@ dependencies {
     //implementation 'com.burgstaller:okhttp-digest:2.0'
     //implementation 'com.squareup.okio:okio:2.3.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.14.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     implementation 'com.burgstaller:okhttp-digest:1.18'
     implementation 'com.squareup.okio:okio-parent:1.17.4'
 
