@@ -97,6 +97,30 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         // myAds.activate(this, onFinish);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        LOG.d("AdsFragmentActivity onSaveInstanceState before",outState);
+
+        if(outState!=null) {
+            outState.clear();
+        }
+        LOG.d("AdsFragmentActivity onSaveInstanceState after",outState);
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        LOG.d("AdsFragmentActivity onRestoreInstanceState before",savedInstanceState);
+
+        if(savedInstanceState!=null){
+            savedInstanceState.clear();
+        }
+        LOG.d("AdsFragmentActivity onRestoreInstanceState after",savedInstanceState);
+
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     public void showInterstial() {
         TTSNotification.hideNotification();
         TTSEngine.get().shutdown();

@@ -170,6 +170,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             }
         });
 
+
     }
 
     @Override
