@@ -527,7 +527,7 @@ public class ImageExtractor implements ImageDownloader {
             LOG.e(e);
             return messageFile("#error", "");
         } catch (OutOfMemoryError e2) {
-            AppState.get().pagesInMemory = 1;
+            IMG.clearMemoryCache();
             return messageFile("#error", "");
         } finally {
             sp.edit().remove("" + imageUri.hashCode()).commit();
