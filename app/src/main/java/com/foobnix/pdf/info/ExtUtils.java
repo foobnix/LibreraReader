@@ -88,10 +88,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -586,6 +588,7 @@ public class ExtUtils {
         return getFileName(name1).equals(getFileName(name2));
 
     }
+
     public static String getFileName(String name) {
         if (TxtUtils.isEmpty(name)) {
             return "";
@@ -673,7 +676,7 @@ public class ExtUtils {
     public static String getDateFormat(File file) {
         try {
             return dateFormat.format(file.lastModified());
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
             return "" + file.lastModified();
         }
@@ -1205,12 +1208,41 @@ public class ExtUtils {
             final StringBuilder result = new StringBuilder();
             //result.append(a.getString(R.string.bookmarks) + "\n\n");
             result.append(file.getName() + "\n\n");
+            int number = 1;
             for (final AppBookmark book : bookmarksByBook) {
-                result.append(String.format("*%s\n", book.getText().trim()));
+                result.append(String.format("%s. %s\n", number++, book.getText().trim()));
+
             }
             intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         }
 
+        a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
+    }
+
+    public static void sendAllBookmarksTo(final Activity a) {
+
+        final List<AppBookmark> all = BookmarksData.get().getAll(a);
+        Set<String> files = new HashSet<>();
+        for (AppBookmark appBookmark : all) {
+            files.add(appBookmark.getPath());
+        }
+
+
+        final StringBuilder result = new StringBuilder();
+        for(String path:files){
+            //result.append(a.getString(R.string.bookmarks) + "\n\n");
+            result.append("\n\n"+getFileName(path) + "\n\n");
+            int number = 1;
+            List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(path);
+            for (final AppBookmark book : bookmarksByBook) {
+                result.append(String.format("%s. %s\n", number++, book.getText().trim()));
+            }
+        }
+
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, result.toString());
         a.startActivity(Intent.createChooser(intent, a.getString(R.string.export_bookmarks)));
     }
 

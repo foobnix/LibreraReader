@@ -119,6 +119,12 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
                 LOG.d("show--_only_available_books");
             });
 
+            menu.getMenu().add(getString(R.string.export_bookmarks)).setOnMenuItemClickListener(item -> {
+                        ExtUtils.sendAllBookmarksTo(getActivity());
+                        return true;
+                    }
+            );
+
             menu.show();
 
         });
