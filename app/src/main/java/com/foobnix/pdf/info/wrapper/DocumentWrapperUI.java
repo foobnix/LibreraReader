@@ -1177,7 +1177,9 @@ public class DocumentWrapperUI {
 
     public void doDoubleTap(int x, int y) {
         if (dc.isMusicianMode()) {
-            dc.alignDocument();
+            if(AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
+                dc.alignDocument();
+            }
         } else {
             if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ZOOM_IN_OUT) {
                 dc.onZoomInOut(x, y);

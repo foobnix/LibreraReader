@@ -5,7 +5,6 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.support.v4.media.session.MediaSessionCompat;
 
@@ -65,7 +64,7 @@ public class BooksService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        startMyForeground();
+        //startMyForeground();
     }
 
     public static String TAG = "BooksService";
@@ -89,7 +88,7 @@ public class BooksService extends IntentService {
 
     boolean isStartForeground = false;
 
-    public void startMyForeground(){
+    public void startMyForeground() {
         if (!isStartForeground) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
@@ -109,7 +108,7 @@ public class BooksService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        startMyForeground();
+        //startMyForeground();
 
 
         if (intent == null) {
@@ -365,13 +364,15 @@ public class BooksService extends IntentService {
 
     public static void startForeground(Activity a, String action) {
         final Intent intent = new Intent(a, BooksService.class).setAction(action);
+        a.startService(intent);
 
-        if (Build.VERSION.SDK_INT >= 26) {
-            a.startForegroundService(intent);
-        } else {
-            a.startService(intent);
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            a.startForegroundService(intent);
+//        } else {
+//            a.startService(intent);
+//
+//        }
 
-        }
     }
 
 }
