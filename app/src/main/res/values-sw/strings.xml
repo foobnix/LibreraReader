@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Alama ya kugeuka</string>
    <string name="animate_sync_progress">Onyesha uhuishaji wa maendeleo ya usawazishaji</string>
    <string name="pull_to_start_sync">Kuvuta ili kuanza kusawazisha</string>
+   <string name="show_book_title">Onyesha kichwa cha kitabu kwenye upau wa hali</string>
 </resources>

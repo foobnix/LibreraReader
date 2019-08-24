@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Plávajúca záložka</string>
    <string name="animate_sync_progress">Zobraziť animáciu postupu synchronizácie</string>
    <string name="pull_to_start_sync">Potiahnutím spustíte synchronizáciu</string>
+   <string name="show_book_title">Zobraziť názov knihy v stavovom riadku</string>
 </resources>

@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Dấu trang nổi</string>
    <string name="animate_sync_progress">Hiển thị tiến trình đồng bộ hóa</string>
    <string name="pull_to_start_sync">Kéo để bắt đầu đồng bộ hóa</string>
+   <string name="show_book_title">Hiển thị tên sách trong thanh trạng thái</string>
 </resources>

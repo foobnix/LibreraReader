@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Signet flottant</string>
    <string name="animate_sync_progress">Afficher l\'animation de progression de la synchronisation</string>
    <string name="pull_to_start_sync">Tirez pour commencer la synchronisation</string>
+   <string name="show_book_title">Afficher le titre du livre dans la barre d\'état</string>
 </resources>

@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Floating</string>
    <string name="animate_sync_progress">Animate sync progress</string>
    <string name="pull_to_start_sync">Pull screen down to start syncing</string>
+   <string name="show_book_title">Show book title in the status bar</string>
 </resources>

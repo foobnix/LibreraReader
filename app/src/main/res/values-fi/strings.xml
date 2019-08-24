@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Kelluva kirjanmerkki</string>
    <string name="animate_sync_progress">Näytä synkronoinnin edistymisanimaatio</string>
    <string name="pull_to_start_sync">Vedä aloittaaksesi synkronoinnin</string>
+   <string name="show_book_title">Näytä kirjan otsikko tilarivillä</string>
 </resources>

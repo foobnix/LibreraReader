@@ -579,4 +579,5 @@
    <string name="floating_bookmark">浮動書籤</string>
    <string name="animate_sync_progress">顯示同步進度動畫</string>
    <string name="pull_to_start_sync">拉開始同步</string>
+   <string name="show_book_title">在狀態欄中顯示書名</string>
 </resources>

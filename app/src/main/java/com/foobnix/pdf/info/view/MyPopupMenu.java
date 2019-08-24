@@ -3,11 +3,17 @@ package com.foobnix.pdf.info.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
@@ -22,6 +28,8 @@ import android.widget.ListPopupWindow;
 import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
@@ -202,7 +210,7 @@ public class MyPopupMenu {
                     @Override
                     public void onClick(View v) {
                         if(item.click!=null) {
-                            item.click.onMenuItemClick(null);
+                            item.click.onMenuItemClick(new MyMenuItem(item.stringRes));
                         }
                         try {
                             p1.dismiss();
@@ -219,7 +227,7 @@ public class MyPopupMenu {
                         if (item.onLongClick == null) {
                             return false;
                         }
-                        item.onLongClick.onMenuItemClick(null);
+                        item.onLongClick.onMenuItemClick(new MyMenuItem(item.stringRes));
                         try {
                             p1.dismiss();
                         } catch (Exception e) {
@@ -284,6 +292,285 @@ public class MyPopupMenu {
             builder.show();
         }
 
+    }
+
+    public static class MyMenuItem implements  MenuItem{
+        String title;
+        public MyMenuItem(String title){
+            this.title =title;
+        }
+
+        @Override
+        public String getTitle() {
+            return title;
+        }
+
+        @Override
+        public MenuItem setIconTintList(@Nullable ColorStateList tint) {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public ColorStateList getIconTintList() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setIconTintMode(@Nullable PorterDuff.Mode tintMode) {
+            return null;
+        }
+
+        @Nullable
+        @Override
+        public PorterDuff.Mode getIconTintMode() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setShortcut(char numericChar, char alphaChar, int numericModifiers, int alphaModifiers) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setNumericShortcut(char numericChar, int numericModifiers) {
+            return null;
+        }
+
+        @Override
+        public int getNumericModifiers() {
+            return 0;
+        }
+
+        @Override
+        public MenuItem setAlphabeticShortcut(char alphaChar, int alphaModifiers) {
+            return null;
+        }
+
+        @Override
+        public int getAlphabeticModifiers() {
+            return 0;
+        }
+
+        @Override
+        public MenuItem setContentDescription(CharSequence contentDescription) {
+            return null;
+        }
+
+        @Override
+        public CharSequence getContentDescription() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setTooltipText(CharSequence tooltipText) {
+            return null;
+        }
+
+        @Override
+        public CharSequence getTooltipText() {
+            return null;
+        }
+
+        @Override
+        public int getItemId() {
+            return 0;
+        }
+
+        @Override
+        public int getGroupId() {
+            return 0;
+        }
+
+        @Override
+        public int getOrder() {
+            return 0;
+        }
+
+        @Override
+        public MenuItem setTitle(CharSequence title) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setTitle(int title) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setTitleCondensed(CharSequence title) {
+            return null;
+        }
+
+        @Override
+        public CharSequence getTitleCondensed() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setIcon(Drawable icon) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setIcon(int iconRes) {
+            return null;
+        }
+
+        @Override
+        public Drawable getIcon() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setIntent(Intent intent) {
+            return null;
+        }
+
+        @Override
+        public Intent getIntent() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setShortcut(char numericChar, char alphaChar) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setNumericShortcut(char numericChar) {
+            return null;
+        }
+
+        @Override
+        public char getNumericShortcut() {
+            return 0;
+        }
+
+        @Override
+        public MenuItem setAlphabeticShortcut(char alphaChar) {
+            return null;
+        }
+
+        @Override
+        public char getAlphabeticShortcut() {
+            return 0;
+        }
+
+        @Override
+        public MenuItem setCheckable(boolean checkable) {
+            return null;
+        }
+
+        @Override
+        public boolean isCheckable() {
+            return false;
+        }
+
+        @Override
+        public MenuItem setChecked(boolean checked) {
+            return null;
+        }
+
+        @Override
+        public boolean isChecked() {
+            return false;
+        }
+
+        @Override
+        public MenuItem setVisible(boolean visible) {
+            return null;
+        }
+
+        @Override
+        public boolean isVisible() {
+            return false;
+        }
+
+        @Override
+        public MenuItem setEnabled(boolean enabled) {
+            return null;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return false;
+        }
+
+        @Override
+        public boolean hasSubMenu() {
+            return false;
+        }
+
+        @Override
+        public SubMenu getSubMenu() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setOnMenuItemClickListener(OnMenuItemClickListener menuItemClickListener) {
+            return null;
+        }
+
+        @Override
+        public ContextMenu.ContextMenuInfo getMenuInfo() {
+            return null;
+        }
+
+        @Override
+        public void setShowAsAction(int actionEnum) {
+
+        }
+
+        @Override
+        public MenuItem setShowAsActionFlags(int actionEnum) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setActionView(View view) {
+            return null;
+        }
+
+        @Override
+        public MenuItem setActionView(int resId) {
+            return null;
+        }
+
+        @Override
+        public View getActionView() {
+            return null;
+        }
+
+        @Override
+        public MenuItem setActionProvider(ActionProvider actionProvider) {
+            return null;
+        }
+
+        @Override
+        public ActionProvider getActionProvider() {
+            return null;
+        }
+
+        @Override
+        public boolean expandActionView() {
+            return false;
+        }
+
+        @Override
+        public boolean collapseActionView() {
+            return false;
+        }
+
+        @Override
+        public boolean isActionViewExpanded() {
+            return false;
+        }
+
+        @Override
+        public MenuItem setOnActionExpandListener(OnActionExpandListener listener) {
+            return null;
+        }
     }
 
     private int measureContentWidth(ListAdapter listAdapter, Context mContext) {

@@ -127,7 +127,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     VerticalViewPager viewPager;
     SeekBar seekBar;
-    TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName;
+    TextView toastBrightnessText, floatingBookmarkTextView, maxSeek, currentSeek, pagesCountIndicator, flippingIntervalView, pagesTime, pagesPower, titleTxt, chapterView, modeName, pannelBookTitle;
     View adFrame, bottomBar, bottomIndicators, onClose, overlay, pagesBookmark, musicButtonPanel, parentParent;
     LinearLayout actionBar, bottomPanel;
     TTSControlsView ttsActive;
@@ -225,6 +225,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
 
         parentParent = findViewById(R.id.parentParent);
+        pannelBookTitle = findViewById(R.id.pannelBookTitle);
 
         overlay = findViewById(R.id.overlay);
         overlay.setVisibility(View.VISIBLE);
@@ -1187,6 +1188,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         TintUtil.setTintText(pagesPower, TintUtil.getStatusBarColor());
         TintUtil.setTintText(pagesTime, TintUtil.getStatusBarColor());
         TintUtil.setTintText(pagesCountIndicator, TintUtil.getStatusBarColor());
+        TintUtil.setTintText(pannelBookTitle, TintUtil.getStatusBarColor());
         TintUtil.setTintText(flippingIntervalView, TintUtil.getStatusBarColor());
 
         if (false) {
@@ -1199,6 +1201,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesPower.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
+        pannelBookTitle.setTextSize(AppState.get().statusBarTextSizeEasy);
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
 
         int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
@@ -1345,6 +1348,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesCountIndicator.setVisibility(isVisible);
         pagesPower.setVisibility(isVisible);
         bottomIndicators.setVisibility(isVisible);
+
+        pannelBookTitle.setVisibility(AppState.get().isShowPanelBookName ? View.VISIBLE : View.GONE);
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
 
@@ -1822,6 +1827,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void loadUI() {
         titleTxt.setText(dc.getTitle());
+        pannelBookTitle.setText(dc.getTitle());
         createAdapter();
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);

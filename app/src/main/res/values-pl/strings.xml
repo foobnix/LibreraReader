@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Pływająca zakładka</string>
    <string name="animate_sync_progress">Pokaż animację postępu synchronizacji</string>
    <string name="pull_to_start_sync">Pociągnij, aby rozpocząć synchronizację</string>
+   <string name="show_book_title">Pokaż tytuł książki na pasku stanu</string>
 </resources>

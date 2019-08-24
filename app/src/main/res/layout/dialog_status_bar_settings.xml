@@ -18,6 +18,13 @@
             android:text="@string/show_status_bar" />
 
         <CheckBox
+            android:id="@+id/isShowPanelBookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_book_title" />
+
+        <CheckBox
             android:id="@+id/isShowReadingProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

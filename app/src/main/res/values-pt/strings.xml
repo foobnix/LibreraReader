@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Marcador flutuante</string>
    <string name="animate_sync_progress">Mostre a animação do progresso da sincronização</string>
    <string name="pull_to_start_sync">Puxar para iniciar a sincronização</string>
+   <string name="show_book_title">Mostrar título do livro na barra de status</string>
 </resources>

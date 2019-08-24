@@ -71,6 +71,19 @@
         android:layout_marginTop="160dip"
         android:layout_weight="0"></FrameLayout>
 
+
+    <TextView
+        android:id="@+id/pannelBookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:singleLine="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="--:--"
+        android:textColor="@color/tint_gray"
+        android:textSize="9sp" />
+
     <LinearLayout
         android:id="@+id/bottomPanel"
         android:layout_width="match_parent"

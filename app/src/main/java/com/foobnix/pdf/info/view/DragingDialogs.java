@@ -2901,6 +2901,21 @@ public class DragingDialogs {
                     }
                 });
 
+                final CheckBox isShowPanelBookName = (CheckBox) inflate.findViewById(R.id.isShowPanelBookName);
+                isShowPanelBookName.setVisibility(controller.isBookMode() ? View.VISIBLE : View.GONE);
+                isShowPanelBookName.setChecked(AppState.get().isShowPanelBookName);
+                isShowPanelBookName.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        AppState.get().isShowPanelBookName = isChecked;
+                        AppState.get().isEditMode = false;
+                        if (onRefresh != null) {
+                            onRefresh.run();
+                        }
+                    }
+                });
+
                 final CheckBox isShowTime = (CheckBox) inflate.findViewById(R.id.isShowTime);
                 isShowTime.setChecked(AppState.get().isShowTime);
                 isShowTime.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -2968,6 +2983,12 @@ public class DragingDialogs {
                                         AppState.get().statusBarPosition = modeIds.get(j);
                                         statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
                                         TxtUtils.underlineTextView(statusBarPosition);
+
+                                        if(item.getTitle().equals(controller.getString(R.string.top))){
+                                            AppState.get().isShowPanelBookName = false;
+                                            isShowPanelBookName.setChecked(false);
+                                        }
+
                                         if (onRefresh != null) {
                                             onRefresh.run();
                                         }

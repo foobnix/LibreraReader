@@ -579,4 +579,5 @@
    <string name="floating_bookmark">المرجعية العائمة</string>
    <string name="animate_sync_progress">تظهر الرسوم المتحركة التقدم المزامنة</string>
    <string name="pull_to_start_sync">سحب لبدء المزامنة</string>
+   <string name="show_book_title">إظهار عنوان الكتاب في شريط الحالة</string>
 </resources>

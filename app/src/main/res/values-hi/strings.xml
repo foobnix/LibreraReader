@@ -579,4 +579,5 @@
    <string name="floating_bookmark">अस्थायी बुकमार्क</string>
    <string name="animate_sync_progress">दिखाएँ सिंक प्रगति एनीमेशन</string>
    <string name="pull_to_start_sync">सिंक्रनाइज़ करना प्रारंभ करने के लिए खींचें</string>
+   <string name="show_book_title">स्टेटस बार में पुस्तक का शीर्षक दिखाएं</string>
 </resources>

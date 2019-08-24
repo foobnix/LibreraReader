@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Plovoucí</string>
    <string name="animate_sync_progress">Zobrazit animaci průběhu synchronizace</string>
    <string name="pull_to_start_sync">Tahem zahájíte synchronizaci</string>
+   <string name="show_book_title">Zobrazit název knihy ve stavovém řádku</string>
 </resources>

@@ -579,4 +579,5 @@
    <string name="floating_bookmark">Bookmark mengambang</string>
    <string name="animate_sync_progress">Tampilkan sinkronisasi kemajuan animasi</string>
    <string name="pull_to_start_sync">Tarik untuk mulai menyinkronkan</string>
+   <string name="show_book_title">Tampilkan judul buku di bilah status</string>
 </resources>
