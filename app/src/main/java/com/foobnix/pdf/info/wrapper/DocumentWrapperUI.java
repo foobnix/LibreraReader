@@ -11,6 +11,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -466,7 +467,7 @@ public class DocumentWrapperUI {
 
         if (AppState.get().inactivityTime > 0) {
             dc.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", "add",AppState.get().inactivityTime);
+            LOG.d("FLAG addFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
             handler.removeCallbacks(clearFlags);
             handler.postDelayed(clearFlags, TimeUnit.MINUTES.toMillis(AppState.get().inactivityTime));
         }
@@ -532,13 +533,26 @@ public class DocumentWrapperUI {
     };
 
     public void showChapter() {
-        if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
-            bookName.setText(bookTitle + " " + TxtUtils.LONG_DASH1 + " " + dc.getCurrentChapter().trim());
-            LOG.d("bookName.setText(1)", bookTitle);
-        } else {
+
+        if (AppState.get().isShowPanelBookName) {
+//            if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
+//                bookName.setText(bookTitle + " " + TxtUtils.LONG_DASH1 + " " + dc.getCurrentChapter().trim());
+//                LOG.d("bookName.setText(1)", bookTitle);
+//            } else {
+//                bookName.setText(bookTitle);
+//                LOG.d("bookName.setText(2)", bookTitle);
+//            }
             bookName.setText(bookTitle);
-            LOG.d("bookName.setText(2)", bookTitle);
+            pagesCountIndicator.setGravity(Gravity.RIGHT);
+            //bookName.setVisibility(View.VISIBLE);
+            ((LinearLayout.LayoutParams) pagesCountIndicator.getLayoutParams()).weight = 0;
+        } else {
+            pagesCountIndicator.setGravity(Gravity.LEFT);
+            ((LinearLayout.LayoutParams) pagesCountIndicator.getLayoutParams()).weight = 1;
+            //bookName.setVisibility(View.GONE);
+            bookName.setText("");
         }
+
 
     }
 
@@ -1177,7 +1191,7 @@ public class DocumentWrapperUI {
 
     public void doDoubleTap(int x, int y) {
         if (dc.isMusicianMode()) {
-            if(AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
+            if (AppState.get().doubleClickAction1 == AppState.DOUBLE_CLICK_ADJUST_PAGE) {
                 dc.alignDocument();
             }
         } else {
@@ -1438,9 +1452,6 @@ public class DocumentWrapperUI {
         adFrame.setTag(null);
 
         imageMenuArrow.setImageResource(android.R.drawable.arrow_up_float);
-
-
-
 
 
         // if (AppState.get().isAutoScroll &&

@@ -2902,7 +2902,7 @@ public class DragingDialogs {
                 });
 
                 final CheckBox isShowPanelBookName = (CheckBox) inflate.findViewById(R.id.isShowPanelBookName);
-                isShowPanelBookName.setVisibility(controller.isBookMode() ? View.VISIBLE : View.GONE);
+                //isShowPanelBookName.setVisibility(controller.isBookMode() ? View.VISIBLE : View.GONE);
                 isShowPanelBookName.setEnabled(AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP ? false : true);
                 isShowPanelBookName.setChecked(AppState.get().isShowPanelBookName);
                 isShowPanelBookName.setOnCheckedChangeListener(new OnCheckedChangeListener() {
