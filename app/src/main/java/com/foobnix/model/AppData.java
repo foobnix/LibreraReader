@@ -4,6 +4,7 @@ import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
@@ -165,7 +166,7 @@ public class AppData {
 
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
-            if (new File(s.getPath()).isDirectory()) {
+            if (new File(s.getPath()).isDirectory() || s.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setPathTxt(ExtUtils.getFileName(s.getPath()));
