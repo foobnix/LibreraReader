@@ -378,7 +378,9 @@ public class PageImaveView extends View {
                 isIgronerClick = true;
                 AppState.get().selectedText = null;
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
-                EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
+                if(new ClickUtils().isClickCenter(e.getX(), e.getY())) {
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
+                }
                 LOG.d("PageImaveView MESSAGE_PERFORM_CLICK", 3);
 
 
