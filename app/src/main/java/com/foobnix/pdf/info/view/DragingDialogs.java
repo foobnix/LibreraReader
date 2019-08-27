@@ -2903,6 +2903,7 @@ public class DragingDialogs {
 
                 final CheckBox isShowPanelBookName = (CheckBox) inflate.findViewById(R.id.isShowPanelBookName);
                 isShowPanelBookName.setVisibility(controller.isBookMode() ? View.VISIBLE : View.GONE);
+                isShowPanelBookName.setEnabled(AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP ? false : true);
                 isShowPanelBookName.setChecked(AppState.get().isShowPanelBookName);
                 isShowPanelBookName.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -2984,9 +2985,13 @@ public class DragingDialogs {
                                         statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
                                         TxtUtils.underlineTextView(statusBarPosition);
 
-                                        if(item.getTitle().equals(controller.getString(R.string.top))){
+                                        if (item.getTitle().equals(controller.getString(R.string.top))) {
                                             AppState.get().isShowPanelBookName = false;
                                             isShowPanelBookName.setChecked(false);
+                                            isShowPanelBookName.setEnabled(false);
+                                        } else {
+                                            isShowPanelBookName.setEnabled(true);
+
                                         }
 
                                         if (onRefresh != null) {
