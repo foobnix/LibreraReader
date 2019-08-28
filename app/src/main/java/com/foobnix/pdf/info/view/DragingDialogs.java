@@ -2902,14 +2902,22 @@ public class DragingDialogs {
                 });
 
                 final CheckBox isShowPanelBookName = (CheckBox) inflate.findViewById(R.id.isShowPanelBookName);
-                //isShowPanelBookName.setVisibility(controller.isBookMode() ? View.VISIBLE : View.GONE);
-                isShowPanelBookName.setEnabled(AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP ? false : true);
-                isShowPanelBookName.setChecked(AppState.get().isShowPanelBookName);
+
+                if (controller.isBookMode()) {
+                    isShowPanelBookName.setEnabled(AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP ? false : true);
+                }
+
+                isShowPanelBookName.setChecked(controller.isBookMode() ? AppState.get().isShowPanelBookNameBookMode : AppState.get().isShowPanelBookNameScrollMode);
                 isShowPanelBookName.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowPanelBookName = isChecked;
+                        if (controller.isBookMode()) {
+                            AppState.get().isShowPanelBookNameBookMode = isChecked;
+                        } else {
+                            AppState.get().isShowPanelBookNameScrollMode = isChecked;
+
+                        }
                         AppState.get().isEditMode = false;
                         if (onRefresh != null) {
                             onRefresh.run();
@@ -2986,7 +2994,7 @@ public class DragingDialogs {
                                         TxtUtils.underlineTextView(statusBarPosition);
 
                                         if (item.getTitle().equals(controller.getString(R.string.top))) {
-                                            AppState.get().isShowPanelBookName = false;
+                                            AppState.get().isShowPanelBookNameBookMode = false;
                                             isShowPanelBookName.setChecked(false);
                                             isShowPanelBookName.setEnabled(false);
                                         } else {

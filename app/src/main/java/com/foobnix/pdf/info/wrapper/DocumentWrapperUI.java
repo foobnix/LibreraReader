@@ -534,7 +534,7 @@ public class DocumentWrapperUI {
 
     public void showChapter() {
 
-        if (AppState.get().isShowPanelBookName) {
+        if (AppState.get().isShowPanelBookNameScrollMode) {
 //            if (TxtUtils.isNotEmpty(dc.getCurrentChapter())) {
 //                bookName.setText(bookTitle + " " + TxtUtils.LONG_DASH1 + " " + dc.getCurrentChapter().trim());
 //                LOG.d("bookName.setText(1)", bookTitle);

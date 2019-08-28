@@ -1201,7 +1201,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesPower.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesTime.setTextSize(AppState.get().statusBarTextSizeEasy);
         pagesCountIndicator.setTextSize(AppState.get().statusBarTextSizeEasy);
-        pannelBookTitle.setTextSize(AppState.get().statusBarTextSizeEasy);
+        pannelBookTitle.setTextSize((AppState.get().statusBarTextSizeEasy+2));
         flippingIntervalView.setTextSize(AppState.get().statusBarTextSizeEasy);
 
         int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
@@ -1349,7 +1349,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         pagesPower.setVisibility(isVisible);
         bottomIndicators.setVisibility(isVisible);
 
-        pannelBookTitle.setVisibility(AppState.get().isShowPanelBookName ? View.VISIBLE : View.GONE);
+        pannelBookTitle.setVisibility(AppState.get().isShowPanelBookNameBookMode ? View.VISIBLE : View.GONE);
 
         progressDraw.setVisibility(AppState.get().isShowReadingProgress ? View.VISIBLE : View.GONE);
 

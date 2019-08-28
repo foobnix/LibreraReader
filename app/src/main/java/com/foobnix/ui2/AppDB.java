@@ -226,7 +226,9 @@ public class AppDB {
     // }
 
     public void deleteAllData() {
-        fileMetaDao.deleteAll();
+        if(fileMetaDao!=null) {
+            fileMetaDao.deleteAll();
+        }
     }
 
     public List<FileMeta> deleteAllSafe() {
