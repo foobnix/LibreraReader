@@ -338,7 +338,7 @@ public class BooksService extends IntentService {
 
     private void sendFinishMessage() {
         try {
-            AppDB.get().getDao().detachAll();
+            //AppDB.get().getDao().detachAll();
         } catch (Exception e) {
             LOG.e(e);
         }

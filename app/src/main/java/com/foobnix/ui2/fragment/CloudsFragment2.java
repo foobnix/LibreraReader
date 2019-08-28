@@ -32,7 +32,6 @@ import com.foobnix.pdf.search.activity.msg.MessageSyncFinish;
 import com.foobnix.pdf.search.activity.msg.MessageSyncUpdateList;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
 import com.foobnix.ui2.BooksService;
-import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
@@ -273,8 +272,9 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
             if (file.isDirectory()) {
                 continue;
             }
-            FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), true);
-            meta.setPath(prefix + "/" + file.getName());
+            //FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), true);
+            FileMeta meta = new FileMeta(file.getPath());
+            //meta.setPath(prefix + "/" + file.getName());
             res.add(meta);
         }
         Collections.sort(res, FileMetaComparators.BY_DATE);
