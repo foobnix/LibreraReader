@@ -16,6 +16,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.MyProgressDialog;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -140,11 +141,11 @@ public class FontExtractor {
 
                     @Override
                     protected void onPreExecute() {
-                        progressDialog = ProgressDialog.show(a, "", a.getString(R.string.please_wait));
+                        progressDialog = MyProgressDialog.show(a, a.getString(R.string.please_wait));
 
                     }
 
-                    ;
+
 
                     @Override
                     protected Object doInBackground(Object... params) {

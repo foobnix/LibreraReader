@@ -2355,7 +2355,7 @@ public class DragingDialogs {
 
                                     @Override
                                     protected void onPreExecute() {
-                                        dialog = ProgressDialog.show(controller.getActivity(), "", controller.getString(R.string.msg_loading));
+                                        dialog = MyProgressDialog.show(controller.getActivity(),  controller.getString(R.string.msg_loading));
                                     }
 
                                     ;

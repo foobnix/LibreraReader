@@ -28,6 +28,7 @@ import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
+import com.foobnix.pdf.info.view.MyProgressDialog;
 import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
@@ -709,7 +710,7 @@ public class VerticalModeController extends DocumentController {
                         }
 
                     }
-                    final ProgressDialog progress = ProgressDialog.show(getActivity(), null, getActivity().getString(R.string.saving_));
+                    final ProgressDialog progress = MyProgressDialog.show(getActivity(),  getActivity().getString(R.string.saving_));
                     progress.setCancelable(false);
                     progress.show();
                     ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {

@@ -12,7 +12,9 @@ import com.foobnix.OpenerActivity;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.OPDS;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
+import com.foobnix.pdf.info.view.MyProgressDialog;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,8 +28,7 @@ public class SendReceiveActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.show();
+        final ProgressDialog progressDialog = MyProgressDialog.show(this,  getString(R.string.please_wait));
         new Thread() {
             @Override
             public void run() {
@@ -39,7 +40,11 @@ public class SendReceiveActivity extends Activity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        progressDialog.hide();
+                        try {
+                            progressDialog.dismiss();
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
                         startShareIntent();
                     }
                 });
