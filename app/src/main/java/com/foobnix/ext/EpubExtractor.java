@@ -379,6 +379,13 @@ public class EpubExtractor extends BaseExtractor {
                             if ("meta".equals(xpp.getName()) && "cover".equals(xpp.getAttributeValue(null, "name"))) {
                                 coverResource = xpp.getAttributeValue(null, "content");
                             }
+                            if ("item".equals(xpp.getName()) && "cover-image".equals(xpp.getAttributeValue(null, "properties"))) {
+                                coverName = xpp.getAttributeValue(null, "href");
+                                if (coverName != null && coverName.endsWith(".svg")) {
+                                    coverName = null;
+                                }
+                                break;
+                            }
 
                             if (coverResource != null && "item".equals(xpp.getName()) && coverResource.equals(xpp.getAttributeValue(null, "id"))) {
                                 coverName = xpp.getAttributeValue(null, "href");
