@@ -249,7 +249,11 @@ public class EpubExtractor extends BaseExtractor {
                     while (eventType != XmlPullParser.END_DOCUMENT) {
                         if (eventType == XmlPullParser.START_TAG) {
                             if ("dc:title".equals(xpp.getName()) || "dcns:title".equals(xpp.getName())) {
-                                title = xpp.nextText();
+                                if(title==null){
+                                    title = xpp.nextText();
+                                }else {
+                                    title = title + " - " + xpp.nextText();
+                                }
                             }
 
                             if ("dc:creator".equals(xpp.getName()) || "dcns:creator".equals(xpp.getName())) {

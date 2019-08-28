@@ -817,6 +817,10 @@ public class AppState {
 
 
                 load(a);
+                if(AppState.get().isShowBookmarsPanelInBookMode && AppState.get().statusBarPosition==AppState.STATUSBAR_POSITION_TOP){
+                    AppState.get().isShowBookmarsPanelInBookMode = false;
+                }
+
                 isLoaded = true;
             } else {
             }
