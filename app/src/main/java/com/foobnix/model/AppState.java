@@ -346,7 +346,7 @@ public class AppState {
     public boolean isShowToolBar = true;
 
     public boolean isShowPanelBookNameScrollMode = true;
-    public boolean isShowPanelBookNameBookMode = true;
+    public boolean isShowPanelBookNameBookMode = false;
 
     public boolean isShowReadingProgress = true;
 
@@ -817,8 +817,8 @@ public class AppState {
 
 
                 load(a);
-                if(AppState.get().isShowBookmarsPanelInBookMode && AppState.get().statusBarPosition==AppState.STATUSBAR_POSITION_TOP){
-                    AppState.get().isShowBookmarsPanelInBookMode = false;
+                if(AppState.get().isShowPanelBookNameBookMode && AppState.get().statusBarPosition==AppState.STATUSBAR_POSITION_TOP){
+                    AppState.get().isShowPanelBookNameBookMode = false;
                 }
 
                 isLoaded = true;
