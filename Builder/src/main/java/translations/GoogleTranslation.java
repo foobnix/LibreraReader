@@ -1,5 +1,8 @@
 package translations;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,9 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class GoogleTranslation {
 
@@ -24,9 +24,13 @@ public class GoogleTranslation {
     }
 
     public static String translate(String inputOriginal, String toLang) throws JSONException, IOException {
+        return translate(inputOriginal, "en", toLang);
+    }
+
+    public static String translate(String inputOriginal, String from, String toLang) throws JSONException, IOException {
         String input = URLEncoder.encode(inputOriginal, "UTF-8");
         // https://www.googleapis.com/language/translate/v2?key=AIzaSyBJpTJYLsjwZiUOMHusU0QFEbxfXFCWk7M&q=demo&source=en&target=ru
-        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY + "&q=" + input + "&source=en&target=" + toLang;
+        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY + "&q=" + input + "&source=" + from + "&target=" + toLang;
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);
         String translate = json.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");

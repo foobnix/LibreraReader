@@ -1,0 +1,59 @@
+Questions and Answers (RISC OS version)
+=======================================
+
+Q1: How do I install Antiword?
+A1: Copy the application-directory and all the files within it to a
+    suitable directory.
+
+Q2: How do I use Antiword?
+A2: Double click on a Word document, filetype MSWord (&ae6). Or drag and drop
+    a file onto the Antiword icon on the iconbar.
+
+Q3: How does Antiword deal with Word macro viruses?
+A3: Antiword does not run any Word macros because it cannot do so.
+    Therefore your Archimedes will not be harmed by such a virus.
+
+Q4: What does the 'Paragraph breaks' option do?
+A4: This option controls the maximum number of characters per line in
+    paragraphs. If your screen is 640 pixels wide (like modes 20 and 27)
+    than 76 is probably best. If your screen is 800 or more pixels wide
+    (like mode 31) then numbers near 94 work best. You can switch this
+    option off if the (text only) output of Antiword will be the input to a
+    wordprocessor or a DTP program.
+    The pagebreak setting refers to the number of characters when you use
+    the system font. When you use an outline font only the width of that
+    number of characters in the system font is used.
+
+Q5: What does the 'Auto filetype' option do?
+A5: When auto filetype is allowed, Antiword will change the filetype of
+    Word documents to MSWord (&ae6)
+
+Q6: When Antiword uses outline fonts it becomes terribly slow. What can I
+    do about this?
+A6: When Antiword uses outline fonts it needs a large font cache. A small
+    font cache will make Antiword (very) slow. The larger the font cache the
+    better, but usually 160K or 256K will do.
+
+Q7: What is the purpose of the file 'FontNames' in the Choices directory?
+A7: This file provides a translation table from the font names found in a
+    Word document to the font names used by the RISC OS font-manager.
+    The file 'FontNames' is can be edited to match your font collection.
+    Some examples are provided in the Resources directory.
+
+Q8: What is 'Hidden Text'?
+A8: Hidden Text is Microsoft speak for text that may or may not be shown
+    on the screen, subject to the user's preferences, but such text is never
+    printed.
+
+Q9: After upgrading to a new version of Antiword, I found that Antiword does
+    not put a new _updated_ version of FontNames in !Choices. Why not?
+A9: The user can change the file Fontnames to reflect the fonts available
+    on a specific computer. Antiword cannot be permitted to overwrite changes
+    made by a user. So after upgrading you should remove or rename the old
+    FontNames file.
+
+Q10: Why does Antiword freeze my computer while converting the Word document?
+A10: This can happen when the Word document contains a very large image and
+     the image must be scaled to a much smaller size before displaying. The
+     delay occurs while RISC OS does the scaling, so there is not much
+     Antiword can do about it.

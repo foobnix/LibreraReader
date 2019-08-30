@@ -1,0 +1,139 @@
+noto.c
+TOFU_SYMBOL1 + add symbols
+
+source/html/epub-doc.c
+
+//if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+
+
+source/html/css-apply.c
+//INHERIT
+
+else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
+		else
+		{
+			if (value->type == CSS_PERCENT){
+				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
+			}else{
+				style->font_size = number_from_value(value, 1, N_SCALE);
+			}
+		}
+		
+if (value->type == CSS_PERCENT)
+		return make_number(fz_css_strtof(value->data, NULL)/2.5, N_PERCENT);		
+	
+//REM	
+	
+			/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
+		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
+			return make_number(x, N_SCALE);
+
+		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
+		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
+			return make_number(x / 2, N_LENGTH);
+
+		return make_number(x, N_SCALE);
+		
+		
+//auto
+
+if (!strcmp(value->data, "auto"))
+			return make_number(0, N_LENGTH);		
+		
+		
+//noto.c
+//#define NOTO_SMALL
+
+
+//add fb2 styles to main styles
+
+//html-layout.c
+30pt
+padding:0 2em 0 2em
+
+//skip br
+"br{display:block}"
+
+static void measure_image(fz_context *ctx, fz_html_flow *node, float max_w, float max_h)
+{
+	float xs = 1, ys = 1, s = 1;
+	float image_w = node->content.image->w * 72.0f / node->content.image->xres;
+	float image_h = node->content.image->h * 72.0f / node->content.image->yres;
+	node->x = 0;
+	node->y = 0;
+	if (image_w > max_w)
+		xs = max_w / image_w;
+	if (image_h > max_h)
+		ys = max_h / image_h;
+
+	if(image_w < max_w/7 && image_h < max_h/7){ //very small parts
+		xs = 7;
+		ys = 7;
+	}else if(image_w < max_w && image_h < max_h/7){//line images
+		xs = max_w / image_w;
+		ys = max_h / image_h;
+	}else if(image_w < max_w/2 && image_h < max_h/3){//line images
+		xs = 2;
+		ys = 2;	
+	}
+	
+	s = fz_min(xs, ys);
+	node->w = image_w * s;
+	node->h = image_h * s;
+}
+
+
+if(g->is_fb2){
+				const char *src = fz_xml_att(node, "l:href");
+				if (!src)
+					src = fz_xml_att(node, "xlink:href");
+				if (src && src[0] == '#')
+				{
+					fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
+					if (display == DIS_BLOCK)
+					{
+						fz_html_box *imgbox;
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						top = insert_block_box(ctx, box, top);
+						imgbox = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &imgbox->style, &match);
+						insert_inline_box(ctx, imgbox, box, markup_dir, g);
+						generate_image(ctx, imgbox, fz_keep_image(ctx, img), g);
+					}
+					else if (display == DIS_INLINE)
+					{
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						insert_inline_box(ctx, box, top, markup_dir, g);
+						generate_image(ctx, box, fz_keep_image(ctx, img), g);
+					}
+				}
+				}else{
+					const char *src = fz_xml_att(node, "xlink:href");
+					if (src)
+					{
+						box = new_box(ctx, g->pool, markup_dir);
+						fz_apply_css_style(ctx, g->set, &box->style, &match);
+						insert_inline_box(ctx, box, top, markup_dir, g);
+						generate_image(ctx, box, load_html_image(ctx, g->zip, g->base_uri, src), g);
+					}
+
+				}
+
+//xml.c
+
+if(p[1]=='b' && p[2]=='r' && p[3]=='>' && p[4]=='<' && p[5]=='b' && p[6]=='r' && p[7]=='>'){
+			p+=8;
+			goto parse_text;
+		}
+		
+//structured-text.h, stext-output.c 
+void send_data_base64_stext(fz_context *ctx, fz_output *out, fz_buffer *buffer);
+
+//
+load_fb2_images(fz_context *ctx, fz_xml *root)
+	if(strlen(b64)>1){

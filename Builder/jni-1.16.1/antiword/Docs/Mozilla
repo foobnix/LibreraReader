@@ -1,0 +1,88 @@
+Date: Mon, 11 Nov 2002 11:36:21 +0000
+From: Cam <camilo@mesias.co.uk>
+Subject: Re: antiword
+
+Hi
+
+I have updated the script for the latest Mozilla with plugger, as found 
+in RedHat 8. This makes the default action a very quick text view of a 
+document, much better IMHO than starting ooffice or abiword. If users 
+want to edit the file they can still save as.
+
+Here is a slightly improved script for gnome users:
+
+#!/bin/bash
+
+tmpfile=/tmp/aw$$.txt
+
+lastditch=`which vi`
+
+editor=${EDITOR:-$lastditch}
+
+if [ ! -x $editor ] ; then
+   editor=$lastditch
+fi
+
+
+tmpfile=/tmp/aw$$.txt
+
+gtopts="-t antiword-helper --hide-menubar"
+
+antiword "$1" > $tmpfile
+chmod -w $tmpfile
+gnome-terminal $gtopts -x $editor $tmpfile ; chmod +w $tmpfile ; rm $tmpfile
+
+
+
+Here is the script for non-gnome users:
+
+#!/bin/bash
+
+tmpfile=/tmp/aw$$.txt
+
+lastditch=`which vi`
+
+editor=${EDITOR:-$lastditch}
+
+if [ ! -x $editor ] ; then
+   editor=$lastditch
+fi
+
+
+antiword "$1" > $tmpfile
+chmod -w $tmpfile
+xterm -T "antiword-helper" -e $editor $tmpfile
+chmod +w $tmpfile
+rm $tmpfile
+
+
+
+To use the scripts add an entry into your plugger config file 
+(pluggerrc, for locations check man plugger). Mine is in 
+/home/cxm/.netscape/pluggerrc:
+
+The line to add is (it has a leading tab):
+
+   ignore_errors exits: antiword-helper "$file"
+
+
+Here is my config file after I added the line
+
+application/rtf: rtf: Rich Text Format
+application/x-msword: doc, dot: Microsoft Word Document
+application/msword: doc, dot: Microsoft Word Document
+         ignore_errors exits: antiword-helper "$file"
+         nokill exits: oowriter "$file"
+         repeat swallow(AbiWord) fill: AbiWord -nosplash -geometry 
++9000+9000 "$file" >/dev/null 2>/dev/null
+         repeat swallow(PCFileViewer) fill: sdtpcv "$file"
+         repeat swallow(PCFileViewer) fill: /opt/SUNWdtpcv/bin/sdtpcv 
+"$file"
+
+
+Then start Mozilla / Netscape and you should be able to quickly view 
+word docs from the browser and as email attachments.
+
+Hope that helps,
+
+-Cam
