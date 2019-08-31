@@ -768,7 +768,12 @@ public class AppState {
             "aard", //
             "web", //
             "encyc", // encyclopedias
-            "woordenboek"// https://play.google.com/store/apps/details?id=com.prisma.woordenboek.englesxl
+            "oxford", //
+            "mobifusion", //
+            "cambridge", //
+            "longman", //
+            "oup",//
+            "engl"//
 
             //
     );
