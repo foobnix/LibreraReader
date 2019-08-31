@@ -2,15 +2,24 @@
 
 
 
-./link_to_mupdf_1.11.sh
+
 
 cd ../
 
 ./gradlew clean incVersion
 
-
+# ==== BETA MUPDF  1.11 ========
+./link_to_mupdf_1.11.sh
 ./gradlew assembleBetaRelease assembleProRelease
+
 #./gradlew lintBetaRelease assembleBetaRelease assembleProRelease
+
+# ==== BETA MUPDF  1.16.1 ========
+
+./link_to_mupdf_1.16.1.sh.sh
+./gradlew assembleBeta2Release
+
+
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

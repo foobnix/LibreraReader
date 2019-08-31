@@ -610,6 +610,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	buffer = (*env)->GetPrimitiveArrayCritical(env, bufferarray, 0);
 
 	fz_context* ctx = page->ctx;
+	fz_separations *sep = pdf_page_separations(ctx, page);
 
 	fz_try(ctx)
 	{
@@ -717,10 +718,13 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPageBitmap(JNIEnv *env,
 		ERROR("No page context");
 		return JNI_FALSE;
 	}
+	fz_separations *sep = pdf_page_separations(ctx, page);
+
 	fz_try(ctx)
 	{
 		fz_colorspace *colorspace = fz_device_bgr(ctx);
 		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
+
 		pixmap = fz_new_pixmap_with_data(ctx,colorspace,
 				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1, stride,NULL);
 

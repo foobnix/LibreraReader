@@ -234,9 +234,9 @@ HQX_API void HQX_CALLCONV hq4x_32( uint32_t * sp, uint32_t * dp, int Xres, int Y
                 if ( w[k] != w[5] )
                 {
                     YUV2 = rgb2yuv(w[k]);
-                    if ( ( abs((YUV1 & Ymask) - (YUV2 & Ymask)) > trY ) ||
-                            ( abs((YUV1 & Umask) - (YUV2 & Umask)) > trU ) ||
-                            ( abs((YUV1 & Vmask) - (YUV2 & Vmask)) > trV ) )
+                    if ( ( ((YUV1 & Ymask) - (YUV2 & Ymask)) > trY ) ||
+                            ( ((YUV1 & Umask) - (YUV2 & Umask)) > trU ) ||
+                            ( ((YUV1 & Vmask) - (YUV2 & Vmask)) > trV ) )
                         pattern |= flag;
                 }
                 flag <<= 1;

@@ -61,6 +61,8 @@ LOCAL_SRC_FILES += \
 	$(wildcard $(MUPDF_PATH)/source/cbz/*.c) \
 	$(wildcard $(MUPDF_PATH)/source/html/*.c) \
 	$(wildcard $(MUPDF_PATH)/generated/resources/fonts/urw/*.c) \
+	$(wildcard $(MUPDF_PATH)/generated/resources/fonts/noto/*.c) \
+	$(wildcard $(MUPDF_PATH)/generated/resources/fonts/droid/*.c) \
 	$(wildcard $(MUPDF_PATH)/generated/resources/fonts/sil/*.c) \
 
 
