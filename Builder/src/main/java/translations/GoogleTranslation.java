@@ -14,10 +14,7 @@ import java.nio.charset.Charset;
 
 public class GoogleTranslation {
 
-    private static final String KEY = "AIzaSyBJpTJYLsjwZiUOMHusU0QFEbxfXFCWk7M";
-    // private static final String KEY =
-    // "AIzaSyBjxDSZeTdavOAGFbM185GpHVPn142Gm1o";
-    // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
+    private static final String KEY = "AIzaSyB-JpTJYLsj-wZiUOMHusU0QF-EbxfXFC-Wk7M";
 
     public static void main(String[] args) throws JSONException, IOException {
         String ln = translate("sun", "zh");
@@ -29,8 +26,7 @@ public class GoogleTranslation {
 
     public static String translate(String inputOriginal, String from, String toLang) throws JSONException, IOException {
         String input = URLEncoder.encode(inputOriginal, "UTF-8");
-        // https://www.googleapis.com/language/translate/v2?key=AIzaSyBJpTJYLsjwZiUOMHusU0QFEbxfXFCWk7M&q=demo&source=en&target=ru
-        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY + "&q=" + input + "&source=" + from + "&target=" + toLang;
+        String url = "https://www.googleapis.com/language/translate/v2?key=" + KEY.replace("-","") + "&q=" + input + "&source=" + from + "&target=" + toLang;
         // System.out.println(url);
         JSONObject json = readJsonFromUrl(url);
         String translate = json.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
