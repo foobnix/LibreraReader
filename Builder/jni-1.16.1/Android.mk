@@ -23,6 +23,7 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_ROOT)/source/pdf \
 	$(TOP_LOCAL_PATH)/djvu/include \
     $(TOP_LOCAL_PATH)/hqx \
+    $(TOP_LOCAL_PATH)/java \
 	$(TOP_LOCAL_PATH)
     	
 LOCAL_CFLAGS := -DHAVE_ANDROID
@@ -32,8 +33,9 @@ LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
-#	mupdfdroidbridge1.c \
-	jni_concurrent.c
+	java/mupdf_native.c \
+	jni_concurrent.c \
+#		mupdfdroidbridge1.c \
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 

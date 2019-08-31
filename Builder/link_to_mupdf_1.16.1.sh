@@ -4,6 +4,7 @@
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.16.1 mupdf-1.16.1
 cd mupdf-1.16.1
 make
+make generate
 cd ..
 
 MUPDF_ROOT=/home/ivan-dev/git/LibreraReader/Builder/mupdf-1.16.1
@@ -35,7 +36,7 @@ ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
 
 cd $MUPDF_JAVA
-ndk-build
+ndk-build $1
 
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS

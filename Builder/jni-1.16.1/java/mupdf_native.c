@@ -1206,7 +1206,7 @@ static fz_context *get_context(JNIEnv *env)
 }
 
 JNIEXPORT jint JNICALL
-JNI_OnLoad(JavaVM *vm, void *reserved)
+JNI_OnLoad2(JavaVM *vm, void *reserved)
 {
 	JNIEnv *env;
 
@@ -1216,7 +1216,7 @@ JNI_OnLoad(JavaVM *vm, void *reserved)
 	return MY_JNI_VERSION;
 }
 
-JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved)
+JNIEXPORT void JNICALL JNI_OnUnload2(JavaVM *vm, void *reserved)
 {
 	JNIEnv *env;
 

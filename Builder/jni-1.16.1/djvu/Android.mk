@@ -3,10 +3,10 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := djvu
+LOCAL_ARM_MODE := $(MY_ARM_MODE)
 
 LOCAL_CFLAGS    := $(APP_CFLAGS)  -D__APPLE__ -fexceptions -DHAVE_CONFIG_H -std=c++11
 LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 
 
