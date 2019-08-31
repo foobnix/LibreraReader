@@ -35,7 +35,7 @@ LOCAL_SRC_FILES := \
 	cbdroidbridge.c \
 	java/mupdf_native.c \
 	jni_concurrent.c \
-#		mupdfdroidbridge1.c \
+	mupdfdroidbridge1.c
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 

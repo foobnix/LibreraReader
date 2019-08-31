@@ -6,7 +6,6 @@ import android.os.Environment;
 
 import androidx.multidex.MultiDexApplication;
 
-import com.artifex.mupdf.fitz.StructuredText;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -64,9 +63,9 @@ public class LibreraApp extends MultiDexApplication {
 
         AppProfile.init(this);
 
-        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_12) {
-            int initNative = StructuredText.initNative();
-            LOG.d("initNative", initNative);
+        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
+            //int initNative = StructuredText.initNative();
+            //LOG.d("initNative", initNative);
         }
 
         TTSNotification.initChannels(this);

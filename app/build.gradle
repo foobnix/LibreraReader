@@ -99,8 +99,30 @@ android {
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
+            buildConfigField "int", "MUPDF_VERSION", "111"
 
         }
+
+        beta2 {
+            dimension "version"
+            applicationId "com.foobnix.pdf.reader.beta2"
+            manifestPlaceholders = [
+                    appName       : "Beta Librera",
+                    appIcon       : "@mipmap/icon_pdf_reader",
+                    appRoundIcon  : "@mipmap/icon_pdf_reader",
+                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
+                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
+            ]
+
+            buildConfigField "boolean", "IS_BETA", "true"
+            buildConfigField "boolean", "IS_FDROID", "false"
+            buildConfigField "boolean", "LOG", "true"
+            buildConfigField "int", "MUPDF_VERSION", "116"
+
+        }
+
         librera {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
@@ -116,6 +138,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         pro {
@@ -133,6 +157,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         pdf_classic {
@@ -150,6 +176,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         ebooka {
@@ -167,6 +195,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         pdf_v2 {
@@ -184,6 +214,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         tts_reader {
@@ -201,6 +233,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         epub_reader {
@@ -218,6 +252,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
 
         }
         fdroid {
@@ -236,6 +272,8 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "true"
             buildConfigField "boolean", "LOG", "false"
+            buildConfigField "int", "MUPDF_VERSION", "111"
+
         }
 
     }

@@ -116,7 +116,7 @@ static void mupdf_free_document(renderdocument_t* doc) {
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env,
 		jclass clazz) {
-	return 111;
+	return 116;
 }
 
 JNIEXPORT jlong JNICALL
@@ -266,7 +266,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageInfo(JNIEnv *env,
 	fz_try(doc->ctx)
 	{
 		page = fz_load_page(doc->ctx, doc->document, pageNumber - 1);
-		fz_bound_page(doc->ctx, page, &bounds);
+		bounds = fz_bound_page(doc->ctx, page);
 	}
 	fz_catch(doc->ctx)
 	{
@@ -471,13 +471,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jclass clazz,
 	page->page = NULL;
 	page->pageList = NULL;
 	//page->annot_list = NULL;
+	fz_matrix ctm;
 
 	fz_try(ctx)
 	{
-		page->pageList = fz_new_display_list(ctx, NULL);
+	    fz_rect mediabox;
+	    ctm = fz_identity;
+		page->pageList = fz_new_display_list(ctx, mediabox);
 		dev = fz_new_list_device(ctx, page->pageList);
 		page->page = fz_load_page(ctx ,doc->document, pageno - 1);
-		fz_run_page(ctx, page->page, dev, &fz_identity, NULL);
+		fz_run_page(ctx, page->page, dev, ctm, NULL);
 	}
 	fz_always(ctx)
 	{
@@ -559,7 +562,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getBounds(JNIEnv *env,
 	if (!bbox)
 		return;
 	fz_rect page_bounds;
-	fz_bound_page(page->ctx, page->page, &page_bounds);
+	page_bounds = fz_bound_page(page->ctx, page->page);
 // DEBUG("Bounds: %f %f %f %f", page_bounds.x0, page_bounds.y0, page_bounds.x1, page_bounds.y1);
 	bbox[0] = page_bounds.x0;
 	bbox[1] = page_bounds.y0;
@@ -615,21 +618,21 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 		//fz_colorspace *colorspace = fz_device_rgb(ctx);
 		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
 		pixmap = fz_new_pixmap_with_data(ctx, colorspace,
-				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,1,stride,
-				(unsigned char*) buffer);
+				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1,stride, NULL);
 
 		//fz_invert_pixmap(ctx,pixmap);
 		fz_clear_pixmap_with_value(ctx, pixmap, 0xFF);
 		if(r!=-1 && g!=-1 && b!=-1){
-			fz_tint_pixmap(ctx,pixmap,r,g,b);
+			//TODO
+			//fz_tint_pixmap(ctx,pixmap,r,g,b);
 		}
 		//fz_clear_pixmap(ctx, pixmap);
 
-		dev = fz_new_draw_device(ctx, NULL, pixmap);
+		dev = fz_new_draw_device(ctx, fz_identity, pixmap);
 
-		fz_run_display_list(ctx, page->pageList, dev, &ctm, &viewbox, NULL);
+		fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, NULL);
 
-//		fz_annot *annot;
+//		pdf_annot *annot;
 //		page->annot_list = fz_new_display_list(ctx);
 //		dev = fz_new_list_device(ctx, page->annot_list);
 //		for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
@@ -646,7 +649,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	fz_catch(ctx)
 	{
 		DEBUG("Render failed");
-	}
+	}ctm = fz_identity;
 
 	(*env)->ReleasePrimitiveArrayCritical(env, bufferarray, buffer, 0);
 }
@@ -719,16 +722,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPageBitmap(JNIEnv *env,
 		fz_colorspace *colorspace = fz_device_bgr(ctx);
 		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
 		pixmap = fz_new_pixmap_with_data(ctx,colorspace,
-				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,1,stride, pixels);
+				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1, stride,NULL);
 
 		fz_clear_pixmap_with_value(ctx, pixmap,0xff);
 
-		dev = fz_new_draw_device(ctx, NULL, pixmap);
+		dev = fz_new_draw_device(ctx, fz_identity, pixmap);
 
-		fz_run_display_list(ctx, page->pageList, dev, &ctm, &viewbox, NULL);
+		fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, NULL);
 	}
 
-//	fz_annot *annot;
+//	pdf_annot *annot;
 //	page->annot_list = fz_new_display_list(ctx);
 //	dev = fz_new_list_device(ctx, page->annot_list);
 //	for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
@@ -920,21 +923,24 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getChild(JNIEnv *env,
 static int
 charat(fz_context *ctx, fz_stext_page *page, int idx)
 {
-	fz_char_and_box cab;
-	return fz_stext_char_at(ctx, &cab, page, idx)->c;
+	//fz_char_and_box cab;
+	//return fz_stext_char_at(ctx, &cab, page, idx)->c;
+	return NULL;
 }
 
 static const fz_rect
 bboxcharat(fz_context *ctx, fz_stext_page *page, int idx)
 {
-	fz_char_and_box cab;
-	return fz_stext_char_at(ctx, &cab, page, idx)->bbox;
+	//fz_char_and_box cab;
+	//return fz_stext_char_at(ctx, &cab, page, idx)->bbox;
+
+	return fz_empty_rect;
 }
 
 static int
 textlen(fz_stext_page *page)
 {
-	int len = 0;
+/*	int len = 0;
 	int block_num;
 
 	for (block_num = 0; block_num < page->len; block_num++)
@@ -953,10 +959,12 @@ textlen(fz_stext_page *page)
 			{
 				len += span->len;
 			}
-			len++; /* pseudo-newline */
+			len++; 
 		}
 	}
 	return len;
+	*/
+	return NULL;
 }
 
 
@@ -983,128 +991,9 @@ JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_search(JNIEnv * env,
 		jobject thiz, jlong dochandle, jlong pagehandle, jstring text) {
 
-	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-	fz_context* ctx = doc->ctx;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
-// DEBUG("MuPdfPage(%p).search(%p, %p)", thiz, doc, page);
 
-	if (!doc || !page) {
-		return NULL;
-	}
 
-	const char *str = (*env)->GetStringUTFChars(env, text, NULL);
-	if (str == NULL) {
-		return NULL;
-	}
-
-	ArrayListHelper alh;
-	PageTextBoxHelper ptbh;
-	if (!ArrayListHelper_init(&alh, env)
-			|| !PageTextBoxHelper_init(&ptbh, env)) {
-		//DEBUG("search(): JNI helper initialization failed", pagehandle);
-		return NULL;
-	}
-	jobject arrayList = ArrayListHelper_create(&alh);
-// DEBUG("MuPdfPage(%p).search(%p, %p): array: %p", thiz, doc, page, arrayList);
-	if (!arrayList) {
-		return NULL;
-	}
-
-	fz_rect *hit_bbox = NULL;
-
-	fz_stext_sheet *sheet = NULL;
-	fz_stext_page *pagetext = NULL;
-	fz_device *dev = NULL;
-	int pos;
-	int len;
-	int i, n;
-	int hit_count = 0;
-
-	fz_try(doc->ctx)
-			{
-				fz_rect rect;
-				fz_rect mediabox;
-
-				// DEBUG("MuPdfPage(%p).search(%p, %p): load page text", thiz, doc, page);
-
-				fz_bound_page(ctx, page->page,  &rect);
-				sheet = fz_new_stext_sheet(doc->ctx);
-				pagetext = fz_new_stext_page(doc->ctx, fz_bound_page(ctx, page->page, &mediabox));
-				dev = fz_new_stext_device(doc->ctx, sheet, pagetext, NULL);
-				fz_run_page(ctx, page->page, dev, &fz_identity, NULL);
-
-				// DEBUG("MuPdfPage(%p).search(%p, %p): free text device", thiz, doc, page);
-
-				fz_close_device(ctx, dev);
-				fz_drop_device(ctx, dev);
-				dev = NULL;
-
-				len = textlen(pagetext);
-
-				// DEBUG("MuPdfPage(%p).search(%p, %p): text length: %d", thiz, doc, page, len);
-
-				for (pos = 0; pos < len; pos++) {
-					fz_rect rr = fz_empty_rect;
-					// DEBUG("MuPdfPage(%p).search(%p, %p): match %d", thiz, doc, page, pos);
-
-					n = match(ctx, pagetext, str, pos);
-					if (n > 0) {
-						DEBUG(
-								"MuPdfPage(%p).search(%p, %p): match found: %d, %d",
-								thiz, doc, page, pos, n);
-						for (i = 0; i < n; i++) {
-							fz_rect r2 =  bboxcharat(ctx, pagetext, pos + i);
-							fz_union_rect(&rr, &r2);
-						}
-
-						if (!fz_is_empty_rect(&rr)) {
-							int coords[4];
-							coords[0] = (rr.x0);
-							coords[1] = (rr.y0);
-							coords[2] = (rr.x1);
-							coords[3] = (rr.y1);
-							DEBUG(
-									"MuPdfPage(%p).search(%p, %p): found rectangle (%d, %d - %d, %d)",
-									thiz, doc, page, coords[0], coords[1],
-									coords[2], coords[3]);
-							jobject ptb = PageTextBoxHelper_create(&ptbh);
-							if (ptb) {
-								// DEBUG("MuPdfPage(%p).search(%p, %p): rect %p", thiz, doc, page, ptb);
-								PageTextBoxHelper_setRect(&ptbh, ptb, coords);
-								// PageTextBoxHelper_setText(&ptbh, ptb, txt);
-								// DEBUG("MuPdfPage(%p).search(%p, %p): add rect %p to array %p", thiz, doc, page, ptb, arrayList);
-								ArrayListHelper_add(&alh, arrayList, ptb);
-							}
-						}
-					}
-				}
-			}fz_always(doc->ctx)
-			{
-				// DEBUG("MuPdfPage(%p).search(%p, %p): free resources", thiz, doc, page);
-				if (pagetext) {
-					fz_drop_stext_page(doc->ctx, pagetext);
-				}
-				if (sheet) {
-					fz_drop_stext_sheet(doc->ctx, sheet);
-				}
-				if (dev) {
-					fz_close_device(doc->ctx, dev);
-					fz_drop_device(doc->ctx, dev);
-				}
-			}fz_catch(doc->ctx) {
-		jclass cls;
-		(*env)->ReleaseStringUTFChars(env, text, str);
-		cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
-		if (cls != NULL) {
-			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_searchPage");
-		}
-		(*env)->DeleteLocalRef(env, cls);
-		return NULL;
-	}
-
-	(*env)->ReleaseStringUTFChars(env, text, str);
-
-	return arrayList;
+	return NULL;
 }
 
 
@@ -1112,6 +1001,7 @@ JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle) {
 
+/*
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
 	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 
@@ -1121,10 +1011,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	jclass textBlockClass;
 	jmethodID ctor;
 	jobjectArray barr = NULL;
-	fz_stext_sheet *sheet = NULL;
+
 	fz_stext_page *text = NULL;
 	fz_device *dev = NULL;
-	fz_matrix ctm;
 
 	fz_context *ctx = doc_t->ctx;
 	fz_document *doc = doc_t->document;
@@ -1141,7 +1030,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	ctor = (*env)->GetMethodID(env, textCharClass, "<init>", "(FFFFC)V");
 	if (ctor == NULL) return NULL;
 
-	fz_var(sheet);
+    fz_matrix ctm;
+
 	fz_var(text);
 	fz_var(dev);
 
@@ -1149,13 +1039,13 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	{
 		int b, l, s, c;
 		fz_rect rect;
-		fz_bound_page(ctx ,page->page,  &rect);
-		fz_rect mediabox;
+		ctm = fz_identity;
+		rect=fz_bound_page(ctx ,page->page);
 
-		sheet = fz_new_stext_sheet(ctx);
-		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
-		dev = fz_new_stext_device(ctx, sheet, text, NULL);
-		fz_run_page(ctx, page->page, dev, &fz_identity, NULL);
+
+		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page));
+		dev = fz_new_stext_device(ctx,  text, NULL);
+		fz_run_page(ctx, page->page, dev, ctm, NULL);
 
 
 		fz_close_device(ctx, dev);
@@ -1223,7 +1113,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	fz_always(ctx)
 	{
 		fz_drop_stext_page(ctx, text);
-		fz_drop_stext_sheet(ctx, sheet);
 		fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
 	}
@@ -1238,6 +1127,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	}
 
 	return barr;
+}
+*/
+    return NULL;
 }
 
 
@@ -1352,7 +1244,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 		DEBUG("addInkAnnotationInternal 7");
 		n = (*env)->GetArrayLength(env, arcs);
 		DEBUG("addInkAnnotationInternal 8");
-		counts = fz_malloc_array(ctx, n, sizeof(int));
+		counts = fz_malloc_array(ctx, n, int);
 		DEBUG("addInkAnnotationInternal 9");
 		for (i = 0; i < n; i++)
 		{
@@ -1364,7 +1256,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 			total += count;
 		}
 		DEBUG("addInkAnnotationInternal 10");
-		pts = fz_malloc_array(ctx, total * 2, sizeof(float));
+		pts = fz_malloc_array(ctx, total * 2, float);
 
 		k = 0;
 		for (i = 0; i < n; i++)
@@ -1389,7 +1281,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 		DEBUG("addInkAnnotationInternal 11");
 		fz_try(ctx)
 			{
-		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, FZ_ANNOT_INK);
+		//annot = (pdf_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, pdf_annot_INK);
 		//pdf_set_ink_annot_list(ctx, idoc, (pdf_annot *)annot, pts, counts, n, color, width);
 
 			annot = pdf_create_annot(ctx, (pdf_page *)page->page, PDF_ANNOT_INK);
@@ -1423,6 +1315,7 @@ JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle, jobjectArray arcs) {
 
+/*
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
 	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 	fz_context *ctx = doc_t->ctx;
@@ -1432,7 +1325,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
 	jmethodID ctor;
 	jobjectArray arr;
 	jobject jannot;
-	fz_annot *annot;
+	pdf_annot *annot;
 	fz_matrix ctm;
 	int count;
 
@@ -1445,7 +1338,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
 
 
 
-	fz_scale(&ctm, 1, 1);
+	fz_scale(1, 1);
 
 	count = 0;
 	for (annot = fz_first_annot(ctx, page->page); annot; annot = fz_next_annot(ctx, annot))
@@ -1458,7 +1351,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
 	for (annot = fz_first_annot(ctx, page->page); annot; annot = fz_next_annot(ctx,  annot))
 	{
 		fz_rect rect;
-		fz_annot_type type = pdf_annot_type(ctx, (pdf_annot *)annot);
+		jint type = pdf_annot_type(ctx, (pdf_annot *)annot);
 		fz_bound_annot(ctx,  annot, &rect);
 		const char *content = pdf_annot_contents(ctx, (pdf_annot *)annot);
 		jstring text  = (*env)->NewStringUTF(env, content);
@@ -1471,17 +1364,20 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
 
 		count ++;
 	}
-
 	return arr;
+	*/
+
+	return NULL;
 }
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JNIEnv * env, jobject thiz, jlong handle, jlong pagehandle,int annot_index)
 {
+/*
 	//LOGE("deleteAnnotationInternal 1");
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
 	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 	fz_context *ctx = doc_t->ctx;
-	fz_annot *annot;
+	pdf_annot *annot;
 	pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
 
 	//LOGE("deleteAnnotationInternal 2");
@@ -1511,12 +1407,14 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
 	{
 		//LOGE("deleteAnnotationInternal: %s", ctx->error->message);
 	}
+	*/
+
 }
 
 
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNIEnv * env,
-		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, fz_annot_type type, jobjectArray jcolors) {
+		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, jint type, jobjectArray jcolors) {
 
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
 	renderpage_t *page = (renderpage_t*) (long) pagehandle;
@@ -1568,7 +1466,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 	fz_var(pts);
 	fz_try(ctx)
 	{
-		fz_annot *annot;
+		pdf_annot *annot;
 		fz_matrix ctm;
 
 		//LOGE("addMarkupAnnotationInternal 2");
@@ -1583,7 +1481,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 		n = (*env)->GetArrayLength(env, points);
 
 		//LOGE("addMarkupAnnotationInternal 3");
-		pts = fz_malloc_array(ctx, n * 2, sizeof(float));
+		pts = fz_malloc_array(ctx, n * 2, float);
 		//LOGE("addMarkupAnnotationInternal 4");
 		for (i = 0; i < n; i++)
 		{
@@ -1599,14 +1497,14 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 		}
 
 		//LOGE("addMarkupAnnotationInternal 5");
-		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, type);
+		//annot = (pdf_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, type);
 		//pdf_set_markup_annot_quadpoints(ctx,idoc, (pdf_annot *)annot, pts, n);
 		//pdf_set_markup_appearance(ctx,idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
 
 
-		annot = (fz_annot *)pdf_create_annot(ctx, (pdf_page *)page->page, type);
+		annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
 		pdf_set_annot_quad_points(ctx, (pdf_annot *)annot, n / 4, pts);
-		pdf_set_markup_appearance(ctx, idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
+//		pdf_set_markup_appearance(ctx, idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
 
 
 		//dump_annotation_display_lists(glo);
@@ -1629,6 +1527,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 void
 fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page, int opts)
 {
+
+    /*
 	int block_n;
 
 	for (block_n = 0; block_n < page->len; block_n++)
@@ -1656,10 +1556,10 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 				break;
 			default:
 				{
-					fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
-					fz_write_printf(ctx, out, "image/png;base64,");
-					send_data_base64_stext(ctx, out, buf);
-					fz_drop_buffer(ctx, buf);
+					//fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
+				//	fz_write_printf(ctx, out, "image/png;base64,");
+			//		send_data_base64_stext(ctx, out, buf);
+			//		fz_drop_buffer(ctx, buf);
 					break;
 				}
 			}
@@ -1784,6 +1684,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 		}
 
 	}
+	*/
 
 }
 
@@ -1801,7 +1702,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_document *doc = doc_t->document;
 	pdf_document *idoc = pdf_specifics(ctx, doc);
 
-	fz_stext_sheet *sheet = NULL;
+	
 	fz_stext_page *text = NULL;
 	fz_device *dev = NULL;
 	fz_matrix ctm;
@@ -1812,7 +1713,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 	size_t len;
 
-	fz_var(sheet);
+	
 	fz_var(text);
 
 
@@ -1828,30 +1729,31 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		fz_rect mediabox;
 
 		ctm = fz_identity;
-		sheet = fz_new_stext_sheet(ctx);
+
 
 
 		//fz_stext_options opts;
 		//fz_parse_stext_options(ctx, &opts, options);
 
-		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page, &mediabox));
+		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page));
 
 
-		dev = fz_new_stext_device(ctx,sheet,text, NULL);
+		dev = fz_new_stext_device(ctx,text, NULL);
 		int j = (int)opts;
 		if(j == 4){
-			fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
+		    //TODO
+			//fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
 		}
 
 
-		fz_run_page(ctx, page->page, dev, &ctm, NULL);
+		fz_run_page(ctx, page->page, dev, ctm, NULL);
 
 
 		fz_close_device(ctx, dev);
 		//fz_drop_device(ctx, dev);
 		//dev = NULL;
 
-		//fz_analyze_text(ctx, sheet, text);
+		//fz_analyze_text(ctx,  text);
 
 		buf = fz_new_buffer(ctx, 256);
 		out = fz_new_output_with_buffer(ctx, buf);
@@ -1873,7 +1775,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_always(ctx)
 	{
 		fz_drop_stext_page(ctx, text);
-		fz_drop_stext_sheet(ctx, sheet);
 		//fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
 		fz_drop_output(ctx, out);
