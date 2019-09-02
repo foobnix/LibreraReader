@@ -8,9 +8,6 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.artifex.mupdf.fitz.StructuredText;
-import com.artifex.mupdf.fitz.StructuredText.TextBlock;
-import com.artifex.mupdf.fitz.StructuredText.TextLine;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
@@ -300,6 +297,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
     private native static TextChar[][][][] text(long docHandle, long pageHandle);
 
+    private native static ArrayList<TextChar> text116(long docHandle, long pageHandle);
+
+
     private native void addInkAnnotationInternal(long docHandle, long pageHandle, float[] color, PointF[][] arcs, int width, float alpha);
 
     private native Annotation[] getAnnotationsInternal(long docHandle, long pageHandle);
@@ -413,12 +413,57 @@ public class MuPdfPage extends AbstractCodecPage {
         }
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
-            //return getText_112();
-            return new TextWord[0][0];
+            return getText_116();
         } else {
             return getText_111();
         }
 
+    }
+
+    public synchronized TextWord[][] getText_116() {
+        List<TextChar> chars = null;
+
+        TempHolder.lock.lock();
+        try {
+            chars = text116(docHandle, pageHandle);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+
+        LOG.d("text116 size", chars.size());
+
+        if (TxtUtils.isListEmpty(chars)) {
+            return new TextWord[0][0];
+        }
+
+        ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
+
+        ArrayList<TextWord> words = new ArrayList<TextWord>();
+        TextWord tw = new TextWord();
+        for (TextChar tc : chars) {
+            if (tc.c == ' ') {
+                update(tw);
+                words.add(tw);
+                //LOG.d("text116 add1", tw.w);
+                tw = new TextWord();
+            } else {
+                tw.Add(tc);
+            }
+        }
+        if (tw.w.length() > 0) {
+            words.add(tw);
+           // LOG.d("text116 add2", tw.w);
+        }
+
+
+        if (words.size() > 0)
+            lns.add(words.toArray(new TextWord[words.size()]));
+
+
+        TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
+
+
+        return res;
     }
 
     public synchronized TextWord[][] getText_111() {
@@ -476,64 +521,6 @@ public class MuPdfPage extends AbstractCodecPage {
         return res;
     }
 
-    public synchronized TextWord[][] getText_112() {
-        // LOG.d("getText()", docHandle, pageHandle, pageNumber);
-        TextBlock[] blocks = null;
-        try {
-            TempHolder.lock.lock();
-            blocks = StructuredText.getBlocks(docHandle, pageHandle);
-        } finally {
-            TempHolder.lock.unlock();
-        }
-
-        ArrayList<TextWord[]> lns = new ArrayList<TextWord[]>();
-
-        for (TextBlock block : blocks) {
-            ArrayList<TextWord> words = new ArrayList<TextWord>();
-            for (TextLine line : block.lines) {
-
-                TextWord word = new TextWord();
-                for (StructuredText.TextChar ch : line.chars) {
-                    char chChar = (char) ch.c;
-
-                    if (AppState.get().selectingByLetters) {
-                        if (chChar == TxtUtils.NON_BREAKE_SPACE_CHAR) {
-                            chChar = ' ';
-                        }
-                        word.addChar(ch.bbox, chChar);
-                        words.add(word);
-                        word = new TextWord();
-                        continue;
-                    }
-
-                    if (chChar == ' ') {
-                        words.add(word);
-                        // LOG.d("getText()", word.w);
-                        word = new TextWord();
-                        continue;
-                    }
-                    word.addChar(ch.bbox, chChar);
-                }
-                if (word.w.length() > 0) {
-                    words.add(word);
-                    // LOG.d("getText()", word.w);
-                    word = new TextWord();
-                }
-            }
-            if (words.size() > 0) {
-                lns.add(words.toArray(new TextWord[words.size()]));
-            }
-        }
-
-        TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
-        for (TextWord[] lines : res) {
-            for (TextWord word : lines) {
-                update(word);
-            }
-        }
-        return res;
-
-    }
 
     public void update(TextWord wd) {
         wd.setOriginal(wd);

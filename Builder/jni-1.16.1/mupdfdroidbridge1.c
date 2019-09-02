@@ -922,14 +922,110 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getChild(JNIEnv *env,
 
 
 
-
-JNIEXPORT jobjectArray JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
+JNIEXPORT jobject JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text116(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle) {
 
+	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
+
+	jclass textCharClass;
+	jclass textSpanClass;
+	jclass textLineClass;
+	jclass textBlockClass;
+	jmethodID ctor;
+
+	fz_stext_page *stext = NULL;
+	fz_device *dev = NULL;
+	fz_matrix ctm;
+
+	fz_context *ctx = doc_t->ctx;
+	fz_document *doc = doc_t->document;
 
 
-	return NULL;
+	textCharClass = (*env)->FindClass(env, PACKAGENAME "/TextChar");
+	if (textCharClass == NULL) return NULL;
+	textSpanClass = (*env)->FindClass(env, "[L" PACKAGENAME "/TextChar;");
+	if (textSpanClass == NULL) return NULL;
+	textLineClass = (*env)->FindClass(env, "[[L" PACKAGENAME "/TextChar;");
+	if (textLineClass == NULL) return NULL;
+	textBlockClass = (*env)->FindClass(env, "[[[L" PACKAGENAME "/TextChar;");
+	if (textBlockClass == NULL) return NULL;
+	ctor = (*env)->GetMethodID(env, textCharClass, "<init>", "(FFFFC)V");
+	if (ctor == NULL) return NULL;
+
+	fz_var(stext);
+	fz_var(dev);
+
+    DEBUG("text116 1");
+	ArrayListHelper alh;
+	DEBUG("text116 2");
+
+	ArrayListHelper_init(&alh, env);
+
+	DEBUG("text116 3");
+
+    jobject arrayList = ArrayListHelper_create(&alh);
+
+    DEBUG("text116 4");
+
+	fz_try(ctx)
+	{
+
+        fz_stext_options opts;
+		stext = fz_new_stext_page_from_page(ctx, page->page,NULL);
+
+
+		for (fz_stext_block *block = stext->first_block; block; block = block->next)
+        	{
+
+
+        		if (block->type == FZ_STEXT_BLOCK_TEXT)
+        		{
+
+
+
+        			for (fz_stext_line *line = block->u.t.first_line; line; line = line->next)
+        			{
+
+
+
+        				for (fz_stext_char *ch = line->first_char; ch; ch = ch->next)
+        				{
+
+
+                       fz_rect bbox = fz_rect_from_quad(ch->quad);
+	                   jobject cobj = (*env)->NewObject(env, textCharClass, ctor, bbox.x0, bbox.y0, bbox.x1, bbox.y1, ch->c);
+						if (cobj == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectfailed");
+
+                        ArrayListHelper_add(&alh, arrayList, cobj);
+                        (*env)->DeleteLocalRef(env, cobj);
+
+        				}
+
+        				fz_rect bbox = fz_empty_rect;
+        		        jobject cobj = (*env)->NewObject(env, textCharClass, ctor, bbox.x0, bbox.y0, bbox.x1, bbox.y1, ' ');
+        				ArrayListHelper_add(&alh, arrayList, cobj);
+                        (*env)->DeleteLocalRef(env, cobj);
+
+        			}
+        		}
+        	}
+
+
+	}
+	fz_always(ctx)
+	{
+		fz_drop_stext_page(ctx, stext);
+		//fz_close_device(ctx, dev);
+		//fz_drop_device(ctx, dev);
+	}
+	fz_catch(ctx)
+	{
+		return NULL;
+	}
+
+	return arrayList;
 }
 
 
