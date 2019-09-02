@@ -4,7 +4,7 @@
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.16.1 mupdf-1.16.1
 cd mupdf-1.16.1
 
-
+#make clean
 make release
 make generate
 

@@ -105,9 +105,9 @@ android {
 
         beta2 {
             dimension "version"
-            applicationId "com.foobnix.pdf.reader.beta2"
+            applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName       : "Beta Librera",
+                    appName       : "Alpha Librera",
                     appIcon       : "@mipmap/icon_pdf_reader",
                     appRoundIcon  : "@mipmap/icon_pdf_reader",
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -328,10 +328,6 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
-    //implementation 'com.squareup.okhttp3:okhttp:4.0.1'
-    //implementation 'com.burgstaller:okhttp-digest:2.0'
-    //implementation 'com.squareup.okio:okio:2.3.0'
-
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     implementation 'com.burgstaller:okhttp-digest:1.18'
     implementation 'com.squareup.okio:okio-parent:1.17.4'
@@ -340,17 +336,11 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.4.0'
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
+    beta2Implementation project(':pro')
+    proImplementation project(':pro')
+    fdroidImplementation project(':pro')
 
-
-    //betaImplementation project(':pro')
     betaImplementation 'com.google.firebase:firebase-ads:18.1.1'
-
-    //optional for statistics
-   // betaImplementation 'com.google.firebase:firebase-core:17.0.1'
-    //optional for statistics
-    //proImplementation 'com.google.firebase:firebase-core:17.0.1'
-
-
     libreraImplementation 'com.google.firebase:firebase-ads:18.1.1'
     pdf_v2Implementation 'com.google.firebase:firebase-ads:18.1.1'
     ebookaImplementation 'com.google.firebase:firebase-ads:18.1.1'
@@ -358,19 +348,10 @@ dependencies {
     pdf_classicImplementation 'com.google.firebase:firebase-ads:18.1.1'
     epub_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
 
-    //optional for statistics
-//    libreraImplementation 'com.google.firebase:firebase-core:17.0.1'
-//    pdf_v2Implementation 'com.google.firebase:firebase-core:17.0.1'
-//    ebookaImplementation 'com.google.firebase:firebase-core:17.0.1'
-//    tts_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
-//    pdf_classicImplementation 'com.google.firebase:firebase-core:17.0.1'
-//    epub_readerImplementation 'com.google.firebase:firebase-core:17.0.1'
-
-    proImplementation project(':pro')
-    fdroidImplementation project(':pro')
 
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+    beta2Implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     libreraImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     pdf_v2Implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     ebookaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'

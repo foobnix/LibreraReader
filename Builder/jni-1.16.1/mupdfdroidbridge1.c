@@ -116,7 +116,7 @@ static void mupdf_free_document(renderdocument_t* doc) {
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getMupdfVersion(JNIEnv *env,
 		jclass clazz) {
-	return 116;
+	return 111;
 }
 
 JNIEXPORT jlong JNICALL
@@ -319,7 +319,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getNextPageLink(JNIEnv *env,
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkType(JNIEnv *env,
 		jclass clazz, jlong handle, jlong linkhandle) {
-		
+
 	fz_link *link = (fz_link*) (long) linkhandle;
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	return (jint) fz_is_external_link(doc->ctx, link->uri);
@@ -471,16 +471,14 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jclass clazz,
 	page->page = NULL;
 	page->pageList = NULL;
 	//page->annot_list = NULL;
-	fz_matrix ctm;
 
+    fz_rect mediabox;
 	fz_try(ctx)
 	{
-	    fz_rect mediabox;
-	    ctm = fz_identity;
 		page->pageList = fz_new_display_list(ctx, mediabox);
 		dev = fz_new_list_device(ctx, page->pageList);
 		page->page = fz_load_page(ctx ,doc->document, pageno - 1);
-		fz_run_page(ctx, page->page, dev, ctm, NULL);
+		fz_run_page(ctx, page->page, dev, fz_identity, NULL);
 	}
 	fz_always(ctx)
 	{
@@ -610,34 +608,33 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	buffer = (*env)->GetPrimitiveArrayCritical(env, bufferarray, 0);
 
 	fz_context* ctx = page->ctx;
-	fz_separations *sep = pdf_page_separations(ctx, page);
+
+	fz_colorspace *colorspace = fz_device_bgr(ctx);
 
 	fz_try(ctx)
 	{
 
-		 fz_colorspace *colorspace = fz_device_bgr(ctx);
-		//fz_colorspace *colorspace = fz_device_rgb(ctx);
-		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
-		pixmap = fz_new_pixmap_with_data(ctx, colorspace,
-				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1,stride, NULL);
+        int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
+        pixmap = fz_new_pixmap_with_data(ctx,colorspace,
+                viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL, 1,stride, (unsigned char*) buffer);
 
 		//fz_invert_pixmap(ctx,pixmap);
 		fz_clear_pixmap_with_value(ctx, pixmap, 0xFF);
 		if(r!=-1 && g!=-1 && b!=-1){
-			//TODO
-			//fz_tint_pixmap(ctx,pixmap,r,g,b);
+			int value = (r*65536)+(g*256)+b;
+            fz_tint_pixmap(ctx,pixmap,0,value);
 		}
 		//fz_clear_pixmap(ctx, pixmap);
 
-		dev = fz_new_draw_device(ctx, fz_identity, pixmap);
+		dev = fz_new_draw_device(ctx, ctm, pixmap);
 
-		fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, NULL);
+		fz_run_display_list(ctx, page->pageList, dev, fz_identity, viewbox, NULL);
 
-//		pdf_annot *annot;
+//		fz_annot *annot;
 //		page->annot_list = fz_new_display_list(ctx);
 //		dev = fz_new_list_device(ctx, page->annot_list);
 //		for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
-//			fz_run_annot(doc->document, page->page, annot, dev, &fz_identity, NULL);
+//			fz_run_annot(doc->document, page->page, annot, dev, fz_identity, NULL);
 
 
 		fz_drop_pixmap(ctx, pixmap);
@@ -650,7 +647,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	fz_catch(ctx)
 	{
 		DEBUG("Render failed");
-	}ctm = fz_identity;
+	}
 
 	(*env)->ReleasePrimitiveArrayCritical(env, bufferarray, buffer, 0);
 }
@@ -718,28 +715,25 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPageBitmap(JNIEnv *env,
 		ERROR("No page context");
 		return JNI_FALSE;
 	}
-	fz_separations *sep = pdf_page_separations(ctx, page);
-
 	fz_try(ctx)
 	{
 		fz_colorspace *colorspace = fz_device_bgr(ctx);
-		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
+        		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
+        		pixmap = fz_new_pixmap_with_data(ctx,colorspace,
+        				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1,stride, pixels);
 
-		pixmap = fz_new_pixmap_with_data(ctx,colorspace,
-				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,NULL,1, stride,NULL);
+		fz_clear_pixmap_with_value(ctx, pixmap,0xFF);
 
-		fz_clear_pixmap_with_value(ctx, pixmap,0xff);
+		dev = fz_new_draw_device(ctx, ctm, pixmap);
 
-		dev = fz_new_draw_device(ctx, fz_identity, pixmap);
-
-		fz_run_display_list(ctx, page->pageList, dev, ctm, viewbox, NULL);
+		fz_run_display_list(ctx, page->pageList, dev, fz_identity, viewbox, NULL);
 	}
 
-//	pdf_annot *annot;
+//	fz_annot *annot;
 //	page->annot_list = fz_new_display_list(ctx);
 //	dev = fz_new_list_device(ctx, page->annot_list);
 //	for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
-//		fz_run_annot(doc->document, page->page, annot, dev, &fz_identity, NULL);
+//		fz_run_annot(doc->document, page->page, annot, dev, fz_identity, NULL);
 
 
 	fz_always(ctx)
@@ -924,216 +918,18 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getChild(JNIEnv *env,
 ///////////////
 //SEARCH
 //////////////
-static int
-charat(fz_context *ctx, fz_stext_page *page, int idx)
-{
-	//fz_char_and_box cab;
-	//return fz_stext_char_at(ctx, &cab, page, idx)->c;
-	return NULL;
-}
-
-static const fz_rect
-bboxcharat(fz_context *ctx, fz_stext_page *page, int idx)
-{
-	//fz_char_and_box cab;
-	//return fz_stext_char_at(ctx, &cab, page, idx)->bbox;
-
-	return fz_empty_rect;
-}
-
-static int
-textlen(fz_stext_page *page)
-{
-/*	int len = 0;
-	int block_num;
-
-	for (block_num = 0; block_num < page->len; block_num++)
-	{
-		fz_stext_block *block;
-		fz_stext_line *line;
-
-		if (page->blocks[block_num].type != FZ_PAGE_BLOCK_TEXT)
-			continue;
-		block = page->blocks[block_num].u.text;
-		for (line = block->lines; line < block->lines + block->len; line++)
-		{
-			fz_stext_span *span;
-
-			for (span = line->first_span; span; span = span->next)
-			{
-				len += span->len;
-			}
-			len++; 
-		}
-	}
-	return len;
-	*/
-	return NULL;
-}
-
-
-static int match(fz_context *ctx, fz_stext_page *page, const char *s, int n) {
-	int orig = n;
-	int c;
-	while (*s) {
-		s += fz_chartorune(&c, (char *) s);
-		if (c == ' ' && charat(ctx,page, n) == ' ') {
-			while (charat(ctx,page, n) == ' ') {
-				n++;
-			}
-		} else {
-			if (tolower(c) != tolower(charat(ctx,page, n))) {
-				return 0;
-			}
-			n++;
-		}
-	}
-	return n - orig;
-}
-
-JNIEXPORT jobjectArray JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_search(JNIEnv * env,
-		jobject thiz, jlong dochandle, jlong pagehandle, jstring text) {
 
 
 
-	return NULL;
-}
 
 
 JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle) {
 
-/*
-	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
-
-	jclass textCharClass;
-	jclass textSpanClass;
-	jclass textLineClass;
-	jclass textBlockClass;
-	jmethodID ctor;
-	jobjectArray barr = NULL;
-
-	fz_stext_page *text = NULL;
-	fz_device *dev = NULL;
-
-	fz_context *ctx = doc_t->ctx;
-	fz_document *doc = doc_t->document;
 
 
-	textCharClass = (*env)->FindClass(env, PACKAGENAME "/TextChar");
-	if (textCharClass == NULL) return NULL;
-	textSpanClass = (*env)->FindClass(env, "[L" PACKAGENAME "/TextChar;");
-	if (textSpanClass == NULL) return NULL;
-	textLineClass = (*env)->FindClass(env, "[[L" PACKAGENAME "/TextChar;");
-	if (textLineClass == NULL) return NULL;
-	textBlockClass = (*env)->FindClass(env, "[[[L" PACKAGENAME "/TextChar;");
-	if (textBlockClass == NULL) return NULL;
-	ctor = (*env)->GetMethodID(env, textCharClass, "<init>", "(FFFFC)V");
-	if (ctor == NULL) return NULL;
-
-    fz_matrix ctm;
-
-	fz_var(text);
-	fz_var(dev);
-
-	fz_try(ctx)
-	{
-		int b, l, s, c;
-		fz_rect rect;
-		ctm = fz_identity;
-		rect=fz_bound_page(ctx ,page->page);
-
-
-		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page));
-		dev = fz_new_stext_device(ctx,  text, NULL);
-		fz_run_page(ctx, page->page, dev, ctm, NULL);
-
-
-		fz_close_device(ctx, dev);
-		fz_drop_device(ctx, dev);
-		dev = NULL;
-
-		barr = (*env)->NewObjectArray(env, text->len, textBlockClass, NULL);
-		if (barr == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectArray failed");
-
-		for (b = 0; b < text->len; b++)
-		{
-			fz_stext_block *block;
-			jobjectArray *larr;
-
-			if (text->blocks[b].type != FZ_PAGE_BLOCK_TEXT)
-				continue;
-			block = text->blocks[b].u.text;
-			larr = (*env)->NewObjectArray(env, block->len, textLineClass, NULL);
-			if (larr == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectArray failed");
-
-			for (l = 0; l < block->len; l++)
-			{
-				fz_stext_line *line = &block->lines[l];
-				jobjectArray *sarr;
-				fz_stext_span *span;
-				int len = 0;
-
-				for (span = line->first_span; span; span = span->next)
-					len++;
-
-				sarr = (*env)->NewObjectArray(env, len, textSpanClass, NULL);
-				if (sarr == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectArray failed");
-
-				for (s=0, span = line->first_span; span; s++, span = span->next)
-				{
-					jobjectArray *carr = (*env)->NewObjectArray(env, span->len, textCharClass, NULL);
-					if (carr == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectArray failed");
-
-					for (c = 0; c < span->len; c++)
-					{
-						fz_stext_char *ch = &span->text[c];
-
-						fz_rect bbox;
-						fz_stext_char_bbox(ctx, &bbox, span, c);
-
-						jobject cobj = (*env)->NewObject(env, textCharClass, ctor, bbox.x0, bbox.y0, bbox.x1, bbox.y1, ch->c);
-						if (cobj == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "NewObjectfailed");
-
-						(*env)->SetObjectArrayElement(env, carr, c, cobj);
-						(*env)->DeleteLocalRef(env, cobj);
-					}
-
-					(*env)->SetObjectArrayElement(env, sarr, s, carr);
-					(*env)->DeleteLocalRef(env, carr);
-				}
-
-				(*env)->SetObjectArrayElement(env, larr, l, sarr);
-				(*env)->DeleteLocalRef(env, sarr);
-			}
-
-			(*env)->SetObjectArrayElement(env, barr, b, larr);
-			(*env)->DeleteLocalRef(env, larr);
-		}
-	}
-	fz_always(ctx)
-	{
-		fz_drop_stext_page(ctx, text);
-		fz_close_device(ctx, dev);
-		fz_drop_device(ctx, dev);
-	}
-	fz_catch(ctx)
-	{
-		jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
-		if (cls != NULL)
-			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_text");
-		(*env)->DeleteLocalRef(env, cls);
-
-		return NULL;
-	}
-
-	return barr;
-}
-*/
-    return NULL;
+	return NULL;
 }
 
 
@@ -1231,7 +1027,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 
 		float zoom = 72/160;
 		//zoom = 1.0 / zoom;
-		//fz_scale(&ctm, zoom,zoom);
+		//fz_scale(fz_identity, zoom,zoom);
 
 		DEBUG("addInkAnnotationInternal 1");
 		pt_cls = (*env)->FindClass(env, "android/graphics/PointF");
@@ -1275,7 +1071,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 				pt.x = jpt ? (*env)->GetFloatField(env, jpt, x_fid) : 0.0f;
 				pt.y = jpt ? (*env)->GetFloatField(env, jpt, y_fid) : 0.0f;
 				(*env)->DeleteLocalRef(env, jpt);
-				//fz_transform_point(&pts[k], &ctm);
+				//fz_transform_point(&pts[k], fz_identity);
 				//k++;
 				pts[k++] = pt.x;
 				pts[k++] = pt.y;
@@ -1285,7 +1081,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 		DEBUG("addInkAnnotationInternal 11");
 		fz_try(ctx)
 			{
-		//annot = (pdf_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, pdf_annot_INK);
+		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, FZ_ANNOT_INK);
 		//pdf_set_ink_annot_list(ctx, idoc, (pdf_annot *)annot, pts, counts, n, color, width);
 
 			annot = pdf_create_annot(ctx, (pdf_page *)page->page, PDF_ANNOT_INK);
@@ -1319,99 +1115,12 @@ JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle, jobjectArray arcs) {
 
-/*
-	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
-	fz_context *ctx = doc_t->ctx;
-	pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
-
-	jclass annotClass;
-	jmethodID ctor;
-	jobjectArray arr;
-	jobject jannot;
-	pdf_annot *annot;
-	fz_matrix ctm;
-	int count;
-
-
-
-	annotClass = (*env)->FindClass(env, "org/ebookdroid/core/codec/Annotation");
-	if (annotClass == NULL) return NULL;
-	ctor = (*env)->GetMethodID(env, annotClass, "<init>", "(FFFFILjava/lang/String;)V");
-	if (ctor == NULL) return NULL;
-
-
-
-	fz_scale(1, 1);
-
-	count = 0;
-	for (annot = fz_first_annot(ctx, page->page); annot; annot = fz_next_annot(ctx, annot))
-		count ++;
-
-	arr = (*env)->NewObjectArray(env, count, annotClass, NULL);
-	if (arr == NULL) return NULL;
-
-	count = 0;
-	for (annot = fz_first_annot(ctx, page->page); annot; annot = fz_next_annot(ctx,  annot))
-	{
-		fz_rect rect;
-		jint type = pdf_annot_type(ctx, (pdf_annot *)annot);
-		fz_bound_annot(ctx,  annot, &rect);
-		const char *content = pdf_annot_contents(ctx, (pdf_annot *)annot);
-		jstring text  = (*env)->NewStringUTF(env, content);
-
-		jannot = (*env)->NewObject(env, annotClass, ctor,
-				(float)rect.x0, (float)rect.y0, (float)rect.x1, (float)rect.y1, type,text);
-		if (jannot == NULL) return NULL;
-		(*env)->SetObjectArrayElement(env, arr, count, jannot);
-		(*env)->DeleteLocalRef(env, jannot);
-
-		count ++;
-	}
-	return arr;
-	*/
 
 	return NULL;
 }
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JNIEnv * env, jobject thiz, jlong handle, jlong pagehandle,int annot_index)
 {
-/*
-	//LOGE("deleteAnnotationInternal 1");
-	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
-	fz_context *ctx = doc_t->ctx;
-	pdf_annot *annot;
-	pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
-
-	//LOGE("deleteAnnotationInternal 2");
-
-	fz_try(ctx)
-	{
-		//LOGE("deleteAnnotationInternal 3");
-		annot = fz_first_annot(ctx, page->page);
-		//LOGE("deleteAnnotationInternal 31");
-		int i;
-		for (i = 0; i < annot_index && annot; i++){
-			//LOGE("deleteAnnotationInternal 32");
-			annot = fz_next_annot(ctx,  annot);
-			//LOGE("deleteAnnotationInternal 33");
-		}
-
-		if (annot)
-		{
-			//LOGE("deleteAnnotationInternal 4");
-			//pdf_delete_annot(ctx, idoc, (pdf_page *) page->page, (pdf_annot *)annot);
-			pdf_delete_annot(ctx, (pdf_page *)page->page, (pdf_annot *)annot);
-
-			//fz_drop_display_list(ctx, page->pageList);
-		}
-	}
-	fz_catch(ctx)
-	{
-		//LOGE("deleteAnnotationInternal: %s", ctx->error->message);
-	}
-	*/
 
 }
 
@@ -1420,275 +1129,14 @@ JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, jint type, jobjectArray jcolors) {
 
-	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 
-	fz_context *ctx = doc_t->ctx;
-	fz_document *doc = doc_t->document;
-	pdf_document *idoc = pdf_specifics(ctx, doc);
-	jclass pt_cls;
-	jfieldID x_fid, y_fid;
-	int i, n;
-	float *pts = NULL;
-	float color[3];
-	float alpha;
-	float line_height;
-	float line_thickness;
-
-	if (idoc == NULL)
-		return;
-
-	switch (type)
-	{
-		case PDF_ANNOT_HIGHLIGHT:
-			alpha = 0.4;
-			line_thickness = 1.0;
-			line_height = 0.45;
-			break;
-		case PDF_ANNOT_UNDERLINE:
-			alpha = 1.0;
-			line_thickness = LINE_THICKNESS;
-			line_height = UNDERLINE_HEIGHT;
-			break;
-		case PDF_ANNOT_STRIKE_OUT:
-			alpha = 1.0;
-			line_thickness = LINE_THICKNESS;
-			line_height = STRIKE_HEIGHT;
-			break;
-		default:
-			return;
-	}
-	//LOGE("addMarkupAnnotationInternal 1");
-
-	jfloat *co = (*env)->GetPrimitiveArrayCritical(env, jcolors, 0);
-	color[0] = co[0];
-	color[1] = co[1];
-	color[2] = co[2];
-
-	(*env)->ReleasePrimitiveArrayCritical(env, jcolors, co, 0);
-
-	fz_var(pts);
-	fz_try(ctx)
-	{
-		pdf_annot *annot;
-		fz_matrix ctm;
-
-		//LOGE("addMarkupAnnotationInternal 2");
-
-		pt_cls = (*env)->FindClass(env, "android/graphics/PointF");
-		if (pt_cls == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "FindClass");
-		x_fid = (*env)->GetFieldID(env, pt_cls, "x", "F");
-		if (x_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(x)");
-		y_fid = (*env)->GetFieldID(env, pt_cls, "y", "F");
-		if (y_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(y)");
-
-		n = (*env)->GetArrayLength(env, points);
-
-		//LOGE("addMarkupAnnotationInternal 3");
-		pts = fz_malloc_array(ctx, n * 2, float);
-		//LOGE("addMarkupAnnotationInternal 4");
-		for (i = 0; i < n; i++)
-		{
-			fz_point pt;
-			jobject opt = (*env)->GetObjectArrayElement(env, points, i);
-			pt.x = opt ? (*env)->GetFloatField(env, opt, x_fid) : 0.0f;
-			pt.y = opt ? (*env)->GetFloatField(env, opt, y_fid) : 0.0f;
-			//fz_transform_point(&pts[i], &ctm);
-
-			(*env)->DeleteLocalRef(env,opt);
-			pts[i*2+0] = pt.x;
-			pts[i*2+1] = pt.y;
-		}
-
-		//LOGE("addMarkupAnnotationInternal 5");
-		//annot = (pdf_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, type);
-		//pdf_set_markup_annot_quadpoints(ctx,idoc, (pdf_annot *)annot, pts, n);
-		//pdf_set_markup_appearance(ctx,idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
-
-
-		annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
-		pdf_set_annot_quad_points(ctx, (pdf_annot *)annot, n / 4, pts);
-//		pdf_set_markup_appearance(ctx, idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
-
-
-		//dump_annotation_display_lists(glo);
-	}
-	fz_always(ctx)
-	{
-		fz_free(ctx, pts);
-	}
-	fz_catch(ctx)
-	{
-		//LOGE("addStrikeOutAnnotation: %s failed", ctx->error->message);
-		jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
-		if (cls != NULL)
-			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_searchPage");
-		(*env)->DeleteLocalRef(env, cls);
-	}
 }
 
 
 void
 fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page, int opts)
 {
-
-    /*
-	int block_n;
-
-	for (block_n = 0; block_n < page->len; block_n++)
-	{
-		if (opts == 4 && page->blocks[block_n].type == FZ_PAGE_BLOCK_IMAGE)
-		{
-			fz_write_printf(ctx, out, "<image-begin>");
-			//fz_write_image_as_data_uri(ctx, out, page->blocks[block_n].u.image);
-
-			//image begin
-
-
-			fz_image_block *image = page->blocks[block_n].u.image;
-			fz_compressed_buffer *buffer = fz_compressed_image_buffer(ctx, image->image);
-			//fz_write_printf(ctx, out, "<img width=%d height=%d src=\"data:", image->image->w, image->image->h);
-			switch (buffer == NULL ? FZ_IMAGE_JPX : buffer->params.type)
-			{
-			case FZ_IMAGE_JPEG:
-				fz_write_printf(ctx, out, "image/jpeg;base64,");
-				send_data_base64_stext(ctx, out, buffer->buffer);
-				break;
-			case FZ_IMAGE_PNG:
-				fz_write_printf(ctx, out, "image/png;base64,");
-				send_data_base64_stext(ctx, out, buffer->buffer);
-				break;
-			default:
-				{
-					//fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
-				//	fz_write_printf(ctx, out, "image/png;base64,");
-			//		send_data_base64_stext(ctx, out, buf);
-			//		fz_drop_buffer(ctx, buf);
-					break;
-				}
-			}
-			//fz_write_printf(ctx, out, "\">\n");
-
-
-			//image end
-
-
-			fz_write_string(ctx, out, "<image-end>");
-			fz_write_printf(ctx, out, "<br/>");
-		}else if(page->blocks[block_n].type == FZ_PAGE_BLOCK_TEXT){
-			fz_stext_block *block = page->blocks[block_n].u.text;
-			fz_stext_line *line;
-			fz_stext_char *ch;
-			char utf[10];
-			int i, n;
-
-			fz_write_printf(ctx, out, "<p>");
-
-			fz_font *font = block->lines->first_span->text->style->font;
-			fz_font *font2 = block->lines->last_span->text->style->font;
-
-
-			int is_bold = fz_font_is_bold(ctx,font) && fz_font_is_bold(ctx,font2);
-			int is_italic = fz_font_is_italic(ctx, font) && fz_font_is_italic(ctx, font2);
-			int is_mono = fz_font_is_monospaced(ctx, font) && fz_font_is_monospaced(ctx, font2);
-
-
-
-	        int fs = block->lines->first_span->text->style->size;
-	        DEBUG("fontSize get %d", fs);
-
-            if(fs > fontSize){
-			    fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->first_span->text->style->size);
-			}
-
-			if (is_bold) fz_write_printf(ctx,out,"<b>");
-			if (is_italic) fz_write_printf(ctx,out,"<i>");
-			//if (is_mono) fz_write_printf(ctx,out,"<tt>");
-
-
-			for (line = block->lines; line < block->lines + block->len; line++)
-			{
-
-				fz_font *l_font = line->first_span->text->style->font;
-				fz_font *l_font2 = line->last_span->text->style->font;
-
-				int a = fz_font_is_bold(ctx,l_font) && fz_font_is_bold(ctx,l_font2);
-				int b = fz_font_is_italic(ctx,l_font) && fz_font_is_italic(ctx,l_font2);
-				int is_pause_line = !is_bold && !is_italic && (a || b);
-
-				fz_stext_span *span;
-				for (span = line->first_span; span; span = span->next)
-				{
-
-					fz_font *s_font = span->text->style->font;
-
-
-
-
-					int is_pause_span = !is_pause_line &&( fz_font_is_bold(ctx,s_font) || fz_font_is_italic(ctx,s_font));
-
-					for (ch = span->text; ch < span->text + span->len; ch++)
-					{
-
-						int is_bold_ch = !is_bold && fz_font_is_bold(ctx, ch->style->font);
-						int is_italic_ch = !is_italic && fz_font_is_italic(ctx, ch->style->font);
-						int is_mono_ch = !is_mono && fz_font_is_monospaced(ctx, ch->style->font);
-
-
-						if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
-						if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
-						//if (is_mono_ch) fz_write_printf(ctx,out,"<code>");
-
-						switch (ch->c)
-							{
-							case '<': fz_write_string(ctx, out, "&lt;"); break;
-							case '>': fz_write_string(ctx, out, "&gt;"); break;
-							case '&': fz_write_string(ctx, out, "&amp;"); break;
-							case '"': fz_write_string(ctx, out, "&quot;"); break;
-							//case '\'': fz_write_string(ctx, out, "&apos;"); break;
-							default:
-								   n = fz_runetochar(utf, ch->c);
-									for (i = 0; i < n; i++)
-										fz_write_byte(ctx, out, utf[i]);
-								   break;
-							}
-
-						if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
-						if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
-						//if (is_mono_ch) fz_write_printf(ctx,out,"</code>");
-					}
-
-					if(is_pause_span){
-						//fz_write_printf(ctx,out,"<pause-span>");
-					}
-
-
-
-				fz_write_string(ctx, out, "<end-line>");
-				}
-				if(is_pause_line){
-					//fz_write_printf(ctx,out,"<pause-line>");
-				}
-
-			}
-			if(block->lines->first_span->text->style->size > fontSize){
-			fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->last_span->text->style->size);
-			}
-
-
-			if (is_bold) {fz_write_printf(ctx,out,"</b>"); fz_write_printf(ctx,out,"<pause>");}
-			if (is_italic) {fz_write_printf(ctx,out,"</i>"); fz_write_printf(ctx,out,"<pause>");}
-			//if (is_mono) fz_write_printf(ctx,out,"</tt>");
-			fz_write_printf(ctx,out,"</p>");
-			//fz_printf(ctx, out, "<br/>");
-
-			if(block_n < page->len-1){
-            		    fz_write_printf(ctx,out,"<end-block>");
-            		}
-		}
-
-	}
-	*/
+	
 
 }
 
@@ -1706,7 +1154,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_document *doc = doc_t->document;
 	pdf_document *idoc = pdf_specifics(ctx, doc);
 
-	
+
 	fz_stext_page *text = NULL;
 	fz_device *dev = NULL;
 	fz_matrix ctm;
@@ -1733,24 +1181,23 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		fz_rect mediabox;
 
 		ctm = fz_identity;
-
+		
 
 
 		//fz_stext_options opts;
 		//fz_parse_stext_options(ctx, &opts, options);
 
-		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page));
+		text = fz_new_stext_page_from_page(ctx, page->page, NULL);
 
 
 		dev = fz_new_stext_device(ctx,text, NULL);
 		int j = (int)opts;
 		if(j == 4){
-		    //TODO
 			//fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
 		}
 
 
-		fz_run_page(ctx, page->page, dev, ctm, NULL);
+		fz_run_page(ctx, page->page, dev, fz_identity, NULL);
 
 
 		fz_close_device(ctx, dev);
@@ -1779,6 +1226,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_always(ctx)
 	{
 		fz_drop_stext_page(ctx, text);
+
 		//fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
 		fz_drop_output(ctx, out);

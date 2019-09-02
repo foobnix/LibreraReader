@@ -33,7 +33,6 @@ LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
-	java/mupdf_native.c \
 	jni_concurrent.c \
 	mupdfdroidbridge1.c
 
