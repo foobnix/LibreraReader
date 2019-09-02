@@ -103,7 +103,7 @@ android {
 
         }
 
-        beta2 {
+        alpha {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
@@ -336,7 +336,7 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.4.0'
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
-    beta2Implementation project(':pro')
+    alphaImplementation project(':pro')
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
@@ -351,7 +351,7 @@ dependencies {
 
     proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    beta2Implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+    alphaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     libreraImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     pdf_v2Implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
     ebookaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'

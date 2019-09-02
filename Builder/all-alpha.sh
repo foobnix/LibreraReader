@@ -9,7 +9,7 @@ cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleBeta2Release
+./gradlew assembleAlphaRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
