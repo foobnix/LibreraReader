@@ -359,7 +359,7 @@ public class TTSEngine {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null) {
+            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice().getLocale()!=null) {
                 return ttsEngine.getDefaultVoice().getLocale().getDisplayLanguage();
             }
         } catch (Exception e) {

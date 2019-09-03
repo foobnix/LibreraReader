@@ -1228,19 +1228,129 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 
 }
 
+static void
+fz_print_stext_image_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block *block)
+{
+
+	fz_write_printf(ctx, out, "<image-begin>");
+
+	fz_write_image_as_data_uri(ctx, out, block->u.i.image);
+
+	fz_write_string(ctx, out, "<image-end>");
+    fz_write_printf(ctx, out, "<br/>");
+}
 
 void
-fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *page, int opts)
+fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block *block)
 {
-	
+	fz_stext_line *line;
+	fz_stext_char *ch;
+	int x, y;
+
+	fz_font *font = NULL;
+	float size = 0;
+	int sup = 0;
+	int color = 0;
+
+    float fs = block->u.t.first_line->first_char->size;
+
+	if(fs > fontSize){
+        fz_write_printf(ctx,out,"<pause-font-size-%f>",fs);
+    }
+
+
+    fz_write_printf(ctx, out, "<p>");
+
+    fz_font *block1 = block->u.t.first_line->first_char->font;
+    fz_font *block2 = block->u.t.last_line->last_char->font;
+
+
+    int is_block_bold = fz_font_is_bold(ctx,block1) && fz_font_is_bold(ctx,block2);
+    int is_block_italic = fz_font_is_italic(ctx,block1) && fz_font_is_italic(ctx,block2);
+
+
+
+    if(is_block_bold){
+        fz_write_printf(ctx, out, "<b>");
+    }
+
+     if(is_block_italic){
+           fz_write_printf(ctx, out, "<i>");
+        }
+
+	for (line = block->u.t.first_line; line; line = line->next)
+	{
+		x = line->bbox.x0;
+		y = line->bbox.y0;
+
+
+
+
+
+		font = NULL;
+        int i, n;
+        char utf[10];
+		for (ch = line->first_char; ch; ch = ch->next)
+		{
+
+		    int is_bold_ch = !is_block_bold && fz_font_is_bold(ctx, ch->font);
+            int is_italic_ch = !is_block_italic && fz_font_is_italic(ctx, ch->font);
+
+	        if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
+			if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
+
+			switch (ch->c)
+            {
+            case '<': fz_write_string(ctx, out, "&lt;"); break;
+            case '>': fz_write_string(ctx, out, "&gt;"); break;
+            case '&': fz_write_string(ctx, out, "&amp;"); break;
+            case '"': fz_write_string(ctx, out, "&quot;"); break;
+            //case '\'': fz_write_string(ctx, out, "&apos;"); break;
+            default:
+                   n = fz_runetochar(utf, ch->c);
+                    for (i = 0; i < n; i++)
+                        fz_write_byte(ctx, out, utf[i]);
+                   break;
+            }
+
+            if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
+            if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
+		}
+
+		if(is_block_bold){
+                fz_write_printf(ctx, out, "</b>");
+            }
+
+    if(is_block_italic){
+                fz_write_printf(ctx, out, "</i>");
+            }
+
+
+
+	}
+	fz_write_string(ctx, out, "</p>\n");
+}
+
+
+void
+fz_print_stext_page_as_html_my(fz_context *ctx, fz_output *out, fz_stext_page *page, int id)
+{
+	fz_stext_block *block;
+
+	for (block = page->first_block; block; block = block->next)
+	{
+		if (block->type == FZ_STEXT_BLOCK_IMAGE)
+			fz_print_stext_image_as_html_my(ctx, out, block);
+		else if (block->type == FZ_STEXT_BLOCK_TEXT)
+			fz_print_stext_block_as_html_my(ctx, out, block);
+	}
 
 }
 
 
 
-
 JNIEXPORT jbyteArray JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle, jint opts)
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, jobject thiz,  jlong handle, jlong pagehandle, jint jopts)
 {
 
 	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
@@ -1249,7 +1359,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_context *ctx = doc_t->ctx;
 	fz_document *doc = doc_t->document;
 	pdf_document *idoc = pdf_specifics(ctx, doc);
-
 
 	fz_stext_page *text = NULL;
 	fz_device *dev = NULL;
@@ -1261,7 +1370,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 	size_t len;
 
-	
 	fz_var(text);
 
 
@@ -1277,35 +1385,36 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 		fz_rect mediabox;
 
 		ctm = fz_identity;
-		
 
 
-		//fz_stext_options opts;
-		//fz_parse_stext_options(ctx, &opts, options);
+        fz_stext_options opts = {0};
 
-		text = fz_new_stext_page_from_page(ctx, page->page, NULL);
+        if(jopts == 4){
+            opts.flags = FZ_STEXT_PRESERVE_IMAGES;
+        }
 
-
-		dev = fz_new_stext_device(ctx,text, NULL);
-		int j = (int)opts;
-		if(j == 4){
-			//fz_disable_device_hints(ctx, dev, FZ_IGNORE_IMAGE);
-		}
+		text = fz_new_stext_page(ctx, fz_bound_page(ctx, page->page));
 
 
-		fz_run_page(ctx, page->page, dev, fz_identity, NULL);
+		dev = fz_new_stext_device(ctx,text, &opts);
 
 
+
+		fz_run_page(ctx, page->page, dev, ctm, NULL);
 		fz_close_device(ctx, dev);
 		//fz_drop_device(ctx, dev);
 		//dev = NULL;
 
-		//fz_analyze_text(ctx,  text);
+		//fz_analyze_text(ctx, sheet, text);
+
 
 		buf = fz_new_buffer(ctx, 256);
-		out = fz_new_output_with_buffer(ctx, buf);
+        out = fz_new_output_with_buffer(ctx, buf);
 
-		fz_print_stext_page_as_text_my1(ctx, out, text, j);
+        fz_print_stext_page_as_html_my(ctx, out, text, page->number);
+        fz_close_output(ctx, out);
+
+
 
 		//fz_drop_output(ctx, out);
 		//out = NULL;
@@ -1322,7 +1431,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 	fz_always(ctx)
 	{
 		fz_drop_stext_page(ctx, text);
-
 		//fz_close_device(ctx, dev);
 		fz_drop_device(ctx, dev);
 		fz_drop_output(ctx, out);
@@ -1340,7 +1448,6 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getPageAsHtml(JNIEnv * env, job
 
 	return bArray;
 }
-
 
 
 

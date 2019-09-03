@@ -1647,17 +1647,17 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			switch (buffer == NULL ? FZ_IMAGE_JPX : buffer->params.type)
 			{
 			case FZ_IMAGE_JPEG:
-				fz_write_printf(ctx, out, "image/jpeg;base64,");
+				fz_write_printf(ctx, out, "data:image/jpeg;base64,");
 				send_data_base64_stext(ctx, out, buffer->buffer);
 				break;
 			case FZ_IMAGE_PNG:
-				fz_write_printf(ctx, out, "image/png;base64,");
+				fz_write_printf(ctx, out, "data:image/png;base64,");
 				send_data_base64_stext(ctx, out, buffer->buffer);
 				break;
 			default:
 				{
 					fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
-					fz_write_printf(ctx, out, "image/png;base64,");
+					fz_write_printf(ctx, out, "data:image/png;base64,");
 					send_data_base64_stext(ctx, out, buf);
 					fz_drop_buffer(ctx, buf);
 					break;

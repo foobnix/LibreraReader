@@ -99,8 +99,8 @@ import java.util.concurrent.Executors;
 
 public class ExtUtils {
 
-    private static final String IMAGE_PNG_BASE64 = "image/png;base64,";
-    private static final String IMAGE_JPEG_BASE64 = "image/jpeg;base64,";
+    private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
+    private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
     public static final String REFLOW_EPUB = "-reflow.epub";
     public static final String REFLOW_HTML = "-reflow.html";
     private static final String IMAGE_BEGIN = "<image-begin>";
