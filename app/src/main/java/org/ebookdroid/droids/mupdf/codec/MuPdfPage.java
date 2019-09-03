@@ -293,7 +293,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     private static native void renderPage(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b);
 
-    private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
+    //private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
 
     private native static TextChar[][][][] text(long docHandle, long pageHandle);
 
