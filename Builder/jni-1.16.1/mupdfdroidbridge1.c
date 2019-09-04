@@ -1201,6 +1201,7 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
             if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
             if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
 		}
+		fz_write_string(ctx, out, " ");
 
 
 
