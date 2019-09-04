@@ -1,0 +1,59 @@
+### MuPdf.mk
+1) MUPDF_PATH := $(realpath $(LOCAL_PATH)/../../..)
+2) -DNOTO_SMALL \
+
+### mupdfdroidbridge1.c
+fz_print_stext_block_as_html_my
+
+### html-parse.c
+"table{border-style:solid;border-width:1px;display:block;margin-top:0.5em;margin-bottom:0.5em;padding:0.2em;}"
+
+### source/html/epub-doc.c
+
+//if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+
+//epub_update_outline(ctx, doc_, doc->outline);
+
+### source/html/html-layout.c
+
+if (node->type == FLOW_IMAGE)
+{
+    float margin_w = 0, margin_h = 0;
+    float image_w = 1, image_h = 1;
+    float max_w, max_h;
+    float xs = 1, ys = 1, s;
+
+    find_accumulated_margins(ctx, box, &margin_w, &margin_h);
+    max_w = top->w - margin_w;
+    max_h = page_h - margin_h;
+
+    /* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
+    image_w = node->content.image->w * 72 / 96;
+    image_h = node->content.image->h * 72 / 96;
+
+    int size = 50;
+    if(image_h < size){
+        image_w = image_w * size/image_h;
+        image_h = size;
+    }else {
+        image_w = image_w * 3;
+        image_h = image_h * 3;
+    }
+
+    if (image_w > max_w)
+        xs = max_w / image_w;
+    if (image_h > max_h)
+        ys = max_h / image_h;
+
+    s = fz_min(xs, ys);
+    node->w = image_w * s;
+    node->h = image_h * s;
+
+}
+
+### source/html/css-apply.c
+
+
