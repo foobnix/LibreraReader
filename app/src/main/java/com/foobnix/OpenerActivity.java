@@ -3,6 +3,7 @@ package com.foobnix;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
@@ -56,8 +57,20 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity ConentName", getContentName(this));
 
 
-        File file = new File(getDataPath());
+        String path = getDataPath();
+        File file = new File(path);
         if (!file.isFile()) {
+            try {
+                file = new File(Environment.getExternalStorageDirectory(), path.substring(path.indexOf("/", 1)));
+                LOG.d("OpenerActivity find file", file.getPath());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+        if (!file.isFile()) {
+
+
             try {
                 BookType bookType = BookType.getByMimeType(getIntent().getType());
 
@@ -119,7 +132,9 @@ public class OpenerActivity extends Activity {
             return "";
         }
 
-        return getIntent().getData().getPath();
+        String path = getIntent().getData().getPath();
+
+        return path;
     }
 
     public static String getContentName(Activity a) {
