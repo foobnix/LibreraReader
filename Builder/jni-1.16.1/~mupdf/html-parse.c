@@ -10,7 +10,7 @@ enum { T, R, B, L };
 #define DEFAULT_DIR FZ_BIDI_LTR
 
 static const char *html_default_css =
-"@page{margin:2em 1em}"
+"@page{margin:3em 2em}"
 "a{color:#06C;text-decoration:underline}"
 "address{display:block;font-style:italic}"
 "b{font-weight:bold}"
@@ -33,7 +33,6 @@ static const char *html_default_css =
 "h6{display:block;font-size:0.67em;font-weight:bold;margin:2.33em 0;page-break-after:avoid}"
 "head{display:none}"
 "hr{border-style:solid;border-width:1px;display:block;margin-bottom:0.5em;margin-top:0.5em;text-align:center}"
-"table{border-style:solid;border-width:1px;display:block;margin-top:0.5em;margin-bottom:0.5em;padding:0.2em;}"
 "html{display:block}"
 "i{font-style:italic}"
 "ins{text-decoration:underline}"
@@ -65,8 +64,8 @@ static const char *html_default_css =
 ;
 
 static const char *fb2_default_css =
-"@page{margin:2em 1em}"
-"FictionBook{display:block}"
+"@page{margin:3em 2em}"
+"FictionBook{display:block;margin:1em}"
 "stylesheet,binary{display:none}"
 "description>*{display:none}"
 "description>title-info{display:block}"

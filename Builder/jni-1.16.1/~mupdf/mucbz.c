@@ -93,7 +93,6 @@ cbz_compare_page_names(const void *a, const void *b)
 	return cbz_strnatcmp(*(const char **)a, *(const char **)b);
 }
 
-
 static void
 cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 {

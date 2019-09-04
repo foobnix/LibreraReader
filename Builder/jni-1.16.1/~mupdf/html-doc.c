@@ -81,7 +81,7 @@ htdoc_layout(fz_context *ctx, fz_document *doc_, float w, float h, float em)
 
 	fz_layout_html(ctx, doc->html, w, h, em);
 
-	//htdoc_update_outline(ctx, doc_, doc->outline);
+	htdoc_update_outline(ctx, doc_, doc->outline);
 }
 
 static void
@@ -184,7 +184,7 @@ htdoc_open_document_with_buffer(fz_context *ctx, const char *dirname, fz_buffer 
 		doc->zip = fz_open_directory(ctx, dirname);
 		doc->set = fz_new_html_font_set(ctx);
 		doc->html = fz_parse_html(ctx, doc->set, doc->zip, ".", buf, fz_user_css(ctx));
-		//doc->outline = fz_load_html_outline(ctx, doc->html);
+		doc->outline = fz_load_html_outline(ctx, doc->html);
 	}
 	fz_always(ctx)
 		fz_drop_buffer(ctx, buf);

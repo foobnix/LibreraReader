@@ -28,17 +28,14 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-
-cp -rp jni-1.16.1/~mupdf/html-parse.c $MUPDF_ROOT/source/html/html-parse.c
-cp -rp jni-1.16.1/~mupdf/epub-doc.c $MUPDF_ROOT/source/html/epub-doc.c
-cp -rp jni-1.16.1/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-layout.c
-cp -rp jni-1.16.1/~mupdf/html-doc.c $MUPDF_ROOT/source/html/html-doc.c
 cp -rp jni-1.16.1/~mupdf/css-apply.c $MUPDF_ROOT/source/html/css-apply.c
-#cp -rp jni-1.16.1/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
-#cp -rp jni-1.16.1/~mupdf/stext-output.c $MUPDF_ROOT/source/fitz/stext-output.c
-cp -rp jni-1.16.1/~mupdf/mucbz.c $MUPDF_ROOT/source/cbz/mucbz.c
+cp -rp jni-1.16.1/~mupdf/epub-doc.c $MUPDF_ROOT/source/html/epub-doc.c
+cp -rp jni-1.16.1/~mupdf/html-doc.c $MUPDF_ROOT/source/html/html-doc.c
+cp -rp jni-1.16.1/~mupdf/html-layout.c $MUPDF_ROOT/source/html/html-layout.c
+cp -rp jni-1.16.1/~mupdf/html-parse.c $MUPDF_ROOT/source/html/html-parse.c
 
-#cp -rp jni-1.16.1/~mupdf/structured-text.h $MUPDF_ROOT/include/mupdf/fitz/structured-text.h
+cp -rp jni-1.16.1/~mupdf/mucbz.c $MUPDF_ROOT/source/cbz/mucbz.c
+cp -rp jni-1.16.1/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
 
 
 cd $MUPDF_JAVA
