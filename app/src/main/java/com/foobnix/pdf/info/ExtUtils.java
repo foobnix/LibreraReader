@@ -952,6 +952,8 @@ public class ExtUtils {
         final Intent intent = new Intent(c, VerticalViewActivity.class);
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+            intent.putExtra(DocumentController.EXTRA_PASSWORD, ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
+
             if (percent > 0f) {
                 Intents.putFloat(intent, DocumentController.EXTRA_PERCENT, percent);
             }
@@ -994,6 +996,7 @@ public class ExtUtils {
 
         try {
             intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, ((Activity) c).getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+            intent.putExtra(DocumentController.EXTRA_PASSWORD, ((Activity) c).getIntent().getStringExtra(DocumentController.EXTRA_PASSWORD));
         } catch (Exception e) {
             LOG.e(e);
         }
