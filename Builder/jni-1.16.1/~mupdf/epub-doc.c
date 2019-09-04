@@ -82,7 +82,7 @@ epub_update_outline(fz_context *ctx, fz_document *doc, fz_outline *node)
 {
 	while (node)
 	{
-		node->page = epub_resolve_link(ctx, doc, node->uri, &node->x, &node->y);
+		node->page = -1;//epub_resolve_link(ctx, doc, node->uri, &node->x, &node->y);
 		epub_update_outline(ctx, doc, node->down);
 		node = node->next;
 	}
@@ -420,10 +420,10 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 	char ncx[2048], s[2048];
 	epub_chapter **tailp;
 
-	if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
-		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
-	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
-		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
 
 	fz_var(buf);
 	fz_var(container_xml);
