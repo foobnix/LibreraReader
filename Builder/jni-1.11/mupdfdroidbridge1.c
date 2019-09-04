@@ -5,6 +5,7 @@
 #include <android/bitmap.h>
 #include "mupdf/fitz.h"
 #include "mupdf/pdf.h"
+#include "ctype.h"
 
 
 #include <stdio.h>
@@ -792,7 +793,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getNext(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 //	DEBUG("MuPdfOutline_getNext(%p)",outline);
-	return (jlong) (long) (outline ? outline->next : -1);
+
+        if(outline)
+            return (jlong) outline->next;
+        else return -1;
+
+	//return (jlong) (long) (outline ? outline->next : -1);
 	//jlong res = -1;
 	//return res;
 }
@@ -802,7 +808,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getChild(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 //	DEBUG("MuPdfOutline_getChild(%p)",outline);
-	return (jlong) (long) (outline ? outline->down : -1);
+    if(outline){
+        return (jlong)outline->down;
+    }else{
+        return -1;
+    }
+	//return outline ? outline->down : -1;
 	//jlong res = -1;
 	//return res;
 }
