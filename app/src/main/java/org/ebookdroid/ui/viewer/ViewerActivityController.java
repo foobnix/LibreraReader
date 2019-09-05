@@ -194,18 +194,19 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
                 intent.putExtra(HorizontalModeController.EXTRA_PASSWORD, password);
 
-                float percent = Intents.getFloatAndClear(intent, DocumentController.EXTRA_PERCENT);
-
-
-                if (percent > 0f) {
-                    LOG.d("startDecoding-onGoToPage", pageCount);
-                    controller.onGoToPage(Math.round(pageCount * percent));
-
-                }
-
 
                 if (onBookLoaded != null) {
                     onBookLoaded.run();
+                }
+
+
+                pageCount = controller.getPageCount();
+                float percent = Intents.getFloatAndClear(intent, DocumentController.EXTRA_PERCENT);
+
+                if (percent > 0f) {
+                    LOG.d("startDecoding-onGoToPage", percent, pageCount);
+                    controller.onGoToPage(Math.round(pageCount * percent));
+
                 }
 
                 controller.loadOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
@@ -217,7 +218,10 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         return false;
                     }
                 });
-                pageCount = controller.getPageCount();
+
+
+
+
 
             }
         }));

@@ -942,7 +942,7 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        LOG.d("showDocument", uri.getPath(), playlist);
+        LOG.d("showDocument", uri.getPath(),percent, playlist);
 
         if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist);
