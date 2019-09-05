@@ -38,7 +38,9 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.OutlineHelper;
@@ -1958,7 +1960,11 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                editTop2.setVisibility(View.VISIBLE);
+                if(BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                    editTop2.setVisibility(View.VISIBLE);
+                }else{
+                    editTop2.setVisibility(View.GONE);
+                }
             }
         }
 
