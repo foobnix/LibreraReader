@@ -733,6 +733,9 @@ public class ExtUtils {
     }
 
     public static boolean showDocumentWithoutDialog2(final Context c, final File file) {
+        if (c == null) {
+            return false;
+        }
 
         ImageLoader.getInstance().clearAllTasks();
 
@@ -942,7 +945,7 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        LOG.d("showDocumentWithoutDialog2", uri.getPath(),percent, playlist);
+        LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
 
         if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist);
@@ -1232,9 +1235,9 @@ public class ExtUtils {
 
 
         final StringBuilder result = new StringBuilder();
-        for(String path:files){
+        for (String path : files) {
             //result.append(a.getString(R.string.bookmarks) + "\n\n");
-            result.append("\n\n"+getFileName(path) + "\n\n");
+            result.append("\n\n" + getFileName(path) + "\n\n");
             int number = 1;
             List<AppBookmark> bookmarksByBook = BookmarksData.get().getBookmarksByBook(path);
             for (final AppBookmark book : bookmarksByBook) {

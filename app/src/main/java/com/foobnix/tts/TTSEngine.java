@@ -94,7 +94,7 @@ public class TTSEngine {
         return getTTS(null);
     }
 
-    public synchronized TextToSpeech getTTS(OnInitListener onLisnter) {
+    public  TextToSpeech getTTS(OnInitListener onLisnter) {
         if (LibreraApp.context == null) {
             return null;
         }
@@ -152,7 +152,7 @@ public class TTSEngine {
         AppTemp.get().lastBookParagraph = 0;
     }
 
-    public synchronized TextToSpeech setTTSWithEngine(String engine) {
+    public  TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
         synchronized (helpObject) {
             ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
@@ -327,11 +327,11 @@ public class TTSEngine {
 
     }
 
-    public synchronized boolean isTempPausing() {
+    public boolean isTempPausing() {
         return mp != null || ttsEngine != null;
     }
 
-    public synchronized boolean isPlaying() {
+    public boolean isPlaying() {
         if (TempHolder.isRecordTTS) {
             return false;
         }
@@ -359,7 +359,7 @@ public class TTSEngine {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public String getCurrentLang() {
         try {
-            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice().getLocale()!=null) {
+            if (Build.VERSION.SDK_INT >= 21 && ttsEngine != null && ttsEngine.getDefaultVoice() != null && ttsEngine.getDefaultVoice().getLocale() != null) {
                 return ttsEngine.getDefaultVoice().getLocale().getDisplayLanguage();
             }
         } catch (Exception e) {
