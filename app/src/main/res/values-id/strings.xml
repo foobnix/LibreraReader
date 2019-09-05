@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Tampilkan sinkronisasi kemajuan animasi</string>
    <string name="pull_to_start_sync">Tarik untuk mulai menyinkronkan</string>
    <string name="show_book_title">Tampilkan judul buku di bilah status</string>
+   <string name="delete_reading_progress">Hapus kemajuan membaca</string>
 </resources>

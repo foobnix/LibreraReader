@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Senkronizasyon ilerleme animasyonu göster</string>
    <string name="pull_to_start_sync">Senkronizasyonu başlatmak için çekin</string>
    <string name="show_book_title">Durum çubuğunda kitap başlığını göster</string>
+   <string name="delete_reading_progress">Okuma işlemini sil</string>
 </resources>

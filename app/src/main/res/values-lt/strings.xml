@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Rodyti sinchronizavimo eigos animacija</string>
    <string name="pull_to_start_sync">Traukti, kad pradėtumėte sinchronizavimą</string>
    <string name="show_book_title">Rodyti knygos pavadinimą būsenos juostoje</string>
+   <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
 </resources>

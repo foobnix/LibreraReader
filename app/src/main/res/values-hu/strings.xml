@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Szinkronizációs folyamat animációjának megjelenítése</string>
    <string name="pull_to_start_sync">Húzza a szinkronizálás megkezdéséhez</string>
    <string name="show_book_title">A könyv címe az állapotsoron</string>
+   <string name="delete_reading_progress">Törölje az olvasási folyamatot</string>
 </resources>

@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Synchronisierungsfortschrittsanimation anzeigen</string>
    <string name="pull_to_start_sync">Ziehen Sie, um die Synchronisierung zu starten</string>
    <string name="show_book_title">Buchtitel in der Statusleiste anzeigen</string>
+   <string name="delete_reading_progress">Lesefortschritt löschen</string>
 </resources>

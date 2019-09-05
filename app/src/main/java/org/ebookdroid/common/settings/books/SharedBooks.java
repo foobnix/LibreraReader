@@ -38,6 +38,19 @@ public class SharedBooks {
 
     public static Map<String, AppBook> cache = new HashMap<>();
 
+    public static void deleteProgress(String path) {
+        cache.clear();
+        for (File fileName : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
+            JSONObject jsonObject = IO.readJsonObject(fileName);
+            String key = ExtUtils.getFileName(path);
+            if (jsonObject.has(key)) {
+                jsonObject.remove(key);
+                IO.writeObjAsync(fileName, jsonObject);
+                LOG.d("deleteProgress", path);
+            }
+        }
+    }
+
     public static AppBook load(String fileName) {
         LOG.d("SharedBooks-load", fileName);
 
@@ -139,4 +152,6 @@ public class SharedBooks {
 
 
     }
+
+
 }

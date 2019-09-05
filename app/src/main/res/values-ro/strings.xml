@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Arată sincronizare animație de progres</string>
    <string name="pull_to_start_sync">Trageți pentru a începe sincronizarea</string>
    <string name="show_book_title">Arată titlul cărții în bara de stare</string>
+   <string name="delete_reading_progress">Ștergeți progresul lecturii</string>
 </resources>

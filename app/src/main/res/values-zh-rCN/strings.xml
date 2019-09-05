@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">显示同步进度动画</string>
    <string name="pull_to_start_sync">拉开始同步</string>
    <string name="show_book_title">在状态栏中显示书名</string>
+   <string name="delete_reading_progress">删除阅读进度</string>
 </resources>

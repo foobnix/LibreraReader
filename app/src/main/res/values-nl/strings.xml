@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Toon synchronisatie voortgang animatie</string>
    <string name="pull_to_start_sync">Trek om te beginnen met synchroniseren</string>
    <string name="show_book_title">Boektitel weergeven in de statusbalk</string>
+   <string name="delete_reading_progress">Leesvoortgang verwijderen</string>
 </resources>

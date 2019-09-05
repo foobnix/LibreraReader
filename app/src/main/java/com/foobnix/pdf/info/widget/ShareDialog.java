@@ -48,6 +48,7 @@ import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 
@@ -306,6 +307,10 @@ public class ShareDialog {
             items.add(a.getString(R.string.sync_book));
         }
 
+        if(isMainTabs){
+            items.add(a.getString(R.string.delete_reading_progress));
+        }
+
         if (isShowInfo) {
             items.add(a.getString(R.string.file_info));
         }
@@ -439,6 +444,11 @@ public class ShareDialog {
 
                     TempHolder.listHash++;
                     EventBus.getDefault().post(new UpdateAllFragments());
+
+                } else if (isMainTabs && which == i++) {
+                    SharedBooks.deleteProgress(file.getPath());
+                    EventBus.getDefault().post(new UpdateAllFragments());
+
                 } else if (isShowInfo && which == i++) {
                     FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
                 }

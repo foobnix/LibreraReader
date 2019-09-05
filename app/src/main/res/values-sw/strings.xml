@@ -580,4 +580,5 @@
    <string name="animate_sync_progress">Onyesha uhuishaji wa maendeleo ya usawazishaji</string>
    <string name="pull_to_start_sync">Kuvuta ili kuanza kusawazisha</string>
    <string name="show_book_title">Onyesha kichwa cha kitabu kwenye upau wa hali</string>
+   <string name="delete_reading_progress">Futa maendeleo ya kusoma</string>
 </resources>
