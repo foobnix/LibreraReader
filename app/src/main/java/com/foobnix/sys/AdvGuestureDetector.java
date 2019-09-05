@@ -295,6 +295,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
 
     @Override
     public boolean onScroll(final MotionEvent e1, final MotionEvent e2, final float distanceX, final float distanceY) {
+
         final float x = distanceX, y = distanceY;
         d1 += x;
         d2 += y;
@@ -304,7 +305,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         long delta = System.currentTimeMillis() - t;
-        long value = AppTemp.get().isLocked ? 20 : 50;
+        long value = AppTemp.get().isLocked ? 40 : 60;
+
         if (delta > value) {
             t = System.currentTimeMillis();
             if (isNoLock() || (e2.getPointerCount() == 2 && !(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
@@ -313,9 +315,10 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 avc.getView().scrollBy(0, d2);
             }
             d1 = d2 = 0;
+            LOG.d("onScroll yes", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
+
         }
 
-        LOG.d("onScroll", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
 
         return true;
     }
