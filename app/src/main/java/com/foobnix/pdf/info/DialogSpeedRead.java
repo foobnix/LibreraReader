@@ -179,8 +179,10 @@ public class DialogSpeedRead {
                         //currentWord = 0;
                         if (item.contains("-") && item.length() >= 10) {
                             String[] it = item.split("-");
-                            res.add(it[0] + "-");
-                            res.add(it[1]);
+                            if (it.length >= 2) {
+                                res.add(it[0] + "-");
+                                res.add(it[1]);
+                            }
                         } else {
                             res.add(item);
                         }
