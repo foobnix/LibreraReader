@@ -317,7 +317,12 @@ public class TTSService extends Service {
         if (!isStartForeground) {
             if (TxtUtils.isNotEmpty(AppTemp.get().lastBookPath)) {
                 try {
-                    startForeground(TTSNotification.NOT_ID, TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount));
+                    Notification show = TTSNotification.show(AppTemp.get().lastBookPath, AppTemp.get().lastBookPage, AppTemp.get().lastBookPageCount);
+                    if (show != null) {
+                        startForeground(TTSNotification.NOT_ID, show);
+                    } else {
+                        startServiceWithNotification();
+                    }
                 } catch (Exception e) {
                     startServiceWithNotification();
                 }
