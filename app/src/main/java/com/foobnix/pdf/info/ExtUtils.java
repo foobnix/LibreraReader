@@ -295,7 +295,7 @@ public class ExtUtils {
             if (ExtUtils.isZip(file)) {
                 LOG.d("openFile isExteralSD zip");
                 if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
-                    ExtUtils.showDocument(a, file);
+                    ExtUtils.showDocumentWithoutDialog2(a, file);
                 } else {
                     ZipDialog.show(a, Uri.fromFile(file), null);
                 }
@@ -304,7 +304,7 @@ public class ExtUtils {
                 ExtUtils.openWith(a, file);
             } else {
                 LOG.d("openFile isExteralSD normal");
-                ExtUtils.showDocument(a, file);
+                ExtUtils.showDocumentWithoutDialog2(a, file);
             }
         }
     }
@@ -732,7 +732,7 @@ public class ExtUtils {
         return uri != null && ("content".equals(uri.getScheme()) || isValidFile(uri.getPath()));
     }
 
-    public static boolean showDocument(final Context c, final File file) {
+    public static boolean showDocumentWithoutDialog2(final Context c, final File file) {
 
         ImageLoader.getInstance().clearAllTasks();
 
@@ -922,11 +922,11 @@ public class ExtUtils {
     }
 
     public static void showDocumentWithoutDialog(final Context c, final File file, String playlist) {
-        showDocument(c, Uri.fromFile(file), 0.0f, playlist);
+        showDocumentWithoutDialog2(c, Uri.fromFile(file), 0.0f, playlist);
     }
 
 
-    public static void showDocument(final Context c, final Uri uri, final float percent, final String playList) {
+    public static void showDocumentWithoutDialog2(final Context c, final Uri uri, final float percent, final String playList) {
         Safe.run(new Runnable() {
 
             @Override
@@ -942,7 +942,7 @@ public class ExtUtils {
             Toast.makeText(c, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
         }
-        LOG.d("showDocument", uri.getPath(),percent, playlist);
+        LOG.d("showDocumentWithoutDialog2", uri.getPath(),percent, playlist);
 
         if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist);
@@ -1475,7 +1475,7 @@ public class ExtUtils {
                                 AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
                                 showDocumentWithoutDialog(a, (File) result, null);
                             } else {
-                                showDocument(a, (File) result);
+                                showDocumentWithoutDialog2(a, (File) result);
                             }
                         }
                     };

@@ -48,7 +48,7 @@ public class BitmapActivity extends Activity {
             // intent.setDataAndType(Uri.fromFile(new File(path1)),
             // "application/pdf");
             // startActivity(intent);
-            ExtUtils.showDocument(this, new File(path1));
+            ExtUtils.showDocumentWithoutDialog2(this, new File(path1));
             return;
         }
 

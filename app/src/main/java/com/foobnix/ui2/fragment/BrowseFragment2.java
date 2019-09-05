@@ -196,7 +196,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
-                ExtUtils.showDocument(getActivity(), lxml);
+                ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
             }
         });
         openAsBook.setVisibility(View.GONE);

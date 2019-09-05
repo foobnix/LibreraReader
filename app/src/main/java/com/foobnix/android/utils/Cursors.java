@@ -10,7 +10,7 @@ public class Cursors {
         try {
             cursor = a.getContentResolver().query(a.getIntent().getData(), new String[]{key}, null, null, null);
             cursor.moveToFirst();
-           return cursor.getString(0);
+            return cursor.getColumnCount() > 0 ? cursor.getString(0) : null;
         } catch (Exception e) {
             LOG.e(e);
         } finally {

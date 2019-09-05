@@ -315,7 +315,7 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
-                    ExtUtils.showDocument(getActivity(), Uri.fromFile(file), result.getPercent(), null);
+                    ExtUtils.showDocumentWithoutDialog2(getActivity(), Uri.fromFile(file), result.getPercent(), null);
 
                 }
             } else {

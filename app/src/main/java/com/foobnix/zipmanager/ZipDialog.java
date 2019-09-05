@@ -181,7 +181,7 @@ public class ZipDialog {
                 if (ExtUtils.isNotSupportedFile(file)) {
                     ExtUtils.openWith(a, file);
                 } else {
-                    ExtUtils.showDocument(a, file);
+                    ExtUtils.showDocumentWithoutDialog2(a, file);
                 }
             }
 

@@ -411,7 +411,7 @@ public class FileInformationDialog {
                     infoDialog.dismiss();
                     infoDialog = null;
                 }
-                ExtUtils.showDocument(a, file);
+                ExtUtils.showDocumentWithoutDialog2(a, file);
 
             }
         });
@@ -474,7 +474,7 @@ public class FileInformationDialog {
         builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                ExtUtils.showDocument(a, file);
+                ExtUtils.showDocumentWithoutDialog2(a, file);
             }
         });
 

@@ -256,7 +256,7 @@ public class DialogsPlaylist {
                 Playlists.updatePlaylist(file, res);
                 EventBus.getDefault().post(new UpdateAllFragments());
 
-                ExtUtils.showDocument(a, Uri.fromFile(new File(result)), -1, file);
+                ExtUtils.showDocumentWithoutDialog2(a, Uri.fromFile(new File(result)), -1, file);
             }
 
         }, false);

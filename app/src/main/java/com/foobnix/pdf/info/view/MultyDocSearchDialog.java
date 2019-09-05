@@ -119,7 +119,7 @@ public class MultyDocSearchDialog {
 
                     @Override
                     public void onClick(View v) {
-                        ExtUtils.showDocument(c, Uri.fromFile(file), (float) (item.second + 1) / Model.get().currentPagesCount, null);
+                        ExtUtils.showDocumentWithoutDialog2(c, Uri.fromFile(file), (float) (item.second + 1) / Model.get().currentPagesCount, null);
                     }
                 });
             }
