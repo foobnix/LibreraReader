@@ -2,7 +2,6 @@ package org.ebookdroid.droids.mupdf.codec;
 
 import android.graphics.RectF;
 
-import com.artifex.mupdf.fitz.Rect;
 import com.foobnix.android.utils.TxtUtils;
 
 public class TextWord extends RectF {
@@ -34,11 +33,6 @@ public class TextWord extends RectF {
     public TextWord(String w, RectF rect) {
         super(rect);
         this.w = w;
-    }
-
-    public void addChar(Rect rect, char c) {
-        super.union(new RectF(rect.x0, rect.y0, rect.x1, rect.y1));
-        w = w.concat(String.valueOf(c));
     }
 
     public RectF getOriginal() {
