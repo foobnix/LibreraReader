@@ -1,12 +1,12 @@
 package com.foobnix;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
@@ -54,15 +54,33 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getDataPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
-        LOG.d("OpenerActivity ConentName", getContentName(this));
+        LOG.d("OpenerActivity DISPLAY_NAME", Cursors.getValue(this, MediaStore.MediaColumns.DISPLAY_NAME));
+        LOG.d("OpenerActivity DATA", Cursors.getValue(this, MediaStore.MediaColumns.DATA));
 
 
         String path = getDataPath();
         File file = new File(path);
+
+        if (!file.isFile()) {
+            String dataPath = Cursors.getValue(this, MediaStore.MediaColumns.DATA);
+            if (dataPath != null) {
+                file = new File(dataPath);
+            }
+            LOG.d("OpenerActivity 1", file.getPath());
+
+        }
         if (!file.isFile()) {
             try {
                 file = new File(Environment.getExternalStorageDirectory(), path.substring(path.indexOf("/", 1)));
-                LOG.d("OpenerActivity find file", file.getPath());
+                LOG.d("OpenerActivity 2", file.getPath());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        if (!file.isFile()) {
+            try {
+                file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), path.substring(path.indexOf("/", 1)));
+                LOG.d("OpenerActivity 3", file.getPath());
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -74,7 +92,7 @@ public class OpenerActivity extends Activity {
             try {
                 BookType bookType = BookType.getByMimeType(getIntent().getType());
 
-                String name1 = getContentName(this);
+                String name1 = Cursors.getValue(this, MediaStore.MediaColumns.DISPLAY_NAME);
                 String name2 = getDataPath();
                 String name3 = bookType != null ? bookType.getExt() : null;
 
@@ -127,6 +145,7 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity", "open file", meta.getPath());
     }
 
+
     private String getDataPath() {
         if (getIntent().getData() == null) {
             return "";
@@ -137,23 +156,6 @@ public class OpenerActivity extends Activity {
         return path;
     }
 
-    public static String getContentName(Activity a) {
-        try {
-            Cursor cursor = a.getContentResolver().query(a.getIntent().getData(), new String[]{MediaStore.MediaColumns.DISPLAY_NAME}, null, null, null);
-            cursor.moveToFirst();
-            int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
-            if (nameIndex >= 0) {
-                final String string = cursor.getString(nameIndex);
-                cursor.close();
-                return string;
-
-            }
-            cursor.close();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return "";
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {

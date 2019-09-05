@@ -3,8 +3,10 @@ package com.foobnix.zipmanager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 
 import com.foobnix.OpenerActivity;
+import com.foobnix.android.utils.Cursors;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -31,7 +33,7 @@ public class ZipActivity extends Activity {
 
 
         final String path = getIntent().getData().getPath();
-        final String contentName = OpenerActivity.getContentName(this);
+        final String contentName = Cursors.getValue(this, MediaStore.MediaColumns.DISPLAY_NAME);
 
         LOG.d("ZipActivity contentName", contentName);
 
