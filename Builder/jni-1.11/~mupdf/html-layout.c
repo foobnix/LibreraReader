@@ -58,6 +58,9 @@ static const char *html_default_css =
 "tbody {display:block !important;}"
 "th{font-weight:bold; text-align:center}"
 
+"figcaption {display:block; text-align:center}"
+"figcaption>p {text-align:center}"
+
 //"tbody{display:table-row-group}"
 //"td{display:table-cell;padding:1px}"
 //"tfoot{display:table-footer-group}"
