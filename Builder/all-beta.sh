@@ -20,7 +20,7 @@ cd ../
 cd Builder
 ./remove_all.sh
 ./install_all.sh
-./clear-cache.sh
+./clear-cache.s
 
 #dropbox stop
 #sleep 10

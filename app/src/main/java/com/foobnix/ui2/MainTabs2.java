@@ -262,6 +262,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         SharedPreferences BOOKS = getSharedPreferences("BOOKS", Context.MODE_PRIVATE);
         if (BOOKS.getAll() != null && !BOOKS.getAll().isEmpty()) {
+            LOG.d("Restore from backup");
             File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ", "_") + "-backup-v8.0.json");
             if (!oldConfig.exists()) {
                 new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
@@ -278,7 +279,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     protected Boolean doInBackground(Object... objects) {
                         try {
                             oldConfig.getParentFile().mkdirs();
-                            AppDB.get().open(MainTabs2.this, AppDB.DB_NAME);
+                            AppDB.get().open(MainTabs2.this, AppProfile.getCurrent(MainTabs2.this));
                             AppProfile.SYNC_FOLDER_ROOT.mkdirs();
 
                             ExportSettingsManager.exportAll(MainTabs2.this, oldConfig);
@@ -591,7 +592,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                 @Override
                 public void run() {
-
+                    LOG.d("Open AppTemp.get().lastBookPath",AppTemp.get().lastBookPath);
                     if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
                         intent.setData(Uri.fromFile(new File(AppTemp.get().lastBookPath)));
