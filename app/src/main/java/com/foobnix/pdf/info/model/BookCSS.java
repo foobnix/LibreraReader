@@ -598,8 +598,6 @@ public class BookCSS {
 
         builder.append("svg {display:block}");
         builder.append("math, m, svg>text {display:none}");
-        builder.append("tr {display:block}");
-        builder.append("td>* {display:inline}");
         builder.append("sup>* {font-size:0.83em;vertical-align:super; font-weigh:bold}");
 
         // PAGE BEGIN

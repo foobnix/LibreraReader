@@ -1310,7 +1310,9 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->padding[2] = number_from_property(match, "padding-bottom", 0, N_LENGTH);
 	style->padding[3] = number_from_property(match, "padding-left", 0, N_LENGTH);
 
+    style->padding[1].value = style->padding[1].value / 2;
     style->padding[3].value = style->padding[3].value / 2;
+
 
 	style->line_height = number_from_property(match, "line-height", 1.2f, N_SCALE);
 	if (style->line_height.value < 0) style->line_height.value = 1.2f;
