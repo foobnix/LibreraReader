@@ -279,7 +279,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                     protected Boolean doInBackground(Object... objects) {
                         try {
                             oldConfig.getParentFile().mkdirs();
-                            AppDB.get().open(MainTabs2.this, AppProfile.getCurrent(MainTabs2.this));
+                            AppDB.get().open(MainTabs2.this, "all-5");//old db data
                             AppProfile.SYNC_FOLDER_ROOT.mkdirs();
 
                             ExportSettingsManager.exportAll(MainTabs2.this, oldConfig);
@@ -290,6 +290,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                                 LOG.e(e);
                             }
                             AppProfile.clear();
+                            AppDB.get().open(MainTabs2.this, AppProfile.getCurrent(MainTabs2.this));
                         } catch (Exception e) {
                             LOG.e(e);
                         }

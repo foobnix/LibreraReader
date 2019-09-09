@@ -69,6 +69,7 @@ public abstract class DocumentController {
     public static final int REPEAT_SKIP_AMOUNT = 15;
 
     public final static List<Integer> orientationIds = Arrays.asList(//
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED, //
             ActivityInfo.SCREEN_ORIENTATION_SENSOR, //
             ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, //onCrop
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, //
@@ -77,6 +78,7 @@ public abstract class DocumentController {
     );
 
     public final static List<Integer> orientationTexts = Arrays.asList(//
+            R.string.system, //
             R.string.automatic, //
             R.string.landscape, //
             R.string.portrait, //

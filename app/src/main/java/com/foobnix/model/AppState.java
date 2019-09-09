@@ -540,7 +540,7 @@ public class AppState {
     public String toLang = Urls.getLangCode();
 
     @IgnoreHashCode
-    public int orientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR;
+    public int orientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
     private static AppState instance = new AppState();
 

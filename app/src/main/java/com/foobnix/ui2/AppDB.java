@@ -37,8 +37,6 @@ import java.util.Locale;
 
 public class AppDB {
 
-    //public static final String DB_NAME = "all-5";
-
     private final static AppDB in = new AppDB();
 
     public enum SEARCH_IN {
