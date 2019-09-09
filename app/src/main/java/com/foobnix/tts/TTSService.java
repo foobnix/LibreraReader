@@ -324,6 +324,7 @@ public class TTSService extends Service {
                         startServiceWithNotification();
                     }
                 } catch (Exception e) {
+                    LOG.e(e);
                     startServiceWithNotification();
                 }
             } else {

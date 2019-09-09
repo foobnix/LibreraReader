@@ -684,7 +684,11 @@ public class DragingDialogs {
                 ttsLang.setText(TTSEngine.get().getCurrentLang());
                 TxtUtils.bold(ttsLang);
 
-                TxtUtils.underlineTextView(view.findViewById(R.id.ttsSettings)).setOnClickListener(new OnClickListener() {
+                View ttsSettings = view.findViewById(R.id.ttsSettings);
+                textEngine.setOnClickListener((v)->ttsSettings.performClick());
+                ttsLang.setOnClickListener((v)->ttsSettings.performClick());
+
+                TxtUtils.underlineTextView(ttsSettings).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
