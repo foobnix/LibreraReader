@@ -272,8 +272,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "true"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
-
+            buildConfigField "int", "MUPDF_VERSION", "116"
         }
 
     }
@@ -361,15 +360,15 @@ dependencies {
 
 
     //F-DROID REMOVE THIS LINES BEGIN
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
-    implementation 'com.google.http-client:google-http-client-gson:1.30.2'
-    implementation('com.google.api-client:google-api-client-android:1.30.2') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
+//    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+//
+//    implementation 'com.google.http-client:google-http-client-gson:1.30.2'
+//    implementation('com.google.api-client:google-api-client-android:1.30.2') {
+//        exclude group: 'org.apache.httpcomponents'
+//    }
+//    implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
+//        exclude group: 'org.apache.httpcomponents'
+//    }
     //F-DROID REMOVE THIS LINES END
 
 
@@ -425,4 +424,4 @@ task incVersion() {
 }
 
 //F-DROID REMOVE THIS LINE
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
