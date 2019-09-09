@@ -23,20 +23,30 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 [Telegram](https://t.me/LibreraReader)
 
-## Build Librera
+
+## Required build libs
 
 ~~~~
-sudo apt-get install mesa-common-dev libxcursor-dev  libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config mingw-w64
+mesa-common-dev libxcursor-dev  libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
+~~~~
 
+## Build Librera with MuPdf 1.11 (Default)
+
+~~~~
 /Builder/link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
 ./gradlew assebleLibrera
 ~~~~
 
+## Build Librera with MuPdf 1.16.1 (Optional)
+
+~~~~
+/Builder/link_to_mupdf_1.16.1.sh 
+./gradlew assebleAlpha
+~~~~
+
 ## Librera depends on
 
-MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.11-source.tar.xz)
-
-MuPDF changed source `./LibreraReader/Builder/jni-1.11/`
+MuPDF - (AGPL License) https://mupdf.com/downloads/archive/
 
 * EbookDroid
 * djvulibre
