@@ -205,7 +205,7 @@ public class BrightnessHelper {
         }
         if (AppState.get().isEnableBlueFilter) {
             overlay.setVisibility(View.VISIBLE);
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 220 * AppState.get().blueLightAlpha / 100));
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 160 * AppState.get().blueLightAlpha / 100));
         } else {
             overlay.setVisibility(View.GONE);
         }
