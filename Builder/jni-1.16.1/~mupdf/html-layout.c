@@ -487,7 +487,6 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 		if (node->type == FLOW_IMAGE)
 		{
 			float margin_w = 0, margin_h = 0;
-			float image_w = 0, image_h = 0;
 			float max_w, max_h;
 			float xs = 1, ys = 1, s;
 
@@ -495,27 +494,21 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 			max_w = top->w - margin_w;
 			max_h = page_h - margin_h;
 
-            image_w = node->content.image->w * 72 / 96;
-            image_h = node->content.image->h * 72 / 96;
+			/* NOTE: We ignore the image DPI here, since most images in EPUB files have bogus values. */
+			node->w = node->content.image->w * 72 / 96;
+			node->h = node->content.image->h * 72 / 96;
 
-			int size = 50;
-            if(image_h < size){
-                image_w = image_w * size/image_h;
-                image_h = size;
-            }else {
-                image_w = image_w * 3;
-                image_h = image_h * 3;
-            }
+			node->w = fz_from_css_number(node->box->style.width, top->em, top->w - margin_w, node->w);
+			node->h = fz_from_css_number(node->box->style.height, top->em, page_h - margin_h, node->h);
 
-            if (image_w > max_w)
-                xs = max_w / image_w;
-            if (image_h > max_h)
-                ys = max_h / image_h;
-
-
-            s = fz_min(xs, ys);
-            node->w = image_w * s;
-            node->h = image_h * s;
+			/* Shrink image to fit on one page if needed */
+			if (max_w > 0 && node->w > max_w)
+				xs = max_w / node->w;
+			if (max_h > 0 && node->h > max_h)
+				ys = max_h / node->h;
+			s = fz_min(xs, ys);
+			node->w = node->w * s;
+			node->h = node->h * s;
 
 		}
 		else

@@ -408,7 +408,7 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 			img = fz_new_image_from_svg(ctx, buf, base_uri, zip);
 		else
 #endif
-			img = fz_new_image_from_buffer(ctx, buf);
+			img = (ctx, buf);
 	}
 	fz_always(ctx)
 		fz_drop_buffer(ctx, buf);
@@ -1010,7 +1010,7 @@ load_fb2_images(fz_context *ctx, fz_xml *root)
 		{
 			b64 = concat_text(ctx, binary);
 			buf = fz_new_buffer_from_base64(ctx, b64, strlen(b64));
-			img = fz_new_image_from_buffer(ctx, buf);
+			img = (ctx, buf);
 		}
 		fz_always(ctx)
 		{

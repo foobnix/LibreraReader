@@ -52,7 +52,7 @@ static const char *html_default_css =
 "sub{font-size:0.83em;vertical-align:sub}"
 "sup{font-size:0.83em;vertical-align:super}"
 
-"table{display:block !important;border-style:solid;border-width:2px; margin-top:0.5em;margin-bottom:0.5em;padding:0.2em;}"
+"table{display:block !important;}"
 "tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
 "td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
 "tbody {display:block !important;}"
