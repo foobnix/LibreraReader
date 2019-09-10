@@ -1,9 +1,19 @@
 apply plugin: 'com.android.application'
 
+def taskName=getGradle().getStartParameter().getTaskRequests().toString();
+
 ext {
-    codeNumber = Integer.parseInt(appCodeNumber)
-    versionNumber = appVersionNumberBase + "." + appVersionNumberIndex
-    db = Integer.parseInt(appDB)
+    if(!taskName.contains("Fdroid")) {
+        codeNumber = Integer.parseInt(appCodeNumber)
+        versionNumber = appVersionNumberBase + "." + appVersionNumberIndex
+        db = Integer.parseInt(appDB)
+
+    }else{
+        codeNumber = 3200
+        versionNumber = "8.1.269"
+        db = 8
+    }
+
     println ""
     println "Version: [" + versionNumber + " - " + codeNumber + "]"
 
@@ -100,7 +110,12 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "111"
-
+            splits {
+                abi {
+                    enable false
+                    universalApk true
+                }
+            }
         }
 
         alpha {
@@ -273,6 +288,14 @@ android {
             buildConfigField "boolean", "IS_FDROID", "true"
             buildConfigField "boolean", "LOG", "false"
             buildConfigField "int", "MUPDF_VERSION", "116"
+
+            splits {
+                abi {
+                    enable false
+                    universalApk true
+                }
+
+            }
         }
 
     }
@@ -284,12 +307,19 @@ android {
         variant.outputs.all { output ->
             def flavor = variant.productFlavors[0].name.capitalize()
             def abiName = getFilter("ABI")
-            def code = abiCodes.get(abiName, 0) + variant.versionCode
-            abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
+            if(abiName!=null) {
+                def code = abiCodes.get(abiName, 0) + variant.versionCode
+                abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
-            output.versionCodeOverride = code
-            def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
-            output.outputFileName = fullName;
+                output.versionCodeOverride = code
+                def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                output.outputFileName = fullName;
+            }else{
+                def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
+                output.versionCodeOverride = codeNumber
+                output.outputFileName = fullName;
+
+            }
 
         }
     }
@@ -347,31 +377,6 @@ dependencies {
     pdf_classicImplementation 'com.google.firebase:firebase-ads:18.1.1'
     epub_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
 
-
-    proImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    betaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    alphaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    libreraImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    pdf_v2Implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    ebookaImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    tts_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    pdf_classicImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-    epub_readerImplementation 'com.cloudrail:cloudrail-si-android:2.22.4'
-
-
-    //F-DROID REMOVE THIS LINES BEGIN
-    implementation 'com.google.android.gms:play-services-auth:17.0.0'
-
-    implementation 'com.google.http-client:google-http-client-gson:1.30.2'
-    implementation('com.google.api-client:google-api-client-android:1.30.2') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    //F-DROID REMOVE THIS LINES END
-
-
 }
 
 
@@ -401,27 +406,40 @@ task copyApks(type: Copy) {
 
 task incVersion() {
     doLast {
+            Properties props = new Properties()
+            File propsFile = new File('app/gradle.properties')
+            props.load(propsFile.newDataInputStream())
 
+            int appCodeNumber = Integer.parseInt(props.getProperty('appCodeNumber'))
+            appCodeNumber += 4
 
-        Properties props = new Properties()
-        File propsFile = new File('app/gradle.properties')
-        props.load(propsFile.newDataInputStream())
+            int appVersionNumberIndex = Integer.parseInt(props.getProperty('appVersionNumberIndex'))
+            appVersionNumberIndex += 1
 
-        int appCodeNumber = Integer.parseInt(props.getProperty('appCodeNumber'))
-        appCodeNumber += 4
+            props.setProperty('appCodeNumber', "" + appCodeNumber)
+            props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
 
-        int appVersionNumberIndex = Integer.parseInt(props.getProperty('appVersionNumberIndex'))
-        appVersionNumberIndex += 1
+            props.store(propsFile.newWriter(), null)
 
-        props.setProperty('appCodeNumber', "" + appCodeNumber)
-        props.setProperty('appVersionNumberIndex', "" + appVersionNumberIndex)
-
-        props.store(propsFile.newWriter(), null)
-
-        println "My Task: [incVersion]"
+            println "My Task: [incVersion]"
     }
 
 }
 
-//F-DROID REMOVE THIS LINE
-apply plugin: 'com.google.gms.google-services'
+if (!taskName.contains("Fdroid")){
+
+    apply plugin: 'com.google.gms.google-services'
+
+    dependencies {
+        implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
+        implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+        implementation 'com.google.http-client:google-http-client-gson:1.30.2'
+        implementation('com.google.api-client:google-api-client-android:1.30.2') {
+            exclude group: 'org.apache.httpcomponents'
+        }
+        implementation('com.google.apis:google-api-services-drive:v3-rev173-1.25.0') {
+            exclude group: 'org.apache.httpcomponents'
+        }
+    }
+}
