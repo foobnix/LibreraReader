@@ -27,7 +27,6 @@ import org.emdev.utils.LengthUtils;
 import org.emdev.utils.MatrixUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -262,9 +261,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public List<PageLink> getPageLinks() {
-        if (!AppState.get().isAllowTextSelection) {
-            return Collections.emptyList();
-        }
+
         try {
             TempHolder.lock.lock();
             return MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
