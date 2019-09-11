@@ -935,7 +935,8 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 	if (value->type == CSS_KEYWORD)
 	{
 		if (!strcmp(value->data, "auto"))
-			return make_number(0, N_AUTO);
+			return make_number(0, N_LENGTH);
+			//return make_number(0, N_AUTO);
 	}
 
 	return make_number(initial, initial_unit);
@@ -1286,6 +1287,17 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->margin[1] = number_from_property(match, "margin-right", 0, N_LENGTH);
 	style->margin[2] = number_from_property(match, "margin-bottom", 0, N_LENGTH);
 	style->margin[3] = number_from_property(match, "margin-left", 0, N_LENGTH);
+
+	if(style->margin[0].unit==N_SCALE && style->margin[0].value>2)style->margin[0].value=2;
+	if(style->margin[1].unit==N_SCALE && style->margin[1].value>2)style->margin[1].value=2;
+	if(style->margin[2].unit==N_SCALE && style->margin[2].value>2)style->margin[2].value=2;
+	if(style->margin[3].unit==N_SCALE && style->margin[3].value>2)style->margin[3].value=2;
+
+
+	if(style->margin[0].unit==N_SCALE && style->margin[0].value<-2)style->margin[0].value=-2;
+	if(style->margin[1].unit==N_SCALE && style->margin[1].value<-2)style->margin[1].value=-2;
+	if(style->margin[2].unit==N_SCALE && style->margin[2].value<-2)style->margin[2].value=-2;
+	if(style->margin[3].unit==N_SCALE && style->margin[3].value<-2)style->margin[3].value=-2;
 
 	style->padding[0] = number_from_property(match, "padding-top", 0, N_LENGTH);
 	style->padding[1] = number_from_property(match, "padding-right", 0, N_LENGTH);
