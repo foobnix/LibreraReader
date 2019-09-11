@@ -408,7 +408,7 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 			img = fz_new_image_from_svg(ctx, buf, base_uri, zip);
 		else
 #endif
-			img = (ctx, buf);
+			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)
 		fz_drop_buffer(ctx, buf);
@@ -719,32 +719,54 @@ generate_boxes(fz_context *ctx,
 				generate_image(ctx, box, load_svg_image(ctx, g->zip, g->base_uri, node), g);
 			}
 
-			else if (g->is_fb2 && tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
+			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
 			{
+
 				const char *src = fz_xml_att(node, "l:href");
 				if (!src)
 					src = fz_xml_att(node, "xlink:href");
-				if (src && src[0] == '#')
-				{
-					fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
-					if (display == DIS_BLOCK)
-					{
-						fz_html_box *imgbox;
-						box = new_box(ctx, g->pool, markup_dir);
-						fz_apply_css_style(ctx, g->set, &box->style, &match);
-						top = insert_block_box(ctx, box, top);
-						imgbox = new_box(ctx, g->pool, markup_dir);
-						fz_apply_css_style(ctx, g->set, &imgbox->style, &match);
-						insert_inline_box(ctx, imgbox, box, markup_dir, g);
-						generate_image(ctx, imgbox, fz_keep_image(ctx, img), g);
-					}
-					else if (display == DIS_INLINE)
-					{
-						box = new_box(ctx, g->pool, markup_dir);
-						fz_apply_css_style(ctx, g->set, &box->style, &match);
-						insert_inline_box(ctx, box, top, markup_dir, g);
-						generate_image(ctx, box, fz_keep_image(ctx, img), g);
-					}
+
+				if(g->is_fb2){
+                        if (src && src[0] == '#')
+                        {
+                            fz_image *img = fz_tree_lookup(ctx, g->images, src+1);
+                            if (display == DIS_BLOCK)
+                            {
+                                fz_html_box *imgbox;
+                                box = new_box(ctx, g->pool, markup_dir);
+                                fz_apply_css_style(ctx, g->set, &box->style, &match);
+                                top = insert_block_box(ctx, box, top);
+                                imgbox = new_box(ctx, g->pool, markup_dir);
+                                fz_apply_css_style(ctx, g->set, &imgbox->style, &match);
+                                insert_inline_box(ctx, imgbox, box, markup_dir, g);
+                                generate_image(ctx, imgbox, fz_keep_image(ctx, img), g);
+                            }
+                            else if (display == DIS_INLINE)
+                            {
+                                box = new_box(ctx, g->pool, markup_dir);
+                                fz_apply_css_style(ctx, g->set, &box->style, &match);
+                                insert_inline_box(ctx, box, top, markup_dir, g);
+                                generate_image(ctx, box, fz_keep_image(ctx, img), g);
+                            }
+                        }
+				}else{
+                        int w, h;
+                        const char *w_att = fz_xml_att(node, "width");
+                        const char *h_att = fz_xml_att(node, "height");
+                        box = new_box(ctx, g->pool, markup_dir);
+                        fz_apply_css_style(ctx, g->set, &box->style, &match);
+                        if (w_att && (w = fz_atoi(w_att)) > 0)
+                        {
+                            box->style.width.value = w;
+                            box->style.width.unit = strchr(w_att, '%') ? N_PERCENT : N_LENGTH;
+                        }
+                        if (h_att && (h = fz_atoi(h_att)) > 0)
+                        {
+                            box->style.height.value = h;
+                            box->style.height.unit = strchr(h_att, '%') ? N_PERCENT : N_LENGTH;
+                        }
+                        insert_inline_box(ctx, box, top, markup_dir, g);
+                        generate_image(ctx, box, load_html_image(ctx, g->zip, g->base_uri, src), g);
 				}
 			}
 
@@ -1010,7 +1032,7 @@ load_fb2_images(fz_context *ctx, fz_xml *root)
 		{
 			b64 = concat_text(ctx, binary);
 			buf = fz_new_buffer_from_base64(ctx, b64, strlen(b64));
-			img = (ctx, buf);
+			img = fz_new_image_from_buffer(ctx, buf);
 		}
 		fz_always(ctx)
 		{

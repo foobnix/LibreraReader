@@ -1245,6 +1245,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.69f, N_SCALE);
 		else if (!strcmp(value->data, "larger")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
+        else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
+
 		else style->font_size = number_from_value(value, 12, N_LENGTH);
 	}
 	else
@@ -1289,6 +1291,9 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->padding[1] = number_from_property(match, "padding-right", 0, N_LENGTH);
 	style->padding[2] = number_from_property(match, "padding-bottom", 0, N_LENGTH);
 	style->padding[3] = number_from_property(match, "padding-left", 0, N_LENGTH);
+
+	style->padding[1].value = style->padding[1].value / 2;
+    style->padding[3].value = style->padding[3].value / 2;
 
 	style->color = color_from_property(match, "color", black);
 	style->background_color = color_from_property(match, "background-color", transparent);
