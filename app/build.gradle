@@ -135,6 +135,12 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "116"
+            splits {
+                abi {
+                    enable false
+                    universalApk true
+                }
+            }
 
         }
 
@@ -173,8 +179,12 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "111"
-
-
+            splits {
+                abi {
+                    enable false
+                    universalApk true
+                }
+            }
         }
         pdf_classic {
             dimension "version"
@@ -315,7 +325,8 @@ android {
                 def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
                 output.outputFileName = fullName;
             }else{
-                def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
+                def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName;
 
