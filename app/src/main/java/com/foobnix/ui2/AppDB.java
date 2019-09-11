@@ -17,6 +17,7 @@ import com.foobnix.dao2.FileMetaDao;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -164,10 +165,18 @@ public class AppDB {
 
 
     DatabaseUpgradeHelper helper;
+    String currentDB;
 
     public void open(Context c, String appDB) {
+
+        if (appDB.equals(currentDB)) {
+            LOG.d("Open-DB skip", appDB);
+            return;
+        }
         LOG.d("Open-DB", appDB);
-        if(helper!=null) {
+        currentDB = appDB;
+
+        if (helper != null) {
             helper.close();
         }
         helper = new DatabaseUpgradeHelper(c, appDB);
@@ -181,7 +190,7 @@ public class AppDB {
 
         fileMetaDao = daoSession.getFileMetaDao();
 
-        if (true) {
+        if (BuildConfig.DEBUG) {
             QueryBuilder.LOG_SQL = true;
             QueryBuilder.LOG_VALUES = true;
         }
@@ -224,7 +233,7 @@ public class AppDB {
     // }
 
     public void deleteAllData() {
-        if(fileMetaDao!=null) {
+        if (fileMetaDao != null) {
             fileMetaDao.deleteAll();
         }
     }

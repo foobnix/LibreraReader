@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.tts.TTSNotification;
@@ -38,7 +39,10 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         super.onCreate(arg0);
         myAds.intetrstialTimeout = intetrstialTimeoutSec;
         myAds.createHandler();
+        AppDB.get().open(this, AppProfile.getCurrent(this));
     }
+
+
     protected  boolean withInterstitial = true;
 
     @Override
