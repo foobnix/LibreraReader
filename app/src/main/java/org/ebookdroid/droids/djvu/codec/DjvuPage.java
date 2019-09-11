@@ -185,7 +185,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized void recycle() {
+    public void recycle() {
         TempHolder.lock.lock();
         try {
             if (pageHandle == 0) {
@@ -212,7 +212,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized List<PageLink> getPageLinks() {
+    public  List<PageLink> getPageLinks() {
         if (!AppState.get().isAllowTextSelection) {
             return Collections.emptyList();
         }

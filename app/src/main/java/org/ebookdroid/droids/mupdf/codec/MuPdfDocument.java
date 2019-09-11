@@ -293,7 +293,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private native boolean hasChangesInternal(long handle);
 
     @Override
-    public synchronized boolean hasChanges() {
+    public  boolean hasChanges() {
         TempHolder.lock.lock();
         try {
             return hasChangesInternal(documentHandle);
@@ -303,7 +303,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     @Override
-    public synchronized void saveAnnotations(String path) {
+    public  void saveAnnotations(String path) {
         LOG.d("Save Annotations saveInternal 1");
         TempHolder.lock.lock();
         try {
@@ -320,7 +320,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     @Override
-    public synchronized void deleteAnnotation(long pageHandle, int index) {
+    public  void deleteAnnotation(long pageHandle, int index) {
         TempHolder.lock.lock();
         try {
             deleteAnnotationInternal(documentHandle, pageHandle, index);

@@ -137,7 +137,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized void recycle() {
+    public  void recycle() {
         try {
             TempHolder.lock.lock();
             if (pageHandle != 0 && docHandle != 0) {
@@ -348,7 +348,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
+    public  void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
         LOG.d("addMarkupAnnotation1", type, color[0], color[1], color[2]);
         try {
             TempHolder.lock.lock();
@@ -384,7 +384,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized void addAnnotation(float[] color, PointF[][] points, float width, float alpha) {
+    public  void addAnnotation(float[] color, PointF[][] points, float width, float alpha) {
         LOG.d("addInkAnnotationInternal", color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
@@ -420,7 +420,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     }
 
-    public synchronized TextWord[][] getText_116() {
+    public  TextWord[][] getText_116() {
         List<TextChar> chars = null;
 
         TempHolder.lock.lock();

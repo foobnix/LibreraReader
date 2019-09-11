@@ -93,7 +93,9 @@ public abstract class UIFragment<T> extends Fragment {
                     ImageLoader.getInstance().resume();
                     LOG.d("ImageLoader resume");
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
-                        swipeRefreshLayout.setEnabled(true);
+                        if(swipeRefreshLayout!=null) {
+                            swipeRefreshLayout.setEnabled(true);
+                        }
                     }
                 }
 
@@ -101,7 +103,9 @@ public abstract class UIFragment<T> extends Fragment {
                 public void onFastScrollStart() {
                     LOG.d("ImageLoader pause");
                     ImageLoader.getInstance().pause();
-                    swipeRefreshLayout.setEnabled(false);
+                    if(swipeRefreshLayout!=null) {
+                        swipeRefreshLayout.setEnabled(false);
+                    }
 
                 }
             });

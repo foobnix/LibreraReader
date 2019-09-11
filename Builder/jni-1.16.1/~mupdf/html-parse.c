@@ -61,6 +61,9 @@ static const char *html_default_css =
 "ul ul ul{list-style-type:square}"
 "var{font-style:italic}"
 "svg{display:none}"
+
+"figcaption {display:block; text-align:center}"
+"figcaption>p {text-align:center}"
 ;
 
 static const char *fb2_default_css =
