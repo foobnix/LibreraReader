@@ -36,6 +36,7 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.DragingPopup;
 import com.foobnix.pdf.info.wrapper.PasswordState;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
+import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 
@@ -95,6 +96,7 @@ public class AppProfile {
             return;
         }
         profile = getCurrent(c);
+        AppDB.get().open(c, profile);
         LOG.d("AppProfile init", profile);
 
 

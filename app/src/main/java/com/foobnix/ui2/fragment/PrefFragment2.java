@@ -86,7 +86,6 @@ import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.sys.TempHolder;
-import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
@@ -2219,7 +2218,6 @@ public class PrefFragment2 extends UIFragment {
                                 @Override
                                 public void run() {
                                     AppProfile.saveCurrent(getActivity(), profile);
-                                    AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
                                     RecentUpates.updateAll(getActivity());
                                     onTheme();
                                 }
@@ -2274,7 +2272,6 @@ public class PrefFragment2 extends UIFragment {
                                         @Override
                                         public void run() {
                                             AppProfile.saveCurrent(getActivity(), profile);
-                                            AppDB.get().open(getActivity(), AppProfile.getCurrent(getActivity()));
                                             onTheme();
                                         }
                                     });

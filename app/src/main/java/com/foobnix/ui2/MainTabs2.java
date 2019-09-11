@@ -290,7 +290,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                                 LOG.e(e);
                             }
                             AppProfile.clear();
-                            AppDB.get().open(MainTabs2.this, AppProfile.getCurrent(MainTabs2.this));
                         } catch (Exception e) {
                             LOG.e(e);
                         }

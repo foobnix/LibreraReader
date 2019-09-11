@@ -41,6 +41,7 @@ public class OpenerActivity extends Activity {
             Android6.checkPermissions(this, true);
             return;
         }
+
         AppProfile.init(this);
 
         if (getIntent() == null || getIntent().getData() == null) {
