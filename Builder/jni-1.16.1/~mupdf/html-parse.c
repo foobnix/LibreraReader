@@ -64,6 +64,7 @@ static const char *html_default_css =
 
 "figcaption {display:block; text-align:center}"
 "figcaption>p {text-align:center}"
+"br{display:block}"
 ;
 
 static const char *fb2_default_css =
@@ -672,7 +673,7 @@ generate_boxes(fz_context *ctx,
 
 			display = fz_get_css_match_display(&match);
 
-			if (tag[0]=='b' && tag[1]=='r' && tag[2]==5)
+			if (tag[2]==10 && tag[0]=='b' && tag[1]=='r')
 			{
 				if (top->type == BOX_INLINE)
 				{

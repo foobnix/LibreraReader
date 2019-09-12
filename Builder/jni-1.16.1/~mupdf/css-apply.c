@@ -923,13 +923,15 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 
 		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return make_number(x * 16, N_LENGTH);
+			//return make_number(x * 16, N_LENGTH);
+			return make_number(x, N_SCALE);
+
 
 		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
 			return make_number(x / 2, N_LENGTH);
 
-		return make_number(x, N_LENGTH);
+		return make_number(x, N_SCALE);
 	}
 
 	if (value->type == CSS_KEYWORD)
