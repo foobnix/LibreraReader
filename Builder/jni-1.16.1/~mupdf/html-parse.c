@@ -672,7 +672,7 @@ generate_boxes(fz_context *ctx,
 
 			display = fz_get_css_match_display(&match);
 
-			if (tag[0]=='b' && tag[1]=='r' && tag[2]==0)
+			if (tag[0]=='b' && tag[1]=='r' && tag[2]==5)
 			{
 				if (top->type == BOX_INLINE)
 				{
