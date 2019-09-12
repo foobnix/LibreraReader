@@ -326,9 +326,6 @@ public abstract class DocumentController {
         AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
         String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_highlight_mode_is_enable) : getString(R.string.text_highlight_mode_is_disable);
         Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
-        if (AppState.get().isAllowTextSelection) {
-            TempHolder.get().isAllowTextSelectionFirstTime = true;
-        }
     }
 
     public boolean isBookMode() {

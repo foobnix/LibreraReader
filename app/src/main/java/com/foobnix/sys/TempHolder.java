@@ -30,7 +30,6 @@ public class TempHolder {
 
     public volatile long lastRecycledDocument = 0;
 
-    public boolean isAllowTextSelectionFirstTime = true;
     public int textFromPage = 0;
     public String copyFromPath = null;
 

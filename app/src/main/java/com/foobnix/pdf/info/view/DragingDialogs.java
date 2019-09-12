@@ -3328,15 +3328,11 @@ public class DragingDialogs {
                 isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
                 isAllowTextSelection.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     AppState.get().isAllowTextSelection = isChecked;
-                    if (isChecked) {
-                        TempHolder.get().isAllowTextSelectionFirstTime = true;
-                    } else {
+                    if (!isChecked) {
                         AppState.get().selectingByLetters = false;
                         AppState.get().isSelectTexByTouch = false;
                         isSelectTexByTouch.setChecked(false);
                         highlightByLetters.setChecked(false);
-
-
                     }
 
                     highlightByLetters.setEnabled(isChecked);

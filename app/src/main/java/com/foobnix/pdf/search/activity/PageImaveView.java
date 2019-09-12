@@ -173,7 +173,7 @@ public class PageImaveView extends View {
                     t = PageImageState.get().pagesLinks.get(page + 1);
                 }
 
-                if(t!=null) {
+                if (t != null) {
                     for (PageLink l : t) {
                         LOG.d("PageLinks targetPage after", l.targetPage);
                         l.number = number;
@@ -378,7 +378,7 @@ public class PageImaveView extends View {
                 isIgronerClick = true;
                 AppState.get().selectedText = null;
                 EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
-                if(new ClickUtils().isClickCenter(e.getX(), e.getY())) {
+                if (new ClickUtils().isClickCenter(e.getX(), e.getY())) {
                     EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_PERFORM_CLICK, e.getX(), e.getY()));
                 }
                 LOG.d("PageImaveView MESSAGE_PERFORM_CLICK", 3);
@@ -388,10 +388,7 @@ public class PageImaveView extends View {
             }
 
             if (!AppState.get().isAllowTextSelection) {
-                if (TempHolder.get().isAllowTextSelectionFirstTime) {
-                    Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
-                    TempHolder.get().isAllowTextSelectionFirstTime = false;
-                }
+                Toast.makeText(LibreraApp.context, R.string.text_highlight_mode_is_disable, Toast.LENGTH_LONG).show();
                 return;
             }
 
