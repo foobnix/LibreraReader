@@ -70,7 +70,7 @@ static const char *fb2_default_css =
 "@page{margin:2em 1em}"
 "FictionBook{display:block}"
 "stylesheet,binary{display:none}"
-"description>*{display:none}"
+"description,description>*{display:none}"
 "description>title-info{display:block}"
 "description>title-info>*{display:none}"
 "description>title-info>annotation{display:block;page-break-before:always;page-break-after:always}"
