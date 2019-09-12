@@ -82,6 +82,7 @@ import com.foobnix.ui2.fragment.UIFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -717,9 +718,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         BrightnessHelper.applyBrigtness(this);
         BrightnessHelper.updateOverlay(overlay);
+        SharedBooks.cache.clear();
     }
 
-    ;
+
 
     boolean isMyKey = false;
 
