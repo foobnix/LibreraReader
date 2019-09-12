@@ -10,7 +10,7 @@ enum { T, R, B, L };
 #define DEFAULT_DIR FZ_BIDI_LTR
 
 static const char *html_default_css =
-"@page{margin:3em 2em}"
+"@page{margin:2em 1em}"
 "a{color:#06C;text-decoration:underline}"
 "address{display:block;font-style:italic}"
 "b{font-weight:bold}"
@@ -38,9 +38,9 @@ static const char *html_default_css =
 "ins{text-decoration:underline}"
 "kbd{font-family:monospace}"
 "li{display:list-item}"
-"menu{display:block;list-style-type:disc;margin:1em 0;padding:0 0 0 30pt}"
-"ol{display:block;list-style-type:decimal;margin:1em 0;padding:0 0 0 30pt}"
-"p{display:block;margin:1em 0}"
+"menu{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}"
+"ol{display:block;list-style-type:decimal;margin:1em 0;padding:0 1em 0 1em}"
+"p{display:block;}"
 "pre{display:block;font-family:monospace;margin:1em 0;white-space:pre}"
 "samp{font-family:monospace}"
 "script{display:none}"
@@ -67,12 +67,13 @@ static const char *html_default_css =
 ;
 
 static const char *fb2_default_css =
-"@page{margin:3em 2em}"
-"FictionBook{display:block;margin:1em}"
+"@page{margin:2em 1em}"
+"FictionBook{display:block}"
 "stylesheet,binary{display:none}"
 "description>*{display:none}"
 "description>title-info{display:block}"
 "description>title-info>*{display:none}"
+"description>title-info>annotation{display:block;page-break-before:always;page-break-after:always}"
 "description>title-info>coverpage{display:block;page-break-before:always;page-break-after:always}"
 "body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
 "image{display:block}"
@@ -89,14 +90,14 @@ static const char *fb2_default_css =
 "sub{font-size:small;vertical-align:sub}"
 "sup{font-size:small;vertical-align:super}"
 "image{margin:1em 0;text-align:center}"
-"cite,poem{margin:1em 2em}"
+"cite,poem{margin:1em 1.5em}"
 "subtitle,epigraph,stanza{margin:1em 0}"
 "title>p{text-align:center;font-size:x-large}"
 "subtitle{text-align:center;font-size:large}"
-"p{margin-top:1em;text-align:justify}"
+"p{text-align:justify}"
 "empty-line{padding-top:1em}"
-"p+p{margin-top:0;text-indent:1.5em}"
-"empty-line+p{margin-top:0}"
+//"p+p{margin-top:0;text-indent:1.5em}"
+//"empty-line+p{margin-top:0}"
 "section>title{page-break-before:always}"
 ;
 
@@ -720,6 +721,8 @@ generate_boxes(fz_context *ctx,
 				fz_apply_css_style(ctx, g->set, &box->style, &match);
 				insert_inline_box(ctx, box, top, markup_dir, g);
 				generate_image(ctx, box, load_svg_image(ctx, g->zip, g->base_uri, node), g);
+
+
 			}
 
 			else if (tag[0]=='i' && tag[1]=='m' && tag[2]=='a' && tag[3]=='g' && tag[4]=='e' && tag[5]==0)
