@@ -140,11 +140,12 @@ public class AppData {
         for (SimpleMeta s : favorites) {
             s = SimpleMeta.SyncSimpleMeta(s);
 
-            if (new File(s.getPath()).isFile()) {
+            if (new File(s.getPath()).isFile() || Clouds.isCloudFile(s.getPath())) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setIsStarTime(s.time);
                 meta.setIsSearchBook(true);
+                meta.setCusType(null);
                 res.remove(meta);
                 res.add(meta);
                 AppDB.get().update(meta);
@@ -166,7 +167,9 @@ public class AppData {
 
         List<FileMeta> res = new ArrayList<>();
         for (SimpleMeta s : favorites) {
-            if (new File(s.getPath()).isDirectory() || s.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
+
+
+            if (new File(s.getPath()).isDirectory() || Clouds.isCloudDir(s.getPath())) {
                 FileMeta meta = AppDB.get().getOrCreate(s.getPath());
                 meta.setIsStar(true);
                 meta.setPathTxt(ExtUtils.getFileName(s.getPath()));

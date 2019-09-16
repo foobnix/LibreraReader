@@ -85,6 +85,13 @@ public class Clouds {
 
     }
 
+    public static boolean isCloudFile(String path) {
+        return path.startsWith(Clouds.PREFIX_CLOUD) && path.lastIndexOf('.') > (path.length() - 6);
+    }
+    public static boolean isCloudDir(String path) {
+        return path.startsWith(Clouds.PREFIX_CLOUD) && !isCloudFile(path);
+    }
+
     public static boolean isCloud(String path) {
         return path.startsWith(PREFIX_CLOUD);
     }
