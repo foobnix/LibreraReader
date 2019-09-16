@@ -39,7 +39,8 @@ import java.util.TimerTask;
 
 public class TTSEngine {
 
-    public static final String FINISHED = "Finished";
+    public static final String FINISHED_SIGNAL = "Finished";
+    public static final String STOP_SIGNAL = "Stoped";
     private static final String WAV = ".wav";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
     private static final String TAG = "TTSEngine";
@@ -220,8 +221,15 @@ public class TTSEngine {
 
                     }
 
+                    if(big.contains(TxtUtils.TTS_STOP)){
+                        HashMap<String, String> mapStop = new HashMap<String, String>();
+                        mapStop.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,STOP_SIGNAL);
+                        ttsEngine.playSilence(AppState.get().ttsPauseDuration,TextToSpeech.QUEUE_ADD, mapStop);
+                        LOG.d("Add stop signal");
+                    }
+
                     HashMap<String, String> mapTemp1 = new HashMap<String, String>();
-                    mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED + i);
+                    mapTemp1.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, FINISHED_SIGNAL + i);
 
                     ttsEngine.speak(big, TextToSpeech.QUEUE_ADD, mapTemp1);
                     ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapTemp);

@@ -607,11 +607,15 @@ public class TTSService extends Service {
                     @Override
                     public void onDone(String utteranceId) {
                         LOG.d(TAG, "onUtteranceCompleted", utteranceId);
-                        if (utteranceId.startsWith(TTSEngine.FINISHED)) {
+                        if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
+                            TTSEngine.get().stop();
+                            return;
+                        }
+                        if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
                             if (TxtUtils.isNotEmpty(preText1)) {
-                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
                             } else {
-                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
                             }
                             return;
                         }
@@ -639,11 +643,15 @@ public class TTSService extends Service {
 
                     @Override
                     public void onUtteranceCompleted(String utteranceId) {
-                        if (utteranceId.startsWith(TTSEngine.FINISHED)) {
+                        if (utteranceId.startsWith(TTSEngine.STOP_SIGNAL)) {
+                            TTSEngine.get().stop();
+                            return;
+                        }
+                        if (utteranceId.startsWith(TTSEngine.FINISHED_SIGNAL)) {
                             if (TxtUtils.isNotEmpty(preText1)) {
-                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, ""));
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, ""));
                             } else {
-                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED, "")) + 1;
+                                AppTemp.get().lastBookParagraph = Integer.parseInt(utteranceId.replace(TTSEngine.FINISHED_SIGNAL, "")) + 1;
                             }
                             return;
                         }

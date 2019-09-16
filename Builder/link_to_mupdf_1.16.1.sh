@@ -36,6 +36,7 @@ cp -rp jni-1.16.1/~mupdf/html-parse.c $MUPDF_ROOT/source/html/html-parse.c
 
 cp -rp jni-1.16.1/~mupdf/mucbz.c $MUPDF_ROOT/source/cbz/mucbz.c
 cp -rp jni-1.16.1/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
+cp -rp jni-1.16.1/~mupdf/svg-doc.c $MUPDF_ROOT/source/svg/svg-doc.c
 
 
 cd $MUPDF_JAVA

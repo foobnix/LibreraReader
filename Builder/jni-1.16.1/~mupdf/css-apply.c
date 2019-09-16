@@ -893,7 +893,7 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 		return make_number(initial, initial_unit);
 
 	if (value->type == CSS_PERCENT)
-		return make_number(fz_css_strtof(value->data, NULL), N_PERCENT);
+	    return make_number(fz_css_strtof(value->data, NULL), N_PERCENT);
 
 	if (value->type == CSS_NUMBER)
 		return make_number(fz_css_strtof(value->data, NULL), N_NUMBER);

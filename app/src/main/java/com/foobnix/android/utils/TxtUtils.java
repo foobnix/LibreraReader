@@ -51,7 +51,8 @@ import java.util.regex.Pattern;
 
 public class TxtUtils {
 
-    public static final String TTS_PAUSE = "‡";
+    public static final String TTS_PAUSE = "ttsPAUSE";
+    public static final String TTS_STOP = "ttsSTOP";
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
