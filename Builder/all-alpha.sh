@@ -10,6 +10,7 @@ cd ../
 
 ./gradlew assembleAlphaRelease
 
+./gradlew -stop
 
 ### 1.11.1
 

@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 def taskName=getGradle().getStartParameter().getTaskRequests().toString();
 
+println "taskName: " + taskName
 ext {
     if(!taskName.contains("Fdroid")) {
         codeNumber = Integer.parseInt(appCodeNumber)

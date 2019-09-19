@@ -8,8 +8,6 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import java.io.File;
 import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FileMetaComparators {
 
@@ -24,6 +22,19 @@ public class FileMetaComparators {
             }
         }
     };
+    public static NaturalOrderComparator naturalOrderComparator = new NaturalOrderComparator();
+    public static Comparator<FileMeta> BY_PATH_NUMBER = new Comparator<FileMeta>() {
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                return naturalOrderComparator.compare(o1.getPath().toLowerCase(), o2.getPath().toLowerCase());
+            } catch (Exception e) {
+                return BY_PATH.compare(o1, o2);
+            }
+        }
+
+    };
+
 
     public static Comparator<File> BY_PATH_FILE = new Comparator<File>() {
         @Override
@@ -94,27 +105,6 @@ public class FileMetaComparators {
         }
     };
 
-    public static Comparator<FileMeta> BR_BY_NUMBER = new Comparator<FileMeta>() {
-        Pattern compile = Pattern.compile("[0-9]+");
-
-        @Override
-        public int compare(FileMeta o1, FileMeta o2) {
-            try {
-                Matcher m1 = compile.matcher(o1.getPathTxt());
-                Matcher m2 = compile.matcher(o2.getPathTxt());
-                if (m1.find() && m2.find()) {
-                    int g1 = Integer.parseInt(m1.group(0));
-                    int g2 = Integer.parseInt(m2.group(0));
-                    return compareInt(g1, g2);
-                }
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-
-            return BY_PATH.compare(o1, o2);
-        }
-
-    };
 
     public static Comparator<FileMeta> BR_BY_NUMBER1 = new Comparator<FileMeta>() {
 
@@ -163,17 +153,6 @@ public class FileMetaComparators {
                 return 1;
 
             return 0;
-        }
-    };
-
-    public static Comparator<SimpleMeta> BY_RECENT_TIME_2 = new Comparator<SimpleMeta>() {
-        @Override
-        public int compare(SimpleMeta o1, SimpleMeta o2) {
-            try {
-                return compareLong(o2.time, o1.time);
-            } catch (Exception e) {
-                return 0;
-            }
         }
     };
 

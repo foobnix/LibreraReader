@@ -891,7 +891,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         try {
             if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_PATH) {
-                Collections.sort(items, FileMetaComparators.BY_PATH);
+                Collections.sort(items, FileMetaComparators.BY_PATH_NUMBER);
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_DATE) {
                 Collections.sort(items, FileMetaComparators.BY_DATE);
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_SIZE) {
