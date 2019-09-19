@@ -44,9 +44,9 @@ public class OPDS {
 
     public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
-            .connectTimeout(35, TimeUnit.SECONDS)//
-            .writeTimeout(35, TimeUnit.SECONDS)//
-            .readTimeout(35, TimeUnit.SECONDS)//
+            .connectTimeout(10, TimeUnit.SECONDS)//
+            .writeTimeout(10, TimeUnit.SECONDS)//
+            .readTimeout(10, TimeUnit.SECONDS)//
             .cache(cache);//
 
     public static OkHttpClient client = builder.build();//
