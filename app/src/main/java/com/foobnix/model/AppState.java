@@ -199,7 +199,14 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static final String TTS_REPLACEMENTS = "{'*[()\"«»*”“/\\\\[\\\\]]':' ', '*[?!:;–|—|―]':',' , '*[L|l)ib.':'Libréra'}";
+    public static final String TTS_REPLACEMENTS =
+
+            "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
+                    "'*[?!:;–|—|―]':',' , " +//
+                    "'it’s':'it is' , " +//
+                    "'#bla':'bla disabled' , " +//
+                    "'*(L|l)ib.':'$1ibréra'}";//
+
     public static final String TTS_PUNCUATIONS = ".;:!?";
 
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
@@ -804,7 +811,7 @@ public class AppState {
 
 
                 load(a);
-                if(AppState.get().isShowPanelBookNameBookMode && AppState.get().statusBarPosition==AppState.STATUSBAR_POSITION_TOP){
+                if (AppState.get().isShowPanelBookNameBookMode && AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP) {
                     AppState.get().isShowPanelBookNameBookMode = false;
                 }
 
