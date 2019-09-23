@@ -236,50 +236,58 @@ public class Dialogs {
 
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
-                JSONObject res = new JSONObject();
-                //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
-                for (int i = 0; i < root.getChildCount(); i++) {
-                    final View childAt = root.getChildAt(i);
-                    if (childAt instanceof LinearLayout) {
-                        final LinearLayout line = (LinearLayout) childAt;
-                        if (line.getOrientation() == LinearLayout.VERTICAL) {
-                            continue;
-                        }
-                        EditText childFrom = (EditText) line.getChildAt(0);
-                        String from = childFrom.getText().toString();
-                        String to = ((EditText) line.getChildAt(2)).getText().toString();
-
-
-                        LOG.d("TTS-add", from, to);
-
-                        try {
-                            if (from.startsWith("*")) {
-                                try {
-                                    Pattern.compile(from.substring(1));
-                                } catch (Exception e) {
-                                    LOG.d("TTS-incorrect value", from, to);
-                                    childFrom.setSelected(true);
-                                    Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                                }
-                                res.put(from, to);
-
-                            } else if (TxtUtils.isNotEmpty(from)) {
-                                res.put(from, to);
-                            }
-                        } catch (JSONException e) {
-                            LOG.e(e);
-                        }
-
-
-                    }
-                }
-                AppState.get().lineTTSReplacements2 = res.toString();
-                LOG.d("lineTTSReplacements2", AppState.get().lineTTSReplacements2);
-
 
             }
         });
         final AlertDialog create = builder.create();
+        create.show();
+
+        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            JSONObject res = new JSONObject();
+            //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
+            boolean hasErrors  = false;
+            for (int i = 0; i < root.getChildCount(); i++) {
+                final View childAt = root.getChildAt(i);
+                if (childAt instanceof LinearLayout) {
+                    final LinearLayout line = (LinearLayout) childAt;
+                    if (line.getOrientation() == LinearLayout.VERTICAL) {
+                        continue;
+                    }
+                    EditText childFrom = (EditText) line.getChildAt(0);
+                    String from = childFrom.getText().toString();
+                    String to = ((EditText) line.getChildAt(2)).getText().toString();
+
+
+                    LOG.d("TTS-add", from, to);
+
+                    try {
+                        if (from.startsWith("*")) {
+                            try {
+                                Pattern.compile(from.substring(1));
+                                res.put(from, to);
+                            } catch (Exception e) {
+                                LOG.d("TTS-incorrect value", from, to);
+                                hasErrors = true;
+                                childFrom.requestFocus();
+                                Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                            }
+                        } else if (TxtUtils.isNotEmpty(from)) {
+                            res.put(from, to);
+                        }
+                    } catch (JSONException e) {
+                        LOG.e(e);
+                    }
+
+
+                }
+            }
+            LOG.d("lineTTSReplacements2", AppState.get().lineTTSReplacements2);
+            if(!hasErrors){
+                AppState.get().lineTTSReplacements2 = res.toString();
+                create.dismiss();
+            }
+
+        });
 
         restore.setOnClickListener((a) -> {
             AppState.get().lineTTSReplacements2 = AppState.TTS_REPLACEMENTS;
@@ -299,7 +307,6 @@ public class Dialogs {
             }
         });
 
-        create.show();
     }
 
     public static void showSyncLOGDialog(Activity a) {
