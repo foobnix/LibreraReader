@@ -41,10 +41,9 @@ android {
     }
 
     lintOptions {
-        //disable 'MissingTranslation'
         abortOnError true
         ignoreWarnings true
-        checkReleaseBuilds true
+        checkReleaseBuilds taskName.contains("Pro")
 
     }
     testOptions {
@@ -81,12 +80,15 @@ android {
     }
 
     splits {
-        // Configures multiple APKs based on ABI.
         abi {
             enable true
             reset()
-            include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            universalApk false
+            //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+            include "armeabi-v7a", "arm64-v8a"
+            if(taskName.contains("Debug")){
+                include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+            }
+            universalApk taskName.contains("Fdroid")
         }
 
     }
@@ -111,12 +113,6 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "111"
-            splits {
-                abi {
-                    enable false
-                    universalApk true
-                }
-            }
         }
 
         alpha {
@@ -136,12 +132,6 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "116"
-            splits {
-                abi {
-                    enable false
-                    universalApk true
-                }
-            }
 
         }
 
@@ -162,7 +152,6 @@ android {
             buildConfigField "boolean", "LOG", "false"
             buildConfigField "int", "MUPDF_VERSION", "111"
 
-
         }
         pro {
             dimension "version"
@@ -180,12 +169,6 @@ android {
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
             buildConfigField "int", "MUPDF_VERSION", "111"
-            splits {
-                abi {
-                    enable false
-                    universalApk true
-                }
-            }
         }
         pdf_classic {
             dimension "version"
@@ -300,13 +283,7 @@ android {
             buildConfigField "boolean", "LOG", "false"
             buildConfigField "int", "MUPDF_VERSION", "116"
 
-            splits {
-                abi {
-                    enable false
-                    universalApk true
-                }
 
-            }
         }
 
     }

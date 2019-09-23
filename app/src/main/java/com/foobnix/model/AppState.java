@@ -153,21 +153,6 @@ public class AppState {
             "#CDDC39"//
     );
 
-    public static final List<String> STYLE_COLORS_1 = Arrays.asList(//
-            "#008760", //
-            "#007dc7", //
-            "#ff001e", //
-            "#000000" //
-
-    );
-
-    public static final List<String> STYLE_COLORS_2 = Arrays.asList(//
-            "#7e007e", //
-            "#a4632f", //
-            "#477e52", //
-            "#000000" //
-
-    );
     public static final List<String> STYLE_COLORS = Arrays.asList(//
             "#3949AB", //
             "#EA5964", //
@@ -214,9 +199,8 @@ public class AppState {
 
     public String readColors = READ_COLORS_DEAFAUL;
 
-    public static final String TTS_REPLACEMENTS = "{'[()\"«»*”“/[]]':' ', '[?!:;–|—|―]':',' , 'Lib.':'Libréra'}";
+    public static final String TTS_REPLACEMENTS = "{'*[()\"«»*”“/\\\\[\\\\]]':' ', '*[?!:;–|—|―]':',' , '*[L|l)ib.':'Libréra'}";
     public static final String TTS_PUNCUATIONS = ".;:!?";
-    public static final String TTS_ACCENTS = "";
 
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     // public static String DEFAULTS_TABS_ORDER =
@@ -425,10 +409,7 @@ public class AppState {
     public boolean isEnalbeTTSReplacements = true;
 
     @IgnoreHashCode
-    public String lineTTSReplacements = TTS_REPLACEMENTS;
-
-    @IgnoreHashCode
-    public String lineTTSAccents = TTS_ACCENTS;
+    public String lineTTSReplacements2 = TTS_REPLACEMENTS;
 
 
     public List<Integer> nextKeys = NEXT_KEYS;

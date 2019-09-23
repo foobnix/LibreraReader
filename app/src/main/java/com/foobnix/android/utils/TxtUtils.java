@@ -345,7 +345,7 @@ public class TxtUtils {
 
         if (AppState.get().isEnalbeTTSReplacements) {
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements2);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -373,58 +373,16 @@ public class TxtUtils {
 
         if (AppState.get().isEnalbeTTSReplacements) {
 
-            final List<String> line = StringDB.asList(AppState.get().lineTTSAccents);
-            for (String it : line) {
-                it = it.trim();
-                if (TxtUtils.isEmpty(it)) {
-                    continue;
-                }
-                String key = it.replace("*", "");
-                key = replaceAccentReverse(key);
-                final String value = replaceAccent(it);
-                pageHTML = pageHTML.replace(key, value);
-                LOG.d("pageHTML-replace-accent", key, value);
-            }
-
-            LOG.d("pageHTML [5]", pageHTML);
-
 
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
-                //String split[] = pageHTML.split(" ");
-                //if (hasDB) {
-//                StringBuilder res = new StringBuilder();
-//                HypenUtils.tokenize(pageHTML, new HypenUtils.TokensListener() {
-//
-//                    @Override
-//                    public void findOther(char ch) {
-//                        res.append(ch);
-//                    }
-//
-//                    @Override
-//                    public void findText(String w) {
-//                        if (w.length() <= 3) {
-//                            res.append(w);
-//                        } else {
-//                            //String dict = AppDB.get().findDict(w);
-//                            //res.append(replaceAccent(dict));
-//                            w = w.toLowerCase();
-//                            String s = dict2.get(w);
-//                            if (s == null) s = w;
-//                            res.append(s);
-//
-//                        }
-//                    }
-//
-//                });
-//                pageHTML = res.toString();
-                LOG.d("pageHTML [6]", pageHTML);
-
-                // }
-
 
                 for (String key : dict1.keySet()) {
-                    pageHTML = pageHTML.replaceAll(key, dict1.get(key));
+                    try {
+                        pageHTML = pageHTML.replaceAll(key, dict1.get(key));
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
                 }
                 LOG.d("pageHTML [7]", pageHTML);
 
@@ -434,12 +392,34 @@ public class TxtUtils {
             }
 
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements);
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements2);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
                     String key = keys.next();
                     String value = obj.getString(key);
+
+                    if (key.endsWith("256")) {
+                        continue;
+                    }
+                    if (key.startsWith("#")) {
+                        continue;
+                    }
+
+                    if (key.startsWith("*")) {
+                        key = key.substring(1);
+                        try {
+                            pageHTML = pageHTML.replaceAll(key, value);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    } else {
+                        pageHTML = pageHTML.replace(key, value);
+                    }
+                    LOG.d("pageHTML [8]", pageHTML);
+
+
+                    /*
                     if (key.startsWith("[") && key.endsWith("]")) {
                         for (int i = 1; i < key.length() - 1; i++) {
                             String s = String.valueOf(key.charAt(i));
@@ -453,6 +433,8 @@ public class TxtUtils {
 
                         pageHTML = pageHTML.replace(key, value);
                     }
+                    */
+
                 }
 
 
@@ -605,7 +587,7 @@ public class TxtUtils {
                         String parts[] = line.split("\" \"");
                         String r1 = parts[0].substring(2);
                         String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        r2 = replaceAccent(r2);
+                        //r2 = replaceAccentreplaceAccent(r2);
                         LOG.d("pageHTML-replaceAll", r1, r2);
 
                         dict1.put(r1, r2);
@@ -614,7 +596,7 @@ public class TxtUtils {
                         String parts[] = line.split("\" \"");
                         String r1 = parts[0].substring(1);
                         String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        r2 = replaceAccent(r2);
+                        //r2 = replaceAccent(r2);
                         LOG.d("pageHTML-replace", r1, r2);
                         dict2.put(r1, r2);
                     }

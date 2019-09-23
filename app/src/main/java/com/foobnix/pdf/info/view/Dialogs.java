@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +47,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
@@ -75,6 +73,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 public class Dialogs {
 
@@ -106,7 +105,7 @@ public class Dialogs {
 
 
         try {
-            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements);
+            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements2);
 
             final Iterator<String> keys = jsonObject.keys();
             while (keys.hasNext()) {
@@ -142,16 +141,6 @@ public class Dialogs {
             e.printStackTrace();
         }
 
-        EditText lineTTSAccents = new EditText(activity);
-
-        if ("ru".equals(AppTemp.get().hypenLang)) {
-            root.addView(UI.text(activity, activity.getString(R.string.emphasis)));
-            lineTTSAccents.setGravity(Gravity.TOP);
-            lineTTSAccents.setLines(2);
-            lineTTSAccents.setText(AppState.get().lineTTSAccents);
-
-            root.addView(lineTTSAccents);
-        }
 
         TextView add = new TextView(activity, null, R.style.textLink);
         add.setText(activity.getString(R.string.add_rule));
@@ -190,7 +179,7 @@ public class Dialogs {
 
 
         TextView addDict = new TextView(activity, null, R.style.textLink);
-        addDict.setText(activity.getString(R.string.add_dictionary)+" (.txt RegEx @Voice)");
+        addDict.setText(activity.getString(R.string.add_dictionary) + " (.txt RegEx @Voice)");
         addDict.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
         TxtUtils.underlineTextView(addDict);
         addDict.setOnClickListener(v -> {
@@ -248,7 +237,7 @@ public class Dialogs {
             @Override
             public void onClick(final DialogInterface dialog, final int id) {
                 JSONObject res = new JSONObject();
-                AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
+                //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
                 for (int i = 0; i < root.getChildCount(); i++) {
                     final View childAt = root.getChildAt(i);
                     if (childAt instanceof LinearLayout) {
@@ -256,10 +245,25 @@ public class Dialogs {
                         if (line.getOrientation() == LinearLayout.VERTICAL) {
                             continue;
                         }
-                        String from = ((EditText) line.getChildAt(0)).getText().toString();
+                        EditText childFrom = (EditText) line.getChildAt(0);
+                        String from = childFrom.getText().toString();
                         String to = ((EditText) line.getChildAt(2)).getText().toString();
+
+
+                        LOG.d("TTS-add", from, to);
+
                         try {
-                            if (TxtUtils.isNotEmpty(from)) {
+                            if (from.startsWith("*")) {
+                                try {
+                                    Pattern.compile(from.substring(1));
+                                } catch (Exception e) {
+                                    LOG.d("TTS-incorrect value", from, to);
+                                    childFrom.setSelected(true);
+                                    Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                }
+                                res.put(from, to);
+
+                            } else if (TxtUtils.isNotEmpty(from)) {
                                 res.put(from, to);
                             }
                         } catch (JSONException e) {
@@ -269,8 +273,8 @@ public class Dialogs {
 
                     }
                 }
-                AppState.get().lineTTSReplacements = res.toString();
-                LOG.d("lineTTSReplacements", AppState.get().lineTTSReplacements);
+                AppState.get().lineTTSReplacements2 = res.toString();
+                LOG.d("lineTTSReplacements2", AppState.get().lineTTSReplacements2);
 
 
             }
@@ -278,8 +282,8 @@ public class Dialogs {
         final AlertDialog create = builder.create();
 
         restore.setOnClickListener((a) -> {
-            AppState.get().lineTTSReplacements = AppState.TTS_REPLACEMENTS;
-            AppState.get().lineTTSAccents = AppState.TTS_ACCENTS;
+            AppState.get().lineTTSReplacements2 = AppState.TTS_REPLACEMENTS;
+            //AppState.get().lineTTSAccents = AppState.TTS_ACCENTS;
             BookCSS.get().dictPath = "";
 
             create.dismiss();
@@ -521,7 +525,7 @@ public class Dialogs {
             AlertDialog dialog = builder.show();
             dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
-            if(AppState.get().isExperimental){
+            if (AppState.get().isExperimental) {
                 WebViewUtils.init(c);
             }
 
