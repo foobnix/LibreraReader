@@ -345,7 +345,7 @@ public class TxtUtils {
 
         if (AppState.get().isEnalbeTTSReplacements) {
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements2);
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements3);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -392,7 +392,7 @@ public class TxtUtils {
             }
 
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements2);
+                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements3);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {

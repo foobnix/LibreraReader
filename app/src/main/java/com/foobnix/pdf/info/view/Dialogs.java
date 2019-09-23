@@ -105,7 +105,7 @@ public class Dialogs {
 
 
         try {
-            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements2);
+            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements3);
 
             final Iterator<String> keys = jsonObject.keys();
             while (keys.hasNext()) {
@@ -281,16 +281,16 @@ public class Dialogs {
 
                 }
             }
-            LOG.d("lineTTSReplacements2", AppState.get().lineTTSReplacements2);
+            LOG.d("lineTTSReplacements3", AppState.get().lineTTSReplacements3);
             if(!hasErrors){
-                AppState.get().lineTTSReplacements2 = res.toString();
+                AppState.get().lineTTSReplacements3 = res.toString();
                 create.dismiss();
             }
 
         });
 
         restore.setOnClickListener((a) -> {
-            AppState.get().lineTTSReplacements2 = AppState.TTS_REPLACEMENTS;
+            AppState.get().lineTTSReplacements3 = AppState.TTS_REPLACEMENTS;
             //AppState.get().lineTTSAccents = AppState.TTS_ACCENTS;
             BookCSS.get().dictPath = "";
 

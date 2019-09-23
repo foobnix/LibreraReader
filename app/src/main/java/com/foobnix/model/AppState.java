@@ -416,7 +416,7 @@ public class AppState {
     public boolean isEnalbeTTSReplacements = true;
 
     @IgnoreHashCode
-    public String lineTTSReplacements2 = TTS_REPLACEMENTS;
+    public String lineTTSReplacements3 = TTS_REPLACEMENTS;
 
 
     public List<Integer> nextKeys = NEXT_KEYS;
