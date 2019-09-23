@@ -312,6 +312,7 @@ public class PrefFragment2 extends UIFragment {
 
         final int timeout = 1500;
         final CheckBox isshowPrefAsMenu = (CheckBox) inflate.findViewById(R.id.isshowPrefAsMenu);
+        isshowPrefAsMenu.setSaveEnabled(false);
 
         final Runnable dragLinear = new Runnable() {
 
@@ -333,8 +334,10 @@ public class PrefFragment2 extends UIFragment {
                     }
 
                     ((TextView) library.findViewById(R.id.text1)).setText(tab.getName());
-                    ((CheckBox) library.findViewById(R.id.isVisible)).setChecked(tab.isVisible());
-                    ((CheckBox) library.findViewById(R.id.isVisible)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    CheckBox isVisible = (CheckBox) library.findViewById(R.id.isVisible);
+                    isVisible.setSaveEnabled(false);
+                    isVisible.setChecked(tab.isVisible());
+                    isVisible.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -389,7 +392,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                handler.removeCallbacksAndMessages(ask2);
+                handler.removeCallbacks(ask2);
                 handler.postDelayed(ask2, timeout);
                 synchronized (AppState.get().tabsOrder7) {
                     if (isChecked) {
@@ -406,12 +409,15 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void onClick(View v) {
+                handler.removeCallbacks(ask2);
+
                 AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
 
                     @Override
                     public void run() {
-                        AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
-                        isshowPrefAsMenu.setChecked(false);
+                        synchronized (AppState.get().tabsOrder7) {
+                            AppState.get().tabsOrder7 = AppState.DEFAULTS_TABS_ORDER;
+                        }
                         onTheme();
                     }
                 });
