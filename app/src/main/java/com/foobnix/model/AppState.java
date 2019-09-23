@@ -574,6 +574,7 @@ public class AppState {
 
     public boolean isAuthorTitleFromMetaPDF = false;
     public boolean isShowOnlyOriginalFileNames = false;
+    public boolean isSkipFolderWithNOMEDIA = true;
 
     public boolean isOLED = false;
 

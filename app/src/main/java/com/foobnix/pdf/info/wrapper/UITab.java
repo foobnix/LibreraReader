@@ -66,22 +66,25 @@ public enum UITab {
         return SearchFragment;
     }
 
-    public static List<UITab> getOrdered(String input) {
-        LOG.d("getOrdered", input);
-        List<UITab> list = new ArrayList<UITab>();
-        for (String pair : input.split(",")) {
-            String[] tab = pair.split("#");
-            int id = Integer.valueOf(tab[0]);
-            boolean isVisible = tab[1].equals("1");
-            UITab byIndex = getByIndex(id);
-            byIndex.setVisible(isVisible);
-            list.add(byIndex);
+    public static List<UITab> getOrdered() {
+        synchronized (AppState.get().tabsOrder7) {
+            String input = AppState.get().tabsOrder7;
+            LOG.d("getOrdered", input);
+            List<UITab> list = new ArrayList<UITab>();
+            for (String pair : input.split(",")) {
+                String[] tab = pair.split("#");
+                int id = Integer.valueOf(tab[0]);
+                boolean isVisible = tab[1].equals("1");
+                UITab byIndex = getByIndex(id);
+                byIndex.setVisible(isVisible);
+                list.add(byIndex);
+            }
+            return list;
         }
-        return list;
     }
 
     public static int getCurrentTabIndex(UITab tab) {
-        List<UITab> ordered = getOrdered(AppState.get().tabsOrder7);
+        List<UITab> ordered = getOrdered();
         int count = -1;
         for (int i = 0; i < ordered.size(); i++) {
             if (ordered.get(i).isVisible) {
@@ -92,18 +95,25 @@ public enum UITab {
             }
         }
         return 0;
+
     }
 
     public static boolean isShowRecent() {
-        return AppState.get().tabsOrder7.contains(UITab.RecentFragment.index + "#1");
+        synchronized (AppState.get().tabsOrder7) {
+            return AppState.get().tabsOrder7.contains(UITab.RecentFragment.index + "#1");
+        }
     }
 
     public static boolean isShowPreferences() {
-        return AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#1");
+        synchronized (AppState.get().tabsOrder7) {
+            return AppState.get().tabsOrder7.contains(UITab.PrefFragment.index + "#1");
+        }
     }
 
     public static boolean isShowCloudsPreferences() {
-        return AppState.get().tabsOrder7.contains(UITab.CloudsFragment.index + "#1");
+        synchronized (AppState.get().tabsOrder7) {
+            return AppState.get().tabsOrder7.contains(UITab.CloudsFragment.index + "#1");
+        }
     }
 
     public boolean isVisible() {

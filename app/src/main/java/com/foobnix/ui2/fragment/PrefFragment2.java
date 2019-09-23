@@ -318,7 +318,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void run() {
                 dragLinearLayout.removeAllViews();
-                for (UITab tab : UITab.getOrdered(AppState.get().tabsOrder7)) {
+                for (UITab tab : UITab.getOrdered()) {
                     if (BuildConfig.IS_FDROID && tab == UITab.CloudsFragment) {
                         continue;
                     }
@@ -366,14 +366,16 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
                 handler.removeCallbacks(ask2);
-                AppState.get().tabsOrder7 = "";
-                for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
-                    View child = dragLinearLayout.getChildAt(i);
-                    boolean isVisible = ((CheckBox) child.findViewById(R.id.isVisible)).isChecked();
-                    AppState.get().tabsOrder7 += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
+                synchronized (AppState.get().tabsOrder7) {
+                    AppState.get().tabsOrder7 = "";
+                    for (int i = 0; i < dragLinearLayout.getChildCount(); i++) {
+                        View child = dragLinearLayout.getChildAt(i);
+                        boolean isVisible = ((CheckBox) child.findViewById(R.id.isVisible)).isChecked();
+                        AppState.get().tabsOrder7 += child.getTag() + "#" + (isVisible ? "1" : "0") + ",";
+                    }
+                    AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
+                    LOG.d("tabsApply", AppState.get().tabsOrder7);
                 }
-                AppState.get().tabsOrder7 = TxtUtils.replaceLast(AppState.get().tabsOrder7, ",", "");
-                LOG.d("tabsApply", AppState.get().tabsOrder7);
 
                 if (UITab.isShowCloudsPreferences()) {
                     Clouds.get().init(getActivity());
@@ -389,10 +391,12 @@ public class PrefFragment2 extends UIFragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 handler.removeCallbacksAndMessages(ask2);
                 handler.postDelayed(ask2, timeout);
-                if (isChecked) {
-                    AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
-                } else {
-                    AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+                synchronized (AppState.get().tabsOrder7) {
+                    if (isChecked) {
+                        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#1", UITab.PrefFragment.index + "#0");
+                    } else {
+                        AppState.get().tabsOrder7 = AppState.get().tabsOrder7.replace(UITab.PrefFragment.index + "#0", UITab.PrefFragment.index + "#1");
+                    }
                 }
                 dragLinear.run();
             }
@@ -1120,19 +1124,25 @@ public class PrefFragment2 extends UIFragment {
         };
 
         inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(v -> {
+
+            final CheckBox isSkipFolderWithNOMEDIA = new CheckBox(v.getContext());
+            isSkipFolderWithNOMEDIA.setText(getString(R.string.ignore_folder_scan_if__nomedia_file_exists));
+
             final CheckBox isAuthorTitleFromMetaPDF = new CheckBox(v.getContext());
             isAuthorTitleFromMetaPDF.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
 
             final CheckBox isShowOnlyOriginalFileNames = new CheckBox(v.getContext());
             isShowOnlyOriginalFileNames.setText(R.string.display_original_file_names_without_metadata);
 
-            final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null, isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF);
+            final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null, isSkipFolderWithNOMEDIA, isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF);
 
+            isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
             isAuthorTitleFromMetaPDF.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
             isShowOnlyOriginalFileNames.setChecked(AppState.get().isShowOnlyOriginalFileNames);
 
 
             final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
+                AppState.get().isSkipFolderWithNOMEDIA = isSkipFolderWithNOMEDIA.isChecked();
                 AppState.get().isAuthorTitleFromMetaPDF = isAuthorTitleFromMetaPDF.isChecked();
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
 
@@ -1149,6 +1159,7 @@ public class PrefFragment2 extends UIFragment {
             };
 
             isAuthorTitleFromMetaPDF.setOnCheckedChangeListener(listener);
+            isSkipFolderWithNOMEDIA.setOnCheckedChangeListener(listener);
             isShowOnlyOriginalFileNames.setOnCheckedChangeListener(listener);
 
         });

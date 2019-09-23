@@ -86,7 +86,7 @@ public class SearchCore {
             if (file.isDirectory()) {
                 LOG.d("find-add-folder", file.getPath());
 
-                if (new File(file, NOMEDIA).isFile()) {
+                if (!AppState.get().isSkipFolderWithNOMEDIA && new File(file, NOMEDIA).isFile()) {
                     LOG.d("find-skip NOMEDIA", file.getPath());
                     continue;
                 }

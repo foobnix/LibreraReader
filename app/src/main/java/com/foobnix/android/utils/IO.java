@@ -22,7 +22,6 @@ public class IO {
 
     public static void writeObj(File file, Object o) {
         new Thread(() -> writeObjAsync(file, o)).start();
-
     }
 
     public static void writeObjAsync(File file, Object o) {
