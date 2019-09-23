@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Traukti, kad pradėtumėte sinchronizavimą</string>
    <string name="show_book_title">Rodyti knygos pavadinimą būsenos juostoje</string>
    <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Nepaisyti aplanko nuskaitymo, jei yra .nomedia failas</string>
 </resources>

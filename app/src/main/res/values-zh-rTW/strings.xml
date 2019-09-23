@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">拉開始同步</string>
    <string name="show_book_title">在狀態欄中顯示書名</string>
    <string name="delete_reading_progress">刪除閱讀進度</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">如果.nomedia文件存在，則忽略文件夾掃描</string>
 </resources>

@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Puxar para iniciar a sincronização</string>
    <string name="show_book_title">Mostrar título do livro na barra de status</string>
    <string name="delete_reading_progress">Excluir o progresso da leitura</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorar a verificação de pastas se o arquivo .nomedia existir</string>
 </resources>

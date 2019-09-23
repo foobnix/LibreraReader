@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Kuvuta ili kuanza kusawazisha</string>
    <string name="show_book_title">Onyesha kichwa cha kitabu kwenye upau wa hali</string>
    <string name="delete_reading_progress">Futa maendeleo ya kusoma</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Kupuuza skana ya folda ikiwa faili ya .nomedia iko</string>
 </resources>

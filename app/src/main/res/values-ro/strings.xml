@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Trageți pentru a începe sincronizarea</string>
    <string name="show_book_title">Arată titlul cărții în bara de stare</string>
    <string name="delete_reading_progress">Ștergeți progresul lecturii</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorați scanarea folderului dacă există un fișier .nomedia</string>
 </resources>

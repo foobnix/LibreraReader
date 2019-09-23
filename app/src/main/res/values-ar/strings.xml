@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">سحب لبدء المزامنة</string>
    <string name="show_book_title">إظهار عنوان الكتاب في شريط الحالة</string>
    <string name="delete_reading_progress">حذف تقدم القراءة</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">تجاهل فحص المجلد في حالة وجود ملف .nomedia</string>
 </resources>

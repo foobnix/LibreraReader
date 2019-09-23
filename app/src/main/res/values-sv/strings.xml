@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Dra för att börja synkronisera</string>
    <string name="show_book_title">Visa boktitel i statusfältet</string>
    <string name="delete_reading_progress">Radera läsningen</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorera mappsökning om .nomedia-fil finns</string>
 </resources>

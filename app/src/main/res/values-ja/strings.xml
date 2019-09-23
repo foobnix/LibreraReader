@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">プルして同期を開始</string>
    <string name="show_book_title">ステータスバーに本のタイトルを表示する</string>
    <string name="delete_reading_progress">読書の進行状況を削除する</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomediaファイルが存在する場合、フォルダースキャンを無視する</string>
 </resources>

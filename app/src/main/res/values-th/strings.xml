@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">ดึงเพื่อเริ่มการซิงค์</string>
    <string name="show_book_title">แสดงชื่อหนังสือในแถบสถานะ</string>
    <string name="delete_reading_progress">ลบความคืบหน้าการอ่าน</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">ละเว้นการสแกนโฟลเดอร์หากมีไฟล์. media อยู่</string>
 </resources>

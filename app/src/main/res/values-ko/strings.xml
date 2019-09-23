@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">당겨 동기화 시작</string>
    <string name="show_book_title">상태 표시 줄에 책 제목 표시</string>
    <string name="delete_reading_progress">읽기 진행률 삭제</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia 파일이 존재하면 폴더 스캔 무시</string>
 </resources>

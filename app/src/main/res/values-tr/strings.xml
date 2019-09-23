@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Senkronizasyonu başlatmak için çekin</string>
    <string name="show_book_title">Durum çubuğunda kitap başlığını göster</string>
    <string name="delete_reading_progress">Okuma işlemini sil</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia dosyası varsa, klasör taramasını yoksay</string>
 </resources>

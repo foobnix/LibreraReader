@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">برای شروع همگام سازی ، بکشید</string>
    <string name="show_book_title">عنوان کتاب را در نوار وضعیت نشان دهید</string>
    <string name="delete_reading_progress">پیشرفت خواندن را حذف کنید</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">اگر پرونده .nomedia وجود دارد ، اسکن پوشه را نادیده بگیرید</string>
 </resources>

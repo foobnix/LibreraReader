@@ -581,4 +581,5 @@
    <string name="pull_to_start_sync">Tarik untuk mulai menyinkronkan</string>
    <string name="show_book_title">Tampilkan judul buku di bilah status</string>
    <string name="delete_reading_progress">Hapus kemajuan membaca</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Abaikan pemindaian folder jika ada file .nomedia</string>
 </resources>
