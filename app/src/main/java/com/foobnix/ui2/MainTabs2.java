@@ -31,7 +31,6 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
 import com.cloudrail.si.CloudRail;
-import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -59,7 +58,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyProgressBar;
-import com.foobnix.pdf.info.widget.PrefDialogs;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -797,19 +795,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
 
-        if (AppState.get().isAutomaticExport && Android6.canWrite(this) && !PrefDialogs.isBookSeriviceIsRunning(this)) {
-            try {
-                File root = new File(BookCSS.get().backupPath);
-                if (!root.isDirectory()) {
-                    root.mkdirs();
-                }
-                File file = new File(root, Apps.getApplicationName(this) + "-" + Apps.getVersionName(this) + "-backup-export-all.JSON.txt");
-                LOG.d("isAutomaticExport", file);
-                //ExportSettingsManager.getInstance(this).exportAll(file);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
+
         EventBus.getDefault().unregister(this);
 
         ImageLoader.getInstance().clearMemoryCache();

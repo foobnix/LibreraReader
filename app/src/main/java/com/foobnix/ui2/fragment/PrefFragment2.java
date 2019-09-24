@@ -1548,17 +1548,6 @@ public class PrefFragment2 extends UIFragment {
 
                         getActivity()));
 
-        final CheckBox isAutomaticExport = (CheckBox) inflate.findViewById(R.id.isAutomaticExport);
-        isAutomaticExport.setChecked(AppState.get().isAutomaticExport);
-        isAutomaticExport.setOnCheckedChangeListener(new
-
-                                                             OnCheckedChangeListener() {
-
-                                                                 @Override
-                                                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                                                     AppState.get().isAutomaticExport = isChecked;
-                                                                 }
-                                                             });
         // folders
 
         final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);

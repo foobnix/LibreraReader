@@ -689,7 +689,6 @@ public class AppState {
     public String nameHorizontalMode = "";
     public String nameMusicianMode = "";
 
-    public boolean isAutomaticExport = false;
     public boolean isDisplayAllFilesInFolder = false;
 
     public String myAutoCompleteDb = "";
