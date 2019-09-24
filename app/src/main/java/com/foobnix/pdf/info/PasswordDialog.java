@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.view.EditTextHelper;
@@ -59,33 +60,36 @@ public class PasswordDialog {
                     @Override
                     public void onAuthenticationError(int errorCode, CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        //Toast.makeText(a, errString, Toast.LENGTH_SHORT).show();
+                        LOG.d("isFingerPrintPassword", "onAuthenticationError", errorCode, errString);
+                        Toast.makeText(a, errString, Toast.LENGTH_SHORT).show();
+                        a.finish();
+
 
                     }
 
                     @Override
                     public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
                         super.onAuthenticationHelp(helpCode, helpString);
-                        //Toast.makeText(a, "onAuthenticationHelp", Toast.LENGTH_SHORT).show();
-
                     }
 
                     @Override
                     public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
+                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
                         a.getIntent().putExtra(PasswordDialog.EXTRA_APP_PASSWORD, UUID.randomUUID().toString());
                         a.finish();
                         a.startActivity(a.getIntent());
-                        Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
 
                     }
 
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
+                        LOG.d("isFingerPrintPassword", "onAuthenticationFailed");
                         Toast.makeText(a, R.string.fail, Toast.LENGTH_SHORT).show();
                     }
                 });
+
             }
             return true;
 
