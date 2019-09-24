@@ -2,7 +2,7 @@
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Library Settings</string>
    <string name="scan_device_for_new_books">Folders to Scan</string>
-   <string name="add_folder">Add a folder</string>
+   <string name="add_folder">New folder</string>
    <string name="archives">Archives</string>
    <string name="other">Other</string>
    <string name="you_need_to_update_the_library">Now update Library to apply changes</string>
@@ -192,7 +192,7 @@
    <string name="network">Network</string>
    <string name="catalogs">Catalogs</string>
    <string name="proxy_server_settings">Proxy Server Settings</string>
-   <string name="use_proxy_server">Use proxy server</string>
+   <string name="use_proxy_server">Use proxy</string>
    <string name="proxy_type">Type</string>
    <string name="server">Server</string>
    <string name="port">Port</string>
@@ -200,7 +200,7 @@
    <string name="other_settings">Additional Settings</string>
    <string name="folder_for_downloaded_books">Downloads</string>
    <string name="display_large_book_covers_in_the_catalog">Large book covers in catalogs</string>
-   <string name="add_catalog">Add a Catalog</string>
+   <string name="add_catalog">New Catalog</string>
    <string name="name">Name</string>
    <string name="description">Description</string>
    <string name="add_as_a_web_site">Add as a WEB site</string>
@@ -211,7 +211,7 @@
    <string name="user_name">User Name</string>
    <string name="favorites">Favorites</string>
    <string name="my_favorites_links">My favorite links</string>
-   <string name="what_is_the_opds_online_catalog_">What is OPDS online catalog?</string>
+   <string name="what_is_the_opds_online_catalog_">What is an OPDS online catalog?</string>
    <string name="___DIALOGS___SECTION___"></string>
    <string name="ok">OK</string>
    <string name="yes">Yes</string>
@@ -365,7 +365,7 @@
    <string name="this_function_will_works_in_modern_android">This function is for newer Android devices</string>
    <string name="menu">Menu</string>
    <string name="search_not_supported_formats">Search in non-supported formats</string>
-   <string name="add_bookmark">Add a bookmark</string>
+   <string name="add_bookmark">New bookmark</string>
    <string name="performance_settings">Performance settings</string>
    <string name="size_of_allocated_memory">Size of allocated memory</string>
    <string name="display_settings">Display settings</string>
@@ -399,7 +399,7 @@
    <string name="cd_import">Import</string>
    <string name="cd_back_to_parent">Back to parent</string>
    <string name="cd_back_to_all_catalogs">Back to Catalogs list</string>
-   <string name="cd_add_new_opds_catalog">Add an OPDS catalog</string>
+   <string name="cd_add_new_opds_catalog">New OPDS catalog</string>
    <string name="can_t_delete_file">Unable to delete file</string>
    <string name="switch_off">Switch off</string>
    <string name="___RECENTLY___ADDED___SECTION___"></string>
@@ -437,7 +437,7 @@
    <string name="zoom_in_out_using_the_volume_keys">Zoom in/out with volume keys</string>
    <string name="tag">Tag</string>
    <string name="no_tag">No tags</string>
-   <string name="add_tag">Add a Tag</string>
+   <string name="add_tag">New Tag</string>
    <string name="do_you_want_to_delete_this_tag_from_all_books_">Remove this tag from all books?</string>
    <string name="by_number_of_pages">Page Count</string>
    <string name="by_number_in_serie"># in Series</string>
@@ -451,7 +451,7 @@
    <string name="text_highlight_mode_is_disable">Text selection is disabled</string>
    <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we can fix the bug ASAP.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause on incoming calls, messages, etc.</string>
-   <string name="add_resource">Add storage</string>
+   <string name="add_resource">New storage</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
    <string name="hyphenation_language">Language</string>
    <string name="replacing_the_white_color_in_the_images_with_the_background_color">Replace white color in images with background color (day mode only)</string>
@@ -491,7 +491,7 @@
    <string name="size">Size</string>
    <string name="quick_bookmark_by_the_headset">Enable remote bookmarks (Start/Stop button)</string>
    <string name="slider_scale">Slider scale</string>
-   <string name="chapter_format">Legend format</string>
+   <string name="chapter_format">Legend</string>
    <string name="play_a_music_file">Play an audio file</string>
    <string name="rate_us">Rate us</string>
    <string name="reset">Reset</string>
@@ -541,7 +541,7 @@
    <string name="new_profile">New Profile</string>
    <string name="main">Main</string>
    <string name="do_you_want_to_switch_profile_">Switch to another profile?</string>
-   <string name="sync_error">Sync error</string>
+   <string name="sync_error">Syncing error</string>
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
    <string name="wifi_sync_only">Sync over WiFi only</string>
@@ -563,8 +563,8 @@
    <string name="copy_text">Copy text</string>
    <string name="show_fast_scroll">Show scrollbar</string>
    <string name="replacements">Replacements</string>
-   <string name="add_dictionary">Add dictionary</string>
-   <string name="add_rule">Add rule</string>
+   <string name="add_dictionary">New dictionary</string>
+   <string name="add_rule">New rule</string>
    <string name="emphasis">Manual Stress Mark(s)</string>
    <string name="with_cutout">Notched</string>
    <string name="screen">Screen</string>
@@ -572,7 +572,7 @@
    <string name="enable_experimental_features">Enable experimental features</string>
    <string name="display_original_file_names_without_metadata">Ignore metadata (display filenames only)</string>
    <string name="use_fingerprint_as_the_password">Allow fingerprint authentication</string>
-   <string name="show_tap_zones_on_screen">Delineate tap zones (dotted line)</string>
+   <string name="show_tap_zones_on_screen">Indicate tap zones (dotted line)</string>
    <string name="show_the_last_page_with_the_red_line">Mark last page with red stripes</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Highlight page separators</string>
    <string name="clear_log">Clear log</string>
@@ -581,5 +581,5 @@
    <string name="pull_to_start_sync">Manual sync (à la pull-to-refresh)</string>
    <string name="show_book_title">Always display book title on top</string>
    <string name="delete_reading_progress">Reset progress</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore folder scan if .nomedia file exists</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore folders with .nomedia files</string>
 </resources>
