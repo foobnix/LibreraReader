@@ -30,7 +30,7 @@
    <string name="opening_the_last_book_when_the_application_starts">Cargar último libro abierto al iniciar</string>
    <string name="show_application_close_dialog_every_time">Confirmar cierre al presionar el botón Atrás</string>
    <string name="display_all_file_types_in_folders">Mostrar todos los tipos de archivos en carpetas</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Mostrar '¿Qué hay de nuevo?' después de una actualización</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Mostrar \'¿Qué hay de nuevo?\' después de una actualización</string>
    <string name="what_is_new_in">¿Qué hay de nuevo?</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Lista completa de cambios con imágenes (web, PDF)</string>
    <string name="search_for_text_in_documents">Buscar texto en documentos</string>
@@ -546,7 +546,7 @@
    <string name="sign_out">Cerrar sesión</string>
    <string name="wifi_sync_only">Solo sincronización WiFi</string>
    <string name="sync_google_drive">Sincronizar (Google Drive)</string>
-   <string name="single_tap_to_select_text"> Un toque para seleccionar texto</string>
+   <string name="single_tap_to_select_text">Un toque para seleccionar texto</string>
    <string name="sync_book">Sincronizar un libro</string>
    <string name="sync">Sincronizar</string>
    <string name="synchronized_folder">Carpeta sincronizada</string>
