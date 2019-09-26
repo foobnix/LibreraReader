@@ -48,9 +48,10 @@ import java.util.List;
 
 public class MyPopupMenu {
     Context c;
-    private View anchor;
     List<Menu> list = new ArrayList<Menu>();
+    private View anchor;
     private boolean isTabsActivity;
+    private OnDismissListener onDismissListener;
 
     public MyPopupMenu(Context c, View anchor) {
         this.c = c;
@@ -64,77 +65,9 @@ public class MyPopupMenu {
         isTabsActivity = c instanceof MainTabs2;
     }
 
-    public class Menu {
-        String stringRes;
-        int iconRes;
-        Drawable drawable;
-        String letter;
-        OnMenuItemClickListener click;
-        OnMenuItemClickListener onLongClick;
-
-        private String fontPath;
-        Boolean active;
-
-        String checkboxString;
-        boolean checkboxState;
-        CompoundButton.OnCheckedChangeListener checkedChangeListener;
-
-        public Menu add(int res) {
-            this.stringRes = c.getString(res);
-            return this;
-        }
-
-        public Menu add(String name) {
-            this.stringRes = name;
-            return this;
-        }
-
-        public Menu addCheckbox(String name, boolean state, CompoundButton.OnCheckedChangeListener listener) {
-            this.checkboxString = name;
-            this.checkboxState = state;
-            this.checkedChangeListener = listener;
-            return this;
-        }
-
-        public Menu add(String name, String fontPath) {
-            this.stringRes = name;
-            this.fontPath = fontPath;
-            return this;
-        }
-
-        public Menu setIcon(int res) {
-            this.iconRes = res;
-            return this;
-        }
-
-        public Menu setDrawable(String letter, Drawable d) {
-            this.drawable = d;
-            this.letter = letter;
-            return this;
-        }
-
-        public Menu active(Boolean active) {
-            this.active = active;
-            return this;
-        }
-
-        public Menu setOnMenuItemClickListener(OnMenuItemClickListener onclick) {
-            this.click = onclick;
-            return this;
-        }
-
-        public Menu setOnMenuItemLongClickListener(OnMenuItemClickListener onLongClick) {
-            this.onLongClick = onLongClick;
-            return this;
-        }
-
-    }
-
     public void show() {
         show(-1);
     }
-
-    private OnDismissListener onDismissListener;
 
     public void show(int pos) {
         try {
@@ -165,7 +98,7 @@ public class MyPopupMenu {
                 }
 
                 CheckBox checkbox1 = (CheckBox) layout.findViewById(R.id.checkbox1);
-                if(TxtUtils.isNotEmpty(item.checkboxString)){
+                if (TxtUtils.isNotEmpty(item.checkboxString)) {
                     checkbox1.setVisibility(View.VISIBLE);
                     checkbox1.setText(item.checkboxString);
                     checkbox1.setOnCheckedChangeListener(null);
@@ -209,7 +142,7 @@ public class MyPopupMenu {
 
                     @Override
                     public void onClick(View v) {
-                        if(item.click!=null) {
+                        if (item.click != null) {
                             item.click.onMenuItemClick(new MyMenuItem(item.stringRes));
                         }
                         try {
@@ -277,6 +210,9 @@ public class MyPopupMenu {
             } catch (Exception e) {
                 p1.setWidth(200);
             }
+            p1.setHeight(Dips.screenHeight() / 2 + Dips.dpToPx(80));
+            //p1.setWidth(ListPopupWindow.MATCH_PARENT);
+            //p1.setDropDownGravity(Gravity.CENTER);
 
             p1.show();
 
@@ -294,10 +230,76 @@ public class MyPopupMenu {
 
     }
 
-    public static class MyMenuItem implements  MenuItem{
+    private int measureContentWidth(ListAdapter listAdapter, Context mContext) {
+        ViewGroup mMeasureParent = null;
+        int maxWidth = 0;
+        View itemView = null;
+        int itemType = 0;
+
+        final ListAdapter adapter = listAdapter;
+        final int widthMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        final int heightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        final int count = adapter.getCount();
+        for (int i = 0; i < count; i++) {
+            final int positionType = adapter.getItemViewType(i);
+            if (positionType != itemType) {
+                itemType = positionType;
+                itemView = null;
+            }
+
+            if (mMeasureParent == null) {
+                mMeasureParent = new FrameLayout(mContext);
+            }
+
+            itemView = adapter.getView(i, itemView, mMeasureParent);
+            itemView.measure(widthMeasureSpec, heightMeasureSpec);
+
+            final int itemWidth = itemView.getMeasuredWidth();
+
+            if (itemWidth > maxWidth) {
+                maxWidth = itemWidth;
+            }
+        }
+
+        return maxWidth;
+    }
+
+    public Menu getMenu() {
+        Menu m = new Menu();
+        list.add(m);
+        return m;
+    }
+
+    public Menu getMenu(int icon, int text, Runnable run) {
+        Menu m = new Menu();
+        m.setIcon(icon);
+        m.add(text);
+        m.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                run.run();
+                return true;
+            }
+        });
+
+        list.add(m);
+
+        return m;
+    }
+
+    public void setAnchor(View anchor) {
+        this.anchor = anchor;
+    }
+
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    public static class MyMenuItem implements MenuItem {
         String title;
-        public MyMenuItem(String title){
-            this.title =title;
+
+        public MyMenuItem(String title) {
+            this.title = title;
         }
 
         @Override
@@ -573,69 +575,68 @@ public class MyPopupMenu {
         }
     }
 
-    private int measureContentWidth(ListAdapter listAdapter, Context mContext) {
-        ViewGroup mMeasureParent = null;
-        int maxWidth = 0;
-        View itemView = null;
-        int itemType = 0;
+    public class Menu {
+        String stringRes;
+        int iconRes;
+        Drawable drawable;
+        String letter;
+        OnMenuItemClickListener click;
+        OnMenuItemClickListener onLongClick;
+        Boolean active;
+        String checkboxString;
+        boolean checkboxState;
+        CompoundButton.OnCheckedChangeListener checkedChangeListener;
+        private String fontPath;
 
-        final ListAdapter adapter = listAdapter;
-        final int widthMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-        final int heightMeasureSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-        final int count = adapter.getCount();
-        for (int i = 0; i < count; i++) {
-            final int positionType = adapter.getItemViewType(i);
-            if (positionType != itemType) {
-                itemType = positionType;
-                itemView = null;
-            }
-
-            if (mMeasureParent == null) {
-                mMeasureParent = new FrameLayout(mContext);
-            }
-
-            itemView = adapter.getView(i, itemView, mMeasureParent);
-            itemView.measure(widthMeasureSpec, heightMeasureSpec);
-
-            final int itemWidth = itemView.getMeasuredWidth();
-
-            if (itemWidth > maxWidth) {
-                maxWidth = itemWidth;
-            }
+        public Menu add(int res) {
+            this.stringRes = c.getString(res);
+            return this;
         }
 
-        return maxWidth;
-    }
+        public Menu add(String name) {
+            this.stringRes = name;
+            return this;
+        }
 
-    public Menu getMenu() {
-        Menu m = new Menu();
-        list.add(m);
-        return m;
-    }
+        public Menu addCheckbox(String name, boolean state, CompoundButton.OnCheckedChangeListener listener) {
+            this.checkboxString = name;
+            this.checkboxState = state;
+            this.checkedChangeListener = listener;
+            return this;
+        }
 
-    public Menu getMenu(int icon, int text, Runnable run) {
-        Menu m = new Menu();
-        m.setIcon(icon);
-        m.add(text);
-        m.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                run.run();
-                return true;
-            }
-        });
+        public Menu add(String name, String fontPath) {
+            this.stringRes = name;
+            this.fontPath = fontPath;
+            return this;
+        }
 
-        list.add(m);
+        public Menu setIcon(int res) {
+            this.iconRes = res;
+            return this;
+        }
 
-        return m;
-    }
+        public Menu setDrawable(String letter, Drawable d) {
+            this.drawable = d;
+            this.letter = letter;
+            return this;
+        }
 
-    public void setAnchor(View anchor) {
-        this.anchor = anchor;
-    }
+        public Menu active(Boolean active) {
+            this.active = active;
+            return this;
+        }
 
-    public void setOnDismissListener(OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
+        public Menu setOnMenuItemClickListener(OnMenuItemClickListener onclick) {
+            this.click = onclick;
+            return this;
+        }
+
+        public Menu setOnMenuItemLongClickListener(OnMenuItemClickListener onLongClick) {
+            this.onLongClick = onLongClick;
+            return this;
+        }
+
     }
 
 }
