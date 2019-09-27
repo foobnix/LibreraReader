@@ -53,7 +53,7 @@ public class FontDialog {
                         }
                     });
                 }
-                menu.show(getItemPos(spinner));
+                menu.show(getItemPos(spinner), true);
 
             }
 
@@ -131,14 +131,14 @@ public class FontDialog {
         initSpinner(inflate, capitalFontSpinner, BookCSS.get().capitalFont, R.id.capitalFontUp, R.id.capitalFontDown, R.id.textFontCapital);
 
         final TextView textFontCapital = (TextView) inflate.findViewById(R.id.textFontCapital);
-        
+
         String text = textFontCapital.getText().toString();
         textFontCapital.setText(Html.fromHtml("<b>" + text.substring(0, 1) + "</b>" + text.substring(1)));
 
         boolean isFB2 = BookType.FB2.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
         int visibleFB2 = TxtUtils.visibleIf(isFB2);
         inflate.findViewById(R.id.isFB2).setVisibility(visibleFB2);
-        
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.customize_fonts);
         builder.setView(inflate);

@@ -66,10 +66,10 @@ public class MyPopupMenu {
     }
 
     public void show() {
-        show(-1);
+        show(-1, false);
     }
 
-    public void show(int pos) {
+    public void show(int pos, boolean isLong) {
         try {
             if (c instanceof MainTabs2) {
                 ADS.hideAdsTemp((Activity) c);
@@ -210,7 +210,9 @@ public class MyPopupMenu {
             } catch (Exception e) {
                 p1.setWidth(200);
             }
-            p1.setHeight(Dips.screenHeight() / 2 + Dips.dpToPx(80));
+            if(isLong) {
+                p1.setHeight(Dips.screenHeight() / 2 + Dips.dpToPx(80));
+            }
             //p1.setWidth(ListPopupWindow.MATCH_PARENT);
             //p1.setDropDownGravity(Gravity.CENTER);
 
