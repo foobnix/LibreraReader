@@ -24,6 +24,7 @@ As of today, it can boast more than __10 million__ downloads to devices running 
 * Recent (featuring a reading-progress indicator)
 * Support for bookmarks, annotations, and EPUB3 tables of contents
 * Support for clouds and online catalogs
+* Syncing across Android devices via Google Drive (reading progress, bookmarks, etc.)
 * Configurable Day and Night modes
 * Configurable link color (hence, footnotes and endnotes color)
 * Support for many popular online (including translators) and offline dictionaries
