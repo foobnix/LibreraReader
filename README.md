@@ -27,21 +27,23 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 ## Required build libs
 
 ~~~~
-mesa-common-dev libxcursor-dev  libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
+mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
 ~~~~
 
 ## Build Librera with MuPdf 1.11 (Default)
 
 ~~~~
-/Builder/link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
-./gradlew assebleLibrera
+cd Builder
+./link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
+./gradlew assembleLibrera
 ~~~~
 
 ## Build Librera with MuPdf 1.16.1 (Optional)
 
 ~~~~
-/Builder/link_to_mupdf_1.16.1.sh 
-./gradlew assebleAlpha
+cd Builder
+./link_to_mupdf_1.16.1.sh
+./gradlew assembleAlpha
 ~~~~
 
 ## Librera depends on
