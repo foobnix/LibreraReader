@@ -9,6 +9,7 @@ cd ../
 ./gradlew clean incVersion
 
 ./gradlew assembleAlphaRelease
+./gradlew assembleFdroidRelease
 
 ./gradlew -stop
 
