@@ -71,8 +71,8 @@ public abstract class AbstractCodecDocument implements CodecDocument {
 
     @Override
     public final void recycle() {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             TempHolder.get().lastRecycledDocument = documentHandle;
             if (!isRecycled()) {
                 context.recycle();

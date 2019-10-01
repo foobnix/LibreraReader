@@ -86,8 +86,8 @@ public class MuPdfLinks {
         if (TxtUtils.isEmpty(id)) {
             return -1;
         }
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             return getLinkPage(dochandle, id);
         } finally {
             TempHolder.lock.unlock();

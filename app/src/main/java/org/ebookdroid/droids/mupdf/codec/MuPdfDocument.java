@@ -101,9 +101,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     @Override
     public CodecPageInfo getPageInfo(final int pageNumber) {
         final CodecPageInfo info = new CodecPageInfo();
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             final int res = getPageInfo(documentHandle, pageNumber + 1, info);
             if (res == -1) {
                 return null;
@@ -133,8 +132,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
         }
 
         final CodecPageInfo cpi = new CodecPageInfo();
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             MuPdfDocument.getPageInfo(docHandle, targetPage, cpi);
         } finally {
             TempHolder.lock.unlock();
@@ -166,8 +165,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     public String getMeta(final String option) {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
+
             if (true) {
                 return getMeta(documentHandle, option);
             }
@@ -216,9 +216,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     }
 
     private static long openFile(final int format, String fname, final String pwd, String css) {
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             int allocatedMemory = AppState.get().allocatedMemorySize * 1024 * 1024;
            // int allocatedMemory = CoreSettings.get().pdfStorageSize;
             LOG.d("allocatedMemory", AppState.get().allocatedMemorySize, " MB " + allocatedMemory);
@@ -272,9 +271,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
             LOG.d("getPageCount from cache", cacheCount);
             return cacheCount;
         }
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             cacheHandle = handle;
             cacheSize = size;
             cacheWH = w + h;

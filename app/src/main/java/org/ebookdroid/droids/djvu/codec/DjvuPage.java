@@ -65,6 +65,47 @@ public class DjvuPage extends AbstractCodecPage {
 
     }
 
+    static void normalize(final RectF r, final float width, final float height) {
+        r.left = r.left / width;
+        r.right = r.right / width;
+        r.top = r.top / height;
+        r.bottom = r.bottom / height;
+    }
+
+    static void normalizeTextBox(final PageTextBox r, final float width, final float height) {
+        final float left = r.left / width;
+        final float right = r.right / width;
+        final float top = 1 - r.top / height;
+        final float bottom = 1 - r.bottom / height;
+        r.left = Math.min(left, right);
+        r.right = Math.max(left, right);
+        r.top = Math.min(top, bottom);
+        r.bottom = Math.max(top, bottom);
+    }
+
+    private static synchronized native int getWidth(long pageHandle);
+
+    private static synchronized native int getHeight(long pageHandle);
+
+    private static native boolean renderPage(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode);
+
+    private static native boolean renderPageBitmap(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode);
+
+    private static native void free(long pageHandle);
+
+    private native static ArrayList<PageLink> getPageLinks(long docHandle, int pageNo);
+
+    native static List<PageTextBox> getPageText(long docHandle, int pageNo, long contextHandle, String pattern);
+
+    public static List<PageTextBox> getPageTextSync(long docHandle, int pageNo, long contextHandle, String pattern) {
+        TempHolder.lock.lock();
+        try {
+            return getPageText(docHandle, pageNo, contextHandle, pattern);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
     @Override
     public List<Annotation> getAnnotations() {
         return new ArrayList<Annotation>();
@@ -178,6 +219,8 @@ public class DjvuPage extends AbstractCodecPage {
         return renderBitmap.getBitmap();
     }
 
+    // private static native boolean isDecodingDone(long pageHandle);
+
     @Override
     protected void finalize() throws Throwable {
         // recycle();
@@ -206,13 +249,12 @@ public class DjvuPage extends AbstractCodecPage {
         return pageHandle == 0;
     }
 
-
     public List<PageLink> getPageLinks2() {
         return Collections.emptyList();
     }
 
     @Override
-    public  List<PageLink> getPageLinks() {
+    public List<PageLink> getPageLinks() {
         if (!AppState.get().isAllowTextSelection) {
             return Collections.emptyList();
         }
@@ -245,12 +287,11 @@ public class DjvuPage extends AbstractCodecPage {
 
     public List<PageTextBox> getPageText1() {
 
-        TempHolder.lock.lock();
         if (containsErrors) {
             LOG.d("getPageText1", "contains" + filename.hashCode());
             return null;
         }
-        TempHolder.lock.unlock();
+
 
         writeLock();
         final List<PageTextBox> list = getPageTextSync(docHandle, pageNo, contextHandle, null);
@@ -266,33 +307,9 @@ public class DjvuPage extends AbstractCodecPage {
         return list;
     }
 
-    static void normalize(final RectF r, final float width, final float height) {
-        r.left = r.left / width;
-        r.right = r.right / width;
-        r.top = r.top / height;
-        r.bottom = r.bottom / height;
-    }
-
-    static void normalizeTextBox(final PageTextBox r, final float width, final float height) {
-        final float left = r.left / width;
-        final float right = r.right / width;
-        final float top = 1 - r.top / height;
-        final float bottom = 1 - r.bottom / height;
-        r.left = Math.min(left, right);
-        r.right = Math.max(left, right);
-        r.top = Math.min(top, bottom);
-        r.bottom = Math.max(top, bottom);
-    }
-
-    private static synchronized native int getWidth(long pageHandle);
-
-    private static synchronized native int getHeight(long pageHandle);
-
-    // private static native boolean isDecodingDone(long pageHandle);
-
     private boolean renderPageWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode) {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             writeLock();
             return renderPage(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, buffer, renderMode);
         } finally {
@@ -314,28 +331,9 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     private boolean renderPageBitmapWrapper(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode) {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             return renderPageBitmap(pageHandle, contextHandle, targetWidth, targetHeight, pageSliceX, pageSliceY, pageSliceWidth, pageSliceHeight, bitmap, renderMode);
-        } finally {
-            TempHolder.lock.unlock();
-        }
-    }
-
-    private static native boolean renderPage(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, int[] buffer, int renderMode);
-
-    private static native boolean renderPageBitmap(long pageHandle, long contextHandle, int targetWidth, int targetHeight, float pageSliceX, float pageSliceY, float pageSliceWidth, float pageSliceHeight, Bitmap bitmap, int renderMode);
-
-    private static native void free(long pageHandle);
-
-    private native static ArrayList<PageLink> getPageLinks(long docHandle, int pageNo);
-
-    native static List<PageTextBox> getPageText(long docHandle, int pageNo, long contextHandle, String pattern);
-
-    public static List<PageTextBox> getPageTextSync(long docHandle, int pageNo, long contextHandle, String pattern) {
-        try {
-            TempHolder.lock.lock();
-            return getPageText(docHandle, pageNo, contextHandle, pattern);
         } finally {
             TempHolder.lock.unlock();
         }

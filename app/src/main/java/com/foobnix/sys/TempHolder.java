@@ -7,20 +7,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class TempHolder {
     public static final ReentrantLock lock = new ReentrantLock();
+
     public static TempHolder inst = new TempHolder();
-
-    public String login = "", password = "";
-
-    public int linkPage = -1;
-    public int currentTab = UITab.SearchFragment.index;
-
     public static int listHash = 0;
-
     public static volatile boolean isSeaching = false;
     public static volatile boolean isConverting = false;
     public static volatile boolean isRecordTTS = false;
     public static volatile AtomicBoolean isActiveSpeedRead = new AtomicBoolean(false);
-
+    public String login = "", password = "";
+    public int linkPage = -1;
+    public int currentTab = UITab.SearchFragment.index;
     public long timerFinishTime = 0;
 
     public int pageDelta = 0;
@@ -38,7 +34,6 @@ public class TempHolder {
     public static TempHolder get() {
         return inst;
     }
-
 
 
 }

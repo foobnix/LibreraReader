@@ -171,8 +171,9 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     public BitmapRef renderSimple(final Rect viewbox, final float[] ctm) {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
+
 
             if (isRecycled()) {
                 throw new RuntimeException("The page has been recycled before: " + this);
@@ -199,8 +200,9 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     public BitmapRef render(final Rect viewbox, final float[] ctm) {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
+
 
             if (isRecycled()) {
                 throw new RuntimeException("The page has been recycled before: " + this);
@@ -261,9 +263,8 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public List<PageLink> getPageLinks() {
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             return MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
         } finally {
             TempHolder.lock.unlock();
@@ -272,8 +273,8 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public int getCharCount() {
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             return getCharCount(docHandle, pageHandle);
         } finally {
             TempHolder.lock.unlock();
@@ -308,9 +309,8 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public String getPageHTML() {
         LOG.d("getPageAsHtml");
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             byte[] pageAsHtml = getPageAsHtml(docHandle, pageHandle, -1);
             String string = new String(pageAsHtml);
             LOG.d("getPageAsHtml", string);
@@ -326,9 +326,8 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public String getPageHTMLWithImages() {
         LOG.d("getPageAsHtml");
-
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             // FZ_STEXT_PRESERVE_LIGATURES = 1,
             // FZ_STEXT_PRESERVE_WHITESPACE = 2,
             // FZ_STEXT_PRESERVE_IMAGES = 4,
@@ -347,8 +346,8 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public  void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
         LOG.d("addMarkupAnnotation1", type, color[0], color[1], color[2]);
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             addMarkupAnnotationInternal(docHandle, pageHandle, quadPoints, type.ordinal(), color);
         } finally {
             TempHolder.lock.unlock();

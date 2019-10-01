@@ -19,8 +19,8 @@ public class MuPdfOutline {
     public List<OutlineLink> getOutline(final long dochandle) {
         final List<OutlineLink> ls = new ArrayList<OutlineLink>();
         docHandle = dochandle;
+        TempHolder.lock.lock();
         try {
-            TempHolder.lock.lock();
             final long outline = open(dochandle);
             ttOutline(ls, outline, 0);
             free(dochandle);
