@@ -1,20 +1,8 @@
----
-layout: main
-version: 3
----
-[<](/wiki/)
-
-# About the Librera Book Reader  application for Android
-
 > __Librera Reader__ (a.k.a. __Lirbi Reader__, __PDF Reader__) is a highly customizable and feature-rich application 
 for reading books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR formats on Android devices.
 With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
 It even features a unique auto-scrolling, hands-free Musician's mode.
 As of today, it can boast more than __10 million__ downloads to devices running all flavors of Android OS.
-
-||||
-|-|-|-|
-|![](1.png)|![](2.png)|![](3.png)|
 
 # Just a few librera's main features
 
@@ -23,8 +11,6 @@ As of today, it can boast more than __10 million__ downloads to devices running 
 * Browse (with an in-app file explorer) 
 * Recent (featuring a reading-progress indicator)
 * Support for bookmarks, annotations, and EPUB3 tables of contents
-* Support for clouds and online catalogs
-* Syncing across Android devices via Google Drive (reading progress, bookmarks, etc.)
 * Configurable Day and Night modes
 * Configurable link color (hence, footnotes and endnotes color)
 * Support for many popular online (including translators) and offline dictionaries
