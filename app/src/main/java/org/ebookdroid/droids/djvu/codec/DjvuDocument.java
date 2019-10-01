@@ -27,6 +27,20 @@ public class DjvuDocument extends AbstractCodecDocument {
         LOG.d("MUPDF! open document djvu", documentHandle, fileName);
     }
 
+    private static native String getMeta(long docHandle, String key);
+
+    private static native String getMetaKeys(long docHandle);
+
+    private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);
+
+    private native static long open(long contextHandle, String fileName);
+
+    private native static long getPage(long docHandle, int pageNumber);
+
+    private native static int getPageCount(long docHandle);
+
+    private native static void free(long pageHandle);
+
     @Override
     public List<OutlineLink> getOutline() {
         TempHolder.lock.lock();
@@ -93,39 +107,40 @@ public class DjvuDocument extends AbstractCodecDocument {
 
     @Override
     public int getPageCount(int w, int h, int fsize) {
-        return getPageCount();
+        TempHolder.lock.lock();
+        try {
+            return getPageCount();
+        } finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     @Override
     public CodecPageInfo getPageInfo(final int pageNumber) {
-        final CodecPageInfo info = new CodecPageInfo();
-        final int res = getPageInfo(documentHandle, pageNumber, context.getContextHandle(), info);
-        if (res == -1) {
-            return null;
-        } else {
-            return info;
+        TempHolder.lock.lock();
+        try {
+            final CodecPageInfo info = new CodecPageInfo();
+            final int res = getPageInfo(documentHandle, pageNumber, context.getContextHandle(), info);
+            if (res == -1) {
+                return null;
+            } else {
+                return info;
+            }
+        } finally {
+            TempHolder.lock.unlock();
         }
     }
 
     @Override
     protected void freeDocument() {
-        free(documentHandle);
+        TempHolder.lock.lock();
+        try {
+            free(documentHandle);
+        }finally {
+            TempHolder.lock.unlock();
+        }
         LOG.d("MUPDF! recycle document djvu", documentHandle, fileName);
     }
-
-    private static native String getMeta(long docHandle, String key);
-
-    private static native String getMetaKeys(long docHandle);
-
-    private native static int getPageInfo(long docHandle, int pageNumber, long contextHandle, CodecPageInfo cpi);
-
-    private native static long open(long contextHandle, String fileName);
-
-    private native static long getPage(long docHandle, int pageNumber);
-
-    private native static int getPageCount(long docHandle);
-
-    private native static void free(long pageHandle);
 
     @Override
     public List<? extends RectF> searchText(final int pageNuber, final String pattern) throws DocSearchNotSupported {

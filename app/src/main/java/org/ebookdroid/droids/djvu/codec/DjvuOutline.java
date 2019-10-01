@@ -1,5 +1,7 @@
 package org.ebookdroid.droids.djvu.codec;
 
+import com.foobnix.sys.TempHolder;
+
 import org.ebookdroid.core.codec.OutlineLink;
 
 import java.util.ArrayList;
@@ -10,12 +12,17 @@ public class DjvuOutline {
     private long docHandle;
 
     public List<OutlineLink> getOutline(final long dochandle) {
-        final List<OutlineLink> ls = new ArrayList<OutlineLink>();
-        docHandle = dochandle;
-        final long expr = open(docHandle);
-        ttOutline(ls, expr, 0);
-        ls.add(new OutlineLink("", "", -1, dochandle, ""));
-        return ls;
+        TempHolder.lock.lock();
+        try {
+            final List<OutlineLink> ls = new ArrayList<OutlineLink>();
+            docHandle = dochandle;
+            final long expr = open(docHandle);
+            ttOutline(ls, expr, 0);
+            ls.add(new OutlineLink("", "", -1, dochandle, ""));
+            return ls;
+        }finally {
+            TempHolder.lock.unlock();
+        }
     }
 
     private void ttOutline(final List<OutlineLink> ls, long expr, int level) {

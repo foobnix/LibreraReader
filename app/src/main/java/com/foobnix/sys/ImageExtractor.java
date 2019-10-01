@@ -71,11 +71,20 @@ public class ImageExtractor implements ImageDownloader {
     public static final int COVER_PAGE_WITH_EFFECT = -3;
     public static final int COVER_PAGE_NO_EFFECT = -2;
     public static final int COVER_PAGE = -1;
+    public static SharedPreferences sp;
+    public static volatile CodecDocument codeCache;
+    public static volatile CodecContext codecContex;
+    public static String pathCache;
+    static int pageCount = 0;
+    static int whCache;
     private static ImageExtractor instance;
     private final BaseImageDownloader baseImage;
     private final Context c;
 
-    public static SharedPreferences sp;
+     private ImageExtractor(final Context c) {
+        this.c = c;
+        baseImage = new BaseImageDownloader(c);
+    }
 
     public static synchronized ImageExtractor getInstance(final Context c) {
         if (instance == null) {
@@ -91,8 +100,128 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
+    public static Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
+        final Rect rootRect = new Rect(0, 0, sample.getWidth(), sample.getHeight());
+        RectF rectCrop = PageCropper.getCropBounds(sample, rootRect, new RectF(0, 0, 1f, 1f));
+        int x = (int) (bitmap.getWidth() * rectCrop.left);
+        int y = (int) (bitmap.getHeight() * rectCrop.top);
+        int w = (int) (bitmap.getWidth() * rectCrop.width());
+        int h = (int) (bitmap.getHeight() * rectCrop.height());
+        Bitmap bitmap1 = Bitmap.createBitmap(bitmap, x, y, w, h);
+        bitmap.recycle();
+        return bitmap1;
+    }
+
+    public static ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
+        try {
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+
+            CompressFormat format = CompressFormat.JPEG;
+            bitmap.compress(format, 80, os);
+
+            byte[] byteArray = os.toByteArray();
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
+            bitmap.recycle();
+            bitmap = null;
+
+            os.close();
+            os = null;
+            byteArray = null;
+
+            return byteArrayInputStream;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static synchronized void clearCodeDocument() {
+        if (codeCache != null) {
+            codeCache.recycle();
+            codeCache = null;
+            pathCache = null;
+            LOG.d("getNewCodecContext codeCache recycle");
+        }
+        if (codecContex != null) {
+            codecContex.recycle();
+            codecContex = null;
+            LOG.d("getNewCodecContext codecContex recycle");
+        }
+
+    }
+
+    public static void init(CodecDocument codec, String path) {
+        clearCodeDocument();
+        codeCache = codec;
+        pathCache = path;
+    }
+
+    public static synchronized CodecDocument singleCodecContext(final String path, String
+            passw, int w, int h) {
+        try {
+            CodecContext codecContex = BookType.getCodecContextByPath(path);
+
+            LOG.d("CodecContext", codecContex);
+
+            if (codecContex == null) {
+                return null;
+            }
+
+            TempHolder.get().loadingCancelled = false;
+            return codecContex.openDocument(path, passw);
+        } catch (RuntimeException e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public static synchronized CodecDocument getNewCodecContext(final String path, String
+            passw, int w, int h) {
+
+        if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {
+            LOG.d("getNewCodecContext cache", path, w, h);
+            return codeCache;
+        }
+        LOG.d("getNewCodecContext new", path, w, h);
+
+        clearCodeDocument();
+
+        pageCount = 0;
+        pathCache = null;
+        codeCache = null;
+        whCache = -1;
+
+        if (w <= 0 || h <= 0) {
+            w = Dips.screenWidth();
+            h = Dips.screenHeight();
+        }
+        LOG.d("getNewCodecContext after", w, h);
+
+        codecContex = BookType.getCodecContextByPath(path);
+
+        LOG.d("CodecContext", codecContex);
+
+        if (codecContex == null) {
+            return null;
+        }
+
+
+        TempHolder.get().loadingCancelled = false;
+        codeCache = codecContex.openDocument(path, passw);
+        if (codeCache == null) {
+            LOG.d("[Open doc is null 1", path);
+            return null;
+        }
+
+        LOG.d("CodecContext-fontSizeSp", w, h, BookCSS.get().fontSizeSp);
+        pageCount = codeCache.getPageCount(w, h, BookCSS.get().fontSizeSp);
+        pathCache = path;
+        whCache = h + w;
+        return codeCache;
+
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public synchronized Bitmap coverPDFNative(PageUrl pageUrl) {
+    public  Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
             LOG.d("Cover-PDF-navite");
             PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY));
@@ -114,12 +243,6 @@ public class ImageExtractor implements ImageDownloader {
             return null;
         }
 
-    }
-
-
-    private ImageExtractor(final Context c) {
-        this.c = c;
-        baseImage = new BaseImageDownloader(c);
     }
 
     public Bitmap proccessCoverPage(PageUrl pageUrl) {
@@ -215,7 +338,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public synchronized Bitmap proccessOtherPage(PageUrl pageUrl) {
+    public  Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
 
@@ -335,18 +458,6 @@ public class ImageExtractor implements ImageDownloader {
         return bitmap;
     }
 
-    public static Bitmap cropBitmap(Bitmap bitmap, Bitmap sample) {
-        final Rect rootRect = new Rect(0, 0, sample.getWidth(), sample.getHeight());
-        RectF rectCrop = PageCropper.getCropBounds(sample, rootRect, new RectF(0, 0, 1f, 1f));
-        int x = (int) (bitmap.getWidth() * rectCrop.left);
-        int y = (int) (bitmap.getHeight() * rectCrop.top);
-        int w = (int) (bitmap.getWidth() * rectCrop.width());
-        int h = (int) (bitmap.getHeight() * rectCrop.height());
-        Bitmap bitmap1 = Bitmap.createBitmap(bitmap, x, y, w, h);
-        bitmap.recycle();
-        return bitmap1;
-    }
-
     @Deprecated
     public Pair<Bitmap, RectF> getCroppedPage(CodecDocument codecDocumentLocal, int page, Bitmap
             bitmap) {
@@ -366,7 +477,7 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     @Override
-    public synchronized InputStream getStream(final String imageUri, final Object extra) throws
+    public InputStream getStream(final String imageUri, final Object extra) throws
             IOException {
         try {
             return getStreamInner(imageUri);
@@ -374,7 +485,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public synchronized InputStream getStreamInner(final String imageUri) throws IOException {
+    public InputStream getStreamInner(final String imageUri) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
@@ -534,28 +645,6 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public static ByteArrayInputStream bitmapToStream(Bitmap bitmap) {
-        try {
-            ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-            CompressFormat format = CompressFormat.JPEG;
-            bitmap.compress(format, 80, os);
-
-            byte[] byteArray = os.toByteArray();
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
-            bitmap.recycle();
-            bitmap = null;
-
-            os.close();
-            os = null;
-            byteArray = null;
-
-            return byteArrayInputStream;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     private InputStream bitmapToStreamRAW(Bitmap bitmap) {
         try {
             LOG.d("Rerurn bitmapToStreamRAW");
@@ -564,99 +653,6 @@ public class ImageExtractor implements ImageDownloader {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    static int pageCount = 0;
-
-    public static volatile CodecDocument codeCache;
-    public static volatile CodecContext codecContex;
-    public static String pathCache;
-    static int whCache;
-
-    public static synchronized void clearCodeDocument() {
-        if (codeCache != null) {
-            codeCache.recycle();
-            codeCache = null;
-            pathCache = null;
-            LOG.d("getNewCodecContext codeCache recycle");
-        }
-        if (codecContex != null) {
-            codecContex.recycle();
-            codecContex = null;
-            LOG.d("getNewCodecContext codecContex recycle");
-        }
-
-    }
-
-    public static void init(CodecDocument codec, String path) {
-        clearCodeDocument();
-        codeCache = codec;
-        pathCache = path;
-    }
-
-    public static synchronized CodecDocument singleCodecContext(final String path, String
-            passw, int w, int h) {
-        try {
-            CodecContext codecContex = BookType.getCodecContextByPath(path);
-
-            LOG.d("CodecContext", codecContex);
-
-            if (codecContex == null) {
-                return null;
-            }
-
-            TempHolder.get().loadingCancelled = false;
-            return codecContex.openDocument(path, passw);
-        } catch (RuntimeException e) {
-            LOG.e(e);
-            return null;
-        }
-    }
-
-    public static synchronized CodecDocument getNewCodecContext(final String path, String
-            passw, int w, int h) {
-
-        if (path.equals(pathCache) /* && whCache == h + w */ && codeCache != null && !codeCache.isRecycled()) {
-            LOG.d("getNewCodecContext cache", path, w, h);
-            return codeCache;
-        }
-        LOG.d("getNewCodecContext new", path, w, h);
-
-        clearCodeDocument();
-
-        pageCount = 0;
-        pathCache = null;
-        codeCache = null;
-        whCache = -1;
-
-        if (w <= 0 || h <= 0) {
-            w = Dips.screenWidth();
-            h = Dips.screenHeight();
-        }
-        LOG.d("getNewCodecContext after", w, h);
-
-        codecContex = BookType.getCodecContextByPath(path);
-
-        LOG.d("CodecContext", codecContex);
-
-        if (codecContex == null) {
-            return null;
-        }
-
-
-        TempHolder.get().loadingCancelled = false;
-        codeCache = codecContex.openDocument(path, passw);
-        if (codeCache == null) {
-            LOG.d("[Open doc is null 1", path);
-            return null;
-        }
-
-        LOG.d("CodecContext-fontSizeSp", w, h, BookCSS.get().fontSizeSp);
-        pageCount = codeCache.getPageCount(w, h, BookCSS.get().fontSizeSp);
-        pathCache = path;
-        whCache = h + w;
-        return codeCache;
-
     }
 
     private InputStream messageFile(String msg, String name) {
