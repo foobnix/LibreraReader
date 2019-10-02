@@ -29,6 +29,8 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         }
     }
 
+
+
     private List<Migration> getMigrations() {
         List<Migration> migrations = new ArrayList<Migration>();
         migrations.add(new MigrationV3());

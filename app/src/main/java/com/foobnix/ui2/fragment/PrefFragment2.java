@@ -2210,6 +2210,12 @@ public class PrefFragment2 extends UIFragment {
         onProfile.setOnClickListener(v ->
 
         {
+
+            if (BooksService.isRunning) {
+                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             MyPopupMenu popup = new MyPopupMenu(getActivity(), v);
 
             List<String> all = AppProfile.getAllProfiles();
@@ -2240,6 +2246,12 @@ public class PrefFragment2 extends UIFragment {
         profileLetter.setOnClickListener(v -> onProfile.performClick());
 
         final View.OnLongClickListener onDefaultProfile = v -> {
+
+            if (BooksService.isRunning) {
+                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
             AlertDialogs.showOkDialog(getActivity(), getString(R.string.restore_defaults_full), new Runnable() {
                 @Override
                 public void run() {
@@ -2271,6 +2283,12 @@ public class PrefFragment2 extends UIFragment {
                 setOnClickListener(v ->
 
                         {
+
+                            if (BooksService.isRunning) {
+                                Toast.makeText(getActivity(), R.string.please_wait_books_are_being_processed_, Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             AppProfile.showDialog(getActivity(), profile -> {
                                 if (!profile.equals(AppProfile.getCurrent(getActivity()))) {
                                     AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_switch_profile_), new Runnable() {

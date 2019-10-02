@@ -2304,7 +2304,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             keyCode = event.getScanCode();
         }
 
-        LOG.d("onKeyDown", keyCode);
+        LOG.d("onKeyDown", keyCode, event);
 
         isMyKey = false;
 

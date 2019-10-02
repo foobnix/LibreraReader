@@ -115,6 +115,7 @@ public class AppState {
             KeyEvent.KEYCODE_PAGE_UP, //
             // KeyEvent.KEYCODE_DPAD_UP,//
             KeyEvent.KEYCODE_DPAD_RIGHT, //
+            KeyEvent.KEYCODE_MEDIA_NEXT, //
             94, //
             105 //
             // KeyEvent.KEYCODE_DEL//
@@ -125,6 +126,7 @@ public class AppState {
             KeyEvent.KEYCODE_PAGE_DOWN, //
             // KeyEvent.KEYCODE_DPAD_DOWN, //
             KeyEvent.KEYCODE_DPAD_LEFT, //
+            KeyEvent.KEYCODE_MEDIA_PREVIOUS, //
             95, //
             106 //
             // KeyEvent.KEYCODE_ENTER //
