@@ -2304,6 +2304,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             keyCode = event.getScanCode();
         }
 
+        LOG.d("onKeyDown", keyCode);
+
         isMyKey = false;
 
         if (AppState.get().isUseVolumeKeys) {
@@ -2320,6 +2322,22 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
             keyTimeout = System.currentTimeMillis();
+
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+
+                closeDialogs();
+                AppState.get().isEditMode = false;
+                hideShow();
+
+                if(TTSEngine.get().isTempPausing()){
+                    TTSService.playPause(dc.getActivity(), dc);
+                }else{
+                    EventBus.getDefault().post(new MessageEvent(MessageEvent.MESSAGE_AUTO_SCROLL));
+                }
+
+                isMyKey = true;
+                return true;
+            }
 
 
             if (AppState.get().isZoomInOutWithVolueKeys) {

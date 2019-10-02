@@ -419,12 +419,15 @@ public abstract class DocumentController {
 
     public boolean closeDialogs() {
         if (anchor == null) {
+            LOG.d("closeDialogs","anchor false");
             return false;
         }
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
+        LOG.d("closeDialogs","isVisible",isVisible);
         if (isVisible) {
             try {
                 activity.findViewById(R.id.closePopup).performClick();
+                LOG.d("closeDialogs","performClick");
             } catch (Exception e) {
                 LOG.e(e);
             }

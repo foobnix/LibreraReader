@@ -94,26 +94,524 @@ import java.util.concurrent.TimeUnit;
 public class DocumentWrapperUI {
 
     final DocumentController dc;
+    final Handler handler = new Handler();
+    final Handler handlerTimer = new Handler();
+    public View.OnClickListener onLockUnlock = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            AppTemp.get().isLocked = !AppTemp.get().isLocked;
+            updateLock();
+        }
+    };
+    public View.OnClickListener onNextType = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            LOG.d("DEBUG", "Click");
+            doChooseNextType(arg0);
+        }
+    };
+    public View.OnClickListener onSun = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            arg0.setEnabled(false);
+            dc.onNightMode();
+        }
+    };
+    public View.OnClickListener toPage = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.toPageDialog();
+        }
+    };
+    public View.OnClickListener onClose = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            ImageLoader.getInstance().clearAllTasks();
+            closeDialogs();
+            closeAndRunList();
+        }
+    };
+    public View.OnClickListener onMoveLeft = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.onSrollLeft();
+        }
+    };
+    public View.OnClickListener onMoveCenter = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.alignDocument();
+        }
+    };
+    public View.OnClickListener onMoveRight = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.onSrollRight();
+        }
+    };
+    public View.OnClickListener onNextPage = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            nextChose(false);
+        }
+    };
+    public View.OnClickListener onPrevPage = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            prevChose(false);
+        }
+    };
+    public View.OnClickListener onPlus = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.onZoomInc();
+        }
+    };
+    public View.OnClickListener onMinus = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.onZoomDec();
+        }
+    };
+    public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
+
+            p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    closeDialogs();
+                    onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                    AppTemp.get().isCut = !false;
+                    onCut.onClick(null);
+                    hideShowEditIcon();
+                    return false;
+                }
+            });
+            p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    closeDialogs();
+                    onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+                    AppTemp.get().isCut = !true;
+                    onCut.onClick(null);
+                    hideShowEditIcon();
+                    return false;
+                }
+            });
+            p.show();
+            Keyboards.hideNavigation(dc.getActivity());
+
+        }
+    };
     Activity a;
     String bookTitle;
-
     TextView toastBrightnessText, floatingBookmarkTextView, pagesCountIndicator, currentSeek, maxSeek, currentTime, bookName, nextTypeBootom, batteryLevel, lirbiLogo, reverseKeysIndicator;
     ImageView onDocDontext, toolBarButton, linkHistory, lockUnlock, lockUnlockTop, textToSpeachTop, clockIcon, batteryIcon, fullscreen;
     ImageView showSearch, nextScreenType, moveCenter, autoScroll, textToSpeach, onModeChange, imageMenuArrow, editTop2, goToPage1, goToPage1Top;
     View adFrame, titleBar, overlay, menuLayout, moveLeft, moveRight, bottomBar, onCloseBook, seekSpeedLayot, zoomPlus, zoomMinus;
+    public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View v) {
+            Vibro.vibrate();
+            CloseAppDialog.showOnLongClickDialog(a, v, getController());
+            hideAds();
+            return true;
+        }
+
+        ;
+    };
     View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
     SeekBar seekBar, speedSeekBar;
     FrameLayout anchor;
+    public View.OnClickListener onShowContext = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.showContent(anchor, dc);
+        }
+    };
+    public View.OnClickListener onBCclick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.contrastAndBrigtness(anchor, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    onBC.underline(AppState.get().isEnableBC);
+                    dc.updateRendering();
+                }
+            }, null);
+        }
+    };
+    public View.OnClickListener onShowSearch = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            showSearchDialog();
+        }
+
+    };
     ImageView anchorX, anchorY;
     DrawView drawView;
+    public View.OnClickListener onShowHideEditPanel = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            if (AppTemp.get().isCrop) {
+                onCrop.onClick(null);
+            }
+
+            DragingDialogs.editColorsPanel(anchor, dc, drawView, false);
+        }
+    };
     ProgressDraw progressDraw;
+    public View.OnClickListener onHideShowToolBar = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            LOG.d("DEBUG", "Click");
+            doHideShowToolBar();
+        }
+    };
     UnderlineImageView crop, cut, onBC;
     LinearLayout pageshelper;
-
-    final Handler handler = new Handler();
-    final Handler handlerTimer = new Handler();
     String quickBookmark;
+    Runnable clearFlags = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                dc.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+    };
+    Runnable updateTimePower = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                if (currentTime != null) {
+                    currentTime.setText(UiSystemUtils.getSystemTime(dc.getActivity()));
+
+                    int myLevel = UiSystemUtils.getPowerLevel(dc.getActivity());
+                    batteryLevel.setText(myLevel + "%");
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            LOG.d("Update time and power");
+            handlerTimer.postDelayed(updateTimePower, AppState.APP_UPDATE_TIME_IN_UI);
+
+        }
+    };
+    View.OnClickListener onRecent = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            DragingDialogs.recentBooks(anchor, dc);
+        }
+    };
+    View.OnClickListener onTextToSpeach = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            if (AppTemp.get().isCut) {
+                onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
+                onCut.onClick(null);
+                return;
+            }
+            DragingDialogs.textToSpeachDialog(anchor, dc);
+        }
+    };
+    View.OnClickListener onThumbnail = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            DragingDialogs.thumbnailDialog(anchor, dc);
+        }
+    };
+    SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {
+
+        @Override
+        public void onStopTrackingTouch(final SeekBar seekBar) {
+        }
+
+        @Override
+        public void onStartTrackingTouch(final SeekBar seekBar) {
+        }
+
+        @Override
+        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
+            dc.onGoToPage(progress + 1);
+            //updateUI();
+        }
+    };
+    SeekBar.OnSeekBarChangeListener onSpeed = new SeekBar.OnSeekBarChangeListener() {
+
+        @Override
+        public void onStopTrackingTouch(final SeekBar seekBar) {
+        }
+
+        @Override
+        public void onStartTrackingTouch(final SeekBar seekBar) {
+        }
+
+        @Override
+        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
+            AppState.get().autoScrollSpeed = progress + 1;
+            updateSpeedLabel();
+
+            // hideSeekBarInReadMode();
+        }
+    };
+    Runnable hideSeekBar = new Runnable() {
+
+        @Override
+        public void run() {
+            if (!dc.isMusicianMode()) {
+                seekSpeedLayot.setVisibility(View.GONE);
+            }
+
+        }
+    };
+    Runnable onRefresh = new Runnable() {
+
+        @Override
+        public void run() {
+            dc.saveCurrentPageAsync();
+            initToolBarPlusMinus();
+            updateSeekBarColorAndSize();
+            hideShow();
+            updateUI();
+            TTSEngine.get().stop();
+            BrightnessHelper.updateOverlay(overlay);
+            showPagesHelper();
+            hideShowPrevNext();
+        }
+    };
+    public View.OnClickListener onAutoScroll = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            onAutoScrollClick();
+        }
+    };
+    public View.OnClickListener onLinkHistory = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            dc.onLinkHistory();
+            updateUI();
+        }
+    };
+    public View.OnClickListener onBookmarks = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    showHideHistory();
+                    showPagesHelper();
+                    updateUI();
+                }
+            });
+        }
+    };
+    public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View arg0) {
+            DragingDialogs.addBookmarksLong(anchor, dc);
+            showPagesHelper();
+            return true;
+        }
+    };
+    public View.OnClickListener onMenu = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            LOG.d("DEBUG", "Click");
+            doShowHideWrapperControlls();
+        }
+    };
+    public View.OnClickListener onReverseKeys = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            LOG.d("DEBUG", "Click");
+            AppState.get().isReverseKeys = !AppState.get().isReverseKeys;
+            updateUI();
+        }
+    };
+    public View.OnClickListener onFull = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
+                AppState.get().fullScreenMode = id;
+                fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
+
+                if (dc.isTextFormat()) {
+                    onRefresh.run();
+                    dc.restartActivity();
+                }
+                DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
+                return true;
+            }, AppState.get().fullScreenMode);
+        }
+    };
+    public View.OnClickListener onCrop = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    dc.onCrop();
+                    updateUI();
+
+                    AppState.get().isEditMode = false;
+                    hideShow();
+                    hideShowEditIcon();
+                }
+            });
+        }
+    };
+    public View.OnLongClickListener onCropLong = new View.OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(View v) {
+            AppTemp.get().isCrop = !AppTemp.get().isCrop;
+
+            dc.onCrop();
+            updateUI();
+
+            AppState.get().isEditMode = false;
+            hideShow();
+            hideShowEditIcon();
+            return true;
+        }
+    };
+    public View.OnClickListener onCut = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            AppTemp.get().isCrop = false; // no crop with cut
+            AppState.get().cutP = 50;
+            AppTemp.get().isCut = !AppTemp.get().isCut;
+
+            crop.setVisibility(AppTemp.get().isCut ? View.GONE : View.VISIBLE);
+
+
+            dc.onCrop();// crop false
+            dc.updateRendering();
+            dc.alignDocument();
+
+            updateUI();
+
+            progressDraw.updatePageCount(dc.getPageCount() - 1);
+            titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
+            progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
+
+        }
+    };
+    public View.OnClickListener onPrefTop = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            DragingDialogs.preferences(anchor, dc, onRefresh, new Runnable() {
+
+                @Override
+                public void run() {
+                    updateUI();
+
+                }
+            });
+        }
+    };
+    Runnable updateUIRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            updateUI();
+        }
+    };
+    View.OnClickListener onItemMenu = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            ShareDialog.show(a, dc.getCurrentBook(), new Runnable() {
+
+                @Override
+                public void run() {
+                    if (dc.getCurrentBook().delete()) {
+                        TempHolder.listHash++;
+                        AppDB.get().deleteBy(dc.getCurrentBook().getPath());
+                        dc.getActivity().finish();
+                    }
+                }
+            }, dc.getCurentPage() - 1, dc, new Runnable() {
+
+                @Override
+                public void run() {
+                    hideShow();
+
+                }
+            });
+            Keyboards.hideNavigation(a);
+            hideAds();
+        }
+    };
+    View.OnClickListener onLirbiLogoClick = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View v) {
+            doShowHideWrapperControlls();
+        }
+    };
+    View.OnClickListener onGoToPAge1 = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            dc.onScrollY(0);
+            updateUI();
+        }
+    };
+    public View.OnClickListener onNormalMode = new View.OnClickListener() {
+
+        @Override
+        public void onClick(final View arg0) {
+            AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+            initUI(a);
+            hideShow();
+        }
+    };
 
     public DocumentWrapperUI(final DocumentController controller) {
         AppState.get().annotationDrawColor = "";
@@ -124,6 +622,14 @@ public class DocumentWrapperUI {
 
         EventBus.getDefault().register(this);
 
+    }
+
+    public static boolean isCJK(int ch) {
+        Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
+        if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)) {
+            return true;
+        }
+        return false;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -156,13 +662,16 @@ public class DocumentWrapperUI {
         }
     }
 
-    public static boolean isCJK(int ch) {
-        Character.UnicodeBlock block = Character.UnicodeBlock.of(ch);
-        if (Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block) || Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)) {
-            return true;
-        }
-        return false;
-    }
+    // public void changeAutoScrollButton() {
+    // if (AppState.get().isAutoScroll) {
+    // autoScroll.setImageResource(android.R.drawable.ic_media_pause);
+    // seekSpeedLayot.setVisibility(View.VISIBLE);
+    // } else {
+    // autoScroll.setImageResource(android.R.drawable.ic_media_play);
+    // seekSpeedLayot.setVisibility(View.GONE);
+    // }
+    //
+    // }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongPress(MotionEvent ev) {
@@ -183,14 +692,6 @@ public class DocumentWrapperUI {
             }
         }
     }
-
-    Runnable updateUIRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            updateUI();
-        }
-    };
 
     public void showSelectTextMenu() {
         DragingDialogs.selectTextMenu(anchor, dc, true, updateUIRunnable);
@@ -262,6 +763,18 @@ public class DocumentWrapperUI {
 
         if (KeyEvent.KEYCODE_F == keyCode) {
             dc.alignDocument();
+            return true;
+        }
+
+        if (KeyEvent.KEYCODE_ENTER == keyCode) {
+            closeDialogs();
+            AppState.get().isEditMode = false;
+            hideShow();
+            if(TTSEngine.get().isTempPausing()){
+                TTSService.playPause(dc.getActivity(), dc);
+            } else {
+                onAutoScrollClick();
+            }
             return true;
         }
 
@@ -521,19 +1034,6 @@ public class DocumentWrapperUI {
         }
     }
 
-    Runnable clearFlags = new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                dc.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-    };
-
     public void showChapter() {
 
         if (AppState.get().isShowPanelBookNameScrollMode) {
@@ -585,26 +1085,6 @@ public class DocumentWrapperUI {
     public void showHideHistory() {
         linkHistory.setVisibility(dc.getLinkHistory().isEmpty() ? View.GONE : View.VISIBLE);
     }
-
-    Runnable updateTimePower = new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                if (currentTime != null) {
-                    currentTime.setText(UiSystemUtils.getSystemTime(dc.getActivity()));
-
-                    int myLevel = UiSystemUtils.getPowerLevel(dc.getActivity());
-                    batteryLevel.setText(myLevel + "%");
-                }
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-            LOG.d("Update time and power");
-            handlerTimer.postDelayed(updateTimePower, AppState.APP_UPDATE_TIME_IN_UI);
-
-        }
-    };
 
     @Subscribe
     public void showHideTextSelectors(MessagePageXY event) {
@@ -1016,6 +1496,7 @@ public class DocumentWrapperUI {
         seekBar.setVisibility(View.INVISIBLE);
 
         hideShowPrevNext();
+        dc.initAnchor(anchor);
 
     }
 
@@ -1090,106 +1571,6 @@ public class DocumentWrapperUI {
     public void showEditDialogIfNeed() {
         DragingDialogs.editColorsPanel(anchor, dc, drawView, true);
     }
-
-    View.OnClickListener onRecent = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            DragingDialogs.recentBooks(anchor, dc);
-        }
-    };
-
-    View.OnClickListener onItemMenu = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            ShareDialog.show(a, dc.getCurrentBook(), new Runnable() {
-
-                @Override
-                public void run() {
-                    if (dc.getCurrentBook().delete()) {
-                        TempHolder.listHash++;
-                        AppDB.get().deleteBy(dc.getCurrentBook().getPath());
-                        dc.getActivity().finish();
-                    }
-                }
-            }, dc.getCurentPage() - 1, dc, new Runnable() {
-
-                @Override
-                public void run() {
-                    hideShow();
-
-                }
-            });
-            Keyboards.hideNavigation(a);
-            hideAds();
-        }
-    };
-
-    View.OnClickListener onLirbiLogoClick = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            doShowHideWrapperControlls();
-        }
-    };
-
-    View.OnClickListener onTextToSpeach = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            if (AppTemp.get().isCut) {
-                onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                onCut.onClick(null);
-                return;
-            }
-            DragingDialogs.textToSpeachDialog(anchor, dc);
-        }
-    };
-
-    View.OnClickListener onThumbnail = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            DragingDialogs.thumbnailDialog(anchor, dc);
-        }
-    };
-
-    SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onStopTrackingTouch(final SeekBar seekBar) {
-        }
-
-        @Override
-        public void onStartTrackingTouch(final SeekBar seekBar) {
-        }
-
-        @Override
-        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            dc.onGoToPage(progress + 1);
-            //updateUI();
-        }
-    };
-
-    SeekBar.OnSeekBarChangeListener onSpeed = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onStopTrackingTouch(final SeekBar seekBar) {
-        }
-
-        @Override
-        public void onStartTrackingTouch(final SeekBar seekBar) {
-        }
-
-        @Override
-        public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
-            AppState.get().autoScrollSpeed = progress + 1;
-            updateSpeedLabel();
-
-            // hideSeekBarInReadMode();
-        }
-    };
 
     public void doDoubleTap(int x, int y) {
         if (dc.isMusicianMode()) {
@@ -1430,17 +1811,6 @@ public class DocumentWrapperUI {
         }
     }
 
-    Runnable hideSeekBar = new Runnable() {
-
-        @Override
-        public void run() {
-            if (!dc.isMusicianMode()) {
-                seekSpeedLayot.setVisibility(View.GONE);
-            }
-
-        }
-    };
-
     public void show() {
         menuLayout.setVisibility(View.VISIBLE);
 
@@ -1463,15 +1833,6 @@ public class DocumentWrapperUI {
 
     }
 
-    public View.OnClickListener onShowSearch = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            showSearchDialog();
-        }
-
-    };
-
     public void showSearchDialog() {
         if (AppTemp.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
@@ -1485,14 +1846,6 @@ public class DocumentWrapperUI {
         DragingDialogs.searchMenu(anchor, dc, "");
     }
 
-    public View.OnClickListener onAutoScroll = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            onAutoScrollClick();
-        }
-    };
-
     public void onAutoScrollClick() {
         if (dc.isVisibleDialog()) {
             return;
@@ -1504,372 +1857,14 @@ public class DocumentWrapperUI {
         updateUI();
     }
 
-    // public void changeAutoScrollButton() {
-    // if (AppState.get().isAutoScroll) {
-    // autoScroll.setImageResource(android.R.drawable.ic_media_pause);
-    // seekSpeedLayot.setVisibility(View.VISIBLE);
-    // } else {
-    // autoScroll.setImageResource(android.R.drawable.ic_media_play);
-    // seekSpeedLayot.setVisibility(View.GONE);
-    // }
-    //
-    // }
-
-    public View.OnClickListener onLinkHistory = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.onLinkHistory();
-            updateUI();
-        }
-    };
-
-    public View.OnClickListener onShowContext = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            DragingDialogs.showContent(anchor, dc);
-        }
-    };
-    public View.OnClickListener onLockUnlock = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            AppTemp.get().isLocked = !AppTemp.get().isLocked;
-            updateLock();
-        }
-    };
-
-    public View.OnClickListener onShowHideEditPanel = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            if (AppTemp.get().isCrop) {
-                onCrop.onClick(null);
-            }
-
-            DragingDialogs.editColorsPanel(anchor, dc, drawView, false);
-        }
-    };
-
-    public View.OnClickListener onBookmarks = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            DragingDialogs.showBookmarksDialog(anchor, dc, new Runnable() {
-
-                @Override
-                public void run() {
-                    showHideHistory();
-                    showPagesHelper();
-                    updateUI();
-                }
-            });
-        }
-    };
-    public View.OnLongClickListener onBookmarksLong = new View.OnLongClickListener() {
-
-        @Override
-        public boolean onLongClick(final View arg0) {
-            DragingDialogs.addBookmarksLong(anchor, dc);
-            showPagesHelper();
-            return true;
-        }
-    };
-
-    public View.OnClickListener onHideShowToolBar = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            LOG.d("DEBUG", "Click");
-            doHideShowToolBar();
-        }
-    };
-
-    View.OnClickListener onGoToPAge1 = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            dc.onScrollY(0);
-            updateUI();
-        }
-    };
-
-    public View.OnClickListener onNormalMode = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
-            initUI(a);
-            hideShow();
-        }
-    };
-
-    public View.OnClickListener onNextType = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            LOG.d("DEBUG", "Click");
-            doChooseNextType(arg0);
-        }
-    };
-
-    public View.OnClickListener onMenu = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            LOG.d("DEBUG", "Click");
-            doShowHideWrapperControlls();
-        }
-    };
-
-    public View.OnClickListener onReverseKeys = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            LOG.d("DEBUG", "Click");
-            AppState.get().isReverseKeys = !AppState.get().isReverseKeys;
-            updateUI();
-        }
-    };
-
-    public View.OnClickListener onFull = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            DocumentController.showFullScreenPopup(dc.getActivity(), v, id -> {
-                AppState.get().fullScreenMode = id;
-                fullscreen.setImageResource(DocumentController.getFullScreenIcon(a, AppState.get().fullScreenMode));
-
-                if (dc.isTextFormat()) {
-                    onRefresh.run();
-                    dc.restartActivity();
-                }
-                DocumentController.chooseFullScreen(a, AppState.get().fullScreenMode);
-                return true;
-            }, AppState.get().fullScreenMode);
-        }
-    };
-
-
-    public View.OnClickListener onBCclick = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            DragingDialogs.contrastAndBrigtness(anchor, dc, new Runnable() {
-
-                @Override
-                public void run() {
-                    onBC.underline(AppState.get().isEnableBC);
-                    dc.updateRendering();
-                }
-            }, null);
-        }
-    };
-
-    public View.OnClickListener onSun = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            arg0.setEnabled(false);
-            dc.onNightMode();
-        }
-    };
-
-    public View.OnClickListener toPage = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.toPageDialog();
-        }
-    };
-
-    public View.OnClickListener onCrop = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            DragingDialogs.customCropDialog(anchor, dc, new Runnable() {
-
-                @Override
-                public void run() {
-                    dc.onCrop();
-                    updateUI();
-
-                    AppState.get().isEditMode = false;
-                    hideShow();
-                    hideShowEditIcon();
-                }
-            });
-        }
-    };
-    public View.OnLongClickListener onCropLong = new View.OnLongClickListener() {
-
-        @Override
-        public boolean onLongClick(View v) {
-            AppTemp.get().isCrop = !AppTemp.get().isCrop;
-
-            dc.onCrop();
-            updateUI();
-
-            AppState.get().isEditMode = false;
-            hideShow();
-            hideShowEditIcon();
-            return true;
-        }
-    };
-
     private boolean closeDialogs() {
         return dc.closeDialogs();
     }
-
-    public View.OnClickListener onModeChangeClick = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View v) {
-            MyPopupMenu p = new MyPopupMenu(v.getContext(), v);
-
-            p.getMenu().add(R.string.one_page).setIcon(R.drawable.glyphicons_two_page_one).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    closeDialogs();
-                    onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                    AppTemp.get().isCut = !false;
-                    onCut.onClick(null);
-                    hideShowEditIcon();
-                    return false;
-                }
-            });
-            p.getMenu().add(R.string.half_page).setIcon(R.drawable.glyphicons_page_split).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    closeDialogs();
-                    onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                    AppTemp.get().isCut = !true;
-                    onCut.onClick(null);
-                    hideShowEditIcon();
-                    return false;
-                }
-            });
-            p.show();
-            Keyboards.hideNavigation(dc.getActivity());
-
-        }
-    };
-    public View.OnClickListener onCut = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            AppTemp.get().isCrop = false; // no crop with cut
-            AppState.get().cutP = 50;
-            AppTemp.get().isCut = !AppTemp.get().isCut;
-
-            crop.setVisibility(AppTemp.get().isCut ? View.GONE : View.VISIBLE);
-
-
-            dc.onCrop();// crop false
-            dc.updateRendering();
-            dc.alignDocument();
-
-            updateUI();
-
-            progressDraw.updatePageCount(dc.getPageCount() - 1);
-            titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
-            progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
-
-        }
-    };
-
-    public View.OnClickListener onPrefTop = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            DragingDialogs.preferences(anchor, dc, onRefresh, new Runnable() {
-
-                @Override
-                public void run() {
-                    updateUI();
-
-                }
-            });
-        }
-    };
-
-    Runnable onRefresh = new Runnable() {
-
-        @Override
-        public void run() {
-            dc.saveCurrentPageAsync();
-            initToolBarPlusMinus();
-            updateSeekBarColorAndSize();
-            hideShow();
-            updateUI();
-            TTSEngine.get().stop();
-            BrightnessHelper.updateOverlay(overlay);
-            showPagesHelper();
-            hideShowPrevNext();
-        }
-    };
-
-    public View.OnClickListener onClose = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            ImageLoader.getInstance().clearAllTasks();
-            closeDialogs();
-            closeAndRunList();
-        }
-    };
-    public View.OnLongClickListener onCloseLongClick = new View.OnLongClickListener() {
-
-        @Override
-        public boolean onLongClick(final View v) {
-            Vibro.vibrate();
-            CloseAppDialog.showOnLongClickDialog(a, v, getController());
-            hideAds();
-            return true;
-        }
-
-        ;
-    };
 
     public void hideAds() {
         adFrame.setTag("");
         adFrame.setVisibility(View.GONE);
     }
-
-    public View.OnClickListener onMoveLeft = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.onSrollLeft();
-        }
-    };
-
-    public View.OnClickListener onMoveCenter = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.alignDocument();
-        }
-    };
-
-    public View.OnClickListener onMoveRight = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.onSrollRight();
-        }
-    };
-
-    public View.OnClickListener onNextPage = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            nextChose(false);
-        }
-    };
 
     public void nextChose(boolean animate) {
         nextChose(animate, 0);
@@ -1919,29 +1914,6 @@ public class DocumentWrapperUI {
         //updateUI();
     }
 
-    public View.OnClickListener onPrevPage = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            prevChose(false);
-        }
-    };
-
-    public View.OnClickListener onPlus = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.onZoomInc();
-        }
-    };
-    public View.OnClickListener onMinus = new View.OnClickListener() {
-
-        @Override
-        public void onClick(final View arg0) {
-            dc.onZoomDec();
-        }
-    };
-
     public void setTitle(final String title) {
         this.bookTitle = title;
 
@@ -1960,9 +1932,9 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if(BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     editTop2.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     editTop2.setVisibility(View.GONE);
                 }
             }
