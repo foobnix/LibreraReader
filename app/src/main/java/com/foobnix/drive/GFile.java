@@ -382,7 +382,7 @@ public class GFile {
                     FileMetaCore.createMetaIfNeed(file.getPath(), true);
                     IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                 }
-                SharedBooks.cache.clear();
+
 
             }
         } finally {
@@ -527,6 +527,7 @@ public class GFile {
 
 
             LOG.d("Begin");
+            SharedBooks.cache.clear();
 
             sync(AppTemp.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
 
@@ -537,6 +538,7 @@ public class GFile {
 
 
             TagData.restoreTags();
+
 
 
         } catch (IOException e) {
