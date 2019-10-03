@@ -685,8 +685,8 @@ public class DragingDialogs {
                 TxtUtils.bold(ttsLang);
 
                 View ttsSettings = view.findViewById(R.id.ttsSettings);
-                textEngine.setOnClickListener((v)->ttsSettings.performClick());
-                ttsLang.setOnClickListener((v)->ttsSettings.performClick());
+                textEngine.setOnClickListener((v) -> ttsSettings.performClick());
+                ttsLang.setOnClickListener((v) -> ttsSettings.performClick());
 
                 TxtUtils.underlineTextView(ttsSettings).setOnClickListener(new OnClickListener() {
 
@@ -942,6 +942,12 @@ public class DragingDialogs {
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
 
+                        final EditText from = (EditText) inflate.findViewById(R.id.from);
+                        final EditText to = (EditText) inflate.findViewById(R.id.to);
+
+                        from.setText("" + 1);
+                        to.setText("" + controller.getPageCount());
+
                         MyProgressBar1.setVisibility(View.GONE);
                         progressText.setText("");
 
@@ -971,6 +977,10 @@ public class DragingDialogs {
                                     @Override
                                     public void run() {
                                         progressText.setText(result);
+                                        if(result.equals(controller.getString(R.string.success))){
+                                            MyProgressBar1.setVisibility(View.GONE);
+                                        }
+
                                     }
                                 });
                                 return false;
@@ -990,10 +1000,44 @@ public class DragingDialogs {
 
                             @Override
                             public void onClick(View v) {
-                                if (!TempHolder.isRecordTTS) {
+
+                                boolean hasErorrs = false;
+                                try {
+                                    TempHolder.isRecordFrom = Integer.parseInt(from.getText().toString());
+                                    if (TempHolder.isRecordFrom <= 0) {
+                                        hasErorrs = true;
+                                    }
+                                } catch (Exception e) {
+                                    hasErorrs = true;
+                                    from.requestFocus();
+                                }
+
+
+                                try {
+                                    TempHolder.isRecordTo = Integer.parseInt(to.getText().toString());
+
+                                    if (TempHolder.isRecordTo > controller.getPageCount()) {
+                                        hasErorrs = true;
+                                        to.requestFocus();
+                                    }
+
+                                    if (TempHolder.isRecordFrom > TempHolder.isRecordTo) {
+                                        hasErorrs = true;
+                                        from.requestFocus();
+                                    }
+                                } catch (Exception e) {
+                                    hasErorrs = true;
+                                    to.requestFocus();
+                                }
+
+                                if (hasErorrs) {
+                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                }
+
+                                if (!hasErorrs && !TempHolder.isRecordTTS) {
                                     TempHolder.isRecordTTS = true;
                                     MyProgressBar1.setVisibility(View.VISIBLE);
-                                    TTSEngine.get().speakToFile(controller, info);
+                                    TTSEngine.get().speakToFile(controller, info, TempHolder.isRecordFrom, TempHolder.isRecordTo);
                                 }
                             }
                         });
@@ -2360,7 +2404,7 @@ public class DragingDialogs {
 
                                     @Override
                                     protected void onPreExecute() {
-                                        dialog = MyProgressDialog.show(controller.getActivity(),  controller.getString(R.string.msg_loading));
+                                        dialog = MyProgressDialog.show(controller.getActivity(), controller.getString(R.string.msg_loading));
                                     }
 
                                     ;

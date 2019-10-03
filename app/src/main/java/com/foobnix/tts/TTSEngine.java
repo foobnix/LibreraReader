@@ -41,30 +41,71 @@ public class TTSEngine {
 
     public static final String FINISHED_SIGNAL = "Finished";
     public static final String STOP_SIGNAL = "Stoped";
-    private static final String WAV = ".wav";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
+    private static final String WAV = ".wav";
     private static final String TAG = "TTSEngine";
+    private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
     volatile MediaPlayer mp;
     Timer mTimer;
     Object helpObject = new Object();
-
-    private static TTSEngine INSTANCE = new TTSEngine();
-
-    public static TTSEngine get() {
-        return INSTANCE;
-    }
-
     HashMap<String, String> map = new HashMap<String, String>();
+    HashMap<String, String> mapTemp = new HashMap<String, String>();
+    OnInitListener listener = new OnInitListener() {
+
+        @Override
+        public void onInit(int status) {
+            LOG.d(TAG, "onInit", "SUCCESS", status == TextToSpeech.SUCCESS);
+            if (status == TextToSpeech.ERROR) {
+                Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+            }
+
+        }
+    };
+    private String text = "";
 
     {
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, UTTERANCE_ID_DONE);
     }
 
-    HashMap<String, String> mapTemp = new HashMap<String, String>();
-
     {
         mapTemp.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "Temp");
+    }
+
+    public static TTSEngine get() {
+        return INSTANCE;
+    }
+
+    public static AppBookmark fastTTSBookmakr(DocumentController dc) {
+        return fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
+
+    }
+
+    public static AppBookmark fastTTSBookmakr(Context c, String bookPath, int page, int pages) {
+        LOG.d("fastTTSBookmakr", page, pages);
+
+        if (pages == 0) {
+            LOG.d("fastTTSBookmakr skip");
+            return null;
+        }
+        boolean hasBookmark = BookmarksData.get().hasBookmark(bookPath, page, pages);
+
+        if (!hasBookmark) {
+            final AppBookmark bookmark = new AppBookmark(bookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
+            BookmarksData.get().add(bookmark);
+
+            String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
+            Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
+            return bookmark;
+        }
+        Vibro.vibrate();
+        return null;
+
+
+    }
+
+    public static String engineToString(EngineInfo info) {
+        return info.label;
     }
 
     public void shutdown() {
@@ -79,23 +120,11 @@ public class TTSEngine {
 
     }
 
-    OnInitListener listener = new OnInitListener() {
-
-        @Override
-        public void onInit(int status) {
-            LOG.d(TAG, "onInit", "SUCCESS", status == TextToSpeech.SUCCESS);
-            if (status == TextToSpeech.ERROR) {
-                Toast.makeText(LibreraApp.context, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
-            }
-
-        }
-    };
-
     public TextToSpeech getTTS() {
         return getTTS(null);
     }
 
-    public  TextToSpeech getTTS(OnInitListener onLisnter) {
+    public TextToSpeech getTTS(OnInitListener onLisnter) {
         if (LibreraApp.context == null) {
             return null;
         }
@@ -153,15 +182,13 @@ public class TTSEngine {
         AppTemp.get().lastBookParagraph = 0;
     }
 
-    public  TextToSpeech setTTSWithEngine(String engine) {
+    public TextToSpeech setTTSWithEngine(String engine) {
         shutdown();
         synchronized (helpObject) {
             ttsEngine = new TextToSpeech(LibreraApp.context, listener, engine);
         }
         return ttsEngine;
     }
-
-    private String text = "";
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public synchronized void speek(final String text) {
@@ -221,10 +248,10 @@ public class TTSEngine {
 
                     }
 
-                    if(big.contains(TxtUtils.TTS_STOP)){
+                    if (big.contains(TxtUtils.TTS_STOP)) {
                         HashMap<String, String> mapStop = new HashMap<String, String>();
-                        mapStop.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,STOP_SIGNAL);
-                        ttsEngine.playSilence(AppState.get().ttsPauseDuration,TextToSpeech.QUEUE_ADD, mapStop);
+                        mapStop.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, STOP_SIGNAL);
+                        ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapStop);
                         LOG.d("Add stop signal");
                     }
 
@@ -245,7 +272,7 @@ public class TTSEngine {
 
     }
 
-    public void speakToFile(final DocumentController controller, final ResultResponse<String> info) {
+    public void speakToFile(final DocumentController controller, final ResultResponse<String> info, int from, int to) {
         File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
         if (!dirFolder.exists()) {
             dirFolder.mkdirs();
@@ -263,10 +290,10 @@ public class TTSEngine {
         }));
 
         String path = dirFolder.getPath();
-        speakToFile(controller, 0, path, info);
+        speakToFile(controller, from - 1, path, info, from - 1, to);
     }
 
-    public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info) {
+    public void speakToFile(final DocumentController controller, final int page, final String folder, final ResultResponse<String> info, int from, int to) {
         LOG.d("speakToFile", page, controller.getPageCount());
         if (ttsEngine == null) {
             LOG.d("TTS is null");
@@ -276,13 +303,13 @@ public class TTSEngine {
             return;
         }
 
-        if (page >= controller.getPageCount() || !TempHolder.isRecordTTS) {
+        if (page >= to || !TempHolder.isRecordTTS) {
             LOG.d("speakToFile finish", page, controller.getPageCount());
             info.onResultRecive((controller.getActivity().getString(R.string.success)));
             return;
         }
 
-        info.onResultRecive((page + 1) + " / " + controller.getPageCount());
+        info.onResultRecive((page + 1) + " / " + to);
 
         DecimalFormat df = new DecimalFormat("0000");
         String pageName = "page-" + df.format(page + 1);
@@ -299,39 +326,10 @@ public class TTSEngine {
             @Override
             public void onUtteranceCompleted(String utteranceId) {
                 LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
-                speakToFile(controller, page + 1, folder, info);
+                speakToFile(controller, page + 1, folder, info, from, to);
             }
 
         });
-
-    }
-
-
-    public static AppBookmark fastTTSBookmakr(DocumentController dc) {
-        return fastTTSBookmakr(dc.getActivity(), dc.getCurrentBook().getPath(), dc.getCurentPageFirst1(), dc.getPageCount());
-
-    }
-
-    public static AppBookmark fastTTSBookmakr(Context c, String bookPath, int page, int pages) {
-        LOG.d("fastTTSBookmakr", page, pages);
-
-        if (pages == 0) {
-            LOG.d("fastTTSBookmakr skip");
-            return null;
-        }
-        boolean hasBookmark = BookmarksData.get().hasBookmark(bookPath, page, pages);
-
-        if (!hasBookmark) {
-            final AppBookmark bookmark = new AppBookmark(bookPath, c.getString(R.string.fast_bookmark), MyMath.percent(page, pages));
-            BookmarksData.get().add(bookmark);
-
-            String TEXT = c.getString(R.string.fast_bookmark) + " " + TxtUtils.LONG_DASH1 + " " + c.getString(R.string.page) + " " + page + "";
-            Toast.makeText(c, TEXT, Toast.LENGTH_SHORT).show();
-            return bookmark;
-        }
-        Vibro.vibrate();
-        return null;
-
 
     }
 
@@ -354,7 +352,6 @@ public class TTSEngine {
             return ttsEngine != null && ttsEngine.isSpeaking();
         }
     }
-
 
     public boolean hasNoEngines() {
         try {
@@ -404,10 +401,6 @@ public class TTSEngine {
             LOG.e(e);
         }
         return "---";
-    }
-
-    public static String engineToString(EngineInfo info) {
-        return info.label;
     }
 
     public void loadMP3(String ttsPlayMp3Path) {
