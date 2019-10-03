@@ -942,6 +942,8 @@ public class DragingDialogs {
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
 
+
+
                         final EditText from = (EditText) inflate.findViewById(R.id.from);
                         final EditText to = (EditText) inflate.findViewById(R.id.to);
 

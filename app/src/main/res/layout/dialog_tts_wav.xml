@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:focusableInTouchMode="false"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="2dip" >
+        android:padding="2dip">
 
         <TextView
             android:id="@+id/ttsSpeakPath"
@@ -22,15 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <com.foobnix.pdf.info.view.MyProgressBar
-                android:visibility="gone"
-                        android:saveEnabled="false"
-                
                 android:id="@+id/MyProgressBarTTS"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
+                android:layout_height="wrap_content"
+                android:saveEnabled="false"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/progressText"
@@ -40,54 +40,58 @@
                 android:text="5 / 10" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <EditText
-            android:id="@+id/from"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="4"
-            android:inputType="number" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" - " />
+            <EditText
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="number" />
 
-        <EditText
-            android:id="@+id/to"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="4"
-            android:inputType="number" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - " />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="number" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
-            
-        <Button
-            android:id="@+id/start"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_recording" />
-        
-         <Button
-            android:id="@+id/stop"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/to_stop" />
-        
-        
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/start"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="120dip"
+                android:text="@string/start_recording" />
+
+            <Button
+                android:id="@+id/stop"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:minWidth="80dip"
+                android:text="@string/to_stop" />
+
+
         </LinearLayout>
     </LinearLayout>
 
