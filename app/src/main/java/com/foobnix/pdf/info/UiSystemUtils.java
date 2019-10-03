@@ -11,7 +11,7 @@ public class UiSystemUtils {
 
     public static String getSystemTime(Activity a) {
         final java.text.DateFormat dateFormat = android.text.format.DateFormat.getTimeFormat(a);
-        return dateFormat.format(new Date(System.currentTimeMillis()));
+        return dateFormat.format(new Date(System.currentTimeMillis())).replace("AM","").replace("PM","");
     }
 
     public static int getPowerLevel(Activity a) {

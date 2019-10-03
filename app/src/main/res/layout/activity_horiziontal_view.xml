@@ -210,6 +210,20 @@
                     android:visibility="gone"></TextView>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/pagesTime1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="1"
+                android:minWidth="50dip"
+                android:singleLine="true"
+                android:text="--:--"
+                android:textColor="@color/white"
+                android:textSize="9sp" />
+
             <ImageView
                 android:id="@+id/bookClose"
                 style="@style/buttonWhiteClose"
