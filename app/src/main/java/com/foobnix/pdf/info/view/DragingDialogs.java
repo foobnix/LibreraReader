@@ -87,6 +87,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
 import com.foobnix.hypen.HyphenPattern;
 import com.foobnix.model.AppBook;
@@ -941,7 +942,7 @@ public class DragingDialogs {
                         final MyProgressBar MyProgressBar1 = (MyProgressBar) inflate.findViewById(R.id.MyProgressBarTTS);
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
-
+                        final Button delete = (Button) inflate.findViewById(R.id.delete);
 
 
                         final EditText from = (EditText) inflate.findViewById(R.id.from);
@@ -971,6 +972,19 @@ public class DragingDialogs {
 
                             }
                         });
+
+                        delete.setOnClickListener(v1 -> {
+                            File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
+                            boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName().endsWith(TTSEngine.WAV)));
+                            if (res) {
+                                Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(controller.getActivity(), R.string.fail, Toast.LENGTH_LONG).show();
+                            }
+
+                        });
+
+
                         final ResultResponse<String> info = new ResultResponse<String>() {
                             @Override
                             public boolean onResultRecive(final String result) {
@@ -979,7 +993,7 @@ public class DragingDialogs {
                                     @Override
                                     public void run() {
                                         progressText.setText(result);
-                                        if(result.equals(controller.getString(R.string.success))){
+                                        if (result.equals(controller.getString(R.string.success))) {
                                             MyProgressBar1.setVisibility(View.GONE);
                                         }
 

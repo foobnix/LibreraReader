@@ -16,7 +16,6 @@ import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
-import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -30,7 +29,6 @@ import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +40,7 @@ public class TTSEngine {
     public static final String FINISHED_SIGNAL = "Finished";
     public static final String STOP_SIGNAL = "Stoped";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
-    private static final String WAV = ".wav";
+    public static final String WAV = ".wav";
     private static final String TAG = "TTSEngine";
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
@@ -281,13 +279,7 @@ public class TTSEngine {
             info.onResultRecive(controller.getActivity().getString(R.string.file_not_found) + " " + dirFolder.getPath());
             return;
         }
-        CacheZipUtils.removeFiles(dirFolder.listFiles(new FileFilter() {
 
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.getName().endsWith(WAV);
-            }
-        }));
 
         String path = dirFolder.getPath();
         speakToFile(controller, from - 1, path, info, from - 1, to);
@@ -306,6 +298,7 @@ public class TTSEngine {
         if (page >= to || !TempHolder.isRecordTTS) {
             LOG.d("speakToFile finish", page, controller.getPageCount());
             info.onResultRecive((controller.getActivity().getString(R.string.success)));
+            TempHolder.isRecordTTS = false;
             return;
         }
 
@@ -319,17 +312,21 @@ public class TTSEngine {
 
 
         LOG.d("synthesizeToFile", fileText);
-        ttsEngine.synthesizeToFile(fileText, map, wav);
+        if (TxtUtils.isEmpty(fileText)) {
+            speakToFile(controller, page + 1, folder, info, from, to);
+        } else {
+            ttsEngine.synthesizeToFile(fileText, map, wav);
 
-        TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
+            TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
 
-            @Override
-            public void onUtteranceCompleted(String utteranceId) {
-                LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
-                speakToFile(controller, page + 1, folder, info, from, to);
-            }
+                @Override
+                public void onUtteranceCompleted(String utteranceId) {
+                    LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
+                    speakToFile(controller, page + 1, folder, info, from, to);
+                }
 
-        });
+            });
+        }
 
     }
 

@@ -33,52 +33,12 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class CacheZipUtils {
+    public static final Lock cacheLock = new ReentrantLock();
     private static final int BUFFER_SIZE = 16 * 1024;
-
-    public enum CacheDir {
-        ZipApp("ZipApp"), //
-        ZipService("ZipService"); //
-
-        private final String type;
-
-        private CacheDir(String type) {
-            this.type = type;
-        }
-
-        public static File parent;
-
-        public String getType() {
-            return type;
-        }
-
-        public static void createCacheDirs() {
-            for (CacheDir folder : values()) {
-                File root = new File(parent, folder.getType());
-                if (!root.exists()) {
-                    root.mkdirs();
-                }
-            }
-        }
-
-        public void removeCacheContent() {
-            try {
-                removeFiles(getDir().listFiles());
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-
-        public File getDir() {
-            return new File(parent, type);
-        }
-
-    }
-
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
     public static File CACHE_RECENT;
     public static File ATTACHMENTS_CACHE_DIR;
-    public static final Lock cacheLock = new ReentrantLock();
 
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
@@ -108,13 +68,6 @@ public class CacheZipUtils {
         }
     }
 
-    public static class FilerByDate implements Comparator<File> {
-        @Override
-        public int compare(final File lhs, final File rhs) {
-            return new Long(lhs.lastModified()).compareTo(new Long(rhs.lastModified()));
-        }
-    }
-
     public static void clearBookDir() {
         List<File> asList = Arrays.asList(CACHE_BOOK_DIR.listFiles());
 
@@ -132,10 +85,10 @@ public class CacheZipUtils {
         }
     }
 
-    public static void removeFiles(File[] files) {
+    public static boolean removeFiles(File[] files) {
         try {
             if (files == null) {
-                return;
+                return false;
             }
             for (File file : files) {
                 if (file != null) {
@@ -145,7 +98,9 @@ public class CacheZipUtils {
             }
         } catch (Exception e) {
             LOG.e(e);
+            return false;
         }
+        return true;
     }
 
     public static void removeFiles(File[] files, File exept) {
@@ -210,18 +165,6 @@ public class CacheZipUtils {
             LOG.e(e);
         }
         return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
-    }
-
-    public static class UnZipRes {
-        public String originalPath;
-        public String unZipPath;
-        public String entryName;
-
-        public UnZipRes(String originalPath, String unZipPath, String entryName) {
-            this.originalPath = originalPath;
-            this.unZipPath = unZipPath;
-            this.entryName = entryName;
-        }
     }
 
     public static UnZipRes extracIfNeed(String path, CacheDir folder) {
@@ -300,8 +243,6 @@ public class CacheZipUtils {
         out.close();
         return out.toByteArray();
     }
-
-
 
     static public void zipFolder(String srcFolder, String destZipFile) throws Exception {
         ZipOutputStream zip = null;
@@ -386,6 +327,63 @@ public class CacheZipUtils {
             if (os != null) {
                 os.close();
             }
+        }
+    }
+
+    public enum CacheDir {
+        ZipApp("ZipApp"), //
+        ZipService("ZipService"); //
+
+        public static File parent;
+        private final String type;
+
+        private CacheDir(String type) {
+            this.type = type;
+        }
+
+        public static void createCacheDirs() {
+            for (CacheDir folder : values()) {
+                File root = new File(parent, folder.getType());
+                if (!root.exists()) {
+                    root.mkdirs();
+                }
+            }
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void removeCacheContent() {
+            try {
+                removeFiles(getDir().listFiles());
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+        public File getDir() {
+            return new File(parent, type);
+        }
+
+    }
+
+    public static class FilerByDate implements Comparator<File> {
+        @Override
+        public int compare(final File lhs, final File rhs) {
+            return new Long(lhs.lastModified()).compareTo(new Long(rhs.lastModified()));
+        }
+    }
+
+    public static class UnZipRes {
+        public String originalPath;
+        public String unZipPath;
+        public String entryName;
+
+        public UnZipRes(String originalPath, String unZipPath, String entryName) {
+            this.originalPath = originalPath;
+            this.unZipPath = unZipPath;
+            this.entryName = entryName;
         }
     }
 }
