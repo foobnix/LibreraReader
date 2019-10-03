@@ -18,6 +18,7 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.mobi.parser.IOUtils;
+import com.foobnix.mobi.parser.MobiParserIS;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -31,9 +32,11 @@ import com.github.axet.lamejni.Lame;
 import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.DecimalFormat;
@@ -340,13 +343,21 @@ public class TTSEngine {
                     if (AppState.get().isConvertToMp3) {
                         try {
                             File file = new File(wav);
-                            FileInputStream input = new FileInputStream(file);
+
+
+                            InputStream input = new BufferedInputStream(new FileInputStream(file));
+                            input.mark(44);
+                            int bitrate = MobiParserIS.asInt_LITTLE_ENDIAN(input, 24, 4);
+                            LOG.d("bitrate", bitrate);
+                            input.reset();
+
+
                             byte[] bytes = IOUtils.toByteArray(input);
 
                             short[] shorts = new short[bytes.length / 2];
                             ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
 
-                            lame.open(1, 24000, 128, 4);
+                            lame.open(1, bitrate, 128, 4);
                             byte[] res = lame.encode(shorts, 0, bytes.length / 2);
                             lame.close();
                             IO.copyFile(new ByteArrayInputStream(res), new File(wav.replace(".wav", ".mp3")));

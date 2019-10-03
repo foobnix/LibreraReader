@@ -5,6 +5,7 @@ import com.foobnix.android.utils.LOG;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,6 +73,20 @@ public class MobiParserIS {
         return total;
     }
 
+    public static int peekInt(byte[] src, int offset, ByteOrder order) {
+        if (order == ByteOrder.BIG_ENDIAN) {
+            return (((src[offset++] & 0xff) << 24) |
+                    ((src[offset++] & 0xff) << 16) |
+                    ((src[offset++] & 0xff) << 8) |
+                    ((src[offset] & 0xff) << 0));
+        } else {
+            return (((src[offset++] & 0xff) << 0) |
+                    ((src[offset++] & 0xff) << 8) |
+                    ((src[offset++] & 0xff) << 16) |
+                    ((src[offset] & 0xff) << 24));
+        }
+    }
+
     public static String asString(InputStream is, int offset, int len) throws IOException {
         is.reset();
         byte[] res = new byte[len];
@@ -86,6 +101,15 @@ public class MobiParserIS {
         IOUtils.skip(is, offset);
         IOUtils.readFully(is, res);
         return byteArrayToInt(res);
+    }
+
+    public static int asInt_LITTLE_ENDIAN(InputStream is, int offset, int len) throws IOException {
+        is.reset();
+        byte[] res = new byte[len];
+        IOUtils.skip(is, offset);
+        IOUtils.readFully(is, res);
+        return peekInt(res,0, ByteOrder.LITTLE_ENDIAN);
+
     }
 
     public static byte[] copyOfRange(InputStream is, long offset, int len) {
