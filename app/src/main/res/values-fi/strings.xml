@@ -582,4 +582,5 @@
    <string name="show_book_title">Näytä kirjan otsikko tilarivillä</string>
    <string name="delete_reading_progress">Poista käsittelyn eteneminen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ohita kansiotarkistus, jos .nomedia-tiedosto on olemassa</string>
+   <string name="record_in_mp3_format">Tallenna .mp3-muodossa</string>
 </resources>

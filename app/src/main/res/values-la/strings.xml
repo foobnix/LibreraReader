@@ -582,4 +582,5 @@
    <string name="show_book_title">In libro titulus ostendit status talea</string>
    <string name="delete_reading_progress">Legendi progressus delere</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Si scan existit file folder ignorare .nomedia</string>
+   <string name="record_in_mp3_format">Recordum in MP3 format</string>
 </resources>

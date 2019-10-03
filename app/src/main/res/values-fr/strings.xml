@@ -582,4 +582,5 @@
    <string name="show_book_title">Afficher le titre du livre dans la barre d\'état</string>
    <string name="delete_reading_progress">Effacer la lecture</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorer l\'analyse du dossier si le fichier .nomedia existe</string>
+   <string name="record_in_mp3_format">Enregistrer au format .mp3</string>
 </resources>

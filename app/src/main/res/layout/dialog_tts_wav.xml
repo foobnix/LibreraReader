@@ -87,6 +87,12 @@
 
         </LinearLayout>
 
+        <CheckBox
+            android:id="@+id/isConvertToMp3"
+            android:layout_width="match_parent"
+            android:text="@string/record_in_mp3_format"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

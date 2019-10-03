@@ -582,4 +582,5 @@
    <string name="show_book_title">Zobrazit název knihy ve stavovém řádku</string>
    <string name="delete_reading_progress">Smazat průběh čtení</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorovat kontrolu složky, pokud existuje soubor .nomedia</string>
+   <string name="record_in_mp3_format">Záznam ve formátu .mp3</string>
 </resources>

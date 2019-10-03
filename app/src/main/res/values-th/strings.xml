@@ -582,4 +582,5 @@
    <string name="show_book_title">แสดงชื่อหนังสือในแถบสถานะ</string>
    <string name="delete_reading_progress">ลบความคืบหน้าการอ่าน</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">ละเว้นการสแกนโฟลเดอร์หากมีไฟล์. media อยู่</string>
+   <string name="record_in_mp3_format">บันทึกในรูปแบบ. mp3</string>
 </resources>

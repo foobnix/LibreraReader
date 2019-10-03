@@ -582,4 +582,5 @@
    <string name="show_book_title">Mostrar el título del libro en la barra de estado</string>
    <string name="delete_reading_progress">Reiniciar progreso</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore la exploración de carpetas si existe un archivo .nomedia</string>
+   <string name="record_in_mp3_format">Grabar en formato .mp3</string>
 </resources>

@@ -943,6 +943,9 @@ public class DragingDialogs {
                         final Button start = (Button) inflate.findViewById(R.id.start);
                         final Button stop = (Button) inflate.findViewById(R.id.stop);
                         final Button delete = (Button) inflate.findViewById(R.id.delete);
+                        final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
+                        isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
+                        isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isConvertToMp3 = isChecked);
 
 
                         final EditText from = (EditText) inflate.findViewById(R.id.from);
@@ -974,8 +977,13 @@ public class DragingDialogs {
                         });
 
                         delete.setOnClickListener(v1 -> {
+                            if(TempHolder.isRecordTTS){
+                                Toast.makeText(controller.getActivity(),R.string.please_wait,Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
                             File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
-                            boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName().endsWith(TTSEngine.WAV)));
+                            boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName().endsWith(TTSEngine.WAV) || pathname.getName().endsWith(TTSEngine.MP3)));
                             if (res) {
                                 Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
                             } else {

@@ -582,4 +582,5 @@
    <string name="show_book_title">Rodyti knygos pavadinimą būsenos juostoje</string>
    <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Nepaisyti aplanko nuskaitymo, jei yra .nomedia failas</string>
+   <string name="record_in_mp3_format">Įrašyti .mp3 formatu</string>
 </resources>

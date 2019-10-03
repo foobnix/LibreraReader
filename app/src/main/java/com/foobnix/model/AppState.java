@@ -337,6 +337,7 @@ public class AppState {
 
     public boolean isShowImages = true;
     public boolean isShowToolBar = true;
+    public boolean isConvertToMp3 = false;
 
     public boolean isShowPanelBookNameScrollMode = true;
     public boolean isShowPanelBookNameBookMode = false;

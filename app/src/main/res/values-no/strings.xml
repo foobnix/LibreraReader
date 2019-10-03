@@ -582,4 +582,5 @@
    <string name="show_book_title">Vis boktittelen i statuslinjen</string>
    <string name="delete_reading_progress">Slett leseutviklingen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorere mappesøk hvis .nomedia-fil eksisterer</string>
+   <string name="record_in_mp3_format">Ta opp i .mp3-format</string>
 </resources>

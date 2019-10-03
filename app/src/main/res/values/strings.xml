@@ -582,4 +582,5 @@
    <string name="show_book_title">Always display book title on top</string>
    <string name="delete_reading_progress">Reset progress</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore folders with .nomedia files</string>
+   <string name="record_in_mp3_format">Record in .MP3 format</string>
 </resources>

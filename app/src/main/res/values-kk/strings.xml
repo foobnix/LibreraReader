@@ -582,4 +582,5 @@
    <string name="show_book_title">Күй жолағында кітап атауын көрсету</string>
    <string name="delete_reading_progress">Оқу үлгерімін жою</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia файлы болса, қалтаны қарап шығуды елемеңіз</string>
+   <string name="record_in_mp3_format">.mp3 форматында жазу</string>
 </resources>

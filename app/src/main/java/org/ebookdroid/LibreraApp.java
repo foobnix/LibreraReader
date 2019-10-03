@@ -26,15 +26,18 @@ import org.ebookdroid.common.bitmaps.BitmapManager;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+
+
+
 public class LibreraApp extends MultiDexApplication {
+
+    public static Context context;
 
     static {
         System.loadLibrary("mypdf");
         System.loadLibrary("mobi");
         System.loadLibrary("antiword");
     }
-
-    public static Context context;
 
     @Override
     public void onCreate() {

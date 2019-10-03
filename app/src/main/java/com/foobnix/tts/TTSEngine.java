@@ -11,11 +11,13 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
@@ -24,11 +26,16 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.sys.TempHolder;
+import com.github.axet.lamejni.Lame;
 
 import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +48,7 @@ public class TTSEngine {
     public static final String STOP_SIGNAL = "Stoped";
     public static final String UTTERANCE_ID_DONE = "LirbiReader";
     public static final String WAV = ".wav";
+    public static final String MP3 = ".mp3";
     private static final String TAG = "TTSEngine";
     private static TTSEngine INSTANCE = new TTSEngine();
     volatile TextToSpeech ttsEngine;
@@ -49,6 +57,10 @@ public class TTSEngine {
     Object helpObject = new Object();
     HashMap<String, String> map = new HashMap<String, String>();
     HashMap<String, String> mapTemp = new HashMap<String, String>();
+
+    Lame lame = new Lame();
+
+
     OnInitListener listener = new OnInitListener() {
 
         @Override
@@ -317,11 +329,37 @@ public class TTSEngine {
         } else {
             ttsEngine.synthesizeToFile(fileText, map, wav);
 
+
             TTSEngine.get().getTTS().setOnUtteranceCompletedListener(new OnUtteranceCompletedListener() {
 
                 @Override
                 public void onUtteranceCompleted(String utteranceId) {
                     LOG.d("speakToFile onUtteranceCompleted", page, controller.getPageCount());
+
+
+                    if (AppState.get().isConvertToMp3) {
+                        try {
+                            File file = new File(wav);
+                            FileInputStream input = new FileInputStream(file);
+                            byte[] bytes = IOUtils.toByteArray(input);
+
+                            short[] shorts = new short[bytes.length / 2];
+                            ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
+
+                            lame.open(1, 24000, 128, 4);
+                            byte[] res = lame.encode(shorts, 0, bytes.length / 2);
+                            lame.close();
+                            IO.copyFile(new ByteArrayInputStream(res), new File(wav.replace(".wav", ".mp3")));
+                            input.close();
+                            file.delete();
+
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    }
+                    //lame.encode();
+
+
                     speakToFile(controller, page + 1, folder, info, from, to);
                 }
 

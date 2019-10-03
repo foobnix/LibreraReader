@@ -582,4 +582,5 @@
    <string name="show_book_title">Hiển thị tên sách trong thanh trạng thái</string>
    <string name="delete_reading_progress">Xóa tiến trình đọc</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Bỏ qua quét thư mục nếu tập tin .nomedia tồn tại</string>
+   <string name="record_in_mp3_format">Ghi ở định dạng .mp3</string>
 </resources>

@@ -582,4 +582,5 @@
    <string name="show_book_title">在状态栏中显示书名</string>
    <string name="delete_reading_progress">删除阅读进度</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">如果没有.nomedia文件，则忽略文件夹扫描</string>
+   <string name="record_in_mp3_format">以.mp3格式录制</string>
 </resources>

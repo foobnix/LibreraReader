@@ -582,4 +582,5 @@
    <string name="show_book_title">स्टेटस बार में पुस्तक का शीर्षक दिखाएं</string>
    <string name="delete_reading_progress">पढ़ने की प्रगति को हटा दें</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia फ़ाइल मौजूद होने पर फ़ोल्डर स्कैन पर ध्यान न दें</string>
+   <string name="record_in_mp3_format">.mp3 प्रारूप में रिकॉर्ड करें</string>
 </resources>

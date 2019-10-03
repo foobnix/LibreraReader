@@ -582,4 +582,5 @@
    <string name="show_book_title">Buchtitel in der Statusleiste anzeigen</string>
    <string name="delete_reading_progress">Lesefortschritt löschen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ordner-Scan ignorieren, wenn .nomedia-Datei vorhanden ist</string>
+   <string name="record_in_mp3_format">Aufnahme im MP3-Format</string>
 </resources>

@@ -582,4 +582,5 @@
    <string name="show_book_title">Boektitel weergeven in de statusbalk</string>
    <string name="delete_reading_progress">Leesvoortgang verwijderen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Negeer map scan als .nomedia bestand bestaat</string>
+   <string name="record_in_mp3_format">Opnemen in .mp3-indeling</string>
 </resources>
