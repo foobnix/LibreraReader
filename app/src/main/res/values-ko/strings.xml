@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">독서 중지 (타이머)</string>
    <string name="start">스타트</string>
    <string name="reading_will_be_stopped">독서가 중단됩니다.</string>
-   <string name="speak_into_file_wav_">파일에 대고 말 (WAV)</string>
    <string name="foot_notes">각주</string>
    <string name="set_the_current_page_number">현재 페이지 번호 설정</string>
    <string name="the_book_is_over">이 책은 끝났다</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">읽기 진행률 삭제</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia 파일이 존재하면 폴더 스캔 무시</string>
    <string name="record_in_mp3_format">.mp3 형식으로 기록</string>
+   <string name="speak_into_file_wav">레코드 TT (MP3, WAV)</string>
 </resources>

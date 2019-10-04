@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">停止朗读（定时器）</string>
    <string name="start">开始</string>
    <string name="reading_will_be_stopped">朗读将停止于</string>
-   <string name="speak_into_file_wav_">录制音频（WAV）</string>
    <string name="foot_notes">脚注</string>
    <string name="set_the_current_page_number">设置页码</string>
    <string name="the_book_is_over">本书结束</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">删除阅读进度</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">如果没有.nomedia文件，则忽略文件夹扫描</string>
    <string name="record_in_mp3_format">以.mp3格式录制</string>
+   <string name="speak_into_file_wav">记录tts（mp3，wav）</string>
 </resources>

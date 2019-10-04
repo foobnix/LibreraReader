@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Stop met lezen (timer)</string>
    <string name="start">Begin</string>
    <string name="reading_will_be_stopped">Het lezen wordt gestopt</string>
-   <string name="speak_into_file_wav_">Spreek in bestand (wav)</string>
    <string name="foot_notes">Voetnoot</string>
    <string name="set_the_current_page_number">Stel het huidige paginanummer in</string>
    <string name="the_book_is_over">Het boek is voorbij</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Leesvoortgang verwijderen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Negeer map scan als .nomedia bestand bestaat</string>
    <string name="record_in_mp3_format">Opnemen in .mp3-indeling</string>
+   <string name="speak_into_file_wav">Record tts (mp3, wav)</string>
 </resources>

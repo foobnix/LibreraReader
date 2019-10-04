@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Stopp lesing (timer)</string>
    <string name="start">Start</string>
    <string name="reading_will_be_stopped">Lesingen stoppes</string>
-   <string name="speak_into_file_wav_">Snakk inn i fil (wav)</string>
    <string name="foot_notes">Fotnote</string>
    <string name="set_the_current_page_number">Still inn det aktuelle sidenummeret</string>
    <string name="the_book_is_over">Boken er over</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Slett leseutviklingen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorere mappesøk hvis .nomedia-fil eksisterer</string>
    <string name="record_in_mp3_format">Ta opp i .mp3-format</string>
+   <string name="speak_into_file_wav">Ta opp tts (mp3, wav)</string>
 </resources>

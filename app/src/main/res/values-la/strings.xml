@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Sustinere recitationem exim</string>
    <string name="start">Initiare</string>
    <string name="reading_will_be_stopped">Reading will be stopped</string>
-   <string name="speak_into_file_wav_">Legere in plica (wav)</string>
    <string name="foot_notes">Annotatio ad calcem paginae</string>
    <string name="set_the_current_page_number">Set the current page number</string>
    <string name="the_book_is_over">Finis</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Legendi progressus delere</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Si scan existit file folder ignorare .nomedia</string>
    <string name="record_in_mp3_format">Recordum in MP3 format</string>
+   <string name="speak_into_file_wav">Tts record (mp3, hue)</string>
 </resources>

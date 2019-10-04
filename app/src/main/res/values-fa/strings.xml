@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">توقف خواندن (تایمر)</string>
    <string name="start">شروع</string>
    <string name="reading_will_be_stopped">خواندن متوقف خواهد شد</string>
-   <string name="speak_into_file_wav_">صحبت به فایل های (WAV)</string>
    <string name="foot_notes">پاورقی</string>
    <string name="set_the_current_page_number">شماره صفحه فعلی را تنظیم کنید</string>
    <string name="the_book_is_over">این کتاب به پایان رسیده است</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">پیشرفت خواندن را حذف کنید</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">اگر پرونده .nomedia وجود دارد ، اسکن پوشه را نادیده بگیرید</string>
    <string name="record_in_mp3_format">با فرمت .mp3 ضبط کنید</string>
+   <string name="speak_into_file_wav">ضبط tts (mp3 ، wav)</string>
 </resources>

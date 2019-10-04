@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">إيقاف القراءة (مؤقت)</string>
    <string name="start">بداية</string>
    <string name="reading_will_be_stopped">سيتم إيقاف القراءة</string>
-   <string name="speak_into_file_wav_">الكلام في ملف (الرعايا)</string>
    <string name="foot_notes">حاشية</string>
    <string name="set_the_current_page_number">تعيين رقم الصفحة الحالية</string>
    <string name="the_book_is_over">الكتاب هو أكثر</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">حذف تقدم القراءة</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">تجاهل فحص المجلد في حالة وجود ملف .nomedia</string>
    <string name="record_in_mp3_format">سجل بتنسيق mp3</string>
+   <string name="speak_into_file_wav">سجل تحويل النص إلى كلام (mp3 ، wav)</string>
 </resources>

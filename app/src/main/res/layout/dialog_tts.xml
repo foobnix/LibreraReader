@@ -241,7 +241,7 @@
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/speak_into_file_wav_" />
+            android:text="@string/speak_into_file_wav" />
     </LinearLayout>
 
 </ScrollView>

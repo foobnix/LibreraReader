@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">पढ़ना बंद करें (टाइमर)</string>
    <string name="start">प्रारंभ</string>
    <string name="reading_will_be_stopped">पढ़ना बंद कर दिया जाएगा</string>
-   <string name="speak_into_file_wav_">फ़ाइल में बोलें (wav)</string>
    <string name="foot_notes">पाद लेख</string>
    <string name="set_the_current_page_number">वर्तमान पेज नंबर सेट करें</string>
    <string name="the_book_is_over">किताब खत्म हो गया है</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">पढ़ने की प्रगति को हटा दें</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia फ़ाइल मौजूद होने पर फ़ोल्डर स्कैन पर ध्यान न दें</string>
    <string name="record_in_mp3_format">.mp3 प्रारूप में रिकॉर्ड करें</string>
+   <string name="speak_into_file_wav">रिकॉर्ड tts (एमपी 3, wav)</string>
 </resources>

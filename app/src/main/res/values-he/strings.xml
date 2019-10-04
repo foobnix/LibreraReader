@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">הפסק לקרוא (טיימר)</string>
    <string name="start">הַתחָלָה</string>
    <string name="reading_will_be_stopped">הקריאה תיעצר</string>
-   <string name="speak_into_file_wav_">דבר אל קובץ (WAV)</string>
    <string name="foot_notes">הערת שוליים</string>
    <string name="set_the_current_page_number">הגדר את מספר הדף הנוכחי</string>
    <string name="the_book_is_over">הספר נגמר</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">מחק את התקדמות הקריאה</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">התעלם מסריקת תיקיות אם קיים קובץ .nomedia</string>
    <string name="record_in_mp3_format">להקליט בפורמט .mp3</string>
+   <string name="speak_into_file_wav">הקלטות tts (mp3, wav)</string>
 </resources>

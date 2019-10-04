@@ -934,7 +934,7 @@ public class DragingDialogs {
                     @Override
                     public void onClick(View v) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(controller.getActivity());
-                        dialog.setTitle(R.string.speak_into_file_wav_);
+                        dialog.setTitle(R.string.speak_into_file_wav);
 
                         View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
                         final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);

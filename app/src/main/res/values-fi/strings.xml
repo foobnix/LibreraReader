@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Lopeta lukeminen (ajastin)</string>
    <string name="start">Alkaa</string>
    <string name="reading_will_be_stopped">Lukeminen pysähtyy</string>
-   <string name="speak_into_file_wav_">Puhumalla (wav)</string>
    <string name="foot_notes">Alaviite</string>
    <string name="set_the_current_page_number">Aseta nykyinen sivunumero</string>
    <string name="the_book_is_over">Kirja on ohi</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Poista käsittelyn eteneminen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ohita kansiotarkistus, jos .nomedia-tiedosto on olemassa</string>
    <string name="record_in_mp3_format">Tallenna .mp3-muodossa</string>
+   <string name="speak_into_file_wav">Levy-tts (mp3, wav)</string>
 </resources>

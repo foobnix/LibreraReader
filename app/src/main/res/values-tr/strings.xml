@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Okuma zamanlayıcısını durdur</string>
    <string name="start">Başlama</string>
    <string name="reading_will_be_stopped">Okuma duracak</string>
-   <string name="speak_into_file_wav_">Dosyaya doğru konuşun (wav)</string>
    <string name="foot_notes">Dipnot</string>
    <string name="set_the_current_page_number">Geçerli sayfa numarasını ayarla</string>
    <string name="the_book_is_over">Kitap bitti</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Okuma işlemini sil</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomedia dosyası varsa, klasör taramasını yoksay</string>
    <string name="record_in_mp3_format">.mp3 formatında kayıt</string>
+   <string name="speak_into_file_wav">Kayıt tts (mp3, wav)</string>
 </resources>

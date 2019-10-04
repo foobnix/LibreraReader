@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Berhenti membaca (timer)</string>
    <string name="start">Mulai</string>
    <string name="reading_will_be_stopped">Membaca akan dihentikan</string>
-   <string name="speak_into_file_wav_">Berbicaralah ke dalam file (wav)</string>
    <string name="foot_notes">Catatan kaki</string>
    <string name="set_the_current_page_number">Setel nomor halaman saat ini</string>
    <string name="the_book_is_over">Buku sudah berakhir</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Hapus kemajuan membaca</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Abaikan pemindaian folder jika ada file .nomedia</string>
    <string name="record_in_mp3_format">Rekam dalam format .mp3</string>
+   <string name="speak_into_file_wav">Rekam tts (mp3, wav)</string>
 </resources>

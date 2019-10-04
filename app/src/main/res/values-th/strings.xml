@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">หยุดอ่าน (จับเวลา)</string>
    <string name="start">เริ่มต้น</string>
    <string name="reading_will_be_stopped">การอ่านจะหยุดลง</string>
-   <string name="speak_into_file_wav_">บันทึกเสียงอ่านเป็นไฟล์ wav</string>
    <string name="foot_notes">เชิงอรรถ(ข้อความล่างท้ายของหน้า)</string>
    <string name="set_the_current_page_number">ตั้งค่าหมายเลขหน้าปัจจุบัน</string>
    <string name="the_book_is_over">หนังสือจบลงแล้ว</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">ลบความคืบหน้าการอ่าน</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">ละเว้นการสแกนโฟลเดอร์หากมีไฟล์. media อยู่</string>
    <string name="record_in_mp3_format">บันทึกในรูปแบบ. mp3</string>
+   <string name="speak_into_file_wav">บันทึก tts (mp3, wav)</string>
 </resources>

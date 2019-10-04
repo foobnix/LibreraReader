@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Nustoti skaityti (laikmatis)</string>
    <string name="start">Pradėti</string>
    <string name="reading_will_be_stopped">Skaitymas bus sustabdytas</string>
-   <string name="speak_into_file_wav_">Įrašyti garsą (wav)</string>
    <string name="foot_notes">Išnaša</string>
    <string name="set_the_current_page_number">Nustatykite dabartinį puslapio numerį</string>
    <string name="the_book_is_over">Knyga baigta</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Nepaisyti aplanko nuskaitymo, jei yra .nomedia failas</string>
    <string name="record_in_mp3_format">Įrašyti .mp3 formatu</string>
+   <string name="speak_into_file_wav">Įrašyti tts (mp3, wav)</string>
 </resources>

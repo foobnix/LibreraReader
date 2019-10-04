@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Остановить чтение через</string>
    <string name="start">Начать</string>
    <string name="reading_will_be_stopped">Чтение остановится в</string>
-   <string name="speak_into_file_wav_">Начитать в wav-файлы</string>
    <string name="foot_notes">Примечание</string>
    <string name="set_the_current_page_number">Условная перенумерация страниц</string>
    <string name="the_book_is_over">Книга прочитана</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Удалить прогресс чтения</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Игнорировать сканирование папки, если файл .nomedia существует</string>
    <string name="record_in_mp3_format">Запись в формате .mp3</string>
+   <string name="speak_into_file_wav">Запись tts (mp3, wav)</string>
 </resources>

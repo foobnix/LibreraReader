@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Zastaviť čítanie (časovač)</string>
    <string name="start">Štart</string>
    <string name="reading_will_be_stopped">Čítanie bude zastavené</string>
-   <string name="speak_into_file_wav_">Hovorte do súboru (wav)</string>
    <string name="foot_notes">Poznámka pod čiarou</string>
    <string name="set_the_current_page_number">Nastavte aktuálne číslo stránky</string>
    <string name="the_book_is_over">Kniha je u konca</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Vymazať postup čítania</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorovať kontrolu priečinka, ak existuje .nomedia súbor</string>
    <string name="record_in_mp3_format">Záznam vo formáte .mp3</string>
+   <string name="speak_into_file_wav">Záznam tts (mp3, wav)</string>
 </resources>

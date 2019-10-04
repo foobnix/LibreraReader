@@ -349,7 +349,8 @@ public class TTSEngine {
                             input.mark(44);
                             int bitrate = MobiParserIS.asInt_LITTLE_ENDIAN(input, 24, 4);
                             LOG.d("bitrate", bitrate);
-                            input.reset();
+                            input.close();
+                            input = new FileInputStream(file);
 
 
                             byte[] bytes = IOUtils.toByteArray(input);
@@ -358,7 +359,7 @@ public class TTSEngine {
                             ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().get(shorts);
 
                             lame.open(1, bitrate, 128, 4);
-                            byte[] res = lame.encode(shorts, 0, bytes.length / 2);
+                            byte[] res = lame.encode(shorts, 44, shorts.length);
                             lame.close();
                             IO.copyFile(new ByteArrayInputStream(res), new File(wav.replace(".wav", ".mp3")));
                             input.close();

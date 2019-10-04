@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Opriți citirea (temporizator)</string>
    <string name="start">Start</string>
    <string name="reading_will_be_stopped">Citirea va fi oprită</string>
-   <string name="speak_into_file_wav_">Vorbiți în fișier (wav)</string>
    <string name="foot_notes">Notă de subsol</string>
    <string name="set_the_current_page_number">Setați numărul paginii curente</string>
    <string name="the_book_is_over">Cartea este de peste</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Ștergeți progresul lecturii</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorați scanarea folderului dacă există un fișier .nomedia</string>
    <string name="record_in_mp3_format">Înregistrare în format .mp3</string>
+   <string name="speak_into_file_wav">Înregistrare tts (mp3, wav)</string>
 </resources>

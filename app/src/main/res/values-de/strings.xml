@@ -316,7 +316,6 @@
    <string name="stop_reading_timer_">Lese-Timer stoppen</string>
    <string name="start">Anfang</string>
    <string name="reading_will_be_stopped">Lesen wird gestoppt</string>
-   <string name="speak_into_file_wav_">Sprechen Sie in Datei (wav)</string>
    <string name="foot_notes">Fußnoten</string>
    <string name="set_the_current_page_number">Aktuelle Seitenzahl setzen</string>
    <string name="the_book_is_over">Ende des Buchs</string>
@@ -583,4 +582,5 @@
    <string name="delete_reading_progress">Lesefortschritt löschen</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ordner-Scan ignorieren, wenn .nomedia-Datei vorhanden ist</string>
    <string name="record_in_mp3_format">Aufnahme im MP3-Format</string>
+   <string name="speak_into_file_wav">Tts aufnehmen (mp3, wav)</string>
 </resources>
