@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Kupuuza skana ya folda ikiwa faili ya .nomedia iko</string>
    <string name="record_in_mp3_format">Rekodi katika .mp3 format</string>
    <string name="speak_into_file_wav">Rekodi tts (mp3, wav)</string>
+   <string name="text_is_too_long">Maandishi ni marefu sana</string>
 </resources>

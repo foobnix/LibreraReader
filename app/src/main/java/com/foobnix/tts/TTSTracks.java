@@ -59,12 +59,14 @@ public class TTSTracks {
 
     public static List<File> getAllMp3InFolder() {
         if (TxtUtils.isEmpty(BookCSS.get().mp3BookPath)) {
-            return null;
+            return Collections.emptyList();
+
         }
         File file = new File(BookCSS.get().mp3BookPath);
         File root = file.getParentFile();
         if (!file.isFile() || !root.isDirectory()) {
-            return null;
+            return Collections.emptyList();
+
         }
 
         File[] listFiles = root.listFiles(new FilenameFilter() {

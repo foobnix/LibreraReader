@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">התעלם מסריקת תיקיות אם קיים קובץ .nomedia</string>
    <string name="record_in_mp3_format">להקליט בפורמט .mp3</string>
    <string name="speak_into_file_wav">הקלטות tts (mp3, wav)</string>
+   <string name="text_is_too_long">הטקסט ארוך מדי</string>
 </resources>

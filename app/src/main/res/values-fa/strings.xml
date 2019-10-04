@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">اگر پرونده .nomedia وجود دارد ، اسکن پوشه را نادیده بگیرید</string>
    <string name="record_in_mp3_format">با فرمت .mp3 ضبط کنید</string>
    <string name="speak_into_file_wav">ضبط tts (mp3 ، wav)</string>
+   <string name="text_is_too_long">متن خیلی طولانی است</string>
 </resources>

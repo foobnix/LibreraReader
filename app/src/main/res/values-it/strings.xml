@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignora la scansione delle cartelle se esiste un file .nomedia</string>
    <string name="record_in_mp3_format">Registrare in formato .mp3</string>
    <string name="speak_into_file_wav">Registrazione tts (mp3, wav)</string>
+   <string name="text_is_too_long">Il testo è troppo lungo</string>
 </resources>

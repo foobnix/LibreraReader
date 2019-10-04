@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">.nomediaファイルが存在する場合、フォルダースキャンを無視する</string>
    <string name="record_in_mp3_format">.mp3形式で記録する</string>
    <string name="speak_into_file_wav">レコードTTS（mp3、wav）</string>
+   <string name="text_is_too_long">テキストが長すぎます</string>
 </resources>

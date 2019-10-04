@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">如果.nomedia文件存在，則忽略文件夾掃描</string>
    <string name="record_in_mp3_format">以.mp3格式錄製</string>
    <string name="speak_into_file_wav">記錄tts（mp3，wav）</string>
+   <string name="text_is_too_long">文字太長</string>
 </resources>

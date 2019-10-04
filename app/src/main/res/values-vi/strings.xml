@@ -583,4 +583,5 @@
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Bỏ qua quét thư mục nếu tập tin .nomedia tồn tại</string>
    <string name="record_in_mp3_format">Ghi ở định dạng .mp3</string>
    <string name="speak_into_file_wav">Bản ghi tts (mp3, wav)</string>
+   <string name="text_is_too_long">Văn bản quá dài</string>
 </resources>

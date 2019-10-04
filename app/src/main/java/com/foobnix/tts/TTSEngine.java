@@ -310,6 +310,9 @@ public class TTSEngine {
             return;
         }
 
+        ttsEngine.setPitch(AppState.get().ttsPitch);
+        ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
+
         if (page >= to || !TempHolder.isRecordTTS) {
             LOG.d("speakToFile finish", page, controller.getPageCount());
             info.onResultRecive((controller.getActivity().getString(R.string.success)));
@@ -330,6 +333,12 @@ public class TTSEngine {
         if (TxtUtils.isEmpty(fileText)) {
             speakToFile(controller, page + 1, folder, info, from, to);
         } else {
+
+            if (fileText.length() > 3950) {
+                fileText = TxtUtils.substringSmart(fileText,3950) +" " + controller.getString(R.string.text_is_too_long);
+                LOG.d("Text-too-long",page);
+            }
+
             ttsEngine.synthesizeToFile(fileText, map, wav);
 
 
@@ -361,7 +370,9 @@ public class TTSEngine {
                             lame.open(1, bitrate, 128, 4);
                             byte[] res = lame.encode(shorts, 44, shorts.length);
                             lame.close();
-                            IO.copyFile(new ByteArrayInputStream(res), new File(wav.replace(".wav", ".mp3")));
+                            File toFile = new File(wav.replace(".wav", ".mp3"));
+                            toFile.delete();
+                            IO.copyFile(new ByteArrayInputStream(res), toFile);
                             input.close();
                             file.delete();
 
