@@ -1,36 +1,39 @@
 Librera Reader is a highly customizable and feature-rich application
-for reading books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR formats on Android devices.
+for reading books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats on Android devices.
 With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
 It even features a unique auto-scrolling, hands-free Musician's mode.
 As of today, it can boast more than 10 million downloads to devices running all flavors of Android OS.
 
-# Just a few librera's main features
+# Just a few Librera's main features:
 
 * Easy document discovery by configurable criteria:
-* Auto-Scan (of user-preset folders)	
-* Browse (with an in-app file explorer) 
+* Auto-Scan (user-specified folders)	
+* Browse folders (using an in-app file explorer) 
 * Recent (featuring a reading-progress indicator)
 * Support for bookmarks, annotations, and EPUB3 tables of contents
 * Configurable Day and Night modes
 * Configurable link color (hence, footnotes and endnotes color)
-* Support for many popular online (including translators) and offline dictionaries
+* Support for many popular online and offline dictionaries (including translators)
 * Vertical-scroll lock
 * Auto- and manual centering of documents
-* Custom CSS code input
+* Custom ad-hoc CSS coding
 * Single-page view of two-page documents
 * Musician's mode with configurable scroll speed
 * Customizable TTS reading and built-in media player
+* Page-wise TTS recording to MP3 or WAV
 * Multi-word text search
 * Online document conversion
-* Reading of archived (.zip) documents
+* Support for archived (.zip) documents
 * Support for RTL languages (Thai, Hebrew, Arabic, etc.)
 * Import and export of settings, auto-backup of current session
+* Cloud-based transfer of bookmarks, settings and last-read pages across all of your devices
 * Leading initials in FB2 documents
+* RSVP reading (à la Spritz)
 * And a whole bunch of other features for you to check out.
 
 
-With Librera Reader, you can easily create self-maintained libraries of all your documents by specifying which formats to include and which folders to scan. All document collections can be viewed as a list or grid. Documents are easily identified by size- and style-adjustable thumbnail covers and detailed descriptions. Your library can be sorted by path, name, size, date, etc., and there is a filter to help locate specific documents or document groups. 
+With Librera Reader you can easily create self-maintained libraries of all your documents by specifying which formats to include and which folders to scan. All your document collections can be viewed as a list or grid. Documents are easily identifiable by size- and style-adjustable thumbnail covers and detailed descriptions. Your library can be sorted by path, name, size, date, etc., and there is a filter to help locate specific documents or document groups. 
 
-While reading, documents can be locked into a vertical-scroll-only mode and navigated either page- or screen-wise. Text can be reflowed and annotated. Volume keys' functionality is configurable, and backgrounds and fonts customizable via the intuitive Settings window. Excerpts (selections) can be translated, shared, copied, and searched for inside the document or on the Internet. 
+While reading, documents can be locked into a vertical-scroll-only mode and navigated either page- or screen-wise. Text in PDF files can be reflowed and annotated. Volume keys' functionality is configurable, and backgrounds and fonts customizable via the intuitive Settings window. Excerpts (selections) can be translated, shared, copied, and searched for inside the document or on the Internet. 
 
 The best way to fully appreciate Librera Reader, however, is to use its PRO version. You can start with Free, ad-supported one first, and decide for yourselves. We promise you won't be disappointed. Once you are convinced, please obtain a PRO license to help the app's further development.
