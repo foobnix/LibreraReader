@@ -383,7 +383,7 @@ public class AppDB {
                     if (in == SEARCH_IN.TAGS) {
                         TxtUtils.addFilteredTags(item, result);
                     } else {
-                        TxtUtils.addFilteredGenreSeries(item, result, in == SEARCH_IN.SERIES);
+                        TxtUtils.addFilteredGenreSeries(item, result, false);
                     }
                 } while (c.moveToNext());
             }
@@ -495,12 +495,15 @@ public class AppDB {
             LOG.d("searchBy", searchIn, str, "-");
             if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
-            } else if (searchIn == SEARCH_IN.SERIES && !str.contains("*")) {
-                where = where.where(searchIn.getProperty().eq(str));
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
                     str = str.replace(" ", "%").replace("*", "%");
+
                     String string = "%" + str + "%";
+
+
+                    LOG.d("searchBy-final", string);
+
                     if (searchIn != null) {
                         where = where.whereOr(searchIn.getProperty().like(string), searchIn.getProperty().like(string.toLowerCase(Locale.US)));
                     } else {

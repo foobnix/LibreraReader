@@ -193,9 +193,9 @@ public class TxtUtils {
             return;
         }
 
-        if (item.contains(",") || item.contains(";")) {
+        if (item.contains(",")) {
 
-            String[] split = item.split("[,;]");
+            String[] split = item.split(",");
 
             for (String txt : split) {
                 if (TxtUtils.isNotEmpty(txt)) {

@@ -669,18 +669,25 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (holder.series != null && onSeriesClickListener != null) {
-            String sequence = fileMeta.getSequence();
-            holder.series.setVisibility(TxtUtils.isNotEmpty(sequence) ? View.VISIBLE : View.GONE);
-            holder.series.setText(sequence);
-            holder.series.setOnClickListener(new OnClickListener() {
+             String sequence = fileMeta.getSequence();
+            if(TxtUtils.isNotEmpty(sequence)){
+                sequence = sequence.replace(",","");
+                holder.series.setVisibility(View.VISIBLE);
+                holder.series.setText(sequence);
+                holder.series.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    if (onSeriesClickListener != null) {
-                        onSeriesClickListener.onResultRecive(fileMeta.getSequence());
+                    @Override
+                    public void onClick(View v) {
+                        if (onSeriesClickListener != null) {
+                            onSeriesClickListener.onResultRecive(fileMeta.getSequence().replace(",",""));
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                holder.series.setText("");
+                holder.series.setVisibility(View.GONE);
+            }
+
         }
 
         holder.author.setOnClickListener(new OnClickListener() {

@@ -203,6 +203,7 @@ public class FileInformationDialog {
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
+            sequence = sequence.replace(",","");
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
 
             if (fileMeta.getSIndex() != null && fileMeta.getSIndex() > 0) {

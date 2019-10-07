@@ -91,6 +91,59 @@ public class FileMetaCore {
 
     }
 
+    public static boolean isNeedToExtractPDFMeta(String path) {
+        return !path.contains(" - ") && BookType.PDF.is(path);
+    }
+
+    public static String getBookOverview(String path) {
+        String info = "";
+        try {
+
+            if (CalirbeExtractor.isCalibre(path)) {
+                return CalirbeExtractor.getBookOverview(path);
+            }
+
+            path = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
+
+            if (BookType.EPUB.is(path)) {
+                info = EpubExtractor.get().getBookOverview(path);
+            } else if (BookType.FB2.is(path)) {
+                info = Fb2Extractor.get().getBookOverview(path);
+            } else if (BookType.MOBI.is(path)) {
+                info = MobiExtract.getBookOverview(path);
+            } else if (BookType.DJVU.is(path)) {
+                info = DjvuExtract.getBookOverview(path);
+            } else if (BookType.PDF.is(path)) {
+                info = PdfExtract.getBookOverview(path);
+            }
+            if (TxtUtils.isEmpty(info)) {
+                return "";
+            }
+            info = Jsoup.clean(info, Whitelist.none());
+            info = info.replace("&nbsp;", " ");
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return info;
+    }
+
+    public static String replaceComma(String input) {
+        if (TxtUtils.isEmpty(input)) {
+            return input;
+        }
+        input = input.replace("; ", ",").replace(";", ",");
+
+        if (!input.endsWith(",")) {
+            input = input + ",";
+        }
+
+        if (!input.startsWith(",")) {
+            input = "," + input;
+        }
+
+        return input;
+    }
+
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 
 
@@ -123,10 +176,6 @@ public class FileMetaCore {
         }
         return ebookMeta;
 
-    }
-
-    public static boolean isNeedToExtractPDFMeta(String path) {
-        return !path.contains(" - ") && BookType.PDF.is(path);
     }
 
     private EbookMeta getEbookMeta(String path, String unZipPath, String child) throws IOException {
@@ -239,48 +288,16 @@ public class FileMetaCore {
         return ebookMeta;
     }
 
-    public static String getBookOverview(String path) {
-        String info = "";
-        try {
-
-            if (CalirbeExtractor.isCalibre(path)) {
-                return CalirbeExtractor.getBookOverview(path);
-            }
-
-            path = CacheZipUtils.extracIfNeed(path, CacheDir.ZipApp).unZipPath;
-
-            if (BookType.EPUB.is(path)) {
-                info = EpubExtractor.get().getBookOverview(path);
-            } else if (BookType.FB2.is(path)) {
-                info = Fb2Extractor.get().getBookOverview(path);
-            } else if (BookType.MOBI.is(path)) {
-                info = MobiExtract.getBookOverview(path);
-            } else if (BookType.DJVU.is(path)) {
-                info = DjvuExtract.getBookOverview(path);
-            } else if (BookType.PDF.is(path)) {
-                info = PdfExtract.getBookOverview(path);
-            }
-            if (TxtUtils.isEmpty(info)) {
-                return "";
-            }
-            info = Jsoup.clean(info, Whitelist.none());
-            info = info.replace("&nbsp;", " ");
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return info;
-    }
-
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {
         fileMeta.setAuthor(TxtUtils.trim(meta.getAuthor()));
         fileMeta.setTitle(meta.getTitle());
-        fileMeta.setSequence(TxtUtils.firstUppercase(meta.getSequence()));
-        fileMeta.setGenre(meta.getGenre());
+        fileMeta.setSequence(replaceComma(TxtUtils.firstUppercase(meta.getSequence())));
+        fileMeta.setGenre(replaceComma(meta.getGenre()));
         fileMeta.setAnnotation(meta.getAnnotation());
         fileMeta.setSIndex(meta.getsIndex());
         fileMeta.setChild(ExtUtils.getFileExtension(meta.getUnzipPath()));
         fileMeta.setLang(TxtUtils.toLowerCase(meta.getLang()));
-        fileMeta.setKeyword(meta.getKeywords());
+        fileMeta.setKeyword(replaceComma(meta.getKeywords()));
         int pagesCount = meta.getPagesCount();
         if (pagesCount != 0) {
             fileMeta.setPages(pagesCount);

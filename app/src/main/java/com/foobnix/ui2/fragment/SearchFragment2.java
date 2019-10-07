@@ -79,30 +79,148 @@ import java.util.Stack;
 public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public static final String EMPTY_ID = "\u00A0";
-    private String NO_SERIES = ":no-series";
     public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
     private static final String CMD_MARGIN = "@@keycode_margin";
-
-
     public static int NONE = -1;
-
+    final Set<String> autocomplitions = new HashSet<String>();
+    public int prevLibModeFileMeta = AppState.MODE_GRID;
+    public int prevLibModeAuthors = NONE;
+    public int rememberPos = 0;
     FileMetaAdapter searchAdapter;
     AuthorsAdapter2 authorsAdapter;
-
     TextView countBooks, sortBy;
     Handler handler;
     ImageView sortOrder, myAutoCompleteImage, cleanFilter;
     View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
-    final Set<String> autocomplitions = new HashSet<String>();
-    public int prevLibModeFileMeta = AppState.MODE_GRID;
-    public int prevLibModeAuthors = NONE;
-    public int rememberPos = 0;
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
+            if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                searchAndOrderAsync();
+                searchEditText.setHint(R.string.search);
+                onRefresh.setActivated(true);
+            } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                int count = intent.getIntExtra(Intent.EXTRA_INDEX, 0);
+                countBooks.setText("" + count);
+                searchEditText.setHint(R.string.searching_please_wait_);
+                onRefresh.setActivated(false);
+            } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                onRefresh.setActivated(false);
+                searchEditText.setHint(R.string.extracting_information_from_books);
+            }
+        }
+
+    };
+    int countTitles = 0;
+    Runnable sortAndSeach = new Runnable() {
+
+        @Override
+        public void run() {
+            recyclerView.scrollToPosition(0);
+            searchAndOrderAsync();
+        }
+    };
+    Runnable hideKeyboard = new Runnable() {
+
+        @Override
+        public void run() {
+            Keyboards.close(searchEditText);
+            Keyboards.hideNavigation(getActivity());
+        }
+    };
+    Runnable saveAutoComplete = new Runnable() {
+
+        @Override
+        public void run() {
+            String txt = searchEditText.getText().toString().trim();
+            if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !StringDB.contains(AppState.get().myAutoCompleteDb, txt)) {
+                if (!searchAdapter.getItemsList().isEmpty()) {
+                    StringDB.add(AppState.get().myAutoCompleteDb, txt, (db) -> AppState.get().myAutoCompleteDb = db);
+                    autocomplitions.add(txt);
+                    updateFilterListAdapter();
+                    myAutoCompleteImage.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+        }
+    };
+    private final TextWatcher filterTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(final Editable s) {
+        }
+
+        @Override
+        public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {
+        }
+
+        @Override
+        public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
+            if (//
+                    AppState.get().libraryMode == AppState.MODE_GRID || //
+                            AppState.get().libraryMode == AppState.MODE_LIST || //
+                            AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
+                            AppState.get().libraryMode == AppState.MODE_COVERS//
+            ) {
+                handler.removeCallbacks(sortAndSeach);
+                handler.removeCallbacks(hideKeyboard);
+                if (s.toString().trim().length() == 0) {
+                    handler.postDelayed(sortAndSeach, 250);
+                    handler.postDelayed(hideKeyboard, 2000);
+                } else {
+                    handler.postDelayed(sortAndSeach, 1000);
+                }
+            }
+            myAutoCompleteImage.setVisibility(View.GONE);
+            handler.removeCallbacks(saveAutoComplete);
+
+            if (StringDB.contains(AppState.get().myAutoCompleteDb, s.toString().trim())) {
+                myAutoCompleteImage.setVisibility(View.VISIBLE);
+            } else {
+                handler.postDelayed(saveAutoComplete, 10000);
+            }
+
+        }
+
+    };
+    private String NO_SERIES = ":no-series";
     private Stack<String> prevText = new Stack<String>();
+    private ImageView onGridlList;
+    ResultResponse<String> onAuthorSeriesClick = new ResultResponse<String>() {
+
+        @Override
+        public boolean onResultRecive(String result) {
+            rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+            onMetaInfoClick(SEARCH_IN.getByMode(AppState.get().libraryMode), result);
+            return false;
+        }
+    };
+    ResultResponse<String> onAuthorClick = new ResultResponse<String>() {
+
+        @Override
+        public boolean onResultRecive(String result) {
+            onMetaInfoClick(SEARCH_IN.AUTHOR, result);
+            return false;
+        }
+    };
+    ResultResponse<String> onSeriesClick = new ResultResponse<String>() {
+
+        @Override
+        public boolean onResultRecive(String result) {
+            if (result.contains(NO_SERIES)) {
+                onMetaInfoClick(SEARCH_IN.getByPrefix(searchEditText.getText().toString()), result);
+            } else {
+                onMetaInfoClick(SEARCH_IN.SERIES, result);
+            }
+            return false;
+        }
+    };
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -422,29 +540,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
     }
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                searchAndOrderAsync();
-                searchEditText.setHint(R.string.search);
-                onRefresh.setActivated(true);
-            } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                int count = intent.getIntExtra(Intent.EXTRA_INDEX, 0);
-                countBooks.setText("" + count);
-                searchEditText.setHint(R.string.searching_please_wait_);
-                onRefresh.setActivated(false);
-            } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                onRefresh.setActivated(false);
-                searchEditText.setHint(R.string.extracting_information_from_books);
-            }
-        }
-
-    };
-
     private void onMetaInfoClick(SEARCH_IN mode, String result) {
+        if (mode == SEARCH_IN.SERIES) {
+            result = "," + result + ",";
+        }
 
         searchEditText.setText(mode.getDotPrefix() + " " + result);
         AppState.get().libraryMode = prevLibModeFileMeta;
@@ -452,43 +551,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderAsync();
     }
 
-    ResultResponse<String> onAuthorSeriesClick = new ResultResponse<String>() {
-
-        @Override
-        public boolean onResultRecive(String result) {
-            rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
-            onMetaInfoClick(SEARCH_IN.getByMode(AppState.get().libraryMode), result);
-            return false;
-        }
-    };
-
-    ResultResponse<String> onAuthorClick = new ResultResponse<String>() {
-
-        @Override
-        public boolean onResultRecive(String result) {
-            onMetaInfoClick(SEARCH_IN.AUTHOR, result);
-            return false;
-        }
-    };
-
-    ResultResponse<String> onSeriesClick = new ResultResponse<String>() {
-
-        @Override
-        public boolean onResultRecive(String result) {
-            if (result.contains(NO_SERIES)) {
-                onMetaInfoClick(SEARCH_IN.getByPrefix(searchEditText.getText().toString()), result);
-            } else {
-                onMetaInfoClick(SEARCH_IN.SERIES, result);
-            }
-            return false;
-        }
-    };
-
     private void seachAll() {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
-            BooksService.startForeground(getActivity(),BooksService.ACTION_SEARCH_ALL);
+            BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -496,7 +563,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void checkForDeleteBooks() {
         try {
-            BooksService.startForeground(getActivity(),BooksService.ACTION_REMOVE_DELETED);
+            BooksService.startForeground(getActivity(), BooksService.ACTION_REMOVE_DELETED);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -527,8 +594,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderExteral("@tags " + msg.getTagName());
 
     }
-
-    int countTitles = 0;
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
@@ -779,83 +844,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         showBookCount();
 
     }
-
-    Runnable sortAndSeach = new Runnable() {
-
-        @Override
-        public void run() {
-            recyclerView.scrollToPosition(0);
-            searchAndOrderAsync();
-        }
-    };
-    Runnable hideKeyboard = new Runnable() {
-
-        @Override
-        public void run() {
-            Keyboards.close(searchEditText);
-            Keyboards.hideNavigation(getActivity());
-        }
-    };
-
-    Runnable saveAutoComplete = new Runnable() {
-
-        @Override
-        public void run() {
-            String txt = searchEditText.getText().toString().trim();
-            if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !StringDB.contains(AppState.get().myAutoCompleteDb, txt)) {
-                if (!searchAdapter.getItemsList().isEmpty()) {
-                    StringDB.add(AppState.get().myAutoCompleteDb, txt, (db) -> AppState.get().myAutoCompleteDb = db);
-                    autocomplitions.add(txt);
-                    updateFilterListAdapter();
-                    myAutoCompleteImage.setVisibility(View.VISIBLE);
-                }
-
-            }
-
-        }
-    };
-
-    private final TextWatcher filterTextWatcher = new TextWatcher() {
-
-        @Override
-        public void afterTextChanged(final Editable s) {
-        }
-
-        @Override
-        public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {
-        }
-
-        @Override
-        public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
-            if (//
-                    AppState.get().libraryMode == AppState.MODE_GRID || //
-                            AppState.get().libraryMode == AppState.MODE_LIST || //
-                            AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
-                            AppState.get().libraryMode == AppState.MODE_COVERS//
-            ) {
-                handler.removeCallbacks(sortAndSeach);
-                handler.removeCallbacks(hideKeyboard);
-                if (s.toString().trim().length() == 0) {
-                    handler.postDelayed(sortAndSeach, 250);
-                    handler.postDelayed(hideKeyboard, 2000);
-                } else {
-                    handler.postDelayed(sortAndSeach, 1000);
-                }
-            }
-            myAutoCompleteImage.setVisibility(View.GONE);
-            handler.removeCallbacks(saveAutoComplete);
-
-            if (StringDB.contains(AppState.get().myAutoCompleteDb, s.toString().trim())) {
-                myAutoCompleteImage.setVisibility(View.VISIBLE);
-            } else {
-                handler.postDelayed(saveAutoComplete, 10000);
-            }
-
-        }
-
-    };
-
-    private ImageView onGridlList;
 
     private void sortByPopup(final View view) {
 
