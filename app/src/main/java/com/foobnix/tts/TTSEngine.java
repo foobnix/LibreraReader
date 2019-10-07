@@ -61,7 +61,6 @@ public class TTSEngine {
     HashMap<String, String> map = new HashMap<String, String>();
     HashMap<String, String> mapTemp = new HashMap<String, String>();
 
-    Lame lame = new Lame();
 
 
     OnInitListener listener = new OnInitListener() {
@@ -352,6 +351,7 @@ public class TTSEngine {
                     if (AppState.get().isConvertToMp3) {
                         try {
                             File file = new File(wav);
+                            Lame lame = new Lame();
 
 
                             InputStream input = new BufferedInputStream(new FileInputStream(file));

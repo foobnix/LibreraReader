@@ -36,73 +36,16 @@ import org.greenrobot.eventbus.EventBus;
 public class BrightnessHelper {
 
     public static final int BRIGHTNESS_WIDTH = Dips.DP_50;
-
-    float lastPercent = 0;
     static float currentPercent = 0;
-
+    float lastPercent = 0;
     int MAX = Dips.dpToPx(3000);
     int MIN = Dips.dpToPx(500);
+    boolean isMovementStart;
     private float x;
     private float y;
-    boolean isMovementStart;
 
     public BrightnessHelper(Context c) {
         updateCurrentValue();
-    }
-
-
-    public void updateCurrentValue() {
-        if (AppState.get().isEnableBlueFilter) {
-            currentPercent = AppState.get().blueLightAlpha * -1;
-        } else {
-            currentPercent = AppState.get().appBrightness == AppState.AUTO_BRIGTNESS ? 0 : AppState.get().appBrightness;
-        }
-    }
-
-    public void onActoinDown(float x, float y) {
-        this.x = x;
-        this.y = y;
-        isMovementStart = false;
-        currentPercent = getMinMaxValue(currentPercent + lastPercent);
-    }
-
-    public void onActionUp() {
-        // isMovementStart = false;
-    }
-
-    public float getMinMaxValue(float value) {
-        if (value > 100) {
-            return 100;
-        }
-        if (value < -100) {
-            return -100;
-        }
-        return value;
-    }
-
-    public boolean onActionMove(final MotionEvent event) {
-        if (!AppState.get().isBrighrnessEnable) {
-            return false;
-        }
-
-        float yDiff = y - event.getY();
-        float dy = Math.abs(yDiff);
-        float dx = Math.abs(x - event.getX());
-
-        if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
-            isMovementStart = true;
-
-            if (y < Dips.screenHeight() / 3 || y > Dips.screenHeight() - Dips.screenHeight() / 3) {
-                lastPercent = (int) (yDiff * 100 / MIN);
-            } else {
-                lastPercent = (int) (yDiff * 100 / MAX);
-            }
-
-            float plus = getMinMaxValue(lastPercent + currentPercent);
-            EventBus.getDefault().post(new MessegeBrightness((int) plus));
-        }
-        return isMovementStart;
-
     }
 
     public static void applyBrigtness(final Activity a) {
@@ -111,22 +54,28 @@ public class BrightnessHelper {
 
             final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
 
+            float myBrightness;
+
             if (appBrightness == AppState.AUTO_BRIGTNESS) {
-                lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+                myBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
             } else if (appBrightness == 0) {
                 if (AppState.get().isAllowMinBrigthness) {
-                    lp.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+                    myBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
                 } else {
-                    lp.screenBrightness = 0.01f;
+                    myBrightness = 0.01f;
                 }
             } else {
                 float value = (float) appBrightness / 100;
-                lp.screenBrightness = Math.max(0.01f, value);
+                myBrightness = Math.max(0.01f, value);
             }
 
-            LOG.d("applyBrigtness", lp.screenBrightness);
-
-            a.getWindow().setAttributes(lp);
+            if (myBrightness != lp.screenBrightness) {
+                LOG.d("applyBrigtness",a.getComponentName(), lp.screenBrightness, myBrightness);
+                lp.screenBrightness = myBrightness;
+                a.getWindow().setAttributes(lp);
+            } else {
+                LOG.d("applyBrigtness not need", lp.screenBrightness);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -351,6 +300,60 @@ public class BrightnessHelper {
         isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
         autoSettings.setChecked(AppState.get().appBrightness == AppState.AUTO_BRIGTNESS);
         customBrightness.setEnabled(AppState.get().appBrightness != AppState.AUTO_BRIGTNESS);
+
+    }
+
+    public void updateCurrentValue() {
+        if (AppState.get().isEnableBlueFilter) {
+            currentPercent = AppState.get().blueLightAlpha * -1;
+        } else {
+            currentPercent = AppState.get().appBrightness == AppState.AUTO_BRIGTNESS ? 0 : AppState.get().appBrightness;
+        }
+    }
+
+    public void onActoinDown(float x, float y) {
+        this.x = x;
+        this.y = y;
+        isMovementStart = false;
+        currentPercent = getMinMaxValue(currentPercent + lastPercent);
+    }
+
+    public void onActionUp() {
+        // isMovementStart = false;
+    }
+
+    public float getMinMaxValue(float value) {
+        if (value > 100) {
+            return 100;
+        }
+        if (value < -100) {
+            return -100;
+        }
+        return value;
+    }
+
+    public boolean onActionMove(final MotionEvent event) {
+        if (!AppState.get().isBrighrnessEnable) {
+            return false;
+        }
+
+        float yDiff = y - event.getY();
+        float dy = Math.abs(yDiff);
+        float dx = Math.abs(x - event.getX());
+
+        if ((isMovementStart || dy > Dips.DP_25) && event.getPointerCount() == 1 && x < BRIGHTNESS_WIDTH && dy > dx) {
+            isMovementStart = true;
+
+            if (y < Dips.screenHeight() / 3 || y > Dips.screenHeight() - Dips.screenHeight() / 3) {
+                lastPercent = (int) (yDiff * 100 / MIN);
+            } else {
+                lastPercent = (int) (yDiff * 100 / MAX);
+            }
+
+            float plus = getMinMaxValue(lastPercent + currentPercent);
+            EventBus.getDefault().post(new MessegeBrightness((int) plus));
+        }
+        return isMovementStart;
 
     }
 }
