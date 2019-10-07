@@ -214,6 +214,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         withInterstitial = false;
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
+
+        BrightnessHelper.applyBrigtness(this);
+        BrightnessHelper.updateOverlay(overlay);
         GFile.runSyncService(this);
     }
 
@@ -716,11 +719,9 @@ public class MainTabs2 extends AdsFragmentActivity {
             adapter.notifyDataSetChanged();
         }
 
-        BrightnessHelper.applyBrigtness(this);
-        BrightnessHelper.updateOverlay(overlay);
+
         SharedBooks.cache.clear();
     }
-
 
 
     boolean isMyKey = false;

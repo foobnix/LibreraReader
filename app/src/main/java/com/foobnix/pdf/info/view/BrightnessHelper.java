@@ -135,7 +135,7 @@ public class BrightnessHelper {
     public static int getSystemBrigtnessInt(final Activity a) {
         try {
             final int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
-            int res = brightInt * 100 / 255;
+            int res = (brightInt * 100) / 255;
             LOG.d("getSystemBrigtnessInt", brightInt, res);
             return res;
         } catch (final SettingNotFoundException e) {
@@ -205,7 +205,7 @@ public class BrightnessHelper {
         }
         if (AppState.get().isEnableBlueFilter) {
             overlay.setVisibility(View.VISIBLE);
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, 160 * AppState.get().blueLightAlpha / 100));
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, (160 * AppState.get().blueLightAlpha) / 100));
         } else {
             overlay.setVisibility(View.GONE);
         }
