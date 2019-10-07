@@ -626,13 +626,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof AuthorViewHolder) {
             AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;
-            aHolder.onBindViewHolder(aHolder, fileMeta.getSequence());
+            final String sequence = fileMeta.getSequence().replace(",","");
+            aHolder.onBindViewHolder(aHolder, sequence);
             aHolder.parent.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     if (onSeriesClickListener != null) {
-                        onSeriesClickListener.onResultRecive(fileMeta.getSequence());
+                        onSeriesClickListener.onResultRecive(sequence);
                     }
                 }
             });
