@@ -108,8 +108,13 @@ public class Dialogs {
             JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements3);
 
             final Iterator<String> keys = jsonObject.keys();
+            List<String> list = new ArrayList<String>();
             while (keys.hasNext()) {
-                String key = keys.next();
+                list.add(keys.next());
+            }
+            Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+            for (String key : list) {
                 String value = jsonObject.getString(key);
 
                 LinearLayout h = new LinearLayout(activity);
@@ -245,7 +250,7 @@ public class Dialogs {
         create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             JSONObject res = new JSONObject();
             //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
-            boolean hasErrors  = false;
+            boolean hasErrors = false;
             for (int i = 0; i < root.getChildCount(); i++) {
                 final View childAt = root.getChildAt(i);
                 if (childAt instanceof LinearLayout) {
@@ -282,7 +287,7 @@ public class Dialogs {
                 }
             }
             LOG.d("lineTTSReplacements3", AppState.get().lineTTSReplacements3);
-            if(!hasErrors){
+            if (!hasErrors) {
                 AppState.get().lineTTSReplacements3 = res.toString();
                 create.dismiss();
             }

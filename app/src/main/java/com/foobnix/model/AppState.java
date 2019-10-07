@@ -10,9 +10,11 @@ import android.view.KeyEvent;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.MemoryUtils;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
@@ -20,9 +22,12 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -354,8 +359,17 @@ public class AppState {
     public boolean ttsTunnOnLastWord = false;
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
+
+
+    @IgnoreHashCode
+    @Deprecated
+    public String lineTTSReplacements;
+
+
     @IgnoreHashCode
     public String lineTTSReplacements3 = TTS_REPLACEMENTS;
+
+
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
     @IgnoreHashCode
@@ -638,6 +652,8 @@ public class AppState {
             isShowWhatIsNewDialog = false;
         }
 
+
+
     }
 
     public boolean loadInit(final Context a) {
@@ -650,6 +666,28 @@ public class AppState {
             load(a);
             if (AppState.get().isShowPanelBookNameBookMode && AppState.get().statusBarPosition == AppState.STATUSBAR_POSITION_TOP) {
                 AppState.get().isShowPanelBookNameBookMode = false;
+            }
+
+            try{
+                if(TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)){
+                    JSONObject o1 =  new JSONObject(AppState.get().lineTTSReplacements);
+                    JSONObject o3 =  new JSONObject(AppState.get().lineTTSReplacements3);
+                    Iterator<String> keys = o1.keys();
+                    while(keys.hasNext()){
+                        String key = keys.next();
+                        if(!key.startsWith("[")){
+                            String value = o1.getString(key);
+                            o3.put(key, value);
+                            LOG.d("migration", key,value);
+                        }
+
+                    }
+                    AppState.get().lineTTSReplacements3 = o3.toString();
+                    AppState.get().lineTTSReplacements = "";
+                }
+
+            }catch (Exception e){
+                LOG.e(e);
             }
 
             isLoaded = true;
