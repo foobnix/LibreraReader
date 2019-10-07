@@ -97,24 +97,130 @@ import test.SvgActivity;
 @SuppressLint("NewApi")
 public class MainTabs2 extends AdsFragmentActivity {
     public static final int REQUEST_CODE_ADD_RESOURCE = 123;
-
-
-    private static final String TAG = "MainTabs";
     public static final String EXTRA_EXIT = "EXTRA_EXIT";
     public static final String EXTRA_SHOW_TABS = "EXTRA_SHOW_TABS";
+    private static final String TAG = "MainTabs";
     public static String EXTRA_PAGE_NUMBER = "EXTRA_PAGE_NUMBER";
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     public static String EXTRA_NOTIFY_REFRESH = "EXTRA_NOTIFY_REFRESH";
+    public boolean isEink = false;
     ViewPager pager;
     List<UIFragment> tabFragments;
-
     TabsAdapter2 adapter;
-
     ImageView imageMenu;
     View imageMenuParent, overlay;
     TextView toastBrightnessText;
+    Handler handler;
+    MyProgressBar fab;
+    SwipeRefreshLayout swipeRefreshLayout;
+    boolean isMyKey = false;
+    OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
+        UIFragment uiFragment = null;
 
-    public boolean isEink = false;
+        @Override
+        public void onPageSelected(int pos) {
+            uiFragment = tabFragments.get(pos);
+            uiFragment.onSelectFragment();
+            TempHolder.get().currentTab = pos;
+
+            LOG.d("onPageSelected", uiFragment);
+
+
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            if (isPullToRefreshEnable()) {
+                swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+            }
+            LOG.d("onPageSelected onPageScrollStateChanged", state);
+            if (state == ViewPager.SCROLL_STATE_IDLE) {
+                check();
+            }
+
+        }
+
+        public void check() {
+            if (isPullToRefreshEnable()) {
+                if (uiFragment instanceof PrefFragment2) {
+                    swipeRefreshLayout.setEnabled(false);
+                } else {
+                    swipeRefreshLayout.setEnabled(true);
+                }
+            }
+        }
+    };
+    Runnable closeActivityRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+//            TTSNotification.hideNotification();
+//            TTSEngine.get().shutdown();
+//            adsPause();
+            finish();
+        }
+    };
+    private SlidingTabLayout indicator;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
+            if (pos != -1) {
+                if (pos >= 0) {
+                    pager.setCurrentItem(pos);
+                }
+
+                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
+                    onResume();
+                }
+
+            } else {
+                if (AppState.get().appTheme == AppState.THEME_INK) {
+                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+                    indicator.setSelectedIndicatorColors(TintUtil.color);
+                    indicator.setDividerColors(TintUtil.color);
+                    indicator.updateIcons(pager.getCurrentItem());
+                } else {
+                    indicator.setBackgroundColor(TintUtil.color);
+                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                }
+            }
+        }
+
+    };
+    private DrawerLayout drawerLayout;
+
+    public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
+        if (a == null || swipeRefreshLayout == null) {
+            return false;
+        }
+        return AppTemp.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
+    }
+
+    public static void startActivity(Activity c, int tab) {
+        AppTemp.get().lastClosedActivity = null;
+        final Intent intent = new Intent(c, MainTabs2.class);
+        intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
+        intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
+        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        c.startActivity(intent);
+        c.overridePendingTransition(0, 0);
+
+    }
+
+    public static void closeApp(Context c) {
+        if (c == null) {
+            return;
+        }
+        EventBus.getDefault().post(new MsgCloseMainTabs());
+    }
 
     @Override
     protected void onNewIntent(final Intent intent) {
@@ -140,7 +246,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(intent);
 
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -201,22 +306,16 @@ public class MainTabs2 extends AdsFragmentActivity {
         return isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout);
     }
 
-    public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
-        if (a == null || swipeRefreshLayout == null) {
-            return false;
-        }
-        return AppTemp.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
-    }
-
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         withInterstitial = false;
         super.onPostCreate(savedInstanceState);
         // testIntentHandler();
 
-        BrightnessHelper.applyBrigtness(this);
-        BrightnessHelper.updateOverlay(overlay);
+        if (Android6.canWrite(this)) {
+            BrightnessHelper.applyBrigtness(this);
+            BrightnessHelper.updateOverlay(overlay);
+        }
         GFile.runSyncService(this);
     }
 
@@ -231,10 +330,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             super.attachBaseContext(MyContextWrapper.wrap(context));
         }
     }
-
-    Handler handler;
-    MyProgressBar fab;
-    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -596,7 +691,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                 @Override
                 public void run() {
-                    LOG.d("Open AppTemp.get().lastBookPath",AppTemp.get().lastBookPath);
+                    LOG.d("Open AppTemp.get().lastBookPath", AppTemp.get().lastBookPath);
                     if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
                         intent.setData(Uri.fromFile(new File(AppTemp.get().lastBookPath)));
@@ -619,7 +714,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         checkGoToPage(getIntent());
 
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onShowSycn(MessageSync msg) {
@@ -648,35 +742,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onMessegeBrightness(MessegeBrightness msg) {
         BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
     }
-
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
-            if (pos != -1) {
-                if (pos >= 0) {
-                    pager.setCurrentItem(pos);
-                }
-
-                if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
-                    onResume();
-                }
-
-            } else {
-                if (AppState.get().appTheme == AppState.THEME_INK) {
-                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
-                    indicator.setSelectedIndicatorColors(TintUtil.color);
-                    indicator.setDividerColors(TintUtil.color);
-                    indicator.updateIcons(pager.getCurrentItem());
-                } else {
-                    indicator.setBackgroundColor(TintUtil.color);
-                    imageMenuParent.setBackgroundColor(TintUtil.color);
-                }
-            }
-        }
-
-    };
 
     public void checkGoToPage(Intent intent) {
         int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
@@ -720,11 +785,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
-        SharedBooks.cache.clear();
+
     }
-
-
-    boolean isMyKey = false;
 
     public void updateCurrentFragment() {
         tabFragments.get(pager.getCurrentItem()).onSelectFragment();
@@ -772,10 +834,10 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
+        SharedBooks.cache.clear();
     }
 
     @Override
@@ -828,49 +890,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
-    OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
-        UIFragment uiFragment = null;
-
-        @Override
-        public void onPageSelected(int pos) {
-            uiFragment = tabFragments.get(pos);
-            uiFragment.onSelectFragment();
-            TempHolder.get().currentTab = pos;
-
-            LOG.d("onPageSelected", uiFragment);
-
-
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
-            if (isPullToRefreshEnable()) {
-                swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
-            }
-            LOG.d("onPageSelected onPageScrollStateChanged", state);
-            if (state == ViewPager.SCROLL_STATE_IDLE) {
-                check();
-            }
-
-        }
-
-        public void check() {
-            if (isPullToRefreshEnable()) {
-                if (uiFragment instanceof PrefFragment2) {
-                    swipeRefreshLayout.setEnabled(false);
-                } else {
-                    swipeRefreshLayout.setEnabled(true);
-                }
-            }
-        }
-    };
-    private SlidingTabLayout indicator;
-
     @Override
     public boolean onKeyLongPress(final int keyCode, final KeyEvent event) {
         if (CloseAppDialog.checkLongPress(this, event)) {
@@ -904,40 +923,8 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
     }
 
-    Runnable closeActivityRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-//            TTSNotification.hideNotification();
-//            TTSEngine.get().shutdown();
-//            adsPause();
-            finish();
-        }
-    };
-
-    private DrawerLayout drawerLayout;
-
-    public static void startActivity(Activity c, int tab) {
-        AppTemp.get().lastClosedActivity = null;
-        final Intent intent = new Intent(c, MainTabs2.class);
-        intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
-        intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
-        intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, c.getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        c.startActivity(intent);
-        c.overridePendingTransition(0, 0);
-
-    }
-
     @Subscribe
     public void onCloseAppMsg(MsgCloseMainTabs event) {
         onFinishActivity();
-    }
-
-    public static void closeApp(Context c) {
-        if (c == null) {
-            return;
-        }
-        EventBus.getDefault().post(new MsgCloseMainTabs());
     }
 }
