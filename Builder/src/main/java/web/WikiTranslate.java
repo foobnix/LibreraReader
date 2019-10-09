@@ -18,8 +18,9 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 12);
-       // GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
+        int version = 16;
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
+        // GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
         //GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
@@ -42,6 +43,7 @@ public class WikiTranslate {
 
         List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.");
 
+        boolean findCode = false;
         for (String pr : ignoreLines) {
             if (in.startsWith(pr)) {
                 return in;
@@ -95,7 +97,7 @@ public class WikiTranslate {
         }
 
         String line = GoogleTranslation.translate(in, ln);
-        line=line.replace("（","(").replace("）",")");
+        line = line.replace("（", "(").replace("）", ")");
 
         for (String key : reverse.keySet()) {
             line = line.replace(key, reverse.get(key));
@@ -103,7 +105,7 @@ public class WikiTranslate {
         System.out.println(line);
         return line;
     }
-    
+
 
     public static void syncPaths(String path, final String ln) throws Exception {
 
@@ -172,7 +174,21 @@ public class WikiTranslate {
         int header = 0;
 
         boolean first = true;
+        boolean findCode = false;
         while ((line = input.readLine()) != null) {
+
+            if (line.trim().equals("```")) {
+                findCode = !findCode;
+                if (findCode == false) {
+                    out.println(line);
+                    continue;
+                }
+            }
+
+            if (findCode) {
+                out.println(line);
+                continue;
+            }
 
             if (first && !line.equals("---")) {
                 header = 3;

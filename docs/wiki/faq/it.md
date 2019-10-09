@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 12
+version: 16
 ---
 [<](/wiki/)
 
@@ -19,4 +19,5 @@ version: 12
 * [La schermata principale](/wiki/faq/main-app/it)
 * [Come convertire PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
 * [Controllo luminosità e filtro luce blu](/wiki/faq/brightness-control-and-blue-light-filter/it)
+* [Come aggiungere una nuova sezione FAQ](/wiki/faq/how-to-add-new-faq-section/it)
 * [Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista](/wiki/faq/reading-mode-vertical-book-musician/it)

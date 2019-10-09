@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 12
+version: 16
 ---
 [<](/wiki/)
 
@@ -19,4 +19,5 @@ version: 12
 * [الشاشة الرئيسية](/wiki/faq/main-app/ar)
 * [كيفية تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
 * [التحكم في السطوع وفلتر الضوء الأزرق](/wiki/faq/brightness-control-and-blue-light-filter/ar)
+* [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)

@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 12
+version: 16
 ---
 [<](/wiki/)
 
@@ -19,4 +19,5 @@ version: 12
 * [The Main Screen](/wiki/faq/main-app)
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness control and blue light filter](/wiki/faq/brightness-control-and-blue-light-filter)
+* [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
 * [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)

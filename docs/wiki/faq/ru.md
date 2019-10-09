@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 12
+version: 16
 ---
 [<](/wiki/)
 
@@ -19,4 +19,5 @@ version: 12
 * [Главный экран](/wiki/faq/main-app/ru)
 * [Как конвертировать PDF в EPUB](/wiki/faq/convert-pdf-to-epub/ru)
 * [Контроль яркости и фильтр синего света](/wiki/faq/brightness-control-and-blue-light-filter/ru)
+* [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)
