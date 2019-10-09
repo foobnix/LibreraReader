@@ -81,7 +81,7 @@ public class AppProfile {
 
 
 
-    public static void init(Context c) {
+    public synchronized static void init(Context c) {
 
         sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
 

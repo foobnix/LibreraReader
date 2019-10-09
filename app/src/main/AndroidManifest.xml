@@ -51,27 +51,7 @@
                 android:resource="@xml/paths" />
         </provider>
 
-        <activity
-            android:name="com.foobnix.zipmanager.ZipActivity"
-            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="file" />
-                <data android:scheme="content" />
-                <data android:host="*" />
-
-                <data android:mimeType="application/x-compressed" />
-                <data android:mimeType="application/x-compressed-zip" />
-                <data android:mimeType="application/x-zip-compressed" />
-                <data android:mimeType="application/zip" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="com.foobnix.zipmanager.SendReceiveActivity"
             android:launchMode="singleTask">
@@ -141,6 +121,12 @@
                 <data android:mimeType="image/x-djvu" />
                 <data android:mimeType="image/x.djvu" />
                 <data android:mimeType="image/tiff" />
+
+
+                <data android:mimeType="application/x-compressed" />
+                <data android:mimeType="application/x-compressed-zip" />
+                <data android:mimeType="application/x-zip-compressed" />
+                <data android:mimeType="application/zip" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -177,6 +163,7 @@
                 <data android:pathPattern=".*\\.docx" />
                 <data android:pathPattern=".*\\.doc" />
                 <data android:pathPattern=".*\\.xps" />
+                <data android:pathPattern=".*\\.zip" />
             </intent-filter>
 
             <intent-filter>
@@ -192,6 +179,7 @@
 
 
             </intent-filter>
+
         </activity>
 
 

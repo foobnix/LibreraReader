@@ -1,6 +1,7 @@
 package com.foobnix;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -16,7 +17,9 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.FileMetaCore;
+import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.BookType;
 
@@ -41,8 +44,6 @@ public class OpenerActivity extends Activity {
             Android6.checkPermissions(this, true);
             return;
         }
-
-        AppProfile.init(this);
 
         if (getIntent() == null || getIntent().getData() == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
@@ -144,6 +145,18 @@ public class OpenerActivity extends Activity {
         FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, meta);
         LOG.d("OpenerActivity", "open file", meta.getPath());
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        AppProfile.init(context);
+        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f) {
+            LOG.d("attachBaseContext skip");
+            super.attachBaseContext(context);
+        } else {
+            LOG.d("attachBaseContext apply");
+            super.attachBaseContext(MyContextWrapper.wrap(context));
+        }
     }
 
 
