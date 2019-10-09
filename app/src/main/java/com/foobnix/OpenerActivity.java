@@ -18,7 +18,6 @@ import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
-import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.BookType;
@@ -68,7 +67,7 @@ public class OpenerActivity extends Activity {
             if (dataPath != null) {
                 file = new File(dataPath);
             }
-            LOG.d("OpenerActivity 1", file.getPath());
+            LOG.d("OpenerActivity 1", dataPath, file.getPath());
 
         }
         if (!file.isFile()) {
@@ -142,9 +141,9 @@ public class OpenerActivity extends Activity {
             }
         }
 
-        FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
-        ExtUtils.openFile(this, meta);
-        LOG.d("OpenerActivity", "open file", meta.getPath());
+        //FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
+        ExtUtils.openFile(this, new FileMeta(file.getPath()));
+        LOG.d("OpenerActivity", "open file",file.getPath());
     }
 
     @Override

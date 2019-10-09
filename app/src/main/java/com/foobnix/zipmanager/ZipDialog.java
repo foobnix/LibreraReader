@@ -172,8 +172,6 @@ public class ZipDialog {
                 return null;
             }
 
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
-
             String outFileName = ExtUtils.getFileName(fileName);
             File out = new File(CacheZipUtils.CACHE_RECENT, outFileName);
             if (out.isFile()) {
