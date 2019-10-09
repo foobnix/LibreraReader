@@ -1,18 +1,18 @@
 Librera Reader is a highly customizable and feature-rich application
-for reading books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats
+for reading e-books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats
 
 With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
-It even features a unique auto-scrolling, hands-free Musician's mode.
+It even features a unique auto-scrolling, hands-free Musician's mode, with contollable speed
 
-For better security Librera Reader for F-Droid uses MuPDF 1.16.1 and did not require Internet permission.
+For better security, the F-Droid version, is based on the latest MuPDF 1.16.1 and does not require access to the Internet.
 
-Librera Reader for F-Droid has missing Internet related features:
-1) OPDS (Calibre) Catalogs
-2) Syncronization to Google Drive
-3) Clouds (Dropbox, Google Drive, One Drive)
-4) Save (share) web pages from web browser
+For the above reason, some Internet-related features of Librera Reader are missing in its F-Droid version:
+1) Access to OPDS (Calibre) Catalogs
+2) Google Drive Syncing
+3) Access to Clouds (Dropbox, Google Drive, OneDrive)
+4) Saving (sharing) pages from web browsers
 5) Rendering MathML formulas in epub3 books
-6) Displaying "what is new" dialog
+6) Access to the What's New page
 
 # Just a few Librera's main features:
 
@@ -23,7 +23,7 @@ Librera Reader for F-Droid has missing Internet related features:
 * Support for bookmarks, annotations, and EPUB3 tables of contents
 * Configurable Day and Night modes
 * Configurable link color (hence, footnotes and endnotes color)
-* Support for many popular online and offline dictionaries (including translators)
+* Support for many popular offline dictionaries
 * Vertical-scroll lock
 * Auto- and manual centering of documents
 * Custom ad-hoc CSS coding
@@ -32,14 +32,13 @@ Librera Reader for F-Droid has missing Internet related features:
 * Customizable TTS reading and built-in media player
 * Page-wise TTS recording to MP3 or WAV
 * Multi-word text search
-* Online document conversion
 * Support for archived (.zip) documents
 * Support for RTL languages (Thai, Hebrew, Arabic, etc.)
 * Import and export of settings, auto-backup of current session
-* Cloud-based transfer of bookmarks, settings and last-read pages across all of your devices
 * Leading initials in FB2 documents
 * RSVP reading (à la Spritz)
+* Movable bookmarks, w/ a floating indicator
 * And a whole bunch of other features for you to check out.
 
 
-The best way to fully appreciate Librera Reader, however, is to use its Librera PRO version from Google Play.
+The best way to fully appreciate Librera Reader, however, is to use our restriction-free Librera PRO version from Google Play.
