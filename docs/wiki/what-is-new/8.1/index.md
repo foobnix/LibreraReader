@@ -10,6 +10,7 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 
 **New Features and Improvements**
 
+* TTS: recording entire books or page ranges to MP3 files (one page per file)
 * Syncing across Android devices via Google Drive (reading progress, bookmarks, etc.)
 * Multiple profiles
 * TTS: character replacements, manual stress marks, RegEx rules
@@ -19,7 +20,7 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 
 # Syncing via Google Drive
 
-Syncing is intended to be used on multiple Android devices connected to Google Drive. While reading a book, you will be able to pick up on your tablet at night right where you left off on your phone during the day. Syncing is supported by **all** apps of the Librera family. And it's FREE.
+Syncing is intended to be used on multiple Android devices connected to Google Drive. While reading a book, you will be able to pick up on your tablet at night right where you've left off on your phone during the day. Syncing is supported by **all** apps of the Librera family. And it's FREE.
 
 You can sync the following parameters:
 
@@ -91,7 +92,7 @@ A **long press** on a profile name will pop up an alert window for you to restor
 # Miscellaneous
 
 * Support for MathML and SVG formats. Enable it in Advanced options (may slow down initial book loading)
-* Option to ignore metadata in the Library view (only filenames will be used)
+* Option to ignore metadata in Library and Folder views (only filenames will be displayed)
 * Movable bookmark, with a floating indicator (automatically bookmarks your current reading position and allows you to jump back to it, via floater in the bottom-right corner, after temporary visits to other parts and sections of the book). To initiate (add) a movable bookmark, check the **Floating** box
 * Allow fingerprint to be used instead of password (Android 9+)
 * Allow the system sleep timeout to be used for turning screen off 
