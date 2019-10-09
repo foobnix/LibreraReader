@@ -8,7 +8,7 @@ For better security Librera Reader for F-Droid uses MuPDF 1.16.1 and did not req
 
 Librera Reader for F-Droid has missing Internet related features:
 1) OPDS (Calibre) Catalogs
-2) Syncronization with Google Drive
+2) Syncronization to Google Drive
 3) Clouds (Dropbox, Google Drive, One Drive)
 4) Save (share) web pages from web browser
 5) Rendering MathML formulas in epub3 books
