@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.net.Uri;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -29,28 +28,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 public class ZipDialog {
     static AlertDialog create;
 
-    public static Executor EXECUTOR = Executors.newSingleThreadExecutor(new ThreadFactory() {
+    public static void show(Activity a, File file, final Runnable onDismiss) {
 
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread t = new Thread();
-            t.setPriority(Thread.MAX_PRIORITY);
-            return t;
-        }
-    });
-
-    public static void show(Activity a, Uri uri, final Runnable onDismiss) {
-
-        Pair<Boolean, String> res = CacheZipUtils.isSingleAndSupportEntry(getStream(a, uri));
+        Pair<Boolean, String> res = CacheZipUtils.isSingleAndSupportEntry(file.getPath());
         if (res.first) {
-            extractAsyncProccess(a, res.second, uri, onDismiss, true);
+            extractAsyncProccess(a, res.second, file, onDismiss, true);
             return;
         }
 
@@ -66,7 +52,7 @@ public class ZipDialog {
         });
 
         try {
-            dialog.setView(getDialogContent(a, uri, new Runnable() {
+            dialog.setView(getDialogContent(a, file, new Runnable() {
 
                 @Override
                 public void run() {
@@ -89,7 +75,7 @@ public class ZipDialog {
         create.show();
     }
 
-    public static View getDialogContent(final Activity a, final Uri uri, final Runnable onDismiss) {
+    public static View getDialogContent(final Activity a, final File file, final Runnable onDismiss) {
 
         final List<String> items = new ArrayList<String>();
 
@@ -108,7 +94,7 @@ public class ZipDialog {
         try {
 
 
-            ZipArchiveInputStream zipInputStream = getStream(a, uri);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(file.getPath());
 
 
             ArchiveEntry nextEntry = null;
@@ -133,7 +119,7 @@ public class ZipDialog {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 String name = items.get(position);
-                extractAsyncProccess(a, name, uri, onDismiss, false);
+                extractAsyncProccess(a, name, file, onDismiss, false);
             }
         });
 
@@ -141,20 +127,8 @@ public class ZipDialog {
         return list;
     }
 
-    private static ZipArchiveInputStream getStream(final Activity a, final Uri uri) {
-        try {
-            LOG.d("getStream", uri);
-            File file = new File(uri.getPath());
-            if (file.isFile()) {
-                return new ZipArchiveInputStream(file.getPath());
-            }
-            return new ZipArchiveInputStream(a.getContentResolver().openInputStream(uri));
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
-    public static void extractAsyncProccess(final Activity a, final String name, final Uri uri, final Runnable onDismiss, final boolean single) {
+    public static void extractAsyncProccess(final Activity a, final String name, final File file, final Runnable onDismiss, final boolean single) {
         new AsyncProgressTask<File>() {
             @Override
             public Context getContext() {
@@ -163,10 +137,9 @@ public class ZipDialog {
 
             @Override
             protected File doInBackground(Object... params) {
-                return extractFile(a, name, uri, single);
+                return extractFile(a, name, file, single);
             }
 
-            ;
 
             @Override
             protected void onPostExecute(File file) {
@@ -190,7 +163,7 @@ public class ZipDialog {
 
     }
 
-    public static File extractFile(Activity a, String fileName, Uri uri, boolean single) {
+    public static File extractFile(Activity a, String fileName, File file, boolean single) {
         try {
             CacheZipUtils.CACHE_RECENT.mkdirs();
 
@@ -209,7 +182,7 @@ public class ZipDialog {
 
             // CacheZipUtils.removeFiles(CacheZipUtils.CACHE_UN_ZIP_DIR.listFiles());
 
-            ZipArchiveInputStream zipInputStream = getStream(a, uri);
+            ZipArchiveInputStream zipInputStream = new ZipArchiveInputStream(file.getPath());
 
 
             ArchiveEntry nextEntry = null;

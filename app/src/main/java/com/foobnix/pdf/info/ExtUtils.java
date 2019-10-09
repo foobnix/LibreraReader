@@ -297,7 +297,7 @@ public class ExtUtils {
                 if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
                     ExtUtils.showDocumentWithoutDialog2(a, file);
                 } else {
-                    ZipDialog.show(a, Uri.fromFile(file), null);
+                    ZipDialog.show(a, file, null);
                 }
             } else if (ExtUtils.isNotSupportedFile(file)) {
                 LOG.d("openFile isExteralSD isNotSupportedFile");
