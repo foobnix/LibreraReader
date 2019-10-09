@@ -1,6 +1,4 @@
 * [About app](/wiki/about)
-* [Guide](/wiki/manual)
 * [FAQ](/wiki/faq)
-* [Stories](/wiki/stories)
 * [What is new](/wiki/what-is-new/)
 * [Download](/wiki/download)

@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-[FAQ](/wiki/faq)
+[<](/wiki/faq)
 
 # How to update the library
 

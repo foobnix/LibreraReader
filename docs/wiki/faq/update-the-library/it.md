@@ -1,14 +1,14 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-[FAQ](/wiki/faq/it)
+[<](/wiki/faq)
 
 # Come aggiornare la libreria
 
 
-* Fare clic sull'icona di aggiornamento per avviare l'aggiornamento della libreria.
-* Puoi personalizzare i percorsi per la biblioteca del libro.
+* Fai clic sull'icona di aggiornamento per iniziare l'aggiornamento della libreria.
+* È possibile personalizzare i percorsi per la libreria di libri.
 * Se si modificano alcune impostazioni della libreria, verrà visualizzata la finestra di dialogo
 
 

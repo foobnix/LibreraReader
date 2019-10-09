@@ -1,15 +1,15 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-[FAQ](/wiki/faq/pt)
+[<](/wiki/faq)
 
 # Como atualizar a biblioteca
 
 
 * Clique no ícone de atualização para começar a atualizar a biblioteca.
-* Você pode personalizar os caminhos para a biblioteca de livros.
-* Se você alterar algumas configurações da biblioteca, a caixa de diálogo será exibida
+* Você pode personalizar os caminhos da biblioteca de livros.
+* Se você alterar algumas configurações da biblioteca, a caixa de diálogo será exibida.
 
 
 |1|2|3|

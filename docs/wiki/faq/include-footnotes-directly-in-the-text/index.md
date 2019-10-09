@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[FAQ](/wiki/faq)
+[<](/wiki/faq)
 
 # Include footnotes directly in the text
 

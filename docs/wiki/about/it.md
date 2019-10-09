@@ -1,49 +1,50 @@
 ---
 layout: main
-version: 3
+version: 4
 ---
-[<](/wiki/it)
+[<](/wiki/)
 
-# Informazioni sull&#39;applicazione Librera Book Reader per Android
+# Informazioni sull'applicazione Librera Book Reader per Android
 
-> __Librera Reader__ (aka __Lirbi Reader__, __PDF Reader__) è un&#39;applicazione altamente personalizzabile e ricca di funzionalità
-per la lettura di libri in formato PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR su dispositivi Android.
-Con la sua interfaccia intuitiva e potente, Librera rende la lettura degli ebook un vero piacere.
-Dispone anche di una modalità di musicista a mani libere, a mani libere.
-Ad oggi, può vantare oltre __10 milioni di download__ su dispositivi che utilizzano tutti i tipi di sistema operativo Android.
+&gt; **Librera Reader** (aka **Lirbi Reader**, **PDF Reader**) è un'applicazione altamente personalizzabile e ricca di funzionalità
+per leggere libri in formato PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR su dispositivi Android.
+Con la sua interfaccia intuitiva ma potente, Librera rende la lettura di ebook un vero piacere.
+Presenta anche un'esclusiva modalità Musicista a scorrimento automatico e vivavoce.
+Ad oggi, può vantare oltre **10 milioni di** download su dispositivi che eseguono tutte le versioni del sistema operativo Android.
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-# Solo alcune delle principali funzionalità di librera
+# Solo alcune delle funzionalità principali di Librera
 
-* Scoperta facile dei documenti con criteri configurabili:
-* Auto-Scan (delle cartelle preimpostate dall&#39;utente/it)
-* Sfoglia (con un esploratore di file in-app/it)
-* Recente (con un indicatore di avanzamento della lettura/it)
-* Supporto per segnalibri, annotazioni e sommari di EPUB3
+* Facile individuazione di documenti secondo criteri configurabili:
+* Scansione automatica (delle cartelle preimpostate dall'utente)
+* Sfoglia (con un esploratore di file in-app)
+* Recenti (con un indicatore di avanzamento della lettura)
+* Supporto per segnalibri, annotazioni e sommari EPUB3
 * Supporto per cloud e cataloghi online
+* Sincronizzazione su dispositivi Android tramite Google Drive (lettura progressi, segnalibri, ecc.)
 * Modalità giorno e notte configurabili
-* Colore del link configurabile (quindi, note a piè di pagina e colore delle note di chiusura/it)
-* Supporto per molti dizionari online (inclusi i traduttori) e offline
-* Serratura a scorrimento verticale
+* Colore link configurabile (quindi, colore note e note finali)
+* Supporto per molti dizionari popolari online (inclusi traduttori) e offline
+* Blocco scorrimento verticale
 * Centratura automatica e manuale dei documenti
 * Inserimento di codice CSS personalizzato
-* Vista a pagina singola di documenti di due pagine
-* Modalità del musicista con velocità di scorrimento configurabile
+* Visualizzazione a pagina singola di documenti a due pagine
+* Modalità musicista con velocità di scorrimento configurabile
 * Lettura TTS personalizzabile e lettore multimediale integrato
 * Ricerca di testo in più parole
 * Conversione di documenti online
-* Lettura di documenti archiviati (.zip/it)
-* Supporto per le lingue RTL (tailandese, ebraico, arabo, ecc./it)
+* Lettura di documenti archiviati (.zip)
+* Supporto per le lingue RTL (tailandese, ebraico, arabo, ecc.)
 * Importazione ed esportazione di impostazioni, backup automatico della sessione corrente
-* Iniziali leader nei documenti FB2
-* E un sacco di altre funzionalità da provare.
+* iniziali iniziali nei documenti FB2
+* E molte altre funzionalità da provare.
 
 
-Con __Librera Reader__, puoi facilmente creare librerie autogestite di tutti i tuoi documenti specificando quali formati includere e quali cartelle scansionare. Tutte le raccolte di documenti possono essere visualizzate come un elenco o una griglia. I documenti sono facilmente identificabili dalle copertine delle miniature regolabili in base alle dimensioni e allo stile e alle descrizioni dettagliate. La libreria può essere ordinata per percorso, nome, dimensione, data, ecc. E vi è un filtro per individuare documenti specifici o gruppi di documenti.
+Con **Librera Reader**, puoi creare facilmente librerie autosufficienti di tutti i tuoi documenti specificando quali formati includere e quali cartelle scansionare. Tutte le raccolte di documenti possono essere visualizzate come un elenco o una griglia. I documenti sono facilmente identificabili da copertine di miniature regolabili in base a dimensioni e stile e descrizioni dettagliate. La tua libreria può essere ordinata per percorso, nome, dimensione, data, ecc. E c'è un filtro per aiutare a individuare documenti o gruppi di documenti specifici.
 
-Durante la lettura, i documenti possono essere bloccati in una modalità solo scorrimento verticale e la loro navigazione può essere impostata per sfogliare la pagina o lo schermo. Il testo può essere ridimensionato e annotato. La funzionalità dei tasti del volume è configurabile e gli sfondi e i caratteri sono personalizzabili tramite l&#39;intuitiva finestra Impostazioni. Gli estratti possono essere tradotti, condivisi, copiati e cercati su Internet.
+Durante la lettura, i documenti possono essere bloccati in una modalità di solo scorrimento verticale e possono essere spostati su una pagina o sullo schermo. Il testo può essere ridisposto e annotato. La funzionalità dei tasti del volume è configurabile e sfondi e caratteri personalizzabili tramite l'intuitiva finestra Impostazioni. Gli estratti (selezioni) possono essere tradotti, condivisi, copiati e cercati all'interno del documento o su Internet.
 
-Il modo migliore per apprezzare appieno Librera Reader è utilizzare la versione PRO. Puoi iniziare con Free, supportato dalla pubblicità e decidere per conto tuo. Vi promettiamo che non resterete delusi. Una volta che siete convinti, si prega di ottenere una licenza PRO per aiutare l&#39;ulteriore sviluppo dell&#39;app.
+Il modo migliore per apprezzare appieno Librera Reader, tuttavia, è utilizzare la sua versione PRO. Puoi iniziare con uno gratuito, supportato da pubblicità, e decidere tu stesso. Ti promettiamo che non rimarrai deluso. Una volta che sei convinto, ti preghiamo di ottenere una licenza PRO per aiutare l'ulteriore sviluppo dell'app.

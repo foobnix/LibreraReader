@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-[FAQ](/wiki/faq/fr)
+[<](/wiki/faq)
 
 # Comment mettre à jour la bibliothèque
 

@@ -18,13 +18,12 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 11);
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", 12);
+       // GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
+        //GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
         syncPaths(root, "ru");
-
         syncPaths(root, "fr");
         syncPaths(root, "de");
         syncPaths(root, "it");
@@ -80,11 +79,12 @@ public class WikiTranslate {
         for (String key : map.keySet()) {
             in = in.replace(key, map.get(key));
         }
-        // System.out.println(in);
+
+        //System.out.println(in);
 
         if (in.contains("](/")) {// ulr
             int index = in.indexOf("](/");
-            String url = in.substring(index + 1, in.indexOf(")") + 1);
+            String url = in.substring(index + 1, in.lastIndexOf(")") + 1);
 
             url = url.replace("/)", ")").replace(")", "/" + ln + ")");
 

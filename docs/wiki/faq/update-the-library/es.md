@@ -1,14 +1,14 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
-[FAQ](/wiki/faq/es)
+[<](/wiki/faq)
 
 # Cómo actualizar la biblioteca
 
 
 * Haga clic en el icono de actualización para comenzar a actualizar la biblioteca.
-* Puedes personalizar las rutas para la biblioteca de libros.
+* Puede personalizar las rutas para la biblioteca de libros.
 * Si cambia algunas configuraciones de la biblioteca, aparecerá el cuadro de diálogo
 
 
