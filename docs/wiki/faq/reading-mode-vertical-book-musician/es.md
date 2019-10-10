@@ -6,7 +6,7 @@ version: 1
 
 # Modos de lectura: modo de desplazamiento, modo de libro y modo de músico
 
-&gt; El lector de libros Librera admite 3 tipos de modos de lectura. Ver uno es mejor para ti decidirte.
+> El lector de libros Librera admite 3 tipos de modos de lectura. Ver uno es mejor para ti decidirte.
 
 **El modo de desplazamiento** es una lectura vertical para desplazar el documento hacia arriba y hacia abajo.
 

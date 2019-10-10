@@ -6,7 +6,7 @@ version: 4
 
 # Informazioni sull'applicazione Librera Book Reader per Android
 
-&gt; **Librera Reader** (aka **Lirbi Reader**, **PDF Reader**) è un'applicazione altamente personalizzabile e ricca di funzionalità
+> **Librera Reader** (aka **Lirbi Reader**, **PDF Reader**) è un'applicazione altamente personalizzabile e ricca di funzionalità
 per leggere libri in formato PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR su dispositivi Android.
 Con la sua interfaccia intuitiva ma potente, Librera rende la lettura di ebook un vero piacere.
 Presenta anche un'esclusiva modalità Musicista a scorrimento automatico e vivavoce.

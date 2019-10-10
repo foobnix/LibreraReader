@@ -6,7 +6,7 @@ version: 1
 
 # Modes de lecture: mode défilement, mode livre et mode musicien
 
-&gt; Le lecteur de livre Librera prend en charge 3 types de modes de lecture. Voir un est mieux pour vous décidez vous-même.
+> Le lecteur de livre Librera prend en charge 3 types de modes de lecture. Voir un est mieux pour vous décidez vous-même.
 
 Le mode de défilement**** est une lecture verticale permettant de faire défiler les documents de haut en bas.
 

@@ -6,7 +6,7 @@ version: 3
 
 # Der Hauptbildschirm
 
-&gt; Registerkarte Bibliothek oder Bücherregal
+> Registerkarte Bibliothek oder Bücherregal
 
 Registerkarte * Bibliothek - Zeigt alle auf dem Gerät gefundenen Bücher an
 * Ändern Sie die Sortierreihenfolge nach Daten, Dateigröße, Autor usw.

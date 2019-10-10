@@ -6,7 +6,7 @@ version: 4
 
 {1}关于Android的Librera Book Reader应用程序
 
-&gt; **Librera Reader**(又名**Lirbi Reader**，**PDF Reader**)是高度可定制且功能丰富的应用程序
+> **Librera Reader**(又名**Lirbi Reader**，**PDF Reader**)是高度可定制且功能丰富的应用程序
 适用于在Android设备上阅读PDF，EPUB，MOBI，DjVu，FB2，TXT，RTF，AZW，AZW3，HTML，CBZ，CBR格式的图书。
 凭借其直观而强大的界面，Librera使电子书阅读的确令人愉悦。
 它甚至具有独特的自动滚动，免提音乐家模式。

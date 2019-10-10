@@ -6,7 +6,7 @@ version: 3
 
 # A tela principal
 
-&gt; Guia Biblioteca ou Estante
+> Guia Biblioteca ou Estante
 
 * Guia Biblioteca - exibe todos os livros encontrados no dispositivo
 * Altere a ordem de classificação por Dados, Tamanho do arquivo, Autor etc.

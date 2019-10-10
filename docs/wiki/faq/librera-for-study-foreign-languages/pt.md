@@ -6,7 +6,7 @@ version: 1
 
 # Librera para aprender línguas estrangeiras
 
-&gt; Use o aplicativo para muitos estudantes e pessoas que leem livros em diferentes idiomas.
+> Use o aplicativo para muitos estudantes e pessoas que leem livros em diferentes idiomas.
 As informações serão úteis para estudantes que estão aprendendo idiomas ou simplesmente lendo livros em outros idiomas.
 
 O aplicativo pode traduzir a palavra ou aplicativo destacado com os atributos.

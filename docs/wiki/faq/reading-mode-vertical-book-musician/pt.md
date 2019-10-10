@@ -6,7 +6,7 @@ version: 1
 
 # Modos de leitura: modo de rolagem, modo de livro e modo de músico
 
-&gt; O leitor de livros Librera suporta 3 tipos de modos de leitura. Ver um é melhor para você se decidir.
+> O leitor de livros Librera suporta 3 tipos de modos de leitura. Ver um é melhor para você se decidir.
 
 **O modo de rolagem** é leitura vertical para o documento de rolagem para cima e para baixo.
 

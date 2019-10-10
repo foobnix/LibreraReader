@@ -6,7 +6,7 @@ version: 1
 
 # Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus
 
-&gt; Der Librera Book Reader unterstützt drei Lesemodi. Ansicht eins ist besser für Sie selbst entscheiden.
+> Der Librera Book Reader unterstützt drei Lesemodi. Ansicht eins ist besser für Sie selbst entscheiden.
 
 Der** Bildlaufmodus** ist das vertikale Lesen für das Blättern nach oben und unten.
 

@@ -6,7 +6,7 @@ version: 3
 
 # La schermata principale
 
-&gt; Scheda Libreria o Libreria
+> Scheda Libreria o Libreria
 
 * Scheda Libreria: visualizza tutti i libri trovati sul dispositivo
 * Modifica l'ordinamento per Dati, Dimensione file, Autore, ecc.

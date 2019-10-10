@@ -6,7 +6,7 @@ version: 1
 
 # Librera pour l'apprentissage des langues étrangères
 
-&gt; Utilisez l'application beaucoup d'étudiants et de gens qui lisent des livres dans différentes langues.
+> Utilisez l'application beaucoup d'étudiants et de gens qui lisent des livres dans différentes langues.
 L'information sera utile aux étudiants qui apprennent des langues ou lisent simplement des livres dans d'autres langues.
 
 L'application peut traduire le mot en surbrillance ou l'application avec les attributs.

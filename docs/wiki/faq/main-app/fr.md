@@ -6,7 +6,7 @@ version: 3
 
 # L'écran principal
 
-&gt; Onglet Bibliothèque ou Bibliothèque
+> Onglet Bibliothèque ou Bibliothèque
 
 * Onglet Bibliothèque: affiche tous les livres trouvés sur l'appareil.
 * Modifier l'ordre de tri en fonction des données, de la taille du fichier, de l'auteur, etc.

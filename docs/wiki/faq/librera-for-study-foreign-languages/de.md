@@ -6,7 +6,7 @@ version: 1
 
 # Librera zum Erlernen von Fremdsprachen
 
-&gt; Verwenden Sie die Anwendung viele Studenten und Menschen, die Bücher in verschiedenen Sprachen lesen.
+> Verwenden Sie die Anwendung viele Studenten und Menschen, die Bücher in verschiedenen Sprachen lesen.
 Informationen sind hilfreich für Schüler, die Sprachen lernen oder einfach Bücher in anderen Sprachen lesen.
 
 Die Anwendung kann das markierte Wort oder die markierte Anwendung mit den Attributen übersetzen.

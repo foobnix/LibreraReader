@@ -6,7 +6,7 @@ version: 1
 
 # Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista
 
-&gt; Librera book reader supporta 3 tipi di modalità di lettura. Vedi uno è meglio per te stesso.
+> Librera book reader supporta 3 tipi di modalità di lettura. Vedi uno è meglio per te stesso.
 
 **La modalità di scorrimento** è la lettura verticale per il documento di scorrimento su e giù.
 
