@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/de)
+[<](/wiki/faq/de)
 
 # Geschwindigkeitsanzeige RSVP (Rapid Serial Visual Presentation) in Android
 

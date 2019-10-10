@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/es)
 
 # Abrir carpeta con imágenes como libro (Enlazar en un libro)
 Es fácil abrir cualquier carpeta con imágenes como un libro virtual en la aplicación Librera.

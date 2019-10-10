@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/fr)
+[<](/wiki/faq/fr)
 
 # Lecture rapide RSVP (présentation visuelle rapide en série) sous Android
 

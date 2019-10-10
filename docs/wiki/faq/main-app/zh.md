@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 {1}主屏幕
 

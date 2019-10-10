@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 {1}将带有图像的文件夹作为书打开(在书中绑定)
 在Librera应用程序中，可以很轻松地打开任何包含图像的文件夹，例如虚拟书本。

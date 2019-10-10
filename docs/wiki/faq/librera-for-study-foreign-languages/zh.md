@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 {1}学习外语的图书馆
 

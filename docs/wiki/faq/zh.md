@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 19
+version: 22
 ---
-[<](/wiki/)
+[<](/wiki/zh)
 
 {1}常见问题
 

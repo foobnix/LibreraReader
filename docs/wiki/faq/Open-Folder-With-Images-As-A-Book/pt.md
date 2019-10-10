@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/pt)
 
 # Abrir pasta com imagens como livro (Vincular a um livro)
 É fácil abrir qualquer pasta com imagens como um livro virtual no aplicativo Librera.

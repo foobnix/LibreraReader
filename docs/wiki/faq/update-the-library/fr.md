@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 
 # Comment mettre à jour la bibliothèque
 

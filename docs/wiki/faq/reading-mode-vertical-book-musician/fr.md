@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 
 # Modes de lecture: mode défilement, mode livre et mode musicien
 

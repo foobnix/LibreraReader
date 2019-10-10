@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/it)
 
 # Apri la cartella con le immagini come libro (Associa a un libro)
 È facile aprire qualsiasi cartella con immagini come un libro virtuale nell'applicazione Librera.

@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 
 # Ouvrir le dossier avec les images sous forme de livre (relié dans un livre)
 Il est facile d'ouvrir n'importe quel dossier avec des images, comme un livre virtuel dans l'application Librera.

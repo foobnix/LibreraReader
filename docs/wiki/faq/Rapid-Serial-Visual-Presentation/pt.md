@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/pt)
+[<](/wiki/faq/pt)
 
 # Velocidade de leitura RSVP (Rapid Serial Visual Presentation) no Android
 

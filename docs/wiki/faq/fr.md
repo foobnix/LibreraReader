@@ -1,8 +1,8 @@
 ---
 layout: main
-version: 19
+version: 22
 ---
-[<](/wiki/)
+[<](/wiki/fr)
 
 # Foire aux questions
 

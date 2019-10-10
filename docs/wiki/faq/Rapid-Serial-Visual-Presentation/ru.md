@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/ru)
+[<](/wiki/faq/ru)
 
 # Скорость чтения RSVP (быстрая последовательная визуальная презентация) на Android
 

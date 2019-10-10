@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/zh)
+[<](/wiki/faq/zh)
 
 # 在Android中快速阅读RSVP（快速串行视觉演示）
 

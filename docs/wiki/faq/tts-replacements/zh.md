@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 # TTS更换
 

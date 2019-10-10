@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 
 # Librera pour l'apprentissage des langues étrangères
 

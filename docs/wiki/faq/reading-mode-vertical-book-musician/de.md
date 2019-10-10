@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus
 

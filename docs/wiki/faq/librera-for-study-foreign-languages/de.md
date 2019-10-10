@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Librera zum Erlernen von Fremdsprachen
 

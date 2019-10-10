@@ -2,7 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/ar)
+[<](/wiki/faq/ar)
 
 # سرعة القراءة RSVP (العرض التقديمي التسلسلي السريع) في Android
 

@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ru)
 
 # Либреры для изучения иностранных языков
 

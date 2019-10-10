@@ -24,7 +24,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        int version = 19;
+        int version = 22;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
@@ -42,10 +42,9 @@ public class WikiTranslate {
             syncPaths(root, "es");
             syncPaths(root, "zh");
             syncPaths(root, "ar");
-        }finally {
-            writeString(file,cache.toString());
+        } finally {
+            writeString(file, cache.toString());
         }
-
 
 
     }
@@ -90,11 +89,14 @@ public class WikiTranslate {
     }
 
     public static String traslateMD(String in, String ln) throws IOException {
-        String key = in + ln;
-        if(cache.has(key)){
-            return  cache.getString(key);
+        if (in.startsWith("[<](/wiki/)")) {
+            return "[<](/wiki/" + ln + ")";
         }
-        String res = traslateMDInner(in,ln);
+        String key = in + ln;
+        if (cache.has(key)) {
+            return cache.getString(key);
+        }
+        String res = traslateMDInner(in, ln);
         cache.put(key, res);
         return res;
     }
@@ -103,6 +105,7 @@ public class WikiTranslate {
         if (in.trim().length() == 0) {
             return in;
         }
+
 
         in = in.replace("__", "**");
 
@@ -163,8 +166,8 @@ public class WikiTranslate {
 
         String line = GoogleTranslation.translate(in, ln);
         line = line.replace("（", "(").replace("）", ")");
-        if(line.startsWith("&gt;")){
-            line = line.replace("&gt;",">");
+        if (line.startsWith("&gt;")) {
+            line = line.replace("&gt;", ">");
         }
 
 

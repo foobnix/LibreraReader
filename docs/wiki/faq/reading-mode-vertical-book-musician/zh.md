@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 {1}阅读模式：滚动模式，书本模式和音乐模式
 

@@ -2,7 +2,7 @@
 layout: main
 version: 3
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Ordner mit Bildern als Buch öffnen (In einem Buch binden)
 Es ist ganz einfach, einen Ordner mit Bildern wie ein virtuelles Buch in der Librera-Anwendung zu öffnen.

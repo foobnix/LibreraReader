@@ -2,7 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/pt)
 
 # Modos de leitura: modo de rolagem, modo de livro e modo de músico
 
