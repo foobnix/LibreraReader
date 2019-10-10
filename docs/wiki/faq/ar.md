@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [كيفية تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
 * [التحكم في السطوع وفلتر الضوء الأزرق](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
+* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)

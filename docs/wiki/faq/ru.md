@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [Как конвертировать PDF в EPUB](/wiki/faq/convert-pdf-to-epub/ru)
 * [Контроль яркости и фильтр синего света](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
+* [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)

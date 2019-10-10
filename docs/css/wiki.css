@@ -207,7 +207,11 @@ section.page h1 a:visited {
 section.page a,
 section.page a:hover,
 section.page a:visited {
-  color: #363636;
+ text-decoration: none;
+ color: #000080;
+}
+section.page a:hover{
+text-decoration: underline;
 }
 
 section div pre {

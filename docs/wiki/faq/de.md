@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [Konvertieren von PDF in EPUB](/wiki/faq/convert-pdf-to-epub/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
 * [Hinzufügen eines neuen FAQ-Abschnitts](/wiki/faq/how-to-add-new-faq-section/de)
+* [TTS-Ersatz](/wiki/faq/tts-replacements/de)
 * [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading-mode-vertical-book-musician/de)

@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [Como converter PDF para EPUB](/wiki/faq/convert-pdf-to-epub/pt)
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
+* [Substituições TTS](/wiki/faq/tts-replacements/pt)
 * [Modos de leitura: modo de rolagem, modo Livro e modo Músico](/wiki/faq/reading-mode-vertical-book-musician/pt)

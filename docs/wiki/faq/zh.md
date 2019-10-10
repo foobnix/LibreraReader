@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [如何将PDF转换为EPUB](/wiki/faq/convert-pdf-to-epub/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
+* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)

@@ -1,9 +1,14 @@
 package web;
 
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,26 +20,86 @@ import translations.GoogleTranslation;
 
 public class WikiTranslate {
 
+    static JSONObject cache;
 
     public static void main(String[] args) throws Exception {
 
-        int version = 16;
+        int version = 17;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
-        // GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/stories", "Stories", 2);
-        //GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/manual", "Guide", 3);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
-        syncPaths(root, "ru");
-        syncPaths(root, "fr");
-        syncPaths(root, "de");
-        syncPaths(root, "it");
-        syncPaths(root, "pt");
-        syncPaths(root, "es");
-        syncPaths(root, "zh");
-        syncPaths(root, "ar");
+
+
+        File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");
+        cache = new JSONObject(readString(file));
+
+        try {
+            syncPaths(root, "ru");
+            syncPaths(root, "fr");
+            syncPaths(root, "de");
+            syncPaths(root, "it");
+            syncPaths(root, "pt");
+            syncPaths(root, "es");
+            syncPaths(root, "zh");
+            syncPaths(root, "ar");
+        }finally {
+            writeString(file,cache.toString());
+        }
+
+
+
+    }
+
+    public static String readString(File file) {
+
+        try {
+            if (!file.exists()) {
+                return "{}";
+            }
+            StringBuilder builder = new StringBuilder();
+            String aux = "";
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            while ((aux = reader.readLine()) != null) {
+                builder.append(aux);
+            }
+            reader.close();
+            return builder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "{}";
+
+    }
+
+    public static boolean writeString(File file, String string) {
+
+        try {
+            if (string == null) {
+                string = "";
+            }
+            new File(file.getParent()).mkdirs();
+
+            OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+            out.write(string.getBytes());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static String traslateMD(String in, String ln) throws IOException {
+        String key = in + ln;
+        if(cache.has(key)){
+            return  cache.getString(key);
+        }
+        String res = traslateMDInner(in,ln);
+        cache.put(key, res);
+        return res;
+    }
+
+    private static String traslateMDInner(String in, String ln) throws IOException {
         if (in.trim().length() == 0) {
             return in;
         }

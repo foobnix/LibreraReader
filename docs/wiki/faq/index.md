@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 16
+version: 17
 ---
 [<](/wiki/)
 
@@ -20,4 +20,5 @@ version: 16
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness control and blue light filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
+* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)
