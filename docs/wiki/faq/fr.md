@@ -11,7 +11,7 @@ version: 19
 * [Lecture rapide de RSVP (présentation visuelle rapide en série) sous Android](/wiki/faq/Rapid-Serial-Visual-Presentation/fr)
 * [Personnaliser les styles css du livre](/wiki/faq/customize-book-css-styles/fr)
 * [Numéros de page relatifs des livres PDF](/wiki/faq/relative-page-numbers/fr)
-* [Ouvrir le dossier avec les images sous forme de livre (relié dans un livre)]](/wiki/faq/Open-Folder-With-Images-As-A-Book/fr)
+* [Ouvrir le dossier avec les images sous forme de livre (relié dans un livre)](/wiki/faq/Open-Folder-With-Images-As-A-Book/fr)
 * [Librera pour l'apprentissage des langues étrangères](/wiki/faq/librera-for-study-foreign-languages/fr)
 * [Inclure les notes de bas de page directement dans le texte](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Comment augmenter la taille de la police d'un document PDF sous Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
