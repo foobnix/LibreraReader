@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # reemplazos TTS
 
-&gt; Los reemplazos se usan para cambiar la pronunciación de algunas palabras, para eliminar texto no deseado, para establecer marcas de estrés
+> Los reemplazos se usan para cambiar la pronunciación de algunas palabras, para eliminar texto no deseado, para establecer la marca de estrés correcta
 
 * Habilitar reemplazos TTS
 * Mostrar el texto resultante de los reemplazos

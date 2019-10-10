@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # Sostituzioni TTS
 
-&gt; I rimpiazzi vengono utilizzati per modificare la pronuncia di alcune parole, per eliminare il testo indesiderato, per impostare lo stress mark
+> Le sostituzioni vengono utilizzate per modificare la pronuncia di alcune parole, per eliminare il testo indesiderato, per impostare il segno di stress corretto
 
 * Abilita sostituzioni TTS
 * Mostra il testo del risultato delle sostituzioni

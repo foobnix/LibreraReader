@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # substituições TTS
 
-&gt; Substituições são usadas para alterar a pronúncia de algumas palavras, excluir texto indesejado e definir marca de estresse
+> Substituições são usadas para alterar a pronúncia de algumas palavras, excluir texto indesejado e definir a marca de estresse correta
 
 * Ativar substituições TTS
 * Mostrar o texto resultante das substituições

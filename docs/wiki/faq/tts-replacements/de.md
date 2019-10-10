@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # TTS-Ersatz
 
-&gt; Ersetzungen werden verwendet, um die Aussprache einiger Wörter zu ändern, unerwünschten Text zu löschen und die Betonung zu setzen
+> Ersetzungen werden verwendet, um die Aussprache einiger Wörter zu ändern, unerwünschten Text zu löschen und die richtige Betonung zu setzen
 
 * TTS-Ersetzungen aktivieren
 * Zeigen Sie den Ergebnistext der Ersetzungen an

@@ -24,7 +24,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        int version = 17;
+        int version = 19;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
@@ -163,6 +163,10 @@ public class WikiTranslate {
 
         String line = GoogleTranslation.translate(in, ln);
         line = line.replace("（", "(").replace("）", ")");
+        if(line.startsWith("&gt;")){
+            line = line.replace("&gt;",">");
+        }
+
 
         for (String key : reverse.keySet()) {
             line = line.replace(key, reverse.get(key));

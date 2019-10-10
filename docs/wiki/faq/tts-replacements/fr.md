@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # Remplacements TTS
 
-&gt; Les remplacements sont utilisés pour changer la prononciation de certains mots, pour supprimer le texte indésirable, pour définir un point de stress
+> Les remplacements sont utilisés pour modifier la prononciation de certains mots, pour supprimer le texte indésirable, pour définir le point d'insertion correct.
 
 * Activer les remplacements TTS
 * Afficher le texte résultant des remplacements

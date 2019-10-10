@@ -1,11 +1,12 @@
 ---
 layout: main
+version: 2
 ---
 [<](/wiki/faq)
 
 # TTS Replacements
 
-> Replacements are used to change the pronunciation of some words, to delete unwanted text, to set stress mark
+> Replacements are used to change the pronunciation of some words, to delete unwanted text, to set correct stress mark 
 
 * Enable TTS Replacements
 * Show the replacements resulted text
