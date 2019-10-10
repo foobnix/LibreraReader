@@ -1,12 +1,14 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # How to add new FAQ section
 
 If you want to add a new FAQ section, create a folder **[Title-sample-FAQ]** with only the English **index.md** file here.
+[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 Then the script automatically updates the faq table of contents and adds translations for all languages
 
 File header format: **index.md**

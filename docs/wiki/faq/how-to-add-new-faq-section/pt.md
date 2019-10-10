@@ -1,16 +1,18 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # Como adicionar uma nova seção de perguntas frequentes
 
 Se você quiser adicionar uma nova seção de Perguntas frequentes, crie uma pasta **[FAQ-de-título-título]** com apenas o arquivo em inglês **index.md** aqui.
+[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faqorgeous(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 Em seguida, o script atualiza automaticamente o índice faq e adiciona traduções para todos os idiomas
 
-Formato do cabeçalho do arquivo:
-**index.md**
+Formato do cabeçalho do arquivo: **index.md**
+
 ```
 ---
 layout: main

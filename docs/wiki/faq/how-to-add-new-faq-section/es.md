@@ -1,16 +1,18 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # Cómo agregar una nueva sección de preguntas frecuentes
 
 Si desea agregar una nueva sección de Preguntas frecuentes, cree una carpeta **[Título-muestra-Preguntas frecuentes]** con solo el archivo inglés **index.md** aquí.
+[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faqfont&gt;(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 Luego, el script actualiza automáticamente la tabla de contenido de preguntas frecuentes y agrega traducciones para todos los idiomas
 
-Formato de encabezado de archivo:
-**index.md**
+Formato del encabezado del archivo: **index.md**
+
 ```
 ---
 layout: main

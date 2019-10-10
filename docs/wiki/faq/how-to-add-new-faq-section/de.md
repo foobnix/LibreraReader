@@ -1,16 +1,18 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # So fügen Sie einen neuen FAQ-Bereich hinzu
 
 Wenn Sie einen neuen FAQ-Bereich hinzufügen möchten, erstellen Sie hier einen Ordner **[Title-sample-FAQ]** mit nur der englischen Datei **index.md**.
+[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 Das Skript aktualisiert dann automatisch das FAQ-Inhaltsverzeichnis und fügt Übersetzungen für alle Sprachen hinzu
 
-Dateikopfformat:
-**index.md**
+Dateikopfzeilenformat: **index.md**
+
 ```
 ---
 layout: main

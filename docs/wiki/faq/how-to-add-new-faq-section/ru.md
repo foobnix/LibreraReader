@@ -1,16 +1,18 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # Как добавить новый раздел FAQ
 
 Если вы хотите добавить новый раздел часто задаваемых вопросов, создайте папку **[Title-sample-FAQ]**, содержащую только файл **index.md** на английском языке.
+[Https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 Затем скрипт автоматически обновляет оглавление faq и добавляет переводы для всех языков.
 
-Формат заголовка файла:
-**index.md**
+Формат заголовка файла: **index.md**
+
 ```
 ---
 layout: main

@@ -1,16 +1,18 @@
 ---
 layout: main
-version: 4
+version: 5
 ---
 [<](/wiki/faq)
 
 # كيفية إضافة قسم الأسئلة الشائعة الجديد
 
 إذا كنت ترغب في إضافة قسم أسئلة وأجوبة جديد ، فقم بإنشاء مجلد **[Title-sample-FAQ]** مع ملف English **index.md** فقط هنا.
+[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+
 ثم يقوم البرنامج النصي تلقائيًا بتحديث جدول المحتويات faq ويضيف ترجمات لجميع اللغات
 
-تنسيق رأس الملف:
-**index.md**
+تنسيق رأس الملف: **index.md**
+
 ```
 ---
 layout: main
