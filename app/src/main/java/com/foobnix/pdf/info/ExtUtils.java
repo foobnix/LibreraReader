@@ -908,7 +908,7 @@ public class ExtUtils {
             }
         });
 
-        if (Dips.isEInk(c)) {
+        if (Dips.isEInk()) {
             view.findViewById(R.id.music).setVisibility(View.GONE);
         }
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxRemember);

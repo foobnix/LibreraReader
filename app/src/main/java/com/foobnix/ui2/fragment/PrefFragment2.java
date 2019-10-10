@@ -541,7 +541,7 @@ public class PrefFragment2 extends UIFragment {
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
             String version = packageInfo.versionName;
-            if (Dips.isEInk(getActivity())) {
+            if (Dips.isEInk()) {
                 version += " INK";
             }
             if (BuildConfig.IS_BETA) {
@@ -550,7 +550,7 @@ public class PrefFragment2 extends UIFragment {
                 version += "\n PRODUCT: " + Build.PRODUCT;
                 version += "\n MANUFACTURER: " + Build.MANUFACTURER;
                 version += "\n DEVICE: " + Build.DEVICE;
-                version += "\n REFRESH: " + Dips.getRefreshRate(getActivity());
+                version += "\n REFRESH: " + Dips.getRefreshRate();
                 version += "\n WxH: " + Dips.screenWidthDP() + " x " + Dips.screenHeightDP();
             }
 
@@ -2507,7 +2507,7 @@ public class PrefFragment2 extends UIFragment {
         try {
             final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START, !Dips.isEInk(getActivity()));
+                drawerLayout.closeDrawer(GravityCompat.START, !Dips.isEInk());
             }
         } catch (Exception e) {
             LOG.e(e);

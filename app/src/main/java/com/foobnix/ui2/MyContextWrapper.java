@@ -22,8 +22,16 @@ public class MyContextWrapper extends ContextWrapper {
         super(base);
     }
 
+
+
     @TargetApi(24)
     public static ContextWrapper wrap(Context context) {
+
+        if(AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f){
+            LOG.d("ContextWrapper skip");
+            return new ContextWrapper(context);
+        }
+
         String language = AppState.get().appLang;
         final float scale = BookCSS.get().appFontScale;
 

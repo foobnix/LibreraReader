@@ -163,7 +163,7 @@ public class BrightnessHelper {
 
     public static void showBlueLigthDialogAndBrightness(final Activity a, View inflate, final Runnable onRefresh) {
         final CheckBox isEnableBlueFilter = (CheckBox) inflate.findViewById(R.id.isEnableBlueFilter);
-        isEnableBlueFilter.setVisibility(Dips.isEInk(a) ? View.GONE : View.VISIBLE);
+        isEnableBlueFilter.setVisibility(Dips.isEInk() ? View.GONE : View.VISIBLE);
         isEnableBlueFilter.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
@@ -176,7 +176,7 @@ public class BrightnessHelper {
         });
 
         final TextView onBlueFilter = (TextView) inflate.findViewById(R.id.onBlueFilter);
-        onBlueFilter.setVisibility(Dips.isEInk(a) ? View.GONE : View.VISIBLE);
+        onBlueFilter.setVisibility(Dips.isEInk() ? View.GONE : View.VISIBLE);
         TxtUtils.underlineTextView(onBlueFilter);
         onBlueFilter.setOnClickListener(new OnClickListener() {
 

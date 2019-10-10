@@ -35,7 +35,7 @@ public class AppsConfig {
             LOG.d("no-ads isGooglePlayServicesAvailable not available");
             return true;
         }
-        if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk(a)) {
+        if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk()) {
             LOG.d("no-ads old device or eink");
             //no ads for old android and eink
             return true;

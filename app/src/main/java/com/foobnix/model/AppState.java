@@ -634,7 +634,7 @@ public class AppState {
         nameMusicianMode = a.getString(R.string.mode_musician);
         musicText = a.getString(R.string.musician);
 
-        if (Dips.isEInk(a)) {
+        if (Dips.isEInk()) {
             appTheme = AppState.THEME_INK;
             isDayNotInvert = true;
             isEditMode = true;

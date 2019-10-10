@@ -141,6 +141,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
 
 
+
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 

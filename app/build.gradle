@@ -85,10 +85,10 @@ android {
             reset()
             //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             include "armeabi-v7a", "arm64-v8a"
-            if(taskName.contains("Debug")){
+            if(taskName.contains("Debug") || taskName.contains("Pro")){
                 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
-            universalApk taskName.contains("Fdroid")
+            universalApk taskName.contains("Fdroid") || taskName.contains("Pro")
         }
 
     }

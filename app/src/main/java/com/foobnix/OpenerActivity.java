@@ -17,7 +17,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.ui2.MyContextWrapper;
 
 import org.ebookdroid.BookType;
@@ -143,19 +142,13 @@ public class OpenerActivity extends Activity {
 
         //FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, new FileMeta(file.getPath()));
-        LOG.d("OpenerActivity", "open file",file.getPath());
+        LOG.d("OpenerActivity", "open file", file.getPath());
     }
 
     @Override
     protected void attachBaseContext(Context context) {
-        AppProfile.init(context);
-        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f) {
-            LOG.d("attachBaseContext skip");
-            super.attachBaseContext(context);
-        } else {
-            LOG.d("attachBaseContext apply");
-            super.attachBaseContext(MyContextWrapper.wrap(context));
-        }
+        AppProfile.init(this);
+        super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
 

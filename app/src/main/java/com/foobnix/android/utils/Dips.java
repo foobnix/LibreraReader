@@ -82,16 +82,15 @@ public class Dips {
         }
     }
 
-    public static float getRefreshRate(Context context) {
-        final WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public static float getRefreshRate() {
         final Display display = wm.getDefaultDisplay();
         float refreshRate = display.getRefreshRate();
         LOG.d("RefreshRate", refreshRate);
         return refreshRate;
     }
 
-    public static boolean isEInk(Context context) {
-        boolean isEink = getRefreshRate(context) < 30.0;
+    public static boolean isEInk() {
+        boolean isEink = getRefreshRate() < 30.0;
         if (isEink) {
             return true;
         }

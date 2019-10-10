@@ -224,7 +224,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onNewIntent(final Intent intent) {
-        AppProfile.init(this);
         LOG.d(TAG, "onNewIntent");
         // testIntentHandler();
         if (intent.getBooleanExtra(EXTRA_EXIT, false)) {
@@ -322,13 +321,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     @Override
     protected void attachBaseContext(Context context) {
         AppProfile.init(context);
-        if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f) {
-            LOG.d("attachBaseContext skip");
-            super.attachBaseContext(context);
-        } else {
-            LOG.d("attachBaseContext apply");
-            super.attachBaseContext(MyContextWrapper.wrap(context));
-        }
+        super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
     @Override
@@ -351,6 +344,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             Android6.checkPermissions(this, true);
             return;
         }
+
 
         Clouds.get().init(this);
 
@@ -412,7 +406,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         handler = new Handler();
-        isEink = Dips.isEInk(this);
+        isEink = Dips.isEInk();
 
         TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);

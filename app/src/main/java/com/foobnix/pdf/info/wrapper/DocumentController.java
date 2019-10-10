@@ -397,7 +397,7 @@ public abstract class DocumentController {
     }
 
     public static boolean isEinkOrMode(Context c) {
-        return Dips.isEInk(c) || AppState.get().appTheme == AppState.THEME_INK;
+        return Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK;
 
     }
 

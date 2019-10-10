@@ -48,7 +48,7 @@ public class Keyboards {
         try {
 
             if (parent != null) {
-                if (Dips.isEInk(parent.getContext())) {
+                if (Dips.isEInk()) {
                     parent.postDelayed(new Runnable() {
                         @Override
                         public void run() {

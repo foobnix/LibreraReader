@@ -447,6 +447,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             return;
         }
 
+
         findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 
         viewPager = (VerticalViewPager) findViewById(R.id.pager);
@@ -1237,7 +1238,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.setVisibility(dc.isTextFormat() && !AppTemp.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
-                    if (Dips.isEInk(dc.getActivity()) || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
+                    if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
