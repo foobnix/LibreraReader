@@ -48,10 +48,3 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
-
-
-# Quoi de neuf dans Librera Book Reader
-
-* [Version 7.12](/wiki/what-is-new/7.12/fr)
-* [Version 7.11](/wiki/what-is-new/7.11/fr)
-* [Version 7.10](/wiki/what-is-new/7.10/fr)

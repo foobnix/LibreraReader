@@ -84,6 +84,6 @@ To open a folder as a book, navigate to it in the Folders tab and tap on its nam
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-{% include versions.md %}
+
 
 

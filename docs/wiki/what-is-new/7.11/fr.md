@@ -76,7 +76,6 @@ Pour ouvrir un dossier sous forme de livre, accédez à l'onglet Dossiers et app
 
 # Quoi de neuf dans le lecteur de livre Librera
 
-* [Version 7.11](/wiki/what-is-new/7.11/fr)
-* [Version 7.10](/wiki/what-is-new/7.10/fr)
+
 
 

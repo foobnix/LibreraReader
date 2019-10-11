@@ -70,6 +70,5 @@ Pourrait être utile pour les musiciens et pour ceux qui étudient les langues �
 
 # Quoi de neuf dans Librera Book Reader
 
-* [Version 7.12](/wiki/what-is-new/7.12/fr)
-* [Version 7.11](/wiki/what-is-new/7.11/fr)
-* [Version 7.10](/wiki/what-is-new/7.10/fr)
+
+)

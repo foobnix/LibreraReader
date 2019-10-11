@@ -6,7 +6,6 @@ version: 6
 
 # Quoi de neuf dans le lecteur de livre Librera
 
-{% include versions.md %}
 
 
     

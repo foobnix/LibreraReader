@@ -6,7 +6,6 @@ version: 6
 
 # Was ist neu in Librera Book Reader?
 
-{% include versions.md %}
 
 
     

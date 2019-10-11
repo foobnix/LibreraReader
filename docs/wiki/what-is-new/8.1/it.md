@@ -97,5 +97,5 @@ In questa cartella tutte le impostazioni, i segnalibri, i progressi memorizzati 
 * Imposta il timeout dello spegnimento schermo in minuti o valore di sistema
 
 
-{% include versions.md %}
+
  

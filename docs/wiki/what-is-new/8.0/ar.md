@@ -52,6 +52,5 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 
 # ما هو الجديد في Librera Book Reader
 
-* [الإصدار 7.12](/wiki/what-is-new/7.12/ar)
-* [الإصدار 7.11](/wiki/what-is-new/7.11/ar)
-* [الإصدار 7.10](/wiki/what-is-new/7.10/ar)
+
+)

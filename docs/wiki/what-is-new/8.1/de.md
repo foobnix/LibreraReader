@@ -97,5 +97,5 @@ Sie können es anzeigen, aber nicht manuell ändern.
 * Legen Sie das Zeitlimit für das Ausschalten des Bildschirms in Minuten oder als Systemwert fest
 
 
-{% include versions.md %}
+
  

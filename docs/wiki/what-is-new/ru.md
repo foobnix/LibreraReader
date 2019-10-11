@@ -6,7 +6,7 @@ version: 6
 
 # Что нового в читателе книг Librera
 
-{% include versions.md %}
+
 
 
     

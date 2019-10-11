@@ -97,5 +97,5 @@ Puedes verlo pero no modificarlo manualmente.
 * Establecer el tiempo de espera de apagado de la pantalla en minutos o el valor del sistema
 
 
-{% include versions.md %}
+
  

@@ -64,6 +64,3 @@ The format of the status bar legend can be changed from full to compact to chapt
 
 * Support for phones w/ notched displays
 * Table of contents for EPUB 3.0 books
-
-
-{% include versions.md %}

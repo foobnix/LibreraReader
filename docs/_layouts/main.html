@@ -25,7 +25,8 @@
         
      {% capture my_include %}{% include menu.md %}{% endcapture %}
    {{ my_include | markdownify }}
-	        
+
+
        
     </div>
 
@@ -39,8 +40,14 @@
 <div class="content">
     
     <section class="page">
-        {{content}}   
-        
+        {{content}}
+
+        {% if page.url contains 'what-is-new' %}
+            {% capture my_include2 %}{% include versions.md %}{% endcapture %}
+            {{ my_include2 | markdownify }}
+        {% endif %}
+
+
         <a href="http://librera.mobi{{page.url}}">http://librera.mobi{{page.url}}</a>  
           
      </section>

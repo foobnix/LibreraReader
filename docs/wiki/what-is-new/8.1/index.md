@@ -98,5 +98,5 @@ A **long press** on a profile name will pop up an alert window for you to restor
 * Allow the system sleep timeout to be used for turning screen off 
 
 
-{% include versions.md %}
+
  

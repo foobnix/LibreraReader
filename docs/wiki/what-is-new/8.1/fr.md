@@ -97,5 +97,5 @@ Vous pouvez le voir mais ne le modifiez pas manuellement.
 * Définir le délai d'extinction de l'écran en minutes ou en valeur système
 
 
-{% include versions.md %}
+
  

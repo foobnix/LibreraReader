@@ -52,6 +52,5 @@ Opción * para cambiar la posición de las pestañas
 
 # Novedades en Librera Book Reader
 
-* [Versión 7.12](/wiki/what-is-new/7.12/es)
-* [Versión 7.11](/wiki/what-is-new/7.11/es)
-* [Versión 7.10](/wiki/what-is-new/7.10/es)
+
+)
