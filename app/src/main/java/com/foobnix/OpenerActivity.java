@@ -12,7 +12,6 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
-import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -147,7 +146,6 @@ public class OpenerActivity extends Activity {
 
     @Override
     protected void attachBaseContext(Context context) {
-        AppProfile.init(this);
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 

@@ -1373,7 +1373,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     protected void attachBaseContext(Context context) {
-        AppProfile.init(context);
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 

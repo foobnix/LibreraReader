@@ -62,10 +62,6 @@ public class AppProfile {
     public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
     public static File SYNC_FOLDER_PROFILE;
     public static File SYNC_FOLDER_DEVICE_PROFILE;
-
-    static SharedPreferences sp;
-
-
     public static File syncRecent;
     public static File syncFavorite;
     public static File syncExclude;
@@ -75,19 +71,21 @@ public class AppProfile {
     public static File syncPlaylist;
     public static File syncProgress;
     public static File syncBookmarks;
-
-
     public static String profile = "";
-
-
+    static SharedPreferences sp;
 
     public synchronized static void init(Context c) {
 
-        sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
+        if (c == null) {
+            LOG.d("AppProfile init null");
+            return;
+        }
 
         if (!Android6.canWrite(c)) {
             return;
         }
+
+        sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
 
         if (profile.equals(getCurrent(c))) {
             LOG.d("AppProfile skip", profile);

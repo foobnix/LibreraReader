@@ -176,7 +176,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void attachBaseContext(Context context) {
-        AppProfile.init(context);
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
