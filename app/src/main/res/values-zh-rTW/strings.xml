@@ -582,6 +582,6 @@
    <string name="delete_reading_progress">重置進度</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">忽略帶有.nomedia文件的檔夾</string>
    <string name="record_in_mp3_format">以mp3格式錄製</string>
-   <string name="speak_into_file_wav">tts錄製（mp3，wav）</string>
+   <string name="speak_into_file_wav">Tts錄製（mp3，wav）</string>
    <string name="text_is_too_long">文本過長</string>
 </resources>

@@ -9,7 +9,8 @@ cd ../
 ./gradlew clean incVersion
 
 
-./gradlew assembleBetaRelease assembleProRelease
+./gradlew assembleBetaRelease
+./gradlew assembleProRelease
 
 #./gradlew lintBetaRelease assembleBetaRelease assembleProRelease
 

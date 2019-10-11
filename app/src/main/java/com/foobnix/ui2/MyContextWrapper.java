@@ -24,10 +24,6 @@ public class MyContextWrapper {
     @TargetApi(24)
     public static ContextWrapper wrap(Context context) {
 
-        if (context == null) {
-            return new ContextWrapper(context);
-        }
-
         AppProfile.init(context);
 
         if (AppState.MY_SYSTEM_LANG.equals(AppState.get().appLang) && BookCSS.get().appFontScale == 1.0f) {

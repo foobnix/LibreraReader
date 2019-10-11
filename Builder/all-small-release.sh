@@ -7,7 +7,6 @@
 cd ../
 
 ./gradlew clean incVersion
-
 ./gradlew assembleAlphaRelease
 ./gradlew assembleFdroidRelease
 
@@ -19,14 +18,11 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-./gradlew assembleBetaRelease
-./gradlew assembleProRelease
-
 ./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
-
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
