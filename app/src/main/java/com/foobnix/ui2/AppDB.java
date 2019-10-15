@@ -521,11 +521,18 @@ public class AppDB {
                 where = where.where(FileMetaDao.Properties.IsRecentTime.ge(1));
             }
 
+
             if (isAsc) {
-                return where.orderAsc(sortby.getProperty()).list();
+                where = where.orderAsc(sortby.getProperty());
             } else {
-                return where.orderDesc(sortby.getProperty()).list();
+                where = where.orderDesc(sortby.getProperty());
             }
+            if (sortby != SORT_BY.TITLE) {
+                where = where.orderAsc(SORT_BY.TITLE.getProperty());
+            }
+
+
+            return where.list();
 
         } catch (Exception e) {
             LOG.e(e);
