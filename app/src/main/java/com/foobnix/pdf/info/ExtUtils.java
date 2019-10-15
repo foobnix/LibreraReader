@@ -1698,7 +1698,8 @@ public class ExtUtils {
                 "/mnt/usb_storage", //
                 "/mnt/extSdCard", //
                 "/mnt/UsbDriveA", //
-                "/mnt/UsbDriveB"//
+                "/mnt/UsbDriveB",//
+                "/mnt/shared"//
         };
 
         for (String value : strPath) {
