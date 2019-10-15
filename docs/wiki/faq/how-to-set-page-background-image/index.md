@@ -23,9 +23,9 @@ In order to set your background, you must:
 
 **Image** the picture of the reading background and its transparency are selected.
 
-### Для того чтобы залить цветом: 
-* Выбираете "Цвет" и настраиваете крестиком цвет фона по цветовой политре круга.
-* После выбора цвета нажмите Ок, выйдите из настроек, цвет фона применится.
+### To fill with color: 
+* Choose "Color" and adjust the cross background color on the color palette of the circle
+* After selecting the color, click OK, exit the settings, the background color will be applied.
 
 |||
 |-|-|
@@ -33,11 +33,11 @@ In order to set your background, you must:
 
 
 
-### Для того чтобы залить Вашей картинкой: 
-* Выберите - "изображение"
-* В настройках диалогового окна нажимаете иконку "плюс".
-* Выбираете папку, где лежит Ваш фон. Входите в нее, кликаете по нужному фону, смотрим внизу, должно появиться его имя, нажимаем выбрать.
-* Выходим из настроек, смотрим результат.
+### In order to fill Your picture: 
+* Selected "Image".
+* In the settings dialog box, click the "plus" icon.
+* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
+* Exit the settings, watch the result.
 
 |||
 |-|-|
