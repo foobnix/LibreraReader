@@ -903,7 +903,8 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 		float x = fz_css_strtof(value->data, &p);
 
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
-			return make_number(x, N_SCALE);
+			return make_number(x < 0.5 ? 0.5: x, N_SCALE);
+
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);
 
@@ -917,14 +918,13 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-			return make_number(x, N_LENGTH);
-		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+			return make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE);
 
-		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
+		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
+			return make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE);
+
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			//return make_number(x * 16, N_LENGTH);
-			return make_number(x, N_SCALE);
+			return make_number(x < 0.5 ? 0.5: x, N_SCALE);
 
 
 		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
@@ -1243,6 +1243,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "x-large")) style->font_size = make_number(1.44f, N_SCALE);
 		else if (!strcmp(value->data, "large")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "medium")) style->font_size = make_number(1.0f, N_SCALE);
+		else if (!strcmp(value->data, "normal")) style->font_size = make_number(1.0f, N_SCALE);
 		else if (!strcmp(value->data, "small")) style->font_size = make_number(0.83f, N_SCALE);
 		else if (!strcmp(value->data, "x-small")) style->font_size = make_number(0.69f, N_SCALE);
 		else if (!strcmp(value->data, "xx-small")) style->font_size = make_number(0.69f, N_SCALE);
@@ -1250,7 +1251,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
         else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
 
-		else style->font_size = number_from_value(value, 12, N_LENGTH);
+		else style->font_size = number_from_value(value, 1, N_SCALE);
 	}
 	else
 	{
