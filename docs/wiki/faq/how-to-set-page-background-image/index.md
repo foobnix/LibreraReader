@@ -1,12 +1,9 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
-
-# Title sample FAQ
-
 
 # How to set page background image
 
