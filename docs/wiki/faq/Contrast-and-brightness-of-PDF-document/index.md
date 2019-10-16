@@ -37,6 +37,8 @@ For comfortable reading You can adjust the settings:
 * Enable checkbox Bold text fonts
 * After setting, click the cross in the settings dialog box
 
-
+||||
+|-|-|-|
+|![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
 *If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to original state.
