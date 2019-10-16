@@ -22,7 +22,7 @@ For comfortable reading You can adjust the settings:
 * After setting, click the cross in the settings dialog box.
 ||||
 |-|-|-|
-|![](k1.jpg)|![](k2.jpg)|![](k3.jpg)|
+|![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## Brightness 
 * Click on the Contrast and brightness icon
