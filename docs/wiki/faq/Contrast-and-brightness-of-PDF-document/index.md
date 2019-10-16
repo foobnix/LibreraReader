@@ -5,7 +5,7 @@ version: 1
 [<](/wiki/faq)
 ---
 
-# Adjust the contrast and brightness of the document
+# Adjust the contrast and brightness of a PDF document
 
 > Library Book Reader allows you to flexibly customize the appearance of the document. When you configure these settings, the document becomes black and white. By moving the slider to add/decrease the parameter you need, 
 in the background of the settings dialog, you can see its effect on the document. You can configure all three parameters together
