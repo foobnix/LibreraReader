@@ -1,12 +1,14 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
 [<](/wiki/faq)
 ---
 
-# Imposta il tuo sfondo per la lettura
-> Librera Book Reader ti consente di personalizzare i tuoi sfondi durante la lettura, il che contribuisce a ridurre l'affaticamento degli occhi e aggiunge comfort durante la lettura. Lo sfondo può essere selezionato come colore e La tua immagine.
+# Imposta il proprio sfondo per la pagina del libro
+
+> Librera Book Reader ti consente di personalizzare lo sfondo della pagina durante la lettura, il che contribuisce a ridurre l'affaticamento degli occhi e aggiunge comfort durante la lettura.
+Lo sfondo può essere selezionato come colore solido o dall'immagine texture.
 
 Per impostare lo sfondo, è necessario:
 
@@ -23,7 +25,8 @@ Per impostare lo sfondo, è necessario:
 
 **Immagine** sono selezionate l'immagine dello sfondo di lettura e la sua trasparenza.
 
-## # Per riempire con il colore:
+### Aggiungi tinta unita
+
 * Scegli &quot;Colore&quot; e regola il colore di sfondo della croce sulla tavolozza dei colori del cerchio.
 * Dopo aver selezionato il colore, fare clic su OK, uscire dalle impostazioni, verrà applicato il colore di sfondo.
 
@@ -33,7 +36,8 @@ Per impostare lo sfondo, è necessario:
 
 
 
-## # Per riempire la tua foto:
+### Aggiungi trama dell'immagine
+
 * &quot;Immagine&quot; selezionata.
 * Nella finestra di dialogo delle impostazioni, fare clic sull'icona &quot;più&quot;.
 * Scegli la cartella in cui si trova il tuo sfondo. Inseriscilo, fai clic sullo sfondo desiderato, guarda in basso, dovrebbe apparire il suo nome, fai clic su Seleziona.

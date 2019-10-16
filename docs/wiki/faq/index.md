@@ -12,7 +12,7 @@ version: 22
 * [Customize book css styles](/wiki/faq/customize-book-css-styles)
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)
 * [Open folder with images as a book (Bind in a Book)](/wiki/faq/Open-Folder-With-Images-As-A-Book)
-* [Set your own background for reading](/wiki/faq/how-to-set-page-background-image)
+* [Set own background for book page](/wiki/faq/how-to-set-page-background-image)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
 * [How to increase font size in PDF document in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)

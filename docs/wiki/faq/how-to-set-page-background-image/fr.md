@@ -1,14 +1,16 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
 [<](/wiki/faq)
 ---
 
-# Définissez votre propre arrière-plan pour la lecture
-> Librera Book Reader vous permet de personnaliser vos propres arrière-plans lors de la lecture, ce qui contribue à réduire la fatigue oculaire et à améliorer le confort de lecture. L'arrière-plan peut être sélectionné comme couleur et comme image.
+# Définir son propre arrière-plan pour la page du livre
 
-Afin de définir votre arrière-plan, vous devez:
+> Librera Book Reader vous permet de personnaliser l’arrière-plan de la page pendant la lecture, ce qui contribue à réduire la fatigue oculaire et à améliorer le confort de lecture.
+L'arrière-plan peut être sélectionné en tant que couleur unie ou à partir d'une image de texture.
+
+Afin de définir votre arrière-plan, vous devriez:
 
 * Cliquez sur l'icône des paramètres.
 * Dans les paramètres, sélectionnez le profil dans lequel vous souhaitez modifier l'arrière-plan. Choisissez, par exemple, &quot;Jour&quot;.
@@ -23,7 +25,8 @@ Afin de définir votre arrière-plan, vous devez:
 
 **Image** l'image de l'arrière-plan de lecture et sa transparence sont sélectionnées.
 
-## # Pour remplir de couleur:
+### Ajouter une couleur unie
+
 * Choisissez &quot;Couleur&quot; et réglez la couleur d'arrière-plan croisé sur la palette de couleurs du cercle.
 * Après avoir sélectionné la couleur, cliquez sur OK, quittez les paramètres, la couleur d'arrière-plan sera appliquée.
 
@@ -33,7 +36,8 @@ Afin de définir votre arrière-plan, vous devez:
 
 
 
-## # Pour remplir votre image:
+### Ajouter une texture d'image
+
 * &quot;Image&quot; sélectionnée.
 * Dans la boîte de dialogue des paramètres, cliquez sur l'icône &quot;plus&quot;.
 * Choisissez le dossier contenant votre fond. Entrez-le, cliquez sur le fond souhaité, regardez en bas, son nom doit apparaître, cliquez sur sélectionner.

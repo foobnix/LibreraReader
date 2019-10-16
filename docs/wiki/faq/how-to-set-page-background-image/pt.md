@@ -1,12 +1,14 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
 [<](/wiki/faq)
 ---
 
-# Defina seu próprio plano de fundo para a leitura
-> O Librera Book Reader permite que você personalize seus próprios fundos durante a leitura, o que contribui para menos fadiga ocular e agrega conforto ao ler. O fundo pode ser selecionado como uma cor e Sua imagem.
+# Definir plano de fundo próprio para a página do livro
+
+> O Librera Book Reader permite personalizar o plano de fundo da página durante a leitura, o que contribui para menos fadiga ocular e aumenta o conforto ao ler.
+O fundo pode ser selecionado como uma cor sólida ou a partir da imagem de textura.
 
 Para definir seu plano de fundo, você deve:
 
@@ -23,7 +25,8 @@ Para definir seu plano de fundo, você deve:
 
 **Imagem** a imagem do plano de fundo da leitura e sua transparência são selecionadas.
 
-## # Para preencher com cor:
+### Adicione cor sólida
+
 * Escolha &quot;Cor&quot; e ajuste a cor de fundo cruzada na paleta de cores do círculo.
 * Após selecionar a cor, clique em OK, saia das configurações e a cor de fundo será aplicada.
 
@@ -33,7 +36,8 @@ Para definir seu plano de fundo, você deve:
 
 
 
-## # Para preencher sua foto:
+### Adicione textura de imagem
+
 * &quot;Imagem&quot; selecionada.
 * Na caixa de diálogo de configurações, clique no ícone &quot;mais&quot;.
 * Escolha a pasta onde está o seu plano de fundo. Digite, clique no fundo desejado, olhe na parte inferior, deve aparecer o nome dele, clique em selecionar.

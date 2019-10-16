@@ -1,12 +1,14 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
 [<](/wiki/faq)
 ---
 
-# Establezca su propio fondo para leer
-> Librera Book Reader le permite personalizar sus propios fondos mientras lee, lo que contribuye a reducir la fatiga ocular y agrega comodidad al leer. El fondo se puede seleccionar como color y como Su imagen.
+# Establecer un fondo propio para la página del libro
+
+> Librera Book Reader le permite personalizar el fondo de la página mientras lee, lo que contribuye a disminuir la fatiga ocular y agrega comodidad al leer.
+El fondo se puede seleccionar como un color sólido o desde una imagen de textura.
 
 Para establecer su fondo, debe:
 
@@ -23,7 +25,8 @@ Para establecer su fondo, debe:
 
 **Imagen** se selecciona la imagen del fondo de lectura y su transparencia.
 
-## # Para llenar de color:
+### Añadir color sólido
+
 * Elija &quot;Color&quot; y ajuste el color de fondo cruzado en la paleta de colores del círculo.
 * Después de seleccionar el color, haga clic en Aceptar, salga de la configuración, se aplicará el color de fondo.
 
@@ -33,7 +36,8 @@ Para establecer su fondo, debe:
 
 
 
-## # Para completar su imagen:
+### Añadir textura de imagen
+
 * &quot;Imagen&quot; seleccionada.
 * En el cuadro de diálogo de configuración, haga clic en el icono &quot;más&quot;.
 * Elija la carpeta donde se encuentra su fondo. Ingrese, haga clic en el fondo deseado, mire en la parte inferior, debe aparecer su nombre, haga clic en seleccionar.

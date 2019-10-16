@@ -125,6 +125,7 @@ public class WikiTranslate {
         map.put("* ", "{4}");
         map.put("**", "{6}");
         map.put("&nbsp;", "{7}");
+        map.put("###", "{8}");
 
         Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
@@ -138,6 +139,7 @@ public class WikiTranslate {
         reverse.put("{4} ", "* ");
 
         reverse.put("{7}", "&nbsp;");
+        reverse.put("{8}", "###");
 
         reverse.put("] (", "](");
         reverse.put("&#39;", "'");
