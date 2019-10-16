@@ -1,14 +1,16 @@
 ---
 layout: main
-version: 3
+version: 5
 ---
 [<](/wiki/faq)
 ---
 
-# Set your own background for reading
-> Library Book Reader allows you to customize your own backgrounds while reading, which contributes to less eye fatigue and adds comfort when reading.The background can be selected as a color and Your picture.
+# Set own background for book page
 
-In order to set your background, you must:
+> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
+The background can be selected as a solid color or from texture image.
+
+In order to set your background, you should:
 
 * Click the settings icon.
 * In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
@@ -23,7 +25,8 @@ In order to set your background, you must:
 
 **Image** the picture of the reading background and its transparency are selected.
 
-### To fill with color: 
+### Add solid color
+
 * Choose "Color" and adjust the cross background color on the color palette of the circle.
 * After selecting the color, click OK, exit the settings, the background color will be applied.
 
@@ -33,7 +36,8 @@ In order to set your background, you must:
 
 
 
-### In order to fill Your picture: 
+### Add image texture
+
 * Selected "Image".
 * In the settings dialog box, click the "plus" icon.
 * Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
