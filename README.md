@@ -7,6 +7,8 @@ it supports the following formats: PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZ
 
 Web: [http://librera.mobi/](http://librera.mobi/)
 
+FAQ: [Read](http://librera.mobi/wiki/faq/)
+
 Android Play market apps:
 
 [Librera](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
