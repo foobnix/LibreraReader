@@ -33,7 +33,7 @@ For comfortable reading You can adjust the settings:
 
 ||||
 |-|-|-|
-|![](20.jpg)|![](21.jpg)|![](22.jpg)|
+|![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
 
 ## Emphasize all
