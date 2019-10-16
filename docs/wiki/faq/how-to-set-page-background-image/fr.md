@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 7
 ---
 [<](/wiki/faq)
 ---
@@ -30,9 +30,9 @@ Afin de définir votre arrière-plan, vous devriez:
 * Choisissez &quot;Couleur&quot; et réglez la couleur d'arrière-plan croisé sur la palette de couleurs du cercle.
 * Après avoir sélectionné la couleur, cliquez sur OK, quittez les paramètres, la couleur d'arrière-plan sera appliquée.
 
-|||
-|-|-|
-|![](3.jpg)|![](5.jpg)|
+||||
+|-|-|-|
+|![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
 
@@ -43,9 +43,9 @@ Afin de définir votre arrière-plan, vous devriez:
 * Choisissez le dossier contenant votre fond. Entrez-le, cliquez sur le fond souhaité, regardez en bas, son nom doit apparaître, cliquez sur sélectionner.
 * Quittez les paramètres, regardez le résultat.
 
-|||
-|-|-|
-|![](7.jpg)|![](4.jpg)|
+||||
+|-|-|-|
+|![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
 
 

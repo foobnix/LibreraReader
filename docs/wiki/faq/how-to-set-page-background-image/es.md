@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 7
 ---
 [<](/wiki/faq)
 ---
@@ -30,9 +30,9 @@ Para establecer su fondo, debe:
 * Elija &quot;Color&quot; y ajuste el color de fondo cruzado en la paleta de colores del círculo.
 * Después de seleccionar el color, haga clic en Aceptar, salga de la configuración, se aplicará el color de fondo.
 
-|||
-|-|-|
-|![](3.jpg)|![](5.jpg)|
+||||
+|-|-|-|
+|![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
 
@@ -43,9 +43,9 @@ Para establecer su fondo, debe:
 * Elija la carpeta donde se encuentra su fondo. Ingrese, haga clic en el fondo deseado, mire en la parte inferior, debe aparecer su nombre, haga clic en seleccionar.
 * Salga de la configuración, mire el resultado.
 
-|||
-|-|-|
-|![](7.jpg)|![](4.jpg)|
+||||
+|-|-|-|
+|![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
 
 
