@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 6
 ---
 [<](/wiki/faq)
 ---
@@ -30,9 +30,9 @@ In order to set your background, you should:
 * Choose "Color" and adjust the cross background color on the color palette of the circle.
 * After selecting the color, click OK, exit the settings, the background color will be applied.
 
-|||
-|-|-|
-|![](3.jpg)|![](5.jpg)|
+||||
+|-|-|-|
+|![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
 
@@ -43,9 +43,9 @@ In order to set your background, you should:
 * Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
 * Exit the settings, watch the result.
 
-|||
-|-|-|
-|![](7.jpg)|![](4.jpg)|
+||||
+|-|-|-|
+|![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
 
 
