@@ -24,3 +24,11 @@ After the actions you get to the settings status bar where you can configure:
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
+
+
+
+Change the type of information about the book displayed in the text part of the status bar
+
+||||
+|-|-|-|
+|![](30.jpg)|![](31.jpg)|![](32.jpg)|
