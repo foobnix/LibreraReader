@@ -51,4 +51,10 @@ Change the type of information about the book displayed in the text part of the 
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
+* Change text size in status bar and header
+* To resize the status bar 
+* Change color in status bar and header.
 
+||||
+|-|-|-|
+|![](60.jpg)|![](61.jpg)|![](622.jpg)|
