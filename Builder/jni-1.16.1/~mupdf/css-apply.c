@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
 static const char *inherit_list[] = {
 	"color",
 	"direction",
@@ -885,7 +886,7 @@ fz_css_strtof(char *s, char **endptr)
 }
 
 static fz_css_number
-number_from_value(fz_css_value *value, float initial, int initial_unit, int is_font)
+number_from_value(fz_css_value *value, float initial, int initial_unit)
 {
 	char *p;
 
@@ -902,30 +903,34 @@ number_from_value(fz_css_value *value, float initial, int initial_unit, int is_f
 	{
 		float x = fz_css_strtof(value->data, &p);
 
+
+
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
-			return make_number(x < 0.5f ? 0.5: x, N_SCALE);
+			return make_number(fz_max(0.5f, x), N_SCALE);
+
+        if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
+                    return make_number(fz_max(0.5f, x), N_SCALE);
 
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);
 
 		if (p[0] == 'i' && p[1] == 'n' && p[2] == 0)
 			return make_number(x * 72, N_LENGTH);
+
 		if (p[0] == 'c' && p[1] == 'm' && p[2] == 0)
 			return make_number(x * 7200 / 254, N_LENGTH);
+
 		if (p[0] == 'm' && p[1] == 'm' && p[2] == 0)
 			return make_number(x * 720 / 254, N_LENGTH);
+
 		if (p[0] == 'p' && p[1] == 'c' && p[2] == 0)
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-			return is_font? make_number(x / 12 < 0.5f ? 0.5f : x / 12, N_SCALE) : make_number(x, N_LENGTH);
+			return x > 5.0f ? make_number(fz_max(0.5f, x / 12), N_SCALE) : make_number(x, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
-			return is_font? make_number(x / 25 < 0.5f ? 0.5f : x / 25, N_SCALE)  : make_number(x, N_LENGTH);
-
-		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return make_number(x < 0.5f ? 0.5: x, N_SCALE);
-
+			return x > 5.0f ? make_number(fz_max(0.5f, x / 25), N_SCALE) : make_number(x, N_LENGTH);
 
 		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
@@ -947,7 +952,7 @@ number_from_value(fz_css_value *value, float initial, int initial_unit, int is_f
 static fz_css_number
 number_from_property(fz_css_match *match, const char *property, float initial, int initial_unit)
 {
-	return number_from_value(value_from_property(match, property), initial, initial_unit,0);
+	return number_from_value(value_from_property(match, property), initial, initial_unit);
 }
 
 static fz_css_number
@@ -962,7 +967,7 @@ border_width_from_property(fz_css_match *match, const char *property)
 			return make_number(2, N_LENGTH);
 		if (!strcmp(value->data, "thick"))
 			return make_number(4, N_LENGTH);
-		return number_from_value(value, 0, N_LENGTH,0);
+		return number_from_value(value, 0, N_LENGTH);
 	}
 	return make_number(2, N_LENGTH); /* initial: 'medium' */
 }
@@ -1062,9 +1067,9 @@ hex_color:
 		vr = value->args;
 		vg = vr && vr->next ? vr->next->next : NULL; /* skip the ',' nodes */
 		vb = vg && vg->next ? vg->next->next : NULL; /* skip the ',' nodes */
-		r = fz_from_css_number(number_from_value(vr, 0, N_NUMBER,0), 255, 255, 0);
-		g = fz_from_css_number(number_from_value(vg, 0, N_NUMBER,0), 255, 255, 0);
-		b = fz_from_css_number(number_from_value(vb, 0, N_NUMBER,0), 255, 255, 0);
+		r = fz_from_css_number(number_from_value(vr, 0, N_NUMBER), 255, 255, 0);
+		g = fz_from_css_number(number_from_value(vg, 0, N_NUMBER), 255, 255, 0);
+		b = fz_from_css_number(number_from_value(vb, 0, N_NUMBER), 255, 255, 0);
 		return make_color(r, g, b, 255);
 	}
 
@@ -1252,7 +1257,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
         else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
 
-		else style->font_size = number_from_value(value, 1, N_SCALE, 1);
+		else style->font_size = number_from_value(value, 1, N_SCALE);
 	}
 	else
 	{
