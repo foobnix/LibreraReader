@@ -49,6 +49,6 @@ Change the type of information about the book displayed in the text part of the 
 
 |||
 |-|-|-|
-|![](50.jpg)|![](511.jpg)|![](52.jpg)|
+|![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
 
