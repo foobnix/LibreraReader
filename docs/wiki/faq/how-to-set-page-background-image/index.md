@@ -6,7 +6,7 @@ version: 3
 ---
 
 # Set your own background for reading
-> Library Book Reader allows you to customize your own backgrounds while reading, which contributes to less eye fatigue and adds comfort when reading.The background can be selected as a color and Your picture.
+> Librera Book Reader allows you to customize your own backgrounds while reading, which contributes to less eye fatigue and adds comfort when reading.The background can be selected as a color and Your picture.
 
 In order to set your background, you must:
 
