@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/what-is-new/ru)
+[Что нового](/wiki/what-is-new/ru)
 
 # 7.10
 
@@ -12,6 +12,8 @@ layout: main
 * Поддержка телефонов с вырезами
 * Формат главы «30% 5 \ 20 (15)» или «Название главы 5 \ 20»
 * Пожалуйста, напишите отзывы или идеи
+
+Подпишитесь на канал __Librera Reader Telegram__ [https://t.me/LibreraReader](https://t.me/LibreraReader), новости, анонсы и много интересного о новых функциях.
 
 # Что нового в Librera 7.10
 

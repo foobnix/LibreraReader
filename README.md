@@ -7,6 +7,8 @@ it supports the following formats: PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZ
 
 Web: [http://librera.mobi/](http://librera.mobi/)
 
+FAQ: [Read](http://librera.mobi/wiki/faq/)
+
 Android Play market apps:
 
 [Librera](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
@@ -21,63 +23,34 @@ Application fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 [link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
 [link2](https://www.dropbox.com/home/FREE_PDF_APK/testing)
 
-[Telegram] (https://t.me/LibreraReader)
-
-## Support intents
-
-intent.putExtra("page", int); //open a doc on a certain page
-
-intent.putExtra("percent", float); //open a doc at a certain percentage point
-
-intent.putExtra("password", String); //open a password-protected PDFlink
-
-## Support links
-
-<a href="file:///mnt/sdcard/test.pdf?page=2">open page 2</p>
+[Telegram](https://t.me/LibreraReader)
 
 
-## How to install
+## Required build libs
 
-Librera is developed on Eclise with ADT (Android Developer Tools Plugin)
+~~~~
+mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
+~~~~
 
-INSTALL
-0) Linux is preferred (Windows has never been tested)
-1) Install Eclipse
-2) Install Android ADT (from the Eclipse marketplace)
-3) Install Android NDK
-4) Install JAVA
-5) Install ANT
+## Build Librera with MuPdf 1.11 (Default)
 
-DOWNLOAD Librera SOURCE CODE from GITHUB
+~~~~
+cd Builder
+./link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
+./gradlew assembleLibrera
+~~~~
 
-1) git clone https://github.com/foobnix/LirbiReader.git
+## Build Librera with MuPdf 1.16.1 (Optional)
 
-2) run ./LirbiReader/update_all.sh
-Download required packages (Google Play Service, RecicleView, CardView, etc)
-
-3) Download Mupdf sources tar.gz from [http://mupdf.com/downloads](http://mupdf.com/downloads)
-
-4) Import all projects to Eclipse
-
-
-## Build
-
-1) Build NDK part
-./LirbiReader/Builder/link_to_mupdf.sh
-
-Specify you project path and MUPDF path
-MUPDF=/dev/mupdf-test/platform/java
-MY=/home/ivan-dev/git/LirbiReader
-
-2) To build Librera Reader
-./LirbiReader/Builder/all-beta.sh
-
+~~~~
+cd Builder
+./link_to_mupdf_1.16.1.sh
+./gradlew assembleAlpha
+~~~~
 
 ## Librera depends on
 
-MuPDF - (AGPL License) https://mupdf.com/downloads/archive/ (mupdf-1.12.0-source.tar.xz)
-
-MuPDF changed source ./LirbiReader/jni-1.12/~mupdf
+MuPDF - (AGPL License) https://mupdf.com/downloads/archive/
 
 * EbookDroid
 * djvulibre
@@ -90,19 +63,12 @@ MuPDF changed source ./LirbiReader/jni-1.12/~mupdf
 * greendao
 * jsoup
 * juniversalchardet
+* commons-compress
+* okhttp3
+* okhttp-digest
+* okio
 * rtfparserkit
-* okhttp
-
-commons-compress-1.14.jar
-eventbus-3.0.0.jar
-greendao-3.2.0.jar
-greendao-api-3.2.0.jar
-jsoup-1.8.3.jar
-juniversalchardet-1.0.3.jar
-okhttp-3.9.1.jar
-okhttp-digest-1.15.jar
-okio-1.13.0.jar
-rtfparserkit-1.10.0.jar
+* java-mammoth
 
 Librera is distributed under the GPL
 

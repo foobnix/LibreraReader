@@ -5,6 +5,7 @@
 #include <android/bitmap.h>
 #include "mupdf/fitz.h"
 #include "mupdf/pdf.h"
+#include "ctype.h"
 
 
 #include <stdio.h>
@@ -418,12 +419,16 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_fillPageLinkTargetPoint(
 	jint res = 1;
 	return res;
 }
+static int fontSize = 0;
 JNIEXPORT jint JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_getPageCount(JNIEnv *env,
 		jclass clazz, jlong handle, jint width, jint height, jint size) {
 	renderdocument_t *doc = (renderdocument_t*) (long) handle;
 	fz_try(doc->ctx)
 	{
+	    fontSize = size;
+	    DEBUG("fontSize set %d", fontSize);
+
 		fz_layout_document(doc->ctx, doc->document, width, height, size);
 		return (fz_count_pages(doc->ctx, doc->document));
 	}
@@ -619,17 +624,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 		if(r!=-1 && g!=-1 && b!=-1){
 			fz_tint_pixmap(ctx,pixmap,r,g,b);
 		}
-		//fz_clear_pixmap(ctx, pixmap);
 
 		dev = fz_new_draw_device(ctx, NULL, pixmap);
 
 		fz_run_display_list(ctx, page->pageList, dev, &ctm, &viewbox, NULL);
-
-//		fz_annot *annot;
-//		page->annot_list = fz_new_display_list(ctx);
-//		dev = fz_new_list_device(ctx, page->annot_list);
-//		for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
-//			fz_run_annot(doc->document, page->page, annot, dev, &fz_identity, NULL);
 
 
 		fz_drop_pixmap(ctx, pixmap);
@@ -647,107 +645,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPage(JNIEnv *env,
 	(*env)->ReleasePrimitiveArrayCritical(env, bufferarray, buffer, 0);
 }
 
-/*JNI BITMAP API*/
-JNIEXPORT jboolean JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_renderPageBitmap(JNIEnv *env,
-		jobject this, jlong dochandle, jlong pagehandle, jintArray viewboxarray,
-		jfloatArray matrixarray, jobject bitmap) {
-	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 
-	DEBUG("MuPdfPage_renderPageBitmap(%p, %p): start", doc, page);
-
-	fz_matrix ctm;
-	fz_rect viewbox;
-	fz_pixmap *pixmap;
-	jfloat *matrix;
-	jint *viewboxarr;
-	jint *dimen;
-	int length, val;
-	fz_device *dev = NULL;
-
-	AndroidBitmapInfo info;
-	void *pixels;
-
-	int ret;
-
-	if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0) {
-		ERROR("AndroidBitmap_getInfo() failed ! error=%d", ret);
-		return JNI_FALSE;
-	}
-
-// DEBUG("Checking format\n");
-	if (info.format != ANDROID_BITMAP_FORMAT_RGBA_8888) {
-		ERROR("Bitmap format is not RGBA_8888 !");
-		return JNI_FALSE;
-	}
-
-// DEBUG("locking pixels\n");
-	if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0) {
-		ERROR("AndroidBitmap_lockPixels() failed ! error=%d", ret);
-		return JNI_FALSE;
-	}
-
-	matrix = (*env)->GetPrimitiveArrayCritical(env, matrixarray, 0);
-	ctm = fz_identity;
-	ctm.a = matrix[0];
-	ctm.b = matrix[1];
-	ctm.c = matrix[2];
-	ctm.d = matrix[3];
-	ctm.e = matrix[4];
-	ctm.f = matrix[5];
-	(*env)->ReleasePrimitiveArrayCritical(env, matrixarray, matrix, 0);
-
-	viewboxarr = (*env)->GetPrimitiveArrayCritical(env, viewboxarray, 0);
-	viewbox.x0 = viewboxarr[0];
-	viewbox.y0 = viewboxarr[1];
-	viewbox.x1 = viewboxarr[2];
-	viewbox.y1 = viewboxarr[3];
-	(*env)->ReleasePrimitiveArrayCritical(env, viewboxarray, viewboxarr, 0);
-
-	fz_context* ctx = page->ctx;
-	if (!ctx) {
-		ERROR("No page context");
-		return JNI_FALSE;
-	}
-	fz_try(ctx)
-	{
-		fz_colorspace *colorspace = fz_device_bgr(ctx);
-		int stride = (fz_colorspace_n(ctx, colorspace) + 1) * (viewbox.x1 - viewbox.x0);
-		pixmap = fz_new_pixmap_with_data(ctx,colorspace,
-				viewbox.x1 - viewbox.x0, viewbox.y1 - viewbox.y0,1,stride, pixels);
-
-		fz_clear_pixmap_with_value(ctx, pixmap,0xff);
-
-		dev = fz_new_draw_device(ctx, NULL, pixmap);
-
-		fz_run_display_list(ctx, page->pageList, dev, &ctm, &viewbox, NULL);
-	}
-
-//	fz_annot *annot;
-//	page->annot_list = fz_new_display_list(ctx);
-//	dev = fz_new_list_device(ctx, page->annot_list);
-//	for (annot = fz_first_annot(doc->document, page->page); annot; annot = fz_next_annot(doc->document, annot))
-//		fz_run_annot(doc->document, page->page, annot, dev, &fz_identity, NULL);
-
-
-	fz_always(ctx)
-	{
-		fz_close_device(ctx, dev);
-		fz_drop_device(ctx, dev);
-		fz_drop_pixmap(ctx, pixmap);
-	}
-	fz_catch(ctx)
-	{
-		DEBUG("Render failed");
-	}
-
-	AndroidBitmap_unlockPixels(env, bitmap);
-
-	DEBUG("MuPdfPage_renderPageBitmap(%p, %p): finish", doc, page);
-
-	return JNI_TRUE;
-}
 
 //Outline
 JNIEXPORT jlong JNICALL
@@ -895,7 +793,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getNext(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 //	DEBUG("MuPdfOutline_getNext(%p)",outline);
-	return (jlong) (long) (outline ? outline->next : -1);
+
+        if(outline)
+            return (jlong) outline->next;
+        else return -1;
+
+	//return (jlong) (long) (outline ? outline->next : -1);
 	//jlong res = -1;
 	//return res;
 }
@@ -905,7 +808,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getChild(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 //	DEBUG("MuPdfOutline_getChild(%p)",outline);
-	return (jlong) (long) (outline ? outline->down : -1);
+    if(outline){
+        return (jlong)outline->down;
+    }else{
+        return -1;
+    }
+	//return outline ? outline->down : -1;
 	//jlong res = -1;
 	//return res;
 }
@@ -1643,17 +1551,17 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			switch (buffer == NULL ? FZ_IMAGE_JPX : buffer->params.type)
 			{
 			case FZ_IMAGE_JPEG:
-				fz_write_printf(ctx, out, "image/jpeg;base64,");
+				fz_write_printf(ctx, out, "data:image/jpeg;base64,");
 				send_data_base64_stext(ctx, out, buffer->buffer);
 				break;
 			case FZ_IMAGE_PNG:
-				fz_write_printf(ctx, out, "image/png;base64,");
+				fz_write_printf(ctx, out, "data:image/png;base64,");
 				send_data_base64_stext(ctx, out, buffer->buffer);
 				break;
 			default:
 				{
 					fz_buffer *buf = fz_new_buffer_from_image_as_png(ctx, image->image);
-					fz_write_printf(ctx, out, "image/png;base64,");
+					fz_write_printf(ctx, out, "data:image/png;base64,");
 					send_data_base64_stext(ctx, out, buf);
 					fz_drop_buffer(ctx, buf);
 					break;
@@ -1685,9 +1593,18 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			int is_mono = fz_font_is_monospaced(ctx, font) && fz_font_is_monospaced(ctx, font2);
 
 
+
+	        int fs = block->lines->first_span->text->style->size;
+	        DEBUG("fontSize get %d", fs);
+
+            if(fs > fontSize){
+			    fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->first_span->text->style->size);
+			}
+
 			if (is_bold) fz_write_printf(ctx,out,"<b>");
 			if (is_italic) fz_write_printf(ctx,out,"<i>");
-			if (is_mono) fz_write_printf(ctx,out,"<tt>");
+			//if (is_mono) fz_write_printf(ctx,out,"<tt>");
+
 
 			for (line = block->lines; line < block->lines + block->len; line++)
 			{
@@ -1705,6 +1622,9 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 
 					fz_font *s_font = span->text->style->font;
 
+
+
+
 					int is_pause_span = !is_pause_line &&( fz_font_is_bold(ctx,s_font) || fz_font_is_italic(ctx,s_font));
 
 					for (ch = span->text; ch < span->text + span->len; ch++)
@@ -1717,7 +1637,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 
 						if (is_bold_ch) fz_write_printf(ctx,out,"<b>");
 						if (is_italic_ch) fz_write_printf(ctx,out,"<i>");
-						if (is_mono_ch) fz_write_printf(ctx,out,"<tt>");
+						//if (is_mono_ch) fz_write_printf(ctx,out,"<code>");
 
 						switch (ch->c)
 							{
@@ -1735,7 +1655,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 
 						if (is_bold_ch) fz_write_printf(ctx,out,"</b>");
 						if (is_italic_ch) fz_write_printf(ctx,out,"</i>");
-						if (is_mono_ch) fz_write_printf(ctx,out,"</tt>");
+						//if (is_mono_ch) fz_write_printf(ctx,out,"</code>");
 					}
 
 					if(is_pause_span){
@@ -1751,12 +1671,22 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 				}
 
 			}
+			if(block->lines->first_span->text->style->size > fontSize){
+			fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->last_span->text->style->size);
+			}
+
+
 			if (is_bold) {fz_write_printf(ctx,out,"</b>"); fz_write_printf(ctx,out,"<pause>");}
 			if (is_italic) {fz_write_printf(ctx,out,"</i>"); fz_write_printf(ctx,out,"<pause>");}
-			if (is_mono) fz_write_printf(ctx,out,"</tt>");
+			//if (is_mono) fz_write_printf(ctx,out,"</tt>");
 			fz_write_printf(ctx,out,"</p>");
 			//fz_printf(ctx, out, "<br/>");
+
+			if(block_n < page->len-1){
+            		    fz_write_printf(ctx,out,"<end-block>");
+            		}
 		}
+
 	}
 
 }

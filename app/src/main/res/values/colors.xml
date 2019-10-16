@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="alpa_10">#10000000</color> 
+    <color name="alpa_40">#40000000</color>
+    <color name="alpa_90">#90000000</color>
+    <color name="alpa_bb">#bb000000</color>
+    <color name="alpa_ee">#ee000000</color>
+    <color name="foobnix_dark_blue">#000080</color>
+    <color name="foobnix_light_blue">#0000ff</color>
+    
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+   <color name="white_alpha">#bbffffff</color>
+    
+    
+    <color name="transparent">#00000000</color>
+    
+   <color name="grey_800">#424242</color>
+   <color name="lt_grey">#acacac</color>
+   <color name="lt_grey_alpha">#aaacacac</color>
+   <color name="lt_grey_alpha2">#88acacac</color>
+   
+   <color name="lt_grey_dima1">#d1d1d1</color>
+   <color name="lt_grey_dima">#bbd1d1d1</color>
+   
+    
+    <color name="tint_white">#F5F5F5</color>
+    <color name="tint_blue">#03A9F4</color>
+    <color name="tint_blue_alpha">#aa03A9F4</color>
+    <color name="tint_gray">#009688</color>
+    <color name="tint_red">#B71C1C</color>
+    <color name="tint_yellow">#ffad25</color>
+    
+    <color name="tint_divider">#30ffffff</color>
+    
+    <color name="tint_selector">#aa03A9F4</color>
+
+    
+    <color name="color_test">#3949AB</color>
+
+    
+    <color name="title_text_color">#000000</color>
+    <color name="details_text_color">#000000</color>
+
+    <color name="link_color">#07c</color>
+    <color name="ic_color">#478c53</color>
+    
+    
+    
+    
+    
+  
+    
+</resources>
+

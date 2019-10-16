@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/ab_solid_shadow_holo"
-    android:fromDegrees="180"
-    android:pivotX="50%"
-    android:pivotY="50%"
-    android:toDegrees="180" >
-
-</rotate>

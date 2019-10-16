@@ -5,12 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Librera Reader for Android, Лирби Читалка для Андроид">
+    <meta name="description" content="Librera Reader for Android">
     <meta name="author" content="">
 
     <title>Librera Reader: an All-Format eBook Reader for Android</title>
 
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -21,7 +20,8 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,34 +38,39 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+               
                 <div>
-                    <a class="navbar-brand" href="#page-top">Librera Reader (Либрера читалка)</a>
-
+                    <a class="navbar-brand" href="#page-top">Librera Reader</a>
                 </div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#download">Download</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/wiki">Wiki</a>
-                    </li>
-                </li>
+            <div class="dws-menu">
+			
+                <input type="checkbox" name="toggle" id="menu" class="toggleMenu">
+                <label for="menu" class="toggleMenu"><i class="fa fa-bars"></i><a href="#page-top" id="link3">Librera Reader</a></label>
+                                            
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden"><a href="#page-top"></a></li>
+                        <li class="page-scroll"><a href="#about" id="link">About</a></li>
+                        <li class="page-scroll"><a href="#download" id="link1">Download</a></li>
+                        <li class="page-scroll"><a href="/wiki"id="link2">Wiki</a></li>
+                    </ul>               
+                    <script >
+    
+                        link.onclick = function(){
+                        menu.checked = menu.checked ? false : true;
+                        };
+                        link1.onclick = function(){
+                        menu.checked = menu.checked ? false : true;
+                        };
+                        link2.onclick = function(){
+                        menu.checked = menu.checked ? false : true;
+                        };
+                        link3.onclick = function(){
+                        menu.checked = menu.checked ? false : true;
+                        };
+                    </script>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -77,29 +82,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" width="150" src="/css/logo.png" alt="Librera Reader">
+                 <div class="row">
+                    <img  width="150" src="/css/logo.png" alt="Librera Reader">
+                    
                     <div class="intro-text">
                         <span class="name" style="color:#2c3e50">All-Format eBook Reader for Android</span>
-                        <span class="name" style="color:#2c3e50">(Читалка книг и PDF для Андроид)</span>
-			                       
 			<span class="name" style="color:lightcyan" >
 			PDF - EPUB - MOBI - 
 			DJVU - FB2 - TXT - 
 			RTF - AZW - AZW3 -
 			HTML - CBZ - CBR - XPS - MHT
 			</span>
-
-            </br>
-            </br>
-            <span class="name" style="color:#2b3a50" >
-                PDF and DJVU</br> 
-                Kindle (AZW, AZW3, MOBI, PRC)</br> 
-                EPUB and EPUB3</br>
-                FictionBook (FB2 and FB2.zip)</br>
-                Comic Book (Comic archive, CBZ, CBR)</br> 
-                Text (TXT, HTML)</br>
-            </span>
 			
+			<span class="name" style="color:#2c3e50" >
+				<a style="color:#2c3e50; text-decoration:underline;" href="/wiki">Wiki</a> - 
+				<a style="color:#2c3e50; text-decoration:underline" href="/wiki/faq/">Faq</a> - 
+				<a style="color:#2c3e50; text-decoration:underline" href="/wiki/manual/">Manual</a>
+			</span>
                     </div>
                 </div>
             </div>
@@ -112,11 +111,25 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>About</h2>
-                    
-                    
                 </div>
-               
             </div>
+            
+            <br/>
+                 <div class="row">
+                <div class="col-sm-3 portfolio-item">
+                        <img src="/css/1.png" class="img-responsive" alt="">
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                        <img src="/css/2.png" class="img-responsive" alt="">
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                        <img src="/css/3.png" class="img-responsive" alt="">
+                </div>
+                <div class="col-sm-3 portfolio-item">
+                        <img src="/css/4.png" class="img-responsive" alt="">
+                </div>
+            </div>
+            <br/>
 
              <div class="row">
                  <p>
@@ -162,48 +175,6 @@ While reading, documents can be locked into a vertical-scroll-only mode and thei
 <br/><br/>
 The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> version. You can start with Free, ad-supported one first, and decide for yourselves. We promise you won't be disappointed. Once you are convinced, please obtain a <b>PRO</b> license to help the app's further development.
 </p>
-
-
-                 <h3>Users feedback</h3>
-                 <p><b>Omar Alejandro Torres Garcia</b> Is the best. Surely the most practical of all.
-                 Has read mode while the page automatically advances and that makes it special.
-                 Night mode is very comfortable not to mention automatic search books and thumbnails.
-                 The purchase and has been a good choice.</p>
-
-                 <p><b>Евгений Вингловский</b> Great reader Thank you very much for the quality of software</p>
-
-
-                 <p><b>Алексей Титов</b> Better can not be I take a few years. Appendix worthwhile!</p>
-
-                 <p><b>Сергей Иванов</b> One of the best programs It opens DjVu files and it is easy and without problems, do not need to wait long for each page load and then drawing the text on the other just torment (programs that can be read DjVu virtually none have several options where everything hangs and buggy and even for money) and so the files in this format is best only opened the program (tested on personal experience) so that the purchase is very happy! Thanks to those or whoever it has developed a program for good !!!</p>
-
-                 <p><b>Chriss MX</b> Okay, I never write comments on an app, but I have to this time, because PRO PDF Reader has been extremely useful for me.  I tried almost all of the other PDF reader apps out there and for ease of use, stability, page rendering, and speed I could not find ANYTHING as good as the free version of this app (PDF Reader).  I bought the Pro version not because I found the ads annoying (they really weren't - and I HATE ads) but because I wanted to support Mr. Ivanenko's future efforts. Great job on the app and I look forward to your next project!</p>
-
-            </p>
-
-
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/1.png" class="img-responsive" alt="">
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/2.png" class="img-responsive" alt="">
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/3.png" class="img-responsive" alt="">
-                </div>
-            </div>
-             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/4.png" class="img-responsive" alt="">
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/5.png" class="img-responsive" alt="">
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                        <img src="/css/6.png" class="img-responsive" alt="">
-                </div>
-            </div>
         </div>
     </section>
 
@@ -215,16 +186,31 @@ The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> 
                     <h2>Download</h2>
                     
                 </div>
+                <br/>
+                <br/>
             </div>
             <div class="row">
-               <a href="https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader" target="_blank">Librera Reader (Play Market)</a><br/>
-               <a href="https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader" target="_blank">PRO Librera Reader (Play Market)</a><br/>
-               <a href="https://play.google.com/store/apps/details?id=classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri" target="_blank">PDF Reader Classic (Play Market)</a><br>
+            <b style="color:black">Google Play</b><br/>
+               <a href="https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader" target="_blank">Librera Reader</a><br/>
+               <a href="https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader" target="_blank">Librera PRO (without ads)</a><br/>
+              <a href="https://play.google.com/apps/testing/com.foobnix.pdf.reader" target="_blank">Beta testing</a><br/>
+               <br/>
+	 <b style="color:black">Other</b><br/>
+                <a href="https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/" target="_blank">F-Droid (Librera PRO without Internet and OPDS)</a><br/>
                 <a href="http://beta.lirbi.com" target="_blank">Beta version (.apk)</a><br/>
                 <a href="http://archive.lirbi.com" target="_blank">Archive (.apk)</a><br/>
-                <a href="https://github.com/foobnix/LibreraReader" target="_blank">Librera GPL v.3 sources (https://github.com/foobnix/LibreraReader)</a>
-                <br/>
+                <a href="https://github.com/foobnix/LibreraReader" target="_blank">GitHub (https://github.com/foobnix/LibreraReader)</a><br/>
                 <a href="https://t.me/LibreraReader" target="_blank">Telegram (https://t.me/LibreraReader)</a><br/>
+                <a href="/wiki" target="_blank">Librera Wiki</a><br/>
+                <a href="/wiki/PrivacyPolicy">Privacy Policy</a><br/>
+                <a href="mailto:librera.reader@gmail.com">Support (librera.reader@gmail.com)</a>
+                <br/>
+                <br/>
+                 <b style="color:black">Forums</b><br/>
+                <a href="http://4pda.ru/forum/index.php?showtopic=449323" target="_blank">Librera PRO: Читалка книг и PDF [4pda.ru] </a><br/>
+                <a href="https://www.mobileread.com/forums/showthread.php?t=296171" target="_blank"> Librera Book Reader for Android and e-ink readers [mobileread.com]</a><br/>
+                <a href="https://www.mobileread.com/forums/showthread.php?t=313546" target="_blank">Moon+Reader vs Librera [mobileread.com]</a><br/>
+                <a href="https://www.slant.co/improve/options/19926/~librera-reader-review" target="_blank">Librera Reader Review [slant.co]</a><br/>
             </div>
         </div>
     </section>
@@ -238,8 +224,7 @@ The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> 
                 <div class="row">
                     <div class="col-lg-12">
                         Author: Ivan Ivanenko<Br/>
-                        Support: <a href="mailto:help@librera.mobi">help@librera.mobi</a> <br/>
-                         <a href="https://github.com/foobnix/LirberaReader.git" target="_blank">Librera is distributed  under the GPL</a>
+                        Support: <a href="mailto:librera.reader@gmail.com">librera.reader@gmail.com</a> <br/>
                     </div>
                 </div>
             </div>
@@ -249,7 +234,7 @@ The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visible-sm">
         <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
+            <i class=".scroll-top .btn :after"></i>
         </a>
     </div>
 
@@ -260,7 +245,6 @@ The best way to fully appreciate <b>Librera Reader</b> is to use its <b>PRO</b> 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-36581296-7');
 </script>
 

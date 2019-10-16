@@ -51,13 +51,23 @@ static const char *html_default_css =
 "style{display:none}"
 "sub{font-size:0.83em;vertical-align:sub}"
 "sup{font-size:0.83em;vertical-align:super}"
-"table{display:table}"
-"tbody{display:table-row-group}"
-"td{display:table-cell;padding:1px}"
-"tfoot{display:table-footer-group}"
-"th{display:table-cell;font-weight:bold;padding:1px;text-align:center}"
-"thead{display:table-header-group}"
-"tr{display:table-row}"
+
+"table{display:block !important;}"
+"tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
+
+"figcaption {display:block; text-align:center}"
+"figcaption>p {text-align:center}"
+
+//"tbody{display:table-row-group}"
+//"td{display:table-cell;padding:1px}"
+//"tfoot{display:table-footer-group}"
+//"th{display:table-cell;font-weight:bold;padding:1px;text-align:center}"
+//"thead{display:table-header-group}"
+//"tr{display:table-row}"
+
 "ul{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}"
 "ul ul{list-style-type:circle}"
 "ul ul ul{list-style-type:square}"
@@ -405,11 +415,11 @@ static fz_image *load_html_image(fz_context *ctx, fz_archive *zip, const char *b
 	fz_try(ctx)
 	{
 		buf = fz_read_archive_entry(ctx, zip, path);
-#if FZ_ENABLE_SVG
+//#if FZ_ENABLE_SVG
 		if (strstr(path, ".svg"))
 			img = fz_new_image_from_svg(ctx, buf);
 		else
-#endif
+//#endif
 			img = fz_new_image_from_buffer(ctx, buf);
 	}
 	fz_always(ctx)

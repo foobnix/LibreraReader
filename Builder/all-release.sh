@@ -1,36 +1,27 @@
+#!/usr/bin/env bash
 
-./link_ant.sh
 ./link_to_mupdf_1.11.sh
-./copy-fonts.sh
 
-ant clean-apk
+cd ../
 
-rm /home/ivan-dev/Dropbox/FREE_PDF_APK/testing/*.apk
+./gradlew clean incVersion
 
-ant arm pro
-ant arm64 pro
-ant arm+arm64 pro
-ant x86 pro
+./gradlew assembleProRelease
+./gradlew assembleFdroidRelease
 
-ant arm pdf
-ant arm64 pdf
-ant x86 pdf
+./gradlew assembleLibreraRelease
+./gradlew assemblePdf_classicRelease
+./gradlew assembleEpub_readerRelease
+./gradlew assembleEbookaRelease
+./gradlew assemblePdf_v2Release
+./gradlew assembleTts_readerRelease
 
-ant arm classic
-ant arm64 classic
-ant x86 classic
+#./gradlew assembleFdroidRelease
 
-ant arm+arm64 droid
-ant x86 droid
+./gradlew copyApks -Pbeta
+./gradlew -stop
 
-#ant arm+arm64 pdf-ink
-#ant x86 pdf-ink
-
-ant version
-
+cd Builder
 ./remove_all.sh
 ./install_all.sh
-./link_eclipse.sh
-
-cd /home/ivan-dev/Dropbox/FREE_PDF_APK/testing
-md5sum *.apk > checksum.txt
+./clear-cache.sh

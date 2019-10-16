@@ -1,0 +1,129 @@
+From: "Craig D. Miller" <Craig.D.Miller@jpl.nasa.gov>
+
+Hi,
+
+Steps to integrate antiword into NetScape 4.73 (should also work with earlier
+versions).
+
+Programs that launch from netscape must startup an X window to display their
+output (otherwise output ends up it the bit bucket on your system).  I wrote the
+following script to do this for antiword (and saved it as
+"/usr/local/bin/xantiword":
+
+#!/bin/csh -f
+setenv FILE $1
+setenv NEWFILE ${FILE}.xantiword
+/usr/local/bin/antiword $FILE >&$NEWFILE
+/usr/bin/X11/xterm -title "$FILE (MS Word)" -e /usr/bsd/more $NEWFILE
+rm -f $NEWFILE
+
+The above script works, but may not be the best way to do it.  If you come up
+with a more elegant solution, then please let me know.
+
+Next you'll have to tell netscape to execute the "/usr/local/bin/xantiword"
+script when word documents are clicked on.  The easiest way to do this is to
+change the /usr/local/lib/netscape/mailcap netscape configuration file.  For
+SGI version of netscape the following two lines are changed.  For other versions
+of netscape, one should find similar lines or will need to add the new lines.
+
+Old lines (try to run SoftWindows, which is not installed on my system):
+
+    application/x-dos_ms_word; /usr/local/lib/netscape/swinexec %s winword; \
+        description="Microsoft Word-for-Windows Document";
+    application/msword; /usr/local/lib/netscape/swinexec %s winword; \
+        description="Microsoft Word-for-Windows Document";
+
+New lines (for antiword execution), which replace old lines on my system:
+
+    application/x-dos_ms_word; /usr/local/bin/xantiword %s; \
+        description="Microsoft Word-for-Windows Document";
+    application/msword; /usr/local/bin/xantiword %s; \
+        description="Microsoft Word-for-Windows Document";
+
+These changes can also be made via the netscape preferences, under
+Navigator/Applications, but then the changes would only be for the user that
+changed them.  The above change to the mailcap file affects all users, which is
+what you'll usually want.
+
+ Note that the above file paths may be different for your system.  On our linux
+box, a quick search DID NOT show where the mailcap for netscape was stored, but
+I did find one in /etc/mailcap.  I don't have time to experiment to see if this
+is the same one that netscape uses.
+
+If you have questions then please E-mail me.
+
+- Craig
+
+===============================================================================
+
+From: "Craig D. Miller" <Craig.D.Miller@jpl.nasa.gov>
+
+Hi,
+
+I just discovered a program called "xless".  It would actually be easier to use
+than my previous xterm/more solution.  To use it change the
+"/usr/local/bin/xantiword" script to: 
+
+#!/bin/csh -f
+setenv FILE $1
+/usr/local/bin/antiword $FILE | /usr/freeware/bin/xless \
+            -title "$FILE (MS Word)" -geometry 100x60
+
+Note that one also needs to have xless installed.  It can be found on the
+SGI Freeware Feb 1999 (or later) CD-ROM.
+
+- Craig
+
+===============================================================================
+
+From: Bruno Crochet <bruno.crochet@pse.unige.ch>
+
+Hi!
+
+Another way to integrate antiword into netscape is to copy the following
+line in your .mailcap file :
+
+application/msword; ns="%s"\; nf="${ns}".ps\; antiword -pa4 "${ns}" >
+"${nf}"\; gv "${nf}"\; sleep 2 \; rm "${nf}"
+
+Bruno.
+
+===============================================================================
+
+From: Andoni Zarate <azarate@saincotrafico.com>
+
+In order to view the file into netscape you can write the xantiword file
+like this:
+ 
+#!/bin/csh -f
+setenv FILE $1
+setenv NEWFILE ${FILE}.xantiword
+/usr/local/bin/antiword $FILE >&$NEWFILE
+netscape -remote 'openFile('$NEWFILE')'
+ 
+Andoni Zárate.
+
+===============================================================================
+
+From: Evelyne Pinter <epinter@ptcs.ch>
+
+I include a script for netscape to see the document with ghostview.
+ 
+#!/bin/csh -f
+setenv FILE $1
+setenv NEWFILE ${FILE}.xantiword
+/usr/local/bin/antiword -pa4 $FILE >&$NEWFILE
+/usr/X11R6/bin/gv $NEWFILE
+rm -f $NEWFILE
+ 
+In netscape the application must be called like that
+"/usr/local/bin/xantiword %s"
+ 
+This is just a small change(done by Roger Luechinger) to the xantiword
+you included in the distribution 0.31
+ 
+Thanks
+ 
+SG E.M.S.P.
+
+===============================================================================

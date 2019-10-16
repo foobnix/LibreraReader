@@ -1,7 +1,0 @@
-* PDF Okuyucunun istek ve geri bildirimlere dayalı büyük bir güncellemesi 
-* Yeni Metin-Konuşma (TTS) arayüzüne sahip PDF Okuyucu 
-* EPUB 3.0 için geliştirilmiş destek, ses dosyaları oynatma 
-* PDF, DJVU dahil tüm formatlarda çok sözcüklü arama sorguları 
-* Çentikli akıllı telefonlar için destek 
-* Durum çubuğu açıklamasının artık üç seçenek vardır: tam, kompakt ve bölüm odaklı 
-* Daha fazla geri bildirim ve istek çok hoş geldiniz!

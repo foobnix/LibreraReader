@@ -1,5 +1,6 @@
 ---
 layout: main
+version: 3
 ---
 # Herunterladen
 
@@ -7,12 +8,14 @@ layout: main
 
 [Librera PRO bei Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Librera Beta bei Google Play](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
+[Beta von Librera bei Google Play](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
 
 
-[Beta bauen [apk]](http://beta.librera.mobi)
+[Beta build [apk]](http://beta.librera.mobi)
 
 [GitHub](https://github.com/foobnix/LibreraReader)
 
-[Telegramm](https://t.me/LibreraReader)
+[Telegramm](https://t.me/LibreraReader) (Neuigkeiten, Ankündigungen und viele interessante Informationen zur neuen Funktionalität.)
 
+
+[Datenschutzerklärung](/wiki/PrivacyPolicy/de)

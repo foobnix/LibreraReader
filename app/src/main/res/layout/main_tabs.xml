@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.drawerlayout.widget.DrawerLayout
+                android:id="@+id/drawer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/imageParent1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000ff"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageMenu1"
+                            android:layout_width="40dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dip"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:contentDescription="Open application menu"
+                            android:gravity="center"
+                            android:padding="10dip"
+                            android:src="@drawable/glyphicons_517_menu_hamburger"
+                            android:tint="@color/white" />
+
+                        <com.foobnix.pdf.SlidingTabLayout
+                            android:id="@+id/slidingTabs1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:background="#3949ab"
+                            android:elevation="2dip"
+                            android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+
+
+                    </LinearLayout>
+
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <com.foobnix.pdf.SlidingTabLayout
+                        android:id="@+id/slidingTabs2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:background="#3949ab"
+                        android:elevation="2dip"
+                        android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/left_drawer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="#ffffff" />
+            </androidx.drawerlayout.widget.DrawerLayout>
+
+            <FrameLayout
+                android:id="@+id/overlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/toastBrightnessText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/bg_my_toast"
+                android:drawableLeft="@drawable/glyphicons_232_sun"
+                android:drawablePadding="10dip"
+                android:drawableTint="@color/white"
+                android:padding="12dip"
+                android:text="@string/brightness"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+
+            <com.foobnix.pdf.info.view.MyProgressBar
+                android:id="@+id/fab"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dip"
+                android:background="@drawable/bg_circular"
+                android:indeterminateDrawable="@drawable/my_progress" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <FrameLayout
+        android:id="@+id/adFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:visibility="gone" />
+</LinearLayout>

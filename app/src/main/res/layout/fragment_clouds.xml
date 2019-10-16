@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <LinearLayout
+        android:id="@+id/cloudsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_marginTop="4dip"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/dropbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_ltgray"
+            android:gravity="center_vertical"
+            android:padding="2dip" >
+
+            <ImageView
+                android:id="@+id/imageDropbox"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="6dip"
+                android:src="@drawable/dropbox" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/dropbox"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/gdrive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_ltgray"
+            android:gravity="center_vertical"
+            android:padding="2dip" >
+
+            <ImageView
+                android:id="@+id/imageGDrive"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="6dip"
+                android:src="@drawable/gdrive" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/google_drive"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/oneDrive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_ltgray"
+            android:gravity="center_vertical"
+            android:padding="2dip" >
+
+            <ImageView
+                android:id="@+id/imageOneDrive"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:padding="6dip"
+                android:src="@drawable/onedrive" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/one_drive"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelRecent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wh_button"
+        android:layout_margin="4dip"
+        android:background="@drawable/bg_search_second"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/librera_cloud"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/clearAllRecent"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_clear_all"
+            android:text="@string/clear_all"
+            android:visibility="gone" />
+
+        <com.foobnix.pdf.info.view.MyProgressBar
+            android:id="@+id/MyProgressBarClouds"
+                    android:saveEnabled="false"
+            
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+        
+        <ImageView
+            android:id="@+id/isShowCloudsLine"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/glyphicons_602_chevron_down" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onRefreshDropbox"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:src="@drawable/glyphicons_82_refresh" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onListGrid"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:src="@drawable/glyphicons_114_justify" />
+    </LinearLayout>
+
+    
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

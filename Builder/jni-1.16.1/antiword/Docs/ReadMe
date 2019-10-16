@@ -1,0 +1,114 @@
+                    ___        _   _                       _
+                   / _ \      | | (_)                     | |
+                  | |_| |_ __ | |_ ___      _____  _ __ __| |
+                  |  _  | '_ \| __| \ \ /\ / / _ \| '__/ _` |
+                  | | | | | | | |_| |\ V  V / (_) | | | (_| |
+                  |_| |_|_| |_|\__|_| \_/\_/ \___/|_|  \__,_|
+
+Antiword
+========
+
+Version 0.37 (21 Oct 2005)
+--------------------------     
+
+Introduction
+------------
+
+Antiword is an application for displaying Microsoft(R) Word documents.
+
+
+License
+-------
+
+This program is distributed under the GNU General Public License - see the
+accompanying COPYING file for more details.
+
+
+Problems
+--------
+
+Any bugs found should be reported to the author with full details of how to
+get the problem to occur, but don't *expect* support for a product that you
+have not paid for!
+
+Please include Antiword's version number and version date, otherwise you
+make it impossible for the author to help.
+
+
+Thanks To
+---------
+
+Victor B. Wagner <vitus@agropc.msk.su> creator of "catdoc"
+Duncan Simpson <word2x@duncan.telstar.net> creator of "word2x"
+Martin Schwartz <schwartz@cs.tu-berlin.de> creator of "laola" and "elser"
+Caolan McNamara <Caolan.McNamara@ul.ie> creator of "mswordview"
+Andrew Scriven <andy.scriven@research.natpower.co.uk> creator of "OLEdecode"
+Craig Southeren <geoffw@extro.ucc.oz.au> creator of "nenscript"
+Thomas Merz <tm@muc.de> creator of "jpeg2ps"
+Ulrich von Zadow <uzadow@cs.tu-berlin.de> creator of "paintlib"
+
+
+Contributors
+------------
+
+ISO-8859-2 support by: Pawel Turnau <uzturnau@cyf-kr.edu.pl>
+Character set mapping by: Dmitry Chernyak
+                          <Dmitry.Chernyak@p998.f983.n5030.z2.fidonet.org>
+UTF-8 support by: Karl Koehler <koehler@or.uni-bonn.de> and
+                  Markus Kuhn <Markus.Kuhn@cl.cam.ac.uk>
+PostScript Cyrillic by: Alexander Belyaev <isle@free.kursknet.ru>
+
+
+Ports
+-----
+
+Antiword was ported to BeOS by Pete Goodeve <pete@jwgibbs.cchem.berkeley.edu>
+Antiword was ported to OS/2 by Dave Yeo <dave_yeo@paralynx.com>
+Antiword was ported to Mac OS X by Ronaldo Nascimento <ronaldo@ronaldo.com>
+Antiword was ported to Amiga by Raffaele Pisapia <rafpis@libero.it>
+Antiword was ported to VMS by Joseph Huber <huber@mppmu.mpg.de>
+Antiword was ported to NetWare by Guenter Knauf <info@gknw.de>
+Antiword was ported to EPOC by Max Tomin <tomin@samaramail.ru>
+Antiword was ported to Zaurus PDA by Piotr Jachimczyk
+                                     <P.Jachimczyk@prioris.mini.pw.edu.pl>
+Antiword was ported to DOS by myself ;-)
+Yen-Ming Lee <leeym@freebsd.org> is the maintainer of the FreeBSD version of
+Antiword.
+
+
+Acknowledgements
+----------------
+
+Microsoft is a registered trademark and Windows is a trademark of Microsoft
+Corporation.
+UNIX is a registered trademark of the X/Open Company, Ltd.
+Linux is a registered trademark of Linus Torvalds.
+Postscript is a trademark of Adobe Systems Incorporated.
+All other trademarks are acknowledged.
+
+
+Future Versions
+---------------
+
+If you have any comments, bug reports or suggestions for future versions
+don't hesitate to write to me.
+New versions of the program will only be available if sufficient people
+are using this program. So let me know!
+
+
+Most recent version
+-------------------
+
+Most recent version of Antiword can be found on the author's website:
+==>>  http://www.winfield.demon.nl/index.html  <<==
+==>>  http://antiword.cjb.net/  <<==
+
+
+Author
+------
+
+The author can be reached by e-mail:
+antiword@winfield.demon.nl
+comments@antiword.cjb.net
+
+But PLEASE read the FAQ before you write!!

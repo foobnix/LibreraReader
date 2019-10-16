@@ -1,13 +1,12 @@
 ---
 layout: main
-version: 3
+version: 6
 ---
-[<](/wiki/ru)
+[Вики](/wiki/ru)
 
-# Что нового в Librera book reader
+# Что нового в читателе книг Librera
 
-* [Версия 7.11](/wiki/what-is-new/7.11/ru)
-* [Версия 7.10](/wiki/what-is-new/7.10/ru)
+
 
 
     

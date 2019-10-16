@@ -1,0 +1,272 @@
+
+<nl-NL>
+* Doc-formaat ondersteuning 
+* Docx-formaat ondersteuning op Anroid 8+ apparaten 
+* Donker thema is verbeterd 
+* Mogelijkheid om de positie van de tabs te veranderen 
+* Voorinstellingen voor de leesmodus
+</nl-NL>
+
+<id>
+* Dukungan format Doc 
+* Dukungan format Docx pada perangkat Anroid 8+ 
+* Tema gelap telah ditingkatkan 
+* Opsi untuk mengubah posisi Tab 
+* Pengaturan mode baca
+</id>
+
+<lt>
+* Doc formato palaikymas 
+* „Docx“ formato palaikymas „Anroid 8+“ įrenginiuose 
+* Patobulinta tamsi tema 
+* Galimybė pakeisti skirtukų padėtį 
+* Skaitymo režimo nustatymai
+</lt>
+
+<ar>
+* دعم تنسيق Doc 
+* دعم تنسيق Docx على أجهزة Anroid 8+ 
+* تم تحسين مظهر Dark 
+* الخيار لتغيير وضع Tabs 
+* إعدادات وضع القراءة المسبقة
+</ar>
+
+<ro>
+* Suport pentru format doc 
+* Suport pentru formatul Docx pe dispozitivele Anroid 8+ 
+* Tema intunecata a fost imbunatatita 
+* Optiunea de a schimba pozitia filelor 
+* Presetarile modului de citire
+</ro>
+
+<de-DE>
+* Unterstützung des Doc-Formats 
+* Unterstützung des Docx-Formats auf Anroid 8+ -Geräten 
+* Dunkles Design wurde verbessert 
+* Option zum Ändern der Position der Tabs 
+* Presets im Lesemodus
+</de-DE>
+
+<pl-PL>
+* Obsługa formatu Doc 
+* Obsługa formatu Docx na urządzeniach z systemem Anroid 8+ 
+* Poprawiono ciemny motyw 
+* Opcja zmiany pozycji kart 
+* Presety trybu czytania
+</pl-PL>
+
+<iw-IL>
+* תמיכה בפורמט Doc 
+* תמיכה בפורמט Docx על מכשירי Android 8 + 
+* ערכת נושא כהה שופרה 
+* אפשרות לשינוי מיקום הכרטיסיות 
+* מצב קריאה מראש
+</iw-IL>
+
+<hi-IN>
+* Doc प्रारूप समर्थन 
+* Anroid 8+ उपकरणों पर Docx प्रारूप समर्थन 
+* डार्क थीम में सुधार किया गया है 
+* टैब स्थिति बदलने का विकल्प 
+* रीडिंग-मोड प्रीसेट
+</hi-IN>
+
+<zh-CN>
+* Doc格式支持
+* Anroid 8+设备支持Docx格式
+*黑暗主题已得到改进
+*选项更改标签位置
+*阅读模式预设
+</zh-CN>
+
+<es-ES>
+* Soporte de formato doc. 
+* Soporte de formato docx en dispositivos Anroid 8+. 
+* Se ha mejorado el tema oscuro. 
+* Opción para cambiar la posición de las pestañas.
+</es-ES>
+
+<fi-FI>
+* Doc-formaatin tuki 
+* Docx-muotoinen tuki Anroid 8+ -laitteissa 
+* Tumma teema on parantunut 
+* Vaihtoehto vaihtaa välilehdet 
+* Lukumoodin esiasetukset
+</fi-FI>
+
+<vi>
+* Hỗ trợ định dạng Doc 
+* Hỗ trợ định dạng Docx trên các thiết bị Anroid 8+ 
+* Chủ đề tối đã được cải thiện 
+* Tùy chọn thay đổi vị trí Tab 
+* Cài đặt trước chế độ đọc
+</vi>
+
+<fr-FR>
+* Prise en charge du format Doc 
+* Prise en charge du format Docx sur Anroid 8+ 
+* Le thème sombre a été amélioré 
+* Possibilité de changer la position des onglets 
+* Préréglages en mode lecture
+</fr-FR>
+
+<fr-CA>
+* Prise en charge du format Doc 
+* Prise en charge du format Docx sur Anroid 8+ 
+* Le thème sombre a été amélioré 
+* Possibilité de changer la position des onglets 
+* Préréglages en mode lecture
+</fr-CA>
+
+<sw>
+* Msaada wa fomu ya Doc 
+* Usanidi wa muundo wa Docx kwenye vifaa vya Anroid 8+ 
+* Mandhari ya giza imeboreshwa 
+* Chaguo kubadilisha nafasi ya Tabs 
+* Presets mode kusoma
+</sw>
+
+<ru-RU>
+* Поддержка формата Doc 
+* Поддержка формата Docx на устройствах Anroid 8+ 
+* Улучшена темная тема 
+* Возможность изменять положение вкладок 
+* Предустановки режима чтения
+</ru-RU>
+
+<zh-TW>
+* Doc格式支持
+* Anroid 8+設備支持Docx格式
+*黑暗主題已得到改進
+*選項更改標籤位置
+*閱讀模式預設
+</zh-TW>
+
+<th>
+* รองรับรูปแบบ Doc 
+* รองรับรูปแบบ Docx บนอุปกรณ์ Anroid 8+ 
+* ชุดรูปแบบมืดได้รับการปรับปรุง 
+* ตัวเลือกในการเปลี่ยนตำแหน่งแท็บ 
+* ตั้งค่าโหมดการอ่านล่วงหน้า
+</th>
+
+<it-IT>
+* Supporto del formato Doc 
+* Supporto del formato Docx su dispositivi Anroid 8+ 
+* Il tema scuro è stato migliorato 
+* Possibilità di cambiare la posizione delle schede 
+* Preimpostazioni in modalità lettura
+</it-IT>
+
+<sv-SE>
+* Dokumentformatstöd 
+* Support för Docx-format på Anroid 8+ enheter 
+* Mörkt tema har förbättrats 
+* Alternativ att ändra flikposition 
+* Förinställning av läsläge
+</sv-SE>
+
+<fa>
+* پشتیبانی از فرمت Doc 
+* پشتیبانی از فرمت Docx در دستگاه های Anroid 8+ 
+* تم تیره بهبود یافته است 
+* گزینه ای برای تغییر موقعیت Tabs 
+* خواندن حالت ایستگاه از پیش تنظیم
+</fa>
+
+<pt-PT>
+* Suporte ao formato Doc 
+* Suporte ao formato Docx nos dispositivos Anroid 8+ 
+* O tema Dark foi melhorado 
+* Opção de alterar a posição das guias 
+* Predefinições do modo de leitura
+</pt-PT>
+
+<pt-BR>
+* Suporte ao formato Doc 
+* Suporte ao formato Docx nos dispositivos Anroid 8+ 
+* O tema Dark foi melhorado 
+* Opção de alterar a posição das guias 
+* Predefinições do modo de leitura
+</pt-BR>
+
+<ko-KR>
+* Doc 형식 지원 
+* DocX 형식 지원 Anroid 8+ 기기 
+* 어두운 테마가 개선되었습니다 
+* 탭 위치를 변경하는 옵션 
+* 읽기 모드 사전 설정
+</ko-KR>
+
+<hu-HU>
+* Doc formátum támogatás 
+* Docx formátum támogatás az Anroid 8+ eszközökön 
+* Sötét téma javult 
+* Lehetőség a lapok pozíciójának megváltoztatására 
+* Olvasási mód beállításai
+</hu-HU>
+
+<kk>
+* Doc пішімін қолдау 
+* Anroid 8+ құрылғыларында Docx пішіміндегі қолдау 
+* Қараңғы тақырып жақсарды 
+* Tabs күйін өзгерту мүмкіндігі 
+* Оқу режимінің алдын ала орнатулары
+</kk>
+
+<sk>
+* Podpora formátu Doc 
+* Podpora formátu Docx na zariadeniach Anroid 8+ 
+* Tmavá tému bola vylepšená 
+* Možnosť zmeniť pozíciu kariet 
+* Predvoľby režimu čítania
+</sk>
+
+<tr-TR>
+* Doc format desteği 
+* Anroid 8+ cihazlarda Docx format desteği 
+* Koyu tema geliştirildi 
+* Sekmelerin konumunu değiştirme seçeneği 
+* Okuma modu ön ayarları
+</tr-TR>
+
+<no-NO>
+* Dokformatstøtte 
+* Docx-formatstøtte på Anroid 8+ enheter 
+* Mørkt tema har blitt forbedret 
+* Alternativ for å endre tabulatorposisjon 
+* Lese-modus forhåndsinnstillinger
+</no-NO>
+
+<la>
+Doc firmamentum forma 
+* 
+* 
+* Dark theme docx forma firmamentum in Anroid 8+ inventa est in melius mutare Bene tab situ 
+* 
+* Etiam iaculis mollis modus Reading-
+</la>
+
+<ja-JP>
+* Docフォーマットのサポート
+* Anroid 8+デバイス上のDocxフォーマットのサポート
+*ダークテーマが改善されました
+*タブの位置を変更するオプション
+*読み取りモードのプリセット
+</ja-JP>
+
+<uk>
+* Підтримка формату Doc 
+* Підтримка формату Docx на пристроях Anroid 8+ 
+* Покращено темну тему 
+* Можливість зміни позиції вкладок 
+* Пресети в режимі читання
+</uk>
+
+<en-US>
+* Doc format support
+* Docx format support on Anroid 8+ devices
+* Dark theme has been improved
+* Option to change Tabs position
+* Reading-mode presets
+</en-US>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="2dip" >
+
+        <CheckBox
+            android:id="@+id/isShowSatusBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_status_bar" />
+
+        <CheckBox
+            android:id="@+id/isShowPanelBookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_book_title" />
+
+        <CheckBox
+            android:id="@+id/isShowReadingProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_progress_of_reading" />
+
+        <CheckBox
+            android:id="@+id/isShowChaptersOnProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/display_chapters_on_the_progress_line" />
+
+        <CheckBox
+            android:id="@+id/isShowSubChaptersOnProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/display_sub_chapters_on_the_progress_line" />
+
+        <CheckBox
+            android:id="@+id/isShowTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_current_time" />
+
+        <CheckBox
+            android:id="@+id/isShowBattery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_battery_percentage" />
+
+        <CheckBox
+            android:id="@+id/isRewindEnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/enable_rewind_of_pages_using_the_read_progress_line" />
+
+        <TextView
+            android:layout_marginTop="10dip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/additional_bookmarks_bar"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInMusicMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/mode_musician" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInScrollMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/mode_vertical" />
+
+        <CheckBox
+            android:id="@+id/isShowBookmarsPanelInBookMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/mode_horizontally" />
+
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/isShowBookmarsPanelText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_checkbox"
+            android:text="@string/display_bookmark_text_instead_of_number" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/custom_text" />
+
+            <EditText
+                android:id="@+id/musicText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:text="@string/musician" />
+
+            <ImageView
+                android:id="@+id/musicTextOk"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_border_ltgray"
+                android:padding="8dip"
+                android:src="@drawable/glyphicons_207_ok"
+                android:tint="@color/tint_gray" />
+        </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/isShowRectangularTapZones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_tap_zones_on_screen" />
+
+        <CheckBox
+            android:id="@+id/isShowLastPageRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_the_last_page_with_the_red_line" />
+
+        <CheckBox
+            android:id="@+id/isShowLineDividing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:text="@string/show_dividing_lines_on_pages_more_contrast" />
+
+        <LinearLayout
+            android:id="@+id/statusBarPositionParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:singleLine="true"
+                android:text="@string/status_bar_location" />
+
+            <TextView
+                android:id="@+id/statusBarPosition"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="@string/bottom" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:singleLine="true"
+                android:text="@string/slider_scale" />
+
+            <TextView
+                android:id="@+id/pageNumberFormat"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="Number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dip"
+                android:singleLine="true"
+                android:text="@string/chapter_format" />
+
+            <TextView
+                android:id="@+id/chapterFormat"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="45% 10 / 100 (12)" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/statusBarTextSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/text_size" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/progressLineHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/line_height" >
+        </com.foobnix.pdf.info.view.CustomSeek>
+
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/statusBarColorDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/text_color_day" />
+
+        <com.foobnix.pdf.info.view.CustomColorView
+            android:id="@+id/statusBarColorNight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            myseek:text="@string/text_color_night" />
+    </LinearLayout>
+
+</ScrollView>

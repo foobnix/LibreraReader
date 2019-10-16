@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/wh_button"
+        android:layout_marginLeft="4dip"
+        android:layout_marginTop="4dip"
+        android:layout_marginRight="4dip"
+        android:background="@drawable/bg_search_second"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/allBookmarks"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="0"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/back"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+
+        <TextView
+            android:id="@+id/searchOld"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_search_in_bookmarks"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:padding="4dip"
+            android:singleLine="true"
+            android:text="@string/search"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/exportBookmarks"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_export"
+            android:drawablePadding="4dip"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:minWidth="100dip"
+            android:padding="4dip"
+            android:singleLine="true"
+            android:text="@string/export_bookmarks"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/importBookmarks"
+            style="@style/textLinkWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/cd_import"
+            android:drawablePadding="4dip"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:minWidth="100dip"
+            android:padding="4dip"
+            android:singleLine="true"
+            android:text="@string/import_bookmarks"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onSettings"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/cd_back_to_all_catalogs"
+            android:src="@drawable/glyphicons_137_cogwheel" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/search"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:src="@drawable/glyphicons_28_search" />
+
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/onListGrid"
+            style="@style/buttonWhite"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:src="@drawable/glyphicons_114_justify" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/bookmarksSearchContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dip"
+        android:layout_marginRight="2dip">
+
+        <EditText
+            android:id="@+id/bookmarksEditSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/wh_button"
+            android:layout_centerVertical="true"
+            android:layout_margin="2dip"
+            android:background="@drawable/bg_search_edit"
+            android:ellipsize="end"
+            android:hint="@string/filter"
+            android:paddingLeft="5dip"
+            android:paddingTop="5dip"
+            android:paddingRight="25dip"
+            android:paddingBottom="5dip"
+            android:singleLine="true"></EditText>
+
+        <ImageView
+            android:id="@+id/bookmarksClearFilter"
+            android:layout_width="@dimen/wh_button_small"
+            android:layout_height="@dimen/wh_button_small"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:padding="8dip"
+            android:src="@drawable/glyphicons_208_remove_2"
+            android:tint="@color/tint_gray" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dip"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/what-is-new)
+[What is new](/wiki/what-is-new)
 
 # 7.10
 
@@ -12,6 +12,8 @@ layout: main
 * Support for notched smartphones
 * The status bar legend now has three options to choose from: full, compact, and chapter-oriented
 * More feedback and requests are very welcome!
+
+Subscribe to the __Librera Reader Telegram__ channel [(https://t.me/LibreraReader)](https://t.me/LibreraReader), news, announcements and a lot of interesting about the new functionality.
 
 # What is new in Librera 7.10
 

@@ -1,7 +1,0 @@
-* Pagrindinė PDF Reader atnaujinta informacija, pagrįsta prašymais ir atsiliepimais 
-* PDF Reader su nauja teksto į kalbą (TTS) sąsaja 
-* Patobulintas palaikymasEPUB 3.0, garso failų atkūrimas 
-* Daugialypės paieškos užklausos visuose formatuose, įskaitant PDF, DJVU 
-* Parama išrinktiems išmaniesiems telefonams 
-* Dabar būsenos juostos legendoje yra trys pasirinktys: pilnas, kompaktiškas ir orientuotas į skyrių 
-* Daugiau atsiliepimų ir užklausų yra labai sveikintinos!

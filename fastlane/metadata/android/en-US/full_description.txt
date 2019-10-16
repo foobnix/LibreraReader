@@ -1,0 +1,44 @@
+Librera Reader is a highly customizable and feature-rich application
+for reading e-books in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, etc. formats
+
+With its intuitive, yet powerful, interface, Librera makes ebook reading a veritable pleasure. 
+It even features a unique auto-scrolling, hands-free Musician's mode, with contollable speed
+
+For better security, the F-Droid version, is based on the latest MuPDF 1.16.1 and does not require access to the Internet.
+
+For the above reason, some Internet-related features of Librera Reader are missing in its F-Droid version:
+1) Access to OPDS (Calibre) Catalogs
+2) Google Drive Syncing
+3) Access to Clouds (Dropbox, Google Drive, OneDrive)
+4) Saving (sharing) pages from web browsers
+5) Rendering MathML formulas in epub3 books
+6) Access to the What's New page
+
+# Just a few Librera's main features:
+
+* Easy document discovery by configurable criteria:
+* Auto-Scan (user-specified folders)	
+* Browse folders (using an in-app file explorer) 
+* Recent (featuring a reading-progress indicator)
+* Support for bookmarks, annotations, and EPUB3 tables of contents
+* Configurable Day and Night modes
+* Configurable link color (hence, footnotes and endnotes color)
+* Support for many popular offline dictionaries
+* Vertical-scroll lock
+* Auto- and manual centering of documents
+* Custom ad-hoc CSS coding
+* Single-page view of two-page documents
+* Musician's mode with configurable scroll speed
+* Customizable TTS reading and built-in media player
+* Page-wise TTS recording to MP3 or WAV
+* Multi-word text search
+* Support for archived (.zip) documents
+* Support for RTL languages (Thai, Hebrew, Arabic, etc.)
+* Import and export of settings, auto-backup of current session
+* Leading initials in FB2 documents
+* RSVP reading (à la Spritz)
+* Movable bookmarks, w/ a floating indicator
+* And a whole bunch of other features for you to check out.
+
+
+The best way to fully appreciate Librera Reader, however, is to use our restriction-free Librera PRO version from Google Play.

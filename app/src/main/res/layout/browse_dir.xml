@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dv"
+    android:background="?android:attr/selectableItemBackground"
+    android:elevation="@dimen/dv"
+    card_view:cardCornerRadius="@dimen/radius" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dip" >
+
+       <RelativeLayout
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_margin="4dip"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_441_folder_closed" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingLeft="4dip"
+                android:paddingRight="4dip"
+                android:background="@drawable/bg_my_toast"
+                android:visibility="gone"
+                android:textSize="12sp" />
+
+           <ImageView
+               android:id="@+id/imageCloud"
+               android:visibility="gone"
+               android:layout_alignParentBottom="true"
+               android:layout_alignParentRight="true"
+               android:layout_width="@dimen/wh_button_small"
+               android:layout_height="@dimen/wh_button_small"
+               android:layout_weight="0"
+               android:paddingLeft="4dip"
+               android:paddingRight="4dip"
+               android:src="@drawable/glyphicons_748_synchronization" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Page"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="/path/"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play"
+            android:layout_marginRight="10dip"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/starIcon"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginRight="4dip"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="7dip"
+            android:src="@drawable/star_2"
+            android:tint="@color/tint_gray" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

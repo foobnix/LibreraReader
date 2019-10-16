@@ -1,0 +1,8 @@
+[Desktop Entry]
+BinaryPattern=kantiword;Kantiword
+MimeType=application/msword
+Name=Antiword
+Exec=kantiword a4 "%f"
+Icon=antiword
+Type=Application
+Terminal=0

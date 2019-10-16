@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dv"
+    android:background="?android:attr/selectableItemBackground"
+    android:elevation="@dimen/dv"
+    card_view:cardCornerRadius="@dimen/radius">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="4dip">
+
+        <TextView
+            android:id="@+id/image1"
+            style="@style/textCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+             />
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:singleLine="true"
+            android:text="Fist Last Name"
+            android:textSize="16dip"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

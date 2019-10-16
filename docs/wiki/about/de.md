@@ -1,47 +1,50 @@
 ---
 layout: main
-version: 3
+version: 4
 ---
-[<](/wiki/de)
+[<](/wiki/)
 
-# Über die Librera Book Reader-Anwendung für Android
+# Informationen zur Librera Book Reader-Anwendung für Android
 
-> __Librera Reader__ (aka __Lirbi Reader__, __PDF Reader__) ist eine hochgradig anpassbare und funktionsreiche Anwendung zum Lesen von Büchern in PDF, EPUB, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ , CBR-Formate auf Android-Geräten.
-Mit seiner intuitiven und dennoch leistungsstarken Benutzeroberfläche macht Librera das Lesen von eBooks zu einem wahren Vergnügen. Es verfügt sogar über einen einzigartigen automatisch scrollenden, freihändigen Musikermodus.
-Ab heute kann es sich mehr als 10 Millionen Downloads auf Geräten mit allen Varianten von Android OS rühmen.
+> **Librera Reader** (auch bekannt als **Lirbi Reader**, **PDF Reader**) ist eine hochgradig anpassbare und funktionsreiche Anwendung
+Zum Lesen von Büchern im PDF-, EPUB-, MOBI-, DjVu-, FB2-, TXT-, RTF-, AZW-, AZW3-, HTML-, CBZ- und CBR-Format auf Android-Geräten.
+Mit seiner intuitiven und dennoch leistungsstarken Benutzeroberfläche macht Librera das Lesen von E-Books zu einem wahren Vergnügen.
+Es verfügt sogar über einen einzigartigen Musikermodus mit automatischem Bildlauf und Freisprechfunktion.
+Bis heute können mehr als **10 Millionen** Downloads auf Geräte verzeichnet werden, auf denen alle Arten von Android-Betriebssystemen ausgeführt werden.
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-# Nur einige Hauptmerkmale von Librera
+# Nur einige der wichtigsten Funktionen des Librera
 
-* Einfache Dokumentenerkennung nach konfigurierbaren Kriterien:
-* Auto-Scan (von Benutzer-Preset-Ordnern)
+* Einfache Dokumentensuche nach konfigurierbaren Kriterien:
+* Auto-Scan (von benutzerdefinierten Ordnern)
 * Durchsuchen (mit einem In-App-Datei-Explorer)
-* Recent (mit einem Lesefortschrittsindikator)
+* Zuletzt verwendet (mit Statusanzeige für den Lesevorgang)
 * Unterstützung für Lesezeichen, Anmerkungen und EPUB3-Inhaltsverzeichnisse
 * Unterstützung für Clouds und Online-Kataloge
+* Synchronisierung über Android-Geräte über Google Drive (Lesevorgang, Lesezeichen usw.)
 * Konfigurierbare Tag- und Nachtmodi
-* Konfigurierbare Linkfarbe (also Fußnoten und Endnotenfarbe)
+* Konfigurierbare Linkfarbe (daher Fußnoten- und Endnotenfarbe)
 * Unterstützung für viele beliebte Online- (einschließlich Übersetzer) und Offline-Wörterbücher
-* Vertikal-Scroll-Sperre
+* Vertikale Bildlaufsperre
 * Automatische und manuelle Zentrierung von Dokumenten
-* Benutzerdefinierte CSS-Code-Eingabe
-* Einseitige Ansicht von zweiseitigen Dokumenten
-* Musikermodus mit konfigurierbarer Scrollgeschwindigkeit
-* Anpassbarer TTS-Lese- und integrierter Media-Player
-* Mehrwort-Textsuche
-* Online-Dokumentumwandlung
-* Lesen von archivierten (.zip) Dokumenten
+* Benutzerdefinierte Eingabe von CSS-Code
+* Einzelseitenansicht von zweiseitigen Dokumenten
+* Musikermodus mit konfigurierbarer Bildlaufgeschwindigkeit
+* Anpassbarer TTS-Lese- und integrierter Media Player
+* Textsuche mit mehreren Wörtern
+* Online-Dokumentkonvertierung
+* Lesen von archivierten Dokumenten (.zip)
 * Unterstützung für RTL-Sprachen (Thai, Hebräisch, Arabisch usw.)
 * Import und Export von Einstellungen, automatische Sicherung der aktuellen Sitzung
 * Führende Initialen in FB2-Dokumenten
-* Und eine ganze Reihe anderer Features, die Sie ausprobieren können.
+* Und eine ganze Reihe weiterer Funktionen, die Sie ausprobieren können.
 
 
-Mit __Librera Reader__ können Sie leicht selbstverwaltete Bibliotheken aller Ihrer Dokumente erstellen, indem Sie angeben, welche Formate aufgenommen werden sollen und welche Ordner gescannt werden sollen. Alle Dokumentensammlungen können als Liste oder Gitter angezeigt werden. Dokumente können leicht anhand von Größen- und Stil-einstellbaren Vorschaubildern und detaillierten Beschreibungen identifiziert werden. Ihre Bibliothek kann nach Pfad, Name, Größe, Datum usw. sortiert werden. Außerdem gibt es einen Filter, mit dem Sie bestimmte Dokumente oder Dokumentgruppen leichter finden können.
+Mit **Librera Reader** können Sie einfach selbstverwaltete Bibliotheken aller Dokumente erstellen, indem Sie angeben, welche Formate eingeschlossen und welche Ordner gescannt werden sollen. Alle Dokumentensammlungen können als Liste oder Raster angezeigt werden. Dokumente lassen sich leicht anhand von durch Größe und Stil anpassbaren Miniaturabdeckungen und detaillierten Beschreibungen identifizieren. Ihre Bibliothek kann nach Pfad, Name, Größe, Datum usw. sortiert werden, und es gibt einen Filter, der das Auffinden bestimmter Dokumente oder Dokumentgruppen erleichtert.
 
-Während des Lesens können Dokumente in einen Nur-Blätter-Modus gesperrt werden und ihre Navigation entweder auf Seiten- oder Bildschirmumdrehen eingestellt werden. Der Text kann neu geschrieben und kommentiert werden. Die Funktionen der Lautstärketasten sind konfigurierbar und Hintergründe und Schriften können über das intuitive Einstellungsfenster angepasst werden. Auszüge können übersetzt, geteilt, kopiert und im Internet gesucht werden.
+Während des Lesens können Dokumente in einem Nur-Bildlauf-Modus gesperrt und entweder seitenweise oder bildschirmweise navigiert werden. Text kann umgeschrieben und mit Anmerkungen versehen werden. Die Funktionen der Lautstärketasten können konfiguriert und Hintergründe und Schriftarten über das intuitive Einstellungsfenster angepasst werden. Auszüge (Auswahlen) können innerhalb des Dokuments oder im Internet übersetzt, geteilt, kopiert und gesucht werden.
 
-Der Librera Reader wird am besten mit der PRO-Version bewertet. Du kannst mit Free beginnen, zuerst werbefinanziert und dann selbst entscheiden. Wir versprechen Ihnen, dass Sie nicht enttäuscht sein werden. Sobald Sie überzeugt sind, erhalten Sie eine PRO-Lizenz, um die Weiterentwicklung der App zu unterstützen.
+Der beste Weg, um Librera Reader in vollem Umfang zu nutzen, ist die Verwendung der PRO-Version. Sie können mit Free, werbefinanziert beginnen und selbst entscheiden. Wir versprechen Ihnen, dass Sie nicht enttäuscht werden. Wenn Sie überzeugt sind, holen Sie sich bitte eine PRO-Lizenz, um die weitere Entwicklung der App zu unterstützen.

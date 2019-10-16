@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myseek="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="2dip">
+
+        <TextView
+            android:id="@+id/ttsPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/ttsSettings"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="110dip"
+                android:minEms="2"
+                android:text="@string/voice" />
+
+            <TextView
+                android:id="@+id/ttsEngine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="100dip"
+                android:text="Google TTS!!!" />
+
+            <TextView
+                android:id="@+id/langLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:text="@string/hyphenation_language"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/ttsLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="1"
+                android:text="(Alan:Russian)" />
+
+            <ImageView
+                android:id="@+id/onHelp"
+                android:layout_width="@dimen/wh_button_small"
+                android:layout_height="@dimen/wh_button_small"
+                android:background="@drawable/bg_clickable"
+                android:padding="4dip"
+                android:src="@drawable/glyphicons_196_info_sign"
+                android:tint="@color/lt_grey" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekBarSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/speed1"></com.foobnix.pdf.info.view.CustomSeek>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekBarPitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/pitch1"></com.foobnix.pdf.info.view.CustomSeek>
+
+        <com.foobnix.pdf.info.view.CustomSeek
+            android:id="@+id/seekVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            myseek:text="@string/sound_volume"></com.foobnix.pdf.info.view.CustomSeek>
+
+        <TextView
+            android:id="@+id/restore_defaults"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/restore_defaults_short" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
+
+        <com.foobnix.tts.TTSControlsView
+            android:id="@+id/ttsActive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dip" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dip"
+            android:background="@color/lt_grey_alpha" />
+
+        <TextView
+            android:id="@+id/ttsPlayMusicFile"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_a_music_file" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="150dip"
+                android:singleLine="true"
+                android:text="@string/pause_duration" />
+
+            <TextView
+                android:id="@+id/ttsPauseDuration"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="350" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="150dip"
+                android:singleLine="true"
+                android:text="@string/stop_reading_timer_"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/timerTime"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minEms="2"
+                android:text="120 Min" />
+
+            <TextView
+                android:id="@+id/timerStart"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minEms="2"
+                android:text="@string/start" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/ttsReadBySentences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_by_sentences" />
+
+        <EditText
+            android:id="@+id/ttsSentecesDivs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dip" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/isEnalbeTTSReplacements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable" />
+
+            <TextView
+                android:id="@+id/replaces"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/replacements" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/showDebug"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show" />
+
+        </LinearLayout>
+
+
+        <CheckBox
+            android:id="@+id/ttsTunnOnLastWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/turn_the_page_on_the_last_word" />
+
+        <CheckBox
+            android:id="@+id/stopReadingOnCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause_reading_if_the_incoming_call_or_other_sounds" />
+
+        <CheckBox
+            android:id="@+id/isFastBookmarkByTTS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quick_bookmark_by_the_headset" />
+
+        <TextView
+            android:id="@+id/ttsSkeakToFile"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speak_into_file_wav" />
+    </LinearLayout>
+
+</ScrollView>

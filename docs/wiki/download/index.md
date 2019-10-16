@@ -1,5 +1,6 @@
 ---
 layout: main
+version: 3
 ---
 # Download
 
@@ -14,5 +15,7 @@ layout: main
 
 [GitHub](https://github.com/foobnix/LibreraReader)
 
-[Telegram](https://t.me/LibreraReader)
+[Telegram](https://t.me/LibreraReader) (News, announcements and a lot of interesting about the new functionality.)
 
+
+[Privacy Policy](/wiki/PrivacyPolicy)

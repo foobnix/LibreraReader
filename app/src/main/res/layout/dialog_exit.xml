@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dip"
+        android:text="@string/exit_application_question"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:background="#77a248"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dip" >
+
+            <TextView
+                android:id="@+id/dialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:singleLine="true"
+                android:text="@string/message"
+                android:textColor="@color/white" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/onClose"
+                style="@style/buttonWhiteClose"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_208_remove_2" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/onAsk"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:singleLine="false"
+            android:text="@string/ask_rate_us1"
+            android:textColor="@color/white" />
+        
+           <TextView
+            android:id="@+id/onRateUs"
+            style="@style/textLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:singleLine="false"
+            android:text="@string/rate_us"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

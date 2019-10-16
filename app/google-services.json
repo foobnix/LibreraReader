@@ -1,0 +1,228 @@
+{
+  "project_info": {
+    "project_number": "1069979315901",
+    "firebase_url": "https://librera-reader.firebaseio.com",
+    "project_id": "librera-reader",
+    "storage_bucket": "librera-reader.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:596862276ef33efd",
+        "android_client_info": {
+          "package_name": "classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:256e1b8a0e084cc2",
+        "android_client_info": {
+          "package_name": "com.foobnix.pdf.reader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:ae0b04264dbfd5d3",
+        "android_client_info": {
+          "package_name": "com.foobnix.pro.pdf.reader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:bf53b76ccf1ed39e",
+        "android_client_info": {
+          "package_name": "droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:2a5101a6fafd6359",
+        "android_client_info": {
+          "package_name": "epub.reader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:75cfa1b1ff5c5e76",
+        "android_client_info": {
+          "package_name": "pdf.pdf.reader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069979315901:android:83476ca1849f0c75",
+        "android_client_info": {
+          "package_name": "tts.reader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069979315901-v14mpcmvcsv0vt8t77jbirrlugoohlfp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYOuTJuWf-TuCA1SLt4EUxouXiZ1LnRWc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

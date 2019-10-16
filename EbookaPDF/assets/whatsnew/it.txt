@@ -1,7 +1,0 @@
-* Un importante aggiornamento di PDF Reader basato su richieste e feedback 
-* PDF Reader con nuova interfaccia Text-To-Speech (TTS) 
-* Supporto migliorato per EPUB 3.0, riproduzione di file audio 
-* Ricerca di parole multiple in tutti i formati, incluso PDF, DJVU 
-* Supporto per gli smartphone con tacche 
-* La legenda della barra di stato ora ha tre opzioni tra cui scegliere: completa, compatta e orientata ai capitoli 
-* Più feedback e richieste sono ben accette!

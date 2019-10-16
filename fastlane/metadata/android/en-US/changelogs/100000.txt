@@ -1,0 +1,7 @@
+8.1.275
+
+* Migration to mupdf 1.16
+* Ability to display book title always on top
+* Ability to reset reading progress for each book
+* Added: use system setting for screen orientation
+* Bug fixes

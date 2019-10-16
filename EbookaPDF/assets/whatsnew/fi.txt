@@ -1,7 +1,0 @@
-* PDF-lukulaite, joka perustuu pyyntöihin ja palautteeseen 
-* PDF Reader uudella Text-to-Speech (TTS) -liitännöllä 
-* Parempi tuki EPUB 3.0: lle, äänitiedostojen toisto 
-* Monen sanan hakukyselyt kaikissa tiedostomuodoissa, mukaan lukien PDF, DJVU 
-* Tuki lovetuille älypuhelimille 
-* Tilapalkin legenda sisältää nyt kolme vaihtoehtoa: täysi, pienikokoinen ja luvun suuntainen 
-* Lisää palautetta ja pyyntöjä on erittäin tervetullut!

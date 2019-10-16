@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="300dip"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dip"
+    android:background="?android:attr/colorBackground"
+    android:elevation="4dp"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:contentPadding="1dp" >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0"
+            android:background="#dd4E342E"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dip" >
+
+            <ImageView
+                android:id="@+id/droid"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:padding="2dip"
+                android:src="@mipmap/icon_pdf_droid"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/onTitleAction"
+                style="@style/textLinkWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/preferences" />
+
+            <TextView
+                android:id="@+id/onTitleAction1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text=">"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/dialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dip"
+                android:singleLine="true"
+                android:text="Search"
+                android:textColor="@color/white" >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/onIconAction"
+                style="@style/buttonWhiteClose"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_114_justify" />
+            
+            <ImageView
+                android:id="@+id/closePopup"
+                style="@style/buttonWhiteClose"
+                android:layout_width="@dimen/wh_button"
+                android:layout_height="@dimen/wh_button"
+                android:layout_weight="0"
+                android:src="@drawable/glyphicons_208_remove_2" />
+        </LinearLayout>
+
+        <com.foobnix.pdf.info.view.MyFrameLayout
+            android:id="@+id/popupContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/topLayout"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:padding="2dip" >
+        </com.foobnix.pdf.info.view.MyFrameLayout>
+
+        <View
+            android:id="@+id/left"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_triangle_left" >
+        </View>
+
+        <View
+            android:id="@+id/rigth"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:background="@drawable/bg_triangle_right" >
+        </View>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

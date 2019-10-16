@@ -6,7 +6,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Librera</title>
+  <title>Librera Wiki</title>
 
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -21,11 +21,12 @@
     <div class="navigation">
         
         
-        <h1 class="site-title"><a href="/wiki">Librera</a></h1>
+        <h1 class="site-title"><a href="/wiki">Librera Wiki</a></h1>
         
      {% capture my_include %}{% include menu.md %}{% endcapture %}
    {{ my_include | markdownify }}
-	        
+
+
        
     </div>
 
@@ -39,10 +40,16 @@
 <div class="content">
     
     <section class="page">
-        {{content}}   
-        
-        <a href="http://librera.mobi{{page.url}}">http://librera.mobi{{page.url}}</a>  
-          
+        {{content}}
+
+        {% if page.url contains 'what-is-new' %}
+            {% capture my_include2 %}{% include versions.md %}{% endcapture %}
+            {{ my_include2 | markdownify }}
+        {% endif %}
+
+
+        <a target="_blank" href="https://github.com/foobnix/LibreraReader/tree/master/docs{{page.url}}">&gt; github</a>
+
      </section>
         
     

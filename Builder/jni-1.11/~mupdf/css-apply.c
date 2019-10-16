@@ -877,7 +877,7 @@ fz_css_strtof(char *s, char **endptr)
 }
 
 static fz_css_number
-number_from_value(fz_css_value *value, float initial, int initial_unit)
+number_from_value_in(fz_css_value *value, float initial, int initial_unit, int isFont)
 {
 	char *p;
 
@@ -895,7 +895,7 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 		float x = fz_css_strtof(value->data, &p);
 
 		if (p[0] == 'e' && p[1] == 'm' && p[2] == 0)
-			return make_number(x, N_SCALE);
+			return isFont? make_number(x < 0.5 ? 0.5: x, N_SCALE) : make_number(x, N_SCALE);
 
 		if (p[0] == 'e' && p[1] == 'x' && p[2] == 0)
 			return make_number(x / 2, N_SCALE);
@@ -910,13 +910,16 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 			return make_number(x * 12, N_LENGTH);
 
 		if (p[0] == 'p' && p[1] == 't' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+            return isFont? make_number(x / 12 < 1 ? 1 : x / 12, N_SCALE) :make_number(x, N_LENGTH);
+
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
-			return make_number(x, N_LENGTH);
+			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
+
 
 		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return make_number(x, N_SCALE);
+			return isFont? make_number(x <1 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
+
 
 		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
@@ -934,6 +937,16 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 
 	return make_number(initial, initial_unit);
 }
+
+static fz_css_number
+number_from_value(fz_css_value *value, float initial, int initial_unit){
+    return number_from_value_in(value, initial, initial_unit, 0);
+}
+static fz_css_number
+number_from_value_font(fz_css_value *value, float initial, int initial_unit){
+    return number_from_value_in(value, initial, initial_unit, 1);
+}
+
 
 static fz_css_number
 number_from_property(fz_css_match *match, const char *property, float initial, int initial_unit)
@@ -1241,7 +1254,7 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 			if (value->type == CSS_PERCENT){
 				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
 			}else{
-				style->font_size = number_from_value(value, 1, N_SCALE);
+				style->font_size = number_from_value_font(value, 1, N_SCALE);
 			}
 		}
 
@@ -1296,6 +1309,9 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->padding[1] = number_from_property(match, "padding-right", 0, N_LENGTH);
 	style->padding[2] = number_from_property(match, "padding-bottom", 0, N_LENGTH);
 	style->padding[3] = number_from_property(match, "padding-left", 0, N_LENGTH);
+
+    style->padding[1].value = style->padding[1].value / 2;
+    style->padding[3].value = style->padding[3].value / 2;
 
 
 	style->line_height = number_from_property(match, "line-height", 1.2f, N_SCALE);

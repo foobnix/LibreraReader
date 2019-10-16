@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_pro" translatable="false">Librera PRO</string>
+
+	<string name="my_email" translatable="false">librera.reader@gmail.com</string>
+    <string name="my_site" translatable="false"><![CDATA[<u>http://librera.mobi</u>]]></string>
+    
+    <string name="one_drive" translatable="false">One Drive</string>
+    
+    <string name="google_drive" translatable="false">Google Drive</string>
+    
+    <string name="dropbox" translatable="false">Dropbox</string>
+    
+    <string name="wiki_url" translatable="false">http://librera.mobi/wiki#menu</string>
+	
+</resources>

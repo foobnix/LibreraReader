@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.foobnix.pdf.info"
+    android:installLocation="auto"
+    android:versionCode="941"
+    android:versionName="7.12.87">
+
+   <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"  />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+
+    <application
+        android:name="org.ebookdroid.LibreraApp"
+        android:icon="${appIcon}"
+        android:label="${appName}"
+        android:largeHeap="true"
+        android:roundIcon="${appRoundIcon}"
+        android:theme="@style/StyledIndicatorsWhite"
+        android:usesCleartextTraffic="true"
+        tools:replace="label, icon, roundIcon">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="${admobAppId}" />
+        <meta-data
+            android:name="librera.ADMOB_BANNER_ID"
+            android:value="${admobBannerId}" />
+        <meta-data
+            android:name="librera.ADMOB_FULLSCREEN_ID"
+            android:value="${admobFullId}" />
+        <meta-data
+            android:name="librera.GOOGLE_DRIVE_KEY"
+            android:value="${appGdriveKey}" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
+
+
+        <activity
+            android:name="com.foobnix.zipmanager.SendReceiveActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.foobnix.OpenerActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:mimeType="application/x-fictionbook+xml" />
+                <data android:mimeType="application/x-fictionbook" />
+                <data android:mimeType="application/x-fb2" />
+                <data android:mimeType="application/x-zip-compressed-fb2" />
+                <data android:mimeType="application/fb2+zip" />
+                <data android:mimeType="application/fb2.zip" />
+                <data android:mimeType="application/fb2" />
+                <data android:mimeType="application/epub" />
+                <data android:mimeType="application/epub+zip" />
+                <data android:mimeType="application/mobi" />
+                <data android:mimeType="application/pdf" />
+                <data android:mimeType="application/x-mobipocket-ebook" />
+                <data android:mimeType="application/x-palm-database" />
+                <data android:mimeType="application/x-cbz" />
+                <data android:mimeType="application/x-cbr" />
+                <data android:mimeType="application/rtf" />
+                <data android:mimeType="application/x-rtf" />
+                <data android:mimeType="application/azw" />
+                <data android:mimeType="application/azw3" />
+                <data android:mimeType="application/x-mimearchive" />
+                <data android:mimeType="application/vnd.oasis.opendocument.text" />
+                <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                <data android:mimeType="application/msword" />
+                <data android:mimeType="application/octet-stream" />
+                <data android:mimeType="application/vnd.ms-xpsdocument" />
+                <data android:mimeType="application/oxps" />
+
+                <data android:mimeType="text/rtf" />
+                <data android:mimeType="text/richtext" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="text/x-log" />
+
+                <data android:mimeType="multipart/related" />
+                <data android:mimeType="message/rfc822" />
+
+                <data android:mimeType="image/djvu" />
+                <data android:mimeType="image/vnd.djvu" />
+                <data android:mimeType="image/x-djvu" />
+                <data android:mimeType="image/x.djvu" />
+                <data android:mimeType="image/tiff" />
+
+
+                <data android:mimeType="application/x-compressed" />
+                <data android:mimeType="application/x-compressed-zip" />
+                <data android:mimeType="application/x-zip-compressed" />
+                <data android:mimeType="application/zip" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+
+                <data android:pathPattern=".*\\.txt" />
+                <data android:pathPattern=".*\\.log" />
+                <data android:pathPattern=".*\\.epub" />
+                <data android:pathPattern=".*\\.fb2" />
+                <data android:pathPattern=".*\\fb2.zip" />
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\.djvu" />
+                <data android:pathPattern=".*\\.rtf" />
+                <data android:pathPattern=".*\\.html" />
+                <data android:pathPattern=".*\\.htm" />
+                <data android:pathPattern=".*\\.mht" />
+                <data android:pathPattern=".*\\.mhtml" />
+                <data android:pathPattern=".*\\.mobi" />
+                <data android:pathPattern=".*\\.azw" />
+                <data android:pathPattern=".*\\.azw3" />
+                <data android:pathPattern=".*\\.azw4" />
+                <data android:pathPattern=".*\\.prc" />
+                <data android:pathPattern=".*\\.cbz" />
+                <data android:pathPattern=".*\\.cbr" />
+                <data android:pathPattern=".*\\.tiff" />
+                <data android:pathPattern=".*\\.odt" />
+                <data android:pathPattern=".*\\.docx" />
+                <data android:pathPattern=".*\\.doc" />
+                <data android:pathPattern=".*\\.xps" />
+                <data android:pathPattern=".*\\.zip" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_" />
+
+                <category android:name="android.intent.category.DEFAULT_" />
+                <category android:name="android.intent.category.BROWSABLE_" />
+
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
+                <data android:mimeType="*/*" />
+
+
+            </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name="com.foobnix.pdf.search.activity.HorizontalViewActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="org.ebookdroid.ui.viewer.VerticalViewActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
+        <service
+            android:name="com.foobnix.ui2.BooksService"
+            android:exported="false" />
+        <service
+            android:name="com.foobnix.tts.TTSService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="androidx.media.session.MediaButtonReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.foobnix.tts.TTSActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.foobnix.ui2.CloudrailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="${applicationId}" />
+                <data android:scheme="librera" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.foobnix.sys.TestActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="test.SvgActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.foobnix.ui2.MainTabs2"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:resizeableActivity="true"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT1" />
+
+                <category android:name="android.intent.category.DEFAULT1" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH1" />
+
+                <category android:name="android.intent.category.DEFAULT1" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND1" />
+
+                <category android:name="android.intent.category.DEFAULT1" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.RecentBooksWidget"
+            android:exported="false"
+            android:label="${appName}">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE_TEST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recent_images_provider_3x1" />
+        </receiver>
+
+        <service
+            android:name=".widget.StackGridWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>

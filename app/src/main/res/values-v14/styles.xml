@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <style name="StyledIndicatorsWhite" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    
+     <style name="StyledIndicatorsBlack" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+         <item name="android:windowNoTitle">true</item>
+         <item name="android:windowDisablePreview">true</item>
+    </style>
+
+</resources>

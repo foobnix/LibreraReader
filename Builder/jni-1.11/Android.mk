@@ -9,6 +9,7 @@ include $(TOP_LOCAL_PATH)/hqx/Android.mk
 include $(TOP_LOCAL_PATH)/simd/Android.mk
 include $(TOP_LOCAL_PATH)/jpeg-turbo/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
+include $(TOP_LOCAL_PATH)/antiword/Android.mk
 
 include $(TOP_LOCAL_PATH)/MuPdf.mk
 
@@ -33,6 +34,7 @@ LOCAL_SRC_FILES := \
 	cbdroidbridge.c \
 	mupdfdroidbridge1.c \
 	jni_concurrent.c
+
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 
 LOCAL_LDLIBS := -lm -llog -ljnigraphics

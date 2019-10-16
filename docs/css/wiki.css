@@ -79,10 +79,11 @@ img {
     width: 14rem;
     text-align: left;
   }
+  
 }
 
 .site-title {
-  margin-top: 0px;
+  margin: 0px;
 }
 
 .sidebar a,
@@ -97,14 +98,13 @@ img {
 }
 
 .sidebar ul {
-  margin: 0px;
+  margin: 0px 0px 5px 0px;
   padding: 0px;
 }
 
 .sidebar ul li {
   list-style: none;
-  padding-left: 1.5em;
-}
+ }
 
 nav {
   margin: 1em 0 1em 0;
@@ -207,7 +207,11 @@ section.page h1 a:visited {
 section.page a,
 section.page a:hover,
 section.page a:visited {
-  color: #363636;
+ text-decoration: none;
+ color: #000080;
+}
+section.page a:hover{
+text-decoration: underline;
 }
 
 section div pre {
@@ -250,4 +254,52 @@ img {
    height: 100%;
 }
 
+.languagepicker {
+    background-color: #989494;
+    display: inline-block;
+    padding: 0;
+    height: 25px;
+    overflow: hidden;
+    transition: all .3s ease;
+    margin: 0 25px 10px 20px;
+    vertical-align: top;
+   
+}
 
+.languagepicker:hover {
+    /* don't forget the 1px border */
+    height: 300px;
+}
+
+
+.languagepicker li {
+    display: block;
+    padding: 0px 20px;
+    line-height: 25px;
+    border-top: 1px solid #EEE;
+}
+
+
+
+.languagepicker a:first-child li {
+    border: none;
+    background: #18bc9c !important;
+}
+
+.languagepicker li img {
+    margin-right: 5px;
+}
+
+.roundborders {
+    border-radius: 5px;
+}
+
+
+.large:hover {
+    /* 
+    don't forget the 1px border!
+    The first language is 40px heigh, 
+    the others are 41px
+    */
+    height: 232px;
+}

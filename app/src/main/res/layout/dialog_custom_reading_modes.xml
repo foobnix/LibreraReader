@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dip"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:text="@string/opening_books_in_the_specified_mode"
+        android:layout_width="match_parent"
+        android:id="@+id/isPrefFormatMode"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/mode_vertical"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/prefScrollMode"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/mode_horizontally"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/prefBookMode"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/mode_musician"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/prefMusicianMode"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        style="@style/textLink"
+        android:layout_marginTop="10dip"
+        android:id="@+id/prefRestore"
+        android:layout_width="match_parent"
+        android:text="@string/restore_defaults_short"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

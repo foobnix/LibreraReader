@@ -1,0 +1,81 @@
+# Default fontnames translation table
+# uses only fonts present in the RISC OS 3 ROMs
+#
+# MS-Word fontname,	Italic,	Bold,	Acorn fontname,		Special
+Arial,			0,	0,	Homerton.Medium,	0
+Arial,			0,	1,	Homerton.Bold,		0
+Arial,			1,	0,	Homerton.Medium.Oblique,0
+Arial,			1,	1,	Homerton.Bold.Oblique,	0
+Arial Black,		0,	0,	Homerton.Medium,	0
+Arial Black,		0,	1,	Homerton.Bold,		0
+Arial Black,		1,	0,	Homerton.Medium.Oblique,0
+Arial Black,		1,	1,	Homerton.Bold.Oblique,	0
+Arial CE,		0,	0,	Homerton.Medium,	0
+Arial CE,		0,	1,	Homerton.Bold,		0
+Arial CE,		1,	0,	Homerton.Medium.Oblique,0
+Arial CE,		1,	1,	Homerton.Bold.Oblique,	0
+Arial Narrow,		0,	0,	Homerton.Medium,	0
+Arial Narrow,		0,	1,	Homerton.Bold,		0
+Arial Narrow,		1,	0,	Homerton.Medium.Oblique,0
+Arial Narrow,		1,	1,	Homerton.Bold.Oblique,	0
+Comic Sans MS,		0,	0,	Homerton.Medium,	0
+Comic Sans MS,		0,	1,	Homerton.Bold,		0
+Comic Sans MS,		1,	0,	Homerton.Medium.Oblique,0
+Comic Sans MS,		1,	1,	Homerton.Bold.Oblique,	0
+Courier,		0,	0,	Corpus.Medium,		0
+Courier,		0,	1,	Corpus.Bold,		0
+Courier,		1,	0,	Corpus.Medium.Oblique,	0
+Courier,		1,	1,	Corpus.Bold.Oblique,	0
+Courier New,		0,	0,	Corpus.Medium,		0
+Courier New,		0,	1,	Corpus.Bold,		0
+Courier New,		1,	0,	Corpus.Medium.Oblique,	0
+Courier New,		1,	1,	Corpus.Bold.Oblique,	0
+Fixedsys,		0,	0,	Corpus.Medium,		0
+Fixedsys,		0,	1,	Corpus.Bold,		0
+Fixedsys,		1,	0,	Corpus.Medium.Oblique,	0
+Fixedsys,		1,	1,	Corpus.Bold.Oblique,	0
+Helvetica,		0,	0,	Homerton.Medium,	0
+Helvetica,		0,	1,	Homerton.Bold,		0
+Helvetica,		1,	0,	Homerton.Medium.Oblique,0
+Helvetica,		1,	1,	Homerton.Bold.Oblique,	0
+Helvetica-Narrow,	0,	0,	Homerton.Medium,	0
+Helvetica-Narrow,	0,	1,	Homerton.Bold,		0
+Helvetica-Narrow,	1,	0,	Homerton.Medium.Oblique,0
+Helvetica-Narrow,	1,	1,	Homerton.Bold.Oblique,	0
+Lucida Console,		0,	0,	Corpus.Medium,		0
+Lucida Console,		0,	1,	Corpus.Bold,		0
+Lucida Console,		1,	0,	Corpus.Medium.Oblique,	0
+Lucida Console,		1,	1,	Corpus.Bold.Oblique,	0
+Monotype.com,		0,	0,	Corpus.Medium,		0
+Monotype.com,		0,	1,	Corpus.Bold,		0
+Monotype.com,		1,	0,	Corpus.Medium.Oblique,	0
+Monotype.com,		1,	1,	Corpus.Bold.Oblique,	0
+MS Sans Serif,		0,	0,	Homerton.Medium,	0
+MS Sans Serif,		0,	1,	Homerton.Bold,		0
+MS Sans Serif,		1,	0,	Homerton.Medium.Oblique,0
+MS Sans Serif,		1,	1,	Homerton.Bold.Oblique,	0
+Swiss,			0,	0,	Homerton.Medium,	0
+Swiss,			0,	1,	Homerton.Bold,		0
+Swiss,			1,	0,	Homerton.Medium.Oblique,0
+Swiss,			1,	1,	Homerton.Bold.Oblique,	0
+Tahoma,			0,	0,	Homerton.Medium,	0
+Tahoma,			0,	1,	Homerton.Bold,		0
+Tahoma,			1,	0,	Homerton.Medium.Oblique,0
+Tahoma,			1,	1,	Homerton.Bold.Oblique,	0
+Trebuchet MS,		0,	0,	Homerton.Medium,	0
+Trebuchet MS,		0,	1,	Homerton.Bold,		0
+Trebuchet MS,		1,	0,	Homerton.Medium.Oblique,0
+Trebuchet MS,		1,	1,	Homerton.Bold.Oblique,	0
+Verdana,		0,	0,	Homerton.Medium,	0
+Verdana,		0,	1,	Homerton.Bold,		0
+Verdana,		1,	0,	Homerton.Medium.Oblique,0
+Verdana,		1,	1,	Homerton.Bold.Oblique,	0
+Univers,		0,	0,	Homerton.Medium,	0
+Univers,		0,	1,	Homerton.Bold,		0
+Univers,		1,	0,	Homerton.Medium.Oblique,0
+Univers,		1,	1,	Homerton.Bold.Oblique,	0
+# All the other fonts
+*,			0,	0,	Trinity.Medium,		0
+*,			0,	1,	Trinity.Bold,		0
+*,			1,	0,	Trinity.Medium.Italic,	0
+*,			1,	1,	Trinity.Bold.Italic,	0
