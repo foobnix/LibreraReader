@@ -46,3 +46,9 @@ Change the type of information about the book displayed in the text part of the 
 * Enable or disable progress bar
 * Setting the display of labels displayed on the progress bar 
 * Displays the bookmark icon. Select the checkbox in which modes to display this icon.
+
+|||
+|-|-|-|
+|![](50.jpg)|![](511.jpg)|![](52.jpg)|
+
+
