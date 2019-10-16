@@ -15,3 +15,12 @@ To go to the status bar settings you need to:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
+
+After the actions you get to the settings status bar where you can configure:
+* To enable or disable showing the status bar 
+* Adjust its position at the Top or Bottom of the screen.
+
+||||
+|-|-|-|
+|![](20.jpg)|![](21.jpg)|![](22.jpg)|
