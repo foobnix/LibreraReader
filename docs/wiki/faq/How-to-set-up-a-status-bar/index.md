@@ -23,4 +23,4 @@ After the actions you get to the settings status bar where you can configure:
 
 ||||
 |-|-|-|
-|![](20.jpg)|![](21.jpg)|![](22.jpg)|
+|![](20.jpg)|![](22.jpg)|![](21.jpg)|
