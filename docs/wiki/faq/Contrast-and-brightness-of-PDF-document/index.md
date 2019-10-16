@@ -20,6 +20,8 @@ For comfortable reading You can adjust the settings:
 * Click on the Contrast and brightness icon
 * Use the slider to select the document type you want
 * After setting, click the cross in the settings dialog box.
+
+
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
