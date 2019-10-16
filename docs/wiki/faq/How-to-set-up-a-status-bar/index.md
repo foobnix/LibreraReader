@@ -11,3 +11,7 @@ version: 1
 To go to the status bar settings you need to:
 * Click the settings icon
 * Select an item in the "Status Bar" menu
+
+||||
+|-|-|-|
+|![](1.jpg)|![](2.jpg)|![](3.jpg)|
