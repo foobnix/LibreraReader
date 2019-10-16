@@ -40,3 +40,9 @@ Change the type of information about the book displayed in the text part of the 
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
+
+
+
+* Enable or disable progress bar
+* Setting the display of labels displayed on the progress bar 
+* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
