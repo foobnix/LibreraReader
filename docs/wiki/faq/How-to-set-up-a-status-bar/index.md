@@ -32,3 +32,11 @@ Change the type of information about the book displayed in the text part of the 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
+
+* Display the book title in the status bar
+* Displays the current time
+* The percentage of battery charge.
+
+||||
+|-|-|-|
+|![](40.jpg)|![](41.jpg)|![](42.jpg)|
