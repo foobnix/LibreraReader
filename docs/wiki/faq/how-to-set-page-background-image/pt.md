@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 7
 ---
 [<](/wiki/faq)
 ---
@@ -30,9 +30,9 @@ Para definir seu plano de fundo, você deve:
 * Escolha &quot;Cor&quot; e ajuste a cor de fundo cruzada na paleta de cores do círculo.
 * Após selecionar a cor, clique em OK, saia das configurações e a cor de fundo será aplicada.
 
-|||
-|-|-|
-|![](3.jpg)|![](5.jpg)|
+||||
+|-|-|-|
+|![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
 
@@ -43,9 +43,9 @@ Para definir seu plano de fundo, você deve:
 * Escolha a pasta onde está o seu plano de fundo. Digite, clique no fundo desejado, olhe na parte inferior, deve aparecer o nome dele, clique em selecionar.
 * Saia das configurações, observe o resultado.
 
-|||
-|-|-|
-|![](7.jpg)|![](4.jpg)|
+||||
+|-|-|-|
+|![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
 
 

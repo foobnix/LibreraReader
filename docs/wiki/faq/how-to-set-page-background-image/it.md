@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 5
+version: 7
 ---
 [<](/wiki/faq)
 ---
@@ -30,9 +30,9 @@ Per impostare lo sfondo, è necessario:
 * Scegli &quot;Colore&quot; e regola il colore di sfondo della croce sulla tavolozza dei colori del cerchio.
 * Dopo aver selezionato il colore, fare clic su OK, uscire dalle impostazioni, verrà applicato il colore di sfondo.
 
-|||
-|-|-|
-|![](3.jpg)|![](5.jpg)|
+||||
+|-|-|-|
+|![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
 
@@ -43,9 +43,9 @@ Per impostare lo sfondo, è necessario:
 * Scegli la cartella in cui si trova il tuo sfondo. Inseriscilo, fai clic sullo sfondo desiderato, guarda in basso, dovrebbe apparire il suo nome, fai clic su Seleziona.
 * Esci dalle impostazioni, guarda il risultato.
 
-|||
-|-|-|
-|![](7.jpg)|![](4.jpg)|
+||||
+|-|-|-|
+|![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
 
 

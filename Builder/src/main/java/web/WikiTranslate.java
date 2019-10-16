@@ -24,7 +24,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        int version = 22;
+        int version = 23;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
@@ -126,6 +126,7 @@ public class WikiTranslate {
         map.put("**", "{6}");
         map.put("&nbsp;", "{7}");
         map.put("###", "{8}");
+        map.put("##", "{9}");
 
         Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
@@ -140,6 +141,7 @@ public class WikiTranslate {
 
         reverse.put("{7}", "&nbsp;");
         reverse.put("{8}", "###");
+        reverse.put("{9}", "##");
 
         reverse.put("] (", "](");
         reverse.put("&#39;", "'");

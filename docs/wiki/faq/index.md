@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 22
+version: 23
 ---
 [<](/wiki/)
 
@@ -17,6 +17,7 @@ version: 22
 * [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
 * [How to increase font size in PDF document in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
+* [Contrast and Brightness in PDF  (black and white effect)](/wiki/faq/Contrast-and-brightness-in-PDF)
 * [The Main Screen](/wiki/faq/main-app)
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness control and bluelight filter](/wiki/faq/brightness-control-and-blue-light-filter)
