@@ -38,7 +38,7 @@ For comfortable reading You can adjust the settings:
 
 ## Emphasize all
 * Click on the Contrast and brightness icon
-* Enable checkbox Bold text fonts
+* Enable checkbox Emphasize all
 * After setting, click the cross in the settings dialog box
 
 ||||
