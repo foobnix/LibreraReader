@@ -28,19 +28,23 @@ import java.util.Queue;
 
 public class EventDraw implements IEvent {
 
-    private final Queue<EventDraw> eventQueue;
+    static Paint rect = new Paint();
 
+    static {
+        rect.setColor(Color.DKGRAY);
+        rect.setStrokeWidth(Dips.DP_1);
+        rect.setStyle(Style.STROKE);
+
+    }
+
+    final RectF fixedPageBounds = new RectF();
+    private final Queue<EventDraw> eventQueue;
     public ViewState viewState;
     public PageTreeLevel level;
     public Canvas canvas;
-
     RectF pageBounds;
-    final RectF fixedPageBounds = new RectF();
-
-    private IActivityController base;
-
-
     Paint paintWrods = new Paint();
+    private IActivityController base;
 
     EventDraw(final Queue<EventDraw> eventQueue) {
         this.eventQueue = eventQueue;
@@ -72,7 +76,6 @@ public class EventDraw implements IEvent {
         eventQueue.offer(this);
     }
 
-
     @Override
     public ViewState process() {
         try {
@@ -92,16 +95,6 @@ public class EventDraw implements IEvent {
             release();
         }
     }
-
-    static Paint rect = new Paint();
-
-    static {
-        rect.setColor(Color.DKGRAY);
-        rect.setStrokeWidth(Dips.DP_1);
-        rect.setStyle(Style.STROKE);
-
-    }
-
 
     @Override
     public boolean process(final Page page) {
@@ -148,7 +141,7 @@ public class EventDraw implements IEvent {
 
         // TODO Draw there
         // drawLine(page);
-        if (!BookCSS.get().isTextFormat()) {
+        if (!(BookCSS.get().isTextFormat() || AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
             drawPageLinks(page);
         }
         // drawSomething(page);
@@ -200,7 +193,7 @@ public class EventDraw implements IEvent {
     }
 
     protected void drawPageBackground(final Page page) {
-        if(canvas==null){
+        if (canvas == null) {
             LOG.d("canvas is null");
         }
 

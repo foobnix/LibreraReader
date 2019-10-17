@@ -42,37 +42,116 @@ public class BookCSS {
     public static final String LIBRERA_CLOUD_DROPBOX = "Librera.Cloud-Dropbox";
     public static final String LIBRERA_CLOUD_GOOGLEDRIVE = "Librera.Cloud-GoogleDrive";
     public static final String LIBRERA_CLOUD_ONEDRIVE = "Librera.Cloud-OneDrive";
-
+    public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
+    public static final int TEXT_ALIGN_JUSTIFY = 0;
+    public static final int TEXT_ALIGN_LEFT = 1;
+    public static final int TEXT_ALIGN_RIGHT = 2;
+    public static final int TEXT_ALIGN_CENTER = 3;
+    public static final String ARIAL = "Arial";
+    public static final String COURIER = "Courier";
+    public static final String DEFAULT_FONT = "Times New Roman";
+    public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
+    private static final Object TAG = "BookCSS";
+    public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
+    public static int STYLES_DOC_AND_USER = 0;
+    public static int STYLES_ONLY_DOC = 1;
+    public static int STYLES_ONLY_USER = 2;
+    public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
+    private static BookCSS instance = new BookCSS();
     public String searchPaths;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
+
+    ///
     public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
     public String backupPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Backup").getPath();
     public String syncDropboxPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_DROPBOX).getPath();
     public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
-
-
-
-    public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
     public String fontFolder = DEFAULT_FOLDER;
-
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
     public float appFontScale = 1.0f;
-
-
     public String mp3BookPath;
     public String dirLastPath;
     public String pathSAF = "";
-
-
     public boolean isSyncWifiOnly;
-
     public boolean isSyncPullToRefresh = true;
     public boolean isSyncAnimation = true;
+    public int documentStyle = STYLES_DOC_AND_USER;
+    public int marginTop;
+    public int marginRight;
+    public int marginBottom;
+    public int marginLeft;
+    public int emptyLine;
+    public int lineHeight;
+    public int paragraphHeight;
+    public int textIndent;
+    public int fontWeight;
+    public String customCSS2;
+    public int textAlign;
+    public String displayFontName;
+    public String normalFont;
+    public String boldFont;
+    public String boldItalicFont;
+    public String italicFont;
+    public String headersFont;
+    public String capitalFont;
+    public boolean isAutoHypens;
+    public String linkColorDay;
+    public String linkColorNight;
+    public boolean isCapitalLetter = false;
+    public int capitalLetterSize = 20;
+    public String capitalLetterColor = "#ff0000";
+    @IgnoreHashCode
+    public int hashCode = 0;
 
+    @IgnoreHashCode
+    public String linkColorDays = LINKCOLOR_DAYS;
+    @IgnoreHashCode
+    public String linkColorNigths = LINKCOLOR_NIGTHS;
 
+    public static String filterFontName(String fontName) {
+        if (!fontName.contains(".")) {
+            return fontName;
+        }
+        String ext = ExtUtils.getFileExtension(fontName);
+        if (fontName.contains("-")) {
+            fontName = fontName.substring(0, fontName.indexOf("-")) + "." + ext;
+        } else if (fontName.contains("_")) {
+            fontName = fontName.substring(0, fontName.indexOf("_")) + "." + ext;
+        } else if (fontName.contains(" ")) {
+            fontName = fontName.substring(0, fontName.indexOf(" ")) + "." + ext;
+        }
+        return fontName;
+    }
+
+    public static BookCSS get() {
+
+        return instance;
+    }
+
+    public static Typeface getTypeFaceForFont(String fontName) {
+        if (TxtUtils.isEmpty(fontName)) {
+            return Typeface.DEFAULT;
+        }
+        try {
+
+            if (fontName.equals(BookCSS.ARIAL)) {
+                return Typeface.SANS_SERIF;
+            } else if (fontName.equals(BookCSS.COURIER)) {
+                return Typeface.MONOSPACE;
+            } else if (fontName.equals(BookCSS.DEFAULT_FONT)) {
+                return Typeface.SERIF;
+            } else {
+                return Typeface.createFromFile(fontName);
+            }
+
+        } catch (Exception e) {
+            return Typeface.DEFAULT;
+        }
+    }
 
     public boolean isTextFormat() {
         try {
@@ -81,75 +160,6 @@ public class BookCSS {
             return false;
         }
     }
-
-    ///
-
-
-    public static final String LINK_COLOR_UNIVERSAL = "#0066cc";
-
-    public static final int TEXT_ALIGN_JUSTIFY = 0;
-    public static final int TEXT_ALIGN_LEFT = 1;
-    public static final int TEXT_ALIGN_RIGHT = 2;
-    public static final int TEXT_ALIGN_CENTER = 3;
-
-    public static int STYLES_DOC_AND_USER = 0;
-    public static int STYLES_ONLY_DOC = 1;
-    public static int STYLES_ONLY_USER = 2;
-
-    public static final String ARIAL = "Arial";
-    public static final String COURIER = "Courier";
-    public static final String DEFAULT_FONT = "Times New Roman";
-
-    private static final Object TAG = "BookCSS";
-
-    public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
-
-
-    public int documentStyle = STYLES_DOC_AND_USER;
-    public int marginTop;
-    public int marginRight;
-    public int marginBottom;
-    public int marginLeft;
-
-    public int emptyLine;
-
-    public int lineHeight;
-    public int paragraphHeight;
-    public int textIndent;
-    public int fontWeight;
-    public String customCSS2;
-
-    public int textAlign;
-
-
-    public String displayFontName;
-    public String normalFont;
-    public String boldFont;
-    public String boldItalicFont;
-    public String italicFont;
-    public String headersFont;
-    public String capitalFont;
-
-    public boolean isAutoHypens;
-
-
-    public String linkColorDay;
-    public String linkColorNight;
-
-    public boolean isCapitalLetter = false;
-    public int capitalLetterSize = 20;
-    public String capitalLetterColor = "#ff0000";
-
-    public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
-    public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
-
-    @IgnoreHashCode
-    public int hashCode = 0;
-
-    @IgnoreHashCode
-    public String linkColorDays = LINKCOLOR_DAYS;
-    @IgnoreHashCode
-    public String linkColorNigths = LINKCOLOR_NIGTHS;
 
     public void resetToDefault(Context c) {
         textAlign = TEXT_ALIGN_JUSTIFY;
@@ -197,7 +207,6 @@ public class BookCSS {
 
     }
 
-
     public void load1(Context c) {
         if (c == null) {
             return;
@@ -229,8 +238,6 @@ public class BookCSS {
 
 
     }
-
-
 
     public void save(Context c) {
         if (c == null) {
@@ -266,45 +273,6 @@ public class BookCSS {
 
     public void allFonts(String fontName) {
         normalFont = fontName;
-    }
-
-    public static class FontPack {
-        public String dispalyName = "";
-        public String fontFolder;
-
-        public String normalFont;
-        public String boldFont;
-        public String italicFont;
-        public String boldItalicFont;
-        public String headersFont;
-        public String capitalFont;
-
-        public FontPack(String name, String path) {
-            fontFolder = path;
-            dispalyName = name;
-            normalFont = path + "/" + name;
-            boldFont = path + "/" + name;
-            italicFont = path + "/" + name;
-            boldItalicFont = path + "/" + name;
-            headersFont = path + "/" + name;
-            capitalFont = path + "/" + name;
-        }
-
-        public FontPack(String name) {
-            dispalyName = name;
-            normalFont = name;
-            boldFont = name;
-            italicFont = name;
-            boldItalicFont = name;
-            headersFont = name;
-            capitalFont = name;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return obj instanceof FontPack && dispalyName.equals(((FontPack) obj).dispalyName);
-        }
-
     }
 
     public void resetAll(FontPack pack) {
@@ -475,21 +443,6 @@ public class BookCSS {
         return Collections.EMPTY_LIST;
     }
 
-    public static String filterFontName(String fontName) {
-        if (!fontName.contains(".")) {
-            return fontName;
-        }
-        String ext = ExtUtils.getFileExtension(fontName);
-        if (fontName.contains("-")) {
-            fontName = fontName.substring(0, fontName.indexOf("-")) + "." + ext;
-        } else if (fontName.contains("_")) {
-            fontName = fontName.substring(0, fontName.indexOf("_")) + "." + ext;
-        } else if (fontName.contains(" ")) {
-            fontName = fontName.substring(0, fontName.indexOf(" ")) + "." + ext;
-        }
-        return fontName;
-    }
-
     private Collection<String> getAllFontsFromFolder(String path) {
         try {
             if (TxtUtils.isNotEmpty(path) && new File(path).isDirectory()) {
@@ -549,13 +502,6 @@ public class BookCSS {
         }
         float em = (float) value / 10;
         return "" + em + "em";
-    }
-
-    private static BookCSS instance = new BookCSS();
-
-    public static BookCSS get() {
-
-        return instance;
     }
 
     public String getTextAlignConst(int id) {
@@ -732,7 +678,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if(BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
                 }
             }
@@ -747,7 +693,7 @@ public class BookCSS {
             builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if(BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
                 }
             }
@@ -772,27 +718,6 @@ public class BookCSS {
         return isFontFileName(fontName) ? "myHeader" : fontName;
     }
 
-    public static Typeface getTypeFaceForFont(String fontName) {
-        if (TxtUtils.isEmpty(fontName)) {
-            return Typeface.DEFAULT;
-        }
-        try {
-
-            if (fontName.equals(BookCSS.ARIAL)) {
-                return Typeface.SANS_SERIF;
-            } else if (fontName.equals(BookCSS.COURIER)) {
-                return Typeface.MONOSPACE;
-            } else if (fontName.equals(BookCSS.DEFAULT_FONT)) {
-                return Typeface.SERIF;
-            } else {
-                return Typeface.createFromFile(fontName);
-            }
-
-        } catch (Exception e) {
-            return Typeface.DEFAULT;
-        }
-    }
-
     public void detectLang(String bookPath) {
 
         FileMeta meta = AppDB.get().load(bookPath);
@@ -808,6 +733,45 @@ public class BookCSS {
                 AppTemp.get().hypenLang = load.ln;
             }
         }
+    }
+
+    public static class FontPack {
+        public String dispalyName = "";
+        public String fontFolder;
+
+        public String normalFont;
+        public String boldFont;
+        public String italicFont;
+        public String boldItalicFont;
+        public String headersFont;
+        public String capitalFont;
+
+        public FontPack(String name, String path) {
+            fontFolder = path;
+            dispalyName = name;
+            normalFont = path + "/" + name;
+            boldFont = path + "/" + name;
+            italicFont = path + "/" + name;
+            boldItalicFont = path + "/" + name;
+            headersFont = path + "/" + name;
+            capitalFont = path + "/" + name;
+        }
+
+        public FontPack(String name) {
+            dispalyName = name;
+            normalFont = name;
+            boldFont = name;
+            italicFont = name;
+            boldItalicFont = name;
+            headersFont = name;
+            capitalFont = name;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof FontPack && dispalyName.equals(((FontPack) obj).dispalyName);
+        }
+
     }
 
 }
