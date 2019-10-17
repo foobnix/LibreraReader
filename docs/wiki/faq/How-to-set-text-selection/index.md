@@ -23,6 +23,6 @@ To enable and configure selection modes You need to:
 
 
 The selection mode is configured by enabling checkboxes:
-* Allow text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
+* Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
 * Select text with a short tap-text -  selection occurs when you click on a word
 * Use letter-by-letter selection - for hieroglyphic languages.
