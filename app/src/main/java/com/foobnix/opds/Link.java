@@ -3,6 +3,7 @@ package com.foobnix.opds;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 
+import org.ebookdroid.BookType;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 public class Link {
 
     public static final String APPLICATION_ATOM_XML = "application/atom+xml";
+    public static final String APPLICATION_ATOM_XML2 = "atom/atom+xml";
     public static final String APPLICATION_ATOM_XML_PROFILE = "application/atom+xml;profile";
     public static final String APPLICATION_ATOM_XML_SUBLINE = "application/atom+xml;subline";
     public static final String WEB_LINK = "text/html";
@@ -18,16 +20,14 @@ public class Link {
     public static final String TYPE_LOGO = "MY_LOGO";
     public static final String REL_THUMBNAIL1 = "http://opds-spec.org/image/thumbnail";
     public static final String REL_THUMBNAIL2 = "http://opds-spec.org/thumbnail";
-
+    static Map<String, String> map = new HashMap<String, String>();
     public String href;
     public String type = "";
     public String rel;
     public String title;
-
     public String parentTitle;
     public String filePath;
 
-    static Map<String, String> map = new HashMap<String, String>();
     {
         map.put("text/html", "web");
         map.put("text/download", "txt");
@@ -77,10 +77,11 @@ public class Link {
 
     public boolean isSearchLink() {
         return "search".equals(rel) && APPLICATION_ATOM_XML.equals(type);
+
     }
 
     public boolean isOpdsLink() {
-        return type != null && type.startsWith(APPLICATION_ATOM_XML);
+        return type != null && (type.startsWith(APPLICATION_ATOM_XML) || type.startsWith(APPLICATION_ATOM_XML2));
     }
 
     public boolean isDisabled() {
@@ -104,12 +105,20 @@ public class Link {
                 return map.get(item);
             }
         }
-
-        if (type.contains("+zip") || type.contains("+rar")) {
+        String ext = ExtUtils.getFileExtension(href);
+        if (BookType.isSupportedExtByPath(ext)) {
+            return ext.replace(".", "");
+        }
+        ext = ExtUtils.getExtByMimeType(type);
+        if (TxtUtils.isNotEmpty(ext)) {
+            return ext;
+        }
+        if (type.contains("application/")) {
             return type.replace("application/", "").replace("+", ".");
         }
 
         return null;
+
 
     }
 

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager.LayoutParams;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
@@ -40,28 +41,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHolder> {
 
     private static final int PD = Dips.dpToPx(4);
-
-    public class EntryViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, content, author, category, expand;
-        public View parent;
-        public ImageView image, remove;
-        public LinearLayout links, downloadLinks;
-
-        public EntryViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            author = (TextView) view.findViewById(R.id.author);
-            content = (TextView) view.findViewById(R.id.content);
-            category = (TextView) view.findViewById(R.id.category);
-            expand = (TextView) view.findViewById(R.id.expand);
-            links = (LinearLayout) view.findViewById(R.id.links);
-            downloadLinks = (LinearLayout) view.findViewById(R.id.downloadLinks);
-            image = (ImageView) view.findViewById(R.id.image);
-            remove = (ImageView) view.findViewById(R.id.remove);
-
-            parent = view;
-        }
-    }
+    private ResultResponse<Link> onLinkClickListener;
+    private ResultResponse<Entry> onRemoveLinkClickListener;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -123,7 +104,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             });
             //if (SamlibOPDS.isSamlibUrl(entry.homeUrl)) {
             //    holder.remove.setVisibility(View.GONE);
-           // }
+            // }
         } else {
 
             holder.remove.setVisibility(View.GONE);
@@ -275,8 +256,9 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 });
 
                 String downloadFormat = link.getDownloadDisplayFormat();
+                LOG.d("downloadFormat", downloadFormat, link.isOpdsLink());
 
-                if (downloadFormat != null) {
+                if (downloadFormat != null && !link.isOpdsLink()) {
                     t.setText(link.title != null ? link.title : downloadFormat.replace(".zip", ""));
                     t.setGravity(Gravity.CENTER);
                     t.setBackgroundResource(R.drawable.bg_border_blue_entry);
@@ -298,7 +280,12 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
                     holder.downloadLinks.addView(t, lp);
                 } else {
-                    t.setText(link.title != null ? link.title : link.type);
+                    String title = link.title != null ? link.title : link.isOpdsLink() ? "" : link.type;
+                    if (TxtUtils.isNotEmpty(title)) {
+                        t.setText(title);
+                    } else {
+                        t.setVisibility(View.GONE);
+                    }
                     t.setTextColor(context.getResources().getColor(R.color.tint_blue));
 
                     if (AppState.get().isUiTextColor) {
@@ -340,7 +327,26 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
         this.onRemoveLinkClickListener = onLinkClickListener;
     }
 
-    private ResultResponse<Link> onLinkClickListener;
-    private ResultResponse<Entry> onRemoveLinkClickListener;
+    public class EntryViewHolder extends RecyclerView.ViewHolder {
+        public TextView title, content, author, category, expand;
+        public View parent;
+        public ImageView image, remove;
+        public LinearLayout links, downloadLinks;
+
+        public EntryViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.title);
+            author = (TextView) view.findViewById(R.id.author);
+            content = (TextView) view.findViewById(R.id.content);
+            category = (TextView) view.findViewById(R.id.category);
+            expand = (TextView) view.findViewById(R.id.expand);
+            links = (LinearLayout) view.findViewById(R.id.links);
+            downloadLinks = (LinearLayout) view.findViewById(R.id.downloadLinks);
+            image = (ImageView) view.findViewById(R.id.image);
+            remove = (ImageView) view.findViewById(R.id.remove);
+
+            parent = view;
+        }
+    }
 
 }
