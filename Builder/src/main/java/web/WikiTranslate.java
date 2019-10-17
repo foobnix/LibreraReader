@@ -24,7 +24,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        int version = 23;
+        int version = 26;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";

@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class GenerateFAQ {
 
@@ -29,7 +33,15 @@ public class GenerateFAQ {
         out.println("");
 
         File list = new File(in);
-        for (File file : list.listFiles()) {
+        List<File> files = Arrays.asList(list.listFiles());
+        Collections.sort(files, new Comparator<File>() {
+            @Override
+            public int compare(File file, File t1) {
+                return Long.compare(t1.lastModified(), file.lastModified());
+            }
+        });
+
+        for (File file : files) {
             if (file.isDirectory()) {
                 File child = new File(file, "index.md");
                 String title = getTitle(child).trim();
