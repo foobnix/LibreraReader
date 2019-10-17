@@ -29,6 +29,7 @@ The selection mode is configured by enabling checkboxes:
 
 
 Бла бла бла
+
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
