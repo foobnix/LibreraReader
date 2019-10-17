@@ -13,6 +13,8 @@ In order to do a reset you need to:
  * Long click on the program logo or its name 
  * Confirm your action " OK"
 
+## After the reset, the program will reboot, reset all settings to default.
+
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](21.jpg)|
