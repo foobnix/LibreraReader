@@ -27,8 +27,11 @@ The selection mode is configured by enabling checkboxes:
 * Single-tap to select text -  the selection of the text occurs when you short-click on the word
 * Select text letter-by-letter - for hieroglyphic languages.
 
-
-Бла бла бла
+Text selection can be a single word, a sentence, or the entire page: 
+* Tap on the word-short or long press, depending on Your settings
+* To highlight more than one word then slide your finger across multiple words, the proposal. You can also use the start and end markers
+selected text, enlarging them or reducing the distance of the capture of words between them
+* To bring up the menu when short tops and full screen are on-make a long tap in the center of the screen.
 
 ||||
 |-|-|-|
