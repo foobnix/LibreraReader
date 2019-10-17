@@ -33,3 +33,13 @@ The selection mode is configured by enabling checkboxes:
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
+
+
+Selected text you can:
+* Bookmark this book
+* Transfer to another application
+* Play to speech
+* Send for translation 
+* Do a search in a document or the Internet
+* Copy for further processing
+
