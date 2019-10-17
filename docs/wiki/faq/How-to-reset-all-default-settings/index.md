@@ -12,3 +12,7 @@ In order to do a reset you need to:
  * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
  * Long click on the program logo or its name 
  * Confirm your action " OK"
+
+||||
+|-|-|-|
+|![](19.jpg)|![](20.jpg)|![](21.jpg)|
