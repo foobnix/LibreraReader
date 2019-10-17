@@ -555,6 +555,10 @@ public class BookCSS {
         builder.append("}");
         // PAGE END
 
+        if (marginLeft == 0 && marginRight == 0) {
+            builder.append("p{padding:0 !important; margin:0 !important;}");
+        }
+
         // FB2
         builder.append("section>title{page-break-before:avoide;}");
         builder.append("section>title>p{text-align:center !important; text-indent:0px !important;}");
