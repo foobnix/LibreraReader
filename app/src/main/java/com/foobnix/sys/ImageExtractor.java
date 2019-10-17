@@ -81,7 +81,7 @@ public class ImageExtractor implements ImageDownloader {
     private final BaseImageDownloader baseImage;
     private final Context c;
 
-     private ImageExtractor(final Context c) {
+    private ImageExtractor(final Context c) {
         this.c = c;
         baseImage = new BaseImageDownloader(c);
     }
@@ -221,7 +221,7 @@ public class ImageExtractor implements ImageDownloader {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public  Bitmap coverPDFNative(PageUrl pageUrl) {
+    public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
             LOG.d("Cover-PDF-navite");
             PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(pageUrl.getPath()), ParcelFileDescriptor.MODE_READ_ONLY));
@@ -293,7 +293,10 @@ public class ImageExtractor implements ImageDownloader {
             cover = BaseExtractor.arrayToBitmap(FolderContext.getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isFileArchive(unZipPath)) {
             String ext = ExtUtils.getFileExtension(unZipPath);
-            cover = BaseExtractor.getBookCoverWithTitle("...", "  [" + ext.toUpperCase(Locale.US) + "]", true);
+            cover = BaseExtractor.arrayToBitmap(CbzCbrExtractor.getBookCover(unZipPath), pageUrl.getWidth());
+            if (cover == null) {
+                cover = BaseExtractor.getBookCoverWithTitle("...", "  [" + ext.toUpperCase(Locale.US) + "]", true);
+            }
             pageUrl.tempWithWatermakr = true;
         } else if (ExtUtils.isFontFile(unZipPath)) {
             cover = BaseExtractor.getBookCoverWithTitle("font", "", true);
@@ -338,7 +341,7 @@ public class ImageExtractor implements ImageDownloader {
         }
     }
 
-    public  Bitmap proccessOtherPage(PageUrl pageUrl) {
+    public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
 
