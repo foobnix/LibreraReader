@@ -11,8 +11,8 @@ version: 1
 Subsequently, sending the selected text, for example, to bookmarks or translator.
 
 To enable and configure selection modes You need to:
-Click the settings icon
-Go to the advanced settings menu tab.
+* Click the settings icon
+* Go to the advanced settings menu tab.
 
 ||||
 |-|-|-|
