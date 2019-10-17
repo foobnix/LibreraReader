@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ Para habilitar y configurar los modos de selección, debe:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > Cuando el modo de selección está desactivado en el texto del libro, cuando toca una nota al pie, la transición no funciona. Si necesita navegar por nota al pie, active el primer elemento &quot;Activar selección de texto&quot;.
 
 

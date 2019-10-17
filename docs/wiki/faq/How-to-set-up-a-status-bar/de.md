@@ -1,12 +1,12 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
 # Festlegen der Statusleiste
 
-> Mit der Bibliothek können Sie die Benutzeroberfläche der Statusleiste flexibel konfigurieren und die Informationen anzeigen oder daraus entfernen, die Sie beim Lesen benötigen.
+> Mit Librera können Sie die Benutzeroberfläche der Statusleiste flexibel konfigurieren und die Informationen anzeigen oder daraus entfernen, die Sie beim Lesen benötigen.
 
 Um zu den Einstellungen in der Statusleiste zu gelangen, müssen Sie:
 * Klicken Sie auf das Einstellungssymbol

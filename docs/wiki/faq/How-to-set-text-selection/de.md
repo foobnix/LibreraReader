@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ So aktivieren und konfigurieren Sie Auswahlmodi:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > Wenn der Auswahlmodus im Text des Buches deaktiviert ist und Sie auf eine Fußnote tippen, funktioniert der Übergang nicht. Wenn Sie per Fußnote navigieren müssen, aktivieren Sie den ersten Punkt &quot;Textauswahl aktivieren&quot;.
 
 

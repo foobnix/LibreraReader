@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ Para ativar e configurar os modos de seleção Você precisa:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > Quando o modo de seleção é desativado no texto do livro, quando você toca em uma nota de rodapé, a transição não funciona. Se você precisar navegar pela nota de rodapé, ative o primeiro item &quot;Ativar seleção de texto&quot;.
 
 

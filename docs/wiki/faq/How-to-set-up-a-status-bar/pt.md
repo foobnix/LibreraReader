@@ -1,12 +1,12 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
 # Definindo a barra de status
 
-> Biblioteca permite configurar de forma flexível a interface da barra de status, exibindo ou removendo dela as informações necessárias durante a leitura.
+> O Librera permite configurar de forma flexível a interface da barra de status, exibindo ou removendo dela as informações necessárias durante a leitura.
 
 Para acessar as configurações da barra de status, é necessário:
 * Clique no ícone de configurações

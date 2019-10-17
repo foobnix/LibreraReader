@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ Per abilitare e configurare le modalità di selezione È necessario:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > Quando la modalità di selezione è disattivata nel testo del libro, quando si tocca una nota a piè di pagina, la transizione non funziona. Se devi navigare per nota a piè di pagina, abilita la prima voce &quot;Abilita selezione testo&quot;.
 
 

@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ Pour activer et configurer les modes de sélection, vous devez:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > Lorsque le mode de sélection est désactivé dans le texte du livre, lorsque vous appuyez sur une note de bas de page, la transition ne fonctionne pas. Si vous devez naviguer par note de bas de page, activez le premier élément &quot;Activer la sélection de texte&quot;.
 
 
