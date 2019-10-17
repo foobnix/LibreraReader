@@ -14,6 +14,7 @@ In order to do a reset you need to:
  * Confirm your action " OK"
 
 **After confirmation, the program will reboot, reset all settings to default.**
+**Notes, tags, and reading progress you have added are not deleted on reset.**
 
 ||||
 |-|-|-|
