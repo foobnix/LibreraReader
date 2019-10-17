@@ -13,7 +13,7 @@ In order to do a reset you need to:
  * Long click on the program logo or its name 
  * Confirm your action " OK"
 
-## After the reset, the program will reboot, reset all settings to default.
+**After the reset, the program will reboot, reset all settings to default.**
 
 ||||
 |-|-|-|
