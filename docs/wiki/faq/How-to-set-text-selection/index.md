@@ -26,3 +26,9 @@ The selection mode is configured by enabling checkboxes:
 * Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
 * Single-tap to select text -  the selection of the text occurs when you short-click on the word
 * Select text letter-by-letter - for hieroglyphic languages.
+
+
+Бла бла бла
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
