@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 27
+version: 29
 ---
 [<](/wiki/ru)
 
 # Часто задаваемые вопросы
 
+* [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Как восстановить настройки по умолчанию (аналогично очистке кэша)](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Как настроить выбор текста](/wiki/faq/how-to-set-text-selection/ru)
 * [Настройка строки состояния](/wiki/faq/how-to-set-up-a-status-bar/ru)
@@ -22,7 +23,6 @@ version: 27
 * [Librera для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
 * [Главный экран](/wiki/faq/main-app/ru)
 * [Быстрое чтение RSVP (Быстрая последовательная визуальная презентация) в Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ru)
-* [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Включить сноски непосредственно в текст](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Как увеличить размер шрифта в документе PDF в Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)
 * [Относительные номера страниц для книг в формате PDF](/wiki/faq/relative-page-numbers/ru)

@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 27
+version: 29
 ---
 [<](/wiki/pt)
 
 # Perguntas freqüentes
 
+* [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Como restaurar configurações padrão (semelhante ao limpar cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
 * [Como definir a seleção de texto](/wiki/faq/how-to-set-text-selection/pt)
 * [Definindo a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
@@ -22,7 +23,6 @@ version: 27
 * [Librera para aprender línguas estrangeiras](/wiki/faq/librera-for-study-foreign-languages/pt)
 * [Tela principal](/wiki/faq/main-app/pt)
 * [Velocidade de leitura de RSVP (apresentação visual serial rápida) no Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/pt)
-* [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Inclua notas de rodapé diretamente no texto](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Como aumentar o tamanho da fonte no documento PDF no Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/pt)
 * [Números de página relativos de livros em PDF](/wiki/faq/relative-page-numbers/pt)

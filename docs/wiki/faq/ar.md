@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 27
+version: 29
 ---
 [<](/wiki/ar)
 
 # الأسئلة المتداولة
 
+* [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [كيفية تعيين اختيار النص](/wiki/faq/how-to-set-text-selection/ar)
 * [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
@@ -22,7 +23,6 @@ version: 27
 * [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
 * [الشاشة الرئيسية](/wiki/faq/main-app/ar)
 * [سرعة القراءة RSVP (عرض تسلسلي مرئي سريع) في Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
-* [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [تضمين الحواشي السفلية مباشرة في النص](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [كيفية زيادة حجم الخط في وثيقة PDF في Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)
 * [أرقام الصفحات النسبية لكتب PDF](/wiki/faq/relative-page-numbers/ar)

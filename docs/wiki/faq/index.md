@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 27
+version: 29
 ---
 [<](/wiki/)
 
 # Frequently asked questions
 
+* [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
 * [How to restore default settings (similar to clear cache)](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [How to set text selection](/wiki/faq/how-to-set-text-selection)
 * [Setting the status bar](/wiki/faq/how-to-set-up-a-status-bar)
@@ -22,7 +23,6 @@ version: 27
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [The Main Screen](/wiki/faq/main-app)
 * [Speed reading RSVP (Rapid Serial Visual Presentation) in Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
-* [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
 * [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
 * [How to increase font size in PDF document in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)

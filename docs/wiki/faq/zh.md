@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 27
+version: 29
 ---
 [<](/wiki/zh)
 
 {1}常见问题
 
+* [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
 * [如何恢复默认设置(类似于清除缓存)](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [如何设置文本选择](/wiki/faq/how-to-set-text-selection/zh)
 * [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
@@ -22,7 +23,6 @@ version: 27
 * [学习外语的图书馆](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [主屏幕](/wiki/faq/main-app/zh)
 * [在Android中快速阅读RSVP(快速串行视觉演示)](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
-* [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
 * [直接在文本中添加脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [如何在Android中增加PDF文档中的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)
 * [PDF书籍的相对页码](/wiki/faq/relative-page-numbers/zh)
