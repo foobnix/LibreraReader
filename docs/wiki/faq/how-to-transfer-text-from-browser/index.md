@@ -40,7 +40,7 @@ Ate he You have not established the you can put from Google market Synthesizer s
 
 * Press Play, listen to the text.
 
-If you close the settings window when playing text to speech, the control buttons are duplicated by the subtext and in the notification curtain, for ease of management. To stop reading press stop and cross.
+If you close the settings window when playing text to speech, the control buttons are duplicated by the subtext and in the notification curtain, for ease of management. To stop reading press pause and cross.
 
 
 ||||
