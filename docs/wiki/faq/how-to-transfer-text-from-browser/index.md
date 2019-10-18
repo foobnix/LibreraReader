@@ -16,7 +16,7 @@ In order to read in Librera You need:
 
 * Select Librera from the drop down list of programs
 
-* Select in which reading mode You want to view the transmitted text from the browser. By placing the checkbox on "remember choice" all subsequent texts transferred from the browser will be opened in the type of reading you have chosen.
+* Select in which reading mode You want to view the transmitted text from the browser. By placing the checkbox on "remember selection" all subsequent texts transferred from the browser will be opened in the type of reading you have chosen.
 
 ||||
 |-|-|-|
