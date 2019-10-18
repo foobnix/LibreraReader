@@ -32,7 +32,7 @@ Now the text from the browser open in Librera. For your ease of reading, you can
 
 
 You can play the text by voice. To play text by voice, the voice synthesizer installed in the Android system is used. 
-Ate he You have not established the you can put from Google market Synthesizer speech Google.
+Ate he You have not established the you can put from Google Play - Google Text-to-Speech.
 
 * Click on the voice playback icon
 
