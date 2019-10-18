@@ -20,3 +20,11 @@ To add and customize the widget:
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
+In the widget settings You can customize the look of Your widget has Librera:
+
+* Information displayed in the widget - Recent books or Favorites
+* Its view is a List or Grid
+* The number of books displayed in the widget. 
+
+** You can configure the widget optimally for yourself.
+
