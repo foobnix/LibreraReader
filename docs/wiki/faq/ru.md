@@ -1,11 +1,13 @@
 ---
 layout: main
-version: 29
+version: 30
 ---
 [<](/wiki/ru)
 
 # Часто задаваемые вопросы
 
+* [Как передать текст из веб-браузера (для чтения или TTS)](/wiki/faq/how-to-transfer-text-from-browser/ru)
+* [Как настроить виджет](/wiki/faq/how-to-configure-the-widget/ru)
 * [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Как восстановить настройки по умолчанию (аналогично очистке кэша)](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Как настроить выбор текста](/wiki/faq/how-to-set-text-selection/ru)

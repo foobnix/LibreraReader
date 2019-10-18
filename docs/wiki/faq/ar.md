@@ -1,11 +1,13 @@
 ---
 layout: main
-version: 29
+version: 30
 ---
 [<](/wiki/ar)
 
 # الأسئلة المتداولة
 
+* [كيفية نقل النص من متصفح الويب (للقراءة أو تحويل النص إلى كلام)](/wiki/faq/how-to-transfer-text-from-browser/ar)
+* [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)
 * [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [كيفية تعيين اختيار النص](/wiki/faq/how-to-set-text-selection/ar)

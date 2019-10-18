@@ -9,6 +9,12 @@ version: 2
 > For faster access to the books In your library you can start them to read from the desktop of your launcher,
 you need to add the widget Librera.
 
+
+||||
+|-|-|-|
+|![](6.jpg)|![](9.jpg)|![](10.jpg)|
+
+
 To add and customize the widget:
 
 * Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
@@ -32,6 +38,4 @@ In the widget settings You can customize the look of Your widget has Librera:
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
 
-||||
-|-|-|-|
-|![](6.jpg)|![](9.jpg)|![](10.jpg)|
+

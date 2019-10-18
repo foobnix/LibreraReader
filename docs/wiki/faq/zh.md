@@ -1,11 +1,13 @@
 ---
 layout: main
-version: 29
+version: 30
 ---
 [<](/wiki/zh)
 
 {1}常见问题
 
+* [如何从网络浏览器传输文本(阅读或TTS){5}
+* [如何配置小部件](/wiki/faq/how-to-configure-the-widget/zh)
 * [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
 * [如何恢复默认设置(类似于清除缓存)](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [如何设置文本选择](/wiki/faq/how-to-set-text-selection/zh)

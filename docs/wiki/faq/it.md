@@ -1,11 +1,13 @@
 ---
 layout: main
-version: 29
+version: 30
 ---
 [<](/wiki/it)
 
 # Domande frequenti
 
+* [Come trasferire testo dal browser Web (da leggere o TTS)](/wiki/faq/how-to-transfer-text-from-browser/it)
+* [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)
 * [Come aggiungere una nuova sezione FAQ](/wiki/faq/how-to-add-new-faq-section/it)
 * [Come ripristinare le impostazioni predefinite (simile a cancellare la cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
 * [Come impostare la selezione del testo](/wiki/faq/how-to-set-text-selection/it)
