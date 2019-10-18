@@ -10,6 +10,13 @@ layout: main
  
 In order to read in Librera You need: 
 
+* Open the web page you need in your browser. For this example the Сhrome browser will be used, You can use your browser with the ability to share the page from the browser.  
+
+* Click the share icon in your Internet browser
+
+* Select Librera from the drop down list of programs
+
+* Select in which reading mode You want to view the transmitted text from the browser. By placing the checkbox on "remember choice" all subsequent texts transferred from the browser will be opened in the type of reading you have chosen.
 
 ||||
 |-|-|-|
