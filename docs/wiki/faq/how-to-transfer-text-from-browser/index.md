@@ -5,6 +5,10 @@ layout: main
 
 # How to transfer text from browser
 
+> In Librera you can read articles from the Internet browser both by text and by sexual reproduction.
+
+ 
+In order to read in Librera You need: 
 
 
 ||||
