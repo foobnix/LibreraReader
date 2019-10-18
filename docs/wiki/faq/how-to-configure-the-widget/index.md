@@ -34,4 +34,4 @@ In the widget settings You can customize the look of Your widget has Librera:
 
 ||||
 |-|-|-|
-|![](6.jpg)|![](8.jpg)|![](9.jpg)|
+|![](6.jpg)|![](9.jpg)|![](10.jpg)|
