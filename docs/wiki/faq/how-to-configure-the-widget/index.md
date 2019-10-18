@@ -26,5 +26,12 @@ In the widget settings You can customize the look of Your widget has Librera:
 * Its view is a List or Grid
 * The number of books displayed in the widget. 
 
-** You can configure the widget optimally for yourself.
+**You can configure the widget optimally for yourself.**
 
+||||
+|-|-|-|
+|![](2.jpg)|![](3.jpg)|![](4.jpg)|
+
+||||
+|-|-|-|
+|![](6.jpg)|![](8.jpg)|![](9.jpg)|
