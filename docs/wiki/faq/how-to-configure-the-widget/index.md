@@ -16,5 +16,7 @@ To add and customize the widget:
 * Swipe from left to right to pull the menu
 * Scroll down the menu to the Widget settings item.
 
-
+||||
+|-|-|-|
+|![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
