@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 30
+version: 31
 ---
 [<](/wiki/zh)
 
 {1}常见问题
 
+* [主题自定义(白色，黑色，AMOLED，颜色，字体大小，链接颜色)](/wiki/faq/customize-theme-colors-links/zh)
 * [如何从网络浏览器传输文本(阅读或TTS){5}
 * [如何配置小部件](/wiki/faq/how-to-configure-the-widget/zh)
 * [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)

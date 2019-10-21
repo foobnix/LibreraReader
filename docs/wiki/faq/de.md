@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 30
+version: 31
 ---
 [<](/wiki/de)
 
 # Häufig gestellte Fragen
 
+* [Anpassung des Themas (weiß, schwarz, AMOLED, Farben, Schriftgröße, Linkfarben)](/wiki/faq/customize-theme-colors-links/de)
 * [Übertragen von Text vom Webbrowser (zum Lesen oder TTS)](/wiki/faq/how-to-transfer-text-from-browser/de)
 * [So konfigurieren Sie das Widget](/wiki/faq/how-to-configure-the-widget/de)
 * [Hinzufügen eines neuen FAQ-Abschnitts](/wiki/faq/how-to-add-new-faq-section/de)

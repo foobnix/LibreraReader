@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 30
+version: 31
 ---
 [<](/wiki/ru)
 
 # Часто задаваемые вопросы
 
+* [Настройка темы (белый, черный, AMOLED, цвета, размер шрифта, цвета ссылок)](/wiki/faq/customize-theme-colors-links/ru)
 * [Как передать текст из веб-браузера (для чтения или TTS)](/wiki/faq/how-to-transfer-text-from-browser/ru)
 * [Как настроить виджет](/wiki/faq/how-to-configure-the-widget/ru)
 * [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)

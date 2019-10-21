@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 30
+version: 31
 ---
 [<](/wiki/fr)
 
 # Foire aux questions
 
+* [Personnalisation du thème (blanc, noir, AMOLED, couleurs, taille de la police, couleurs des liens)](/wiki/faq/customize-theme-colors-links/fr)
 * [Comment transférer du texte à partir du navigateur Web (à lire ou TTS)](/wiki/faq/how-to-transfer-text-from-browser/fr)
 * [Comment configurer le widget](/wiki/faq/how-to-configure-the-widget/fr)
 * [Comment ajouter une nouvelle section FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
