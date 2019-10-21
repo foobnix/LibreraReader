@@ -41,7 +41,7 @@ Click "Add"
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading.
+A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
 
 ||||
 |-|-|-|
