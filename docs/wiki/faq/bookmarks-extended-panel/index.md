@@ -21,6 +21,7 @@ In order to enable it, you must:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+
 **If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
 
 ||||
