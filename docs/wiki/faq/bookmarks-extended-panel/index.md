@@ -45,7 +45,7 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 
 ||||
 |-|-|-|
-|![](10.jpg)|![](11.jpg)|![](.jpg)|
+|![](10.jpg)|![](11.jpg)|![](15.jpg)|
 
 
 
