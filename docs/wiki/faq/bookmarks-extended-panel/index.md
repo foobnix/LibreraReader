@@ -65,4 +65,3 @@ You can use quick actions to add or remove bookmarks in the extended bookmarks b
 * A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
 
 
-
