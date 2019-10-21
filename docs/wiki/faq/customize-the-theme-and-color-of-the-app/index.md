@@ -26,8 +26,8 @@ You can customize:
 
 **Setting the font size:**
 
-Click on the menu item " Font Size"
-Choose the font size you want by increasing or decreasing it.
+* Click on the menu item " Font Size"
+* Choose the font size you want by increasing or decreasing it.
 
 ||||
 |-|-|-|
@@ -36,12 +36,21 @@ Choose the font size you want by increasing or decreasing it.
 
 **Customize the app theme:**
 
-Click on the "Theme" menu item
-Select the theme you need. You can also choose a theme for the E-Ink screen.
+* Click on the "Theme" menu item
+* Select the theme you need. You can also choose a theme for the E-Ink screen.
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
+
+
+**Setting the title color (Trim):**
+* You can customize from preset color by clicking on the color you need
+* To select your own color, click on the plus icon and select a color using the color palette.
+
+||||
+|-|-|-|
+|![](11.jpg)|![](12.jpg)|![](33.jpg)|
 
 
 
