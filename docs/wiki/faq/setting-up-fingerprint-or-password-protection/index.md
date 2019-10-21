@@ -10,8 +10,8 @@ version: 1
 
 Entry into the program may be limited to several types of protection, of your choice:
 
-* Password protection
-* Protection of the fingerprint. The fingerprint is used from the Android system.
+* Protection of the fingerprint. The fingerprint is used from the Android system
+* Password protection.
 
 To enable password protection you must:
 
@@ -35,3 +35,21 @@ antideficit will run the program. The fingerprint is added, is adjusted to the A
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
+
+**Password protection**
+
+Setting up password login:
+
+* Put a checkbox to activate the password login
+* Enter the password on the first line
+* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
+* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+
+Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+
+||||
+|-|-|-|
+|![](6.jpg)|![](8.jpg)|![](9.jpg)|
+
+
+To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
