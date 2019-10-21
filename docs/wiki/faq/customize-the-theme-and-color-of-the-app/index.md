@@ -32,3 +32,19 @@ Choose the font size you want by increasing or decreasing it.
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
+
+
+**Customize the app theme:**
+
+Click on the "Theme" menu item
+Select the theme you need. You can also choose a theme for the E-Ink screen.
+
+||||
+|-|-|-|
+|![](21.jpg)|![](22.jpg)|![](23.jpg)|
+
+
+
+
+
+
