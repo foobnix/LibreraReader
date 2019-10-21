@@ -29,7 +29,11 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-
+Adding bookmarks:
+* Click the Bookmark icon in the upper right corner of the screen
+* Select " Add " bookmark
+* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
+Click "Add"
 
 
 
