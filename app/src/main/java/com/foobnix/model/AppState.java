@@ -328,7 +328,7 @@ public class AppState {
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
     @IgnoreHashCode
-    public boolean isBrighrnessEnable = true;
+    public boolean isBrighrnessEnable = false;
     @IgnoreHashCode
     public boolean isAllowMinBrigthness = false;
     public boolean isShowRateUsOnExit = true;

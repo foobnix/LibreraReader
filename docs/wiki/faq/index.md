@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 31
 ---
 [<](/wiki/)
 
