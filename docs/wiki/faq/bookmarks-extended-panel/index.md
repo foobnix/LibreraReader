@@ -11,9 +11,13 @@ version: 1
 In order to enable it, you must:
 
 * Click the settings icon
-* Go to settings "the Status bar"
+* Go to settings "Status bar"
 * Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+
+**If you no longer need an extended bookmarks bar, you can disable it by unchecking the status bar settings checkbox from your reading mode.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
+
