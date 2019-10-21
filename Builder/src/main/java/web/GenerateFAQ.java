@@ -20,12 +20,11 @@ public class GenerateFAQ {
         WikiTranslate.translate("/home/ivan-dev/git/LirbiReader/docs/wiki/faq", "it");
     }
 
-    public static void updateIndex(final String in, String pageTitle, int version) throws Exception {
+    public static void updateIndex(final String in, String pageTitle) throws Exception {
         File outFile = new File(in, "index.md");
         final PrintWriter out = new PrintWriter(outFile);
         out.println("---");
         out.println("layout: main");
-        out.println("version: " + version);
         out.println("---");
         out.println("[<](/wiki/)");
         out.println("");

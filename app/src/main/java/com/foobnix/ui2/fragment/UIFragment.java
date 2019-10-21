@@ -26,6 +26,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyProgressBar;
+import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.pdf.search.activity.msg.OpenDirMessage;
@@ -194,6 +195,7 @@ public abstract class UIFragment<T> extends Fragment {
     public void sendNotifyTintChanged() {
         Intent itent = new Intent(INTENT_TINT_CHANGE);
         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(itent);
+        DocumentController.setNavBarTintColor(getActivity());
     }
 
     @Override

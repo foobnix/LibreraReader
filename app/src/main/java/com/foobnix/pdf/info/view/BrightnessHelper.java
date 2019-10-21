@@ -70,7 +70,7 @@ public class BrightnessHelper {
             }
 
             if (myBrightness != lp.screenBrightness) {
-                LOG.d("applyBrigtness",a.getComponentName(), lp.screenBrightness, myBrightness);
+                LOG.d("applyBrigtness", a.getComponentName(), lp.screenBrightness, myBrightness);
                 lp.screenBrightness = myBrightness;
                 a.getWindow().setAttributes(lp);
             } else {
@@ -154,7 +154,18 @@ public class BrightnessHelper {
         }
         if (AppState.get().isEnableBlueFilter) {
             overlay.setVisibility(View.VISIBLE);
-            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, (160 * AppState.get().blueLightAlpha) / 100));
+            int alpha;
+
+            if(AppState.get().isAllowMinBrigthness){
+                alpha = Math.min(200, (200 * AppState.get().blueLightAlpha) / 100);
+            }else{
+                alpha = Math.min(160, (160 * AppState.get().blueLightAlpha) / 100);
+            }
+
+
+            LOG.d("blueLightAlpha-value", alpha);
+
+            overlay.setBackgroundColor(ColorUtils.setAlphaComponent(AppState.get().blueLightColor, alpha));
         } else {
             overlay.setVisibility(View.GONE);
         }

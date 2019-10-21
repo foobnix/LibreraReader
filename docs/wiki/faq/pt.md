@@ -1,11 +1,12 @@
 ---
 layout: main
-version: 30
+version: 31
 ---
 [<](/wiki/pt)
 
 # Perguntas freqüentes
 
+* [Personalização de temas (branco, preto, AMOLED, cores, tamanho da fonte, cores dos links)](/wiki/faq/customize-theme-colors-links/pt)
 * [Como transferir texto do navegador da Web (para ler ou TTS)](/wiki/faq/how-to-transfer-text-from-browser/pt)
 * [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
 * [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)

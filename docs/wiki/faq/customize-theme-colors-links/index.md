@@ -4,7 +4,7 @@ version: 1
 ---
 [<](/wiki/faq)
 
-# Customize the theme and color of the app
+# Theme Customization (white, black, AMOLED, colors, font size, link colors)
 
 
 > Librera allows you to customize the themes and interface to your color preferences.
@@ -47,6 +47,7 @@ _You can also customize the theme of your screen while reading "Day / Night" Rea
 
 
 **Setting the title color (Trim):**
+
 * You can customize from preset color by clicking on the color you need
 * To select your own color, click on the plus icon and select a color using the color palette.
 
@@ -55,6 +56,7 @@ _You can also customize the theme of your screen while reading "Day / Night" Rea
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
 **Setting the link color:**
+
 * Click on the link color
 * You can customize from preset color by clicking on the color you need
 * To select your own color, click on the plus icon and select a color using the color palette.

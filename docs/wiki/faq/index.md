@@ -1,11 +1,11 @@
 ---
 layout: main
-version: 30
 ---
 [<](/wiki/)
 
 # Frequently asked questions
 
+* [Theme Customization (white, black, AMOLED, colors, font size, link colors)](/wiki/faq/customize-theme-colors-links)
 * [How to transfer text from the Web browser (to read or TTS)](/wiki/faq/how-to-transfer-text-from-browser)
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)
 * [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
