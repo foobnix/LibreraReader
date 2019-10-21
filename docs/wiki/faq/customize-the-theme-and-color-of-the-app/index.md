@@ -24,7 +24,7 @@ You can customize:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-Setting the font size:
+**Setting the font size:**
 
 Click on the menu item " Font Size"
 Choose the font size you want by increasing or decreasing it.
