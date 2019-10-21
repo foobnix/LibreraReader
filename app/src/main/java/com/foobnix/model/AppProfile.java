@@ -120,6 +120,7 @@ public class AppProfile {
         AppTemp.get().init(c);
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
+        ExtUtils.init(c);
     }
 
 

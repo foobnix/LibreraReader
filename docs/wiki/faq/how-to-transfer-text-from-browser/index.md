@@ -3,7 +3,7 @@ layout: main
 ---
 [<](/wiki/faq)
 
-# How to transfer text from browser
+# How to transfer text from the Web browser (to read or TTS)
 
 > In Librera you can read articles from the Internet browser both by text and by sexual reproduction.
 

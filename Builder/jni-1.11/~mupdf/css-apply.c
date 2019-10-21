@@ -1286,8 +1286,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	}
 
 
-	style->width = number_from_property(match, "width", 0, N_AUTO);
-	style->height = number_from_property(match, "height", 0, N_AUTO);
+	//style->width = number_from_property(match, "width", 0, N_AUTO);
+	//style->height = number_from_property(match, "height", 0, N_AUTO);
 
 	style->margin[0] = number_from_property(match, "margin-top", 0, N_LENGTH);
 	style->margin[1] = number_from_property(match, "margin-right", 0, N_LENGTH);

@@ -24,7 +24,7 @@ public class WikiTranslate {
 
     public static void main(String[] args) throws Exception {
 
-        int version = 23;
+        int version = 30;
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions", version);
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
@@ -173,6 +173,7 @@ public class WikiTranslate {
         if (line.startsWith("&gt;")) {
             line = line.replace("&gt;", ">");
         }
+        line = line.replace("]]", "]");
 
 
         for (String key : reverse.keySet()) {

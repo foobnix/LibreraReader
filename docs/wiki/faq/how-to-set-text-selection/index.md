@@ -1,6 +1,6 @@
 ---
 layout: main
-version: 1
+version: 2
 ---
 [<](/wiki/faq)
 ---
@@ -19,6 +19,7 @@ To enable and configure selection modes You need to:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
 > When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
 
 

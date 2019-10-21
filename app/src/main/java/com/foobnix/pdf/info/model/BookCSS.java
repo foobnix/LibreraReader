@@ -555,6 +555,7 @@ public class BookCSS {
         builder.append("}");
         // PAGE END
 
+
         // FB2
         builder.append("section>title{page-break-before:avoide;}");
         builder.append("section>title>p{text-align:center !important; text-indent:0px !important;}");
