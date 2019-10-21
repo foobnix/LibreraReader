@@ -15,7 +15,6 @@ In order to enable it, you must:
 * Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
@@ -29,7 +28,9 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
+
 **Adding bookmarks:**
+
 * Click the Bookmark icon in the upper right corner of the screen
 * Select " Add " bookmark
 * Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
@@ -39,5 +40,13 @@ Click "Add"
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading.
+
+||||
+|-|-|-|
+|![](10.jpg)|![](11.jpg)|![](.jpg)|
+
+
 
 
