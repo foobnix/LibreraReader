@@ -39,7 +39,7 @@ You can customize:
 * Click on the "Theme" menu item
 * Select the theme you need. You can also choose a theme for the E-Ink screen.
 
-*You can also customize the theme of your screen while reading "Day / Night" Read more in the Faq setting the theme of reading "Day\Night"
+__You can also customize the theme of your screen while reading "Day / Night" Read more in the Faq setting the theme of reading "Day\Night"__
 
 ||||
 |-|-|-|
