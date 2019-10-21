@@ -52,6 +52,15 @@ You can customize:
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
+**Setting the link color:**
+* Click on the link color
+* You can customize from preset color by clicking on the color you need
+* To select your own color, click on the plus icon and select a color using the color palette.
+
+||||
+|-|-|-|
+|![](41.jpg)|![](42.jpg)|![](43.jpg)|
+
 
 
 
