@@ -15,6 +15,7 @@ You can customize:
 * Choose the color theme of the application
 * Choose the color of the headers
 * Choose the color of the links
+
 **All settings of the program you can combine with each other.**
 
 
