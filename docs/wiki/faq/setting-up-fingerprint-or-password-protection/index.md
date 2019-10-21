@@ -10,8 +10,8 @@ version: 1
 
 Entry into the program may be limited to several types of protection, of your choice:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system
-* **Password protection.
+* **Protection of the fingerprint. The fingerprint is used from the Android system**
+* **Password protection.**
 
 To enable password protection you must:
 
