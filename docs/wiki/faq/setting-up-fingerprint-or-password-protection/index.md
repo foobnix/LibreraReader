@@ -22,7 +22,7 @@ To enable password protection you must:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-*Protection of the fingerprint*
+**Protection of the fingerprint**
 
 Setting up fingerprint login:
 * Put a checkbox to activate the password login
