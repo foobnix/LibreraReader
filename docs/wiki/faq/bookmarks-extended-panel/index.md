@@ -47,10 +47,11 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**You can add a quick bookmark while reading.** For this purpose it is necessary:
+**Quick bookmark** 
+For this purpose it is necessary:
 
 * Click the Bookmark icon in the upper right corner of the screen
-* Select Quick bookmark"
+* Select "Quick bookmark"
 * A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
 
 
