@@ -21,3 +21,17 @@ To enable password protection you must:
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
+*Protection of the fingerprint*
+
+Setting up fingerprint login:
+* Put a checkbox to activate the password login
+* In the pop-up dialog box, check the box "Allow fingerprint identification"
+* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+
+Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
+antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](7.jpg)|
