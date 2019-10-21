@@ -10,8 +10,8 @@ version: 1
 
 Entry into the program may be limited to several types of protection, of your choice:
 
-* Protection of the fingerprint. The fingerprint is used from the Android system
-* Password protection.
+* **Protection of the fingerprint. The fingerprint is used from the Android system
+* **Password protection.
 
 To enable password protection you must:
 
@@ -49,7 +49,7 @@ Password login is installed. When you log in, a dialog box prompts you to enter 
 
 ||||
 |-|-|-|
-|![](6.jpg)|![](8.jpg)|![](9.jpg)|
+|![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
 To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
