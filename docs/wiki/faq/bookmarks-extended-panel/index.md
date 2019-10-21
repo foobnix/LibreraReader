@@ -62,7 +62,7 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
 
 * Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar, will prompt you to delete it.
+* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
 
 
 
