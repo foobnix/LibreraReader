@@ -21,3 +21,13 @@ In order to enable it, you must:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
+
+
+
+Next, you will see how to work with the quick bookmarks bar in Book reading mode. You can repeat these actions in all three modes, they are the same.
+
+
