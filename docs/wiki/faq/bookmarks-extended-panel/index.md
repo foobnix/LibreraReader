@@ -14,7 +14,7 @@ In order to enable it, you must:
 * Go to settings "Status bar"
 * Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the status bar settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
 
 ||||
 |-|-|-|
