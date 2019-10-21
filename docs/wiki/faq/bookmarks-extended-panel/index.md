@@ -47,9 +47,7 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Quick bookmark** 
-
-For this purpose it is necessary:
+**Adding Quick bookmark** 
 
 * Click the Bookmark icon in the upper right corner of the screen
 * Select "Quick bookmark"
@@ -59,6 +57,12 @@ For this purpose it is necessary:
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
+
+
+You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+
+* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
+* A long tap on the name of the bookmark, in the extended bookmarks bar, will prompt you to delete it.
 
 
 
