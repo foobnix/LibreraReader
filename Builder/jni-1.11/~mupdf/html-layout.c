@@ -92,9 +92,13 @@ static const char *fb2_default_css =
 "body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
 "image{display:block}"
 "p>image{display:inline}"
-"table{display:table}"
-"tr{display:table-row}"
-"th,td{display:table-cell}"
+
+"table{display:block !important;}"
+"tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
+
 "a{color:#06C;text-decoration:underline}"
 "a[type=note]{font-size:small;vertical-align:super}"
 "code{white-space:pre;font-family:monospace}"

@@ -49,6 +49,7 @@ static const char *html_default_css =
 "style{display:none}"
 "sub{font-size:0.83em;vertical-align:sub}"
 "sup{font-size:0.83em;vertical-align:super}"
+
 "table{display:table}"
 "tbody{display:table-row-group}"
 "td{display:table-cell;padding:1px}"
@@ -56,6 +57,7 @@ static const char *html_default_css =
 "th{display:table-cell;font-weight:bold;padding:1px;text-align:center}"
 "thead{display:table-header-group}"
 "tr{display:table-row;margin-top:0.5em !important;}"
+
 "ul{display:block;list-style-type:disc;margin:1em 0;padding:0 0 0 30pt}"
 "ul ul{list-style-type:circle}"
 "ul ul ul{list-style-type:square}"
@@ -79,9 +81,14 @@ static const char *fb2_default_css =
 "body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
 "image{display:block}"
 "p>image{display:inline}"
-"table{display:table}"
-"tr{display:table-row}"
-"th,td{display:table-cell}"
+
+"table{display:block !important;}"
+"tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
+
+
 "a{color:#06C;text-decoration:underline}"
 "a[type=note]{font-size:small;vertical-align:super}"
 "code{white-space:pre;font-family:monospace}"
