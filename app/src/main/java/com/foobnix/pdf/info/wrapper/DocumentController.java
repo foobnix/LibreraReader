@@ -38,6 +38,7 @@ import com.foobnix.pdf.info.MyADSProvider;
 import com.foobnix.pdf.info.OutlineHelper;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
+import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.AnnotationType;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -499,6 +500,9 @@ public abstract class DocumentController {
 
     public static void runFullScreenCutOut(final Activity a) {
         try {
+
+            setNavBarTintColor(a);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
 
@@ -510,11 +514,21 @@ public abstract class DocumentController {
 
                 a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
+
+
             }
+
+
 
             Keyboards.hideNavigation(a);
         } catch (Exception e) {
             LOG.e(e);
+        }
+    }
+
+    public static void setNavBarTintColor(Activity a) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            a.getWindow().setNavigationBarColor(TintUtil.color);
         }
     }
 
@@ -528,11 +542,15 @@ public abstract class DocumentController {
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
 
+            setNavBarTintColor(a);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
             }
+
+
 
         } catch (Exception e) {
             LOG.e(e);
