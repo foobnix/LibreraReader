@@ -48,6 +48,7 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
 **Quick bookmark** 
+
 For this purpose it is necessary:
 
 * Click the Bookmark icon in the upper right corner of the screen
