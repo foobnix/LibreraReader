@@ -31,4 +31,4 @@ Choose the font size you want by increasing or decreasing it.
 
 ||||
 |-|-|-|
-|![](31.jpg)|![](32.jpg)|![](33.jpg)|
+|![](34.jpg)|![](32.jpg)|![](33.jpg)|
