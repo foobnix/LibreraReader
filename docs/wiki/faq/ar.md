@@ -5,6 +5,8 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
+* [كيفية تخصيص مظهر مكتبتك وأغلفة الكتب](/wiki/faq/how-to-configure-the-library-view/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)

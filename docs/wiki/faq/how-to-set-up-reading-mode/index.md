@@ -8,6 +8,7 @@ layout: main
 > For comfortable reading in Libera, you can configure different document mode, depending on its format.
 
 Setting up reading modes in the book mode, for example, the book format .epub: 
+
 * Press the icon to select the reading mode
 * Choose single-page or two-page reading view
 * The same is true for book formats mobi,fb2,azw,azw3
@@ -21,6 +22,7 @@ Setting up reading modes for format documents pdf (djvu)
 * Select the reading mode you want.
 
 Read mode:
+
 * Single-page mode - one page is displayed on the screen
 * Two - page mode - two pages of the document are displayed on the screen at once
 * Cover, two pages-first one cover of the document is displayed, then two pages of the document

@@ -5,6 +5,8 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Como configurar o modo de leitura](/wiki/faq/how-to-set-up-reading-mode/pt)
+* [Como personalizar a aparência da sua biblioteca e capas de livros](/wiki/faq/how-to-configure-the-library-view/pt)
 * [Como restaurar configurações padrão (semelhante ao limpar cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
 * [Configurando impressão digital ou proteção por senha](/wiki/faq/setting-up-fingerprint-or-password-protection/pt)
 * [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
