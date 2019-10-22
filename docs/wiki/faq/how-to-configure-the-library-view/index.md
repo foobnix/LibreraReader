@@ -20,3 +20,10 @@ You can also further customize the look of the library and book covers in the se
 ||||
 |-|-|-|
 |![](3.jpg)|![](1.jpg)|![](2.jpg)|
+
+In the quick setup of the library, you can choose a different kind of it, I will give, for example, some.
+
+
+||||
+|-|-|-|
+|![](7.jpg)|![](8.jpg)|![](9.jpg)|
