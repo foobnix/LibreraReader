@@ -341,7 +341,7 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
-        if (!AppState.get().isAllowTextSelection) {
+        if (!AppState.get().isAllowTextSelection && !TempHolder.isSeaching) {
             return new TextWord[0][0];
         }
         try {

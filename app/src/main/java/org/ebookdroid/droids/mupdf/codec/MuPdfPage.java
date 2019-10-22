@@ -404,7 +404,8 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public synchronized TextWord[][] getText() {
-        if (!AppState.get().isAllowTextSelection) {
+
+        if (!AppState.get().isAllowTextSelection && !TempHolder.isSeaching) {
             return new TextWord[0][0];
         }
 
