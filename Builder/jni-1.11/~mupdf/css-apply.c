@@ -915,13 +915,10 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
 			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
 
-
-		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
 			return isFont? make_number(x <1 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
 
 
-		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
 			return make_number(x / 2, N_LENGTH);
 
@@ -932,7 +929,6 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 	{
 		if (!strcmp(value->data, "auto"))
 			return make_number(0, N_LENGTH);
-			//return make_number(0, N_AUTO);
 	}
 
 	return make_number(initial, initial_unit);
