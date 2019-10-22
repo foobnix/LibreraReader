@@ -3,7 +3,6 @@ layout: main
 version: 7
 ---
 [<](/wiki/faq)
----
 
 # Set own background for book page
 

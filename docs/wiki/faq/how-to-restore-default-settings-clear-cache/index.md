@@ -3,7 +3,6 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq)
----
 # How to restore default settings (similar to clear cache)
 
 > If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.

@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/fr)
----
-# Setting up fingerprint or password protection
+# Configuration de la protection par empreinte digitale ou par mot de passe
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Librera vous permet de protéger vos documents de l'affichage en limitant l'accès avec un mot de passe ou une empreinte digitale.
 
-Entry into the program may be limited to several types of protection, of your choice:
+La participation au programme peut être limitée à plusieurs types de protection, de votre choix:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **Protection de l'empreinte digitale. L’empreinte digitale est utilisée à partir du système Android**.
+* **Protection par mot de passe.**
 
-To enable password protection you must:
+Pour activer la protection par mot de passe, vous devez:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Cliquez dans le coin supérieur gauche pour afficher le menu ou faites-le glisser de gauche à droite.
+* Faites défiler le menu jusqu'aux paramètres de mot de passe de connexion.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**Protection de l'empreinte digitale**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+Configuration de la connexion par empreinte digitale:
+* Cochez la case pour activer la connexion par mot de passe
+* Dans la boîte de dialogue contextuelle, cochez la case &quot;Autoriser l'identification par empreinte digitale&quot;.
+* Confirmez votre choix en cliquant sur &quot;OK&quot;. Une fenêtre s’affiche sur la définition du mot de passe, puis quittez le programme.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+L'empreinte digitale est installée. Lorsque vous vous reconnecterez à Librera, on vous demandera d’identifier les empreintes digitales, le cas échéant.
+antideficit exécutera le programme. L'empreinte digitale est ajoutée, est adaptée au système Android.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**Protection par mot de passe**
 
-Setting up password login:
+Configuration du login par mot de passe:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Cochez la case pour activer la connexion par mot de passe
+* Entrez le mot de passe sur la première ligne.
+* Confirmez le mot de passe sur la deuxième ligne. **Important: les mots de passe des première et deuxième lignes doivent être identiques!**
+* Confirmez votre choix en cliquant sur &quot;OK&quot;. Une fenêtre s’affiche sur la définition du mot de passe, puis quittez le programme.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+Le mot de passe de connexion est installé. Lorsque vous vous connectez, une boîte de dialogue vous invite à saisir votre mot de passe. Si le mot de passe entré est correct, le programme sera connecté. Si le mot de passe est incorrect, une fenêtre contextuelle apparaîtra indiquant que le mot de passe est incorrect.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+Pour supprimer le mot de passe, lancez Librera, veuillez vous assurer que, dans les paramètres où le mot de passe de connexion avait déjà été activé, décochez la case correspondant à cette fonction.

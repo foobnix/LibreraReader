@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/ru)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Работа с закладками в расширенной панели (закладки ленты)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> В Librera вы можете отобразить расширенную панель закладок (закладки ленты) на экране чтения. Служит для быстрого добавления закладки, переключения между закладками.
 
-In order to enable it, you must:
+Чтобы включить его, вы должны:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* нажмите на значок настроек
+* Перейти в настройки «Строка состояния»
+* Установите флажок расширенной панели закладок (Закладки ленты) в желаемом режиме чтения.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+Далее вы увидите, как работать с панелью быстрых закладок в режиме «Чтение книг». Вы можете повторить эти действия во всех трех режимах, они одинаковы.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**Если вам больше не нужна расширенная панель закладок (закладки ленты), вы можете отключить ее, сняв флажок настроек «Строка состояния» в режиме чтения. Значок закладки в правом верхнем углу будет удален.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**Добавление закладок:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* Нажмите на значок закладки в правом верхнем углу экрана.
+* Выбрать закладку «Добавить»
+* Оставить комментарий к закладке, из этого комментария закладке будет присвоено имя. В этом примере комментарий «первая закладка»
+Нажмите «Добавить»
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Закладка будет добавлена в окне закладок, а сверху - в расширенной панели закладок (Закладки ленты). Теперь, если вы хотите перейти на эту вкладку, просто нажмите на нее сверху, на панели, во время чтения. Если вы хотите отредактировать его, нажмите и удерживайте закладку в окне закладок, появится окно редактирования. Кроме того, если у вас много закладок, вы можете провести по расширенной панели закладок (Закладки ленты), чтобы переместить их влево или вправо.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Добавление быстрой закладки**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Нажмите на значок закладки в правом верхнем углу экрана.
+* Выбрать «Быстрая закладка»
+* Будет создана «Быстрая закладка». Ему дадут номер страницы имени. Если вы перейдете в окно закладок, вы увидите Быструю закладку с названием - 15. «Быстрая закладка». При длительном нажатии на закладку в окне закладок, появится окно редактирования, удаления которого.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+Вы можете использовать быстрые действия для добавления или удаления закладок в расширенной панели закладок (Закладки ленты):
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* Длительное нажатие на значок закладки в правом верхнем углу - добавление быстрой закладки
+* Длительное нажатие на название закладки в расширенной панели закладок (Закладки ленты) предложит вам удалить ее.
 
 

@@ -3,11 +3,10 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/ar)
----
-# How to configure the widget
+# كيفية تكوين القطعة
 
-> For faster access to the books In your library you can start them to read from the desktop of your launcher,
-you need to add the widget Librera.
+> للوصول بشكل أسرع إلى الكتب في مكتبتك ، يمكنك البدء في قراءتها من سطح المكتب الخاص بالمشغل ،
+تحتاج إلى إضافة القطعة Librera.
 
 
 ||||
@@ -15,24 +14,24 @@ you need to add the widget Librera.
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
 
-To add and customize the widget:
+لإضافة وتخصيص القطعة:
 
-* Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
-* Once you've added the widget log in to Librera
-* Swipe from left to right to pull the menu
-* Scroll down the menu to the Widget settings item.
+* انتقل إلى إعدادات عنصر واجهة المستخدم لسطح المكتب الخاص بك وأضف عنصر واجهة المستخدم Librera إلى سطح المكتب
+* بمجرد إضافة عنصر واجهة المستخدم ، سجّل الدخول إلى Librera
+* اسحب من اليسار إلى اليمين لسحب القائمة
+* قم بالتمرير لأسفل من القائمة إلى عنصر إعدادات عنصر واجهة المستخدم.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-In the widget settings You can customize the look of Your widget has Librera:
+في إعدادات عنصر واجهة المستخدم ، يمكنك تخصيص مظهر عنصر واجهة المستخدم لديه Librera:
 
-* Information displayed in the widget - Recent books or Favorites
-* Its view is a List or Grid
-* The number of books displayed in the widget. 
+* المعلومات المعروضة في الأداة - الكتب الحديثة أو المفضلة
+* طريقة العرض هي قائمة أو شبكة
+* عدد الكتب المعروضة في الأداة.
 
-**You can configure the widget optimally for yourself.**
+**يمكنك تهيئة القطعة على النحو الأمثل لنفسك.**
 
 ||||
 |-|-|-|

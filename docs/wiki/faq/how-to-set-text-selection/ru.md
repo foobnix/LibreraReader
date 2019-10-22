@@ -3,16 +3,15 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/ru)
----
 
-# How to set text selection
+# Как настроить выбор текста
 
-> Librera allows you to work flexibly with text selection. In the text You can select both individual words and entire sentences, pages. 
-Subsequently, sending the selected text, for example, to bookmarks or translator.
+> Librera позволяет гибко работать с выделением текста. В тексте можно выделить как отдельные слова, так и целые предложения, страницы.
+Впоследствии отправка выделенного текста, например, в закладки или переводчик.
 
-To enable and configure selection modes You need to:
-* Click the settings icon
-* Go to the advanced settings menu tab.
+Для включения и настройки режимов выбора Вам необходимо:
+* нажмите на значок настроек
+* Перейдите на вкладку меню расширенных настроек.
 
 
 
@@ -20,30 +19,30 @@ To enable and configure selection modes You need to:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-> When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
+> Когда режим выбора в тексте книги отключен, при нажатии на сноску переход не работает. Если вам нужно перемещаться по сноске, включите первый пункт «Включить выделение текста».
 
 
-The selection mode is configured by enabling checkboxes:
-* Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
-* Single-tap to select text -  the selection of the text occurs when you short-click on the word
-* Select text letter-by-letter - for hieroglyphic languages.
+Режим выбора настраивается путем включения флажков:
+* Включить выделение текста - включает или отключает выделение текста в документе. Текст подсвечивается только длинным тапом
+* Одно касание для выбора текста - выбор текста происходит при коротком щелчке по слову
+* Выбор текста буква за буквой - для иероглифических языков.
 
-Text selection can be a single word, a sentence, or the entire page: 
-* Tap on the word-short or long press, depending on Your settings
-* To highlight more than one word then slide your finger across multiple words, the proposal. You can also use the start and end markers
-selected text, enlarging them or reducing the distance of the capture of words between them
-* To bring up the menu when short tops and full screen are on-make a long tap in the center of the screen.
+Выбор текста может состоять из одного слова, предложения или всей страницы:
+* Нажмите на короткое или длинное нажатие в зависимости от ваших настроек
+* Чтобы выделить несколько слов, а затем проведите пальцем по нескольким словам, предложение. Вы также можете использовать начальный и конечный маркеры
+выделенный текст, увеличивая их или уменьшая расстояние захвата слов между ними
+* Чтобы вызвать меню при включенных коротких вершинах и полном экране, сделайте длинное нажатие в центре экрана.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-Selected text you can:
-* Bookmark this book
-* Transfer to another application
-* Play to speech
-* Send for translation 
-* Do a search in a document or the Internet
-* Copy for further processing
+Выбранный текст вы можете:
+* Закладка этой книги
+* перевод в другое приложение
+* игра на речь
+* отправить на перевод
+* Выполнить поиск по документу или интернету
+* копия для дальнейшей обработки
 

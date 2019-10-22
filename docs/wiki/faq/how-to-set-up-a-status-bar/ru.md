@@ -3,23 +3,23 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/ru)
----
-# Setting the status bar
 
-> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
+# Настройка строки состояния
 
-To go to the status bar settings you need to:
-* Click the settings icon
-* Select an item in the "Status Bar" menu
+> Librera позволяет гибко настраивать интерфейс строки состояния, отображая или удаляя из него информацию, которая вам нужна во время чтения.
+
+Для перехода в настройки строки состояния вам необходимо:
+* нажмите на значок настроек
+* Выбрать пункт в меню «Строка состояния»
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-After the actions you get to the settings status bar where you can configure:
-* To enable or disable showing the status bar 
-* Adjust its position at the Top or Bottom of the screen.
+После действий вы попадаете в строку состояния настроек, где вы можете настроить:
+* включить или отключить отображение строки состояния
+* Отрегулируйте его положение вверху или внизу экрана.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ After the actions you get to the settings status bar where you can configure:
 
 
 
-Change the type of information about the book displayed in the text part of the status bar
+Изменить тип информации о книге, отображаемой в текстовой части строки состояния
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* Display the book title in the status bar
-* Displays the current time
-* The percentage of battery charge.
+* отображение названия книги в строке состояния
+* отображает текущее время
+* Процент заряда батареи.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ Change the type of information about the book displayed in the text part of the 
 
 
 
-* Enable or disable progress bar
-* Setting the display of labels displayed on the progress bar 
-* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
+* включить или отключить индикатор выполнения
+* Настройка отображения меток, отображаемых на индикаторе выполнения
+* Отображение значка закладки. Установите флажок, в каких режимах отображать этот значок.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Change text size in status bar and header
-* To resize the status bar 
-* Change color in status bar and header.
+* Изменение размера текста в строке состояния и заголовке
+* Изменение размера строки состояния
+* Изменить цвет строки состояния и заголовка.
 
 ||||
 |-|-|-|

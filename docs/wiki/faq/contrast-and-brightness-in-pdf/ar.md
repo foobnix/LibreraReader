@@ -3,48 +3,47 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/ar)
----
 
-# Contrast and Brightness in PDF  (black and white effect)
+# التباين والسطوع في PDF (تأثير أبيض وأسود)
 
-> Librera Book Reader allows you to flexibly customize the appearance of the document. 
-When you configure these settings, the document becomes black and white. 
-By moving the slider to add/decrease the parameter you need, 
-in the background of the settings dialog, you can see its effect on the document. 
-You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
+> يتيح لك Librera Book Reader تخصيص مظهر المستند بمرونة.
+عندما تقوم بتكوين هذه الإعدادات ، يصبح المستند أبيض وأسود.
+عن طريق تحريك شريط التمرير لإضافة/تقليل المعلمة التي تحتاجها ،
+في خلفية مربع حوار الإعدادات ، يمكنك رؤية تأثيره على المستند.
+يمكنك تكوين جميع المعلمات الثلاثة معًا وعلى الانفصال. غالبًا ما يستخدم هذا التأثير في قارئات الحبر الإلكتروني
 
 
-For comfortable reading You can adjust the settings:
-* Contrast
-* Brightness 
-* Emphasize all (bold text effect)
+لقراءة مريحة يمكنك ضبط الإعدادات:
+* التباين
+* السطوع
+* التأكيد على الكل (تأثير النص الغامق)
 
-## Contrast
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## التباين
+* انقر على أيقونة التباين والسطوع
+* استخدم شريط التمرير لتحديد نوع المستند الذي تريده
+* بعد الإعداد ، انقر فوق التقاطع في مربع حوار الإعدادات.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-## Brightness 
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## السطوع
+* انقر على أيقونة التباين والسطوع
+* استخدم شريط التمرير لتحديد نوع المستند الذي تريده
+* بعد الإعداد ، انقر فوق التقاطع في مربع حوار الإعدادات.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
 
-## Emphasize all  (bold text effect)
-* Click on the Contrast and brightness icon
-* Enable checkbox Emphasize all
-* After setting, click the cross in the settings dialog box
+## التأكيد على الكل (تأثير النص الغامق)
+* انقر على أيقونة التباين والسطوع
+* تمكين مربع الاختيار التأكيد على الكل
+* بعد الإعداد ، انقر فوق التقاطع في مربع حوار الإعدادات
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to the original state.
+> إذا كنت ترغب في استعادة الإعدادات &quot;الافتراضية&quot; التي تم تغييرها - انقر في مربع الحوار إعدادات التباين والسطوع - &quot;الاستعادة إلى الإعداد الافتراضي&quot; وتأكيد &quot;موافق&quot;. تعود الإعدادات وطريقة عرض المستند إلى الحالة الأصلية.

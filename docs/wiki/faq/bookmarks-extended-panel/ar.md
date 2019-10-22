@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/ar)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# العمل مع الإشارات المرجعية في اللوحة الموسعة (إشارات الشريط)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> في Librera ، يمكنك عرض شريط الإشارات الموسعة (إشارات الشريط) على شاشة القراءة. إنه يخدم وظيفة إضافة إشارة مرجعية بسرعة ، والتبديل بين الإشارات المرجعية.
 
-In order to enable it, you must:
+لتمكينه ، يجب عليك:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* انقر على أيقونة الإعدادات
+* انتقل إلى الإعدادات &quot;شريط الحالة&quot;
+* تمكين مربع اختيار لوحة الإشارة الموسعة (إشارات الشريط) في وضع القراءة الذي تريده.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+بعد ذلك ، سترى كيفية العمل مع شريط الإشارات المرجعية السريع في وضع &quot;قراءة الكتب&quot;. يمكنك تكرار هذه الإجراءات في جميع الأوضاع الثلاثة ، فهي نفسها.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**إذا لم تعد بحاجة إلى شريط إشارات موسعة (إشارات الشريط المرجعية) ، فيمكنك تعطيله عن طريق إلغاء تحديد خانة الاختيار &quot;شريط الحالة&quot; إعدادات من وضع القراءة الخاص بك. ستتم إزالة رمز الإشارة المرجعية من الزاوية العلوية اليمنى.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**إضافة إشارات مرجعية:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* انقر على أيقونة إشارة مرجعية في الزاوية اليمنى العليا من الشاشة
+* حدد إشارة &quot;إضافة&quot;
+* قم بتعليق على الإشارة المرجعية ، من هذا التعليق سيتم تخصيص اسم للإشارة المرجعية. في هذا المثال ، التعليق &quot;أول إشارة مرجعية&quot;
+انقر فوق &quot;إضافة&quot;
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+ستتم إضافة إشارة مرجعية في نافذة الإشارات المرجعية ، وفي الأعلى ، في شريط الإشارات الموسعة (إشارات الشريط). الآن ، إذا كنت تريد الانتقال إلى علامة التبويب هذه ، فما عليك سوى النقر عليها من الأعلى ، في اللوحة ، أثناء القراءة. إذا كنت ترغب في تحريره ، فقم بالضغط على الإشارة المرجعية في نافذة الإشارات المرجعية ، فستظهر نافذة التعديل. أيضًا ، إذا كان لديك الكثير من الإشارات المرجعية ، يمكنك التمرير السريع على شريط الإشارات المرجعية الموسعة (إشارات الشريط) لنقلها إلى اليسار أو اليمين.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**إضافة إشارة مرجعية سريعة**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* انقر على أيقونة إشارة مرجعية في الزاوية اليمنى العليا من الشاشة
+* حدد &quot;إشارة مرجعية سريعة&quot;
+* سيتم إنشاء &quot;إشارة مرجعية سريعة&quot;. سيتم إعطاء رقم صفحة الاسم. إذا ذهبت إلى نافذة الإشارات المرجعية ، فسترى إشارة مرجعية سريعة تحمل الاسم - 15. &quot;إشارة مرجعية سريعة&quot;. عندما تنقر لفترة طويلة على إشارة مرجعية في نافذة الإشارات المرجعية ، ستظهر نافذة التحرير وحذفها.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+يمكنك استخدام إجراءات سريعة لإضافة أو إزالة الإشارات المرجعية في شريط الإشارات المرجعية الموسعة (إشارات الشريط):
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* اضغط لفترة طويلة على أيقونة الإشارة المرجعية في الزاوية اليمنى العليا - لإضافة إشارة مرجعية سريعة
+* سيطالبك نقرة طويلة على اسم الإشارة المرجعية ، في شريط الإشارات المرجعية الموسعة (إشارات الشريط المرجعية) ، بحذفها.
 
 

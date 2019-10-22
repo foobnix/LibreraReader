@@ -3,32 +3,31 @@ layout: main
 version: 7
 ---
 [<](/wiki/faq/it)
----
 
-# Set own background for book page
+# Imposta il proprio sfondo per la pagina del libro
 
-> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
-The background can be selected as a solid color or from texture image.
+> Librera Book Reader ti consente di personalizzare lo sfondo della pagina durante la lettura, il che contribuisce a ridurre l'affaticamento degli occhi e aggiunge comfort durante la lettura.
+Lo sfondo può essere selezionato come colore solido o dall'immagine texture.
 
-In order to set your background, you should:
+Per impostare lo sfondo, è necessario:
 
-* Click the settings icon.
-* In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
-* In the dialog box that opens you can choose how you want to fill the background when reading:
+* Fai clic sull'icona delle impostazioni.
+* Nelle impostazioni, selezionare il profilo in cui si desidera modificare lo sfondo. Scegli, ad esempio, &quot;Giorno&quot;.
+* Nella finestra di dialogo che si apre puoi scegliere come riempire lo sfondo durante la lettura:
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-**Color**  only the fill color of the reading background and its transparency are selected.
+**Colore** sono selezionati solo il colore di riempimento dello sfondo di lettura e la sua trasparenza.
 
-**Image** the picture of the reading background and its transparency are selected.
+**Immagine** sono selezionate l'immagine dello sfondo di lettura e la sua trasparenza.
 
-## Add solid color
+## Aggiungi tinta unita
 
-* Choose "Color" and adjust the cross background color on the color palette of the circle.
-* After selecting the color, click OK, exit the settings, the background color will be applied.
+* Scegli &quot;Colore&quot; e regola il colore di sfondo della croce sulla tavolozza dei colori del cerchio.
+* Dopo aver selezionato il colore, fare clic su OK, uscire dalle impostazioni, verrà applicato il colore di sfondo.
 
 ||||
 |-|-|-|
@@ -36,12 +35,12 @@ In order to set your background, you should:
 
 
 
-## Add image texture
+## Aggiungi trama dell'immagine
 
-* Selected "Image".
-* In the settings dialog box, click the "plus" icon.
-* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
-* Exit the settings, watch the result.
+* &quot;Immagine&quot; selezionata.
+* Nella finestra di dialogo delle impostazioni, fare clic sull'icona &quot;più&quot;.
+* Scegli la cartella in cui si trova il tuo sfondo. Inseriscilo, fai clic sullo sfondo desiderato, guarda in basso, dovrebbe apparire il suo nome, fai clic su Seleziona.
+* Esci dalle impostazioni, guarda il risultato.
 
 ||||
 |-|-|-|

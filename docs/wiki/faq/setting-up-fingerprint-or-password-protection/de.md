@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/de)
----
-# Setting up fingerprint or password protection
+# Einrichten des Fingerabdruck- oder Passwortschutzes
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Mit Librera können Sie Ihre Dokumente vor dem Anzeigen schützen, indem Sie den Zugriff mit einem Kennwort oder einem Fingerabdruck beschränken.
 
-Entry into the program may be limited to several types of protection, of your choice:
+Die Teilnahme am Programm kann auf verschiedene Arten des Schutzes Ihrer Wahl beschränkt sein:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **Schutz des Fingerabdrucks. Der Fingerabdruck wird vom Android-System verwendet**
+* **Passwortschutz.**
 
-To enable password protection you must:
+Um den Passwortschutz zu aktivieren, müssen Sie:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Klicken Sie in die linke obere Ecke, um das Menü aufzurufen, oder wischen Sie von links nach rechts
+* Blättern Sie im Menü zu den Anmeldekennworteinstellungen.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**Schutz des Fingerabdrucks**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+Einrichten der Fingerabdruck-Anmeldung:
+* Aktivieren Sie ein Kontrollkästchen, um die Kennwortanmeldung zu aktivieren
+* Aktivieren Sie im Popup-Dialogfeld das Kontrollkästchen &quot;Identifizierung von Fingerabdrücken zulassen&quot;.
+* Bestätigen Sie Ihre Auswahl mit &quot;OK&quot;. Es erscheint ein Fenster zum Festlegen des Passworts. Beenden Sie das Programm.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+Fingerabdruck-Eingabe ist installiert. Wenn Sie sich erneut bei Librera anmelden, werden Sie aufgefordert, den Fingerabdruck zu identifizieren, falls dies korrekt ist
+Antideficit führt das Programm aus. Der Fingerabdruck wird hinzugefügt, an das Android-System angepasst.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**Passwortschutz**
 
-Setting up password login:
+Passwort Login einrichten:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Aktivieren Sie ein Kontrollkästchen, um die Kennwortanmeldung zu aktivieren
+* Geben Sie das Passwort in die erste Zeile ein
+* Bestätigen Sie das Passwort in der zweiten Zeile. **Wichtig: Passwörter in der ersten und zweiten Zeile müssen identisch sein!**
+* Bestätigen Sie Ihre Auswahl mit &quot;OK&quot;. Es erscheint ein Fenster zum Festlegen des Passworts. Beenden Sie das Programm.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+Passwort Login ist installiert. Wenn Sie sich anmelden, werden Sie in einem Dialogfeld aufgefordert, Ihr Kennwort einzugeben. Wenn das eingegebene Passwort korrekt ist, wird das Programm angemeldet. Wenn das Passwort falsch ist, erscheint ein Popup-Fenster mit der Meldung, dass das Passwort falsch ist.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+Um das Passwort zu entfernen, führen Sie Librera, bitte Antideficit, in den Einstellungen aus, in denen zuvor das Login-Passwort aktiviert wurde, deaktivieren Sie das Kontrollkästchen dieser Funktion.

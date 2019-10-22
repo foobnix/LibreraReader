@@ -3,20 +3,19 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/es)
----
-# How to restore default settings (similar to clear cache)
+# Cómo restaurar la configuración predeterminada (similar a borrar caché)
 
-> If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.
+> Si necesita restablecer todas las configuraciones de Librera en el perfil actual a su estado original, como después de la primera instalación, puede hacerlo en varias etapas.
 
-In order to do a reset you need to:
+Para hacer un reinicio, debe:
 
- * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
- * Long click on the desire Profile name 
- * Confirm your action " OK"
+* Haga clic en la esquina superior izquierda para que aparezca el menú, o deslícelo de izquierda a derecha
+* Haga clic largo en el nombre del perfil deseado
+* Confirma tu acción &quot;OK&quot;
 
-*After confirmation, the program will restart and will reset all settings to default.*
+* Después de la confirmación, el programa se reiniciará y restablecerá todas las configuraciones a las predeterminadas. *
 
-**Bookmarks, tags, and reading progress you have added are not deleted on reset.**
+**Los marcadores, las etiquetas y el progreso de lectura que ha agregado no se eliminan al restablecer.**
 
 
 ||||

@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/zh)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+{1}在扩展面板中使用书签(功能区书签)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+>在Librera中，您可以在阅读屏幕上显示扩展的书签栏(Ribbon书签)。它具有快速添加书签，在书签之间切换的功能。
 
-In order to enable it, you must:
+为了启用它，您必须：
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+{4}点击设置图标
+{4}转到设置“状态栏”
+{4}在所需的阅读模式下启用扩展书签面板(功能区书签)复选框。
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+接下来，您将看到如何在“读书”模式下使用快速书签栏。您可以在所有三种模式下重复这些操作，它们是相同的。
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+{6}如果您不再需要扩展的书签栏(Ribbon书签)，则可以通过从阅读模式中取消选中“状态栏”设置复选框来禁用它。右上角的书签图标将被删除。{6}
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+{6}添加书签：{6}
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+{4}点击屏幕右上角的书签图标
+{4}选择“添加”书签
+{4}对书签添加评论，将从该评论中为书签分配一个名称。在此示例中，注释“第一个书签”
+点击“添加”
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+书签将添加到书签窗口中，并在顶部，扩展书签栏(Ribbon书签)中。现在，如果要转到此选项卡，只需在阅读时从面板顶部的顶部单击即可。如果要编辑它，请在书签窗口中长按该书签，将显示编辑窗口。另外，如果您有很多书签，则可以在扩展的书签栏(功能区书签)上滑动，以将它们向左或向右移动。
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+{6}添加快速书签{2}
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+{4}点击屏幕右上角的书签图标
+{4}选择“快速书签”
+{4}将创建“快速书签”。它会被赋予一个名称页号。如果您转到书签窗口，则会看到一个名为-15的“快速书签”。当您在书签窗口中长按一个书签时，将弹出编辑，删除窗口。
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+您可以使用快速操作在扩展的书签栏中添加或删除书签(功能区书签)：
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+{4}长按右上角的书签图标即可添加快速书签
+{4}在扩展的书签栏中(丝带书签)长按书签名称，将提示您删除它。
 
 

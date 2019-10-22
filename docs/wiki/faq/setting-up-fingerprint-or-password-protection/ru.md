@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/ru)
----
-# Setting up fingerprint or password protection
+# Настройка защиты отпечатков пальцев или пароля
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Librera позволяет защитить ваши документы от просмотра, ограничив доступ паролем или отпечатком пальца.
 
-Entry into the program may be limited to several types of protection, of your choice:
+Вход в программу может быть ограничен несколькими видами защиты на ваш выбор:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **Защита отпечатка пальца. Отпечаток пальца используется из системы Android**
+* **Защита паролем.**
 
-To enable password protection you must:
+Чтобы включить защиту паролем, вы должны:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Нажмите в верхнем левом углу, чтобы открыть меню, или проведите по нему слева направо.
+* Прокрутите меню вниз до настроек пароля для входа.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**Защита отпечатка пальца**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+Настройка входа по отпечатку пальца:
+* Поставить галочку для активации пароля для входа
+* во всплывающем диалоговом окне установите флажок «Разрешить идентификацию отпечатка пальца»
+* Подтвердите свой выбор «ОК», появится окно о настройке пароля, выйдите из программы.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+Ввод отпечатков пальцев установлен. При повторном входе в Librera вас попросят идентифицировать отпечатки пальцев, если они верны.
+antideficit запустит программу. Отпечаток пальца добавлен, настроен на систему Android.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**Защита паролем**
 
-Setting up password login:
+Настройка пароля входа в систему:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Поставить галочку для активации пароля для входа
+* введите пароль в первой строке
+* Подтвердите пароль во второй строке. **Важно: пароли в первой и второй строке должны быть идентичны!**
+* Подтвердите свой выбор «ОК», появится окно о настройке пароля, выйдите из программы.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+Пароль для входа установлен. Когда вы входите в систему, диалоговое окно предлагает вам ввести пароль. Если введенный пароль правильный, программа войдет в систему. Если пароль неверный, появится всплывающее окно с сообщением о том, что пароль неверный.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+Чтобы удалить пароль, запустите Librera, пожалуйста, антидефицит, в настройках, где ранее активировался пароль для входа, снимите флажок этой функции.

@@ -3,7 +3,6 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq)
----
 # How to configure the widget
 
 > For faster access to the books In your library you can start them to read from the desktop of your launcher,

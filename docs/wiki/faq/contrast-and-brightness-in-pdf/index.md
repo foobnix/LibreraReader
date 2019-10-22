@@ -3,7 +3,6 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq)
----
 
 # Contrast and Brightness in PDF  (black and white effect)
 

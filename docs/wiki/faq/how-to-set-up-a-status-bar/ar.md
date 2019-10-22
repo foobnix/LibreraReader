@@ -3,23 +3,23 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/ar)
----
-# Setting the status bar
 
-> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
+# ضبط شريط الحالة
 
-To go to the status bar settings you need to:
-* Click the settings icon
-* Select an item in the "Status Bar" menu
+> Librera يسمح لك بتكوين واجهة شريط الحالة بمرونة ، وعرض أو إزالة المعلومات التي تحتاج إليها أثناء القراءة.
+
+للانتقال إلى إعدادات شريط الحالة ، يلزمك:
+* انقر على أيقونة الإعدادات
+* حدد عنصرًا في قائمة &quot;شريط الحالة&quot;
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-After the actions you get to the settings status bar where you can configure:
-* To enable or disable showing the status bar 
-* Adjust its position at the Top or Bottom of the screen.
+بعد الإجراءات ، يمكنك الوصول إلى شريط حالة الإعدادات حيث يمكنك تكوين:
+* لتمكين أو تعطيل إظهار شريط الحالة
+* اضبط موضعها في أعلى أو أسفل الشاشة.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ After the actions you get to the settings status bar where you can configure:
 
 
 
-Change the type of information about the book displayed in the text part of the status bar
+تغيير نوع المعلومات حول الكتاب المعروض في جزء النص من شريط الحالة
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* Display the book title in the status bar
-* Displays the current time
-* The percentage of battery charge.
+* عرض عنوان الكتاب في شريط الحالة
+* يعرض الوقت الحالي
+* النسبة المئوية لشحن البطارية.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ Change the type of information about the book displayed in the text part of the 
 
 
 
-* Enable or disable progress bar
-* Setting the display of labels displayed on the progress bar 
-* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
+* تمكين أو تعطيل شريط التقدم
+* ضبط عرض الملصقات المعروضة على شريط التقدم
+* يعرض أيقونة الإشارة المرجعية. حدد مربع الاختيار الذي تكون فيه الأوضاع لعرض هذا الرمز.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Change text size in status bar and header
-* To resize the status bar 
-* Change color in status bar and header.
+* تغيير حجم النص في شريط الحالة والرأس
+* لتغيير حجم شريط الحالة
+* تغيير اللون في شريط الحالة والرأس.
 
 ||||
 |-|-|-|

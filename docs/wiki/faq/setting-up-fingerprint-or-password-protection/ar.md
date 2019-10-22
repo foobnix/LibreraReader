@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/ar)
----
-# Setting up fingerprint or password protection
+# إعداد بصمة أو حماية كلمة المرور
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Librera يسمح لك بحماية المستندات الخاصة بك من المشاهدة عن طريق تقييد الوصول بكلمة مرور أو بصمة.
 
-Entry into the program may be limited to several types of protection, of your choice:
+قد يقتصر الدخول في البرنامج على عدة أنواع من الحماية ، من اختيارك:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **حماية البصمة. يتم استخدام البصمة من نظام Android**
+* **حماية كلمة المرور.**
 
-To enable password protection you must:
+لتمكين حماية كلمة المرور ، يجب عليك:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* انقر في الزاوية العلوية اليسرى لإظهار القائمة ، أو اسحبها من اليسار إلى اليمين
+* قم بالتمرير لأسفل من القائمة إلى إعدادات كلمة مرور تسجيل الدخول.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**حماية البصمة**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+إعداد تسجيل الدخول بصمات الأصابع:
+* ضع مربع اختيار لتفعيل تسجيل الدخول إلى كلمة المرور
+* في مربع الحوار المنبثق ، حدد مربع &quot;السماح بتحديد بصمات الأصابع&quot;
+* أكد اختيارك &quot;موافق&quot; ، ستظهر لك نافذة حول تعيين كلمة المرور ، والخروج من البرنامج.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+يتم تثبيت إدخال بصمات الأصابع. عند تسجيل الدخول إلى Librera مرة أخرى ، سيُطلب منك التعرف على بصمات الأصابع ، إذا كان ذلك صحيحًا
+سوف antideficit تشغيل البرنامج. تتم إضافة البصمة ، يتم ضبطها على نظام أندرويد.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**حماية كلمة المرور**
 
-Setting up password login:
+إعداد تسجيل الدخول بكلمة المرور:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* ضع مربع اختيار لتفعيل تسجيل الدخول إلى كلمة المرور
+* أدخل كلمة المرور في السطر الأول
+* تأكيد كلمة المرور في السطر الثاني. **هام: يجب أن تكون كلمات المرور في السطر الأول والثاني متطابقة!**
+* أكد اختيارك &quot;موافق&quot; ، ستظهر لك نافذة حول تعيين كلمة المرور ، والخروج من البرنامج.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+تم تثبيت تسجيل الدخول كلمة المرور. عند تسجيل الدخول ، يطالبك مربع حوار بإدخال كلمة المرور الخاصة بك. إذا كانت كلمة المرور المدخلة صحيحة ، فسيتم تسجيل البرنامج. وإذا كانت كلمة المرور غير صحيحة ، فستظهر لك نافذة منبثقة توضح أن كلمة المرور غير صحيحة.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+لإزالة كلمة المرور ، قم بتشغيل Librera ، يرجى antideficit ، في الإعدادات التي سبق تنشيط كلمة المرور لتسجيل الدخول ، قم بإلغاء تحديد خانة الاختيار لهذه الوظيفة.

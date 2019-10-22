@@ -3,48 +3,47 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/de)
----
 
-# Contrast and Brightness in PDF  (black and white effect)
+# Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)
 
-> Librera Book Reader allows you to flexibly customize the appearance of the document. 
-When you configure these settings, the document becomes black and white. 
-By moving the slider to add/decrease the parameter you need, 
-in the background of the settings dialog, you can see its effect on the document. 
-You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
+> Mit Librera Book Reader können Sie das Erscheinungsbild des Dokuments flexibel anpassen.
+Wenn Sie diese Einstellungen konfigurieren, wird das Dokument schwarzweiß.
+Indem Sie den Schieberegler bewegen, um den gewünschten Parameter hinzuzufügen/zu verringern,
+Im Hintergrund des Einstellungsdialogs können Sie die Auswirkungen auf das Dokument sehen.
+Sie können alle drei Parameter so und getrennt konfigurieren. Dieser Effekt wird häufig bei E-Ink-Lesegeräten verwendet
 
 
-For comfortable reading You can adjust the settings:
-* Contrast
-* Brightness 
-* Emphasize all (bold text effect)
+Zum bequemen Lesen Sie können die Einstellungen anpassen:
+* Kontrast
+* Helligkeit
+* Alles hervorheben (Fettdruck)
 
-## Contrast
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## Kontrast
+* Klicken Sie auf das Symbol für Kontrast und Helligkeit
+* Verwenden Sie den Schieberegler, um den gewünschten Dokumenttyp auszuwählen
+* Klicken Sie nach dem Festlegen im Einstellungsdialogfeld auf das Kreuz.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-## Brightness 
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## Helligkeit
+* Klicken Sie auf das Symbol für Kontrast und Helligkeit
+* Verwenden Sie den Schieberegler, um den gewünschten Dokumenttyp auszuwählen
+* Klicken Sie nach dem Festlegen im Einstellungsdialogfeld auf das Kreuz.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
 
-## Emphasize all  (bold text effect)
-* Click on the Contrast and brightness icon
-* Enable checkbox Emphasize all
-* After setting, click the cross in the settings dialog box
+## Alles hervorheben (Fettdruck)
+* Klicken Sie auf das Symbol für Kontrast und Helligkeit
+* Aktivieren Sie das Kontrollkästchen Alle hervorheben
+* Klicken Sie nach dem Einstellen im Dialogfeld &quot;Einstellungen&quot; auf das Kreuz
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to the original state.
+> Wenn Sie die geänderten &quot;Standard&quot; -Einstellungen wiederherstellen möchten, klicken Sie im Dialogfeld &quot;Kontrast- und Helligkeitseinstellungen&quot; auf &quot;Auf Standard wiederherstellen&quot; und bestätigen Sie &quot;OK&quot;. Einstellungen und Dokumentansicht kehren zum ursprünglichen Zustand zurück.

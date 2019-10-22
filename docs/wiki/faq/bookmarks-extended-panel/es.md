@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/es)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Trabajar con marcadores en el panel extendido (marcadores de cinta)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> En Librera, puede mostrar una barra de marcadores extendida (marcadores de cinta) en la pantalla de lectura. Sirve para la función de agregar rápidamente un marcador, cambiar entre marcadores.
 
-In order to enable it, you must:
+Para habilitarlo, debes:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* Haga clic en el icono de configuración
+* Ir a la configuración &quot;Barra de estado&quot;
+* Active la casilla de verificación del panel de marcadores extendido (marcadores de cinta) en el modo de lectura que desee.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+A continuación, verá cómo trabajar con la barra de marcadores rápidos en el modo &quot;Lectura de libros&quot;. Puede repetir estas acciones en los tres modos, son lo mismo.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**Si ya no necesita una barra de marcadores extendida (marcadores de cinta), puede desactivarla desmarcando la casilla de verificación &quot;Configuración de la barra de estado&quot; en su modo de lectura. El icono de marcador de la esquina superior derecha se eliminará.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**Agregar marcadores:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* Haga clic en el icono Marcador en la esquina superior derecha de la pantalla
+* Seleccione el marcador &quot;Agregar&quot;
+* Haga un comentario al marcador, a partir de este comentario se le asignará un nombre. En este ejemplo, el comentario &quot;primer marcador&quot;
+Haga clic en &quot;Agregar&quot;
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Se agregará un marcador en la ventana de marcadores y, en la parte superior, en la barra de marcadores extendida (marcadores de cinta). Ahora, si desea ir a esta pestaña, simplemente haga clic en ella desde la parte superior, en el panel, mientras lee. Si desea editarlo, toque prolongadamente el marcador en la ventana de marcadores, aparecerá la ventana de edición. Además, si tiene muchos marcadores, puede deslizar la barra de marcadores extendida (marcadores de cinta) para moverlos hacia la izquierda o hacia la derecha.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Agregar marcador rápido**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Haga clic en el icono Marcador en la esquina superior derecha de la pantalla
+* Seleccione &quot;Marcador rápido&quot;
+* Se creará un &quot;Marcador rápido&quot;. Se le dará un número de página de nombre. Si va a la ventana de marcadores verá un marcador rápido con el nombre - 15. &quot;Marcador rápido&quot;. Cuando hace clic largo en un marcador en la ventana de marcadores, aparecerá la ventana de edición y eliminación.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+Puede usar acciones rápidas para agregar o eliminar marcadores en la barra de marcadores extendida (marcadores de cinta):
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* Mantenga pulsado el icono de marcador en la esquina superior derecha: agrega un marcador rápido
+* Un toque prolongado en el nombre del marcador, en la barra de marcadores extendida (marcadores de cinta), le pedirá que lo elimine.
 
 

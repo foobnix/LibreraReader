@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/zh)
----
-# Setting up fingerprint or password protection
+{1}设置指纹或密码保护
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Librera允许您通过限制密码或指纹的访问来保护文档免受查看。
 
-Entry into the program may be limited to several types of protection, of your choice:
+进入该程序可能仅限于您选择的几种保护类型：
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* {3}指纹的保护。指纹是通过Android系统使用的{6}
+* {3}密码保护。{6}
 
-To enable password protection you must:
+要启用密码保护，您必须：
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+{4}点击左上角以显示菜单，或从左向右滑动菜单
+{4}向下滚动菜单至登录密码设置。
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+{6}指纹的保护{6}
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+设置指纹登录：
+{4}选中复选框以激活密码登录
+{4}在弹出的对话框中，选中“允许指纹识别”框
+{4}确认选择“确定”，将出现一个有关设置密码的窗口，退出程序。
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+指纹输入已安装。再次登录Librera时，将要求您输入指纹识别信息(如果正确)
+antideficit将运行该程序。指纹被添加，调整为Android系统。
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+{6}密码保护{6}
 
-Setting up password login:
+设置密码登录：
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+{4}选中复选框以激活密码登录
+{4}在第一行输入密码
+{4}在第二行确认密码。 {3}重要提示：第一行和第二行中的密码必须相同！{6}
+{4}确认选择“确定”，将出现一个有关设置密码的窗口，退出程序。
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+已安装密码登录。登录时，将出现一个对话框提示您输入密码。如果输入的密码正确，则程序将登录。如果密码不正确，将出现一个弹出窗口，指出密码不正确。
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+要删除密码，请运行Librera，请防备，在先前激活登录密码的设置中，清除此功能的复选框。

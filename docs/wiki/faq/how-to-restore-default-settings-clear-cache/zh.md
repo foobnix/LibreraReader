@@ -3,20 +3,19 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/zh)
----
-# How to restore default settings (similar to clear cache)
+{1}如何恢复默认设置(类似于清除缓存)
 
-> If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.
+>如果需要将“当前”配置文件中的所有Librera设置重置为原始状态(如首次安装后一样)，则可以分几个阶段完成。
 
-In order to do a reset you need to:
+为了进行重置，您需要：
 
- * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
- * Long click on the desire Profile name 
- * Confirm your action " OK"
+{4}点击左上角以显示菜单，或从左向右滑动菜单
+{4}长按所需的个人资料名称
+{4}确认您的操作“确定”
 
-*After confirmation, the program will restart and will reset all settings to default.*
+*确认后，程序将重新启动并将所有设置重置为默认值。*
 
-**Bookmarks, tags, and reading progress you have added are not deleted on reset.**
+{6}您添加的书签，标签和阅读进度不会在重置时删除。{6}
 
 
 ||||

@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/es)
----
-# Setting up fingerprint or password protection
+# Configuración de protección de huella digital o contraseña
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> Librera le permite proteger sus documentos de la visualización restringiendo el acceso con una contraseña o huella digital.
 
-Entry into the program may be limited to several types of protection, of your choice:
+La entrada al programa puede estar limitada a varios tipos de protección, de su elección:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **Protección de la huella digital. La huella digital se utiliza desde el sistema Android**
+* **Protección con contraseña.**
 
-To enable password protection you must:
+Para habilitar la protección con contraseña debe:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Haga clic en la esquina superior izquierda para que aparezca el menú, o deslícelo de izquierda a derecha
+* Desplácese hacia abajo en el menú hasta la configuración de la contraseña de inicio de sesión.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**Protección de la huella digital**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+Configuración de inicio de sesión con huella digital:
+* Ponga una casilla de verificación para activar el inicio de sesión con contraseña
+* En el cuadro de diálogo emergente, marque la casilla &quot;Permitir identificación de huellas digitales&quot;
+* Confirme su opción &quot;Aceptar&quot;, aparecerá una ventana sobre la configuración de la contraseña, salga del programa.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+La entrada de huellas digitales está instalada. Cuando vuelva a iniciar sesión en Librera, se le pedirá una identificación de huellas digitales, si es correcta.
+antideficit ejecutará el programa. La huella digital se agrega, se ajusta al sistema Android.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**Protección con contraseña**
 
-Setting up password login:
+Configuración de inicio de sesión con contraseña:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Ponga una casilla de verificación para activar el inicio de sesión con contraseña
+* Ingrese la contraseña en la primera línea
+* Confirme la contraseña en la segunda línea. **Importante: ¡las contraseñas en la primera y segunda línea deben ser idénticas!**
+* Confirme su opción &quot;Aceptar&quot;, aparecerá una ventana sobre la configuración de la contraseña, salga del programa.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+La contraseña de inicio de sesión está instalada. Cuando inicia sesión, un cuadro de diálogo le solicita que ingrese su contraseña. Si la contraseña ingresada es correcta, el programa iniciará sesión. Si la contraseña es incorrecta, aparecerá una ventana emergente que indica que la contraseña es incorrecta.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+Para eliminar la contraseña, ejecute Librera, antideficit, en la configuración donde activó previamente la contraseña de inicio de sesión, desactive la casilla de verificación de esta función.

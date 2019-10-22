@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/de)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Arbeiten mit Lesezeichen im erweiterten Bedienfeld (Multifunktionsleisten-Lesezeichen)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> In Librera können Sie eine erweiterte Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) auf dem Lesebildschirm anzeigen. Es dient zum schnellen Hinzufügen eines Lesezeichens und zum Wechseln zwischen Lesezeichen.
 
-In order to enable it, you must:
+Um es zu aktivieren, müssen Sie:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* Klicken Sie auf das Einstellungssymbol
+* Gehen Sie zu den Einstellungen &quot;Statusleiste&quot;
+* Aktivieren Sie das Kontrollkästchen für das erweiterte Lesezeichenfenster (Multifunktionsleisten-Lesezeichen) im gewünschten Lesemodus.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+Als Nächstes erfahren Sie, wie Sie mit der Schnelllesezeichenleiste im Modus &quot;Buch lesen&quot; arbeiten. Sie können diese Aktionen in allen drei Modi wiederholen, sie sind gleich.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**Wenn Sie keine erweiterte Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) mehr benötigen, können Sie diese deaktivieren, indem Sie das Kontrollkästchen &quot;Statusleiste&quot; in Ihrem Lesemodus deaktivieren. Das Lesezeichensymbol in der oberen rechten Ecke wird entfernt.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**Hinzufügen von Lesezeichen:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* Klicken Sie auf das Lesezeichensymbol in der oberen rechten Ecke des Bildschirms
+* Wählen Sie das Lesezeichen &quot;Hinzufügen&quot;
+* Kommentieren Sie das Lesezeichen. Aus diesem Kommentar wird dem Lesezeichen ein Name zugewiesen. In diesem Beispiel der Kommentar &quot;erstes Lesezeichen&quot;
+Klicken Sie auf &quot;Hinzufügen&quot;
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Ein Lesezeichen wird im Lesezeichenfenster und oben in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) hinzugefügt. Wenn Sie jetzt zu dieser Registerkarte wechseln möchten, klicken Sie beim Lesen einfach oben im Bedienfeld darauf. Wenn Sie es bearbeiten möchten, tippen Sie lange auf das Lesezeichen im Lesezeichenfenster. Das Bearbeitungsfenster wird angezeigt. Wenn Sie über viele Lesezeichen verfügen, können Sie in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) nach links oder rechts wischen.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Hinzufügen eines Schnelllesezeichens**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Klicken Sie auf das Lesezeichensymbol in der oberen rechten Ecke des Bildschirms
+* Wählen Sie &quot;Schnelllesezeichen&quot;.
+* Ein &quot;Schnelllesezeichen&quot; wird erstellt. Es wird eine Namensseitennummer vergeben. Wenn Sie zum Lesezeichenfenster gehen, sehen Sie ein Schnelllesezeichen mit dem Namen - 15. &quot;Schnelllesezeichen&quot;. Wenn Sie im Lesezeichenfenster lange auf ein Lesezeichen klicken, wird das Fenster zum Bearbeiten und Löschen geöffnet.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+Mithilfe von Schnellaktionen können Sie Lesezeichen in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) hinzufügen oder entfernen:
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* Langes Tippen auf das Lesezeichensymbol in der oberen rechten Ecke fügt ein schnelles Lesezeichen hinzu
+* Wenn Sie in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) lange auf den Namen des Lesezeichens tippen, werden Sie aufgefordert, das Lesezeichen zu löschen.
 
 

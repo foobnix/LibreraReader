@@ -3,23 +3,23 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq/de)
----
-# Setting the status bar
 
-> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
+# Festlegen der Statusleiste
 
-To go to the status bar settings you need to:
-* Click the settings icon
-* Select an item in the "Status Bar" menu
+> Mit Librera können Sie die Benutzeroberfläche der Statusleiste flexibel konfigurieren und die Informationen anzeigen oder daraus entfernen, die Sie beim Lesen benötigen.
+
+Um zu den Einstellungen in der Statusleiste zu gelangen, müssen Sie:
+* Klicken Sie auf das Einstellungssymbol
+* Wählen Sie ein Element im Menü &quot;Statusleiste&quot; aus
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-After the actions you get to the settings status bar where you can configure:
-* To enable or disable showing the status bar 
-* Adjust its position at the Top or Bottom of the screen.
+Nach den Aktionen gelangen Sie in die Statusleiste der Einstellungen, in der Sie Folgendes konfigurieren können:
+* Aktivieren oder Deaktivieren der Anzeige der Statusleiste
+* Passen Sie die Position oben oder unten auf dem Bildschirm an.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ After the actions you get to the settings status bar where you can configure:
 
 
 
-Change the type of information about the book displayed in the text part of the status bar
+Ändern Sie die Art der Informationen zum Buch, die im Textteil der Statusleiste angezeigt werden
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* Display the book title in the status bar
-* Displays the current time
-* The percentage of battery charge.
+* Zeigen Sie den Buchtitel in der Statusleiste an
+* Zeigt die aktuelle Uhrzeit an
+* Der Prozentsatz der Akkuladung.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ Change the type of information about the book displayed in the text part of the 
 
 
 
-* Enable or disable progress bar
-* Setting the display of labels displayed on the progress bar 
-* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
+* Aktivieren oder deaktivieren Sie den Fortschrittsbalken
+* Festlegen der Anzeige von Beschriftungen, die in der Fortschrittsleiste angezeigt werden
+* Zeigt das Lesezeichensymbol an. Aktivieren Sie das Kontrollkästchen, in welchen Modi dieses Symbol angezeigt werden soll.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Change text size in status bar and header
-* To resize the status bar 
-* Change color in status bar and header.
+* Ändern Sie die Textgröße in der Statusleiste und in der Kopfzeile
+* So ändern Sie die Größe der Statusleiste
+* Ändern Sie die Farbe in der Statusleiste und in der Kopfzeile.
 
 ||||
 |-|-|-|

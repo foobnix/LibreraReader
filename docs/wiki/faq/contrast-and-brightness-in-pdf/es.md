@@ -3,48 +3,47 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/es)
----
 
-# Contrast and Brightness in PDF  (black and white effect)
+# Contraste y brillo en PDF (efecto blanco y negro)
 
-> Librera Book Reader allows you to flexibly customize the appearance of the document. 
-When you configure these settings, the document becomes black and white. 
-By moving the slider to add/decrease the parameter you need, 
-in the background of the settings dialog, you can see its effect on the document. 
-You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
+> Librera Book Reader le permite personalizar de manera flexible la apariencia del documento.
+Cuando configura estos ajustes, el documento se vuelve blanco y negro.
+Al mover el control deslizante para agregar/disminuir el parámetro que necesita,
+en el fondo del cuadro de diálogo de configuración, puede ver su efecto en el documento.
+Puede configurar los tres parámetros juntos de manera separada. Este efecto se usa a menudo en lectores de tinta electrónica
 
 
-For comfortable reading You can adjust the settings:
-* Contrast
-* Brightness 
-* Emphasize all (bold text effect)
+Para una lectura cómoda Puede ajustar la configuración:
+* Contraste
+* Brillo
+* Destacar todo (efecto de texto en negrita)
 
-## Contrast
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## Contraste
+* Haga clic en el icono de contraste y brillo
+* Use el control deslizante para seleccionar el tipo de documento que desea
+* Después de configurar, haga clic en la cruz en el cuadro de diálogo de configuración.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-## Brightness 
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+## Brillo
+* Haga clic en el icono de contraste y brillo
+* Use el control deslizante para seleccionar el tipo de documento que desea
+* Después de configurar, haga clic en la cruz en el cuadro de diálogo de configuración.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
 
-## Emphasize all  (bold text effect)
-* Click on the Contrast and brightness icon
-* Enable checkbox Emphasize all
-* After setting, click the cross in the settings dialog box
+## Destacar todo (efecto de texto en negrita)
+* Haga clic en el icono de contraste y brillo
+* Activar casilla de verificación Enfatizar todo
+* Después de configurar, haga clic en la cruz en el cuadro de diálogo de configuración
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to the original state.
+> Si desea restaurar la configuración &quot;predeterminada&quot; modificada, haga clic en el cuadro de diálogo Configuración de contraste y brillo - &quot;Restaurar a la configuración predeterminada&quot; y confirme &quot;Aceptar&quot;. La configuración y la vista de documentos vuelven al estado original.

@@ -28,7 +28,7 @@ public class WikiTranslate {
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions");
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
-       // String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq/how-to-add-new-faq-section";
+      // String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq/how-to-set-up-a-status-bar";
 
 
         File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");

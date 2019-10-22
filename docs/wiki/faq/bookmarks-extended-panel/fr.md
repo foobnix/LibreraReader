@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/fr)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Utilisation des signets dans le panneau étendu (Signets du ruban)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> Dans Librera, vous pouvez afficher une barre de signets étendue (signets à ruban) sur l'écran de lecture. Il sert à la fonction d’ajout rapide d’un signet, de basculement entre les signets.
 
-In order to enable it, you must:
+Pour l'activer, vous devez:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* Cliquez sur l'icône des paramètres.
+* Accédez aux paramètres &quot;Barre d'état&quot;.
+* Cochez la case du panneau de favoris étendu (favoris de ruban) dans le mode de lecture souhaité.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+Vous verrez ensuite comment utiliser la barre de favoris en mode &quot;Lecture de livre&quot;. Vous pouvez répéter ces actions dans les trois modes, elles sont identiques.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**Si vous n'avez plus besoin d'une barre de favoris étendue (marque-pages ruban), vous pouvez la désactiver en décochant la case &quot;Barre d'état&quot; de votre mode de lecture. L'icône de signet située dans le coin supérieur droit sera supprimée.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**Ajout de favoris:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* Cliquez sur l'icône Signet dans le coin supérieur droit de l'écran.
+* Sélectionnez le lien &quot;Ajouter&quot;.
+* Faites un commentaire sur le signet. À partir de ce commentaire, un nom lui sera attribué. Dans cet exemple, le commentaire &quot;premier signet&quot;
+Cliquez sur &quot;Ajouter&quot;
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Un signet sera ajouté dans la fenêtre des signets et en haut, dans la barre de signets étendue (signets à ruban). Maintenant, si vous voulez aller à cet onglet, cliquez dessus en haut, dans le panneau, pendant la lecture. Si vous souhaitez l'éditer, appuyez longuement sur le signet dans la fenêtre des signets, la fenêtre d'édition apparaîtra. De plus, si vous avez beaucoup de signets, vous pouvez glisser dans la barre de signets étendue (signets du ruban) pour les déplacer à gauche ou à droite.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Ajout d'un favori rapide**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Cliquez sur l'icône Signet dans le coin supérieur droit de l'écran.
+* Sélectionnez &quot;Signet rapide&quot;.
+* Un &quot;signet rapide&quot; sera créé. Un numéro de page de nom lui sera attribué. Si vous allez dans la fenêtre des signets, vous verrez un signet rapide avec le nom - 15. &quot;Signet rapide&quot;. Lorsque vous cliquez longuement sur un signet dans la fenêtre des signets, la fenêtre d'édition et de suppression apparaîtra.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+Vous pouvez utiliser des actions rapides pour ajouter ou supprimer des signets dans la barre de signets étendue (Signets du ruban):
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* Appuyez longuement sur l'icône de signet dans le coin supérieur droit pour ajouter un signet rapide.
+* Un appui long sur le nom du signet dans la barre de signets étendue (signets à ruban) vous invitera à le supprimer.
 
 

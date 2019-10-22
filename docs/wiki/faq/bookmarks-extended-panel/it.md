@@ -3,25 +3,24 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/it)
----
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Utilizzo dei segnalibri nel pannello esteso (Segnalibri della barra multifunzione)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> In Librera, è possibile visualizzare una barra dei segnalibri estesa (Segnalibri della barra multifunzione) nella schermata di lettura. Serve per la funzione di aggiungere rapidamente un segnalibro, passando da un segnalibro all'altro.
 
-In order to enable it, you must:
+Per abilitarlo, è necessario:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* Fai clic sull'icona delle impostazioni
+* Vai alle impostazioni &quot;Barra di stato&quot;
+* Attiva la casella di controllo del pannello dei segnalibri esteso (Segnalibri della barra multifunzione) nella modalità di lettura desiderata.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+Successivamente, vedrai come lavorare con la barra dei segnalibri rapidi in modalità &quot;Lettura libro&quot;. Puoi ripetere queste azioni in tutte e tre le modalità, sono le stesse.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+**Se non hai più bisogno di una barra dei segnalibri estesa (Segnalibri della barra multifunzione), puoi disabilitarla deselezionando la casella di controllo delle impostazioni &quot;Barra di stato&quot; dalla modalità di lettura. L'icona del segnalibro nell'angolo in alto a destra verrà rimossa.**
 
 ||||
 |-|-|-|
@@ -29,29 +28,29 @@ Next, you will see how to work with the quick bookmarks bar in "Book reading" mo
 
 
 
-**Adding bookmarks:**
+**Aggiunta di segnalibri:**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+* Fai clic sull'icona Segnalibro nell'angolo in alto a destra dello schermo
+* Seleziona &quot;Aggiungi&quot; segnalibro
+* Aggiungi un commento al segnalibro, da questo commento al segnalibro verrà assegnato un nome. In questo esempio, il commento &quot;primo segnalibro&quot;
+Fai clic su &quot;Aggiungi&quot;
 
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Un segnalibro verrà aggiunto nella finestra dei segnalibri e, in alto, nella barra dei segnalibri estesa (segnalibri della barra multifunzione). Ora, se vuoi andare a questa scheda, fai clic su di essa dall'alto, nel pannello, durante la lettura. Se vuoi modificarlo, tocca a lungo il segnalibro nella finestra dei segnalibri, apparirà la finestra di modifica. Inoltre, se si hanno molti segnalibri, è possibile scorrere sulla barra dei segnalibri estesa (segnalibri della barra multifunzione) per spostarli a sinistra o a destra.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Aggiunta del segnalibro rapido**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Fai clic sull'icona Segnalibro nell'angolo in alto a destra dello schermo
+* Seleziona &quot;Segnalibro rapido&quot;
+* Verrà creato un &quot;Segnalibro rapido&quot;. Verrà assegnato un numero di pagina-nome. Se vai alla finestra dei segnalibri vedrai un segnalibro rapido con il nome - 15. &quot;Segnalibro rapido&quot;. Quando fai clic a lungo su un segnalibro nella finestra dei segnalibri, verrà visualizzata la finestra di modifica, eliminandola.
 
 
 ||||
@@ -59,9 +58,9 @@ A bookmark will be added in the bookmarks window, and on top, in the extended bo
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+È possibile utilizzare azioni rapide per aggiungere o rimuovere i segnalibri nella barra dei segnalibri estesa (Segnalibri della barra multifunzione):
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
+* Tocca a lungo l'icona del segnalibro nell'angolo in alto a destra - aggiunge un segnalibro rapido
+* Un lungo tocco sul nome del segnalibro, nella barra dei segnalibri estesa (Segnalibri della barra multifunzione), ti chiederà di eliminarlo.
 
 

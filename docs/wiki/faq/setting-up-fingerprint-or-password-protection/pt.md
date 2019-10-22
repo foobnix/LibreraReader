@@ -3,53 +3,52 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq/pt)
----
-# Setting up fingerprint or password protection
+# Configuração de impressão digital ou proteção por senha
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> O Librera permite proteger a exibição dos seus documentos restringindo o acesso com uma senha ou impressão digital.
 
-Entry into the program may be limited to several types of protection, of your choice:
+A entrada no programa pode ser limitada a vários tipos de proteção, à sua escolha:
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
+* **Proteção da impressão digital. A impressão digital é usada no sistema Android**
+* **Proteção por senha.**
 
-To enable password protection you must:
+Para habilitar a proteção por senha, você deve:
 
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Clique no canto superior esquerdo para abrir o menu ou deslize da esquerda para a direita
+* Role o menu para as configurações de senha de login.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+**Proteção da impressão digital**
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+Configurando o login de impressão digital:
+* Marque a caixa de seleção para ativar o login da senha
+* Na caixa de diálogo pop-up, marque a caixa &quot;Permitir identificação de impressão digital&quot;
+* Confirme sua escolha &quot;OK&quot;, uma janela aparecerá sobre a configuração da senha, saia do programa.
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+A entrada de impressão digital está instalada. Ao fazer login novamente no Librera, você será solicitado a identificar as impressões digitais, se estiver correto
+antideficit irá executar o programa. A impressão digital é adicionada, é ajustada para o sistema Android.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+**Proteção por senha**
 
-Setting up password login:
+Configurando o login com senha:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Marque a caixa de seleção para ativar o login da senha
+* Digite a senha na primeira linha
+* Confirme a senha na segunda linha. **Importante: as senhas na primeira e na segunda linha devem ser idênticas!**
+* Confirme sua escolha &quot;OK&quot;, uma janela aparecerá sobre a configuração da senha, saia do programa.
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+O login da senha está instalado. Quando você faz login, uma caixa de diálogo solicita que você digite sua senha. Se a senha digitada estiver correta, o programa será conectado. Se a senha estiver incorreta, uma janela pop-up aparecerá informando que a senha está incorreta.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+Para remover a senha, execute o Librera, antideficit, nas configurações em que a senha de login foi ativada anteriormente, limpe a caixa de seleção desta função.
