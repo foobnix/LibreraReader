@@ -5,6 +5,8 @@ layout: main
 
 # Frequently asked questions
 
+* [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)
+* [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)
 * [How to restore default settings (similar to clear cache)](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [Setting up fingerprint or password protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)

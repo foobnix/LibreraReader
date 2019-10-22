@@ -470,17 +470,17 @@ public class TxtUtils {
 
             for (String r : shortList) {
                 String r1 = " " + r;
-                String r2 = " " + r.replace(".", "{dot}");
+                String r2 = " " + r.replace(".", " ");
                 pageHTML = pageHTML.replace(r1, r2);
             }
 
 
-            pageHTML = replaceAll(pageHTML, " (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\.", "  $1{dot}$2{dot}$3{dot}$4{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\.", "  $1{dot}$2{dot}$3{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,4})\\.", "  $1{dot}$2{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. (\\S{1,2})\\.", "  $1{dot} $2{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. ", " $1{dot} ");
-            pageHTML = replaceAll(pageHTML, "(\\d*)\\.(\\d+)", "$1{dot}$2"); //skip numbers 3.3 .343
+            pageHTML = replaceAll(pageHTML, " (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\.", "  $1 $2 $3 $4 ");
+            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\.", "  $1 $2 $3 ");
+            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,4})\\.", "  $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. (\\S{1,2})\\.", "  $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. ", " $1 ");
+            pageHTML = replaceAll(pageHTML, "(\\d*)\\.(\\d+)", "$1 $2"); //skip numbers 3.3 .343
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -489,7 +489,7 @@ public class TxtUtils {
             }
 
 
-            pageHTML = pageHTML.replace("{dot}", ".");
+            //pageHTML = pageHTML.replace("{dot}", ".");
         }
 
 

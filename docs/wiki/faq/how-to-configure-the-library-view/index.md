@@ -10,10 +10,12 @@ layout: main
 
 
 To quickly configure the library view, you must:
+
 * Go to the Library tab
 * Click on the library display mode and select the desired one.
 
 You can also further customize the look of the library and book covers in the settings:
+
 * Swipe to pull the settings panel
 * Swipe down to the settings of book covers.
 
@@ -30,6 +32,7 @@ In the quick setup of the library, you can choose a different kind of it, I will
 
 
 In the book covers settings, you can disable or enable the book cover.
+
 * Turn off the checkbox to remove the display of the book cover
 * If you want to display the covers of books in the library then enable this checkbox.
 
@@ -39,6 +42,7 @@ In the book covers settings, you can disable or enable the book cover.
 
 
 To change the size of the displayed book cover:
+
 * Use the slider to select the size of the displayed book cover 
 
 
@@ -56,8 +60,10 @@ To change the grid displayed on the book covers screen:
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
 
 If you want to return the book cover settings to their initial state:
+
 * Click "restore default"
 * Confirm your action "OK"
+
 The covers will be restored to their initial settings.
 
 
