@@ -39,9 +39,17 @@ In the book covers settings, you can disable or enable the book cover.
 
 
 To change the size of the displayed book cover:
+* Use the slider to select the size of the displayed book cover 
 
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
+
+To change the grid displayed on the book covers screen:
+
+* A slider to choose the size of the grid
+* You can choose the number of columns
+
+
 
