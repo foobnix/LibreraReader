@@ -6,7 +6,7 @@ layout: main
 
 > Librera allows you to voice the text Of your documents by means of third-party voice synthesizers installed in the Android system.Text-to-Speech (TTS)
 
-**To install voice speech synthesizer (TTS). Using the Google Text-to-Speech example**
+**To install voice speech synthesizer (TTS). Using the Google Text-to-Speech example.**
 
 * Click on the icon the "voice playback of the text"
 * In the TTS settings, select the "i" icon 
@@ -26,7 +26,7 @@ layout: main
 * Select the voice synthesizer language you need. You can view languages by swiping up or down
 * Choose the type of voice sound you need, according to your preference.
 
-After selecting all the options, click in the navigation bar "back", go back to Google Text-to-Speech settings, click "Play". The test greeting of the Google voice synthesizer with the language and sound of Your choice will be sounded. Go to Librera, tap the text voice playback icon, tap "Play" and listen to your book.
+After selecting all the options, click in the navigation bar "back", go back to Google Text-to-Speech settings, click "Play". The test greeting of the Google voice synthesizer with the language and sound of Your choice will be sounded. Go to Librera, tap "voice playback of the text" icon, tap "Play" and listen to your book.
 
 ||||
 |-|-|-|
