@@ -10,7 +10,7 @@ layout: main
 Setting up reading modes in the book mode, for example, the book format .epub: 
 * Press the icon to select the reading mode
 * Choose single-page or two-page reading view
-* The same is true for book formats *.mobi, *.fb2,*.azw,*.azw3
+* The same is true for book formats *.mobi,*.fb2,*.azw,*.azw3
 
 ||||
 |-|-|-|
