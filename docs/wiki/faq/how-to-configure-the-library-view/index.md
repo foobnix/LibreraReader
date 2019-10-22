@@ -55,3 +55,12 @@ To change the grid displayed on the book covers screen:
 |-|-|-|
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
 
+If you want to return the book cover settings to their initial state:
+* Click "restore default"
+* Confirm your action "OK"
+The covers will be restored to their initial settings.
+
+
+
+
+
