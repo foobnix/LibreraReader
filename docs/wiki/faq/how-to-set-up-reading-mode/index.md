@@ -16,3 +16,11 @@ Setting up reading modes in the book mode, for example, the book format .epub:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
+Setting up reading modes for format documents *.pdf (*.djvu)
+* Press the icon to select the reading mode
+* Select the reading mode you want.
+
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
