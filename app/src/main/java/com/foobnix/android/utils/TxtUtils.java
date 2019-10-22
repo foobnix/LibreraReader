@@ -279,7 +279,7 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", "");
         pageHTML = pageHTML.replace("<end-block>", "");
-        pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>", "");
+        pageHTML = replaceAll(pageHTML,"<pause-font-size-[0-9,.]*>", "");
         return pageHTML;
     }
 
@@ -295,8 +295,8 @@ public class TxtUtils {
 
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)
-        pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>$", "");
-        pageHTML = pageHTML.replaceAll("<pause-font-size-[0-9,.]*>", TTS_PAUSE);
+        pageHTML = replaceAll(pageHTML,"<pause-font-size-[0-9,.]*>$", "");
+        pageHTML = replaceAll(pageHTML,"<pause-font-size-[0-9,.]*>", TTS_PAUSE);
         return pageHTML;
     }
 
@@ -331,12 +331,12 @@ public class TxtUtils {
         if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
             try {
                 String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
-                pageHTML = pageHTML.replaceAll("[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
+                pageHTML = replaceAll(pageHTML,"[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);
             }
         } else {
-            pageHTML = pageHTML.replaceAll("[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
+            pageHTML = replaceAll(pageHTML,"[\\[{]\\d+[\\]}]", "");//replace[1] or{22} or [32] or {3}
         }
         pageHTML = pageHTML.replaceAll("(\\p{Alpha})\\d+", "$1");//replace1
 
@@ -366,7 +366,7 @@ public class TxtUtils {
 
 
         pageHTML = pageHTML.replace("  ", " ");
-        pageHTML = pageHTML.replaceAll("(?u)(\\w+)(-\\s)", "$1");
+        pageHTML = replaceAll(pageHTML,"(\\w+)(-\\s)", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
         LOG.d("pageHTML [4]", pageHTML);
@@ -379,7 +379,7 @@ public class TxtUtils {
 
                 for (String key : dict1.keySet()) {
                     try {
-                        pageHTML = pageHTML.replaceAll(key, dict1.get(key));
+                        pageHTML = replaceAll(pageHTML,key, dict1.get(key));
                     } catch (Exception e) {
                         LOG.e(e);
                     }
@@ -409,7 +409,7 @@ public class TxtUtils {
                     if (key.startsWith("*")) {
                         key = key.substring(1);
                         try {
-                            pageHTML = pageHTML.replaceAll(key, value);
+                            pageHTML = replaceAll(pageHTML, key, value);
                         } catch (Exception e) {
                             LOG.e(e);
                         }
@@ -467,12 +467,12 @@ public class TxtUtils {
             }
 
 
-            pageHTML = pageHTML.replaceAll(" (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\. ", "  $1{dot}$2{dot}$3{dot}$4{dot} ");
-            pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\. ", "  $1{dot}$2{dot}$3{dot} ");
-            pageHTML = pageHTML.replaceAll(" (\\S{1,3})\\.(\\S{1,4})\\. ", "  $1{dot}$2{dot} ");
-            pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. (\\S{1,2})\\. ", "  $1{dot} $2{dot} ");
-            pageHTML = pageHTML.replaceAll(" (\\S{1,2})\\. ", " $1{dot} ");
-            pageHTML = pageHTML.replaceAll("(\\d*)\\.(\\d+)", "$1{dot}$2"); //skip numbers 3.3 .343
+            pageHTML = replaceAll(pageHTML," (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\.", "  $1{dot}$2{dot}$3{dot}$4{dot}");
+            pageHTML = replaceAll(pageHTML," (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\.", "  $1{dot}$2{dot}$3{dot}");
+            pageHTML = replaceAll(pageHTML," (\\S{1,3})\\.(\\S{1,4})\\.", "  $1{dot}$2{dot}");
+            pageHTML = replaceAll(pageHTML," (\\S{1,2})\\. (\\S{1,2})\\.", "  $1{dot} $2{dot}");
+            pageHTML = replaceAll(pageHTML," (\\S{1,2})\\. ", " $1{dot} ");
+            pageHTML = replaceAll(pageHTML,"(\\d*)\\.(\\d+)", "$1{dot}$2"); //skip numbers 3.3 .343
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -486,6 +486,10 @@ public class TxtUtils {
 
 
         return pageHTML;
+    }
+
+    public static String replaceAll(String input, String regex, String replacement) {
+        return Pattern.compile(regex,Pattern.UNICODE_CHARACTER_CLASS).matcher(input).replaceAll(replacement);
     }
 
     static List<String> shortList = new ArrayList<>();
@@ -1085,11 +1089,11 @@ public class TxtUtils {
         }
 
         String replaceAll = txt.trim().replace("   ", " ").replace("  ", " ").replaceAll("\\s", " ").trim();
-        replaceAll = replaceAll.replaceAll("(?u)(\\w+)(-\\s)", "$1").trim();
+        replaceAll = replaceAll(replaceAll,"(\\w+)(-\\s)", "$1").trim();
 
         if (!replaceAll.contains(" ")) {
             String regexp = "[^\\w\\[\\]\\{\\}’']+";
-            replaceAll = replaceAll.replaceAll(regexp + "$", "").replaceAll("^" + regexp, "");
+            replaceAll = replaceAll(replaceAll,regexp + "$", "").replaceAll("^" + regexp, "");
         }
         return replaceAll.trim();
     }
