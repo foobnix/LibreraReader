@@ -16,3 +16,16 @@ To install voice speech synthesizer (TTS):
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
+
+
+To set up Google Text-to-Speech:
+
+* Click on the "Voice" link. You will be taken to Google Text-to-Speech settings
+* Click the Google Text-to-Speech settings icon
+* Select "install voice data" - set the language of the voice synthesizer
+* Select the voice synthesizer language you need. You can view languages by swiping up or down
+* Choose the type of voice sound you need, according to your preference.
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
