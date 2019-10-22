@@ -35,13 +35,12 @@ import java.util.Set;
 public class MuPdfPage extends AbstractCodecPage {
 
 
-    private volatile long pageHandle;
-    private final long docHandle;
-    private int pageNumber;
-
     final RectF pageBounds;
     final int actualWidth;
     final int actualHeight;
+    private final long docHandle;
+    private volatile long pageHandle;
+    private int pageNumber;
 
     private MuPdfPage(final long pageHandle, final long docHandle, int pageNumber) {
         this.pageHandle = pageHandle;
@@ -52,6 +51,31 @@ public class MuPdfPage extends AbstractCodecPage {
         this.actualWidth = (int) pageBounds.width();
         this.actualHeight = (int) pageBounds.height();
     }
+
+    static MuPdfPage createPage(final long dochandle, final int pageno) {
+        TempHolder.lock.lock();
+        try {
+            LOG.d("MUPDF! +create page", dochandle, pageno);
+            final long open = open(dochandle, pageno);
+            return new MuPdfPage(open, dochandle, pageno);
+        } finally {
+            TempHolder.lock.unlock();
+        }
+    }
+
+    private static native void getBounds(long dochandle, long handle, float[] bounds);
+
+    private static native int getCharCount(long dochandle, long handle);
+
+    private static native void free(long dochandle, long handle);
+
+    private static native long open(long dochandle, int pageno);
+
+    private static native void renderPage(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b);
+
+    private native static TextChar[][][][] text(long docHandle, long pageHandle);
+
+    private native static ArrayList<TextChar> text116(long docHandle, long pageHandle);
 
     @Override
     public long getPageHandle() {
@@ -115,17 +139,6 @@ public class MuPdfPage extends AbstractCodecPage {
         return matrixArray;
     }
 
-    static MuPdfPage createPage(final long dochandle, final int pageno) {
-        TempHolder.lock.lock();
-        try {
-            LOG.d("MUPDF! +create page", dochandle, pageno);
-            final long open = open(dochandle, pageno);
-            return new MuPdfPage(open, dochandle, pageno);
-        } finally {
-            TempHolder.lock.unlock();
-        }
-    }
-
     @Override
     protected void finalize() throws Throwable {
         try {
@@ -136,7 +149,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public  void recycle() {
+    public void recycle() {
         try {
             TempHolder.lock.lock();
             if (pageHandle != 0 && docHandle != 0) {
@@ -261,6 +274,8 @@ public class MuPdfPage extends AbstractCodecPage {
         }
     }
 
+    //private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
+
     @Override
     public List<PageLink> getPageLinks() {
         TempHolder.lock.lock();
@@ -280,23 +295,6 @@ public class MuPdfPage extends AbstractCodecPage {
             TempHolder.lock.unlock();
         }
     }
-
-    private static native void getBounds(long dochandle, long handle, float[] bounds);
-
-    private static native int getCharCount(long dochandle, long handle);
-
-    private static native void free(long dochandle, long handle);
-
-    private static native long open(long dochandle, int pageno);
-
-    private static native void renderPage(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b);
-
-    //private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
-
-    private native static TextChar[][][][] text(long docHandle, long pageHandle);
-
-    private native static ArrayList<TextChar> text116(long docHandle, long pageHandle);
-
 
     private native void addInkAnnotationInternal(long docHandle, long pageHandle, float[] color, PointF[][] arcs, int width, float alpha);
 
@@ -344,7 +342,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public  void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
+    public void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
         LOG.d("addMarkupAnnotation1", type, color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
@@ -380,7 +378,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public  void addAnnotation(float[] color, PointF[][] points, float width, float alpha) {
+    public void addAnnotation(float[] color, PointF[][] points, float width, float alpha) {
         LOG.d("addInkAnnotationInternal", color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
@@ -405,9 +403,6 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public synchronized TextWord[][] getText() {
 
-        if (!AppState.get().isAllowTextSelection && !TempHolder.isSeaching) {
-            return new TextWord[0][0];
-        }
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
             return getText_116();
@@ -417,7 +412,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     }
 
-    public  TextWord[][] getText_116() {
+    public TextWord[][] getText_116() {
         List<TextChar> chars = null;
 
         TempHolder.lock.lock();
@@ -449,7 +444,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
         if (tw.w.length() > 0) {
             words.add(tw);
-           // LOG.d("text116 add2", tw.w);
+            // LOG.d("text116 add2", tw.w);
         }
 
 
