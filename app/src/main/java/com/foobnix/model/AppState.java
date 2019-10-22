@@ -281,7 +281,7 @@ public class AppState {
     @IgnoreHashCode
     public int doubleClickAction1 = DOUBLE_CLICK_ADJUST_PAGE;
     @IgnoreHashCode
-    public int inactivityTime = 2;
+    public int inactivityTime = 5;
     @IgnoreHashCode
     public int remindRestTime = 120;
     public int flippingInterval = 10;

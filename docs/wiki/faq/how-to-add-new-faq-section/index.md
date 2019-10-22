@@ -16,32 +16,21 @@ File header format: **index.md**
 ```
 ---
 layout: main
-version: 1
 ---
 [<](/wiki/faq)
----
 
 # Example of Title
-
 ```
+
 
 All related images for this section should be in the folder
-```
 
-* Desctiption 1
-...
-* Desctiption n
+```
+* Image description 1
+* Image description 2
+* Image description 3
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
-```
-
-If you update the FAQ section after generatoin you should increase +1 the **version:** in the header 
-```
----
-layout: main
-version: 2
----
 ```

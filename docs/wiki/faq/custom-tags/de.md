@@ -1,54 +1,50 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
-# Erstellen Sie benutzerdefinierte Tags
+# Umgang mit benutzerdefinierten Tags
 
-> In diesem Kapitel erfahren Sie, warum @ @ book tags__ benötigt wird und wie Sie sie zu den Büchern hinzufügen können. Markieren ist freie Form
-Wörter, die den Büchern von irgendwelchen Dateien zustimmen, um die Bibliothek besser zu organisieren. Es ist möglich, dem selben Buch viele Tags zuzuweisen. Tags helfen Benutzern beim Erstellen von Büchern
-in Sammlungen. Tags helfen dem Benutzer, Bücher in Listen oder Sammlungen einfach zu finden.
-Tags sind vom Benutzer erstellte Metadaten, aber es gibt auch andere Metadaten wie [Series](), [Authors](), [Keywords](), [Genres](), die dazu beitragen
-Buchsammlungen finden und orginalisieren.
+> Indem wir den Büchern in unserer Bibliothek benutzerdefinierte Tags hinzufügen, fügen wir den Metadaten der Bücher (für uns) aussagekräftige Informationen hinzu. Diese Tags werden sich als nützlich erweisen, wenn wir in Zukunft auf die Bücher verweisen, denen wir Tags zugewiesen haben. Sie helfen uns, Bücher in der Bibliothek zu organisieren, nach unseren Wünschen zu sortieren, benutzerspezifische Buchlisten zu erstellen, Bücher in der Bibliothek leicht zu finden usw.
+> Benutzerdefinierte Tags werden für alle erdenklichen Zwecke zusammen mit bereits vorhandenen herkömmlichen E-Book-Tags verwendet, z. B. [Series](), [Authors](), [Keywords](), [Genres]() usw.
 
-### Es gibt viele Orte, an denen Benutzer # # Tags__ zum Buch hinzufügen können.
+## Es gibt viele Möglichkeiten, einem Buch ein **neues Tag** hinzuzufügen.
 
-* Durch langes Tippen auf das Sternsymbol (Favoriten)
-* Aus dem Buchmenü
-* Aus dem Buchinformationsdialog
+* Durch langes Drücken auf das Sternsymbol (Favoriten)
+* Rufen Sie das Buchmenü auf und tippen Sie auf &quot;Tags hinzufügen&quot;.
+* Über das Fenster &quot;Dateiinfo&quot; (Tipp: Wenn Sie lange auf einen Buchdeckel drücken, gelangen Sie dorthin.)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### Hinzufügen von Tags ist sehr einfach, klicken Sie einfach
+## Das Hinzufügen und Löschen von Tags ist kinderleicht
 
-> Wenn das Tag gelöscht wird, wird dieses Tag aus allen zugewiesenen Büchern entfernt
-
-* Tag hinzufügen
-* Neues Tag erstellen
-* Löschen Sie das zugewiesene Tag
+* Tippen Sie auf _Neues Tag_.
+* Fügen Sie hier aussagekräftige Informationen hinzu
+* Um ein Tag zu löschen, tippen Sie auf ein _x_ daneben und bestätigen Sie den Löschvorgang
+> Das gelöschte Tag wird aus allen Büchern entfernt, denen es zugewiesen ist
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 
-### Erstellen Sie benutzerdefinierte Listen und Sammlungen
+## Erstellen einer benutzerdefinierten Bücherliste
 
-* Weisen Sie dem Buch Tag zu
-* Finden Sie alle Tag-Liste auf der Favoriten-Registerkarte
-* Hol dir alle Bücher nach Tags
+* Weisen Sie einem Buch ein Tag zu, indem Sie es auswählen und auf &quot;Anwenden&quot; klicken.
+* Ihre benutzerdefinierten Buchlisten werden auf dem Tab &quot;Favoriten&quot; angezeigt
+* Tippen Sie auf den Listennamen, um ihn auf dem Tab &quot;Bibliothek&quot; zu öffnen
 
 |7|8|9|
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-### Siehe Tagsammlungen aus dem Buch
+## Aufrufen Ihrer benutzerdefinierten _Favoriten_-Liste aus dem Buch, das Sie lesen
 
-* Klicken Sie auf das Symbol für die letzten Tags
-* Wählen Sie die gewünschten Sammlungen (Lieblingsbücher oder Benutzer-Tags)
-* Anzeigen von Büchern nach Tag, klicken Sie, um ein Buch zu lesen
+* Tippen Sie im Menü auf das Buchlisten-Symbol
+* Tippen Sie auf _Favoriten_, um eine Dropdown-Liste zu öffnen
+* Wählen Sie Ihre maßgeschneiderte Liste und genießen Sie
 
 |10|11|12|
 |-|-|-|

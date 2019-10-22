@@ -2,14 +2,14 @@
 layout: main
 version: 2
 ---
-[FAQ](/wiki/faq/pt)
+[<](/wiki/faq/pt)
 
 # Inclua notas de rodapé diretamente no texto
 
-* Ativar opção para exibir notas finais / notas de rodapé como notas no texto
-* Esta funcionalidade funciona para os formatos EPUB, FB2, EPUB, AZW
-* Você pode configurar a cor do texto das notas de rodapé do dia e da noite separadamente
-* Esta opção permite-lhe ouvir notas de rodapé com o TTS Voice
+* Habilite a opção para exibir notas de fim/rodapé como notas no texto
+* Essa funcionalidade funciona para os formatos EPUB, FB2, EPUB, AZW
+* Você pode configurar a cor do texto das notas de rodapé para o dia e a noite separadamente
+* Esta opção permite ouvir notas de rodapé com o TTS Voice
 
 ||||
 |-|-|-|

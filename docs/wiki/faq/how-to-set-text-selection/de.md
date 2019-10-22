@@ -2,17 +2,17 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 ---
 
-# Festlegen der Textauswahl
+# How to set text selection
 
-> Mit Librera können Sie flexibel mit der Textauswahl arbeiten. Im Text können Sie sowohl einzelne Wörter als auch ganze Sätze, Seiten auswählen.
-Anschließend wird der ausgewählte Text beispielsweise an Lesezeichen oder Übersetzer gesendet.
+> Librera allows you to work flexibly with text selection. In the text You can select both individual words and entire sentences, pages. 
+Subsequently, sending the selected text, for example, to bookmarks or translator.
 
-So aktivieren und konfigurieren Sie Auswahlmodi:
-* Klicken Sie auf das Einstellungssymbol
-* Wechseln Sie zum Menüreiter für erweiterte Einstellungen.
+To enable and configure selection modes You need to:
+* Click the settings icon
+* Go to the advanced settings menu tab.
 
 
 
@@ -20,30 +20,30 @@ So aktivieren und konfigurieren Sie Auswahlmodi:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-> Wenn der Auswahlmodus im Text des Buches deaktiviert ist und Sie auf eine Fußnote tippen, funktioniert der Übergang nicht. Wenn Sie per Fußnote navigieren müssen, aktivieren Sie den ersten Punkt &quot;Textauswahl aktivieren&quot;.
+> When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
 
 
-Der Auswahlmodus wird durch Aktivieren der Kontrollkästchen konfiguriert:
-* Textauswahl aktivieren - Aktiviert oder deaktiviert die Textauswahl im Dokument. Der Text wird nur durch langes Tippen hervorgehoben
-* Tippen Sie einmal, um Text auszuwählen. Die Auswahl des Texts erfolgt, wenn Sie kurz auf das Wort klicken
-* Wählen Sie den Text Buchstabe für Buchstabe aus - für Hieroglyphensprachen.
+The selection mode is configured by enabling checkboxes:
+* Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
+* Single-tap to select text -  the selection of the text occurs when you short-click on the word
+* Select text letter-by-letter - for hieroglyphic languages.
 
-Die Textauswahl kann ein einzelnes Wort, ein Satz oder die gesamte Seite sein:
-* Tippen Sie je nach Ihren Einstellungen kurz oder lang auf das Wort
-* Um mehr als ein Wort zu markieren, fahren Sie mit dem Finger über mehrere Wörter. Sie können auch die Start- und Endmarkierungen verwenden
-Text auswählen, vergrößern oder den Abstand zwischen den Wörtern verringern
-* Um das Menü aufzurufen, wenn kurze Oberseiten und Vollbild angezeigt werden, tippen Sie lange in die Mitte des Bildschirms.
+Text selection can be a single word, a sentence, or the entire page: 
+* Tap on the word-short or long press, depending on Your settings
+* To highlight more than one word then slide your finger across multiple words, the proposal. You can also use the start and end markers
+selected text, enlarging them or reducing the distance of the capture of words between them
+* To bring up the menu when short tops and full screen are on-make a long tap in the center of the screen.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-Ausgewählter Text, den Sie können:
-* Setze ein Lesezeichen für dieses Buch
-* Zu einer anderen Anwendung übertragen
-* Vorlesen
-* Zur Übersetzung senden
-* Führen Sie eine Suche in einem Dokument oder im Internet durch
-* Zur weiteren Verarbeitung kopieren
+Selected text you can:
+* Bookmark this book
+* Transfer to another application
+* Play to speech
+* Send for translation 
+* Do a search in a document or the Internet
+* Copy for further processing
 

@@ -2,12 +2,12 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 ---
-# Comment configurer le widget
+# How to configure the widget
 
-> Pour un accès plus rapide aux livres Dans votre bibliothèque, vous pouvez les lire depuis le bureau de votre launcher.
-vous devez ajouter le widget Librera.
+> For faster access to the books In your library you can start them to read from the desktop of your launcher,
+you need to add the widget Librera.
 
 
 ||||
@@ -15,24 +15,24 @@ vous devez ajouter le widget Librera.
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
 
-Pour ajouter et personnaliser le widget:
+To add and customize the widget:
 
-* Accédez aux paramètres de widget de bureau de votre lanceur et ajoutez le widget Librera à votre bureau.
-* Une fois le widget ajouté, connectez-vous à Librera.
-* Balayez l'écran de gauche à droite pour afficher le menu.
-* Faites défiler le menu jusqu'à l'élément Paramètres du widget.
+* Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
+* Once you've added the widget log in to Librera
+* Swipe from left to right to pull the menu
+* Scroll down the menu to the Widget settings item.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-Dans les paramètres du widget Vous pouvez personnaliser l'apparence de Votre widget a Librera:
+In the widget settings You can customize the look of Your widget has Librera:
 
-* Informations affichées dans le widget - Livres récents ou favoris
-* Sa vue est une liste ou une grille
-* Le nombre de livres affichés dans le widget.
+* Information displayed in the widget - Recent books or Favorites
+* Its view is a List or Grid
+* The number of books displayed in the widget. 
 
-**Vous pouvez configurer le widget de manière optimale pour vous-même.**
+**You can configure the widget optimally for yourself.**
 
 ||||
 |-|-|-|

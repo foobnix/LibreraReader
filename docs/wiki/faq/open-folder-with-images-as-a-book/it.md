@@ -4,13 +4,13 @@ version: 3
 ---
 [<](/wiki/faq/it)
 
-# Apri la cartella con le immagini come libro (Associa a un libro)
-È facile aprire qualsiasi cartella con immagini come un libro virtuale nell'applicazione Librera.
+# Apri cartella con immagini come un libro (Rileva in un libro)
+È facile creare un libro di file di immagini archiviati in una cartella.
 
 
-* Apri la cartella con le immagini e rilegala in un libro
-* Cartella con immagini come libro virtuale
-* Aggiungi bordi bianchi ritagliati, contrasto e luminosità
+* Apri una cartella con le immagini (dovrebbero essere rinominate per indicare i numeri di pagina virtuale) e premi **Bind a Book**
+* Il tuo libro nel layout a griglia
+* Ritaglia le pagine in Librera e regola il contrasto e la luminosità
 
 ||||
 |-|-|-|

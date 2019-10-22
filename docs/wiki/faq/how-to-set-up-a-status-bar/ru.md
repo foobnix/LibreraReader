@@ -2,24 +2,24 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ru)
 ---
-# Настройка строки состояния
+# Setting the status bar
 
-> Librera позволяет гибко настраивать интерфейс строки состояния, отображая или удаляя из него информацию, которая вам нужна во время чтения.
+> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
 
-Для перехода в настройки строки состояния вам необходимо:
-* нажмите на значок настроек
-* Выбрать пункт в меню «Строка состояния»
+To go to the status bar settings you need to:
+* Click the settings icon
+* Select an item in the "Status Bar" menu
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-После действий вы попадаете в строку состояния настроек, где вы можете настроить:
-* включить или отключить отображение строки состояния
-* Отрегулируйте его положение вверху или внизу экрана.
+After the actions you get to the settings status bar where you can configure:
+* To enable or disable showing the status bar 
+* Adjust its position at the Top or Bottom of the screen.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ version: 2
 
 
 
-Изменить тип информации о книге, отображаемой в текстовой части строки состояния
+Change the type of information about the book displayed in the text part of the status bar
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* отображение названия книги в строке состояния
-* отображает текущее время
-* Процент заряда батареи.
+* Display the book title in the status bar
+* Displays the current time
+* The percentage of battery charge.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ version: 2
 
 
 
-* включить или отключить индикатор выполнения
-* Настройка отображения меток, отображаемых на индикаторе выполнения
-* Отображение значка закладки. Установите флажок, в каких режимах отображать этот значок.
+* Enable or disable progress bar
+* Setting the display of labels displayed on the progress bar 
+* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Изменение размера текста в строке состояния и заголовке
-* Изменение размера строки состояния
-* Изменить цвет строки состояния и заголовка.
+* Change text size in status bar and header
+* To resize the status bar 
+* Change color in status bar and header.
 
 ||||
 |-|-|-|

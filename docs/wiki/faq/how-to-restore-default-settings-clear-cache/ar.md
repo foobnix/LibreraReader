@@ -2,21 +2,21 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ar)
 ---
-# كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)
+# How to restore default settings (similar to clear cache)
 
-> إذا كنت بحاجة إلى إعادة تعيين جميع إعدادات Librera في ملف التعريف الحالي إلى حالتها الأصلية ، كما هو الحال بعد التثبيت الأول ، يمكن القيام بذلك على عدة مراحل.
+> If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.
 
-من أجل القيام بإعادة تعيين ، تحتاج إلى:
+In order to do a reset you need to:
 
-* انقر في الزاوية العلوية اليسرى لإظهار القائمة ، أو اسحبها من اليسار إلى اليمين
-* انقر طويلا على اسم الرغبة
-* أكد الإجراء الخاص بك &quot;موافق&quot;
+ * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
+ * Long click on the desire Profile name 
+ * Confirm your action " OK"
 
-* بعد التأكيد ، سيتم إعادة تشغيل البرنامج وإعادة تعيين جميع الإعدادات إلى الافتراضي. *
+*After confirmation, the program will restart and will reset all settings to default.*
 
-**لا يتم حذف الإشارات المرجعية والعلامات وتقدم القراءة التي قمت بإضافتها عند إعادة التعيين.**
+**Bookmarks, tags, and reading progress you have added are not deleted on reset.**
 
 
 ||||

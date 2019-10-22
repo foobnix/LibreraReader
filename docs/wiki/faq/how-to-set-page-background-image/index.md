@@ -25,7 +25,7 @@ In order to set your background, you should:
 
 **Image** the picture of the reading background and its transparency are selected.
 
-### Add solid color
+## Add solid color
 
 * Choose "Color" and adjust the cross background color on the color palette of the circle.
 * After selecting the color, click OK, exit the settings, the background color will be applied.
@@ -36,7 +36,7 @@ In order to set your background, you should:
 
 
 
-### Add image texture
+## Add image texture
 
 * Selected "Image".
 * In the settings dialog box, click the "plus" icon.

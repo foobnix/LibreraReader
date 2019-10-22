@@ -2,12 +2,12 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ru)
 ---
-# Как настроить виджет
+# How to configure the widget
 
-> Для более быстрого доступа к книгам. В вашей библиотеке вы можете начать читать их с рабочего стола вашей программы запуска,
-вам нужно добавить виджет Librera.
+> For faster access to the books In your library you can start them to read from the desktop of your launcher,
+you need to add the widget Librera.
 
 
 ||||
@@ -15,24 +15,24 @@ version: 2
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
 
-Чтобы добавить и настроить виджет:
+To add and customize the widget:
 
-* Перейдите в настройки виджета рабочего стола вашего лаунчера и добавьте виджет Librera на рабочий стол
-* После добавления виджета войдите в систему Librera.
-* Проведите слева направо, чтобы открыть меню
-* Прокрутите меню вниз до пункта настроек виджета.
+* Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
+* Once you've added the widget log in to Librera
+* Swipe from left to right to pull the menu
+* Scroll down the menu to the Widget settings item.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-В настройках виджета Вы можете настроить внешний вид Вашего виджета, имеющего Librera:
+In the widget settings You can customize the look of Your widget has Librera:
 
-* информация отображается в виджете - последние книги или избранное
-* вид - список или сетка
-* Количество книг, отображаемых в виджете.
+* Information displayed in the widget - Recent books or Favorites
+* Its view is a List or Grid
+* The number of books displayed in the widget. 
 
-**Вы можете оптимально настроить виджет для себя.**
+**You can configure the widget optimally for yourself.**
 
 ||||
 |-|-|-|

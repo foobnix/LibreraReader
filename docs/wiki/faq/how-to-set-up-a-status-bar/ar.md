@@ -2,24 +2,24 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ar)
 ---
-# ضبط شريط الحالة
+# Setting the status bar
 
-> Librera يسمح لك بتكوين واجهة شريط الحالة بمرونة ، وعرض أو إزالة المعلومات التي تحتاج إليها أثناء القراءة.
+> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
 
-للانتقال إلى إعدادات شريط الحالة ، يلزمك:
-* انقر على أيقونة الإعدادات
-* حدد عنصرًا في قائمة &quot;شريط الحالة&quot;
+To go to the status bar settings you need to:
+* Click the settings icon
+* Select an item in the "Status Bar" menu
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-بعد الإجراءات ، يمكنك الوصول إلى شريط حالة الإعدادات حيث يمكنك تكوين:
-* لتمكين أو تعطيل إظهار شريط الحالة
-* اضبط موضعها في أعلى أو أسفل الشاشة.
+After the actions you get to the settings status bar where you can configure:
+* To enable or disable showing the status bar 
+* Adjust its position at the Top or Bottom of the screen.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ version: 2
 
 
 
-تغيير نوع المعلومات حول الكتاب المعروض في جزء النص من شريط الحالة
+Change the type of information about the book displayed in the text part of the status bar
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* عرض عنوان الكتاب في شريط الحالة
-* يعرض الوقت الحالي
-* النسبة المئوية لشحن البطارية.
+* Display the book title in the status bar
+* Displays the current time
+* The percentage of battery charge.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ version: 2
 
 
 
-* تمكين أو تعطيل شريط التقدم
-* ضبط عرض الملصقات المعروضة على شريط التقدم
-* يعرض أيقونة الإشارة المرجعية. حدد مربع الاختيار الذي تكون فيه الأوضاع لعرض هذا الرمز.
+* Enable or disable progress bar
+* Setting the display of labels displayed on the progress bar 
+* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* تغيير حجم النص في شريط الحالة والرأس
-* لتغيير حجم شريط الحالة
-* تغيير اللون في شريط الحالة والرأس.
+* Change text size in status bar and header
+* To resize the status bar 
+* Change color in status bar and header.
 
 ||||
 |-|-|-|

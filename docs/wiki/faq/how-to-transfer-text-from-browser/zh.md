@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 
 {1}如何从Web浏览器传输文本(阅读或TTS)
 

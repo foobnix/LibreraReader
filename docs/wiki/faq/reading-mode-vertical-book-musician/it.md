@@ -6,60 +6,60 @@ version: 1
 
 # Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista
 
-> Librera book reader supporta 3 tipi di modalità di lettura. Vedi uno è meglio per te stesso.
+> Il lettore di libri Librera supporta 3 tipi di modalità di lettura. Visualizza uno è meglio per decidere tu stesso.
 
-**La modalità di scorrimento** è la lettura verticale per il documento di scorrimento su e giù.
+**La modalità di scorrimento** è una lettura verticale per il documento di scorrimento su e giù.
 
-**Modalità libro** è la modalità di lettura orizzontale per scorrere le pagine a destra e sinistra.
+**Modalità libro** è la modalità di lettura orizzontale per scorrere le pagine a destra e a sinistra.
 
-**La modalità musicista** è una modalità appositamente progettata per i musicisti.
+**Modalità musicista** è una modalità appositamente progettata per i musicisti.
 
 * Fai clic sul libro per scegliere la modalità di lettura
-* Puoi ricordare la modalità di lettura per i futuri libri aperti
-* Puoi cambiare la modalità di lettura nel menu di sinistra
-* Puoi modificare i nomi delle modalità di lettura di tua proprietà
-* Toccare a lungo su &quot;Modifica&quot; per reimpostare i nomi sui nomi predefiniti
+* Puoi ricordare la modalità di lettura per futuri libri aperti
+* È possibile modificare la modalità di lettura nel menu a sinistra
+* Puoi modificare i nomi della modalità di lettura da solo
+* Tocca a lungo su &quot;Modifica&quot; per ripristinare i nomi ai nomi predefiniti
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 * Cambia la modalità di lettura dal libro
-* Fai clic sul pannello in basso o sull'icona del menu
-* Scegli la modalità desiderata
+* Fai clic sul pannello inferiore o sull'icona del menu
+* Scegli la modalità di cui hai bisogno
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-## # Modalità di scorrimento
+## Modalità scorrimento
 
-* Scorri per pagine, per altezza schermo o per altezza valore personalizzato.
-* Scorrere con i pulsanti del volume, la chiave hardware, i pedali Bluetooth, toccando lo schermo
-* Configura il valore personalizzato per lo scorrimento
+* Scorri per Pagine, per Altezza schermo o per altezza valore personalizzato.
+* Scorri con i pulsanti del volume, la chiave hardware, i pedali Bluetooth, toccando sullo schermo
+* Configura valore personalizzato per scorrimento
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
 
-## # Modalità libro
-* Scorri orizzontalmente per la prossima pagina precedente
-* Scorri verticalmente per la prossima anteprima
+## Modalità libro
+* Scorri in orizzontale per la pagina precedente
+* Scorri verticalmente per la pagina precedente successiva
 * Cambia la direzione dello scorrimento verticale
-* Modificare le pagine con i pulsanti del volume, i tasti hardware, i pedali Bluetooth, toccando lo schermo
-* È possibile modificare le dimensioni delle aree di tocco e l'azione delle aree di tabulazione, ad esempio fare clic sul lato sinistro per la pagina successiva (per le persone di sinistra)
+* Cambia pagine con pulsanti del volume, chiavi hardware, pedali Bluetooth, toccando sullo schermo
+* Puoi modificare le dimensioni delle zone di tocco e l'azione della scheda, ad esempio fai clic sul lato sinistro per la pagina successiva (per le persone di sinistra)
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-## # Modalità musicista
-* Un clic per avviare o interrompere lo scorrimento / riproduzione automatica
-* Facile modifica successiva / precedente della pagina
-* Cambia la velocità di scorrimento automatico durante le prestazioni
-* Fai clic in alto per mostrare l'interfaccia utente con i pulsanti di controllo
-* Icona per andare alla prima pagina (n. 1)
+## Modalità musicista
+* Un clic per avviare o interrompere lo scorrimento/riproduzione automatici
+* Facile modifica della pagina successiva/precedente
+* Modifica la velocità di scorrimento automatico durante l'esecuzione
+* Fai clic in alto per mostrare l'interfaccia utente con i controlli dei pulsanti
+* Icona per andare alla prima (# 1) pagina
 
 ||||
 |-|-|-|

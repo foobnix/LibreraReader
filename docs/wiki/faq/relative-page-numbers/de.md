@@ -1,19 +1,19 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Relative Seitenzahlen für PDF-Bücher
 
-> Manchmal möchte der Benutzer die Seitenzahl im Schieberegler wie auf der Buchseite haben.
-Zum Beispiel, wenn Sie ein Dokument studieren, ist es einfach, Seiten nach Buchnummern zu finden.
+> Manchmal möchte der Benutzer die Seitenzahl im Schieberegler haben, wie auf der Buchseite.
+Wenn Sie beispielsweise ein Dokument lesen, ist es einfach, Seiten anhand der Buchnummern zu finden.
 
-* Originalseitenzahl, __Klicken Sie lange auf__ auf der aktuellen Seite
-* Legen Sie die relative Seitennummer fest
-* Schieberegler mit der relativen Seitennummer
+* Originalseitennummer, **Langer Klick auf** auf der aktuellen Seite
+* Legen Sie die relative Seitenzahl fest
+* Schieberegler mit relativer Seitenzahl
 
 Relative Seiten gelten auch für das Inhaltsverzeichnis und die Lesezeichen.
-Um relative Seiten zu deaktivieren, klicken Sie einfach auf die aktuelle Seitenzahl auf dem Schieberegler und wählen Sie &quot;Standard wiederherstellen&quot;
+Um relative Seiten zu deaktivieren, klicken Sie einfach auf die aktuelle Seitennummer im Schieberegler und wählen Sie &quot;Standard wiederherstellen&quot;.
 
 |1|2|3|
 |-|-|-|

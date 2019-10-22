@@ -2,49 +2,49 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/it)
 ---
 
-# Contrasto e luminosità in PDF (effetto bianco e nero)
+# Contrast and Brightness in PDF  (black and white effect)
 
-> Librera Book Reader consente di personalizzare in modo flessibile l'aspetto del documento.
-Quando si configurano queste impostazioni, il documento diventa in bianco e nero.
-Spostando il dispositivo di scorrimento per aggiungere/ridurre il parametro necessario,
-sullo sfondo della finestra di dialogo delle impostazioni, puoi vedere i suoi effetti sul documento.
-È possibile configurare tutti e tre i parametri insieme così e sulla separazione. Questo effetto viene spesso utilizzato nei lettori E-Ink
+> Librera Book Reader allows you to flexibly customize the appearance of the document. 
+When you configure these settings, the document becomes black and white. 
+By moving the slider to add/decrease the parameter you need, 
+in the background of the settings dialog, you can see its effect on the document. 
+You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
 
 
-Per una lettura confortevole È possibile regolare le impostazioni:
-* Contrasto
-* Luminosità
-* Enfatizza tutto (effetto testo in grassetto)
+For comfortable reading You can adjust the settings:
+* Contrast
+* Brightness 
+* Emphasize all (bold text effect)
 
-## Contrasto
-* Fai clic sull'icona Contrasto e luminosità
-* Utilizzare il dispositivo di scorrimento per selezionare il tipo di documento desiderato
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni.
+## Contrast
+* Click on the Contrast and brightness icon
+* Use the slider to select the document type you want
+* After setting, click the cross in the settings dialog box.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-## Luminosità
-* Fai clic sull'icona Contrasto e luminosità
-* Utilizzare il dispositivo di scorrimento per selezionare il tipo di documento desiderato
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni.
+## Brightness 
+* Click on the Contrast and brightness icon
+* Use the slider to select the document type you want
+* After setting, click the cross in the settings dialog box.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
 
-## Enfatizza tutto (effetto testo in grassetto)
-* Fai clic sull'icona Contrasto e luminosità
-* Abilita casella di controllo Enfatizza tutto
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni
+## Emphasize all  (bold text effect)
+* Click on the Contrast and brightness icon
+* Enable checkbox Emphasize all
+* After setting, click the cross in the settings dialog box
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> Se si desidera ripristinare le impostazioni &quot;predefinite&quot; modificate, fare clic nella finestra di dialogo Impostazioni contrasto e luminosità - &quot;Ripristina impostazioni predefinite&quot; e confermare &quot;OK&quot;. Le impostazioni e la vista del documento tornano allo stato originale.
+> If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to the original state.

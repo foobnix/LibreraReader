@@ -1,26 +1,26 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/es)
 
 # Cómo eliminar libros de la tarjeta SD externa
 
-Android 7+ no permite eliminar archivos de la tarjeta sd externa por el
+Android 7+ no permite eliminar archivos de la tarjeta SD externa por el
 razones de seguridad.
-Debe agregar una tarjeta SD como recurso y permitir que la aplicación elimine archivos de ella
+Debe agregar la tarjeta SD como recurso y permitir que la aplicación elimine archivos de ella
 
-* Abrir la pestaña del administrador de archivos
-* Haga clic en agregar recurso
-* Elegir tarjeta SD
-* Seleccione y permita eliminar de la tarjeta sd elegida
+* Abrir pestaña del administrador de archivos
+* Haga clic en Agregar recurso
+* Elija la tarjeta SD
+* Seleccione y permita eliminar de la tarjeta SD elegida
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-* Abrir tarjeta SD en el administrador de archivos
-* Haga clic en el menú de archivo
-* borrar libro
+* Abra la tarjeta SD en el administrador de archivos
+* Haga clic en el menú archivo
+* Eliminar libro
 
 ||||
 |-|-|-|

@@ -2,24 +2,24 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 ---
-{1}设置状态栏
+# Setting the status bar
 
-> Librera允许您灵活配置状态栏界面，在阅读时显示或从中删除所需的信息。
+> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
 
-要转到状态栏设置，您需要：
-{4}点击设置图标
-{4}在“状态栏”菜单中选择一个项目
+To go to the status bar settings you need to:
+* Click the settings icon
+* Select an item in the "Status Bar" menu
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-完成这些操作后，您会进入设置状态栏，可以在其中进行配置：
-{4}启用或禁用显示状态栏
-{4}调整其在屏幕顶部或底部的位置。
+After the actions you get to the settings status bar where you can configure:
+* To enable or disable showing the status bar 
+* Adjust its position at the Top or Bottom of the screen.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ version: 2
 
 
 
-更改有关状态栏文本部分中显示的图书的信息类型
+Change the type of information about the book displayed in the text part of the status bar
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-{4}在状态栏中显示书名
-{4}显示当前时间
-{4}电池电量的百分比。
+* Display the book title in the status bar
+* Displays the current time
+* The percentage of battery charge.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ version: 2
 
 
 
-{4}启用或禁用进度条
-{4}设置进度条上显示的标签的显示
-{4}显示书签图标。选中显示该图标的模式复选框。
+* Enable or disable progress bar
+* Setting the display of labels displayed on the progress bar 
+* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-{4}更改状态栏和标题中的文本大小
-{4}调整状态栏大小
-{4}在状态栏和标题中更改颜色。
+* Change text size in status bar and header
+* To resize the status bar 
+* Change color in status bar and header.
 
 ||||
 |-|-|-|

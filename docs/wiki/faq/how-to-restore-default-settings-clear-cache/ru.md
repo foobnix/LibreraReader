@@ -2,21 +2,21 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ru)
 ---
-# Как восстановить настройки по умолчанию (аналогично очистке кэша)
+# How to restore default settings (similar to clear cache)
 
-> Если вам нужно сбросить все настройки Librera в текущем профиле в исходное состояние, как после первой установки, то это можно сделать в несколько этапов.
+> If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.
 
-Для сброса вам необходимо:
+In order to do a reset you need to:
 
-* Нажмите в верхнем левом углу, чтобы открыть меню, или проведите по нему слева направо.
-* Длительное нажатие на название желаемого профиля
-* Подтвердите действие &quot;ОК&quot;
+ * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
+ * Long click on the desire Profile name 
+ * Confirm your action " OK"
 
-* После подтверждения программа перезапустится и восстановит все настройки по умолчанию. *
+*After confirmation, the program will restart and will reset all settings to default.*
 
-**Закладки, теги и успехи чтения, которые вы добавили, не удаляются при сбросе.**
+**Bookmarks, tags, and reading progress you have added are not deleted on reset.**
 
 
 ||||

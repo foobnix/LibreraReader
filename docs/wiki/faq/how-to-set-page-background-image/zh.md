@@ -2,33 +2,33 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 ---
 
-{1}为书页设置背景
+# Set own background for book page
 
-> Librera Book Reader允许您在阅读时自定义页面背景，这有助于减少眼睛疲劳并增加阅读时的舒适度。
-可以将背景选择为纯色或从纹理图像中选择。
+> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
+The background can be selected as a solid color or from texture image.
 
-为了设置背景，您应该：
+In order to set your background, you should:
 
-{4}单击设置图标。
-{4}在设置中，选择要在其中更改背景的配置文件。选择例如“天”。
-{4}在打开的对话框中，您可以选择阅读时填充背景的方式：
+* Click the settings icon.
+* In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
+* In the dialog box that opens you can choose how you want to fill the background when reading:
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-{6}颜色{2}仅选择阅读背景的填充颜色及其透明度。
+**Color**  only the fill color of the reading background and its transparency are selected.
 
-{6}图像{2}选择阅读背景的图片及其透明度。
+**Image** the picture of the reading background and its transparency are selected.
 
-###添加纯色
+## Add solid color
 
-{4}选择“颜色”，并在圆形调色板上调整十字形背景色。
-{4}选择颜色后，单击确定，退出设置，将应用背景色。
+* Choose "Color" and adjust the cross background color on the color palette of the circle.
+* After selecting the color, click OK, exit the settings, the background color will be applied.
 
 ||||
 |-|-|-|
@@ -36,12 +36,12 @@ version: 7
 
 
 
-###添加图像纹理
+## Add image texture
 
-{4}选择“图像”。
-{4}在设置对话框中，单击“加号”图标。
-{4}选择背景所在的文件夹。输入它，单击所需的背景，在底部看，应出现他的名字，单击选择。
-{4}退出设置，查看结果。
+* Selected "Image".
+* In the settings dialog box, click the "plus" icon.
+* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
+* Exit the settings, watch the result.
 
 ||||
 |-|-|-|

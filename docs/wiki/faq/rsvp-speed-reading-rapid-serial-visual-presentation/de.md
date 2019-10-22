@@ -2,32 +2,33 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq/de)
+[<](/wiki/faq/)
 
-# Geschwindigkeitsanzeige RSVP (Rapid Serial Visual Presentation) in Android
+# Schnelllese-RSVP (Rapid Serial Visual Presentation) in Android
 
-> * Schnelle serielle visuelle Präsentation * ist ein experimentelles Modell, das häufig zur Untersuchung der zeitlichen Merkmale der Aufmerksamkeit verwendet wird. Das RSVP-Paradigma verlangt von den Teilnehmern, eine fortlaufende Präsentation visueller Elemente im Umfang von etwa 10 Elementen pro Sekunde zu betrachten. Sie werden alle an derselben Stelle gezeigt. Die Ziele werden innerhalb dieses Stroms fortlaufender Gegenstände platziert. Sie sind von den übrigen als Distraktoren bekannten Gegenständen getrennt. Die Ablenker können entweder eine Farbänderung sein oder es können Buchstaben sein, die zu den Zahlen gehören.
+> Laut Wikipedia ist * Rapid Serial Visual Presentation * ein experimentelles Modell, das häufig zur Untersuchung der zeitlichen Merkmale der Aufmerksamkeit verwendet wird. Die Teilnehmer müssen eine kontinuierliche Präsentation visueller Elemente mit einer bestimmten Geschwindigkeit in einem einzigen Fokuspunkt betrachten. Wenn wir das RSVP-Paradigma auf das Lesen anwenden, meinen wir einfach eine fortlaufende Darstellung von Wortsequenzen in einer einzelnen Zeile, irgendwo in der Mitte des Bildschirms.
 
-Mit Librera Book Reader können Sie mit dieser Methode schneller lesen.
-Sie können die Lesegeschwindigkeit von Wörtern pro Minute (Wpn) in Echtzeit ändern.
-Sie können auch die Textgröße ändern und zu den vorherigen Wörtern wechseln.
-Einzelklick für Start Stoppgeschwindigkeitsmessung.
+Wenn Sie diese Methode mit **Librera Reader** verwenden, können Sie schneller lesen und das Lesen zu einem echten Spaß machen.
+Mit dem Programm können Sie die Lesegeschwindigkeit (Wörter pro Minute, WPM) in Echtzeit ändern. Als zusätzlichen Bonus können Sie die Zeilenlänge steuern und entweder ein einzelnes Wort (Kontraktion) oder mehrere Wörter gleichzeitig anzeigen.
+Darüber hinaus können Sie die Schriftgröße ändern, zur vorherigen/nächsten Präsentation wechseln und die Geschwindigkeitsmessung mit einem einzigen Fingertipp starten/stoppen.
 
-Librera fügt neue unic-Funktion hinzu: __Minimale Zeilenlänge__ in Zeichen pro Zeile (CPL).
+**Librera** führt die Option **Minimale Zeilenlänge** in Zeichen pro Zeile (CPL) ein.
 
-Das klassische RSVP zeigt nur ein Wort pro Satz wie zum Beispiel &quot;Ich bin Arzt&quot;.
+Das klassische RSVP zeigt nur ein Wort (Kontraktion) in einer Zeile. Zum Beispiel wird der Satz &quot;Ich bin ein Arzt&quot; wie folgt dargestellt:
 
-__0 CPL__ - 1/de) I 2/de) 3/de) a 4/de) Arzt (4 Zeilen/de)
+**0 CPL** 1) Ich 2) bin 3) ein 4) Arzt (4 Zeilen)
 
-Mit Librera können Sie beispielsweise mindestens 3 CPL zusammenstellen
+Mit **Librera** können Sie Folgendes ändern:
 
-__3 CPL__ 1/de) &quot;Ich bin&quot; 2/de) &quot;Arzt&quot; (2 Zeilen/de)
+**3 CPL** 1) &quot;Ich bin&quot; 2) &quot;ein Arzt&quot; (2 Zeilen)
 
-__10 CPL__ 1/de) &quot;Ich bin Arzt&quot; (1 Zeile/de)
+oder
 
-* RSVP kann über das Buchmenü geöffnet werden
-* Einfacher Klick, um schnelles Lesen zu beginnen
-* 30 CPL-Probe
+**10 CPL** 1) &quot;Ich bin ein Arzt&quot; (eine einzelne Zeile)
+
+* Rufen Sie den RSVP-Geschwindigkeitslesemodus über das Buchmenü auf
+* Einfacher Klick zum Starten oder Stoppen
+* Minimale Zeilenlänge bis zu 30 CPL
 
 ||||
 |-|-|-|

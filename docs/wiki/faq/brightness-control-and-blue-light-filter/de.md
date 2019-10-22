@@ -1,31 +1,31 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Helligkeitsregelung und Blaulichtfilter
 
-> Helligkeit in der Anwendung kann automatisch wie die Systemstärke oder Benutzerkatze eingestellt werden, benutzerdefinierte manuelle Brigittness.
-Die Helligkeit kann in den Bucheinstellungen oder in der linken Bildschirmgröße (nach oben oder nach unten) geändert werden.
-Negative Helligkeit kann den Bildschirm dunkler als die Systemhelligkeit machen.
-Negative Helligkeit aktivieren blauen Filter mit schwarzer Farbe standardmäßig, können Sie für benutzerdefinierte Farbe ändern.
+> Die Helligkeitssteuerung in **Librera Reader** kann gemäß Ihren Systemeinstellungen automatisch erfolgen oder der Benutzer kann die Helligkeit manuell einstellen.
+Die Helligkeit kann im Fenster **Einstellungen** oder durch Ziehen eines Fingers über den linken Bildschirmrand geändert werden (aktivieren Sie das entsprechende Kontrollkästchen, um diesen Modus zu aktivieren).
+Negative Helligkeit bedeutet, dass Ihre Einstellung dunkler als die des Systems ist.
+Negative Helligkeit aktiviert den Blaulichtfilter standardmäßig mit der Farbe Schwarz.
 
 
-* Ändern Sie die automatische oder manuelle Helligkeit aus den Bucheinstellungen
-* Ändern Sie die Helligkeit an der linken Seite des Bildschirms
-* Klicken Sie auf Helligkeits-Popup, um die Helligkeit &quot;Automatisch&quot; einzustellen
-* Schalten Sie die Helligkeit am linken Bildschirmrand ein / aus
+* Stellen Sie die Helligkeit so ein, dass sie sich je nach Umgebungslicht automatisch ändert
+* Ändern Sie die Helligkeit, indem Sie mit dem Finger über den linken Bildschirmrand fahren
+* Tippen Sie auf den Helligkeitstoaster, um in den Modus **Auto** zu wechseln
+* Aktivieren/Deaktivieren Sie die Folien am linken Rand auf dem Tab **Erweiterte Einstellungen**
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 # Blaulichtfilter
-> Blaues Licht wirkt mit Helligkeit zusammen
+> Blaulichtfilter arbeitet mit Helligkeit zusammen
 
-* Voreinstellungen für Bücher öffnen
-* Aktivieren Sie das Kontrollkästchen, um den Blaulichtfilter zu aktivieren
-* Klicken Sie auf das Popup für die Konfiguration öffnen
+* Der Blaulichtfilter kann manuell aktiviert werden, indem das entsprechende Kontrollkästchen im Fenster **Einstellungen** aktiviert wird
+* Der Blaulichtfilter ist aktiviert
+* Tippen Sie auf **Blaulichtfilter**, um den gewünschten Farbton (Farbe) festzulegen.
 
 ||||
 |-|-|-|

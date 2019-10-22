@@ -3,52 +3,48 @@ layout: main
 ---
 [<](/wiki/faq/es)
 
-# Crear etiquetas personalizadas
+# Manejo de etiquetas personalizadas
 
-> El propósito de este capítulo es comprender por qué necesita __etiquetas de libro__ y cómo agregarlas a los libros. El etiquetado es de forma libre
-Palabras de los libros de los archivos para organizar mejor la biblioteca. Es posible asignar muchas etiquetas al mismo libro. Las etiquetas ayudan al usuario a organizar los libros.
-en colecciones. Las etiquetas ayudan al usuario a encontrar fácilmente libros en listas o colecciones.
-Las etiquetas son metadatos creados por el usuario, pero también existen otros metadatos como [Series](), [Authors](), [Keywords](), [Genres]() que ayudan a
-Encuentra y organiza colecciones de libros.
+> Al agregar etiquetas personalizadas a los libros en nuestra Biblioteca, estamos agregando información significativa (para nosotros) a los metadatos de los libros. Estas etiquetas serán útiles en nuestras futuras referencias a los libros a los que hemos asignado etiquetas. Nos ayudarán a organizar libros en la Biblioteca, ordenarlos a nuestro gusto, crear listas de libros específicas para el usuario, encontrar fácilmente libros en la Biblioteca, etc.
+> Las etiquetas definidas por el usuario se utilizarán para todos los propósitos imaginables junto con las etiquetas de libros electrónicos convencionales ya existentes, como [Series](), [Autores](), [Palabras clave](), [Géneros](), etc.
 
-### Hay muchos lugares donde el usuario puede __agregar etiquetas__ al libro.
+## Hay muchas formas de agregar una **Nueva etiqueta** a un libro.
 
-* Por un largo toque en el icono de estrella (favoritos/es)
-* Desde el menú del libro.
-* Desde el diálogo de información del libro.
+* Manteniendo presionado el ícono de estrella (favoritos)
+* Llamando al menú del libro y tocando _Agregar etiquetas_
+* A través de la ventana _Información de archivo_ (Sugerencia: si mantiene presionada la portada de un libro, llegará allí)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### Agregar etiquetas es muy fácil, solo haga clic
+## Agregar y eliminar etiquetas es tan fácil como un pastel
 
-> Si eliminar etiqueta, esta etiqueta se eliminará de todos los libros asignados
-
-* Añadir etiqueta
-* Crear nueva etiqueta
-* Eliminar etiqueta asignada
+* Toque _Nueva etiqueta_
+* Agregue información significativa aquí
+* Para eliminar una etiqueta, toque un _x_ junto a ella y luego confirme la eliminación
+> La etiqueta eliminada se eliminará de todos los libros a los que está asignada
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 
-### Crear listas personalizadas y colecciones
+## Crear una lista personalizada de libros
 
-* Asignar etiqueta al libro
-* Encuentra toda la lista de etiquetas en la pestaña de favoritos
-* Obtener todos los libros por etiqueta
+* Asigne una etiqueta a un libro seleccionándolo y presionando _Aplicar_
+* Tus listas de libros personalizados aparecerán en la pestaña _Favoritos_
+* Toque el nombre de la lista y se abrirá en la pestaña _Biblioteca_
 
 |7|8|9|
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-### Ver las colecciones de etiquetas del libro.
+## Invocando su lista de _Favoritos_ personalizada del libro que está leyendo
 
-* Haga clic en el icono de etiquetas recientes
-* Seleccione las colecciones que desee (libros favoritos o etiquetas de usuario/es)
-* Mostrando libros por etiqueta, haga clic para leer cualquier libro
+* Toque el icono de listas de libros en el menú
+* Toque _Favorites_ para abrir una lista desplegable
+* Seleccione su lista personalizada y disfrute
 
 |10|11|12|
 |-|-|-|

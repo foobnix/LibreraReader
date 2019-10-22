@@ -2,12 +2,12 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 ---
-{1}如何配置小部件
+# How to configure the widget
 
->为了更快地访问图书，您可以在图书馆中启动它们以从启动器的桌面进行读取，
-您需要添加小部件Librera。
+> For faster access to the books In your library you can start them to read from the desktop of your launcher,
+you need to add the widget Librera.
 
 
 ||||
@@ -15,24 +15,24 @@ version: 2
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
 
-要添加和自定义窗口小部件：
+To add and customize the widget:
 
-{4}转到启动器的桌面小部件设置，然后将Librera小部件添加到桌面
-{4}添加小部件后，请登录Librera
-{4}从左向右滑动即可拉菜单
-{4}向下滚动菜单至“微件设置”项。
+* Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
+* Once you've added the widget log in to Librera
+* Swipe from left to right to pull the menu
+* Scroll down the menu to the Widget settings item.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-在窗口小部件设置中，您可以自定义您的窗口小部件具有Librera的外观：
+In the widget settings You can customize the look of Your widget has Librera:
 
-{4}窗口小部件中显示的信息-最近的书籍或收藏夹
-{4}其视图是列表或网格
-{4}在小部件中显示的书籍数量。
+* Information displayed in the widget - Recent books or Favorites
+* Its view is a List or Grid
+* The number of books displayed in the widget. 
 
-{6}您可以自己优化配置小部件。{6}
+**You can configure the widget optimally for yourself.**
 
 ||||
 |-|-|-|

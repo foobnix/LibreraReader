@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 2
 ---
 [<](/wiki/faq/ar)
 
@@ -19,23 +18,23 @@ version: 2
 
 استبدال بدائل الكلاسيكية استبدال سلسلة واحدة إلى أخرى أو يمكنك استخدام تعبيرات RegExp
 
-# # التعبير
+## التعبير
 
 * &quot;نص&quot; - نص بسيط
 * &quot;* text&quot; - * قاعدة RexExp
 * &quot;# text&quot; - # قاعدة معطلة
 * &quot;text256&quot; - قاعدة معطلة
 
-# # أمثلة
+## أمثلة
 
 * &quot;ليب&quot;. -&gt; &quot;Librera&quot; - استبدال Lib. إلى Librera
 * &quot;Librera&quot; -&gt; &quot;Libréra&quot; - تضيف علامة الإجهاد الصحيحة
 * &quot;# ليب&quot;. -&gt; &quot;Librera&quot; - &quot;#&quot; لتعطيل القاعدة
 * &quot;* (L | ل) باء&quot;. -&gt; &quot;$ 1ibrera&quot; - استبدال Lib. إلى Librera و lib. إلى librera
-* &quot;* [()&quot; «» * &quot;&quot;/[]] &quot;-&gt;&quot; &quot;- استبدل الأحرف&quot; char &quot;بالحرف الفارغة
+* &quot;* [()&quot; «» * &quot;&quot;/[] &quot;-&gt;&quot; &quot;- استبدل الأحرف char بالحروف الفارغة
 * &quot;* [؟!:؛ - | - | -]&quot; -&gt; &quot;،&quot; - استبدال الأحرف char لإيقاف char ()
 
-# # إضافة ملف القاعدة
+## إضافة ملف القاعدة
 
 Librera تدعم ملفات قاعدة Regexp من قارئ Voice
 إليكم بعض samle **demo-replaces.txt**
@@ -69,7 +68,6 @@ Librera تدعم ملفات قاعدة Regexp من قارئ Voice
 *"(^| )(Д|д)-р" " доктор"
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
-
 ```
 
 

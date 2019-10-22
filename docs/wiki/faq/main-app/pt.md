@@ -40,7 +40,7 @@ version: 3
 * Procure um livro por extensão (FB2)
 * Clique em Autor para encontrar todos os livros deste autor
 * Toque em _x_ para limpar os resultados da pesquisa
-* Pressione e segure a marca de seleção para visualizar e editar o histórico de pesquisa e a lista de preenchimento automático
+* Pressione e segure a marca de seleção para visualizar e editar o histórico de pesquisa e a lista de preenchimento automático.
 * Informações do livro e progresso da leitura
 
 ||||

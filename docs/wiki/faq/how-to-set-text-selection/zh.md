@@ -2,17 +2,17 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/zh)
 ---
 
-{1}如何设置文本选择
+# How to set text selection
 
-> Librera允许您灵活地选择文本。在文本中，您可以选择单个单词和整个句子，页面。
-随后，将选定的文本发送到例如书签或翻译器。
+> Librera allows you to work flexibly with text selection. In the text You can select both individual words and entire sentences, pages. 
+Subsequently, sending the selected text, for example, to bookmarks or translator.
 
-要启用和配置选择模式，您需要：
-{4}点击设置图标
-{4}转到高级设置菜单标签。
+To enable and configure selection modes You need to:
+* Click the settings icon
+* Go to the advanced settings menu tab.
 
 
 
@@ -20,30 +20,30 @@ version: 2
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
->如果在书本中关闭选择模式，则点按脚注时，过渡不会起作用。如果需要通过脚注导航，请启用第一项“启用文本选择”。
+> When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
 
 
-通过启用复选框来配置选择模式：
-{4}启用文本选择-启用或禁用文档中的文本选择。仅长按即可突出显示文本
-{4}单击以选择文本-当您短按单词时，将选择文本
-{4}逐个字母选择文本-用于象形文字语言。
+The selection mode is configured by enabling checkboxes:
+* Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
+* Single-tap to select text -  the selection of the text occurs when you short-click on the word
+* Select text letter-by-letter - for hieroglyphic languages.
 
-文本选择可以是单个单词，一个句子或整个页面：
-{4}短按或长按一词，具体取决于您的设置
-{4}要突出显示一个以上的单词，然后将手指滑过多个单词即提案。您也可以使用开始和结束标记
-选定的文本，放大它们或缩短它们之间单词捕获的距离
-{4}要在显示顶部和全屏屏幕时弹出菜单，请在屏幕中央点按一次。
+Text selection can be a single word, a sentence, or the entire page: 
+* Tap on the word-short or long press, depending on Your settings
+* To highlight more than one word then slide your finger across multiple words, the proposal. You can also use the start and end markers
+selected text, enlarging them or reducing the distance of the capture of words between them
+* To bring up the menu when short tops and full screen are on-make a long tap in the center of the screen.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-您可以选择文字：
-{4}为此书添加书签
-{4}转移到另一个应用程序
-{4}播放语音
-{4}发送翻译
-{4}在文档或Internet中进行搜索
-{4}复制以供进一步处理
+Selected text you can:
+* Bookmark this book
+* Transfer to another application
+* Play to speech
+* Send for translation 
+* Do a search in a document or the Internet
+* Copy for further processing
 

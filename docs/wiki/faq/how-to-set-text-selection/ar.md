@@ -2,17 +2,17 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ar)
 ---
 
-# كيفية ضبط اختيار النص
+# How to set text selection
 
-> Librera يتيح لك العمل بمرونة مع اختيار النص. في النص يمكنك اختيار كل من الكلمات الفردية والجمل بأكملها ، صفحات.
-بعد ذلك ، أرسل النص المحدد ، على سبيل المثال ، إلى الإشارات المرجعية أو المترجم.
+> Librera allows you to work flexibly with text selection. In the text You can select both individual words and entire sentences, pages. 
+Subsequently, sending the selected text, for example, to bookmarks or translator.
 
-لتمكين أوضاع الاختيار وتكوينها ، تحتاج إلى:
-* انقر على أيقونة الإعدادات
-* انتقل إلى علامة تبويب قائمة الإعدادات المتقدمة.
+To enable and configure selection modes You need to:
+* Click the settings icon
+* Go to the advanced settings menu tab.
 
 
 
@@ -20,30 +20,30 @@ version: 2
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-> عند إيقاف تشغيل وضع التحديد في نص الكتاب ، وعندما تنقر على حاشية ، لا يعمل الانتقال. إذا كنت بحاجة إلى التنقل باستخدام الحاشية السفلية ، فقم بتمكين العنصر الأول &quot;تمكين اختيار النص&quot;.
+> When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
 
 
-يتم تكوين وضع التحديد عن طريق تمكين خانات الاختيار:
-* تمكين اختيار النص - يمكّن أو يعطل تحديد النص في الوثيقة. يتم تمييز النص فقط بنقرة طويلة
-* النقر المفرد لتحديد النص - يحدث تحديد النص عند النقر فوق كلمة قصيرة
-* حدد نصًا تلو الآخر - للغات الهيروغليفية.
+The selection mode is configured by enabling checkboxes:
+* Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
+* Single-tap to select text -  the selection of the text occurs when you short-click on the word
+* Select text letter-by-letter - for hieroglyphic languages.
 
-يمكن أن يكون اختيار النص كلمة واحدة أو جملة أو الصفحة بأكملها:
-* اضغط على كلمة قصيرة أو الضغط لفترة طويلة ، اعتمادا على الإعدادات الخاصة بك
-* لتسليط الضوء على أكثر من كلمة واحدة ثم حرك إصبعك على عدة كلمات ، الاقتراح. يمكنك أيضًا استخدام علامات البداية والنهاية
-النص المحدد ، وتوسيعها أو تقليل المسافة من التقاط الكلمات بينهما
-* لإظهار القائمة عندما تكون قمم قصيرة وشاشة كاملة تعمل بنقرة طويلة في وسط الشاشة.
+Text selection can be a single word, a sentence, or the entire page: 
+* Tap on the word-short or long press, depending on Your settings
+* To highlight more than one word then slide your finger across multiple words, the proposal. You can also use the start and end markers
+selected text, enlarging them or reducing the distance of the capture of words between them
+* To bring up the menu when short tops and full screen are on-make a long tap in the center of the screen.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-النص المحدد يمكنك:
-* احفظ هذا الكتاب
-* نقل إلى تطبيق آخر
-* العب للكلام
-* أرسل للترجمة
-* قم بالبحث في مستند أو الإنترنت
-* نسخ لمزيد من المعالجة
+Selected text you can:
+* Bookmark this book
+* Transfer to another application
+* Play to speech
+* Send for translation 
+* Do a search in a document or the Internet
+* Copy for further processing
 

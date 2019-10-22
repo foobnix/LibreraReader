@@ -2,24 +2,24 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/es)
 ---
-# Configuración de la barra de estado
+# Setting the status bar
 
-> Librera le permite configurar de manera flexible la interfaz de la barra de estado, mostrando o eliminando la información que necesita mientras lee.
+> Librera allows you to flexibly configure the status bar interface, displaying or removing from it the information you need while reading.
 
-Para ir a la configuración de la barra de estado, debe:
-* Haga clic en el icono de configuración
-* Seleccione un elemento en el menú &quot;Barra de estado&quot;
+To go to the status bar settings you need to:
+* Click the settings icon
+* Select an item in the "Status Bar" menu
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-Después de las acciones, accede a la barra de estado de configuración donde puede configurar:
-* Para habilitar o deshabilitar la visualización de la barra de estado
-* Ajuste su posición en la parte superior o inferior de la pantalla.
+After the actions you get to the settings status bar where you can configure:
+* To enable or disable showing the status bar 
+* Adjust its position at the Top or Bottom of the screen.
 
 ||||
 |-|-|-|
@@ -27,15 +27,15 @@ Después de las acciones, accede a la barra de estado de configuración donde pu
 
 
 
-Cambiar el tipo de información sobre el libro que se muestra en la parte de texto de la barra de estado
+Change the type of information about the book displayed in the text part of the status bar
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* Mostrar el título del libro en la barra de estado
-* Muestra la hora actual
-* El porcentaje de carga de la batería.
+* Display the book title in the status bar
+* Displays the current time
+* The percentage of battery charge.
 
 ||||
 |-|-|-|
@@ -43,17 +43,17 @@ Cambiar el tipo de información sobre el libro que se muestra en la parte de tex
 
 
 
-* Habilitar o deshabilitar la barra de progreso
-* Configuración de la visualización de las etiquetas que se muestran en la barra de progreso
-* Muestra el icono de marcador. Seleccione la casilla de verificación en qué modos mostrar este icono.
+* Enable or disable progress bar
+* Setting the display of labels displayed on the progress bar 
+* Displays the bookmark icon. Select the checkbox in which modes to display this icon.
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Cambiar el tamaño del texto en la barra de estado y el encabezado
-* Para cambiar el tamaño de la barra de estado
-* Cambiar el color en la barra de estado y el encabezado.
+* Change text size in status bar and header
+* To resize the status bar 
+* Change color in status bar and header.
 
 ||||
 |-|-|-|

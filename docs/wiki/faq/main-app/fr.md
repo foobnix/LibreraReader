@@ -18,7 +18,7 @@ version: 3
 
 
 * Vue condensée (deux colonnes)
-* affichage en grille
+* Affichage en grille
 * Couvertures uniquement (Couverture de livre)
 
 ||||
@@ -29,7 +29,7 @@ version: 3
 * Recherche dans la bibliothèque pour la chaîne &quot;comm&quot;
 * Appuyez sur l'étoile pour ajouter un livre à la liste des favoris.
 * Appuyez longuement sur l'étoile pour ajouter une balise personnalisée
-* Appuyez sur Historique pour ajouter une étiquette personnalisée à un livre.
+* Appuyez sur Historique pour ajouter une balise personnalisée à un livre.
 * Appuyez longuement sur un livre pour ouvrir la fenêtre d'informations.
 * Appuyez sur triple point pour faire apparaître la fenêtre de menu.
 

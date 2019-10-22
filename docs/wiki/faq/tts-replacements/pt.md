@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 2
 ---
 [<](/wiki/faq/pt)
 
@@ -19,23 +18,23 @@ Caixa de diálogo * Substituições
 
 As substituições suportam a substituição clássica de uma sequência por outra ou é possível usar expressões RegExp
 
-# # expressão
+## expressão
 
 * &quot;texto&quot; - texto simples
 * &quot;* texto&quot; - * regra RexExp
 * &quot;# text&quot; - # regra desativada
 * &quot;text256&quot; - regra desabilitada
 
-# # exemplos
+## exemplos
 
 * &quot;Lib.&quot; -&gt; &quot;Librera&quot; - substitua Lib. para Librera
 * &quot;Librera&quot; -&gt; &quot;Libréra&quot; - adicione marca de tensão correta
 * &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot; para desativar a regra
 * &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Substitua Lib. para Librera e lib. a librera
-* &quot;* [()&quot; «» * ”“/[]] &quot;-&gt;&quot; &quot;- Substitua caracteres por caracteres vazios
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Substitua caracteres por caracteres vazios
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Substitua chars para pausar (,) char
 
-# # Adicionar arquivo de regras
+## Adicionar arquivo de regras
 
 O Librera suporta arquivos de regras Regexp do @Voice reader
 aqui está uma amostra **demo-replaces.txt**
@@ -69,7 +68,6 @@ aqui está uma amostra **demo-replaces.txt**
 *"(^| )(Д|д)-р" " доктор"
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
-
 ```
 
 

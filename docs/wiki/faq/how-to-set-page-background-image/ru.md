@@ -2,33 +2,33 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ru)
 ---
 
-# Установить собственный фон для страницы книги
+# Set own background for book page
 
-> Librera Book Reader позволяет настраивать фон страницы во время чтения, что снижает утомляемость глаз и повышает комфорт при чтении.
-Фон может быть выбран как сплошной цвет или из текстуры изображения.
+> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
+The background can be selected as a solid color or from texture image.
 
-Для того, чтобы установить свой фон, вы должны:
+In order to set your background, you should:
 
-* Нажмите значок настроек.
-* В настройках выберите профиль, в котором вы хотите изменить фон. Выберите, например, «День».
-* В открывшемся диалоговом окне вы можете выбрать способ заполнения фона при чтении:
+* Click the settings icon.
+* In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
+* In the dialog box that opens you can choose how you want to fill the background when reading:
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-**Color** выбирается только цвет заливки фона чтения и его прозрачность.
+**Color**  only the fill color of the reading background and its transparency are selected.
 
-**Изображение** выбрано изображение фона чтения и его прозрачность.
+**Image** the picture of the reading background and its transparency are selected.
 
-### Добавить сплошной цвет
+## Add solid color
 
-* Выберите «Цвет» и отрегулируйте цвет кросс-фона в цветовой палитре круга.
-* После выбора цвета нажмите «ОК», выйдите из настроек, цвет фона будет применен.
+* Choose "Color" and adjust the cross background color on the color palette of the circle.
+* After selecting the color, click OK, exit the settings, the background color will be applied.
 
 ||||
 |-|-|-|
@@ -36,12 +36,12 @@ version: 7
 
 
 
-### Добавить текстуру изображения
+## Add image texture
 
-* Выбрано «Имидж».
-* В диалоговом окне настроек нажмите значок «плюс».
-* Выберите папку, в которой находится ваш фон. Введите его, нажмите на нужный фон, посмотрите внизу, должно появиться его имя, нажмите кнопку «Выбрать».
-* Выйдите из настроек, посмотрите результат.
+* Selected "Image".
+* In the settings dialog box, click the "plus" icon.
+* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
+* Exit the settings, watch the result.
 
 ||||
 |-|-|-|

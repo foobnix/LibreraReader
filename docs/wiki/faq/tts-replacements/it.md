@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 2
 ---
 [<](/wiki/faq/it)
 
@@ -19,23 +18,23 @@ version: 2
 
 Il supporto per i sostituti classico sostituisce una stringa con un'altra oppure puoi usare espressioni RegExp
 
-# # Espressione
+## Espressione
 
 * &quot;testo&quot;: testo semplice
 * &quot;* text&quot; - * Regola RexExp
 * &quot;# testo&quot; - # regola disabilitata
 * &quot;text256&quot; - regola disabilitata
 
-# # Esempi
+## Esempi
 
 * &quot;Lib.&quot; -&gt; &quot;Librera&quot; - sostituisci Lib. a Librera
 * &quot;Librera&quot; -&gt; &quot;Libréra&quot; - aggiunge il segno di stress corretto
 * &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot; per disabilitare la regola
 * &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Sostituisci lib. a Librera e lib. alla librera
-* &quot;* [()&quot; «» * ”“/[]] &quot;-&gt;&quot; &quot;- Sostituisci caratteri in caratteri vuoti
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Sostituisci caratteri in caratteri vuoti
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Sostituisci caratteri per mettere in pausa (,) carattere
 
-# # Aggiungi file di regole
+## Aggiungi file di regole
 
 Supporto di Librera File di regole Regexp dal lettore @Voice
 ecco alcuni samle **demo-replaces.txt**
@@ -69,7 +68,6 @@ ecco alcuni samle **demo-replaces.txt**
 *"(^| )(Д|д)-р" " доктор"
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
-
 ```
 
 

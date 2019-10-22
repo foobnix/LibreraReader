@@ -5,31 +5,31 @@ layout: main
 
 # Comment convertir un fichier PDF en EPUB
 
-> Il est possible de convertir n&#39;importe quel format de n&#39;importe quel format de Librera à l&#39;aide de services en ligne ou de convertir un fichier PDF en fichier EPUB en utilisant le mode de redistribution de texte (mode mobile).
+> **Librera** vous aidera à convertir tout format de livre vers un autre en utilisant des ressources en ligne. Vous pouvez également convertir des fichiers PDF en fichiers EPUB à l'aide du mode _Reflow PDF_ interne de l'application (mode mobile).
 
-### Convertisseur en ligne
+## Accès aux convertisseurs en ligne
 
-Dans le menu de gauche, recherchez le __convertisseur de documents en ligne__
+Appuyez sur **Convertir le document en ligne** dans le menu coulissant **Préférences**.
 
-Choisissez &quot;Convertir en EPUB&quot;
+Choisissez _Convert to EPUB_
 
-* Convertir un PDF en EPUB
-* Sélectionner un document et lancer le processus
-* Télécharger le livre EPUB
+* Convertissez votre fichier PDF en EPUB
+* Téléchargez votre document PDF et démarrez la conversion
+* Téléchargez votre document au format EPUB
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-### Redistribution du texte (mode mobile, comment convertir un fichier PDF en fichier EPUBe)
+## _Flux PDF_Reflow (Conversion PDF interne)
 
-Texte PDF Redistribuez PDF au format EPUB en mode hors connexion.
-Les images sont disponibles.
+L'option _Reflow PDF_ convertira votre document PDF au format EPUB hors ligne.
+Toutes les images du document seront préservées.
 
-* Ouvrir le menu du livre -&gt; Texte redistribué
-* Redistribution du texte (ou mode d&#39;affichage mobile)
-* Livres PDF et EPUB
+* Appuyez sur &quot;trois points&quot; en bas pour ouvrir le menu du livre, puis appuyez sur _Reflow PDF_
+* Un document PDF dans une présentation plus conviviale
+* versions PDF et EPUB enregistrées dans l'onglet **Récent**
 
 |4|5|6|
 |-|-|-|

@@ -5,12 +5,12 @@ version: 3
 [<](/wiki/faq/es)
 
 # Abrir carpeta con imágenes como libro (Enlazar en un libro)
-Es fácil abrir cualquier carpeta con imágenes como un libro virtual en la aplicación Librera.
+Es fácil hacer un libro de archivos de imagen almacenados en una carpeta.
 
 
-* Abrir carpeta con imágenes y vincularla en un libro
-* Carpeta con imágenes como libro virtual
-* Agregue bordes blancos de recorte, contraste y brillo
+* Abra una carpeta con imágenes (deben renombrarse para indicar números de página virtual) y presione **Enlazar un libro**
+* Su libro en diseño de cuadrícula
+* Recorta páginas en Librera y ajusta el contraste y el brillo
 
 ||||
 |-|-|-|

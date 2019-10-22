@@ -2,33 +2,33 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/pt)
 ---
 
-# Definir plano de fundo próprio para a página do livro
+# Set own background for book page
 
-> O Librera Book Reader permite personalizar o plano de fundo da página durante a leitura, o que contribui para menos fadiga ocular e aumenta o conforto ao ler.
-O fundo pode ser selecionado como uma cor sólida ou a partir da imagem de textura.
+> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
+The background can be selected as a solid color or from texture image.
 
-Para definir seu plano de fundo, você deve:
+In order to set your background, you should:
 
-* Clique no ícone de configurações.
-* Nas configurações, selecione o perfil no qual deseja alterar o plano de fundo. Escolha, por exemplo, &quot;Dia&quot;.
-* Na caixa de diálogo exibida, você pode escolher como deseja preencher o plano de fundo ao ler:
+* Click the settings icon.
+* In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
+* In the dialog box that opens you can choose how you want to fill the background when reading:
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-**Cor** somente a cor de preenchimento do plano de fundo da leitura e sua transparência são selecionadas.
+**Color**  only the fill color of the reading background and its transparency are selected.
 
-**Imagem** a imagem do plano de fundo da leitura e sua transparência são selecionadas.
+**Image** the picture of the reading background and its transparency are selected.
 
-### Adicione cor sólida
+## Add solid color
 
-* Escolha &quot;Cor&quot; e ajuste a cor de fundo cruzada na paleta de cores do círculo.
-* Após selecionar a cor, clique em OK, saia das configurações e a cor de fundo será aplicada.
+* Choose "Color" and adjust the cross background color on the color palette of the circle.
+* After selecting the color, click OK, exit the settings, the background color will be applied.
 
 ||||
 |-|-|-|
@@ -36,12 +36,12 @@ Para definir seu plano de fundo, você deve:
 
 
 
-### Adicione textura de imagem
+## Add image texture
 
-* &quot;Imagem&quot; selecionada.
-* Na caixa de diálogo de configurações, clique no ícone &quot;mais&quot;.
-* Escolha a pasta onde está o seu plano de fundo. Digite, clique no fundo desejado, olhe na parte inferior, deve aparecer o nome dele, clique em selecionar.
-* Saia das configurações, observe o resultado.
+* Selected "Image".
+* In the settings dialog box, click the "plus" icon.
+* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
+* Exit the settings, watch the result.
 
 ||||
 |-|-|-|

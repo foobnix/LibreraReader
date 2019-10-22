@@ -2,33 +2,33 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ar)
 ---
 
-# قم بتعيين الخلفية الخاصة لصفحة الكتاب
+# Set own background for book page
 
-> Librera Book Reader يتيح لك تخصيص خلفية الصفحة أثناء القراءة ، مما يساهم في تقليل التعب في العين ويزيد الراحة عند القراءة.
-يمكن تحديد الخلفية بلون صلب أو من صورة نسيج.
+> Librera Book Reader allows you to customize page background while reading, which contributes to less eye fatigue and adds comfort when reading.
+The background can be selected as a solid color or from texture image.
 
-من أجل تعيين الخلفية الخاصة بك ، يجب عليك:
+In order to set your background, you should:
 
-* انقر على أيقونة الإعدادات.
-* في الإعدادات ، حدد ملف التعريف الذي تريد تغيير الخلفية فيه. اختر ، على سبيل المثال ، &quot;اليوم&quot;.
-* في مربع الحوار الذي يفتح ، يمكنك اختيار الطريقة التي تريد بها ملء الخلفية عند القراءة:
+* Click the settings icon.
+* In the settings, select the profile in which you want to change the background. Choose, for example, "Day".
+* In the dialog box that opens you can choose how you want to fill the background when reading:
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-**اللون** يتم تحديد لون تعبئة خلفية القراءة فقط وشفافيته.
+**Color**  only the fill color of the reading background and its transparency are selected.
 
-**الصورة** يتم تحديد صورة خلفية القراءة وشفافيتها.
+**Image** the picture of the reading background and its transparency are selected.
 
-### أضف لونًا صلبًا
+## Add solid color
 
-* اختر &quot;اللون&quot; واضبط لون الخلفية المتقاطعة على لوحة الألوان للدائرة.
-* بعد اختيار اللون ، انقر فوق &quot;موافق&quot; ، واخرج من الإعدادات ، سيتم تطبيق لون الخلفية.
+* Choose "Color" and adjust the cross background color on the color palette of the circle.
+* After selecting the color, click OK, exit the settings, the background color will be applied.
 
 ||||
 |-|-|-|
@@ -36,12 +36,12 @@ version: 7
 
 
 
-### إضافة نسيج الصورة
+## Add image texture
 
-* &quot;صورة&quot; محددة.
-* في شاشة الإعدادات ، انقر أيقونة &quot;زائد&quot;.
-* اختر المجلد الذي تكمن خلفيتك فيه. أدخله ، انقر فوق الخلفية المطلوبة ، انظر إلى أسفل ، يجب أن يظهر اسمه ، انقر فوق تحديد.
-* الخروج من الإعدادات ، ومشاهدة النتيجة.
+* Selected "Image".
+* In the settings dialog box, click the "plus" icon.
+* Choose the folder where your background lies. Enter it, click on the desired background, look at the bottom, should appear his name, click select.
+* Exit the settings, watch the result.
 
 ||||
 |-|-|-|
