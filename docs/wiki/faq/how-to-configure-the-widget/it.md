@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/it)
 # Come configurare il widget
 
 > Per un accesso più rapido ai libri Nella tua libreria puoi avviarli a leggere dal desktop del tuo launcher,

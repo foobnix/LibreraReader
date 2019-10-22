@@ -33,8 +33,9 @@ html, body {
 .lang{  
   font-size:14px;
 }
+
 h2{
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 
 th{
@@ -302,4 +303,10 @@ img {
     the others are 41px
     */
     height: 232px;
+}
+
+code{
+    font-size: 12px;
+    color: red;
+    font-family: monospace;
 }

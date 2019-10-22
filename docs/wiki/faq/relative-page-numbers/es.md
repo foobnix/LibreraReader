@@ -5,14 +5,14 @@ layout: main
 
 # Números de página relativos para libros PDF
 
-> En algún momento el usuario desea tener el número de página en el control deslizante, como en la página del libro.
-Por ejemplo, si estudias un documento, es fácil encontrar páginas por números de libros.
+> En algún momento, el usuario quiere tener el número de página en el control deslizante como en la página del libro.
+Por ejemplo, si estudia algún documento, es fácil encontrar páginas por números de libro.
 
-* Número de página original, __Haga clic en__ en la página actual
+* Número de página original, **Haga clic largo** en la página actual
 * Establecer el número de página relativo
-* Control deslizante con número de página relativa
+* Control deslizante con número de página relativo
 
-Las páginas relativas se aplican también a la tabla de contenido y marcadores.
+Las páginas relativas también se aplican a la tabla de contenido y marcadores.
 Para deshabilitar las páginas relativas, simplemente haga clic en el número de página actual en el control deslizante y seleccione &quot;Restaurar valores predeterminados&quot;
 
 |1|2|3|

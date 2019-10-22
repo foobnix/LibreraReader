@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/it)
 # Come ripristinare le impostazioni predefinite (simile a cancellare la cache)
 
 > Se è necessario ripristinare tutte le impostazioni di Librera nel profilo corrente al loro stato originale, come dopo la prima installazione, è possibile farlo in più fasi.

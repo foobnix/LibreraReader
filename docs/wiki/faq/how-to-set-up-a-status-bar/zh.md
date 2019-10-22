@@ -2,8 +2,8 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/zh)
+
 {1}设置状态栏
 
 > Librera允许您灵活配置状态栏界面，在阅读时显示或从中删除所需的信息。

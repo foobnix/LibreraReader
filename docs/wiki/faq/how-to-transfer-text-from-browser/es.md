@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/es)
 
 # Cómo transferir texto desde el navegador web (para leer o TTS)
 

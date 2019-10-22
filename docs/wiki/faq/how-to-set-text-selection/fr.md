@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
 
 # Comment définir la sélection de texte
 

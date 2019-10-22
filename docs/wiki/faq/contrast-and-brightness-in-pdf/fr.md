@@ -2,8 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
 
 # Contraste et luminosité en PDF (effet noir et blanc)
 

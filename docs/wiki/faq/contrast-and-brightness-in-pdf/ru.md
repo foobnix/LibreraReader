@@ -2,8 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/ru)
 
 # Контраст и яркость в PDF (черно-белый эффект)
 

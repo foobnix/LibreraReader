@@ -4,13 +4,13 @@ version: 3
 ---
 [<](/wiki/faq/pt)
 
-# Abrir pasta com imagens como livro (Vincular a um livro)
-É fácil abrir qualquer pasta com imagens como um livro virtual no aplicativo Librera.
+# Abra uma pasta com imagens como um livro (Vincular um livro)
+É fácil criar um livro de arquivos de imagem armazenados em uma pasta.
 
 
-* Abra uma pasta com imagens e ligue-a em um livro
-* Pasta com imagens como livro virtual
-* Adicione bordas brancas de corte, contraste e brilho
+* Abra uma pasta com imagens (elas devem ser renomeadas para indicar números de páginas virtuais) e pressione **Vincular um livro**
+* Seu livro no layout da grade
+* Recorte páginas no Librera e ajuste o contraste e o brilho
 
 ||||
 |-|-|-|

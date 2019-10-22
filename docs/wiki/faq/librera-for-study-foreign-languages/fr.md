@@ -17,14 +17,14 @@ Les dictionnaires peuvent être un programme sur un ordinateur ou des dictionnai
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-Vous pouvez activer l'option pour ouvrir immédiatement un mot connu ou une phrase du dictionnaire sélectionné.
+Vous pouvez activer l'option permettant d'ouvrir immédiatement un mot connu ou une phrase du dictionnaire sélectionné.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 
-* Écoutez la prononciation du mot ou de la phrase sélectionné
+* Écoutez la prononciation du mot ou de la phrase sélectionnée
 * Écoutez le livre à voix haute
 * Ajoutez des mots et des phrases aux notes.
 
@@ -44,7 +44,7 @@ Vous pouvez activer l'option pour ouvrir immédiatement un mot connu ou une phra
 
 Librera peut lire des fichiers audio externes avec le livre.
 L'application affiche les formats .mp3, .mp4, .wav, .ogg, .m4a, .flac
-Cliquez longuement sur le bouton lecture/pause pour réinitialiser la piste au début
+Cliquez longuement sur le bouton lecture \ pause pour réinitialiser la piste au début
 
 * Ajouter un fichier audi qui va au livre
 * Gérer l'écoute, mettre en pause

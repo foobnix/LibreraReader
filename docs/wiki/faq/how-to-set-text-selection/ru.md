@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/ru)
 
 # Как настроить выбор текста
 

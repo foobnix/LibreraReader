@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/ar)
 
 # كيفية ضبط اختيار النص
 

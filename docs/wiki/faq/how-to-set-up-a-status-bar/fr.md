@@ -2,8 +2,8 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
+
 # Définition de la barre d'état
 
 > Librera vous permet de configurer de manière flexible l’interface de la barre d’état, en affichant ou en supprimant les informations dont vous avez besoin pendant la lecture.

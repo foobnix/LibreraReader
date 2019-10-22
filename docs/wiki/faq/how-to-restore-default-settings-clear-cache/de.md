@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/de)
 # So stellen Sie die Standardeinstellungen wieder her (ähnlich dem Löschen des Caches)
 
 > Wenn Sie alle Librera-Einstellungen im aktuellen Profil auf ihren ursprünglichen Zustand zurücksetzen müssen, wie nach der ersten Installation, können Sie dies in mehreren Schritten tun.

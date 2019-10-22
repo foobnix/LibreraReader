@@ -3,7 +3,6 @@ layout: main
 version: 1
 ---
 [<](/wiki/faq)
----
 # Setting up fingerprint or password protection
 
 > Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.

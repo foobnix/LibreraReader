@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/fr)
 
 # Comment supprimer des livres de la carte SD externe
 
@@ -9,7 +9,7 @@ Android 7+ ne permet pas de supprimer des fichiers de la carte SD externe par le
 raisons de sécurité.
 Vous devez ajouter une carte SD en tant que ressource et permettre à l’application d’en supprimer des fichiers.
 
-* onglet Ouvrir le gestionnaire de fichiers
+* onglet Gestionnaire de fichiers
 * Cliquez sur ajouter une ressource
 * Choisir une carte SD
 * Sélectionnez et autorisez la suppression de la carte SD choisie
@@ -20,7 +20,7 @@ Vous devez ajouter une carte SD en tant que ressource et permettre à l’applic
 
 * Ouvrir la carte SD dans le gestionnaire de fichiers
 * Cliquez sur le menu Fichier
-* Supprimer le livre
+* Supprimer un livre
 
 ||||
 |-|-|-|

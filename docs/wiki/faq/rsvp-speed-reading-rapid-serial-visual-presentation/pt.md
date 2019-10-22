@@ -2,32 +2,33 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq/pt)
+[<](/wiki/faq/)
 
-# Velocidade de leitura RSVP (Rapid Serial Visual Presentation) no Android
+# Velocidade de leitura de RSVP (Rapid Serial Visual Presentation) no Android
 
-> * Apresentação visual serial rápida * é um modelo experimental frequentemente usado para examinar as características temporais da atenção. O paradigma RSVP exige que os participantes olhem para uma apresentação contínua de itens visuais, que é de cerca de 10 itens por segundo. Eles são todos mostrados no mesmo lugar. Os alvos são colocados dentro desse fluxo de itens contínuos. Eles são separados do resto dos itens conhecidos como distratores. Os distratores podem ser uma mudança de cor ou podem ser letras que estão entre os números.
+> De acordo com a Wikipedia, * Rapid Serial Visual Presentation * é um modelo experimental freqüentemente usado para examinar as características temporais da atenção, o que exige que os participantes observem uma apresentação contínua de itens visuais a uma certa velocidade em um único ponto focal. Ao aplicar o paradigma RSVP à leitura, simplesmente queremos dizer uma apresentação contínua de sequências de palavras em uma única linha, em algum lugar no centro da tela.
 
-Com o Librera Book Reader, você pode ler mais rápido usando este método.
-Você pode alterar a velocidade de leitura de palavras por minuto (wpn) em tempo real.
-Além disso, você pode alterar o tamanho do texto, vá para as palavras anteriores.
-Clique único para a leitura da velocidade de parada inicial.
+Usando este método com o **Librera Reader**, você poderá ler mais rapidamente e transformar a leitura em diversão real.
+O programa permite alterar a velocidade de leitura (palavras por minuto, WPM) em tempo real. Como um bônus extra, você pode controlar o comprimento da linha e apresentá-la com uma única palavra (contração) ou várias palavras de cada vez.
+Além disso, você pode alterar o tamanho da fonte, ir para a apresentação anterior/seguinte e iniciar/parar a leitura rápida com um único toque.
 
-A Librera acrescenta que o novo recurso unic é __Minimum line length__ in charactes per line (CPL).
+**O Librera** apresenta a opção **Comprimento mínimo da linha** medida em caracteres por linha (CPL).
 
-O RSVP clássico mostra apenas uma palavra por, por exemplo, frase &quot;Eu sou médico&quot;
+O RSVP clássico mostra apenas uma palavra (contração) em uma linha. Por exemplo, a frase &quot;eu sou médico&quot; será apresentada da seguinte forma:
 
-__0 CPL__ - 1/pt) &quot;I&quot; 2/pt) &quot;am&quot; 3/pt) &quot;a&quot; 4/pt) &quot;médico&quot; (4 linhas/pt)
+**0 CPL** 1) &quot;I&quot; 2) &quot;sou&quot; 3) &quot;a&quot; 4) &quot;médico&quot; (4 linhas)
 
-Com o Librera você pode cofigurar por exemplo min 3 CPL
+Com o **Librera**, você pode alterá-lo para:
 
-__3 CPL__ 1/pt) &quot;Eu sou&quot; 2/pt) &quot;um médico&quot; (2 linhas/pt)
+**3 CPL** 1) &quot;Eu sou&quot; 2) &quot;médico&quot; (2 linhas)
 
-__10 CPL__ 1/pt) &quot;Eu sou médico&quot; (1 linha/pt)
+ou
 
-* O RSVP pode ser aberto no menu do livro
-* Clique único para começar a leitura rápida
-* 30 amostras de CPL
+**10 CPL** 1) &quot;Eu sou médico&quot; (uma única linha)
+
+* Entre no modo de leitura de velocidade RSVP no menu do livro
+* Clique único para iniciar ou parar
+* Comprimento mínimo da linha até 30 CPL
 
 ||||
 |-|-|-|

@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/es)
 # Cómo configurar el widget
 
 > Para un acceso más rápido a los libros En su biblioteca, puede comenzar a leerlos desde el escritorio de su iniciador,

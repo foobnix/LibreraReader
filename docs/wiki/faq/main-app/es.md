@@ -6,7 +6,7 @@ version: 3
 
 # La pantalla principal
 
-> Pestaña Biblioteca, o Librería
+> Pestaña Biblioteca o Librería
 
 * Pestaña Biblioteca: muestra todos los libros encontrados en el dispositivo
 * Cambiar el orden de clasificación por datos, tamaño de archivo, autor, etc.

@@ -2,8 +2,8 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/pt)
+
 # Definindo a barra de status
 
 > O Librera permite configurar de forma flexível a interface da barra de status, exibindo ou removendo dela as informações necessárias durante a leitura.

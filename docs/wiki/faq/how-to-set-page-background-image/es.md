@@ -2,8 +2,7 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/es)
 
 # Establecer un fondo propio para la página del libro
 
@@ -25,7 +24,7 @@ Para establecer su fondo, debe:
 
 **Imagen** se selecciona la imagen del fondo de lectura y su transparencia.
 
-### Añadir color sólido
+## Añadir color sólido
 
 * Elija &quot;Color&quot; y ajuste el color de fondo cruzado en la paleta de colores del círculo.
 * Después de seleccionar el color, haga clic en Aceptar, salga de la configuración, se aplicará el color de fondo.
@@ -36,7 +35,7 @@ Para establecer su fondo, debe:
 
 
 
-### Añadir textura de imagen
+## Añadir textura de imagen
 
 * &quot;Imagen&quot; seleccionada.
 * En el cuadro de diálogo de configuración, haga clic en el icono &quot;más&quot;.

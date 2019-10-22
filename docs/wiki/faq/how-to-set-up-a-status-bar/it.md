@@ -2,8 +2,8 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/it)
+
 # Impostazione della barra di stato
 
 > Librera consente di configurare in modo flessibile l'interfaccia della barra di stato, visualizzando o rimuovendo da essa le informazioni necessarie durante la lettura.

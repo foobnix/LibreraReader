@@ -3,38 +3,34 @@ layout: main
 ---
 [<](/wiki/faq/it)
 
-# Personalizza gli stili di css del libro
+# Codifica CSS personalizzata
 
-> Ad alcuni utenti piace personalizzare e configurare la visualizzazione del libro. Per alcuni libri è necessario correggere i CSS per una migliore visualizzazione.
-Puoi semplicemente farlo con Librera Reader
+> Per il rendering del libro, **Librera** di solito prende gli stili dal file .css del libro e applica anche le impostazioni dalla finestra **Preferenze**. Può anche utilizzare l'uno o l'altro separatamente. Ma a volte non è abbastanza. Alcuni libri hanno un codice CSS così particolare che non hai altra scelta che modificare i loro file .css per migliorare la leggibilità. **Librera**, tuttavia, ti offre un'altra opzione: aggiungi temporaneamente un codice CSS personalizzato facilmente rimovibile una volta terminato il libro contestato.
 
-App support tre __Stili__ modalità di visualizzazione, è possibile modificare le opzioni di visualizzazione.
+Sono supportate tre modalità **stili**:
 
-1. Stile del documento e dell&#39;utente
-2. Stili del documento
-3. Stili utente
+1. Documento + Definito dall'utente (prende le cose buone dai due mondi)
+2. Documento (utilizza solo le impostazioni .css del libro)
+3. Definito dall'utente (utilizza solo le impostazioni dell'utente specificate nelle schede della finestra **Preferenze**)
 
-Per cambiare lo stile del libro vai a
-__Proprietà del libro -&gt; Impostazioni di lettura__
-
-* Cambia le modalità di stile o modifica gli stili CSS personalizzati
-* Modalità stili documento
-* Modifica CSS utente personalizzato
+* L'utente può passare da una modalità all'altra tramite un elenco a discesa invocato toccando il collegamento accanto a _Styles_.
+* Tocca l'icona accanto all'elenco _Styles_ per aprire la finestra **Codice CSS personalizzato** e procedere.
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-Per impostazione predefinita abilita gli stili Documento e Utente insieme
+Document + La modalità definita dall'utente è abilitata per impostazione predefinita
 
-Per alcuni libri con esempi di codice è facile cambiare la dimensione del blocco di codice con il css dell&#39;utente
-<pre>
-{white-space: pre; font-size: 0.7em;} //  pre -  without break lines
-</pre>
+L'esempio in Fig. 3 è tratto dalla vita reale.
 
-o
+{white-space: pre-line;}
+Le sequenze di spazi bianchi vengono compresse. Le linee sono spezzate ai caratteri di nuova riga, a <br> e, se necessario, per riempire le caselle di riga.
 
-<pre>
-{white-space: normal; font-size: 0.7em;} // normal - with break lines
-</pre>
+{white-space: pre;}
+Le sequenze di spazi bianchi vengono conservate. Le linee sono spezzate solo ai caratteri di nuova riga nella sorgente e in <br> elementi.
+
+arco {display: block}
+p&gt; arco {display: inline}
+Elimina le righe vuote molto fastidiose tra le pagine (correggendo i difetti muPDF).

@@ -2,11 +2,11 @@
 layout: main
 version: 5
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/ar)
 
 # كيفية إضافة قسم الأسئلة الشائعة الجديد
 
-إذا كنت ترغب في إضافة قسم أسئلة وأجوبة جديد ، فقم بإنشاء مجلد **[Title-sample-FAQ]** مع ملف English **index.md** فقط هنا.
+إذا كنت تريد إضافة قسم أسئلة وأجوبة جديد ، فقم بإنشاء مجلد **[example-faq-title]** مع ملف {{}} index.md** باللغة الإنجليزية فقط هنا.
 [https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
 
 ثم يقوم البرنامج النصي تلقائيًا بتحديث جدول المحتويات faq ويضيف ترجمات لجميع اللغات
@@ -16,32 +16,21 @@ version: 5
 ```
 ---
 layout: main
-version: 1
 ---
 [<](/wiki/faq)
----
 
-# Title sample FAQ
-
+# Example of Title
 ```
+
 
 يجب أن تكون جميع الصور المتعلقة بهذا القسم في المجلد
-```
 
-* Desctiption 1
-...
-* Desctiption n
+```
+* Image description 1
+* Image description 2
+* Image description 3
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
-```
-
-إذا قمت بتحديث قسم الأسئلة الشائعة بعد generatoin ، فيجب عليك زيادة +1 في إصدار {3}:** في الرأس
-```
----
-layout: main
-version: 2
----
 ```

@@ -1,28 +1,29 @@
 ---
 layout: main
-version: 31
 ---
 [<](/wiki/pt)
 
 # Perguntas freqüentes
 
-* [Personalização de temas (branco, preto, AMOLED, cores, tamanho da fonte, cores dos links)](/wiki/faq/customize-theme-colors-links/pt)
-* [Como transferir texto do navegador da Web (para ler ou TTS)](/wiki/faq/how-to-transfer-text-from-browser/pt)
-* [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
-* [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Como restaurar configurações padrão (semelhante ao limpar cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
+* [Configurando impressão digital ou proteção por senha](/wiki/faq/setting-up-fingerprint-or-password-protection/pt)
+* [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
+* [Contraste e brilho em PDF (efeito preto e branco)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Como definir a seleção de texto](/wiki/faq/how-to-set-text-selection/pt)
+* [Definir plano de fundo próprio para a página do livro](/wiki/faq/how-to-set-page-background-image/pt)
+* [Trabalhando com marcadores no painel estendido (marcadores da faixa de opções)](/wiki/faq/bookmarks-extended-panel/pt)
 * [Definindo a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
 * [Manipulando tags personalizadas](/wiki/faq/custom-tags/pt)
-* [Codificação CSS personalizada](/wiki/faq/customize-book-css-styles/pt)
 * [Como converter PDF para EPUB](/wiki/faq/convert-pdf-to-epub/pt)
-* [Contraste e brilho em PDF (efeito preto e branco)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
-* [Definir plano de fundo próprio para a página do livro](/wiki/faq/how-to-set-page-background-image/pt)
+* [Modos de leitura: modo de rolagem, modo Livro e modo Músico](/wiki/faq/reading-mode-vertical-book-musician/pt)
+* [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
+* [Substituições TTS](/wiki/faq/tts-replacements/pt)
+* [Personalização de temas (branco, preto, AMOLED, cores, tamanho da fonte, cores dos links)](/wiki/faq/customize-theme-colors-links/pt)
+* [Como transferir texto do navegador da Web (para ler ou TTS)](/wiki/faq/how-to-transfer-text-from-browser/pt)
+* [Codificação CSS personalizada](/wiki/faq/customize-book-css-styles/pt)
 * [Abrir pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Como atualizar a biblioteca](/wiki/faq/update-the-library/pt)
-* [Substituições TTS](/wiki/faq/tts-replacements/pt)
-* [Modos de leitura: modo de rolagem, modo Livro e modo Músico](/wiki/faq/reading-mode-vertical-book-musician/pt)
 * [Librera para aprender línguas estrangeiras](/wiki/faq/librera-for-study-foreign-languages/pt)
 * [Tela principal](/wiki/faq/main-app/pt)
 * [Velocidade de leitura de RSVP (apresentação visual serial rápida) no Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/pt)

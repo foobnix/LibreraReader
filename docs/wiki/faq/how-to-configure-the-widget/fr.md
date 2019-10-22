@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
 # Comment configurer le widget
 
 > Pour un accès plus rapide aux livres Dans votre bibliothèque, vous pouvez les lire depuis le bureau de votre launcher.

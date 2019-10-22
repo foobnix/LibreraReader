@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/de)
 # So konfigurieren Sie das Widget
 
 > Für einen schnelleren Zugriff auf die Bücher In Ihrer Bibliothek können Sie sie vom Desktop Ihres Launchers aus lesen.

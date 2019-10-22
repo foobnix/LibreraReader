@@ -2,8 +2,7 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
 
 # Définir son propre arrière-plan pour la page du livre
 
@@ -25,7 +24,7 @@ Afin de définir votre arrière-plan, vous devriez:
 
 **Image** l'image de l'arrière-plan de lecture et sa transparence sont sélectionnées.
 
-### Ajouter une couleur unie
+## Ajouter une couleur unie
 
 * Choisissez &quot;Couleur&quot; et réglez la couleur d'arrière-plan croisé sur la palette de couleurs du cercle.
 * Après avoir sélectionné la couleur, cliquez sur OK, quittez les paramètres, la couleur d'arrière-plan sera appliquée.
@@ -36,7 +35,7 @@ Afin de définir votre arrière-plan, vous devriez:
 
 
 
-### Ajouter une texture d'image
+## Ajouter une texture d'image
 
 * &quot;Image&quot; sélectionnée.
 * Dans la boîte de dialogue des paramètres, cliquez sur l'icône &quot;plus&quot;.

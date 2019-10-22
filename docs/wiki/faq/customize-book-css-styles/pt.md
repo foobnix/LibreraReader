@@ -3,38 +3,34 @@ layout: main
 ---
 [<](/wiki/faq/pt)
 
-# Personalize estilos de css do livro
+# Codificação CSS personalizada
 
-> Alguns usuários gostam de personalizar e configurar a visualização de livros. Para alguns livros precisa consertar css para melhor exibição.
-Você pode simplesmente fazer isso com o Librera Reader
+> Para renderização de livros, o **Librera** geralmente usa os estilos do arquivo .css do livro e também aplica suas configurações na janela **Preferências**. Também pode usar um ou outro separadamente. Mas às vezes não é suficiente. Alguns livros têm um código CSS tão peculiar que você não tem outra opção a não ser editar seus arquivos .css para melhorar a legibilidade. O **Librera**, no entanto, oferece outra opção: adicione temporariamente o código CSS personalizado, facilmente removível, assim que terminar o livro desafiado.
 
-App suporta três __Styles__ modo de exibição, você pode alterar as opções de exibição.
+Três modos **Estilos** são suportados:
 
-1. Estilos de documento e usuário
-2. Estilos de Documento
-3. Estilos de usuário
+1. Documento + definido pelo usuário (pega as coisas boas dos dois mundos)
+2. Documento (usa apenas as configurações .css do livro)
+3. Definido pelo usuário (usa apenas a configuração do usuário especificada nas guias da janela **Preferências**)
 
-Para mudar o estilo do livro, vá para
-__Book preferences -&gt; Reading Settings__
-
-* Alterar modos de estilo ou editar estilos CSS personalizados
-* Modo de estilos de documentos
-* Editar CSS de usuário personalizado
+* O usuário pode alternar entre os modos por meio de uma lista suspensa chamada ao tocar no link ao lado de _Styles_.
+* Toque no ícone ao lado da lista _Styles_ para abrir a janela **Código CSS personalizado** e vá em frente.
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
 
-Por padrão, habilite os estilos Documento e Usuário juntos
+Documento + modo definido pelo usuário é ativado por padrão
 
-Para alguns livros com exemplos de código é fácil alterar o tamanho do bloco de código com o usuário css
-<pre>
-{white-space: pre; font-size: 0.7em;} //  pre -  without break lines
-</pre>
+O exemplo da Fig. 3 é retirado da vida real.
 
-ou
+{white-space: pre-line;}
+Seqüências de espaço em branco são recolhidas. As linhas são quebradas com caracteres de nova linha, em <br> e conforme necessário para preencher caixas de linha.
 
-<pre>
-{white-space: normal; font-size: 0.7em;} // normal - with break lines
-</pre>
+{white-space: pre;}
+Sequências de espaço em branco são preservadas. As linhas são quebradas apenas em caracteres de nova linha na origem e em <br> elementos.
+
+extensão {exibição: bloco}
+p&gt; extensão {display: inline}
+Elimina linhas vazias muito irritantes entre as páginas (corrigindo falhas de muPDF).

@@ -1,7 +1,7 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
+[<](/wiki/faq/de)
 
 # Übertragen von Text vom Webbrowser (zum Lesen oder TTS)
 

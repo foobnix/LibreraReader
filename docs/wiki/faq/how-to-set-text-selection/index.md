@@ -3,7 +3,6 @@ layout: main
 version: 2
 ---
 [<](/wiki/faq)
----
 
 # How to set text selection
 

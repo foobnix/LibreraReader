@@ -2,8 +2,7 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/it)
 
 # Imposta il proprio sfondo per la pagina del libro
 
@@ -25,7 +24,7 @@ Per impostare lo sfondo, è necessario:
 
 **Immagine** sono selezionate l'immagine dello sfondo di lettura e la sua trasparenza.
 
-### Aggiungi tinta unita
+## Aggiungi tinta unita
 
 * Scegli &quot;Colore&quot; e regola il colore di sfondo della croce sulla tavolozza dei colori del cerchio.
 * Dopo aver selezionato il colore, fare clic su OK, uscire dalle impostazioni, verrà applicato il colore di sfondo.
@@ -36,7 +35,7 @@ Per impostare lo sfondo, è necessario:
 
 
 
-### Aggiungi trama dell'immagine
+## Aggiungi trama dell'immagine
 
 * &quot;Immagine&quot; selezionata.
 * Nella finestra di dialogo delle impostazioni, fare clic sull'icona &quot;più&quot;.

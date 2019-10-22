@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/fr)
 # Comment restaurer les paramètres par défaut (similaire à l'effacement du cache)
 
 > Si vous devez réinitialiser tous les paramètres Librera du profil actuel à leur état d'origine, comme après la première installation, vous pouvez le faire en plusieurs étapes.

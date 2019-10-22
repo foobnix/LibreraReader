@@ -2,8 +2,7 @@
 layout: main
 version: 7
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/de)
 
 # Legen Sie einen eigenen Hintergrund für die Buchseite fest
 
@@ -25,7 +24,7 @@ Um Ihren Hintergrund festzulegen, sollten Sie:
 
 **Bild** Das Bild des Lesehintergrunds und dessen Transparenz werden ausgewählt.
 
-### Einfarbig hinzufügen
+## Einfarbig hinzufügen
 
 * Wählen Sie &quot;Farbe&quot; und passen Sie die Kreuzhintergrundfarbe in der Farbpalette des Kreises an.
 * Klicken Sie nach Auswahl der Farbe auf OK, und schließen Sie die Einstellungen. Die Hintergrundfarbe wird angewendet.
@@ -36,7 +35,7 @@ Um Ihren Hintergrund festzulegen, sollten Sie:
 
 
 
-### Bildtextur hinzufügen
+## Bildtextur hinzufügen
 
 * Ausgewähltes &quot;Bild&quot;.
 * Klicken Sie im Einstellungsdialogfeld auf das Pluszeichen.

@@ -2,8 +2,8 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/de)
+
 # Festlegen der Statusleiste
 
 > Mit Librera können Sie die Benutzeroberfläche der Statusleiste flexibel konfigurieren und die Informationen anzeigen oder daraus entfernen, die Sie beim Lesen benötigen.

@@ -2,8 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/de)
 
 # Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)
 

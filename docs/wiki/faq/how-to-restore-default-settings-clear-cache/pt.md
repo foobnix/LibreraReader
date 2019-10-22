@@ -2,8 +2,7 @@
 layout: main
 version: 2
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/pt)
 # Como restaurar configurações padrão (semelhante à limpeza de cache)
 
 > Se você precisar redefinir todas as configurações do Librera no perfil Atual para o estado original, como após a primeira instalação, isso poderá ser feito em várias etapas.

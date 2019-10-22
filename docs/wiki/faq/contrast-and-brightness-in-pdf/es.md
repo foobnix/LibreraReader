@@ -2,8 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/es)
 
 # Contraste y brillo en PDF (efecto blanco y negro)
 

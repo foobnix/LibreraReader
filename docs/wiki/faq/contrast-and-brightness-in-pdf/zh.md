@@ -2,8 +2,7 @@
 layout: main
 version: 1
 ---
-[<](/wiki/faq)
----
+[<](/wiki/faq/zh)
 
 # PDF中的对比度和亮度(黑白效果)
 

@@ -27,7 +27,8 @@ public class WikiTranslate {
 
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions");
 
-        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki";
+        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
+      // String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq/how-to-set-up-a-status-bar";
 
 
         File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");
@@ -95,6 +96,10 @@ public class WikiTranslate {
         if (in.startsWith("[<](/wiki/faq)")) {
             return "[<](/wiki/faq/" + ln + ")";
         }
+        if (in.equals("```") || in.equals("---")) {
+            return in;
+        }
+
         String key = in + ln;
         if (cache.has(key)) {
             return cache.getString(key);
@@ -177,6 +182,7 @@ public class WikiTranslate {
             line = line.replace("&gt;", ">");
         }
         line = line.replace("]]", "]");
+        line = line.replace("## #","##");
 
 
         for (String key : reverse.keySet()) {
@@ -205,86 +211,36 @@ public class WikiTranslate {
 
     }
 
-    public static int getVersion(String path) throws Exception {
-
-        BufferedReader input = new BufferedReader(new FileReader(path));
-        String line;
-        try {
-            while ((line = input.readLine()) != null) {
-                if (line.startsWith("version :")) {
-                    throw new IllegalArgumentException(path);
-                }
-                if (line.startsWith("version:")) {
-                    return Integer.parseInt(line.replace("version:", "").trim());
-                }
-            }
-            return 0;
-        } finally {
-            input.close();
-        }
-
-    }
 
     public static void translate(String root, String ln) throws Exception {
-        // System.out.println("Tranlate: " + root);
-
         File index = new File(root, "index.md");
         File ru = new File(root, ln + ".md");
 
-        int inVersion = getVersion(index.getPath());
-
-        int outVersion = -1;
-        if (ru.isFile()) {
-            outVersion = getVersion(ru.getPath());
-        }
-
-        // System.out.println("Version in " + inVersion);
-        // System.out.println("Version ou " + outVersion);
-
-        if ((inVersion == 0 && outVersion != -1) || inVersion == outVersion) {
-            // System.out.println("[Skip]");
-            return;
-        }
 
         System.out.println("Tranlate: " + root);
         PrintWriter out = new PrintWriter(ru);
 
         BufferedReader input = new BufferedReader(new FileReader(index));
         String line;
-        int header = 0;
 
-        boolean first = true;
+        boolean findHeader = false;
         boolean findCode = false;
         while ((line = input.readLine()) != null) {
 
             if (line.trim().equals("```")) {
                 findCode = !findCode;
-                if (findCode == false) {
-                    out.println(line);
-                    continue;
-                }
+            }
+            if (line.trim().equals("---")) {
+                findHeader = !findHeader;
             }
 
-            if (findCode) {
+            if (findCode || findHeader) {
                 out.println(line);
                 continue;
             }
 
-            if (first && !line.equals("---")) {
-                header = 3;
-                first = false;
 
-            }
-
-            first = false;
-            if (line.equals("---")) {
-                header++;
-            }
-            if (header >= 2) {
-
-                line = traslateMD(line, ln);
-
-            }
+            line = traslateMD(line, ln);
             out.println(line);
 
         }
