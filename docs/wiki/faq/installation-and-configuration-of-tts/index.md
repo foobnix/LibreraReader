@@ -26,6 +26,12 @@ To set up Google Text-to-Speech:
 * Select the voice synthesizer language you need. You can view languages by swiping up or down
 * Choose the type of voice sound you need, according to your preference.
 
+After selecting all the options, click in the navigation bar "back", go back to Google Text-to-Speech settings, click "Play". The test greeting of the Google voice synthesizer with the language and sound of Your choice will be sounded. Go to Librera, tap the text voice playback icon, tap "Play" and listen to your book.
+
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
+
+||||
+|-|-|-|
+|![](7.jpg)|![](8.jpg)|![](9.jpg)|
