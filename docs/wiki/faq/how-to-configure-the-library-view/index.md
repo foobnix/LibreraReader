@@ -27,3 +27,12 @@ In the quick setup of the library, you can choose a different kind of it, I will
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+
+In the book covers settings, you can disable or enable the book cover.
+* Turn off the checkbox to remove the display of the book cover
+* If you want to display the covers of books in the library then enable this checkbox.
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
