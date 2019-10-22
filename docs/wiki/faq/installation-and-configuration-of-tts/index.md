@@ -9,9 +9,9 @@ layout: main
 **To install voice speech synthesizer (TTS):**
 
 * Click on the icon the "voice playback of the text"
-* In the TTS settings, select the "i" icon .
-* Select Google Text-to-Speech voice synthesizer from the drop-down menu. You will go to Google Market, in the section of voice synthesizer installation. Click "install" Google Text-to-Speech voice synthesizer.
-* After installation, go back to the TTS Librera settings
+* In the TTS settings, select the "i" icon 
+* Select Google Text-to-Speech voice synthesizer from the drop-down menu. You will go to Google Market, in the section of voice synthesizer installation. Click "install" Google Text-to-Speech voice synthesizer
+* After installation, go back to the TTS Librera settings.
 
 ||||
 |-|-|-|
