@@ -41,3 +41,7 @@ In the book covers settings, you can disable or enable the book cover.
 To change the size of the displayed book cover:
 
 
+||||
+|-|-|-|
+|![](10.jpg)|![](11.jpg)|![](12.jpg)|
+
