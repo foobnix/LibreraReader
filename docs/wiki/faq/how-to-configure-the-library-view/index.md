@@ -51,5 +51,7 @@ To change the grid displayed on the book covers screen:
 * A slider to choose the size of the grid
 * You can choose the number of columns
 
-
+||||
+|-|-|-|
+|![](13.jpg)|![](14.jpg)|![](15.jpg)|
 
