@@ -20,3 +20,23 @@ To access these settings, click the settings icon.
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
+## Advanced setting
+
+
+In this menu tab, you can change the document font for the **"User-defined"** document style (for a description of the document, see the **Read settings** section below):
+
+* Click on the title link of the font
+* In the drop-down list of fonts, swipe up or down, select the font you want. 
+* If you want to download fonts for reading, see how to do it below, the settings section **"Read settings"**
+
+If you want to fine tune the text fonts:
+* Click the font configuration menu icon
+* In the settings pop-up menu, you can change the font for each type of text. After the change, click Apply" 
+* Close the settings and proceed to reading.
+
+
+||||
+|-|-|-|
+|![](23.jpg)|![](4.jpg)|![](5.jpg)|
+
+
