@@ -9,8 +9,8 @@ layout: main
 
 
 You can adjust the font and text style in the menu tabs:
-* Advanced settings
-* Reading settings.
+* **Advanced settings**
+* **Reading settings.**
 
 To access these settings, click the settings icon.
 
