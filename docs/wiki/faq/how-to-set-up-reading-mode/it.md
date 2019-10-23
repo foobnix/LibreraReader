@@ -18,10 +18,11 @@ Impostazione delle modalità di lettura in modalità libro, ad esempio il format
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 Impostazione delle modalità di lettura per documenti in formato pdf (djvu)
+
 * Premere l'icona per selezionare la modalità di lettura
 * Seleziona la modalità di lettura desiderata.
 
-Modalità di lettura:
+## Modalità lettura:
 
 * Modalità pagina singola: una pagina viene visualizzata sullo schermo
 * Modalità a due pagine: due pagine del documento vengono visualizzate contemporaneamente sullo schermo

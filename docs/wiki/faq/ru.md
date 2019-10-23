@@ -6,6 +6,7 @@ layout: main
 # Часто задаваемые вопросы
 
 * [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)
+* [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Как настроить внешний вид вашей библиотеки и обложек книг](/wiki/faq/how-to-configure-the-library-view/ru)
 * [Как восстановить настройки по умолчанию (аналогично очистке кэша)](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Настройка защиты по отпечатку пальца или паролю](/wiki/faq/setting-up-fingerprint-or-password-protection/ru)

@@ -6,6 +6,7 @@ layout: main
 # Foire aux questions
 
 * [Comment configurer le mode de lecture](/wiki/faq/how-to-set-up-reading-mode/fr)
+* [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Comment personnaliser l'apparence de votre bibliothèque et de vos couvertures de livres](/wiki/faq/how-to-configure-the-library-view/fr)
 * [Comment restaurer les paramètres par défaut (similaire à l'effacement du cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Configuration de la protection par empreinte digitale ou par mot de passe](/wiki/faq/setting-up-fingerprint-or-password-protection/fr)
