@@ -23,7 +23,8 @@ To access these settings, click the settings icon.
 ## Advanced setting
 
 
-In this menu tab, you can change the document font for the **"User-defined"** document style (for a description of the document, see the **"Read settings"** section below):
+In this menu tab, you can change the document font for the **"User-defined"** document style (see the **"Read settings"** section below for a description of the styles):
+
 
 * Click on the title link of the font
 * In the drop-down list of fonts, swipe up or down, select the font you want. 
