@@ -46,3 +46,11 @@ If you want to fine tune the text fonts:
 
 ## Read settings
 
+
+||||
+|-|-|-|
+|![](8.jpg)|![](9.jpg)|![](10.jpg)|
+
+
+
+
