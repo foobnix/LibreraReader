@@ -46,9 +46,9 @@ If you want to fine tune the text fonts:
 
 For the book format **fb2** you can adjust the letter:
 * Click the font configuration menu icon
-* Enable the "Lead chapters with initiatives" checkbox"
+* Enable the "Lead chapters with initiatives" checkbox
 * Select the font of the Letter
-* Adjust its size and color
+* Adjust size and color
 * Click "Apply" to apply the settings.
 
 ||||
