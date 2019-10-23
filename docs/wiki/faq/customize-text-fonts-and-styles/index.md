@@ -39,4 +39,8 @@ If you want to fine tune the text fonts:
 |-|-|-|
 |![](23.jpg)|![](4.jpg)|![](5.jpg)|
 
+||||
+|-|-|-|
+|![](6.jpg)|![](42.jpg)|![](43.jpg)|
+
 
