@@ -64,6 +64,12 @@ For the book format **fb2** you can adjust the letter:
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
+In this section of the menu you can work with your font files, add or download new fonts. To set the display styles of text.
 
+To customize fonts, download or add new ones, you must: 
+
+* Specify the path to your fonts, if any, by selecting the fonts folder on your device
+Download additional fonts by clicking on the "Download fonts" icon. A confirmation window about the download will appear, click "Download". 
+* The fonts have a size of 10 megabytes, after downloading will be displayed for selection in the General font selection, menu tab **"Advanced setting"**.
 
 
