@@ -6,6 +6,7 @@ layout: main
 # Frequently asked questions
 
 * [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)
+* [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)
 * [How to restore default settings (similar to clear cache)](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [Setting up fingerprint or password protection](/wiki/faq/setting-up-fingerprint-or-password-protection)

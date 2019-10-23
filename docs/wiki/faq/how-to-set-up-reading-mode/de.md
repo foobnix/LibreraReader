@@ -18,10 +18,11 @@ Einrichten von Lesemodi im Buchmodus, z. B. das Buchformat .epub:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 Einrichten der Lesemodi für das Formatieren von Dokumenten als PDF (DJVU)
+
 * Drücken Sie das Symbol, um den Lesemodus auszuwählen
 * Wählen Sie den gewünschten Lesemodus aus.
 
-Lesemodus:
+## Lesemodus:
 
 * Einzelseitenmodus - Eine Seite wird auf dem Bildschirm angezeigt
 * Doppelseitenmodus: Zwei Seiten des Dokuments werden gleichzeitig auf dem Bildschirm angezeigt

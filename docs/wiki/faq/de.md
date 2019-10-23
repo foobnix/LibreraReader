@@ -6,6 +6,7 @@ layout: main
 # Häufig gestellte Fragen
 
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
+* [Installieren und Konfigurieren von Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/de)
 * [So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an](/wiki/faq/how-to-configure-the-library-view/de)
 * [So stellen Sie die Standardeinstellungen wieder her (ähnlich dem Löschen des Caches)](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
 * [Einrichten des Fingerabdruck- oder Passwortschutzes](/wiki/faq/setting-up-fingerprint-or-password-protection/de)

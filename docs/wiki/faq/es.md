@@ -6,6 +6,7 @@ layout: main
 # Preguntas frecuentes
 
 * [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
+* [Instalación y configuración de texto a voz (TTS)](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Cómo personalizar el aspecto de su biblioteca y portadas de libros](/wiki/faq/how-to-configure-the-library-view/es)
 * [Cómo restaurar la configuración predeterminada (similar a borrar caché)](/wiki/faq/how-to-restore-default-settings-clear-cache/es)
 * [Configuración de protección de huella digital o contraseña](/wiki/faq/setting-up-fingerprint-or-password-protection/es)

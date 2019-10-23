@@ -18,10 +18,11 @@ Setting up reading modes in the book mode, for example, the book format .epub:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 Setting up reading modes for format documents pdf (djvu)
+
 * Press the icon to select the reading mode
 * Select the reading mode you want.
 
-Read mode:
+## Read mode:
 
 * Single-page mode - one page is displayed on the screen
 * Two - page mode - two pages of the document are displayed on the screen at once

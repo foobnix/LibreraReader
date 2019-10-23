@@ -6,6 +6,7 @@ layout: main
 # الأسئلة المتداولة
 
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
+* [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية تخصيص مظهر مكتبتك وأغلفة الكتب](/wiki/faq/how-to-configure-the-library-view/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)

@@ -6,6 +6,7 @@ layout: main
 {1}常见问题
 
 * [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
+* [安装和配置语音合成(TTS)](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何自定义图书馆和书籍封面的外观](/wiki/faq/how-to-configure-the-library-view/zh)
 * [如何恢复默认设置(类似于清除缓存)](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [设置指纹或密码保护](/wiki/faq/setting-up-fingerprint-or-password-protection/zh)

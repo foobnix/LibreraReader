@@ -18,10 +18,11 @@ Configuration des modes de lecture en mode livre, par exemple, le format du livr
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 Configuration des modes de lecture pour les documents de format pdf (djvu)
+
 * Appuyez sur l'icône pour sélectionner le mode de lecture.
 * Sélectionnez le mode de lecture souhaité.
 
-Mode lecture:
+## Mode lecture:
 
 * Mode page unique - une page est affichée à l'écran
 * Mode deux pages - deux pages du document sont affichées à la fois sur l'écran
