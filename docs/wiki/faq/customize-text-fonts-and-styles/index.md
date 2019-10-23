@@ -62,7 +62,7 @@ For the book format **fb2** you can adjust the letter:
 
 ||||
 |-|-|-|
-|![](19.jpg)|![](20.jpg)|![](22.jpg)|
+|![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
 
 
