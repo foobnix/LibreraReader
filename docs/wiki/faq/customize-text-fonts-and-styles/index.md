@@ -5,7 +5,7 @@ layout: main
 
 # Customize text fonts and styles
 
-> For comfortable reading Librera allows you to customize the look Of your document, change its fonts, add a capital letter.
+> For comfortable reading Librera allows you to customize the look Of your document, change fonts, CSS styles, add a capital letter.
 
 
 You can adjust the font and text style in the menu tabs:
