@@ -17,6 +17,6 @@ To access these settings, click the settings icon.
 
 ||||
 |-|-|-|
-|![](1.jpg)|![](3.jpg)|![](2.jpg)|
+|![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
