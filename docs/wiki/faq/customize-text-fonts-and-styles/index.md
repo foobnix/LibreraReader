@@ -73,7 +73,7 @@ Download additional fonts by clicking on the "Download fonts" icon. A confirmati
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Customize the styles of the displayed text.
+**Customize the styles of the displayed text.**
 
 The program allows you to select the text display and style set in the text by the author of the document:
 * Document-uses the text style set by the author the Creator of the document
