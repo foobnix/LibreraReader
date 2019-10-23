@@ -73,5 +73,26 @@ Download additional fonts by clicking on the "Download fonts" icon. A confirmati
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
+**Customize the styles of the displayed text.
+
+The program allows you to select the text display and style set in the text by the author of the document:
+* Document-uses the text style set by the author the Creator of the document
+* User-defined-use your style settings for fonts, indentation, markup of the document
+* Document+User-defined-user and author styles are used together.
+
+By clicking on the style settings icon you can add your own text display styles using the hypertext markup language css
+
+||||
+|-|-|-|
+|![](11.jpg)|![](12.jpg)|![](13.jpg)|
+
+||||
+|-|-|-|
+|![](14.jpg)|![](15.jpg)|![](16.jpg)|
+
+
+
+
+
 
 
