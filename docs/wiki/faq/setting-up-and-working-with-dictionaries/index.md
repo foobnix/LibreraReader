@@ -51,3 +51,12 @@ This example uses offline dictionaries Google translator and Oxford Dictionary o
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 
+If you want to skip the dictionary selection, after tap on the word, so that the text is immediately transferred to Your dictionary:
+Put the checkbox on "Open selection in dictionary" and select the dictionary you need.
+
+||||
+|-|-|-|
+|![](13.jpg)|![](55.jpg)|![](66.jpg)|
+
+
+
