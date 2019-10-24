@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
 
 # Cómo aumentar el tamaño de fuente en un documento PDF en Android
 

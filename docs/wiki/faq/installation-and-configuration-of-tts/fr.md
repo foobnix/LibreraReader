@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Installation et configuration de la synthèse vocale
 
@@ -17,7 +16,6 @@ layout: main
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
-
 
 ## Pour configurer la synthèse vocale dans Google:
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/es)
 
 # Manejo de etiquetas personalizadas
 
@@ -28,7 +27,6 @@ layout: main
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 ## Crear una lista personalizada de libros
 

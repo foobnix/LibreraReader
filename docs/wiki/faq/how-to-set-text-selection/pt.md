@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/pt)
 
 # Como definir a seleção de texto
 
@@ -14,13 +12,11 @@ Para ativar e configurar os modos de seleção Você precisa:
 * Vá para a guia do menu de configurações avançadas.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > Quando o modo de seleção é desativado no texto do livro, quando você toca em uma nota de rodapé, a transição não funciona. Se você precisar navegar pela nota de rodapé, ative o primeiro item &quot;Ativar seleção de texto&quot;.
-
 
 O modo de seleção é configurado ativando as caixas de seleção:
 * Ativar seleção de texto - ativa ou desativa a seleção de texto no documento. O texto é destacado apenas com um toque longo
@@ -36,7 +32,6 @@ texto selecionado, ampliando-o ou reduzindo a distância da captura de palavras 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Texto selecionado, você pode:
 Marque este livro como favorito

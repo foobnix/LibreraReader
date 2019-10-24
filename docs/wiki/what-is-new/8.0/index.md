@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 6
 ---
 [What Is New](/wiki/what-is-new)
 
@@ -40,7 +39,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **Dark & Dark OLED Themes**
 
 * Choose Dark OLED theme with pitch-black color
@@ -48,6 +46,4 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
-
-
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Numéros de page relatifs pour les livres PDF
 

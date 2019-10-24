@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[Cosa c'è di nuovo](/wiki/what-is-new/it)
 
 # 7.12
 
@@ -13,14 +11,11 @@ version: 2
 * Riproduzione di file e cartelle mp3
 * Gestisci serie di libri
 
-
-
 **Scheda Preferiti**
 
 La scheda **Preferiti** è stata ridisegnata. Gli articoli **Tag** e **Playlist** possono ora essere facilmente accessibili.
 Tagga i libri per raggrupparli in base a qualsiasi criterio comune, ad esempio &quot;Matematica&quot;, &quot;Thriller&quot;, &quot;Mistero&quot; ecc. (È possibile aggiungere un tag dalla finestra Info libro).
 Le playlist sono pensate principalmente per i musicisti: è facile tenere a portata di mano i documenti selezionati e manipolare l'elenco.
-
 
 ||||
 |-|-|-|
@@ -66,9 +61,6 @@ Potrebbe essere utile per i musicisti e per coloro che studiano lingue straniere
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
-
 # Cosa c'è di nuovo in Librera Book Reader
-
 
 )

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/it)
 
 # Librera per l'apprendimento delle lingue straniere
 
@@ -16,13 +14,11 @@ I dizionari possono essere un programma su un computer o dizionari web.
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 È possibile abilitare l'opzione per aprire immediatamente una parola nota o una frase nel dizionario selezionato.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Ascolta la pronuncia della parola o frase selezionata
 * Ascolta il libro con la voce
@@ -32,7 +28,6 @@ I dizionari possono essere un programma su un computer o dizionari web.
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 * Aggiungi un file audio che va al libro
 * Ascolta il libro con la voce
 * Aggiungi parole e frasi alle note.
@@ -40,7 +35,6 @@ I dizionari possono essere un programma su un computer o dizionari web.
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 Librera può riprodurre file audio esterni con il libro
 L'applicazione visualizza i formati .mp3, .mp4, .wav, .ogg, .m4a, .flac

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/pt)
 
 # Definindo a barra de status
 
@@ -16,7 +14,6 @@ Para acessar as configurações da barra de status, é necessário:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Após as ações, você acessa a barra de status das configurações onde é possível configurar:
 * Para ativar ou desativar a exibição da barra de status
 * Ajuste sua posição na parte superior ou inferior da tela.
@@ -24,7 +21,6 @@ Após as ações, você acessa a barra de status das configurações onde é pos
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Alterar o tipo de informação sobre o livro exibido na parte de texto da barra de status
@@ -40,7 +36,6 @@ Alterar o tipo de informação sobre o livro exibido na parte de texto da barra 
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Ativar ou desativar a barra de progresso

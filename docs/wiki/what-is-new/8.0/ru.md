@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[Что нового](/wiki/what-is-new/ru)
 
 # 8.0
 
@@ -40,7 +38,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **Тёмная и OLED Тёмная темы**
 
 * Выберите тему Dark OLED совершенно чёрного цвета.
@@ -49,8 +46,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-
 # Что нового в Librera Book Reader
-
 
 )

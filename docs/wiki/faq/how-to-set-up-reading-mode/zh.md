@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/zh)
 
 {1}如何设置阅读模式
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/what-is-new/pt)
 
 # 7,10
 

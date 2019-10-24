@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/fr)
+
 # Configuration de la protection par empreinte digitale ou par mot de passe
 
 > Librera vous permet de protéger vos documents de l'affichage en limitant l'accès avec un mot de passe ou une empreinte digitale.
@@ -49,6 +48,5 @@ Le mot de passe de connexion est installé. Lorsque vous vous connectez, une bo�
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 Pour supprimer le mot de passe, lancez Librera, veuillez vous assurer que, dans les paramètres où le mot de passe de connexion avait déjà été activé, décochez la case correspondant à cette fonction.

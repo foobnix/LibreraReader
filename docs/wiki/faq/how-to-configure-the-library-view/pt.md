@@ -1,13 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
 # Como personalizar a aparência da sua biblioteca e capas de livros
 
-
 > O Librera permite que você personalize de forma flexível a aparência geral da sua biblioteca, o tamanho da capa do livro, as informações exibidas no livro, a classificação dos livros na sua biblioteca.
-
 
 Para configurar rapidamente a exibição da biblioteca, você deve:
 
@@ -25,11 +22,9 @@ Você também pode personalizar ainda mais a aparência da biblioteca e capas de
 
 Na configuração rápida da biblioteca, você pode escolher um tipo diferente, darei, por exemplo, alguns.
 
-
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
 
 Nas configurações de capas de livros, você pode desativar ou ativar a capa.
 
@@ -40,11 +35,9 @@ Nas configurações de capas de livros, você pode desativar ou ativar a capa.
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
 Para alterar o tamanho da capa do livro exibida:
 
 * Use o controle deslizante para selecionar o tamanho da capa do livro exibida
-
 
 ||||
 |-|-|-|
@@ -65,8 +58,6 @@ Se você deseja retornar as configurações da capa do livro ao estado inicial:
 * Confirme sua ação &quot;OK&quot;
 
 As capas serão restauradas para suas configurações iniciais.
-
-
 
 
 

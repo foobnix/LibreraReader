@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[ما هو جديد](/wiki/what-is-new/ar)
 
 # 8.0
 
@@ -40,7 +38,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **المظاهر المظلمة والظلام OLED**
 
 * اختر مظهر Dark OLED بلون أسود داكن
@@ -49,8 +46,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-
 # ما هو الجديد في Librera Book Reader
-
 
 )

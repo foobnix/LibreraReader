@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/de)
 
 # Festlegen der Textauswahl
 
@@ -14,13 +12,11 @@ So aktivieren und konfigurieren Sie Auswahlmodi:
 * Wechseln Sie zum Menüreiter für erweiterte Einstellungen.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > Wenn der Auswahlmodus im Text des Buches deaktiviert ist und Sie auf eine Fußnote tippen, funktioniert der Übergang nicht. Wenn Sie per Fußnote navigieren müssen, aktivieren Sie den ersten Punkt &quot;Textauswahl aktivieren&quot;.
-
 
 Der Auswahlmodus wird durch Aktivieren der Kontrollkästchen konfiguriert:
 * Textauswahl aktivieren - Aktiviert oder deaktiviert die Textauswahl im Dokument. Der Text wird nur durch langes Tippen hervorgehoben
@@ -36,7 +32,6 @@ Text auswählen, vergrößern oder den Abstand zwischen den Wörtern verringern
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Ausgewählter Text, den Sie können:
 * Setze ein Lesezeichen für dieses Buch

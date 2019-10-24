@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
 
 # Reading modes: Scroll mode, Book mode and Musician mode
 
@@ -41,7 +39,6 @@ version: 1
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## Book mode
 * Swipe horizontally for next-prev page

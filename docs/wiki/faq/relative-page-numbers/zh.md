@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/zh)
 
 # PDF书籍的相对页码
 

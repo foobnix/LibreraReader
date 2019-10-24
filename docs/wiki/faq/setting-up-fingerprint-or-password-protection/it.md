@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/it)
+
 # Impostazione della protezione delle impronte digitali o della password
 
 > Librera ti consente di proteggere i tuoi documenti dalla visualizzazione limitando l'accesso con una password o un'impronta digitale.
@@ -49,6 +48,5 @@ L'accesso con password è installato. Quando accedi, una finestra di dialogo ti 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 Per rimuovere la password, eseguire Librera, per favore antideficito, nelle impostazioni in cui la password di accesso era stata precedentemente attivata, deselezionare la casella di controllo di questa funzione.

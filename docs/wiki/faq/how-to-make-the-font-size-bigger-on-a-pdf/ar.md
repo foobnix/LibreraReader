@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/ar)
 
 # كيفية زيادة حجم الخط في وثيقة PDF في Android
 

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq)
 
 # Setting the status bar
 
@@ -16,7 +14,6 @@ To go to the status bar settings you need to:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 After the actions you get to the settings status bar where you can configure:
 * To enable or disable showing the status bar 
 * Adjust its position at the Top or Bottom of the screen.
@@ -24,7 +21,6 @@ After the actions you get to the settings status bar where you can configure:
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Change the type of information about the book displayed in the text part of the status bar
@@ -40,7 +36,6 @@ Change the type of information about the book displayed in the text part of the 
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Enable or disable progress bar

@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/pt)
+
 # Configuração de impressão digital ou proteção por senha
 
 > O Librera permite proteger a exibição dos seus documentos restringindo o acesso com uma senha ou impressão digital.
@@ -49,6 +48,5 @@ O login da senha está instalado. Quando você faz login, uma caixa de diálogo 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 Para remover a senha, execute o Librera, antideficit, nas configurações em que a senha de login foi ativada anteriormente, limpe a caixa de seleção desta função.

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/what-is-new/ar)
 
 # 7.10
 

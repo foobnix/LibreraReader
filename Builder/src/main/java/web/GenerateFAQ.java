@@ -26,7 +26,7 @@ public class GenerateFAQ {
         out.println("---");
         out.println("layout: main");
         out.println("---");
-        out.println("[<](/wiki/)");
+        //out.println("[<](/wiki/)");
         out.println("");
         out.println("# " + pageTitle);
         out.println("");

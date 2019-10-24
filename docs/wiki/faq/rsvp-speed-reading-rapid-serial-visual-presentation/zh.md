@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/)
+
 
 {1}在Android中快速阅读RSVP(快速串行视觉演示)
 
@@ -33,5 +32,4 @@ version: 2
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 

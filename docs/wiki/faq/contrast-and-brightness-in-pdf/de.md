@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/de)
 
 # Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)
 
@@ -11,7 +9,6 @@ Wenn Sie diese Einstellungen konfigurieren, wird das Dokument schwarzweiß.
 Indem Sie den Schieberegler bewegen, um den gewünschten Parameter hinzuzufügen/zu verringern,
 Im Hintergrund des Einstellungsdialogs können Sie die Auswirkungen auf das Dokument sehen.
 Sie können alle drei Parameter so und getrennt konfigurieren. Dieser Effekt wird häufig bei E-Ink-Lesegeräten verwendet
-
 
 Zum bequemen Lesen Sie können die Einstellungen anpassen:
 * Kontrast
@@ -35,7 +32,6 @@ Zum bequemen Lesen Sie können die Einstellungen anpassen:
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
-
 
 ## Alles hervorheben (Fettdruck)
 * Klicken Sie auf das Symbol für Kontrast und Helligkeit

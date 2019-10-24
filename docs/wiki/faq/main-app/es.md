@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq/es)
 
 # La pantalla principal
 
@@ -16,7 +14,6 @@ version: 3
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Vista condensada (dos columnas)
 * Vista de cuadrícula
 * Cubiertas solamente (Portada del libro)
@@ -24,7 +21,6 @@ version: 3
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Buscar en la biblioteca la cadena &quot;comm&quot;
 * Toque estrella para agregar un libro a la lista de favoritos

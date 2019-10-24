@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 7
 ---
-[<](/wiki/faq/it)
 
 # Imposta il proprio sfondo per la pagina del libro
 
@@ -19,7 +17,6 @@ Per impostare lo sfondo, è necessario:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Colore** sono selezionati solo il colore di riempimento dello sfondo di lettura e la sua trasparenza.
 
 **Immagine** sono selezionate l'immagine dello sfondo di lettura e la sua trasparenza.
@@ -34,7 +31,6 @@ Per impostare lo sfondo, è necessario:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
 ## Aggiungi trama dell'immagine
 
 * &quot;Immagine&quot; selezionata.
@@ -45,6 +41,5 @@ Per impostare lo sfondo, è necessario:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/de)
 
 # Fügen Sie Fußnoten direkt in den Text ein
 

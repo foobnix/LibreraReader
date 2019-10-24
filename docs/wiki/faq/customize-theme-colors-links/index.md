@@ -1,11 +1,8 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
 
 # Theme Customization (white, black, AMOLED, colors, font size, link colors)
-
 
 > Librera allows you to customize the themes and interface to your color preferences.
 
@@ -18,11 +15,9 @@ You can customize:
 
 **All settings of the program you can combine with each other.**
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
 
 **Setting the font size:**
 
@@ -32,7 +27,6 @@ You can customize:
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
-
 
 **Customize the app theme:**
 
@@ -44,7 +38,6 @@ _You can also customize the theme of your screen while reading "Day / Night" Rea
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
-
 
 **Setting the title color (Trim):**
 
@@ -64,8 +57,6 @@ _You can also customize the theme of your screen while reading "Day / Night" Rea
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
-
-
 
 
 

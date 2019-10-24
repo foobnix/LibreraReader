@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[Quoi de neuf](/wiki/what-is-new/fr)
 
 # 7.11
 
@@ -34,12 +32,10 @@ Abonnez-vous au **lecteur Librera** du télégramme [https://t.me/LibreraReader]
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **Lecture RSVP (présentation visuelle en série rapide) / Lecture rapide**
 
 La lecture rapide avec **Librera** vous permet d’améliorer votre vitesse de lecture jusqu’à 700 mots par minute (WPM) en implémentant la méthode RSVP.
 Suivez le lien pour trouver plus d'informations sur le sujet [section de lecture rapide](/wiki/manual/Rapid-Serial-Visual-Presentation/fr)
-
 
 * Le mode RSVP peut être lancé à partir du menu du livre (Lecture rapide)
 * Lecture rapide en un seul clic
@@ -59,11 +55,9 @@ Suivez le lien pour trouver plus d'informations sur le sujet [section de lecture
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Ouvrir un dossier avec des images sous forme de livre (relié dans un livre)**
 
 Pour ouvrir un dossier sous forme de livre, accédez à l'onglet Dossiers et appuyez sur son nom. S'il contient au moins un fichier image, l'option Liaison dans un livre apparaît.
-
 
 * Ouvrir un dossier contenant des images et les lier dans un livre.
 * Dossier avec images ouvert en tant que livre virtuel
@@ -73,9 +67,6 @@ Pour ouvrir un dossier sous forme de livre, accédez à l'onglet Dossiers et app
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # Quoi de neuf dans le lecteur de livre Librera
-
-
 
 

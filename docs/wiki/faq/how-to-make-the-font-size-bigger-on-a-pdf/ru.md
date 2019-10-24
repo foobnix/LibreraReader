@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/ru)
 
 # Как увеличить размер шрифта в PDF документе в Android
 

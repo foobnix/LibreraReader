@@ -475,12 +475,12 @@ public class TxtUtils {
             }
 
 
-            pageHTML = replaceAll(pageHTML, " (\\S)\\.(\\S)\\.(\\S)\\.(\\S)\\.", "  $1 $2 $3 $4 ");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,3})\\.(\\S{1,3})\\.", "  $1 $2 $3 ");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,3})\\.(\\S{1,4})\\.", "  $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. (\\S{1,2})\\.", "  $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\S{1,2})\\. ", " $1 ");
-            pageHTML = replaceAll(pageHTML, "(\\d*)\\.(\\d+)", "$1 $2"); //skip numbers 3.3 .343
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.", " $1 $2 $3 $4 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,3})\\.(\\p{Alpha}S{1,3})\\.", " $1 $2 $3 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,4})\\.", " $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. (\\p{Alpha}S{1,2})\\.", " $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. ", " $1 ");
+            pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1 $2"); //skip numbers 3.3 .343
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -489,7 +489,7 @@ public class TxtUtils {
             }
 
 
-            //pageHTML = pageHTML.replace("{dot}", ".");
+            pageHTML = pageHTML.replace("{dot}", ".");
         }
 
 
@@ -500,6 +500,7 @@ public class TxtUtils {
         try {
             return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
         } catch (Exception e) {
+            LOG.e(e);
             return Pattern.compile(regex).matcher(input).replaceAll(replacement);
         }
     }

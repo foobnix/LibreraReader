@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 7
 ---
-[<](/wiki/faq/es)
 
 # Establecer un fondo propio para la página del libro
 
@@ -19,7 +17,6 @@ Para establecer su fondo, debe:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Color** solo se seleccionan el color de relleno del fondo de lectura y su transparencia.
 
 **Imagen** se selecciona la imagen del fondo de lectura y su transparencia.
@@ -34,7 +31,6 @@ Para establecer su fondo, debe:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
 ## Añadir textura de imagen
 
 * &quot;Imagen&quot; seleccionada.
@@ -45,6 +41,5 @@ Para establecer su fondo, debe:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

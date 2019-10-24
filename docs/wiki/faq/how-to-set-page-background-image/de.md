@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 7
 ---
-[<](/wiki/faq/de)
 
 # Legen Sie einen eigenen Hintergrund für die Buchseite fest
 
@@ -19,7 +17,6 @@ Um Ihren Hintergrund festzulegen, sollten Sie:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Farbe** Nur die Füllfarbe des Lesehintergrunds und dessen Transparenz werden ausgewählt.
 
 **Bild** Das Bild des Lesehintergrunds und dessen Transparenz werden ausgewählt.
@@ -34,7 +31,6 @@ Um Ihren Hintergrund festzulegen, sollten Sie:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
 ## Bildtextur hinzufügen
 
 * Ausgewähltes &quot;Bild&quot;.
@@ -45,6 +41,5 @@ Um Ihren Hintergrund festzulegen, sollten Sie:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

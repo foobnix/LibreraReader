@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq)
 
 # How to increase font size in PDF document in Android
 

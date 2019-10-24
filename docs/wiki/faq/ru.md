@@ -1,10 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/ru)
 
 # Часто задаваемые вопросы
 
+* [Как настроить шрифты, стили](/wiki/faq/customize-text-fonts-and-styles/ru)
 * [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)
 * [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Как настроить внешний вид вашей библиотеки и обложек книг](/wiki/faq/how-to-configure-the-library-view/ru)

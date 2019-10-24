@@ -1,11 +1,8 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/de)
 
 # Theme-Anpassung (Weiß, Schwarz, AMOLED, Farben, Schriftgröße, Linkfarben)
-
 
 > Mit Librera können Sie die Themen und die Benutzeroberfläche an Ihre Farbvorlieben anpassen.
 
@@ -18,11 +15,9 @@ Sie können anpassen:
 
 **Alle Einstellungen des Programms können miteinander kombiniert werden.**
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
 
 **Einstellen der Schriftgröße:**
 
@@ -32,7 +27,6 @@ Sie können anpassen:
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
-
 
 **Passen Sie das App-Design an:**
 
@@ -44,7 +38,6 @@ _Sie können auch das Thema Ihres Bildschirms anpassen, während Sie &quot;Tag/N
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
-
 
 **Einstellen der Titelfarbe (Zuschneiden):**
 
@@ -64,8 +57,6 @@ _Sie können auch das Thema Ihres Bildschirms anpassen, während Sie &quot;Tag/N
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
-
-
 
 
 

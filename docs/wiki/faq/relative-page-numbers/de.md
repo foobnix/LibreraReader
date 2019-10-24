@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # Relative Seitenzahlen für PDF-Bücher
 

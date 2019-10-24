@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
+
 # Setting up fingerprint or password protection
 
 > Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
@@ -49,6 +48,5 @@ Password login is installed. When you log in, a dialog box prompts you to enter 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[什么是新的](/wiki/what-is-new/zh)
 
 # 8.0
 
@@ -40,7 +38,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 {6}黑暗与黑暗的OLED主题{6}
 
 {4}选择黑色OLED主题，漆黑色
@@ -49,8 +46,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-
 # Librera Book Reader的新功能
-
 
 )

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/zh)
 
 {1}在文本中直接添加脚注
 

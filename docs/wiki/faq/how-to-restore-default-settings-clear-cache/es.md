@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
+
 # Cómo restaurar la configuración predeterminada (similar a borrar caché)
 
 > Si necesita restablecer todas las configuraciones de Librera en el perfil actual a su estado original, como después de la primera instalación, puede hacerlo en varias etapas.
@@ -16,7 +15,6 @@ Para hacer un reinicio, debe:
 * Después de la confirmación, el programa se reiniciará y restablecerá todas las configuraciones a las predeterminadas. *
 
 **Los marcadores, las etiquetas y el progreso de lectura que ha agregado no se eliminan al restablecer.**
-
 
 ||||
 |-|-|-|

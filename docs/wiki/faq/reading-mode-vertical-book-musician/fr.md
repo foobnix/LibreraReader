@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/fr)
 
 # Modes de lecture: mode défilement, mode livre et mode musicien
 
@@ -41,7 +39,6 @@ Le mode** Musicien** est un mode spécialement conçu pour les musiciens.
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## mode Livre
 * Balayez horizontalement pour la page suivante précédente

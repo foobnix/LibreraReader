@@ -1,18 +1,15 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/de)
+
 # So konfigurieren Sie das Widget
 
 > Für einen schnelleren Zugriff auf die Bücher In Ihrer Bibliothek können Sie sie vom Desktop Ihres Launchers aus lesen.
 Sie müssen das Widget Librera hinzufügen.
 
-
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
-
 
 So fügen Sie das Widget hinzu und passen es an:
 
@@ -36,5 +33,4 @@ In den Widget-Einstellungen können Sie das Aussehen Ihres Widgets mit Librera a
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-
 

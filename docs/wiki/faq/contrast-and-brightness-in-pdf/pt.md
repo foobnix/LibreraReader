@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/pt)
 
 # Contraste e brilho em PDF (efeito preto e branco)
 
@@ -11,7 +9,6 @@ Quando você define essas configurações, o documento fica preto e branco.
 Movendo o controle deslizante para adicionar/diminuir o parâmetro necessário,
 no fundo da caixa de diálogo de configurações, você pode ver seu efeito no documento.
 Você pode configurar todos os três parâmetros juntos, para separações. Esse efeito é frequentemente usado em leitores de tinta E
-
 
 Para uma leitura confortável Você pode ajustar as configurações:
 * Contraste
@@ -35,7 +32,6 @@ Para uma leitura confortável Você pode ajustar as configurações:
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
-
 
 ## Enfatize tudo (efeito de texto em negrito)
 * Clique no ícone Contraste e brilho

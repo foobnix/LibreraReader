@@ -1,9 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[Back](/wiki/PrivacyPolicy/)
-
 # Privacy Policy
 
 Librera built the EPUB Reader app as a Free app. This SERVICE is provided by Librera at no cost and is intended for use as is.

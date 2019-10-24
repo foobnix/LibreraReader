@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/ar)
 
 # كيفية إضافة قسم الأسئلة الشائعة الجديد
 
@@ -17,11 +15,9 @@ version: 5
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 يجب أن تكون جميع الصور المتعلقة بهذا القسم في المجلد
 

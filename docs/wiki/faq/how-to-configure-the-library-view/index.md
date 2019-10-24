@@ -1,13 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # How to customize the look of your library and book covers
 
-
 > Librera allows you to flexibly customize the overall look of your library, the size of the book covers, the information displayed by the book, the sorting of books in your library.
-
 
 To quickly configure the library view, you must:
 
@@ -25,11 +22,9 @@ You can also further customize the look of the library and book covers in the se
 
 In the quick setup of the library, you can choose a different kind of it, I will give, for example, some.
 
-
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
 
 In the book covers settings, you can disable or enable the book cover.
 
@@ -40,11 +35,9 @@ In the book covers settings, you can disable or enable the book cover.
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
 To change the size of the displayed book cover:
 
 * Use the slider to select the size of the displayed book cover 
-
 
 ||||
 |-|-|-|
@@ -65,8 +58,6 @@ If you want to return the book cover settings to their initial state:
 * Confirm your action "OK"
 
 The covers will be restored to their initial settings.
-
-
 
 
 

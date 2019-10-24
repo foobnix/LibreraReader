@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/ar)
 
 # كيفية تحويل PDF إلى EPUB
 
@@ -21,7 +20,6 @@ layout: main
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 ## _Reflow PDF_ Mode (تحويل PDF داخلي)
 
 سيقوم الخيار _Reflow PDF_ بتحويل مستند PDF الخاص بك إلى تنسيق EPUB في وضع عدم الاتصال.
@@ -34,5 +32,4 @@ layout: main
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 

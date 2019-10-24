@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/fr)
 
 # Contraste et luminosité en PDF (effet noir et blanc)
 
@@ -11,7 +9,6 @@ Lorsque vous configurez ces paramètres, le document devient noir et blanc.
 En déplaçant le curseur pour ajouter/diminuer le paramètre dont vous avez besoin,
 en arrière-plan de la boîte de dialogue de configuration, vous pouvez voir son effet sur le document.
 Vous pouvez configurer les trois paramètres ensemble, de manière distincte. Cet effet est souvent utilisé dans les lecteurs E-Ink
-
 
 Pour une lecture aisée Vous pouvez ajuster les paramètres:
 * Contraste
@@ -35,7 +32,6 @@ Pour une lecture aisée Vous pouvez ajuster les paramètres:
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
-
 
 ## Souligner tout (effet de texte en gras)
 * Cliquez sur l'icône Contraste et luminosité.

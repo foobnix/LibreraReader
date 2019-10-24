@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/es)
 
 # Control de brillo y filtro de luz azul
 
@@ -9,7 +8,6 @@ layout: main
 El brillo se puede cambiar en la ventana **Preferencias**, o deslizando un dedo por el borde izquierdo de la pantalla (marque la casilla correspondiente para activar este modo).
 El brillo negativo indica que su configuración es más oscura que la del sistema.
 El brillo negativo habilita el filtro de luz azul con color negro de forma predeterminada.
-
 
 * Configure el brillo para que cambie automáticamente según la luz ambiental
 * Cambie el brillo deslizando el dedo por el borde izquierdo de la pantalla

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # So konvertieren Sie PDF in EPUB
 
@@ -21,7 +20,6 @@ Wählen Sie &quot;In EPUB konvertieren&quot;.
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 ## _Reflow PDF_-Modus (interne PDF-Konvertierung)
 
 Die Option _Reflow PDF_ konvertiert Ihr PDF-Dokument offline in das EPUB-Format.
@@ -34,5 +32,4 @@ Alle Bilder im Dokument bleiben erhalten.
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 

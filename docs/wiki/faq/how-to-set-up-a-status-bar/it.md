@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/it)
 
 # Impostazione della barra di stato
 
@@ -16,7 +14,6 @@ Per accedere alle impostazioni della barra di stato è necessario:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Dopo le azioni si arriva alla barra di stato delle impostazioni in cui è possibile configurare:
 * Abilitare o disabilitare la visualizzazione della barra di stato
 * Regola la sua posizione nella parte superiore o inferiore dello schermo.
@@ -24,7 +21,6 @@ Dopo le azioni si arriva alla barra di stato delle impostazioni in cui è possib
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Modifica il tipo di informazioni sul libro visualizzato nella parte di testo della barra di stato
@@ -40,7 +36,6 @@ Modifica il tipo di informazioni sul libro visualizzato nella parte di testo del
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Abilita o disabilita la barra di avanzamento

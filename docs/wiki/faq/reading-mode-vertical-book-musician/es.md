@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/es)
 
 # Modos de lectura: modo de desplazamiento, modo libro y modo músico
 
@@ -41,7 +39,6 @@ version: 1
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## Modo libro
 * Desliza horizontalmente para la página siguiente-anterior

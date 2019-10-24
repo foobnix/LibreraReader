@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Contrôle de la luminosité et filtre bleu
 
@@ -9,7 +8,6 @@ layout: main
 La luminosité peut être modifiée dans la fenêtre **Préférences** ou en faisant glisser un doigt le long du bord gauche de l'écran (cochez la case correspondante pour activer ce mode).
 Une luminosité négative indique que votre réglage est plus sombre que celui du système.
 La luminosité négative active le filtre bleu clair avec la couleur noire par défaut.
-
 
 * Définir la luminosité pour qu'elle change automatiquement en fonction de la lumière ambiante
 * Modifiez la luminosité en faisant glisser votre doigt le long du bord gauche de l'écran.

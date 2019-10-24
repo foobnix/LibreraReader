@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
 
 # Librera for learning foreign languages
 
@@ -16,13 +14,11 @@ Dictionaries can be a program on a computer or web dictionaries.
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 You can enable the option to open a known word or a sentence in the selected dictionary immediately.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Listen to the pronunciation of the selected word or sentence
 * Listen to the book by voice
@@ -32,7 +28,6 @@ You can enable the option to open a known word or a sentence in the selected dic
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 * Add an audi file that goes to the book
 * Listen to the book by voice
 * Add words and sentences to notes.
@@ -40,7 +35,6 @@ You can enable the option to open a known word or a sentence in the selected dic
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 Librera can play external audio files with the book
 Application displays formats .mp3, .mp4, .wav, .ogg, .m4a, .flac

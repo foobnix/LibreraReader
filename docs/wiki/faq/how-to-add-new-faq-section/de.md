@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/de)
 
 # So fügen Sie einen neuen FAQ-Bereich hinzu
 
@@ -17,11 +15,9 @@ Dateikopfzeilenformat: **index.md**
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 Alle verwandten Bilder für diesen Abschnitt sollten sich im Ordner befinden
 

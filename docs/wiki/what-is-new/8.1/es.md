@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[Lo que es nuevo](/wiki/what-is-new/es)
 
 # 8.1
 
@@ -14,7 +12,6 @@ Al utilizar esta aplicación, acepta los términos de la [Política de privacida
 * Perfiles
 * Las reglas de reemplazo, marca (s) de tensión, RegEx en TTS
 * Más configuraciones en el modo Músico
-
 
 # Sincronizar con Google Drive
 
@@ -65,7 +62,6 @@ Puedes verlo pero no modificarlo manualmente.
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Más configuraciones en el modo Músico
 
 * Mostrar \ ocultar las zonas de grifo rectángulos
@@ -88,14 +84,11 @@ Puedes verlo pero no modificarlo manualmente.
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # otros
 
 * Admite MathML y SVG (habilitar en opciones avanzadas, la primera carga de libros es muy lenta)
 * Opción de biblioteca para ignorar la obtención de metadatos de los libros
 * Contraseña del dedo para abrir la aplicación (Android 9+)
 * Establecer el tiempo de espera de apagado de la pantalla en minutos o el valor del sistema
-
-
 
  

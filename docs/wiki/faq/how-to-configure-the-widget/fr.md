@@ -1,18 +1,15 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/fr)
+
 # Comment configurer le widget
 
 > Pour un accès plus rapide aux livres Dans votre bibliothèque, vous pouvez les lire depuis le bureau de votre launcher.
 vous devez ajouter le widget Librera.
 
-
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
-
 
 Pour ajouter et personnaliser le widget:
 
@@ -36,5 +33,4 @@ Dans les paramètres du widget Vous pouvez personnaliser l'apparence de Votre wi
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-
 

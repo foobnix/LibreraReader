@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[Was ist neu](/wiki/what-is-new/de)
 
 # 7.12
 
@@ -13,14 +11,11 @@ version: 2
 * Wiedergabe von MP3-Dateien und -Ordnern
 * Buchreihe behandeln
 
-
-
 **Registerkarte &quot;Favoriten&quot;**
 
 Die Registerkarte **Favoriten** wurde neu gestaltet. Auf die Elemente **Tags** und **Playlists** kann jetzt problemlos zugegriffen werden.
 Markieren Sie Bücher, um sie nach beliebigen Kriterien zu gruppieren, z. B. &quot;Math&quot;, &quot;Thriller&quot;, &quot;Mystery&quot; usw. (Ein Tag kann auch über das Fenster &quot;Buchinformationen&quot; hinzugefügt werden.)
 Playlisten sind hauptsächlich für Musiker gedacht: Es ist einfach, ausgewählte Dokumente griffbereit zu haben und die Liste zu bearbeiten.
-
 
 ||||
 |-|-|-|
@@ -66,9 +61,6 @@ Könnte für Musiker und für diejenigen, die Fremdsprachen lernen, nützlich se
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
-
 # Was ist neu in Librera Book Reader?
-
 
 )

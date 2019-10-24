@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Remplacements TTS
 
@@ -14,7 +13,6 @@ layout: main
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Les remplacements prennent en charge Classic, remplacez une chaîne par une autre ou vous pouvez utiliser des expressions RegExp.
 
@@ -69,6 +67,5 @@ voici quelques samle **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
 
    

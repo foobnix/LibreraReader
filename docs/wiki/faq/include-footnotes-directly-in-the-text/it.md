@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/it)
 
 # Includi le note a piè di pagina direttamente nel testo
 

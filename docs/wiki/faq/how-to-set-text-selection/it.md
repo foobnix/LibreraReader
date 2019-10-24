@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/it)
 
 # Come impostare la selezione del testo
 
@@ -14,13 +12,11 @@ Per abilitare e configurare le modalità di selezione È necessario:
 * Vai alla scheda del menu delle impostazioni avanzate.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > Quando la modalità di selezione è disattivata nel testo del libro, quando si tocca una nota a piè di pagina, la transizione non funziona. Se devi navigare per nota a piè di pagina, abilita la prima voce &quot;Abilita selezione testo&quot;.
-
 
 La modalità di selezione è configurata abilitando le caselle di controllo:
 * Abilita selezione testo: abilita o disabilita la selezione del testo nel documento. Il testo viene evidenziato solo con un tocco lungo
@@ -36,7 +32,6 @@ testo selezionato, ingrandendoli o riducendo la distanza di acquisizione delle p
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Testo selezionato puoi:
 * Aggiungi questo libro ai preferiti

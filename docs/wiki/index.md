@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 3
 ---
 ![](/css/logo-line.jpg)
 
@@ -9,3 +8,4 @@ version: 3
 Please select your language and welcome to **Librera**
   
 {% include menu.md %}
+

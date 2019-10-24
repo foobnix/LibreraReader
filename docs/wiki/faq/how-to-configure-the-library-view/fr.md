@@ -1,13 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Comment personnaliser l'apparence de votre bibliothèque et de vos couvertures de livres
 
-
 > Librera vous permet de personnaliser de manière flexible l'apparence générale de votre bibliothèque, la taille des couvertures de livre, les informations affichées par le livre, le tri des livres de votre bibliothèque.
-
 
 Pour configurer rapidement la vue de la bibliothèque, vous devez:
 
@@ -25,11 +22,9 @@ Vous pouvez également personnaliser davantage l'apparence de la bibliothèque e
 
 Dans la configuration rapide de la bibliothèque, vous pouvez en choisir un autre type, je vais en donner, par exemple.
 
-
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
 
 Dans les paramètres de la couverture du livre, vous pouvez désactiver ou activer la couverture du livre.
 
@@ -40,11 +35,9 @@ Dans les paramètres de la couverture du livre, vous pouvez désactiver ou activ
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
 Pour changer la taille de la couverture du livre affichée:
 
 * Utilisez le curseur pour sélectionner la taille de la couverture du livre affichée.
-
 
 ||||
 |-|-|-|
@@ -65,8 +58,6 @@ Si vous souhaitez rétablir les paramètres de la couverture du livre dans leur 
 * Confirmez votre action &quot;OK&quot;
 
 Les couvertures seront restaurées à leurs paramètres initiaux.
-
-
 
 
 

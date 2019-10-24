@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Controllo luminosità e filtro luce blu
 
@@ -9,7 +8,6 @@ layout: main
 La luminosità può essere modificata nella finestra **Preferenze** o facendo scorrere un dito lungo il bordo sinistro dello schermo (selezionare la casella corrispondente per attivare questa modalità).
 La luminosità negativa indica che l'impostazione è più scura di quella del sistema.
 La luminosità negativa abilita il filtro luce blu con colore nero per impostazione predefinita.
-
 
 * Imposta la luminosità per cambiare automaticamente in base alla luce ambientale
 * Cambia la luminosità facendo scorrere il dito lungo il bordo sinistro dello schermo

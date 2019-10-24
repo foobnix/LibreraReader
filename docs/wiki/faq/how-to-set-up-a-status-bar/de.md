@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/de)
 
 # Festlegen der Statusleiste
 
@@ -16,7 +14,6 @@ Um zu den Einstellungen in der Statusleiste zu gelangen, müssen Sie:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Nach den Aktionen gelangen Sie in die Statusleiste der Einstellungen, in der Sie Folgendes konfigurieren können:
 * Aktivieren oder Deaktivieren der Anzeige der Statusleiste
 * Passen Sie die Position oben oder unten auf dem Bildschirm an.
@@ -24,7 +21,6 @@ Nach den Aktionen gelangen Sie in die Statusleiste der Einstellungen, in der Sie
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Ändern Sie die Art der Informationen zum Buch, die im Textteil der Statusleiste angezeigt werden
@@ -40,7 +36,6 @@ Nach den Aktionen gelangen Sie in die Statusleiste der Einstellungen, in der Sie
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Aktivieren oder deaktivieren Sie den Fortschrittsbalken

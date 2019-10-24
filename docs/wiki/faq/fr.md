@@ -1,10 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/fr)
 
 # Foire aux questions
 
+* [Comment configurer les polices, les styles](/wiki/faq/customize-text-fonts-and-styles/fr)
 * [Comment configurer le mode de lecture](/wiki/faq/how-to-set-up-reading-mode/fr)
 * [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Comment personnaliser l'apparence de votre bibliothèque et de vos couvertures de livres](/wiki/faq/how-to-configure-the-library-view/fr)

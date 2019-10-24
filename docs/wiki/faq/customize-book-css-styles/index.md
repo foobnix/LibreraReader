@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Custom CSS Coding
 
@@ -19,7 +18,6 @@ Three __Styles__ modes are supported:
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Document + User-defined mode is enabled by default
 

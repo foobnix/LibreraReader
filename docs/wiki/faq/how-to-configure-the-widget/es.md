@@ -1,18 +1,15 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
+
 # Cómo configurar el widget
 
 > Para un acceso más rápido a los libros En su biblioteca, puede comenzar a leerlos desde el escritorio de su iniciador,
 necesitas agregar el widget Librera.
 
-
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
-
 
 Para agregar y personalizar el widget:
 
@@ -36,5 +33,4 @@ En la configuración del widget Puedes personalizar el aspecto de Tu widget tien
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-
 

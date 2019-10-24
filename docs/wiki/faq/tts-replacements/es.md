@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/es)
 
 # reemplazos TTS
 
@@ -14,7 +13,6 @@ layout: main
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Los reemplazos admiten el reemplazo clásico de una cadena a otra o puede usar expresiones RegExp
 
@@ -69,6 +67,5 @@ aquí hay algunos samle **demo-replaceces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
 
    

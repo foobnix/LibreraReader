@@ -1,10 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/)
 
 # Frequently asked questions
 
+* [How to configure fonts, styles](/wiki/faq/customize-text-fonts-and-styles)
 * [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)
 * [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)

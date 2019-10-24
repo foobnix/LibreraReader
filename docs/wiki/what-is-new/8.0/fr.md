@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[Quoi de neuf](/wiki/what-is-new/fr)
 
 # 8.0
 
@@ -39,7 +37,6 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 **Thèmes OLED sombres et sombres**
 
