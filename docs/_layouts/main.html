@@ -1,3 +1,4 @@
+{% include codes.md %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
@@ -21,7 +22,7 @@
     <div class="navigation">
         
         
-        <h1 class="site-title"><a href="/wiki">Librera Wiki</a></h1>
+        <h1 class="site-title"><a href="/wiki/{{lang}}">Librera Wiki</a></h1>
         
      {% capture my_include %}{% include menu.md %}{% endcapture %}
    {{ my_include | markdownify }}
