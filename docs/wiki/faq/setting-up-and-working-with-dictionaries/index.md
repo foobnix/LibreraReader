@@ -33,13 +33,21 @@ This example uses offline dictionaries Google translator and Oxford Dictionary o
 
 **Working with Online dictionary:**
 * Long tap on the word
-* Select "Web Dictionary Lookup". For example let's pass to Collins dictionary
-* Select the dictionary to which you want to pass the word.
+* Select "Web Dictionary Lookup"
+* Select the dictionary to which you want to pass the word. For example let's pass to Collins dictionary.
+
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
+**Working with Offline dictionary:**
+* Long tap on the word
+* Select the icon of the dictionary you need, for example Oxford Dictionary of English
+* If you want to add a shortcut to another dictionary already installed, click the "plus" icon and select it.
 
+||||
+|-|-|-|
+|![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 
