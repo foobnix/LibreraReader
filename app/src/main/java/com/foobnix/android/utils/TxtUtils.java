@@ -476,9 +476,9 @@ public class TxtUtils {
 
 
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.", " $1 $2 $3 $4 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,3})\\.(\\p{Alpha}S{1,3})\\.", " $1 $2 $3 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,4})\\.", " $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. (\\p{Alpha}S{1,2})\\.", " $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1 $2 $3 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,4})\\.", " $1 $2 ");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. (\\p{Alpha}{1,2})\\.", " $1 $2 ");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. ", " $1 ");
             pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1 $2"); //skip numbers 3.3 .343
 
