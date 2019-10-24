@@ -29,3 +29,17 @@ This example uses offline dictionaries Google translator and Oxford Dictionary o
 ||||
 |-|-|-|
 |![](4.jpg)|![](55.jpg)|![](66.jpg)|
+
+
+**Working with Online dictionary:**
+* Long tap on the word
+* Select "Web Dictionary Lookup". For example let's pass to Collins dictionary
+* Select the dictionary to which you want to pass the word.
+
+||||
+|-|-|-|
+|![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+
+
+
