@@ -28,4 +28,4 @@ This example uses offline dictionaries Google translator and Oxford Dictionary o
 
 ||||
 |-|-|-|
-|![](4.jpg)|![](5.jpg)|![](6.jpg)|
+|![](4.jpg)|![](55.jpg)|![](66.jpg)|
