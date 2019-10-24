@@ -5,6 +5,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [كيفية تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية تخصيص مظهر مكتبتك وأغلفة الكتب](/wiki/faq/how-to-configure-the-library-view/ar)

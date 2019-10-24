@@ -5,6 +5,7 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Cómo configurar fuentes, estilos](/wiki/faq/customize-text-fonts-and-styles/es)
 * [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Instalación y configuración de texto a voz (TTS)](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Cómo personalizar el aspecto de su biblioteca y portadas de libros](/wiki/faq/how-to-configure-the-library-view/es)

@@ -5,6 +5,7 @@ layout: main
 
 {1}常见问题
 
+* [如何配置字体，样式](/wiki/faq/customize-text-fonts-and-styles/zh)
 * [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [安装和配置语音合成(TTS)](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何自定义图书馆和书籍封面的外观](/wiki/faq/how-to-configure-the-library-view/zh)

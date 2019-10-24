@@ -5,6 +5,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [So konfigurieren Sie Schriftarten und Stile](/wiki/faq/customize-text-fonts-and-styles/de)
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Installieren und Konfigurieren von Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/de)
 * [So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an](/wiki/faq/how-to-configure-the-library-view/de)
