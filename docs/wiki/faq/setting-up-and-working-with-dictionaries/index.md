@@ -16,3 +16,16 @@ If you have not found the necessary dictionary you can send a proposal to add it
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
+
+
+To configure and select the dictionary you need, you need:
+* Click on the settings icon
+* Click the "Advanced Settings" tab 
+* Click on the reference Name dictionary
+* Select your installed offline or online dictionary from the list, swipe up or down. 
+
+This example uses offline dictionaries Google translator and Oxford Dictionary of English.
+
+||||
+|-|-|-|
+|![](4.jpg)|![](5.jpg)|![](6.jpg)|
