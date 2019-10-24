@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/it)
 
 # Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista
 
@@ -41,7 +39,6 @@ version: 1
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## Modalità libro
 * Scorri in orizzontale per la pagina precedente

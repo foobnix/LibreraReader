@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/what-is-new/fr)
 
 # 7.10
 

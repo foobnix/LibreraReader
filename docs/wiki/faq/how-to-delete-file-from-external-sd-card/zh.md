@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/zh)
 
 {1}如何从外部SD卡删除书籍
 

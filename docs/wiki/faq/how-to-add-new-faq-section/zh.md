@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/zh)
 
 {1}如何添加新的常见问题解答部分
 
@@ -17,11 +15,9 @@ version: 5
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 本节的所有相关图片都应该在文件夹中
 

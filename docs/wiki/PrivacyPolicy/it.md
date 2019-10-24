@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/it) &nbsp; &nbsp; &nbsp; [Cosa c'è di nuovo](/wiki/cosa-è-nuovo/) &nbsp; &nbsp; &nbsp; [Informazioni sull'app](/wiki/about/)
 
 # Norme sulla privacy
 

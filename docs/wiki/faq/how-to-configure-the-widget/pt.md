@@ -1,18 +1,15 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/pt)
+
 # Como configurar o widget
 
 > Para acesso mais rápido aos livros Na sua biblioteca, você pode iniciá-los a ler na área de trabalho do seu iniciador,
 você precisa adicionar o widget Librera.
 
-
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
-
 
 Para adicionar e personalizar o widget:
 
@@ -36,5 +33,4 @@ Nas configurações do widget Você pode personalizar a aparência do seu widget
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-
 

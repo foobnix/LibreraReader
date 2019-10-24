@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/fr)
 
 # Comment augmenter la taille de la police dans un document PDF sous Android
 

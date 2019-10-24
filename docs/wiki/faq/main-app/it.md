@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq/it)
 
 # La schermata principale
 
@@ -16,7 +14,6 @@ version: 3
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Vista condensata (a due colonne)
 * Vista griglia
 * Solo copertine (Copertina del libro)
@@ -24,7 +21,6 @@ version: 3
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Cerca nella libreria la stringa &quot;comm&quot;
 * Tocca la stella per aggiungere un libro all'elenco Preferiti

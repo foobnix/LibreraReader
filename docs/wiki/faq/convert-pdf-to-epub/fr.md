@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Comment convertir un fichier PDF en EPUB
 
@@ -21,7 +20,6 @@ Choisissez _Convert to EPUB_
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 ## _Flux PDF_Reflow (Conversion PDF interne)
 
 L'option _Reflow PDF_ convertira votre document PDF au format EPUB hors ligne.
@@ -34,5 +32,4 @@ Toutes les images du document seront préservées.
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 

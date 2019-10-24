@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Installazione e configurazione della sintesi vocale (TTS)
 
@@ -17,7 +16,6 @@ layout: main
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
-
 
 ## Per impostare la sintesi vocale di Google:
 

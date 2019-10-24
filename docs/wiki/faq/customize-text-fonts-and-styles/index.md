@@ -1,12 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # How to configure fonts, styles
 
 > For comfortable reading Librera allows you to customize the look Of your document, change fonts, CSS styles, add a capital letter.
-
 
 You can adjust the font and text style in the menu tabs:
 
@@ -15,17 +13,13 @@ You can adjust the font and text style in the menu tabs:
 
 To access these settings, click the settings icon.
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 ## Advanced setting
 
-
 In this menu tab, you can change the document font for the **"User-defined"** document style (see the **"Reading settings"** section below for a description of the styles):
-
 
 * Click on the title link of the font
 * In the drop-down list of fonts, swipe up or down, select the font you want. 
@@ -36,7 +30,6 @@ If you want to fine tune the text fonts:
 * Click the font configuration menu icon
 * In the settings pop-up menu, you can change the font for each type of text. After the change, click "Apply" 
 * Close the settings and proceed to reading.
-
 
 ||||
 |-|-|-|
@@ -59,9 +52,7 @@ For the book format **fb2** you can adjust the letter:
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-
 ## Reading settings
-
 
 In this section of the menu you can work with your font files, add or download new fonts. To set the display styles of text.
 
@@ -70,7 +61,6 @@ To customize fonts, download or add new ones, you must:
 * Specify the path to your fonts, if any, by selecting the fonts folder on your device
 Download additional fonts by clicking on the "Download fonts" icon. A confirmation window about the download will appear, click "Download". 
 * The fonts have a size of 10 megabytes, after downloading will be displayed for selection in the General font selection, menu tab **"Advanced setting"**.
-
 
 ||||
 |-|-|-|
@@ -93,8 +83,6 @@ By clicking on the style settings icon you can add your own text display styles 
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
 
 
 

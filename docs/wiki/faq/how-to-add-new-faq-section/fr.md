@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/fr)
 
 # Comment ajouter une nouvelle section FAQ
 
@@ -17,11 +15,9 @@ Format d'en-tête de fichier: **index.md**
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 Toutes les images liées à cette section doivent être dans le dossier
 

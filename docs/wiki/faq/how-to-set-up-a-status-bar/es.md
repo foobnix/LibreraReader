@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
 
 # Configuración de la barra de estado
 
@@ -16,7 +14,6 @@ Para ir a la configuración de la barra de estado, debe:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Después de las acciones, accede a la barra de estado de configuración donde puede configurar:
 * Para habilitar o deshabilitar la visualización de la barra de estado
 * Ajuste su posición en la parte superior o inferior de la pantalla.
@@ -24,7 +21,6 @@ Después de las acciones, accede a la barra de estado de configuración donde pu
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Cambiar el tipo de información sobre el libro que se muestra en la parte de texto de la barra de estado
@@ -40,7 +36,6 @@ Cambiar el tipo de información sobre el libro que se muestra en la parte de tex
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Habilitar o deshabilitar la barra de progreso

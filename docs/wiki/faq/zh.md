@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/zh)
 
 {1}常见问题
 

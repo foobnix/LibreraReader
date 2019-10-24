@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/fr)
 
 # Définition de la barre d'état
 
@@ -16,7 +14,6 @@ Pour accéder aux paramètres de la barre d'état, vous devez:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Après les actions, vous accédez à la barre d’état des paramètres où vous pouvez configurer:
 * Pour activer ou désactiver l'affichage de la barre d'état
 * Ajustez sa position en haut ou en bas de l'écran.
@@ -24,7 +21,6 @@ Après les actions, vous accédez à la barre d’état des paramètres où vous
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
-
 
 
 Modifier le type d'informations sur le livre affiché dans la partie texte de la barre d'état
@@ -40,7 +36,6 @@ Modifier le type d'informations sur le livre affiché dans la partie texte de la
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
-
 
 
 * Activer ou désactiver la barre de progression

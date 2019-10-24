@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/pt)
 
 # Librera para aprender línguas estrangeiras
 
@@ -16,13 +14,11 @@ Os dicionários podem ser um programa em um computador ou dicionários da web.
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 Você pode ativar a opção de abrir imediatamente uma palavra ou sentença conhecida no dicionário selecionado.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Ouça a pronúncia da palavra ou frase selecionada
 * Ouça o livro por voz
@@ -32,7 +28,6 @@ Você pode ativar a opção de abrir imediatamente uma palavra ou sentença conh
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 * Adicione um arquivo audi que vai para o livro
 * Ouça o livro por voz
 * Adicione palavras e frases às notas.
@@ -40,7 +35,6 @@ Você pode ativar a opção de abrir imediatamente uma palavra ou sentença conh
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 Librera pode reproduzir arquivos de áudio externos com o livro
 O aplicativo exibe os formatos .mp3, .mp4, .wav, .ogg, .m4a, .flac

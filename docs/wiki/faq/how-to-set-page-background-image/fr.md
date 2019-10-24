@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 7
 ---
-[<](/wiki/faq/fr)
 
 # Définir son propre arrière-plan pour la page du livre
 
@@ -19,7 +17,6 @@ Afin de définir votre arrière-plan, vous devriez:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Couleur** seules la couleur de remplissage du fond de lecture et sa transparence sont sélectionnées.
 
 **Image** l'image de l'arrière-plan de lecture et sa transparence sont sélectionnées.
@@ -34,7 +31,6 @@ Afin de définir votre arrière-plan, vous devriez:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
 ## Ajouter une texture d'image
 
 * &quot;Image&quot; sélectionnée.
@@ -45,6 +41,5 @@ Afin de définir votre arrière-plan, vous devriez:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # Installieren und Konfigurieren von Text-to-Speech (TTS)
 
@@ -17,7 +16,6 @@ layout: main
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
-
 
 ## So richten Sie Google Text-to-Speech ein:
 

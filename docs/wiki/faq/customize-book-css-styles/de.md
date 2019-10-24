@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # Benutzerdefinierte CSS-Codierung
 
@@ -19,7 +18,6 @@ Es werden drei **Styles** -Modi unterstützt:
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Dokument + Benutzerdefinierter Modus ist standardmäßig aktiviert
 

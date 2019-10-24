@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/zh)
 
 {1}如何将PDF转换为EPUB
 
@@ -21,7 +20,6 @@ layout: main
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 ## _回流PDF_模式(内部PDF转换)
 
 _Reflow PDF_选项会将您的PDF文档离线转换为EPUB格式。
@@ -34,5 +32,4 @@ _Reflow PDF_选项会将您的PDF文档离线转换为EPUB格式。
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 

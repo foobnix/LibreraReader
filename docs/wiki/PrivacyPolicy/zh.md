@@ -1,10 +1,8 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/zh) &nbsp; &nbsp; &nbsp; [什么是新的](/wiki/what-is-new/)&nbsp; &nbsp; &nbsp; [关于应用](/wiki/about/)
 
-{1}隐私政策
+# 隐私政策
 
 * [Librera Reader](/wiki/PrivacyPolicy/com.foobnix.pdf.reader/zh)
 * [Librera PRO](/wiki/PrivacyPolicy/com.foobnix.pro.pdf.reader/zh)

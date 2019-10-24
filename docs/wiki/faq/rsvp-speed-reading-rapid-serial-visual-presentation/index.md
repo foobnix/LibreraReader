@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/)
+
 
 # Speed reading RSVP (Rapid Serial Visual Presentation) in Android
 
@@ -33,5 +32,4 @@ or
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 

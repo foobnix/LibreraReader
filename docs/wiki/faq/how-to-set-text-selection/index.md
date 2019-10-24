@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq)
 
 # How to set text selection
 
@@ -14,13 +12,11 @@ To enable and configure selection modes You need to:
 * Go to the advanced settings menu tab.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > When the selection mode is turned off in the text of the book, when you tap on a footnote, the transition does not work. If you need to navigate by footnote, enable the first item "Enable text selection".
-
 
 The selection mode is configured by enabling checkboxes:
 * Enable text selection - enables or disables text selection in the document. The text is highlighted only by a long tap
@@ -36,7 +32,6 @@ selected text, enlarging them or reducing the distance of the capture of words b
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Selected text you can:
 * Bookmark this book

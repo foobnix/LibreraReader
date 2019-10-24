@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 2
 ---
 [What Is New](/wiki/what-is-new)
 
@@ -46,7 +45,6 @@ The **Favorites** tab has been redesigned. The **Tags** and **Playlists** items 
 Tag books to group them by whatever common criterion, e.g., "Math," "Thriller," "Mystery," etc. (A tag can be also added from the Book Info window.)
 Playlists are intended mostly for musicians: it's easy to keep selected documents handy and manipulate the list.
 
-
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)||
@@ -90,7 +88,5 @@ Could be useful for musicians and for those who study foreign languages.
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
-
-
 
 

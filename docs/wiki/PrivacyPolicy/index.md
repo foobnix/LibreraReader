@@ -1,9 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki)&nbsp;&nbsp;&nbsp;[What is new](/wiki/what-is-new/)&nbsp;&nbsp;&nbsp;[About app](/wiki/about/)
-
 # Privacy Policies
 
 *   [Librera Reader](/wiki/PrivacyPolicy/com.foobnix.pdf.reader)

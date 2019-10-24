@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 7
 ---
-[<](/wiki/faq)
 
 # Set own background for book page
 
@@ -19,7 +17,6 @@ In order to set your background, you should:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Color**  only the fill color of the reading background and its transparency are selected.
 
 **Image** the picture of the reading background and its transparency are selected.
@@ -34,7 +31,6 @@ In order to set your background, you should:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
 ## Add image texture
 
 * Selected "Image".
@@ -45,6 +41,5 @@ In order to set your background, you should:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

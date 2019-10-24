@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 4
 ---
-[<](/wiki/)
 
 # Informationen zur Librera Book Reader-Anwendung für Android
 
@@ -41,7 +39,6 @@ Bis heute können mehr als **10 Millionen** Downloads auf Geräte verzeichnet we
 * Import und Export von Einstellungen, automatische Sicherung der aktuellen Sitzung
 * Führende Initialen in FB2-Dokumenten
 * Und eine ganze Reihe weiterer Funktionen, die Sie ausprobieren können.
-
 
 Mit **Librera Reader** können Sie einfach selbstverwaltete Bibliotheken aller Dokumente erstellen, indem Sie angeben, welche Formate eingeschlossen und welche Ordner gescannt werden sollen. Alle Dokumentensammlungen können als Liste oder Raster angezeigt werden. Dokumente lassen sich leicht anhand von durch Größe und Stil anpassbaren Miniaturabdeckungen und detaillierten Beschreibungen identifizieren. Ihre Bibliothek kann nach Pfad, Name, Größe, Datum usw. sortiert werden, und es gibt einen Filter, der das Auffinden bestimmter Dokumente oder Dokumentgruppen erleichtert.
 

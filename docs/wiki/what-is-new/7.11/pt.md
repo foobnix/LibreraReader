@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[O que há de novo](/wiki/what-is-new/pt)
 
 # 7.11
 
@@ -34,12 +32,10 @@ Inscreva-se no canal Telegram do **Librera Reader** [https://t.me/LibreraReader]
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP (Rapid Serial Visual Presentation) leitura / leitura de velocidade**
 
 A velocidade de leitura com o **Librera** permite que você melhore sua velocidade de leitura para até 700 palavras por minuto (WPM), implementando o método RSVP.
 Por favor, siga o link para encontrar mais informações sobre o assunto [seção de leitura de velocidade](/wiki/manual/Rapid-Serial-Visual-Presentation/pt)
-
 
 * O modo RSVP pode ser iniciado a partir do menu de livros (velocidade de leitura)
 * Velocidade de leitura em apenas um toque
@@ -59,11 +55,9 @@ Por favor, siga o link para encontrar mais informações sobre o assunto [seçã
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Abrir pasta com imagens como um livro (vincular em um livro)**
 
 Para abrir uma pasta como um livro, navegue até ela na guia Pastas e toque em seu nome. Se houver pelo menos um arquivo de imagem, você verá a opção Vincular em um livro.
-
 
 * Abra uma pasta com imagens e vincule-as em um livro
 * Pasta com imagens abertas como um livro virtual
@@ -73,9 +67,6 @@ Para abrir uma pasta como um livro, navegue até ela na guia Pastas e toque em s
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # O que há de novo no leitor de livros Librera
-
-
 
 

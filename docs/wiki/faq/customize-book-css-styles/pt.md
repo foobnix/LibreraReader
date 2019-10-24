@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
 # Codificação CSS personalizada
 
@@ -19,7 +18,6 @@ Três modos **Estilos** são suportados:
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Documento + modo definido pelo usuário é ativado por padrão
 

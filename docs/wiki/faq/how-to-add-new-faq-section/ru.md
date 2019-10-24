@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/ru)
 
 # Как добавить новый раздел FAQ
 
@@ -17,11 +15,9 @@ version: 5
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 Все связанные изображения для этого раздела должны быть в папке
 

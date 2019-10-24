@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
 
 # Cómo configurar la selección de texto
 
@@ -14,13 +12,11 @@ Para habilitar y configurar los modos de selección, debe:
 * Vaya a la pestaña del menú de configuración avanzada.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > Cuando el modo de selección está desactivado en el texto del libro, cuando toca una nota al pie, la transición no funciona. Si necesita navegar por nota al pie, active el primer elemento &quot;Activar selección de texto&quot;.
-
 
 El modo de selección se configura habilitando casillas de verificación:
 * Habilitar selección de texto: habilita o deshabilita la selección de texto en el documento. El texto se resalta solo con un toque prolongado
@@ -36,7 +32,6 @@ texto seleccionado, ampliándolos o reduciendo la distancia de captura de palabr
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Texto seleccionado puedes:
 * Marcar este libro

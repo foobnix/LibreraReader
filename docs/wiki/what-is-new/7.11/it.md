@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[Cosa c'è di nuovo](/wiki/what-is-new/it)
 
 # 7.11
 
@@ -34,12 +32,10 @@ Iscriviti al **Librera Reader** canale Telegram [https://t.me/LibreraReader](htt
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP (Rapid Serial Visual Presentation) Lettura / Lettura velocità**
 
 La lettura veloce con **Librera** consente di migliorare la velocità di lettura fino a 700 parole al minuto (WPM) implementando il metodo RSVP.
 Si prega di seguire il link per trovare maggiori informazioni sull'argomento [Speed   reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/it)
-
 
 * La modalità RSVP può essere avviata dal menu del libro (lettura veloce)
 * Velocità di lettura con un solo tocco
@@ -59,11 +55,9 @@ Si prega di seguire il link per trovare maggiori informazioni sull'argomento [Sp
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Apri cartella con le immagini come libro (rilegatura in un libro)**
 
 Per aprire una cartella come un libro, vai ad essa nella scheda Cartelle e tocca il suo nome. Se contiene almeno un file immagine, vedrai l'opzione Bind in un libro.
-
 
 * Apri una cartella con immagini e uniscile in un libro
 * Cartella con immagini aperte come libro virtuale
@@ -73,9 +67,6 @@ Per aprire una cartella come un libro, vai ad essa nella scheda Cartelle e tocca
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # Cosa c'è di nuovo nel lettore di libri Librera
-
-
 
 

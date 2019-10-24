@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/ru)
 
 # Включить сноски прямо в текст
 

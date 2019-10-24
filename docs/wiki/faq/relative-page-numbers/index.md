@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Relative page numbers for PDF books
 

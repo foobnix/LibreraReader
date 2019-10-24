@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # How to set up reading mode
 

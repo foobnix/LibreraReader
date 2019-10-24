@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq/de)
 
 # Der Hauptbildschirm
 
@@ -16,7 +14,6 @@ Registerkarte * Bibliothek - Zeigt alle auf dem Gerät gefundenen Bücher an
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Verkürzte (zweispaltige) Ansicht
 * Rasteransicht
 Nur * Umschläge (Buchumschlag)
@@ -24,7 +21,6 @@ Nur * Umschläge (Buchumschlag)
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Durchsuchen Sie die Bibliothek nach der Zeichenfolge &quot;comm&quot;
 * Tippen Sie auf Stern, um ein Buch zur Favoritenliste hinzuzufügen

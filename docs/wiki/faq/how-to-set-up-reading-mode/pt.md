@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
 # Como configurar o modo de leitura
 

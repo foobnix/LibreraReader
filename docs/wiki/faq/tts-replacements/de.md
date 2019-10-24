@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # TTS-Ersatz
 
@@ -14,7 +13,6 @@ layout: main
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Ersetzungen unterstützen das klassische Ersetzen einer Zeichenfolge durch eine andere oder Sie können RegExp-Ausdrücke verwenden
 
@@ -69,6 +67,5 @@ Hier einige Beispiele **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
 
    

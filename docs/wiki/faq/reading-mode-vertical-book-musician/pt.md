@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/pt)
 
 # Modos de leitura: modo de rolagem, modo de livro e modo de músico
 
@@ -41,7 +39,6 @@ version: 1
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## modo de livro
 * Deslize horizontalmente para a página anterior anterior

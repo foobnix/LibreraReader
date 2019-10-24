@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/es)
+
 # Trabajar con marcadores en el panel extendido (marcadores de cinta)
 
 > En Librera, puede mostrar una barra de marcadores extendida (marcadores de cinta) en la pantalla de lectura. Sirve para la función de agregar rápidamente un marcador, cambiar entre marcadores.
@@ -12,7 +11,6 @@ Para habilitarlo, debes:
 * Haga clic en el icono de configuración
 * Ir a la configuración &quot;Barra de estado&quot;
 * Active la casilla de verificación del panel de marcadores extendido (marcadores de cinta) en el modo de lectura que desee.
-
 
 ||||
 |-|-|-|
@@ -27,14 +25,12 @@ A continuación, verá cómo trabajar con la barra de marcadores rápidos en el 
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-
 **Agregar marcadores:**
 
 * Haga clic en el icono Marcador en la esquina superior derecha de la pantalla
 * Seleccione el marcador &quot;Agregar&quot;
 * Haga un comentario al marcador, a partir de este comentario se le asignará un nombre. En este ejemplo, el comentario &quot;primer marcador&quot;
 Haga clic en &quot;Agregar&quot;
-
 
 ||||
 |-|-|-|
@@ -52,15 +48,12 @@ Se agregará un marcador en la ventana de marcadores y, en la parte superior, en
 * Seleccione &quot;Marcador rápido&quot;
 * Se creará un &quot;Marcador rápido&quot;. Se le dará un número de página de nombre. Si va a la ventana de marcadores verá un marcador rápido con el nombre - 15. &quot;Marcador rápido&quot;. Cuando hace clic largo en un marcador en la ventana de marcadores, aparecerá la ventana de edición y eliminación.
 
-
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
-
 
 Puede usar acciones rápidas para agregar o eliminar marcadores en la barra de marcadores extendida (marcadores de cinta):
 
 * Mantenga pulsado el icono de marcador en la esquina superior derecha: agrega un marcador rápido
 * Un toque prolongado en el nombre del marcador, en la barra de marcadores extendida (marcadores de cinta), le pedirá que lo elimine.
-
 

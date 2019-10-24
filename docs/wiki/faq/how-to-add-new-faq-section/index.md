@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq)
 
 # How to add new FAQ section
 
@@ -17,11 +15,9 @@ File header format: **index.md**
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 All related images for this section should be in the folder
 

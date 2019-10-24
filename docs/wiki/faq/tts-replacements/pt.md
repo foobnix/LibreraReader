@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
 # substituições TTS
 
@@ -14,7 +13,6 @@ Caixa de diálogo * Substituições
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 As substituições suportam a substituição clássica de uma sequência por outra ou é possível usar expressões RegExp
 
@@ -69,6 +67,5 @@ aqui está uma amostra **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
 
    

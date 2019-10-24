@@ -1,11 +1,8 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/pt)
 
 # Personalização de temas (branco, preto, AMOLED, cores, tamanho da fonte, cores dos links)
-
 
 > Librera permite que você personalize os temas e faça a interface com suas preferências de cores.
 
@@ -18,11 +15,9 @@ Você pode personalizar:
 
 **Todas as configurações do programa podem ser combinadas.**
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
 
 **Definindo o tamanho da fonte:**
 
@@ -32,7 +27,6 @@ Você pode personalizar:
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
-
 
 **Personalize o tema do aplicativo:**
 
@@ -44,7 +38,6 @@ _Você também pode personalizar o tema da sua tela enquanto lê &quot;Dia/Noite
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
-
 
 **Configurando a cor do título (Aparar):**
 
@@ -64,8 +57,6 @@ _Você também pode personalizar o tema da sua tela enquanto lê &quot;Dia/Noite
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
-
-
 
 
 

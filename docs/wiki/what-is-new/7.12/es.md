@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[Lo que es nuevo](/wiki/what-is-new/es)
 
 # 7.12
 
@@ -13,14 +11,11 @@ version: 2
 * Reproducir archivos y carpetas mp3
 * Manejar series de libros.
 
-
-
 **pestaña Favoritos**
 
 La pestaña **Favoritos** ha sido rediseñada. Ahora se puede acceder fácilmente a los elementos **Etiquetas** y **Listas de reproducción**.
 Etiquete los libros para agruparlos por cualquier criterio común, por ejemplo, &quot;Matemáticas&quot;, &quot;Thriller&quot;, &quot;Misterio&quot;, etc. (También se puede agregar una etiqueta desde la ventana de Información del libro).
 Las listas de reproducción están destinadas principalmente a músicos: es fácil mantener a mano los documentos seleccionados y manipular la lista.
-
 
 ||||
 |-|-|-|
@@ -65,7 +60,5 @@ Podría ser útil para músicos y para aquellos que estudian idiomas extranjeros
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
-
-
 
 # Novedades en Librera Book Reader

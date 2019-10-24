@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Comment supprimer des livres de la carte SD externe
 

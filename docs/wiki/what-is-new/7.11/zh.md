@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[什么是新的](/wiki/what-is-new/zh)
 
 # 7.11
 
@@ -34,12 +32,10 @@ version: 8
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP（快速串行视觉演示）阅读/速读{6}
 
 使用**Librera**快速阅读可以将您的阅读速度提高到最高700字/分钟（WPM），实现RSVP方法。
 请点击链接查找有关主题的更多信息[速读部分](/wiki/manual/Rapid-Serial-Visual-Presentation/zh)
-
 
 * RSVP模式可以从书籍菜单启动（速读）
 {4}只需轻轻一按即可读取速度
@@ -59,11 +55,9 @@ version: 8
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 {6}打开带有图像的文件夹（书中绑定）{6}
 
 要将文件夹作为书籍打开，请在“文件夹”选项卡中导航到该文件夹  ，然后点击其名称。如果它至少包含一个图像文件，您将看到“书中绑定”选项。
-
 
 {4}打开包含图像的文件夹并将其绑定在书中
 {4}文件夹w /图像作为虚拟书籍打开
@@ -73,9 +67,6 @@ version: 8
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # Librera图书阅读器的新功能
-
-
 
 

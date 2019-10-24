@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/es)
 
 # Incluir notas al pie directamente en el texto
 

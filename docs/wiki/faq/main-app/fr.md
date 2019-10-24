@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq/fr)
 
 # L'écran principal
 
@@ -16,7 +14,6 @@ version: 3
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Vue condensée (deux colonnes)
 * Affichage en grille
 * Couvertures uniquement (Couverture de livre)
@@ -24,7 +21,6 @@ version: 3
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Recherche dans la bibliothèque pour la chaîne &quot;comm&quot;
 * Appuyez sur l'étoile pour ajouter un livre à la liste des favoris.

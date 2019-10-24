@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 4
 ---
-[<](/wiki/)
 
 # Acerca de la aplicación Librera Book Reader para Android
 
@@ -41,7 +39,6 @@ A partir de hoy, puede presumir de más de **10 millones** descargas a dispositi
 * Importar y exportar configuraciones, copia de seguridad automática de la sesión actual
 * Iniciales principales en documentos FB2
 * Y un montón de otras características que puedes consultar.
-
 
 Con **Librera Reader**, puede crear fácilmente bibliotecas autosuficientes de todos sus documentos especificando qué formatos incluir y qué carpetas escanear. Todas las colecciones de documentos se pueden ver como una lista o cuadrícula. Los documentos se identifican fácilmente mediante portadas de miniaturas de tamaño y estilo ajustables y descripciones detalladas. Su biblioteca se puede ordenar por ruta, nombre, tamaño, fecha, etc., y hay un filtro para ayudar a localizar documentos específicos o grupos de documentos.
 

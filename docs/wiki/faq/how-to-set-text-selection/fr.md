@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/fr)
 
 # Comment définir la sélection de texte
 
@@ -14,13 +12,11 @@ Pour activer et configurer les modes de sélection, vous devez:
 * Accédez à l'onglet du menu des paramètres avancés.
 
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 > Lorsque le mode de sélection est désactivé dans le texte du livre, lorsque vous appuyez sur une note de bas de page, la transition ne fonctionne pas. Si vous devez naviguer par note de bas de page, activez le premier élément &quot;Activer la sélection de texte&quot;.
-
 
 Le mode de sélection est configuré en activant les cases à cocher:
 * Activer la sélection de texte - active ou désactive la sélection de texte dans le document. Le texte est surligné uniquement par un appui long
@@ -36,7 +32,6 @@ texte sélectionné, en les agrandissant ou en réduisant la distance de capture
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Texte sélectionné, vous pouvez:
 * Ajouter ce livre aux favoris

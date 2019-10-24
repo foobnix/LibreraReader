@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
 
 # Contrast and Brightness in PDF  (black and white effect)
 
@@ -11,7 +9,6 @@ When you configure these settings, the document becomes black and white.
 By moving the slider to add/decrease the parameter you need, 
 in the background of the settings dialog, you can see its effect on the document. 
 You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
-
 
 For comfortable reading You can adjust the settings:
 * Contrast
@@ -35,7 +32,6 @@ For comfortable reading You can adjust the settings:
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
-
 
 ## Emphasize all  (bold text effect)
 * Click on the Contrast and brightness icon

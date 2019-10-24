@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/ar)
 
 # قم بتضمين الحواشي مباشرة في النص
 

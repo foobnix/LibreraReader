@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/)
+
 
 # Скорость чтения RSVP (Rapid Serial Visual Presentation) в Android
 
@@ -33,5 +32,4 @@ version: 2
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 

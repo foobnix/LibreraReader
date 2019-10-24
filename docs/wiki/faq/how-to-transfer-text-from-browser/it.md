@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Come trasferire testo dal browser Web (da leggere o TTS)
 
@@ -22,14 +21,11 @@ Per leggere in Librera devi:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Ora il testo del browser si apre in Librera. Per facilità di lettura, è possibile aggiungere trattini al testo selezionando la lingua dei trattini desiderata.
-
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Puoi riprodurre il testo con la voce. Per riprodurre il testo con la voce, viene utilizzato il sintetizzatore vocale installato nel sistema Android.
 Lo abbiamo mangiato Non hai stabilito che puoi mettere da Google Play - Sintesi vocale di Google.
@@ -41,7 +37,6 @@ Lo abbiamo mangiato Non hai stabilito che puoi mettere da Google Play - Sintesi 
 * Premi Riproduci, ascolta il testo.
 
 Se si chiude la finestra delle impostazioni durante la riproduzione da testo a voce, i pulsanti di controllo vengono duplicati dal sottotesto e nella tendina delle notifiche, per facilitare la gestione. Per interrompere la lettura, premere pausa e croce.
-
 
 ||||
 |-|-|-|

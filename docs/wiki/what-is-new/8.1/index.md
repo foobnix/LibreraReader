@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[What Is New](/wiki/what-is-new)
 
 # 8.1
 
@@ -65,7 +63,6 @@ A **long press** on a profile name will pop up an alert window for you to restor
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Additional Settings in Musician's Mode
 
 * Show\hide tap zones (delineated w/ dotted lines)
@@ -88,7 +85,6 @@ A **long press** on a profile name will pop up an alert window for you to restor
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # Miscellaneous
 
 * Support for MathML and SVG formats. Enable it in Advanced options (may slow down initial book loading)
@@ -98,5 +94,3 @@ A **long press** on a profile name will pop up an alert window for you to restor
 * Allow the system sleep timeout to be used for turning screen off 
 
 
-
- 

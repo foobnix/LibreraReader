@@ -22,4 +22,4 @@
 {% if full != 'العربية'%}<a href="ar"><li>العربية</li></a>{% endif %}
 {% if full != '中文'%}<a href="zh"><li>中文</li></a>{% endif %}
 </ul>
-<p></p>	        
+<p></p>

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[Lo que es nuevo](/wiki/what-is-new/es)
 
 # 7.11
 
@@ -34,12 +32,10 @@ Suscríbase al **canal de Telegram de Librera Reader** [https://t.me/LibreraRead
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP (Presentación visual en serie rápida) Lectura / Lectura rápida**
 
 La lectura de velocidad con **Librera** le permite mejorar su velocidad de lectura hasta 700 palabras por minuto (WPM) implementando el método RSVP.
 Por favor, siga el enlace para encontrar más información sobre el tema [Sección de lectura rápida](/wiki/manual/Rapid-Serial-Visual-Presentation/es)
-
 
 * El modo RSVP se puede iniciar desde el menú del libro (Velocidad de lectura)
 * Velocidad de lectura en un solo toque
@@ -59,11 +55,9 @@ Por favor, siga el enlace para encontrar más información sobre el tema [Secci�
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Abrir carpeta con imágenes como libro (enlazar en un libro)**
 
 Para abrir una carpeta como libro, navegue hasta ella en la pestaña Carpetas y toque su nombre. Si contiene al menos un archivo de imagen, verá la opción Enlazar en un libro.
-
 
 * Abre una carpeta con imágenes y únelas en un libro.
 * Carpeta con imágenes abiertas como un libro virtual
@@ -73,9 +67,6 @@ Para abrir una carpeta como libro, navegue hasta ella en la pestaña Carpetas y 
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # Lo nuevo en el lector de libros de Librera
-
-
 
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # TTS Replacements
 
@@ -14,7 +13,6 @@ layout: main
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
-
 
 Replacements support classic replace one string to other or you can use RegExp expressions  
 
@@ -69,6 +67,5 @@ here is some samle **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
 
    

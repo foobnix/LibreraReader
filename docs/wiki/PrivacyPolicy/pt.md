@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/pt) &nbsp; &nbsp; &nbsp; [O que há de novo](/wiki/what-is-new/) &nbsp; &nbsp; &nbsp; [Sobre o aplicativo](/wiki/about/)
 
 # Políticas de Privacidade
 

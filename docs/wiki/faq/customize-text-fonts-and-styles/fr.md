@@ -1,12 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Comment configurer les polices, les styles
 
 > Pour une lecture confortable, Librera vous permet de personnaliser l'apparence de votre document, de changer les polices de caractères, les styles CSS, d'ajouter une lettre majuscule.
-
 
 Vous pouvez ajuster le style de police et de texte dans les onglets du menu:
 
@@ -15,17 +13,13 @@ Vous pouvez ajuster le style de police et de texte dans les onglets du menu:
 
 Pour accéder à ces paramètres, cliquez sur l'icône des paramètres.
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 ## Paramètres avancés
 
-
 Dans cet onglet de menu, vous pouvez modifier la police du document pour le style de document **&quot;Défini par l'utilisateur&quot;** (voir la section **&quot;Paramètres de lecture&quot;** ci-dessous pour une description des styles):
-
 
 * Cliquez sur le lien du titre de la police.
 * Dans la liste déroulante des polices, glissez vers le haut ou le bas, sélectionnez la police souhaitée.
@@ -36,7 +30,6 @@ Si vous souhaitez affiner les polices de texte:
 * Cliquez sur l'icône du menu de configuration de la police.
 * Dans le menu contextuel des paramètres, vous pouvez modifier la police pour chaque type de texte. Après le changement, cliquez sur &quot;Appliquer&quot;
 * Fermez les paramètres et passez à la lecture.
-
 
 ||||
 |-|-|-|
@@ -59,9 +52,7 @@ Pour le format du livre **fb2**, vous pouvez ajuster la lettre:
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-
 ## Paramètres de lecture
-
 
 Dans cette section du menu, vous pouvez utiliser vos fichiers de polices, ajouter ou télécharger de nouvelles polices. Pour définir les styles d'affichage du texte.
 
@@ -70,7 +61,6 @@ Pour personnaliser les polices, en télécharger ou en ajouter de nouvelles, vou
 * Spécifiez le chemin d'accès à vos polices, le cas échéant, en sélectionnant le dossier des polices sur votre appareil.
 Téléchargez des polices supplémentaires en cliquant sur l’icône &quot;Télécharger les polices&quot;. Une fenêtre de confirmation du téléchargement apparaîtra, cliquez sur &quot;Télécharger&quot;.
 * Les polices ont une taille de 10 mégaoctets. Une fois le téléchargement effectué, le téléchargement sera affiché dans l'onglet Sélection générale des polices, onglet de menu **&quot;Paramètres avancés&quot;**.
-
 
 ||||
 |-|-|-|
@@ -93,8 +83,6 @@ En cliquant sur l'icône des paramètres de style, vous pouvez ajouter vos propr
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
 
 
 

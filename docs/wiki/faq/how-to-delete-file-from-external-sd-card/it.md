@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Come eliminare i libri dalla scheda SD esterna
 

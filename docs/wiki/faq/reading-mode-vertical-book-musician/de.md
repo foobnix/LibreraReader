@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/de)
 
 # Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus
 
@@ -41,7 +39,6 @@ Der** Musikermodus** wurde speziell für Musiker entwickelt.
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 ## Buchmodus
 * Streichen Sie horizontal, um die nächste Seite anzuzeigen

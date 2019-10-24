@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/fr) &nbsp; &nbsp; &nbsp; [Quoi de neuf](/wiki/what-is-is-new/) &nbsp; &nbsp; &nbsp; [À propos de l'application](/wiki/à propos de/)
 
 # Règles de confidentialité
 

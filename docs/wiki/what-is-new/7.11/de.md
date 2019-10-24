@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 8
 ---
-[Was ist neu](/wiki/what-is-new/de)
 
 # 7.11
 
@@ -34,12 +32,10 @@ Abonnieren Sie den **Librera Reader** -Telegrammkanal [https://t.me/LibreraReade
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP (Rapid Serial Visual Presentation) Lesen / Geschwindigkeitslesen**
 
 Durch das Lesen der Geschwindigkeit mit **Librera** können Sie die Lesegeschwindigkeit auf bis zu 700 Wörter pro Minute (WPM) verbessern, indem Sie die RSVP-Methode verwenden.
 Bitte folgen Sie dem Link, um weitere Informationen zum Thema zu erhalten [Abschnitt Geschwindigkeitsmessung](/wiki/manual/Rapid-Serial-Visual-Presentation/de)
-
 
 * Der RSVP-Modus kann über das Buchmenü gestartet werden (Geschwindigkeit lesen).
 * Geschwindigkeitsmessung mit nur einem Tastendruck
@@ -59,11 +55,9 @@ Bitte folgen Sie dem Link, um weitere Informationen zum Thema zu erhalten [Absch
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Ordner mit Bildern als Buch öffnen (In einem Buch binden)**
 
 Um einen Ordner als Buch zu öffnen, navigieren Sie auf der Registerkarte Ordner zu diesem Ordner und tippen Sie auf den Namen. Wenn es mindestens eine Bilddatei enthält, wird die Option In ein Buch binden angezeigt.
-
 
 * Öffnen Sie einen Ordner mit Bildern und binden Sie diese in ein Buch
 * Ordner mit Bildern, die als virtuelles Buch geöffnet wurden
@@ -73,8 +67,5 @@ Um einen Ordner als Buch zu öffnen, navigieren Sie auf der Registerkarte Ordner
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 # Was ist neu in Librera Book Reader?
-
-
 

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # Helligkeitsregelung und Blaulichtfilter
 
@@ -9,7 +8,6 @@ layout: main
 Die Helligkeit kann im Fenster **Einstellungen** oder durch Ziehen eines Fingers über den linken Bildschirmrand geändert werden (aktivieren Sie das entsprechende Kontrollkästchen, um diesen Modus zu aktivieren).
 Negative Helligkeit bedeutet, dass Ihre Einstellung dunkler als die des Systems ist.
 Negative Helligkeit aktiviert den Blaulichtfilter standardmäßig mit der Farbe Schwarz.
-
 
 * Stellen Sie die Helligkeit so ein, dass sie sich je nach Umgebungslicht automatisch ändert
 * Ändern Sie die Helligkeit, indem Sie mit dem Finger über den linken Bildschirmrand fahren

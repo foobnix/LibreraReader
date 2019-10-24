@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[Lo que es nuevo](/wiki/what-is-new/es)
 
 # 8.0
 
@@ -40,7 +38,6 @@ Opción * para cambiar la posición de las pestañas
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **Temas OLED oscuros y oscuros**
 
 * Elige un tema OLED oscuro con un tono negro
@@ -49,8 +46,6 @@ Opción * para cambiar la posición de las pestañas
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-
 # Novedades en Librera Book Reader
-
 
 )

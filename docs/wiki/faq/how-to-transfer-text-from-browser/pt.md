@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
 # Como transferir texto do navegador da Web (para ler ou TTS)
 
@@ -22,14 +21,11 @@ Para ler no Librera, você precisa:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Agora, o texto do navegador é aberto no Librera. Para facilitar a leitura, você pode adicionar hífens ao texto selecionando o idioma dos hífens que deseja.
-
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Você pode reproduzir o texto por voz. Para reproduzir texto por voz, é usado o sintetizador de voz instalado no sistema Android.
 Você não estabeleceu o que pode colocar no Google Play - Google Text-to-Speech.
@@ -41,7 +37,6 @@ Você não estabeleceu o que pode colocar no Google Play - Google Text-to-Speech
 * Pressione Reproduzir, ouça o texto.
 
 Se você fechar a janela de configurações ao reproduzir texto em fala, os botões de controle serão duplicados pelo subtexto e na cortina de notificação, para facilitar o gerenciamento. Para parar de ler, pressione pausa e cruze.
-
 
 ||||
 |-|-|-|

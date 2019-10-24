@@ -1,12 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Come configurare caratteri, stili
 
 > Per una lettura comoda, Librera ti consente di personalizzare l'aspetto del tuo documento, modificare i caratteri, gli stili CSS, aggiungere una lettera maiuscola.
-
 
 È possibile regolare il carattere e lo stile del testo nelle schede del menu:
 
@@ -15,17 +13,13 @@ layout: main
 
 Per accedere a queste impostazioni, fai clic sull'icona delle impostazioni.
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 ## Impostazioni avanzate
 
-
 In questa scheda di menu, puoi modificare il carattere del documento per lo stile di documento **&quot;Definito dall'utente&quot;** (vedi la sezione **&quot;Impostazioni di lettura&quot;** di seguito per una descrizione degli stili):
-
 
 * Fai clic sul collegamento del titolo del carattere
 * Nell'elenco a discesa dei caratteri, scorrere verso l'alto o verso il basso, selezionare il carattere desiderato.
@@ -36,7 +30,6 @@ Se vuoi mettere a punto i caratteri del testo:
 * Fai clic sull'icona del menu di configurazione del carattere
 * Nel menu a comparsa delle impostazioni, è possibile modificare il carattere per ciascun tipo di testo. Dopo la modifica, fai clic su &quot;Applica&quot;
 * Chiudi le impostazioni e procedi alla lettura.
-
 
 ||||
 |-|-|-|
@@ -59,9 +52,7 @@ Per il formato del libro **fb2** puoi regolare la lettera:
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-
 ## Impostazioni di lettura
-
 
 In questa sezione del menu è possibile lavorare con i file dei caratteri, aggiungere o scaricare nuovi caratteri. Per impostare gli stili di visualizzazione del testo.
 
@@ -70,7 +61,6 @@ Per personalizzare i caratteri, scaricarli o aggiungerne di nuovi, è necessario
 * Specifica il percorso dei tuoi caratteri, se presenti, selezionando la cartella dei caratteri sul tuo dispositivo
 Scarica caratteri aggiuntivi facendo clic sull'icona &quot;Scarica caratteri&quot;. Apparirà una finestra di conferma sul download, fare clic su &quot;Download&quot;.
 * I caratteri hanno una dimensione di 10 megabyte, dopo il download verranno visualizzati per la selezione nella selezione carattere generale, scheda menu **&quot;Impostazioni avanzate&quot;**.
-
 
 ||||
 |-|-|-|
@@ -93,8 +83,6 @@ Facendo clic sull'icona delle impostazioni di stile è possibile aggiungere i pr
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
 
 
 

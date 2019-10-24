@@ -41,6 +41,11 @@
 <div class="content">
     
     <section class="page">
+
+        {% if parent == '/wiki/faq/' or  parent == '/wiki/' or parent == '/wiki/what-is-new/' %}
+            <a href="{{parent}}{{lang}}"> < </a>
+        {% endif %}
+
         {{content}}
 
         {% if page.url contains 'what-is-new' %}

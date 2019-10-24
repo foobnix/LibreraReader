@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 8
 ---
 [What is new](/wiki/what-is-new)
 
@@ -35,12 +34,10 @@ Subscribe to the __Librera Reader__ Telegram channel [https://t.me/LibreraReader
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **RSVP (Rapid Serial Visual Presentation) Reading / Speed Reading**
 
 Speed reading with __Librera__ allows you to improve your reading speed to up to 700 words per minute (WPM) implementing the RSVP method.
 Please follow the link to find more info on the subject  [Speed reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/)
-
 
 * The RSVP mode can be launched from the book menu (Speed read)
 * Speed read in just one tap
@@ -60,11 +57,9 @@ Please follow the link to find more info on the subject  [Speed reading section]
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 **Open Folder w/ Images as a Book (Bind in a Book)**
 
 To open a folder as a book, navigate to it in the Folders tab and tap on its name. If it holds at least one image file, you will see the Bind in a Book option.
-
 
 * Open a folder with images and bind them in a book
 * Folder w/ images opened as a virtual book 
@@ -74,7 +69,6 @@ To open a folder as a book, navigate to it in the Folders tab and tap on its nam
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-
 **Sort books by Language**
 
 * See all languages available in the Library
@@ -83,7 +77,5 @@ To open a folder as a book, navigate to it in the Folders tab and tap on its nam
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
-
 
 

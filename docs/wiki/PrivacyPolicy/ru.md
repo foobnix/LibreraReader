@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/ru) &nbsp; &nbsp; &nbsp; [Что нового](/wiki/what-is-new/) &nbsp; &nbsp; &nbsp; [О приложении](/wiki/about/)
 
 # Политика конфиденциальности
 

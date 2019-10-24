@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[Was ist neu?](/wiki/what-is-new/de)
 
 # 8.1
 
@@ -14,7 +12,6 @@ Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtl
 * Profile
 * Die RegEx-Regeln für Ersetzungen, Belastungsmarkierungen in TTS
 * Weitere Einstellungen im Musikermodus
-
 
 # Mit Google Drive synchronisieren
 
@@ -65,7 +62,6 @@ Sie können es anzeigen, aber nicht manuell ändern.
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Weitere Einstellungen im Musikermodus
 
 * Anzeigen/Ausblenden von Rechtecken für Tippzonen
@@ -88,14 +84,11 @@ Sie können es anzeigen, aber nicht manuell ändern.
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # Andere
 
 * Unterstützt MathML und SVG (In erweiterten Optionen aktivieren, das Laden des ersten Buches ist sehr langsam)
 * Bibliotheksoption zum Ignorieren des Abrufs von Metadaten aus den Büchern
 * Fingerkennwort zum Öffnen der App (Android 9+)
 * Legen Sie das Zeitlimit für das Ausschalten des Bildschirms in Minuten oder als Systemwert fest
-
-
 
  

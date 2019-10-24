@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/ar) &nbsp; &nbsp; &nbsp; [ما الجديد](/wiki/what-is-new/) &nbsp; &nbsp; &nbsp; [حول التطبيق](/wiki/about/)
 
 # سياسات الخصوصية
 

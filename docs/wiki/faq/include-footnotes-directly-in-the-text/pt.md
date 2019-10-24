@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/pt)
 
 # Inclua notas de rodapé diretamente no texto
 

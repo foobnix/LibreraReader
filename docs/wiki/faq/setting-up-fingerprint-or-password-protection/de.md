@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/de)
+
 # Einrichten des Fingerabdruck- oder Passwortschutzes
 
 > Mit Librera können Sie Ihre Dokumente vor dem Anzeigen schützen, indem Sie den Zugriff mit einem Kennwort oder einem Fingerabdruck beschränken.
@@ -49,6 +48,5 @@ Passwort Login ist installiert. Wenn Sie sich anmelden, werden Sie in einem Dial
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 Um das Passwort zu entfernen, führen Sie Librera, bitte Antideficit, in den Einstellungen aus, in denen zuvor das Login-Passwort aktiviert wurde, deaktivieren Sie das Kontrollkästchen dieser Funktion.

@@ -1,13 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Come personalizzare l'aspetto della tua biblioteca e delle copertine dei libri
 
-
 > Librera ti consente di personalizzare in modo flessibile l'aspetto generale della tua biblioteca, le dimensioni delle copertine dei libri, le informazioni visualizzate dal libro, l'ordinamento dei libri nella tua biblioteca.
-
 
 Per configurare rapidamente la vista della libreria, è necessario:
 
@@ -25,11 +22,9 @@ Puoi anche personalizzare ulteriormente l'aspetto della biblioteca e delle coper
 
 Nella configurazione rapida della libreria, puoi sceglierne un altro tipo, ne darò, ad esempio, alcuni.
 
-
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
 
 Nelle impostazioni delle copertine dei libri, è possibile disabilitare o abilitare la copertina del libro.
 
@@ -40,11 +35,9 @@ Nelle impostazioni delle copertine dei libri, è possibile disabilitare o abilit
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
 Per modificare le dimensioni della copertina del libro visualizzata:
 
 * Utilizzare il dispositivo di scorrimento per selezionare le dimensioni della copertina del libro visualizzata
-
 
 ||||
 |-|-|-|
@@ -65,8 +58,6 @@ Se vuoi riportare le impostazioni della copertina del libro al loro stato inizia
 * Conferma l'azione &quot;OK&quot;
 
 Le copertine verranno ripristinate alle loro impostazioni iniziali.
-
-
 
 
 

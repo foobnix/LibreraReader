@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
 # Gestione dei tag personalizzati
 
@@ -28,7 +27,6 @@ layout: main
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 ## Creazione di un elenco personalizzato di libri
 

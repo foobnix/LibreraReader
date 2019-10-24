@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/ar)
 
 # تثبيت وتهيئة تحويل النص إلى كلام (TTS)
 
@@ -17,7 +16,6 @@ layout: main
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
-
 
 ## لإعداد Google Text-to-Speech:
 

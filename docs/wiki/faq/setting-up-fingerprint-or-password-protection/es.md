@@ -1,8 +1,7 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/es)
+
 # Configuración de protección de huella digital o contraseña
 
 > Librera le permite proteger sus documentos de la visualización restringiendo el acceso con una contraseña o huella digital.
@@ -49,6 +48,5 @@ La contraseña de inicio de sesión está instalada. Cuando inicia sesión, un c
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
-
 
 Para eliminar la contraseña, ejecute Librera, antideficit, en la configuración donde activó previamente la contraseña de inicio de sesión, desactive la casilla de verificación de esta función.

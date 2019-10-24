@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[<](/wiki/faq/pt)
 
 # Como adicionar uma nova seção de perguntas frequentes
 
@@ -17,11 +15,9 @@ Formato do cabeçalho do arquivo: **index.md**
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Example of Title
 ```
-
 
 Todas as imagens relacionadas a esta seção devem estar na pasta
 

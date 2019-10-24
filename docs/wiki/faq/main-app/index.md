@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq)
 
 # The Main Screen
 
@@ -16,7 +14,6 @@ version: 3
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Condensed (two-column) view
 * Grid view
 * Covers only (Book Cover)
@@ -24,7 +21,6 @@ version: 3
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Search the library for "comm" string
 * Tap star to add a book to the Favorites list

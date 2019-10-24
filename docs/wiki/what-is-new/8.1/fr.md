@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[Quoi de neuf](/wiki/what-is-new/fr)
 
 # 8.1
 
@@ -14,7 +12,6 @@ En utilisant cette application, vous acceptez les conditions de la [Politique de
 * Profils
 * Les remplacements, marques de soulagement, règles RegEx dans TTS
 * Autres paramètres en mode Musicien
-
 
 # Synchroniser avec Google Drive
 
@@ -65,7 +62,6 @@ Vous pouvez le voir mais ne le modifiez pas manuellement.
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Autres paramètres en mode Musicien
 
 * Afficher \ masquer les rectangles des zones de prise
@@ -88,14 +84,11 @@ Vous pouvez le voir mais ne le modifiez pas manuellement.
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # Autres
 
 * Support MathML et SVG (activation dans les options avancées, le premier chargement du livre est très lent)
 * Option de bibliothèque permettant d'ignorer l'extraction de métadonnées dans les livres
 * Mot de passe du doigt pour ouvrir l'application (Android 9+)
 * Définir le délai d'extinction de l'écran en minutes ou en valeur système
-
-
 
  

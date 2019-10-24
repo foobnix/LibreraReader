@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/zh)
 
 {1}如何在Android中增加PDF文档中的字体大小
 

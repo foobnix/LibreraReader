@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
 # Comment transférer du texte à partir du navigateur Web (à lire ou TTS)
 
@@ -22,14 +21,11 @@ Pour lire à Librera, il vous faut:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 Maintenant, le texte du navigateur s'ouvre dans Librera. Pour faciliter la lecture, vous pouvez ajouter des traits d'union au texte en sélectionnant la langue de ceux-ci.
-
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
 
 Vous pouvez jouer le texte à la voix. Pour lire du texte par la voix, le synthétiseur de voix installé sur le système Android est utilisé.
 Vous n'avez pas encore établi ce que vous pouvez utiliser sur Google Play: la synthèse vocale Google.
@@ -41,7 +37,6 @@ Vous n'avez pas encore établi ce que vous pouvez utiliser sur Google Play: la s
 * Appuyez sur Play, écoutez le texte.
 
 Si vous fermez la fenêtre de configuration lorsque vous lisez du texte en parole, les boutons de commande sont dupliqués par le sous-texte et dans le rideau de notification, pour faciliter la gestion. Pour arrêter de lire, appuyez sur pause et traversez.
-
 
 ||||
 |-|-|-|

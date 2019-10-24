@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/es)
 
 # Preguntas frecuentes
 

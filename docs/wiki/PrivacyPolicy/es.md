@@ -1,9 +1,6 @@
 ---
 layout: main
-version: 5
 ---
-[Wiki](/wiki/es) &nbsp; &nbsp; &nbsp; [Novedades](/wiki/what-is-new/) &nbsp; &nbsp; &nbsp; [Acerca de la aplicación](/wiki/about/)
-
 # Políticas de privacidad
 
 * [Librera Reader](/wiki/PrivacyPolicy/com.foobnix.pdf.reader/es)

@@ -1,9 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[Back](/wiki/PrivacyPolicy/)
-
 # Privacy Policy
 
 Librera built the Librera PRO app as a Commercial app. This SERVICE is provided by Librera and is intended for use as is.

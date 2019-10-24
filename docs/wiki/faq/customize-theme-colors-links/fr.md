@@ -1,11 +1,8 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/fr)
 
 # Personnalisation du thème (blanc, noir, AMOLED, couleurs, taille de la police, couleurs des liens)
-
 
 > Librera vous permet de personnaliser les thèmes et l'interface selon vos préférences de couleur.
 
@@ -18,11 +15,9 @@ Vous pouvez personnaliser:
 
 **Tous les paramètres du programme peuvent être combinés les uns avec les autres**
 
-
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
 
 **Définition de la taille de la police:**
 
@@ -32,7 +27,6 @@ Vous pouvez personnaliser:
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
-
 
 **Personnalisez le thème de l'application:**
 
@@ -44,7 +38,6 @@ _Vous pouvez également personnaliser le thème de votre écran lors de la lectu
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
-
 
 **Définition de la couleur du titre (Rogner):**
 
@@ -64,8 +57,6 @@ _Vous pouvez également personnaliser le thème de votre écran lors de la lectu
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
-
-
 
 
 

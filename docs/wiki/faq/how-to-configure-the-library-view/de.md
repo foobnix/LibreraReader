@@ -1,13 +1,10 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/de)
 
 # So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an
 
-
 > Mit Librera können Sie das Erscheinungsbild Ihrer Bibliothek, die Größe der Buchumschläge, die vom Buch angezeigten Informationen und die Sortierung der Bücher in Ihrer Bibliothek flexibel anpassen.
-
 
 Um die Bibliotheksansicht schnell zu konfigurieren, müssen Sie:
 
@@ -25,11 +22,9 @@ Sie können auch das Aussehen der Bibliothek und der Buchcover in den Einstellun
 
 In der Schnellkonfiguration der Bibliothek können Sie eine andere Art davon auswählen, ich werde zum Beispiel einige nennen.
 
-
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
 
 In den Einstellungen für Buchumschläge können Sie den Buchumschlag deaktivieren oder aktivieren.
 
@@ -40,11 +35,9 @@ In den Einstellungen für Buchumschläge können Sie den Buchumschlag deaktivier
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
 So ändern Sie die Größe des angezeigten Buchdeckels:
 
 * Verwenden Sie den Schieberegler, um die Größe des angezeigten Buchdeckels auszuwählen
-
 
 ||||
 |-|-|-|
@@ -65,8 +58,6 @@ Wenn Sie die Buchdeckeleinstellungen auf den ursprünglichen Zustand zurücksetz
 * Bestätigen Sie Ihre Aktion mit &quot;OK&quot;.
 
 Die Cover werden auf ihre ursprünglichen Einstellungen zurückgesetzt.
-
-
 
 
 

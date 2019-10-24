@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[Что нового](/wiki/what-is-new/ru)
 
 # 7.10
 

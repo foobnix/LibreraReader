@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # Brightness control and bluelight filter
 
@@ -9,7 +8,6 @@ layout: main
 Brightness can be changed in the **Preferences** window, or by sliding a finger along the left edge of the screen (check the corresponding box to turn this mode on).
 Negative brightness indicates that your setting is darker than the system's one.
 Negative brightness enables the bluelight filter with Black color by default.
-
 
 * Set brightness to change automatically depending on the ambient light
 * Change brightness by sliding your finger along the left edge of the screen
