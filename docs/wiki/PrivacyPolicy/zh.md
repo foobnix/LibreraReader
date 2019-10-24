@@ -4,10 +4,10 @@ layout: main
 
 # 隐私政策
 
-* [Librera Reader](/wiki/PrivacyPolicy/com.foobnix.pdf.reader/zh)
-* [Librera PRO](/wiki/PrivacyPolicy/com.foobnix.pro.pdf.reader/zh)
-* [PDF经典](/wiki/PrivacyPolicy/classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri/zh)
-* [PDF阅读器](/wiki/PrivacyPolicy/pdf.pdf.reader/zh)
-* [EPUB Reader](/wiki/PrivacyPolicy/epub.reader/zh)
-* [Ebooka Reader](/wiki/PrivacyPolicy/droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3/zh)
-* [TTS阅读器](/wiki/PrivacyPolicy/tts.reader/zh)
+* [Librera Reader](/wiki/PrivacyPolicy/com.foobnix.pdf.reader)
+* [Librera PRO](/wiki/PrivacyPolicy/com.foobnix.pro.pdf.reader)
+* [PDF Classic](/wiki/PrivacyPolicy/classic.pdf.reader.viewer.djvu.epub.fb2.txt.mobi.book.reader.lirbi.libri)
+* [PDF Reader](/wiki/PrivacyPolicy/pdf.pdf.reader)
+* [EPUB Reader](/wiki/PrivacyPolicy/epub.reader)
+* [Ebooka Reader](/wiki/PrivacyPolicy/droid.reader.book.epub.mobi.pdf.djvu.fb2.txt.azw.azw3)
+* [TTS Reader](/wiki/PrivacyPolicy/tts.reader)
