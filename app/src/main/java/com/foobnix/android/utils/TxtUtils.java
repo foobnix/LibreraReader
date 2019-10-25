@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -428,23 +429,6 @@ public class TxtUtils {
                     }
                     LOG.d("pageHTML [8]", pageHTML);
 
-
-                    /*
-                    if (key.startsWith("[") && key.endsWith("]")) {
-                        for (int i = 1; i < key.length() - 1; i++) {
-                            String s = String.valueOf(key.charAt(i));
-                            pageHTML = pageHTML.replace(s, value);
-                        }
-
-                    } else {
-                        if (value.contains("*")) {
-                            value = replaceAccent(value);
-                        }
-
-                        pageHTML = pageHTML.replace(key, value);
-                    }
-                    */
-
                 }
 
 
@@ -477,12 +461,12 @@ public class TxtUtils {
             }
 
 
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.", " $1 $2 $3 $4 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1 $2 $3 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,4})\\.", " $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. (\\p{Alpha}{1,2})\\.", " $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. ", " $1 ");
-            pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1 $2"); //skip numbers 3.3 .343
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot$3{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
+            pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1{dot}$2"); //skip numbers 3.3 .343
 
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
@@ -583,42 +567,61 @@ public class TxtUtils {
 
             }
 
+
+            LOG.d("pageHTML-dict", dict);
+            LOG.d("pageHTML-dict", dict);
             try {
-                LOG.d("pageHTML-dict", dict);
-                LOG.d("pageHTML-dict", dict);
-                BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(dict)));
-                String line;
-                while ((line = input.readLine()) != null) {
-                    if (TxtUtils.isEmpty(line)) {
-                        continue;
-                    } else if (line.startsWith("#")) {
-                        continue;
-                    } else if (line.endsWith("256")) {
-                        continue;
-                    } else if (line.startsWith("*\"")) {
-                        String parts[] = line.split("\" \"");
-                        String r1 = parts[0].substring(2);
-                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        //r2 = replaceAccentreplaceAccent(r2);
-                        LOG.d("pageHTML-replaceAll", r1, r2);
-
-                        dict1.put(r1, r2);
-
-                    } else if (line.startsWith("\"")) {
-                        String parts[] = line.split("\" \"");
-                        String r1 = parts[0].substring(1);
-                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        //r2 = replaceAccent(r2);
-                        LOG.d("pageHTML-replace", r1, r2);
-                        dict2.put(r1, r2);
+                processDict(new FileInputStream(dict), new ReplaceRule() {
+                    @Override
+                    public void replace(String from, String to) {
+                        dict2.put(from, to);
                     }
-                }
-                input.close();
-            } catch (Exception e) {
+
+                    @Override
+                    public void replaceAll(String from, String to) {
+                        dict1.put(from, to);
+                    }
+                });
+            } catch (FileNotFoundException e) {
                 LOG.e(e);
             }
         }
 
+
+    }
+
+    public static void processDict(InputStream io, ReplaceRule rule) {
+        try {
+            LOG.d("processDict");
+            BufferedReader input = new BufferedReader(new InputStreamReader(io));
+            String line;
+            while ((line = input.readLine()) != null) {
+                if (TxtUtils.isEmpty(line)) {
+                    continue;
+                } else if (line.startsWith("#")) {
+                    continue;
+                } else if (line.endsWith("256")) {
+                    continue;
+                } else if (line.startsWith("*\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(2);
+                    String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                    LOG.d("pageHTML-replaceAll", r1, r2);
+
+                    rule.replaceAll(r1, r2);
+
+                } else if (line.startsWith("\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(1);
+                    String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                    LOG.d("pageHTML-replace", r1, r2);
+                    rule.replace(r1, r2);
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 
@@ -1292,7 +1295,6 @@ public class TxtUtils {
         return buf.toString();
     }
 
-
     public static void updateinks(ViewGroup parent, int color) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -1310,7 +1312,6 @@ public class TxtUtils {
         }
     }
 
-
     public static void setInkTextView(View... parents) {
         if (AppState.get().appTheme != AppState.THEME_INK) {
             return;
@@ -1322,6 +1323,14 @@ public class TxtUtils {
                 ((TextView) parent).setTextColor(Color.BLACK);
             }
         }
+    }
+
+    interface ReplaceRule {
+        void replace(String from, String to);
+
+        void replaceAll(String from, String to);
+
+
     }
 
 
