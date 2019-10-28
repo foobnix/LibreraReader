@@ -2,34 +2,35 @@
 layout: main
 ---
 
-# How to configure fonts, styles
+# Configuring Fonts and Styles
 
-> For comfortable reading Librera allows you to customize the look Of your document, change fonts, CSS styles, add a capital letter.
+> **Librera** allows you to customize the look and feel of the document you're reading—choose the fonts to your liking and adjust their size, adjust CSS styles, and change first letters into leading initials (FB2).
 
-You can adjust the font and text style in the menu tabs:
+You will do all of the above  in the main tab of the **Preference** window and, obviously, in the _Reading Settings_ tab.
 
-* **Advanced settings**
-* **Reading settings.**
 
-To access these settings, click the settings icon.
+> Tap the **Settings** icon to open the **Preferences** window.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-## Advanced setting
+## Font Adjustments
 
-In this menu tab, you can change the document font for the **"User-defined"** document style (see the **"Reading settings"** section below for a description of the styles):
+* Select your main font by tapping on the _Font_ link and running through the dropdown list of available fonts.
 
-* Click on the title link of the font
-* In the drop-down list of fonts, swipe up or down, select the font you want. 
-* If you want to download fonts for reading, see how to do it below, the settings section **"Reading settings"**
+> You can add your favorite fonts to the list:
+1. Create a folder named _Fonts_ in your device's internal storage. 
+> Note: There is another _Fonts_ folder in your internal storage already created by **Librera** automatically.
+2. Save your favorite fonts to your _Fonts_ folder (or **Librera**'s own _Fonts_ folder).
+> (You can also download some nice fonts from our site. See the **Reading Settings** section for instructions.)
+> Remember that your fonts will be honored only if the _Styles_ you've selected in the **Reading Settings** tab have _User-defined_ in them.
 
-If you want to fine tune the text fonts:
+To set up user-specific fonts for different font-styles, tap the icon next to the _Fonts_ link to open the _Configure Fonts_ window.
 
-* Click the font configuration menu icon
-* In the settings pop-up menu, you can change the font for each type of text. After the change, click "Apply" 
-* Close the settings and proceed to reading.
+* Tap the setting for each style and select a font for it.
+* Use **up** and **down** buttons to jump to a next font on the list (sometimes this will suffice for your purpose).
+* Don't forget to tap **APPLY** once you're finished.
 
 ||||
 |-|-|-|
@@ -39,42 +40,49 @@ If you want to fine tune the text fonts:
 |-|-|-|
 |![](6.jpg)|![](42.jpg)|![](43.jpg)|
 
-For the book format **fb2** you can adjust the letter:
+## Leading Initials in FB2 Books
 
-* Click the font configuration menu icon
-* Enable the "Lead chapters with initiatives" checkbox
-* Select the font of the Letter
-* Adjust size and color
-* Click "Apply" to apply the settings.
+You can make each and every chapter in your book start with a nice-looking initial.
+ 
+> This setting won't show while reading in any other format.
+
+* Tap the icon next to the _Fonts_ link to open the _Configure Fonts_ window
+* Check the _Lead chapters with initials_ checkbox to enable initials 
+* Tap on the font-face link to select a font for your initial from a dropdown list
+* Now choose the size and color for your initial by tapping respective links
+* Tap **APPLY** to save the settings
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-## Reading settings
+## The **Reading Settings** Tab
 
-In this section of the menu you can work with your font files, add or download new fonts. To set the display styles of text.
+> These are _User-defined_ settings. They mainly override the style settings encoded in your book's .css file. You need to choose _User-defined_ styles to make it work.
 
-To customize fonts, download or add new ones, you must: 
-
-* Specify the path to your fonts, if any, by selecting the fonts folder on your device
-Download additional fonts by clicking on the "Download fonts" icon. A confirmation window about the download will appear, click "Download". 
-* The fonts have a size of 10 megabytes, after downloading will be displayed for selection in the General font selection, menu tab **"Advanced setting"**.
+* Select your preferred text alignment from the dropdown list.
+* Use sliders or **-** and **+** taps to adjust line and paragraph spacing, text indents and page margins.
+* By _normalizing font-size_ you make all fonts in the document equal (1em, regular).
+* You can also specify the color of links in your document for each mode (day and night). 
 
 ||||
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Customize the styles of the displayed text.**
+**Choose _Styles_ for your book wisely**
 
-The program allows you to select the text display and style set in the text by the author of the document:
+* _Document_, book's .css settings will be used
+* _User-defined_, this tab's settings will be used
+* _Document + User-defined_ (default, recommended), our attempt at incorporating user settings into the book's .css settings (or the way around). Works most of the time!
 
-* Document-uses the text style set by the author the Creator of the document
-* User-defined-use your style settings for fonts, indentation, markup of the document
-* Document+User-defined-user and author styles are used together.
+## The **Custom CSS Code** Window
 
-By clicking on the style settings icon you can add your own text display styles using the hypertext markup language css
+This window opens on tapping on the icon next to _Styles_
+
+Those familiar with CSS coding can make some ad-hoc customization to the way your book is displayed. (See more under FAQ's **Customize Book CSS Styles**).
+
+> Don't forget to remove the code once you're done with the book! It might not work in the next one.
 
 ||||
 |-|-|-|
@@ -83,8 +91,3 @@ By clicking on the style settings icon you can add your own text display styles 
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
-
-
-
