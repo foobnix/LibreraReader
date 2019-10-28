@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 3
 ---
 # Scarica
 
@@ -10,12 +9,10 @@ version: 3
 
 [Librera Beta su Google Play](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
 
-
 [Beta build [apk]](http://beta.librera.mobi)
 
 [GitHub](https://github.com/foobnix/LibreraReader)
 
 [Telegram](https://t.me/LibreraReader) (Notizie, annunci e molto interessante sulla nuova funzionalità.)
-
 
 [Informativa sulla privacy](/wiki/PrivacyPolicy/it)

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[Quoi de neuf](/wiki/what-is-new/fr)
 
 # 7.12
 
@@ -13,14 +11,11 @@ version: 2
 * Lecture de fichiers et de dossiers mp3
 * Série de livres à manipuler
 
-
-
 **Onglet Favoris**
 
 L'onglet **Favoris** a été repensé. Les éléments de **balises** et **Listes de lecture** sont désormais facilement accessibles.
 Étiquetez les livres pour les regrouper selon n'importe quel critère commun, par exemple &quot;Math&quot;, &quot;Thriller&quot;, &quot;Mystère&quot;, etc. (Vous pouvez également ajouter une étiquette à partir de la fenêtre Informations sur le livre.)
 Les listes de lecture sont principalement destinées aux musiciens: il est facile de garder les documents sélectionnés à portée de main et de manipuler la liste.
-
 
 ||||
 |-|-|-|
@@ -66,9 +61,6 @@ Pourrait être utile pour les musiciens et pour ceux qui étudient les langues �
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
-
 # Quoi de neuf dans Librera Book Reader
-
 
 )

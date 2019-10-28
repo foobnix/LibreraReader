@@ -281,7 +281,7 @@ public class AppState {
     @IgnoreHashCode
     public int doubleClickAction1 = DOUBLE_CLICK_ADJUST_PAGE;
     @IgnoreHashCode
-    public int inactivityTime = 2;
+    public int inactivityTime = 5;
     @IgnoreHashCode
     public int remindRestTime = 120;
     public int flippingInterval = 10;
@@ -328,7 +328,7 @@ public class AppState {
     public int sortByBrowse = BR_SORT_BY_PATH;
     public boolean sortByReverse = false;
     @IgnoreHashCode
-    public boolean isBrighrnessEnable = true;
+    public boolean isBrighrnessEnable = false;
     @IgnoreHashCode
     public boolean isAllowMinBrigthness = false;
     public boolean isShowRateUsOnExit = true;

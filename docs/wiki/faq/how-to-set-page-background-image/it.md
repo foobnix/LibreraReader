@@ -1,8 +1,5 @@
 ---
 layout: main
-version: 7
----
-[<](/wiki/faq)
 ---
 
 # Imposta il proprio sfondo per la pagina del libro
@@ -20,12 +17,11 @@ Per impostare lo sfondo, è necessario:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Colore** sono selezionati solo il colore di riempimento dello sfondo di lettura e la sua trasparenza.
 
 **Immagine** sono selezionate l'immagine dello sfondo di lettura e la sua trasparenza.
 
-### Aggiungi tinta unita
+## Aggiungi tinta unita
 
 * Scegli &quot;Colore&quot; e regola il colore di sfondo della croce sulla tavolozza dei colori del cerchio.
 * Dopo aver selezionato il colore, fare clic su OK, uscire dalle impostazioni, verrà applicato il colore di sfondo.
@@ -35,8 +31,7 @@ Per impostare lo sfondo, è necessario:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
-### Aggiungi trama dell'immagine
+## Aggiungi trama dell'immagine
 
 * &quot;Immagine&quot; selezionata.
 * Nella finestra di dialogo delle impostazioni, fare clic sull'icona &quot;più&quot;.
@@ -46,6 +41,5 @@ Per impostare lo sfondo, è necessario:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

@@ -1,54 +1,48 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
-# Crea tag personalizzati
+# Gestione dei tag personalizzati
 
-> Lo scopo di questo capitolo è capire perché è necessario tag # # book__ e come aggiungerli ai libri. Tagging è forma libera
-parole che si adattano ai libri di qualsiasi file per organizzare meglio la libreria. È possibile assegnare molti tag allo stesso libro. I tag aiutano l&#39;utente a organizzare i libri
-in collezioni. I tag aiutano l&#39;utente a trovare facilmente i libri in elenco o raccolte.
-I tag sono metadati creati dall&#39;utente, ma esistono anche altri metadati come [Serie](), [Autori](), [Parole chiave](), [Generi]() che aiuta a
-trovare e orginizzare raccolte di libri.
+> Aggiungendo tag personalizzati ai libri nella nostra Biblioteca, stiamo aggiungendo alcune informazioni significative (per noi) ai metadati dei libri. Questi tag torneranno utili nei nostri futuri riferimenti ai libri a cui abbiamo assegnato i tag. Ci aiuteranno a organizzare i libri nella Biblioteca, ordinarli a nostro piacimento, creare liste di libri specifiche per l'utente, trovare facilmente libri nella Biblioteca, ecc.
+> I tag definiti dall'utente verranno utilizzati per tutti gli scopi immaginabili insieme ai tag di e-book convenzionali già esistenti, come [Serie](), [Autori](), [Parole chiave](), [Generi](), ecc.
 
-### Ci sono molti posti in cui l&#39;utente può __aggiungere tag__ al libro.
+## Esistono molti modi per aggiungere un **nuovo tag** a un libro.
 
-* Con un tocco prolungato sull&#39;icona stella (preferiti/it)
-* Dal menu del libro
-* Dalla finestra di dialogo delle informazioni del libro
+* Premendo a lungo l'icona a stella (preferiti)
+* Chiamando il menu del libro e toccando _Aggiungi tag_
+* Tramite la finestra _File info_ (Suggerimento: una pressione prolungata sulla copertina di un libro ti porterà lì)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### L&#39;aggiunta di tag è molto semplice, basta fare clic
+## L'aggiunta e l'eliminazione di tag è semplice come una torta
 
-> Se cancelli il tag, questo tag verrà rimosso da tutti i libri assegnati
-
-* Aggiungi Tag
-* Crea un nuovo tag
-* Elimina il tag assegnato
+* Tocca su _Nuovo tag_
+* Aggiungi informazioni significative qui
+* Per eliminare un tag, tocca un _x_ accanto ad esso e quindi conferma l'eliminazione
+> Il tag eliminato verrà rimosso da tutti i libri a cui è assegnato
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
+## Creazione di un elenco personalizzato di libri
 
-### Crea elenchi e raccolte personalizzati
-
-* Assegna tag al libro
-* Trova tutti gli elenchi di tag nella scheda dei preferiti
-* Ottieni tutti i libri per tag
+* Assegna un tag a un libro selezionandolo e premendo _Applica_
+* Le tue liste di libri personalizzate appariranno nella scheda _Favoriti_
+* Tocca il nome dell'elenco e si aprirà nella scheda _Library_
 
 |7|8|9|
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-### Vedi le raccolte di tag dal libro
+## Richiamare la tua lista _Favorites_ su misura dal libro che stai leggendo
 
-* Fai clic sull&#39;icona dei tag recenti
-* Seleziona le raccolte che vuoi (libri preferiti o tag utente/it)
-* Visualizzazione di libri per tag, fai clic per leggere qualsiasi libro
+* Tocca l'icona degli elenchi di libri nel menu
+* Tocca _Favoriti_ per aprire un elenco a discesa
+* Seleziona il tuo elenco personalizzato e divertiti
 
 |10|11|12|
 |-|-|-|

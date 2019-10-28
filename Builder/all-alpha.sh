@@ -18,7 +18,9 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-./gradlew assembleProRelease
+./gradlew assembleBetaRelease
+#./gradlew assembleProRelease
+
 
 
 ./gradlew copyApks -Pbeta

@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # How to delete books from the External SD card
 

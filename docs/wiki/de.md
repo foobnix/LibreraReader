@@ -1,6 +1,5 @@
 ---
 layout: main
-version: 3
 ---
 ![](/css/logo-line.jpg)
 

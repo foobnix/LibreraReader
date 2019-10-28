@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -119,9 +120,10 @@ public class Dialogs {
 
                 LinearLayout h = new LinearLayout(activity);
                 h.setOrientation(LinearLayout.HORIZONTAL);
+                h.setGravity(Gravity.CENTER_VERTICAL);
 
                 EditText from = new EditText(activity);
-                from.setWidth(Dips.DP_200);
+                from.setWidth(Dips.DP_150);
                 from.setText(key);
                 from.setSingleLine();
 
@@ -137,9 +139,28 @@ public class Dialogs {
                 to.setSingleLine();
                 to.setHint("_");
 
+
+                ImageView img = new ImageView(activity);
+                img.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
+                img.setMaxWidth(Dips.DP_25);
+                img.setMaxHeight(Dips.DP_25);
+
+                img.setImageResource(R.drawable.glyphicons_208_remove_2);
+                TintUtil.setTintImageWithAlpha(img);
+
+                img.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        root.removeView(h);
+                    }
+                });
+
+
+
                 h.addView(from);
                 h.addView(text);
                 h.addView(to);
+                h.addView(img);
                 root.addView(h);
             }
         } catch (JSONException e) {

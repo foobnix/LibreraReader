@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 3
 ---
-[<](/wiki/faq/pt)
 
 # A tela principal
 
@@ -16,7 +14,6 @@ version: 3
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 * Visualização condensada (duas colunas)
 * Visualização em grade
 * Apenas capas (capa de livro)
@@ -24,7 +21,6 @@ version: 3
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Pesquise na biblioteca a string &quot;comm&quot;
 * Toque em estrela para adicionar um livro à lista de Favoritos
@@ -40,7 +36,7 @@ version: 3
 * Procure um livro por extensão (FB2)
 * Clique em Autor para encontrar todos os livros deste autor
 * Toque em _x_ para limpar os resultados da pesquisa
-* Pressione e segure a marca de seleção para visualizar e editar o histórico de pesquisa e a lista de preenchimento automático
+* Pressione e segure a marca de seleção para visualizar e editar o histórico de pesquisa e a lista de preenchimento automático.
 * Informações do livro e progresso da leitura
 
 ||||

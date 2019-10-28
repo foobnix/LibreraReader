@@ -1,40 +1,34 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
-# Customize Buch css Stile
+# Benutzerdefinierte CSS-Codierung
 
-> Einige Benutzer möchten die Buchansicht anpassen und konfigurieren. Für einige Bücher muss CSS für eine bessere Darstellung beheben.
-Sie können dies einfach mit Librera Reader machen
+> Beim Rendern von Büchern übernimmt **Librera** normalerweise die Formatvorlagen aus der CSS-Datei des Buches und wendet Ihre Einstellungen auch im Fenster **Einstellungen** an. Es kann auch das eine oder andere separat nutzen. Aber manchmal ist es nicht genug. Einige Bücher haben so eigenartigen CSS-Code, dass Sie keine andere Wahl haben, als die CSS-Dateien zu bearbeiten, um die Lesbarkeit zu verbessern. **Librera** bietet Ihnen jedoch eine weitere Option: Fügen Sie vorübergehend benutzerdefinierten CSS-Code hinzu, der nach Abschluss des herausgeforderten Buches einfach entfernt werden kann.
 
-App unterstützt drei __Styles__ View-Modus, können Sie die Anzeigeoptionen ändern.
+Es werden drei **Styles** -Modi unterstützt:
 
-1. Dokument- und Benutzerformate
-2. Dokumentstile
-3. Benutzer Stile
+1. Dokument + Benutzerdefiniert (nimmt die guten Sachen aus den zwei Welten)
+2. Dokument (verwendet nur die CSS-Einstellungen des Buches)
+3. Benutzerdefiniert (verwendet nur die in den Registerkarten des Fensters **Einstellungen** angegebenen Einstellungen des Benutzers)
 
-Um den Buchstil zu ändern, gehen Sie zu
-__Book preferences -&gt; Leseeinstellungen__
-
-* Ändern Sie Stilmodi oder bearbeiten Sie benutzerdefinierte CSS-Stile
-* Modus für Dokumentstile
-* Bearbeiten Sie benutzerdefinierte Benutzer-CSS
+* Der Benutzer kann über eine Dropdown-Liste zwischen den Modi wechseln, die beim Tippen auf den Link neben _Styles_ aufgerufen wird.
+* Tippen Sie auf das Symbol neben der _Styles_-Liste, um das Fenster **Benutzerdefinierter CSS-Code** zu öffnen und es aufzurufen.
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
+Dokument + Benutzerdefinierter Modus ist standardmäßig aktiviert
 
-Standardmäßig aktivieren Sie Document- und User-Styles zusammen
+Das Beispiel in Abb. 3 ist aus dem wirklichen Leben übernommen.
 
-Für einige Bücher mit Codebeispielen ist es einfach, die Codeblockgröße mit Benutzer css zu ändern
-<pre>
-{white-space: pre; font-size: 0.7em;} //  pre -  without break lines
-</pre>
+{white-space: pre-line;}
+Sequenzen von Leerzeichen werden reduziert. Zeilen werden bei Zeilenumbrüchen um umbrochen <br> und nach Bedarf, um Zeilenfelder zu füllen.
 
-oder
+{white-space: pre;}
+Sequenzen von Leerzeichen bleiben erhalten. Zeilen werden nur bei Zeilenumbrüchen in der Quelle und bei unterbrochen <br> Elemente.
 
-<pre>
-{white-space: normal; font-size: 0.7em;} // normal - with break lines
-</pre>
+span {display: block}
+p&gt; span {display: inline}
+Beseitigt störende Leerzeilen zwischen den Seiten (Behebung von muPDF-Fehlern).

@@ -179,6 +179,18 @@ public class ExtUtils {
         mimeCache.put(".mp4", "video/mp4");
         mimeCache.put(".webm", "video/webm");
     }
+    public static String getExtByMimeType(String mime){
+        if(TxtUtils.isEmpty(mime)){
+            return  mime;
+        }
+        for(String key:mimeCache.keySet()){
+            if(mime.equals(mimeCache.get(key))){
+                return  key.replace(".","");
+            }
+        }
+        String ext = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime);
+        return  ext;
+    }
 
     public static void updateSearchExts() {
         List<String> result = new ArrayList<String>();

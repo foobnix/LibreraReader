@@ -1,18 +1,17 @@
 ---
 layout: main
 ---
-[<](/wiki/faq)
 
 # So löschen Sie Bücher von der externen SD-Karte
 
-Android 7+ erlaubt es nicht, Dateien von der externen SD-Karte zu löschen
+Android 7+ erlauben nicht, Dateien von der externen SD-Karte durch die zu löschen
 sicherheits Gründe.
-Sie müssen eine SD-Karte als Ressource hinzufügen und der Anwendung das Löschen von Dateien erlauben
+Sie müssen eine SD-Karte als Ressource hinzufügen und der Anwendung erlauben, Dateien von dieser zu löschen
 
-* Registerkarte &quot;Dateimanager öffnen&quot;
+* Öffnen Sie den Dateimanager-Tab
 * Klicken Sie auf Ressource hinzufügen
-* Wählen Sie eine SD-Karte
-* Wählen Sie und lassen Sie das Löschen von einer ausgewählten SD-Karte zu
+* Wählen Sie die SD-Karte
+* Auswählen und Löschen von ausgewählter SD-Karte zulassen
 
 ||||
 |-|-|-|

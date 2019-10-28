@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[Cosa c'è di nuovo](/wiki/what-is-new/it)
 
 # 8.1
 
@@ -14,7 +12,6 @@ Utilizzando questa app accetti i termini della [Informativa sulla privacy](/wiki
 * Profili
 * Sostituisce, sottolinea/i (s), RegEx in TTS
 * Altre impostazioni in modalità Musicista
-
 
 # Sincronizza con Google Drive
 
@@ -65,7 +62,6 @@ In questa cartella tutte le impostazioni, i segnalibri, i progressi memorizzati 
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Altre impostazioni in modalità Musicista
 
 * Mostra \ nascondere i rettangoli delle aree di tocco
@@ -88,14 +84,11 @@ In questa cartella tutte le impostazioni, i segnalibri, i progressi memorizzati 
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # Altri
 
 * Supporta MathML e SVG (Abilita nelle opzioni avanzate, il primo carico del libro è molto lento)
 * Opzione di libreria per ignorare il recupero dei metadati dai libri
 * Password per aprire l'app (Android 9+)
 * Imposta il timeout dello spegnimento schermo in minuti o valore di sistema
-
-
 
  

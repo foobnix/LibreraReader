@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 4
 ---
-[<](/wiki/)
 
 # À propos de l'application Librera Book Reader pour Android
 
@@ -41,7 +39,6 @@ Il propose même un mode Musician mains libres sans défilement automatique.
 * Importation et exportation des paramètres, sauvegarde automatique de la session en cours
 * Initiales dans les documents FB2
 * Et de nombreuses autres fonctionnalités à découvrir.
-
 
 Avec **Librera Reader**, vous pouvez facilement créer des bibliothèques auto-gérées de tous vos documents en spécifiant les formats à inclure et les dossiers à numériser. Toutes les collections de documents peuvent être visualisées sous forme de liste ou de grille. Les documents sont facilement identifiables grâce à des couvertures miniatures ajustables en taille et en style et à des descriptions détaillées. Votre bibliothèque peut être triée par chemin, nom, taille, date, etc., et un filtre permet de localiser des documents ou des groupes de documents spécifiques.
 

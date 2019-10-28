@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[O que há de novo](/wiki/what-is-new/pt)
 
 # 7.12
 
@@ -13,14 +11,11 @@ version: 2
 * Reproduzir arquivos e pastas em mp3
 * Lidar com a série de livros
 
-
-
 **Guia Favoritos**
 
 A guia **Favoritos** foi reprojetada. Os itens **Tags** e **Playlists** agora podem ser acessados facilmente.
 Marcar livros para agrupá-los por qualquer critério comum, por exemplo, &quot;Matemática&quot;, &quot;Suspense&quot;, &quot;Mistério&quot; etc. (também é possível adicionar uma tag na janela Informações do livro).
 As listas de reprodução destinam-se principalmente a músicos: é fácil manter os documentos selecionados à mão e manipular a lista.
-
 
 ||||
 |-|-|-|
@@ -66,9 +61,6 @@ Poderia ser útil para músicos e para aqueles que estudam línguas estrangeiras
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
-
 # O que há de novo no Librera Book Reader
-
 
 )

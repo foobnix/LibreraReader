@@ -133,11 +133,12 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if ( BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
                 HypenUtils.applyLanguage(AppTemp.get().hypenLang);
                 int bodyInt = string.indexOf("<body");
+                bodyInt = string.indexOf(">", bodyInt);
 
-                string = string.substring(0,bodyInt)+ HypenUtils.applyHypnes(string.substring(bodyInt));
+                string = string.substring(0, bodyInt) + HypenUtils.applyHypnes(string.substring(bodyInt));
                 // string = Jsoup.clean(string, Whitelist.none());
             }
             // String string = html.toString();

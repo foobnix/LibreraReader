@@ -1,54 +1,48 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/pt)
 
-# Crie tags personalizadas
+# Manipulando tags personalizadas
 
-> O objetivo deste capítulo é entender por que precisamos __book tags__ e como adicioná-los aos livros. A marcação é de forma livre
-palavras que atestam os livros de quaisquer arquivos para melhor organizar a biblioteca. É possível atribuir muitas tags ao mesmo livro. Tags ajudam o usuário a organizar livros
-em coleções. Tags ajudam o usuário a encontrar livros facilmente em listas ou coleções.
-Tags são metadados criados pelo usuário, mas também existem outros metadados como [Series](), [Authors](), [Keywords](), [Genres]() que ajudam a
-encontrar e organizar coleções de livros.
+> Ao adicionar tags personalizadas aos livros da nossa Biblioteca, adicionamos algumas informações significativas (para nós) aos metadados dos livros. Essas tags serão úteis em nossas futuras referências aos livros aos quais atribuímos tags. Eles nos ajudarão a organizar livros na Biblioteca, classificá-los ao nosso gosto, criar listas de livros específicas do usuário, encontrar livros facilmente na Biblioteca etc.
+> As tags definidas pelo usuário serão usadas para todos os fins imagináveis, além das tags convencionais já existentes, como [Série](), [Autores](), [Palavras-chave](), [Gêneros](), etc.
 
-### Existem muitos lugares onde o usuário pode __adicionar tags__ ao livro.
+## Existem várias maneiras de adicionar uma **Nova tag** a um livro.
 
-* Por longo toque na estrela (favoritos) ícone
-* No menu do livro
-* Na caixa de diálogo de informações do livro
+* Pressionando longamente o ícone de estrela (favoritos)
+* Chamando o menu do livro e tocando em _Adicionar tags_
+* Na janela _File info_ (Dica: pressione e segure a capa do livro para chegar lá)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### Adicionar tags é muito fácil, basta clicar
+## Adicionar e excluir tags é tão fácil quanto uma torta
 
-> Se excluir tag, essa tag será removida de todos os livros atribuídos
-
-* Adicionar etiqueta
-* Criar nova tag
-* Excluir tag atribuída
+* Toque em _Nova tag_
+* Adicione informações significativas aqui
+* Para excluir uma tag, toque em _x_ ao lado dela e confirme a exclusão
+> A tag excluída será removida de todos os livros aos quais está atribuída
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
+## Criando uma lista personalizada de livros
 
-### Criar lista personalizada e coleções
-
-* Atribuir tag ao livro
-* Encontre toda a lista de tags na guia favorita
-* Obter todos os livros por tag
+* Atribua uma etiqueta a um livro, selecionando-a e pressionando _Aplicar_
+* Suas listas de livros personalizadas aparecerão na guia _Favoritos_
+* Toque no nome da lista e ela será aberta na guia _Library_
 
 |7|8|9|
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-### Veja as coleções de tags do livro
+## Invocando sua lista _Favoritos_ personalizada do livro que você está lendo
 
-* Clique no ícone de tags recentes
-* Selecione coleções que você deseja (livros favoritos ou tags de usuário/pt)
-* Exibindo livros por tag, clique para ler qualquer livro
+* Toque no ícone das listas de livros no menu
+* Toque em _Favoritos_ para abrir uma lista suspensa
+* Selecione sua lista personalizada e aproveite
 
 |10|11|12|
 |-|-|-|

@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq/de)
 
 # Librera zum Erlernen von Fremdsprachen
 
@@ -16,13 +14,11 @@ Wörterbücher können ein Programm auf einem Computer oder ein Webwörterbuch s
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 Sie können die Option aktivieren, um ein bekanntes Wort oder einen Satz sofort im ausgewählten Wörterbuch zu öffnen.
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
 
 * Hören Sie sich die Aussprache des ausgewählten Wortes oder Satzes an
 * Hören Sie sich das Buch mit der Stimme an
@@ -32,7 +28,6 @@ Sie können die Option aktivieren, um ein bekanntes Wort oder einen Satz sofort 
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 * Fügen Sie eine Audiodatei hinzu, die in das Buch aufgenommen wird
 * Hören Sie sich das Buch mit der Stimme an
 * Fügen Sie Wörter und Sätze zu Notizen hinzu.
@@ -40,7 +35,6 @@ Sie können die Option aktivieren, um ein bekanntes Wort oder einen Satz sofort 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
-
 
 Librera kann mit dem Buch externe Audiodateien abspielen
 Die Anwendung zeigt die Formate .mp3, .mp4, .wav, .ogg, .m4a, .flac an

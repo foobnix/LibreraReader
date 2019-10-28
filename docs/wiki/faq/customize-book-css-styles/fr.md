@@ -1,40 +1,34 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
-# Personnaliser les styles de livre css
+# Codage CSS personnalisé
 
-> Certains utilisateurs aiment personnaliser et configurer l&#39;affichage du livre. Pour certains livres, il faut corriger les CSS pour un meilleur affichage.
-Vous pouvez simplement faire cela avec Librera Reader
+> Pour le rendu du livre, **Librera** prend généralement les styles du fichier .css du livre et applique également vos paramètres à partir de la fenêtre **Préférences**. Il peut également utiliser l’un ou l’autre séparément. Mais parfois, cela ne suffit pas. Certains livres ont un code CSS si particulier que vous n’avez pas d’autre choix que de modifier leurs fichiers .css pour améliorer la lisibilité. Cependant, **Librera** vous offre une autre option: ajouter temporairement du code CSS personnalisé facilement amovible une fois que vous avez terminé avec le livre mis au défi.
 
-App supporte trois __Styles__ mode d&#39;affichage, vous pouvez modifier les options d&#39;affichage.
+Trois modes **Styles** sont pris en charge:
 
-1. Style de document et utilisateur
-2. Styles de document
-3. Styles d&#39;utilisateur
+1. Document + défini par l'utilisateur (prend les bonnes choses des deux mondes)
+2. Document (utilise uniquement les paramètres .css du livre)
+3. Défini par l'utilisateur (utilise uniquement les paramètres définis par l'utilisateur dans les onglets de la fenêtre **Préférences**)
 
-Pour changer le style du livre, allez à
-__Préférences de livre -&gt; Paramètres de lecture__
-
-* Modifier les modes de style ou modifier les styles CSS personnalisés
-* Mode de styles de document
-* Modifier le CSS utilisateur personnalisé
+* L'utilisateur peut basculer entre les modes via une liste déroulante appelée en appuyant sur le lien en regard de _Styles_.
+* Appuyez sur l'icône en regard de la liste _Styles_ pour ouvrir la fenêtre **Code CSS personnalisé** et y accéder.
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
+Le mode Document + défini par l'utilisateur est activé par défaut
 
-Activer par défaut les styles de document et d&#39;utilisateur
+L'exemple de la figure 3 est tiré de la vie réelle.
 
-Pour certains livres avec des exemples de code, il est facile de changer la taille du bloc de code avec l&#39;utilisateur css
-<pre>
-{white-space: pre; font-size: 0.7em;} //  pre -  without break lines
-</pre>
+{white-space: pre-line;}
+Les séquences d'espaces blancs sont réduites. Les lignes sont brisées aux caractères de nouvelle ligne, à <br> , et si nécessaire pour remplir les zones de ligne.
 
-ou
+{white-space: pre;}
+Les séquences d'espaces blancs sont conservées. Les lignes ne sont rompues que sur les caractères de nouvelle ligne de la source et sur <br> éléments.
 
-<pre>
-{white-space: normal; font-size: 0.7em;} // normal - with break lines
-</pre>
+span {display: block}
+p&gt; span {display: inline}
+Élimine les lignes vides très gênantes entre les pages (rectifiant les failles muPDF).

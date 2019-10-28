@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[O que há de novo](/wiki/what-is-new/pt)
 
 # 8.1
 
@@ -14,7 +12,6 @@ Ao usar este aplicativo, você concorda com os termos da [Política de Privacida
 * Perfis
 * O substitui, marca (s) de estresse, regras RegEx no TTS
 * Mais configurações no modo Músico
-
 
 # Sincronizar com o Google Drive
 
@@ -65,7 +62,6 @@ Você pode visualizá-lo, mas não modifica manualmente.
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
 # Mais configurações no modo Músico
 
 * Mostrar \ ocultar os retângulos das zonas de toque
@@ -88,14 +84,11 @@ Você pode visualizá-lo, mas não modifica manualmente.
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-
 # Outros
 
 * Suporte MathML e SVG (Habilite nas opções avançadas, o primeiro carregamento de livros é muito lento)
 * Opção de biblioteca para ignorar a busca de metadados dos livros
 * Senha do dedo para abrir o aplicativo (Android 9+)
 * Definir desativar o tempo limite da tela em minutos ou no valor do sistema
-
-
 
  

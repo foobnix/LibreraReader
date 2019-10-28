@@ -1,8 +1,5 @@
 ---
 layout: main
-version: 7
----
-[<](/wiki/faq)
 ---
 
 # Definir plano de fundo próprio para a página do livro
@@ -20,12 +17,11 @@ Para definir seu plano de fundo, você deve:
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
 **Cor** somente a cor de preenchimento do plano de fundo da leitura e sua transparência são selecionadas.
 
 **Imagem** a imagem do plano de fundo da leitura e sua transparência são selecionadas.
 
-### Adicione cor sólida
+## Adicione cores sólidas
 
 * Escolha &quot;Cor&quot; e ajuste a cor de fundo cruzada na paleta de cores do círculo.
 * Após selecionar a cor, clique em OK, saia das configurações e a cor de fundo será aplicada.
@@ -35,8 +31,7 @@ Para definir seu plano de fundo, você deve:
 |![](3.jpg)|![](5.jpg)|![](8.jpg)|
 
 
-
-### Adicione textura de imagem
+## Adicione textura de imagem
 
 * &quot;Imagem&quot; selecionada.
 * Na caixa de diálogo de configurações, clique no ícone &quot;mais&quot;.
@@ -46,6 +41,5 @@ Para definir seu plano de fundo, você deve:
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
-
 
 

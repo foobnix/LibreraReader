@@ -915,13 +915,10 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 		if (p[0] == 'p' && p[1] == 'x' && p[2] == 0)
 			return isFont? make_number(x / 25 < 1 ? 1 : x / 25, N_SCALE): make_number(x, N_LENGTH);
 
-
-		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
 			return isFont? make_number(x <1 ? 1: x, N_SCALE) : make_number(x, N_SCALE);
 
 
-		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
 			return make_number(x / 2, N_LENGTH);
 
@@ -932,7 +929,6 @@ number_from_value_in(fz_css_value *value, float initial, int initial_unit, int i
 	{
 		if (!strcmp(value->data, "auto"))
 			return make_number(0, N_LENGTH);
-			//return make_number(0, N_AUTO);
 	}
 
 	return make_number(initial, initial_unit);
@@ -1286,8 +1282,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	}
 
 
-	style->width = number_from_property(match, "width", 0, N_AUTO);
-	style->height = number_from_property(match, "height", 0, N_AUTO);
+	//style->width = number_from_property(match, "width", 0, N_AUTO);
+	//style->height = number_from_property(match, "height", 0, N_AUTO);
 
 	style->margin[0] = number_from_property(match, "margin-top", 0, N_LENGTH);
 	style->margin[1] = number_from_property(match, "margin-right", 0, N_LENGTH);

@@ -60,6 +60,7 @@ public class AppProfile {
 
     public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
     public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
+    public static File SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
     public static File SYNC_FOLDER_PROFILE;
     public static File SYNC_FOLDER_DEVICE_PROFILE;
     public static File syncRecent;
@@ -120,6 +121,7 @@ public class AppProfile {
         AppTemp.get().init(c);
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
+        ExtUtils.init(c);
     }
 
 

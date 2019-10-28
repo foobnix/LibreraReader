@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 6
 ---
-[Was ist neu](/wiki/what-is-new/de)
 
 # 8.0
 
@@ -40,7 +38,6 @@ Unterstützung für das * Docx-Format auf Anroid 8+ -Geräten
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-
 **Dark &amp; Dark OLED-Designs**
 
 * Wählen Sie ein dunkles OLED-Thema mit schwarzer Farbe
@@ -49,8 +46,6 @@ Unterstützung für das * Docx-Format auf Anroid 8+ -Geräten
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-
 # Was ist neu in Librera Book Reader?
-
 
 )

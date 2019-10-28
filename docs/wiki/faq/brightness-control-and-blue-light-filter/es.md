@@ -1,31 +1,29 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/es)
 
-# Control de brillo y filtro de luz azul.
+# Control de brillo y filtro de luz azul
 
-> El brillo en la aplicación puede ser automático, como el brillo del sistema o el ajuste manual personalizado del gato del usuario.
-El brillo se puede cambiar en la configuración del libro, o por el tamaño izquierdo de la pantalla (subir o bajar).
-El brillo negativo puede hacer que la pantalla sea más oscura que el brillo del sistema.
-El brillo negativo habilita el filtro azul con color negro de forma predeterminada, puede cambiar para un color personalizado.
+> El control del brillo en **Librera Reader** puede ser automático, de acuerdo con la configuración de su sistema, o el usuario puede configurar el brillo manualmente.
+El brillo se puede cambiar en la ventana **Preferencias**, o deslizando un dedo por el borde izquierdo de la pantalla (marque la casilla correspondiente para activar este modo).
+El brillo negativo indica que su configuración es más oscura que la del sistema.
+El brillo negativo habilita el filtro de luz azul con color negro de forma predeterminada.
 
-
-* Cambia el brillo automático o manual de la configuración del libro.
-* Cambia el brillo por el lado izquierdo de la pantalla.
-* Haga clic en la ventana emergente de brillo para establecer el brillo &quot;Automático&quot;
-* Activar / desactivar cambiar el brillo en el lado izquierdo de la pantalla
+* Configure el brillo para que cambie automáticamente según la luz ambiental
+* Cambie el brillo deslizando el dedo por el borde izquierdo de la pantalla
+* Toque la tostadora Brillo para cambiar al modo **Automático**
+* Activa/desactiva las diapositivas del borde izquierdo en la pestaña **Configuración avanzada**
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-# Filtro de luz azul
-> La luz azul funciona junto con el brillo.
+# filtro de luz azul
+> El filtro de luz azul funciona junto con el brillo
 
-* Abrir preferencias de libro
-* Establecer casilla de verificación para habilitar el filtro de luz azul
-* Haga clic en abrir configuración emergente
+* El filtro Bluelight se puede activar manualmente marcando su casilla en la ventana **Preferencias**
+* El filtro de luz azul está activado
+* Toque **Filtro de luz azul** para configurar su tono (color) preferido
 
 ||||
 |-|-|-|

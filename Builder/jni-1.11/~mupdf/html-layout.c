@@ -41,7 +41,7 @@ static const char *html_default_css =
 "kbd{font-family:monospace}"
 "li{display:list-item}"
 "menu{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}"
-"ol{display:block;list-style-type:decimal;margin:1em 0;padding:0 1em 0 1em}"
+"ol{display:block;list-style-type:decimal;margin:1em;padding:0 1em 0 1em}"
 "p{display:block;}"
 "pre{display:block;font-family:monospace;margin:1em 0;white-space:pre}"
 "samp{font-family:monospace}"
@@ -52,7 +52,7 @@ static const char *html_default_css =
 "sub{font-size:0.83em;vertical-align:sub}"
 "sup{font-size:0.83em;vertical-align:super}"
 
-"table{display:block !important;}"
+"table{display:block !important; margin:1em !important;font-size:0.8em;}"
 "tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
 "td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
 "tbody {display:block !important;}"
@@ -60,13 +60,6 @@ static const char *html_default_css =
 
 "figcaption {display:block; text-align:center}"
 "figcaption>p {text-align:center}"
-
-//"tbody{display:table-row-group}"
-//"td{display:table-cell;padding:1px}"
-//"tfoot{display:table-footer-group}"
-//"th{display:table-cell;font-weight:bold;padding:1px;text-align:center}"
-//"thead{display:table-header-group}"
-//"tr{display:table-row}"
 
 "ul{display:block;list-style-type:disc;margin:1em 0;padding:0 1em 0 1em}"
 "ul ul{list-style-type:circle}"
@@ -92,9 +85,13 @@ static const char *fb2_default_css =
 "body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
 "image{display:block}"
 "p>image{display:inline}"
-"table{display:table}"
-"tr{display:table-row}"
-"th,td{display:table-cell}"
+
+"table{display:block !important; margin:1em !important;font-size:0.8em;}"
+"tr,thead,tfoot   {display:block !important;margin-top:0.5em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
+
 "a{color:#06C;text-decoration:underline}"
 "a[type=note]{font-size:small;vertical-align:super}"
 "code{white-space:pre;font-family:monospace}"

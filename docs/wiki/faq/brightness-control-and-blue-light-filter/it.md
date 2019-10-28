@@ -1,31 +1,29 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/it)
 
-# Controllo della luminosità e filtro della luce blu
+# Controllo luminosità e filtro luce blu
 
-> La luminosità nell&#39;applicazione può essere automatica come la brigtness del sistema o la brigtness manuale personalizzata.
-La luminosità può essere modificata nelle impostazioni del libro o dalla dimensione sinistra dello schermo (verso l&#39;alto o verso il basso).
-La luminosità negativa può rendere lo schermo più scuro della luminosità del sistema.
-La luminosità negativa attiva il filtro blu con Colore nero per impostazione predefinita, è possibile modificare il colore personalizzato.
+> Il controllo della luminosità in **Librera Reader** può essere automatico, in base alle impostazioni del sistema, oppure l'utente può impostare manualmente la luminosità.
+La luminosità può essere modificata nella finestra **Preferenze** o facendo scorrere un dito lungo il bordo sinistro dello schermo (selezionare la casella corrispondente per attivare questa modalità).
+La luminosità negativa indica che l'impostazione è più scura di quella del sistema.
+La luminosità negativa abilita il filtro luce blu con colore nero per impostazione predefinita.
 
-
-* Cambia la luminosità automatica o manuale dalle impostazioni del libro
-* Cambia la luminosità dal lato sinistro dello schermo
-* Fare clic sul popup di luminosità per impostare la luminosità &quot;Automatica&quot;
-* Attiva / disattiva la luminosità del cambiamento sul lato sinistro dello schermo
+* Imposta la luminosità per cambiare automaticamente in base alla luce ambientale
+* Cambia la luminosità facendo scorrere il dito lungo il bordo sinistro dello schermo
+* Tocca il tostapane Luminosità per passare alla modalità **Auto**
+* Attiva/disattiva le diapositive sul bordo sinistro nella scheda **Impostazioni avanzate**
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-# Filtro luce blu
-> La luce blu funziona insieme alla luminosità
+# Filtro Bluelight
+> Il filtro Bluelight funziona insieme alla luminosità
 
-* Preferenze del libro aperto
-* Imposta la casella di controllo per abilitare il filtro della luce blu
-* Fai clic sul popup di configurazione aperto
+* Il filtro Bluelight può essere attivato manualmente selezionando la relativa casella nella finestra **Preferenze**
+* Il filtro Bluelight è attivato
+* Tocca **Filtro Bluelight** per impostare la tua tonalità preferita (colore)
 
 ||||
 |-|-|-|

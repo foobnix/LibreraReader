@@ -1,54 +1,48 @@
 ---
 layout: main
 ---
-[<](/wiki/faq/fr)
 
-# Créer des tags personnalisés
+# Gestion des balises personnalisées
 
-> Le but de ce chapitre est de comprendre pourquoi besoin de __balises de livre__ et comment les ajouter aux livres. Le marquage est une forme libre
-mots assing les livres de tous les fichiers pour mieux organiser la bibliothèque. Il est possible d&#39;attribuer plusieurs tags au même livre. Les balises aident l&#39;utilisateur à créer des livres
-dans les collections. Les balises aident l’utilisateur à trouver facilement des livres dans une liste ou une collection.
-Les balises sont des métadonnées créées par l’utilisateur, mais il existe également d’autres métadonnées telles que [Series] (), [Authors] (), [Keywords] (), [Genres] ()
-trouver et organiser des collections de livres.
+> En ajoutant des étiquettes personnalisées aux livres de notre bibliothèque, nous ajoutons des informations significatives (pour nous) aux métadonnées des livres. Ces balises nous seront utiles lors de nos futures références aux livres auxquels nous avons attribué des balises. Ils nous aideront à organiser les livres dans la bibliothèque, à les trier à notre guise, à créer des listes de livres spécifiques à l'utilisateur, à trouver facilement des livres dans la bibliothèque, etc.
+> Les balises définies par l'utilisateur seront utilisées à toutes fins imaginables aux côtés des balises de livres électroniques déjà existantes, telles que [Série](), [Auteurs](), [Mots-clés](), [Genres](), etc.
 
-### Il existe de nombreux endroits où l&#39;utilisateur peut __ajouter des balises__ au livre.
+## Il existe plusieurs façons d'ajouter un **nouveau tag** à un livre.
 
-* Par un appui long sur l&#39;icône étoile (favoris)
-* Du menu du livre
-* À partir du dialogue d&#39;informations sur le livre
+* En appuyant longuement sur l’icône étoile (favoris)
+* En appelant le menu du livre et en appuyant sur _Ajouter des tags_
+* Via la fenêtre _File info_ (Astuce: une pression longue sur une couverture de livre vous y mènera)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-### Ajouter des tags est très facile, il suffit de cliquer
+## L'ajout et la suppression de balises est simple comme bonjour
 
-> Si supprimer la balise, cette balise sera supprimée de tous les livres attribués
-
-* Ajouter une étiquette
-* Créer un nouveau tag
-* Supprimer la balise attribuée
+* Appuyez sur _Nouveau tag_
+* Ajoutez ici des informations utiles
+* Pour supprimer une balise, appuyez sur un _x_ à côté de celle-ci, puis confirmez la suppression.
+> La balise supprimée sera supprimée de tous les livres auxquels elle est assignée.
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
+## Création d'une liste personnalisée de livres
 
-### Créer une liste et des collections personnalisées
-
-* Attribuer une balise au livre
-* Trouver toutes les listes de tags dans l&#39;onglet Favoris
-* Obtenez tous les livres par tag
+* Attribuez un tag à un livre en le sélectionnant et en appuyant sur _Apply_
+* Vos listes de lecture personnalisées apparaîtront dans l'onglet &quot;Favoris&quot;.
+* Appuyez sur le nom de la liste pour l’ouvrir dans l’onglet _Bibliothèque_
 
 |7|8|9|
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-### Voir les étiquettes des collections du livre
+## Invocation de votre liste de favoris personnalisée dans le livre que vous lisez
 
-* Cliquez sur l&#39;icône des balises récentes
-* Sélectionnez les collections que vous voulez (livres favoris ou tags utilisateur)
-* Affichage des livres par étiquette, cliquez pour lire un livre
+* Appuyez sur l'icône de liste de livres dans le menu.
+* Appuyez sur _Favorites_ pour ouvrir une liste déroulante.
+* Sélectionnez votre liste personnalisée et profitez
 
 |10|11|12|
 |-|-|-|

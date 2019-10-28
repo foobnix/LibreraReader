@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 2
 ---
-[<](/wiki/faq/de)
 
 # TTS-Ersatz
 
@@ -16,26 +14,25 @@ version: 2
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-
 Ersetzungen unterstützen das klassische Ersetzen einer Zeichenfolge durch eine andere oder Sie können RegExp-Ausdrücke verwenden
 
-# # Ausdruck
+## Ausdruck
 
 * &quot;text&quot; - Einfacher Text
 * &quot;* text&quot; - * RexExp-Regel
 * &quot;# text&quot; - # deaktivierte Regel
 * &quot;text256&quot; - deaktivierte Regel
 
-# # Beispiele
+## Beispiele
 
 * &quot;Lib.&quot; -&gt; &quot;Librera&quot; - Lib ersetzen. nach Librera
 * &quot;Librera&quot; -&gt; &quot;Libréra&quot; - korrekte Spannungsmarkierung hinzufügen
 * &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot;, um die Regel zu deaktivieren
 * * (L | l) ib. -&gt; &quot;$ 1ibrera&quot; - Lib ersetzen. zu Librera und lib. zu librera
-* &quot;* [()&quot; «» * ”“/[]] &quot;-&gt;&quot; &quot;- Ersetzen Sie die Zeichen durch leere Zeichen
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Ersetzen Sie die Zeichen durch leere Zeichen
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen ersetzen, um (,) char anzuhalten
 
-# # Regeldatei hinzufügen
+## Regeldatei hinzufügen
 
 Librera unterstützt Regexp-Regeldateien vom @ Voice Reader
 Hier einige Beispiele **demo-replaces.txt**
@@ -69,8 +66,6 @@ Hier einige Beispiele **demo-replaces.txt**
 *"(^| )(Д|д)-р" " доктор"
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
-
 ```
-
 
    

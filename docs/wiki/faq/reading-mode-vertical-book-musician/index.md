@@ -1,8 +1,6 @@
 ---
 layout: main
-version: 1
 ---
-[<](/wiki/faq)
 
 # Reading modes: Scroll mode, Book mode and Musician mode
 
@@ -32,7 +30,7 @@ version: 1
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-### Scroll mode
+## Scroll mode
 
 * Scroll by Pages, by Screen height or by custom value height.
 * Scroll with volume buttons, hardware key, Bluetooth pedals, by tap on the screen
@@ -42,8 +40,7 @@ version: 1
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-
-### Book mode
+## Book mode
 * Swipe horizontally for next-prev page
 * Swipe vertically for next prev page
 * Change vertical swipe direction
@@ -54,7 +51,7 @@ version: 1
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-### Musician mode
+## Musician mode
 * One click to start or stop auto scrolling/playing
 * Easy next/prev page changing
 * Change auto scroll speed during performance
