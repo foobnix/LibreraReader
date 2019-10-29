@@ -461,7 +461,7 @@ public class TxtUtils {
 
 
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot$3{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
