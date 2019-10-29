@@ -52,9 +52,8 @@ import java.util.regex.Pattern;
 
 public class TxtUtils {
 
-    public static final String TTS_PAUSE = "{pause}";
-    public static final String TTS_STOP = "{stop}";
-    public static final String TTS_DOT = "{dot}";
+    public static final String TTS_PAUSE = "ttsPAUSE";
+    public static final String TTS_STOP = "ttsSTOP";
 
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);

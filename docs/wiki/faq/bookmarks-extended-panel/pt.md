@@ -2,58 +2,66 @@
 layout: main
 ---
 
-# Trabalhando com marcadores no painel estendido (marcadores da faixa de opções)
+# Trabalhando com favoritos no modo avançado (faixa de opções Favoritos)
 
-> No Librera, você pode exibir uma barra de marcadores estendida (marcadores da faixa de opções) na tela de leitura. Ele serve para a função de adicionar rapidamente um marcador, alternando entre os marcadores.
+> Você pode fazer com que **Librera** exiba seus favoritos na tela o tempo todo enquanto lê um livro. Eles serão mostrados na parte superior da tela na chamada _Bookmarks Ribbon_. Esse modo de marcador estendido deve ser útil quando você precisar adicionar novos marcadores ou alternar entre eles em um instante.
+> Esperamos que esse recurso interessante seja muito procurado por músicos, enquanto o aplicativo é executado no modo _Músico_. Portanto, ele vem com a faixa de opções ativada neste modo por padrão.
 
-Para habilitá-lo, você deve:
+Para habilitá-lo nos outros modos:
 
-* Clique no ícone de configurações
-* Vá para as configurações &quot;Barra de status&quot;
-* Ative a caixa de seleção estendida do painel de favoritos (favoritos da fita) no modo de leitura desejado.
+* Toque no ícone _Settings_ para abrir a janela **Preferences**
+* Toque na guia _Status Bar_
+* No painel _Bookmarks Ribbon_, marque a caixa ao lado do modo para o qual você deseja ativar a Ribbon.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-A seguir, você verá como trabalhar com a barra de favoritos rápidos no modo &quot;Leitura de livros&quot;. Você pode repetir essas ações nos três modos, elas são iguais.
+As operações com a _ Ribbonmarks Ribbon_ são ilustradas no modo _Book_. Tudo funciona da mesma maneira nos três modos.
 
-**Se você não precisar mais de uma barra de marcadores estendida (marcadores da faixa de opções), poderá desativá-la desmarcando a caixa de seleção &quot;Barra de status&quot; no modo de leitura. O ícone do marcador no canto superior direito será removido.**
+> Se você não precisar mais da _Bookmark Ribbon_, poderá desativá-la desmarcando a respectiva caixa na guia _Status bar_.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-**Adicionando favoritos:**
+**Adicionando marcadores**
 
-* Clique no ícone Favorito no canto superior direito da tela
-* Selecione o marcador &quot;Adicionar&quot;
-* Faça um comentário no marcador, a partir deste comentário será atribuído um nome ao marcador. Neste exemplo, o comentário &quot;primeiro marcador&quot;
-Clique em &quot;Adicionar&quot;
+> O indicador flutuante de marcador no canto superior direito indica que você está atualmente no modo _Livros de marcadores_.
+
+* Toque no flutuador de favoritos na página que você está prestes a favorito
+* Toque em _ADD_ para adicionar o favorito na janela _Bookmarks_
+* Faça um comentário no marcador. Observe que o nome do marcador vem do seu comentário (**primeiro marcador** em nosso exemplo).
+* Toque em **ADICIONAR** para concluir o procedimento.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-Um marcador será adicionado na janela de marcadores e, na parte superior, na barra de marcadores estendida (marcadores da faixa de opções). Agora, se você quiser acessar esta guia, basta clicar nela a partir do topo, no painel, enquanto lê. Se você quiser editá-lo, dê um toque longo no marcador na janela de marcadores, a janela de edição será exibida. Além disso, se você tiver muitos marcadores, deslize a barra de marcadores estendida (marcadores da faixa de opções) para movê-los para a esquerda ou direita.
+Seu novo favorito aparecerá na janela _Bookmarks_ e, ao mesmo tempo, você o verá na _Bookmarks Ribbon_ na parte superior. Agora, para voltar a este marcador, basta tocar nele na faixa de opções.
+
+> Nota: Uma pressão prolongada em um marcador na faixa de opções abrirá uma janela de edição.
+* Salve seus resultados de edição tocando em **SALVAR**
+* Ou você pode excluir o marcador tocando em **DELETE**
+A faixa de opções se tornará uma faixa completa na tela quando você tiver muitos marcadores. Você pode navegar por eles passando os dedos.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adicionando marcador rápido**
+**Adicionando marcadores rápidos**
 
-* Clique no ícone Favorito no canto superior direito da tela
-* Selecione &quot;Marcador rápido&quot;
-* Um &quot;marcador rápido&quot; será criado. Será dado um número de página de nome. Se você for para a janela de favoritos, verá um marcador Rápido com o nome - 15. &quot;Marcador rápido&quot;. Quando você clica prolongadamente em um marcador na janela de marcadores, a janela de edição e exclusão será exibida.
+* Toque no flutuador de favoritos no canto superior direito para abrir a janela _Bookmarks_.
+* Toque em **marcador rápido**
+* Assim, um &quot;marcador rápido&quot; é criado, indicado pelo número da página na faixa de opções na parte superior. Na lista na janela _Bookmarks_, ela aparecerá como a página # e o _Quick Bookmark_ próximo a ela.
+> Você pode pressionar longamente um marcador rápido na lista para permitir sua edição ou exclusão em uma janela pop-up de edição de marcador.
 
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
-Você pode usar ações rápidas para adicionar ou remover marcadores na barra de marcadores estendida (marcadores da faixa de opções):
+> Você pode ignorar algumas operações ao adicionar ou excluir favoritos usando a _Bookmarks Ribbon_:
 
-* Toque longo no ícone de marcador no canto superior direito - adiciona um marcador rápido
-* Um toque longo no nome do marcador, na barra de marcadores estendida (marcadores da faixa de opções), solicitará que você o exclua.
-
+* Uma pressão longa no flutuador de marcador no canto superior direito adicionará um marcador rápido.
+* Uma pressão prolongada em um marcador na _ Fita de Marcadores_ abrirá um prompt sugerindo que você o exclua.

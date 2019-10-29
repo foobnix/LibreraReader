@@ -119,7 +119,7 @@
         android:layout_alignParentLeft="true"
         android:layout_margin="0dip"
         android:background="@drawable/bg_search_second_clickable"
-        android:contentDescription="read aloudW"
+        android:contentDescription="@string/text_to_speech"
         android:padding="7dip"
         android:src="@drawable/glyphicons_185_volume_up"
         android:tint="@color/white"

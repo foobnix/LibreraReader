@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">Nagrywać w formacie .mp3</string>
    <string name="speak_into_file_wav">Nagrywanie tts (mp3, wav)</string>
    <string name="text_is_too_long">Tekst jest za długi</string>
+   <string name="settings">Ustawienia</string>
+   <string name="play_pause">Odtwarzanie / pauza</string>
+   <string name="next_track">Następny utwór</string>
+   <string name="previous_track">Poprzedni utwór</string>
 </resources>

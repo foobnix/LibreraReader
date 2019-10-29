@@ -2,58 +2,66 @@
 layout: main
 ---
 
-# Trabajar con marcadores en el panel extendido (marcadores de cinta)
+# Trabajar con marcadores en modo extendido (cinta de marcadores)
 
-> En Librera, puede mostrar una barra de marcadores extendida (marcadores de cinta) en la pantalla de lectura. Sirve para la función de agregar rápidamente un marcador, cambiar entre marcadores.
+> Puede hacer que **Librera** muestre sus marcadores en la pantalla en todo momento mientras lee un libro. Se mostrarán en la parte superior de la pantalla en una llamada _Cinta de Marcadores_. Este modo de marcador extendido debería ser útil cuando necesite agregar nuevos marcadores o cambiar entre ellos en un instante.
+> Esperamos que esta característica genial tenga una gran demanda con los músicos, mientras ejecuta la aplicación en modo _Músico_. Por lo tanto, viene con la cinta de opciones habilitada en este modo de forma predeterminada.
 
-Para habilitarlo, debes:
+Para habilitarlo en los otros modos:
 
-* Haga clic en el icono de configuración
-* Ir a la configuración &quot;Barra de estado&quot;
-* Active la casilla de verificación del panel de marcadores extendido (marcadores de cinta) en el modo de lectura que desee.
+* Toque el icono _Configuración_ para abrir la ventana **Preferencias**
+* Toca la pestaña _Status Bar_
+* En el panel _Bookmarks Ribbon_, marque la casilla junto al modo para el que desea habilitar la cinta.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-A continuación, verá cómo trabajar con la barra de marcadores rápidos en el modo &quot;Lectura de libros&quot;. Puede repetir estas acciones en los tres modos, son lo mismo.
+Las operaciones con la _Cinta de Marcadores_ se ilustran en el modo _Book_. Todo funciona igual para los tres modos.
 
-**Si ya no necesita una barra de marcadores extendida (marcadores de cinta), puede desactivarla desmarcando la casilla de verificación &quot;Configuración de la barra de estado&quot; en su modo de lectura. El icono de marcador de la esquina superior derecha se eliminará.**
+> Si ya no necesita la _Cinta de marcador_, puede deshabilitarla desmarcando la casilla correspondiente en la pestaña _Barra de estado_.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-**Agregar marcadores:**
+**Agregar marcadores**
 
-* Haga clic en el icono Marcador en la esquina superior derecha de la pantalla
-* Seleccione el marcador &quot;Agregar&quot;
-* Haga un comentario al marcador, a partir de este comentario se le asignará un nombre. En este ejemplo, el comentario &quot;primer marcador&quot;
-Haga clic en &quot;Agregar&quot;
+> El marcador flotante en la esquina superior derecha indica que está actualmente en el modo _Marcadores de la cinta_.
+
+* Toque el marcador flotante en la página que está a punto de marcar
+* Toque _ADD_ para agregar el marcador a través de la ventana _Bookmarks_
+* Haga un comentario al marcador. Tenga en cuenta que el nombre del marcador proviene de su comentario (**primer marcador** en nuestro ejemplo).
+* Toque **AGREGAR** para completar el procedimiento.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-Se agregará un marcador en la ventana de marcadores y, en la parte superior, en la barra de marcadores extendida (marcadores de cinta). Ahora, si desea ir a esta pestaña, simplemente haga clic en ella desde la parte superior, en el panel, mientras lee. Si desea editarlo, toque prolongadamente el marcador en la ventana de marcadores, aparecerá la ventana de edición. Además, si tiene muchos marcadores, puede deslizar la barra de marcadores extendida (marcadores de cinta) para moverlos hacia la izquierda o hacia la derecha.
+Su nuevo marcador aparecerá en la ventana _Marcadores_ y, al mismo tiempo, lo verá en la cinta _Marcadores_ en la parte superior. Ahora, para volver a este marcador, solo necesita tocarlo en la cinta de opciones.
+
+> Nota: Una pulsación larga en un marcador en la cinta de opciones abrirá una ventana de edición.
+* Guarde sus resultados de edición tocando **GUARDAR**
+* O puede eliminar el marcador tocando **ELIMINAR**
+La cinta se convertirá en una cinta en toda su pantalla cuando tenga muchos marcadores. Puede navegar a través de ellos deslizando el dedo.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Agregar marcador rápido**
+**Agregar marcadores rápidos**
 
-* Haga clic en el icono Marcador en la esquina superior derecha de la pantalla
-* Seleccione &quot;Marcador rápido&quot;
-* Se creará un &quot;Marcador rápido&quot;. Se le dará un número de página de nombre. Si va a la ventana de marcadores verá un marcador rápido con el nombre - 15. &quot;Marcador rápido&quot;. Cuando hace clic largo en un marcador en la ventana de marcadores, aparecerá la ventana de edición y eliminación.
+* Toque el marcador flotante en la esquina superior derecha para abrir la ventana _Marcadores_.
+* Toque **MARCADOR RÁPIDO**
+* Por lo tanto, se crea un &quot;marcador rápido&quot;, indicado por el número de página en la Cinta en la parte superior. En la lista de la ventana _Bookmarks_, irá como la página # y _Quick Bookmark_ junto a ella.
+> Puede mantener presionado un marcador rápido en la lista para permitir su edición o eliminación en una ventana emergente de edición de marcadores.
 
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
-Puede usar acciones rápidas para agregar o eliminar marcadores en la barra de marcadores extendida (marcadores de cinta):
+> Puede omitir algunas operaciones al agregar o eliminar marcadores utilizando la _Cinta de Marcadores_:
 
-* Mantenga pulsado el icono de marcador en la esquina superior derecha: agrega un marcador rápido
-* Un toque prolongado en el nombre del marcador, en la barra de marcadores extendida (marcadores de cinta), le pedirá que lo elimine.
-
+* Una pulsación larga en el marcador flotante en la esquina superior derecha agregará un marcador rápido.
+* Al presionar prolongadamente un marcador en la cinta de opciones de marcadores, se abrirá un mensaje que le sugerirá que lo elimine.

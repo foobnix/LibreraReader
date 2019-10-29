@@ -4,6 +4,9 @@ layout: main
 
 {1}常见问题
 
+* [TTS替换](/wiki/faq/tts-replacements/zh)
+* [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
+* [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)
 * [字典，单词和句子的翻译](/wiki/faq/dictionaries-translate-text-online-and-offline/zh)
 * [在Android中快速阅读RSVP(快速串行视觉演示)](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
 * [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
@@ -23,15 +26,12 @@ layout: main
 * [直接在文本中添加脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [主题自定义(白色，黑色，AMOLED，颜色，字体大小，链接颜色)](/wiki/faq/customize-theme-colors-links/zh)
 * [如何在Android中增加PDF文档中的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)
-* [在扩展面板中使用书签(功能区书签)](/wiki/faq/bookmarks-extended-panel/zh)
 * [如何从外部SD卡删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [如何从网络浏览器传输文本(阅读或TTS){5}
 * [主屏幕](/wiki/faq/main-app/zh)
 * [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [如何将PDF转换为EPUB](/wiki/faq/convert-pdf-to-epub/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
-* [如何配置字体，样式](/wiki/faq/customize-text-fonts-and-styles/zh)
-* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [处理自定义标签](/wiki/faq/custom-tags/zh)
 * [为书页设置背景](/wiki/faq/how-to-set-page-background-image/zh)

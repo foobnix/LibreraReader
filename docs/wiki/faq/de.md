@@ -4,6 +4,9 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [TTS-Ersatz](/wiki/faq/tts-replacements/de)
+* [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)](/wiki/faq/bookmarks-extended-panel/de)
+* [Konfigurieren von Schriftarten und Stilen](/wiki/faq/customize-text-fonts-and-styles/de)
 * [Wörterbücher, Übersetzung von Wörtern und Sätzen](/wiki/faq/dictionaries-translate-text-online-and-offline/de)
 * [RSVP zum Schnelllesen (Rapid Serial Visual Presentation) in Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/de)
 * [Hinzufügen eines neuen FAQ-Abschnitts](/wiki/faq/how-to-add-new-faq-section/de)
@@ -23,15 +26,12 @@ layout: main
 * [Fußnoten direkt in den Text einfügen](/wiki/faq/include-footnotes-directly-in-the-text/de)
 * [Anpassung des Themas (weiß, schwarz, AMOLED, Farben, Schriftgröße, Linkfarben)](/wiki/faq/customize-theme-colors-links/de)
 * [So erhöhen Sie die Schriftgröße in PDF-Dokumenten unter Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)
-* [Arbeiten mit Lesezeichen im erweiterten Bedienfeld (Multifunktionsleisten-Lesezeichen)](/wiki/faq/bookmarks-extended-panel/de)
 * [Löschen von Büchern von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Übertragen von Text vom Webbrowser (zum Lesen oder TTS)](/wiki/faq/how-to-transfer-text-from-browser/de)
 * [Der Hauptbildschirm](/wiki/faq/main-app/de)
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Konvertieren von PDF in EPUB](/wiki/faq/convert-pdf-to-epub/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
-* [So konfigurieren Sie Schriftarten und Stile](/wiki/faq/customize-text-fonts-and-styles/de)
-* [TTS-Ersatz](/wiki/faq/tts-replacements/de)
 * [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading-mode-vertical-book-musician/de)
 * [Umgang mit benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
 * [Hintergrund für Buchseite festlegen](/wiki/faq/how-to-set-page-background-image/de)

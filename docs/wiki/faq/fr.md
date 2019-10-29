@@ -4,6 +4,9 @@ layout: main
 
 # Foire aux questions
 
+* [Remplacements TTS](/wiki/faq/tts-replacements/fr)
+* [Utilisation des signets en mode étendu - Ruban Signets](/wiki/faq/bookmarks-extended-panel/fr)
+* [Configuration des polices et des styles](/wiki/faq/customize-text-fonts-and-styles/fr)
 * [Dictionnaires, traduction de mots et de phrases](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
 * [Lecture rapide de RSVP (présentation visuelle rapide en série) sous Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/fr)
 * [Comment ajouter une nouvelle section FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
@@ -23,15 +26,12 @@ layout: main
 * [Inclure les notes de bas de page directement dans le texte](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Personnalisation du thème (blanc, noir, AMOLED, couleurs, taille de la police, couleurs des liens)](/wiki/faq/customize-theme-colors-links/fr)
 * [Comment augmenter la taille de la police d'un document PDF sous Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
-* [Utilisation des favoris dans le panneau étendu (Favoris du ruban)](/wiki/faq/bookmarks-extended-panel/fr)
 * [Comment supprimer des livres de la carte SD externe](/wiki/faq/how-to-delete-file-from-external-sd-card/fr)
 * [Comment transférer du texte à partir du navigateur Web (à lire ou TTS)](/wiki/faq/how-to-transfer-text-from-browser/fr)
 * [Écran principal](/wiki/faq/main-app/fr)
 * [Comment configurer le mode de lecture](/wiki/faq/how-to-set-up-reading-mode/fr)
 * [Comment convertir un fichier PDF en EPUB](/wiki/faq/convert-pdf-to-epub/fr)
 * [Contrôle de la luminosité et filtre de la lumière bleue](/wiki/faq/brightness-control-and-blue-light-filter/fr)
-* [Comment configurer les polices, les styles](/wiki/faq/customize-text-fonts-and-styles/fr)
-* [Remplacements TTS](/wiki/faq/tts-replacements/fr)
 * [Modes de lecture: mode défilement, mode livre et mode musicien](/wiki/faq/reading-mode-vertical-book-musician/fr)
 * [Gestion des balises personnalisées](/wiki/faq/custom-tags/fr)
 * [Définir un arrière-plan pour la page du livre](/wiki/faq/how-to-set-page-background-image/fr)

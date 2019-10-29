@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">Rekodi katika .mp3 format</string>
    <string name="speak_into_file_wav">Rekodi tts (mp3, wav)</string>
    <string name="text_is_too_long">Maandishi ni marefu sana</string>
+   <string name="settings">Mipangilio</string>
+   <string name="play_pause">Cheza / pumzika</string>
+   <string name="next_track">Wimbo unaofuata</string>
+   <string name="previous_track">Wimbo wa zamani</string>
 </resources>

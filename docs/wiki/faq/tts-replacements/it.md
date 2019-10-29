@@ -4,38 +4,38 @@ layout: main
 
 # Sostituzioni TTS
 
-> Le sostituzioni vengono utilizzate per modificare la pronuncia di alcune parole, per eliminare il testo indesiderato, per impostare il segno di stress corretto
+> I sostituti di sintesi vocale vengono utilizzati per modificare il modo in cui il motore pronuncia determinate parole, saltare determinati caratteri durante la lettura o impostare segni di stress corretti.
 
 * Abilita sostituzioni TTS
-* Mostra il testo del risultato delle sostituzioni
-* Finestra di dialogo Sostituzioni
+* Mostra il passaggio con i risultati di sostituzione
+* La finestra di dialogo **Sostituzioni** per l'impostazione delle regole di sostituzione
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Il supporto per i sostituti classico sostituisce una stringa con un'altra oppure puoi usare espressioni RegExp
+Sono supportati i sostituti classici (cambio diretto di una stringa per un'altra) oppure è possibile utilizzare espressioni regolari (RegExp).
 
-## Espressione
+## Espressioni
 
 * &quot;testo&quot;: testo semplice
 * &quot;* text&quot; - * Regola RexExp
-* &quot;# testo&quot; - # regola disabilitata
+* &quot;# text&quot; - regola disabilitata
 * &quot;text256&quot; - regola disabilitata
 
 ## Esempi
 
-* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - sostituisci Lib. a Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - aggiunge il segno di stress corretto
-* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot; per disabilitare la regola
-* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Sostituisci lib. a Librera e lib. alla librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Sostituisci caratteri in caratteri vuoti
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Sostituisci caratteri per mettere in pausa (,) carattere
+* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - sostituisci Lib. con Librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - aggiunge un segno di stress corretto
+* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - usa &quot;#&quot; per disabilitare una regola
+* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - sostituisci Lib. con Librera e lib. con librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- salta i caratteri
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - sostituisci i caratteri con una pausa (,)
 
-## Aggiungi file di regole
+## Aggiungi un file di regole
 
-Supporto di Librera File di regole Regexp dal lettore @Voice
-ecco alcuni samle **demo-replaces.txt**
+**Librera** supporta i file delle regole RegExp da **@Voice Reader**
+Dai un'occhiata a questo esempio **demo-replaces.txt** di seguito:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,3 @@ ecco alcuni samle **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
-   

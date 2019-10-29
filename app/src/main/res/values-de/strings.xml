@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">Aufnahme im MP3-Format</string>
    <string name="speak_into_file_wav">Tts aufnehmen (mp3, wav)</string>
    <string name="text_is_too_long">Der Text ist zu lang</string>
+   <string name="settings">Die Einstellungen</string>
+   <string name="play_pause">Spielpause</string>
+   <string name="next_track">Nächster Titel</string>
+   <string name="previous_track">Vorheriges Lied</string>
 </resources>

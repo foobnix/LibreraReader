@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">Ghi ở định dạng .mp3</string>
    <string name="speak_into_file_wav">Bản ghi tts (mp3, wav)</string>
    <string name="text_is_too_long">Văn bản quá dài</string>
+   <string name="settings">Cài đặt</string>
+   <string name="play_pause">Tạm dừng chơi</string>
+   <string name="next_track">Dấu vết tiếp theo</string>
+   <string name="previous_track">Bài hát trước</string>
 </resources>

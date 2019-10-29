@@ -2,58 +2,66 @@
 layout: main
 ---
 
-# Utilisation des signets dans le panneau étendu (Signets du ruban)
+# Utilisation des signets en mode étendu (Ruban Signets)
 
-> Dans Librera, vous pouvez afficher une barre de signets étendue (signets à ruban) sur l'écran de lecture. Il sert à la fonction d’ajout rapide d’un signet, de basculement entre les signets.
+> Vous pouvez faire en sorte que **Librera** affiche vos favoris à tout moment lors de la lecture d'un livre. Ils seront affichés en haut de l’écran dans un soi-disant _Bookmarks Ribbon_. Ce mode de signet étendu devrait être pratique lorsque vous devez ajouter de nouveaux signets ou basculer entre eux en un instant.
+> Nous nous attendons à ce que cette fonctionnalité intéressante soit très demandée par les musiciens, tout en exécutant l'application en mode _Musician's_. Ainsi, le ruban est activé dans ce mode par défaut.
 
-Pour l'activer, vous devez:
+Pour l'activer dans les autres modes:
 
-* Cliquez sur l'icône des paramètres.
-* Accédez aux paramètres &quot;Barre d'état&quot;.
-* Cochez la case du panneau de favoris étendu (favoris de ruban) dans le mode de lecture souhaité.
+* Appuyez sur l'icône _Paramètres_ pour ouvrir la fenêtre **Préférences**.
+* Appuyez sur l'onglet &quot;Barre d'état&quot;.
+* Dans le panneau _Bookmarks Ribbon_, cochez la case en regard du mode pour lequel vous souhaitez activer le ruban.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Vous verrez ensuite comment utiliser la barre de favoris en mode &quot;Lecture de livre&quot;. Vous pouvez répéter ces actions dans les trois modes, elles sont identiques.
+Les opérations avec le ruban _Bookmarks_ sont illustrées en mode _Book_. Tout fonctionne de la même manière pour les trois modes.
 
-**Si vous n'avez plus besoin d'une barre de favoris étendue (marque-pages ruban), vous pouvez la désactiver en décochant la case &quot;Barre d'état&quot; de votre mode de lecture. L'icône de signet située dans le coin supérieur droit sera supprimée.**
+> Si vous n'avez plus besoin du _Bookmark Ribbon_, vous pouvez le désactiver en décochant la case correspondante dans l'onglet _Barre d'état_.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-**Ajout de favoris:**
+**Ajout de signets**
 
-* Cliquez sur l'icône Signet dans le coin supérieur droit de l'écran.
-* Sélectionnez le lien &quot;Ajouter&quot;.
-* Faites un commentaire sur le signet. À partir de ce commentaire, un nom lui sera attribué. Dans cet exemple, le commentaire &quot;premier signet&quot;
-Cliquez sur &quot;Ajouter&quot;
+> Le flotteur de signet dans le coin supérieur droit indique que vous êtes actuellement en mode _Bookmarks Ribbon_.
+
+* Appuyez sur le flotteur de signet sur la page que vous souhaitez marquer.
+* Appuyez sur _ADD_ pour ajouter le signet via la fenêtre _Bookmarks_.
+* Faites un commentaire sur le favori. Notez que le nom du favori provient de votre commentaire (**premier favori** dans notre exemple).
+* Appuyez sur **AJOUTER** pour terminer la procédure.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-Un signet sera ajouté dans la fenêtre des signets et en haut, dans la barre de signets étendue (signets à ruban). Maintenant, si vous voulez aller à cet onglet, cliquez dessus en haut, dans le panneau, pendant la lecture. Si vous souhaitez l'éditer, appuyez longuement sur le signet dans la fenêtre des signets, la fenêtre d'édition apparaîtra. De plus, si vous avez beaucoup de signets, vous pouvez glisser dans la barre de signets étendue (signets du ruban) pour les déplacer à gauche ou à droite.
+Votre nouveau signet apparaîtra dans la fenêtre _Bookmarks_ et en même temps, vous le verrez dans le ruban _Bookmarks_ en haut. Maintenant, pour revenir à ce signet, il vous suffit de cliquer dessus dans le ruban.
+
+> Remarque: un appui long sur un signet dans le ruban ouvre une fenêtre d'édition.
+* Enregistrez vos résultats de modification en appuyant sur **ENREGISTRER**.
+* Vous pouvez également supprimer le favori en appuyant sur **SUPPRIMER**.
+Le ruban deviendra un ruban à part entière sur votre écran lorsque vous avez de nombreux signets. Vous pouvez les parcourir en glissant votre doigt.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Ajout d'un favori rapide**
+**Ajout de signets rapides**
 
-* Cliquez sur l'icône Signet dans le coin supérieur droit de l'écran.
-* Sélectionnez &quot;Signet rapide&quot;.
-* Un &quot;signet rapide&quot; sera créé. Un numéro de page de nom lui sera attribué. Si vous allez dans la fenêtre des signets, vous verrez un signet rapide avec le nom - 15. &quot;Signet rapide&quot;. Lorsque vous cliquez longuement sur un signet dans la fenêtre des signets, la fenêtre d'édition et de suppression apparaîtra.
+* Appuyez sur le flotteur de signets dans le coin supérieur droit pour ouvrir la fenêtre _Bookmarks_.
+* Appuyez sur **SIGNET RAPIDE**
+* Ainsi, un &quot;signet rapide&quot; est créé, indiqué par le numéro de la page dans le ruban situé en haut. Dans la liste de la fenêtre _Bookmarks_, la page # et le signet rapide _ apparaîtront à côté.
+> Vous pouvez appuyer longuement sur un favori dans la liste pour permettre sa modification ou sa suppression dans une fenêtre contextuelle de modification du favori.
 
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
-Vous pouvez utiliser des actions rapides pour ajouter ou supprimer des signets dans la barre de signets étendue (Signets du ruban):
+> Vous pouvez ignorer certaines opérations lors de l'ajout ou de la suppression de signets à l'aide du ruban _Bookmarks_:
 
-* Appuyez longuement sur l'icône de signet dans le coin supérieur droit pour ajouter un signet rapide.
-* Un appui long sur le nom du signet dans la barre de signets étendue (signets à ruban) vous invitera à le supprimer.
-
+* Un appui long sur le flotteur de signets dans le coin supérieur droit ajoutera un signet rapide.
+* Un appui long sur un signet dans le _Bookmarks Ribbon_ ouvrira une invite vous proposant de le supprimer.

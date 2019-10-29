@@ -4,6 +4,9 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Reemplazos de TTS](/wiki/faq/tts-replacements/es)
+* [Trabajar con marcadores en modo extendido (cinta de marcadores)](/wiki/faq/bookmarks-extended-panel/es)
+* [Configuración de fuentes y estilos](/wiki/faq/customize-text-fonts-and-styles/es)
 * [Diccionarios, traducción de palabras y oraciones](/wiki/faq/dictionaries-translate-text-online-and-offline/es)
 * [Velocidad de lectura RSVP (Presentación visual rápida en serie) en Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/es)
 * [Cómo agregar una nueva sección de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
@@ -23,15 +26,12 @@ layout: main
 * [Incluir notas al pie directamente en el texto](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Personalización del tema (blanco, negro, AMOLED, colores, tamaño de fuente, colores de enlace)](/wiki/faq/customize-theme-colors-links/es)
 * [Cómo aumentar el tamaño de fuente en un documento PDF en Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
-* [Trabajar con marcadores en el panel extendido (marcadores de cinta)](/wiki/faq/bookmarks-extended-panel/es)
 * [Cómo borrar libros de la tarjeta SD externa](/wiki/faq/how-to-delete-file-from-external-sd-card/es)
 * [Cómo transferir texto desde el navegador web (para leer o TTS)](/wiki/faq/how-to-transfer-text-from-browser/es)
 * [La pantalla principal](/wiki/faq/main-app/es)
 * [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Cómo convertir PDF a EPUB](/wiki/faq/convert-pdf-to-epub/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
-* [Cómo configurar fuentes, estilos](/wiki/faq/customize-text-fonts-and-styles/es)
-* [Reemplazos de TTS](/wiki/faq/tts-replacements/es)
 * [Modos de lectura: modo de desplazamiento, modo libro y modo músico](/wiki/faq/reading-mode-vertical-book-musician/es)
 * [Manejo de etiquetas personalizadas](/wiki/faq/custom-tags/es)
 * [Establecer fondo propio para la página del libro](/wiki/faq/how-to-set-page-background-image/es)

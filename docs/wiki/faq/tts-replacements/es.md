@@ -4,38 +4,38 @@ layout: main
 
 # reemplazos TTS
 
-> Los reemplazos se usan para cambiar la pronunciación de algunas palabras, para eliminar texto no deseado, para establecer la marca de estrés correcta
+> Los reemplazos de texto a voz se usan para cambiar la forma en que el motor pronuncia ciertas palabras, para omitir ciertos caracteres mientras lee o para establecer las marcas de estrés correctas.
 
 * Habilitar reemplazos TTS
-* Mostrar el texto resultante de los reemplazos
-* Diálogo de reemplazos
+* Mostrar el pasaje con resultados de reemplazo
+* El cuadro de diálogo **Reemplazos** para establecer reglas de reemplazo
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Los reemplazos admiten el reemplazo clásico de una cadena a otra o puede usar expresiones RegExp
+Se admiten reemplazos clásicos (cambio directo de una cadena por otra), o puede usar expresiones regulares (RegExp).
 
-## Expresión
+## Expresiones
 
 * &quot;texto&quot; - Texto simple
 * &quot;* texto&quot; - * regla RexExp
-* &quot;# texto&quot; - # regla deshabilitada
+* &quot;# texto&quot; - regla deshabilitada
 * &quot;text256&quot; - regla deshabilitada
 
 ## Ejemplos
 
-* &quot;Lib&quot;. -&gt; &quot;Librera&quot; - reemplaza Lib. a Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - agregue la marca de tensión correcta
-* &quot;# Lib&quot;. -&gt; &quot;Librera&quot; - &quot;#&quot; para deshabilitar la regla
-* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Reemplazar Lib. a Librera y lib. a librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Reemplazar caracteres por caracteres vacíos
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Reemplazar caracteres para pausar (,) char
+* &quot;Lib&quot;. -&gt; &quot;Librera&quot; - reemplaza Lib. con librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - agregue una marca de tensión correcta
+* &quot;# Lib&quot;. -&gt; &quot;Librera&quot; - usa &quot;#&quot; para deshabilitar una regla
+* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - reemplaza Lib. con Librera y lib. con librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- saltar caracteres
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - reemplazar caracteres con una pausa (,)
 
-## Agregar archivo de regla
+## Agregar un archivo de reglas
 
-Librera admite archivos de reglas Regexp de @Voice reader
-aquí hay algunos samle **demo-replaceces.txt**
+**Librera** admite archivos de reglas RegExp de **@Voice Reader**
+Consulte este ejemplo **demo-replaceces.txt** a continuación:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,3 @@ aquí hay algunos samle **demo-replaceces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
-   

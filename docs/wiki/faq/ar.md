@@ -4,6 +4,9 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [TTS Replacements](/wiki/faq/tts-replacements/ar)
+* [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
+* [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
 * [قواميس ، ترجمة الكلمات والجمل](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
 * [سرعة القراءة RSVP (عرض تسلسلي مرئي سريع) في Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
@@ -23,15 +26,12 @@ layout: main
 * [تضمين الحواشي السفلية مباشرة في النص](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [تخصيص السمة (أبيض ، أسود ، AMOLED ، ألوان ، حجم الخط ، ألوان الوصلات)](/wiki/faq/customize-theme-colors-links/ar)
 * [كيفية زيادة حجم الخط في وثيقة PDF في Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)
-* [العمل مع الإشارات المرجعية في اللوحة الموسعة (إشارات الشريط)](/wiki/faq/bookmarks-extended-panel/ar)
 * [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [كيفية نقل النص من متصفح الويب (للقراءة أو تحويل النص إلى كلام)](/wiki/faq/how-to-transfer-text-from-browser/ar)
 * [الشاشة الرئيسية](/wiki/faq/main-app/ar)
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [كيفية تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
 * [التحكم في درجة السطوع ومرشح الضوء الأزرق](/wiki/faq/brightness-control-and-blue-light-filter/ar)
-* [كيفية تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
-* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
 * [معالجة العلامات المخصصة](/wiki/faq/custom-tags/ar)
 * [تعيين الخلفية الخاصة لصفحة الكتاب](/wiki/faq/how-to-set-page-background-image/ar)

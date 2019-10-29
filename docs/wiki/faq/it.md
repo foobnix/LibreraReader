@@ -4,6 +4,9 @@ layout: main
 
 # Domande frequenti
 
+* [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
+* [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
+* [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)
 * [Dizionari, traduzione di parole e frasi](/wiki/faq/dictionaries-translate-text-online-and-offline/it)
 * [Velocità lettura RSVP (Rapid Serial Visual Presentation) in Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
 * [Come aggiungere una nuova sezione FAQ](/wiki/faq/how-to-add-new-faq-section/it)
@@ -23,15 +26,12 @@ layout: main
 * [Includi le note a piè di pagina direttamente nel testo](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Personalizzazione del tema (bianco, nero, AMOLED, colori, dimensione del carattere, colori dei collegamenti)](/wiki/faq/customize-theme-colors-links/it)
 * [Come aumentare la dimensione del carattere nel documento PDF in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
-* [Uso dei segnalibri nel pannello esteso (Segnalibri della barra multifunzione)](/wiki/faq/bookmarks-extended-panel/it)
 * [Come eliminare libri dalla scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
 * [Come trasferire testo dal browser Web (da leggere o TTS)](/wiki/faq/how-to-transfer-text-from-browser/it)
 * [La schermata principale](/wiki/faq/main-app/it)
 * [Come impostare la modalità di lettura](/wiki/faq/how-to-set-up-reading-mode/it)
 * [Come convertire PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
 * [Controllo luminosità e filtro luce blu](/wiki/faq/brightness-control-and-blue-light-filter/it)
-* [Come configurare caratteri, stili](/wiki/faq/customize-text-fonts-and-styles/it)
-* [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista](/wiki/faq/reading-mode-vertical-book-musician/it)
 * [Gestione dei tag personalizzati](/wiki/faq/custom-tags/it)
 * [Imposta il proprio sfondo per la pagina del libro](/wiki/faq/how-to-set-page-background-image/it)

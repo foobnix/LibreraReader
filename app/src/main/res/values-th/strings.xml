@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">บันทึกในรูปแบบ. mp3</string>
    <string name="speak_into_file_wav">บันทึก tts (mp3, wav)</string>
    <string name="text_is_too_long">ข้อความยาวเกินไป</string>
+   <string name="settings">การตั้งค่า</string>
+   <string name="play_pause">เล่น / หยุดชั่วคราว</string>
+   <string name="next_track">ติดตามต่อไป</string>
+   <string name="previous_track">แทร็กก่อนหน้า</string>
 </resources>

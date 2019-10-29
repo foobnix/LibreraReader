@@ -261,7 +261,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="Move and zoom in/out page"
+                android:contentDescription="@string/move"
                 android:src="@drawable/glyphicons_187_move"
                 android:visibility="visible" />
 
@@ -271,7 +271,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="align document"
+                android:contentDescription="@string/contrast"
                 android:src="@drawable/glyphicons_190_brightness_my"
                 android:visibility="visible" />
 
@@ -281,7 +281,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="align document"
+                android:contentDescription="@string/crop_white_borders"
                 android:src="@drawable/glyphicons_94_crop"
                 android:visibility="visible" />
 
@@ -291,7 +291,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="change day or night"
+                android:contentDescription="@string/brightness"
                 android:src="@drawable/glyphicons_232_sun" />
 
             <ImageView
@@ -300,7 +300,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="@string/preferences"
+                android:contentDescription="@string/full_screen"
                 android:src="@drawable/glyphicons_488_fit_image_to_frame" />
 
             <ImageView
@@ -309,7 +309,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="@string/preferences"
+                                android:contentDescription="@string/preferences"
                 android:src="@drawable/glyphicons_137_cogwheel" />
         </LinearLayout>
 

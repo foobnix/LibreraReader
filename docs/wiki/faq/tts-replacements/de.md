@@ -4,38 +4,38 @@ layout: main
 
 # TTS-Ersatz
 
-> Ersetzungen werden verwendet, um die Aussprache einiger Wörter zu ändern, unerwünschten Text zu löschen und die richtige Betonung zu setzen
+> Text-zu-Sprache-Ersetzungen werden verwendet, um die Art und Weise zu ändern, in der die Suchmaschine bestimmte Wörter ausspricht, bestimmte Zeichen beim Lesen zu überspringen oder korrekte Betonungsmarkierungen festzulegen.
 
 * TTS-Ersetzungen aktivieren
-* Zeigen Sie den Ergebnistext der Ersetzungen an
-* Dialogfeld &quot;Ersetzungen&quot;
+* Zeigen Sie die Passage mit den Ersatzergebnissen an
+* Das Dialogfeld **Ersetzungen** zum Festlegen von Ersetzungsregeln
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Ersetzungen unterstützen das klassische Ersetzen einer Zeichenfolge durch eine andere oder Sie können RegExp-Ausdrücke verwenden
+Klassische Ersetzungen werden unterstützt (einfaches Ändern einer Zeichenfolge durch eine andere) oder Sie können reguläre Ausdrücke (RegExp) verwenden.
 
-## Ausdruck
+## Ausdrücke
 
 * &quot;text&quot; - Einfacher Text
 * &quot;* text&quot; - * RexExp-Regel
-* &quot;# text&quot; - # deaktivierte Regel
+* &quot;# text&quot; - deaktivierte Regel
 * &quot;text256&quot; - deaktivierte Regel
 
 ## Beispiele
 
-* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - Lib ersetzen. nach Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - korrekte Spannungsmarkierung hinzufügen
-* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot;, um die Regel zu deaktivieren
-* * (L | l) ib. -&gt; &quot;$ 1ibrera&quot; - Lib ersetzen. zu Librera und lib. zu librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Ersetzen Sie die Zeichen durch leere Zeichen
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen ersetzen, um (,) char anzuhalten
+* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - Lib ersetzen. mit Librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - Fügen Sie eine korrekte Belastungsmarke hinzu
+* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - Benutze &quot;#&quot; um eine Regel zu deaktivieren
+* * (L | l) ib. -&gt; &quot;$ 1ibrera&quot; - Lib ersetzen. mit Librera und lib. mit Librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Zeichen überspringen
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen durch eine Pause ersetzen (,)
 
-## Regeldatei hinzufügen
+## Fügen Sie eine Regeldatei hinzu
 
-Librera unterstützt Regexp-Regeldateien vom @ Voice Reader
-Hier einige Beispiele **demo-replaces.txt**
+**Librera** unterstützt RegExp-Regeldateien von **@Voice Reader**.
+Schauen Sie sich das folgende Beispiel **demo-replaces.txt** an:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,3 @@ Hier einige Beispiele **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
-   

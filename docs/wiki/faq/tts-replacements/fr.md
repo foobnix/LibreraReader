@@ -4,38 +4,38 @@ layout: main
 
 # Remplacements TTS
 
-> Les remplacements sont utilisés pour modifier la prononciation de certains mots, pour supprimer le texte indésirable, pour définir le point d'insertion correct.
+> Les substitutions de synthèse vocale servent à modifier la façon dont le moteur prononce certains mots, à ignorer certains caractères lors de la lecture ou à définir des marques de contrainte correctes.
 
 * Activer les remplacements TTS
-* Afficher le texte résultant des remplacements
-* Dialogue de remplacement
+* Afficher le passage avec les résultats de remplacement
+* La boîte de dialogue **Remplacements** pour la définition des règles de remplacement
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Les remplacements prennent en charge Classic, remplacez une chaîne par une autre ou vous pouvez utiliser des expressions RegExp.
+Les remplacements classiques sont pris en charge (changement simple d'une chaîne pour une autre), ou vous pouvez utiliser des expressions régulières (RegExp).
 
-## Expression
+## expressions
 
 * &quot;texte&quot; - Texte simple
 * &quot;* text&quot; - * règle RexExp
-* &quot;# text&quot; - # règle désactivée
+* &quot;# text&quot; - règle désactivée
 * &quot;text256&quot; - règle désactivée
 
 ## Exemples
 
-* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - remplace Lib. à Librera
+* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - remplace Lib. avec Librera
 * &quot;Librera&quot; -&gt; &quot;Libréra&quot; - ajoute une marque de contrainte correcte
-* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot; pour désactiver la règle
-* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Remplacer Lib. à Librera et lib. à librera
-* &quot;* [()&quot; «» * &quot;&quot;/[] &quot;-&gt;&quot; &quot;- Remplace les caractères par un caractère vide
-* &quot;* [?!:; - - | - | -]&quot; -&gt; &quot;,&quot; - Remplacer les caractères pour faire une pause (,) char
+* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - utilisez &quot;#&quot; pour désactiver une règle
+* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - remplace Lib. avec Librera et lib. avec librera
+* &quot;* [()&quot; «» * &quot;&quot;/[] &quot;-&gt;&quot; &quot;- Ignorer les caractères
+* &quot;* [?!:; - - | - | -]&quot; -&gt; &quot;,&quot; - remplace les caractères par une pause (,)
 
 ## Ajouter un fichier de règles
 
-Librera prend en charge les fichiers de règles Regexp de @Voice reader
-voici quelques samle **demo-replaces.txt**
+**Librera** prend en charge les fichiers de règles RegExp de **@ Voice Reader**.
+Découvrez cet exemple **demo-replaces.txt** ci-dessous:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,3 @@ voici quelques samle **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
-
-   

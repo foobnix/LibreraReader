@@ -584,4 +584,8 @@
    <string name="record_in_mp3_format">Înregistrare în format .mp3</string>
    <string name="speak_into_file_wav">Înregistrare tts (mp3, wav)</string>
    <string name="text_is_too_long">Textul este prea lung</string>
+   <string name="settings">Setări</string>
+   <string name="play_pause">Redare / pauză</string>
+   <string name="next_track">Următoarea piesă</string>
+   <string name="previous_track">Piesa anterioară</string>
 </resources>

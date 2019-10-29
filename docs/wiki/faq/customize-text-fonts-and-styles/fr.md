@@ -2,34 +2,35 @@
 layout: main
 ---
 
-# Comment configurer les polices, les styles
+# Configuration des polices et des styles
 
-> Pour une lecture confortable, Librera vous permet de personnaliser l'apparence de votre document, de changer les polices de caractères, les styles CSS, d'ajouter une lettre majuscule.
+> **Librera** vous permet de personnaliser l'apparence du document que vous lisez. Choisissez les polices à votre guise, ajustez leur taille, ajustez les styles CSS et modifiez les premières lettres en initiales (FB2).
 
-Vous pouvez ajuster le style de police et de texte dans les onglets du menu:
+Vous ferez tout ce qui précède dans l'onglet principal de la fenêtre **Préférences** et, bien entendu, dans l'onglet &quot;Paramètres de lecture&quot;.
 
-* **Paramètres avancés**
-* **Paramètres de lecture.**
 
-Pour accéder à ces paramètres, cliquez sur l'icône des paramètres.
+> Appuyez sur l'icône **Paramètres** pour ouvrir la fenêtre **Préférences**.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-## Paramètres avancés
+## Ajustements de police
 
-Dans cet onglet de menu, vous pouvez modifier la police du document pour le style de document **&quot;Défini par l'utilisateur&quot;** (voir la section **&quot;Paramètres de lecture&quot;** ci-dessous pour une description des styles):
+* Sélectionnez votre police principale en appuyant sur le lien _Font_ et en parcourant la liste déroulante des polices disponibles.
 
-* Cliquez sur le lien du titre de la police.
-* Dans la liste déroulante des polices, glissez vers le haut ou le bas, sélectionnez la police souhaitée.
-* Si vous souhaitez télécharger des polices pour la lecture, reportez-vous à la section &quot;Paramètres&quot; ci-dessous. **&quot;Paramètres de lecture&quot;**
+> Vous pouvez ajouter vos polices préférées à la liste:
+1. Créez un dossier nommé _Fonts_ dans la mémoire de stockage interne de votre appareil.
+> Remarque: il existe un autre dossier _Fonts_ dans votre stockage interne déjà créé par **Librera** automatiquement.
+2. Enregistrez vos polices préférées dans votre dossier _Fonts_ (ou dans le propre dossier _Fonts_ de **Librera**).
+> (Vous pouvez également télécharger de belles polices sur notre site. Consultez la section **Paramètres de lecture** pour obtenir des instructions.)
+> N'oubliez pas que vos polices ne seront prises en compte que si les _Styles_ que vous avez sélectionnés dans l'onglet **Paramètres de lecture** contiennent _Utilisateur_ défini_.
 
-Si vous souhaitez affiner les polices de texte:
+Pour configurer des polices spécifiques à l'utilisateur pour différents styles de police, appuyez sur l'icône en regard du lien _Fonts_ pour ouvrir la fenêtre _Configure Fonts_.
 
-* Cliquez sur l'icône du menu de configuration de la police.
-* Dans le menu contextuel des paramètres, vous pouvez modifier la police pour chaque type de texte. Après le changement, cliquez sur &quot;Appliquer&quot;
-* Fermez les paramètres et passez à la lecture.
+* Tapez sur le réglage de chaque style et sélectionnez une police pour ce style.
+* Utilisez les boutons **vers le haut** et **vers** pour passer à la police suivante de la liste (cela suffira parfois à votre objectif).
+* N'oubliez pas d'appuyer sur **APPLIQUER** une fois que vous avez terminé.
 
 ||||
 |-|-|-|
@@ -39,42 +40,49 @@ Si vous souhaitez affiner les polices de texte:
 |-|-|-|
 |![](6.jpg)|![](42.jpg)|![](43.jpg)|
 
-Pour le format du livre **fb2**, vous pouvez ajuster la lettre:
+## Initiales principales dans les livres FB2
 
-* Cliquez sur l'icône du menu de configuration de la police.
-* Cochez la case &quot;Chapitres principaux avec initiatives&quot;.
-* Sélectionnez la police de la lettre
-* Ajuster la taille et la couleur
-* Cliquez sur &quot;Appliquer&quot; pour appliquer les paramètres.
+Vous pouvez faire commencer chaque chapitre de votre livre avec une belle initiale.
+ 
+> Ce paramètre ne sera pas affiché lors de la lecture dans un autre format.
+
+* Appuyez sur l'icône en regard du lien _Fonts_ pour ouvrir la fenêtre _Configurer les polices_
+* Cochez les chapitres _Lead avec les initiales_ pour activer les initiales
+* Appuyez sur le lien font-face pour sélectionner une police pour votre initiale dans une liste déroulante.
+* Choisissez maintenant la taille et la couleur de votre initiale en appuyant sur les liens correspondants.
+* Appuyez sur **APPLIQUER** pour enregistrer les paramètres.
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-## Paramètres de lecture
+## L'onglet **Paramètres de lecture**
 
-Dans cette section du menu, vous pouvez utiliser vos fichiers de polices, ajouter ou télécharger de nouvelles polices. Pour définir les styles d'affichage du texte.
+> Ce sont les paramètres définis par l'utilisateur. Ils remplacent principalement les paramètres de style encodés dans le fichier .css de votre livre. Vous devez choisir les styles définis par l'utilisateur pour que cela fonctionne.
 
-Pour personnaliser les polices, en télécharger ou en ajouter de nouvelles, vous devez:
-
-* Spécifiez le chemin d'accès à vos polices, le cas échéant, en sélectionnant le dossier des polices sur votre appareil.
-Téléchargez des polices supplémentaires en cliquant sur l’icône &quot;Télécharger les polices&quot;. Une fenêtre de confirmation du téléchargement apparaîtra, cliquez sur &quot;Télécharger&quot;.
-* Les polices ont une taille de 10 mégaoctets. Une fois le téléchargement effectué, le téléchargement sera affiché dans l'onglet Sélection générale des polices, onglet de menu **&quot;Paramètres avancés&quot;**.
+* Sélectionnez votre alignement de texte préféré dans la liste déroulante.
+* Utilisez les curseurs ou les touches **-** et **+** pour régler l'espacement des lignes et des paragraphes, les retraits de texte et les marges de la page.
+* En normalisant font-size_, vous rendez toutes les polices du document égales (1em, normales).
+* Vous pouvez également spécifier la couleur des liens dans votre document pour chaque mode (jour et nuit).
 
 ||||
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Personnalisez les styles du texte affiché.**
+**Choisissez judicieusement _Styles_ pour votre livre**
 
-Le programme vous permet de sélectionner l'affichage du texte et le style défini dans le texte par l'auteur du document:
+* _Document_, les paramètres .css du livre seront utilisés
+* _Utilisateur_ défini_, les paramètres de cet onglet seront utilisés
+* _Document + User-defined_ (par défaut, recommandé), notre tentative d'incorporer les paramètres utilisateur dans les paramètres .css du livre (ou le chemin alternatif). Fonctionne la plupart du temps!
 
-* Document: utilise le style de texte défini par l'auteur, le créateur du document.
-* Défini par l'utilisateur, utilisez vos paramètres de style pour les polices, l'indentation et les balises du document.
-* Les styles de document + utilisateur défini par l'utilisateur et auteur sont utilisés ensemble.
+## La fenêtre **Code CSS personnalisé**
 
-En cliquant sur l'icône des paramètres de style, vous pouvez ajouter vos propres styles d'affichage de texte à l'aide du langage de balisage hypertexte css
+Cette fenêtre s'ouvre lorsque vous appuyez sur l'icône située à côté de _Styles_
+
+Les personnes familiarisées avec le codage CSS peuvent procéder à une personnalisation ad-hoc de la manière dont votre livre est affiché. (Plus d’informations sous FAQ **Personnaliser les styles CSS du livre**).
+
+> N'oubliez pas de supprimer le code une fois que vous avez terminé avec le livre! Cela pourrait ne pas fonctionner dans le prochain.
 
 ||||
 |-|-|-|
@@ -83,8 +91,3 @@ En cliquant sur l'icône des paramètres de style, vous pouvez ajouter vos propr
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
-
-
-
