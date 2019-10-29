@@ -2,44 +2,43 @@
 layout: main
 ---
 
-# Contrast and Brightness in PDF  (black and white effect)
+# Contrast and Brightness Enhancement in PDF  (B/W Effect)
 
-> Librera Book Reader allows you to flexibly customize the appearance of the document. 
-When you configure these settings, the document becomes black and white. 
-By moving the slider to add/decrease the parameter you need, 
-in the background of the settings dialog, you can see its effect on the document. 
-You can configure all three parameters together so and on separateness. This effect is often used in E-Ink readers
+> PDF readability in **Librera Reader** can be improved significantly by manual adjustments to brightness and contrast settings. When you switch to manual mode, your document will be displayed in black-and-white and you will see the results of your adjustments in real time in the background, behind the **Contrast and Brightness** window.
+> The adjustments mimic the effect often used in E-Ink readers.
 
-For comfortable reading You can adjust the settings:
+You can adjust the following settings:
 * Contrast
 * Brightness 
-* Emphasize all (bold text effect)
+* Or/and you can apply the automatic _Emphasize all_ setting (a bold-letter effect)
+
+> All three settings can be applied separately or you can use all three combined.
 
 ## Contrast
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+* Tap on the _Contrast/Brightness_ icon in the center-tap-menu
+* Check the _Adjust manually_ box in the **Contrast and Brightness** window and use the _Contrast_ slider (or **-** and **+**) to adjust the setting.
+* Tap outside the window (or on the _x_ in its upper right corner) to close it.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## Brightness 
-* Click on the Contrast and brightness icon
-* Use the slider to select the document type you want
-* After setting, click the cross in the settings dialog box.
+* Tap on the _Contrast/Brightness_ icon in the center-tap-menu
+* Check the _Adjust manually_ box in the **Contrast and Brightness** window and use the _Brightness_ slider (or **-** and **+**) to adjust the setting.
+* Tap outside the window (or on the _x_ in its upper right corner) to close it.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
-## Emphasize all  (bold text effect)
-* Click on the Contrast and brightness icon
-* Enable checkbox Emphasize all
-* After setting, click the cross in the settings dialog box
+## Emphasize all  (bold-letter effect)
+* Tap on the _Contrast/Brightness_ icon in the "center-tap-menu"
+* Check the _Adjust manually_ box and then the _Emphasize all_ box
+* Tap outside the window (or on the _x_ in its upper right corner) to close it.
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> If you want to restore the changed "default" settings - click in the Contrast and brightness settings dialog box - "Restore to default" and confirm "OK". Settings and document view return to the original state.
+> To discard your manual settings, use the _Restore default_ link at the bottom of the **Contrast and Brightness** window.
