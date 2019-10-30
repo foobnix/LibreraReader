@@ -1,9 +1,12 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Domande frequenti
 
+* [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
+* [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
 * [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)
@@ -12,9 +15,7 @@ layout: main
 * [Come aggiungere una nuova sezione FAQ](/wiki/faq/how-to-add-new-faq-section/it)
 * [Apri cartella con immagini come un libro (Rileva in un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
 * [Come ripristinare le impostazioni predefinite (simile a cancellare la cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
-* [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
 * [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)
-* [Contrasto e luminosità in PDF (effetto bianco e nero)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Installazione e configurazione della sintesi vocale (TTS)](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Impostazione della barra di stato](/wiki/faq/how-to-set-up-a-status-bar/it)
 * [Come aggiornare la libreria](/wiki/faq/update-the-library/it)

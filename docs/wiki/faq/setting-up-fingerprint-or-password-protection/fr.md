@@ -4,49 +4,44 @@ layout: main
 
 # Configuration de la protection par empreinte digitale ou par mot de passe
 
-> Librera vous permet de protéger vos documents de l'affichage en limitant l'accès avec un mot de passe ou une empreinte digitale.
+> Dans **Librera**, vous pouvez protéger vos documents les plus sensibles de manière à ce qu'ils ne puissent pas être consultés par des utilisateurs non autorisés qui pourraient, accidentellement ou autrement, accéder à votre appareil. En fait, vous protégerez TOUS vos documents puisque vous restreignez l'accès à l'application elle-même.
+Les documents peuvent être protégés par empreinte digitale ou par mot de passe.
 
-La participation au programme peut être limitée à plusieurs types de protection, de votre choix:
+## Activation de l'autorisation de démarrage
 
-* **Protection de l'empreinte digitale. L’empreinte digitale est utilisée à partir du système Android**.
-* **Protection par mot de passe.**
-
-Pour activer la protection par mot de passe, vous devez:
-
-* Cliquez dans le coin supérieur gauche pour afficher le menu ou faites-le glisser de gauche à droite.
-* Faites défiler le menu jusqu'aux paramètres de mot de passe de connexion.
+* Fermez le livre que vous lisez actuellement.
+* Appuyez sur l'onglet **Préférences** et faites défiler jusqu'au panneau &quot;Paramètres généraux&quot;.
+* Cochez la case _Prompt for password_
+> Si votre **fenêtre Préférences** est animée, vous pourrez l'appeler en appuyant sur l'icône représentant un hamburger dans le coin supérieur gauche ou un balayage droit du bord gauche de l'écran.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection de l'empreinte digitale**
+## Protection contre les empreintes digitales
 
-Configuration de la connexion par empreinte digitale:
-* Cochez la case pour activer la connexion par mot de passe
-* Dans la boîte de dialogue contextuelle, cochez la case &quot;Autoriser l'identification par empreinte digitale&quot;.
-* Confirmez votre choix en cliquant sur &quot;OK&quot;. Une fenêtre s’affiche sur la définition du mot de passe, puis quittez le programme.
+> Pour activer la protection par empreinte digitale dans **Librera**, vous devez d'abord configurer l'accès par empreinte digitale à votre appareil.
+* Dans la fenêtre **Définir le mot de passe**, cochez la case _Autoriser l'empreinte digitale.
+* Confirmez votre choix en appuyant sur **OK**.
 
-L'empreinte digitale est installée. Lorsque vous vous reconnecterez à Librera, on vous demandera d’identifier les empreintes digitales, le cas échéant.
-antideficit exécutera le programme. L'empreinte digitale est ajoutée, est adaptée au système Android.
+> Vous devez redémarrer le **Librera** pour activer l'authentification d'accès par empreinte digitale.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Protection par mot de passe**
+## Protection par mot de passe
 
 Configuration du login par mot de passe:
 
-* Cochez la case pour activer la connexion par mot de passe
-* Entrez le mot de passe sur la première ligne.
-* Confirmez le mot de passe sur la deuxième ligne. **Important: les mots de passe des première et deuxième lignes doivent être identiques!**
-* Confirmez votre choix en cliquant sur &quot;OK&quot;. Une fenêtre s’affiche sur la définition du mot de passe, puis quittez le programme.
+* Saisissez et ressaisissez votre mot de passe dans les champs respectifs de la fenêtre **Définir le mot de passe** et cliquez sur **OK**.
+> Les mots de passe doivent correspondre!
+* Confirmez votre choix en appuyant sur **OK**.
 
-Le mot de passe de connexion est installé. Lorsque vous vous connectez, une boîte de dialogue vous invite à saisir votre mot de passe. Si le mot de passe entré est correct, le programme sera connecté. Si le mot de passe est incorrect, une fenêtre contextuelle apparaîtra indiquant que le mot de passe est incorrect.
+> Vous devez redémarrer le **Librera** pour que la protection par mot de passe prenne effet. À partir de ce moment, un mot de passe vous sera demandé sur un écran vide lors de l'ouverture d'un document dans **Librera**.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
-Pour supprimer le mot de passe, lancez Librera, veuillez vous assurer que, dans les paramètres où le mot de passe de connexion avait déjà été activé, décochez la case correspondant à cette fonction.
+> Pour supprimer la protection par mot de passe/empreinte digitale, exécutez **Librera**, authentifiez-vous auprès de l'application, accédez à _Prompt for password_ box et décochez-la.

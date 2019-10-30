@@ -4,49 +4,44 @@ layout: main
 
 # Einrichten des Fingerabdruck- oder Passwortschutzes
 
-> Mit Librera können Sie Ihre Dokumente vor dem Anzeigen schützen, indem Sie den Zugriff mit einem Kennwort oder einem Fingerabdruck beschränken.
+> In **Librera** können Sie Ihre vertraulichsten Dokumente davor schützen, von nicht autorisierten Benutzern angezeigt zu werden, die versehentlich oder auf andere Weise Zugriff auf Ihr Gerät erhalten. Tatsächlich werden Sie ALLE Ihre Dokumente schützen, da Sie den Zugriff auf die App selbst einschränken.
+Die Dokumente können entweder fingerabdruck- oder passwortgeschützt sein.
 
-Die Teilnahme am Programm kann auf verschiedene Arten des Schutzes Ihrer Wahl beschränkt sein:
+## Aktivieren der Startautorisierung
 
-* **Schutz des Fingerabdrucks. Der Fingerabdruck wird vom Android-System verwendet**
-* **Passwortschutz.**
-
-Um den Passwortschutz zu aktivieren, müssen Sie:
-
-* Klicken Sie in die linke obere Ecke, um das Menü aufzurufen, oder wischen Sie von links nach rechts
-* Blättern Sie im Menü zu den Anmeldekennworteinstellungen.
+* Schließen Sie das Buch, das Sie gerade lesen
+* Tippen Sie auf den Tab **Einstellungen** und blättern Sie zum Bereich _Allgemeine Einstellungen_
+* Aktivieren Sie das Kontrollkästchen _Prompt for password_
+> Wenn Sie das Fenster **Einstellungen** animiert haben, können Sie es aufrufen, indem Sie auf das Hamburger-Symbol in der oberen linken Ecke tippen oder mit dem Finger vom linken Bildschirmrand nach rechts streichen.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Schutz des Fingerabdrucks**
+## Fingerabdruckschutz
 
-Einrichten der Fingerabdruck-Anmeldung:
-* Aktivieren Sie ein Kontrollkästchen, um die Kennwortanmeldung zu aktivieren
-* Aktivieren Sie im Popup-Dialogfeld das Kontrollkästchen &quot;Identifizierung von Fingerabdrücken zulassen&quot;.
-* Bestätigen Sie Ihre Auswahl mit &quot;OK&quot;. Es erscheint ein Fenster zum Festlegen des Passworts. Beenden Sie das Programm.
+> Um den Fingerabdruckschutz in **Librera** zu aktivieren, müssen Sie zuerst den Fingerabdruckzugriff auf Ihr Gerät einrichten.
+* Aktivieren Sie im Fenster **Passwort festlegen** das Kontrollkästchen _Allow fingerprint authantication_
+* Bestätigen Sie Ihre Auswahl, indem Sie auf **OK** tippen.
 
-Fingerabdruck-Eingabe ist installiert. Wenn Sie sich erneut bei Librera anmelden, werden Sie aufgefordert, den Fingerabdruck zu identifizieren, falls dies korrekt ist
-Antideficit führt das Programm aus. Der Fingerabdruck wird hinzugefügt, an das Android-System angepasst.
+> Sie müssen **Librera** neu starten, um die Authentifizierung für den Fingerabdruckzugriff zu aktivieren.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Passwortschutz**
+## Passwortschutz
 
 Passwort Login einrichten:
 
-* Aktivieren Sie ein Kontrollkästchen, um die Kennwortanmeldung zu aktivieren
-* Geben Sie das Passwort in die erste Zeile ein
-* Bestätigen Sie das Passwort in der zweiten Zeile. **Wichtig: Passwörter in der ersten und zweiten Zeile müssen identisch sein!**
-* Bestätigen Sie Ihre Auswahl mit &quot;OK&quot;. Es erscheint ein Fenster zum Festlegen des Passworts. Beenden Sie das Programm.
+* Geben Sie Ihr Passwort in die entsprechenden Felder des Fensters **Passwort festlegen** ein, und wiederholen Sie die Eingabe. Klicken Sie dann auf **OK**.
+> Die Passwörter sollten übereinstimmen!
+* Bestätigen Sie Ihre Auswahl, indem Sie auf **OK** tippen.
 
-Passwort Login ist installiert. Wenn Sie sich anmelden, werden Sie in einem Dialogfeld aufgefordert, Ihr Kennwort einzugeben. Wenn das eingegebene Passwort korrekt ist, wird das Programm angemeldet. Wenn das Passwort falsch ist, erscheint ein Popup-Fenster mit der Meldung, dass das Passwort falsch ist.
+> Sie müssen **Librera** neu starten, damit der Passwortschutz wirksam wird. Ab diesem Moment werden Sie auf einem leeren Bildschirm zur Eingabe eines Kennworts aufgefordert, wenn Sie ein Dokument in **Librera** öffnen.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
-Um das Passwort zu entfernen, führen Sie Librera, bitte Antideficit, in den Einstellungen aus, in denen zuvor das Login-Passwort aktiviert wurde, deaktivieren Sie das Kontrollkästchen dieser Funktion.
+> Um den Kennwort-/Fingerabdruckschutz zu entfernen, führen Sie **Librera** aus, authentifizieren Sie sich bei der Anwendung, rufen Sie das Kontrollkästchen _Prompt for password_ auf und deaktivieren Sie es.

@@ -1,9 +1,12 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # الأسئلة المتداولة
 
+* [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
+* [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
@@ -12,9 +15,7 @@ layout: main
 * [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
-* [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)
-* [التباين والسطوع في PDF (تأثير أبيض وأسود)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
 * [كيفية تحديث المكتبة](/wiki/faq/update-the-library/ar)

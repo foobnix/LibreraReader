@@ -2,44 +2,43 @@
 layout: main
 ---
 
-# Contrasto e luminosità in PDF (effetto bianco e nero)
+# Miglioramento del contrasto e della luminosità in PDF (effetto B/N)
 
-> Librera Book Reader consente di personalizzare in modo flessibile l'aspetto del documento.
-Quando si configurano queste impostazioni, il documento diventa in bianco e nero.
-Spostando il dispositivo di scorrimento per aggiungere/ridurre il parametro necessario,
-sullo sfondo della finestra di dialogo delle impostazioni, puoi vedere i suoi effetti sul documento.
-È possibile configurare tutti e tre i parametri insieme così e sulla separazione. Questo effetto viene spesso utilizzato nei lettori E-Ink
+> La leggibilità del PDF in **Librera Reader** può essere migliorata in modo significativo regolando manualmente le impostazioni di luminosità e contrasto. Quando passi alla modalità manuale, il documento verrà visualizzato in bianco e nero e vedrai i risultati delle tue regolazioni in tempo reale sullo sfondo, dietro la finestra **Contrasto e luminosità**.
+> Le regolazioni imitano l'effetto spesso utilizzato nei lettori E-Ink.
 
-Per una lettura confortevole È possibile regolare le impostazioni:
+È possibile regolare le seguenti impostazioni:
 * Contrasto
 * Luminosità
-* Enfatizza tutto (effetto testo in grassetto)
+* O/e puoi applicare l'impostazione automatica _Emphasize all_ (un effetto in grassetto)
+
+> Tutte e tre le impostazioni possono essere applicate separatamente oppure è possibile utilizzare tutte e tre le combinazioni.
 
 ## Contrasto
-* Fai clic sull'icona Contrasto e luminosità
-* Utilizzare il dispositivo di scorrimento per selezionare il tipo di documento desiderato
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni.
+* Tocca l'icona _Contrasto/Luminosità_ nel menu di scelta centrale
+* Seleziona la casella _Regola manualmente_ nella finestra **Contrasto e luminosità** e usa il cursore _Contrasto_ (o **-** e **+**) per regolare l'impostazione.
+* Tocca fuori dalla finestra (o sul _x_ nell'angolo in alto a destra) per chiuderla.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## Luminosità
-* Fai clic sull'icona Contrasto e luminosità
-* Utilizzare il dispositivo di scorrimento per selezionare il tipo di documento desiderato
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni.
+* Tocca l'icona _Contrasto/Luminosità_ nel menu di scelta centrale
+* Seleziona la casella _Regola manualmente_ nella finestra **Contrasto e luminosità** e usa il cursore _Brightness_ (o **-** e **+**) per regolare l'impostazione.
+* Tocca fuori dalla finestra (o sul _x_ nell'angolo in alto a destra) per chiuderla.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
-## Enfatizza tutto (effetto testo in grassetto)
-* Fai clic sull'icona Contrasto e luminosità
-* Abilita casella di controllo Enfatizza tutto
-* Dopo l'impostazione, fai clic sulla croce nella finestra di dialogo delle impostazioni
+## Enfatizza tutto (effetto in grassetto)
+* Tocca l'icona _Contrast/Brightness_ nel &quot;menu-tap-center&quot;
+* Seleziona la casella _Regola manualmente_ e quindi la casella _Emphasize all_
+* Tocca fuori dalla finestra (o sul _x_ nell'angolo in alto a destra) per chiuderla.
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> Se si desidera ripristinare le impostazioni &quot;predefinite&quot; modificate, fare clic nella finestra di dialogo Impostazioni contrasto e luminosità - &quot;Ripristina impostazioni predefinite&quot; e confermare &quot;OK&quot;. Le impostazioni e la vista del documento tornano allo stato originale.
+> Per annullare le impostazioni manuali, utilizzare il collegamento _ Ripristina predefinito_ nella parte inferiore della finestra **Contrasto e luminosità**.

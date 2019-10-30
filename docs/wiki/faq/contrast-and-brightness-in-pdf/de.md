@@ -2,44 +2,43 @@
 layout: main
 ---
 
-# Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)
+# Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)
 
-> Mit Librera Book Reader können Sie das Erscheinungsbild des Dokuments flexibel anpassen.
-Wenn Sie diese Einstellungen konfigurieren, wird das Dokument schwarzweiß.
-Indem Sie den Schieberegler bewegen, um den gewünschten Parameter hinzuzufügen/zu verringern,
-Im Hintergrund des Einstellungsdialogs können Sie die Auswirkungen auf das Dokument sehen.
-Sie können alle drei Parameter so und getrennt konfigurieren. Dieser Effekt wird häufig bei E-Ink-Lesegeräten verwendet
+> Die PDF-Lesbarkeit in **Librera Reader** kann durch manuelle Anpassung der Helligkeits- und Kontrasteinstellungen erheblich verbessert werden. Wenn Sie in den manuellen Modus wechseln, wird Ihr Dokument in Schwarzweiß angezeigt und Sie sehen die Ergebnisse Ihrer Anpassungen in Echtzeit im Hintergrund hinter dem Fenster **Kontrast und Helligkeit**.
+> Die Anpassungen ahmen den Effekt nach, der häufig in E-Ink-Lesegeräten verwendet wird.
 
-Zum bequemen Lesen Sie können die Einstellungen anpassen:
+Sie können folgende Einstellungen vornehmen:
 * Kontrast
 * Helligkeit
-* Alles hervorheben (Fettdruck)
+* Oder/und Sie können die automatische Einstellung _Alles hervorheben_ anwenden (Fettdruck).
+
+> Alle drei Einstellungen können separat angewendet werden oder Sie können alle drei Einstellungen zusammen verwenden.
 
 ## Kontrast
-* Klicken Sie auf das Symbol für Kontrast und Helligkeit
-* Verwenden Sie den Schieberegler, um den gewünschten Dokumenttyp auszuwählen
-* Klicken Sie nach dem Festlegen im Einstellungsdialogfeld auf das Kreuz.
+* Tippen Sie im mittleren Tap-Menü auf das Symbol _Kontrast/Helligkeit_
+* Aktivieren Sie das Kontrollkästchen _Manuell anpassen_ im Fenster **Kontrast und Helligkeit** und passen Sie die Einstellung mit dem _Kontrast_-Schieberegler (oder **-** und **+**) an.
+* Tippen Sie außerhalb des Fensters (oder auf das _x_ in der oberen rechten Ecke), um es zu schließen.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## Helligkeit
-* Klicken Sie auf das Symbol für Kontrast und Helligkeit
-* Verwenden Sie den Schieberegler, um den gewünschten Dokumenttyp auszuwählen
-* Klicken Sie nach dem Festlegen im Einstellungsdialogfeld auf das Kreuz.
+* Tippen Sie im mittleren Tap-Menü auf das Symbol _Kontrast/Helligkeit_
+* Aktivieren Sie das Kontrollkästchen _Manuell anpassen_ im Fenster **Kontrast und Helligkeit** und passen Sie die Einstellung mit dem Schieberegler _Helligkeit_ (oder **-** und **+**) an.
+* Tippen Sie außerhalb des Fensters (oder auf das _x_ in der oberen rechten Ecke), um es zu schließen.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
-## Alles hervorheben (Fettdruck)
-* Klicken Sie auf das Symbol für Kontrast und Helligkeit
-* Aktivieren Sie das Kontrollkästchen Alle hervorheben
-* Klicken Sie nach dem Einstellen im Dialogfeld &quot;Einstellungen&quot; auf das Kreuz
+## Alles betonen (Fettdruck)
+* Tippen Sie im &quot;Mitteltipp-Menü&quot; auf das Symbol _Kontrast/Helligkeit_.
+* Aktivieren Sie das Kontrollkästchen &quot;Manuell anpassen&quot; und dann das Kontrollkästchen &quot;Alle hervorheben&quot;
+* Tippen Sie außerhalb des Fensters (oder auf das _x_ in der oberen rechten Ecke), um es zu schließen.
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> Wenn Sie die geänderten &quot;Standard&quot; -Einstellungen wiederherstellen möchten, klicken Sie im Dialogfeld &quot;Kontrast- und Helligkeitseinstellungen&quot; auf &quot;Auf Standard wiederherstellen&quot; und bestätigen Sie &quot;OK&quot;. Einstellungen und Dokumentansicht kehren zum ursprünglichen Zustand zurück.
+> Um Ihre manuellen Einstellungen zu verwerfen, verwenden Sie den Link &quot;Standard wiederherstellen&quot; unten im Fenster &quot;**Kontrast und Helligkeit**&quot;.

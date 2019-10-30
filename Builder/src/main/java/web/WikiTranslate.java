@@ -25,7 +25,7 @@ public class WikiTranslate {
     public static void main(String[] args) throws Exception {
 
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions");
+        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently Asked Questions");
 
         String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
       // String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq/how-to-set-up-a-status-bar";

@@ -1,9 +1,12 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Häufig gestellte Fragen
 
+* [Einrichten des Fingerabdruck- oder Passwortschutzes](/wiki/faq/setting-up-fingerprint-or-password-protection/de)
+* [Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
 * [TTS-Ersatz](/wiki/faq/tts-replacements/de)
 * [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)](/wiki/faq/bookmarks-extended-panel/de)
 * [Konfigurieren von Schriftarten und Stilen](/wiki/faq/customize-text-fonts-and-styles/de)
@@ -12,9 +15,7 @@ layout: main
 * [Hinzufügen eines neuen FAQ-Abschnitts](/wiki/faq/how-to-add-new-faq-section/de)
 * [Ordner mit Bildern als Buch öffnen (In ein Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
 * [So stellen Sie die Standardeinstellungen wieder her (ähnlich dem Löschen des Caches)](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
-* [Einrichten des Fingerabdruck- oder Passwortschutzes](/wiki/faq/setting-up-fingerprint-or-password-protection/de)
 * [So konfigurieren Sie das Widget](/wiki/faq/how-to-configure-the-widget/de)
-* [Kontrast und Helligkeit in PDF (Schwarzweiß-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
 * [Installieren und Konfigurieren von Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/de)
 * [Einstellen der Statusleiste](/wiki/faq/how-to-set-up-a-status-bar/de)
 * [So aktualisieren Sie die Bibliothek](/wiki/faq/update-the-library/de)
