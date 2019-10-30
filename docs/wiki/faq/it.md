@@ -5,15 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Aprire una cartella con le immagini come libro (Rileva un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
+* [Lettura velocità RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
 * [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
 * [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
 * [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)
 * [Dizionari, traduzione di parole e frasi](/wiki/faq/dictionaries-translate-text-online-and-offline/it)
-* [Velocità lettura RSVP (Rapid Serial Visual Presentation) in Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
 * [Come aggiungere una nuova sezione FAQ](/wiki/faq/how-to-add-new-faq-section/it)
-* [Apri cartella con immagini come un libro (Rileva in un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
 * [Come ripristinare le impostazioni predefinite (simile a cancellare la cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
 * [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)
 * [Installazione e configurazione della sintesi vocale (TTS)](/wiki/faq/installation-and-configuration-of-tts/it)

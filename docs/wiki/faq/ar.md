@@ -5,15 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [فتح مجلد به صور ككتاب (ربط كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
+* [قراءة سرعة RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
 * [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
 * [قواميس ، ترجمة الكلمات والجمل](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
-* [سرعة القراءة RSVP (عرض تسلسلي مرئي سريع) في Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
-* [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)

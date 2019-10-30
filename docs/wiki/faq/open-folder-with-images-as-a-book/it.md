@@ -2,12 +2,12 @@
 layout: main
 ---
 
-# Apri cartella con immagini come un libro (Rileva in un libro)
-È facile creare un libro di file di immagini archiviati in una cartella.
+# Apertura di una cartella con immagini come libro (Associa un libro)
+In **Librera**, è molto semplice creare un libro rilegato di file di immagine inseriti in una cartella.
 
 * Apri una cartella con le immagini (dovrebbero essere rinominate per indicare i numeri di pagina virtuale) e premi **Bind a Book**
 * Il tuo libro nel layout a griglia
-* Ritaglia le pagine in Librera e regola il contrasto e la luminosità
+* Ritaglia le pagine in **Librera** e regola il contrasto e la luminosità
 
 ||||
 |-|-|-|

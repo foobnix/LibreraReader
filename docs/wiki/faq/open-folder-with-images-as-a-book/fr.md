@@ -2,12 +2,12 @@
 layout: main
 ---
 
-# Ouvrir un dossier contenant des images sous forme de livre (relié dans un livre)
-Il est facile de créer un livre de fichiers image stockés dans un dossier.
+# Ouverture d'un dossier avec des images sous forme de livre (relier un livre)
+Dans **Librera**, il est très facile de créer une reliure de livres contenant des fichiers image placés dans un dossier.
 
 * Ouvrez un dossier contenant des images (elles doivent être renommées pour indiquer des numéros de page virtuels), puis appuyez sur **Lier un livre**.
 * Votre livre en format de grille
-* Recadrez des pages dans Librera et ajustez le contraste et la luminosité
+* Recadrez les pages dans **Librera** et ajustez le contraste et la luminosité
 
 ||||
 |-|-|-|

@@ -5,15 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Ouverture d'un dossier contenant des images sous forme de livre (relier un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)
+* [Relevé de vitesse RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/fr)
 * [Configuration de la protection par empreinte digitale ou par mot de passe](/wiki/faq/setting-up-fingerprint-or-password-protection/fr)
 * [Amélioration du contraste et de la luminosité dans les PDF (effet N/B)](/wiki/faq/contrast-and-brightness-in-pdf/fr)
 * [Remplacements TTS](/wiki/faq/tts-replacements/fr)
 * [Utilisation des signets en mode étendu - Ruban Signets](/wiki/faq/bookmarks-extended-panel/fr)
 * [Configuration des polices et des styles](/wiki/faq/customize-text-fonts-and-styles/fr)
 * [Dictionnaires, traduction de mots et de phrases](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
-* [Lecture rapide de RSVP (présentation visuelle rapide en série) sous Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/fr)
 * [Comment ajouter une nouvelle section FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
-* [Ouvrir le dossier contenant les images sous forme de livre (relié dans un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)
 * [Comment restaurer les paramètres par défaut (similaire à l'effacement du cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Comment configurer le widget](/wiki/faq/how-to-configure-the-widget/fr)
 * [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)

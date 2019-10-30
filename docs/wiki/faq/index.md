@@ -5,15 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Opening a Folder with Images as a Book (Bind a Book)](/wiki/faq/open-folder-with-images-as-a-book)
+* [RSVP Speed Reading](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [Setting Up Fingerprint or Password Protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [TTS Replacements](/wiki/faq/tts-replacements)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/wiki/faq/bookmarks-extended-panel)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)
 * [Dictionaries, translation of words and sentences](/wiki/faq/dictionaries-translate-text-online-and-offline)
-* [Speed reading RSVP (Rapid Serial Visual Presentation) in Android](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [How to add new FAQ section](/wiki/faq/how-to-add-new-faq-section)
-* [Open folder with images as a book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
 * [How to restore default settings (similar to clear cache)](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)
 * [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)

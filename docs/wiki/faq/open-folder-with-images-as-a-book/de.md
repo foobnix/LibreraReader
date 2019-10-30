@@ -2,12 +2,12 @@
 layout: main
 ---
 
-# Ordner mit Bildern als Buch öffnen (In einem Buch binden)
-Es ist ganz einfach, ein Buch mit Bilddateien zu erstellen, die in einem Ordner gespeichert sind.
+# Öffnen eines Ordners mit Bildern als Buch (Buch binden)
+In **Librera** ist es sehr einfach, ein Buch aus Bilddateien zu erstellen, die in einem Ordner abgelegt sind.
 
 * Öffnen Sie einen Ordner mit Bildern (diese sollten umbenannt werden, um die virtuellen Seitenzahlen anzugeben) und drücken Sie **Buch binden**.
 * Ihr Buch im Rasterlayout
-* Schneiden Sie die Seiten in Librera zu und passen Sie Kontrast und Helligkeit an
+* Beschneiden Sie die Seiten in **Librera** und passen Sie Kontrast und Helligkeit an
 
 ||||
 |-|-|-|
