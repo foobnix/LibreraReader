@@ -63,7 +63,7 @@ public class TxtUtils {
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
-    public static LinkedHashMap<String, String> dict1 = new LinkedHashMap<>();
+    public static LinkedHashMap<String, String> dictRegEx = new LinkedHashMap<>();
     public static String dictHash = "";
     public static boolean hasDB = false;
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":", "...", LONG_DASH1, LONG_DASH2);
@@ -386,9 +386,9 @@ public class TxtUtils {
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
 
-                for (String key : dict1.keySet()) {
+                for (String key : dictRegEx.keySet()) {
                     try {
-                        String value = dict1.get(key);
+                        String value = dictRegEx.get(key);
 
                         if(key.startsWith("*")){
                             key = key.substring(1);
@@ -545,7 +545,7 @@ public class TxtUtils {
         }
         dictHash = BookCSS.get().dictPath;
         hasDB = false;
-        dict1.clear();
+        dictRegEx.clear();
 
         final List<String> dicts = StringDB.asList(BookCSS.get().dictPath);
 
@@ -570,13 +570,13 @@ public class TxtUtils {
                     @Override
                     public void replace(String from, String to) {
 
-                        dict1.put(from, to);
+                        dictRegEx.put(from, to);
                     }
 
                     @Override
                     public void replaceAll(String from, String to) {
 
-                        dict1.put("*"+from, to);
+                        dictRegEx.put("*"+from, to);
                     }
                 });
             } catch (FileNotFoundException e) {
