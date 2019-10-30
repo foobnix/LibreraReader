@@ -60,6 +60,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
+import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +81,7 @@ public class Dialogs {
 
 
     public static void replaceTTSDialog(Activity activity) {
-        LinearLayout root = new LinearLayout(activity);
+        final DragLinearLayout root = new DragLinearLayout(activity);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
 
@@ -113,12 +114,13 @@ public class Dialogs {
             while (keys.hasNext()) {
                 list.add(keys.next());
             }
-            Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+            //Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
 
             for (String key : list) {
                 String value = jsonObject.getString(key);
 
                 LinearLayout h = new LinearLayout(activity);
+                h.setWeightSum(2);
                 h.setOrientation(LinearLayout.HORIZONTAL);
                 h.setGravity(Gravity.CENTER_VERTICAL);
 
@@ -156,12 +158,29 @@ public class Dialogs {
                 });
 
 
+                ImageView move = new ImageView(activity);
+                move.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
+                move.setMaxWidth(Dips.DP_25);
+                move.setMaxHeight(Dips.DP_25);
+
+                move.setImageResource(R.drawable.glyphicons_517_menu_hamburger);
+                TintUtil.setTintImageWithAlpha(move);
+
+
+                from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1.0f));
+                text.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
+                to.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
+                img.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
+                move.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
 
                 h.addView(from);
                 h.addView(text);
                 h.addView(to);
                 h.addView(img);
+                h.addView(move);
+
                 root.addView(h);
+                root.setViewDraggable(h, move);
             }
         } catch (JSONException e) {
             e.printStackTrace();
