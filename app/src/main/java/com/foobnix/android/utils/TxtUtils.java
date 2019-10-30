@@ -42,8 +42,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -63,8 +63,7 @@ public class TxtUtils {
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
-    public static Map<String, String> dict1 = new HashMap<>();
-    public static Map<String, String> dict2 = new HashMap<>();
+    public static LinkedHashMap<String, String> dict1 = new LinkedHashMap<>();
     public static String dictHash = "";
     public static boolean hasDB = false;
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":", "...", LONG_DASH1, LONG_DASH2);
@@ -325,7 +324,7 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("…", TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
-        pageHTML = pageHTML.replace("   ", TTS_PAUSE);
+        pageHTML = pageHTML.replace("   ", " "+TTS_PAUSE+" ");
 
         LOG.d("pageHTML [1]", pageHTML);
 
@@ -389,16 +388,26 @@ public class TxtUtils {
 
                 for (String key : dict1.keySet()) {
                     try {
-                        pageHTML = replaceAll(pageHTML, key, dict1.get(key));
+                        String value = dict1.get(key);
+
+                        if(key.startsWith("*")){
+                            key = key.substring(1);
+                            pageHTML = replaceAll(pageHTML, key, value);
+                            LOG.d("pageHTML-dict-replaceAll", key, value, pageHTML);
+                        }else{
+                            pageHTML = pageHTML.replace(key, value);
+                            LOG.d("pageHTML-dict-replace", key, value, pageHTML);
+                        }
+
+
+
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
-                LOG.d("pageHTML [7]", pageHTML);
 
-                for (String key : dict2.keySet()) {
-                    pageHTML = pageHTML.replace(key, dict2.get(key));
-                }
+
+
             }
 
             try {
@@ -454,11 +463,20 @@ public class TxtUtils {
             loadShotList();
 
             for (String r : shortList) {
-                String r1 = " " + r;
-                String r2 = " " + r.replace(".", " ");
-                pageHTML = pageHTML.replace(r1, r2);
+                if (r.startsWith("!")) {
+                    String line = r.replace("!", "");
+                    String r1 = line;
+                    String r2 = line.replace(".", " ");
+                    pageHTML = pageHTML.replace(r1, r2);
+                }
             }
-
+            for (String r : shortList) {
+                if (!r.startsWith("!")) {
+                    String r1 = r;
+                    String r2 = r.replace(".", "{dot}");
+                    pageHTML = pageHTML.replace(r1, r2);
+                }
+            }
 
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
@@ -470,7 +488,7 @@ public class TxtUtils {
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
                 String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
+                pageHTML = pageHTML.replace(s, s + TTS_PAUSE+" ");
             }
 
 
@@ -500,13 +518,19 @@ public class TxtUtils {
             BufferedReader input = new BufferedReader(new InputStreamReader(open));
             String line;
             while ((line = input.readLine()) != null) {
-                if (line.trim().length() > 3) {
+                if (TxtUtils.isNotEmpty(line)) {
                     line = line.trim();
                     shortList.add(line);
-                    shortList.add(TxtUtils.firstUppercase(line));
-                    LOG.d("loadShotList-line", line);
+                    if (line.startsWith("!")) {
+                        shortList.add(TxtUtils.secondUppercase(line));
+                    } else {
+                        shortList.add(TxtUtils.firstUppercase(line));
+                    }
 
+                    LOG.d("loadShotList-line", line);
                 }
+
+
             }
             input.close();
         } catch (IOException e) {
@@ -514,33 +538,6 @@ public class TxtUtils {
         }
     }
 
-    public static String replaceAccent(String dict) {
-        dict = dict.replace("A*", "а́").replace("а*", "а́");
-        dict = dict.replace("О*", "о́").replace("о*", "о́");
-        dict = dict.replace("И*", "и́").replace("и*", "и́");
-        dict = dict.replace("У*", "у́").replace("у*", "у́");
-        dict = dict.replace("У*", "е́").replace("е*", "е́");
-        dict = dict.replace("Ы*", "ы́").replace("ы*", "ы́");
-        dict = dict.replace("Э*", "э́́").replace("э*", "э́́");
-        dict = dict.replace("Я*", "я́́́").replace("я*", "я́́́");
-        dict = dict.replace("Ю*", "ю́́́́́").replace("ю*", "ю́́́́́");
-        dict = dict.replace("Ё*", "ё́́́́").replace("ё*", "ё́́́́");
-        return dict;
-    }
-
-    public static String replaceAccentReverse(String dict) {
-        dict = dict.replace("а́", "а");
-        dict = dict.replace("о́", "о");
-        dict = dict.replace("и́", "и");
-        dict = dict.replace("у́", "у");
-        dict = dict.replace("е́", "е");
-        dict = dict.replace("ы́", "ы");
-        dict = dict.replace("э́́", "э");
-        dict = dict.replace("я́́́", "я");
-        dict = dict.replace("ю́́́́́", "ю");
-        dict = dict.replace("ё́́́́", "ё");
-        return dict;
-    }
 
     public static void loadReplayceDict() {
         if (dictHash.equals(BookCSS.get().dictPath)) {
@@ -549,7 +546,6 @@ public class TxtUtils {
         dictHash = BookCSS.get().dictPath;
         hasDB = false;
         dict1.clear();
-        dict2.clear();
 
         final List<String> dicts = StringDB.asList(BookCSS.get().dictPath);
 
@@ -573,12 +569,14 @@ public class TxtUtils {
                 processDict(new FileInputStream(dict), new ReplaceRule() {
                     @Override
                     public void replace(String from, String to) {
-                        dict2.put(from, to);
+
+                        dict1.put(from, to);
                     }
 
                     @Override
                     public void replaceAll(String from, String to) {
-                        dict1.put(from, to);
+
+                        dict1.put("*"+from, to);
                     }
                 });
             } catch (FileNotFoundException e) {
@@ -831,6 +829,13 @@ public class TxtUtils {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String secondUppercase(String str) {
+        if (isEmpty(str) || str.length() <= 2) {
+            return str;
+        }
+        return str.substring(0, 1) + str.substring(1, 2).toUpperCase() + str.substring(2);
     }
 
     public static String firstLowerCase(String str) {
