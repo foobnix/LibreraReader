@@ -1336,7 +1336,7 @@ public class TxtUtils {
         }
     }
 
-    interface ReplaceRule {
+    public static interface ReplaceRule {
         void replace(String from, String to);
 
         void replaceAll(String from, String to);

@@ -35,6 +35,7 @@ import com.buzzingandroid.ui.HSVColorPickerDialog;
 import com.buzzingandroid.ui.HSVColorPickerDialog.OnColorSelectedListener;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -43,6 +44,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.UI;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.android.utils.Views;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
@@ -66,6 +68,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -80,10 +83,12 @@ import java.util.regex.Pattern;
 public class Dialogs {
 
 
+    static AlertDialog create;
+
     public static void replaceTTSDialog(Activity activity) {
+
         final DragLinearLayout root = new DragLinearLayout(activity);
         root.setOrientation(LinearLayout.VERTICAL);
-
 
 
         LinearLayout dicts = UI.verticalLayout(activity);
@@ -107,17 +112,19 @@ public class Dialogs {
 
 
         try {
-            JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements3);
+            JSONObject jsonObjectRoot = new JSONObject(AppState.get().lineTTSReplacements3);
+            LOG.d("TTS-load", AppState.get().lineTTSReplacements3);
+            //new JSONObject(AppState.get().lineTTSReplacements3);
 
-            final Iterator<String> keys = jsonObject.keys();
-            List<String> list = new ArrayList<String>();
-            while (keys.hasNext()) {
-                list.add(keys.next());
-            }
-            //Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
 
-            for (String key : list) {
-                String value = jsonObject.getString(key);
+            final Iterator<String> rootKeys = jsonObjectRoot.keys();
+
+            while (rootKeys.hasNext()) {
+
+                String key = rootKeys.next();
+                String value = jsonObjectRoot.getString(key);
+
+                LOG.d("TTS-load-key", key, value);
 
                 LinearLayout h = new LinearLayout(activity);
                 root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
@@ -168,11 +175,11 @@ public class Dialogs {
                 TintUtil.setTintImageWithAlpha(move);
 
 
-                from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1.0f));
-                text.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
+                from.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
+                text.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
                 to.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f));
-                img.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
-                move.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,0f));
+                img.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
+                move.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0f));
 
                 h.addView(from);
                 h.addView(text);
@@ -183,10 +190,10 @@ public class Dialogs {
                 root.addView(h);
                 root.setViewDraggable(h, move);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
+        }catch (Exception e){
+            LOG.e(e);
+        }
 
         TextView add = new TextView(activity, null, R.style.textLink);
         add.setText(activity.getString(R.string.add_rule));
@@ -221,8 +228,162 @@ public class Dialogs {
                 root.addView(h, root.getChildCount() - 3);
             }
         });
-        root.addView(add);
 
+
+        RunnableBoolean save = new RunnableBoolean() {
+
+
+            @Override
+            public boolean run() {
+                JSONObject res = new JSONObject();
+                //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
+                boolean hasErrors = false;
+                for (int i = 0; i < root.getChildCount(); i++) {
+                    final View childAt = root.getChildAt(i);
+                    if (childAt instanceof LinearLayout) {
+                        final LinearLayout line = (LinearLayout) childAt;
+                        if (line.getOrientation() == LinearLayout.VERTICAL) {
+                            continue;
+                        }
+                        EditText childFrom = (EditText) line.getChildAt(0);
+                        String from = childFrom.getText().toString();
+                        String to = ((EditText) line.getChildAt(2)).getText().toString();
+
+
+                        LOG.d("TTS-add", from, to);
+
+
+                        try {
+                            if (from.startsWith("*")) {
+                                try {
+                                    Pattern.compile(from.substring(1));
+                                    res.put(from, to);
+                                } catch (Exception e) {
+                                    LOG.d("TTS-incorrect value", from, to);
+                                    hasErrors = true;
+                                    childFrom.requestFocus();
+                                    Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                                }
+                            } else if (TxtUtils.isNotEmpty(from)) {
+                                res.put(from, to);
+                            }
+                        }catch (Exception e){
+                            LOG.e(e);
+                        }
+
+
+                    }
+                }
+                if (!hasErrors) {
+                    AppState.get().lineTTSReplacements3 = res.toString();
+                    LOG.d("TTS-save", AppState.get().lineTTSReplacements3);
+                }
+                return hasErrors;
+            }
+        };
+
+        TextView export = new TextView(activity, null, R.style.textLink);
+        export.setText(activity.getString(R.string.export_));
+        export.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+        TxtUtils.underlineTextView(export);
+        export.setOnClickListener(v -> {
+            if (save.run()) {
+
+            }
+            ChooserDialogFragment.createFile((FragmentActivity) activity, "TTS-RegEx.txt").setOnSelectListener((result1, result2) -> {
+
+                //errors
+                try {
+                    JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements3);
+
+
+                    final Iterator<String> keys = jsonObject.keys();
+                    StringBuilder res = new StringBuilder();
+                    while (keys.hasNext()) {
+                        String key = keys.next();
+                        String value = jsonObject.getString(key);
+                        res.append(String.format("\"%s\" \"%s\"\n", key, value));
+                    }
+                    IO.writeString(new File(result1), res.toString());
+
+                } catch (Exception e) {
+                    Toast.makeText(activity, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    LOG.e(e);
+                }
+                Toast.makeText(activity, R.string.success, Toast.LENGTH_LONG).show();
+                Vibro.vibrate();
+                result2.dismiss();
+
+
+                return false;
+            });
+        });
+
+
+        TextView importFile = new TextView(activity, null, R.style.textLink);
+        importFile.setText(activity.getString(R.string.import_));
+        importFile.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+        TxtUtils.underlineTextView(importFile);
+        importFile.setOnClickListener(v -> {
+
+            ChooserDialogFragment.chooseFile((FragmentActivity) activity, "TTS-RegEx.txt").setOnSelectListener((result1, result2) -> {
+
+                try {
+                    JSONObject jsonObject = new JSONObject();
+
+                    TxtUtils.processDict(new FileInputStream(result1), new TxtUtils.ReplaceRule() {
+                        @Override
+                        public void replace(String from, String to) {
+                            try {
+                                jsonObject.put(from, to);
+                            } catch (JSONException e) {
+                                LOG.e(e);
+                            }
+                        }
+
+                        @Override
+                        public void replaceAll(String from, String to) {
+                            try {
+                                jsonObject.put(from, to);
+                            } catch (JSONException e) {
+                                LOG.e(e);
+                            }
+                        }
+                    });
+
+                    AppState.get().lineTTSReplacements3 = jsonObject.toString();
+                    Toast.makeText(activity, R.string.success, Toast.LENGTH_LONG).show();
+
+                    Vibro.vibrate();
+                    result2.dismiss();
+
+                    create.dismiss();
+                    //Views.handler.postDelayed(()->replaceTTSDialog(activity), 150);
+                    replaceTTSDialog(activity);
+
+
+                } catch (Exception e) {
+                    LOG.e(e);
+                    Toast.makeText(activity, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    Vibro.vibrate();
+                    result2.dismiss();
+                }
+                return false;
+            });
+        });
+
+
+        LinearLayout line = new LinearLayout(activity);
+        line.setOrientation(LinearLayout.HORIZONTAL);
+
+        line.addView(add);
+        line.addView(Views.newText(activity, " ("));
+        line.addView(export);
+        line.addView(Views.newText(activity, " | "));
+        line.addView(importFile);
+        line.addView(Views.newText(activity, " )"));
+
+        root.addView(Views.newFrameLayout(activity, line));
 
         TextView addDict = new TextView(activity, null, R.style.textLink);
         addDict.setText(activity.getString(R.string.add_dictionary) + " (.txt RegEx @Voice)");
@@ -287,51 +448,13 @@ public class Dialogs {
 
             }
         });
-        final AlertDialog create = builder.create();
+        create = builder.create();
         create.show();
 
         create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-            JSONObject res = new JSONObject();
-            //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
-            boolean hasErrors = false;
-            for (int i = 0; i < root.getChildCount(); i++) {
-                final View childAt = root.getChildAt(i);
-                if (childAt instanceof LinearLayout) {
-                    final LinearLayout line = (LinearLayout) childAt;
-                    if (line.getOrientation() == LinearLayout.VERTICAL) {
-                        continue;
-                    }
-                    EditText childFrom = (EditText) line.getChildAt(0);
-                    String from = childFrom.getText().toString();
-                    String to = ((EditText) line.getChildAt(2)).getText().toString();
 
-
-                    LOG.d("TTS-add", from, to);
-
-                    try {
-                        if (from.startsWith("*")) {
-                            try {
-                                Pattern.compile(from.substring(1));
-                                res.put(from, to);
-                            } catch (Exception e) {
-                                LOG.d("TTS-incorrect value", from, to);
-                                hasErrors = true;
-                                childFrom.requestFocus();
-                                Toast.makeText(activity, R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                            }
-                        } else if (TxtUtils.isNotEmpty(from)) {
-                            res.put(from, to);
-                        }
-                    } catch (JSONException e) {
-                        LOG.e(e);
-                    }
-
-
-                }
-            }
             LOG.d("lineTTSReplacements3", AppState.get().lineTTSReplacements3);
-            if (!hasErrors) {
-                AppState.get().lineTTSReplacements3 = res.toString();
+            if (!save.run()) {
                 create.dismiss();
             }
 
