@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -41,8 +42,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -52,7 +53,9 @@ import java.util.regex.Pattern;
 public class TxtUtils {
 
     public static final String TTS_PAUSE = "ttsPAUSE";
+    public static final String TTS_PAUSE_VIEW = "[-]\n";
     public static final String TTS_STOP = "ttsSTOP";
+
     public static final String NON_BREAKE_SPACE = "\u00A0";
     public static final char NON_BREAKE_SPACE_CHAR = NON_BREAKE_SPACE.charAt(0);
     public static final Pattern EMAIL_PATTERN = Pattern.compile(
@@ -61,8 +64,7 @@ public class TxtUtils {
     public static String LONG_DASH1 = "\u2013";
     public static String LONG_DASH2 = "\u2014";
     public static String SMALL_DASH = "-";
-    public static Map<String, String> dict1 = new HashMap<>();
-    public static Map<String, String> dict2 = new HashMap<>();
+    public static LinkedHashMap<String, String> dictRegEx = new LinkedHashMap<>();
     public static String dictHash = "";
     public static boolean hasDB = false;
     static List<String> partsDivs = Arrays.asList(".", "!", ";", "?", ":", "...", LONG_DASH1, LONG_DASH2);
@@ -287,7 +289,7 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", "");
         pageHTML = pageHTML.replace("<end-block>", "");
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", "");
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", "");
         return pageHTML;
     }
 
@@ -303,8 +305,8 @@ public class TxtUtils {
 
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>$", "");
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", TTS_PAUSE);
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>$", "");
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", TTS_PAUSE);
         return pageHTML;
     }
 
@@ -316,19 +318,19 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("</b></i></p>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE).replace("</i></p></b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
-        pageHTML = pageHTML.replace("...", TTS_PAUSE);
-        pageHTML = pageHTML.replace("…", TTS_PAUSE);
+        pageHTML = pageHTML.replace("...", " " + TTS_PAUSE);
+        pageHTML = pageHTML.replace("…", " " + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
-        pageHTML = pageHTML.replace("   ", TTS_PAUSE);
+        pageHTML = pageHTML.replace("   ", " " + TTS_PAUSE + " ");
 
         LOG.d("pageHTML [1]", pageHTML);
 
 
-        pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
+        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("[image]", "");
 
@@ -385,18 +387,26 @@ public class TxtUtils {
             if (TxtUtils.isNotEmpty(BookCSS.get().dictPath)) {
                 loadReplayceDict();
 
-                for (String key : dict1.keySet()) {
+                for (String key : dictRegEx.keySet()) {
                     try {
-                        pageHTML = replaceAll(pageHTML, key, dict1.get(key));
+                        String value = dictRegEx.get(key);
+
+                        if (key.startsWith("*")) {
+                            key = key.substring(1);
+                            pageHTML = replaceAll(pageHTML, key, value);
+                            LOG.d("pageHTML-dict-replaceAll", key, value, pageHTML);
+                        } else {
+                            pageHTML = pageHTML.replace(key, value);
+                            LOG.d("pageHTML-dict-replace", key, value, pageHTML);
+                        }
+
+
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
-                LOG.d("pageHTML [7]", pageHTML);
 
-                for (String key : dict2.keySet()) {
-                    pageHTML = pageHTML.replace(key, dict2.get(key));
-                }
+
             }
 
             try {
@@ -426,23 +436,6 @@ public class TxtUtils {
                     }
                     LOG.d("pageHTML [8]", pageHTML);
 
-
-                    /*
-                    if (key.startsWith("[") && key.endsWith("]")) {
-                        for (int i = 1; i < key.length() - 1; i++) {
-                            String s = String.valueOf(key.charAt(i));
-                            pageHTML = pageHTML.replace(s, value);
-                        }
-
-                    } else {
-                        if (value.contains("*")) {
-                            value = replaceAccent(value);
-                        }
-
-                        pageHTML = pageHTML.replace(key, value);
-                    }
-                    */
-
                 }
 
 
@@ -467,31 +460,48 @@ public class TxtUtils {
 
         if (AppState.get().ttsReadBySentences) {
             loadShotList();
-
+            LOG.d("pageHTML [8a]", pageHTML);
             for (String r : shortList) {
-                String r1 = " " + r;
-                String r2 = " " + r.replace(".", " ");
-                pageHTML = pageHTML.replace(r1, r2);
+                if (r.startsWith("!")) {
+                    String line = r.replace("!", "");
+                    String r1 = line;
+                    String r2 = line.replace(".", " ");
+                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
+                }
             }
+            LOG.d("pageHTML [8b]", pageHTML);
+            for (String r : shortList) {
+                if (!r.startsWith("!")) {
+                    String r1 = r;
+                    String r2 = r.replace(".", "{dot}");
+                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
+                }
+            }
+            LOG.d("pageHTML [8c]", pageHTML);
 
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
+            LOG.d("pageHTML [8d]", pageHTML);
+            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
+            LOG.d("pageHTML [8e]", pageHTML);
+            pageHTML = replaceAll(pageHTML, " (\\p{Digit}*)\\.(\\p{Digit}+)", " $1{dot}$2"); //skip numbers 3.3 .343
 
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.(\\p{Alpha})\\.", " $1 $2 $3 $4 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,3})\\.(\\p{Alpha}S{1,3})\\.", " $1 $2 $3 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}S{1,4})\\.", " $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. (\\p{Alpha}S{1,2})\\.", " $1 $2 ");
-            pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\. ", " $1 ");
-            pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1 $2"); //skip numbers 3.3 .343
-
+            LOG.d("pageHTML [8f]", pageHTML);
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
                 String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                pageHTML = pageHTML.replace(s, s + TTS_PAUSE);
+                pageHTML = pageHTML.replace(s, s + TTS_PAUSE + " ");
             }
 
+
+            LOG.d("pageHTML [9]", pageHTML);
 
             pageHTML = pageHTML.replace("{dot}", ".");
         }
 
+        pageHTML = pageHTML.replaceAll("[\\s]*("+TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE);
 
         return pageHTML;
     }
@@ -515,13 +525,19 @@ public class TxtUtils {
             BufferedReader input = new BufferedReader(new InputStreamReader(open));
             String line;
             while ((line = input.readLine()) != null) {
-                if (line.trim().length() > 3) {
+                if (TxtUtils.isNotEmpty(line)) {
                     line = line.trim();
                     shortList.add(line);
-                    shortList.add(TxtUtils.firstUppercase(line));
-                    LOG.d("loadShotList-line", line);
+                    if (line.startsWith("!")) {
+                        shortList.add(TxtUtils.secondUppercase(line));
+                    } else {
+                        shortList.add(TxtUtils.firstUppercase(line));
+                    }
 
+                    LOG.d("loadShotList-line", line);
                 }
+
+
             }
             input.close();
         } catch (IOException e) {
@@ -529,33 +545,6 @@ public class TxtUtils {
         }
     }
 
-    public static String replaceAccent(String dict) {
-        dict = dict.replace("A*", "а́").replace("а*", "а́");
-        dict = dict.replace("О*", "о́").replace("о*", "о́");
-        dict = dict.replace("И*", "и́").replace("и*", "и́");
-        dict = dict.replace("У*", "у́").replace("у*", "у́");
-        dict = dict.replace("У*", "е́").replace("е*", "е́");
-        dict = dict.replace("Ы*", "ы́").replace("ы*", "ы́");
-        dict = dict.replace("Э*", "э́́").replace("э*", "э́́");
-        dict = dict.replace("Я*", "я́́́").replace("я*", "я́́́");
-        dict = dict.replace("Ю*", "ю́́́́́").replace("ю*", "ю́́́́́");
-        dict = dict.replace("Ё*", "ё́́́́").replace("ё*", "ё́́́́");
-        return dict;
-    }
-
-    public static String replaceAccentReverse(String dict) {
-        dict = dict.replace("а́", "а");
-        dict = dict.replace("о́", "о");
-        dict = dict.replace("и́", "и");
-        dict = dict.replace("у́", "у");
-        dict = dict.replace("е́", "е");
-        dict = dict.replace("ы́", "ы");
-        dict = dict.replace("э́́", "э");
-        dict = dict.replace("я́́́", "я");
-        dict = dict.replace("ю́́́́́", "ю");
-        dict = dict.replace("ё́́́́", "ё");
-        return dict;
-    }
 
     public static void loadReplayceDict() {
         if (dictHash.equals(BookCSS.get().dictPath)) {
@@ -563,8 +552,7 @@ public class TxtUtils {
         }
         dictHash = BookCSS.get().dictPath;
         hasDB = false;
-        dict1.clear();
-        dict2.clear();
+        dictRegEx.clear();
 
         final List<String> dicts = StringDB.asList(BookCSS.get().dictPath);
 
@@ -581,42 +569,63 @@ public class TxtUtils {
 
             }
 
+
+            LOG.d("pageHTML-dict", dict);
+            LOG.d("pageHTML-dict", dict);
             try {
-                LOG.d("pageHTML-dict", dict);
-                LOG.d("pageHTML-dict", dict);
-                BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(dict)));
-                String line;
-                while ((line = input.readLine()) != null) {
-                    if (TxtUtils.isEmpty(line)) {
-                        continue;
-                    } else if (line.startsWith("#")) {
-                        continue;
-                    } else if (line.endsWith("256")) {
-                        continue;
-                    } else if (line.startsWith("*\"")) {
-                        String parts[] = line.split("\" \"");
-                        String r1 = parts[0].substring(2);
-                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        //r2 = replaceAccentreplaceAccent(r2);
-                        LOG.d("pageHTML-replaceAll", r1, r2);
+                processDict(new FileInputStream(dict), new ReplaceRule() {
+                    @Override
+                    public void replace(String from, String to) {
 
-                        dict1.put(r1, r2);
-
-                    } else if (line.startsWith("\"")) {
-                        String parts[] = line.split("\" \"");
-                        String r1 = parts[0].substring(1);
-                        String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
-                        //r2 = replaceAccent(r2);
-                        LOG.d("pageHTML-replace", r1, r2);
-                        dict2.put(r1, r2);
+                        dictRegEx.put(from, to);
                     }
-                }
-                input.close();
-            } catch (Exception e) {
+
+                    @Override
+                    public void replaceAll(String from, String to) {
+
+                        dictRegEx.put("*" + from, to);
+                    }
+                });
+            } catch (FileNotFoundException e) {
                 LOG.e(e);
             }
         }
 
+
+    }
+
+    public static void processDict(InputStream io, ReplaceRule rule) {
+        try {
+            LOG.d("processDict");
+            BufferedReader input = new BufferedReader(new InputStreamReader(io));
+            String line;
+            while ((line = input.readLine()) != null) {
+                if (TxtUtils.isEmpty(line)) {
+                    continue;
+                } else if (line.startsWith("#")) {
+                    continue;
+                } else if (line.endsWith("256")) {
+                    continue;
+                } else if (line.startsWith("*\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(2);
+                    String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                    LOG.d("pageHTML-replaceAll", r1, r2);
+
+                    rule.replaceAll(r1, r2);
+
+                } else if (line.startsWith("\"")) {
+                    String parts[] = line.split("\" \"");
+                    String r1 = parts[0].substring(1);
+                    String r2 = parts[1].substring(0, parts[1].lastIndexOf("\""));
+                    LOG.d("pageHTML-replace", r1, r2);
+                    rule.replace(r1, r2);
+                }
+            }
+            input.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
 
     }
 
@@ -827,6 +836,13 @@ public class TxtUtils {
             return str;
         }
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String secondUppercase(String str) {
+        if (isEmpty(str) || str.length() <= 2) {
+            return str;
+        }
+        return str.substring(0, 1) + str.substring(1, 2).toUpperCase() + str.substring(2);
     }
 
     public static String firstLowerCase(String str) {
@@ -1290,7 +1306,6 @@ public class TxtUtils {
         return buf.toString();
     }
 
-
     public static void updateinks(ViewGroup parent, int color) {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -1308,7 +1323,6 @@ public class TxtUtils {
         }
     }
 
-
     public static void setInkTextView(View... parents) {
         if (AppState.get().appTheme != AppState.THEME_INK) {
             return;
@@ -1320,6 +1334,14 @@ public class TxtUtils {
                 ((TextView) parent).setTextColor(Color.BLACK);
             }
         }
+    }
+
+    public static interface ReplaceRule {
+        void replace(String from, String to);
+
+        void replaceAll(String from, String to);
+
+
     }
 
 

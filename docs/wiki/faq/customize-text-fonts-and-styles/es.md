@@ -2,34 +2,35 @@
 layout: main
 ---
 
-# Cómo configurar fuentes, estilos
+# Configuración de fuentes y estilos
 
-> Para una lectura cómoda, Librera le permite personalizar el aspecto de su documento, cambiar las fuentes, los estilos CSS, agregar una letra mayúscula.
+> **Librera** le permite personalizar la apariencia del documento que está leyendo: elija las fuentes a su gusto y ajuste su tamaño, ajuste los estilos CSS y cambie las primeras letras a iniciales iniciales (FB2).
 
-Puede ajustar la fuente y el estilo del texto en las pestañas del menú:
+Hará todo lo anterior en la pestaña principal de la ventana **Preferencia** y, obviamente, en la pestaña _Configuración de lectura_.
 
-* **Configuración avanzada**
-* **Configuración de lectura.**
 
-Para acceder a esta configuración, haga clic en el icono de configuración.
+> Toque el icono **Configuración** para abrir la ventana **Preferencias**.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-## Configuración avanzada
+## Ajustes de fuente
 
-En esta pestaña del menú, puede cambiar la fuente del documento para el estilo de documento **&quot;Definido por el usuario&quot;** (consulte la sección **&quot;Configuración de lectura&quot;** a continuación para obtener una descripción de los estilos):
+* Seleccione su fuente principal tocando el enlace _Font_ y recorriendo la lista desplegable de fuentes disponibles.
 
-* Haga clic en el enlace del título de la fuente
-* En la lista desplegable de fuentes, deslice hacia arriba o hacia abajo, seleccione la fuente que desee.
-* Si desea descargar fuentes para leer, vea cómo hacerlo a continuación, en la sección de configuración **&quot;Configuración de lectura&quot;**
+> Puede agregar sus fuentes favoritas a la lista:
+1. Cree una carpeta llamada _Fonts_ en el almacenamiento interno de su dispositivo.
+> Nota: Hay otra carpeta _Fonts_ en su almacenamiento interno ya creada por **Librera** automáticamente.
+2. Guarde sus fuentes favoritas en su carpeta _Fonts_ (o en la carpeta _Fonts_ propia de **Librera**).
+> (También puede descargar algunas fuentes agradables de nuestro sitio. Consulte la sección **Configuración de lectura** para obtener instrucciones).
+> Recuerde que sus fuentes se respetarán solo si los _Styles_ que ha seleccionado en la pestaña **Configuración de lectura** tienen _User-definido_ en ellos.
 
-Si desea ajustar las fuentes de texto:
+Para configurar fuentes específicas del usuario para diferentes estilos de fuente, toque el icono al lado del enlace _Fuentes_ para abrir la ventana _Configurar fuentes_.
 
-* Haga clic en el icono del menú de configuración de fuente
-* En el menú emergente de configuración, puede cambiar la fuente para cada tipo de texto. Después del cambio, haga clic en &quot;Aplicar&quot;
-* Cierre la configuración y continúe con la lectura.
+* Toque la configuración para cada estilo y seleccione una fuente para él.
+* Use los botones **arriba** y **abajo** para saltar a la siguiente fuente en la lista (a veces esto será suficiente para su propósito).
+* No olvides tocar **APLICAR** una vez que hayas terminado.
 
 ||||
 |-|-|-|
@@ -39,42 +40,49 @@ Si desea ajustar las fuentes de texto:
 |-|-|-|
 |![](6.jpg)|![](42.jpg)|![](43.jpg)|
 
-Para el formato de libro **fb2** puede ajustar la letra:
+## Principales iniciales en libros de FB2
 
-* Haga clic en el icono del menú de configuración de fuente
-* Habilite la casilla de verificación &quot;Capítulos principales con iniciativas&quot;
-* Seleccione la fuente de la letra
-* Ajustar tamaño y color
-* Haga clic en &quot;Aplicar&quot; para aplicar la configuración.
+Puede hacer que cada capítulo de su libro comience con una bonita inicial.
+ 
+> Esta configuración no se mostrará mientras se lee en cualquier otro formato.
+
+* Toque el icono junto al enlace _Fuentes_ para abrir la ventana _Configurar fuentes_
+* Marque la casilla de verificación _Lead capítulos con iniciales_ para habilitar las iniciales
+* Toque el enlace de fuente para seleccionar una fuente para su inicial de una lista desplegable
+* Ahora elija el tamaño y el color para su inicial tocando los enlaces respectivos
+* Toque **APLICAR** para guardar la configuración
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-## Configuraciones de lectura
+## La pestaña **Configuración de lectura**
 
-En esta sección del menú, puede trabajar con sus archivos de fuentes, agregar o descargar nuevas fuentes. Para establecer los estilos de visualización de texto.
+> Estas son configuraciones definidas por el usuario. Principalmente anulan la configuración de estilo codificada en el archivo .css de su libro. Debe elegir los estilos definidos por el usuario para que funcione.
 
-Para personalizar las fuentes, descargar o agregar nuevas, debe:
-
-* Especifique la ruta a sus fuentes, si las hay, seleccionando la carpeta de fuentes en su dispositivo
-Descargue fuentes adicionales haciendo clic en el icono &quot;Descargar fuentes&quot;. Aparecerá una ventana de confirmación sobre la descarga, haga clic en &quot;Descargar&quot;.
-* Las fuentes tienen un tamaño de 10 megabytes, después de la descarga se mostrará para su selección en la selección de fuente General, pestaña del menú **&quot;Configuración avanzada&quot;**.
+* Seleccione su alineación de texto preferida de la lista desplegable.
+* Use controles deslizantes o **-** y **+** toques para ajustar el espaciado entre líneas y párrafos, sangrías de texto y márgenes de página.
+* Al normalizar el tamaño de fuente, todas las fuentes en el documento son iguales (1em, regular).
+* También puede especificar el color de los enlaces en su documento para cada modo (día y noche).
 
 ||||
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Personaliza los estilos del texto que se muestra.**
+**Elija _Styles_ para su libro sabiamente**
 
-El programa le permite seleccionar la visualización del texto y el estilo establecido en el texto por el autor del documento:
+* _Documento_, se utilizará la configuración .css del libro
+* _Definido por el usuario_, se usará la configuración de esta pestaña
+* _Documento + Definido por el usuario_ (predeterminado, recomendado), nuestro intento de incorporar la configuración del usuario en la configuración del libro .css (o al revés). ¡Trabaja la mayor parte del tiempo!
 
-* Documento: utiliza el estilo de texto establecido por el autor, el Creador del documento
-* Definido por el usuario: use su configuración de estilo para las fuentes, sangría, marcado del documento
-* Documento + Los estilos de usuario y autor definidos por el usuario se usan juntos.
+## La ventana **Código CSS personalizado**
 
-Al hacer clic en el icono de configuración de estilo, puede agregar sus propios estilos de visualización de texto utilizando el lenguaje de marcado de hipertexto css
+Esta ventana se abre al tocar el ícono junto a _Styles_
+
+Quienes estén familiarizados con la codificación CSS pueden realizar algunas personalizaciones ad-hoc en la forma en que se muestra su libro. (Ver más en Preguntas frecuentes **Personalizar estilos CSS de libros**).
+
+> ¡No olvides eliminar el código una vez que hayas terminado con el libro! Puede que no funcione en el próximo.
 
 ||||
 |-|-|-|
@@ -83,8 +91,3 @@ Al hacer clic en el icono de configuración de estilo, puede agregar sus propios
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
-
-
-

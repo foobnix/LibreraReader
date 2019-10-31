@@ -2,62 +2,60 @@
 layout: main
 ---
 
-# Theme Customization (white, black, AMOLED, colors, font size, link colors)
+# Theming Librera's UI
 
-> Librera allows you to customize the themes and interface to your color preferences.
+> **Librera** allows you to customize every single detail of the user interface.
 
-You can customize:
+In the _General Settings_ panel of the **Preferences** tab you can choose your personal:
 
-* Font size by increasing or decreasing it
-* Choose the color theme of the application
-* Choose the color of the headers
-* Choose the color of the links
-
-**All settings of the program you can combine with each other.**
+* Font size
+* Theme motif and color
+* Trimming color
+* Link color
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Setting the font size:**
+**Font-Size Setting**
 
-* Click on the menu item " Font Size"
-* Choose the font size you want by increasing or decreasing it.
+* Tap on _Font Size_ to open a dropdown list of relative font sizes
+* Choose the font size by decreasing or increasing your current font-size
 
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
 
-**Customize the app theme:**
+**General Theme Setting**
 
-* Click on the "Theme" menu item
-* Select the theme you need. You can also choose a theme for the E-Ink screen.
+* Tap on _Theme_ to open a dropdown list of available themes
+* Select the theme you want. You can also choose the theme for E-Ink screens.
 
-_You can also customize the theme of your screen while reading "Day / Night" Read more in the Faq setting the theme of reading "Day\Night"_
+> _Some extra theming will come from your choice of colors and fonts while setting up your Day/Night reading modes_
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
 
-**Setting the title color (Trim):**
+**Header and Title Color (Trim) Setting**
 
-* You can customize from preset color by clicking on the color you need
-* To select your own color, click on the plus icon and select a color using the color palette.
+* You can select one of the available presets by tapping on it
+* Or you can choose something entirely different by tapping on **+**
+* Select your color from the opened color palette
 
 ||||
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
-**Setting the link color:**
+**Link Color Setting**
 
-* Click on the link color
-* You can customize from preset color by clicking on the color you need
-* To select your own color, click on the plus icon and select a color using the color palette.
+* You need to _Enable_ custom colors by overriding the system settings
+* Select one of the available presets by tapping on it
+* Or you can choose something entirely different by tapping on **+**
+* Select your color from the opened color palette
 
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
 
-
-
-
+> **The best thing offered by *Librera* is the ability to theme each profile you create in it individually. You can theme your profiles created for your mood changes, day and night reading, book genres, etc.**

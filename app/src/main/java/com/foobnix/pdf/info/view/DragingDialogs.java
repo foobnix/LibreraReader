@@ -1526,7 +1526,7 @@ public class DragingDialogs {
                 editText.setText(selectedText);
 
                 final View onTranslate = view.findViewById(R.id.onTranslate);
-                onTranslate.setOnClickListener(new View.OnClickListener() {
+                onTranslate.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1553,7 +1553,7 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onAddToBookmark).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onAddToBookmark).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1563,7 +1563,7 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.readTTS).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.readTTS).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1576,7 +1576,7 @@ public class DragingDialogs {
                         TTSEngine.get().speek(text);
                     }
                 });
-                view.findViewById(R.id.readTTSNext).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.readTTSNext).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1586,7 +1586,7 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onShare).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onShare).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1601,26 +1601,28 @@ public class DragingDialogs {
                     }
                 });
 
-                view.findViewById(R.id.onCopy).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onCopy).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         controller.clearSelectedText();
                         Context c = anchor.getContext();
-                        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-                            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                            clipboard.setText(editText.getText().toString().trim());
+                        String trim = editText.getText().toString().trim();
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                            ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                            clipboard.setText(trim);
                         } else {
                             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", editText.getText().toString().trim());
+
+                            ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
                             clipboard.setPrimaryClip(clip);
                         }
-                        Toast.makeText(c, R.string.copy_text, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, c.getString(R.string.copied_text)+": "+trim, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
                 });
 
-                view.findViewById(R.id.onGoogle).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onGoogle).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1636,7 +1638,7 @@ public class DragingDialogs {
                 if (onBookSearch != null) {
 
                     onBookSearch.setVisibility(selectedText != null && selectedText.contains(" ") ? View.GONE : View.VISIBLE);
-                    onBookSearch.setOnClickListener(new View.OnClickListener() {
+                    onBookSearch.setOnClickListener(new OnClickListener() {
 
                         @Override
                         public void onClick(View v) {
@@ -1812,7 +1814,7 @@ public class DragingDialogs {
 
                 dictLayout.addView(fr);
 
-                view.findViewById(R.id.onUnderline).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onUnderline).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1821,7 +1823,7 @@ public class DragingDialogs {
                         controller.saveAnnotationsToFile();
                     }
                 });
-                view.findViewById(R.id.onStrike).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onStrike).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -1830,7 +1832,7 @@ public class DragingDialogs {
                         controller.saveAnnotationsToFile();
                     }
                 });
-                view.findViewById(R.id.onSelection).setOnClickListener(new View.OnClickListener() {
+                view.findViewById(R.id.onSelection).setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

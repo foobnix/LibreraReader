@@ -63,7 +63,7 @@
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
-                android:contentDescription="return to page"
+                android:contentDescription="@string/back"
                 android:src="@drawable/glyphicons_222_unshare"
                 android:visibility="visible" />
 
@@ -215,7 +215,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="Automatic scroll the document"
+                android:contentDescription="@string/automatic"
                 android:src="@drawable/glyphicons_37_file_play" />
 
             <ImageView
@@ -224,7 +224,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
-                android:contentDescription="read aloud TTS"
+                android:contentDescription="@string/text_to_speech"
                 android:src="@drawable/glyphicons_185_volume_up1" />
 
             <ImageView

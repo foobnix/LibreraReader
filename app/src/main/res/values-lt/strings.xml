@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Įrašyti .mp3 formatu</string>
    <string name="speak_into_file_wav">Įrašyti tts (mp3, wav)</string>
    <string name="text_is_too_long">Tekstas per ilgas</string>
+   <string name="settings">Nustatymai</string>
+   <string name="play_pause">Žaisti / pristabdyti</string>
+   <string name="next_track">Kitas takelis</string>
+   <string name="previous_track">Ankstesnis takelis</string>
+   <string name="copied_text">Nukopijuotas tekstas</string>
 </resources>

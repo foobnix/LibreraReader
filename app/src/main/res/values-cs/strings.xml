@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Záznam ve formátu .mp3</string>
    <string name="speak_into_file_wav">Záznam tts (mp3, wav)</string>
    <string name="text_is_too_long">Text je příliš dlouhý</string>
+   <string name="settings">Nastavení</string>
+   <string name="play_pause">Přehrát / pozastavit</string>
+   <string name="next_track">Další skladba</string>
+   <string name="previous_track">Předchozí skladba</string>
+   <string name="copied_text">Zkopírovaný text</string>
 </resources>

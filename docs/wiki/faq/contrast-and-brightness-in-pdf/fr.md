@@ -2,44 +2,43 @@
 layout: main
 ---
 
-# Contraste et luminosité en PDF (effet noir et blanc)
+# Amélioration du contraste et de la luminosité dans les PDF (effet N/B)
 
-> Librera Book Reader vous permet de personnaliser de manière flexible l'apparence du document.
-Lorsque vous configurez ces paramètres, le document devient noir et blanc.
-En déplaçant le curseur pour ajouter/diminuer le paramètre dont vous avez besoin,
-en arrière-plan de la boîte de dialogue de configuration, vous pouvez voir son effet sur le document.
-Vous pouvez configurer les trois paramètres ensemble, de manière distincte. Cet effet est souvent utilisé dans les lecteurs E-Ink
+> La lisibilité des PDF dans **Librera Reader** peut être considérablement améliorée par des ajustements manuels des paramètres de luminosité et de contraste. Lorsque vous passez en mode manuel, votre document sera affiché en noir et blanc et vous verrez les résultats de vos ajustements en temps réel en arrière-plan, derrière la fenêtre **Contraste et luminosité**.
+> Les réglages reproduisent l’effet souvent utilisé dans les lecteurs E-Ink.
 
-Pour une lecture aisée Vous pouvez ajuster les paramètres:
+Vous pouvez ajuster les paramètres suivants:
 * Contraste
 * luminosité
-* Souligner tout (effet de texte en gras)
+* Ou/et vous pouvez appliquer le paramètre automatique _Emphasize all_ (effet de caractère gras)
+
+> Les trois paramètres peuvent être appliqués séparément ou vous pouvez utiliser les trois combinés.
 
 ## Contraste
-* Cliquez sur l'icône Contraste et luminosité.
-* Utilisez le curseur pour sélectionner le type de document souhaité.
-* Une fois les paramètres définis, cliquez sur la croix dans la boîte de dialogue des paramètres.
+* Tapez sur l'icône _Contrast/Brightness_ dans le menu central.
+* Cochez la case _Ajuster manuellement_ dans la fenêtre **Contraste et luminosité** et utilisez le curseur _Contrast_ (ou **-** et **+**) pour ajuster le paramètre.
+* Appuyez sur en dehors de la fenêtre (ou sur le _x_ dans son coin supérieur droit) pour la fermer.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## luminosité
-* Cliquez sur l'icône Contraste et luminosité.
-* Utilisez le curseur pour sélectionner le type de document souhaité.
-* Une fois les paramètres définis, cliquez sur la croix dans la boîte de dialogue des paramètres.
+* Tapez sur l'icône _Contrast/Brightness_ dans le menu central.
+* Cochez la case _Ajuster manuellement_ dans la fenêtre **Contraste et luminosité** et utilisez le curseur _Brightness_ (ou **-** et **+**) pour ajuster le paramètre.
+* Appuyez sur en dehors de la fenêtre (ou sur le _x_ dans son coin supérieur droit) pour la fermer.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
-## Souligner tout (effet de texte en gras)
-* Cliquez sur l'icône Contraste et luminosité.
-* Activer la case à cocher Tout souligner
-* Une fois les paramètres définis, cliquez sur la croix dans la boîte de dialogue des paramètres.
+## Tout souligner (effet de lettre en gras)
+* Tapez sur l'icône _Contrast/Brightness_ dans le menu central.
+* Cochez la case _Ajuster manuellement_ puis sur la case _Emphasize all_
+* Appuyez sur en dehors de la fenêtre (ou sur le _x_ dans son coin supérieur droit) pour la fermer.
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> Si vous souhaitez restaurer les paramètres &quot;par défaut&quot; modifiés, cliquez sur la boîte de dialogue Paramètres de contraste et de luminosité, sélectionnez &quot;Restaurer les paramètres par défaut&quot;, puis confirmez le bouton &quot;OK&quot;. Les paramètres et l'affichage du document reviennent à leur état d'origine.
+> Pour supprimer vos paramètres manuels, utilisez le lien _Restore default_ situé au bas de la fenêtre **Contraste et luminosité**.

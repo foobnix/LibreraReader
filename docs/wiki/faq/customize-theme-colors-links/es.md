@@ -2,62 +2,60 @@
 layout: main
 ---
 
-# Personalización del tema (blanco, negro, AMOLED, colores, tamaño de fuente, colores de enlace)
+# Tematizando la interfaz de usuario de Librera
 
-> Librera le permite personalizar los temas y la interfaz según sus preferencias de color.
+> **Librera** le permite personalizar cada detalle de la interfaz de usuario.
 
-Puedes personalizar:
+En el panel _Configuración general_ de la pestaña **Preferencias** puede elegir su personal:
 
-* Tamaño de fuente al aumentarlo o disminuirlo
-* Elija el tema de color de la aplicación
-* Elige el color de los encabezados
-* Elija el color de los enlaces
-
-**Todas las configuraciones del programa se pueden combinar entre sí.**
+* Tamaño de fuente
+* Motivo y color del tema
+* Color de recorte
+* Color del enlace
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Configuración del tamaño de fuente:**
+**Configuración del tamaño de fuente**
 
-* Haga clic en el elemento del menú &quot;Tamaño de fuente&quot;
-* Elija el tamaño de fuente que desee al aumentarlo o disminuirlo.
+* Toque _Font Size_ para abrir una lista desplegable de tamaños de fuente relativos
+* Elija el tamaño de fuente disminuyendo o aumentando su tamaño de fuente actual
 
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
 
-**Personaliza el tema de la aplicación:**
+**Configuración del tema general**
 
-* Haga clic en el elemento de menú &quot;Tema&quot;
-* Seleccione el tema que necesita. También puede elegir un tema para la pantalla E-Ink.
+* Toque _Theme_ para abrir una lista desplegable de temas disponibles
+* Seleccione el tema que desee. También puede elegir el tema para las pantallas de E-Ink.
 
-_También puedes personalizar el tema de tu pantalla mientras lees &quot;Día/Noche&quot;. Lee más en la sección de preguntas frecuentes que configura el tema de lectura &quot;Día \ Noche&quot; _
+> _Algunos temas adicionales vendrán de tu elección de colores y fuentes mientras configuras tus modos de lectura Día/Noche_
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
 
-**Configuración del color del título (Recortar):**
+**Configuración de color de encabezado y título (recorte)**
 
-* Puede personalizar el color preestablecido haciendo clic en el color que necesita
-* Para seleccionar su propio color, haga clic en el icono más y seleccione un color usando la paleta de colores.
+* Puede seleccionar uno de los preajustes disponibles tocándolo
+* O puedes elegir algo completamente diferente tocando **+**
+* Seleccione su color de la paleta de colores abierta
 
 ||||
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
-**Configuración del color del enlace:**
+**Configuración de color de enlace**
 
-* Haga clic en el color del enlace
-* Puede personalizar el color preestablecido haciendo clic en el color que necesita
-* Para seleccionar su propio color, haga clic en el icono más y seleccione un color usando la paleta de colores.
+* Necesita _Activar_ colores personalizados anulando la configuración del sistema
+* Seleccione uno de los preajustes disponibles tocándolo
+* O puedes elegir algo completamente diferente tocando **+**
+* Seleccione su color de la paleta de colores abierta
 
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
 
-
-
-
+> **Lo mejor que ofrece * Librera * es la capacidad de crear un tema para cada perfil que cree en él individualmente. Puede crear un tema para sus perfiles creados para sus cambios de humor, lectura diurna y nocturna, géneros de libros, etc.**

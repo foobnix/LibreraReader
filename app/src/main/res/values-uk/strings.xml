@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Запис у форматі .mp3</string>
    <string name="speak_into_file_wav">Запис tts (mp3, wav)</string>
    <string name="text_is_too_long">Текст занадто довгий</string>
+   <string name="settings">Налаштування</string>
+   <string name="play_pause">Відтворення / пауза</string>
+   <string name="next_track">Наступний трек</string>
+   <string name="previous_track">Попередній трек</string>
+   <string name="copied_text">Скопійований текст</string>
 </resources>

@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">سجل بتنسيق mp3</string>
    <string name="speak_into_file_wav">سجل تحويل النص إلى كلام (mp3 ، wav)</string>
    <string name="text_is_too_long">النص طويل جدًا</string>
+   <string name="settings">الإعدادات</string>
+   <string name="play_pause">تشغيل / إيقاف مؤقت</string>
+   <string name="next_track">الأغنية التالية</string>
+   <string name="previous_track">المسار السابق</string>
+   <string name="copied_text">نسخ النص</string>
 </resources>

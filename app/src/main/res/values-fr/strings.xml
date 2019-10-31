@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Enregistrer au format .mp3</string>
    <string name="speak_into_file_wav">Enregistrer des tts (mp3, wav)</string>
    <string name="text_is_too_long">Le texte est trop long</string>
+   <string name="settings">Paramètres</string>
+   <string name="play_pause">Jouer pause</string>
+   <string name="next_track">Piste suivante</string>
+   <string name="previous_track">Piste précédente</string>
+   <string name="copied_text">Texte copié</string>
 </resources>

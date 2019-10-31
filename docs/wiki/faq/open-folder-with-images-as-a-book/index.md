@@ -2,12 +2,13 @@
 layout: main
 ---
 
-# Open folder with images as a book (Bind in a Book)
-It's easy to make a book of image files stored in a folder.
+# Opening a Folder with Images as a Book (Bind in a Book)
+In **Librera**, it is very easy to make a book bound of image files placed in a folder.
 
-* Open a folder with images (they should be renamed to indicate virtual page numbers) and press **Bind a Book**
+* Open a folder with images (rename them if needed to let **Librera** list them properly)
+* Tap no **Bind in a Book** at the top of the list
 * Your book in grid layout
-* Crop pages in Librera and adjust contrast and brightness
+* Crop pages in **Librera** and adjust contrast and brightness
 
 ||||
 |-|-|-|

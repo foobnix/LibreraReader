@@ -2,51 +2,46 @@
 layout: main
 ---
 
-# Setting up fingerprint or password protection
+# Setting Up Fingerprint or Password Protection
 
-> Librera allows you to protect your documents from viewing by restricting access with a password or fingerprint.
+> In **Librera**, you can protect your most sensitive documents from being viewed by unauthorized users who may accidentally or otherwise acquire access to your device. As a matter of fact, you will protect ALL your documents since you are restricting access to the app itself.
+The documents can be either fingerprint- or password-protected.
 
-Entry into the program may be limited to several types of protection, of your choice:
+## Enabling Startup Authorization
 
-* **Protection of the fingerprint. The fingerprint is used from the Android system**
-* **Password protection.**
-
-To enable password protection you must:
-
-* Click in the upper left corner to bring up the menu, or swipe it from the left to the right
-* Scroll down the menu to the login password settings.
+* Close the book you're currently reading
+*Tap on the **Preferences** tab and scroll down to the _General Settings_ panel
+* Check the _Prompt for password_ box
+> If you **Preferences** window is animated, you will call it by tapping the hamburger icon in the upper left corner or a right swipe from the left edge of the screen.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protection of the fingerprint**
+## Fingerprint Protection
 
-Setting up fingerprint login:
-* Put a checkbox to activate the password login
-* In the pop-up dialog box, check the box "Allow fingerprint identification"
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+> To activate fingerprint protection in **Librera**, you need to set up fingerprint access to your device first. 
+* In the **Set Password** window, check the _Allow fingerprint authantication_ box 
+* Confirm your choice by tapping **OK**
 
-Fingerprint input is installed. When you log in to Librera again, you will be asked for fingerprint identification, if correct 
-antideficit will run the program. The fingerprint is added, is adjusted to the Android system.
+> You need to restart **Librera** to activate fingerprint access authentication.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Password protection**
+## Password Protection
 
 Setting up password login:
 
-* Put a checkbox to activate the password login
-* Enter the password on the first line
-* Confirm the password on the second line. **Important: passwords in the first and second line must be identical!**
-* Confirm your choice "OK", a window will appear about setting the password, exit the program.
+* Enter and re-enter your password in respective fields of the **Set Password** window and hit **OK**
+> The passwords should match!
+* Confirm your choice by tapping **OK**
 
-Password login is installed. When you log in, a dialog box prompts you to enter your password. If the entered password is correct, the program will be logged in. If the password is incorrect, a pop-up window will appear stating that the password is incorrect.
+> You need to restart **Librera** for password protection to take effect. From this moment forward, you will be prompted for password on an empty screen when opening a document in **Librera**.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
-To remove the password , run Librera, please antideficit, in settings where previously activated the login password, clear the checkbox of this function.
+> To remove password/fingerprint protection, run **Librera**, authenticate yourself to the application, go to _Prompt for password_ box and uncheck it.

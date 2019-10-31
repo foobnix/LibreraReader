@@ -396,7 +396,7 @@ public class VerticalModeController extends DocumentController {
     public synchronized String getPageHtml() {
         String pageHTML = ctr.getDecodeService().getPageHTML(getCurentPageFirst1() - 1);
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
-        pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, "<|\n");
+        pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, TxtUtils.TTS_PAUSE_VIEW);
         return pageHTML;
     }
 

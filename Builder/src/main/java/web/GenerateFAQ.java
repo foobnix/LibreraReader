@@ -25,8 +25,8 @@ public class GenerateFAQ {
         final PrintWriter out = new PrintWriter(outFile);
         out.println("---");
         out.println("layout: main");
+        out.println("info: this file is generated automatically, please do not modify it");
         out.println("---");
-        //out.println("[<](/wiki/)");
         out.println("");
         out.println("# " + pageTitle);
         out.println("");

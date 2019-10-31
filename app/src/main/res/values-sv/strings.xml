@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Spela in i .mp3-format</string>
    <string name="speak_into_file_wav">Spela in tts (mp3, wav)</string>
    <string name="text_is_too_long">Texten är för lång</string>
+   <string name="settings">Inställningar</string>
+   <string name="play_pause">Spela / paus</string>
+   <string name="next_track">Nästa spår</string>
+   <string name="previous_track">Föregående spår</string>
+   <string name="copied_text">Kopierad text</string>
 </resources>

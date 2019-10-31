@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -32,6 +35,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Views {
+
+    public static final Handler handler =  new Handler(Looper.getMainLooper());
 
     public static void visibleInBeta(View view) {
         view.setVisibility(BuildConfig.IS_BETA ? View.VISIBLE : View.GONE);
@@ -173,6 +178,17 @@ public class Views {
             findViewById.setOnClickListener(onClick);
         }
         return findViewById;
+    }
+
+    public static TextView newText(Context c, String text) {
+        TextView t = new TextView(c);
+        t.setText(text);
+        return  t;
+    }
+    public static FrameLayout newFrameLayout(Context c, View view) {
+        FrameLayout t = new FrameLayout(c);
+        t.addView(view);
+        return t;
     }
 
     public static TextView text(final Object view, final int resId) {

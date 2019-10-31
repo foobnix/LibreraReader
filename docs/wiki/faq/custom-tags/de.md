@@ -2,12 +2,12 @@
 layout: main
 ---
 
-# Umgang mit benutzerdefinierten Tags
+# Hinzufügen und Behandeln von benutzerdefinierten Tags
 
 > Indem wir den Büchern in unserer Bibliothek benutzerdefinierte Tags hinzufügen, fügen wir den Metadaten der Bücher (für uns) aussagekräftige Informationen hinzu. Diese Tags werden sich als nützlich erweisen, wenn wir in Zukunft auf die Bücher verweisen, denen wir Tags zugewiesen haben. Sie helfen uns, Bücher in der Bibliothek zu organisieren, nach unseren Wünschen zu sortieren, benutzerspezifische Buchlisten zu erstellen, Bücher in der Bibliothek leicht zu finden usw.
 > Benutzerdefinierte Tags werden für alle erdenklichen Zwecke zusammen mit bereits vorhandenen herkömmlichen E-Book-Tags verwendet, z. B. [Series](), [Authors](), [Keywords](), [Genres]() usw.
 
-## Es gibt viele Möglichkeiten, einem Buch ein **neues Tag** hinzuzufügen.
+> Es gibt viele Möglichkeiten, einem Buch ein **neues Tag** hinzuzufügen.
 
 * Durch langes Drücken auf das Sternsymbol (Favoriten)
 * Rufen Sie das Buchmenü auf und tippen Sie auf &quot;Tags hinzufügen&quot;.
@@ -17,12 +17,12 @@ layout: main
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-## Das Hinzufügen und Löschen von Tags ist kinderleicht
+## Hinzufügen und Löschen von Tags (ganz einfach)
 
 * Tippen Sie auf _Neues Tag_.
 * Fügen Sie hier aussagekräftige Informationen hinzu
 * Um ein Tag zu löschen, tippen Sie auf ein _x_ daneben und bestätigen Sie den Löschvorgang
-> Das gelöschte Tag wird aus allen Büchern entfernt, denen es zugewiesen ist
+> Das gelöschte Tag wird aus allen Büchern entfernt, denen es zugewiesen ist.
 
 |4|5|6|
 |-|-|-|
@@ -30,9 +30,9 @@ layout: main
 
 ## Erstellen einer benutzerdefinierten Bücherliste
 
-* Weisen Sie einem Buch ein Tag zu, indem Sie es auswählen und auf &quot;Anwenden&quot; klicken.
-* Ihre benutzerdefinierten Buchlisten werden auf dem Tab &quot;Favoriten&quot; angezeigt
-* Tippen Sie auf den Listennamen, um ihn auf dem Tab &quot;Bibliothek&quot; zu öffnen
+* Weisen Sie einem Buch ein Tag zu, indem Sie es auswählen und auf _APPLY_ tippen.
+* Ihre benutzerdefinierten Buchlisten werden auf dem Tab **Favoriten** angezeigt
+* Tippen Sie auf einen Listennamen, um ihn auf dem Tab **Bibliothek** zu öffnen
 
 |7|8|9|
 |-|-|-|

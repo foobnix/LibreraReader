@@ -1598,7 +1598,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 	        DEBUG("fontSize get %d", fs);
 
             if(fs > fontSize){
-			    fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->first_span->text->style->size);
+			    fz_write_printf(ctx,out,"<pause>");
 			}
 
 			if (is_bold) fz_write_printf(ctx,out,"<b>");
@@ -1680,6 +1680,9 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 			if (is_italic) {fz_write_printf(ctx,out,"</i>"); fz_write_printf(ctx,out,"<pause>");}
 			//if (is_mono) fz_write_printf(ctx,out,"</tt>");
 			fz_write_printf(ctx,out,"</p>");
+			if(fs > fontSize){
+                fz_write_printf(ctx,out,"<pause>");
+            }
 			//fz_printf(ctx, out, "<br/>");
 
 			if(block_n < page->len-1){

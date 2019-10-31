@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">.mp3 형식으로 기록</string>
    <string name="speak_into_file_wav">레코드 TT (MP3, WAV)</string>
    <string name="text_is_too_long">텍스트가 너무 깁니다</string>
+   <string name="settings">설정</string>
+   <string name="play_pause">재생 / 일시 중지</string>
+   <string name="next_track">다음 트랙</string>
+   <string name="previous_track">이전 트랙</string>
+   <string name="copied_text">복사 한 텍스트</string>
 </resources>

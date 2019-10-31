@@ -1040,7 +1040,7 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
     float fs = block->u.t.first_line->first_char->size;
 
 	if(fs > fontSize){
-        fz_write_printf(ctx,out,"<pause-font-size-%f>",fs);
+        fz_write_printf(ctx,out,"<pause>");
     }
 
 
@@ -1110,6 +1110,10 @@ fz_print_stext_block_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block 
                     fz_write_printf(ctx, out, "</i>");
                 }
 	fz_write_string(ctx, out, "</p>\n");
+	if(fs > fontSize){
+	    fz_write_string(ctx, out, "<pause>\n");
+
+	}
 }
 
 

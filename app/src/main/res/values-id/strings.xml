@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Rekam dalam format .mp3</string>
    <string name="speak_into_file_wav">Rekam tts (mp3, wav)</string>
    <string name="text_is_too_long">Teks terlalu panjang</string>
+   <string name="settings">Pengaturan</string>
+   <string name="play_pause">Play / pause</string>
+   <string name="next_track">Trek selanjutnya</string>
+   <string name="previous_track">Trek sebelumnya</string>
+   <string name="copied_text">Teks yang disalin</string>
 </resources>

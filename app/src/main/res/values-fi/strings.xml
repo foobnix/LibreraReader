@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">Tallenna .mp3-muodossa</string>
    <string name="speak_into_file_wav">Levy-tts (mp3, wav)</string>
    <string name="text_is_too_long">Teksti on liian pitkä</string>
+   <string name="settings">Asetukset</string>
+   <string name="play_pause">Play / pause</string>
+   <string name="next_track">Seuraava kappale</string>
+   <string name="previous_track">Edellinen kappale</string>
+   <string name="copied_text">Kopioitu teksti</string>
 </resources>

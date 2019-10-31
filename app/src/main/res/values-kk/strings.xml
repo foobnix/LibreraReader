@@ -584,4 +584,9 @@
    <string name="record_in_mp3_format">.mp3 форматында жазу</string>
    <string name="speak_into_file_wav">Жазба tts (mp3, wav)</string>
    <string name="text_is_too_long">Мәтін тым ұзын</string>
+   <string name="settings">Параметрлерін таңдаңыз</string>
+   <string name="play_pause">Ойнату / тоқтата тұру</string>
+   <string name="next_track">Келесі трек</string>
+   <string name="previous_track">Алдыңғы трек</string>
+   <string name="copied_text">Көшірілген мәтін</string>
 </resources>

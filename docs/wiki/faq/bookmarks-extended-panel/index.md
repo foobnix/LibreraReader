@@ -2,58 +2,66 @@
 layout: main
 ---
 
-# Working with bookmarks in the extended panel (Ribbon bookmarks)
+# Working with Bookmarks in Extended Mode (Bookmarks Ribbon)
 
-> In Librera, you can display an extended bookmarks bar (Ribbon bookmarks) on the reading screen. It serves for the function of quickly adding a bookmark, switching between bookmarks.
+> You can make **Librera** display your bookmarks on screen at all times while reading a book. They will be shown across the top of the screen in a so-called _Bookmarks Ribbon_. This extended bookmark mode should come in handy when you need to add new bookmarks or switch between them in an instant. 
+> We expect this cool feature be in high demand with musicians, while running the app in _Musician's_ mode. So, it comes with the Ribbon enabled in this mode by default.
 
-In order to enable it, you must:
+To enable it in the other modes:
 
-* Click the settings icon
-* Go to settings "Status bar"
-* Enable the extended bookmark panel (Ribbon bookmarks) checkbox in the reading mode you want.
+* Tap the _Settings_ icon to open the **Preferences** window
+* Tap on the _Status Bar_ tab
+* In the _Bookmarks Ribbon_ panel, check the box next to the mode you intend to enable the Ribbon for.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Next, you will see how to work with the quick bookmarks bar in "Book reading" mode. You can repeat these actions in all three modes, they are the same.
+Operations with the _Bookmarks Ribbon_ are illustrated in _Book_ mode. It all works the same for all three modes.
 
-**If you no longer need an extended bookmarks bar (Ribbon bookmarks), you can disable it by unchecking the "Status bar" settings checkbox from your reading mode. The bookmark icon from the top right corner will be removed.**
+> If you no longer need the _Bookmark Ribbon_, you can disable it by unchecking the respective box in the _Status bar_ tab.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-**Adding bookmarks:**
+**Adding Bookmarks**
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select " Add " bookmark
-* Make a comment to the bookmark, from this comment the bookmark will be assigned a name. In this example, the comment " first bookmark"
-Click "Add"
+> The bookmark floater in the upper right corner indicates that you're currently in _Bookmarks Ribbon_ mode.
+
+* Tap the bookmark floater on the page you are about to bookmark
+* Tap _ADD_ to actually add the bookmark via the _Bookmarks_ window
+* Make a comment to the bookmark. Note that the bookmark's name comes from your comment (**first bookmark** in our example).
+* Tap **ADD** to complete the procedure.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-A bookmark will be added in the bookmarks window, and on top, in the extended bookmarks bar (Ribbon bookmarks). Now, if you want to go to this tab, just click on it from the top, in the panel, while reading. If you want to edit it, make a long tap on the bookmark in the bookmarks window, the edit window will appear. Also, if you have a lot of bookmarks, you can swipe on the extended bookmarks bar (Ribbon bookmarks) to move them to the left or right.
+Your new bookmark will appear in the _Bookmarks_ window, and at the same time you will see it in the _Bookmarks Ribbon_ on top. Now, in order to go back to this bookmark, you just need to tap on it in the Ribbon.
+
+> Note: A long-press on a bookmark in the Ribbon will open an edit window.
+* Save your editing results by tapping **SAVE**
+* Or you can delete the bookmark by tapping **DELETE**
+The Ribbon will become a full-blown ribbon across your screen when you have many bookmarks. You can navigate through them by finger swipes.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Adding Quick bookmark** 
+**Adding Quick Bookmarks** 
 
-* Click the Bookmark icon in the upper right corner of the screen
-* Select "Quick bookmark"
-* A "Quick bookmark" will be created. It will be given a name-page number. If you go to the bookmarks window you will see a Quick bookmark with the name - 15. "Quick bookmark". When you long-click on a bookmark in the bookmarks window, the window of editing, deleting it will pop up.
+* Tap the bookmark floater in the top right corner to open the _Bookmarks_ window.
+* Tap on **QUICK BOOKMARK**
+* Thus a "quick bookmark" is created, indicated by the the page number in the Ribbon on top. On the list in the _Bookmarks_ window, it will go as the page # and _Quick Bookmark_ next to it.
+> You can long-press on a quick bookmark in the list to enable its editing or deletion in a pop-up bookmark edit window.
 
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
-You can use quick actions to add or remove bookmarks in the extended bookmarks bar (Ribbon bookmarks):
+> You can bypass some operations when adding or deleting bookmarks by using the _Bookmarks Ribbon_:
 
-* Long tap on the bookmark icon in the upper right corner-adds a quick bookmark
-* A long tap on the name of the bookmark, in the extended bookmarks bar (Ribbon bookmarks), will prompt you to delete it.
-
+* A long-press on the bookmark floater in the top right corner will add a quick bookmark.
+* A long-press on a bookmark in the _Bookmarks Ribbon_ will open a prompt suggesting you to delete it.

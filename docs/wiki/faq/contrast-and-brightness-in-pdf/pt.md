@@ -2,44 +2,43 @@
 layout: main
 ---
 
-# Contraste e brilho em PDF (efeito preto e branco)
+# Aprimoramento de contraste e brilho em PDF (efeito P/B)
 
-> O Librera Book Reader permite personalizar de forma flexível a aparência do documento.
-Quando você define essas configurações, o documento fica preto e branco.
-Movendo o controle deslizante para adicionar/diminuir o parâmetro necessário,
-no fundo da caixa de diálogo de configurações, você pode ver seu efeito no documento.
-Você pode configurar todos os três parâmetros juntos, para separações. Esse efeito é frequentemente usado em leitores de tinta E
+> A legibilidade do PDF no **Librera Reader** pode ser significativamente aprimorada com ajustes manuais nas configurações de brilho e contraste. Quando você alterna para o modo manual, seu documento será exibido em preto e branco e você verá os resultados dos seus ajustes em tempo real em segundo plano, atrás da janela **Contraste e brilho**.
+> Os ajustes imitam o efeito frequentemente usado nos leitores de tinta eletrônica.
 
-Para uma leitura confortável Você pode ajustar as configurações:
+Você pode ajustar as seguintes configurações:
 * Contraste
 * Brilho
-* Enfatize tudo (efeito de texto em negrito)
+* Ou/e você pode aplicar a configuração _Emphasize all_ automática (um efeito em negrito)
+
+> Todas as três configurações podem ser aplicadas separadamente ou você pode usar as três combinadas.
 
 ## Contraste
-* Clique no ícone Contraste e brilho
-* Use o controle deslizante para selecionar o tipo de documento que você deseja
-* Após a configuração, clique na cruz na caixa de diálogo de configurações.
+* Toque no ícone _Contraste/Brilho_ no menu central do toque.
+* Marque a caixa _Ajuste manualmente_ na janela **Contraste e brilho** e use o controle deslizante _Contrast_ (ou **-** e **+**) para ajustar a configuração.
+* Toque fora da janela (ou no _x_ no canto superior direito) para fechá-la.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 ## brilho
-* Clique no ícone Contraste e brilho
-* Use o controle deslizante para selecionar o tipo de documento que você deseja
-* Após a configuração, clique na cruz na caixa de diálogo de configurações.
+* Toque no ícone _Contraste/Brilho_ no menu central do toque.
+* Marque a caixa _Ajuste manualmente_ na janela **Contraste e brilho** e use o controle deslizante _Brilho___ (ou **-** e **+**) para ajustar a configuração.
+* Toque fora da janela (ou no _x_ no canto superior direito) para fechá-la.
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](222.jpg)|
 
-## Enfatize tudo (efeito de texto em negrito)
-* Clique no ícone Contraste e brilho
-* Ativar caixa de seleção Enfatizar todos
-* Após a configuração, clique na cruz na caixa de diálogo de configurações
+## Enfatize tudo (efeito negrito)
+* Toque no ícone _Contraste/Brilho_ no &quot;menu do toque central&quot;
+* Marque a caixa _Ajuste manualmente_ e, em seguida, a caixa _Efinalizar tudo_
+* Toque fora da janela (ou no _x_ no canto superior direito) para fechá-la.
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-> Se você deseja restaurar as configurações &quot;padrão&quot; alteradas - clique na caixa de diálogo Configurações de contraste e brilho - &quot;Restaurar como padrão&quot; e confirme &quot;OK&quot;. As configurações e a exibição do documento retornam ao estado original.
+> Para descartar suas configurações manuais, use o link _Restore default_ na parte inferior da janela **Contraste e brilho**.
