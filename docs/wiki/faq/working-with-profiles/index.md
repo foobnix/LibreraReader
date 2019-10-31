@@ -7,7 +7,7 @@ layout: main
 > Librera allows you to add and configure many profiles, keeping each individual settings of the program, its theme.
 
 
-To add a new profile, you must:
+## To add a new profile, you must:
 
 * In the profile settings panel, click the settings icon
 * Click on the link " New profile"
@@ -19,7 +19,7 @@ To add a new profile, you must:
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
 
-To select the profile you created:
+## To select the profile you created:
 
 * Click on current profile
 * Select the desired profile from the drop down list
@@ -30,9 +30,11 @@ To select the profile you created:
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
+
+
 > If you need to reset all the Librera settings in the Current profile to their original state, as after the first installation, then it can be done in several stages.
 
-In order to do a reset you need to:
+## In order to do a reset you need to:
 
  * Click in the upper left corner to bring up the menu, or swipe it from the left to the right
  * Long click on the desire Profile name 
@@ -47,7 +49,7 @@ In order to do a reset you need to:
 |![](19.jpg)|![](20.jpg)|![](21.jpg)|
 
 
-To delete a profile:
+## To delete a profile:
 * Exit the profile you want to delete by switching to another profile
 * Click the settings icon in the profiles block
 * Click the delete icon next to the profile you want to delete
