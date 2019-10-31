@@ -5,7 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
-* [Aprire una cartella con le immagini come libro (Rileva un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
+* [Apertura di una cartella con immagini come libro (Rilegatura in un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
+* [Aggiunta e gestione di tag personalizzati](/wiki/faq/custom-tags/it)
+* [Aggiornamento della libreria](/wiki/faq/update-the-library/it)
+* [UI di Theming Librera](/wiki/faq/customize-theme-colors-links/it)
 * [Lettura velocità RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
 * [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
 * [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
@@ -18,14 +21,12 @@ info: this file is generated automatically, please do not modify it
 * [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)
 * [Installazione e configurazione della sintesi vocale (TTS)](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Impostazione della barra di stato](/wiki/faq/how-to-set-up-a-status-bar/it)
-* [Come aggiornare la libreria](/wiki/faq/update-the-library/it)
 * [Codifica CSS personalizzata](/wiki/faq/customize-book-css-styles/it)
 * [Come impostare la selezione del testo](/wiki/faq/how-to-set-text-selection/it)
 * [Numeri di pagina relativi per i libri PDF](/wiki/faq/relative-page-numbers/it)
 * [Come personalizzare l'aspetto della tua biblioteca e delle copertine dei libri](/wiki/faq/how-to-configure-the-library-view/it)
 * [Librera per l'apprendimento delle lingue straniere](/wiki/faq/librera-for-study-foreign-languages/it)
 * [Includi le note a piè di pagina direttamente nel testo](/wiki/faq/include-footnotes-directly-in-the-text/it)
-* [Personalizzazione del tema (bianco, nero, AMOLED, colori, dimensione del carattere, colori dei collegamenti)](/wiki/faq/customize-theme-colors-links/it)
 * [Come aumentare la dimensione del carattere nel documento PDF in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
 * [Come eliminare libri dalla scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
 * [Come trasferire testo dal browser Web (da leggere o TTS)](/wiki/faq/how-to-transfer-text-from-browser/it)
@@ -34,5 +35,4 @@ info: this file is generated automatically, please do not modify it
 * [Come convertire PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
 * [Controllo luminosità e filtro luce blu](/wiki/faq/brightness-control-and-blue-light-filter/it)
 * [Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista](/wiki/faq/reading-mode-vertical-book-musician/it)
-* [Gestione dei tag personalizzati](/wiki/faq/custom-tags/it)
 * [Imposta il proprio sfondo per la pagina del libro](/wiki/faq/how-to-set-page-background-image/it)

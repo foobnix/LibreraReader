@@ -5,7 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
-* [Ordner mit Bildern als Buch öffnen (Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
+* [Ordner mit Bildern als Buch öffnen (in einem Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
+* [Hinzufügen und Behandeln von benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
+* [Aktualisieren Ihrer Bibliothek](/wiki/faq/update-the-library/de)
+* [Benutzeroberfläche von Theming Librera](/wiki/faq/customize-theme-colors-links/de)
 * [RSVP-Geschwindigkeitsanzeige](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/de)
 * [Einrichten des Fingerabdruck- oder Passwortschutzes](/wiki/faq/setting-up-fingerprint-or-password-protection/de)
 * [Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
@@ -18,14 +21,12 @@ info: this file is generated automatically, please do not modify it
 * [So konfigurieren Sie das Widget](/wiki/faq/how-to-configure-the-widget/de)
 * [Installieren und Konfigurieren von Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/de)
 * [Einstellen der Statusleiste](/wiki/faq/how-to-set-up-a-status-bar/de)
-* [So aktualisieren Sie die Bibliothek](/wiki/faq/update-the-library/de)
 * [Benutzerdefinierte CSS-Codierung](/wiki/faq/customize-book-css-styles/de)
 * [Einstellen der Textauswahl](/wiki/faq/how-to-set-text-selection/de)
 * [Relative Seitenzahlen für PDF-Bücher](/wiki/faq/relative-page-numbers/de)
 * [So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an](/wiki/faq/how-to-configure-the-library-view/de)
 * [Librera zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
 * [Fußnoten direkt in den Text einfügen](/wiki/faq/include-footnotes-directly-in-the-text/de)
-* [Anpassung des Themas (weiß, schwarz, AMOLED, Farben, Schriftgröße, Linkfarben)](/wiki/faq/customize-theme-colors-links/de)
 * [So erhöhen Sie die Schriftgröße in PDF-Dokumenten unter Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)
 * [Löschen von Büchern von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Übertragen von Text vom Webbrowser (zum Lesen oder TTS)](/wiki/faq/how-to-transfer-text-from-browser/de)
@@ -34,5 +35,4 @@ info: this file is generated automatically, please do not modify it
 * [Konvertieren von PDF in EPUB](/wiki/faq/convert-pdf-to-epub/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
 * [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading-mode-vertical-book-musician/de)
-* [Umgang mit benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
 * [Hintergrund für Buchseite festlegen](/wiki/faq/how-to-set-page-background-image/de)

@@ -5,7 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
-* [Opening a Folder with Images as a Book (Bind a Book)](/wiki/faq/open-folder-with-images-as-a-book)
+* [Opening a Folder with Images as a Book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
+* [Adding and Handling Custom Tags](/wiki/faq/custom-tags)
+* [Updating Your Library](/wiki/faq/update-the-library)
+* [Theming Librera's UI](/wiki/faq/customize-theme-colors-links)
 * [RSVP Speed Reading](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [Setting Up Fingerprint or Password Protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
@@ -18,14 +21,12 @@ info: this file is generated automatically, please do not modify it
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)
 * [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [Setting the status bar](/wiki/faq/how-to-set-up-a-status-bar)
-* [How to update the library](/wiki/faq/update-the-library)
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles)
 * [How to set text selection](/wiki/faq/how-to-set-text-selection)
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)
 * [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
-* [Theme Customization (white, black, AMOLED, colors, font size, link colors)](/wiki/faq/customize-theme-colors-links)
 * [How to increase font size in PDF document in Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [How to transfer text from the Web browser (to read or TTS)](/wiki/faq/how-to-transfer-text-from-browser)
@@ -34,5 +35,4 @@ info: this file is generated automatically, please do not modify it
 * [How to convert PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness control and bluelight filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)
-* [Handling Custom Tags](/wiki/faq/custom-tags)
 * [Set own background for book page](/wiki/faq/how-to-set-page-background-image)

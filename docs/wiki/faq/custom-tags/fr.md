@@ -2,22 +2,22 @@
 layout: main
 ---
 
-# Gestion des balises personnalisées
+# Ajout et gestion des balises personnalisées
 
 > En ajoutant des étiquettes personnalisées aux livres de notre bibliothèque, nous ajoutons des informations significatives (pour nous) aux métadonnées des livres. Ces balises nous seront utiles lors de nos futures références aux livres auxquels nous avons attribué des balises. Ils nous aideront à organiser les livres dans la bibliothèque, à les trier à notre guise, à créer des listes de livres spécifiques à l'utilisateur, à trouver facilement des livres dans la bibliothèque, etc.
 > Les balises définies par l'utilisateur seront utilisées à toutes fins imaginables aux côtés des balises de livres électroniques déjà existantes, telles que [Série](), [Auteurs](), [Mots-clés](), [Genres](), etc.
 
-## Il existe plusieurs façons d'ajouter un **nouveau tag** à un livre.
+> Il existe de nombreuses façons d’ajouter un **nouveau tag** à un livre.
 
-* En appuyant longuement sur l’icône étoile (favoris)
+* En appuyant longuement sur l’icône étoile (Favoris)
 * En appelant le menu du livre et en appuyant sur _Ajouter des tags_
-* Via la fenêtre _File info_ (Astuce: une pression longue sur une couverture de livre vous y mènera)
+* Via la fenêtre _File info_ (Astuce: un appui long sur une couverture de livre vous y mènera)
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-## L'ajout et la suppression de balises est simple comme bonjour
+## Ajouter et supprimer des tags (simple comme bonjour)
 
 * Appuyez sur _Nouveau tag_
 * Ajoutez ici des informations utiles
@@ -30,9 +30,9 @@ layout: main
 
 ## Création d'une liste personnalisée de livres
 
-* Attribuez un tag à un livre en le sélectionnant et en appuyant sur _Apply_
-* Vos listes de lecture personnalisées apparaîtront dans l'onglet &quot;Favoris&quot;.
-* Appuyez sur le nom de la liste pour l’ouvrir dans l’onglet _Bibliothèque_
+* Attribuez un tag à un livre en le sélectionnant et en appuyant sur _APPLY_
+* Vos listes de lecture personnalisées apparaissent dans l'onglet **Favoris**.
+* Appuyez sur un nom de liste pour l'ouvrir dans l'onglet **Bibliothèque**.
 
 |7|8|9|
 |-|-|-|

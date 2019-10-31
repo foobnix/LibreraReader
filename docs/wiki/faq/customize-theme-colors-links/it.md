@@ -2,62 +2,60 @@
 layout: main
 ---
 
-# Personalizzazione del tema (bianco, nero, AMOLED, colori, dimensione del carattere, colori dei collegamenti)
+# L'interfaccia utente di Theming Librera
 
-> Librera ti consente di personalizzare i temi e l'interfaccia in base alle tue preferenze di colore.
+> **Librera** ti consente di personalizzare ogni singolo dettaglio dell'interfaccia utente.
 
-Puoi personalizzare:
+Nel pannello _General Settings_ della scheda **Preferenze** puoi scegliere il tuo personale:
 
-* Dimensione carattere aumentandola o diminuendola
-* Scegli il tema colore dell'applicazione
-* Scegli il colore delle intestazioni
-* Scegli il colore dei collegamenti
-
-**Tutte le impostazioni del programma possono essere combinate tra loro.**
+* Dimensione carattere
+* Motivo e colore del tema
+* Colore di rifinitura
+* Colore link
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Impostazione della dimensione del carattere:**
+**Impostazione dimensione carattere**
 
-* Fai clic sulla voce di menu &quot;Dimensione carattere&quot;
-* Scegli la dimensione del carattere che desideri aumentandola o diminuendola.
+* Tocca su _Dimensione frontale_ per aprire un elenco a discesa con dimensioni dei caratteri relative
+* Scegli la dimensione del carattere diminuendo o aumentando la dimensione del carattere corrente
 
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
 
-**Personalizza il tema dell'app:**
+**Impostazione del tema generale**
 
-* Fai clic sulla voce di menu &quot;Tema&quot;
-* Seleziona il tema che ti serve. Puoi anche scegliere un tema per la schermata E-Ink.
+* Tocca _Theme_ per aprire un elenco a discesa dei temi disponibili
+* Seleziona il tema che desideri. Puoi anche scegliere il tema per le schermate E-Ink.
 
-_Puoi anche personalizzare il tema del tuo schermo mentre leggi &quot;Giorno/Notte&quot; Leggi di più nella FAQ impostando il tema della lettura &quot;Giorno \ Notte&quot; _
+> _Alcuni temi extra verranno dalla tua scelta di colori e caratteri durante l'impostazione delle modalità di lettura diurna/notturna_
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
 
-**Impostazione del colore del titolo (Rifinitura):**
+**Impostazioni colore (intonaco) intestazione e titolo**
 
-* È possibile personalizzare dal colore predefinito facendo clic sul colore desiderato
-* Per selezionare il tuo colore, fai clic sull'icona più e seleziona un colore usando la tavolozza dei colori.
+* È possibile selezionare uno dei preset disponibili toccandolo
+* Oppure puoi scegliere qualcosa di completamente diverso toccando **+**
+* Seleziona il colore dalla tavolozza dei colori aperta
 
 ||||
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
-**Impostazione del colore del collegamento:**
+**Impostazione colore link**
 
-* Fai clic sul colore del link
-* È possibile personalizzare dal colore predefinito facendo clic sul colore desiderato
-* Per selezionare il tuo colore, fai clic sull'icona più e seleziona un colore usando la tavolozza dei colori.
+* Devi abilitare i colori personalizzati sovrascrivendo le impostazioni di sistema
+* Seleziona uno dei preset disponibili toccandolo
+* Oppure puoi scegliere qualcosa di completamente diverso toccando **+**
+* Seleziona il colore dalla tavolozza dei colori aperta
 
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
 
-
-
-
+> **La cosa migliore offerta da * Librera * è la possibilità di creare temi per ogni profilo che crei in esso individualmente. Puoi creare temi per i tuoi profili creati per i tuoi cambiamenti d'umore, la lettura diurna e notturna, i generi di libri, ecc.**

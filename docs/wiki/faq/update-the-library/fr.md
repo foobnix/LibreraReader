@@ -2,11 +2,12 @@
 layout: main
 ---
 
-# Comment mettre à jour la bibliothèque
-
-* Cliquez sur l'icône de mise à jour pour lancer la mise à jour de la bibliothèque.
-* Vous pouvez personnaliser les chemins d'accès à la bibliothèque.
-* Si vous modifiez certains paramètres de la bibliothèque, la boîte de dialogue apparaît.
+# Mise à jour de votre bibliothèque
+> Une fois que vous avez ajouté des livres à votre bibliothèque ou supprimé des éléments, vous devez le mettre à jour pour refléter ces changements.
+* Appuyez sur l'icône de mise à jour pour lancer la mise à jour de la bibliothèque.
+* Dans l'onglet coulissant **Préférences**, vous pouvez spécifier des dossiers supplémentaires pour que **Librera** recherche des livres.
+* Vous pouvez également supprimer des dossiers entiers de la liste de ceux à analyser.
+* Une fois que vous avez modifié la liste des types de fichiers éligibles, une invite s'affiche dans quelques secondes pour vous permettre de confirmer les modifications.
 
 |1|2|3|
 |-|-|-|

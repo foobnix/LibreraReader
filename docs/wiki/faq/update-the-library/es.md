@@ -2,11 +2,12 @@
 layout: main
 ---
 
-# Cómo actualizar la biblioteca
-
-* Haga clic en el icono de actualización para comenzar a actualizar la biblioteca.
-* Puede personalizar las rutas para la biblioteca de libros.
-* Si cambia algunas configuraciones de la biblioteca, aparecerá el cuadro de diálogo
+# Actualizando su biblioteca
+> Una vez que haya agregado libros a su Biblioteca o eliminado algunas cosas de ella, debe actualizarla para reflejar esos cambios.
+* Toque el icono de actualización para comenzar a actualizar la biblioteca.
+* En la pestaña deslizable **Preferencias**, puede especificar algunas carpetas adicionales para **Librera** para buscar libros.
+* También puede eliminar carpetas completas de la lista de las que se escaneará en busca de libros.
+* Una vez que haya realizado cambios en la lista de tipos de archivos elegibles, aparecerá un mensaje en un par de segundos para que confirme los cambios.
 
 |1|2|3|
 |-|-|-|

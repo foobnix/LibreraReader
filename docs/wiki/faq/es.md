@@ -5,7 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Preguntas frecuentes
 
-* [Abrir una carpeta con imágenes como libro (Enlazar un libro)](/wiki/faq/open-folder-with-images-as-a-book/es)
+* [Abrir una carpeta con imágenes como un libro (Enlazar en un libro)](/wiki/faq/open-folder-with-images-as-a-book/es)
+* [Agregar y manejar etiquetas personalizadas](/wiki/faq/custom-tags/es)
+* [Actualizando su biblioteca](/wiki/faq/update-the-library/es)
+* [Temiendo la IU de Librera](/wiki/faq/customize-theme-colors-links/es)
 * [Lectura de velocidad de RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/es)
 * [Configuración de protección de huella digital o contraseña](/wiki/faq/setting-up-fingerprint-or-password-protection/es)
 * [Mejora de contraste y brillo en PDF (efecto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/es)
@@ -18,14 +21,12 @@ info: this file is generated automatically, please do not modify it
 * [Cómo configurar el widget](/wiki/faq/how-to-configure-the-widget/es)
 * [Instalación y configuración de texto a voz (TTS)](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Configuración de la barra de estado](/wiki/faq/how-to-set-up-a-status-bar/es)
-* [Cómo actualizar la biblioteca](/wiki/faq/update-the-library/es)
 * [Codificación CSS personalizada](/wiki/faq/customize-book-css-styles/es)
 * [Cómo configurar la selección de texto](/wiki/faq/how-to-set-text-selection/es)
 * [Números de página relativos para libros PDF](/wiki/faq/relative-page-numbers/es)
 * [Cómo personalizar el aspecto de su biblioteca y portadas de libros](/wiki/faq/how-to-configure-the-library-view/es)
 * [Librera para aprender idiomas extranjeros](/wiki/faq/librera-for-study-foreign-languages/es)
 * [Incluir notas al pie directamente en el texto](/wiki/faq/include-footnotes-directly-in-the-text/es)
-* [Personalización del tema (blanco, negro, AMOLED, colores, tamaño de fuente, colores de enlace)](/wiki/faq/customize-theme-colors-links/es)
 * [Cómo aumentar el tamaño de fuente en un documento PDF en Android](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
 * [Cómo borrar libros de la tarjeta SD externa](/wiki/faq/how-to-delete-file-from-external-sd-card/es)
 * [Cómo transferir texto desde el navegador web (para leer o TTS)](/wiki/faq/how-to-transfer-text-from-browser/es)
@@ -34,5 +35,4 @@ info: this file is generated automatically, please do not modify it
 * [Cómo convertir PDF a EPUB](/wiki/faq/convert-pdf-to-epub/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
 * [Modos de lectura: modo de desplazamiento, modo libro y modo músico](/wiki/faq/reading-mode-vertical-book-musician/es)
-* [Manejo de etiquetas personalizadas](/wiki/faq/custom-tags/es)
 * [Establecer fondo propio para la página del libro](/wiki/faq/how-to-set-page-background-image/es)

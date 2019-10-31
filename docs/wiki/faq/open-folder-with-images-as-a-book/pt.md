@@ -2,10 +2,11 @@
 layout: main
 ---
 
-# Abrindo uma pasta com imagens como um livro (vincular um livro)
+# Abrindo uma pasta com imagens como livro (Vincular a um livro)
 No **Librera**, é muito fácil vincular um livro a arquivos de imagem colocados em uma pasta.
 
-* Abra uma pasta com imagens (elas devem ser renomeadas para indicar números de páginas virtuais) e pressione **Vincular um livro**
+* Abra uma pasta com imagens (renomeie-as, se necessário, para permitir que **Librera** as liste corretamente)
+* Toque em não **Vincular um livro** no topo da lista
 * Seu livro no layout da grade
 * Recorte páginas na **Librera** e ajuste o contraste e o brilho
 
