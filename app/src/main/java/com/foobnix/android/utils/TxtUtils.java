@@ -53,6 +53,7 @@ import java.util.regex.Pattern;
 public class TxtUtils {
 
     public static final String TTS_PAUSE = "ttsPAUSE";
+    public static final String TTS_PAUSE_VIEW = "[-]\n";
     public static final String TTS_STOP = "ttsSTOP";
 
     public static final String NON_BREAKE_SPACE = "\u00A0";
@@ -317,19 +318,19 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
-        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE);
+        pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("</b></i></p>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE).replace("</i></p></b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
-        pageHTML = pageHTML.replace("...", TTS_PAUSE);
-        pageHTML = pageHTML.replace("…", TTS_PAUSE);
+        pageHTML = pageHTML.replace("...", "..." + TTS_PAUSE);
+        pageHTML = pageHTML.replace("…", "…" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
-        pageHTML = pageHTML.replace("   ", " "+TTS_PAUSE+" ");
+        pageHTML = pageHTML.replace("   ", " " + TTS_PAUSE + " ");
 
         LOG.d("pageHTML [1]", pageHTML);
 
 
-        pageHTML = pageHTML.replace("<p>", "").replace("</p>", "");
+        pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
         pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
         pageHTML = pageHTML.replace("[image]", "");
 
@@ -390,22 +391,20 @@ public class TxtUtils {
                     try {
                         String value = dictRegEx.get(key);
 
-                        if(key.startsWith("*")){
+                        if (key.startsWith("*")) {
                             key = key.substring(1);
                             pageHTML = replaceAll(pageHTML, key, value);
                             LOG.d("pageHTML-dict-replaceAll", key, value, pageHTML);
-                        }else{
+                        } else {
                             pageHTML = pageHTML.replace(key, value);
                             LOG.d("pageHTML-dict-replace", key, value, pageHTML);
                         }
-
 
 
                     } catch (Exception e) {
                         LOG.e(e);
                     }
                 }
-
 
 
             }
@@ -461,40 +460,48 @@ public class TxtUtils {
 
         if (AppState.get().ttsReadBySentences) {
             loadShotList();
-
+            LOG.d("pageHTML [8a]", pageHTML);
             for (String r : shortList) {
                 if (r.startsWith("!")) {
                     String line = r.replace("!", "");
                     String r1 = line;
                     String r2 = line.replace(".", " ");
-                    pageHTML = pageHTML.replace(r1, r2);
+                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
                 }
             }
+            LOG.d("pageHTML [8b]", pageHTML);
             for (String r : shortList) {
                 if (!r.startsWith("!")) {
                     String r1 = r;
                     String r2 = r.replace(".", "{dot}");
-                    pageHTML = pageHTML.replace(r1, r2);
+                    pageHTML = pageHTML.replace(" " + r1, " " + r2);
                 }
             }
+            LOG.d("pageHTML [8c]", pageHTML);
 
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
+            LOG.d("pageHTML [8d]", pageHTML);
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
-            pageHTML = replaceAll(pageHTML, "(\\p{Digit}*)\\.(\\p{Digit}+)", "$1{dot}$2"); //skip numbers 3.3 .343
+            LOG.d("pageHTML [8e]", pageHTML);
+            pageHTML = replaceAll(pageHTML, " (\\p{Digit}*)\\.(\\p{Digit}+)", " $1{dot}$2"); //skip numbers 3.3 .343
 
+            LOG.d("pageHTML [8f]", pageHTML);
 
             for (int i = 0; i < AppState.get().ttsSentecesDivs.length(); i++) {
                 String s = String.valueOf(AppState.get().ttsSentecesDivs.charAt(i));
-                pageHTML = pageHTML.replace(s, s + TTS_PAUSE+" ");
+                pageHTML = pageHTML.replace(s, s + TTS_PAUSE + " ");
             }
 
+
+            LOG.d("pageHTML [9]", pageHTML);
 
             pageHTML = pageHTML.replace("{dot}", ".");
         }
 
+        pageHTML = pageHTML.replaceAll("[\\s]*("+TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE);
 
         return pageHTML;
     }
@@ -576,7 +583,7 @@ public class TxtUtils {
                     @Override
                     public void replaceAll(String from, String to) {
 
-                        dictRegEx.put("*"+from, to);
+                        dictRegEx.put("*" + from, to);
                     }
                 });
             } catch (FileNotFoundException e) {
