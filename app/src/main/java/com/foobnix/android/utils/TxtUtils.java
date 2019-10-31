@@ -321,8 +321,8 @@ public class TxtUtils {
         pageHTML = pageHTML.replace("<b><p><i>", TTS_PAUSE).replace("</b></i></p>", TTS_PAUSE).replace("<i><p><b>", TTS_PAUSE).replace("</i></p></b>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b>", "").replace("</b>", "").replace("<i>", "").replace("</i>", "").replace("<tt>", "").replace("</tt>", "");
 
-        pageHTML = pageHTML.replace("...", "..." + TTS_PAUSE);
-        pageHTML = pageHTML.replace("…", "…" + TTS_PAUSE);
+        pageHTML = pageHTML.replace("...", " " + TTS_PAUSE);
+        pageHTML = pageHTML.replace("…", " " + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH1, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace(">" + TxtUtils.LONG_DASH2, ">" + TTS_PAUSE);
         pageHTML = pageHTML.replace("   ", " " + TTS_PAUSE + " ");

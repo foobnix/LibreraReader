@@ -588,4 +588,5 @@
    <string name="play_pause">تشغيل / إيقاف مؤقت</string>
    <string name="next_track">الأغنية التالية</string>
    <string name="previous_track">المسار السابق</string>
+   <string name="copied_text">نسخ النص</string>
 </resources>

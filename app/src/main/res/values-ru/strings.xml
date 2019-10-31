@@ -588,4 +588,5 @@
    <string name="play_pause">Воспроизведение / пауза</string>
    <string name="next_track">Следующий трек</string>
    <string name="previous_track">Предыдущий трек</string>
+   <string name="copied_text">Скопированный текст</string>
 </resources>

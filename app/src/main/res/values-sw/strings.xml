@@ -588,4 +588,5 @@
    <string name="play_pause">Cheza / pumzika</string>
    <string name="next_track">Wimbo unaofuata</string>
    <string name="previous_track">Wimbo wa zamani</string>
+   <string name="copied_text">Nakala iliyonakiliwa</string>
 </resources>

@@ -588,4 +588,5 @@
    <string name="play_pause">Reproducir pausar</string>
    <string name="next_track">Siguiente pista</string>
    <string name="previous_track">Pista anterior</string>
+   <string name="copied_text">Texto copiado</string>
 </resources>

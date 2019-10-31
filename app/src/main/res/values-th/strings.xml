@@ -588,4 +588,5 @@
    <string name="play_pause">เล่น / หยุดชั่วคราว</string>
    <string name="next_track">ติดตามต่อไป</string>
    <string name="previous_track">แทร็กก่อนหน้า</string>
+   <string name="copied_text">คัดลอกข้อความ</string>
 </resources>

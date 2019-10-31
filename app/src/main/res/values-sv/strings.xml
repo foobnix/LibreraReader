@@ -588,4 +588,5 @@
    <string name="play_pause">Spela / paus</string>
    <string name="next_track">Nästa spår</string>
    <string name="previous_track">Föregående spår</string>
+   <string name="copied_text">Kopierad text</string>
 </resources>

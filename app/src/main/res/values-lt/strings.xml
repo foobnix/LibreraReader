@@ -588,4 +588,5 @@
    <string name="play_pause">Žaisti / pristabdyti</string>
    <string name="next_track">Kitas takelis</string>
    <string name="previous_track">Ankstesnis takelis</string>
+   <string name="copied_text">Nukopijuotas tekstas</string>
 </resources>

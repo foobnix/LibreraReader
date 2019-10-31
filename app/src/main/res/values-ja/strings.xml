@@ -588,4 +588,5 @@
    <string name="play_pause">プレイ/一時停止</string>
    <string name="next_track">次のトラック</string>
    <string name="previous_track">前のトラック</string>
+   <string name="copied_text">コピーされたテキスト</string>
 </resources>

@@ -588,4 +588,5 @@
    <string name="play_pause">Přehrát / pozastavit</string>
    <string name="next_track">Další skladba</string>
    <string name="previous_track">Předchozí skladba</string>
+   <string name="copied_text">Zkopírovaný text</string>
 </resources>

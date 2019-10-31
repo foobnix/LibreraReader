@@ -588,4 +588,5 @@
    <string name="play_pause">Redare / pauză</string>
    <string name="next_track">Următoarea piesă</string>
    <string name="previous_track">Piesa anterioară</string>
+   <string name="copied_text">Text copiat</string>
 </resources>

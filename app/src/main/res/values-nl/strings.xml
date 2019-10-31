@@ -588,4 +588,5 @@
    <string name="play_pause">Speel pauze</string>
    <string name="next_track">Volgende track</string>
    <string name="previous_track">Vorig nummer</string>
+   <string name="copied_text">Gekopieerde tekst</string>
 </resources>
