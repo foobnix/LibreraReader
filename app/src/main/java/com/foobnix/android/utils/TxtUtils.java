@@ -289,7 +289,7 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<pause>", "");
         pageHTML = pageHTML.replace("<end-block>", "");
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", "");
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", "");
         return pageHTML;
     }
 
@@ -305,8 +305,8 @@ public class TxtUtils {
 
         //Dips.spToPx(size)
         //(Dips.dpToPx(BookCSS.get().fontSizeSp)
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>$", "");
-        pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", TTS_PAUSE);
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>$", "");
+        //pageHTML = replaceAll(pageHTML, "<pause-font-size-[0-9,.]*>", TTS_PAUSE);
         return pageHTML;
     }
 

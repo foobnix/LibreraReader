@@ -83,7 +83,7 @@ public class Dialogs {
     public static void replaceTTSDialog(Activity activity) {
         final DragLinearLayout root = new DragLinearLayout(activity);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+
 
 
         LinearLayout dicts = UI.verticalLayout(activity);
@@ -120,6 +120,7 @@ public class Dialogs {
                 String value = jsonObject.getString(key);
 
                 LinearLayout h = new LinearLayout(activity);
+                root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
                 h.setWeightSum(2);
                 h.setOrientation(LinearLayout.HORIZONTAL);
                 h.setGravity(Gravity.CENTER_VERTICAL);
@@ -263,6 +264,8 @@ public class Dialogs {
 
 
         ScrollView scroll = new ScrollView(activity);
+        scroll.setOverScrollMode(ScrollView.OVER_SCROLL_IF_CONTENT_SCROLLS);
+        scroll.setVerticalScrollBarEnabled(true);
         scroll.addView(root);
 
 
