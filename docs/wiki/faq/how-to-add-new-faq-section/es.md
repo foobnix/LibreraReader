@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# Cómo agregar una nueva sección de preguntas frecuentes
+# Cómo agregar un nuevo tema de preguntas frecuentes
 
-Si desea agregar una nueva sección de preguntas frecuentes, cree una carpeta **[example-faq-title]** con solo el archivo inglés **index.md** aquí.
-[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faqfont&gt;(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+Si desea agregar un nuevo tema de preguntas frecuentes, cree una carpeta **[cualquiera que sea el nombre separado por guiones]** con un solo archivo en-us **index.md** en [aquí](https : //github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-Luego, el script actualiza automáticamente la tabla de contenido de preguntas frecuentes y agrega traducciones para todos los idiomas
+El script actualizará automáticamente la tabla de contenido de preguntas frecuentes y agregará archivos de configuración regional para todos los idiomas admitidos.
 
-Formato del encabezado del archivo: **index.md**
+Formato de encabezado de archivo para **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-Todas las imágenes relacionadas para esta sección deben estar en la carpeta
+Puede ilustrar su discusión con imágenes (JPEG). Todos los archivos de imagen relacionados con este tema deben colocarse en la carpeta, junto con **index.md**
 
 ```
 * Image description 1

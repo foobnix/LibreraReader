@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Preguntas frecuentes
 
+* [Trabajando con perfiles](/wiki/faq/working-with-profiles/es)
+* [Cómo agregar un nuevo tema de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
 * [Abrir una carpeta con imágenes como un libro (Enlazar en un libro)](/wiki/faq/open-folder-with-images-as-a-book/es)
 * [Agregar y manejar etiquetas personalizadas](/wiki/faq/custom-tags/es)
 * [Actualizando su biblioteca](/wiki/faq/update-the-library/es)
@@ -16,7 +18,6 @@ info: this file is generated automatically, please do not modify it
 * [Trabajar con marcadores en modo extendido (cinta de marcadores)](/wiki/faq/bookmarks-extended-panel/es)
 * [Configuración de fuentes y estilos](/wiki/faq/customize-text-fonts-and-styles/es)
 * [Diccionarios, traducción de palabras y oraciones](/wiki/faq/dictionaries-translate-text-online-and-offline/es)
-* [Cómo agregar una nueva sección de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
 * [Cómo restaurar la configuración predeterminada (similar a borrar caché)](/wiki/faq/how-to-restore-default-settings-clear-cache/es)
 * [Cómo configurar el widget](/wiki/faq/how-to-configure-the-widget/es)
 * [Instalación y configuración de texto a voz (TTS)](/wiki/faq/installation-and-configuration-of-tts/es)

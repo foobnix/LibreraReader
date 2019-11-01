@@ -122,7 +122,7 @@ public class AppState {
     public static final String TTS_REPLACEMENTS =
 
             "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
-                    "'*[?!:;–|—|―]':' ' , " +//
+                    "'*[?!:;–|—|―]':'.' , " +//
                     "'it’s':'it is' , " +//
                     "'#bla':'bla disabled' , " +//
                     "'*(L|l)ib.':'$1ibréra'}";//

@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# So fügen Sie einen neuen FAQ-Bereich hinzu
+# So fügen Sie ein neues FAQ-Thema hinzu
 
-Wenn Sie einen neuen FAQ-Bereich hinzufügen möchten, erstellen Sie hier einen Ordner **[Beispiel-FAQ-Titel]** mit nur der englischen Datei **index.md**.
-[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+Wenn Sie ein neues FAQ-Thema hinzufügen möchten, erstellen Sie in [hier](https : //github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-Das Skript aktualisiert dann automatisch das FAQ-Inhaltsverzeichnis und fügt Übersetzungen für alle Sprachen hinzu
+Das Skript aktualisiert automatisch das FAQ-Inhaltsverzeichnis und fügt Ländereinstellungsdateien für alle unterstützten Sprachen hinzu.
 
-Dateikopfzeilenformat: **index.md**
+Dateikopfzeilenformat für **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-Alle verwandten Bilder für diesen Abschnitt sollten sich im Ordner befinden
+Sie können Ihre Diskussion mit Bildern (JPEG) veranschaulichen. Alle zu diesem Thema gehörenden Bilddateien sollten im Ordner neben **index.md** abgelegt werden.
 
 ```
 * Image description 1

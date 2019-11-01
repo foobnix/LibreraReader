@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
+* [Mit Profilen arbeiten](/wiki/faq/working-with-profiles/de)
+* [Hinzufügen eines neuen FAQ-Themas](/wiki/faq/how-to-add-new-faq-section/de)
 * [Ordner mit Bildern als Buch öffnen (in einem Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
 * [Hinzufügen und Behandeln von benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
 * [Aktualisieren Ihrer Bibliothek](/wiki/faq/update-the-library/de)
@@ -16,7 +18,6 @@ info: this file is generated automatically, please do not modify it
 * [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)](/wiki/faq/bookmarks-extended-panel/de)
 * [Konfigurieren von Schriftarten und Stilen](/wiki/faq/customize-text-fonts-and-styles/de)
 * [Wörterbücher, Übersetzung von Wörtern und Sätzen](/wiki/faq/dictionaries-translate-text-online-and-offline/de)
-* [Hinzufügen eines neuen FAQ-Abschnitts](/wiki/faq/how-to-add-new-faq-section/de)
 * [So stellen Sie die Standardeinstellungen wieder her (ähnlich dem Löschen des Caches)](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
 * [So konfigurieren Sie das Widget](/wiki/faq/how-to-configure-the-widget/de)
 * [Installieren und Konfigurieren von Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/de)

@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
+* [Comment ajouter un nouveau sujet de FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
 * [Ouverture d'un dossier contenant des images sous forme de livre (relié dans un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)
 * [Ajout et gestion des tags personnalisés](/wiki/faq/custom-tags/fr)
 * [Mise à jour de votre bibliothèque](/wiki/faq/update-the-library/fr)
@@ -16,7 +18,6 @@ info: this file is generated automatically, please do not modify it
 * [Utilisation des signets en mode étendu - Ruban Signets](/wiki/faq/bookmarks-extended-panel/fr)
 * [Configuration des polices et des styles](/wiki/faq/customize-text-fonts-and-styles/fr)
 * [Dictionnaires, traduction de mots et de phrases](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
-* [Comment ajouter une nouvelle section FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
 * [Comment restaurer les paramètres par défaut (similaire à l'effacement du cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Comment configurer le widget](/wiki/faq/how-to-configure-the-widget/fr)
 * [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)

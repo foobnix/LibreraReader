@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Perguntas freqüentes
 
+* [Trabalhando com perfis](/wiki/faq/working-with-profiles/pt)
+* [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Abrindo uma pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
 * [Adicionando e manipulando tags personalizadas](/wiki/faq/custom-tags/pt)
 * [Atualizando sua biblioteca](/wiki/faq/update-the-library/pt)
@@ -16,7 +18,6 @@ info: this file is generated automatically, please do not modify it
 * [Trabalhando com favoritos no modo avançado (faixa de opções de favoritos)](/wiki/faq/bookmarks-extended-panel/pt)
 * [Configurando fontes e estilos](/wiki/faq/customize-text-fonts-and-styles/pt)
 * [Dicionários, tradução de palavras e frases](/wiki/faq/dictionaries-translate-text-online-and-offline/pt)
-* [Como adicionar nova seção de perguntas frequentes](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Como restaurar configurações padrão (semelhante ao limpar cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
 * [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
 * [Instalando e configurando Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/pt)

@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Работа с профилями](/wiki/faq/working-with-profiles/ru)
+* [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Открытие папки с изображениями в виде книги (переплет в книге)](/wiki/faq/open-folder-with-images-as-a-book/ru)
 * [Добавление и обработка пользовательских тегов](/wiki/faq/custom-tags/ru)
 * [Обновление вашей библиотеки](/wiki/faq/update-the-library/ru)
@@ -16,7 +18,6 @@ info: this file is generated automatically, please do not modify it
 * [Работа с закладками в расширенном режиме (лента закладок)](/wiki/faq/bookmarks-extended-panel/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)
 * [Словари, перевод слов и предложений](/wiki/faq/dictionaries-translate-text-online-and-offline/ru)
-* [Как добавить новый раздел FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Как восстановить настройки по умолчанию (аналогично очистке кэша)](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Как настроить виджет](/wiki/faq/how-to-configure-the-widget/ru)
 * [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
