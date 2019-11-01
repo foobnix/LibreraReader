@@ -38,5 +38,19 @@ If you want to know what OPDS catalogs are, click on the link "What is an OPDS o
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
 
+## You can add links from the OPDS directory to your favorites:
+* Navigate in the OPDS directory to the book you need
+* Tap on the favorites icon 
+* Confirm the addition 
+* A directory with your links will be added to the main window of OPDS libraries.
+
+||||
+|-|-|-|
+|![](10.jpg)|![](11.jpg)|![](12.jpg)|
+
+
+
+
+
 
 
