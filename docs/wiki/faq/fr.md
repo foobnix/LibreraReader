@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Définition du sens du texte RTL (de droite à gauche) et LTR (de gauche à droite)](/wiki/faq/rtl-or-ltr-text-direction/fr)
 * [Ouvrir un livre avec &quot;Gestionnaire de balises&quot;](/wiki/faq/open-book-with-tag-manager/fr)
 * [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
 * [Comment ajouter un nouveau sujet de FAQ](/wiki/faq/how-to-add-new-faq-section/fr)

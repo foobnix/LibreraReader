@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
+* [Einstellen der Textrichtung RTL (von rechts nach links) und LTR (von links nach rechts)](/wiki/faq/rtl-or-ltr-text-direction/de)
 * [Buch mit &quot;Tag Manager&quot; öffnen](/wiki/faq/open-book-with-tag-manager/de)
 * [Mit Profilen arbeiten](/wiki/faq/working-with-profiles/de)
 * [Hinzufügen eines neuen FAQ-Themas](/wiki/faq/how-to-add-new-faq-section/de)
