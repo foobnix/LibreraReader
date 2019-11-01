@@ -2,7 +2,7 @@ package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.LOG;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,7 +55,7 @@ public class JsonHelper {
             if (map == null) {
                 return "";
             }
-            JSONObject obj = new JSONObject();
+            LinkedJSONObject obj = new LinkedJSONObject();
             for (String key : map.keySet()) {
                 String value = map.get(key);
                 if (key != null && value != null) {
@@ -73,11 +73,11 @@ public class JsonHelper {
         Map<String, String> map = new HashMap<String, String>();
         try {
 
-            JSONObject jsonObject = new JSONObject(json);
-            Iterator<String> keys = jsonObject.keys();
+            LinkedJSONObject linkedJsonObject = new LinkedJSONObject(json);
+            Iterator<String> keys = linkedJsonObject.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
-                map.put(key, jsonObject.getString(key));
+                map.put(key, linkedJsonObject.getString(key));
             }
 
             return map;

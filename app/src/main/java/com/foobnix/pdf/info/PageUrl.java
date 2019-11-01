@@ -5,7 +5,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 public class PageUrl {
 
@@ -116,7 +116,7 @@ public class PageUrl {
     @Override
     public String toString() {
         try {
-            final JSONObject obj = new JSONObject();
+            final LinkedJSONObject obj = new LinkedJSONObject();
             obj.put("path", path);
             obj.put("page", page);
             obj.put("width", width);
@@ -138,7 +138,7 @@ public class PageUrl {
 
     public static PageUrl fromString(final String str) {
         try {
-            final JSONObject obj = new JSONObject(str);
+            final LinkedJSONObject obj = new LinkedJSONObject(str);
             final PageUrl url = new PageUrl();
             url.path = obj.optString("path");
             url.page = obj.optInt("page");

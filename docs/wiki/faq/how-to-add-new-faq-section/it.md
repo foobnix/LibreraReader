@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# Come aggiungere una nuova sezione FAQ
+# Come aggiungere un nuovo argomento FAQ
 
-Se vuoi aggiungere una nuova sezione FAQ, crea una cartella **[esempio-faq-titolo]** con solo il file inglese **index.md** qui.
-[Https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+Se vuoi aggiungere un nuovo argomento FAQ, crea una cartella **[qualunque-trattino-nome-separato]** con un singolo file en-us **index.md** in [qui](https : //github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-Quindi lo script aggiorna automaticamente il sommario delle faq e aggiunge traduzioni per tutte le lingue
+Lo script aggiornerà automaticamente il sommario delle FAQ e aggiungerà i file delle impostazioni locali per tutte le lingue supportate.
 
-Formato dell'intestazione del file: **index.md**
+Formato dell'intestazione del file per **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-Tutte le immagini correlate per questa sezione dovrebbero essere nella cartella
+Puoi illustrare la tua discussione con immagini (JPEG). Tutti i file di immagini relativi a questo argomento devono essere inseriti nella cartella, accanto a **index.md**
 
 ```
 * Image description 1

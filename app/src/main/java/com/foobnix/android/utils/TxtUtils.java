@@ -28,7 +28,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 
 import org.ebookdroid.LibreraApp;
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -355,7 +355,7 @@ public class TxtUtils {
 
         if (AppState.get().isEnalbeTTSReplacements) {
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements3);
+                LinkedJSONObject obj = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -410,7 +410,7 @@ public class TxtUtils {
             }
 
             try {
-                JSONObject obj = new JSONObject(AppState.get().lineTTSReplacements3);
+                LinkedJSONObject obj = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
 
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {

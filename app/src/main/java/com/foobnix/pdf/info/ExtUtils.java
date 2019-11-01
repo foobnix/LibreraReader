@@ -1312,7 +1312,7 @@ public class ExtUtils {
                 try {
                     String json = new Scanner(toFile).useDelimiter("\\A").next();
 
-//                    JSONObject jsonObject = new JSONObject(json);
+//                    LinkedJSONObject jsonObject = new LinkedJSONObject(json);
 //                    if (jsonObject.has(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES)) {
 //                        jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
 //                    }
@@ -1353,7 +1353,7 @@ public class ExtUtils {
                 }
 
 //                try {
-//                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", BookmarksData.get().getBookmarkPreferences(), BookmarksData.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
+//                    LinkedJSONObject result = ExportSettingsManager.exportToJSon("bookmarks", BookmarksData.get().getBookmarkPreferences(), BookmarksData.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
 //                    FileWriter writer = new FileWriter(toFile);
 //                    writer.write(result.toString(2));
 //                    writer.flush();

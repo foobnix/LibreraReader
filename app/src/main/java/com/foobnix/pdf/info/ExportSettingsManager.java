@@ -13,9 +13,9 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
 import com.foobnix.ui2.AppDB;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONArray;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -44,7 +44,7 @@ public class ExportSettingsManager {
             AppProfile.save(c);
             com.foobnix.pdf.info.model.BookCSS.get().checkBeforeExport(c);
 
-            JSONObject root = new JSONObject();
+            LinkedJSONObject root = new LinkedJSONObject();
             root.put("pdf", exportToJSon("pdf", pdf, null, null));
             root.put("BOOKS", exportToJSon("BOOKS", BOOKS, null, null));
             root.put("ViewerPreferences", exportToJSon("ViewerPreferences", ViewerPreferences, null, null));
@@ -101,7 +101,7 @@ public class ExportSettingsManager {
             return jsonObject;
         }
         for (FileMeta value : list) {
-            JSONObject obj = new JSONObject();
+            LinkedJSONObject obj = new LinkedJSONObject();
             try {
                 obj.put("path", value.getPath());
                 obj.put("tag", value.getTag());
@@ -135,7 +135,7 @@ public class ExportSettingsManager {
         }
         try {
             for (int i = jsonObject.length() - 1; i >= 0; i--) {
-                JSONObject object = jsonObject.getJSONObject(i);
+                LinkedJSONObject object = jsonObject.getJSONObject(i);
                 if (object != null) {
                     action.onResultRecive(new Pair<String, String>(object.getString("path"), object.getString("tag")));
                 }
@@ -145,8 +145,8 @@ public class ExportSettingsManager {
         }
     }
 
-    public static JSONObject exportToJSon(String name, SharedPreferences sp, String excludekey, String includeValue) throws JSONException {
-        JSONObject jsonObject = new JSONObject();
+    public static LinkedJSONObject exportToJSon(String name, SharedPreferences sp, String excludekey, String includeValue) throws JSONException {
+        LinkedJSONObject linkedJsonObject = new LinkedJSONObject();
         Map<String, ?> all = sp.getAll();
         for (String key : all.keySet()) {
             if (excludekey != null && key.startsWith(excludekey)) {
@@ -159,24 +159,24 @@ public class ExportSettingsManager {
                 continue;
             }
 
-            jsonObject.put(key, value);
+            linkedJsonObject.put(key, value);
             LOG.d("export", key, value);
         }
-        return jsonObject;
+        return linkedJsonObject;
     }
 
-    public static void importFromJSon(JSONObject jsonObject, SharedPreferences sp) throws JSONException {
-        if (jsonObject == null) {
+    public static void importFromJSon(LinkedJSONObject linkedJsonObject, SharedPreferences sp) throws JSONException {
+        if (linkedJsonObject == null) {
             LOG.d("TEST", "import null");
             return;
         }
-        LOG.d("importFromJSon", jsonObject);
+        LOG.d("importFromJSon", linkedJsonObject);
 
-        Iterator<String> keys = jsonObject.keys();
+        Iterator<String> keys = linkedJsonObject.keys();
         Editor edit = sp.edit();
         while (keys.hasNext()) {
             String name = keys.next();
-            Object res = jsonObject.get(name);
+            Object res = linkedJsonObject.get(name);
             LOG.d("import", "name", name, "type", res);
             if (res instanceof String) {
                 edit.putString(name, (String) res);

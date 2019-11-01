@@ -5,6 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
+* [العمل مع الملفات الشخصية](/wiki/faq/working-with-profiles/ar)
+* [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
 * [إضافة علامات مخصصة ومعالجتها](/wiki/faq/custom-tags/ar)
 * [تحديث مكتبتك](/wiki/faq/update-the-library/ar)
@@ -16,7 +19,6 @@ info: this file is generated automatically, please do not modify it
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
 * [قواميس ، ترجمة الكلمات والجمل](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
-* [كيفية إضافة قسم الأسئلة الشائعة الجديد](/wiki/faq/how-to-add-new-faq-section/ar)
 * [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)

@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# How to add new FAQ section
+# How to Add a New FAQ Topic
 
-If you want to add a new FAQ section, create a folder **[example-faq-title]** with only the English **index.md** file here.
-[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+If you want to add a new FAQ topic, create a folder **[whatever-hyphen-separated-name]** with a single en-us **index.md** file in [here](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-Then the script automatically updates the faq table of contents and adds translations for all languages
+The script will automatically update the FAQ table of contents and add locale files for all supported languages.
 
-File header format: **index.md**
+File header format for **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-All related images for this section should be in the folder
+You can illustrate your discussion with pictures (JPEG). All image files related to this topic should be placed in the folder, alongside **index.md**
 
 ```
 * Image description 1

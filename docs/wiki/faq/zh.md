@@ -5,6 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 {1}常见问题
 
+* [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)
+* [使用个人资料](/wiki/faq/working-with-profiles/zh)
+* [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [打开带有图像作为书本的文件夹(书本装订)](/wiki/faq/open-folder-with-images-as-a-book/zh)
 * [添加和处理自定义标签](/wiki/faq/custom-tags/zh)
 * [更新您的图书馆](/wiki/faq/update-the-library/zh)
@@ -16,7 +19,6 @@ info: this file is generated automatically, please do not modify it
 * [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)
 * [字典，单词和句子的翻译](/wiki/faq/dictionaries-translate-text-online-and-offline/zh)
-* [如何添加新的常见问题解答部分](/wiki/faq/how-to-add-new-faq-section/zh)
 * [如何恢复默认设置(类似于清除缓存)](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [如何配置小部件](/wiki/faq/how-to-configure-the-widget/zh)
 * [安装和配置语音合成(TTS)](/wiki/faq/installation-and-configuration-of-tts/zh)
