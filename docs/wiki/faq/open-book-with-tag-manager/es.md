@@ -17,3 +17,16 @@ No es posible establecer una etiqueta para varios libros, pero es posible abrir 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+
+# Abrir administrador de etiquetas
+
+Hay muchas formas de configurar/eliminar etiquetas para los libros
+
+* Mantenga presionado el icono de estrella para abrir el administrador de etiquetas
+* Abra el menú del libro, haga clic en &quot;Agregar etiquetas&quot;
+* Diálogo de información de archivo &quot;Agregar etiquetas&quot;
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|

@@ -17,3 +17,16 @@ Não é possível definir uma tag para vários livros, mas é possível abrir o 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+
+# Abra o gerenciador de tags
+
+Existem várias maneiras de definir \ remover tags dos livros
+
+* Pressione e segure o ícone de estrela para abrir o gerenciador de tags
+* Abra o menu do livro, clique em &quot;Adicionar tags&quot;
+* Caixa de diálogo Informações do arquivo &quot;Adicionar tags&quot;
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|

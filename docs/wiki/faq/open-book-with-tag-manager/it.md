@@ -17,3 +17,16 @@ Non è possibile impostare un tag per più libri, ma è possibile aprire il tag 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+
+# Apri gestore tag
+
+Esistono molti modi per impostare \ rimuovere i tag per i libri
+
+* Premi a lungo sull'icona a forma di stella per aprire Tag Manager
+* Apri il menu del libro, fai clic su &quot;Aggiungi tag&quot;
+* Finestra di dialogo informazioni file &quot;Aggiungi tag&quot;
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|

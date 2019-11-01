@@ -17,3 +17,16 @@ Es ist nicht möglich, ein Tag für mehrere Bücher festzulegen, aber es ist mö
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+
+# Öffnen Sie den Tag-Manager
+
+Es gibt viele Möglichkeiten, Tags für die Bücher zu setzen oder zu entfernen
+
+* Drücken Sie lange auf das Sternsymbol, um den Tag-Manager zu öffnen
+* Öffnen Sie das Buchmenü und klicken Sie auf &quot;Tags hinzufügen&quot;.
+* Dialogfeld &quot;Dateiinformationen&quot; &quot;Tags hinzufügen&quot;
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|

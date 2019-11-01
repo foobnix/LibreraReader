@@ -17,3 +17,16 @@ Il n'est pas possible de définir une étiquette pour plusieurs livres, mais il 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+
+# Ouvrir le gestionnaire de balises
+
+Il y a plusieurs façons de définir/supprimer des balises pour les livres
+
+* Appuyez longuement sur l'icône étoile pour ouvrir le gestionnaire de balises
+* Ouvrez le menu du livre, cliquez sur &quot;Ajouter des tags&quot;.
+* Boîte de dialogue d'informations sur les fichiers &quot;Ajouter des balises&quot;
+
+||||
+|-|-|-|
+|![](4.png)|![](5.png)|![](6.png)|
