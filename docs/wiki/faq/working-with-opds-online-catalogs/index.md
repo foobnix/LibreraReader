@@ -49,6 +49,14 @@ If you want to know what OPDS catalogs are, click on the link "What is an OPDS o
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
 
+## General configuration of OPDS directories:
+* Tap on the settings icon
+* You can configure a proxy to connect to OPDS
+* You can specify the directory where your downloaded books will be saved.
+
+||||
+|-|-|-|
+|![](17.jpg)|![](18.jpg)|![](19.jpg)|
 
 
 
