@@ -6,7 +6,7 @@ layout: main
 
 > Librera supports work with OPDS online catalogs that allows you to connect the necessary libraries and download books.
 
-**To add the necessary online directory OPDS you need:**
+## To add the necessary online directory OPDS you need:
 * Go to the "Network" tab
 * Tap on the icon to add a directory. Consider the example of adding OPDS library directory " Project Gutenberg"
 * Enter the e-mail address of the ops directory
@@ -26,9 +26,17 @@ If you want to know what OPDS catalogs are, click on the link "What is an OPDS o
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-## To download a book from the OPDS catalog you need:##
+## To download a book from the OPDS catalog you need:
 * Select the book you need
 * Select the desired format of books, tap on it
 * Confirm the download of the book
 * After downloading the book will be highlighted in color, click on it
 * Enjoy reading.
+
+||||
+|-|-|-|
+|![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+
+
+
