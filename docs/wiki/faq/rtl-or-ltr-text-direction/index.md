@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Setting text direction RTL (right-to-left) или LTR (left-to-right)
+# Setting text direction RTL (right-to-left) or LTR (left-to-right)
 
 
 > Librera allows you to adapt the reading process for Arabic languages by changing the reading direction from LTR (left-to-right) to RTL (right-to-left)
