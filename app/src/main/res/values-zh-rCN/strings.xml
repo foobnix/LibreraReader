@@ -584,9 +584,9 @@
    <string name="record_in_mp3_format">以mp3格式录制</string>
    <string name="speak_into_file_wav">Tts录制（mp3，wav）</string>
    <string name="text_is_too_long">文本过长</string>
-   <string name="settings">设定</string>
+   <string name="settings">设置</string>
    <string name="play_pause">播放/暂停</string>
-   <string name="next_track">下一首</string>
-   <string name="previous_track">上一曲</string>
+   <string name="next_track">下一轨</string>
+   <string name="previous_track">上一轨</string>
    <string name="copied_text">复制文字</string>
 </resources>
