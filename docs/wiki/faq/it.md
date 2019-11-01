@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Lavorare con i cataloghi online OPDS](/wiki/faq/working-with-opds-online-catalogs/it)
 * [Impostazione della direzione del testo RTL (da destra a sinistra) è LTR (da sinistra a destra)](/wiki/faq/rtl-or-ltr-text-direction/it)
 * [Libro aperto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/it)
 * [Lavorare con i profili](/wiki/faq/working-with-profiles/it)

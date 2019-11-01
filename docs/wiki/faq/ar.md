@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [إعداد اتجاه النص RTL (من اليمين إلى اليسار) или LTR (من اليسار إلى اليمين)](/wiki/faq/rtl-or-ltr-text-direction/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
 * [العمل مع الملفات الشخصية](/wiki/faq/working-with-profiles/ar)

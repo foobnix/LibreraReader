@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Utilisation des catalogues en ligne OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
 * [Définition du sens du texte RTL (de droite à gauche) et LTR (de gauche à droite)](/wiki/faq/rtl-or-ltr-text-direction/fr)
 * [Ouvrir un livre avec &quot;Gestionnaire de balises&quot;](/wiki/faq/open-book-with-tag-manager/fr)
 * [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
