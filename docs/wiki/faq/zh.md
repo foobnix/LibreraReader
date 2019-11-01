@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 {1}常见问题
 
+* [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)
 * [使用个人资料](/wiki/faq/working-with-profiles/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [打开带有图像作为书本的文件夹(书本装订)](/wiki/faq/open-folder-with-images-as-a-book/zh)

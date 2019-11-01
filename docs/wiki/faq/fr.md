@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Ouvrir un livre avec &quot;Gestionnaire de balises&quot;](/wiki/faq/open-book-with-tag-manager/fr)
 * [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
 * [Comment ajouter un nouveau sujet de FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
 * [Ouverture d'un dossier contenant des images sous forme de livre (relié dans un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)

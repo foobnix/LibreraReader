@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
 * [العمل مع الملفات الشخصية](/wiki/faq/working-with-profiles/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)

@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)
 * [Работа с профилями](/wiki/faq/working-with-profiles/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Открытие папки с изображениями в виде книги (переплет в книге)](/wiki/faq/open-folder-with-images-as-a-book/ru)

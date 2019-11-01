@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
+* [Buch mit &quot;Tag Manager&quot; öffnen](/wiki/faq/open-book-with-tag-manager/de)
 * [Mit Profilen arbeiten](/wiki/faq/working-with-profiles/de)
 * [Hinzufügen eines neuen FAQ-Themas](/wiki/faq/how-to-add-new-faq-section/de)
 * [Ordner mit Bildern als Buch öffnen (in einem Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
