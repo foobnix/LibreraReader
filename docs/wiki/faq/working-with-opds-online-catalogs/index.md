@@ -14,6 +14,7 @@ To add the necessary online directory OPDS you need:
 * OPDS library added
 
 To return the OPDS / Library settings to their initial state, click the "Restore default" button at the bottom left of the window
+
 If you want to know what OPDS catalogs are, click on the link "What is an OPDS online catalogs" at the bottom of the window on the left.
 
 ||||
