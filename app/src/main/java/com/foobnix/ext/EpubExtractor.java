@@ -13,13 +13,13 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+import org.librera.JSONArray;
+import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedOutputStream;
@@ -297,7 +297,7 @@ public class EpubExtractor extends BaseExtractor {
                                 } else if ("calibre:user_metadata:#genre".equals(nameAttr)) {
                                     LOG.d("userGenre", value);
                                     try {
-                                        JSONObject obj = new JSONObject(value);
+                                        LinkedJSONObject obj = new LinkedJSONObject(value);
                                         JSONArray jsonArray = obj.getJSONArray("#value#");
                                         String res = "";
                                         for (int i = 0; i < jsonArray.length(); i++) {

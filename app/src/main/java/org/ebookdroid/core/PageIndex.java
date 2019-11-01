@@ -3,8 +3,8 @@ package org.ebookdroid.core;
 import com.foobnix.model.AppBook;
 
 import org.ebookdroid.core.models.DocumentModel;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 public class PageIndex {
 
@@ -20,13 +20,13 @@ public class PageIndex {
         this.viewIndex = viewIndex;
     }
 
-    public PageIndex(final JSONObject jsonObject) throws JSONException {
-        this.docIndex = jsonObject.getInt("docIndex");
-        this.viewIndex = jsonObject.getInt("viewIndex");
+    public PageIndex(final LinkedJSONObject linkedJsonObject) throws JSONException {
+        this.docIndex = linkedJsonObject.getInt("docIndex");
+        this.viewIndex = linkedJsonObject.getInt("viewIndex");
     }
 
-    public JSONObject toJSON() throws JSONException {
-        final JSONObject obj = new JSONObject();
+    public LinkedJSONObject toJSON() throws JSONException {
+        final LinkedJSONObject obj = new LinkedJSONObject();
         obj.put("docIndex", docIndex);
         obj.put("viewIndex", viewIndex);
         return obj;

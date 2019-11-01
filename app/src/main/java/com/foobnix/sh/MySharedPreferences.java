@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.LOG;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class MySharedPreferences implements SharedPreferences {
 
-    JSONObject object = null;
+    LinkedJSONObject object = null;
     final File file;
 
     public MySharedPreferences(File root, String name) {
@@ -33,10 +33,10 @@ public class MySharedPreferences implements SharedPreferences {
 
     public void load() {
         try {
-            object = new JSONObject(fileToString(file));
+            object = new LinkedJSONObject(fileToString(file));
         } catch (Exception e) {
             LOG.w(e);
-            object = new JSONObject();
+            object = new LinkedJSONObject();
         }
         LOG.d("MySharedPreferences loading");
     }
@@ -133,10 +133,10 @@ public class MySharedPreferences implements SharedPreferences {
     }
 
     public static class MyEdit implements Editor {
-        JSONObject object;
+        LinkedJSONObject object;
         File file;
 
-        public MyEdit(JSONObject object, File file) {
+        public MyEdit(LinkedJSONObject object, File file) {
             this.object = object;
             this.file = file;
         }
@@ -209,7 +209,7 @@ public class MySharedPreferences implements SharedPreferences {
 
         @Override
         public Editor clear() {
-            object = new JSONObject();
+            object = new LinkedJSONObject();
             return this;
         }
 

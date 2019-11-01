@@ -18,8 +18,8 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.util.Zip4jConstants;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.librera.JSONArray;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class ExportConverter {
 
 
         String st = IO.readString(file);
-        JSONObject obj = new JSONObject(st);
+        LinkedJSONObject obj = new LinkedJSONObject(st);
 
 
         IO.writeString(AppProfile.syncState, obj.getJSONObject("pdf").toString());
@@ -71,7 +71,7 @@ public class ExportConverter {
 
         JSONArray tags = obj.getJSONArray("TAGS");
         for (int i = 0; i < tags.length(); i++) {
-            JSONObject it = tags.getJSONObject(i);
+            LinkedJSONObject it = tags.getJSONObject(i);
             String path = it.getString("path");
             String tag = it.getString("tag");
             TagData.saveTags(path, tag);
@@ -79,11 +79,11 @@ public class ExportConverter {
 
         TagData.restoreTags();
 
-        JSONObject books = obj.getJSONObject("BOOKS");
+        LinkedJSONObject books = obj.getJSONObject("BOOKS");
         Iterator<String> keys = books.keys();
         Map<String, Integer> cache = new HashMap<>();
 
-        JSONObject resObj = IO.readJsonObject(AppProfile.syncProgress);
+        LinkedJSONObject resObj = IO.readJsonObject(AppProfile.syncProgress);
         while (keys.hasNext()) {
 
             String stringObj = books.getString(keys.next());
@@ -91,7 +91,7 @@ public class ExportConverter {
 
             LOG.d(stringObj);
 
-            JSONObject value = new JSONObject(stringObj);
+            LinkedJSONObject value = new LinkedJSONObject(stringObj);
 
 
             AppBook appBook = new AppBook(value.getString("fileName"));
@@ -104,7 +104,7 @@ public class ExportConverter {
             appBook.s = value.getInt("speed");
             appBook.d = value.optInt("pageDelta", 0);
 
-            JSONObject currentPage = value.getJSONObject("currentPage");
+            LinkedJSONObject currentPage = value.getJSONObject("currentPage");
             int pages = value.optInt("pages", 0);
             final int docIndex = currentPage.getInt("docIndex") + 1;
             if (pages > 0) {
@@ -129,10 +129,10 @@ public class ExportConverter {
         }
         IO.writeObj(AppProfile.syncProgress, resObj);
 
-        JSONObject bookmarks = obj.getJSONObject("ViewerPreferences");
+        LinkedJSONObject bookmarks = obj.getJSONObject("ViewerPreferences");
         Iterator<String> bKeys = bookmarks.keys();
 
-        JSONObject resObj2 = IO.readJsonObject(AppProfile.syncBookmarks);
+        LinkedJSONObject resObj2 = IO.readJsonObject(AppProfile.syncBookmarks);
 
         while (bKeys.hasNext()) {
             String value = bookmarks.getString(bKeys.next());

@@ -1,6 +1,6 @@
 package org.emdev.utils;
 
-import org.json.JSONArray;
+import org.librera.JSONArray;
 
 import java.util.Collection;
 import java.util.Map;

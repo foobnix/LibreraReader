@@ -64,8 +64,8 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -112,17 +112,17 @@ public class Dialogs {
 
 
         try {
-            JSONObject jsonObjectRoot = new JSONObject(AppState.get().lineTTSReplacements3);
+            LinkedJSONObject linkedJsonObjectRoot = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
             LOG.d("TTS-load", AppState.get().lineTTSReplacements3);
-            //new JSONObject(AppState.get().lineTTSReplacements3);
+            //new LinkedJSONObject(AppState.get().lineTTSReplacements3);
 
 
-            final Iterator<String> rootKeys = jsonObjectRoot.keys();
+            final Iterator<String> rootKeys = linkedJsonObjectRoot.keys();
 
             while (rootKeys.hasNext()) {
 
                 String key = rootKeys.next();
-                String value = jsonObjectRoot.getString(key);
+                String value = linkedJsonObjectRoot.getString(key);
 
                 LOG.d("TTS-load-key", key, value);
 
@@ -235,7 +235,7 @@ public class Dialogs {
 
             @Override
             public boolean run() {
-                JSONObject res = new JSONObject();
+                LinkedJSONObject res = new LinkedJSONObject();
                 //AppState.get().lineTTSAccents = lineTTSAccents.getText().toString();
                 boolean hasErrors = false;
                 for (int i = 0; i < root.getChildCount(); i++) {
@@ -294,14 +294,14 @@ public class Dialogs {
 
                 //errors
                 try {
-                    JSONObject jsonObject = new JSONObject(AppState.get().lineTTSReplacements3);
+                    LinkedJSONObject linkedJsonObject = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
 
 
-                    final Iterator<String> keys = jsonObject.keys();
+                    final Iterator<String> keys = linkedJsonObject.keys();
                     StringBuilder res = new StringBuilder();
                     while (keys.hasNext()) {
                         String key = keys.next();
-                        String value = jsonObject.getString(key);
+                        String value = linkedJsonObject.getString(key);
                         res.append(String.format("\"%s\" \"%s\"\n", key, value));
                     }
                     IO.writeString(new File(result1), res.toString());
@@ -329,13 +329,13 @@ public class Dialogs {
             ChooserDialogFragment.chooseFile((FragmentActivity) activity, "TTS-RegEx.txt").setOnSelectListener((result1, result2) -> {
 
                 try {
-                    JSONObject jsonObject = new JSONObject();
+                    LinkedJSONObject linkedJsonObject = new LinkedJSONObject();
 
                     TxtUtils.processDict(new FileInputStream(result1), new TxtUtils.ReplaceRule() {
                         @Override
                         public void replace(String from, String to) {
                             try {
-                                jsonObject.put(from, to);
+                                linkedJsonObject.put(from, to);
                             } catch (JSONException e) {
                                 LOG.e(e);
                             }
@@ -344,14 +344,14 @@ public class Dialogs {
                         @Override
                         public void replaceAll(String from, String to) {
                             try {
-                                jsonObject.put(from, to);
+                                linkedJsonObject.put(from, to);
                             } catch (JSONException e) {
                                 LOG.e(e);
                             }
                         }
                     });
 
-                    AppState.get().lineTTSReplacements3 = jsonObject.toString();
+                    AppState.get().lineTTSReplacements3 = linkedJsonObject.toString();
                     Toast.makeText(activity, R.string.success, Toast.LENGTH_LONG).show();
 
                     Vibro.vibrate();

@@ -2,9 +2,9 @@ package com.foobnix.android.utils;
 
 import com.foobnix.mobi.parser.IOUtils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONArray;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -40,8 +40,8 @@ public class IO {
 
     public static void writeObjAsync(File file, Object o) {
         LOG.d("writeObjAsync", file.getPath());
-        if (o instanceof JSONObject || o instanceof JSONArray) {
-            LOG.d("writeObjAsync", "JSONObject");
+        if (o instanceof LinkedJSONObject || o instanceof JSONArray) {
+            LOG.d("writeObjAsync", "LinkedJSONObject");
             IO.writeString(file, o.toString());
         } else if (o instanceof String) {
             LOG.d("writeObjAsync", "String");
@@ -69,17 +69,17 @@ public class IO {
     }
 
 
-    public static JSONObject readJsonObject(File file) {
+    public static LinkedJSONObject readJsonObject(File file) {
 
         final String s = readString(file);
         if (TxtUtils.isEmpty(s)) {
-            return new JSONObject();
+            return new LinkedJSONObject();
         }
 
         try {
-            return new JSONObject(s);
+            return new LinkedJSONObject(s);
         } catch (JSONException e) {
-            return new JSONObject();
+            return new LinkedJSONObject();
         }
 
     }

@@ -22,7 +22,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -670,8 +670,8 @@ public class AppState {
 
             try{
                 if(TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)){
-                    JSONObject o1 =  new JSONObject(AppState.get().lineTTSReplacements);
-                    JSONObject o3 =  new JSONObject(AppState.get().lineTTSReplacements3);
+                    LinkedJSONObject o1 =  new LinkedJSONObject(AppState.get().lineTTSReplacements);
+                    LinkedJSONObject o3 =  new LinkedJSONObject(AppState.get().lineTTSReplacements3);
                     Iterator<String> keys = o1.keys();
                     while(keys.hasNext()){
                         String key = keys.next();

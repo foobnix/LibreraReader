@@ -6,8 +6,8 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ui2.AppDB;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.Iterator;
@@ -44,7 +44,7 @@ public class TagData {
 
     public static void saveTags(String path, String tags) {
         try {
-            JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
             obj.put(MyPath.toRelative(path), tags);
             IO.writeObjAsync(AppProfile.syncTags, obj);
             LOG.d("saveTags", tags, path);
@@ -55,7 +55,7 @@ public class TagData {
 
     public static String getTags(String path) {
         try {
-            JSONObject obj = IO.readJsonObject(AppProfile.syncTags);
+            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncTags);
             return obj.getString(MyPath.toRelative(path));
         } catch (Exception e) {
             LOG.e(e);
@@ -74,7 +74,7 @@ public class TagData {
 
 
         for (File file : AppProfile.getAllFiles(AppProfile.APP_TAGS_JSON)) {
-            JSONObject obj = IO.readJsonObject(file);
+            LinkedJSONObject obj = IO.readJsonObject(file);
 
             final Iterator<String> keys = obj.keys();
 

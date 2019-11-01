@@ -10,7 +10,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class BookmarksData {
             bookmark.p = 0;
         }
         try {
-            JSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
+            LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncBookmarks);
             obj.put("" + bookmark.t, Objects.toJSONObject(bookmark));
             IO.writeObjAsync(AppProfile.syncBookmarks, obj);
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class BookmarksData {
         LOG.d("BookmarksData", "remove", bookmark.t, bookmark.file);
 
         try {
-            JSONObject obj = IO.readJsonObject(bookmark.file);
+            LinkedJSONObject obj = IO.readJsonObject(bookmark.file);
             if (obj.has("" + bookmark.t)) {
                 obj.remove("" + bookmark.t);
             }
@@ -102,7 +102,7 @@ public class BookmarksData {
         try {
 
             for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
-                JSONObject obj = IO.readJsonObject(file);
+                LinkedJSONObject obj = IO.readJsonObject(file);
 
 
                 final Iterator<String> keys = obj.keys();
@@ -111,7 +111,7 @@ public class BookmarksData {
 
                     AppBookmark appBookmark = new AppBookmark();
                     appBookmark.file = file;
-                    final JSONObject local = obj.getJSONObject(next);
+                    final LinkedJSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
                     all.add(appBookmark);
                 }
@@ -141,7 +141,7 @@ public class BookmarksData {
 
 
         for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
-            JSONObject obj = IO.readJsonObject(file);
+            LinkedJSONObject obj = IO.readJsonObject(file);
             try {
                 final Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -149,7 +149,7 @@ public class BookmarksData {
 
                     AppBookmark appBookmark = new AppBookmark();
                     appBookmark.file = file;
-                    final JSONObject local = obj.getJSONObject(next);
+                    final LinkedJSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
                     if (appBookmark.getPath().equals(path)) {
                         all.add(appBookmark);

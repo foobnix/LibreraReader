@@ -7,8 +7,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -38,9 +38,9 @@ public class Objects {
         return toJSONObject(obj).toString();
     }
 
-    public static JSONObject toJSONObject(Object obj) {
+    public static LinkedJSONObject toJSONObject(Object obj) {
         LOG.d(TAG, "saveToSP");
-        final JSONObject edit = new JSONObject();
+        final LinkedJSONObject edit = new LinkedJSONObject();
         for (final Field f : obj.getClass().getDeclaredFields()) {
             if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
                 continue;
@@ -57,13 +57,13 @@ public class Objects {
 
     public static void loadFromJson(Object obj, String json) {
         try {
-            loadFromJson(obj, new JSONObject(json));
+            loadFromJson(obj, new LinkedJSONObject(json));
         } catch (JSONException e) {
             LOG.e(e);
         }
     }
 
-    public static void loadFromJson(Object obj, JSONObject sp) {
+    public static void loadFromJson(Object obj, LinkedJSONObject sp) {
         try {
             for (final Field f : obj.getClass().getDeclaredFields()) {
                 if (Modifier.isStatic(f.getModifiers()) || Modifier.isPrivate(f.getModifiers()) || Modifier.isTransient(f.getModifiers())) {
