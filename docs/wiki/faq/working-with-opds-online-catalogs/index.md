@@ -9,7 +9,7 @@ layout: main
 ## To add the necessary online directory OPDS you need:
 * Go to the "Network" tab
 * Tap on the icon to add a directory. Consider the example of adding OPDS library directory " Project Gutenberg"
-* Enter the e-mail address of the ops directory
+* Enter the internet address of the ops directory
 * Tap "Add"
 * OPDS library added
 
