@@ -2,15 +2,16 @@
 layout: main
 ---
 
-# Dictionaries, translation of words and sentences
+# Using Dictionaries and Translators
 
-> When reading books, you may need to look up the meaning of a word you don't know in a dictionary. Librera allows you to work with many dictionaries, getting information on words in one click.
+> When you read a book, especially in a foreign language, you may need to look up the meaning of a word you don't know in a dictionary. With **Librera**, you can do it easily, in a single click, on- and offline.
 
-Librera supports online (Web) and offline (applications) dictionaries.
+**Librera** allows you to look up a single word or translate entire passages using online translators (dictionaries).
 
-**Online** - without downloading the dictionary to your mobile device, if you have access to the Internet. Information on the meaning of your word will be shown in the Internet browser.
-
-For example:
+There are plenty of **ONLINE** dictionaries and translators on the Internet. They allow you to check the meaning of a word without installing anything on your device.
+> **Librera** will open a browser window for you with the selected word in the search field of the chosen dictionary.
+ 
+ You can choose from the following (to name just a few):
 
 * Lingvo
 * Oxford
@@ -26,64 +27,56 @@ For example:
 * Academic.ru
 * Vocabulary.com
 * Deepl.com
-* Treccani.it
+* Treccani.it, etc.
 
-**Offline** - when the dictionary is downloaded to your mobile device from Google Play Store, the information is displayed in the dictionary program or in its pop-up window.
+**OFFLINE** dictionaries and translators need to be installed on your device from Google Play (or elsewhere). They will pop up a window with the translation or definition of a selected word, and don't rely on the Internet to work.
 
-For example:
-
+1. A list of most popular free dictionaries and translators on Google play is as follows:
 * Google Translate
 * Microsoft Translator
-* Multitran Dictionary
+* Multitran Russian Dictionary
 * Oxford Dictionary
+* Yandex.Translate, etc.
+2. You can also install a **dictionary-shell**, which will handle dictionaries made by third-party compilers, as, for instance:
+* GoldenDict
+* Fora Dictionary, etc.
+ 
+> **If you have not found in *Librera* the online resource you're looking for, please send your request to the developers at librera.reader@gmail.com or raise an issue on github.**
 
-If you have not found the necessary dictionary you can send a proposal to add it to the mail librera.reader@gmail.com or make an issue on github.
-
+**One-Click Dictionary Lookup**
+To enable immediate dictionary lookup of a selected word, you need to:
+* Open the **Preferences** window by tapping the **Settings** icon
+* Check the _Open selection in dictionary_ box in the main tab
+* Select a word (or a word sequence) by a long-press (and drag)
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
-To configure and select the dictionary you need, you need:
-
-* Click on the settings icon
-* Click the "Advanced Settings" tab 
-* Click on the reference Name dictionary
-* Select your installed offline or online dictionary from the list, swipe up or down. 
-
-This example uses offline dictionaries Google translator and Oxford Dictionary of English.
+**Setting Up a Default Dictionary**
+You can also configure your default dictionary (the one whose window will pop up upon a word selection):
+* Tap on the _Dictionary_ link next to the _Open selection_ box
+* Select the dictionary you prefer from the dropdown list of dictionaries and translators (Note: the list features both online and offline dictionaries)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](55.jpg)|![](66.jpg)|
 
-
-**Working with Online dictionary:**
-
-* Long tap on the word
-* Select "Web Dictionary Lookup"
-* Select the dictionary to which you want to pass the word. For example let's pass to Collins dictionary.
-
+**Leaving the Selection Box Unchecked**
+If you leave the _Open selection_ box unchecked, you will be presented with the **Text** window upon selecting a word or word sequence. Here you will be able to:
+* Look up or translate this word (sequence) in the online resource of your choosing (by tapping _Web Dictionary Lookup_)
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-**Working with Offline dictionary:**
-
-* Long tap on the word
-* Select the icon of the dictionary you need, for example Oxford Dictionary of English
-* If you want to add a shortcut to another dictionary already installed, click the "plus" icon and select it.
-* It's possible to configure single touch to translate the word
+* Find (by tapping **+** if necessary) your preferred installed dictionary or translator
+* Tap on its icon to invoke its popup window with the word translation (definition)
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-If you want to skip the dictionary selection, after tap on the word, so that the text is immediately transferred to Your dictionary:
-
-* Put the checkbox on "Open selection in dictionary" and select the dictionary you need.
+> A quick reminder: Don't forget to choose your default dictionary BEFORE checking the _Open selection in dictionary_ box.
 
 ||||
 |-|-|-|
