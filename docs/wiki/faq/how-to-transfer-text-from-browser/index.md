@@ -2,41 +2,34 @@
 layout: main
 ---
 
-# How to transfer text from the Web browser (to read or TTS)
+# Using TTS Capability for Reading Shares from Other Apps
+> You can share reading material with **Librera** from any application on your device that supports sharing.
+> For example, you can share web pages, articles and other interesting stuff from the Internet with **Librera**, save them, and make use of **Librera**'s TTS tools.
 
-> In Librera you can read articles from the Internet browser both by text and by sexual reproduction.
-
- 
-In order to read in Librera You need: 
-
-* Open the web page you need in your browser. For this example the Сhrome browser will be used, You can use your browser with the ability to share the page from the browser.  
-
-* Click the share icon in your Internet browser
-
-* Select Librera from the drop down list of programs
-
-* Select in which reading mode You want to view the transmitted text from the browser. By placing the checkbox on "remember selection" all subsequent texts transferred from the browser will be opened in the type of reading you have chosen.
+To read a web page out loud in **Librera**: 
+* Open the page in your browser. 
+* Tap on the _Share_ icon in your browser menu (Google Chrome, in our example)
+* Select **Librera** from the dropdown list of available apps
+* Select a reading mode for your browser's share. Note: you can remember the mode selected for future references by ticking off the respective checkbox.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Now the text from the browser open in Librera. For your ease of reading, you can add hyphens to the text by selecting the hyphens language you want.
+Now, once the web article from the browser is opened in **Librera**, you can fine-tune its readability: enable hyphenation, for starters.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-You can play the text by voice. To play text by voice, the voice synthesizer installed in the Android system is used. 
-Ate he You have not established the you can put from Google Play - Google Text-to-Speech.
+Now you can make **Librera** read the web page for you out loud:
+* Tap on the **TTS** icon in the bottom left corner
+* In the **TTS Settings** window, check if a TTS engine is installed (or select the one you will use if you have plenty). If there is none, we recommend you to install the Google TTS Engine off Google Play. 
+* Select the language for the engine to use.
+* Hit _Play_ and enjoy.
 
-* Click on the voice playback icon
-
-* Check if the voice synthesizer is installed, with the playback language you need
-
-* Press Play, listen to the text.
-
-If you close the settings window when playing text to speech, the control buttons are duplicated by the subtext and in the notification curtain, for ease of management. To stop reading press pause and cross.
+> You can close the **TTS Settings** window if you don't need any further fine-tuning. The playback controls will remain for your convenience at the bottom of the screen.
+* To exit TTS mode, tap the _X_ icon.
 
 ||||
 |-|-|-|

@@ -210,6 +210,7 @@ public class Dialogs {
                 EditText from = new EditText(activity);
                 from.setWidth(Dips.DP_200);
                 from.setSingleLine();
+                from.requestFocus();
 
 
                 TextView text = new TextView(activity);
@@ -376,6 +377,16 @@ public class Dialogs {
         LinearLayout line = new LinearLayout(activity);
         line.setOrientation(LinearLayout.HORIZONTAL);
 
+        add.setSingleLine();
+        export.setSingleLine();
+        importFile.setSingleLine();
+
+        add.setEllipsize(TextUtils.TruncateAt.END);
+        export.setEllipsize(TextUtils.TruncateAt.END);
+        importFile.setEllipsize(TextUtils.TruncateAt.END);
+
+
+
         line.addView(add);
         line.addView(Views.newText(activity, " ("));
         line.addView(export);
@@ -414,10 +425,15 @@ public class Dialogs {
         });
 
 
+        addDict.setSingleLine();
+        addDict.setEllipsize(TextUtils.TruncateAt.END);
         root.addView(addDict);
 
         TextView restore = new TextView(activity, null, R.style.textLink);
         restore.setPadding(Dips.DP_2, Dips.DP_2, Dips.DP_2, Dips.DP_2);
+
+        restore.setSingleLine();
+        restore.setEllipsize(TextUtils.TruncateAt.END);
 
         restore.setText(R.string.restore_defaults_short);
         TxtUtils.underlineTextView(restore);

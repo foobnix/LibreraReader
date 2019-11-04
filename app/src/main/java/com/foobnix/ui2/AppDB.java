@@ -274,6 +274,14 @@ public class AppDB {
         }
     }
 
+    public List<FileMeta> getAllByState(int state) {
+        try {
+            return fileMetaDao.queryBuilder().where(FileMetaDao.Properties.State.eq(state)).list();
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
+
     public void setIsSearchBook(String path, boolean value) {
         final FileMeta load = AppDB.get().load(path);
         if (load != null) {
@@ -342,10 +350,10 @@ public class AppDB {
     public synchronized void updateOrSave(FileMeta meta) {
         if (fileMetaDao.load(meta.getPath()) == null) {
             fileMetaDao.insert(meta);
-            LOG.d("updateOrSave insert", LOG.ojectAsString(meta));
+            //LOG.d("updateOrSave insert", LOG.ojectAsString(meta));
         } else {
             fileMetaDao.update(meta);
-            LOG.d("updateOrSave update", LOG.ojectAsString(meta));
+            //LOG.d("updateOrSave update", LOG.ojectAsString(meta));
         }
 
     }

@@ -2,17 +2,13 @@
 layout: main
 ---
 
-# Come aumentare la dimensione del carattere nel documento PDF in Android
+# Aumentare la dimensione del carattere nei documenti PDF
 
-Le persone spesso chiedono
-
-* Come posso aumentare le dimensioni del carattere su un PDF?
-* Come posso modificare la dimensione del carattere in un modulo compilabile PDF?
-* Come posso aumentare la dimensione del carattere nel documento PDF?
-* Come posso modificare la dimensione del carattere di un commento PDF?
-* Come posso modificare la dimensione del carattere in PDF
-
-Nell'applicazione Librera è possibile aprire PDF in modalità **Riscorrimento testo** e modificare la dimensione del carattere in base alle proprie esigenze.
+Per migliorare la leggibilità del tuo documento PDF (caratteri troppo piccoli), puoi convertirlo in **Librera** in un altro formato di file (EPUB):
+* Apri il tuo documento PDF in **Librera**
+* Apri il menu generale toccando al centro dello schermo
+* Tocca l'icona del menu del libro (icona a tre punti) nella parte inferiore dello schermo
+* Tocca l'elemento _Rifondi PDF_, attendi che la conversione termini, quindi modifica la dimensione del carattere nella finestra **Preferenze**.
 
 |1|2|3|
 |-|-|-|

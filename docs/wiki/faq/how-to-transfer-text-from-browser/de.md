@@ -2,41 +2,34 @@
 layout: main
 ---
 
-# Übertragen von Text vom Webbrowser (zum Lesen oder TTS)
+# Verwenden der TTS-Funktion zum Lesen von Freigaben aus anderen Apps
+> Sie können Lesematerial mit **Librera** in jeder Anwendung auf Ihrem Gerät teilen, die das Teilen unterstützt.
+> Sie können beispielsweise Webseiten, Artikel und andere interessante Inhalte aus dem Internet mit **Librera** teilen, diese speichern und die TTS-Tools von **Librera** verwenden.
 
-> In Librera können Sie Artikel aus dem Internetbrowser sowohl nach Text als auch nach sexueller Reproduktion lesen.
-
- 
-Zum Lesen in Librera benötigen Sie:
-
-* Öffnen Sie die gewünschte Webseite in Ihrem Browser. In diesem Beispiel wird der Standardbrowser verwendet. Sie können Ihren Browser mit der Möglichkeit verwenden, die Seite über den Browser freizugeben.
-
-* Klicken Sie in Ihrem Internetbrowser auf das Freigabesymbol
-
-* Wählen Sie Librera aus der Dropdown-Liste der Programme aus
-
-* Wählen Sie aus, in welchem Lesemodus Sie den übertragenen Text im Browser anzeigen möchten. Wenn Sie das Kontrollkästchen &quot;Auswahl merken&quot; aktivieren, werden alle nachfolgenden Texte, die vom Browser übertragen wurden, in der von Ihnen gewählten Leseart geöffnet.
+So lesen Sie eine Webseite in **Librera** vor:
+* Öffnen Sie die Seite in Ihrem Browser.
+* Tippen Sie in Ihrem Browser-Menü auf das Symbol _Share_ (in unserem Beispiel Google Chrome).
+* Wählen Sie **Librera** aus der Dropdown-Liste der verfügbaren Apps aus
+* Wählen Sie einen Lesemodus für die Freigabe Ihres Browsers aus. Hinweis: Sie können sich den für zukünftige Referenzen ausgewählten Modus merken, indem Sie das entsprechende Kontrollkästchen aktivieren.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Nun wird der Text aus dem Browser in Librera geöffnet. Um das Lesen zu vereinfachen, können Sie dem Text Bindestriche hinzufügen, indem Sie die gewünschte Sprache für die Bindestriche auswählen.
+Sobald der Webartikel aus dem Browser in **Librera** geöffnet ist, können Sie die Lesbarkeit optimieren: Aktivieren Sie zunächst die Silbentrennung.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Sie können den Text mit der Stimme abspielen. Zum Abspielen von Text per Sprache wird der auf dem Android-System installierte Sprachsynthesizer verwendet.
-Sie haben nicht festgestellt, welche Informationen Sie in Google Play - Google Text-to-Speech - ablegen können.
+Jetzt können Sie **Librera** die Webseite laut vorlesen lassen:
+* Tippen Sie unten links auf das **TTS** -Symbol
+* Überprüfen Sie im Fenster **TTS-Einstellungen**, ob eine TTS-Engine installiert ist (oder wählen Sie die aus, die Sie verwenden möchten, wenn Sie über genügend TTS verfügen). Wenn es keine gibt, empfehlen wir Ihnen, die Google TTS Engine von Google Play zu installieren.
+* Wählen Sie die Sprache für die Engine aus.
+* Klicke auf _Play_ und genieße es.
 
-* Klicken Sie auf das Sprachwiedergabesymbol
-
-* Überprüfen Sie, ob der Sprachsynthesizer mit der von Ihnen benötigten Wiedergabesprache installiert ist
-
-* Drücken Sie die Wiedergabetaste, und hören Sie sich den Text an.
-
-Wenn Sie das Einstellungsfenster schließen, während Sie Text in Sprache wiedergeben, werden die Steuerschaltflächen zur Vereinfachung der Verwaltung durch den Untertext und den Benachrichtigungsvorhang dupliziert. Um den Lesevorgang abzubrechen, drücken Sie Pause und Kreuz.
+> Sie können das Fenster **TTS-Einstellungen** schließen, wenn Sie keine weitere Feinabstimmung benötigen. Die Steuerelemente für die Wiedergabe bleiben zu Ihrer Bequemlichkeit am unteren Rand des Bildschirms.
+* Tippen Sie zum Verlassen des TTS-Modus auf das Symbol _X_.
 
 ||||
 |-|-|-|

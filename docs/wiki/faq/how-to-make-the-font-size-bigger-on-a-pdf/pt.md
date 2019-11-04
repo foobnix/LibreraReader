@@ -2,17 +2,13 @@
 layout: main
 ---
 
-# Como aumentar o tamanho da fonte no documento PDF no Android
+# Aumentando o tamanho da fonte em documentos PDF
 
-As pessoas costumam perguntar
-
-* Como faço para aumentar o tamanho da fonte em um PDF?
-* Como altero o tamanho da fonte em um formulário preenchível em PDF?
-* Como aumento o tamanho da fonte no documento PDF?
-* Como altero o tamanho da fonte de um comentário em PDF?
-* Como altero o tamanho da fonte no PDF
-
-No aplicativo Librera, você pode abrir o PDF no modo **Refluxo de texto** e alterar o tamanho da fonte conforme necessário.
+Para melhorar a legibilidade do seu documento PDF (tamanho de caractere muito pequeno), você pode convertê-lo no **Librera** para outro formato de arquivo (EPUB):
+* Abra seu documento PDF no **Librera**
+* Abra o menu geral tocando na tela central
+* Toque no ícone do menu do livro (ícone de três pontos) na parte inferior da tela
+* Toque no item _Reflow PDF_, aguarde o término da conversão e altere o tamanho da fonte na janela **Preferências**.
 
 |1|2|3|
 |-|-|-|

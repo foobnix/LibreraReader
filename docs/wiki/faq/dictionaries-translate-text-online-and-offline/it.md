@@ -2,15 +2,16 @@
 layout: main
 ---
 
-# Dizionari, traduzione di parole e frasi
+# Uso di dizionari e traduttori
 
-> Quando leggi libri, potresti dover cercare il significato di una parola che non conosci in un dizionario. Librera ti consente di lavorare con molti dizionari, ottenendo informazioni sulle parole con un clic.
+> Quando leggi un libro, specialmente in una lingua straniera, potresti dover cercare il significato di una parola che non conosci in un dizionario. Con **Librera**, puoi farlo facilmente, con un solo clic, online e offline.
 
-Librera supporta dizionari online (Web) e offline (applicazioni).
+**Librera** ti consente di cercare una sola parola o tradurre interi passaggi utilizzando traduttori (dizionari) online.
 
-**Online** - senza scaricare il dizionario sul tuo dispositivo mobile, se hai accesso a Internet. Le informazioni sul significato della parola verranno visualizzate nel browser Internet.
-
-Per esempio:
+Ci sono molti **ONLINE** dizionari e traduttori su Internet. Ti consentono di controllare il significato di una parola senza installare nulla sul tuo dispositivo.
+> **Librera** aprirà una finestra del browser con la parola selezionata nel campo di ricerca del dizionario scelto.
+ 
+Puoi scegliere tra le seguenti (solo per citarne alcune):
 
 * Lingvo
 * Oxford
@@ -26,64 +27,56 @@ Per esempio:
 * Academic.ru
 * Vocabulary.com
 * Deepl.com
-* Treccani.it
+* Treccani.it, ecc.
 
-**Offline**: quando il dizionario viene scaricato sul tuo dispositivo mobile da Google Play Store, le informazioni vengono visualizzate nel programma del dizionario o nella sua finestra pop-up.
+**OFFLINE** dizionari e traduttori devono essere installati sul tuo dispositivo da Google Play (o altrove). Appariranno una finestra con la traduzione o la definizione di una parola selezionata e non faranno affidamento su Internet per funzionare.
 
-Per esempio:
-
+1. Un elenco dei dizionari e traduttori gratuiti più popolari su Google Play è il seguente:
 * Google Translate
 * Traduttore Microsoft
-* Dizionario multitran
+* Dizionario russo multitran
 * Dizionario Oxford
+* Yandex.Translate, ecc.
+2. Puoi anche installare un **dizionario-shell**, che gestirà i dizionari creati da compilatori di terze parti, come ad esempio:
+* GoldenDict
+* Dizionario Fora, ecc.
+ 
+> **Se non hai trovato in * Librera * la risorsa online che stai cercando, invia la tua richiesta agli sviluppatori all'indirizzo librera.reader@gmail.com o solleva un problema su github.**
 
-Se non hai trovato il dizionario necessario puoi inviare una proposta per aggiungerla alla mail librera.reader@gmail.com o fare un problema su github.
-
+**Ricerca nel dizionario con un clic**
+Per abilitare la ricerca immediata del dizionario di una parola selezionata, è necessario:
+* Apri la finestra **Preferenze** toccando l'icona **Impostazioni**
+* Seleziona la casella &quot;Apri selezione nel dizionario&quot; nella scheda principale
+* Seleziona una parola (o una sequenza di parole) premendo a lungo (e trascina)
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
-Per configurare e selezionare il dizionario necessario, è necessario:
-
-* Fai clic sull'icona delle impostazioni
-* Fai clic sulla scheda &quot;Impostazioni avanzate&quot;
-* Fai clic sul dizionario dei nomi di riferimento
-* Seleziona il dizionario offline o online installato dall'elenco, scorri verso l'alto o verso il basso.
-
-Questo esempio utilizza dizionari offline traduttore di Google e Dizionario inglese di Oxford.
+**Impostazione di un dizionario predefinito**
+Puoi anche configurare il tuo dizionario predefinito (quello la cui finestra si aprirà su una selezione di parole):
+* Tocca il link _Dictionary_ accanto alla casella _Open selection_
+* Seleziona il dizionario che preferisci dall'elenco a discesa di dizionari e traduttori (Nota: l'elenco presenta sia dizionari online che offline)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](55.jpg)|![](66.jpg)|
 
-
-**Lavorare con il dizionario online:**
-
-* Tocca a lungo la parola
-* Seleziona &quot;Ricerca nel dizionario Web&quot;
-* Seleziona il dizionario a cui vuoi passare la parola. Passiamo ad esempio al dizionario Collins.
-
+**Lasciando deselezionata la casella di selezione**
+Se lasci la casella _Open selection_ deselezionata, ti verrà presentata la finestra **Testo** dopo aver selezionato una parola o una sequenza di parole. Qui sarai in grado di:
+* Cerca o traduci questa parola (sequenza) nella risorsa online di tua scelta (toccando _Web Dictionary Lookup_)
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-**Lavorare con il dizionario offline:**
-
-* Tocca a lungo la parola
-* Seleziona l'icona del dizionario che ti serve, ad esempio Oxford Dictionary of English
-* Se si desidera aggiungere un collegamento a un altro dizionario già installato, fare clic sull'icona &quot;più&quot; e selezionarlo.
-* È possibile configurare il tocco singolo per tradurre la parola
+* Trova (toccando **+** se necessario) il tuo dizionario o traduttore preferito preferito
+* Tocca la sua icona per richiamare la finestra popup con la traduzione delle parole (definizione)
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-Se vuoi saltare la selezione del dizionario, dopo aver toccato la parola, in modo che il testo venga immediatamente trasferito nel tuo dizionario:
-
-* Metti la casella di controllo su &quot;Apri selezione nel dizionario&quot; e seleziona il dizionario che ti serve.
+> Un rapido promemoria: non dimenticare di scegliere il dizionario predefinito PRIMA di selezionare la casella _Apri selezione nel dizionario_.
 
 ||||
 |-|-|-|

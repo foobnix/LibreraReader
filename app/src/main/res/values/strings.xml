@@ -588,5 +588,5 @@
    <string name="play_pause">Play/pause</string>
    <string name="next_track">Next track</string>
    <string name="previous_track">Previous track</string>
-   <string name="copied_text">Copied text</string>
+   <string name="copied_text">Text copied</string>
 </resources>
