@@ -45,12 +45,60 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BooksService extends IntentService {
+    public static String TAG = "BooksService";
+    public static String INTENT_NAME = "BooksServiceIntent";
+    public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
+    public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
+    public static String ACTION_SYNC_DROPBOX = "ACTION_SYNC_DROPBOX";
+    public static String ACTION_RUN_SYNCRONICATION = "ACTION_RUN_SYNCRONICATION";
+    public static String RESULT_SYNC_FINISH = "RESULT_SYNC_FINISH";
+    public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
+    public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
+    public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
+    public static volatile boolean isRunning = false;
+    Handler handler;
+    boolean isStartForeground = false;
+    Runnable timer2 = new Runnable() {
+
+        @Override
+        public void run() {
+            sendBuildingLibrary();
+            handler.postDelayed(timer2, 250);
+        }
+    };
     private MediaSessionCompat mediaSessionCompat;
+    private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
+    Runnable timer = new Runnable() {
+
+        @Override
+        public void run() {
+            sendProggressMessage();
+            handler.postDelayed(timer, 250);
+        }
+    };
 
     public BooksService() {
         super("BooksService");
         handler = new Handler();
         LOG.d("BooksService", "Create");
+    }
+
+    public static void sendFinishMessage(Context c) {
+        Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
+        LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
+    }
+
+    public static void startForeground(Activity a, String action) {
+        final Intent intent = new Intent(a, BooksService.class).setAction(action);
+        a.startService(intent);
+
+//        if (Build.VERSION.SDK_INT >= 26) {
+//            a.startForegroundService(intent);
+//        } else {
+//            a.startService(intent);
+//
+//        }
+
     }
 
     @Override
@@ -60,33 +108,11 @@ public class BooksService extends IntentService {
         LOG.d("BooksService", "onDestroy");
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         //startMyForeground();
     }
-
-    public static String TAG = "BooksService";
-
-    Handler handler;
-
-    public static String INTENT_NAME = "BooksServiceIntent";
-    public static String ACTION_SEARCH_ALL = "ACTION_SEARCH_ALL";
-    public static String ACTION_REMOVE_DELETED = "ACTION_REMOVE_DELETED";
-    public static String ACTION_SYNC_DROPBOX = "ACTION_SYNC_DROPBOX";
-    public static String ACTION_RUN_SYNCRONICATION = "ACTION_RUN_SYNCRONICATION";
-
-    public static String RESULT_SYNC_FINISH = "RESULT_SYNC_FINISH";
-    public static String RESULT_SEARCH_FINISH = "RESULT_SEARCH_FINISH";
-    public static String RESULT_BUILD_LIBRARY = "RESULT_BUILD_LIBRARY";
-    public static String RESULT_SEARCH_COUNT = "RESULT_SEARCH_COUNT";
-
-    private List<FileMeta> itemsMeta = new LinkedList<FileMeta>();
-
-    public static volatile boolean isRunning = false;
-
-    boolean isStartForeground = false;
 
     public void startMyForeground() {
         if (!isStartForeground) {
@@ -104,7 +130,6 @@ public class BooksService extends IntentService {
             isStartForeground = true;
         }
     }
-
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -205,9 +230,15 @@ public class BooksService extends IntentService {
                     }
                 }
 
+
+                List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
+                for (FileMeta m : allNone) {
+                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                }
+
                 sendFinishMessage();
                 Clouds.get().syncronizeGet();
-
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
@@ -318,24 +349,6 @@ public class BooksService extends IntentService {
         //stopSelf();
     }
 
-    Runnable timer = new Runnable() {
-
-        @Override
-        public void run() {
-            sendProggressMessage();
-            handler.postDelayed(timer, 250);
-        }
-    };
-
-    Runnable timer2 = new Runnable() {
-
-        @Override
-        public void run() {
-            sendBuildingLibrary();
-            handler.postDelayed(timer2, 250);
-        }
-    };
-
     private void sendFinishMessage() {
         try {
             //AppDB.get().getDao().detachAll();
@@ -347,11 +360,6 @@ public class BooksService extends IntentService {
         EventBus.getDefault().post(new MessageSyncFinish());
     }
 
-    public static void sendFinishMessage(Context c) {
-        Intent intent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_FINISH);
-        LocalBroadcastManager.getInstance(c).sendBroadcast(intent);
-    }
-
     private void sendProggressMessage() {
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra(Intent.EXTRA_INDEX, itemsMeta.size());
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
@@ -360,19 +368,6 @@ public class BooksService extends IntentService {
     private void sendBuildingLibrary() {
         Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_BUILD_LIBRARY);
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
-    }
-
-    public static void startForeground(Activity a, String action) {
-        final Intent intent = new Intent(a, BooksService.class).setAction(action);
-        a.startService(intent);
-
-//        if (Build.VERSION.SDK_INT >= 26) {
-//            a.startForegroundService(intent);
-//        } else {
-//            a.startService(intent);
-//
-//        }
-
     }
 
 }
