@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Définition du sens du texte RTL (de droite à gauche) et LTR (de gauche à droite)
+# Définition du sens du texte RTL (de droite à gauche) ou LTR (de gauche à droite)
 
 
 > Librera vous permet d’adapter le processus de lecture aux langues arabes en modifiant le sens de lecture de LTR (de gauche à droite) à RTL (de droite à gauche).

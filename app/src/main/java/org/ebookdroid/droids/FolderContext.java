@@ -21,7 +21,7 @@ import java.util.List;
 public class FolderContext extends PdfContext {
 
     public static String LXML = "ldir";
-    public static String LIST_LXML = "book." + LXML;
+
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
@@ -37,10 +37,8 @@ public class FolderContext extends PdfContext {
             }
         }
 
-        File root = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
-        root.mkdirs();
+        File file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName()+"."+LXML);
 
-        File file = new File(root, LIST_LXML);
         if (write) {
             file.delete();
 

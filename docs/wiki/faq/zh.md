@@ -5,8 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 {1}常见问题
 
+* [设置文本方向RTL(从右到左)或LTR(从左到右)](/wiki/faq/rtl-or-ltr-text-direction/zh)
 * [使用OPDS在线目录](/wiki/faq/working-with-opds-online-catalogs/zh)
-* [设置文本方向RTL(从右到左)和LTR(从左到右)](/wiki/faq/rtl-or-ltr-text-direction/zh)
 * [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)
 * [使用个人资料](/wiki/faq/working-with-profiles/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)

@@ -5,8 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Perguntas freqüentes
 
+* [Definindo a direção do texto RTL (da direita para a esquerda) ou LTR (da esquerda para a direita)](/wiki/faq/rtl-or-ltr-text-direction/pt)
 * [Trabalhando com catálogos online do OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
-* [Definindo a direção do texto RTL (da direita para a esquerda) e LTR (da esquerda para a direita)](/wiki/faq/rtl-or-ltr-text-direction/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)
 * [Trabalhando com perfis](/wiki/faq/working-with-profiles/pt)
 * [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)

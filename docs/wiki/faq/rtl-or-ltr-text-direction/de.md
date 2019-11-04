@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Einstellen der Textrichtung RTL (von rechts nach links) und LTR (von links nach rechts)
+# Einstellen der Textrichtung RTL (von rechts nach links) oder LTR (von links nach rechts)
 
 
 > Mit Librera können Sie den Lesevorgang für arabische Sprachen anpassen, indem Sie die Leserichtung von LTR (von links nach rechts) auf RTL (von rechts nach links) ändern.

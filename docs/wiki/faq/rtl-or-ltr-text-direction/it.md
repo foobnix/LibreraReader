@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Impostazione della direzione del testo RTL (da destra a sinistra) è LTR (da sinistra a destra)
+# Impostazione della direzione del testo RTL (da destra a sinistra) o LTR (da sinistra a destra)
 
 
 > Librera ti consente di adattare il processo di lettura per le lingue arabe cambiando la direzione di lettura da LTR (da sinistra a destra) a RTL (da destra a sinistra)

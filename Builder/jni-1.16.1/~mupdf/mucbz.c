@@ -7,7 +7,6 @@
 #define DPI 72.0f
 
 
-
 typedef struct cbz_document_s cbz_document;
 typedef struct cbz_page_s cbz_page;
 
@@ -125,7 +124,7 @@ cbz_create_page_list(fz_context *ctx, cbz_document *doc)
 }
 
 static void
-cbz_create_page_list_dir(fz_context *ctx, cbz_document *doc)
+cbz_create_page_list_dir(fz_context *ctx, cbz_document *doc, char *ldir)
 {
 	fz_archive *arch = doc->arch;
 	int i, k, count;
@@ -134,7 +133,7 @@ cbz_create_page_list_dir(fz_context *ctx, cbz_document *doc)
 	fz_buffer *buf;
 	fz_xml *container_xml;
 
-	buf = fz_read_archive_entry(ctx, arch, "book.ldir");
+	buf = fz_read_archive_entry(ctx, arch, ldir);
 	container_xml = fz_xml_root(fz_parse_xml(ctx, buf, 0));
 	fz_drop_buffer(ctx, buf);
 
@@ -309,7 +308,7 @@ struct fz_directory_s
 
 
 static fz_document *
-cbz_open_document(fz_context *ctx, const char *filename)
+cbz_open_document(fz_context *ctx, const char *filename1)
 {
 
 
@@ -321,20 +320,19 @@ cbz_open_document(fz_context *ctx, const char *filename)
     doc->super.count_pages = cbz_count_pages;
     doc->super.load_page = cbz_load_page;
     doc->super.lookup_metadata = cbz_lookup_metadata;
-
-	if (strstr(filename, "book.ldir"))
+	if (strstr(filename1, ".ldir"))
 	{
-		char dirname[2048], *p;
-		fz_strlcpy(dirname, filename, sizeof dirname);
-		p = strstr(dirname, "book.ldir");
-		*p = 0;
-		if (!dirname[0])
-			fz_strlcpy(dirname, ".", sizeof dirname);
+		char dirname1[2048];
+		fz_dirname(dirname1, filename1, sizeof dirname1);
+
 
         	fz_try(ctx)
         	{
-        		doc->arch = fz_open_directory(ctx, dirname);
-        		cbz_create_page_list_dir(ctx, doc);
+        		doc->arch = fz_open_directory(ctx, dirname1);
+        		char *name;
+        		name = strrchr(filename1, '/');
+
+        		cbz_create_page_list_dir(ctx, doc, name);
         	}
         	fz_catch(ctx)
           {
@@ -345,7 +343,7 @@ cbz_open_document(fz_context *ctx, const char *filename)
 	}else{
             fz_try(ctx)
             {
-                doc->arch = fz_open_zip_archive(ctx, filename);
+                doc->arch = fz_open_zip_archive(ctx, filename1);
                 cbz_create_page_list(ctx, doc);
             }
             fz_catch(ctx)
