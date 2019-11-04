@@ -9,7 +9,7 @@ layout: main
 ## Per aggiungere gli OPDS della directory online necessari è necessario:
 * Vai alla scheda &quot;Rete&quot;
 * Tocca l'icona per aggiungere una directory. Si consideri l'esempio dell'aggiunta della directory della libreria OPDS &quot;Project Gutenberg&quot;
-* Immettere l'indirizzo e-mail della directory ops
+* Immettere l'indirizzo Internet della directory ops
 * Tocca &quot;Aggiungi&quot;
 * libreria OPDS aggiunta
 

@@ -4,6 +4,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
@@ -22,13 +24,6 @@ public class FolderContext extends PdfContext {
 
     public static String LXML = "ldir";
 
-
-    @Override
-    public CodecDocument openDocumentInner(String fileName, String password) {
-        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
-        return muPdfDocument;
-    }
-
     public static File genarateXML(List<FileMeta> items, String base, boolean write) {
         List<FileMeta> res = new ArrayList<FileMeta>();
         for (FileMeta meta : items) {
@@ -37,7 +32,14 @@ public class FolderContext extends PdfContext {
             }
         }
 
-        File file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName()+"."+LXML);
+        File file;
+        if (AppsConfig.MUPDF_1_16 == BuildConfig.MUPDF_VERSION) {
+            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
+        } else {
+            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
+            file.mkdirs();
+            file = new File(file, "book.ldir");
+        }
 
         if (write) {
             file.delete();
@@ -136,6 +138,12 @@ public class FolderContext extends PdfContext {
         }
 
         return null;
+    }
+
+    @Override
+    public CodecDocument openDocumentInner(String fileName, String password) {
+        MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, fileName, password);
+        return muPdfDocument;
     }
 
 }

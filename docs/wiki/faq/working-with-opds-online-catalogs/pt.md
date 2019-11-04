@@ -9,7 +9,7 @@ layout: main
 ## Para adicionar o diretório online OPDS necessário, você precisa:
 * Vá para a guia &quot;Rede&quot;
 * Toque no ícone para adicionar um diretório. Considere o exemplo de adição do diretório da biblioteca OPDS &quot;Project Gutenberg&quot;
-* Digite o endereço de e-mail do diretório ops
+* Digite o endereço da Internet do diretório ops
 * Toque em &quot;Adicionar&quot;
 * biblioteca OPDS adicionada
 

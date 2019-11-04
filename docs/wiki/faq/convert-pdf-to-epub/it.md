@@ -2,13 +2,13 @@
 layout: main
 ---
 
-# Come convertire PDF in EPUB
+# Conversione di PDF in EPUB
 
-> **Librera** ti aiuterà a convertire qualsiasi formato di libro in un altro formato utilizzando risorse online. Puoi anche convertire PDF in EPUB utilizzando la modalità _Reflow PDF_ interna dell'app (modalità mobile)
+> **Librera** ti aiuterà a convertire qualsiasi formato di libro in un altro formato utilizzando risorse online. Inoltre, puoi anche convertire PDF in EPUB utilizzando la modalità _Reflow PDF_ interna dell'app.
 
-## Accesso ai convertitori online
+**Accesso ai convertitori online**
 
-Tocca **Converti documento online** nel menu a comparsa **Preferenze**
+Tocca il link _Convert Document Online__ nel menu a scomparsa **Preferenze**
 
 Scegli _Convert in EPUB_
 
@@ -20,16 +20,17 @@ Scegli _Convert in EPUB_
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-## _Riaccedi PDF_ Mode (conversione PDF interna)
+**_Riaccedi PDF_ Mode (conversione PDF interna)**
 
 L'opzione _Reflow PDF_ converte il documento PDF in formato EPUB offline.
-Tutte le immagini nel documento verranno conservate.
+> Tutte le immagini nel documento verranno conservate.
 
-* Tocca &quot;tre punti&quot; nella parte inferiore per aprire il menu del libro, quindi tocca _Riapplica PDF_
+* Tocca l'icona a tre punti in basso per aprire il menu del libro
+* Tocca l'elemento _Rifondi PDF_ nel menu del libro
 * Un documento PDF in una presentazione più accattivante
-* Versioni PDF ed EPUB salvate nella scheda **Recenti**
+* Versioni PDF ed EPUB nella scheda _Recent_
 
 |4|5|6|
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
-
+> **Il risultato della conversione (EPUB) verrà salvato nella cartella _Librera/Download_ (memoria interna).**

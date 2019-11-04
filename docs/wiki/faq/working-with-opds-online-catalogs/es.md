@@ -9,7 +9,7 @@ layout: main
 ## Para agregar el directorio en línea necesario OPDS que necesita:
 * Vaya a la pestaña &quot;Red&quot;
 * Toque el icono para agregar un directorio. Considere el ejemplo de agregar el directorio de la biblioteca OPDS &quot;Proyecto Gutenberg&quot;
-* Ingrese la dirección de correo electrónico del directorio de operaciones
+* Ingrese la dirección de internet del directorio de operaciones
 * Toque &quot;Agregar&quot;
 * biblioteca OPDS añadida
 

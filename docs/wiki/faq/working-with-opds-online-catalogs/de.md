@@ -9,7 +9,7 @@ layout: main
 ## Um das erforderliche Online-Verzeichnis OPDS hinzuzufügen, benötigen Sie:
 * Wechseln Sie zum Tab &quot;Netzwerk&quot;
 * Tippen Sie auf das Symbol, um ein Verzeichnis hinzuzufügen. Betrachten Sie das Beispiel des Hinzufügens des OPDS-Bibliotheksverzeichnisses &quot;Project Gutenberg&quot;.
-* Geben Sie die E-Mail-Adresse des ops-Verzeichnisses ein
+* Geben Sie die Internetadresse des ops-Verzeichnisses ein
 * Tippen Sie auf &quot;Hinzufügen&quot;.
 * OPDS-Bibliothek hinzugefügt
 

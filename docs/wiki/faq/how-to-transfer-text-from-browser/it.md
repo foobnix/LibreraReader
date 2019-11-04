@@ -2,41 +2,34 @@
 layout: main
 ---
 
-# Come trasferire testo dal browser Web (da leggere o TTS)
+# Utilizzo della funzionalità TTS per la lettura di condivisioni da altre app
+> Puoi condividere materiale di lettura con **Librera** da qualsiasi applicazione sul tuo dispositivo che supporti la condivisione.
+> Ad esempio, puoi condividere pagine Web, articoli e altre cose interessanti da Internet con **Librera**, salvarle e utilizzare gli strumenti TTS di **Librera**.
 
-> In Librera puoi leggere articoli dal browser Internet sia per testo che per riproduzione sessuale.
-
- 
-Per leggere in Librera devi:
-
-* Apri la pagina web di cui hai bisogno nel tuo browser. Per questo esempio verrà utilizzato il browser Сhrome, è possibile utilizzare il browser con la possibilità di condividere la pagina dal browser.
-
-* Fai clic sull'icona di condivisione nel tuo browser Internet
-
-* Seleziona Librera dall'elenco a discesa dei programmi
-
-* Seleziona in quale modalità di lettura vuoi visualizzare il testo trasmesso dal browser. Mettendo la casella di controllo su &quot;ricorda selezione&quot; tutti i testi successivi trasferiti dal browser verranno aperti nel tipo di lettura che hai scelto.
+Per leggere una pagina web ad alta voce in **Librera**:
+* Apri la pagina nel tuo browser.
+* Tocca l'icona _Share_ nel menu del browser (Google Chrome, nel nostro esempio)
+* Seleziona **Librera** dall'elenco a discesa delle app disponibili
+* Seleziona una modalità di lettura per la condivisione del tuo browser. Nota: è possibile ricordare la modalità selezionata per riferimenti futuri spuntando la rispettiva casella.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Ora il testo del browser si apre in Librera. Per facilità di lettura, è possibile aggiungere trattini al testo selezionando la lingua dei trattini desiderata.
+Ora, una volta aperto l'articolo Web dal browser in **Librera**, puoi perfezionarne la leggibilità: abilita la sillabazione, per cominciare.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Puoi riprodurre il testo con la voce. Per riprodurre il testo con la voce, viene utilizzato il sintetizzatore vocale installato nel sistema Android.
-Lo abbiamo mangiato Non hai stabilito che puoi mettere da Google Play - Sintesi vocale di Google.
+Ora puoi far leggere ad alta voce **Librera**:
+* Tocca l'icona **TTS** nell'angolo in basso a sinistra
+* Nella finestra **Impostazioni TTS**, controlla se è installato un motore TTS (o seleziona quello che userai se ne hai abbastanza). In caso contrario, ti consigliamo di installare Google TTS Engine su Google Play.
+* Seleziona la lingua da utilizzare per il motore.
+* Premi _Play_ e divertiti.
 
-* Fai clic sull'icona di riproduzione vocale
-
-* Controlla se il sintetizzatore vocale è installato, con la lingua di riproduzione di cui hai bisogno
-
-* Premi Riproduci, ascolta il testo.
-
-Se si chiude la finestra delle impostazioni durante la riproduzione da testo a voce, i pulsanti di controllo vengono duplicati dal sottotesto e nella tendina delle notifiche, per facilitare la gestione. Per interrompere la lettura, premere pausa e croce.
+> Puoi chiudere la finestra **Impostazioni TTS** se non hai bisogno di ulteriori perfezionamenti. I controlli di riproduzione rimarranno per comodità nella parte inferiore dello schermo.
+* Per uscire dalla modalità TTS, toccare l'icona _X_.
 
 ||||
 |-|-|-|

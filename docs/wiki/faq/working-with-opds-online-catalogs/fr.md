@@ -9,7 +9,7 @@ layout: main
 ## Pour ajouter le répertoire en ligne nécessaire OPDS, vous avez besoin des éléments suivants:
 * Accédez à l'onglet &quot;Réseau&quot;.
 * Appuyez sur l'icône pour ajouter un répertoire. Prenons l'exemple de l'ajout du répertoire de la bibliothèque OPDS &quot;Project Gutenberg&quot;
-* Entrez l'adresse de messagerie du répertoire ops
+* Entrez l'adresse Internet du répertoire ops.
 * Appuyez sur &quot;Ajouter&quot;.
 * Bibliothèque OPDS ajoutée
 
