@@ -8,7 +8,7 @@ layout: main
 To sort your library by last read date, you need to:
 
 * Go to the "Library" tab
-* Click on the sort settings 
+* Tap on the sort settings 
 * Select "Recent"
 
 Your library will be sorted by last read date.
