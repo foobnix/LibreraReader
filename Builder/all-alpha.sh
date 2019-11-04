@@ -14,12 +14,11 @@ cd ../
 
 ### 1.11.1
 
-cd Builder
-./link_to_mupdf_1.11.sh
+#cd Builder
+#./link_to_mupdf_1.11.sh
 
-cd ../
-./gradlew assembleBetaRelease
-#./gradlew assembleProRelease
+#cd ../
+#./gradlew assembleBetaRelease
 
 
 
