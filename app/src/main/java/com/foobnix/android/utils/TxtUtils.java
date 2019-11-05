@@ -375,7 +375,7 @@ public class TxtUtils {
         pageHTML = replaceEndLine(pageHTML);
 
 
-        pageHTML = replaceAll(pageHTML, "(\\w+)-\\s*", "$1");
+        pageHTML = replaceAll(pageHTML, "(\\w+)-\\s+", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
         LOG.d("pageHTML [4]", pageHTML);
