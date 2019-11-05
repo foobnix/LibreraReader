@@ -1908,6 +1908,7 @@ public class DragingDialogs {
                 grid.setColumnWidth(dpToPx);
                 grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
 
+
                 final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), dc.getPageCount(), dc.getCurentPageFirst1() - 1) {

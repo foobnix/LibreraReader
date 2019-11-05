@@ -37,7 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
-        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarStyle="outsideInset"
+        android:clipToPadding="false"
+        android:paddingRight="20dip"
         android:numColumns="auto_fit"
         android:scrollbars="none"
         android:stretchMode="columnWidth" >
