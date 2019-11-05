@@ -2,13 +2,14 @@
 layout: main
 ---
 
-# Include footnotes directly in the text
-
-* Enable option to display end-/footnotes as in-text notes
-* This functionality works for EPUB, FB2, EPUB, AZW formats
-* You can configure color of the footnotes text for the day and nigth separately 
-* This option allow you to listen footnotes with TTS Voice
-
+# In-Text Notes vs. Footnotes
+> For your convenience, and **for the sake of TTS Reading**, **Librera** will replace foot- or endnotes in your document with in-text notes, which immediately follow note indicators.
+To opt for in-text note presentation:
+* Go to the _Reading Settings_ tab in the **Preferences** window
+* Check the _In-text notes_ box and enjoy
+* You can configure the color of your notes for each reading condition (day, night) separately 
+> This functionality works in EPUB, FB2, and AZW/MOBI formats.
+> We recommend using in-text notes for **TTS Reading**
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
