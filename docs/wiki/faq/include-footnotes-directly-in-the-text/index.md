@@ -9,7 +9,8 @@ To opt for in-text note presentation:
 * Check the _In-text notes_ box and enjoy
 * You can configure the color of your notes for each reading condition (day, night) separately 
 > This functionality works in EPUB, FB2, and AZW/MOBI formats.
-> We recommend using in-text notes for **TTS Reading**
+**Tip: We recommend using in-text notes for _TTS Reading_**
+
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
