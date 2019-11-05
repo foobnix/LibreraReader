@@ -375,8 +375,7 @@ public class TxtUtils {
         pageHTML = replaceEndLine(pageHTML);
 
 
-        pageHTML = pageHTML.replace("  ", " ");
-        pageHTML = replaceAll(pageHTML, "(\\w+)(-\\s)", "$1");
+        pageHTML = replaceAll(pageHTML, "(\\w+)-\\s*", "$1");
         LOG.d("pageHTML [after] ", pageHTML);
 
         LOG.d("pageHTML [4]", pageHTML);
@@ -479,14 +478,21 @@ public class TxtUtils {
             }
             LOG.d("pageHTML [8c]", pageHTML);
 
+
+
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\. (\\p{Alpha}{1,3})\\.", " $1{dot} $2{dot}");
-            LOG.d("pageHTML [8d]", pageHTML);
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,2})\\.", " $1{dot}");
-            LOG.d("pageHTML [8e]", pageHTML);
+
+            pageHTML = replaceAll(pageHTML, "(\\p{Alpha}+)\\.(\\p{Alpha}+)", "$1{dot}$2");
+            pageHTML = replaceAll(pageHTML, "(\\p{Alpha}+)\\.(\\p{Alpha}+)", "$1{dot}$2");
+
             pageHTML = replaceAll(pageHTML, " (\\p{Digit}*)\\.(\\p{Digit}+)", " $1{dot}$2"); //skip numbers 3.3 .343
+
+
+
 
             LOG.d("pageHTML [8f]", pageHTML);
 
@@ -501,7 +507,7 @@ public class TxtUtils {
             pageHTML = pageHTML.replace("{dot}", ".");
         }
 
-        pageHTML = pageHTML.replaceAll("[\\s]*("+TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE);
+        pageHTML = pageHTML.replaceAll("[\\s]*("+TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE).trim();
 
         return pageHTML;
     }
