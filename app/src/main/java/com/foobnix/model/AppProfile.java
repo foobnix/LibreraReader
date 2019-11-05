@@ -282,7 +282,7 @@ public class AppProfile {
 
                     @Override
                     public void onClick(View v) {
-                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_), new Runnable() {
+                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_) + " " + tagName, new Runnable() {
 
                             @Override
                             public void run() {
