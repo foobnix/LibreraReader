@@ -2,13 +2,14 @@
 layout: main
 ---
 
-# Includi le note a piè di pagina direttamente nel testo
-
-* Abilita l'opzione per visualizzare le note di fine/piè di pagina come note nel testo
-* Questa funzionalità funziona con i formati EPUB, FB2, EPUB, AZW
-* È possibile configurare il colore del testo delle note a piè di pagina per il giorno e la notte separatamente
-* Questa opzione ti consente di ascoltare le note a piè di pagina con TTS Voice
-
+# Note nel testo e note a piè di pagina
+> Per comodità dell'utente e **per motivi di lettura TTS**, **Librera** sostituirà le note a piè di pagina o di chiusura del documento con note nel testo, che seguono immediatamente gli indicatori di nota.
+Per optare per la presentazione di note nel testo:
+* Vai alla scheda _Leggi impostazioni_ nella finestra **Preferenze**
+* Seleziona la casella _In-text notes_ e divertiti
+* Puoi configurare il colore delle tue note per ogni condizione di lettura (giorno, notte) separatamente
+> Questa funzionalità funziona nei formati EPUB, FB2 e AZW/MOBI.
+> Ti consigliamo di utilizzare le note nel testo per **Lettura TTS**
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|

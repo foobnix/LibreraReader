@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Trier la bibliothèque par dernier livre lu](/wiki/faq/sort-library-by-last-read-date/fr)
+* [Lecture dans les langues RTL](/wiki/faq/rtl-or-ltr-text-direction/fr)
+* [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Utilisation des catalogues en ligne OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
 * [Utilisation de dictionnaires et de traducteurs](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
 * [Augmentation de la taille de la police dans les documents PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
 * [Utilisation de la fonctionnalité TTS pour la lecture de partages à partir d'autres applications](/wiki/faq/how-to-transfer-text-from-browser/fr)
 * [Conversion de PDF en EPUB](/wiki/faq/convert-pdf-to-epub/fr)
 * [Contrôle de la luminosité et filtre de lumière bleue](/wiki/faq/brightness-control-and-blue-light-filter/fr)
-* [Définition du sens du texte (RTL (de droite à gauche) ou LTR (de gauche à droite)](/wiki/faq/rtl-or-ltr-text-direction/fr)
 * [Ouvrir un livre avec &quot;Gestionnaire de balises&quot;](/wiki/faq/open-book-with-tag-manager/fr)
 * [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
 * [Comment ajouter un nouveau sujet de FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Numéros de page relatifs des livres PDF](/wiki/faq/relative-page-numbers/fr)
 * [Comment personnaliser l'apparence de votre bibliothèque et de vos couvertures de livres](/wiki/faq/how-to-configure-the-library-view/fr)
 * [Librera pour l'apprentissage des langues étrangères](/wiki/faq/librera-for-study-foreign-languages/fr)
-* [Inclure les notes de bas de page directement dans le texte](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Comment supprimer des livres de la carte SD externe](/wiki/faq/how-to-delete-file-from-external-sd-card/fr)
 * [Écran principal](/wiki/faq/main-app/fr)
 * [Comment configurer le mode de lecture](/wiki/faq/how-to-set-up-reading-mode/fr)

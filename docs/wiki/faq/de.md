@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
+* [Bibliothek nach zuletzt gelesenem Buch sortieren](/wiki/faq/sort-library-by-last-read-date/de)
+* [Lesen in RTL-Sprachen](/wiki/faq/rtl-or-ltr-text-direction/de)
+* [Anmerkungen im Text vs. Fußnoten](/wiki/faq/include-footnotes-directly-in-the-text/de)
 * [Arbeiten mit OPDS-Onlinekatalogen](/wiki/faq/working-with-opds-online-catalogs/de)
 * [Verwenden von Wörterbüchern und Übersetzern](/wiki/faq/dictionaries-translate-text-online-and-offline/de)
 * [Vergrößern der Schriftgröße in PDF-Dokumenten](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)
 * [Verwenden der TTS-Funktion zum Lesen von Freigaben aus anderen Apps](/wiki/faq/how-to-transfer-text-from-browser/de)
 * [PDF in EPUB konvertieren](/wiki/faq/convert-pdf-to-epub/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
-* [Einstellen der Textrichtung RTL (von rechts nach links) oder LTR (von links nach rechts)](/wiki/faq/rtl-or-ltr-text-direction/de)
 * [Buch mit &quot;Tag Manager&quot; öffnen](/wiki/faq/open-book-with-tag-manager/de)
 * [Mit Profilen arbeiten](/wiki/faq/working-with-profiles/de)
 * [Hinzufügen eines neuen FAQ-Themas](/wiki/faq/how-to-add-new-faq-section/de)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Relative Seitenzahlen für PDF-Bücher](/wiki/faq/relative-page-numbers/de)
 * [So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an](/wiki/faq/how-to-configure-the-library-view/de)
 * [Librera zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
-* [Fußnoten direkt in den Text einfügen](/wiki/faq/include-footnotes-directly-in-the-text/de)
 * [Löschen von Büchern von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Der Hauptbildschirm](/wiki/faq/main-app/de)
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)

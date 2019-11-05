@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Sort library by last read book](/wiki/faq/sort-library-by-last-read-date)
+* [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
+* [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Working with OPDS online catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Using Dictionaries and Translators](/wiki/faq/dictionaries-translate-text-online-and-offline)
 * [Increasing Font-Size in PDF Documents](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
 * [Using TTS Capability for Reading Shares from Other Apps](/wiki/faq/how-to-transfer-text-from-browser)
 * [Converting PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
-* [Setting text direction RTL (right-to-left) or LTR (left-to-right)](/wiki/faq/rtl-or-ltr-text-direction)
 * [Open book with "Tag Manager"](/wiki/faq/open-book-with-tag-manager)
 * [Working with profiles](/wiki/faq/working-with-profiles)
 * [How to Add a New FAQ Topic](/wiki/faq/how-to-add-new-faq-section)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)
 * [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
-* [Include footnotes directly in the text](/wiki/faq/include-footnotes-directly-in-the-text)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [The Main Screen](/wiki/faq/main-app)
 * [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)

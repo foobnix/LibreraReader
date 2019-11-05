@@ -27,8 +27,8 @@ public class WikiTranslate {
 
         GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently Asked Questions");
 
-        //String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
-      String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/what-is-new/8.2";
+        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
+      //String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/what-is-new/8.2";
 
 
         File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");

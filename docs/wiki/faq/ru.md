@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Сортировать библиотеку по последней прочитанной книге](/wiki/faq/sort-library-by-last-read-date/ru)
+* [Чтение на языках RTL](/wiki/faq/rtl-or-ltr-text-direction/ru)
+* [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Работа с онлайн-каталогами OPDS](/wiki/faq/working-with-opds-online-catalogs/ru)
 * [Использование словарей и переводчиков](/wiki/faq/dictionaries-translate-text-online-and-offline/ru)
 * [Увеличение размера шрифта в документах PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)
 * [Использование возможности TTS для чтения общих ресурсов из других приложений](/wiki/faq/how-to-transfer-text-from-browser/ru)
 * [Преобразование PDF в EPUB](/wiki/faq/convert-pdf-to-epub/ru)
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
-* [Настройка направления текста RTL (справа налево) или LTR (слева направо)](/wiki/faq/rtl-or-ltr-text-direction/ru)
 * [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)
 * [Работа с профилями](/wiki/faq/working-with-profiles/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Относительные номера страниц для книг в формате PDF](/wiki/faq/relative-page-numbers/ru)
 * [Как настроить внешний вид вашей библиотеки и обложек книг](/wiki/faq/how-to-configure-the-library-view/ru)
 * [Librera для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
-* [Включить сноски непосредственно в текст](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Как удалить книги с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
 * [Главный экран](/wiki/faq/main-app/ru)
 * [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)

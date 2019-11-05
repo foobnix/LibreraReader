@@ -1864,7 +1864,7 @@ public class DragingDialogs {
 
     }
 
-    public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController dc) {
+    public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
         if (dc == null) {
             return null;
         }
@@ -2051,7 +2051,7 @@ public class DragingDialogs {
                 return view;
             }
 
-        }.show("thumbnailDialog", false, true).setOnCloseListener(new Runnable() {
+        }.show("gotoPageDialog", false, true).setOnCloseListener(new Runnable() {
 
             @Override
             public void run() {

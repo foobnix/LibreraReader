@@ -350,7 +350,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            DragingDialogs.thumbnailDialog(anchor, dc);
+            DragingDialogs.gotoPageDialog(anchor, dc);
         }
     };
     SeekBar.OnSeekBarChangeListener onSeek = new SeekBar.OnSeekBarChangeListener() {

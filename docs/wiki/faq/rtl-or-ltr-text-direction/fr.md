@@ -2,18 +2,18 @@
 layout: main
 ---
 
-# Définition du sens du texte RTL (de droite à gauche) ou LTR (de gauche à droite)
+# Lecture en langues RTL
 
 
-> Librera vous permet d’adapter le processus de lecture aux langues arabes en modifiant le sens de lecture de LTR (de gauche à droite) à RTL (de droite à gauche).
+> **Librera** peut être adapté assez facilement pour la lecture de textes dans les langues de gauche à droite, telles que l'arabe, l'hébreu, le farsi ou l'ourdou. Il vous suffit de changer le sens de lecture par rapport au paramètre LTR par défaut.
 
 
-Pour changer le sens de lecture en RTL (de droite à gauche), vous devez:
+Pour modifier le sens de lecture en RTL:
 
-* appuyez sur paramètres
-* Dans la fenêtre des paramètres, sélectionnez l'onglet &quot;Paramètres avancés&quot;.
-* Sélectionnez &quot;Sens de lecture&quot; - RTL (de droite à gauche).
-* Pour quitter les paramètres, la zone de texte sélectionnée sera modifiée.
+* Appuyez sur l'icône **Paramètres** pour ouvrir la fenêtre **Préférences**.
+* Ouvrez l'onglet &quot;Paramètres avancés&quot;.
+* Appuyez sur le lien _ Direction de lecture_ et sélectionnez _RTL_.
+* Pour ajuster les présentations de deux pages pour la lecture RTL, cochez la case _Force droite page_
 
 ||||
 |-|-|-|

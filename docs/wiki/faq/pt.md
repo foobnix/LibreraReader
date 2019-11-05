@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Perguntas freqüentes
 
+* [Classifique a biblioteca pelo último livro lido](/wiki/faq/sort-library-by-last-read-date/pt)
+* [Leitura em idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/pt)
+* [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Trabalhando com catálogos online do OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
 * [Usando dicionários e tradutores](/wiki/faq/dictionaries-translate-text-online-and-offline/pt)
 * [Aumentando o tamanho da fonte nos documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/pt)
 * [Usando o recurso TTS para ler compartilhamentos de outros aplicativos](/wiki/faq/how-to-transfer-text-from-browser/pt)
 * [Convertendo PDF para EPUB](/wiki/faq/convert-pdf-to-epub/pt)
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
-* [Definindo a direção do texto RTL (da direita para a esquerda) ou LTR (da esquerda para a direita)](/wiki/faq/rtl-or-ltr-text-direction/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)
 * [Trabalhando com perfis](/wiki/faq/working-with-profiles/pt)
 * [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Números de página relativos de livros em PDF](/wiki/faq/relative-page-numbers/pt)
 * [Como personalizar a aparência da sua biblioteca e capas de livros](/wiki/faq/how-to-configure-the-library-view/pt)
 * [Librera para aprender línguas estrangeiras](/wiki/faq/librera-for-study-foreign-languages/pt)
-* [Inclua notas de rodapé diretamente no texto](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Como excluir livros do cartão SD externo](/wiki/faq/how-to-delete-file-from-external-sd-card/pt)
 * [Tela principal](/wiki/faq/main-app/pt)
 * [Como configurar o modo de leitura](/wiki/faq/how-to-set-up-reading-mode/pt)

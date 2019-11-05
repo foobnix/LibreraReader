@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [ترتيب المكتبة حسب آخر كتاب للقراءة](/wiki/faq/sort-library-by-last-read-date/ar)
+* [القراءة بلغات RTL](/wiki/faq/rtl-or-ltr-text-direction/ar)
+* [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [استخدام القواميس والمترجمين](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
 * [زيادة حجم الخط في مستندات PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)
 * [استخدام TTS Capability لقراءة المشاركات من تطبيقات أخرى](/wiki/faq/how-to-transfer-text-from-browser/ar)
 * [تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
-* [إعداد اتجاه النص RTL (من اليمين إلى اليسار) أو LTR (من اليسار إلى اليمين)](/wiki/faq/rtl-or-ltr-text-direction/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
 * [العمل مع الملفات الشخصية](/wiki/faq/working-with-profiles/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [أرقام الصفحات النسبية لكتب PDF](/wiki/faq/relative-page-numbers/ar)
 * [كيفية تخصيص مظهر مكتبتك وأغلفة الكتب](/wiki/faq/how-to-configure-the-library-view/ar)
 * [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
-* [تضمين الحواشي السفلية مباشرة في النص](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [الشاشة الرئيسية](/wiki/faq/main-app/ar)
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)

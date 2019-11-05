@@ -2,13 +2,14 @@
 layout: main
 ---
 
-# Inclure les notes de bas de page directement dans le texte
-
-* Activer l'option permettant d'afficher les notes de fin/de bas de page sous forme de notes dans le texte
-* Cette fonctionnalité fonctionne pour les formats EPUB, FB2, EPUB, AZW
-* Vous pouvez configurer la couleur du texte des notes de bas de page pour le jour et la nuit séparément
-* Cette option vous permet d'écouter des notes de bas de page avec TTS Voice.
-
+# Notes dans le texte et notes de bas de page
+> Pour votre commodité et **pour le plaisir de lire TTS**, **Librera** remplacera les notes de bas de page ou de fin de document par des notes intégrées au texte, qui suivront immédiatement les indicateurs de note.
+Pour opter pour la présentation dans la note:
+* Accédez à l'onglet &quot;Paramètres de lecture&quot; de la fenêtre **Préférences**.
+* Cochez la case &quot;Notes en texte&quot; et profitez-en
+* Vous pouvez configurer la couleur de vos notes pour chaque condition de lecture (jour, nuit) séparément.
+> Cette fonctionnalité fonctionne aux formats EPUB, FB2 et AZW/MOBI.
+> Nous vous recommandons d'utiliser des notes dans le texte pour **Lecture TTS**.
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|

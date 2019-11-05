@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Ordina la libreria per ultimo libro letto](/wiki/faq/sort-library-by-last-read-date/it)
+* [Lettura in lingue RTL](/wiki/faq/rtl-or-ltr-text-direction/it)
+* [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Lavorare con i cataloghi online OPDS](/wiki/faq/working-with-opds-online-catalogs/it)
 * [Uso di dizionari e traduttori](/wiki/faq/dictionaries-translate-text-online-and-offline/it)
 * [Aumento della dimensione del carattere nei documenti PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
 * [Uso della funzionalità TTS per la lettura di condivisioni da altre app](/wiki/faq/how-to-transfer-text-from-browser/it)
 * [Conversione di PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
 * [Controllo luminosità e filtro Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/it)
-* [Impostazione della direzione del testo RTL (da destra a sinistra) o LTR (da sinistra a destra)](/wiki/faq/rtl-or-ltr-text-direction/it)
 * [Libro aperto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/it)
 * [Lavorare con i profili](/wiki/faq/working-with-profiles/it)
 * [Come aggiungere un nuovo argomento FAQ](/wiki/faq/how-to-add-new-faq-section/it)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Numeri di pagina relativi per i libri PDF](/wiki/faq/relative-page-numbers/it)
 * [Come personalizzare l'aspetto della tua biblioteca e delle copertine dei libri](/wiki/faq/how-to-configure-the-library-view/it)
 * [Librera per l'apprendimento delle lingue straniere](/wiki/faq/librera-for-study-foreign-languages/it)
-* [Includi le note a piè di pagina direttamente nel testo](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Come eliminare libri dalla scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
 * [La schermata principale](/wiki/faq/main-app/it)
 * [Come impostare la modalità di lettura](/wiki/faq/how-to-set-up-reading-mode/it)

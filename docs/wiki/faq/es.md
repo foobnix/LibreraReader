@@ -5,13 +5,15 @@ info: this file is generated automatically, please do not modify it
 
 # Preguntas frecuentes
 
+* [Ordenar biblioteca por último libro leído](/wiki/faq/sort-library-by-last-read-date/es)
+* [Lectura en idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/es)
+* [Notas en el texto versus notas al pie](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Trabajando con catálogos en línea OPDS](/wiki/faq/working-with-opds-online-catalogs/es)
 * [Uso de diccionarios y traductores](/wiki/faq/dictionaries-translate-text-online-and-offline/es)
 * [Aumento del tamaño de fuente en documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
 * [Uso de la capacidad TTS para leer acciones de otras aplicaciones](/wiki/faq/how-to-transfer-text-from-browser/es)
 * [Convertir PDF a EPUB](/wiki/faq/convert-pdf-to-epub/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
-* [Configuración de la dirección del texto RTL (de derecha a izquierda) o LTR (de izquierda a derecha)](/wiki/faq/rtl-or-ltr-text-direction/es)
 * [Libro abierto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/es)
 * [Trabajando con perfiles](/wiki/faq/working-with-profiles/es)
 * [Cómo agregar un nuevo tema de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
@@ -34,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Números de página relativos para libros PDF](/wiki/faq/relative-page-numbers/es)
 * [Cómo personalizar el aspecto de su biblioteca y portadas de libros](/wiki/faq/how-to-configure-the-library-view/es)
 * [Librera para aprender idiomas extranjeros](/wiki/faq/librera-for-study-foreign-languages/es)
-* [Incluir notas al pie directamente en el texto](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Cómo borrar libros de la tarjeta SD externa](/wiki/faq/how-to-delete-file-from-external-sd-card/es)
 * [La pantalla principal](/wiki/faq/main-app/es)
 * [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
