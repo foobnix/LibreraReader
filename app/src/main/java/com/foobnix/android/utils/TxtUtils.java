@@ -53,6 +53,8 @@ import java.util.regex.Pattern;
 public class TxtUtils {
 
     public static final String TTS_PAUSE = "ttsPAUSE";
+    public static final String TTS_NEXT = "ttsNEXT";
+    public static final String TTS_SKIP = "ttsSKIP";
     public static final String TTS_PAUSE_VIEW = "[-]\n";
     public static final String TTS_STOP = "ttsSTOP";
 

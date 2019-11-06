@@ -259,12 +259,20 @@ public class TTSEngine {
                         continue;
 
                     }
+                    if (big.contains(TxtUtils.TTS_SKIP)) {
+                        continue;
+                    }
 
                     if (big.contains(TxtUtils.TTS_STOP)) {
                         HashMap<String, String> mapStop = new HashMap<String, String>();
                         mapStop.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, STOP_SIGNAL);
                         ttsEngine.playSilence(AppState.get().ttsPauseDuration, TextToSpeech.QUEUE_ADD, mapStop);
                         LOG.d("Add stop signal");
+                    }
+                    if (big.contains(TxtUtils.TTS_NEXT)) {
+                        ttsEngine.playSilence(0L, TextToSpeech.QUEUE_ADD, map);
+                        LOG.d("next-page signal");
+                        break;
                     }
 
                     HashMap<String, String> mapTemp1 = new HashMap<String, String>();
