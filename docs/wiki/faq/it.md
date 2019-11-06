@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Come ripristinare le impostazioni predefinite/Cancella cache](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
+* [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
+* [Lavorare con i profili di _Librera_](/wiki/faq/working-with-profiles/it)
 * [Ordina la libreria per ultimo libro letto](/wiki/faq/sort-library-by-last-read-date/it)
 * [Lettura in lingue RTL](/wiki/faq/rtl-or-ltr-text-direction/it)
-* [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Lavorare con i cataloghi online OPDS](/wiki/faq/working-with-opds-online-catalogs/it)
 * [Uso di dizionari e traduttori](/wiki/faq/dictionaries-translate-text-online-and-offline/it)
 * [Aumento della dimensione del carattere nei documenti PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [Conversione di PDF in EPUB](/wiki/faq/convert-pdf-to-epub/it)
 * [Controllo luminosità e filtro Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/it)
 * [Libro aperto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/it)
-* [Lavorare con i profili](/wiki/faq/working-with-profiles/it)
 * [Come aggiungere un nuovo argomento FAQ](/wiki/faq/how-to-add-new-faq-section/it)
 * [Apertura di una cartella con immagini come libro (Rilegatura in un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
 * [Aggiunta e gestione di tag personalizzati](/wiki/faq/custom-tags/it)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
 * [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)
-* [Come ripristinare le impostazioni predefinite (simile a cancellare la cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
 * [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)
 * [Installazione e configurazione della sintesi vocale (TTS)](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Impostazione della barra di stato](/wiki/faq/how-to-set-up-a-status-bar/it)

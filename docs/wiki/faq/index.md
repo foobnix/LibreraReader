@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
+* [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
+* [Working with _Librera_'s Profiles](/wiki/faq/working-with-profiles)
 * [Sort library by last read book](/wiki/faq/sort-library-by-last-read-date)
 * [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
-* [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Working with OPDS online catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Using Dictionaries and Translators](/wiki/faq/dictionaries-translate-text-online-and-offline)
 * [Increasing Font-Size in PDF Documents](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [Converting PDF to EPUB](/wiki/faq/convert-pdf-to-epub)
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [Open book with "Tag Manager"](/wiki/faq/open-book-with-tag-manager)
-* [Working with profiles](/wiki/faq/working-with-profiles)
 * [How to Add a New FAQ Topic](/wiki/faq/how-to-add-new-faq-section)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
 * [Adding and Handling Custom Tags](/wiki/faq/custom-tags)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [TTS Replacements](/wiki/faq/tts-replacements)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/wiki/faq/bookmarks-extended-panel)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)
-* [How to restore default settings (similar to clear cache)](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)
 * [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [Setting the status bar](/wiki/faq/how-to-set-up-a-status-bar)

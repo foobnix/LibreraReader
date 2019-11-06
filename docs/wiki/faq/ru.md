@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Как восстановить настройки по умолчанию/очистить кэш](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
+* [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
+* [Работа с профилями _Librera_](/wiki/faq/working-with-profiles/ru)
 * [Сортировать библиотеку по последней прочитанной книге](/wiki/faq/sort-library-by-last-read-date/ru)
 * [Чтение на языках RTL](/wiki/faq/rtl-or-ltr-text-direction/ru)
-* [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Работа с онлайн-каталогами OPDS](/wiki/faq/working-with-opds-online-catalogs/ru)
 * [Использование словарей и переводчиков](/wiki/faq/dictionaries-translate-text-online-and-offline/ru)
 * [Увеличение размера шрифта в документах PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [Преобразование PDF в EPUB](/wiki/faq/convert-pdf-to-epub/ru)
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)
-* [Работа с профилями](/wiki/faq/working-with-profiles/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Открытие папки с изображениями в виде книги (переплет в книге)](/wiki/faq/open-folder-with-images-as-a-book/ru)
 * [Добавление и обработка пользовательских тегов](/wiki/faq/custom-tags/ru)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Работа с закладками в расширенном режиме (лента закладок)](/wiki/faq/bookmarks-extended-panel/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)
-* [Как восстановить настройки по умолчанию (аналогично очистке кэша)](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Как настроить виджет](/wiki/faq/how-to-configure-the-widget/ru)
 * [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Настройка строки состояния](/wiki/faq/how-to-set-up-a-status-bar/ru)

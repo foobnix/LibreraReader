@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
+* [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
+* [العمل مع ملفات تعريف _Librera_](/wiki/faq/working-with-profiles/ar)
 * [ترتيب المكتبة حسب آخر كتاب للقراءة](/wiki/faq/sort-library-by-last-read-date/ar)
 * [القراءة بلغات RTL](/wiki/faq/rtl-or-ltr-text-direction/ar)
-* [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [استخدام القواميس والمترجمين](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
 * [زيادة حجم الخط في مستندات PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [تحويل PDF إلى EPUB](/wiki/faq/convert-pdf-to-epub/ar)
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
-* [العمل مع الملفات الشخصية](/wiki/faq/working-with-profiles/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
 * [إضافة علامات مخصصة ومعالجتها](/wiki/faq/custom-tags/ar)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
-* [كيفية استعادة الإعدادات الافتراضية (على غرار مسح ذاكرة التخزين المؤقت)](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)

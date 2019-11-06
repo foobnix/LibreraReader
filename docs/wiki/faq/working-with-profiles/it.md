@@ -2,67 +2,49 @@
 layout: main
 ---
 
-# Lavorare con i profili
+# Lavorare con i profili di _Librera_
 
-> Librera ti consente di aggiungere e configurare molti profili, mantenendo ogni singola impostazione del programma, il suo tema.
+> **Librera** ti consente di creare più profili. Puoi aggiungerne uno per qualsiasi cosa, dalla lettura diurna/notturna ai tuoi sbalzi d'umore, ai generi di libri, al tuo atteggiamento speciale nei confronti di un certo scrittore, ecc.
+> E ricorda: un altro profilo (che potrebbe tirarti su di morale) è solo un paio di tocchi di distanza (da quello attuale).
 
 
-## Per aggiungere un nuovo profilo, devi:
-
-* Nel pannello delle impostazioni del profilo, fare clic sull'icona delle impostazioni
-* Fai clic sul link &quot;Nuovo profilo&quot;
-* Specifica un nome per il nuovo profilo e fai clic su Aggiungi. Ad esempio, crea un profilo denominato &quot;nuovo profilo&quot;
-* Nelle impostazioni del profilo, il profilo che abbiamo creato apparirà &quot;Nuovo profilo&quot;.
+## Aggiunta di un nuovo profilo
+* Vai alla scheda **Preferenze** e tocca l'icona delle impostazioni nel pannello _Profilo_ (in alto)
+* Tocca il link _Nuovo profilo_ nella finestra dell'elenco dei profili
+* Specificare un nome significativo per il nuovo profilo e _ADD_ nell'elenco
+* Ora puoi configurare l'interfaccia utente e leggere le impostazioni per il tuo nuovo profilo
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
-## Per selezionare il profilo che hai creato:
-
-* Fai clic sul profilo corrente
-* Seleziona il profilo desiderato dall'elenco a discesa
-* Conferma cambio profilo.
-
+## Cambio di profili
+* Nel pannello _Profilo_ della scheda **Preferenze**, tocca il nome del profilo corrente
+* Seleziona un profilo a cui desideri passare dall'elenco a discesa del profilo
+* Conferma la commutazione del profilo in una finestra di dialogo popup e divertiti
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
+## Reimpostazione di un profilo
+> Se è necessario ripristinare le impostazioni del profilo corrente ai valori originali (predefiniti), è necessario seguire questi semplici passaggi:
+* Premi a lungo sul nome del tuo profilo corrente nel pannello _Profile_ della scheda **Preferenze**
+* Conferma l'intenzione in una finestra di dialogo popup toccando _OK_
 
-
-> Se è necessario ripristinare tutte le impostazioni di Librera nel profilo corrente al loro stato originale, come dopo la prima installazione, è possibile farlo in più fasi.
-
-## Per eseguire un ripristino è necessario:
-
-* Fai clic nell'angolo in alto a sinistra per visualizzare il menu o scorri da sinistra a destra
-* Fai clic a lungo sul nome del profilo desiderato
-* Conferma l'azione &quot;OK&quot;
-
-* Dopo la conferma, il programma si riavvierà e ripristinerà tutte le impostazioni predefinite. *
-
-**I segnalibri, i tag e l'avanzamento della lettura aggiunti non vengono eliminati al ripristino.**
+**Nota: i segnalibri, i tag e l'avanzamento della lettura non verranno eliminati o ripristinati!**
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](21.jpg)|
 
+## Eliminazione di un profilo
+> Nota: è necessario passare a un altro profilo prima di eliminare quello corrente.
 
-## Per eliminare un profilo:
-* Esci dal profilo che desideri eliminare passando a un altro profilo
-* Fai clic sull'icona delle impostazioni nel blocco profili
-* Fai clic sull'icona di eliminazione accanto al profilo che desideri eliminare
-* Conferma l'eliminazione del profilo.
-
+* Tocca l'icona delle impostazioni nel pannello _Profilo_ della finestra **Preferenze**
+* Fai clic sul _X_ accanto al profilo che intendi eliminare
+* Conferma l'eliminazione toccando _OK_
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
-
-
-
-
-
-

@@ -9,7 +9,8 @@ Pour opter pour la présentation dans la note:
 * Cochez la case &quot;Notes en texte&quot; et profitez-en
 * Vous pouvez configurer la couleur de vos notes pour chaque condition de lecture (jour, nuit) séparément.
 > Cette fonctionnalité fonctionne aux formats EPUB, FB2 et AZW/MOBI.
-> Nous vous recommandons d'utiliser des notes dans le texte pour **Lecture TTS**.
+**Conseil: nous vous recommandons d'utiliser des notes dans le texte pour _TTS Reading_**
+
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|

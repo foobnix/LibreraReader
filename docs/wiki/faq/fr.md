@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Comment restaurer les paramètres par défaut/Effacer le cache](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
+* [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
+* [Utilisation des profils de _Librera_](/wiki/faq/working-with-profiles/fr)
 * [Trier la bibliothèque par dernier livre lu](/wiki/faq/sort-library-by-last-read-date/fr)
 * [Lecture dans les langues RTL](/wiki/faq/rtl-or-ltr-text-direction/fr)
-* [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Utilisation des catalogues en ligne OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
 * [Utilisation de dictionnaires et de traducteurs](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
 * [Augmentation de la taille de la police dans les documents PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [Conversion de PDF en EPUB](/wiki/faq/convert-pdf-to-epub/fr)
 * [Contrôle de la luminosité et filtre de lumière bleue](/wiki/faq/brightness-control-and-blue-light-filter/fr)
 * [Ouvrir un livre avec &quot;Gestionnaire de balises&quot;](/wiki/faq/open-book-with-tag-manager/fr)
-* [Utilisation des profils](/wiki/faq/working-with-profiles/fr)
 * [Comment ajouter un nouveau sujet de FAQ](/wiki/faq/how-to-add-new-faq-section/fr)
 * [Ouverture d'un dossier contenant des images sous forme de livre (relié dans un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)
 * [Ajout et gestion des tags personnalisés](/wiki/faq/custom-tags/fr)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [Remplacements TTS](/wiki/faq/tts-replacements/fr)
 * [Utilisation des signets en mode étendu - Ruban Signets](/wiki/faq/bookmarks-extended-panel/fr)
 * [Configuration des polices et des styles](/wiki/faq/customize-text-fonts-and-styles/fr)
-* [Comment restaurer les paramètres par défaut (similaire à l'effacement du cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Comment configurer le widget](/wiki/faq/how-to-configure-the-widget/fr)
 * [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Définition de la barre d'état](/wiki/faq/how-to-set-up-a-status-bar/fr)

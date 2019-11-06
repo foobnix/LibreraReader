@@ -5,9 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Perguntas freqüentes
 
+* [Como restaurar configurações padrão/limpar cache](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
+* [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
+* [Trabalhando com os perfis de _Librera_](/wiki/faq/working-with-profiles/pt)
 * [Classifique a biblioteca pelo último livro lido](/wiki/faq/sort-library-by-last-read-date/pt)
 * [Leitura em idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/pt)
-* [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Trabalhando com catálogos online do OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
 * [Usando dicionários e tradutores](/wiki/faq/dictionaries-translate-text-online-and-offline/pt)
 * [Aumentando o tamanho da fonte nos documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/pt)
@@ -15,7 +17,6 @@ info: this file is generated automatically, please do not modify it
 * [Convertendo PDF para EPUB](/wiki/faq/convert-pdf-to-epub/pt)
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)
-* [Trabalhando com perfis](/wiki/faq/working-with-profiles/pt)
 * [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Abrindo uma pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
 * [Adicionando e manipulando tags personalizadas](/wiki/faq/custom-tags/pt)
@@ -27,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [Substituições TTS](/wiki/faq/tts-replacements/pt)
 * [Trabalhando com favoritos no modo avançado (faixa de opções de favoritos)](/wiki/faq/bookmarks-extended-panel/pt)
 * [Configurando fontes e estilos](/wiki/faq/customize-text-fonts-and-styles/pt)
-* [Como restaurar configurações padrão (semelhante ao limpar cache)](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
 * [Como configurar o widget](/wiki/faq/how-to-configure-the-widget/pt)
 * [Instalando e configurando Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/pt)
 * [Definindo a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)

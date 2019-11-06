@@ -9,7 +9,8 @@ So entscheiden Sie sich für die Präsentation von In-Text-Notizen:
 * Aktivieren Sie das Kontrollkästchen _In-Text-Notizen_ und genießen Sie
 * Sie können die Farbe Ihrer Notizen für jede Lesebedingung (Tag, Nacht) separat konfigurieren
 > Diese Funktionalität steht in den Formaten EPUB, FB2 und AZW/MOBI zur Verfügung.
-> Wir empfehlen die Verwendung von In-Text-Notizen für **TTS-Lesevorgänge**.
+**Tipp: Wir empfehlen die Verwendung von In-Text-Notizen für _TTS Reading_**.
+
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|

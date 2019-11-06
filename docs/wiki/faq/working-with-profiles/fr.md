@@ -2,67 +2,49 @@
 layout: main
 ---
 
-# Utilisation des profils
+# Utilisation des profils de _Librera_
 
-> Librera vous permet d’ajouter et de configurer de nombreux profils en conservant chaque paramètre individuel du programme, son thème.
+> **Librera** vous permet de créer plusieurs profils. Vous pouvez en ajouter un pour n'importe quoi, de la lecture de jour/nuit à vos sautes d'humeur, en passant par les genres de livre, votre attitude particulière envers un écrivain donné, etc.
+> Et rappelez-vous: un autre profil (qui pourrait vous remonter le moral) est à deux doigts (du profil actuel).
 
 
-## Pour ajouter un nouveau profil, vous devez:
-
-* Dans le panneau des paramètres de profil, cliquez sur l'icône des paramètres.
-* Cliquez sur le lien &quot;Nouveau profil&quot;.
-* Spécifiez un nom pour le nouveau profil et cliquez sur Ajouter. Par exemple, créez un profil nommé &quot;nouveau profil&quot;
-* Dans les paramètres du profil, le profil que nous avons créé apparaîtra &quot;Nouveau profil&quot;.
+## Ajout d'un nouveau profil
+* Accédez à l'onglet **Préférences** coulissante et appuyez sur l'icône des paramètres dans le panneau _Profil_ (tout en haut).
+* Appuyez sur le lien _Nouveau profil_ dans la fenêtre de la liste des profils.
+* Spécifiez un nom explicite pour le nouveau profil et ajoutez-le à la liste.
+* Vous pouvez maintenant configurer l'interface utilisateur et les paramètres de lecture de votre nouveau profil.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
-## Pour sélectionner le profil que vous avez créé:
-
-* Cliquez sur le profil actuel
-* Sélectionnez le profil souhaité dans la liste déroulante.
-* Confirmez le changement de profil.
-
+## Changement de profil
+* Dans le panneau _Profil_ de l'onglet **Préférences**, appuyez sur le nom du profil actuel.
+* Sélectionnez le profil vers lequel vous souhaitez basculer dans la liste des profils déroulants.
+* Confirmez le changement de profil dans une boîte de dialogue contextuelle et profitez-en
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
+## Réinitialisation d'un profil
+> Si vous devez rétablir les valeurs d'origine (par défaut) des paramètres de votre profil actuel, procédez comme suit:
+* Appuyez longuement sur le nom de votre profil actuel dans le panneau _Profile_ de l'onglet **Préférences**.
+* Confirmez votre intention dans une boîte de dialogue en cliquant sur _OK_.
 
-
-> Si vous devez réinitialiser tous les paramètres Librera du profil actuel à leur état d'origine, comme après la première installation, vous pouvez le faire en plusieurs étapes.
-
-## Pour effectuer une réinitialisation, vous devez:
-
-* Cliquez dans le coin supérieur gauche pour afficher le menu ou faites-le glisser de gauche à droite.
-* Cliquez longuement sur le nom du profil souhaité
-* Confirmez votre action &quot;OK&quot;
-
-* Après confirmation, le programme redémarre et rétablit tous les paramètres par défaut. *
-
-**Les favoris, les balises et les progrès de lecture que vous avez ajoutés ne sont pas supprimés lors de la réinitialisation.**
+**Remarque: vos favoris, vos balises et vos progrès de lecture ne seront ni supprimés ni réinitialisés!**
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](21.jpg)|
 
+## Suppression d'un profil
+> Remarque: vous devez changer de profil avant de supprimer votre profil actuel.
 
-## Pour supprimer un profil:
-* Quittez le profil que vous souhaitez supprimer en passant à un autre profil.
-* Cliquez sur l'icône des paramètres dans le bloc Profils.
-* Cliquez sur l'icône de suppression en regard du profil que vous souhaitez supprimer.
-* Confirmer la suppression du profil.
-
+* Tapez sur l'icône des paramètres dans le panneau _Profile_ de la fenêtre **Préférences**.
+* Cliquez sur le _X_ en regard du profil que vous souhaitez supprimer.
+* Confirmez la suppression en appuyant sur _OK_
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
-
-
-
-
-
-
-

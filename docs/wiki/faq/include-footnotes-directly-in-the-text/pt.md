@@ -9,7 +9,8 @@ Para optar pela apresentação da nota no texto:
 * Marque a caixa _In-text notes_ e aproveite
 * Você pode configurar a cor de suas anotações para cada condição de leitura (dia, noite) separadamente
 > Essa funcionalidade funciona nos formatos EPUB, FB2 e AZW/MOBI.
-> Recomendamos o uso de notas no texto para **Leitura TTS**
+**Dica: recomendamos o uso de anotações no texto para _TTS Reading_**
+
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
