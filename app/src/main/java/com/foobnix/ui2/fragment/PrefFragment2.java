@@ -108,7 +108,7 @@ public class PrefFragment2 extends UIFragment {
 
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
-    private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi";
+    private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi/faq";
     private TextView curBrightness, themeColor, profileLetter;
     private CheckBox isRememberDictionary;
 
@@ -552,6 +552,7 @@ public class PrefFragment2 extends UIFragment {
                 version += "\n DEVICE: " + Build.DEVICE;
                 version += "\n REFRESH: " + Dips.getRefreshRate();
                 version += "\n WxH: " + Dips.screenWidthDP() + " x " + Dips.screenHeightDP();
+                version += "\n Nigth: " + Apps.isNight(getActivity());
             }
 
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:

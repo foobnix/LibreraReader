@@ -159,12 +159,12 @@ public class Apps {
                 int value = Settings.System.getInt(a.getContentResolver(), SCREEN_BRIGHTNESS);
 
                 LOG.d("isNight value", value);
-                isNight = value < 50;
+                isNight = value < 100;
             } catch (Settings.SettingNotFoundException e) {
                 LOG.d(e);
             }
         }else {
-            isNight = screenBrightness < 0.2;
+            isNight = screenBrightness < 0.3;
         }
         LOG.d("isNight result", isNight);
 

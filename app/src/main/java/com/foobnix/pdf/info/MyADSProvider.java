@@ -6,7 +6,6 @@ import android.os.Handler;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
@@ -57,9 +56,9 @@ public class MyADSProvider {
 
                         try {
                             if (Apps.isNight(a)) {
-                                MobileAds.setAppMuted(true);
+                                MobileAds.setAppVolume(0.1f);
                             } else {
-                                MobileAds.setAppMuted(false);
+                                MobileAds.setAppVolume(0.8f);
                             }
                         } catch (Exception e) {
                             LOG.e(e);
@@ -73,7 +72,7 @@ public class MyADSProvider {
                                 finish.run();
                             }
                         });
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        mInterstitialAd.loadAd(ADS.getAdRequest(a));
                     } catch (Exception e) {
                         LOG.e(e);
                     }
