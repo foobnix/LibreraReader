@@ -60,7 +60,6 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-
         LOG.isEnable = BuildConfig.LOG;
 
         TTSNotification.initChannels(this);

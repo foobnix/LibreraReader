@@ -6,23 +6,22 @@ import android.os.Handler;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class MyADSProvider {
 
+    public int intetrstialTimeout = 0;
+    Random random = new Random();
+    InterstitialAd mInterstitialAd;
+    Handler handler;
     private AdView adView;
     private Activity a;
-
-    Random random = new Random();
-
-    InterstitialAd mInterstitialAd;
-    public int intetrstialTimeout = 0;
-
-    Handler handler;
 
     public void createHandler() {
         handler = new Handler();
@@ -42,7 +41,7 @@ public class MyADSProvider {
 
         ADS.activateAdmobSmartBanner(a, adView);
 
-        if(withInterstitial) {
+        if (withInterstitial) {
             if (handler == null) {
                 return;
             }
@@ -54,6 +53,18 @@ public class MyADSProvider {
                 @Override
                 public void run() {
                     try {
+
+
+                        try {
+                            if (Apps.isNight(a)) {
+                                MobileAds.setAppMuted(true);
+                            } else {
+                                MobileAds.setAppMuted(false);
+                            }
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+
                         mInterstitialAd = new InterstitialAd(a);
                         mInterstitialAd.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_FULLSCREEN_ID"));
                         mInterstitialAd.setAdListener(new AdListener() {
@@ -62,7 +73,7 @@ public class MyADSProvider {
                                 finish.run();
                             }
                         });
-                        mInterstitialAd.loadAd(ADS.adRequest);
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
                     } catch (Exception e) {
                         LOG.e(e);
                     }
@@ -92,11 +103,11 @@ public class MyADSProvider {
     }
 
     public void resume() {
-        ADS.onResumeAll( adView);
+        ADS.onResumeAll(adView);
     }
 
     public void destroy() {
-        ADS.destoryAll( adView);
+        ADS.destoryAll(adView);
         a = null;
     }
 

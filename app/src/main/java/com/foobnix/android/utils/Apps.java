@@ -1,5 +1,6 @@
 package com.foobnix.android.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -9,10 +10,13 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.provider.Settings;
 import android.provider.Settings.Secure;
 import android.widget.Toast;
 
 import com.foobnix.pdf.info.R;
+
+import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
 
@@ -142,6 +146,30 @@ public class Apps {
             return true;
         }
         return false;
+    }
+
+    public static boolean isNight(Activity a) {
+        float screenBrightness = a.getWindow().getAttributes().screenBrightness;
+        LOG.d("isNight screenBrightness", screenBrightness);
+        boolean isNight = false;
+        if (screenBrightness == -1) {
+
+
+            try {
+                int value = Settings.System.getInt(a.getContentResolver(), SCREEN_BRIGHTNESS);
+
+                LOG.d("isNight value", value);
+                isNight = value < 50;
+            } catch (Settings.SettingNotFoundException e) {
+                LOG.d(e);
+            }
+        }else {
+            isNight = screenBrightness < 0.2;
+        }
+        LOG.d("isNight result", isNight);
+
+        return false;
+
     }
 
 
