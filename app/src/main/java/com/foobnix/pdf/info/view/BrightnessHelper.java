@@ -83,12 +83,18 @@ public class BrightnessHelper {
 
     public static int getSystemBrigtnessInt(final Activity a) {
         try {
-            final int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
+            int brightInt = android.provider.Settings.System.getInt(a.getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
+
+            if (brightInt > 255) {
+                brightInt = 255;
+            }
+
             int res = (brightInt * 100) / 255;
             LOG.d("getSystemBrigtnessInt", brightInt, res);
+
             return res;
         } catch (final SettingNotFoundException e) {
-            e.printStackTrace();
+            LOG.e(e);
         }
         return 50;
     }
@@ -156,9 +162,9 @@ public class BrightnessHelper {
             overlay.setVisibility(View.VISIBLE);
             int alpha;
 
-            if(AppState.get().isAllowMinBrigthness){
+            if (AppState.get().isAllowMinBrigthness) {
                 alpha = Math.min(200, (200 * AppState.get().blueLightAlpha) / 100);
-            }else{
+            } else {
                 alpha = Math.min(160, (160 * AppState.get().blueLightAlpha) / 100);
             }
 

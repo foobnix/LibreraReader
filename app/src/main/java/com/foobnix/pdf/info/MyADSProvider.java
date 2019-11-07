@@ -60,6 +60,7 @@ public class MyADSProvider {
                             } else {
                                 MobileAds.setAppVolume(0.8f);
                             }
+                            //Toast.makeText(a,"isNight: "+Apps.isNight(a),Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             LOG.e(e);
                         }
