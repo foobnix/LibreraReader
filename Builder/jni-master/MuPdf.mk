@@ -28,15 +28,16 @@ include $(CLEAR_VARS)
 LOCAL_ARM_MODE := $(MY_ARM_MODE)
 
 LOCAL_MODULE := mupdf_core
+LOCAL_STATIC_LIBRARIES := jpeg-turbo
 
 LOCAL_C_INCLUDES := \
 	$(MUPDF_PATH)/include \
 	$(MUPDF_PATH)/scripts/freetype \
 	$(MUPDF_PATH)/scripts/libjpeg \
+	$(LOCAL_PATH)/jpeg-turbo/include \
 	$(MUPDF_PATH)/thirdparty/freetype/include \
 	$(MUPDF_PATH)/thirdparty/harfbuzz/src \
 	$(MUPDF_PATH)/thirdparty/jbig2dec \
-	$(MUPDF_PATH)/thirdparty/libjpeg \
 	$(MUPDF_PATH)/thirdparty/lcms2/include \
 	$(MUPDF_PATH)/thirdparty/mujs \
 	$(MUPDF_PATH)/thirdparty/openjpeg/src/lib/openjp2 \
@@ -46,7 +47,7 @@ LOCAL_CFLAGS := \
 	-ffunction-sections -fdata-sections \
 	-D_FILE_OFFSET_BITS=32 \
 	-DNOTO_SMALL \
-	-DAA_BITS=8 \
+	-DAA_BITS=8 -DSHARE_JPEG \
 	-DOPJ_STATIC -DOPJ_HAVE_INTTYPES_H -DOPJ_HAVE_STDINT_H \
 	-DHAVE_LCMS2MT \
 
@@ -73,6 +74,7 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_ARM_MODE := $(MY_ARM_MODE)
 LOCAL_MODULE := mupdf_thirdparty
+LOCAL_STATIC_LIBRARIES := jpeg-turbo
 
 LOCAL_CPP_EXTENSION := .cc
 
@@ -81,10 +83,10 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_PATH)/include/mupdf \
 	$(MUPDF_PATH)/scripts/freetype \
 	$(MUPDF_PATH)/scripts/libjpeg \
+    $(LOCAL_PATH)/jpeg-turbo/include \
 	$(MUPDF_PATH)/thirdparty/freetype/include \
 	$(MUPDF_PATH)/thirdparty/harfbuzz/src \
 	$(MUPDF_PATH)/thirdparty/jbig2dec \
-	$(MUPDF_PATH)/thirdparty/libjpeg \
 	$(MUPDF_PATH)/thirdparty/lcms2/include \
 	$(MUPDF_PATH)/thirdparty/mujs \
 	$(MUPDF_PATH)/thirdparty/openjpeg/src/lib/openjp2 \
@@ -95,7 +97,7 @@ LOCAL_CFLAGS := \
 	-DFT2_BUILD_LIBRARY -DDARWIN_NO_CARBON \
 	'-DFT_CONFIG_MODULES_H="slimftmodules.h"' \
 	'-DFT_CONFIG_OPTIONS_H="slimftoptions.h"' \
-	-DHAVE_STDINT_H \
+	-DHAVE_STDINT_H -DSHARE_JPEG \
 	-DOPJ_STATIC -DOPJ_HAVE_INTTYPES_H -DOPJ_HAVE_STDINT_H \
 
 LOCAL_CFLAGS += \
@@ -194,37 +196,6 @@ LOCAL_SRC_FILES += \
 	$(MUPDF_PATH)/thirdparty/jbig2dec/jbig2_symbol_dict.c \
 	$(MUPDF_PATH)/thirdparty/jbig2dec/jbig2_text.c \
 
-LOCAL_SRC_FILES += \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jaricom.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jcomapi.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdapimin.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdapistd.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdarith.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdatadst.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdatasrc.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdcoefct.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdcolor.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jddctmgr.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdhuff.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdinput.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdmainct.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdmarker.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdmaster.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdmerge.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdpostct.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdsample.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jdtrans.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jerror.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jfdctflt.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jfdctfst.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jfdctint.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jidctflt.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jidctfst.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jidctint.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jmemmgr.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jquant1.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jquant2.c \
-	$(MUPDF_PATH)/thirdparty/libjpeg/jutils.c \
 
 LOCAL_SRC_FILES += \
 	$(MUPDF_PATH)/thirdparty/lcms2/src/cmsalpha.c \
