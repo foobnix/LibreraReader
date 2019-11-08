@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Настройка синхронизации](/wiki/faq/setting-up-synchronization/ru)
 * [Как восстановить настройки по умолчанию/очистить кэш](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Работа с профилями _Librera_](/wiki/faq/working-with-profiles/ru)

@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [إعداد التزامن](/wiki/faq/setting-up-synchronization/ar)
 * [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [العمل مع ملفات تعريف _Librera_](/wiki/faq/working-with-profiles/ar)

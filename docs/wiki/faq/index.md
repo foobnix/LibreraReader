@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Setting up synchronization](/wiki/faq/setting-up-synchronization)
 * [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Working with _Librera_'s Profiles](/wiki/faq/working-with-profiles)

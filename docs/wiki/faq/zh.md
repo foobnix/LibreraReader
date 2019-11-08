@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 {1}常见问题
 
+* [设置同步](/wiki/faq/setting-up-synchronization/zh)
 * [如何还原默认设置/清除缓存](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [使用_Librera_的个人资料](/wiki/faq/working-with-profiles/zh)

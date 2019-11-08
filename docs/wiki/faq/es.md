@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Preguntas frecuentes
 
+* [Configuración de sincronización](/wiki/faq/setting-up-synchronization/es)
 * [Cómo restaurar la configuración predeterminada/Borrar caché](/wiki/faq/how-to-restore-default-settings-clear-cache/es)
 * [Notas en el texto versus notas al pie](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Trabajando con los perfiles de _Librera_](/wiki/faq/working-with-profiles/es)
