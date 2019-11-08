@@ -130,7 +130,9 @@ public class Link {
         String ext = getDownloadDisplayFormat();
         
         // Workaround for application/x-cbz and application/x-cbr
-        ext = ext.replace("x-cbz","cbz").replace("x-cbr","cbr");
+        if(ext!=null) {
+            ext = ext.replace("x-cbz", "cbz").replace("x-cbr", "cbr");
+        }
         
         if (ext != null) {
             return name + "." + ext;
