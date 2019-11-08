@@ -1,0 +1,134 @@
+From: Alex Schroeder <alex@emacswiki.org>
+Subject: Re: MS Word mode?
+Date: Fri, 08 Nov 2002 00:40:15 +0100
+
+Roger Mason <rmason@sparky2.esd.mun.ca> writes:
+
+> There was a question about this recently on this forum.  Look for
+> undoc.el, I got it from the wiki (I think).  It has worked very well for
+> me to date, although I have not attempted ro read complex documents.
+
+Well, it makes things readable, but it is far from perfect -- it seems
+to just delete any non-ascii characters, such that sometimes you will
+see words such as "Alex8" where "8" is some garbage that just looked
+like being part of a real word...  In other words, interfacing to
+something like catdoc, antiword, or wvText (included with AbiWord)
+might be cool.  Actually all you need is this:
+
+(add-to-list 'auto-mode-alist '("\\.doc\\'" . no-word))
+
+(defun no-word ()
+  "Run antiword on the entire buffer."
+  (shell-command-on-region (point-min) (point-max) "antiword - " t t))
+
+Alex.
+
+===============================================================================
+
+From: Arnaldo Mandel <am@ime.usp.br>
+Subject: Re: MS Word mode?
+Date: Fri, 8 Nov 2002 11:52:33 -0200
+
+Alex Schroeder wrote (on Nov 8, 2002):
+
+ >                 Actually all you need is this:
+ > 
+ > (add-to-list 'auto-mode-alist '("\\.doc\\'" . no-word))
+ > 
+ > (defun no-word ()
+ >   "Run antiword on the entire buffer."
+ >   (shell-command-on-region (point-min) (point-max) "antiword - " t t))
+
+On my system there are lots of filenames ending in .doc whose files
+are not Word files.  So I modified your function thusly
+
+(defun no-word ()
+  "Run antiword on the entire buffer."
+  (if (string-match "Microsoft "
+		    (shell-command-to-string (concat "file " buffer-file-name)))
+      (shell-command-on-region (point-min) (point-max) "antiword - " t t)))
+
+Works in Solaris and Linux, and should work on other unixes as well.
+
+am
+
+===============================================================================
+
+From: Alex Schroeder <alex@emacswiki.org>
+Subject: Re: MS Word mode?
+Date: Fri, 08 Nov 2002 18:24:07 +0100
+
+Arnaldo Mandel <am@ime.usp.br> writes:
+
+> (defun no-word ()
+>   "Run antiword on the entire buffer."
+>   (if (string-match "Microsoft "
+> 		    (shell-command-to-string (concat "file " buffer-file-name)))
+>       (shell-command-on-region (point-min) (point-max) "antiword - " t t)))
+
+Cool.  I did not know about "file"...  :)
+
+My stuff is on the wiki, btw:
+
+* http://www.emacswiki.org/cgi-bin/wiki.pl?AntiWord
+
+Alex.
+
+===============================================================================
+
+From: Benjamin Riefenstahl <Benjamin.Riefenstahl@epost.de>
+Subject: Re: emacs rmail. How to convert .doc to plain text
+Date: 24 Nov 2002 18:08:22 +0100
+
+Hi,
+
+Puff Addison <puff@theaddisons.demon.co.uk> writes:
+> Yes, please post your Emacs integration code.
+
+Ok, see below.  I should note that it is probably also possible to
+(ab-)use jka-compr for this, which would make my two functions
+obsolete.
+
+so long, benny
+
+>>>>>>>
+
+(defun benny-antiword-file-handler (operation &rest args)
+  ;; First check for the specific operations
+  ;; that we have special handling for.
+  (cond ((eq operation 'insert-file-contents)
+	 (apply 'benny-antiword-insert-file args))
+	((eq operation 'file-writable-p)
+	 nil)
+	((eq operation 'write-region)
+	 (error "Word documents can't be written"))
+	;; Handle any operation we don't know about.
+	(t (let ((inhibit-file-name-handlers
+		  (cons 'benny-antiword-file-handler
+			(and (eq inhibit-file-name-operation operation)
+			     inhibit-file-name-handlers)))
+		 (inhibit-file-name-operation operation))
+	     (apply operation args)))))
+
+(defun benny-antiword-insert-file (filename &optional visit beg end replace)
+  (set-buffer-modified-p nil)
+  (setq buffer-file-name (file-truename filename))
+  (setq buffer-read-only t)
+  (let ((start (point))
+	(inhibit-read-only t))
+    (if replace (delete-region (point-min) (point-max)))
+    (save-excursion
+      (let ((coding-system-for-read 'utf-8)
+	    (filename (encode-coding-string
+		       buffer-file-name
+		       (or file-name-coding-system
+			   default-file-name-coding-system))))
+	(call-process "antiword" nil t nil "-m" "UTF-8.txt"
+		      filename))
+      (list buffer-file-name (- (point) start)))))
+
+(setq file-name-handler-alist
+      (cons '("\\.doc\\'" . benny-antiword-file-handler)
+	    file-name-handler-alist))
+
+<<<<<<<

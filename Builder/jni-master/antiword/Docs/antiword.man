@@ -1,0 +1,146 @@
+ANTIWORD(1)                   Linux User's Manual                  ANTIWORD(1)
+
+
+
+NAME
+       antiword - show the text and images of MS Word documents
+
+SYNOPSIS
+       antiword [ options ] wordfiles
+
+DESCRIPTION
+       Antiword  is  an  application  that displays the text and the images of
+       Microsoft Word documents.
+       A wordfile named - stands for a Word document read  from  the  standard
+       input.
+       Only  documents  made  by  MS Word version 2 and version 6 or later are
+       supported.
+
+OPTIONS
+       -a papersize
+              Output in Adobe PDF form. Printable on paper  of  the  specified
+              size:  10x14,  a3, a4, a5, b4, b5, executive, folio, legal, let-
+              ter, note, quarto, statement or tabloid.
+
+       -f     Output in formatted text form. That  means  that  bold  text  is
+              printed  like *bold*, italics like /italics/ and underlined text
+              as _underlined_.
+
+       -h     Give a help message.
+
+       -i image level
+              The image level determines how images will be shown.
+
+              0: Use non-standard extensions from Ghostscript. This output may
+                 not print on any PostScript printer, but is useful in case no
+                 hard copy is needed. It is also useful  when  Ghostscript  is
+                 used  as  a  filter  to  print  a  PostScript  file to a non-
+                 PostScript printer.
+
+              1: Show no images.
+
+              2: PostScript level 2 compatible. (default)
+
+              3: PostScript level 3 compatible. (EXPERIMENTAL,  Portable  Net-
+                 work Graphics (PNG) images are not printed correctly)
+
+       -m mapping file
+              This  file is used to map Unicode characters to your local char-
+              acter set.  The default mapping file depends on the locale.
+
+       -p papersize
+              Output in PostScript form. Printable on paper of  the  specified
+              size:  10x14,  a3, a4, a5, b4, b5, executive, folio, legal, let-
+              ter, note, quarto, statement or tabloid.
+
+       -r     Include text removed by the revisioning system.
+
+       -s     Include text with the so-called "hidden text" attribute.
+
+       -t     Output in text form. (default)
+
+       -w width
+              In text mode this is the line width in characters.  A  value  of
+              zero puts an entire paragraph on a line, useful when the text is
+              to used as  input  for  another  wordprocessor.  This  value  is
+              ignored in PostScript mode.
+
+       -x document type definition
+              Output  in XML form. Currently the only document type definition
+              is db (for DocBook).
+
+       -L     In PostScript mode: use landscape mode.
+
+FILES
+       Mapping files like 8859-1.txt
+              Antiword looks for its mapping files in  three  directories,  in
+              the order given:
+              (1) The directory specified by $ANTIWORDHOME
+              (2) The directory specified by $HOME/.antiword
+              (3) Directory /usr/share/antiword
+
+       The fontnames file
+              Antiword will look for its fontname file in the same directories
+              as used for the mapping files.
+              The fontnames file contains  the  translation  table  from  font
+              names used by MS Word to font names used by PostScript.
+
+       NOTE:
+              Antiword cannot tell the difference between a file that does not
+              exist and a file that cannot be opened for reading.
+
+ENVIRONMENT
+       Antiword uses the environment variable ``ANTIWORDHOME''  as  the  first
+       directory to look for its files. Antiword uses the environment variable
+       ``HOME'' to find the user's home directory. When in text mode  it  uses
+       the  variable  ``COLUMNS'' to set the width of the output (unless over-
+       ridden by the -w option).
+
+       Antiword uses the environment variables  ``LC_ALL'',  ``LC_CTYPE''  and
+       ``LANG'' (in that order) to get the current locale and uses this infor-
+       mation to select the default mapping file.
+
+BUGS
+       Antiword is far from complete. Many features are  still  missing.  Many
+       images  are not shown yet. Some of the images that are shown, are shown
+       in the wrong place.  PostScript output is only available in ISO  8859-1
+       and ISO 8859-2.
+
+WEB SITES
+       The most recent released version of Antiword is always available from:
+       http://www.winfield.demon.nl/index.html
+       or try
+       http://antiword.cjb.net/
+
+AUTHOR
+       Adri van Os <antiword@winfield.demon.nl>
+       or try <comments@antiword.cjb.net>
+
+       R.F. Smith <rsmith@xs4all.nl> and
+       Sindi Keesan <keesan@cyberspace.org>
+       contributed to this manual page.
+
+LICENSE
+       Antiword  is  free  software;  you can redistribute it and/or modify it
+       under the terms of the GNU General Public License as published  by  the
+       Free  Software Foundation; either version 2 of the License, or (at your
+       option) any later version.
+
+       This program is distributed in the hope that  it  will  be  useful  but
+       WITHOUT  ANY  WARRANTY;  without  even  the  implied  warranty  of MER-
+       CHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the  GNU  General
+       Public License for more details.
+
+       You should have received a copy of the GNU General Public License along
+       with this program; if not, write to the Free Software Foundation, Inc.,
+       59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+ACKNOWLEDGEMENTS
+       Linux is a registered trademark of Linus Torvalds.
+       Adobe, PDF and PostScript are trademarks of Adobe Systems Incorporated.
+       Microsoft is a registered trademark  and  Windows  is  a  trademark  of
+       Microsoft Corporation.
+
+
+
+Antiword 0.37                    Oct 29, 2005                      ANTIWORD(1)

@@ -1,0 +1,14 @@
+From: Glenn Burkhardt <glenn@vtecus.com>
+Subject: It's great!
+Date: Wed, 22 Aug 2001 12:02:54 -0400
+
+Thank you for this program.  Thank you very much!  Thank you immensely!!
+
+
+P.S.  I find entry helpful as a /etc/mailcap rule:
+
+application/msword;/usr/local/bin/antiword -t %s | less; needsterminal; \
+copiousoutput; print=antiword -p letter %s|lpr
+
+I completely integrates the text mode with my mailer, exmh.  You might
+want to include it in your documentation.

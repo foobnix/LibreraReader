@@ -1,0 +1,219 @@
+****************************************************************************
+* Changes in Antiword from versions 0.22 to 0.37                           *
+****************************************************************************
+
+Changes 0.36 to 0.37
+--------------------
+Bug fixes:
+- Bug reported by Suzanne Skinner <tril@igs.net> (and others) fixed
+New features:
+- XML/DocBook output now contains <footnote> tags
+- Antiword is now based on DeskLib instead of RISC_OSLib (RISC OS only)
+- Show page headers and footers (PostScript and PDF output only)
+- Show text that was removed by the revisioning system
+- Improved kantiword, based on information from Stefan Wiens <s.wi@gmx.net>
+
+Changes 0.35 to 0.36
+--------------------
+Bug fixes:
+- Bug reported by Michael Minn <mail@michaelminn.com> fixed
+New features:
+- The default mapping file is now based on the locale (Unix/Linux) or on
+  the active codepage (DOS)
+- A Word document can now be saved as "formatted" text. That means with things
+  like *bold* to show bold text, /italics/ to show italics and _undeline_ to
+  show underlined text are added to the plain text. Based on patches send by
+  Ofir Reichenberg <ofir@qlusters.com>
+- Improved table parsing. Based on information supplied by Bastien Legras
+  <bastien.legras@nectech.fr> and Alex de Kruijff <freebsd@akruijff.dds.nl>
+- A Word document can now be saved in PDF.
+- First attempt to support PostScript output in the Cyrillic alphabet. Based
+  on work done by Alexander Belyaev <isle@free.kursknet.ru>
+- Better support for the Cyrillic alphabet
+
+Changes 0.34 to 0.35
+--------------------
+Bug fixes:
+- Fixed the bug in the use of the environment variable ANTIWORDHOME
+New features:
+- The XML/DocBook output is slightly better.
+- Scale view window is closed when the main window is closed. Thanks to Tony
+  Moore <old_coaster@yahoo.co.uk> (RISC OS only)
+- More support for WinWord 1.x documents
+
+Changes 0.33 to 0.34
+--------------------
+Bug fixes:
+- Bug in UTF-8 tables fixed
+- Bug reported by Stewart Goldwater <sg@janus.freeserve.co.uk> fixed
+- Bug reported by Karl-Otto Linn <linn@informatik.fh-wiesbaden.de> fixed
+- Fixed a bug that made DOS hang when Antiword processed a document > 8 MB.
+New features:
+- Better approximations for fancy characters in the output
+- A Word document can now be saved as XML/DocBook.
+- Linux Makefile is now closer to conventions.
+- Support for Text Boxes
+- An environment variable ANTIWORDHOME was added to create a more flexable
+  place for the fontnames file and the mapping files.
+- Antiword is now Latin9 enabled. Thanks to Stefan Bellon
+  <sbellon@sbellon.de> (RISC OS only)
+- Some support for MacWord 4 and 5 documents
+- More support for Word-for-DOS documents
+- Support for superscripts and subscripts
+- Displays slightly more images.
+- Improved lists, especially in documents from Word 97 or later.
+
+Changes 0.32 to 0.33
+--------------------
+Bug fixes:
+- Bug reported by Yannick PERRET <yperret@bat710.univ-lyon1.fr> fixed
+Old features:
+- The -X option is no longer supported. Replace "-X 2" by "-m 8859-2.txt"
+New features:
+- Slightly more accurate font translation
+- Full support for WinWord 2.0 documents
+- Some support for Word-for-DOS and WinWord 1.x documents
+- Selective header numbering
+- Implementation of stylesheets
+- The system-wide directory for the mapping files was changed from
+  "/opt/antiword/share" to "/usr/share/antiword", in accordance with FHS,
+  the file-system hierarchy standard, as suggested by Anand Buddhdev
+  <arb@anand.org>.
+- Antiword now turns white text into light gray text.
+- Antiword is now closer to "64-bit clean". Based on information supplied by
+  Duncan Haldane <f.duncan.m.haldane@worldnet.att.net>.
+
+Changes 0.31 to 0.32
+--------------------
+Bug fixes:
+- Bug reported by Forrest J. Cavalier III <mibsoft@mibsoftware.com> fixed
+- Bug reported by Jan ONDREJ (SAL) <ondrejj@salstar.sk> fixed
+- Bug in dealing with RLE compressed bitmap images fixed
+- Bug in image scaling fixed (RISC OS only)
+New features:
+- Improved leading (Unix only; PostScript version only)
+- Antiword can now read from the standard input. This is based on an idea by
+  Matthew Miller <mattdm@mattdm.org>. (Unix only)
+- A white background looks much better. (RISC OS only)
+- A system-wide directory for the mapping files, as suggested by Sven Geggus
+  <sven@geggus.net> and many others. (Unix only)
+- Antiword can now deal with documents larger than 7 MB.
+
+Changes 0.30 to 0.31
+--------------------
+Bug fixes:
+- Bug in the "Show hidden (by Word) text" feature fixed
+- Bug reported by David Aspinwall <aspinwall@timesten.com> fixed
+- Bug reported by Robert Steinmetz <rob@steinmetznet.com> fixed
+Old features:
+- The -g and -c options are no longer supported. The -c option was the default
+  and is now used automatically. (Unix only)
+New features:
+- Ability to display some of the images
+- Ability to use landscape mode (Unix only; PostScript version only)
+- Support for all ISO-8859 character sets plus KOI8 and some code pages
+  (Unix only; text version only)
+- Antiword will now give a warning if the specified PostScript paper size is
+  unsupported. Thanks to Greg Robinson <Greg.Robinson@dsto.defence.gov.au>
+- Changed from PostScript version 1 to version 2
+- Antiword now returns 1 if no Word document is found among the files listed
+  on the command line, as suggested by Jens Schleusener
+  <Jens.Schleusener@dlr.de>.
+- Takes the right margin into account
+- The PostScript part now supports the AvantGarde, Bookman, Helvetica-Narrow,
+  NewCenturySchlbk and Palatino fonts (Unix only)
+- More accurate fontnames translation table
+- Initial scale factor is now configurable (RISC OS only)
+
+Changes 0.29 to 0.30
+--------------------
+Bug fixes:
+- Bug in the generated PostScript (nocurrentpoint) fixed
+- Bug reported by Keith Bamford <kbamford@eurobell.co.uk> fixed
+- Bug in the chapter numbering font fixed
+New features:
+- Improved handling of changes in the font size on a single line.
+- Some support for long file names (RISC OS only)
+- Thanks to David Kanareck <david@davidkanareck.demon.co.uk>, Antiword can
+  now deal with documents made by "Word for Asian languages", but only
+  when these documents are written in a European language.
+- Character properties "Caps" and "SmallCaps" for accented characters
+- More accurate fontnames translation table. (RISC OS only)
+- PostScript part now supports the Times and Helvetica fonts. (Unix only)
+
+Changes 0.28 to 0.29
+--------------------
+Bug fixes:
+- Bug reported by Paul McCann <P.J.McCann@cfm1220.x400.icl.co.uk> fixed
+- Character property "SmallCaps" works better now
+- Bug reported by Richard Lambley <richard@wireless.demon.co.uk> fixed
+- Fixed a bug in the linewidth computation (Unix only)
+New features:
+- A Word document can now be saved as PostScript (Unix only, Courier font only)
+- Left, Center, Right and Justify alignment added for Word 97
+- Supports the Macintosh character set
+
+Changes 0.27 to 0.28
+--------------------
+Licence:
+- Distributed under the GNU General Public License
+Bug fixes:
+- Bug reported by Richard Lambley <richard@wireless.demon.co.uk> has not
+  been fixed yet.
+- Deals correctly with fancy quotes in files from a Macintosh
+New features:
+- Supports character properties "SmallCaps", "Caps" and "Hidden Text"
+- The use of fonts and font sizes for "fast saved" documents is now supported.
+- Separators between the text, the footnotes and the endnotes
+- Footnotes are now numbered in Arabic numericals (1, 2, 3), endnotes are now
+  numbered in Roman numericals (i, ii, iii).
+
+Changes 0.26 to 0.27
+--------------------
+Bug fixes:
+- The main title now shows the first 12 characters of the file name.
+New features:
+- "Fast saved" documents are now supported for Word 97.
+- All tables are now supported for Word 97.
+- It is now possible to scale the text.
+
+Changes 0.25 to 0.26
+--------------------
+Bug fixes:
+- Fixed several problems with the Choices file
+- Closed a small memory leak
+New features:
+- The use of fonts and font sizes for "full saved" documents is now supported.
+- Most tables are now supported for Word 97.
+- Header numbers are now supported for Word 97.
+
+Changes 0.24 to 0.25
+--------------------
+Bug fixes:
+- Improved handling of memory shortages
+- Some special tables were messed up.
+New features:
+- "Fast saved" documents are now supported for Word 6 and 7.
+- A new option to permit Antiword to change the filetype of Word documents to
+  MSWord (&ae6).
+- A Wordfile can now be saved as a Drawfile.
+- The look and feel has been changed from editor-like to browser-like
+
+Changes 0.23 to 0.24
+--------------------
+Bug fixes:
+- Empty paragraphs in numbered list were not always numbered correctly.
+- In very complex tables some text could get lost.
+New features:
+- F3 is now a shortcut to the "Save as" dialogue box.
+- Left, Center, Right and Justify alignment added for Word 6 and 7
+- [pic] marks the place where an image should have been.
+- It is now possible to have a writeable Choices file, even when Antiword
+  itself is on a read-only medium.
+
+Changes 0.22 to 0.23
+--------------------
+New features:
+- Paragraph breaks are now an option.
+- Bulleted single level lists for files from Word 6 and 7
+- Numbered single level lists (some styles) for files from Word 6 and 7

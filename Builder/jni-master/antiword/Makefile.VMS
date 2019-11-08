@@ -1,0 +1,108 @@
+#
+# Makefile for antiword (VMS version , GNU make)
+#
+# Original version by: Joseph Huber <huber@mppmu.mpg.de>
+#
+
+CC	= cc
+LD	= cc
+
+# must be equal to DEBUG or NDEBUG
+DB	= NDEBUG
+# Optimization: -O<n> or debugging: -g
+OPT	= -O2
+
+LDLIBS	=
+
+#CFLAGS	= -Wall -pedantic $(OPT) -D$(DB)
+CFLAGS	= /DEFINE=$(DB)
+LDFLAGS	=
+
+OBJS	=\
+	main_u.obj asc85enc.obj blocklist.obj chartrans.obj datalist.obj\
+	depot.obj dib2eps.obj doclist.o fail.obj finddata.obj findtext.obj\
+	fmt_text.obj fontlist.obj fonts.obj fonts_u.obj hdrftrlist.o\
+	imgexam.obj imgtrans.obj jpeg2eps.obj listlist.obj misc.obj notes.obj\
+	options.obj out2window.obj output.obj pdf.obj pictlist.obj png2eps.obj\
+	postscript.obj prop0.obj prop2.obj prop6.obj prop8.obj properties.obj\
+	propmod.obj rowlist.obj sectlist.obj stylelist.obj stylesheet.obj\
+	summary.obj tabstop.obj text.obj unix.obj utf8.obj word2text.obj\
+	worddos.obj wordlib.obj wordmac.obj wordole.obj wordwin.obj xmalloc.obj\
+	xml.obj
+
+PROGS = antiword.exe
+
+INSTALL_DIR = UTIL_ROOT:[EXE]
+
+#all:		$(PROGS)
+all:		antiword.exe
+
+install:	all
+	cp -pf $(PROGS) $(INSTALL_DIR)/PROTECT=W:RE
+
+clean:
+	delete/noconfirm antiword.olb;*
+	delete/noconfirm *.obj;*
+	rm -f $(PROGS)
+
+antiword.exe:	$(OBJS)
+	DELETE/NOLOG antiword.olb;*
+	Library antiword.olb/create/object *.obj
+	LINK/EXE=antiword.exe antiword/libr/include=main_u,antiword/library
+
+
+.c.obj:
+	$(CC) $(CFLAGS)  $<
+
+main_u:	version.h
+
+asc85enc.obj: antiword.h
+blocklist.obj: antiword.h
+chartrans.obj: antiword.h
+datalist.obj: antiword.h
+depot.obj: antiword.h
+dib2eps.obj: antiword.h
+fail.obj: antiword.h
+finddata.obj: antiword.h
+findtext.obj: antiword.h
+fontlist.obj: antiword.h
+fonts.obj: antiword.h
+fonts_u.obj:	fontinfo.h
+imgexam.obj: antiword.h
+imgtrans.obj: antiword.h
+jpeg2eps.obj: antiword.h
+listlist.obj: antiword.h
+misc.obj: antiword.h
+notes.obj: antiword.h
+options.obj: antiword.h
+out2window.obj: antiword.h
+output.obj: antiword.h
+pictlist.obj: antiword.h
+png2eps.obj: antiword.h
+postscript.obj:	version.h
+pdf.obj: version.h
+prop0.obj: antiword.h
+prop2.obj: antiword.h
+prop6.obj: antiword.h
+prop8.obj: antiword.h
+properties.obj: antiword.h
+propmod.obj: antiword.h
+rowlist.obj: antiword.h
+sectlist.obj: antiword.h
+stylelist.obj: antiword.h
+stylesheet.obj: antiword.h
+summary.obj: antiword.h
+tabstop.obj: antiword.h
+text.obj: antiword.h
+unix.obj: antiword.h
+utf8.obj: antiword.h
+word2text.obj: antiword.h
+worddos.obj: antiword.h
+wordlib.obj: antiword.h
+wordmac.obj: antiword.h
+wordole.obj: antiword.h
+wordwin.obj: antiword.h
+xmalloc.obj: antiword.h
+xml.obj: antiword.h
+
+
