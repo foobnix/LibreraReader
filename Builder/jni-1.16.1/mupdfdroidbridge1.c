@@ -521,33 +521,31 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_free(JNIEnv *env, jclass clazz,
 		return;
 	}
 
-	fz_try(doc->ctx)
-	{
-		DEBUG("MuPdfPage_free(%p): start", page);
-			if (page->pageList) {
-				//fz_free_display_list(ctx, page->pageList);
-				fz_drop_display_list(doc->ctx, page->pageList);
-				page->pageList = NULL;
-			}
+    fz_try(doc->ctx)
+    {
+        fz_drop_display_list(doc->ctx, page->pageList);
+    }
+    fz_always(doc->ctx){
+        page->pageList = NULL;
+    }
+    fz_catch(doc->ctx){
+        DEBUG("MuPdfPage_free fz_catch fz_drop_display_list ");
+    }
 
-			if (page->page) {
-				fz_drop_page(doc->ctx, page->page);
-				page->page = NULL;
-			}
+     fz_try(doc->ctx)
+     {
+        fz_drop_page(doc->ctx, page->page);
+     }
+     fz_always(doc->ctx){
+        page->page = NULL;
+     }
+     fz_catch(doc->ctx){
+        DEBUG("MuPdfPage_free fz_catch fz_drop_page ");
+     }
 
-			//fz_free(doc->ctx, page);
-			//fz_drop_context(ctx);
-
-			page->ctx = NULL;
-			page = NULL;
-
-	}
-	fz_catch(doc->ctx)
-	{
-		DEBUG("MuPdfPage_free(%p): error", page);
-	}
-
-	DEBUG("MuPdfPage_free(%p): finish", page);
+     page->ctx = NULL;
+     page = NULL;
+     DEBUG("MuPdfPage_free success");
 }
 
 
