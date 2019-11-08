@@ -3,7 +3,9 @@
 
 git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-master
 cd mupdf-master
-git pull
+git fetch --all
+git reset --hard origin/master
+git status
 
 #make clean
 make release
@@ -28,6 +30,7 @@ ln -s $MUPDF_JAVA/libs/armeabi-v7a $LIBS
 ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
+
 
 
 cd $MUPDF_JAVA
