@@ -1864,7 +1864,7 @@ public class DragingDialogs {
 
     }
 
-    public static DragingPopup thumbnailDialog(final FrameLayout anchor, final DocumentController dc) {
+    public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
         if (dc == null) {
             return null;
         }
@@ -1907,6 +1907,7 @@ public class DragingDialogs {
                 }
                 grid.setColumnWidth(dpToPx);
                 grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
+
 
                 final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
@@ -2051,7 +2052,7 @@ public class DragingDialogs {
                 return view;
             }
 
-        }.show("thumbnailDialog", false, true).setOnCloseListener(new Runnable() {
+        }.show("gotoPageDialog", false, true).setOnCloseListener(new Runnable() {
 
             @Override
             public void run() {

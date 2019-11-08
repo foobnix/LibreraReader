@@ -711,7 +711,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                DragingDialogs.thumbnailDialog(anchor, dc);
+                DragingDialogs.gotoPageDialog(anchor, dc);
 
             }
         });
@@ -1467,7 +1467,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void testScreenshots() {
 
         if (getIntent().hasExtra("id1")) {
-            DragingDialogs.thumbnailDialog(anchor, dc);
+            DragingDialogs.gotoPageDialog(anchor, dc);
 
         }
         if (getIntent().hasExtra("id2")) {
@@ -2257,7 +2257,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 return true;
             }
             if (keyCode == KeyEvent.KEYCODE_0) {
-                DragingDialogs.thumbnailDialog(anchor, dc);
+                DragingDialogs.gotoPageDialog(anchor, dc);
                 return true;
             }
 

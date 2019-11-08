@@ -1,0 +1,113 @@
+Frequently Asked Questions
+==========================
+
+These questions and answers are mainly Linux/Unix oriented. For other
+Operating Systems you may want to read the documentation provided by the
+people who ported Antiword.
+
+Q1: How do I install Antiword?
+A1: (a) Make a suitable directory such as '$HOME/src/antiword' and copy the
+        'antiword.tar.gz' file to this directory.
+    (b) decompress: 'gunzip antiword.tar.gz'
+    (c) unpack: 'tar xvf antiword.tar'
+    (d) compile: 'make all'
+    (e) install: 'make install'. This will install Antiword in the $HOME/bin
+        directory.
+    (f) copy the file 'fontnames' and one or more mapping files from the
+        Resources directory to the $HOME/.antiword directory (note the dot
+        before antiword!).
+    NOTE: you can skip point (f) if your system administrator already copied
+          these files to /usr/share/antiword.
+
+Q2: I get the message "I can't open your mapping file (xxxx-x.txt)"
+A2: This means that the mapping file has not been installed. The installation
+    may have to be done manually. See above answer A1, point (f).
+    NOTE: Antiword assumes that a file that can't be opened for reading is a
+          file that doesn't exist.
+
+Q3: How do I use Antiword?
+A3: Type antiword -h and see.
+
+Q4: I tried "antiword -m /some/directory/8859-1.txt word.doc", but this
+    doesn't work.
+A4: The -m option is followed by the name of a mapping file, a full pathname
+    won't work.
+
+Q5: How does Antiword deal with Word macro viruses?
+A5: Antiword does not run any Word macros because it can't do so.
+    Therefore such a virus will not harm your computer system.
+
+Q6: What is the purpose of the file 'fontnames' in the '/usr/share/antiword/'
+    or '$HOME/.antiword' directory?
+A6: This file provides a translation table from the font names used in a Word
+    document to the font names used by a PostScript printer.
+    The file 'fontnames' can be edited to match the font collection used by
+    your PostScript printer.
+
+Q7: What is 'Hidden Text'?
+A7: Hidden Text is Microsoft speak for text that may or may not be shown
+    on the screen, subject to the user's preferences, but such text is never
+    printed.
+
+Q8: Antiword claims to support all ISO-8859 character sets, but I can't see
+    any of this.
+A8: There is support for all ISO-8859 character sets, but only in the text
+    output, not in the PostScript output.
+    The result can only be seen if your xterm, vtterm, kvt or similar
+    terminal emulation program uses a font compatible with that ISO-8859
+    character set.
+
+Q9: Which mapping file (-m option) is correct in my situation?
+A9: The correct mapping file depends on the character set you need for output
+    in a specific language.
+    For Western European languages (like English, French, German) this is
+    8859-1.txt. (OS/2: cp1252.txt) (DOS: cp850.txt)
+    For Eastern European languages (like Polish, Czech, Slovak, Croatian) this
+    is 8859-2.txt. (OS/2: cp1250.txt) (DOS: cp852.txt)
+    For Esperanto use 8859-3.txt.
+    For Russian use 8859-5.txt or koi8-r.txt. (OS/2: cp1251.txt)
+     (DOS: cp866.txt)
+    For Ukrainian use koi8-u.txt.
+    For Arabic use 8859-6.txt. (DOS: cp864.txt)
+    For Hebrew use 8859-8.txt. (DOS: cp862.txt)
+    For Thai use 8859-11.txt.
+    If your system supports it, you might also try UTF-8.txt.
+
+    NOTE: UTF-8 also enables Antiword to show text in languages like Chinese,
+          Japanese and Korean.
+
+Q10: I tried UTF-8, but some documents show more garbage than text. Why?
+A10: UTF-8 will only work if the document was saved by a Unicode enabled
+    version of Word (or if Word used ISO-8859-1 as its internal encoding).
+    The following versions of Word are known to be Unicode enabled:
+    Word 6 and Word 7 for Asian languages, all versions of Word 97,
+    Word 98 (Mac), Word 2000, Word 2001 (Mac) and Word 2002 (aka Word XP).
+
+Q11: Why can't Antiword read from stdin directly? Why use a temporary file?
+A11: The information in a Word document is not stored sequentially. Therefore
+    the use of the "fseek" function can't be avoided. So Antiword must copy
+    stdin to a temporary file first and then process that file.
+
+Q12: Why does the XML output of Antiword sometimes contain such a strange
+     structure or practically no structure at all?
+A12: Remember that Word is basically 'text plus appearance' and XML is
+     basically 'text plus structure'. If a Word document is written by a
+     competent person there will be a balance between appearance and structure,
+     but if a Word document is written by an inexperienced or incompetent
+     person the Word document can end up without a structure, or worse, with a
+     terrible structure.
+     Antiword can't create a structure when there is none.
+
+Q13: Why is the Postscript output in Cyrillic in ISO-8869-5? Nobody uses that
+     character set.
+A13: For Cyrillic you a have:
+     (a) koi8 does not cover all languages that use Cyrillic,
+     (b) cp866, cp1251 and Mac-Cyrillic are proprietary,
+     (c) Unicode and UTF-8 are not supported by PostScript yet and
+     (d) ISO-8859-5, the character set that nobody uses.
+
+Q14: I have used "antiword -p a4 -m 8869-5.txt file.doc > file.ps", but I get
+     no Cyrillic characters.
+A14: Programs like Ghostscript and Ghostview need Cyrillic enabled fonts in
+     order to show Cyrillic characters. A PostScript printer needs to be
+     Cyrillic enabled in order to show Cyrillic characters.

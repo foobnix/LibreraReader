@@ -1,0 +1,30 @@
+
+The Android project has extend the libjpeg library. These extensions have been
+ported into libjpeg-turbo. 
+
+By default none of these extentions are included. In order to enable the
+Android extentions the following defines must be included with CFLAGS.
+
+-DANDROID -DANDROID_TILE_BASED_DECODE -DANDROID_RGB -DENABLE_ANDROID_NULL_CONVERT
+
+Android does not utilize the autotools as a mechanism for configuration, 
+creation of Makefiles and such. Instead Android.mk has been included.
+However two generated files are expected, config.h and jconfig.h. Both of these
+files are included in the android directory. 
+
+To build on android. Place the libjpeg-turbo directory into system/external. Remove the
+old jpeg directory. Rename libjpeg-turbo to jpeg. Copy the contents of the android
+directory into the main libjpeg-turbo directory. 
+
+Build your android as your normally would.
+
+This code (until accepted upstream) is being kept in the 1.2-beta-linaro-andoid branch
+in git at:
+
+http://git.linaro.org/gitweb?p=people/tomgall/libjpeg-turbo/libjpeg-turbo.git;a=summary
+
+If you have questions feel free to email tom.gall@linaro.org or join #linaro
+on irc.freenode.net and ping tgall_foo/Dr_Who.
+
+Enjoy!
+

@@ -22,11 +22,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -72,7 +72,7 @@ android {
 
 
     }
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -363,13 +363,13 @@ dependencies {
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
-    betaImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    libreraImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    pdf_v2Implementation 'com.google.firebase:firebase-ads:18.1.1'
-    ebookaImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    tts_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    pdf_classicImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    epub_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
+    betaImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    libreraImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    pdf_v2Implementation 'com.google.firebase:firebase-ads:18.3.0'
+    ebookaImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    tts_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    pdf_classicImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    epub_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
 
 }
 

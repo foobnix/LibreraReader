@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Sort library by last read date
+# Sort library by last read book
 
 
 To sort your library by last read date, you need to:

@@ -1,0 +1,24 @@
+From: Sven Geggus (sven@geggus.net)
+Subject: Re: Word attachments in Mutt
+Newsgroups: comp.mail.mutt
+Date: 2001-05-16 01:21:11 PST
+
+Bob Zimmerman <bobzim@no.spam.org> wrote:
+
+> I receive MS Word attachments in Mutt reguarly. Is there a way to
+> read these via Mutt in a Linux/Solaris environment? (e.g. Lynx or
+> some type of viewer)?
+
+The best M$-word to ASCII converter has to be antiword!
+
+Just put the following line into .mailcap:
+
+application/msword; antiword %s; copiousoutput
+
+Sven
+
+--
+"We just typed make"
+(Stephen Lambrigh, Director of Server Product Marketing at Informix
+                                      about porting their Database to Linux)
+/me is giggls@ircnet, http://geggus.net/sven/ on the Web

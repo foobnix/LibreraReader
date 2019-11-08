@@ -2,18 +2,18 @@
 layout: main
 ---
 
-# Impostazione della direzione del testo RTL (da destra a sinistra) o LTR (da sinistra a destra)
+# Lettura in lingue RTL
 
 
-> Librera ti consente di adattare il processo di lettura per le lingue arabe cambiando la direzione di lettura da LTR (da sinistra a destra) a RTL (da destra a sinistra)
+> **Librera** può essere adattato abbastanza facilmente per leggere testi nelle lingue da sinistra a destra, ad esempio arabo, ebraico, persiano o urdu. Devi solo cambiare la direzione di lettura dalla sua impostazione LTR predefinita.
 
 
-Per modificare la direzione di lettura in RTL (da destra a sinistra), è necessario:
+Per modificare la direzione di lettura in RTL:
 
-* Tocca su Impostazioni
-* Nella finestra delle impostazioni, selezionare la scheda &quot;Impostazioni avanzate&quot;
-* Seleziona &quot;Direzione di lettura&quot; - RTL (da destra a sinistra)
-* Per uscire dalle impostazioni, l'area di testo selezionata cambierà.
+* Tocca l'icona **Impostazioni** per aprire la finestra **Preferenze**
+* Apri la scheda _ Impostazioni avanzate_
+* Tocca il link _Leggi direzione_ e seleziona _RTL_
+* Per regolare i layout di due pagine per la lettura RTL, selezionare la casella _Force right page_
 
 ||||
 |-|-|-|

@@ -10,14 +10,12 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
-import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 
 import org.ebookdroid.common.bitmaps.BitmapManager;
@@ -60,8 +58,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
-
-        LOG.isEnable = BuildConfig.LOG;
+        LOG.isEnable = BuildConfig.LOG || BuildConfig.IS_BETA;
 
         TTSNotification.initChannels(this);
 
@@ -84,18 +81,6 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build.Context", "Context.getExternalFilesDir(null)", getExternalFilesDir(null));
         LOG.d("Build.Context", "Environment.getExternalStorageDirectory()", Environment.getExternalStorageDirectory());
         LOG.d("Build.Height", Dips.screenHeight());
-
-        try {
-            if (BuildConfig.DEBUG) {
-                String myID = ADS.getByTestID(this);
-                ADS.adRequest = new AdRequest.Builder()//
-                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-                        .addTestDevice(myID)//
-                        .build();//
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
 
 
         if (false) {

@@ -317,7 +317,6 @@ public class BooksService extends IntentService {
 
                 for (FileMeta meta : itemsMeta) {
                     EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                    LOG.d("BooksService getAuthor", ebookMeta.getAuthor());
                     FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
                 }
 
@@ -334,6 +333,13 @@ public class BooksService extends IntentService {
                 Clouds.get().syncronizeGet();
 
                 TagData.restoreTags();
+
+
+                List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
+                for (FileMeta m : allNone) {
+                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                }
 
                 sendFinishMessage();
 

@@ -1,0 +1,15 @@
+# KDE Config File
+[KDE Desktop Entry]
+Comment[C]=MS Word reader
+SwallowTitle=
+SwallowExec=
+BinaryPattern=antiword;kantiword;
+Name=Antiword
+Name[C]=Antiword
+MimeType=
+Exec=kantiword a4 %f
+Icon=antiword.xpm
+TerminalOptions=
+Path=
+Type=Application
+Terminal=0
