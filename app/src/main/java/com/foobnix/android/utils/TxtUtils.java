@@ -178,8 +178,13 @@ public class TxtUtils {
     }
 
     public static String getProgressPercent(int current, int max) {
-        float f = (float) current * 100 / max;
-        return String.format("%.1f", f) + "%";
+        try {
+            float f = (float) current * 100 / max;
+            return String.format("%.1f", f) + "%";
+        } catch (Exception e) {
+            LOG.e(e);
+            return "-1";
+        }
     }
 
     public static String percentFormatInt(float f) {
@@ -481,7 +486,6 @@ public class TxtUtils {
             LOG.d("pageHTML [8c]", pageHTML);
 
 
-
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}$4{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}$3{dot}");
             pageHTML = replaceAll(pageHTML, " (\\p{Alpha}{1,3})\\.(\\p{Alpha}{1,3})\\.", " $1{dot}$2{dot}");
@@ -492,8 +496,6 @@ public class TxtUtils {
             pageHTML = replaceAll(pageHTML, "(\\p{Alpha}+)\\.(\\p{Alpha}+)", "$1{dot}$2");
 
             pageHTML = replaceAll(pageHTML, " (\\p{Digit}*)\\.(\\p{Digit}+)", " $1{dot}$2"); //skip numbers 3.3 .343
-
-
 
 
             LOG.d("pageHTML [8f]", pageHTML);
@@ -509,7 +511,7 @@ public class TxtUtils {
             pageHTML = pageHTML.replace("{dot}", ".");
         }
 
-        pageHTML = pageHTML.replaceAll("[\\s]*("+TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE).trim();
+        pageHTML = pageHTML.replaceAll("[\\s]*(" + TTS_PAUSE + ")*[\\s]*" + TTS_PAUSE + "[\\s]*", TTS_PAUSE).trim();
 
         return pageHTML;
     }

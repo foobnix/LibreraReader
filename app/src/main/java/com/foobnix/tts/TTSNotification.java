@@ -49,17 +49,21 @@ public class TTSNotification {
     public static final String TTS_STOP_DESTROY = "TTS_STOP_DESTROY";
     public static final String TTS_NEXT = "TTS_NEXT";
     public static final String TTS_PREV = "TTS_PREV";
-
-    private static final String KEY_TEXT_REPLY = "key_text_reply";
-
     public static final int NOT_ID = 10;
     public static final int NOT_ID_2 = 11;
-
+    private static final String KEY_TEXT_REPLY = "key_text_reply";
     static String bookPath1;
     static int page1;
     static int pageCount;
 
     private static Context context;
+    static Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+            show(bookPath1, page1, pageCount);
+        }
+    };
     private static Handler handler;
 
     @TargetApi(26)
@@ -123,8 +127,6 @@ public class TTSNotification {
             remoteViewsSmall.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
 
-
-
             remoteViews.setViewVisibility(R.id.ttsNextTrack, View.GONE);
             remoteViews.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
 
@@ -155,7 +157,8 @@ public class TTSNotification {
             remoteViewsSmall.setInt(R.id.ttsStop, "setColorFilter", color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
-            String pageNumber = "(" + page + "/" + maxPages + ")";
+
+            String pageNumber = "(" +TxtUtils.getProgressPercent(page, maxPages) + " "  + page + "/" + maxPages + ")";
 
             if (page == -1 || maxPages == -1) {
                 pageNumber = "";
@@ -167,7 +170,7 @@ public class TTSNotification {
                 textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPath) + "] " + textLine;
             }
 
-            remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());
+            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1+ " ","\n").trim());
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
@@ -223,14 +226,6 @@ public class TTSNotification {
         }
 
     }
-
-    static Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-            show(bookPath1, page1, pageCount);
-        }
-    };
 
     public static Bitmap getBookImage(String path) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());

@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
-            android:lines="2"
+            android:maxLines="3"
             android:text="Book Title long long long long long long long long long long long long long long long long  long long long long long long long long long long long long "
             android:textStyle="normal" />
 
