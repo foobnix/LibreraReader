@@ -565,6 +565,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
+            line = line.replace("<empty-line/>","");
 
             if (firstLine) {
                 List<String> encodings = Arrays.asList("utf-8", "windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
@@ -1033,17 +1034,16 @@ public class Fb2Extractor extends BaseExtractor {
             " <docTitle>\n" + //
             "  <text>title</text>\n" + //
             " </docTitle>\n" + //
-            " <navMap>\n" + //
-            "  \n" + //
+            " <navMap>" + //
             "%nav% \n" + //
             "   \n" + //
             " </navMap>\n" + //
             "</ncx>";//
 
     public static String createNavPoint(int id, String text) {
-        return "<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
+        return "\n\n<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
                 "<navLabel>\n" + //
-                "<text>" + text + "</text>\n" + //
+                "<text>" + TxtUtils.escapeHtml(text) + "</text>\n" + //
                 "</navLabel>\n" + //
                 "<content src=\"fb2.fb2#" + id + "\"/>\n" + //
                 "</navPoint>"; //
