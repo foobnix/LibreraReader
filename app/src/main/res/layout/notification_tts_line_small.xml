@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="64dip"
     android:orientation="horizontal"
-    android:padding="8dip">
+    android:padding="2dip">
 
     <ImageView
         android:id="@+id/ttsIcon"
@@ -28,8 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
+            android:padding="4dip"
             android:lines="1"
-            android:text="Book Title long long long long long long long long long long long long long long long long long long long long long "
+            android:text="Book Title  "
             android:textStyle="normal" />
 
         <include layout="@layout/tts_line" />
