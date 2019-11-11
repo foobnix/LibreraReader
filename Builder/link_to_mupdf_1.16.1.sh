@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 #. ~/.profile
-
+echo "=================="
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.16.1 mupdf-1.16.1
 cd mupdf-1.16.1
 
 #make clean
+echo "=================="
 make release
 make generate
+echo "=================="
 
 #make OS=mingw32-cross
 cd ..
@@ -38,9 +40,9 @@ cp -rp jni-1.16.1/~mupdf/mucbz.c $MUPDF_ROOT/source/cbz/mucbz.c
 cp -rp jni-1.16.1/~mupdf/xml.c $MUPDF_ROOT/source/fitz/xml.c
 cp -rp jni-1.16.1/~mupdf/svg-doc.c $MUPDF_ROOT/source/svg/svg-doc.c
 
-
 cd $MUPDF_JAVA
 ndk-build $1
-
+echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
+echo "=================="
