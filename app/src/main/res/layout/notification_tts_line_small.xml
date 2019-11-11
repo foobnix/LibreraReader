@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="64dip"
     android:orientation="horizontal"
     android:padding="8dip">
 
@@ -28,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
-            android:lines="2"
-            android:text="Book Title long long long long long long long long long long long long long long long long  long long long long long long long long long long long long "
+            android:lines="1"
+            android:text="Book Title long long long long long long long long long long long long long long long long long long long long long "
             android:textStyle="normal" />
 
         <include layout="@layout/tts_line" />

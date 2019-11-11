@@ -105,24 +105,42 @@ public class TTSNotification {
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
+            RemoteViews remoteViewsSmall = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line_small);
 
             Bitmap bookImage = getBookImage(bookPath);
-            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
 
+            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
             remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
+
+            remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bookImage);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPlay, playPause);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsNext, next);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPrev, prev);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
+
+
+
+
             remoteViews.setViewVisibility(R.id.ttsNextTrack, View.GONE);
             remoteViews.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
 
+            remoteViewsSmall.setViewVisibility(R.id.ttsNextTrack, View.GONE);
+            remoteViewsSmall.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
+
+
             remoteViews.setViewVisibility(R.id.ttsDialog, View.GONE);
+            remoteViewsSmall.setViewVisibility(R.id.ttsDialog, View.GONE);
 
             if (TTSEngine.get().isPlaying()) {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
             } else {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
             }
 
             final int color = TintUtil.color == Color.BLACK ? Color.LTGRAY : TintUtil.color;
@@ -130,6 +148,11 @@ public class TTSNotification {
             remoteViews.setInt(R.id.ttsNext, "setColorFilter", color);
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", color);
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", color);
+
+            remoteViewsSmall.setInt(R.id.ttsPlay, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsNext, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsPrev, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsStop, "setColorFilter", color);
 
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
             String pageNumber = "(" + page + "/" + maxPages + ")";
@@ -147,6 +170,9 @@ public class TTSNotification {
             remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
+            remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
+            remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
                     .setColor(color)
@@ -154,6 +180,7 @@ public class TTSNotification {
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
+                    .setPriority(NotificationCompat.PRIORITY_MAX) //
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
                     // .addAction(R.drawable.glyphicons_175_pause,
                     // context.getString(R.string.to_paly_pause), playPause)//
@@ -166,7 +193,7 @@ public class TTSNotification {
                     // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
                     // .addAction(action)//
                     .setCustomBigContentView(remoteViews) ///
-                    .setCustomContentView(remoteViews); ///
+                    .setCustomContentView(remoteViewsSmall); ///
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
