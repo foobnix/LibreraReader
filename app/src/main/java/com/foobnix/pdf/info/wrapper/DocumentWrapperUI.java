@@ -173,7 +173,6 @@ public class DocumentWrapperUI {
     };
     public View.OnClickListener onPlus = new View.OnClickListener() {
 
-        @Override
         public void onClick(final View arg0) {
             dc.onZoomInc();
         }
@@ -235,8 +234,6 @@ public class DocumentWrapperUI {
             hideAds();
             return true;
         }
-
-        ;
     };
     View line1, line2, lineFirst, lineClose, closeTop, pagesBookmark, musicButtonPanel, parentParent, documentTitleBar;
     TTSControlsView ttsActive;
@@ -1396,16 +1393,17 @@ public class DocumentWrapperUI {
         View bookMenu = a.findViewById(R.id.bookMenu);
         bookMenu.setOnClickListener(onItemMenu);
         modeName.setOnClickListener(onItemMenu);
-        modeName.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                dc.onChangeTextSelection();
-                AppState.get().isEditMode = false;
-                hideShow();
-                return true;
-            }
-        });
+        modeName.setOnLongClickListener(onCloseLongClick);
+//        modeName.setOnLongClickListener(new OnLongClickListener() {
+//
+//            @Override
+//            public boolean onLongClick(View v) {
+//                dc.onChangeTextSelection();
+//                AppState.get().isEditMode = false;
+//                hideShow();
+//                return true;
+//            }
+//        });
 
         progressDraw = (ProgressDraw) a.findViewById(R.id.progressDraw);
 

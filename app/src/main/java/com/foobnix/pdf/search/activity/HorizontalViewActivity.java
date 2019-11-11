@@ -960,16 +960,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 bookMenu.performClick();
             }
         });
-        modeName.setOnLongClickListener(new OnLongClickListener() {
+//        modeName.setOnLongClickListener(new OnLongClickListener() {
+//
+//            @Override
+//            public boolean onLongClick(View v) {
+//                dc.onChangeTextSelection();
+//                AppState.get().isEditMode = false;
+//                hideShow();
+//
+//                return true;
+//            }
+//        });
+        modeName.setOnLongClickListener(onCloseLongClick);
 
-            @Override
-            public boolean onLongClick(View v) {
-                dc.onChangeTextSelection();
-                AppState.get().isEditMode = false;
-                hideShow();
-                return true;
-            }
-        });
 
         findViewById(R.id.bookPref).setOnClickListener(new View.OnClickListener() {
 
@@ -994,16 +997,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
 
         });
-        onClose.setOnLongClickListener(new OnLongClickListener() {
 
-            @Override
-            public boolean onLongClick(final View v) {
-                Vibro.vibrate();
-                CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, dc);
-                hideAds();
-                return true;
-            }
-        });
+        onClose.setOnLongClickListener(onCloseLongClick);
 
         findViewById(R.id.editTop2).setVisibility(View.GONE);
         findViewById(R.id.nextTypeBootom).setVisibility(View.GONE);
@@ -1309,6 +1304,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
     }
+
+    OnLongClickListener onCloseLongClick = new OnLongClickListener() {
+
+        @Override
+        public boolean onLongClick(final View v) {
+            Vibro.vibrate();
+            CloseAppDialog.showOnLongClickDialog(HorizontalViewActivity.this, v, dc);
+            hideAds();
+            return true;
+        }
+    };
 
     public void showPagesHelper() {
         try {
