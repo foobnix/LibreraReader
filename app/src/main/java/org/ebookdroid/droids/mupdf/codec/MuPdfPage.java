@@ -153,10 +153,8 @@ public class MuPdfPage extends AbstractCodecPage {
         try {
             TempHolder.lock.lock();
             if (pageHandle != 0 && docHandle != 0) {
-                long p = pageHandle;
-                pageHandle = 0;
                 LOG.d("MUPDF! -recycle page", docHandle, pageNumber);
-                free(docHandle, p);
+                free(docHandle, pageHandle);
             }
         } catch (final Exception e) {
             LOG.e(e);
@@ -167,7 +165,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized boolean isRecycled() {
+    public  boolean isRecycled() {
         return pageHandle == 0;
     }
 
@@ -401,7 +399,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public synchronized TextWord[][] getText() {
+    public  TextWord[][] getText() {
 
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
@@ -458,7 +456,7 @@ public class MuPdfPage extends AbstractCodecPage {
         return res;
     }
 
-    public synchronized TextWord[][] getText_111() {
+    public  TextWord[][] getText_111() {
         TextChar[][][][] chars = text();
         if (chars == null) {
             return new TextWord[0][0];
