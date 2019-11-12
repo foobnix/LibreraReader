@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.foobnix.android.utils;
 
@@ -19,7 +19,7 @@ import java.util.Locale;
 public class Dips {
 
     public final static int DP_0 = 0;
-    public final static int DP_1= Dips.dpToPx(1);
+    public final static int DP_1 = Dips.dpToPx(1);
     public final static int DP_2 = Dips.dpToPx(2);
     public final static int DP_3 = Dips.dpToPx(3);
     public final static int DP_4 = Dips.dpToPx(4);
@@ -45,10 +45,8 @@ public class Dips {
     public final static int DP_300 = Dips.dpToPx(300);
     public final static int DP_200 = Dips.dpToPx(200);
     public final static int DP_1000 = Dips.dpToPx(100);
-
-
-    private static WindowManager wm;
     static Context context;
+    private static WindowManager wm;
 
     public static void init(Context context) {
         Dips.context = context;
@@ -83,10 +81,15 @@ public class Dips {
     }
 
     public static float getRefreshRate() {
-        final Display display = wm.getDefaultDisplay();
-        float refreshRate = display.getRefreshRate();
-        LOG.d("RefreshRate", refreshRate);
-        return refreshRate;
+        try {
+            final Display display = wm.getDefaultDisplay();
+            float refreshRate = display.getRefreshRate();
+            LOG.d("RefreshRate", refreshRate);
+            return refreshRate;
+        } catch (Exception e) {
+            LOG.e(e);
+            return 60;
+        }
     }
 
     public static boolean isEInk() {

@@ -38,18 +38,10 @@ public class LibreraApp extends MultiDexApplication {
 
     @Override
     public void onCreate() {
-
-//        if (BuildConfig.DEBUG) {
-//            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-//                    .detectAll()
-//                    .penaltyLog()
-//                    .penaltyDeath()
-//                    .build());
-//        }
-
         super.onCreate();
 
-        //new FileMeta().equals() remember!!!
+
+
         context = getApplicationContext();
         Dips.init(this);
 
