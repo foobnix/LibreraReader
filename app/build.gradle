@@ -185,7 +185,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
+            buildConfigField "int", "MUPDF_VERSION", "116"
 
 
         }
@@ -204,7 +204,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
+            buildConfigField "int", "MUPDF_VERSION", "116"
 
 
         }
@@ -223,7 +223,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
+            buildConfigField "int", "MUPDF_VERSION", "116"
 
 
         }
@@ -242,7 +242,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
+            buildConfigField "int", "MUPDF_VERSION", "116"
 
 
         }
@@ -261,7 +261,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
+            buildConfigField "int", "MUPDF_VERSION", "116"
 
 
         }
