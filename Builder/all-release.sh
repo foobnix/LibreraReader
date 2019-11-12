@@ -1,22 +1,21 @@
 #!/usr/bin/env bash
 
-./link_to_mupdf_1.11.sh
+./link_to_mupdf_1.16.1.sh
 
 cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleProRelease
-./gradlew assembleFdroidRelease
-
 ./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
+
 ./gradlew assemblePdf_classicRelease
 ./gradlew assembleEpub_readerRelease
 ./gradlew assembleEbookaRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleTts_readerRelease
 
-#./gradlew assembleFdroidRelease
+./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

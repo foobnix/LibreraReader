@@ -13,6 +13,11 @@ cd ../
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
 
+./gradlew assembleLibreraRelease
+./gradlew assembleProRelease
+./gradlew assembleFdroidRelease
+
+
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
