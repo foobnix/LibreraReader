@@ -67,3 +67,16 @@ Check out this sample **demo-replaces.txt** below:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Skip Cropped Areas in PDF Documents
+> Very often pages in PDF files (books, journal articles, textbooks, etc.) have headers and footers that run throughout the entire document. You can crop the running heads out by two-finger pinch, which will carry on to the next (and previous) pages. But your TTS engine does not have a clue about your manipulations. So, you need to tell it what to do (Skip the annoying thing!) while reading the document out loud to you.
+
+In **Librera** we have introduced special replacements (commands) that will allow you to ignore cropped areas and ensure continuous, uninterrupted reading.
+* In the **Replacements** window, enter a word or word sequence in the left column and _ttsSKIP_ as its replacement. This replacement will tell the engine to skip the sentence with this word/word sequence
+* Enter a word or word sequence in the left column and _ttsNEXT_ as its replacement. The replacement will tell the engine to skip the sentence with this word/word sequence and immediately go to next page
+* Don't forget to hit _APPLY_ to let the replacements hold
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Please test your changes a few times to make sure everything is working as it should!**
