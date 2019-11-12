@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Настройка синхронизации](/wiki/faq/setting-up-synchronization/ru)
 * [Как восстановить настройки по умолчанию/очистить кэш](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [Чтение скорости RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ru)
 * [Настройка защиты по отпечатку пальца или паролю](/wiki/faq/setting-up-fingerprint-or-password-protection/ru)
 * [Повышение контрастности и яркости в PDF (ч/б эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
-* [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Работа с закладками в расширенном режиме (лента закладок)](/wiki/faq/bookmarks-extended-panel/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)
 * [Как настроить виджет](/wiki/faq/how-to-configure-the-widget/ru)

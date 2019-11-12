@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [إعداد التزامن](/wiki/faq/setting-up-synchronization/ar)
 * [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [قراءة سرعة RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
 * [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
-* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
 * [كيفية تكوين القطعة](/wiki/faq/how-to-configure-the-widget/ar)

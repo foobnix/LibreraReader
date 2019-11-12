@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Remplacements TTS](/wiki/faq/tts-replacements/fr)
 * [Configuration de la synchronisation](/wiki/faq/setting-up-synchronization/fr)
 * [Comment restaurer les paramètres par défaut/Effacer le cache](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [Relevé de vitesse RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/fr)
 * [Configuration de la protection par empreinte digitale ou par mot de passe](/wiki/faq/setting-up-fingerprint-or-password-protection/fr)
 * [Amélioration du contraste et de la luminosité dans les PDF (effet N/B)](/wiki/faq/contrast-and-brightness-in-pdf/fr)
-* [Remplacements TTS](/wiki/faq/tts-replacements/fr)
 * [Utilisation des signets en mode étendu - Ruban Signets](/wiki/faq/bookmarks-extended-panel/fr)
 * [Configuration des polices et des styles](/wiki/faq/customize-text-fonts-and-styles/fr)
 * [Comment configurer le widget](/wiki/faq/how-to-configure-the-widget/fr)

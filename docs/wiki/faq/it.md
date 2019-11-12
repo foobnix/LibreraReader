@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Impostazione della sincronizzazione](/wiki/faq/setting-up-synchronization/it)
 * [Come ripristinare le impostazioni predefinite/Cancella cache](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
 * [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [Lettura velocità RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
 * [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
 * [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
-* [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
 * [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)
 * [Come configurare il widget](/wiki/faq/how-to-configure-the-widget/it)

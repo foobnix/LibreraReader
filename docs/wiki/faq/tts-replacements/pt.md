@@ -67,3 +67,16 @@ Confira este exemplo **demo-replaces.txt** abaixo:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Ignorar áreas cortadas em documentos PDF
+> Muitas vezes, as páginas em arquivos PDF (livros, artigos de periódicos, livros didáticos etc.) têm cabeçalhos e rodapés que são executados em todo o documento. Você pode cortar as cabeças de corrida com uma pitada de dois dedos, que continuará nas páginas seguintes (e anteriores). Mas seu mecanismo TTS não tem idéia sobre suas manipulações. Portanto, você precisa dizer o que fazer (ignore a coisa chata!) Enquanto lê o documento em voz alta para você.
+
+No **Librera**, introduzimos substituições (comandos) especiais que permitem ignorar as áreas cortadas e garantir uma leitura contínua e ininterrupta.
+* Na janela **Substituições**, insira uma palavra ou sequência de palavras na coluna esquerda e _ttsSKIP_ como sua substituição. Esta substituição informará o mecanismo para pular a frase com esta sequência de palavras/palavras
+* Digite uma palavra ou sequência de palavras na coluna esquerda e _ttsNEXT_ como substituto. A substituição informará o mecanismo para pular a frase com esta sequência de palavras/palavras e ir imediatamente para a próxima página
+* Não se esqueça de pressionar _APPLY_ para deixar as substituições
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Teste suas alterações algumas vezes para garantir que tudo esteja funcionando como deveria!**

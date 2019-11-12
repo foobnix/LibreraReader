@@ -67,3 +67,16 @@ Consulte este ejemplo **demo-replaceces.txt** a continuación:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Saltar áreas recortadas en documentos PDF
+> Muy a menudo, las páginas en archivos PDF (libros, artículos de revistas, libros de texto, etc.) tienen encabezados y pies de página que se ejecutan en todo el documento. Puede recortar los cabezales con una pizca de dos dedos, que pasará a las páginas siguientes (y anteriores). Pero su motor TTS no tiene ni idea de sus manipulaciones. Por lo tanto, debe decirle qué hacer (¡omita lo molesto!) Mientras le lee el documento en voz alta.
+
+En **Librera** hemos introducido reemplazos especiales (comandos) que le permitirán ignorar las áreas recortadas y garantizar una lectura continua e ininterrumpida.
+* En la ventana **Reemplazos**, ingrese una palabra o secuencia de palabras en la columna izquierda y _ttsSKIP_ como su reemplazo. Este reemplazo le indicará al motor que omita la oración con esta palabra/secuencia de palabras
+* Ingrese una palabra o secuencia de palabras en la columna izquierda y _ttsNEXT_ como su reemplazo. El reemplazo le indicará al motor que omita la oración con esta palabra/secuencia de palabras e inmediatamente vaya a la página siguiente
+* No olvides presionar _APPLY_ para permitir que se mantengan los reemplazos
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **¡Pruebe sus cambios varias veces para asegurarse de que todo funcione como debería!**

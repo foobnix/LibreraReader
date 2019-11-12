@@ -67,3 +67,16 @@ Dai un'occhiata a questo esempio **demo-replaces.txt** di seguito:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Salta le aree ritagliate nei documenti PDF
+> Molto spesso le pagine dei file PDF (libri, articoli di riviste, libri di testo, ecc.) Hanno intestazioni e piè di pagina che si estendono su tutto il documento. Puoi ritagliare le testine correndo con un pizzico di due dita, che passerà alle pagine successive (e precedenti). Ma il tuo motore TTS non ha idea delle tue manipolazioni. Quindi, devi dirgli cosa fare (salta la cosa fastidiosa!) Mentre leggi il documento ad alta voce per te.
+
+In **Librera** abbiamo introdotto speciali sostituzioni (comandi) che ti consentiranno di ignorare le aree ritagliate e garantire una lettura continua e ininterrotta.
+* Nella finestra **Sostituzioni**, inserisci una parola o una sequenza di parole nella colonna di sinistra e _ttsSKIP_ come sostituzione. Questa sostituzione dirà al motore di saltare la frase con questa sequenza di parole/parole
+* Inserisci una parola o una sequenza di parole nella colonna di sinistra e _ttsNEXT_ come sua sostituzione. Il sostituto dirà al motore di saltare la frase con questa sequenza di parole/parole e andare immediatamente alla pagina successiva
+* Non dimenticare di premere _APPLY_ per mantenere i sostituti
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Verifica alcune volte le modifiche per assicurarti che tutto funzioni come dovrebbe!**

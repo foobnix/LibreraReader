@@ -67,3 +67,16 @@ Découvrez cet exemple **demo-replaces.txt** ci-dessous:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Ignorer les zones cultivées dans les documents PDF
+> Très souvent, les pages de fichiers PDF (livres, articles de journaux, manuels, etc.) ont des en-têtes et des pieds de page qui couvrent l’ensemble du document. Vous pouvez rogner les têtes qui courent par pincement à deux doigts, ce qui permet de passer aux pages suivantes (et précédentes). Mais votre moteur TTS n'a aucune idée de vos manipulations. Donc, vous devez lui dire quoi faire (Passer la chose ennuyante!) Tout en lisant le document à voix haute.
+
+Dans **Librera**, nous avons introduit des remplacements spéciaux (commandes) qui vous permettent d'ignorer les zones recadrées et d'assurer une lecture continue et ininterrompue.
+* Dans la fenêtre **Remplacements**, entrez un mot ou une séquence de mots dans la colonne de gauche et remplacez _ttsSKIP_. Ce remplacement indiquera au moteur de sauter la phrase avec ce mot/cette séquence de mots
+* Entrez un mot ou une séquence de mots dans la colonne de gauche et remplacez _ttsNEXT_. Le remplaçant dira au moteur de sauter la phrase avec ce mot/séquence de mots et d'aller immédiatement à la page suivante
+* N'oubliez pas d'appuyer sur _APPLY_ pour laisser les remplacements en attente
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Testez vos modifications plusieurs fois pour vous assurer que tout fonctionne comme il se doit!**

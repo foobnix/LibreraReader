@@ -67,3 +67,16 @@ Schauen Sie sich das folgende Beispiel **demo-replaces.txt** an:
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Ausgeschnittene Bereiche in PDF-Dokumenten überspringen
+> Sehr häufig enthalten Seiten in PDF-Dateien (Bücher, Zeitschriftenartikel, Lehrbücher usw.) Kopf- und Fußzeilen, die sich über das gesamte Dokument erstrecken. Sie können die auslaufenden Köpfe mit zwei Fingern zuschneiden, um zur nächsten (und vorherigen) Seite zu gelangen. Ihre TTS-Engine hat jedoch keine Ahnung von Ihren Manipulationen. Sie müssen also angeben, was zu tun ist (überspringen Sie die nervige Sache!), Während Sie das Dokument vorlesen.
+
+In **Librera** haben wir spezielle Ersetzungen (Befehle) eingeführt, mit denen Sie zugeschnittene Bereiche ignorieren und ein kontinuierliches, ununterbrochenes Lesen sicherstellen können.
+* Geben Sie im Fenster **Ersetzungen** ein Wort oder eine Wortfolge in die linke Spalte ein und _ttsSKIP_ als Ersatz. Durch diesen Ersatz wird die Engine angewiesen, den Satz mit diesem Wort/dieser Wortfolge zu überspringen
+* Geben Sie ein Wort oder eine Wortfolge in die linke Spalte ein und _ttsNEXT_ als Ersatz. Der Ersatz weist die Engine an, den Satz mit diesem Wort/dieser Wortfolge zu überspringen und sofort zur nächsten Seite zu wechseln
+* Vergessen Sie nicht, _APPLY_ zu drücken, damit die Ersetzungen beibehalten werden
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Testen Sie Ihre Änderungen einige Male, um sicherzustellen, dass alles ordnungsgemäß funktioniert.**

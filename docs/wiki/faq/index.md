@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Setting up synchronization](/wiki/faq/setting-up-synchronization)
 * [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [RSVP Speed Reading](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [Setting Up Fingerprint or Password Protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
-* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/wiki/faq/bookmarks-extended-panel)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)
 * [How to configure the widget](/wiki/faq/how-to-configure-the-widget)

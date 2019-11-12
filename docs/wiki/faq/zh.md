@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 {1}常见问题
 
+* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [设置同步](/wiki/faq/setting-up-synchronization/zh)
 * [如何还原默认设置/清除缓存](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
@@ -26,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [RSVP快速阅读](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
 * [设置指纹或密码保护](/wiki/faq/setting-up-fingerprint-or-password-protection/zh)
 * [PDF的对比度和亮度增强(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
-* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)
 * [如何配置小部件](/wiki/faq/how-to-configure-the-widget/zh)
