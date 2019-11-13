@@ -84,7 +84,9 @@ android {
             enable true
             reset()
             //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            include "armeabi-v7a", "arm64-v8a"
+            if(!taskName.contains("Fdroid")) {
+                include "armeabi-v7a", "arm64-v8a"
+            }
             if(taskName.contains("Debug") || taskName.contains("Pro")){
                 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
