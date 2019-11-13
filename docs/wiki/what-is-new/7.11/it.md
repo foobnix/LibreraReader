@@ -6,48 +6,49 @@ layout: main
 
 **Nuove funzionalità**
 
-* Selezione del testo con indicatori di inizio e fine
-* Modalità di lettura veloce RSVP (Rapid Serial Visual Presentation) (w / a twist!)
+* Selezione del testo con marcatori di inizio e fine
+* Modalità lettura velocità RSVP (Rapid Serial Visual Presentation) (con una svolta!)
 * Selezione del testo e ricerca nei documenti DjVu
-* Opzione per cambiare la posizione della barra di stato (Superiore o Inferiore) in modalità Libro
+* Opzione per modificare la posizione della barra di stato (Alto o Basso) in modalità Libro
 * I segnalibri sono ora collegati alla lettura dei valori percentuali di avanzamento
 * Ora le cartelle possono essere aperte come libri
+* Ordina il libro Libreria per lingua
 
 **Correzioni**
 
 * Generazione di copertine per grandi libri AZW e AZW3
-* Icona dell'applicazione adattabile in conformità con le recenti tendenze di Android 8+
+* Icona dell'applicazione adattiva conforme alle recenti tendenze di Android 8+
 * Regole di sillabazione per più lingue
-La lettura di * TTS si interrompe se il dispositivo Bluetooth viene disconnesso
+* La lettura TTS si interromperà se il dispositivo Bluetooth viene disconnesso
 
-Iscriviti al **Librera Reader** canale Telegram [https://t.me/LibreraReader](https://t.me/LibreraReader). Puoi essere il primo a conoscere i nostri ultimi sviluppi, non perdere mai le novità più recenti, gli annunci e altre cose interessanti sulle nuove funzionalità e funzionalità di Librera.
+Abbonati al canale **Librera Reader** Telegram [https://t.me/LibreraReader lasting(https://t.me/LibreraReader). Puoi essere il primo a conoscere i nostri ultimi sviluppi, a non perdere mai le ultime notizie, gli annunci e altre cose interessanti riguardanti le nuove caratteristiche e funzionalità di Librera.
 
-**Selezione del testo con i marcatori di inizio e fine**
+**Maniglie di selezione del testo**
 
-* Se l'utente seleziona più gli indicatori di una parola diventano visibili.
-* È possibile selezionare il testo **per le lettere** o **per le parole**
-* Puoi muovere i segnalini in tempo reale
+* Se l'utente seleziona più di una parola, verranno visualizzati i quadratini di selezione del testo
+* Il testo può essere selezionato in **lettera per lettera** o **parola per parola**
+* L'handle (inizio o fine) può essere trascinato separatamente, in tempo reale
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**RSVP (Rapid Serial Visual Presentation) Lettura / Lettura velocità**
+**Lettura RSVP (Rapid Serial Visual Presentation)/Lettura veloce**
 
-La lettura veloce con **Librera** consente di migliorare la velocità di lettura fino a 700 parole al minuto (WPM) implementando il metodo RSVP.
-Si prega di seguire il link per trovare maggiori informazioni sull'argomento [Speed   reading section](/wiki/manual/Rapid-Serial-Visual-Presentation/it)
+La lettura rapida con **Librera** consente di migliorare la velocità di lettura fino a 700 parole al minuto (WPM) implementando il metodo RSVP.
+Segui il link per trovare maggiori informazioni sull'argomento [Sezione lettura veloce](/wiki/manual/Rapid-Serial-Visual-Presentation/it)
 
-* La modalità RSVP può essere avviata dal menu del libro (lettura veloce)
-* Velocità di lettura con un solo tocco
-* Regola la lunghezza della linea minima: fino a 30 CPL
+* La modalità RSVP può essere avviata dal menu libro (lettura veloce)
+* Velocità di lettura in un solo tocco
+* Regola la lunghezza minima della linea: fino a 30 CPL
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Rapid-Serial-Visual-Presentation/1.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/2.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/3.png)|
 
-**Posizione barra di stato (superiore o inferiore) in modalità libro**
+**Posizione barra di stato (in alto o in basso) in modalità Libro**
 
-* La barra di stato è in fondo per impostazione predefinita
+* La barra di stato è in basso per impostazione predefinita
 * Seleziona la sua posizione dall'elenco a discesa
 * Barra di stato in alto
 
@@ -55,18 +56,25 @@ Si prega di seguire il link per trovare maggiori informazioni sull'argomento [Sp
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-**Apri cartella con le immagini come libro (rilegatura in un libro)**
+**Apri cartella con immagini come libro (Rileva in un libro)**
 
-Per aprire una cartella come un libro, vai ad essa nella scheda Cartelle e tocca il suo nome. Se contiene almeno un file immagine, vedrai l'opzione Bind in un libro.
+Per aprire una cartella come libro, naviga nella scheda Cartelle e tocca il suo nome. Se contiene almeno un file di immagine, vedrai l'opzione Associa in un libro.
 
-* Apri una cartella con immagini e uniscile in un libro
+* Apri una cartella con le immagini e rilegale in un libro
 * Cartella con immagini aperte come libro virtuale
-* Ritaglia lo spazio bianco, regola il contrasto e la luminosità, ecc.
+* Ritaglia spazio bianco, regola contrasto e luminosità, ecc.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-# Cosa c'è di nuovo nel lettore di libri Librera
+**Ordina i libri per lingua**
+
+* Visualizza tutte le lingue disponibili nella Libreria
+* Ordina i libri per lingue
+
+||||
+|-|-|-|
+|![](7.png)|![](8.png)|![](9.png)|
 
 

@@ -4,31 +4,34 @@ layout: main
 
 # 8.1
 
-Utilizzando questa app accetti i termini della [Informativa sulla privacy](/wiki/PrivacyPolicy/it)
+Usando questa app accetti i termini della [Informativa sulla privacy](/wiki/PrivacyPolicy/it)
 
-**Nuove funzionalità**
+**Nuove funzionalità e miglioramenti**
 
-* Sincronizzazione con Google Drive (progresso, segnalibri, libri)
-* Profili
-* Sostituisce, sottolinea/i (s), RegEx in TTS
-* Altre impostazioni in modalità Musicista
+* TTS: registrazione di interi libri o intervalli di pagine su file MP3 (una pagina per file)
+* Sincronizzazione su dispositivi Android tramite Google Drive (lettura progressi, segnalibri, ecc.)
+* Profili multipli
+* TTS: sostituzioni di caratteri, segni di stress manuali, regole RegEx
+* Impostazioni aggiuntive e navigazione in modalità Musicista
+* Funzioni aggiuntive raggiungibili tramite l'interfaccia utente
+* Miglioramenti vari all'interfaccia utente e alla funzionalità
 
-# Sincronizza con Google Drive
+# Sincronizzazione tramite Google Drive
 
-La sincronizzazione consente di sincronizzare tutto nel cloud e leggere lo stesso libro su molti dispositivi
-con il risparmio dei progressi. Sincronizza se è GRATUITO in tutte le app di Librera.
+La sincronizzazione deve essere utilizzata su più dispositivi Android collegati a Google Drive. Durante la lettura di un libro, potrai riprenderti sul tablet durante la notte proprio nel punto in cui eri rimasto sul telefono durante il giorno. La sincronizzazione è supportata da **tutte le** app della famiglia Librera. Ed è GRATUITO.
 
-* Sincronizzazione Lettura dell'avanzamento di tutti i libri (sincronizzati e non sincronizzati) Se è possibile lo stesso nome di un libro su altro
-i progressi dei dispositivi verranno sincronizzati automaticamente
-* Sincronizza segnalibri
-* Sincronizza elenco recente
-* Sincronizza libri e tag preferiti
+Puoi sincronizzare i seguenti parametri:
+
+* Progressi nella lettura di tutti i libri che stai leggendo (sincronizzati o meno). Mantieni i nomi dei file uguali su tutti i tuoi dispositivi e i tuoi libri verranno sincronizzati automaticamente
+* Segnalibri
+* Elenco recente
+* Preferiti e tag
 
 Esempi di sincronizzazione
 
-* Abilita sincronizzazione con Google Drive
-* Fai clic sul menu del libro per sincronizzare un libro
-* Tutti i libri sincronizzati nella scheda Preferiti
+* Abilita la sincronizzazione tramite Google Drive (devi avere a portata di mano le tue credenziali di Google)
+* Per sincronizzare un libro, invoca il suo menu e scegli _Sincronizza_
+* Tutti i tuoi libri nella scheda Preferiti verranno sincronizzati
 
 ||||
 |-|-|-|
@@ -37,58 +40,57 @@ Esempi di sincronizzazione
  
 # Profili
 
-I profili sono come un'installazione dell'app separata con diverse impostazioni, libri, avanzamento del libro, segnalibri.
-È possibile creare ed eliminare profili. Tutte le app Librera utilizzano gli stessi profili in tutte le app.
-Profili memorizzati nella memoria del dispositivo interno /sdcard/Librera/profile.[NAME]
-In questa cartella tutte le impostazioni, i segnalibri, i progressi memorizzati nei file JSON.
-È possibile visualizzarlo ma non modificare manualmente.
+Usare i profili è come avere più istanze di Librera installate sul tuo dispositivo, ognuna con le sue impostazioni, liste di libri, progressi di lettura e segnalibri separati. Puoi creare nuovi profili ed eliminare quelli vecchi. Tutte le app della famiglia Librera hanno questa funzione.
 
-**Il clic lungo** sul nome del profilo mostrerà la finestra di dialogo per ripristinare le impostazioni predefinite (segnalibri e avanzamento non chiari)
+I profili sono memorizzati nella memoria interna del dispositivo in /sdcard/Librera/profile.[NAME]. Le loro impostazioni, i segnalibri, i progressi di lettura sono memorizzati in file JSON, che possono essere visualizzati con qualsiasi visualizzatore JSON (astenersi dal modificarli, però!).
+
+Una pressione prolungata di {3}** sul nome di un profilo farà apparire una finestra di avviso per ripristinare le impostazioni predefinite (iniziali) (i segnalibri e i progressi di lettura rimarranno intatti).
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-# Sostituisce in TTS
+# Sostituzioni e dizionari TTS
 
-* Abilita &quot;Repalce&quot; e quindi aggiungi regole.
-* Aggiungi regola per sostituire tutti i caratteri nell'elenco per gli altri &quot;[/.,]&quot; -&gt; &quot;&quot;
-* Sostituisci una parola con un'altra &quot;lib&quot; -&gt; &quot;Librera&quot;
-* Aggiungi segni di tensione (se il motore TTS lo supporta) &quot;Librera&quot; -&gt; &quot;Libréra&quot;
-* Mostra il testo del risultato con sostituzioni nella finestra di dialogo
-* Supporto esterno @Voice Aloud .txt RegEx sostituisce il file
+* Tocca &quot;Sostituzioni&quot; in **Impostazioni TTS** e aggiungi una nuova regola di lettura.
+* Sostituisci un set di caratteri (tra parentesi) con un singolo carattere da leggere o ignorare
+* Sostituisci una parola con un'altra, ad esempio &quot;lib&quot; -&gt; &quot;Librera&quot;
+* Aggiungi manualmente gli stress mark (se il tuo motore TTS lo supporta): &quot;Librera&quot; -&gt; &quot;Libréra&quot;
+* Tocca &quot;Mostra&quot; per vedere i risultati delle sostituzioni
+* Aggiungi un dizionario esterno: Librera supporta i file di sostituzione di @Voice Aloud e .txt RegEx
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-# Altre impostazioni in modalità Musicista
+# Impostazioni aggiuntive nella modalità Musicista
 
-* Mostra \ nascondere i rettangoli delle aree di tocco
-* Segna l'ultima pagina con linee rosse (piccola e grande)
-* Evidenzia le separazioni delle pagine
-* Fai clic sulla prossima pagina dell'ultima pagina vai alla prima pagina
-* Fai clic sulla prima pagina per andare all'ultima pagina
+* Mostra \ nascondi zone di tocco (delineato con linee tratteggiate)
+* Indica l'ultima pagina con strisce rosse (strette e larghe)
+* Evidenzia i separatori di pagina per migliorare la leggibilità
+* Passa dalla prima all'ultima pagina toccando la zona Pagina precedente
+* Passa dall'ultima alla prima pagina toccando l'area Pagina successiva
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-# Miglioramenti all'interfaccia utente
+# Funzioni aggiuntive e miglioramenti all'interfaccia utente
 
-* Condividi \ copia pagina come imge \ text (clic lungo sull'anteprima della pagina)
-* Supporto per le schermate con intaglio (ritaglio)
-* Ordina il libro per **Editore** e **Data di pubblicazione**
+* Condividi \ copia pagine come immagini \ testo (premi a lungo sulla miniatura di una pagina nella finestra _Vai alla pagina_)
+* Supporto per schermate dentellate
+* Nuovi parametri di ordinamento: ordina per **Publisher** e **Data di pubblicazione**
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-# Altri
+# Varie
 
-* Supporta MathML e SVG (Abilita nelle opzioni avanzate, il primo carico del libro è molto lento)
-* Opzione di libreria per ignorare il recupero dei metadati dai libri
-* Password per aprire l'app (Android 9+)
-* Imposta il timeout dello spegnimento schermo in minuti o valore di sistema
+* Supporto per i formati MathML e SVG. Abilitalo nelle Opzioni avanzate (potrebbe rallentare il caricamento iniziale del libro)
+* Opzione per ignorare i metadati nelle viste Libreria e Cartella (verranno visualizzati solo i nomi dei file)
+* Segnalibro mobile, con un indicatore mobile (salva automaticamente la posizione di lettura corrente e ti consente di tornare indietro, tramite il galleggiante nell'angolo in basso a destra, dopo visite temporanee ad altre parti e sezioni del libro). Per avviare (aggiungere) un segnalibro mobile, selezionare la casella **Floating**
+* Consenti l'impronta digitale da utilizzare al posto della password (Android 9+)
+* Consenti al timeout di sospensione del sistema di essere usato per spegnere lo schermo
 
- 
+

@@ -7,14 +7,41 @@ layout: main
 **Novos recursos**
 
 * Listas de reprodução (agrupamentos de livros)
-* Adicionar aplicativos (dicionários) para abrir o texto selecionado na janela Texto
-* Reproduzir arquivos e pastas em mp3
-* Lidar com a série de livros
+* Adicione aplicativos (dicionários) para abrir o texto selecionado na janela Texto
+* Reproduza arquivos e pastas mp3
+* Manipular séries de livros
+* Opção para exibir notas de fim/rodapé como notas no texto
+* O TTS agora pode ler notas de fim/rodapé
+* Opção para retomar a leitura do TTS no último sinal de pontuação (modo por sentença)
+* Compartilhe páginas de outros aplicativos (por exemplo, navegadores) com o Librera Reader
+* Suporte para chinês tradicional e simplificado
+* Indicadores Faixa de opções para favoritos on-the-fly (por exemplo, no modo Músico)
+* Gerenciador de arquivos: copie, cole e mova arquivos
+
+**Faixa de favoritos**
+
+* Adicione marcadores com um único toque
+* Navegue com facilidade pelos favoritos
+* Mostrar/ocultar a faixa de opções nos modos de leitura
+
+||||
+|-|-|-|
+|![](19.png)|![](20.png)|![](21.png)|
+
+**Copie, cole, mova arquivos no gerenciador de arquivos**
+
+* Copie qualquer livro com um menu de livros
+* Adote ou mova o livro para a pasta
+* Clique no caminho da pasta ou no espaço em preto
+
+||||
+|-|-|-|
+|![](16.png)|![](17.png)|![](18.png)|
 
 **Guia Favoritos**
 
-A guia **Favoritos** foi reprojetada. Os itens **Tags** e **Playlists** agora podem ser acessados facilmente.
-Marcar livros para agrupá-los por qualquer critério comum, por exemplo, &quot;Matemática&quot;, &quot;Suspense&quot;, &quot;Mistério&quot; etc. (também é possível adicionar uma tag na janela Informações do livro).
+A guia **Favoritos** foi redesenhada. Os itens **Tags** e **Listas de reprodução** agora podem ser facilmente acessados.
+Marque os livros para agrupá-los de acordo com qualquer critério comum, por exemplo, &quot;Matemática&quot;, &quot;Suspense&quot;, &quot;Mistério&quot; etc. etc. (Uma tag também pode ser adicionada na janela Informações do livro.)
 As listas de reprodução destinam-se principalmente a músicos: é fácil manter os documentos selecionados à mão e manipular a lista.
 
 ||||
@@ -24,8 +51,8 @@ As listas de reprodução destinam-se principalmente a músicos: é fácil mante
 **Listas de reprodução**
 
 * Crie listas de reprodução
-* Arraste pelas alças para alterar a ordem do livro
-* Deslize para a direita / esquerda para remover um livro da lista
+* Arraste pelas alças para alterar a ordem dos livros
+* Deslize para a direita/esquerda para remover um livro da lista
 * Toque em Editar para fazer alterações na lista.
 
 ||||
@@ -40,27 +67,25 @@ Toque em **+** para adicionar um aplicativo que abrirá o texto selecionado
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-**Manipulando a série de livros**
+**Manuseio de séries de livros**
 
 É fácil encontrar todos os livros de uma série:
 
-* Séries são &quot;clicáveis&quot; no cartão do livro
-* Aplique o filtro da série à biblioteca de livros
+* As séries são &quot;clicáveis&quot; no cartão do livro
+* Aplique o filtro Série na biblioteca de livros
 * Todos os livros da série serão listados na janela Informações do livro.
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-**Reproduzir arquivos mp3**
+**Reproduza arquivos mp3**
 
-Ouça um arquivo mp3 ou seleção de arquivo através do player interno em paralelo com a leitura do livro.
-Poderia ser útil para músicos e para aqueles que estudam línguas estrangeiras.
+Ouça um arquivo mp3 ou uma seleção de arquivos através do player interno, paralelamente à leitura de livros.
+Pode ser útil para músicos e para quem estuda línguas estrangeiras.
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-# O que há de novo no Librera Book Reader
 
-)

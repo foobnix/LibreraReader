@@ -6,6 +6,7 @@ info: this file is generated automatically, please do not modify it
 {1}常见问题
 
 * [TTS替换](/wiki/faq/tts-replacements/zh)
+* [导航_Library_标签](/wiki/faq/main-app/zh)
 * [设置同步](/wiki/faq/setting-up-synchronization/zh)
 * [如何还原默认设置/清除缓存](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [如何自定义图书馆和书籍封面的外观](/wiki/faq/how-to-configure-the-library-view/zh)
 * [学习外语的图书馆](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [如何从外部SD卡删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
-* [主屏幕](/wiki/faq/main-app/zh)
 * [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [为书页设置背景](/wiki/faq/how-to-set-page-background-image/zh)

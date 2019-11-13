@@ -4,7 +4,7 @@ layout: main
 
 # 8.0
 
-By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtlinie](/wiki/PrivacyPolicy/de) zu.
 
 **Allgemeine Verbesserungen**
 
@@ -14,38 +14,35 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 **Neue Funktionen**
 
 * Option zum Ändern der Tabulatorposition
-* Unterstützung für das Doc-Format
-Unterstützung für das * Docx-Format auf Anroid 8+ -Geräten
-* Voreinstellungen im Lesemodus
+* Doc-Format-Unterstützung
+* Unterstützung für das Docx-Format auf Android-Geräten ab 8 Jahren
+* Voreinstellungen für den Lesemodus
 
 **Fehlerbehebungen**
 
-* Gelöschte Dateien und Ordner sind nicht mehr _ghost_ Library
-* Dateien, die mit anderen Apps geöffnet wurden, bleiben in der Bibliothek, bis sie gelöscht werden (und der Cache geleert wird).
+* Gelöschte Dateien und Ordner sind nicht mehr die _ghost_-Bibliothek
+* Dateien, die aus anderen Apps geöffnet wurden, bleiben in der Bibliothek, bis sie gelöscht (und der Cache geleert) werden.
 
-**Position der Registerkarten auswählen: Oben oder Unten**
+**Tab-Position auswählen: Oben oder Unten**
 
 ||||
 |-|-|-|
 |![](2.png)|![](3.png)|![](1.png)|
 
-**Voreinstellungen im Lesemodus**
+**Voreinstellungen für den Lesemodus**
 
-* Teilen Sie **Librera** mit, welchen Standardlesemodus Sie für ein bestimmtes Buchformat bevorzugen
-* Fügen Sie manuell jedes gewünschte Format hinzu
+* Sagen Sie **Librera**, welchen Standardlesemodus Sie für ein bestimmtes Buchformat bevorzugen
+* Fügen Sie manuell ein beliebiges Format hinzu
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**Dark &amp; Dark OLED-Designs**
+**Dunkle und dunkle OLED-Designs**
 
-* Wählen Sie ein dunkles OLED-Thema mit schwarzer Farbe
+* Wählen Sie ein dunkles OLED-Design mit pechschwarzer Farbe
 
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-# Was ist neu in Librera Book Reader?
-
-)

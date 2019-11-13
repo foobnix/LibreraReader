@@ -6,6 +6,7 @@ info: this file is generated automatically, please do not modify it
 # Häufig gestellte Fragen
 
 * [TTS-Ersatz](/wiki/faq/tts-replacements/de)
+* [Auf dem Tab _Bibliothek_ navigieren](/wiki/faq/main-app/de)
 * [Einrichten der Synchronisierung](/wiki/faq/setting-up-synchronization/de)
 * [Wiederherstellen der Standardeinstellungen/Cache löschen](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
 * [Anmerkungen im Text vs. Fußnoten](/wiki/faq/include-footnotes-directly-in-the-text/de)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an](/wiki/faq/how-to-configure-the-library-view/de)
 * [Librera zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
 * [Löschen von Büchern von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
-* [Der Hauptbildschirm](/wiki/faq/main-app/de)
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading-mode-vertical-book-musician/de)
 * [Hintergrund für Buchseite festlegen](/wiki/faq/how-to-set-page-background-image/de)

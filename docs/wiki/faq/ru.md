@@ -6,6 +6,7 @@ info: this file is generated automatically, please do not modify it
 # Часто задаваемые вопросы
 
 * [Замена TTS](/wiki/faq/tts-replacements/ru)
+* [Навигация по вкладке _Library_](/wiki/faq/main-app/ru)
 * [Настройка синхронизации](/wiki/faq/setting-up-synchronization/ru)
 * [Как восстановить настройки по умолчанию/очистить кэш](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [Как настроить внешний вид вашей библиотеки и обложек книг](/wiki/faq/how-to-configure-the-library-view/ru)
 * [Librera для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
 * [Как удалить книги с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
-* [Главный экран](/wiki/faq/main-app/ru)
 * [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)
 * [Установить собственный фон для страницы книги](/wiki/faq/how-to-set-page-background-image/ru)

@@ -8,9 +8,8 @@ Ao usar este aplicativo, você concorda com os termos da [Política de privacida
 
 **Novos recursos e melhorias**
 
-* MuPDF 1.16.1
-Melhor suporte a PDF
-* Melhorias no TTS e lista de substituições TTS de importação e exportação.
-
-
-
+* Transição para MuPDF 1.16.1
+* Suporte aprimorado a PDF
+* Melhorias na leitura TTS de documentos PDF (pulando áreas cortadas)
+* Melhorias no TTS e lista de substituições de importação/exportação do TTS
+* Grandes melhorias na renderização de tabelas com várias colunas

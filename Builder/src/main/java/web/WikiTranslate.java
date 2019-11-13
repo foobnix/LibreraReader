@@ -21,28 +21,35 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
+    final static String HOME = "/home/ivan-dev/git/LibreraReader";
 
     public static void main(String[] args) throws Exception {
 
+        GenerateFAQ.updateIndex(HOME + "/docs/wiki/faq", "Frequently Asked Questions");
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently Asked Questions");
+        List<String> paths = Arrays.asList(
+                HOME + "/docs/wiki/faq",
+                HOME + "/docs/wiki/what-is-new"
+        );
 
-        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
-      //String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/what-is-new/8.2";
-
-
-        File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");
+        File file = new File(HOME + "/Builder/cache.json");
         cache = new JSONObject(readString(file));
 
         try {
-            syncPaths(root, "ru");
-            syncPaths(root, "fr");
-            syncPaths(root, "de");
-            syncPaths(root, "it");
-            syncPaths(root, "pt");
-            syncPaths(root, "es");
-            syncPaths(root, "zh");
-            syncPaths(root, "ar");
+
+            for(String path: paths) {
+                syncPaths(path, "ru");
+                syncPaths(path, "fr");
+                syncPaths(path, "de");
+                syncPaths(path, "it");
+                syncPaths(path, "pt");
+                syncPaths(path, "es");
+                syncPaths(path, "zh");
+                syncPaths(path, "ar");
+            }
+
+
+
         } finally {
             writeString(file, cache.toString());
         }

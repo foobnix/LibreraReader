@@ -4,26 +4,26 @@ layout: main
 
 # 8.0
 
-By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+使用此应用，即表示您同意[隐私政策](/wiki/PrivacyPolicy/zh)的条款
 
-{6}一般改进{6}
+{6}总体改进{6}
 
-{4}所有图书馆都已更新
+{4}所有库均已更新
 {4}黑暗主题得到了改善
 
 {6}新功能{6}
 
-{4}更改标签位置的选项
-* Doc格式支持
-* Anroid 8+设备上的Docx格式支持
+{4}用于更改标签页位置的选项
+{4}文档格式支持
+* Android 8+设备上的Docx格式支持
 {4}阅读模式预设
 
 {6}错误修复{6}
 
-{4}已删除的文件和文件夹不再是_ghost_ Library
-{4}从其他应用程序打开的文件将保留在库中，直到删除（并清除缓存）
+{4}已删除的文件和文件夹不再_ghost_库
+{4}从其他应用程序打开的文件将保留在“库”中，直到被删除(并清除缓存)
 
-{6}选择标签位置：顶部或底部{6}
+{6}选择标签页位置：顶部还是底部{6}
 
 ||||
 |-|-|-|
@@ -31,21 +31,18 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 
 {6}阅读模式预设{6}
 
-{4}告诉**Librera**您更喜欢某种特定图书格式的默认阅读模式
-{4}手动添加任何所需的格式
+{4}告诉**Librera**，您希望使用哪种默认阅读模式来阅读特定的书本格式
+{4}手动添加所需的格式
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-{6}黑暗与黑暗的OLED主题{6}
+**Dark＆Dark OLED主题{6}
 
-{4}选择黑色OLED主题，漆黑色
+{4}选择具有深黑色的深色OLED主题
 
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-# Librera Book Reader的新功能
-
-)

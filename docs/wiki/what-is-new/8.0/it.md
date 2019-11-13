@@ -4,7 +4,7 @@ layout: main
 
 # 8.0
 
-By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+Usando questa app accetti i termini della [Informativa sulla privacy](/wiki/PrivacyPolicy/it)
 
 **Miglioramenti generali**
 
@@ -14,38 +14,35 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 **Nuove funzionalità**
 
 * Opzione per cambiare la posizione delle schede
-* Supporto per il formato del documento
-* Supporto per il formato Docx su dispositivi Anroid 8+
-* Preset in modalità lettura
+* Supporto del formato doc
+* Supporto del formato Docx su dispositivi Android 8+
+* Preimpostazioni in modalità lettura
 
 **Correzioni di bug**
 
-* File e cartelle eliminati non più _ghost_ Library
-* I file, aperti da altre app, rimarranno nella Libreria fino all'eliminazione (e la cache cancellata)
+* I file e le cartelle eliminati non sono più _ghost_ Library
+* I file aperti da altre app rimarranno nella Libreria fino a quando non verranno eliminati (e cancellata la cache)
 
-**Scegli la posizione delle schede: superiore o inferiore**
+**Scegli la posizione delle schede: in alto o in basso**
 
 ||||
 |-|-|-|
 |![](2.png)|![](3.png)|![](1.png)|
 
-**Preset in modalità lettura**
+**Predefiniti in modalità lettura**
 
-* Dì a **Librera** quale modalità di lettura predefinita si preferisce per un particolare formato di libro
+* Indica a **Librera** quale modalità di lettura predefinita preferisci per un particolare formato di libro
 * Aggiungi manualmente qualsiasi formato desiderato
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**Temi OLED scuri e scuri**
+**Temi OLED Dark &amp; Dark**
 
-* Scegli il tema OLED scuro con colore nero come la pece
+* Scegli il tema OLED scuro con il colore nero pece
 
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-# Cosa c'è di nuovo in Librera Book Reader
-
-)

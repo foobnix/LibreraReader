@@ -8,9 +8,8 @@ Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtl
 
 **Neue Funktionen und Verbesserungen**
 
-* MuPDF 1.16.1
-* Bessere PDF-Unterstützung
-* TTS-Verbesserungen und TTS-Ersetzungsliste importieren/exportieren.
-
-
-
+* Umstellung auf MuPDF 1.16.1
+* Verbesserte PDF-Unterstützung
+* Verbesserungen beim TTS-Lesen von PDF-Dokumenten (Überspringen zugeschnittener Bereiche)
+* TTS-Verbesserungen und TTS-Ersatzliste importieren/exportieren
+* Riesige Verbesserungen beim Rendern mehrspaltiger Tabellen
