@@ -10,8 +10,8 @@ ext {
         db = Integer.parseInt(appDB)
 
     }else{
-        codeNumber = 3410
-        versionNumber = "8.2.9"
+        codeNumber = 3420
+        versionNumber = "8.2.11"
         db = 8
     }
 
@@ -152,7 +152,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "116"
+            buildConfigField "int", "MUPDF_VERSION", "111"
 
         }
         pro {
@@ -170,7 +170,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "int", "MUPDF_VERSION", "116"
+            buildConfigField "int", "MUPDF_VERSION", "111"
         }
         pdf_classic {
             dimension "version"

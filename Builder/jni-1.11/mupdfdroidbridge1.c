@@ -1672,7 +1672,7 @@ fz_print_stext_page_as_text_my1(fz_context *ctx, fz_output *out, fz_stext_page *
 
 			}
 			if(block->lines->first_span->text->style->size > fontSize){
-			fz_write_printf(ctx,out,"<pause-font-size-%f>",block->lines->last_span->text->style->size);
+			    fz_write_printf(ctx,out,"<pause>");
 			}
 
 

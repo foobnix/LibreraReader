@@ -2,20 +2,21 @@
 
 
 ### 1.16.1
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.11.sh
 
 cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleBetaRelease
-./gradlew assemblePdf_v2Release
-./gradlew assembleEbookaRelease
-./gradlew assembleTts_readerRelease
+#./gradlew assembleBetaRelease
+#./gradlew assemblePdf_v2Release
+#./gradlew assembleEbookaRelease
+#./gradlew assembleTts_readerRelease
 
 ./gradlew assembleLibreraRelease
 ./gradlew assembleProRelease
-./gradlew assembleFdroidRelease
+
+#./gradlew assembleFdroidRelease
 
 
 ./gradlew copyApks -Pbeta

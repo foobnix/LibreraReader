@@ -540,7 +540,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName;
+            String version = packageInfo.versionName + " ("+BuildConfig.MUPDF_VERSION+")";
             if (Dips.isEInk()) {
                 version += " INK";
             }

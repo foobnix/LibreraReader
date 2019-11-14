@@ -5,6 +5,7 @@ import android.os.Handler;
 
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.ui2.MainTabs2;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -38,7 +39,7 @@ public class MyADSProvider {
             return;
         }
 
-        ADS.activateAdmobSmartBanner(a, adView);
+
 
         if (withInterstitial) {
             if (handler == null) {
@@ -87,6 +88,13 @@ public class MyADSProvider {
                 handler.postDelayed(r, TimeUnit.SECONDS.toMillis(intetrstialTimeout));
             }
         }
+
+        if(AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !(a instanceof MainTabs2)) {
+            LOG.d("Skip ads in the book");
+            return;
+        }
+        ADS.activateAdmobSmartBanner(a, adView);
+
 
     }
 
