@@ -8,7 +8,7 @@ layout: main
 
 * The _Library_ tab, default view
 * Sort books on the shelves of your Library according to certain criteria (by filename, author, date, etc.)
-* You can change the way your books are showcased on the shelves by changing the Library'S layout (list, grid, book covers, etc.)
+* You can change the way your books are showcased on the shelves by changing the Library's layout (list, grid, book covers, etc.)
 
 ||||
 |-|-|-|
