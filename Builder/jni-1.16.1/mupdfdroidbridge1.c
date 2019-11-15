@@ -1114,14 +1114,98 @@ JNIEXPORT jobjectArray JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle, jobjectArray arcs) {
 
+	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
+	fz_context *ctx = doc_t->ctx;
+	pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
 
-	return NULL;
+	jclass annotClass;
+	jmethodID ctor;
+	jobjectArray arr;
+	jobject jannot;
+	pdf_annot *annot;
+	fz_matrix ctm;
+	int count;
+
+
+
+	annotClass = (*env)->FindClass(env, "org/ebookdroid/core/codec/Annotation");
+	if (annotClass == NULL) return NULL;
+	ctor = (*env)->GetMethodID(env, annotClass, "<init>", "(FFFFILjava/lang/String;)V");
+	if (ctor == NULL) return NULL;
+
+
+
+	ctm = fz_scale(1, 1);
+
+	count = 0;
+	for (annot = pdf_first_annot(ctx, page->page); annot; annot = pdf_next_annot(ctx, annot))
+		count ++;
+
+	arr = (*env)->NewObjectArray(env, count, annotClass, NULL);
+	if (arr == NULL) return NULL;
+
+	count = 0;
+	for (annot = pdf_first_annot(ctx, page->page); annot; annot = pdf_next_annot(ctx,  annot))
+	{
+		fz_rect rect;
+		enum pdf_annot_type type = pdf_annot_type(ctx, (pdf_annot *)annot);
+		rect = pdf_bound_annot(ctx,  annot);
+		const char *content = pdf_annot_contents(ctx, (pdf_annot *)annot);
+		jstring text  = (*env)->NewStringUTF(env, content);
+
+		jannot = (*env)->NewObject(env, annotClass, ctor,
+				(float)rect.x0, (float)rect.y0, (float)rect.x1, (float)rect.y1, type,text);
+		if (jannot == NULL) return NULL;
+		(*env)->SetObjectArrayElement(env, arr, count, jannot);
+		(*env)->DeleteLocalRef(env, jannot);
+
+		count ++;
+	}
+
+	return arr;
 }
-JNIEXPORT void JNICALL
-Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JNIEnv * env,
-        jobject thiz, jlong handle, jlong pagehandle,int annot_index)
-{
 
+JNIEXPORT void JNICALL
+Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JNIEnv * env, jobject thiz, jlong handle, jlong pagehandle,int annot_index)
+{
+	//LOGE("deleteAnnotationInternal 1");
+	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
+	fz_context *ctx = doc_t->ctx;
+	pdf_annot *annot;
+	pdf_document *idoc = pdf_specifics(ctx, doc_t->document);
+
+	//LOGE("deleteAnnotationInternal 2");
+
+
+
+	fz_try(ctx)
+	{
+		DEBUG("deleteAnnotationInternal 3");
+		annot = pdf_first_annot(ctx, (pdf_page *)page->page);
+		DEBUG("deleteAnnotationInternal 31");
+		int i;
+		for (i = 0; i < annot_index && annot; i++){
+			DEBUG("deleteAnnotationInternal 32");
+			annot = pdf_next_annot(ctx,  annot);
+			DEBUG("deleteAnnotationInternal 33");
+		}
+
+		if (annot)
+		{
+			DEBUG("deleteAnnotationInternal 4");
+			//pdf_delete_annot(ctx, idoc, (pdf_page *) page->page, (pdf_annot *)annot);
+			pdf_delete_annot(ctx, (pdf_page *)page->page, annot);
+			pdf_update_page(ctx, (pdf_page *)page->page);
+
+			//fz_drop_display_list(ctx, page->pageList);
+		}
+	}
+	fz_catch(ctx)
+	{
+		//LOGE("deleteAnnotationInternal: %s", ctx->error->message);
+	}
 }
 
 
