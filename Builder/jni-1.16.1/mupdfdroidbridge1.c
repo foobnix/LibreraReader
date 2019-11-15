@@ -985,7 +985,129 @@ JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv *env,
 		jobject thiz, jlong handle, jlong pagehandle, jfloatArray jcolors, jobjectArray arcs, jint width, jfloat alpha) {
 
+	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
 
+
+
+
+	fz_context *ctx = doc_t->ctx;
+	fz_document *doc = doc_t->document;
+	pdf_document *idoc = pdf_specifics(ctx, doc);
+	jclass pt_cls;
+	jfieldID x_fid, y_fid;
+	int i, j, k, n;
+	float *pts = NULL;
+	int *counts = NULL;
+	int total = 0;
+	float color[4];
+
+
+	jfloat *co = (*env)->GetPrimitiveArrayCritical(env, jcolors, 0);
+	color[0] = co[0];
+	color[1] = co[1];
+	color[2] = co[2];
+	color[3] = alpha;
+
+	(*env)->ReleasePrimitiveArrayCritical(env, jcolors, co, 0);
+
+	if (idoc == NULL)
+		return;
+
+
+	fz_var(pts);
+	fz_var(counts);
+
+		pdf_annot *annot;
+		fz_matrix ctm;
+
+		float zoom = 72/160;
+		//zoom = 1.0 / zoom;
+		//fz_scale(&ctm, zoom,zoom);
+
+		DEBUG("addInkAnnotationInternal 1");
+		pt_cls = (*env)->FindClass(env, "android/graphics/PointF");
+		DEBUG("addInkAnnotationInternal 2");
+		if (pt_cls == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "FindClass");
+		DEBUG("addInkAnnotationInternal 3");
+		x_fid = (*env)->GetFieldID(env, pt_cls, "x", "F");
+		DEBUG("addInkAnnotationInternal 4");
+		if (x_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(x)");
+		DEBUG("addInkAnnotationInternal 5");
+		y_fid = (*env)->GetFieldID(env, pt_cls, "y", "F");
+		DEBUG("addInkAnnotationInternal 6");
+		if (y_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(y)");
+		DEBUG("addInkAnnotationInternal 7");
+		n = (*env)->GetArrayLength(env, arcs);
+		DEBUG("addInkAnnotationInternal 8");
+		counts = fz_malloc_array(ctx, n, int);
+		DEBUG("addInkAnnotationInternal 9");
+		for (i = 0; i < n; i++)
+		{
+			jobjectArray arc = (jobjectArray)(*env)->GetObjectArrayElement(env, arcs, i);
+			int count = (*env)->GetArrayLength(env, arc);
+			(*env)->DeleteLocalRef(env,arc);
+
+			counts[i] = count;
+			total += count;
+		}
+		DEBUG("addInkAnnotationInternal 10");
+		pts = fz_malloc_array(ctx, total * 2, float);
+
+		k = 0;
+		for (i = 0; i < n; i++)
+		{
+			jobjectArray arc = (jobjectArray)(*env)->GetObjectArrayElement(env, arcs, i);
+			int count = counts[i];
+
+			for (j = 0; j < count; j++)
+			{
+				jobject jpt = (*env)->GetObjectArrayElement(env, arc, j);
+				fz_point pt;
+				pt.x = jpt ? (*env)->GetFloatField(env, jpt, x_fid) : 0.0f;
+				pt.y = jpt ? (*env)->GetFloatField(env, jpt, y_fid) : 0.0f;
+				(*env)->DeleteLocalRef(env, jpt);
+				//fz_transform_point(&pts[k], &ctm);
+				//k++;
+				pts[k++] = pt.x;
+				pts[k++] = pt.y;
+			}
+			(*env)->DeleteLocalRef(env, arc);
+		}
+		DEBUG("addInkAnnotationInternal 11");
+		fz_try(ctx)
+			{
+		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, FZ_ANNOT_INK);
+		//pdf_set_ink_annot_list(ctx, idoc, (pdf_annot *)annot, pts, counts, n, color, width);
+
+			annot = pdf_create_annot(ctx, (pdf_page *)page->page, PDF_ANNOT_INK);
+
+			pdf_set_annot_border(ctx, annot, width);
+			pdf_set_annot_color(ctx, annot, 3, color);
+			pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
+
+			pdf_update_page(ctx, (pdf_page *)page->page);
+
+
+		//page->pageList = fz_new_display_list(ctx);
+
+		//dev = fz_new_list_device(ctx, page->pageList);
+		//fz_drop_display_list(ctx, page->annot_list);
+		//page->annot_list= NULL;
+	}
+	fz_always(ctx)
+	{
+		fz_free(ctx, pts);
+		fz_free(ctx, counts);
+	}
+	fz_catch(ctx)
+	{
+		//LOGE("addInkAnnotation: %s failed", ctx->error->message);
+		jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
+		if (cls != NULL)
+			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_searchPage");
+		(*env)->DeleteLocalRef(env, cls);
+	}
 }
 
 JNIEXPORT jobjectArray JNICALL

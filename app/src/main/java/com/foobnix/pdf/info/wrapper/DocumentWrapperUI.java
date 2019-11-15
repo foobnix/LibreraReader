@@ -1933,7 +1933,7 @@ public class DocumentWrapperUI {
                 if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     editTop2.setVisibility(View.VISIBLE);
                 } else {
-                    editTop2.setVisibility(View.GONE);
+                    editTop2.setVisibility(View.VISIBLE);
                 }
             }
         }
