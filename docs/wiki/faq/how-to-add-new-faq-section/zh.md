@@ -2,7 +2,7 @@
 layout: main
 ---
 
-{1}如何添加新的常见问题解答主题
+#如何添加新的常见问题解答主题
 
 如果要添加新的常见问题解答主题，请在[此处](https ：//github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)。
 

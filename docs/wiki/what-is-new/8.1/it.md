@@ -44,7 +44,7 @@ Usare i profili è come avere più istanze di Librera installate sul tuo disposi
 
 I profili sono memorizzati nella memoria interna del dispositivo in /sdcard/Librera/profile.[NAME]. Le loro impostazioni, i segnalibri, i progressi di lettura sono memorizzati in file JSON, che possono essere visualizzati con qualsiasi visualizzatore JSON (astenersi dal modificarli, però!).
 
-Una pressione prolungata di {3}** sul nome di un profilo farà apparire una finestra di avviso per ripristinare le impostazioni predefinite (iniziali) (i segnalibri e i progressi di lettura rimarranno intatti).
+Una pressione prolungata di **** sul nome di un profilo farà apparire una finestra di avviso per ripristinare le impostazioni predefinite (iniziali) (i segnalibri e i progressi di lettura rimarranno intatti).
 
 ||||
 |-|-|-|

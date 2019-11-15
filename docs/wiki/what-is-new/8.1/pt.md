@@ -44,7 +44,7 @@ Usar perfis é como ter várias instâncias do Librera instaladas no seu disposi
 
 Os perfis são armazenados na memória interna do dispositivo em /sdcard/Librera/profile.[NAME]. Suas configurações, favoritos e progresso da leitura são armazenados em arquivos JSON, que podem ser visualizados com qualquer visualizador de JSON (evite modificá-los!).
 
-Se pressionar {3}** no nome do perfil, será exibida uma janela de alerta para que você restaure as configurações padrão (iniciais) (seus favoritos e os progressos da leitura permanecerão intactos).
+Se pressionar **** no nome do perfil, será exibida uma janela de alerta para que você restaure as configurações padrão (iniciais) (seus favoritos e os progressos da leitura permanecerão intactos).
 
 ||||
 |-|-|-|

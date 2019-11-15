@@ -5,8 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # Preguntas frecuentes
 
-* [Reemplazos de TTS](/wiki/faq/tts-replacements/es)
+* [Personalizando la apariencia de su biblioteca](/wiki/faq/how-to-configure-the-library-view/es)
 * [Navegando por la pestaña _Biblioteca_](/wiki/faq/main-app/es)
+* [Reemplazos de TTS](/wiki/faq/tts-replacements/es)
 * [Configuración de sincronización](/wiki/faq/setting-up-synchronization/es)
 * [Cómo restaurar la configuración predeterminada/Borrar caché](/wiki/faq/how-to-restore-default-settings-clear-cache/es)
 * [Notas en el texto versus notas al pie](/wiki/faq/include-footnotes-directly-in-the-text/es)
@@ -36,7 +37,6 @@ info: this file is generated automatically, please do not modify it
 * [Codificación CSS personalizada](/wiki/faq/customize-book-css-styles/es)
 * [Cómo configurar la selección de texto](/wiki/faq/how-to-set-text-selection/es)
 * [Números de página relativos para libros PDF](/wiki/faq/relative-page-numbers/es)
-* [Cómo personalizar el aspecto de su biblioteca y portadas de libros](/wiki/faq/how-to-configure-the-library-view/es)
 * [Librera para aprender idiomas extranjeros](/wiki/faq/librera-for-study-foreign-languages/es)
 * [Cómo borrar libros de la tarjeta SD externa](/wiki/faq/how-to-delete-file-from-external-sd-card/es)
 * [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)

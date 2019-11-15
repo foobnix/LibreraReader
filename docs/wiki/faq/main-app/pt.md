@@ -8,7 +8,7 @@ layout: main
 
 * A guia _Library_, exibição padrão
 * Classifique os livros nas prateleiras da sua biblioteca de acordo com certos critérios (por nome do arquivo, autor, data etc.)
-* Você pode alterar a maneira como seus livros são exibidos nas prateleiras, alterando o layout da Biblioteca (lista, grade, capas de livros etc.)
+* Você pode alterar a maneira como seus livros são exibidos nas prateleiras, alterando o layout da Biblioteca (lista, grade, capa de livro etc.)
 
 ||||
 |-|-|-|

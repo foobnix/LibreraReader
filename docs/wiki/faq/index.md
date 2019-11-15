@@ -5,8 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
-* [TTS Replacements](/wiki/faq/tts-replacements)
+* [Customizing the Look and Feel of Your Library](/wiki/faq/how-to-configure-the-library-view)
 * [Navigating the _Library_ Tab](/wiki/faq/main-app)
+* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Setting up synchronization](/wiki/faq/setting-up-synchronization)
 * [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
@@ -36,7 +37,6 @@ info: this file is generated automatically, please do not modify it
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles)
 * [How to set text selection](/wiki/faq/how-to-set-text-selection)
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)
-* [How to customize the look of your library and book covers](/wiki/faq/how-to-configure-the-library-view)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)

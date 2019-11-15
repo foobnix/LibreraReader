@@ -5,8 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
-* [TTS Replacements](/wiki/faq/tts-replacements/ar)
+* [تخصيص الشكل والمظهر لمكتبتك](/wiki/faq/how-to-configure-the-library-view/ar)
 * [التنقل في _Library_ Tab](/wiki/faq/main-app/ar)
+* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [إعداد التزامن](/wiki/faq/setting-up-synchronization/ar)
 * [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
@@ -36,7 +37,6 @@ info: this file is generated automatically, please do not modify it
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles/ar)
 * [كيفية تعيين اختيار النص](/wiki/faq/how-to-set-text-selection/ar)
 * [أرقام الصفحات النسبية لكتب PDF](/wiki/faq/relative-page-numbers/ar)
-* [كيفية تخصيص مظهر مكتبتك وأغلفة الكتب](/wiki/faq/how-to-configure-the-library-view/ar)
 * [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
 * [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)

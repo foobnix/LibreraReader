@@ -8,7 +8,7 @@ layout: main
 
 * La scheda _Library_, vista predefinita
 * Ordina i libri sugli scaffali della tua Libreria in base a determinati criteri (per nome file, autore, data, ecc.)
-* Puoi cambiare il modo in cui i tuoi libri sono esposti sugli scaffali cambiando il layout della Biblioteca (elenco, griglia, copertine dei libri, ecc.)
+* Puoi cambiare il modo in cui i tuoi libri vengono visualizzati sugli scaffali cambiando il layout della Biblioteca (elenco, griglia, copertine dei libri, ecc.)
 
 ||||
 |-|-|-|

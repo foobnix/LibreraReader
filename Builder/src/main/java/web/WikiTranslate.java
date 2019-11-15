@@ -145,14 +145,20 @@ public class WikiTranslate {
 
         Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
+        reverse.put("{1}", "#");
 
         reverse.put(" {2}", "**");
+        reverse.put("{2}", "**");
+
         reverse.put("{3} ", "**");
+        reverse.put("{3}", "**");
 
         reverse.put(" {6}", "**");
         reverse.put("{6} ", "**");
+        reverse.put("{6}", "**");
 
         reverse.put("{4} ", "* ");
+        reverse.put("{4}", "*");
 
         reverse.put("{7}", "&nbsp;");
         reverse.put("{8}", "###");

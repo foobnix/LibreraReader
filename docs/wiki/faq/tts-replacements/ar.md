@@ -34,7 +34,7 @@ layout: main
 
 ## أضف ملف قاعدة
 
-**Librera** يدعم ملفات قواعد RegExp من {3}Voice Reader**
+**Librera** يدعم ملفات قواعد RegExp من **Voice Reader**
 راجع هذه العينة **demo-replaces.txt** أدناه:
 
 ```

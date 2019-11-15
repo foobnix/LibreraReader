@@ -2,62 +2,56 @@
 layout: main
 ---
 
-# Cómo personalizar el aspecto de su biblioteca y portadas de libros
+# Personalizar el aspecto de su biblioteca
 
-> Librera le permite personalizar de manera flexible el aspecto general de su biblioteca, el tamaño de las cubiertas de los libros, la información que muestra el libro, la clasificación de los libros en su biblioteca.
+> **Librera** le permite ajustar la forma en que se muestran sus libros en los &quot;estantes&quot; de su Biblioteca. Puede cambiar el número de libros en un estante, su apariencia, tamaño de estante, agrupación y listado de libros, etc.
 
-Para configurar rápidamente la vista de la biblioteca, debe:
+Sus libros se muestran en la pestaña _Library_, donde puede realizar ajustes en la presentación del libro. Las configuraciones adicionales que afectan la vista de su Biblioteca se encuentran en la pestaña deslizable _Preferencias_, el panel _Cubiertas de libros_.
 
-* Vaya a la pestaña Biblioteca
-* Haga clic en el modo de visualización de la biblioteca y seleccione el deseado.
+* Para cambiar el diseño del libro (lista, cuadrícula, condensado, etc.), toque el icono de hamburguesa en la esquina superior derecha de la pestaña _Biblioteca_
+* Deslice el dedo hacia la derecha desde el borde izquierdo de la pantalla para abrir la pestaña _Preferencias_
 
-También puede personalizar aún más el aspecto de la biblioteca y las portadas de los libros en la configuración:
+> Si tiene marcada la casilla _Preferencias_ (sin animación), encontrará la pestaña _Preferencias_ junto a la pestaña _Biblioteca_ en la parte superior.
 
-* Desliza para abrir el panel de configuración
-* Deslícese hacia abajo a la configuración de portadas de libros.
+* Desliza hacia abajo y busca el panel _Cubiertas de libros_
 
 ||||
 |-|-|-|
 |![](3.jpg)|![](1.jpg)|![](2.jpg)|
 
-En la configuración rápida de la biblioteca, puede elegir un tipo diferente, le daré, por ejemplo, algunos.
+* A continuación se ofrecen ejemplos de las vistas de algunas opciones de diseño:
+ 
+> Recuerde, otro diseño está a solo dos toques de distancia. Puede cambiar al más conveniente en cualquier momento.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-En la configuración de portadas de libros, puede deshabilitar o habilitar la portada del libro.
+## El _ Cubiertas del libro_ Panel
 
-* Desactive la casilla de verificación para eliminar la visualización de la portada del libro.
-* Si desea mostrar las portadas de los libros en la biblioteca, active esta casilla de verificación.
+* Puede optar por no ver las portadas de los libros desmarcando la casilla correspondiente
+* Todavía tienes muchas opciones de diseño
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Para cambiar el tamaño de la portada del libro que se muestra:
-
-* Use el control deslizante para seleccionar el tamaño de la portada del libro que se muestra
+* Tus manipulaciones con el tamaño de las portadas de los libros dependerán del diseño que hayas elegido (lista o cuadrícula)
+* Para &quot;lista&quot;, use el control deslizante respectivo para cambiar el tamaño de las portadas de los libros (tamaño del estante)
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-Para cambiar la cuadrícula que se muestra en la pantalla de portadas de libros:
+Tendrá más opciones para &quot;cuadrícula&quot;.
 
-* Un control deslizante para elegir el tamaño de la cuadrícula
-* Puedes elegir el número de columnas
+* Use el control deslizante respectivo para cambiar el tamaño de las portadas de los libros
+* También puede elegir el número de columnas en la cuadrícula de su Biblioteca
+
+> Nota: Siempre puede volver a su configuración inicial tocando _Restore default_ y confirmando la operación con _OK_.
+
+**Si elige mostrar las portadas de sus libros, use otras opciones en el panel _Cubiertas de libros_ para mejorar la vista.**
 
 ||||
 |-|-|-|
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
-
-Si desea devolver la configuración de la portada del libro a su estado inicial:
-
-* Haga clic en &quot;restaurar predeterminado&quot;
-* Confirma tu acción &quot;OK&quot;
-
-Las cubiertas se restaurarán a su configuración inicial.
-
-
-
