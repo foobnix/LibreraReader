@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # الأسئلة المتداولة
 
+* [كيفية حذف ملف كتاب من بطاقة SD خارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
+* [فرز مكتبتك حسب أحدث القراءات](/wiki/faq/sort-library-by-last-read-date/ar)
 * [تخصيص الشكل والمظهر لمكتبتك](/wiki/faq/how-to-configure-the-library-view/ar)
 * [التنقل في _Library_ Tab](/wiki/faq/main-app/ar)
 * [TTS Replacements](/wiki/faq/tts-replacements/ar)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [العمل مع ملفات تعريف _Librera_](/wiki/faq/working-with-profiles/ar)
-* [ترتيب المكتبة حسب آخر كتاب للقراءة](/wiki/faq/sort-library-by-last-read-date/ar)
 * [القراءة بلغات RTL](/wiki/faq/rtl-or-ltr-text-direction/ar)
 * [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [استخدام القواميس والمترجمين](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [كيفية تعيين اختيار النص](/wiki/faq/how-to-set-text-selection/ar)
 * [أرقام الصفحات النسبية لكتب PDF](/wiki/faq/relative-page-numbers/ar)
 * [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
-* [كيفية حذف الكتب من بطاقة SD الخارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
 * [تعيين الخلفية الخاصة لصفحة الكتاب](/wiki/faq/how-to-set-page-background-image/ar)

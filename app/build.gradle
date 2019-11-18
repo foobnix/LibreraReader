@@ -114,7 +114,7 @@ android {
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "int", "MUPDF_VERSION", "116"
+            buildConfigField "int", "MUPDF_VERSION", "111"
         }
 
         alpha {

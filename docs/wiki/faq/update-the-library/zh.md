@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 #更新您的资料库

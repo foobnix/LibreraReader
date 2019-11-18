@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 #打开以图像为书的文件夹(书中的装订)

@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Domande frequenti
 
+* [Come eliminare un file libro da una scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
+* [Ordinamento della libreria in base alle ultime letture](/wiki/faq/sort-library-by-last-read-date/it)
 * [Personalizzazione dell'aspetto e della sensibilità della tua libreria](/wiki/faq/how-to-configure-the-library-view/it)
 * [Navigazione nella scheda _Library_](/wiki/faq/main-app/it)
 * [Sostituzioni TTS](/wiki/faq/tts-replacements/it)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [Come ripristinare le impostazioni predefinite/Cancella cache](/wiki/faq/how-to-restore-default-settings-clear-cache/it)
 * [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Lavorare con i profili di _Librera_](/wiki/faq/working-with-profiles/it)
-* [Ordina la libreria per ultimo libro letto](/wiki/faq/sort-library-by-last-read-date/it)
 * [Lettura in lingue RTL](/wiki/faq/rtl-or-ltr-text-direction/it)
 * [Lavorare con i cataloghi online OPDS](/wiki/faq/working-with-opds-online-catalogs/it)
 * [Uso di dizionari e traduttori](/wiki/faq/dictionaries-translate-text-online-and-offline/it)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [Come impostare la selezione del testo](/wiki/faq/how-to-set-text-selection/it)
 * [Numeri di pagina relativi per i libri PDF](/wiki/faq/relative-page-numbers/it)
 * [Librera per l'apprendimento delle lingue straniere](/wiki/faq/librera-for-study-foreign-languages/it)
-* [Come eliminare libri dalla scheda SD esterna](/wiki/faq/how-to-delete-file-from-external-sd-card/it)
 * [Come impostare la modalità di lettura](/wiki/faq/how-to-set-up-reading-mode/it)
 * [Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista](/wiki/faq/reading-mode-vertical-book-musician/it)
 * [Imposta il proprio sfondo per la pagina del libro](/wiki/faq/how-to-set-page-background-image/it)

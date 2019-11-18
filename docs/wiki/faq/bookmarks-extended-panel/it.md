@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Utilizzo dei segnalibri in modalità estesa (barra dei segnalibri)

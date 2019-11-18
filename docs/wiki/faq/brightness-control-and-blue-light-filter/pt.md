@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Controle de brilho e filtro de luz azul

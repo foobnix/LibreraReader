@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 #使用_Librera_的个人资料

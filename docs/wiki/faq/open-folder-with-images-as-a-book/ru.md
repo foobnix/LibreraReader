@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Открытие папки с изображениями в виде книги (переплет в книге)

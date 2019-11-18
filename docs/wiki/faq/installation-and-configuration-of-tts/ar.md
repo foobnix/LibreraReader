@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # تثبيت وتهيئة تحويل النص إلى كلام (TTS)

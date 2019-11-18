@@ -1,17 +1,17 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
-# Ordina la libreria per ultimo libro letto
+# Ordinamento della libreria in base alle ultime letture
 
+> Un nuovo criterio di ordinamento è stato introdotto in **Librera**: dalle ultime letture.
 
-Per ordinare la tua biblioteca in base alla data dell'ultima lettura, devi:
+* Vai alla scheda _Library_
+* Tocca la scelta di ordinamento corrente per aprire un elenco a discesa
+* Seleziona _Recente_
 
-* Vai alla scheda &quot;Libreria&quot;
-* Tocca le impostazioni di ordinamento
-* Seleziona &quot;Recenti&quot;
-
-La tua biblioteca verrà ordinata per data dell'ultima lettura.
+> Quei libri che non hai ancora aperto verranno esclusi dall'elenco. Il libro che stai leggendo verrà posizionato in cima.
 
 ||||
 |-|-|-|

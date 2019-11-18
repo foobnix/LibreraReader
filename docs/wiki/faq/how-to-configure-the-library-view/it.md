@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Personalizzazione dell'aspetto e della sensibilità della tua libreria

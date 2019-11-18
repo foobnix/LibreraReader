@@ -1,17 +1,17 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
-# Bibliothek nach zuletzt gelesenem Buch sortieren
+# Sortieren Ihrer Bibliothek nach den letzten Lesungen
 
+> In **Librera** wurde ein neues Sortierkriterium eingeführt: Nach Ihren letzten Lesungen.
 
-Um Ihre Bibliothek nach dem letzten Lesedatum zu sortieren, müssen Sie:
+* Wechseln Sie zum Tab _Bibliothek_
+* Tippen Sie auf die aktuelle Sortieroption, um eine Dropdown-Liste zu öffnen
+* Wählen Sie _Neu_ aus.
 
-* Wechseln Sie zum Tab &quot;Bibliothek&quot;
-* Tippen Sie auf die Sortiereinstellungen
-* Wählen Sie &quot;Zuletzt&quot; aus.
-
-Ihre Bibliothek wird nach dem letzten Lesedatum sortiert.
+> Die Bücher, die Sie noch nicht geöffnet haben, werden nicht in der Liste aufgeführt. Das Buch, das Sie gerade lesen, wird oben platziert.
 
 ||||
 |-|-|-|

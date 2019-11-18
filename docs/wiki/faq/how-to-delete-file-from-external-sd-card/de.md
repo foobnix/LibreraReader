@@ -1,25 +1,26 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
-# So löschen Sie Bücher von der externen SD-Karte
+# So löschen Sie eine Buchdatei von einer externen SD-Karte
 
-Android 7+ erlauben nicht, Dateien von der externen SD-Karte durch die zu löschen
-sicherheits Gründe.
-Sie müssen eine SD-Karte als Ressource hinzufügen und der Anwendung erlauben, Dateien von dieser zu löschen
+> Aus Sicherheitsgründen können Benutzer auf Android 7+ keine Dateien von externen SD-Karten löschen.
 
-* Öffnen Sie den Dateimanager-Tab
-* Klicken Sie auf Ressource hinzufügen
-* Wählen Sie die SD-Karte
-* Auswählen und Löschen von ausgewählter SD-Karte zulassen
+In **Librera** müssen Sie Ihre SD-Karte als Ressource hinzufügen (_bookshelf_) und anschließend das Löschen zulassen.
+
+* Tippen Sie auf der Registerkarte &quot;Ordner&quot; auf das Dateimanagersymbol, um die Dropdown-Ressourcenliste zu öffnen
+* Tippen Sie auf **+**, um ein Bücherregal hinzuzufügen
+* Wählen Sie Ihre SD-Karte aus
+* Drücken Sie _SELECT_, um das Löschen vom ausgewählten Ort zuzulassen
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-* Öffnen Sie die SD-Karte im Dateimanager
-* Klicken Sie auf das Dateimenü
-* Buch löschen
+* Wählen Sie Ihre SD-Karte aus der Dropdown-Liste aus
+* Öffnen Sie das Dateimenü des Buches, das Sie löschen möchten, indem Sie auf das dreifache Punktsymbol tippen
+* Klicken Sie auf &quot;Löschen&quot; und bestätigen Sie den Vorgang
 
 ||||
 |-|-|-|

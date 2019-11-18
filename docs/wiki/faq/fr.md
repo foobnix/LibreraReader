@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Foire aux questions
 
+* [Comment supprimer un fichier livre d'une carte SD externe](/wiki/faq/how-to-delete-file-from-external-sd-card/fr)
+* [Tri de votre bibliothèque en fonction des dernières lectures](/wiki/faq/sort-library-by-last-read-date/fr)
 * [Personnalisation de l'apparence de votre bibliothèque](/wiki/faq/how-to-configure-the-library-view/fr)
 * [Navigation dans les onglets _Bibliothèque_](/wiki/faq/main-app/fr)
 * [Remplacements TTS](/wiki/faq/tts-replacements/fr)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [Comment restaurer les paramètres par défaut/Effacer le cache](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Utilisation des profils de _Librera_](/wiki/faq/working-with-profiles/fr)
-* [Trier la bibliothèque par dernier livre lu](/wiki/faq/sort-library-by-last-read-date/fr)
 * [Lecture dans les langues RTL](/wiki/faq/rtl-or-ltr-text-direction/fr)
 * [Utilisation des catalogues en ligne OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
 * [Utilisation de dictionnaires et de traducteurs](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [Comment définir la sélection de texte](/wiki/faq/how-to-set-text-selection/fr)
 * [Numéros de page relatifs des livres PDF](/wiki/faq/relative-page-numbers/fr)
 * [Librera pour l'apprentissage des langues étrangères](/wiki/faq/librera-for-study-foreign-languages/fr)
-* [Comment supprimer des livres de la carte SD externe](/wiki/faq/how-to-delete-file-from-external-sd-card/fr)
 * [Comment configurer le mode de lecture](/wiki/faq/how-to-set-up-reading-mode/fr)
 * [Modes de lecture: mode défilement, mode livre et mode musicien](/wiki/faq/reading-mode-vertical-book-musician/fr)
 * [Définir un arrière-plan pour la page du livre](/wiki/faq/how-to-set-page-background-image/fr)

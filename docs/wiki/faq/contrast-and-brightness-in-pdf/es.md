@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Mejora de contraste y brillo en PDF (efecto B/N)

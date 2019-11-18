@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Comment ajouter un nouveau sujet de FAQ
@@ -13,6 +14,7 @@ Format d'en-tête de fichier pour **index.md**:
 ```
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

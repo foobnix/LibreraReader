@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [How to Delete a Book File from an External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
+* [Sorting Your Library by Latest Reads](/wiki/faq/sort-library-by-last-read-date)
 * [Customizing the Look and Feel of Your Library](/wiki/faq/how-to-configure-the-library-view)
 * [Navigating the _Library_ Tab](/wiki/faq/main-app)
 * [TTS Replacements](/wiki/faq/tts-replacements)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Working with _Librera_'s Profiles](/wiki/faq/working-with-profiles)
-* [Sort library by last read book](/wiki/faq/sort-library-by-last-read-date)
 * [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
 * [Working with OPDS online catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Using Dictionaries and Translators](/wiki/faq/dictionaries-translate-text-online-and-offline)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [How to set text selection](/wiki/faq/how-to-set-text-selection)
 * [Relative page numbers for PDF books](/wiki/faq/relative-page-numbers)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
-* [How to delete books from the External SD card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)
 * [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)
 * [Set own background for book page](/wiki/faq/how-to-set-page-background-image)

@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 #如何添加新的常见问题解答主题
@@ -13,6 +14,7 @@ layout: main
 ```
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

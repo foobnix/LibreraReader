@@ -1,17 +1,17 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
-# Classifique a biblioteca pelo último livro lido
+# Classificando sua biblioteca pelas últimas leituras
 
+> Um novo critério de classificação foi introduzido no **Librera**: pelas suas últimas leituras.
 
-Para classificar sua biblioteca pela última data de leitura, você precisa:
+* Vá para a guia _Library_
+* Toque na opção de classificação atual para abrir uma lista suspensa.
+* Selecione _Recente_
 
-* Vá para a guia &quot;Biblioteca&quot;
-* Toque nas configurações de classificação
-* Selecione &quot;Recente&quot;
-
-Sua biblioteca será classificada pela data da última leitura.
+> Os livros que você ainda não abriu serão deixados de fora da lista. O livro que você está lendo no momento será colocado no topo.
 
 ||||
 |-|-|-|

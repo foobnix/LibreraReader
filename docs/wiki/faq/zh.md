@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 #常见问题
 
+* [如何从外部SD卡删除图书文件](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
+* [按最新阅读顺序分类图书馆](/wiki/faq/sort-library-by-last-read-date/zh)
 * [自定义您的图书馆外观](/wiki/faq/how-to-configure-the-library-view/zh)
 * [导航_Library_标签](/wiki/faq/main-app/zh)
 * [TTS替换](/wiki/faq/tts-replacements/zh)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [如何还原默认设置/清除缓存](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [使用_Librera_的个人资料](/wiki/faq/working-with-profiles/zh)
-* [按最近阅读的书对图书馆的排序](/wiki/faq/sort-library-by-last-read-date/zh)
 * [使用RTL语言阅读](/wiki/faq/rtl-or-ltr-text-direction/zh)
 * [使用OPDS在线目录](/wiki/faq/working-with-opds-online-catalogs/zh)
 * [使用字典和翻译器](/wiki/faq/dictionaries-translate-text-online-and-offline/zh)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [如何设置文本选择](/wiki/faq/how-to-set-text-selection/zh)
 * [PDF书籍的相对页码](/wiki/faq/relative-page-numbers/zh)
 * [学习外语的图书馆](/wiki/faq/librera-for-study-foreign-languages/zh)
-* [如何从外部SD卡删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [为书页设置背景](/wiki/faq/how-to-set-page-background-image/zh)

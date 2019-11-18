@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Häufig gestellte Fragen
 
+* [Löschen einer Buchdatei von einer externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
+* [Sortieren Ihrer Bibliothek nach den letzten Lesungen](/wiki/faq/sort-library-by-last-read-date/de)
 * [Anpassen des Erscheinungsbilds Ihrer Bibliothek](/wiki/faq/how-to-configure-the-library-view/de)
 * [Auf dem Tab _Bibliothek_ navigieren](/wiki/faq/main-app/de)
 * [TTS-Ersatz](/wiki/faq/tts-replacements/de)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [Wiederherstellen der Standardeinstellungen/Cache löschen](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
 * [Anmerkungen im Text vs. Fußnoten](/wiki/faq/include-footnotes-directly-in-the-text/de)
 * [Arbeiten mit _Librera_s Profilen](/wiki/faq/working-with-profiles/de)
-* [Bibliothek nach zuletzt gelesenem Buch sortieren](/wiki/faq/sort-library-by-last-read-date/de)
 * [Lesen in RTL-Sprachen](/wiki/faq/rtl-or-ltr-text-direction/de)
 * [Arbeiten mit OPDS-Onlinekatalogen](/wiki/faq/working-with-opds-online-catalogs/de)
 * [Verwenden von Wörterbüchern und Übersetzern](/wiki/faq/dictionaries-translate-text-online-and-offline/de)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [Einstellen der Textauswahl](/wiki/faq/how-to-set-text-selection/de)
 * [Relative Seitenzahlen für PDF-Bücher](/wiki/faq/relative-page-numbers/de)
 * [Librera zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
-* [Löschen von Büchern von der externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
 * [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus](/wiki/faq/reading-mode-vertical-book-musician/de)
 * [Hintergrund für Buchseite festlegen](/wiki/faq/how-to-set-page-background-image/de)

@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Öffnen eines Ordners mit Bildern als Buch (In einem Buch binden)

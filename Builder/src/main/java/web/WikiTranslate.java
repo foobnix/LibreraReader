@@ -107,6 +107,8 @@ public class WikiTranslate {
             return in;
         }
 
+
+
         String key = in + ln;
         if (cache.has(key)) {
             return cache.getString(key);
@@ -245,6 +247,13 @@ public class WikiTranslate {
             }
             if (line.trim().equals("---")) {
                 findHeader = !findHeader;
+            }
+
+            //if(line.trim().equals("layout: main")){
+                //line += "\ninfo: this file is generated automatically, please do not modify it";
+            //}
+            if(line.startsWith("info:")){
+                continue;
             }
 
             if (findCode || findHeader) {

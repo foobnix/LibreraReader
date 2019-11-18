@@ -1,17 +1,17 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
-# Ordenar biblioteca por último libro leído
+# Ordenar su biblioteca por últimas lecturas
 
+> Se ha introducido un nuevo criterio de clasificación en **Librera**: según sus últimas lecturas.
 
-Para ordenar su biblioteca por última fecha de lectura, debe:
+* Vaya a la pestaña _Library_
+* Toque la opción de clasificación actual para abrir una lista desplegable
+* Seleccione _Reciente_
 
-* Vaya a la pestaña &quot;Biblioteca&quot;
-* Toque en la configuración de clasificación
-* Seleccione &quot;Reciente&quot;
-
-Su biblioteca se ordenará por fecha de última lectura.
+> Los libros que aún no ha abierto se excluirán de la lista. El libro que estás leyendo actualmente se colocará en la parte superior.
 
 ||||
 |-|-|-|

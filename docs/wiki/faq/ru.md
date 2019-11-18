@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Часто задаваемые вопросы
 
+* [Как удалить файл книги с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
+* [Сортировка вашей библиотеки по последним прочтениям](/wiki/faq/sort-library-by-last-read-date/ru)
 * [Настройка внешнего вида вашей библиотеки](/wiki/faq/how-to-configure-the-library-view/ru)
 * [Навигация по вкладке _Library_](/wiki/faq/main-app/ru)
 * [Замена TTS](/wiki/faq/tts-replacements/ru)
@@ -12,7 +14,6 @@ info: this file is generated automatically, please do not modify it
 * [Как восстановить настройки по умолчанию/очистить кэш](/wiki/faq/how-to-restore-default-settings-clear-cache/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Работа с профилями _Librera_](/wiki/faq/working-with-profiles/ru)
-* [Сортировать библиотеку по последней прочитанной книге](/wiki/faq/sort-library-by-last-read-date/ru)
 * [Чтение на языках RTL](/wiki/faq/rtl-or-ltr-text-direction/ru)
 * [Работа с онлайн-каталогами OPDS](/wiki/faq/working-with-opds-online-catalogs/ru)
 * [Использование словарей и переводчиков](/wiki/faq/dictionaries-translate-text-online-and-offline/ru)
@@ -38,7 +39,6 @@ info: this file is generated automatically, please do not modify it
 * [Как настроить выбор текста](/wiki/faq/how-to-set-text-selection/ru)
 * [Относительные номера страниц для книг в формате PDF](/wiki/faq/relative-page-numbers/ru)
 * [Librera для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
-* [Как удалить книги с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
 * [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)
 * [Установить собственный фон для страницы книги](/wiki/faq/how-to-set-page-background-image/ru)

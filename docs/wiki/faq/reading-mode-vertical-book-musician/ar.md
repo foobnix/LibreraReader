@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي

@@ -1,5 +1,6 @@
 ---
 layout: main
+info: this file is generated automatically, please do not modify it
 ---
 
 # Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)
