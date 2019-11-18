@@ -2,16 +2,15 @@
 layout: main
 ---
 
-# Sort library by last read book
+# Sorting Your Library by Latest Reads
 
+> A new sorting criterion has been introduced in **Librera**: By your latest reads.
 
-To sort your library by last read date, you need to:
+* Go to the _Library_ tab
+* Tap on the current sorting choice to open a dropdown list 
+* Select _Recent_
 
-* Go to the "Library" tab
-* Tap on the sort settings 
-* Select "Recent"
-
-Your library will be sorted by last read date.
+> Those books that you have not opened yet will be left out of the list. The book you're currently reading will by placed on top.
 
 ||||
 |-|-|-|
