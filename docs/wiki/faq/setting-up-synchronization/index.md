@@ -2,31 +2,33 @@
 layout: main
 ---
 
-# Setting up synchronization
+# Syncing Your Reading Setup Across Multiple Devices
 
 
-> For readability on different devices Librera allows you to synchronize your reading progress in your books, bookmarks, profiles, and settings.
+> **Librera** is equipped with a syncing tool that should come in handy in cases when users own more than one Android device and tend to alternate between them (even sporadically). Using this tool, you will be able to sync **Librera**'s profiles, reading progress, bookmarks, and your reading settings.
 
-To enable synchronization, you must:
+For the convenience of most of our users, we have chosen Google Drive as **Librera**'s synchronization hub.
 
-* In the settings go to the sync block
-* Click the "Sing in"
-* In the pop up window select your Google account
+* To enable syncing, go to the _Sync_ panel in the slide-out _Preferences_ tab and check the respective box
+* You need to sign into your Google Drive account
  
-After carrying out these actions, the data of the connected Google account will be displayed in the synchronization settings block. To synchronize the program between several devices, you need to log in on another device under the same Google account.
+> **To ensure proper synchronization, your other devices must be logged into the same account.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-In sync settings you can configure:
+## Synchronization Options
 
-* Manual sync-when this function is enabled, swipe down starts synchronization
-* Sync only when connected to a Wi Fi network
-* To animate the progress of the synchronization. 
-
-By clicking on the sync icon you can view her log.
+* If _Manual sync_ is checked, all the syncing will be done manually, once you've swiped your finger down the screen (in Android's native pull-to-refresh fashion)
+* You can prevent the syncing tool to bite bytes off your data plan by enabling WiFi syncing only.
+* You can entertain yourself with sync-progress animation (spinning wheel), by checking this option
+* To view the sync log, just tap the settings (wheel) icon in the _Sync_ panel
 
 ||||
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
+
+> Note that Google Drive is just an example. Google accounts are free and available to anyone. If, for whatever reason, you prefer any other cloud solution, just use it:
+
+**You just need to sync the _Librera_ folder (which is in your internal storage) with your cloud. Voilà!**
