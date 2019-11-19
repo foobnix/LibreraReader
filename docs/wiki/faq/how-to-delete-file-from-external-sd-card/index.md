@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# How to Delete a Book File from an External SD card
+# How to Delete a Book from an External SD Card
 
 > For security reasons, the system won't allow users to delete files from external SD cards on Android 7+.
 
