@@ -118,17 +118,16 @@ android {
 
         alpha {
             dimension "version"
-            applicationId "com.foobnix.pdf.reader"
+            applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
                     appName       : "Alpha Librera",
                     appIcon       : "@mipmap/icon_pdf_reader",
                     appRoundIcon  : "@mipmap/icon_pdf_reader",
-                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
-                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
-                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
+                    appGdriveKey  : "",
+                    admobAppId    : "",
+                    admobBannerId : "",
+                    admobFullId   : ""
             ]
-
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
