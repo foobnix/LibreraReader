@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Использование возможности TTS для чтения общих ресурсов из других приложений

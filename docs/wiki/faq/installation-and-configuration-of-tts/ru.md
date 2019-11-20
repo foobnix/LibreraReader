@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Установка и настройка преобразования текста в речь (TTS)

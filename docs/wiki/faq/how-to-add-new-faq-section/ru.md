@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Как добавить новую тему FAQ
@@ -14,7 +13,6 @@ info: this file is generated automatically, please do not modify it
 ```
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

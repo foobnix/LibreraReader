@@ -1,33 +1,34 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Configuration de la synchronisation
+# Synchronisation de votre configuration de lecture sur plusieurs appareils
 
 
-> Pour une lisibilité optimale sur différents appareils, Librera vous permet de synchroniser l’avancement de votre lecture dans vos livres, signets, profils et paramètres.
+> **Librera** est équipé d'un outil de synchronisation qui devrait s'avérer utile dans les cas où les utilisateurs possèdent plusieurs appareils Android et ont tendance à alterner entre eux (même de manière sporadique). À l'aide de cet outil, vous pourrez synchroniser les profils, les progrès de lecture, les signets et les paramètres de lecture de Librera**.
 
-Pour activer la synchronisation, vous devez:
+Pour le confort de la plupart de nos utilisateurs, nous avons choisi Google Drive comme centre de synchronisation de **Librera**.
 
-* Dans les paramètres, accédez au bloc de synchronisation.
-* Cliquez sur &quot;Chanter&quot;
-* Dans la fenêtre contextuelle, sélectionnez votre compte Google.
+* Pour activer la synchronisation, accédez au panneau _Sync_ de l'onglet coulissant _Preferences_ et cochez la case correspondante.
+* Vous devez vous connecter à votre compte Google Drive.
  
-Après avoir effectué ces actions, les données du compte Google connecté seront affichées dans le bloc des paramètres de synchronisation. Pour synchroniser le programme entre plusieurs appareils, vous devez vous connecter sur un autre appareil sous le même compte Google.
+> **Pour assurer une synchronisation correcte, vos autres appareils doivent être connectés au même compte.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Dans les paramètres de synchronisation, vous pouvez configurer:
+## Options de synchronisation
 
-* Synchronisation manuelle: lorsque cette fonction est activée, balayez vers le bas la synchronisation démarre.
-* Sync uniquement lorsque vous êtes connecté à un réseau Wi Fi
-* Pour animer la progression de la synchronisation.
-
-En cliquant sur l'icône de synchronisation, vous pouvez voir son journal.
+* Si l'option &quot;Synchronisation manuelle&quot; est cochée, toute la synchronisation sera effectuée manuellement, une fois que vous aurez déplacé votre doigt vers le bas de l'écran (à la manière native d'Android, tirez pour actualiser).
+* Vous pouvez empêcher l'outil de synchronisation de supprimer votre projet de données en activant uniquement la synchronisation WiFi.
+* Vous pouvez vous divertir avec une animation synchrone (en rotation) en cochant cette option.
+* Pour afficher le journal de synchronisation, appuyez simplement sur l'icône des paramètres (molette) dans le panneau _Sync_.
 
 ||||
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
+
+> Notez que Google Drive n’est qu’un exemple. Les comptes Google sont gratuits et accessibles à tous. Si, pour une raison quelconque, vous préférez une autre solution cloud, utilisez-la simplement:
+
+**Vous devez simplement synchroniser le dossier _Librera_ (qui se trouve dans votre stockage interne) avec votre nuage. Voilà!**

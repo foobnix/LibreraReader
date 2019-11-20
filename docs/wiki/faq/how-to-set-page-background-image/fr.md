@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Définir son propre arrière-plan pour la page du livre

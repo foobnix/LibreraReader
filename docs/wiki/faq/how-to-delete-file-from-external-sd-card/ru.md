@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Как удалить файл книги с внешней SD-карты
+# Как удалить книгу с внешней SD-карты
 
 > В целях безопасности система не позволяет пользователям удалять файлы с внешних SD-карт на Android 7+.
 

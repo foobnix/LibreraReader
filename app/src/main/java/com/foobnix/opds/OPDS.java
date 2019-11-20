@@ -181,6 +181,7 @@ public class OPDS {
         }
 
         String string = response.body().string();
+        string = string.replace("\u0001M\u0001J","");
         response.close();
         return string;
     }

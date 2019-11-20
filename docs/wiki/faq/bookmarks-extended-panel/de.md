@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)

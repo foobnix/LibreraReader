@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Comment supprimer un fichier livre d'une carte SD externe
+# Comment supprimer un livre d'une carte SD externe
 
 > Pour des raisons de sécurité, le système n'autorise pas les utilisateurs à supprimer des fichiers de cartes SD externes sur Android 7+.
 

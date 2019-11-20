@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # So fügen Sie ein neues FAQ-Thema hinzu
@@ -14,7 +13,6 @@ Dateikopfzeilenformat für **index.md**:
 ```
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

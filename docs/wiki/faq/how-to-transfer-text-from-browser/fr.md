@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Utilisation de la fonctionnalité TTS pour la lecture de partages à partir d'autres applications

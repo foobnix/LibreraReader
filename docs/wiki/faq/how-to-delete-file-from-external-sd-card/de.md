@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# So löschen Sie eine Buchdatei von einer externen SD-Karte
+# So löschen Sie ein Buch von einer externen SD-Karte
 
 > Aus Sicherheitsgründen können Benutzer auf Android 7+ keine Dateien von externen SD-Karten löschen.
 

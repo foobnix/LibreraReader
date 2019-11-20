@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Повышение контрастности и яркости в PDF (ч/б эффект)

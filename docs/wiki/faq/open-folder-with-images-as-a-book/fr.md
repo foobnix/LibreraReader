@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Ouverture d'un dossier contenant des images sous forme de livre (relié dans un livre)

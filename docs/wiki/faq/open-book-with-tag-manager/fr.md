@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Livre ouvert avec &quot;Gestionnaire de balises&quot;

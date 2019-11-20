@@ -17,7 +17,6 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
 import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -680,7 +679,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
                 }
             }
@@ -695,7 +694,7 @@ public class BookCSS {
             builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
                 }
             }

@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Configuration de la protection par empreinte digitale ou par mot de passe

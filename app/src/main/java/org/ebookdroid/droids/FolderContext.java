@@ -5,7 +5,6 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.XmlParser;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
@@ -33,7 +32,7 @@ public class FolderContext extends PdfContext {
         }
 
         File file;
-        if (AppsConfig.MUPDF_1_16 == BuildConfig.MUPDF_VERSION) {
+        if (AppsConfig.MUPDF_1_16 == AppsConfig.MUPDF_VERSION) {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
         } else {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());

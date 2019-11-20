@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Verwenden der TTS-Funktion zum Lesen von Freigaben aus anderen Apps

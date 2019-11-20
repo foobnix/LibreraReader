@@ -540,7 +540,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " ("+BuildConfig.MUPDF_VERSION+")";
+            String version = packageInfo.versionName + " ("+AppsConfig.MUPDF_VERSION+")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
@@ -551,8 +551,8 @@ public class PrefFragment2 extends UIFragment {
                 version += "\n MANUFACTURER: " + Build.MANUFACTURER;
                 version += "\n DEVICE: " + Build.DEVICE;
                 version += "\n REFRESH: " + Dips.getRefreshRate();
-                version += "\n WxH: " + Dips.screenWidthDP() + " x " + Dips.screenHeightDP();
-                version += "\n Nigth: " + Apps.isNight(getActivity());
+                version += "\n W x H: " + Dips.screenWidthDP() + " x " + Dips.screenHeightDP();
+                version += "\n Night: " + Apps.isNight(getActivity());
             }
 
             // ((TextView) inflate.findViewById(R.id.pVersion)).setText(String.format("%s:

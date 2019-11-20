@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Legen Sie einen eigenen Hintergrund für die Buchseite fest

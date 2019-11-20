@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Режимы чтения: режим прокрутки, режим книги и режим музыканта
