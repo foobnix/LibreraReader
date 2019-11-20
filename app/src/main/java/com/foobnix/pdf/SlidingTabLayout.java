@@ -303,11 +303,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setOnClickListener(tabClickListener);
 
 
-                if (myPOS == POS_VERTICAL) {
-                    getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(Dips.DP_80, LayoutParams.WRAP_CONTENT));
-                } else {
-                    getmTabStrip().addView(tabView);
-                }
+                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+
             }
         }
         updateIcons(0);
