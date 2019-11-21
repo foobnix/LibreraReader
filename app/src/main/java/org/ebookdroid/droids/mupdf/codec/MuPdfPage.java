@@ -165,7 +165,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public  boolean isRecycled() {
+    public boolean isRecycled() {
         return pageHandle == 0;
     }
 
@@ -341,7 +341,11 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public void addMarkupAnnotation(PointF[] quadPoints, AnnotationType type, float color[]) {
-        LOG.d("addMarkupAnnotation1", type, color[0], color[1], color[2]);
+        if (quadPoints.length <= 0) {
+            LOG.d("addMarkupAnnotation", "skip");
+            return;
+        }
+        LOG.d("addMarkupAnnotation", quadPoints.length, type, color[0], color[1], color[2]);
         TempHolder.lock.lock();
         try {
             addMarkupAnnotationInternal(docHandle, pageHandle, quadPoints, type.ordinal(), color);
@@ -399,7 +403,7 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public  TextWord[][] getText() {
+    public TextWord[][] getText() {
 
 
         if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
@@ -432,7 +436,7 @@ public class MuPdfPage extends AbstractCodecPage {
         TextWord tw = new TextWord();
         for (TextChar tc : chars) {
             if (tc.c == ' ') {
-                update(tw);
+                //update(tw);
                 words.add(tw);
                 //LOG.d("text116 add1", tw.w);
                 tw = new TextWord();
@@ -452,11 +456,16 @@ public class MuPdfPage extends AbstractCodecPage {
 
         TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
 
+        for (TextWord[] lines : res) {
+            for (TextWord word : lines) {
+                update(word);
+            }
+        }
 
         return res;
     }
 
-    public  TextWord[][] getText_111() {
+    public TextWord[][] getText_111() {
         TextChar[][][][] chars = text();
         if (chars == null) {
             return new TextWord[0][0];

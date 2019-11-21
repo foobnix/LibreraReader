@@ -1211,11 +1211,119 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
 
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNIEnv * env,
-		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, jint type, jobjectArray jcolors) {
+		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, enum pdf_annot_type type, jobjectArray jcolors) {
+
+	renderdocument_t *doc_t = (renderdocument_t*) (long) handle;
+	renderpage_t *page = (renderpage_t*) (long) pagehandle;
+
+	fz_context *ctx = doc_t->ctx;
+	fz_document *doc = doc_t->document;
+	pdf_document *idoc = pdf_specifics(ctx, doc);
+	jclass pt_cls;
+	jfieldID x_fid, y_fid;
+	int i, n;
+	float *pts = NULL;
+	float color[3];
+	float alpha;
+	float line_height;
+	float line_thickness;
+
+	if (idoc == NULL)
+		return;
+
+	switch (type)
+	{
+		case PDF_ANNOT_HIGHLIGHT:
+			alpha = 0.4;
+			line_thickness = 1.0;
+			line_height = 0.45;
+			break;
+		case PDF_ANNOT_UNDERLINE:
+			alpha = 1.0;
+			line_thickness = LINE_THICKNESS;
+			line_height = UNDERLINE_HEIGHT;
+			break;
+		case PDF_ANNOT_STRIKE_OUT:
+			alpha = 1.0;
+			line_thickness = LINE_THICKNESS;
+			line_height = STRIKE_HEIGHT;
+			break;
+		default:
+			return;
+	}
+	//LOGE("addMarkupAnnotationInternal 1");
+
+	jfloat *co = (*env)->GetPrimitiveArrayCritical(env, jcolors, 0);
+	color[0] = co[0];
+	color[1] = co[1];
+	color[2] = co[2];
+
+	(*env)->ReleasePrimitiveArrayCritical(env, jcolors, co, 0);
+
+	fz_var(pts);
+	fz_try(ctx)
+	{
+		pdf_annot *annot;
+		fz_matrix ctm;
+
+		//LOGE("addMarkupAnnotationInternal 2");
+
+		pt_cls = (*env)->FindClass(env, "android/graphics/PointF");
+		if (pt_cls == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "FindClass");
+		x_fid = (*env)->GetFieldID(env, pt_cls, "x", "F");
+		if (x_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(x)");
+		y_fid = (*env)->GetFieldID(env, pt_cls, "y", "F");
+		if (y_fid == NULL) fz_throw(ctx, FZ_ERROR_GENERIC, "GetFieldID(y)");
+
+		n = (*env)->GetArrayLength(env, points);
+
+		//LOGE("addMarkupAnnotationInternal 3");
+		pts = fz_malloc_array(ctx, n * 2, float);
+		//LOGE("addMarkupAnnotationInternal 4");
+		for (i = 0; i < n; i++)
+		{
+			fz_point pt;
+			jobject opt = (*env)->GetObjectArrayElement(env, points, i);
+			pt.x = opt ? (*env)->GetFloatField(env, opt, x_fid) : 0.0f;
+			pt.y = opt ? (*env)->GetFloatField(env, opt, y_fid) : 0.0f;
+			//fz_transform_point(&pts[i], &ctm);
+
+			(*env)->DeleteLocalRef(env,opt);
+			pts[i*2+0] = pt.x;
+			pts[i*2+1] = pt.y;
+		}
+
+		//LOGE("addMarkupAnnotationInternal 5");
+		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, type);
+		//pdf_set_markup_annot_quadpoints(ctx,idoc, (pdf_annot *)annot, pts, n);
+		//pdf_set_markup_appearance(ctx,idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
 
 
+		annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
+		//pdf_set_annot_ink_list(ctx, annot, n, n, pts);
+		DEBUG("addMarkupAnnotation count %d", n);
+		pdf_set_annot_quad_points(ctx, annot, n/4, pts);
+		//pdf_set_annot_border(ctx, annot, line_thickness);
+        pdf_set_annot_color(ctx, annot, 3, color);
+		//pdf_set_markup_appearance(ctx, idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
+		pdf_update_page(ctx, (pdf_page *)page->page);
+
+
+		//dump_annotation_display_lists(glo);
+	}
+	fz_always(ctx)
+	{
+		fz_free(ctx, pts);
+	}
+	fz_catch(ctx)
+	{
+		//LOGE("addStrikeOutAnnotation: %s failed", ctx->error->message);
+		jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
+		if (cls != NULL)
+			(*env)->ThrowNew(env, cls, "Out of memory in addMarkupAnnotationInternal");
+		(*env)->DeleteLocalRef(env, cls);
+	}
 }
-
 
 static void
 fz_print_stext_image_as_html_my(fz_context *ctx, fz_output *out, fz_stext_block *block)
