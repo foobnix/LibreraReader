@@ -1209,6 +1209,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
 }
 
 
+
+
 JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNIEnv * env,
 		jobject thiz, jlong handle, jlong pagehandle, jobjectArray points, enum pdf_annot_type type, jobjectArray jcolors) {
@@ -1293,19 +1295,13 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 			pts[i*2+1] = pt.y;
 		}
 
-		//LOGE("addMarkupAnnotationInternal 5");
-		//annot = (fz_annot *)pdf_create_annot(ctx, idoc, (pdf_page *)page->page, type);
-		//pdf_set_markup_annot_quadpoints(ctx,idoc, (pdf_annot *)annot, pts, n);
-		//pdf_set_markup_appearance(ctx,idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
-
-
-		annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
-		//pdf_set_annot_ink_list(ctx, annot, n, n, pts);
+    	annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
 		DEBUG("addMarkupAnnotation count %d", n);
 		pdf_set_annot_quad_points(ctx, annot, n/4, pts);
-		//pdf_set_annot_border(ctx, annot, line_thickness);
+		pdf_set_annot_border(ctx, annot, 0.01f);
         pdf_set_annot_color(ctx, annot, 3, color);
-		//pdf_set_markup_appearance(ctx, idoc, (pdf_annot *)annot, color, alpha, line_thickness, line_height);
+        pdf_set_annot_opacity(ctx, annot, alpha);
+		pdf_update_appearance(ctx, annot);
 		pdf_update_page(ctx, (pdf_page *)page->page);
 
 
