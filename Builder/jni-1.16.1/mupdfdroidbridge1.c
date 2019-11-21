@@ -1209,6 +1209,98 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_deleteAnnotationInternal(JN
 }
 
 
+static void pdf_set_markup_appearance(fz_point *qp, fz_context *ctx, pdf_document *doc, pdf_annot *annot, float color[3], float alpha, float line_thickness, float line_height)
+{
+	fz_path *path = NULL;
+	fz_stroke_state *stroke = NULL;
+	fz_device *dev = NULL;
+	fz_display_list *strike_list = NULL;
+	int i, n;
+	//fz_point *qp = quadpoints(ctx, doc, annot->obj, &n);
+	fz_matrix page_ctm;
+
+	pdf_page_transform(ctx, annot->page, NULL, &page_ctm);
+
+	if (!qp || n <= 0)
+		return;
+
+	fz_var(path);
+	fz_var(stroke);
+	fz_var(dev);
+	fz_var(strike_list);
+	fz_try(ctx)
+	{
+		fz_rect rect = fz_empty_rect;
+
+		rect.x0 = rect.x1 = qp[0].x;
+		rect.y0 = rect.y1 = qp[0].y;
+		for (i = 0; i < n; i++)
+			rect= fz_include_point_in_rect(rect, qp[i]);
+
+		strike_list = fz_new_display_list(ctx, fz_empty_rect);
+		dev = fz_new_list_device(ctx, strike_list);
+
+		for (i = 0; i < n; i += 4)
+		{
+			fz_point pt0 = qp[i];
+			fz_point pt1 = qp[i+1];
+			fz_point up;
+			float thickness;
+
+			up.x = qp[i+2].x - qp[i+1].x;
+			up.y = qp[i+2].y - qp[i+1].y;
+
+			pt0.x += line_height * up.x;
+			pt0.y += line_height * up.y;
+			pt1.x += line_height * up.x;
+			pt1.y += line_height * up.y;
+
+			thickness = sqrtf(up.x * up.x + up.y * up.y) * line_thickness;
+
+			if (!stroke || fz_abs(stroke->linewidth - thickness) < SMALL_FLOAT)
+			{
+				if (stroke)
+				{
+					// assert(path)
+					fz_stroke_path(ctx, dev, path, stroke, page_ctm, fz_device_rgb(ctx), color, alpha, fz_default_color_params);
+					fz_drop_stroke_state(ctx, stroke);
+					stroke = NULL;
+					fz_drop_path(ctx, path);
+					path = NULL;
+				}
+
+				stroke = fz_new_stroke_state(ctx);
+				stroke->linewidth = thickness;
+				path = fz_new_path(ctx);
+			}
+
+			fz_moveto(ctx, path, pt0.x, pt0.y);
+			fz_lineto(ctx, path, pt1.x, pt1.y);
+		}
+
+		if (stroke)
+		{
+			fz_stroke_path(ctx, dev, path, stroke, page_ctm, fz_device_rgb(ctx), color, alpha, fz_default_color_params);
+		}
+
+		fz_close_device(ctx, dev);
+
+		 rect= fz_transform_rect(rect, page_ctm);
+		pdf_set_annot_appearance(ctx, doc, annot, rect, strike_list);
+	}
+	fz_always(ctx)
+	{
+		fz_free(ctx, qp);
+		fz_drop_device(ctx, dev);
+		fz_drop_stroke_state(ctx, stroke);
+		fz_drop_path(ctx, path);
+		fz_drop_display_list(ctx, strike_list);
+	}
+	fz_catch(ctx)
+	{
+		fz_rethrow(ctx);
+	}
+}
 
 
 JNIEXPORT void JNICALL
@@ -1224,7 +1316,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 	jclass pt_cls;
 	jfieldID x_fid, y_fid;
 	int i, n;
-	float *pts = NULL;
+	fz_point *pts = NULL;
 	float color[3];
 	float alpha;
 	float line_height;
@@ -1291,17 +1383,21 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addMarkupAnnotationInternal(JNI
 			//fz_transform_point(&pts[i], &ctm);
 
 			(*env)->DeleteLocalRef(env,opt);
-			pts[i*2+0] = pt.x;
-			pts[i*2+1] = pt.y;
+			pts[i] = pt;
+			//pts[i*2+1] = pt.y;
 		}
 
-    	annot = pdf_create_annot(ctx, (pdf_page *)page->page, type);
+    	annot = pdf_create_annot_raw(ctx, (pdf_page *)page->page, type);
 		DEBUG("addMarkupAnnotation count %d", n);
+
+	    //pdf_set_markup_appearance(pts, ctx, idoc, annot, color, alpha, line_thickness, line_height);
+
 		pdf_set_annot_quad_points(ctx, annot, n/4, pts);
 		pdf_set_annot_border(ctx, annot, 0.01f);
         pdf_set_annot_color(ctx, annot, 3, color);
         pdf_set_annot_opacity(ctx, annot, alpha);
-		pdf_update_appearance(ctx, annot);
+
+	    //pdf_update_appearance(ctx, annot);
 		pdf_update_page(ctx, (pdf_page *)page->page);
 
 
