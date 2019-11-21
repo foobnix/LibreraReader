@@ -1015,6 +1015,13 @@ public class DocumentWrapperUI {
             TempHolder.get().documentTitleBarHeight = 0;
         }
 
+        final int dashHeight = Math.min(Dips.dpToPx(220), Dips.screenHeight() / 3);
+        line1.getLayoutParams().height = dashHeight;
+        line2.getLayoutParams().height = dashHeight;
+
+        line1.setLayoutParams(line1.getLayoutParams());
+        line2.setLayoutParams(line2.getLayoutParams());
+
     }
 
     public void hideShowPrevNext() {

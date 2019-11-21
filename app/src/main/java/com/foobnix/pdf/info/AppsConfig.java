@@ -21,6 +21,7 @@ public class AppsConfig {
 
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
+    public static final boolean ADS_ON_PAGE = false;
 
 
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;

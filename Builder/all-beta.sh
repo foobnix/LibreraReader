@@ -2,7 +2,7 @@
 
 
 
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.11.sh
 
 cd ../
 

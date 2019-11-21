@@ -89,7 +89,7 @@ public class MyADSProvider {
             }
         }
 
-        if(AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !(a instanceof MainTabs2)) {
+        if(!AppsConfig.ADS_ON_PAGE && !(a instanceof MainTabs2)) {
             LOG.d("Skip ads in the book");
             return;
         }

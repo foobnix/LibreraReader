@@ -8,15 +8,15 @@ cd ../
 
 ./gradlew clean incVersion
 
-#./gradlew assembleBetaRelease
-#./gradlew assemblePdf_v2Release
-#./gradlew assembleEbookaRelease
-#./gradlew assembleTts_readerRelease
+/.gradlew assembleBetaRelease
+./gradlew assemblePdf_v2Release
+./gradlew assembleEbookaRelease
+./gradlew assembleTts_readerRelease
 
 ./gradlew assembleLibreraRelease
 ./gradlew assembleProRelease
 
-#./gradlew assembleFdroidRelease
+./gradlew assembleFdroidRelease
 
 
 ./gradlew copyApks -Pbeta
