@@ -2,17 +2,20 @@
 layout: main
 ---
 
-# Relative page numbers for PDF books
+# Re-paginating Your Document to Match the Book's Page Numbers
 
-> Sometime user wants to have the page number in the slider like in the book page.
-For example if you study some doc, it's easy to find pages by book numbers.
+> Very often the books we're reading are divided into parts that have their own pagination, e.g., introductions, author's or editor's or whoever's forewords and prefaces and comments, etc., and the book itself starts well into the document. If you have notes to the book referring to particular pages, you'll be frustrated finding your bearings within the document. **Librera** allows you to re-paginate it and make the page numbers match.
 
-* Original page number, __Long click__ on current page
-* Set the relative page number
-* Slider with relative page number
+**Re-pagination works for all book formats. But its application lies primarily with PDF and DjVu documents.**
 
-Relative pages apply for the table of content and bookmarks also.
-To disable relative pages just click on current page number on the slider and choose "Restore defaults"
+* Tap at center-screen to open the menu
+* Long-press on the current page number
+* Enter a matching page number in the **Re-paginate** window
+* The book's Table of Contents will re-paginate automatically
+
+> Your bookmarks for this book will also re-paginate
+
+* To cancel re-pagination mode, call the **Re-paginate** window and tap _RESTORE DEFAULT_
 
 |1|2|3|
 |-|-|-|
