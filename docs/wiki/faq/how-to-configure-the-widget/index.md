@@ -2,35 +2,28 @@
 layout: main
 ---
 
-# How to configure the widget
+# Using _Librera_'s Widget
 
-> For faster access to the books In your library you can start them to read from the desktop of your launcher,
-you need to add the widget Librera.
+> The widget will help you launch **Librera** right from the desktop of your device. And with the book of your choosing. 
+
+To start using **Librera**'s widget, you should place it on the desktop via the _Widgets_ tab in your launcher.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
-To add and customize the widget:
+## Customizing the Widget
 
-* Go to your launcher's desktop widget settings and add the Librera widget to your desktop 
-* Once you've added the widget log in to Librera
-* Swipe from left to right to pull the menu
-* Scroll down the menu to the Widget settings item.
+* Open the slide-out **Preferences** tab and swipe down to the _Widget_ panel
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-In the widget settings You can customize the look of Your widget has Librera:
-
-* Information displayed in the widget - Recent books or Favorites
-* Its view is a List or Grid
-* The number of books displayed in the widget. 
-
-**You can configure the widget optimally for yourself.**
+* You can tell the widget what to display by choosing between your _Favorites_ and _Recent_ documents
+* Select the layout for the books in **Librera**'s widget
+* You can choose the size of **Librera**'s widget by increasing or decreasing the number of books on your widget's bookshelf
 
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-
