@@ -241,18 +241,20 @@ img {
    left: 0;
    top: 0;
    width: 100%; /* Full width */
-   height: 98%; /* Full height */
+   height: 100%; /* Full height */
    overflow: hidden; /* Enable scroll if needed */
  
 }
 
 /* Modal Content (image) */
 .modal-content {
+   background-color: #35a57a;
+   padding: 5px;
    margin: auto;
    display: block;
    border-width: 2px;
-   border-color: black;
-   height: 100%;
+   border-color: rgb(46, 105, 73);
+   height: 95%;
 }
 
 .languagepicker {
