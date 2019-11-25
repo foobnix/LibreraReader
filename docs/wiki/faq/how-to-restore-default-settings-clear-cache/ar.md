@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت

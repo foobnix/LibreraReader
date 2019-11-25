@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # فتح مجلد به صور ككتاب (الربط في كتاب)

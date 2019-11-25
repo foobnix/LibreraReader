@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Miglioramento del contrasto e della luminosità in PDF (effetto B/N)

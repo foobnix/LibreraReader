@@ -1,11 +1,10 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 #更新您的资料库
 >将图书添加到图书馆或从图书馆中删除某些内容后，您需要对其进行更新以反映这些更改。
-*点击更新图标以开始更新库。
+*点击刷新图标以开始更新媒体库。
 *在滑出式**“首选项”**标签中，您可以为**Librera**指定一些额外的文件夹，以在其中查找书籍。
 *您也可以从要扫描书籍的文件夹列表中删除整个文件夹。
 *对符合条件的文件类型列表进行更改后，将在几秒钟内出现提示，供您确认更改。
@@ -13,3 +12,5 @@ info: this file is generated automatically, please do not modify it
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+>注意：**Librera**可以扫描为从在线图书资源下载的图书创建的文件夹。您可以使用第三方应用程序在多个设备上同步这些文件夹。

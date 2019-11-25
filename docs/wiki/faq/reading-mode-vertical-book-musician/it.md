@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Modalità di lettura: modalità di scorrimento, modalità libro e modalità musicista

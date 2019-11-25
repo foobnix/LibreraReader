@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-#如何从外部SD卡删除书籍文件
+#如何从外部SD卡删除书籍
 
 >出于安全原因，系统不允许用户从Android 7+上的外部SD卡删除文件。
 

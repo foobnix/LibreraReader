@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Cómo eliminar un archivo de libro de una tarjeta SD externa
+# Cómo eliminar un libro de una tarjeta SD externa
 
 > Por razones de seguridad, el sistema no permitirá a los usuarios eliminar archivos de tarjetas SD externas en Android 7+.
 

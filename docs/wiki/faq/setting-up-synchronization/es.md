@@ -1,33 +1,36 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Configuración de sincronización
+# Sincronizar tu configuración de lectura en múltiples dispositivos
 
 
-> Para facilitar la lectura en diferentes dispositivos, Librera le permite sincronizar su progreso de lectura en sus libros, marcadores, perfiles y configuraciones.
+> **Librera** está equipado con una herramienta de sincronización que debería ser útil en los casos en que los usuarios poseen más de un dispositivo Android y tienden a alternarse entre ellos (incluso esporádicamente). Con esta herramienta, podrá sincronizar los perfiles de **Librera**, el progreso de la lectura, los marcadores y la configuración de lectura.
 
-Para habilitar la sincronización, debe:
+Para la comodidad de la mayoría de nuestros usuarios, hemos elegido Google Drive como el centro de sincronización de **Librera**.
 
-* En la configuración, ve al bloque de sincronización
-* Haz clic en &quot;Sing in&quot;
-* En la ventana emergente, seleccione su cuenta de Google
+* Para habilitar la sincronización, vaya al panel _Sync_ en la pestaña deslizable _Preferencias_ y marque la casilla correspondiente
+* Debe iniciar sesión en su cuenta de Google Drive
  
-Después de llevar a cabo estas acciones, los datos de la cuenta de Google conectada se mostrarán en el bloque de configuración de sincronización. Para sincronizar el programa entre varios dispositivos, debe iniciar sesión en otro dispositivo con la misma cuenta de Google.
+> **Para garantizar una sincronización adecuada, sus otros dispositivos deben iniciar sesión en la misma cuenta.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-En la configuración de sincronización puede configurar:
+## Opciones de sincronización
 
-* Sincronización manual: cuando esta función está habilitada, deslizar hacia abajo comienza la sincronización
-* Sincronizar solo cuando esté conectado a una red Wi Fi
-* Animar el progreso de la sincronización.
-
-Al hacer clic en el icono de sincronización, puede ver su registro.
+* Si se marca _Manual sync_, toda la sincronización se realizará manualmente, una vez que hayas deslizado tu dedo hacia abajo en la pantalla (en la forma nativa de Android de extracción y actualización)
+* Puede evitar que la herramienta de sincronización elimine bytes de su plan de datos habilitando solo la sincronización WiFi.
+* Puedes entretenerte con la animación de progreso de sincronización (rueda giratoria), marcando esta opción
+* Para ver el registro de sincronización, solo toque el icono de configuración (rueda) en el panel _Sync_
 
 ||||
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
+
+> Tenga en cuenta que Google Drive es solo un ejemplo. Las cuentas de Google son gratuitas y están disponibles para cualquier persona. Si, por alguna razón, prefiere cualquier otra solución en la nube, simplemente úsela:
+
+> **Solo necesita sincronizar la carpeta _Librera_ (que está en su almacenamiento interno) con su nube. ¡Voilà!**
+
+**PS** En cuanto a los libros descargados de los recursos en línea, guárdelos en carpetas sincronizadas a través de una aplicación de terceros y agregue esas carpetas a la Biblioteca de **Librera**.

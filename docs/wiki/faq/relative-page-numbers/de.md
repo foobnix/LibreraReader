@@ -2,17 +2,20 @@
 layout: main
 ---
 
-# Relative Seitenzahlen für PDF-Bücher
+# Paginieren Sie Ihr Dokument erneut, damit es mit den Seitenzahlen des Buches übereinstimmt
 
-> Manchmal möchte der Benutzer die Seitenzahl im Schieberegler haben, wie auf der Buchseite.
-Wenn Sie beispielsweise ein Dokument lesen, ist es einfach, Seiten anhand der Buchnummern zu finden.
+> Sehr oft sind die Bücher, die wir lesen, in Teile unterteilt, die eine eigene Paginierung haben, z. B. Einführungen, Autoren- oder Herausgeberwörter, Vorworte und Kommentare usw., und das Buch selbst fängt gut im Dokument an. Wenn Sie Anmerkungen zu dem Buch haben, die sich auf bestimmte Seiten beziehen, werden Sie frustriert sein, sich im Dokument zurechtzufinden. Mit **Librera** können Sie die Seiten neu paginieren und die Seitenzahlen übereinstimmen lassen.
 
-* Originalseitennummer, **Langer Klick auf** auf der aktuellen Seite
-* Legen Sie die relative Seitenzahl fest
-* Schieberegler mit relativer Seitenzahl
+**Die erneute Paginierung funktioniert für alle Buchformate. Die Anwendung liegt jedoch hauptsächlich bei PDF- und DjVu-Dokumenten.**
 
-Relative Seiten gelten auch für das Inhaltsverzeichnis und die Lesezeichen.
-Um relative Seiten zu deaktivieren, klicken Sie einfach auf die aktuelle Seitennummer im Schieberegler und wählen Sie &quot;Standard wiederherstellen&quot;.
+* Tippen Sie in der Mitte auf, um das Menü zu öffnen
+* Drücken Sie lange auf die aktuelle Seitennummer
+* Geben Sie im Fenster **Erneut paginieren** eine übereinstimmende Seitennummer ein
+* Das Inhaltsverzeichnis des Buches wird automatisch neu angezeigt
+
+> Ihre Lesezeichen für dieses Buch werden ebenfalls erneut paginiert
+
+* Um den Paginierungswiederholungsmodus abzubrechen, rufen Sie das Fenster **Paginieren** auf und tippen Sie auf _RESTORE DEFAULT_.
 
 |1|2|3|
 |-|-|-|

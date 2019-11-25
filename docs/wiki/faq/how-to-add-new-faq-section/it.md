@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Come aggiungere un nuovo argomento FAQ
@@ -14,7 +13,6 @@ Formato dell'intestazione del file per **index.md**:
 ```
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

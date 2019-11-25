@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Como excluir um arquivo de livro de um cartão SD externo
+# Como excluir um livro de um cartão SD externo
 
 > Por motivos de segurança, o sistema não permitirá que os usuários excluam arquivos de cartões SD externos no Android 7+.
 

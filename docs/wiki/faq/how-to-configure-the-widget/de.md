@@ -2,35 +2,28 @@
 layout: main
 ---
 
-# So konfigurieren Sie das Widget
+# Verwenden des Widgets von _Librera_
 
-> Für einen schnelleren Zugriff auf die Bücher In Ihrer Bibliothek können Sie sie vom Desktop Ihres Launchers aus lesen.
-Sie müssen das Widget Librera hinzufügen.
+> Mit dem Widget können Sie **Librera** direkt vom Desktop Ihres Geräts aus starten. Und mit dem Buch Ihrer Wahl.
+
+Um das Widget von **Librera** zu verwenden, sollten Sie es über den Tab _Widgets_ in Ihrem Launcher auf dem Desktop platzieren.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
-So fügen Sie das Widget hinzu und passen es an:
+## Anpassen des Widgets
 
-* Wechseln Sie zu den Desktop-Widget-Einstellungen Ihres Startprogramms und fügen Sie das Librera-Widget zu Ihrem Desktop hinzu
-* Nachdem Sie das Widget hinzugefügt haben, melden Sie sich bei Librera an
-* Streichen Sie von links nach rechts, um das Menü aufzurufen
-* Scrollen Sie im Menü zum Element Widget-Einstellungen.
+* Öffnen Sie den Tab &quot;Slide-Out&quot; **&quot;Einstellungen&quot;** und streichen Sie nach unten zum Fenster &quot;_Widget_&quot;
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-In den Widget-Einstellungen können Sie das Aussehen Ihres Widgets mit Librera anpassen:
-
-* Im Widget angezeigte Informationen - Neueste Bücher oder Favoriten
-* Die Ansicht ist eine Liste oder ein Raster
-* Die Anzahl der im Widget angezeigten Bücher.
-
-**Sie können das Widget optimal für sich selbst konfigurieren.**
+* Sie können dem Widget mitteilen, was angezeigt werden soll, indem Sie zwischen Ihren _Favoriten_ und _Neuesten_ Dokumenten wählen
+* Wählen Sie das Layout für die Bücher im Widget von **Librera** aus
+* Sie können die Größe des Widgets von **Librera** festlegen, indem Sie die Anzahl der Bücher im Bücherregal Ihres Widgets erhöhen oder verringern
 
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-

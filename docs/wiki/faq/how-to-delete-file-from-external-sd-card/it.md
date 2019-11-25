@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Come eliminare un file libro da una scheda SD esterna
+# Come eliminare un libro da una scheda SD esterna
 
 > Per motivi di sicurezza, il sistema non consente agli utenti di eliminare file da schede SD esterne su Android 7+.
 

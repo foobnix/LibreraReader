@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Como adicionar um novo tópico de FAQ
@@ -14,7 +13,6 @@ Formato do cabeçalho do arquivo para **index.md**:
 ```
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

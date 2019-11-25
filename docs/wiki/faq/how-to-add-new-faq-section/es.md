@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Cómo agregar un nuevo tema de preguntas frecuentes
@@ -14,7 +13,6 @@ Formato de encabezado de archivo para **index.md**:
 ```
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Topic Name from Here Goes to the FAQ Page

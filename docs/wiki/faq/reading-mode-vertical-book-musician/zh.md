@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 #阅读模式：滚动模式，书本模式和音乐人模式

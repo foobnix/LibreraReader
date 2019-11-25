@@ -16,7 +16,7 @@ cd ../
 ./gradlew assembleLibreraRelease
 ./gradlew assembleProRelease
 
-./gradlew assembleFdroidRelease
+#./gradlew assembleFdroidRelease
 
 
 ./gradlew copyApks -Pbeta

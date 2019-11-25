@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Abrindo uma pasta com imagens como livro (Vincular a um livro)

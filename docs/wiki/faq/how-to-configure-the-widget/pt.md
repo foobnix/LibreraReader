@@ -1,37 +1,29 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Como configurar o widget
+# Usando o widget de _Librera_
 
-> Para acesso mais rápido aos livros Na sua biblioteca, você pode iniciá-los a ler na área de trabalho do seu iniciador,
-você precisa adicionar o widget Librera.
+> O widget ajudará você a iniciar o **Librera** diretamente da área de trabalho do seu dispositivo. E com o livro de sua escolha.
+
+Para começar a usar o widget de **Librera**, você deve colocá-lo na área de trabalho através da guia _Widgets_ no seu iniciador.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
-Para adicionar e personalizar o widget:
+## Personalizando o widget
 
-* Vá para as configurações do widget da área de trabalho do iniciador e adicione o widget Librera à sua área de trabalho
-* Depois de adicionar o widget, faça login no Librera
-* Deslize da esquerda para a direita para abrir o menu
-* Role o menu até o item de configurações do Widget.
+* Abra a guia deslizante **Preferências** e deslize para baixo até o painel _Widget_
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-Nas configurações do widget Você pode personalizar a aparência do seu widget com Librera:
-
-* Informações exibidas no widget - Livros recentes ou Favoritos
-* Sua visão é uma Lista ou Grade
-* O número de livros exibidos no widget.
-
-**Você pode configurar o widget da melhor maneira possível.**
+* Você pode dizer ao widget o que exibir escolhendo entre os documentos _Favoritos_ e _Recent_
+* Selecione o layout dos livros no widget do **Librera**
+* Você pode escolher o tamanho do widget do **Librera** aumentando ou diminuindo o número de livros na estante do seu widget
 
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-

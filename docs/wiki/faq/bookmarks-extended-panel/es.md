@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Trabajar con marcadores en modo extendido (cinta de marcadores)

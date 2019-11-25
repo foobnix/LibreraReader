@@ -1,19 +1,21 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# Números de página relativos para libros PDF
+# Volver a paginar su documento para que coincida con los números de página del libro
 
-> En algún momento, el usuario quiere tener el número de página en el control deslizante como en la página del libro.
-Por ejemplo, si estudia algún documento, es fácil encontrar páginas por números de libro.
+> Muy a menudo, los libros que estamos leyendo se dividen en partes que tienen su propia paginación, por ejemplo, introducciones, autorías o editores o los prefacios y prefacios y comentarios, etc., y el libro en sí comienza bien en el documento. Si tiene notas en el libro que se refieren a páginas particulares, se sentirá frustrado al orientarse dentro del documento. **Librera** le permite volver a paginarlo y hacer que los números de página coincidan.
 
-* Número de página original, **Haga clic largo** en la página actual
-* Establecer el número de página relativo
-* Control deslizante con número de página relativo
+**La paginación funciona para todos los formatos de libros. Pero su aplicación reside principalmente en documentos PDF y DjVu.**
 
-Las páginas relativas también se aplican a la tabla de contenido y marcadores.
-Para deshabilitar las páginas relativas, simplemente haga clic en el número de página actual en el control deslizante y seleccione &quot;Restaurar valores predeterminados&quot;
+* Toque en la pantalla central para abrir el menú
+* Mantenga presionado el número de página actual
+* Ingrese un número de página coincidente en la ventana **Re-paginate**
+* La tabla de contenido del libro se volverá a paginar automáticamente
+
+> Tus marcadores para este libro también volverán a paginar
+
+* Para cancelar el modo de re-paginación, llame a la ventana **Re-paginate** y toque _RESTORE DEFAULT_
 
 |1|2|3|
 |-|-|-|

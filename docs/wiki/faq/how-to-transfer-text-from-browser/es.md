@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Uso de la capacidad TTS para leer acciones de otras aplicaciones

@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # تحديث مكتبتك
@@ -13,3 +12,5 @@ info: this file is generated automatically, please do not modify it
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+> ملاحظة: **Librera** يمكنها مسح المجلدات التي تم إنشاؤها للكتب التي تم تنزيلها من مصادر الكتب على الإنترنت. يمكنك مزامنة هذه المجلدات عبر أجهزة متعددة باستخدام تطبيقات الجهات الخارجية.

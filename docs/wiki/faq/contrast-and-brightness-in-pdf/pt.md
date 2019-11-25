@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Aprimoramento de contraste e brilho em PDF (efeito P/B)

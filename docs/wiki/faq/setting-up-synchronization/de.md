@@ -31,4 +31,6 @@ Für die meisten unserer Nutzer haben wir Google Drive als Synchronisierungs-Hub
 
 > Beachten Sie, dass Google Drive nur ein Beispiel ist. Google-Konten sind kostenlos und für jedermann verfügbar. Wenn Sie aus irgendeinem Grund eine andere Cloud-Lösung bevorzugen, verwenden Sie sie einfach:
 
-**Sie müssen nur den Ordner _Librera_ (der sich in Ihrem internen Speicher befindet) mit Ihrer Cloud synchronisieren. Voilà!**
+> **Sie müssen nur den Ordner _Librera_ (der sich in Ihrem internen Speicher befindet) mit Ihrer Cloud synchronisieren. Voilà!**
+
+**PS** Speichern Sie Bücher, die von Online-Ressourcen heruntergeladen wurden, in Ordnern, die über eine Drittanbieter-App synchronisiert wurden, und fügen Sie diese Ordner der Bibliothek von **Librera** hinzu.

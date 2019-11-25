@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Abrir una carpeta con imágenes como libro (Encuadernar en un libro)

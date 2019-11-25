@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Abra o livro com o &quot;Gerenciador de tags&quot;

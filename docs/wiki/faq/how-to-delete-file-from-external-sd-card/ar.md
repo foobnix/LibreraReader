@@ -1,9 +1,8 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
-# كيفية حذف ملف كتاب من بطاقة SD خارجية
+# كيفية حذف كتاب من بطاقة SD خارجية
 
 > لأسباب أمنية ، لن يسمح النظام للمستخدمين بحذف الملفات من بطاقات SD الخارجية على Android 7+.
 

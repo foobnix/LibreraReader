@@ -12,3 +12,5 @@ layout: main
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+
+> Hinweis: **Librera** kann die Ordner scannen, die für die Bücher erstellt wurden, die von Online-Buchressourcen heruntergeladen wurden. Sie können diese Ordner mit Apps von Drittanbietern auf mehreren Geräten synchronisieren.

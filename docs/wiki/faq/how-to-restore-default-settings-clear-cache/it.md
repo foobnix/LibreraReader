@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Come ripristinare le impostazioni predefinite/Cancella cache

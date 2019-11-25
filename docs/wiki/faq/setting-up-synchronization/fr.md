@@ -31,4 +31,6 @@ Pour le confort de la plupart de nos utilisateurs, nous avons choisi Google Driv
 
 > Notez que Google Drive n’est qu’un exemple. Les comptes Google sont gratuits et accessibles à tous. Si, pour une raison quelconque, vous préférez une autre solution cloud, utilisez-la simplement:
 
-**Vous devez simplement synchroniser le dossier _Librera_ (qui se trouve dans votre stockage interne) avec votre nuage. Voilà!**
+> **Il vous suffit de synchroniser le dossier _Librera_ (qui se trouve dans votre stockage interne) avec votre nuage. Voilà!**
+
+**PS** En ce qui concerne les livres téléchargés à partir de ressources en ligne, stockez-les dans des dossiers synchronisés via une application tierce, puis ajoutez-les à la bibliothèque de **Librera**.

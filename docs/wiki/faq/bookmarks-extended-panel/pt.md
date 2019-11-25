@@ -1,6 +1,5 @@
 ---
 layout: main
-info: this file is generated automatically, please do not modify it
 ---
 
 # Trabalhando com favoritos no modo avançado (faixa de opções Favoritos)
