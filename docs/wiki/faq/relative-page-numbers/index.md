@@ -4,9 +4,9 @@ layout: main
 
 # Re-paginating Your Document to Match the Book's Page Numbers
 
-> Very often the books we're reading are divided into parts that have their own pagination, e.g., introductions, author's or editor's or whoever's forewords and prefaces and comments, etc., and the book itself starts well into the document. If you have notes to the book referring to particular pages, you'll be frustrated finding your bearings within the document. **Librera** allows you to re-paginate it and make the page numbers match.
+> Very often the books we're reading are divided into parts that have their own pagination, e.g., introductions, author's or editor's or whoever's forewords, prefaces, comments, etc., and the book itself starts well into the document. If you have notes to the book referring to particular pages, you'll be frustrated finding your bearings within the document. **Librera** allows you to re-paginate it and make the page numbers match your notes.
 
-**Re-pagination works for all book formats. But its application lies primarily with PDF and DjVu documents.**
+**Re-pagination works for all book formats. But, for obvious reasons, it is intended mostly for PDF and DjVu documents.**
 
 * Tap at center-screen to open the menu
 * Long-press on the current page number
