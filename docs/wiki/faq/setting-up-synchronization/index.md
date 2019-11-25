@@ -31,4 +31,6 @@ For the convenience of most of our users, we have chosen Google Drive as **Libre
 
 > Note that Google Drive is just an example. Google accounts are free and available to anyone. If, for whatever reason, you prefer any other cloud solution, just use it:
 
-**You just need to sync the _Librera_ folder (which is in your internal storage) with your cloud. Voilà!**
+> **You just need to sync the _Librera_ folder (which is in your internal storage) with your cloud. Voilà!**
+
+**P.S.** As for the books downloaded from online resources, store them in folders synced via a third-party app, and add those folders to **Librera**'s Library.
