@@ -248,8 +248,6 @@ img {
 
 /* Modal Content (image) */
 .modal-content {
-   background-color: #35a57a;
-   padding: 5px;
    margin: auto;
    display: block;
    border-width: 2px;
