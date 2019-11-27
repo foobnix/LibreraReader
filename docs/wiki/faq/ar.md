@@ -4,10 +4,11 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [كيفية اختيار النص في _Librera _](/wiki/faq/how-to-set-text-selection/ar)
 * [مزامنة إعداد القراءة عبر أجهزة متعددة](/wiki/faq/setting-up-synchronization/ar)
+* [إعادة ترقيم الصفحات وثيقتك لمطابقة أرقام صفحات الكتاب](/wiki/faq/relative-page-numbers/ar)
 * [باستخدام أداة _Librera_'s](/wiki/faq/how-to-configure-the-widget/ar)
 * [تحديث مكتبتك](/wiki/faq/update-the-library/ar)
-* [إعادة ترقيم الصفحات وثيقتك لمطابقة أرقام صفحات الكتاب](/wiki/faq/relative-page-numbers/ar)
 * [كيفية حذف كتاب من بطاقة SD خارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
 * [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
@@ -17,7 +18,6 @@ layout: main
 * [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [القراءة بلغات RTL](/wiki/faq/rtl-or-ltr-text-direction/ar)
 * [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
-* [كيفية تعيين اختيار النص](/wiki/faq/how-to-set-text-selection/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [واجهة مستخدم Theming Librera](/wiki/faq/customize-theme-colors-links/ar)
 * [زيادة حجم الخط في مستندات PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)

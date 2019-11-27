@@ -4,9 +4,9 @@ layout: main
 
 # Re-paginando seu documento para corresponder aos números de página do livro
 
-> Muitas vezes, os livros que estamos lendo são divididos em partes com paginação própria, por exemplo, introduções, autor ou editor ou qualquer prefácio e prefácio e comentário, etc., e o próprio livro começa bem no documento. Se você tiver anotações do livro referentes a páginas específicas, ficará frustrado ao encontrar seu rumo no documento. O **Librera** permite que você pagine novamente e faça com que os números das páginas correspondam.
+> Muitas vezes, os livros que estamos lendo são divididos em partes que possuem paginação própria, por exemplo, apresentações, autor ou editor ou prefácio, prefácio, comentários, etc., e o próprio livro começa bem no documento. Se você tiver anotações do livro referentes a páginas específicas, ficará frustrado ao encontrar seu rumo no documento. O **Librera** permite que você o pagine novamente e faça com que os números das páginas correspondam às suas anotações.
 
-**A re-paginação funciona para todos os formatos de livros. Mas sua aplicação reside principalmente em documentos PDF e DjVu.**
+**A re-paginação funciona para todos os formatos de livros. Mas, por razões óbvias, ele se destina principalmente a documentos PDF e DjVu.**
 
 * Toque na tela central para abrir o menu
 * Mantenha pressionado o número da página atual

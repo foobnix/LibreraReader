@@ -4,10 +4,11 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Как выбрать текст в _Librera _](/wiki/faq/how-to-set-text-selection/ru)
 * [Синхронизация настроек чтения на нескольких устройствах](/wiki/faq/setting-up-synchronization/ru)
+* [Повторная нумерация вашего документа в соответствии с номерами страниц книги](/wiki/faq/relative-page-numbers/ru)
 * [Использование виджета _Librera_](/wiki/faq/how-to-configure-the-widget/ru)
 * [Обновление вашей библиотеки](/wiki/faq/update-the-library/ru)
-* [Повторная нумерация вашего документа в соответствии с номерами страниц книги](/wiki/faq/relative-page-numbers/ru)
 * [Как удалить книгу с внешней SD-карты](/wiki/faq/how-to-delete-file-from-external-sd-card/ru)
 * [Работа с онлайн-каталогами OPDS](/wiki/faq/working-with-opds-online-catalogs/ru)
 * [Открытие папки с изображениями в виде книги (переплет в книге)](/wiki/faq/open-folder-with-images-as-a-book/ru)
@@ -17,7 +18,6 @@ layout: main
 * [Повышение контрастности и яркости в PDF (ч/б эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
 * [Чтение на языках RTL](/wiki/faq/rtl-or-ltr-text-direction/ru)
 * [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
-* [Как настроить выбор текста](/wiki/faq/how-to-set-text-selection/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Пользовательский интерфейс Theming Librera](/wiki/faq/customize-theme-colors-links/ru)
 * [Увеличение размера шрифта в документах PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)

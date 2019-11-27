@@ -4,10 +4,11 @@ layout: main
 
 #常见问题
 
+* [如何在_Librera_中选择文本](/wiki/faq/how-to-set-text-selection/zh)
 * [跨多个设备同步您的阅读设置](/wiki/faq/setting-up-synchronization/zh)
+* [重新分页文档以匹配书的页码](/wiki/faq/relative-page-numbers/zh)
 * [使用_Librera_的小部件](/wiki/faq/how-to-configure-the-widget/zh)
 * [更新您的图书馆](/wiki/faq/update-the-library/zh)
-* [重新分页文档以匹配书的页码](/wiki/faq/relative-page-numbers/zh)
 * [如何从外部SD卡删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
 * [使用OPDS在线目录](/wiki/faq/working-with-opds-online-catalogs/zh)
 * [打开带有图像作为书本的文件夹(书本装订)](/wiki/faq/open-folder-with-images-as-a-book/zh)
@@ -17,7 +18,6 @@ layout: main
 * [PDF的对比度和亮度增强(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
 * [使用RTL语言阅读](/wiki/faq/rtl-or-ltr-text-direction/zh)
 * [安装和配置语音合成(TTS)](/wiki/faq/installation-and-configuration-of-tts/zh)
-* [如何设置文本选择](/wiki/faq/how-to-set-text-selection/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [主题库用户界面](/wiki/faq/customize-theme-colors-links/zh)
 * [增加PDF文档的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)

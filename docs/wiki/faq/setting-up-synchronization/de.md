@@ -20,8 +20,8 @@ Für die meisten unserer Nutzer haben wir Google Drive als Synchronisierungs-Hub
 
 ## Synchronisierungsoptionen
 
-* Wenn die Option &quot;Manuelle Synchronisierung&quot; aktiviert ist, wird die gesamte Synchronisierung manuell durchgeführt, sobald Sie mit dem Finger über den Bildschirm gezogen haben (in der nativen Pull-to-Refresh-Methode von Android).
-* Sie können verhindern, dass das Synchronisierungstool Bytes aus Ihrem Datenplan entfernt, indem Sie nur die WiFi-Synchronisierung aktivieren.
+* Wenn _Manuelle Synchronisierung_ aktiviert ist, müssen Sie mit dem Finger über den Bildschirm streichen, um die Synchronisierung zu starten (in der nativen Pull-to-Refresh-Methode von Android).
+* Sie können verhindern, dass sich das Synchronisierungstool in Ihren Datenplan einfügt, indem Sie nur die WiFi-Synchronisierung aktivieren.
 * Wenn Sie diese Option aktivieren, können Sie sich mit der Synchronisierungsfortschrittsanimation (Drehrad) beschäftigen
 * Um das Synchronisierungsprotokoll anzuzeigen, tippen Sie einfach auf das Einstellungssymbol (Rad) im Bereich _Sync_
 
@@ -29,8 +29,8 @@ Für die meisten unserer Nutzer haben wir Google Drive als Synchronisierungs-Hub
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
 
-> Beachten Sie, dass Google Drive nur ein Beispiel ist. Google-Konten sind kostenlos und für jedermann verfügbar. Wenn Sie aus irgendeinem Grund eine andere Cloud-Lösung bevorzugen, verwenden Sie sie einfach:
+> Hinweis: Google Drive wurde aus Gründen der Benutzerfreundlichkeit ausgewählt. Google-Konten sind kostenlos und für jedermann verfügbar. Wenn Sie aus irgendeinem Grund eine andere Cloud-Lösung bevorzugen, können Sie diese verwenden:
 
 > **Sie müssen nur den Ordner _Librera_ (der sich in Ihrem internen Speicher befindet) mit Ihrer Cloud synchronisieren. Voilà!**
 
-**PS** Speichern Sie Bücher, die von Online-Ressourcen heruntergeladen wurden, in Ordnern, die über eine Drittanbieter-App synchronisiert wurden, und fügen Sie diese Ordner der Bibliothek von **Librera** hinzu.
+**PS** Sie können Bücher, die von Online-Ressourcen heruntergeladen wurden, in Ordnern speichern, die über eine Drittanbieter-App synchronisiert wurden, und diese Ordner der Bibliothek von **Librera** hinzufügen.

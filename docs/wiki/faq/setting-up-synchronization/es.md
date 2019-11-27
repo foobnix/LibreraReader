@@ -20,8 +20,8 @@ Para la comodidad de la mayoría de nuestros usuarios, hemos elegido Google Driv
 
 ## Opciones de sincronización
 
-* Si se marca _Manual sync_, toda la sincronización se realizará manualmente, una vez que hayas deslizado tu dedo hacia abajo en la pantalla (en la forma nativa de Android de extracción y actualización)
-* Puede evitar que la herramienta de sincronización elimine bytes de su plan de datos habilitando solo la sincronización WiFi.
+* Si se marca _Manual sync_, deberá deslizar el dedo hacia abajo en la pantalla para comenzar a sincronizar (en la forma nativa de Android de extracción y actualización)
+* Puede evitar que la herramienta de sincronización muerda su plan de datos habilitando solo la sincronización WiFi.
 * Puedes entretenerte con la animación de progreso de sincronización (rueda giratoria), marcando esta opción
 * Para ver el registro de sincronización, solo toque el icono de configuración (rueda) en el panel _Sync_
 
@@ -29,8 +29,8 @@ Para la comodidad de la mayoría de nuestros usuarios, hemos elegido Google Driv
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
 
-> Tenga en cuenta que Google Drive es solo un ejemplo. Las cuentas de Google son gratuitas y están disponibles para cualquier persona. Si, por alguna razón, prefiere cualquier otra solución en la nube, simplemente úsela:
+> Nota: Google Drive ha sido elegido por su conveniencia. Las cuentas de Google son gratuitas y están disponibles para cualquier persona. Si, por alguna razón, prefiere cualquier otra solución en la nube, continúe y úsela:
 
 > **Solo necesita sincronizar la carpeta _Librera_ (que está en su almacenamiento interno) con su nube. ¡Voilà!**
 
-**PS** En cuanto a los libros descargados de los recursos en línea, guárdelos en carpetas sincronizadas a través de una aplicación de terceros y agregue esas carpetas a la Biblioteca de **Librera**.
+**PS** En cuanto a los libros descargados de los recursos en línea, puede almacenarlos en carpetas sincronizadas a través de una aplicación de terceros y agregar esas carpetas a la Biblioteca de **Librera**.

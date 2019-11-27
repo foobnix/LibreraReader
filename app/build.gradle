@@ -281,11 +281,13 @@ android {
                 abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
                 output.versionCodeOverride = code
-                def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                def fullName = "${flavor}-${versionNumber}-${abiName}.apk";
                 output.outputFileName = fullName;
             }else{
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
-                def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
+                def fullName = "${flavor}-${versionNumber}-u.apk";
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName;
 

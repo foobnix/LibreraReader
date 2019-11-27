@@ -5,10 +5,11 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [How to Select Text in _Librera_](/wiki/faq/how-to-set-text-selection)
 * [Syncing Your Reading Setup Across Multiple Devices](/wiki/faq/setting-up-synchronization)
+* [Re-paginating Your Document to Match the Book's Page Numbers](/wiki/faq/relative-page-numbers)
 * [Using _Librera_'s Widget](/wiki/faq/how-to-configure-the-widget)
 * [Updating Your Library](/wiki/faq/update-the-library)
-* [Re-paginating Your Document to Match the Book's Page Numbers](/wiki/faq/relative-page-numbers)
 * [How to Delete a Book from an External SD Card](/wiki/faq/how-to-delete-file-from-external-sd-card)
 * [Working with OPDS online catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
@@ -18,7 +19,6 @@ info: this file is generated automatically, please do not modify it
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
 * [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
-* [How to set text selection](/wiki/faq/how-to-set-text-selection)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Theming Librera's UI](/wiki/faq/customize-theme-colors-links)
 * [Increasing Font-Size in PDF Documents](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)

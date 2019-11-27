@@ -4,9 +4,9 @@ layout: main
 
 # Paginieren Sie Ihr Dokument erneut, damit es mit den Seitenzahlen des Buches übereinstimmt
 
-> Sehr oft sind die Bücher, die wir lesen, in Teile unterteilt, die eine eigene Paginierung haben, z. B. Einführungen, Autoren- oder Herausgeberwörter, Vorworte und Kommentare usw., und das Buch selbst fängt gut im Dokument an. Wenn Sie Anmerkungen zu dem Buch haben, die sich auf bestimmte Seiten beziehen, werden Sie frustriert sein, sich im Dokument zurechtzufinden. Mit **Librera** können Sie die Seiten neu paginieren und die Seitenzahlen übereinstimmen lassen.
+> Sehr oft sind die Bücher, die wir lesen, in Teile unterteilt, die eine eigene Paginierung haben, z. B. Einführungen, Autoren- oder Herausgeber-Vorworte, Vorworte, Kommentare usw., und das Buch selbst fängt gut im Dokument an. Wenn Sie Anmerkungen zu dem Buch haben, die sich auf bestimmte Seiten beziehen, werden Sie frustriert sein, sich im Dokument zurechtzufinden. Mit **Librera** können Sie die Seite neu paginieren und die Seitenzahlen Ihren Notizen anpassen.
 
-**Die erneute Paginierung funktioniert für alle Buchformate. Die Anwendung liegt jedoch hauptsächlich bei PDF- und DjVu-Dokumenten.**
+**Die erneute Paginierung funktioniert für alle Buchformate. Aus offensichtlichen Gründen ist es jedoch hauptsächlich für PDF- und DjVu-Dokumente vorgesehen.**
 
 * Tippen Sie in der Mitte auf, um das Menü zu öffnen
 * Drücken Sie lange auf die aktuelle Seitennummer

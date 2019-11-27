@@ -20,8 +20,8 @@ Para conveniência da maioria de nossos usuários, escolhemos o Google Drive com
 
 ## Opções de sincronização
 
-* Se a opção _Manual sync_ estiver marcada, toda a sincronização será feita manualmente, depois de deslizar o dedo pela tela (da maneira nativa do Android para puxar para atualizar)
-* Você pode impedir que a ferramenta de sincronização morda bytes do seu plano de dados, ativando apenas a sincronização de WiFi.
+* Se a opção _Manual sync_ estiver marcada, você precisará deslizar o dedo para baixo da tela para iniciar a sincronização (no estilo nativo do Android para puxar para atualizar)
+* Você pode impedir que a ferramenta de sincronização entre no seu plano de dados ativando apenas a sincronização de WiFi.
 * Você pode se divertir com a animação de progresso de sincronização (roda giratória), marcando esta opção
 * Para visualizar o log de sincronização, basta tocar no ícone de configurações (roda) no painel _Sync_
 
@@ -29,8 +29,8 @@ Para conveniência da maioria de nossos usuários, escolhemos o Google Drive com
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
 
-> Observe que o Google Drive é apenas um exemplo. As contas do Google são gratuitas e estão disponíveis para qualquer pessoa. Se, por qualquer motivo, você preferir qualquer outra solução em nuvem, use-a:
+> Nota: o Google Drive foi escolhido por sua conveniência. As contas do Google são gratuitas e estão disponíveis para qualquer pessoa. Se, por qualquer motivo, você preferir qualquer outra solução em nuvem, vá em frente e use-a:
 
 > **Você só precisa sincronizar a pasta _Librera_ (que está em seu armazenamento interno) com sua nuvem. Voilà!**
 
-**PS** Quanto aos livros baixados de recursos on-line, armazene-os em pastas sincronizadas por um aplicativo de terceiros e adicione essas pastas à Biblioteca do **Librera**.
+**PS** Quanto aos livros baixados de recursos online, você pode armazená-los em pastas sincronizadas por meio de um aplicativo de terceiros e adicioná-las à Biblioteca do **Librera**.

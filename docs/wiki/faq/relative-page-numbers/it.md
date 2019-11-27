@@ -4,9 +4,9 @@ layout: main
 
 # Nuova paginazione del documento per abbinare i numeri di pagina del libro
 
-> Molto spesso i libri che stiamo leggendo sono divisi in parti che hanno la loro impaginazione, ad esempio presentazioni, autore o editore o chi si fa avanti, prefazioni e commenti, ecc., E il libro stesso inizia bene nel documento. Se hai appunti sul libro che si riferiscono a pagine particolari, sarai frustrato nel trovare i tuoi riferimenti all'interno del documento. **Librera** ti consente di impaginare nuovamente e far corrispondere i numeri di pagina.
+> Molto spesso i libri che stiamo leggendo sono divisi in parti che hanno una loro impaginazione, ad es. Presentazioni, autori o editori o anticipazioni, prefazioni, commenti, ecc., E il libro stesso inizia bene nel documento. Se hai appunti sul libro che si riferiscono a pagine particolari, sarai frustrato nel trovare i tuoi riferimenti all'interno del documento. **Librera** ti consente di ripaginare e far corrispondere i numeri di pagina alle tue note.
 
-**La ripaginazione funziona per tutti i formati di libri. Ma la sua applicazione risiede principalmente nei documenti PDF e DjVu.**
+**La ripaginazione funziona per tutti i formati di libri. Ma, per ovvi motivi, è destinato principalmente a documenti PDF e DjVu.**
 
 * Tocca al centro dello schermo per aprire il menu
 * Premi a lungo sul numero di pagina corrente

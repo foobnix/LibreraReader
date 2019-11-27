@@ -20,8 +20,8 @@ Per comodità della maggior parte dei nostri utenti, abbiamo scelto Google Drive
 
 ## Opzioni di sincronizzazione
 
-* Se è selezionata la _Sincronizzazione manuale_, tutta la sincronizzazione verrà eseguita manualmente, dopo aver fatto scorrere il dito sullo schermo (in modalità pull-to-refresh nativa di Android)
-* Puoi impedire allo strumento di sincronizzazione di eliminare i byte dal tuo piano dati abilitando solo la sincronizzazione WiFi.
+* Se è selezionato _Sincronizzazione manuale_, dovrai scorrere il dito verso il basso sullo schermo per avviare la sincronizzazione (in modalità pull-to-refresh nativa di Android)
+* Puoi impedire che lo strumento di sincronizzazione morda il tuo piano dati abilitando solo la sincronizzazione WiFi.
 * Puoi divertirti con l'animazione della sincronizzazione (ruota che gira), selezionando questa opzione
 * Per visualizzare il registro di sincronizzazione, basta toccare l'icona delle impostazioni (ruota) nel pannello _Sync_
 
@@ -29,8 +29,8 @@ Per comodità della maggior parte dei nostri utenti, abbiamo scelto Google Drive
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
 
-> Nota che Google Drive è solo un esempio. Gli account Google sono gratuiti e disponibili per chiunque. Se, per qualsiasi motivo, preferisci qualsiasi altra soluzione cloud, basta usarla:
+> Nota: Google Drive è stato scelto per la sua comodità. Gli account Google sono gratuiti e disponibili per chiunque. Se, per qualsiasi motivo, preferisci qualsiasi altra soluzione cloud, vai avanti e usala:
 
 > **Devi solo sincronizzare la cartella _Librera_ (che si trova nella tua memoria interna) con il tuo cloud. Voilà!**
 
-**PS** Per quanto riguarda i libri scaricati da risorse online, salvali in cartelle sincronizzate tramite un'app di terze parti e aggiungi tali cartelle alla Libreria di **Librera**.
+**PS** Per quanto riguarda i libri scaricati da risorse online, puoi archiviarli in cartelle sincronizzate tramite un'app di terze parti e aggiungere tali cartelle alla Libreria di **Librera**.

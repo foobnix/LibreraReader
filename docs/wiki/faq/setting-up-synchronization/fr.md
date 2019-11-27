@@ -20,8 +20,8 @@ Pour le confort de la plupart de nos utilisateurs, nous avons choisi Google Driv
 
 ## Options de synchronisation
 
-* Si l'option &quot;Synchronisation manuelle&quot; est cochée, toute la synchronisation sera effectuée manuellement, une fois que vous aurez déplacé votre doigt vers le bas de l'écran (à la manière native d'Android, tirez pour actualiser).
-* Vous pouvez empêcher l'outil de synchronisation de supprimer votre projet de données en activant uniquement la synchronisation WiFi.
+* Si la case &quot;Synchronisation manuelle&quot; est cochée, vous devez faire glisser votre doigt vers le bas de l'écran pour lancer la synchronisation (à la manière native d'Android, tirez pour actualiser).
+* Vous pouvez empêcher l'outil de synchronisation de se mordre dans votre plan de données en activant uniquement la synchronisation WiFi.
 * Vous pouvez vous divertir avec une animation synchrone (en rotation) en cochant cette option.
 * Pour afficher le journal de synchronisation, appuyez simplement sur l'icône des paramètres (molette) dans le panneau _Sync_.
 
@@ -29,8 +29,8 @@ Pour le confort de la plupart de nos utilisateurs, nous avons choisi Google Driv
 |-|-|-|
 |![](32.jpg)|![](41.jpg)|![](42.jpg)|
 
-> Notez que Google Drive n’est qu’un exemple. Les comptes Google sont gratuits et accessibles à tous. Si, pour une raison quelconque, vous préférez une autre solution cloud, utilisez-la simplement:
+> Remarque: Google Drive a été choisi pour sa commodité. Les comptes Google sont gratuits et accessibles à tous. Si, pour une raison quelconque, vous préférez une autre solution cloud, utilisez-la:
 
 > **Il vous suffit de synchroniser le dossier _Librera_ (qui se trouve dans votre stockage interne) avec votre nuage. Voilà!**
 
-**PS** En ce qui concerne les livres téléchargés à partir de ressources en ligne, stockez-les dans des dossiers synchronisés via une application tierce, puis ajoutez-les à la bibliothèque de **Librera**.
+**PS** En ce qui concerne les livres téléchargés depuis des ressources en ligne, vous pouvez les stocker dans des dossiers synchronisés via une application tierce et les ajouter à la bibliothèque de **Librera**.

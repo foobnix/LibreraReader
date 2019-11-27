@@ -4,10 +4,11 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Como selecionar texto em _Librera _](/wiki/faq/how-to-set-text-selection/pt)
 * [Sincronizando sua configuração de leitura em vários dispositivos](/wiki/faq/setting-up-synchronization/pt)
+* [Re-paginando seu documento para corresponder aos números de página do livro](/wiki/faq/relative-page-numbers/pt)
 * [Usando o widget de _Librera_](/wiki/faq/how-to-configure-the-widget/pt)
 * [Atualizando sua biblioteca](/wiki/faq/update-the-library/pt)
-* [Re-paginando seu documento para corresponder aos números de página do livro](/wiki/faq/relative-page-numbers/pt)
 * [Como excluir um livro de um cartão SD externo](/wiki/faq/how-to-delete-file-from-external-sd-card/pt)
 * [Trabalhando com catálogos online do OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
 * [Abrindo uma pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
@@ -17,7 +18,6 @@ layout: main
 * [Aprimoramento de contraste e brilho em PDF (efeito P/B)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Leitura em idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/pt)
 * [Instalando e configurando Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/pt)
-* [Como definir a seleção de texto](/wiki/faq/how-to-set-text-selection/pt)
 * [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Interface do usuário da Theming Librera](/wiki/faq/customize-theme-colors-links/pt)
 * [Aumentando o tamanho da fonte nos documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/pt)
