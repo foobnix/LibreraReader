@@ -1,9 +1,8 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
 
-====================================================
-Librera PRO - 50% OFF - Black Friday 2019 - Discount
-====================================================
+
+## Librera PRO - 50% OFF - Black Friday 2019 - Discount
 
 [Download Librera PRO 50% OFF from Google Play](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
