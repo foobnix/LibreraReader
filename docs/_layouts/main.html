@@ -42,7 +42,9 @@
     
     <section class="page">
 
+        {% assign ask=false %}
         {% if parent == '/wiki/faq/' or  parent == '/wiki/' or parent == '/wiki/what-is-new/' %}
+            {% assign ask=true %}
             <a href="{{parent}}{{lang}}"> < </a>
         {% endif %}
 
@@ -113,7 +115,8 @@ document.onkeydown = function(evt) {
 };
 
 </script>
-	
+
+{%if ask_temp %}
 <div class="content"> 
     <div class="as">
         <div class="title">Эта информация оказалась полезной?</div>
@@ -123,6 +126,7 @@ document.onkeydown = function(evt) {
         </div>
     </div> 
 </div>
+{% endif %}
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36581296-7"></script>
 <script>
