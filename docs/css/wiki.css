@@ -215,6 +215,14 @@ section.page a:hover{
 text-decoration: underline;
 }
 
+.red{
+color:red !important;
+}
+
+.red:hover{
+text-decoration: underline !important;
+}
+
 section div pre {
   overflow: auto;
 }
