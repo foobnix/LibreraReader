@@ -248,8 +248,6 @@ img {
 
 /* Modal Content (image) */
 .modal-content {
-   background-color: #35a57a;
-   padding: 5px;
    margin: auto;
    display: block;
    border-width: 2px;
@@ -311,4 +309,36 @@ code{
     font-size: 12px;
     color: red;
     font-family: monospace;
+}
+
+.as {
+color: #3c4043;
+font-family: 'Google Sans', Roboto, sans-serif;
+text-align: center;
+}
+
+.as .title {
+  color: #202124;
+  display: inline-block;
+  font-size: .875rem;
+  font-weight: 500;
+  padding: 1.125rem 0;
+}
+
+.as .as-button {
+  background-color: #ffffff;
+  border: .0625rem solid #dadce0;
+  border-radius: .25rem;
+  color: #1a73e8;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  margin: .375rem .5rem .375rem 0;
+  min-width: 5.5rem;
+  padding: .625rem 0;
+  position: relative;
+  text-align: center;
 }
