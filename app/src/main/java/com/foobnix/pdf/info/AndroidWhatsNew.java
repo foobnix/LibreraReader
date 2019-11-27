@@ -242,7 +242,7 @@ public class AndroidWhatsNew {
         }
 
 
-        final String url = "https://t.me/LibreraBeta/8";
+        final String url = "https://t.me/LibreraBeta/8?embed=1";
 
 
         LOG.d("checkForNewBeta");
@@ -250,35 +250,40 @@ public class AndroidWhatsNew {
             @Override
             public void run() {
 
-                final String resultHTTP = OPDS.getHttpResponseNoException(url);
+                try {
+                    final String resultHTTP = OPDS.getHttpResponseNoException(url);
+                    String result = Jsoup.parse(resultHTTP).selectFirst("div[class=tgme_widget_message_text js-message_text]").text();
 
-                LOG.d("checkForNewBeta resultHttp", resultHTTP);
-                c.runOnUiThread(() -> {
-                    String result = Jsoup.parse(resultHTTP).selectFirst("meta[property=\"og:description\"]").toString();
-                    result = result.replace("<meta property=\"og:description\" content=\"", "");
-                    result = result.replace("\">", "");
-                    LOG.d("checkForNewBeta result", result);
-                    try {
-                        if (result == null || TxtUtils.isEmpty("" + result)) {
-                            return;
-                        }
+                    LOG.d("checkForNewBeta result 2", result);
 
-                        final String my = Apps.getVersionName(c);
-                        if (my.equals(result)) {
-                            return;
-                        }
+                    c.runOnUiThread(() -> {
+                        try {
 
-                        AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.download), new Runnable() {
 
-                            @Override
-                            public void run() {
-                                Urls.open(c, "https://t.me/LibreraBeta/");
+
+                            if (result == null || TxtUtils.isEmpty("" + result)) {
+                                return;
                             }
-                        });
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-                });
+
+                            final String my = Apps.getVersionName(c);
+                            if (my.equals(result)) {
+                                return;
+                            }
+
+                            AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.download), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    Urls.open(c, "https://t.me/LibreraBeta/");
+                                }
+                            });
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    });
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
         }.start();
 
