@@ -19,6 +19,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 
+import org.jsoup.Jsoup;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -240,7 +242,7 @@ public class AndroidWhatsNew {
         }
 
 
-        final String url = "https://www.dropbox.com/s/gom54hvrhei3o85/version.txt?raw=1";
+        final String url = "https://t.me/LibreraBeta/8";
 
 
         LOG.d("checkForNewBeta");
@@ -248,9 +250,14 @@ public class AndroidWhatsNew {
             @Override
             public void run() {
 
-                final String result = OPDS.getHttpResponseNoException(url);
-                LOG.d("checkForNewBeta result", result);
+                final String resultHTTP = OPDS.getHttpResponseNoException(url);
+
+                LOG.d("checkForNewBeta resultHttp", resultHTTP);
                 c.runOnUiThread(() -> {
+                    String result = Jsoup.parse(resultHTTP).selectFirst("meta[property=\"og:description\"]").toString();
+                    result = result.replace("<meta property=\"og:description\" content=\"", "");
+                    result = result.replace("\">", "");
+                    LOG.d("checkForNewBeta result", result);
                     try {
                         if (result == null || TxtUtils.isEmpty("" + result)) {
                             return;
@@ -261,11 +268,11 @@ public class AndroidWhatsNew {
                             return;
                         }
 
-                        AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.open_in_browser), new Runnable() {
+                        AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.download), new Runnable() {
 
                             @Override
                             public void run() {
-                                Urls.open(c, "http://beta.librera.mobi");
+                                Urls.open(c, "https://t.me/LibreraBeta/");
                             }
                         });
                     } catch (Exception e) {

@@ -84,9 +84,11 @@ android {
             enable true
             reset()
             //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+
             if(!taskName.contains("Fdroid")) {
                 include "armeabi-v7a", "arm64-v8a"
             }
+
             if(taskName.contains("Debug") || taskName.contains("Pro")){
                 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
@@ -282,12 +284,12 @@ android {
 
                 output.versionCodeOverride = code
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
-                def fullName = "${flavor}-${versionNumber}-${abiName}.apk";
+                def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk";
                 output.outputFileName = fullName;
             }else{
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
                 //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
-                def fullName = "${flavor}-${versionNumber}-u.apk";
+                def fullName = "Librera ${flavor}-${versionNumber}-uni.apk";
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName;
 

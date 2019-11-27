@@ -18,6 +18,11 @@
 </head>
 <body>
 
+
+
+
+
+
 <div class="sidebar sidebar-default">
     <div class="navigation">
         
@@ -27,6 +32,7 @@
      {% capture my_include %}{% include menu.md %}{% endcapture %}
    {{ my_include | markdownify }}
 
+        <a style="color:red" href="https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader">Librera PRO - 50% OFF</a>
 
        
     </div>
@@ -40,8 +46,6 @@
 
 <div class="content">
     
-    <section class="page">
-
         {% assign ask=false %}
         {% if parent == '/wiki/faq/' or  parent == '/wiki/' or parent == '/wiki/what-is-new/' %}
             {% assign ask=true %}

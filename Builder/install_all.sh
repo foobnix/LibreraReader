@@ -34,7 +34,7 @@ do
 		adb -s ${DEVICE} install "$f"
 	done
 
-    FILES=$APK/*universal.apk
+    FILES=$APK/*uni*.apk
     for f in $FILES
 	do
 		echo "Installing universal: $f"
