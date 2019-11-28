@@ -2,30 +2,30 @@
 layout: main
 ---
 
-# Installing and configuring Text-to-Speech (TTS) 
+# Using a Text-to-Speech Engine with _Librera_ 
 
-> Librera allows you to voice the text Of your documents by means of third-party voice synthesizers installed in the Android system.Text-to-Speech (TTS)
+> **Librera** can read your books (and other documents) out loud using a third-party Text-to-Speech (TTS) engine installed on your Android system. It supports read-aloud for a great number of ebook formats, from EPUB to Kindle to PDF.
 
-## To install voice speech synthesizer (TTS). Using the Google Text-to-Speech example.
+# Choosing a TTS Engine
 
-* Click on the icon the "voice playback of the text"
-* In the TTS settings, select the **"i"** icon 
-* Select Google Text-to-Speech voice synthesizer from the drop-down menu. You will go to Google Market, in the section of voice synthesizer installation. Click "install" Google Text-to-Speech voice synthesizer
-* After installation, go back to the TTS settings Librera.
+* Tap on the TTS icon at the bottom of the screen to open the **TTS Settings** window
+* Tap **"i"** to open a dropdown list of TTS engines
+* Select whatever engine you like. If the engine you've chosen is not installed yet on your system, you'll be redirected to Google Play Store. Follow the instructions for your preferred engine in order to set it up, download main and additional voices, etc.
+
+> Note: You may be charged for extra features, e.g., additional voices, by the engine's developers.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
 
-## To set up Google Text-to-Speech:
+## Example: Setting Up Google Text-to-Speech Engine
 
-* Click on the "Voice" link. You will be taken to Google Text-to-Speech settings
-* Click the Google Text-to-Speech settings icon
-* Select "install voice data" - set the language of the voice synthesizer
-* Select the voice synthesizer language you need. You can view languages by swiping up or down
-* Choose the type of voice sound you need, according to your preference.
+* In **Librera**'s **TTS Settings** window, follow the _Voice_ link to your system's **Text-to-speech output** settings page
+* Tap the settings icon next to _Preferred engine_
+* Tap _Install voice data_ to select your TTS language and voice
+* Test the voice you've selected by tapping _PLAY_ back on the **Text-to-speech output** page
 
-After selecting all the options, click in the navigation bar "back", go back to Google Text-to-Speech settings, click "Play". The test greeting of the Google voice synthesizer with the language and sound of Your choice will be sounded. Go to Librera, tap "voice playback of the text" icon, tap "Play" and listen to your book.
+> You can fine-tune the engine's settings (e.g., reading speed, pitch, and/or volume) in **Librera**'s **TTS Settings** window.
 
 ||||
 |-|-|-|
@@ -34,3 +34,5 @@ After selecting all the options, click in the navigation bar "back", go back to 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+> Note: Voice setup in other TTS engines is conducted in a similar fashion. Remember that voice data files could be quite large. To spare your limited cellular data plans, make sure they are downloaded via WiFi connection only.
