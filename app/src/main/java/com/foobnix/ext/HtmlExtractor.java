@@ -176,6 +176,9 @@ public class HtmlExtractor {
 
             boolean isFlag = false;
             HypenUtils.resetTokenizer();
+            if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+            }
             while ((line = input.readLine()) != null) {
 
                 if (line.contains("<ht") || line.contains("<HT")) {
@@ -205,7 +208,6 @@ public class HtmlExtractor {
             String string = Jsoup.clean(html.toString(), Whitelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
                 string = HypenUtils.applyHypnes(string);
             }
 

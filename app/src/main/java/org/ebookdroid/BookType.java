@@ -14,6 +14,7 @@ import org.ebookdroid.droids.EpubContext;
 import org.ebookdroid.droids.Fb2Context;
 import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.droids.HtmlContext;
+import org.ebookdroid.droids.MdContext;
 import org.ebookdroid.droids.MhtContext;
 import org.ebookdroid.droids.MobiContext;
 import org.ebookdroid.droids.OdtContext;
@@ -60,6 +61,8 @@ public enum BookType {
     DOCX(DocxContext.class, true, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
     DOC(DocContext.class, true, Arrays.asList("doc"), Arrays.asList("application/msword")),
+
+    MD(MdContext.class, true, Arrays.asList("md"), Arrays.asList("text/markdown","text/x-markdown")),
 
     RTF(RtfContext.class, true, Arrays.asList("rtf"), Arrays.asList("application/rtf", "application/x-rtf", "text/rtf", "text/richtext")),
 
