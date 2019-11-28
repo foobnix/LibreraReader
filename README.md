@@ -22,16 +22,14 @@ Android Play market apps:
 
 [Librera PRO](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Arhive .apk](http://archive.librera.mobi)
-
-[Beta(latest) .apk](http://beta.librera.mobi)
-
 Application fonts (**fonts.zip** download to internal sd card, to [Downloads] folder)
-[link1](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
-[link2](https://www.dropbox.com/home/FREE_PDF_APK/testing)
+[link](https://github.com/foobnix/LirbiReader/tree/master/Builder/fonts) 
 
 [Telegram](https://t.me/LibreraReader)
 
+[Telegram Download Beta apk](https://t.me/LibreraBeta)
+
+[Beta .apk (latest build)](http://beta.librera.mobi)
 
 ## Required build libs
 
