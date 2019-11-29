@@ -242,7 +242,7 @@ public class AndroidWhatsNew {
         }
 
 
-        final String url = "https://t.me/LibreraBeta/8?embed=1";
+        final String url = "https://t.me/s/LibreraBeta";
 
 
         LOG.d("checkForNewBeta");
@@ -252,25 +252,35 @@ public class AndroidWhatsNew {
 
                 try {
                     final String resultHTTP = OPDS.getHttpResponseNoException(url);
-                    String result = Jsoup.parse(resultHTTP).selectFirst("div[class=tgme_widget_message_text js-message_text]").text();
-
+                    String result = Jsoup.parse(resultHTTP).select("div[class=tgme_widget_message_document_title]").last().text();
                     LOG.d("checkForNewBeta result 2", result);
+                    if (!result.contains(".apk")) {
+                        return;
+                    }
+
+                    result = result.replace("Librera Beta-","");
+                    result = result.replace("Librera Alpha-","");
+                    result = result.replace("-arm64.apk","");
+                    result = result.replace("-arm.apk","");
+
+                    final String resultFinal = result;
+                    LOG.d("checkForNewBeta result 3", result);
+
 
                     c.runOnUiThread(() -> {
                         try {
 
 
-
-                            if (result == null || TxtUtils.isEmpty("" + result)) {
+                            if (resultFinal == null || TxtUtils.isEmpty("" + resultFinal)) {
                                 return;
                             }
 
                             final String my = Apps.getVersionName(c);
-                            if (my.equals(result)) {
+                            if (my.equals(resultFinal)) {
                                 return;
                             }
 
-                            AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.download), new Runnable() {
+                            AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + resultFinal, c.getString(R.string.download), new Runnable() {
 
                                 @Override
                                 public void run() {
