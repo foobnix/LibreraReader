@@ -24,7 +24,7 @@ public class EpubContext extends PdfContext {
     @Override
     public File getCacheFileName(String fileNameOriginal) {
         LOG.d(TAG, "getCacheFileName", fileNameOriginal, AppTemp.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang+AppState.get().isExperimental).hashCode() + ".epub");
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isReferenceMode + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang+AppState.get().isExperimental).hashCode() + ".epub");
         return cacheFile;
     }
 
@@ -38,7 +38,7 @@ public class EpubContext extends PdfContext {
             LOG.d("footer-notes-extracted");
         }
 
-        if ((BookCSS.get().isAutoHypens || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
+        if ((BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) && !cacheFile.isFile()) {
             EpubExtractor.proccessHypens(fileName, cacheFile.getPath(), notes);
         }
         if (TempHolder.get().loadingCancelled) {
@@ -46,7 +46,7 @@ public class EpubContext extends PdfContext {
             return null;
         }
 
-        String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
+        String bookPath = (BookCSS.get().isAutoHypens || AppState.get().isReferenceMode || AppState.get().isShowFooterNotesInText) ? cacheFile.getPath() : fileName;
         final MuPdfDocument muPdfDocument = new MuPdfDocument(this, MuPdfDocument.FORMAT_PDF, bookPath, password);
 
         if (notes != null) {

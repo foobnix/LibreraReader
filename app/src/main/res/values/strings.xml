@@ -589,4 +589,5 @@
    <string name="next_track">Next track</string>
    <string name="previous_track">Previous track</string>
    <string name="copied_text">Text copied</string>
+    <string name="reference_mode_like_in_calibre_viewer">Reference mode (like in Calibre Viewer)</string>
 </resources>

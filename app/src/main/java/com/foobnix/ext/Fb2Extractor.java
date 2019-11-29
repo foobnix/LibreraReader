@@ -43,13 +43,476 @@ public class Fb2Extractor extends BaseExtractor {
     public static final String FOOTER_AFTRER_BOODY = "[!]";
 
     public static final String DIVIDER = "~@~";
-
+    private static final int BUFFER_SIZE = 16 * 1024;
+    public static String container_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //
+            "<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n" + //
+            "  <rootfiles>\n" + //
+            "    <rootfile full-path=\"OEBPS/content.opf\" media-type=\"application/oebps-package+xml\"/>\n" + //
+            "  </rootfiles>\n" + //
+            "</container>";//
+    public static String content_opf = "<?xml version=\"1.0\"?>\n" + //
+            "<package version=\"2.0\" unique-identifier=\"uid\" xmlns=\"http://www.idpf.org/2007/opf\">\n" + //
+            " <metadata xmlns:opf=\"http://www.idpf.org/2007/opf\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n" + //
+            "  <dc:title>%title%</dc:title>\n" + //
+            "  <dc:creator>%creator%</dc:creator>\n" + //
+            "<meta name=\"cover\" content=\"cover.jpg\" />\n" + //
+            " </metadata>\n" + //
+            "\n" + "<manifest>\n" + //
+            "  <item id=\"idBookFb2\" href=\"fb2.fb2\" media-type=\"application/xhtml+xml\"/>\n" + //
+            "  <item id=\"idResourceFb2\" href=\"fb2.ncx\" media-type=\"application/x-dtbncx+xml\"/>\n" + //
+            " </manifest>\n" + //
+            " \n" + //
+            "<spine toc=\"idResourceFb2\">\n" + //
+            "  <itemref idref=\"idBookFb2\"/>\n" + //
+            "</spine>\n" + //
+            "</package>";//
+    public static String NCX = "<?xml version=\"1.0\"?>\n" + //
+            "<ncx version=\"2005-1\" xml:lang=\"en\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\">\n" + //
+            " <head>\n" + //
+            " </head>\n" + //
+            " <docTitle>\n" + //
+            "  <text>title</text>\n" + //
+            " </docTitle>\n" + //
+            " <navMap>" + //
+            "%nav% \n" + //
+            "   \n" + //
+            " </navMap>\n" + //
+            "</ncx>";//
     static Fb2Extractor inst = new Fb2Extractor();
+    public Map<String, String> genresRus = new HashMap<>();
 
     private Fb2Extractor() {
     }
 
-    public Map<String, String> genresRus = new HashMap<>();
+    public static Fb2Extractor get() {
+        return inst;
+    }
+
+    public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title, List<OutlineLink> outline) {
+
+        try {
+            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
+            zos.setLevel(0);
+
+            writeToZip(zos, "mimetype", "application/epub+zip");
+            writeToZip(zos, "META-INF/container.xml", container_xml);
+
+            String meta = content_opf.replace("fb2.fb2", "temp" + ExtUtils.REFLOW_HTML);
+            meta = meta.replace("%title%", title);
+            meta = meta.replace("%creator%", author);
+
+            writeToZip(zos, "OEBPS/content.opf", meta);
+            if (TxtUtils.isListNotEmpty(outline)) {
+                writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
+            }
+
+            for (File file : inputFolder.listFiles()) {
+                writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
+            }
+
+            LOG.d("Fb2Context convert true");
+            zos.close();
+            return true;
+        } catch (Exception e) {
+            LOG.d("Fb2Context convert false error");
+            LOG.e(e);
+        }
+        LOG.d("Fb2Context convert false");
+        return false;
+    }
+
+    public static String accurateLine(String line) {
+        if (AppState.get().isAccurateFontSize) {
+            line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
+            line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
+            line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
+        }
+        return line;
+    }
+
+    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number) throws Exception {
+        BufferedReader input = new BufferedReader(inputStream);
+
+        PrintWriter writer = new PrintWriter(out);
+        String line;
+
+        HypenUtils.resetTokenizer();
+
+        boolean isValidXML = false;
+        boolean isValidXMLChecked = false;
+
+        String svg = "";
+        boolean findSVG = false;
+        int svgNumbver = 0;
+        String defs = "";
+
+        int count = 0;
+
+        while ((line = input.readLine()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+            if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
+                isValidXMLChecked = true;
+                isValidXML = line.contains("<");
+                LOG.d("isValidXML", isValidXML, line);
+                if (!isValidXML) {
+                    writer.print("<html><body>");
+                }
+            }
+
+
+            if (AppState.get().isShowFooterNotesInText) {
+                line = includeFooterNotes(line, notes);
+            }
+
+            // LOG.d("gen-in", line);
+            line = accurateLine(line);
+
+            if(AppState.get().isReferenceMode) {
+
+                int index = line.indexOf("<p");
+                if (index >= 0) {
+                    count++;
+                    int p = line.indexOf(">", index) + 1;
+                    line = line.substring(0, p) + "|" + number + "." + count + "| " + line.substring(p);
+                    LOG.d("linep", line);
+                }
+            }
+
+
+            if (AppState.get().isExperimental && svgs != null) {
+
+
+                line = line.replace("<m:", "<");
+                if (line.contains("<svg")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<svg"));
+                } else if (line.contains("<math")) {
+                    svgNumbver++;
+                    findSVG = true;
+                    svg = line.substring(line.indexOf("<math"));
+                } else if (line.contains("</svg>")) {
+                    LOG.d("SVG", svg);
+                    svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
+
+
+                    String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
+
+                    svg = svg.replace("<defs>", "<defs>" + defs);
+                    svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
+                    if (TxtUtils.isNotEmpty(defsCurrent)) {
+                        defs = defs + defsCurrent;
+                    }
+                    LOG.d("DEFS:", defs);
+
+                    //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
+                    //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+                } else if (line.contains("</math>")) {
+
+                    svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
+
+
+                    final String imageName = name + "-" + svgNumbver + ".png";
+                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
+                    svgs.put(imageName, svg);
+
+                    LOG.d("SVG-MATH:", imageName, svg);
+
+                    line += "<img src=\"" + imageName2 + "\" />";
+
+                    findSVG = false;
+                    svg = "";
+                } else if (findSVG) {
+                    svg += line;
+                }
+
+            }
+
+
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
+                line = HypenUtils.applyHypnes(line);
+            }
+
+
+            if (!isValidXML) {
+                writer.println("<p>");
+            }
+            writer.println(line);
+
+            if (!isValidXML) {
+                writer.println("</p>");
+            }
+
+            // LOG.d("gen-ou", line);
+
+        }
+        if (!isValidXML) {
+            writer.print("</body></html>");
+        }
+
+        writer.close();
+    }
+
+    public static String includeFooterNotes(String line, Map<String, String> notes) {
+        if (notes == null) {
+            return line;
+        }
+
+        int beginIndex = -1;
+        int endIndex = -1;
+        StringBuffer out = new StringBuffer();
+
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '[' || c == '{') {
+                beginIndex = i;
+            }
+            if (c == ']' || c == '}') {
+                endIndex = i;
+            }
+            out.append(c);
+
+            if (beginIndex > 0 && endIndex > beginIndex && endIndex - beginIndex < 6) {
+                String number = line.substring(beginIndex, endIndex + 1);
+                beginIndex = -1;
+                endIndex = -1;
+
+                int end = line.indexOf('>', i);
+                int k = end - i;
+                if (end > i && k < 8) {
+                    out.append(line.substring(i + 1, end + 1));
+                    i += k;
+                }
+
+                String value = notes.get(number);
+                if (value != null) {
+                    value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
+                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
+                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();// two times!
+                    value = value.replaceAll("^[0-9]+", "").trim();
+
+                    out.append(" <t>[");
+                    out.append(TxtUtils.escapeHtml(value));
+                    out.append("]</t>");
+                }
+            }
+
+        }
+        return out.toString();
+    }
+
+    @Deprecated
+    private static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader
+                                                                           inputStream) throws Exception {
+        BufferedReader input = new BufferedReader(inputStream);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintWriter writer = new PrintWriter(out);
+        String line;
+
+        HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+
+        while ((line = input.readLine()) != null) {
+            LOG.d("gen0-in", line);
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+
+            if (!line.endsWith(" ")) {
+                line = line + " ";
+            }
+
+            line = accurateLine(line);
+
+            String subLine[] = line.split("</");
+
+            for (int i = 0; i < subLine.length; i++) {
+                if (i == 0) {
+                    line = subLine[i];
+                } else {
+                    line = "</" + subLine[i];
+                }
+
+                line = HypenUtils.applyHypnesOld2(line);
+                writer.print(line);
+                LOG.d("gen0-ou", line);
+            }
+            writer.println();
+
+        }
+        writer.close();
+        return out;
+    }
+
+    public static String genetateNCX(List<String> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            navs.append(createNavPoint(i + 1, titles.get(i)));
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutline(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String titleTxt = link.getTitle();
+            if (TxtUtils.isNotEmpty(titleTxt)) {
+                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
+                createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
+                navs.append(createNavPoint);
+            }
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
+        XmlPullParser xpp = XmlParser.buildPullParser();
+
+        final FileInputStream inputStream = new FileInputStream(fb2);
+        xpp.setInput(inputStream, encoding);
+        int eventType = xpp.getEventType();
+
+        boolean isTitle = false;
+        String title = "";
+        List<String> titles = new ArrayList<String>();
+
+        int section = 0;
+        int dividerSection = -1;
+        String dividerLine = null;
+        boolean secondBody = false;
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+            if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().equals("section")) {
+                    section++;
+                }
+                if (xpp.getName().equals("title")) {
+                    isTitle = true;
+                }
+                if (xpp.getName().equals("binary")) {
+                    break;
+                }
+
+                if (xpp.getName().equals("body")) {
+                    if (secondBody && xpp.getAttributeCount() > 0) {
+                        break;
+                    }
+                    secondBody = true;
+                }
+
+            } else if (eventType == XmlPullParser.END_TAG) {
+                if (xpp.getName().equals("title")) {
+                    isTitle = false;
+                    title = "[" + xpp.getName() + "]" + title;
+                    titles.add(section + DIVIDER + title);
+                    title = "";
+                    if (section == dividerSection) {
+                        titles.remove(dividerLine);
+                    }
+                }
+                if (xpp.getName().equals("section")) {
+                    section--;
+                }
+
+            } else if (eventType == XmlPullParser.TEXT) {
+                if (isTitle) {
+                    title = title + " " + xpp.getText().trim();
+                }
+            }
+            eventType = xpp.next();
+        }
+        inputStream.close();
+        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(DIVIDER)) {
+            titles.remove(titles.size() - 1);
+        }
+        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(FOOTER_NOTES_SIGN)) {
+            titles.remove(titles.size() - 1);
+        }
+
+        return titles;
+    }
+
+    public static String findHeaderEncoding(String fb2) {
+        String encoding = "UTF-8";
+        try {
+            InputStream encodingCheck = new FileInputStream(fb2);
+            byte[] header = new byte[80];
+            encodingCheck.read(header);
+            if (new String(header).toLowerCase(Locale.US).contains("windows-1251")) {
+                encoding = "cp1251";
+            } else if (new String(header).toLowerCase(Locale.US).contains("windows-1252")) {
+                encoding = "cp1252";
+            }
+            encodingCheck.close();
+            return encoding;
+        } catch (Exception e) {
+            return encoding;
+        }
+    }
+
+    public static String createNavPoint(int id, String text) {
+        return "\n\n<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
+                "<navLabel>\n" + //
+                "<text>" + TxtUtils.escapeHtml(text) + "</text>\n" + //
+                "</navLabel>\n" + //
+                "<content src=\"fb2.fb2#" + id + "\"/>\n" + //
+                "</navPoint>"; //
+    }
+
+    public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws
+            IOException {
+        zos.putNextEntry(new ZipEntry(name));
+        zipCopy(stream, zos);
+    }
+
+    public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
+            IOException {
+        zos.putNextEntry(new ZipEntry(name));
+        zipCopyNoClose(stream, zos);
+    }
+
+    public static void writeToZip(ZipOutputStream zos, String name, String content) throws
+            IOException {
+        writeToZip(zos, name, new ByteArrayInputStream(content.getBytes()));
+    }
+
+    public static void zipCopy(InputStream inputStream, OutputStream zipStream) throws
+            IOException {
+
+        byte[] bytesIn = new byte[BUFFER_SIZE];
+        int read = 0;
+        while ((read = inputStream.read(bytesIn)) != -1) {
+            zipStream.write(bytesIn, 0, read);
+        }
+        inputStream.close();
+    }
+
+    public static void zipCopyNoClose(InputStream inputStream, OutputStream zipStream) throws
+            IOException {
+
+        byte[] bytesIn = new byte[BUFFER_SIZE];
+        int read = 0;
+        while ((read = inputStream.read(bytesIn)) != -1) {
+            zipStream.write(bytesIn, 0, read);
+        }
+    }
 
     public void loadGenres() {
         if (!genresRus.isEmpty()) {
@@ -99,10 +562,6 @@ public class Fb2Extractor extends BaseExtractor {
         } catch (Exception e) {
             LOG.e(e);
         }
-    }
-
-    public static Fb2Extractor get() {
-        return inst;
     }
 
     public byte[] getBookCover(InputStream inputStream, String name) {
@@ -507,39 +966,6 @@ public class Fb2Extractor extends BaseExtractor {
         return false;
     }
 
-    public static boolean convertFolderToEpub(File inputFolder, File outputFile, String author, String title, List<OutlineLink> outline) {
-
-        try {
-            ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outputFile));
-            zos.setLevel(0);
-
-            writeToZip(zos, "mimetype", "application/epub+zip");
-            writeToZip(zos, "META-INF/container.xml", container_xml);
-
-            String meta = content_opf.replace("fb2.fb2", "temp" + ExtUtils.REFLOW_HTML);
-            meta = meta.replace("%title%", title);
-            meta = meta.replace("%creator%", author);
-
-            writeToZip(zos, "OEBPS/content.opf", meta);
-            if (TxtUtils.isListNotEmpty(outline)) {
-                writeToZip(zos, "OEBPS/fb2.ncx", genetateNCXbyOutline(outline));
-            }
-
-            for (File file : inputFolder.listFiles()) {
-                writeToZip(zos, "OEBPS/" + file.getName(), new FileInputStream(file));
-            }
-
-            LOG.d("Fb2Context convert true");
-            zos.close();
-            return true;
-        } catch (Exception e) {
-            LOG.d("Fb2Context convert false error");
-            LOG.e(e);
-        }
-        LOG.d("Fb2Context convert false");
-        return false;
-    }
-
     public ByteArrayOutputStream generateFb2File(String fb2, String encoding, boolean fixXML, Map<String, String> notes) throws Exception {
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(fb2), encoding));
 
@@ -565,7 +991,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            line = line.replace("<empty-line/>","");
+            line = line.replace("<empty-line/>", "");
 
             if (firstLine) {
                 List<String> encodings = Arrays.asList("utf-8", "windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
@@ -585,6 +1011,7 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
             line = accurateLine(line);
+
 
             if (AppState.get().isShowFooterNotesInText) {
                 line = includeFooterNotes(line, notes);
@@ -668,425 +1095,6 @@ public class Fb2Extractor extends BaseExtractor {
 
         }
         return line;
-    }
-
-    public static String accurateLine(String line) {
-        if (AppState.get().isAccurateFontSize) {
-            line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
-            line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
-            line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
-        }
-        return line;
-    }
-
-    public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs) throws Exception {
-        BufferedReader input = new BufferedReader(inputStream);
-
-        PrintWriter writer = new PrintWriter(out);
-        String line;
-
-        HypenUtils.resetTokenizer();
-
-        boolean isValidXML = false;
-        boolean isValidXMLChecked = false;
-
-        String svg = "";
-        boolean findSVG = false;
-        int svgNumbver = 0;
-        String defs = "";
-
-        while ((line = input.readLine()) != null) {
-            if (TempHolder.get().loadingCancelled) {
-                break;
-            }
-            if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
-                isValidXMLChecked = true;
-                isValidXML = line.contains("<");
-                LOG.d("isValidXML", isValidXML, line);
-                if (!isValidXML) {
-                    writer.print("<html><body>");
-                }
-            }
-
-
-            if (AppState.get().isShowFooterNotesInText) {
-                line = includeFooterNotes(line, notes);
-            }
-
-            // LOG.d("gen-in", line);
-            line = accurateLine(line);
-
-            if (AppState.get().isExperimental && svgs != null) {
-
-
-                line = line.replace("<m:", "<");
-                if (line.contains("<svg")) {
-                    svgNumbver++;
-                    findSVG = true;
-                    svg = line.substring(line.indexOf("<svg"));
-                } else if (line.contains("<math")) {
-                    svgNumbver++;
-                    findSVG = true;
-                    svg = line.substring(line.indexOf("<math"));
-                } else if (line.contains("</svg>")) {
-                    LOG.d("SVG", svg);
-                    svg += line.substring(0, line.indexOf("</svg>") + "</svg>".length());
-
-
-                    String defsCurrent = TxtUtils.getStringInTag(svg, "defs");
-
-                    svg = svg.replace("<defs>", "<defs>" + defs);
-                    svg = svg.replace("<defs/>", "<defs>" + defs + "</defs>");
-                    if (TxtUtils.isNotEmpty(defsCurrent)) {
-                        defs = defs + defsCurrent;
-                    }
-                    LOG.d("DEFS:", defs);
-
-                    //LOG.d("DEFS:",name, TxtUtils.getStringInTag(svg, "defs"));
-
-                    final String imageName = name + "-" + svgNumbver + ".png";
-                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                    svgs.put(imageName, svg);
-
-                    LOG.d("SVG:", imageName, svg);
-
-                    line += "<img src=\"" + imageName2 + "\" />";
-                    //line += "[img " + "png" + "]<img src=\"" + imageName2 + "\" />";
-                    //line += "[img " + "svg" + "]<img src=\"" + imageName2+".svg" + "\" />";
-
-                    findSVG = false;
-                    svg = "";
-                } else if (line.contains("</math>")) {
-
-                    svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
-
-
-                    final String imageName = name + "-" + svgNumbver + ".png";
-                    final String imageName2 = ExtUtils.getFileName(name) + "-" + svgNumbver + ".png";
-                    svgs.put(imageName, svg);
-
-                    LOG.d("SVG-MATH:", imageName, svg);
-
-                    line += "<img src=\"" + imageName2 + "\" />";
-
-                    findSVG = false;
-                    svg = "";
-                } else if (findSVG) {
-                    svg += line;
-                }
-
-            }
-
-
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
-                line = HypenUtils.applyHypnes(line);
-            }
-
-
-            if (!isValidXML) {
-                writer.println("<p>");
-            }
-            writer.println(line);
-
-            if (!isValidXML) {
-                writer.println("</p>");
-            }
-
-            // LOG.d("gen-ou", line);
-
-        }
-        if (!isValidXML) {
-            writer.print("</body></html>");
-        }
-
-        writer.close();
-    }
-
-    public static String includeFooterNotes(String line, Map<String, String> notes) {
-        if (notes == null) {
-            return line;
-        }
-
-        int beginIndex = -1;
-        int endIndex = -1;
-        StringBuffer out = new StringBuffer();
-
-        for (int i = 0; i < line.length(); i++) {
-            char c = line.charAt(i);
-            if (c == '[' || c == '{') {
-                beginIndex = i;
-            }
-            if (c == ']' || c == '}') {
-                endIndex = i;
-            }
-            out.append(c);
-
-            if (beginIndex > 0 && endIndex > beginIndex && endIndex - beginIndex < 6) {
-                String number = line.substring(beginIndex, endIndex + 1);
-                beginIndex = -1;
-                endIndex = -1;
-
-                int end = line.indexOf('>', i);
-                int k = end - i;
-                if (end > i && k < 8) {
-                    out.append(line.substring(i + 1, end + 1));
-                    i += k;
-                }
-
-                String value = notes.get(number);
-                if (value != null) {
-                    value = value.replace(TxtUtils.NON_BREAKE_SPACE, " ").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();
-                    value = value.replaceAll("^[\\[{][0-9]+[\\]}]", "").trim();// two times!
-                    value = value.replaceAll("^[0-9]+", "").trim();
-
-                    out.append(" <t>[");
-                    out.append(TxtUtils.escapeHtml(value));
-                    out.append("]</t>");
-                }
-            }
-
-        }
-        return out.toString();
-    }
-
-
-    @Deprecated
-    private static ByteArrayOutputStream generateHyphenFileEpubOld(InputStreamReader
-                                                                           inputStream) throws Exception {
-        BufferedReader input = new BufferedReader(inputStream);
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        PrintWriter writer = new PrintWriter(out);
-        String line;
-
-        HypenUtils.applyLanguage(AppTemp.get().hypenLang);
-
-        while ((line = input.readLine()) != null) {
-            LOG.d("gen0-in", line);
-            if (TempHolder.get().loadingCancelled) {
-                break;
-            }
-
-            if (!line.endsWith(" ")) {
-                line = line + " ";
-            }
-
-            line = accurateLine(line);
-
-            String subLine[] = line.split("</");
-
-            for (int i = 0; i < subLine.length; i++) {
-                if (i == 0) {
-                    line = subLine[i];
-                } else {
-                    line = "</" + subLine[i];
-                }
-
-                line = HypenUtils.applyHypnesOld2(line);
-                writer.print(line);
-                LOG.d("gen0-ou", line);
-            }
-            writer.println();
-
-        }
-        writer.close();
-        return out;
-    }
-
-    public static String genetateNCX(List<String> titles) {
-        StringBuilder navs = new StringBuilder();
-        for (int i = 0; i < titles.size(); i++) {
-            navs.append(createNavPoint(i + 1, titles.get(i)));
-        }
-        return NCX.replace("%nav%", navs.toString());
-    }
-
-    public static String genetateNCXbyOutline(List<OutlineLink> titles) {
-        StringBuilder navs = new StringBuilder();
-        for (int i = 0; i < titles.size(); i++) {
-            OutlineLink link = titles.get(i);
-            String titleTxt = link.getTitle();
-            if (TxtUtils.isNotEmpty(titleTxt)) {
-                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
-                createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
-                navs.append(createNavPoint);
-            }
-        }
-        return NCX.replace("%nav%", navs.toString());
-    }
-
-    public static List<String> getFb2Titles(String fb2, String encoding) throws Exception {
-        XmlPullParser xpp = XmlParser.buildPullParser();
-
-        final FileInputStream inputStream = new FileInputStream(fb2);
-        xpp.setInput(inputStream, encoding);
-        int eventType = xpp.getEventType();
-
-        boolean isTitle = false;
-        String title = "";
-        List<String> titles = new ArrayList<String>();
-
-        int section = 0;
-        int dividerSection = -1;
-        String dividerLine = null;
-        boolean secondBody = false;
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            if (TempHolder.get().loadingCancelled) {
-                break;
-            }
-            if (eventType == XmlPullParser.START_TAG) {
-                if (xpp.getName().equals("section")) {
-                    section++;
-                }
-                if (xpp.getName().equals("title")) {
-                    isTitle = true;
-                }
-                if (xpp.getName().equals("binary")) {
-                    break;
-                }
-
-                if (xpp.getName().equals("body")) {
-                    if (secondBody && xpp.getAttributeCount() > 0) {
-                        break;
-                    }
-                    secondBody = true;
-                }
-
-            } else if (eventType == XmlPullParser.END_TAG) {
-                if (xpp.getName().equals("title")) {
-                    isTitle = false;
-                    title = "[" + xpp.getName() + "]" + title;
-                    titles.add(section + DIVIDER + title);
-                    title = "";
-                    if (section == dividerSection) {
-                        titles.remove(dividerLine);
-                    }
-                }
-                if (xpp.getName().equals("section")) {
-                    section--;
-                }
-
-            } else if (eventType == XmlPullParser.TEXT) {
-                if (isTitle) {
-                    title = title + " " + xpp.getText().trim();
-                }
-            }
-            eventType = xpp.next();
-        }
-        inputStream.close();
-        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(DIVIDER)) {
-            titles.remove(titles.size() - 1);
-        }
-        if (!titles.isEmpty() && titles.get(titles.size() - 1).endsWith(FOOTER_NOTES_SIGN)) {
-            titles.remove(titles.size() - 1);
-        }
-
-        return titles;
-    }
-
-    public static String findHeaderEncoding(String fb2) {
-        String encoding = "UTF-8";
-        try {
-            InputStream encodingCheck = new FileInputStream(fb2);
-            byte[] header = new byte[80];
-            encodingCheck.read(header);
-            if (new String(header).toLowerCase(Locale.US).contains("windows-1251")) {
-                encoding = "cp1251";
-            } else if (new String(header).toLowerCase(Locale.US).contains("windows-1252")) {
-                encoding = "cp1252";
-            }
-            encodingCheck.close();
-            return encoding;
-        } catch (Exception e) {
-            return encoding;
-        }
-    }
-
-    public static String container_xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + //
-            "<container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n" + //
-            "  <rootfiles>\n" + //
-            "    <rootfile full-path=\"OEBPS/content.opf\" media-type=\"application/oebps-package+xml\"/>\n" + //
-            "  </rootfiles>\n" + //
-            "</container>";//
-
-    public static String content_opf = "<?xml version=\"1.0\"?>\n" + //
-            "<package version=\"2.0\" unique-identifier=\"uid\" xmlns=\"http://www.idpf.org/2007/opf\">\n" + //
-            " <metadata xmlns:opf=\"http://www.idpf.org/2007/opf\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n" + //
-            "  <dc:title>%title%</dc:title>\n" + //
-            "  <dc:creator>%creator%</dc:creator>\n" + //
-            "<meta name=\"cover\" content=\"cover.jpg\" />\n" + //
-            " </metadata>\n" + //
-            "\n" + "<manifest>\n" + //
-            "  <item id=\"idBookFb2\" href=\"fb2.fb2\" media-type=\"application/xhtml+xml\"/>\n" + //
-            "  <item id=\"idResourceFb2\" href=\"fb2.ncx\" media-type=\"application/x-dtbncx+xml\"/>\n" + //
-            " </manifest>\n" + //
-            " \n" + //
-            "<spine toc=\"idResourceFb2\">\n" + //
-            "  <itemref idref=\"idBookFb2\"/>\n" + //
-            "</spine>\n" + //
-            "</package>";//
-
-    public static String NCX = "<?xml version=\"1.0\"?>\n" + //
-            "<ncx version=\"2005-1\" xml:lang=\"en\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\">\n" + //
-            " <head>\n" + //
-            " </head>\n" + //
-            " <docTitle>\n" + //
-            "  <text>title</text>\n" + //
-            " </docTitle>\n" + //
-            " <navMap>" + //
-            "%nav% \n" + //
-            "   \n" + //
-            " </navMap>\n" + //
-            "</ncx>";//
-
-    public static String createNavPoint(int id, String text) {
-        return "\n\n<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
-                "<navLabel>\n" + //
-                "<text>" + TxtUtils.escapeHtml(text) + "</text>\n" + //
-                "</navLabel>\n" + //
-                "<content src=\"fb2.fb2#" + id + "\"/>\n" + //
-                "</navPoint>"; //
-    }
-
-    public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws
-            IOException {
-        zos.putNextEntry(new ZipEntry(name));
-        zipCopy(stream, zos);
-    }
-
-    public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
-            IOException {
-        zos.putNextEntry(new ZipEntry(name));
-        zipCopyNoClose(stream, zos);
-    }
-
-    public static void writeToZip(ZipOutputStream zos, String name, String content) throws
-            IOException {
-        writeToZip(zos, name, new ByteArrayInputStream(content.getBytes()));
-    }
-
-    private static final int BUFFER_SIZE = 16 * 1024;
-
-    public static void zipCopy(InputStream inputStream, OutputStream zipStream) throws
-            IOException {
-
-        byte[] bytesIn = new byte[BUFFER_SIZE];
-        int read = 0;
-        while ((read = inputStream.read(bytesIn)) != -1) {
-            zipStream.write(bytesIn, 0, read);
-        }
-        inputStream.close();
-    }
-
-    public static void zipCopyNoClose(InputStream inputStream, OutputStream zipStream) throws
-            IOException {
-
-        byte[] bytesIn = new byte[BUFFER_SIZE];
-        int read = 0;
-        while ((read = inputStream.read(bytesIn)) != -1) {
-            zipStream.write(bytesIn, 0, read);
-        }
     }
 
 }

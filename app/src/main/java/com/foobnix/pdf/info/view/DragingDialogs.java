@@ -3495,6 +3495,18 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isReferenceMode = (CheckBox) inflate.findViewById(R.id.isReferenceMode);
+                isReferenceMode.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
+                isReferenceMode.setChecked(AppState.get().isReferenceMode);
+                isReferenceMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isReferenceMode = isChecked;
+                        BookCSS.get().isAutoHypens = true;
+                    }
+                });
+
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
                 isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {

@@ -360,6 +360,8 @@ public class AppState {
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
 
+    public boolean isReferenceMode = false;
+
 
     @IgnoreHashCode
     @Deprecated
