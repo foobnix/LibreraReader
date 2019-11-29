@@ -589,4 +589,5 @@
    <string name="next_track">अगला गाना</string>
    <string name="previous_track">पिछला ट्रैक</string>
    <string name="copied_text">नकल पाठ</string>
+   <string name="reference_mode_like_in_calibre_viewer">संदर्भ मोड (कैलिबर दर्शक की तरह)</string>
 </resources>

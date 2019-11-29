@@ -589,4 +589,5 @@
    <string name="next_track">Neste spor</string>
    <string name="previous_track">Forrige spor</string>
    <string name="copied_text">Kopiert tekst</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referansemodus (som i kaliberviseren)</string>
 </resources>

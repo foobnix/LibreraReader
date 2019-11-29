@@ -589,4 +589,5 @@
    <string name="next_track">Volgende track</string>
    <string name="previous_track">Vorig nummer</string>
    <string name="copied_text">Gekopieerde tekst</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referentiemodus (zoals in kaliberviewer)</string>
 </resources>

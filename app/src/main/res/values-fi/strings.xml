@@ -589,4 +589,5 @@
    <string name="next_track">Seuraava kappale</string>
    <string name="previous_track">Edellinen kappale</string>
    <string name="copied_text">Kopioitu teksti</string>
+   <string name="reference_mode_like_in_calibre_viewer">Vertailutila (kuten kaliiperin katseluohjelmassa)</string>
 </resources>

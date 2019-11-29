@@ -589,4 +589,5 @@
    <string name="next_track">Dấu vết tiếp theo</string>
    <string name="previous_track">Bài hát trước</string>
    <string name="copied_text">Sao chép văn bản</string>
+   <string name="reference_mode_like_in_calibre_viewer">Chế độ tham chiếu (như trong trình xem cỡ nòng)</string>
 </resources>

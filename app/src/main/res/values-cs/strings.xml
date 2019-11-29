@@ -589,4 +589,5 @@
    <string name="next_track">Další skladba</string>
    <string name="previous_track">Předchozí skladba</string>
    <string name="copied_text">Zkopírovaný text</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referenční režim (jako v prohlížeči kalibru)</string>
 </resources>

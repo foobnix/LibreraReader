@@ -589,4 +589,5 @@
    <string name="next_track">Deinde semita</string>
    <string name="previous_track">Prior semita</string>
    <string name="copied_text">Copied illud</string>
+   <string name="reference_mode_like_in_calibre_viewer">Reference mode (ut in gente videntium)</string>
 </resources>

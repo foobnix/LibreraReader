@@ -589,4 +589,5 @@
    <string name="next_track">آهنگ بعدی</string>
    <string name="previous_track">آهنگ قبلی</string>
    <string name="copied_text">متن کپی شده</string>
+   <string name="reference_mode_like_in_calibre_viewer">حالت مرجع (مانند در بیننده کالیبر)</string>
 </resources>

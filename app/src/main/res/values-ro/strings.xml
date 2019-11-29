@@ -589,4 +589,5 @@
    <string name="next_track">Următoarea piesă</string>
    <string name="previous_track">Piesa anterioară</string>
    <string name="copied_text">Text copiat</string>
+   <string name="reference_mode_like_in_calibre_viewer">Modul de referință (ca în vizualizatorul de calibru)</string>
 </resources>

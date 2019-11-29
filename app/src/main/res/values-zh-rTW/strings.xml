@@ -589,4 +589,5 @@
    <string name="next_track">下一軌</string>
    <string name="previous_track">上一軌</string>
    <string name="copied_text">複製文本</string>
+   <string name="reference_mode_like_in_calibre_viewer">參考模式（例如在口徑查看器中）</string>
 </resources>

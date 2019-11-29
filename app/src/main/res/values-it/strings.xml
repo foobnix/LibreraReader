@@ -589,4 +589,5 @@
    <string name="next_track">Prossima traccia</string>
    <string name="previous_track">Traccia precedente</string>
    <string name="copied_text">Testo copiato</string>
+   <string name="reference_mode_like_in_calibre_viewer">Modalità di riferimento (come nel visualizzatore di calibri)</string>
 </resources>

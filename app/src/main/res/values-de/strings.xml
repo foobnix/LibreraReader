@@ -589,4 +589,5 @@
    <string name="next_track">Nächster Titel</string>
    <string name="previous_track">Vorheriges Lied</string>
    <string name="copied_text">Kopierter Text</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referenzmodus (wie im Kaliber-Viewer)</string>
 </resources>

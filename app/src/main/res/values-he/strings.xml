@@ -589,4 +589,5 @@
    <string name="next_track">המסלול הבא</string>
    <string name="previous_track">רצועה קודמת</string>
    <string name="copied_text">טקסט מועתק</string>
+   <string name="reference_mode_like_in_calibre_viewer">מצב הפניה (כמו בצופה בקליבר)</string>
 </resources>

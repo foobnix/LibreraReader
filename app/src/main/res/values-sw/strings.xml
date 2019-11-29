@@ -589,4 +589,5 @@
    <string name="next_track">Wimbo unaofuata</string>
    <string name="previous_track">Wimbo wa zamani</string>
    <string name="copied_text">Nakala iliyonakiliwa</string>
+   <string name="reference_mode_like_in_calibre_viewer">Hali ya kumbukumbu (kama ilivyo kwa mtazamaji wa caliber)</string>
 </resources>

@@ -589,4 +589,5 @@
    <string name="next_track">Наступний трек</string>
    <string name="previous_track">Попередній трек</string>
    <string name="copied_text">Скопійований текст</string>
+   <string name="reference_mode_like_in_calibre_viewer">Довідковий режим (як у переглядачі калібру)</string>
 </resources>

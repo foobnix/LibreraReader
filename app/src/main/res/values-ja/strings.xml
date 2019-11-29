@@ -589,4 +589,5 @@
    <string name="next_track">次のトラック</string>
    <string name="previous_track">前のトラック</string>
    <string name="copied_text">コピーされたテキスト</string>
+   <string name="reference_mode_like_in_calibre_viewer">参照モード（キャリバービューアーなど）</string>
 </resources>
