@@ -47,6 +47,7 @@ public class AppProfile {
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    public static final File DEFAULT_SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
     public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
     public static final String APP_CSS_JSON = "app-CSS.json";
@@ -58,9 +59,9 @@ public class AppProfile {
     public static final String APP_TAGS_JSON = "app-Tags.json";
 
 
-    public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
-    public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
-    public static File SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
+    public static File SYNC_FOLDER_ROOT;
+    public static File SYNC_FOLDER_BOOKS;
+    public static File SYNC_FOLDER_DICT;
     public static File SYNC_FOLDER_PROFILE;
     public static File SYNC_FOLDER_DEVICE_PROFILE;
     public static File syncRecent;
@@ -96,6 +97,9 @@ public class AppProfile {
         AppDB.get().open(c, profile);
         LOG.d("AppProfile init", profile);
 
+        SYNC_FOLDER_ROOT = new File(sp.getString("syncFolderRoot", DEFAULT_SYNC_FOLDER_ROOT.toString()));
+        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
+        SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);

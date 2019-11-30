@@ -3,9 +3,11 @@ package com.foobnix.ui2.fragment;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
@@ -1550,6 +1552,27 @@ public class PrefFragment2 extends UIFragment {
                         getActivity()));
 
         // folders
+
+        final TextView rootFolder = (TextView) inflate.findViewById(R.id.rootFolder);
+        SharedPreferences sp = getContext().getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
+        TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(sp.getString("syncFolderRoot", AppProfile.DEFAULT_SYNC_FOLDER_ROOT.toString())));
+        rootFolder.setOnClickListener(new
+
+                                             OnClickListener() {
+
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     ChooserDialogFragment.chooseFolder(getActivity(), sp.getString("syncFolderRoot", AppProfile.DEFAULT_SYNC_FOLDER_ROOT.toString())).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                         @Override
+                                                         public boolean onResultRecive(String nPath, Dialog dialog) {
+                                                             sp.edit().putString("syncFolderRoot", nPath).commit();
+                                                             TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(nPath));
+                                                             dialog.dismiss();
+                                                             return false;
+                                                         }
+                                                     });
+                                                 }
+                                             });
 
         final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);
         TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
