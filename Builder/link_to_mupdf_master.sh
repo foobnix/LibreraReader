@@ -19,27 +19,28 @@ make generate
 
 cd ..
 
-MUPDF_ROOT=/home/ivan-dev/git/LibreraReader/Builder/mupdf-master
+LIBRERA_READER_ROOT="$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")"
+MUPDF_ROOT="$LIBRERA_READER_ROOT"/Builder/mupdf-master
 
-MUPDF_JAVA=$MUPDF_ROOT/platform/java
+MUPDF_JAVA="$MUPDF_ROOT"/platform/java
 
-LIBS=/home/ivan-dev/git/LibreraReader/app/src/main/jniLibs
+LIBS="$LIBRERA_READER_ROOT"/app/src/main/jniLibs
 
-rm -rf  $MUPDF_JAVA/jni
-cp -rRp jni-master $MUPDF_JAVA/jni
+rm -rf  "$MUPDF_JAVA"/jni
+cp -rRp jni-master "$MUPDF_JAVA"/jni
 
-rm -r $LIBS
-mkdir $LIBS
+rm -r "$LIBS"
+mkdir "$LIBS"
 
-ln -s $MUPDF_JAVA/libs/armeabi-v7a $LIBS
-ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
-ln -s $MUPDF_JAVA/libs/x86 $LIBS
-ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
+ln -s "$MUPDF_JAVA"/libs/armeabi-v7a "$LIBS"
+ln -s "$MUPDF_JAVA"/libs/arm64-v8a "$LIBS"
+ln -s "$MUPDF_JAVA"/libs/x86 "$LIBS"
+ln -s "$MUPDF_JAVA"/libs/x86_64 "$LIBS"
 
-cd $MUPDF_JAVA
+cd "$MUPDF_JAVA"
 echo "=================="
-ndk-build $1
+ndk-build "$1"
 echo "=================="
-echo "MUPDF:" $MUPDF_JAVA
-echo "LIBS:"  $LIBS
+echo "MUPDF:" "$MUPDF_JAVA"
+echo "LIBS:"  "$LIBS"
 echo "=================="

@@ -41,7 +41,9 @@ mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev li
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
+# Change the paths to mupdf and jniLibs folders
+./link_to_mupdf_1.11.sh
+cd ..
 ./gradlew assembleLibrera
 ~~~~
 
@@ -49,7 +51,9 @@ cd Builder
 
 ~~~~
 cd Builder
+# Change the paths to mupdf and jniLibs folders
 ./link_to_mupdf_1.16.1.sh
+cd ..
 ./gradlew assembleAlpha
 ~~~~
 
