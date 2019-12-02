@@ -539,13 +539,13 @@
    <string name="profile">Profile</string>
    <string name="new_profile">New Profile</string>
    <string name="main">Main</string>
-   <string name="do_you_want_to_switch_profile_">Switch to another profile?</string>
+   <string name="do_you_want_to_switch_profile_">Switch to this profile?</string>
    <string name="sync_error">Syncing error</string>
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
    <string name="wifi_sync_only">Sync over WiFi only</string>
    <string name="sync_google_drive">Sync (Google Drive)</string>
-   <string name="single_tap_to_select_text">Single-tap to select text</string>
+   <string name="single_tap_to_select_text">Single-tap selection</string>
    <string name="sync_book">Sync</string>
    <string name="sync">Sync</string>
    <string name="synchronized_folder">Synced folder</string>
@@ -582,12 +582,12 @@
    <string name="delete_reading_progress">Reset progress</string>
    <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore folders with .nomedia files</string>
    <string name="record_in_mp3_format">Save to MP3</string>
-   <string name="speak_into_file_wav">Record TTS (mp3, wav)</string>
+   <string name="speak_into_file_wav">Record TTS (MP3, WAV)</string>
    <string name="text_is_too_long">Character limit is exceeded</string>
    <string name="settings">Settings</string>
    <string name="play_pause">Play/pause</string>
    <string name="next_track">Next track</string>
    <string name="previous_track">Previous track</string>
    <string name="copied_text">Text copied</string>
-   <string name="reference_mode_like_in_calibre_viewer">Reference mode (like in Calibre Viewer)</string>
+   <string name="reference_mode_like_in_calibre_viewer">Reference mode (Calibre-style)</string>
 </resources>
