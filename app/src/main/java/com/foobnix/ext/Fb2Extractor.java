@@ -175,7 +175,7 @@ public class Fb2Extractor extends BaseExtractor {
                 if (index >= 0) {
                     count++;
                     int p = line.indexOf(">", index) + 1;
-                    line = line.substring(0, p) + "|" + number + "." + count + "| " + line.substring(p);
+                    line = line.substring(0, p) + "<x-small>|" + number + "." + count + "|</x-small> " + line.substring(p);
                     LOG.d("linep", line);
                 }
             }

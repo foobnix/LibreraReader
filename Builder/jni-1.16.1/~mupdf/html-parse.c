@@ -45,6 +45,7 @@ static const char *html_default_css =
 "samp{font-family:monospace}"
 "script{display:none}"
 "small{font-size:0.83em}"
+"x-small{font-size:0.5em}"
 "strong{font-weight:bold}"
 "style{display:none}"
 "sub{font-size:0.83em;vertical-align:sub}"

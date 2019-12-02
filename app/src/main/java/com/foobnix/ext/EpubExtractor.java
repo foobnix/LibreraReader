@@ -85,7 +85,42 @@ public class EpubExtractor extends BaseExtractor {
         HypenUtils.applyLanguage(AppTemp.get().hypenLang);
 
         Map<String, String> svgs = new HashMap<>();
-        int count = 0;
+
+        List<String> spine = new ArrayList<>();
+        Map<String, String> manifest = new HashMap<>();
+        if (AppState.get().isReferenceMode) {
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                String name = nextEntry.getName().toLowerCase(Locale.US);
+                if (name.endsWith(".opf")) {
+
+                    XmlPullParser xpp = XmlParser.buildPullParser();
+                    xpp.setInput(zipInputStream, "utf-8");
+
+                    int eventType = xpp.getEventType();
+
+                    while (eventType != XmlPullParser.END_DOCUMENT) {
+                        if (eventType == XmlPullParser.START_TAG) {
+                            if ("item".equals(xpp.getName())) {
+                                String root = "OEBPS/";
+                                String id = xpp.getAttributeValue(null, "id");
+                                String href = root + xpp.getAttributeValue(null, "href");
+                                manifest.put(href, id);
+                                LOG.d("isReferenceMode-manifest", id, href);
+
+                            } else if ("itemref".equals(xpp.getName())) {
+                                final String idref = xpp.getAttributeValue(null, "idref");
+                                spine.add(idref);
+                                LOG.d("isReferenceMode-itemref", idref);
+                            }
+                        }
+                        eventType = xpp.next();
+                    }
+                }
+            }
+            zipInputStream.close();
+            zipInputStream = Zips.buildZipArchiveInputStream(input);
+        }
+
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
             if (TempHolder.get().loadingCancelled) {
                 break;
@@ -100,10 +135,16 @@ public class EpubExtractor extends BaseExtractor {
             }
 
             if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
-                LOG.d("nextEntry HTML ok", name, count);
+
+                int count = 0;
+                if (AppState.get().isReferenceMode) {
+                    String ch = manifest.get(name);
+                    count = spine.indexOf(ch) + 1;
+                    LOG.d("isReferenceMode ok", name, ch, count);
+                }
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-                count++;
+
                 Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count);
 
 
@@ -426,10 +467,10 @@ public class EpubExtractor extends BaseExtractor {
             EbookMeta ebookMeta = new EbookMeta(title, author, series, allGenres.replaceAll(",$", ""));
             try {
                 if (number != null) {
-                    number = number.replace(".0","");
-                    if(number.contains(".")){
-                        ebookMeta.setsIndex((int)Float.parseFloat(number));
-                    }else {
+                    number = number.replace(".0", "");
+                    if (number.contains(".")) {
+                        ebookMeta.setsIndex((int) Float.parseFloat(number));
+                    } else {
                         ebookMeta.setsIndex(Integer.parseInt(number));
                     }
                     LOG.d("epub3", series, ebookMeta.getsIndex());
@@ -446,7 +487,7 @@ public class EpubExtractor extends BaseExtractor {
             ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
-        } catch (               Exception e) {
+        } catch (Exception e) {
             LOG.e(e);
             return EbookMeta.Empty();
         }
