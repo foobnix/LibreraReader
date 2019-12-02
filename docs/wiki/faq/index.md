@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Using a Text-to-Speech Engine with _Librera_](/wiki/faq/installation-and-configuration-of-tts)
 * [How to Select Text in _Librera_](/wiki/faq/how-to-set-text-selection)
 * [Syncing Your Reading Setup Across Multiple Devices](/wiki/faq/setting-up-synchronization)
 * [Re-paginating Your Document to Match the Book's Page Numbers](/wiki/faq/relative-page-numbers)
@@ -18,7 +19,6 @@ info: this file is generated automatically, please do not modify it
 * [Setting Up Fingerprint or Password Protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
-* [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Theming Librera's UI](/wiki/faq/customize-theme-colors-links)
 * [Increasing Font-Size in PDF Documents](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)

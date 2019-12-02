@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [استخدام محرك تحويل النص إلى كلام مع _Librera _](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية اختيار النص في _Librera _](/wiki/faq/how-to-set-text-selection/ar)
 * [مزامنة إعداد القراءة عبر أجهزة متعددة](/wiki/faq/setting-up-synchronization/ar)
 * [إعادة ترقيم الصفحات وثيقتك لمطابقة أرقام صفحات الكتاب](/wiki/faq/relative-page-numbers/ar)
@@ -17,7 +18,6 @@ layout: main
 * [إعداد بصمة أو حماية كلمة المرور](/wiki/faq/setting-up-fingerprint-or-password-protection/ar)
 * [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [القراءة بلغات RTL](/wiki/faq/rtl-or-ltr-text-direction/ar)
-* [تثبيت وتهيئة تحويل النص إلى كلام (TTS)](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [واجهة مستخدم Theming Librera](/wiki/faq/customize-theme-colors-links/ar)
 * [زيادة حجم الخط في مستندات PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)

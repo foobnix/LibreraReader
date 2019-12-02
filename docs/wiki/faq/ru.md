@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Использование механизма преобразования текста в речь с _Librera _](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Как выбрать текст в _Librera _](/wiki/faq/how-to-set-text-selection/ru)
 * [Синхронизация настроек чтения на нескольких устройствах](/wiki/faq/setting-up-synchronization/ru)
 * [Повторная нумерация вашего документа в соответствии с номерами страниц книги](/wiki/faq/relative-page-numbers/ru)
@@ -17,7 +18,6 @@ layout: main
 * [Настройка защиты по отпечатку пальца или паролю](/wiki/faq/setting-up-fingerprint-or-password-protection/ru)
 * [Повышение контрастности и яркости в PDF (ч/б эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
 * [Чтение на языках RTL](/wiki/faq/rtl-or-ltr-text-direction/ru)
-* [Установка и настройка преобразования текста в речь (TTS)](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Пользовательский интерфейс Theming Librera](/wiki/faq/customize-theme-colors-links/ru)
 * [Увеличение размера шрифта в документах PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)

@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Usando um mecanismo de conversão de texto em fala com _Librera _](/wiki/faq/installation-and-configuration-of-tts/pt)
 * [Como selecionar texto em _Librera _](/wiki/faq/how-to-set-text-selection/pt)
 * [Sincronizando sua configuração de leitura em vários dispositivos](/wiki/faq/setting-up-synchronization/pt)
 * [Re-paginando seu documento para corresponder aos números de página do livro](/wiki/faq/relative-page-numbers/pt)
@@ -17,7 +18,6 @@ layout: main
 * [Configuração da impressão digital ou da proteção por senha](/wiki/faq/setting-up-fingerprint-or-password-protection/pt)
 * [Aprimoramento de contraste e brilho em PDF (efeito P/B)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Leitura em idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/pt)
-* [Instalando e configurando Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts/pt)
 * [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Interface do usuário da Theming Librera](/wiki/faq/customize-theme-colors-links/pt)
 * [Aumentando o tamanho da fonte nos documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/pt)

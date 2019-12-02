@@ -4,6 +4,7 @@ layout: main
 
 # Foire aux questions
 
+* [Utilisation d'un moteur de synthèse vocale avec _Librera _](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Comment sélectionner du texte dans _Librera _](/wiki/faq/how-to-set-text-selection/fr)
 * [Synchronisation de votre configuration de lecture sur plusieurs appareils](/wiki/faq/setting-up-synchronization/fr)
 * [Nouvelle pagination de votre document pour qu'elle corresponde aux numéros de page du livre](/wiki/faq/relative-page-numbers/fr)
@@ -17,7 +18,6 @@ layout: main
 * [Configuration de la protection par empreinte digitale ou par mot de passe](/wiki/faq/setting-up-fingerprint-or-password-protection/fr)
 * [Amélioration du contraste et de la luminosité dans les PDF (effet N/B)](/wiki/faq/contrast-and-brightness-in-pdf/fr)
 * [Lecture dans les langues RTL](/wiki/faq/rtl-or-ltr-text-direction/fr)
-* [Installation et configuration de synthèse vocale](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Notes dans le texte et notes de bas de page](/wiki/faq/include-footnotes-directly-in-the-text/fr)
 * [Interface utilisateur de Theming Librera](/wiki/faq/customize-theme-colors-links/fr)
 * [Augmentation de la taille de la police dans les documents PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/fr)
