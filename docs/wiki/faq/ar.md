@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [الوضع المرجعي (يشير الرقم إلى الفقرة ، كما في &quot;Caliber Viewer&quot;)](/wiki/faq/reference-mode-calibre/ar)
 * [استخدام محرك تحويل النص إلى كلام مع _Librera _](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية اختيار النص في _Librera _](/wiki/faq/how-to-set-text-selection/ar)
 * [مزامنة إعداد القراءة عبر أجهزة متعددة](/wiki/faq/setting-up-synchronization/ar)

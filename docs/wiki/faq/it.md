@@ -4,6 +4,7 @@ layout: main
 
 # Domande frequenti
 
+* [Modalità di riferimento (numero di riferimento al paragrafo, come in &quot;Calibre Viewer&quot;)](/wiki/faq/reference-mode-calibre/it)
 * [Uso di un motore di sintesi vocale con _Librera _](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Come selezionare il testo in _Librera _](/wiki/faq/how-to-set-text-selection/it)
 * [Sincronizzazione della configurazione della lettura su più dispositivi](/wiki/faq/setting-up-synchronization/it)

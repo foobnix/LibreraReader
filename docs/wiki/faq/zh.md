@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [参考模式(在段落中引用编号，如“ Calibre Viewer”中所示)](/wiki/faq/reference-mode-calibre/zh)
 * [与_Librera_一起使用文本语音转换引擎](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何在_Librera_中选择文本](/wiki/faq/how-to-set-text-selection/zh)
 * [跨多个设备同步您的阅读设置](/wiki/faq/setting-up-synchronization/zh)

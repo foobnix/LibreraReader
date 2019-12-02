@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Modo de referência (número referente ao parágrafo, como em &quot;Visualizador de Calibre&quot;)](/wiki/faq/reference-mode-calibre/pt)
 * [Usando um mecanismo de conversão de texto em fala com _Librera _](/wiki/faq/installation-and-configuration-of-tts/pt)
 * [Como selecionar texto em _Librera _](/wiki/faq/how-to-set-text-selection/pt)
 * [Sincronizando sua configuração de leitura em vários dispositivos](/wiki/faq/setting-up-synchronization/pt)

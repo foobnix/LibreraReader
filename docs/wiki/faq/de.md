@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Referenzmodus (unter Bezugnahme auf den Absatz, wie in &quot;Calibre Viewer&quot;)](/wiki/faq/reference-mode-calibre/de)
 * [Verwenden einer Text-to-Speech-Engine mit _Librera _](/wiki/faq/installation-and-configuration-of-tts/de)
 * [Auswählen von Text in _Librera _](/wiki/faq/how-to-set-text-selection/de)
 * [Synchronisieren des Lese-Setups auf mehreren Geräten](/wiki/faq/setting-up-synchronization/de)

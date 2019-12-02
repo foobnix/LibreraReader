@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Режим ссылки (ссылка на номер абзаца, как в «Средстве просмотра калибра»)](/wiki/faq/reference-mode-calibre/ru)
 * [Использование механизма преобразования текста в речь с _Librera _](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Как выбрать текст в _Librera _](/wiki/faq/how-to-set-text-selection/ru)
 * [Синхронизация настроек чтения на нескольких устройствах](/wiki/faq/setting-up-synchronization/ru)

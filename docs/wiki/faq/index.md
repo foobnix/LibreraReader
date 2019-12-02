@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Reference mode (referring number to the paragraph, like in "Calibre Viewer")](/wiki/faq/reference-mode-calibre)
 * [Using a Text-to-Speech Engine with _Librera_](/wiki/faq/installation-and-configuration-of-tts)
 * [How to Select Text in _Librera_](/wiki/faq/how-to-set-text-selection)
 * [Syncing Your Reading Setup Across Multiple Devices](/wiki/faq/setting-up-synchronization)
