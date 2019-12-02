@@ -107,7 +107,6 @@ public class EpubExtractor extends BaseExtractor {
                 Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count);
 
 
-
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
             } else {
                 LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
@@ -302,6 +301,7 @@ public class EpubExtractor extends BaseExtractor {
     @Override
     public EbookMeta getBookMetaInformation(String path) {
         try {
+            LOG.d("getBookMetaInformation path", path);
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
             ArchiveEntry nextEntry = null;
@@ -365,16 +365,22 @@ public class EpubExtractor extends BaseExtractor {
                                 lang = xpp.nextText();
                             }
 
-                            if ("meta".equals(xpp.getName())) {
-                                String nameAttr = xpp.getAttributeValue(null, "name");
-                                String value = xpp.getAttributeValue(null, "content");
-                                if ("calibre:series".equals(nameAttr)) {
+                            if ("meta".equals(xpp.getName()) || "opf:meta".equals(xpp.getName())) {
+
+                                String nameAttr = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "name"));
+                                String propertyAttr = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "property"));
+                                String value = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "content"));
+
+                                if (propertyAttr.equals("belongs-to-collection")) {
+                                    series = xpp.nextText();
+                                    LOG.d("belongs-to-collection series", series);
+                                } else if (propertyAttr.equals("group-position")) {
+                                    number = xpp.nextText();
+                                    LOG.d("belongs-to-collection group-position number", number);
+                                } else if (nameAttr.endsWith(":series")) {
                                     series = value;
-                                } else if ("calibre:series_index".equals(nameAttr)) {
+                                } else if (nameAttr.endsWith(":series_index")) {
                                     number = value;
-                                    if (number != null) {
-                                        number = number.replace(".0", "");
-                                    }
                                 } else if ("calibre:user_metadata:#genre".equals(nameAttr)) {
                                     LOG.d("userGenre", value);
                                     try {
@@ -420,7 +426,14 @@ public class EpubExtractor extends BaseExtractor {
             EbookMeta ebookMeta = new EbookMeta(title, author, series, allGenres.replaceAll(",$", ""));
             try {
                 if (number != null) {
-                    ebookMeta.setsIndex(Integer.parseInt(number));
+                    number = number.replace(".0","");
+                    if(number.contains(".")){
+                        ebookMeta.setsIndex((int)Float.parseFloat(number));
+                    }else {
+                        ebookMeta.setsIndex(Integer.parseInt(number));
+                    }
+                    LOG.d("epub3", series, ebookMeta.getsIndex());
+
                 }
             } catch (Exception e) {
                 title = title + " [" + number + "]";
@@ -433,9 +446,8 @@ public class EpubExtractor extends BaseExtractor {
             ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
-        } catch (
-
-                Exception e) {
+        } catch (               Exception e) {
+            LOG.e(e);
             return EbookMeta.Empty();
         }
     }
