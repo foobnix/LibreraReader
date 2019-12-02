@@ -34,10 +34,10 @@ public class MuPdfOutline {
 
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
-            final String title = getTitle(outline);
+             String title = getTitle(outline);
             final String link = getLink(outline, docHandle);
             String linkUri = getLinkUri(outline, docHandle);
-            LOG.d("linkUri", linkUri);
+            LOG.d("linkUri", linkUri, title);
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);
 

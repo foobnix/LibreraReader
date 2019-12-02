@@ -101,15 +101,21 @@ public class EpubExtractor extends BaseExtractor {
                     while (eventType != XmlPullParser.END_DOCUMENT) {
                         if (eventType == XmlPullParser.START_TAG) {
                             if ("item".equals(xpp.getName())) {
-                                String root = "OEBPS/";
                                 String id = xpp.getAttributeValue(null, "id");
-                                String href = root + xpp.getAttributeValue(null, "href");
+                                String href = xpp.getAttributeValue(null, "href");
+                                String nav = xpp.getAttributeValue(null, "properties");
+
                                 manifest.put(href, id);
                                 LOG.d("isReferenceMode-manifest", id, href);
 
                             } else if ("itemref".equals(xpp.getName())) {
                                 final String idref = xpp.getAttributeValue(null, "idref");
-                                spine.add(idref);
+                                final String linear = xpp.getAttributeValue(null, "linear");
+                                if ("no".equals(linear)) {
+                                    LOG.d("isReferenceMode-itemref skip", idref);
+                                } else {
+                                    spine.add(idref);
+                                }
                                 LOG.d("isReferenceMode-itemref", idref);
                             }
                         }
@@ -128,7 +134,11 @@ public class EpubExtractor extends BaseExtractor {
             String name = nextEntry.getName();
             String nameLow = name.toLowerCase(Locale.US);
 
-            if (nameLow.contains("encryption.xml") || nameLow.contains("container.xml")) {
+            if (nameLow.contains("encryption.xml") || //
+                    nameLow.contains("container.xml") || //
+                    nameLow.contains("nav") || //
+                    nameLow.contains("toc")//
+            ) {
                 LOG.d("nextEntry HTML skip", name);
                 Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
                 continue;
@@ -138,7 +148,14 @@ public class EpubExtractor extends BaseExtractor {
 
                 int count = 0;
                 if (AppState.get().isReferenceMode) {
-                    String ch = manifest.get(name);
+                    String ch = "";
+                    for (String key : manifest.keySet()) {
+                        if (name.contains(key)) {
+                            ch = manifest.get(key);
+                            break;
+                        }
+                    }
+
                     count = spine.indexOf(ch) + 1;
                     LOG.d("isReferenceMode ok", name, ch, count);
                 }
