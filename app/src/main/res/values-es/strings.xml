@@ -590,4 +590,5 @@
    <string name="previous_track">Pista anterior</string>
    <string name="copied_text">Texto copiado</string>
    <string name="reference_mode_like_in_calibre_viewer">Modo de referencia (como en el visor de calibre)</string>
+   <string name="profile_root">Raíz del perfil</string>
 </resources>

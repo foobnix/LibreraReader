@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.foobnix.android.utils.Objects;
+import com.foobnix.pdf.info.BuildConfig;
 
 public class AppTemp {
+
 
     private static AppTemp instance = new AppTemp();
     public String lastBookPath;
@@ -34,6 +36,10 @@ public class AppTemp {
     public boolean isCropSymetry = false;
     public boolean isEnableSync;
     public String syncRootID;
+    public String currentProfile = BuildConfig.IS_BETA ? "BETA" : "Librera";
+
+    public String rootPath = AppProfile.DEFAULT_SYNC_FOLDER_ROOT.toString();
+
     transient SharedPreferences sp;
 
     public static AppTemp get() {

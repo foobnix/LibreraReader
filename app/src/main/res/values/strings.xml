@@ -198,7 +198,6 @@
    <string name="port">Port</string>
    <string name="user">User</string>
    <string name="other_settings">Additional Settings</string>
-   <string name="folder_for_sync_root">Profile Root</string>
    <string name="folder_for_downloaded_books">Downloads</string>
    <string name="display_large_book_covers_in_the_catalog">Large book covers in catalogs</string>
    <string name="add_catalog">New Catalog</string>
@@ -591,4 +590,5 @@
    <string name="previous_track">Previous track</string>
    <string name="copied_text">Text copied</string>
    <string name="reference_mode_like_in_calibre_viewer">Reference mode (Calibre-style)</string>
+   <string name="profile_root">Profile Root</string>
 </resources>

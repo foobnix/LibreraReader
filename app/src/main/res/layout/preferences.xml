@@ -1303,7 +1303,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="135dip"
-                android:text="@string/folder_for_sync_root" />
+                android:text="@string/profile_root" />
 
             <TextView
                 android:id="@+id/rootFolder"

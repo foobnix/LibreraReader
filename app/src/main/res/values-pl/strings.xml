@@ -590,4 +590,5 @@
    <string name="previous_track">Poprzedni utwór</string>
    <string name="copied_text">Skopiowany tekst</string>
    <string name="reference_mode_like_in_calibre_viewer">Tryb odniesienia (jak w przeglądarce kalibru)</string>
+   <string name="profile_root">Katalog główny</string>
 </resources>

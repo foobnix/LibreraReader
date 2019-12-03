@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -27,7 +26,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -44,10 +42,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class AppProfile {
+    public static final File DEFAULT_SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
+
+
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-    public static final File DEFAULT_SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
     public static final String DEVICE_MODEL = DEVICE_PREFIX + Build.MODEL.replace(" ", "_");
     public static final String APP_STATE_JSON = "app-State.json";
     public static final String APP_CSS_JSON = "app-CSS.json";
@@ -57,6 +57,8 @@ public class AppProfile {
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
+    public static final String SYNC_FOLDER_ROOT_KEY = "syncFolderRoot";
+    public static final String APP_PROFILE_SP = "AppProfile";
 
 
     public static File SYNC_FOLDER_ROOT;
@@ -74,7 +76,6 @@ public class AppProfile {
     public static File syncProgress;
     public static File syncBookmarks;
     public static String profile = "";
-    static SharedPreferences sp;
 
     public synchronized static void init(Context c) {
 
@@ -82,12 +83,13 @@ public class AppProfile {
             LOG.d("AppProfile init null");
             return;
         }
+        AppTemp.get().init(c);
 
         if (!Android6.canWrite(c)) {
             return;
         }
 
-        sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
+
 
         if (profile.equals(getCurrent(c))) {
             LOG.d("AppProfile skip", profile);
@@ -97,7 +99,7 @@ public class AppProfile {
         AppDB.get().open(c, profile);
         LOG.d("AppProfile init", profile);
 
-        SYNC_FOLDER_ROOT = new File(sp.getString("syncFolderRoot", DEFAULT_SYNC_FOLDER_ROOT.toString()));
+        SYNC_FOLDER_ROOT = new File(AppTemp.get().rootPath);
         SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
         SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
 
@@ -122,7 +124,7 @@ public class AppProfile {
         }
         TintUtil.init();
         BookCSS.get().load1(c);
-        AppTemp.get().init(c);
+
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
@@ -187,12 +189,13 @@ public class AppProfile {
     }
 
     public static String getCurrent(Context c) {
-        return sp.getString(PROFILE_PREFIX, BuildConfig.IS_BETA ? "BETA" : "Librera");
+        return AppTemp.get().currentProfile;
     }
 
     public static void saveCurrent(Context c, String name) {
+        AppTemp.get().currentProfile = name;
         save(c);
-        sp.edit().putString(PROFILE_PREFIX, name).commit();
+
     }
 
 
