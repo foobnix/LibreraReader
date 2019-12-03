@@ -92,7 +92,7 @@ public class AppProfile {
             return;
         }
         profile = getCurrent(c);
-        AppDB.get().open(c, profile);
+        AppDB.get().open(c, "db-"+AppSP.get().rootPath.hashCode()+"-"+profile);
         LOG.d("AppProfile init", profile);
 
         SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
