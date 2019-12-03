@@ -15,8 +15,8 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Clouds;
@@ -154,7 +154,7 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
-                    if (AppTemp.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
+                    if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
                         Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 
                             @Override

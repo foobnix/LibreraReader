@@ -591,4 +591,6 @@
    <string name="copied_text">نسخ النص</string>
    <string name="reference_mode_like_in_calibre_viewer">وضع المرجع (كما في عارض العيار)</string>
    <string name="profile_root">جذر الملف الشخصي</string>
+   <string name="create_folder">أنشئ مجلد</string>
+   <string name="all_folders">كل الملفات</string>
 </resources>

@@ -591,4 +591,6 @@
    <string name="copied_text">Text copied</string>
    <string name="reference_mode_like_in_calibre_viewer">Reference mode (Calibre-style)</string>
    <string name="profile_root">Profile Root</string>
+   <string name="create_folder">Create folder</string>
+   <string name="all_folders">All folders</string>
 </resources>

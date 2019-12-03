@@ -591,4 +591,6 @@
    <string name="copied_text">コピーされたテキスト</string>
    <string name="reference_mode_like_in_calibre_viewer">参照モード（キャリバービューアーなど）</string>
    <string name="profile_root">プロファイルルート</string>
+   <string name="create_folder">フォルダーを作る</string>
+   <string name="all_folders">すべてのフォルダー</string>
 </resources>

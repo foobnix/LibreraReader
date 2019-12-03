@@ -22,8 +22,8 @@ import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.model.MyPath;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
@@ -332,9 +332,9 @@ public class ShareDialog {
                         @Override
                         public void run() {
                             if (dc.isMusicianMode()) {
-                                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                                AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                             } else {
-                                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                                AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                             }
                             ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
 
@@ -349,9 +349,9 @@ public class ShareDialog {
                             @Override
                             public void run() {
                                 if (dc.isMusicianMode()) {
-                                    AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                                    AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                                 } else {
-                                    AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                                    AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                                 }
                                 ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                             }
@@ -363,7 +363,7 @@ public class ShareDialog {
 
                         @Override
                         public void run() {
-                            AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                            AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
                             ExtUtils.showDocumentWithoutDialog(a, file, a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST));
                         }
                     });
@@ -410,7 +410,7 @@ public class ShareDialog {
                 } else if (!isSyncronized && which == i++) {
                     final File to = new File(AppProfile.SYNC_FOLDER_BOOKS, file.getName());
                     boolean result = IO.copyFile(file, to);
-                    if (result && AppTemp.get().isEnableSync) {
+                    if (result && AppSP.get().isEnableSync) {
 
                         AppDB.get().setIsSearchBook(file.getPath(), false);
                         FileMetaCore.createMetaIfNeed(to.getPath(), true);

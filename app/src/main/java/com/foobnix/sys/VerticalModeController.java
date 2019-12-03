@@ -21,8 +21,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -160,8 +160,8 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void onCrop() {
         try {
-            // AppTemp.get().isCrop = !AppTemp.get().isCrop;
-            ctr.toggleCrop(AppTemp.get().isCrop);
+            // AppSP.get().isCrop = !AppSP.get().isCrop;
+            ctr.toggleCrop(AppSP.get().isCrop);
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -208,7 +208,7 @@ public class VerticalModeController extends DocumentController {
 
         // if (AppState.get().isLoopAutoplay) {
         LOG.d("onNextPage", page, getPageCount());
-        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount()) {
+        if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && page == getPageCount()) {
             page = 0;
         }
         //}
@@ -223,7 +223,7 @@ public class VerticalModeController extends DocumentController {
 
         // if (AppState.get().isLoopAutoplay) {
         LOG.d("onPrevPage", page, getPageCount());
-        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page == -1) {
+        if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && page == -1) {
             page = getPageCount() - 1;
         }
         //}
@@ -254,7 +254,7 @@ public class VerticalModeController extends DocumentController {
             @Override
             public void run() {
                 int after = ctr.getDocumentController().getView().getScrollY();
-                if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
                     ctr.getDocumentController().getView().stopScroller();
                     ctr.getDocumentController().goToPage(0);
                 }
@@ -280,7 +280,7 @@ public class VerticalModeController extends DocumentController {
             public void run() {
                 int after = ctr.getDocumentController().getView().getScrollY();
                 LOG.d(" before == after", before, after);
-                if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
                     ctr.getDocumentController().getView().stopScroller();
                     ctr.getDocumentController().goToPage(getPageCount() - 1);
                 }
@@ -581,8 +581,8 @@ public class VerticalModeController extends DocumentController {
             ctr.getDocumentController().getView().scrollBy(x - w, y - h);
             ctr.getZoomModel().setZoom(zoom + 2f, false);
             commit();
-            isLocked = AppTemp.get().isLocked;
-            AppTemp.get().isLocked = false;
+            isLocked = AppSP.get().isLocked;
+            AppSP.get().isLocked = false;
         } else {
             ctr.getZoomModel().setZoom(currentZoom, false);
             if (pageN == ctr.getDocumentController().getFirstVisiblePage()) {
@@ -593,7 +593,7 @@ public class VerticalModeController extends DocumentController {
             }
 
             currentZoom = 0;
-            AppTemp.get().isLocked = isLocked;
+            AppSP.get().isLocked = isLocked;
         }
     }
 

@@ -7,8 +7,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.StreamUtils;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -244,7 +244,7 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                 line = HypenUtils.applyHypnes(line);
             }
 
@@ -325,7 +325,7 @@ public class Fb2Extractor extends BaseExtractor {
         PrintWriter writer = new PrintWriter(out);
         String line;
 
-        HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+        HypenUtils.applyLanguage(AppSP.get().hypenLang);
 
         while ((line = input.readLine()) != null) {
             LOG.d("gen0-in", line);
@@ -977,7 +977,7 @@ public class Fb2Extractor extends BaseExtractor {
         int count = 0;
 
         if (BookCSS.get().isAutoHypens) {
-            HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+            HypenUtils.applyLanguage(AppSP.get().hypenLang);
         }
 
         boolean isFindBodyEnd = false;
@@ -1052,7 +1052,7 @@ public class Fb2Extractor extends BaseExtractor {
                 }
 
                 if (!isFindBodyEnd) {
-                    if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
+                    if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                         line = HypenUtils.applyHypnes(line);
                     }
                 }

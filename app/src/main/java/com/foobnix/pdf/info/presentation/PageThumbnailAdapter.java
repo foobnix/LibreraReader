@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
@@ -62,7 +62,7 @@ public class PageThumbnailAdapter extends BaseAdapter {
 
         ImageView img = (ImageView) view.findViewById(R.id.image1);
         LayoutParams lp = IMG.updateImageSizeSmall(img);
-        if (AppTemp.get().isDouble) {
+        if (AppSP.get().isDouble) {
             lp.width = lp.width * 2;
         }
 

@@ -591,4 +591,6 @@
    <string name="copied_text">Text copiat</string>
    <string name="reference_mode_like_in_calibre_viewer">Modul de referință (ca în vizualizatorul de calibru)</string>
    <string name="profile_root">Rădăcină de profil</string>
+   <string name="create_folder">Creeaza dosar</string>
+   <string name="all_folders">Toate dosarele</string>
 </resources>

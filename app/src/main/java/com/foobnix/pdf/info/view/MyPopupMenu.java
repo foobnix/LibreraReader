@@ -98,6 +98,8 @@ public class MyPopupMenu {
                 }
 
                 CheckBox checkbox1 = (CheckBox) layout.findViewById(R.id.checkbox1);
+                checkbox1.setVisibility(View.GONE);
+
                 if (TxtUtils.isNotEmpty(item.checkboxString)) {
                     checkbox1.setVisibility(View.VISIBLE);
                     checkbox1.setText(item.checkboxString);

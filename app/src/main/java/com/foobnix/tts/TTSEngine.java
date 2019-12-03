@@ -20,8 +20,8 @@ import com.foobnix.android.utils.Vibro;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.mobi.parser.MobiParserIS;
 import com.foobnix.model.AppBookmark;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -191,7 +191,7 @@ public class TTSEngine {
             }
             ttsEngine = null;
         }
-        AppTemp.get().lastBookParagraph = 0;
+        AppSP.get().lastBookParagraph = 0;
     }
 
     public TextToSpeech setTTSWithEngine(String engine) {
@@ -206,12 +206,12 @@ public class TTSEngine {
     public synchronized void speek(final String text) {
         this.text = text;
 
-        if (AppTemp.get().tempBookPage != AppTemp.get().lastBookPage) {
-            AppTemp.get().tempBookPage = AppTemp.get().lastBookPage;
-            AppTemp.get().lastBookParagraph = 0;
+        if (AppSP.get().tempBookPage != AppSP.get().lastBookPage) {
+            AppSP.get().tempBookPage = AppSP.get().lastBookPage;
+            AppSP.get().lastBookParagraph = 0;
         }
 
-        LOG.d(TAG, "speek", AppTemp.get().lastBookPage, "par", AppTemp.get().lastBookParagraph);
+        LOG.d(TAG, "speek", AppSP.get().lastBookPage, "par", AppSP.get().lastBookParagraph);
 
         if (TxtUtils.isEmpty(text)) {
             return;
@@ -243,12 +243,12 @@ public class TTSEngine {
         }
         ttsEngine.setSpeechRate(AppState.get().ttsSpeed);
         LOG.d(TAG, "Speek s", AppState.get().ttsSpeed);
-        LOG.d(TAG, "Speek AppTemp.get().lastBookParagraph", AppTemp.get().lastBookParagraph);
+        LOG.d(TAG, "Speek AppSP.get().lastBookParagraph", AppSP.get().lastBookParagraph);
 
         if (AppState.get().ttsPauseDuration > 0 && text.contains(TxtUtils.TTS_PAUSE)) {
             String[] parts = text.split(TxtUtils.TTS_PAUSE);
             ttsEngine.playSilence(0l, TextToSpeech.QUEUE_FLUSH, mapTemp);
-            for (int i = AppTemp.get().lastBookParagraph; i < parts.length; i++) {
+            for (int i = AppSP.get().lastBookParagraph; i < parts.length; i++) {
 
                 String big = parts[i];
                 big = big.trim();

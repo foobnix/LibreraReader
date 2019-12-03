@@ -52,8 +52,8 @@ import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
@@ -195,7 +195,7 @@ public class PrefFragment2 extends UIFragment {
         String gdriveInfo = GFile.getDisplayInfo(getActivity());
 
         if (TxtUtils.isEmpty(gdriveInfo)) {
-            AppTemp.get().isEnableSync = false;
+            AppSP.get().isEnableSync = false;
             syncInfo.setVisibility(View.GONE);
             singIn.setText(R.string.sign_in);
             TxtUtils.underlineTextView(singIn);
@@ -215,16 +215,16 @@ public class PrefFragment2 extends UIFragment {
             singIn.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AppTemp.get().isEnableSync = false;
-                    AppTemp.get().syncRootID = "";
-                    AppTemp.get().syncTime = 0;
+                    AppSP.get().isEnableSync = false;
+                    AppSP.get().syncRootID = "";
+                    AppSP.get().syncTime = 0;
                     GFile.logout(getActivity());
                     updateSyncInfo(null);
                 }
             });
         }
 
-        isEnableSync.setChecked(AppTemp.get().isEnableSync);
+        isEnableSync.setChecked(AppSP.get().isEnableSync);
         onSync(null);
 
 
@@ -232,18 +232,18 @@ public class PrefFragment2 extends UIFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSync(MessageSync msg) {
-        if (AppTemp.get().syncTime > 0) {
+        if (AppSP.get().syncTime > 0) {
 
-            final Date date = new Date(AppTemp.get().syncTime);
+            final Date date = new Date(AppSP.get().syncTime);
             String format = "";
-            if (DateUtils.isToday(AppTemp.get().syncTime)) {
+            if (DateUtils.isToday(AppSP.get().syncTime)) {
                 format = getString(R.string.today) + " " + DateFormat.getTimeInstance().format(date);
             } else {
                 format = DateFormat.getDateTimeInstance().format(date);
             }
 
-            String status = AppTemp.get().syncTimeStatus == MessageSync.STATE_SUCCESS ? getString(R.string.success) : getString(R.string.fail);
-            if (AppTemp.get().syncTimeStatus == MessageSync.STATE_VISIBLE) {
+            String status = AppSP.get().syncTimeStatus == MessageSync.STATE_SUCCESS ? getString(R.string.success) : getString(R.string.fail);
+            if (AppSP.get().syncTimeStatus == MessageSync.STATE_VISIBLE) {
                 status = "...";
             }
 
@@ -272,9 +272,9 @@ public class PrefFragment2 extends UIFragment {
 
 
         isEnableSync = inflate.findViewById(R.id.isEnableSync);
-        isEnableSync.setChecked(AppTemp.get().isEnableSync);
+        isEnableSync.setChecked(AppSP.get().isEnableSync);
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            AppTemp.get().isEnableSync = isChecked;
+            AppSP.get().isEnableSync = isChecked;
             if (isChecked) {
                 if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
                     GFile.init(getActivity());
@@ -915,7 +915,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                                 @Override
                                                                 public boolean onMenuItemClick(final MenuItem item) {
-                                                                    AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                                                                    AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                                                                     checkOpenWithSpinner();
                                                                     return false;
                                                                 }
@@ -926,7 +926,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                                 @Override
                                                                 public boolean onMenuItemClick(final MenuItem item) {
-                                                                    AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                                                                    AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                                                                     checkOpenWithSpinner();
                                                                     return false;
                                                                 }
@@ -936,7 +936,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                                 @Override
                                                                 public boolean onMenuItemClick(final MenuItem item) {
-                                                                    AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                                                                    AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
                                                                     checkOpenWithSpinner();
                                                                     return false;
                                                                 }
@@ -946,7 +946,7 @@ public class PrefFragment2 extends UIFragment {
 
                                                                 @Override
                                                                 public boolean onMenuItemClick(final MenuItem item) {
-                                                                    AppTemp.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
+                                                                    AppSP.get().readingMode = AppState.READING_MODE_TAG_MANAGER;
                                                                     checkOpenWithSpinner();
                                                                     return false;
                                                                 }
@@ -1579,18 +1579,18 @@ public class PrefFragment2 extends UIFragment {
         // folders
 
         final TextView rootFolder = (TextView) inflate.findViewById(R.id.rootFolder);
-        TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(AppTemp.get().rootPath));
+        TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(AppSP.get().rootPath));
         rootFolder.setOnClickListener(new
 
                                               OnClickListener() {
 
                                                   @Override
                                                   public void onClick(View v) {
-                                                      ChooserDialogFragment.chooseFolder(getActivity(), AppTemp.get().rootPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
+                                                      ChooserDialogFragment.chooseFolder(getActivity(), AppSP.get().rootPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                                                           @Override
                                                           public boolean onResultRecive(String nPath, Dialog dialog) {
                                                               if (new File(nPath).canWrite()) {
-                                                                  AppTemp.get().rootPath = nPath;
+                                                                  AppSP.get().rootPath = nPath;
                                                                   TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(nPath));
                                                                   onTheme();
                                                               } else {
@@ -2387,13 +2387,13 @@ public class PrefFragment2 extends UIFragment {
 
     private void checkOpenWithSpinner() {
         String modId = AppState.get().nameVerticalMode;
-        if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+        if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
             modId = AppState.get().nameMusicianMode;
-        } else if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+        } else if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
             modId = AppState.get().nameHorizontalMode;
-        } else if (AppTemp.get().readingMode == AppState.READING_MODE_SCROLL) {
+        } else if (AppSP.get().readingMode == AppState.READING_MODE_SCROLL) {
             modId = AppState.get().nameVerticalMode;
-        } else if (AppTemp.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
+        } else if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
             modId = getString(R.string.tag_manager);
         }
 

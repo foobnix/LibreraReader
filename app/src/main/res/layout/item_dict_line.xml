@@ -28,8 +28,8 @@
         android:id="@+id/checkbox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="80dip"
         android:layout_marginLeft="4dip"
+        android:minWidth="80dip"
         android:singleLine="true"
         android:text="Item"
         android:textSize="20sp" />

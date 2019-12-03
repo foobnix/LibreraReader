@@ -591,4 +591,6 @@
    <string name="copied_text">Másolt szöveg</string>
    <string name="reference_mode_like_in_calibre_viewer">Referencia mód (mint a kalibrált nézegetőben)</string>
    <string name="profile_root">Profil gyökér</string>
+   <string name="create_folder">Mappa létrehozás</string>
+   <string name="all_folders">Minden mappa</string>
 </resources>

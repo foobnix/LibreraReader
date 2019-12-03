@@ -42,8 +42,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class AppProfile {
-    public static final File DEFAULT_SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
-
 
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
@@ -83,13 +81,11 @@ public class AppProfile {
             LOG.d("AppProfile init null");
             return;
         }
-        AppTemp.get().init(c);
+        AppSP.get().init(c);
 
         if (!Android6.canWrite(c)) {
             return;
         }
-
-
 
         if (profile.equals(getCurrent(c))) {
             LOG.d("AppProfile skip", profile);
@@ -99,7 +95,7 @@ public class AppProfile {
         AppDB.get().open(c, profile);
         LOG.d("AppProfile init", profile);
 
-        SYNC_FOLDER_ROOT = new File(AppTemp.get().rootPath);
+        SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
         SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
         SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
 
@@ -184,16 +180,16 @@ public class AppProfile {
             PasswordState.get().save(a);
             AppState.get().save(a);
             BookCSS.get().save(a);
-            AppTemp.get().save();
+            AppSP.get().save();
         }
     }
 
     public static String getCurrent(Context c) {
-        return AppTemp.get().currentProfile;
+        return AppSP.get().currentProfile;
     }
 
     public static void saveCurrent(Context c, String name) {
-        AppTemp.get().currentProfile = name;
+        AppSP.get().currentProfile = name;
         save(c);
 
     }

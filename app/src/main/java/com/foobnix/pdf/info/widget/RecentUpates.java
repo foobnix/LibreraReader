@@ -14,8 +14,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -60,7 +60,7 @@ public class RecentUpates {
                     Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 
                     Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
-                    if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+                    if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
                         lastBookIntent = new Intent(c, HorizontalViewActivity.class);
                     }
                     lastBookIntent.setAction(Intent.ACTION_VIEW);

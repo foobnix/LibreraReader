@@ -10,8 +10,8 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.AnnotationType;
@@ -168,7 +168,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return true;
         }
 
-        if (!(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
+        if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && !AppState.get().isIgnoreAnnotatations || AppState.get().editWith == AppState.EDIT_DELETE) {
             alowConfirm = false;
             Annotation annotation2 = avc.isAnnotationTap(e.getX(), e.getY());
 
@@ -215,7 +215,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             }
 
         }
-        if (!(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
+        if (!(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
             boolean processTap = avc.processTap(TouchManager.Touch.SingleTap, e);
             if (processTap) {
                 return false;
@@ -257,7 +257,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
                 return false;
             }
 
-            if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
                 return false;
             }
             final Rect l = avc.getScrollLimits();
@@ -305,11 +305,11 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         long delta = System.currentTimeMillis() - t;
-        long value = AppTemp.get().isLocked ? 40 : 60;
+        long value = AppSP.get().isLocked ? 40 : 60;
 
         if (delta > value) {
             t = System.currentTimeMillis();
-            if (isNoLock() || (e2.getPointerCount() == 2 && !(AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
+            if (isNoLock() || (e2.getPointerCount() == 2 && !(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
                 avc.getView().scrollBy(d1, d2);
             } else {
                 avc.getView().scrollBy(0, d2);
@@ -324,7 +324,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     }
 
     private boolean isNoLock() {
-        return !AppTemp.get().isLocked;
+        return !AppSP.get().isLocked;
     }
 
     /**
@@ -340,7 +340,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             return;
         }
         Vibro.vibrate();
-        if (AppTemp.get().isCut || AppTemp.get().isCrop) {
+        if (AppSP.get().isCut || AppSP.get().isCrop) {
             Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work, Toast.LENGTH_LONG).show();
             return;
         }
@@ -380,8 +380,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     @Override
     public void onTwoFingerPinch(final MotionEvent e, final float oldDistance, final float newDistance) {
         LOG.d("onTwoFingerPinch", oldDistance, newDistance);
-        if (AppTemp.get().isLocked) {
-            if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+        if (AppSP.get().isLocked) {
+            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
                 return;
             }
             if (!AppState.get().isZoomInOutWithLock) {
@@ -407,8 +407,8 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
      */
     @Override
     public void onTwoFingerPinchEnd(final MotionEvent e) {
-        if (AppTemp.get().isLocked) {
-            if (AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+        if (AppSP.get().isLocked) {
+            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
                 return;
             }
             if (!AppState.get().isZoomInOutWithLock) {

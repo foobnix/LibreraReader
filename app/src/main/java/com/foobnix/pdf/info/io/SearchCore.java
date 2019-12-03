@@ -109,7 +109,7 @@ public class SearchCore {
 
     }
 
-    public static List<FileMeta> getFilesAndDirs(String path, boolean filterEmpty) {
+    public static List<FileMeta> getFilesAndDirs(String path, boolean filterEmpty, boolean isDisplayAllFilesInFolder) {
         File file = new File(path);
         if (!file.isDirectory()) {
             return Collections.emptyList();
@@ -118,7 +118,7 @@ public class SearchCore {
 
         File[] listFiles = null;
 
-        if (AppState.get().isDisplayAllFilesInFolder) {
+        if (isDisplayAllFilesInFolder) {
             listFiles = file.listFiles();
         } else {
             listFiles = file.listFiles(SUPPORTED_EXT_AND_DIRS_FILTER);
@@ -135,7 +135,7 @@ public class SearchCore {
             if (it.getName().startsWith(".")) {
                 continue;
             }
-            if (!AppState.get().isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it, 0)) {
+            if (!isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it, 0)) {
                 continue;
             }
 

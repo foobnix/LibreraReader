@@ -9,8 +9,8 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 
@@ -55,13 +55,13 @@ public class MenuBuilderM {
 
         final MenuItem crop = popupMenu.getMenu().add(R.string.crop_white_borders);
         crop.setCheckable(true);
-        crop.setChecked(AppTemp.get().isCrop);
+        crop.setChecked(AppSP.get().isCrop);
         crop.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(final MenuItem item) {
-                AppTemp.get().isCrop = !AppTemp.get().isCrop;
-                crop.setChecked(AppTemp.get().isCrop);
+                AppSP.get().isCrop = !AppSP.get().isCrop;
+                crop.setChecked(AppSP.get().isCrop);
                 onReloadDocument.run();
                 return false;
             }

@@ -47,13 +47,13 @@ public class AppBook implements CurrentPageListener {
     }
 
     public void updateFromAppState() {
-        cp = AppTemp.get().isCrop;
-        dp = AppTemp.get().isDouble;
-        sp = AppTemp.get().isCut;
-        dc = AppTemp.get().isDoubleCoverAlone;
+        cp = AppSP.get().isCrop;
+        dp = AppSP.get().isDouble;
+        sp = AppSP.get().isCut;
+        dc = AppSP.get().isDoubleCoverAlone;
         d = TempHolder.get().pageDelta;
         s = AppState.get().autoScrollSpeed;
-        setLock(AppTemp.get().isLocked);
+        setLock(AppSP.get().isLocked);
     }
 
     public void setLock(Boolean lock) {

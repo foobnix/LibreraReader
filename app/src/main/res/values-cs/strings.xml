@@ -591,4 +591,6 @@
    <string name="copied_text">Zkopírovaný text</string>
    <string name="reference_mode_like_in_calibre_viewer">Referenční režim (jako v prohlížeči kalibru)</string>
    <string name="profile_root">Kořen profilu</string>
+   <string name="create_folder">Vytvořit složku</string>
+   <string name="all_folders">Všechny složky</string>
 </resources>

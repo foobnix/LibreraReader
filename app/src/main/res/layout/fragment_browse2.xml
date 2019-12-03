@@ -209,6 +209,14 @@
         
     </FrameLayout>
 
+    <Button
+        android:id="@+id/createFolder"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="@string/create_folder"
+        />
+
     <EditText
         android:id="@+id/editPath"
         android:layout_width="match_parent"

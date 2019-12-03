@@ -591,4 +591,6 @@
    <string name="copied_text">Gekopieerde tekst</string>
    <string name="reference_mode_like_in_calibre_viewer">Referentiemodus (zoals in kaliberviewer)</string>
    <string name="profile_root">Profiel root</string>
+   <string name="create_folder">Map aanmaken</string>
+   <string name="all_folders">Alle mappen</string>
 </resources>

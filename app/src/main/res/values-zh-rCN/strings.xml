@@ -591,4 +591,6 @@
    <string name="copied_text">复制文本</string>
    <string name="reference_mode_like_in_calibre_viewer">参考模式（例如在口径查看器中）</string>
    <string name="profile_root">个人资料根</string>
+   <string name="create_folder">创建文件夹</string>
+   <string name="all_folders">所有资料夹</string>
 </resources>

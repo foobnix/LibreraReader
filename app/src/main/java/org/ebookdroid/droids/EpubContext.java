@@ -3,8 +3,8 @@ package org.ebookdroid.droids;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.EpubExtractor;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -23,8 +23,8 @@ public class EpubContext extends PdfContext {
 
     @Override
     public File getCacheFileName(String fileNameOriginal) {
-        LOG.d(TAG, "getCacheFileName", fileNameOriginal, AppTemp.get().hypenLang);
-        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isReferenceMode + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + AppTemp.get().hypenLang+AppState.get().isExperimental).hashCode() + ".epub");
+        LOG.d(TAG, "getCacheFileName", fileNameOriginal, AppSP.get().hypenLang);
+        cacheFile = new File(CacheZipUtils.CACHE_BOOK_DIR, (fileNameOriginal + AppState.get().isReferenceMode + AppState.get().isShowFooterNotesInText + AppState.get().isAccurateFontSize + BookCSS.get().isAutoHypens + AppSP.get().hypenLang+AppState.get().isExperimental).hashCode() + ".epub");
         return cacheFile;
     }
 

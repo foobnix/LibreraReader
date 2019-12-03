@@ -5,7 +5,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.hypen.HypenUtils;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.core.codec.CodecDocument;
@@ -35,7 +35,7 @@ public class MdContext extends PdfContext {
 
             HypenUtils.resetTokenizer();
             if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+                HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
             boolean isBold;
             boolean isList;

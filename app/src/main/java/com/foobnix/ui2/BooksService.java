@@ -20,7 +20,7 @@ import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
@@ -153,7 +153,7 @@ public class BooksService extends IntentService {
 
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
-                if (AppTemp.get().isEnableSync) {
+                if (AppSP.get().isEnableSync) {
 
 
                     AppProfile.save(this);
@@ -161,18 +161,18 @@ public class BooksService extends IntentService {
 
                     try {
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_VISIBLE));
-                        AppTemp.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_VISIBLE;
                         GFile.sycnronizeAll(this);
 
-                        AppTemp.get().syncTime = System.currentTimeMillis();
-                        AppTemp.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
+                        AppSP.get().syncTime = System.currentTimeMillis();
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_SUCCESS;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_SUCCESS));
                     } catch (UserRecoverableAuthIOException e) {
                         GFile.logout(this);
-                        AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                     } catch (Exception e) {
-                        AppTemp.get().syncTimeStatus = MessageSync.STATE_FAILE;
+                        AppSP.get().syncTimeStatus = MessageSync.STATE_FAILE;
                         EventBus.getDefault().post(new MessageSync(MessageSync.STATE_FAILE));
                         LOG.e(e);
                     }

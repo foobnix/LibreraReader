@@ -5,8 +5,8 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -60,7 +60,7 @@ public class TxtExtract {
         }
 
         if (BookCSS.get().isAutoHypens) {
-            HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+            HypenUtils.applyLanguage(AppSP.get().hypenLang);
         }
 
         while ((line = input.readLine()) != null) {
@@ -157,7 +157,7 @@ public class TxtExtract {
             line = line.replace("\n", "");
             line = line.replace("\r", "");
             line = TextUtils.htmlEncode(line);
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
                 line = HypenUtils.applyHypnes(line);
             }
             line = line.trim();

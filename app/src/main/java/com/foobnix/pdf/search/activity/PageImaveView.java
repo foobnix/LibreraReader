@@ -25,8 +25,8 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
@@ -111,10 +111,10 @@ public class PageImaveView extends View {
 
     public TextWord[][] getPageText(int number) {
         try {
-            if (AppTemp.get().isDouble && number != 0) {
+            if (AppSP.get().isDouble && number != 0) {
 
                 int page = pageNumber * 2;
-                if (AppTemp.get().isDoubleCoverAlone) {
+                if (AppSP.get().isDoubleCoverAlone) {
                     page--;
                 }
 
@@ -144,7 +144,7 @@ public class PageImaveView extends View {
     }
 
     public synchronized List<PageLink> getPageLinks(int number) {
-        if (AppTemp.get().isCut || AppTemp.get().isCrop) {
+        if (AppSP.get().isCut || AppSP.get().isCrop) {
             return Collections.emptyList();
         }
 
@@ -159,10 +159,10 @@ public class PageImaveView extends View {
     public synchronized List<PageLink> getPageLinksInner(int number) {
 
         try {
-            if (AppTemp.get().isDouble && number != 0) {
+            if (AppSP.get().isDouble && number != 0) {
 
                 int page = pageNumber * 2;
-                if (AppTemp.get().isDoubleCoverAlone) {
+                if (AppSP.get().isDoubleCoverAlone) {
                     page--;
                 }
 
@@ -303,15 +303,15 @@ public class PageImaveView extends View {
                         imageMatrix().preTranslate(getWidth() / 2 - e.getX(), getHeight() / 2 - e.getY());
                         imageMatrix().postScale(2.5f, 2.5f, getWidth() / 2, getHeight() / 2);
                         isFirstZoomInOut = false;
-                        prevLock = AppTemp.get().isLocked;
-                        AppTemp.get().isLocked = false;
+                        prevLock = AppSP.get().isLocked;
+                        AppSP.get().isLocked = false;
                         invalidateAndMsg();
                         PageImageState.get().isAutoFit = false;
 
                     } else {
-                        AppTemp.get().isLocked = prevLock;
+                        AppSP.get().isLocked = prevLock;
                         if (BookCSS.get().isTextFormat()) {
-                            AppTemp.get().isLocked = true;
+                            AppSP.get().isLocked = true;
                         }
                         isLognPress = true;
                         PageImageState.get().isAutoFit = true;
@@ -357,7 +357,7 @@ public class PageImaveView extends View {
             if (AppState.get().selectedText != null) {
                 return false;
             }
-            if (AppTemp.get().isLocked) {
+            if (AppSP.get().isLocked) {
                 return false;
             }
             if (isReadyForMove) {
@@ -393,7 +393,7 @@ public class PageImaveView extends View {
             }
 
             Vibro.vibrate();
-            if (AppTemp.get().isCut || AppTemp.get().isCrop) {
+            if (AppSP.get().isCut || AppSP.get().isCrop) {
                 Toast.makeText(LibreraApp.context, R.string.the_page_is_clipped_the_text_selection_does_not_work, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -443,7 +443,7 @@ public class PageImaveView extends View {
                         }
                     } else {
 
-                        if (AppTemp.get().isLocked) {
+                        if (AppSP.get().isLocked) {
                             isReadyForMove = false;
                             if (AppState.get().isSelectTexByTouch) {
                                 isIgronerClick = true;
@@ -478,7 +478,7 @@ public class PageImaveView extends View {
                             isMoveNextPrev = 0;
                         }
 
-                        if (!isBrightness && isReadyForMove && !AppTemp.get().isLocked) {
+                        if (!isBrightness && isReadyForMove && !AppSP.get().isLocked) {
 
                             imageMatrix().postTranslate(dx, dy);
 
@@ -515,7 +515,7 @@ public class PageImaveView extends View {
                     final float values[] = new float[9];
                     imageMatrix().getValues(values);
 
-                    if (AppState.get().isZoomInOutWithLock || !AppTemp.get().isLocked) {
+                    if (AppState.get().isZoomInOutWithLock || !AppSP.get().isLocked) {
                         LOG.d("postScale", scale, values[Matrix.MSCALE_X]);
                         if (values[Matrix.MSCALE_X] > 0.3f || scale > 1) {
                             imageMatrix().postScale(scale, scale, centerX, centerY);
@@ -524,7 +524,7 @@ public class PageImaveView extends View {
                     }
                     final float dx = centerX - cx;
                     final float dy = centerY - cy;
-                    if (AppState.get().isZoomInOutWithLock || !AppTemp.get().isLocked) {
+                    if (AppState.get().isZoomInOutWithLock || !AppSP.get().isLocked) {
                         imageMatrix().postTranslate(dx, dy);
                         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
                     }
@@ -586,7 +586,7 @@ public class PageImaveView extends View {
                     PageLink pageLink = getPageLinkClicked(event.getX(), event.getY());
                     if (pageLink != null) {
                         target = pageLink.targetPage;
-                        if (AppTemp.get().isDouble && target != -1) {
+                        if (AppSP.get().isDouble && target != -1) {
                             target = pageLink.targetPage / 2;
                         }
                         TempHolder.get().linkPage = target;
@@ -711,7 +711,7 @@ public class PageImaveView extends View {
                 imageDrawable.draw(canvas);
             }
 
-            if (PageImageState.get().isShowCuttingLine && AppTemp.get().isCut == false) {
+            if (PageImageState.get().isShowCuttingLine && AppSP.get().isCut == false) {
                 int offset = drawableWidth * AppState.get().cutP / 100;
                 canvas.drawLine(offset, 0, offset, drawableHeight, paintWrods);
             }
@@ -727,13 +727,13 @@ public class PageImaveView extends View {
                 canvas.drawRect(-dp1, 0, drawableWidth + dp1, drawableHeight, rect);
             }
 
-            if (!AppTemp.get().isCut && !AppTemp.get().isCrop) {
+            if (!AppSP.get().isCut && !AppSP.get().isCrop) {
 
                 paintWrods.setColor(AppState.get().isDayNotInvert ? Color.BLUE : Color.YELLOW);
                 paintWrods.setAlpha(60);
 
                 if (!BookCSS.get().isTextFormat()) {
-                    if (AppTemp.get().isDouble) {
+                    if (AppSP.get().isDouble) {
                         for (PageLink pl : getPageLinks(1)) {
                             drawLink(canvas, pl);
                         }
@@ -869,7 +869,7 @@ public class PageImaveView extends View {
         x1 = x1 / scaleX;
 
         int firstNumber = 0;
-        if (AppTemp.get().isDouble) {
+        if (AppSP.get().isDouble) {
             firstNumber = x1 < drawableWidth / 2 ? 1 : 2;
         }
 
@@ -896,7 +896,7 @@ public class PageImaveView extends View {
     }
 
     public String selectText(float x1, float y1, float xInit, float yInit) {
-        if (!AppTemp.get().isDouble && getPageText(0) == null) {
+        if (!AppSP.get().isDouble && getPageText(0) == null) {
             LOG.d("get pag No page text", pageNumber);
             return null;
         }
@@ -936,7 +936,7 @@ public class PageImaveView extends View {
         TextWord prevWord = null;
 
         int firstNumber = 0;
-        if (AppTemp.get().isDouble) {
+        if (AppSP.get().isDouble) {
             firstNumber = xInit < drawableWidth / 2 ? 1 : 2;
         }
         TempHolder.get().textFromPage = firstNumber;

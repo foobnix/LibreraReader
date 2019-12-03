@@ -591,4 +591,6 @@
    <string name="copied_text">Kopioitu teksti</string>
    <string name="reference_mode_like_in_calibre_viewer">Vertailutila (kuten kaliiperin katseluohjelmassa)</string>
    <string name="profile_root">Profiilin juuri</string>
+   <string name="create_folder">Luo kansio</string>
+   <string name="all_folders">Kaikki kansiot</string>
 </resources>
