@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Reference mode (ut in gente videntium)</string>
    <string name="profile_root">Radix profile</string>
    <string name="create_folder">Partum folder</string>
-   <string name="all_folders">Omnes folders</string>
+   <string name="show_hidden">Ostende occultatum</string>
 </resources>

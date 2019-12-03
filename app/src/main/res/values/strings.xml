@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Reference mode (Calibre-style)</string>
    <string name="profile_root">Profiles</string>
    <string name="create_folder">New folder</string>
-   <string name="all_folders">Show hidden</string>
+   <string name="show_hidden">Show hidden</string>
 </resources>

@@ -73,6 +73,9 @@ public class AppProfile {
     public static File syncPlaylist;
     public static File syncProgress;
     public static File syncBookmarks;
+
+    public static File FONT_LOCAL_ZIP;
+
     public static String profile = "";
 
     public synchronized static void init(Context c) {
@@ -98,6 +101,7 @@ public class AppProfile {
         SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
         SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
         SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
+        FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip");
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);

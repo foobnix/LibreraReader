@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Referansemodus (som i kaliberviseren)</string>
    <string name="profile_root">Profilrot</string>
    <string name="create_folder">Lag mappe</string>
-   <string name="all_folders">Alle mapper</string>
+   <string name="show_hidden">Vis skjult</string>
 </resources>

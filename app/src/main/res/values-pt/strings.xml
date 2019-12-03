@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Modo de referência (como no visualizador de calibre)</string>
    <string name="profile_root">Raiz do perfil</string>
    <string name="create_folder">Criar pasta</string>
-   <string name="all_folders">Todas as pastas</string>
+   <string name="show_hidden">Mostrar oculto</string>
 </resources>

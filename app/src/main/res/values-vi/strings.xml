@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Chế độ tham chiếu (như trong trình xem cỡ nòng)</string>
    <string name="profile_root">Hồ sơ gốc</string>
    <string name="create_folder">Tạo thư mục</string>
-   <string name="all_folders">Tất cả các thư mục</string>
+   <string name="show_hidden">Hiển thị ẩn</string>
 </resources>

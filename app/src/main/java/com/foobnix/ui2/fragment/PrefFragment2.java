@@ -1591,6 +1591,7 @@ public class PrefFragment2 extends UIFragment {
                                                           public boolean onResultRecive(String nPath, Dialog dialog) {
                                                               if (new File(nPath).canWrite()) {
                                                                   AppSP.get().rootPath = nPath;
+                                                                  new File(nPath,"Fonts").mkdirs();
                                                                   TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(nPath));
                                                                   onTheme();
                                                               } else {

@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Mode referensi (seperti di kaliber viewer)</string>
    <string name="profile_root">Akar profil</string>
    <string name="create_folder">Membuat folder</string>
-   <string name="all_folders">Semua folder</string>
+   <string name="show_hidden">Tampilkan disembunyikan</string>
 </resources>

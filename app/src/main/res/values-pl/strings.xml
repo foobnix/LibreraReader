@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Tryb odniesienia (jak w przeglądarce kalibru)</string>
    <string name="profile_root">Katalog główny</string>
    <string name="create_folder">Utwórz folder</string>
-   <string name="all_folders">Wszystkie foldery</string>
+   <string name="show_hidden">Pokaż ukryte</string>
 </resources>

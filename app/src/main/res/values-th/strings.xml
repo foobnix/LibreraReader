@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">โหมดอ้างอิง (เช่นในเครื่องมือดูภาพขนาดเส้นผ่าศูนย์กลาง)</string>
    <string name="profile_root">รายละเอียดราก</string>
    <string name="create_folder">สร้างโฟลเดอร์</string>
-   <string name="all_folders">โฟลเดอร์ทั้งหมด</string>
+   <string name="show_hidden">แสดงที่ซ่อนอยู่</string>
 </resources>

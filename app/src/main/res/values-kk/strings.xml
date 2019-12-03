@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Сілтеме режимі (калибр қарау құралындағы сияқты)</string>
    <string name="profile_root">Профиль түбірі</string>
    <string name="create_folder">Қалта жасау</string>
-   <string name="all_folders">Барлық қалталар</string>
+   <string name="show_hidden">Жасырын шоу</string>
 </resources>

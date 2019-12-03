@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Mode référence (comme dans calibre viewer)</string>
    <string name="profile_root">Racine du profil</string>
    <string name="create_folder">Créer le dossier</string>
-   <string name="all_folders">Tous les dossiers</string>
+   <string name="show_hidden">Montrer caché</string>
 </resources>

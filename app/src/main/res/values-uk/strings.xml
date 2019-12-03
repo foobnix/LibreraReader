@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Довідковий режим (як у переглядачі калібру)</string>
    <string name="profile_root">Корінь профілю</string>
    <string name="create_folder">Створити папку</string>
-   <string name="all_folders">Всі папки</string>
+   <string name="show_hidden">Показати приховано</string>
 </resources>

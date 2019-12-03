@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Atskaitos režimas (kaip ir kalibro peržiūros priemonėje)</string>
    <string name="profile_root">Profilio šaknis</string>
    <string name="create_folder">Sukurti aplanką</string>
-   <string name="all_folders">Visi aplankai</string>
+   <string name="show_hidden">Rodyti paslėptą</string>
 </resources>

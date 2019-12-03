@@ -1230,7 +1230,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
 
-        p.getMenu().addCheckbox(getString(R.string.all_folders), AppState.get().isDisplayAllFilesInFolder, new CompoundButton.OnCheckedChangeListener() {
+        p.getMenu().addCheckbox(getString(R.string.show_hidden), AppState.get().isDisplayAllFilesInFolder, new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isDisplayAllFilesInFolder = isChecked;

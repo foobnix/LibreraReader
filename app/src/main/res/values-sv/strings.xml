@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Referensläge (som i kalibervisaren)</string>
    <string name="profile_root">Profilrot</string>
    <string name="create_folder">Skapa mapp</string>
-   <string name="all_folders">Alla mappar</string>
+   <string name="show_hidden">Visa dold</string>
 </resources>

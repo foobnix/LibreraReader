@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">참조 모드 (캘리버 뷰어와 동일)</string>
    <string name="profile_root">프로필 루트</string>
    <string name="create_folder">폴더 만들기</string>
-   <string name="all_folders">모든 폴더</string>
+   <string name="show_hidden">숨겨지다</string>
 </resources>

@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе просмотра калибров)</string>
    <string name="profile_root">Корень профиля</string>
    <string name="create_folder">Создать папку</string>
-   <string name="all_folders">Все папки</string>
+   <string name="show_hidden">Показать скрытое</string>
 </resources>
