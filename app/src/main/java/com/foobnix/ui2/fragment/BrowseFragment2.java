@@ -163,6 +163,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
+        TintUtil.setBackgroundFillColor(createFolder, TintUtil.color);
         TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
     }
@@ -248,7 +249,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onAction.setOnClickListener(onSelectAction);
 
         createFolder = view.findViewById(R.id.createFolder);
-        createFolder.setVisibility(View.GONE);
+        createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
 
         if (TYPE_DEFAULT == fragmentType) {
             editPath.setVisibility(View.GONE);
@@ -392,14 +393,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     }
 
                 }
-                onHome.setOnLongClickListener(new OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        createFolder.setVisibility(View.VISIBLE);
-                        populate();
-                        return true;
-                    }
-                });
 
                 // stars
                 List<FileMeta> starFolders = AppData.get().getAllFavoriteFolders();
@@ -1241,6 +1234,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isDisplayAllFilesInFolder = isChecked;
+                createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
                 populate();
             }
         });

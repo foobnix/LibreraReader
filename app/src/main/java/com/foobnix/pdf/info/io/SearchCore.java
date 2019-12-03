@@ -132,7 +132,7 @@ public class SearchCore {
         // Collections.sort(res, FILES_AND_DIRS_COMPARATOR);
 
         for (File it : res) {
-            if (it.getName().startsWith(".")) {
+            if (!isDisplayAllFilesInFolder && it.getName().startsWith(".")) {
                 continue;
             }
             if (!isDisplayAllFilesInFolder && filterEmpty && !isDirderctoryWithBook(it, 0)) {
