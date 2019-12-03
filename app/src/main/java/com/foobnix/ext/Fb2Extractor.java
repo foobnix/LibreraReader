@@ -169,14 +169,15 @@ public class Fb2Extractor extends BaseExtractor {
             // LOG.d("gen-in", line);
             line = accurateLine(line);
 
-            if(AppState.get().isReferenceMode) {
+            if (AppState.get().isReferenceMode) {
 
                 int index = line.indexOf("<p");
-                if (index >= 0) {
+                while (index >= 0) {
                     count++;
                     int p = line.indexOf(">", index) + 1;
-                    line = line.substring(0, p) + "<x-small>|" + number + "." + count + "|"+TxtUtils.NON_BREAKE_SPACE+"</x-small>" + line.substring(p);
+                    line = line.substring(0, p) + "<x-small>|" + number + "." + count + "|" + TxtUtils.NON_BREAKE_SPACE + "</x-small>" + line.substring(p);
                     LOG.d("linep", line);
+                    index = line.indexOf("<p", p + 10);
                 }
             }
 
