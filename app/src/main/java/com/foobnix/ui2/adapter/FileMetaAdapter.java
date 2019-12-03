@@ -426,7 +426,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
 
             if(new File(fileMeta.getPath(),"Fonts").isDirectory()){
-                holder.image.setImageDrawable(Apps.getApplicationImage(holder.starIcon.getContext()));
+                holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
+                TintUtil.setNoTintImage(holder.image);
             }else{
                 holder.image.setImageResource(R.drawable.glyphicons_441_folder_closed);
                 TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
