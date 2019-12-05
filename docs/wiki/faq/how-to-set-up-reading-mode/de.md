@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# So richten Sie den Lesemodus ein
+# Doppelseitenmodus, Halbseitenmodus, Einzelseitenmodus
 
 > Zum bequemen Lesen in Libera können Sie je nach Format unterschiedliche Dokumentmodi konfigurieren.
 

@@ -4,7 +4,8 @@ layout: main
 
 # الأسئلة المتداولة
 
-* [الوضع المرجعي (يشير الرقم إلى الفقرة ، كما في &quot;Caliber Viewer&quot;)](/wiki/faq/reference-mode-calibre/ar)
+* [وضع مرجع Caliber-Style]
+* [وضع عمودين ، وضع نصف صفحة ، وضع صفحة واحدة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [استخدام محرك تحويل النص إلى كلام مع _Librera _](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية اختيار النص في _Librera _](/wiki/faq/how-to-set-text-selection/ar)
 * [مزامنة إعداد القراءة عبر أجهزة متعددة](/wiki/faq/setting-up-synchronization/ar)
@@ -23,7 +24,6 @@ layout: main
 * [واجهة مستخدم Theming Librera](/wiki/faq/customize-theme-colors-links/ar)
 * [زيادة حجم الخط في مستندات PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
-* [كيفية إعداد وضع القراءة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)

@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# How to set up reading mode
+# Two columns mode, Half page mode, Single-page mode
 
 > For comfortable reading in Libera, you can configure different document mode, depending on its format.
 

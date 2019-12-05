@@ -4,7 +4,8 @@ layout: main
 
 # Preguntas frecuentes
 
-* [Modo de referencia (número de referencia al párrafo, como en &quot;Visor de calibre&quot;)](/wiki/faq/reference-mode-calibre/es)
+* [Modo de referencia de estilo calibre](/wiki/faq/reference-mode-calibre/es)
+* [Modo de dos columnas, modo de media página, modo de página única](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Uso de un motor de texto a voz con _Librera _](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Cómo seleccionar texto en _Librera _](/wiki/faq/how-to-set-text-selection/es)
 * [Sincronizando su configuración de lectura en múltiples dispositivos](/wiki/faq/setting-up-synchronization/es)
@@ -23,7 +24,6 @@ layout: main
 * [Temiendo la IU de Librera](/wiki/faq/customize-theme-colors-links/es)
 * [Aumento del tamaño de fuente en documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
 * [Trabajar con marcadores en modo extendido (cinta de marcadores)](/wiki/faq/bookmarks-extended-panel/es)
-* [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
 * [Cómo agregar un nuevo tema de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
 * [Configuración de fuentes y estilos](/wiki/faq/customize-text-fonts-and-styles/es)

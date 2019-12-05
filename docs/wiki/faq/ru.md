@@ -4,7 +4,8 @@ layout: main
 
 # Часто задаваемые вопросы
 
-* [Режим ссылки (ссылка на номер абзаца, как в «Средстве просмотра калибра»)](/wiki/faq/reference-mode-calibre/ru)
+* [Режим эталонного калибра](/wiki/faq/reference-mode-calibre/ru)
+* [Режим с двумя столбцами, Режим с половиной страницы, Режим с одной страницей](/wiki/faq/how-to-set-up-reading-mode/ru)
 * [Использование механизма преобразования текста в речь с _Librera _](/wiki/faq/installation-and-configuration-of-tts/ru)
 * [Как выбрать текст в _Librera _](/wiki/faq/how-to-set-text-selection/ru)
 * [Синхронизация настроек чтения на нескольких устройствах](/wiki/faq/setting-up-synchronization/ru)
@@ -23,7 +24,6 @@ layout: main
 * [Пользовательский интерфейс Theming Librera](/wiki/faq/customize-theme-colors-links/ru)
 * [Увеличение размера шрифта в документах PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/ru)
 * [Работа с закладками в расширенном режиме (лента закладок)](/wiki/faq/bookmarks-extended-panel/ru)
-* [Как настроить режим чтения](/wiki/faq/how-to-set-up-reading-mode/ru)
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)

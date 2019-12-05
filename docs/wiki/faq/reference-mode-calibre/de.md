@@ -2,17 +2,15 @@
 layout: main
 ---
 
-# Referenzmodus (Verweis auf den Absatz wie in &quot;Calibre Viewer&quot;)
+# Referenzmodus im Kaliberstil
 
-> Zeigen Sie die Kapitelnummer und die Absatznummer am Textanfang an
+> Gemäß einem Online-Handbuch von **Calibre Viewer** wird im **Referenzmodus** am Anfang jedes Absatzes eine eindeutige Nummer angezeigt, die sich auf diesen bestimmten Absatz bezieht. &quot;Diese Zahl ist unabhängig von der Größe des Viewer-Fensters oder der Schriftgröße.&quot; Die Nummern können zum Zuordnen des Dokuments, zum Erstellen eines Inhaltsverzeichnisses, zum Speichern von Lesezeichen usw. verwendet werden.
 
-Wenn diese Option aktiviert ist, wird eine eindeutige Nummer angezeigt, die sich auf den Absatz bezieht, zu dem der Text gehört.
-Diese Nummer ist unabhängig von der Größe des Viewer-Fensters oder der Schriftgröße und kann verwendet werden, um auf den Absatz zu verweisen.
-
-* Aktivieren Sie den Referenzmodus in den erweiterten Einstellungen
-* Text mit Referenzen
+## Aktivieren des Referenzmodus
+* Öffnen Sie das Fenster **Einstellungen** und tippen Sie auf &quot;Erweiterte Einstellungen&quot;, um den Tab zu öffnen
+* Aktivieren Sie den Referenzmodus, indem Sie das entsprechende Kontrollkästchen aktivieren
+* Text mit den angezeigten _Referenznummern_
 
 ||||
 |-|-|-|
 |![](1.png)|![](3.png)|![](2.png)|
-

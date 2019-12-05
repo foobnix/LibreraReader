@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Come impostare la modalità di lettura
+# Modalità a due colonne, modalità Mezza pagina, modalità Pagina singola
 
 > Per una lettura comoda in Libera, è possibile configurare diverse modalità documento, a seconda del suo formato.
 

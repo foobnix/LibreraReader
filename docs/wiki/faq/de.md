@@ -4,7 +4,8 @@ layout: main
 
 # Häufig gestellte Fragen
 
-* [Referenzmodus (unter Bezugnahme auf den Absatz, wie in &quot;Calibre Viewer&quot;)](/wiki/faq/reference-mode-calibre/de)
+* [Referenzmodus im Kaliberstil](/wiki/faq/reference-mode-calibre/de)
+* [Zweispaltenmodus, Halbseitenmodus, Einzelseitenmodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Verwenden einer Text-to-Speech-Engine mit _Librera _](/wiki/faq/installation-and-configuration-of-tts/de)
 * [Auswählen von Text in _Librera _](/wiki/faq/how-to-set-text-selection/de)
 * [Synchronisieren des Lese-Setups auf mehreren Geräten](/wiki/faq/setting-up-synchronization/de)
@@ -23,7 +24,6 @@ layout: main
 * [Benutzeroberfläche von Theming Librera](/wiki/faq/customize-theme-colors-links/de)
 * [Vergrößern der Schriftgröße in PDF-Dokumenten](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/de)
 * [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)](/wiki/faq/bookmarks-extended-panel/de)
-* [Einrichten des Lesemodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
 * [Hinzufügen eines neuen FAQ-Themas](/wiki/faq/how-to-add-new-faq-section/de)
 * [Konfigurieren von Schriftarten und Stilen](/wiki/faq/customize-text-fonts-and-styles/de)

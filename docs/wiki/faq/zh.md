@@ -4,7 +4,8 @@ layout: main
 
 #常见问题
 
-* [参考模式(在段落中引用编号，如“ Calibre Viewer”中所示)](/wiki/faq/reference-mode-calibre/zh)
+* [口径样式参考模式](/wiki/faq/reference-mode-calibre/zh)
+* [两列模式，半页模式，单页模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [与_Librera_一起使用文本语音转换引擎](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何在_Librera_中选择文本](/wiki/faq/how-to-set-text-selection/zh)
 * [跨多个设备同步您的阅读设置](/wiki/faq/setting-up-synchronization/zh)
@@ -23,7 +24,6 @@ layout: main
 * [主题库用户界面](/wiki/faq/customize-theme-colors-links/zh)
 * [增加PDF文档的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)
 * [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
-* [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)

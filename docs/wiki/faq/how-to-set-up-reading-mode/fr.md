@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Comment configurer le mode de lecture
+# Mode deux colonnes, mode demi-page, mode page unique
 
 > Pour une lecture aisée dans Libera, vous pouvez configurer différents modes de document, en fonction de son format.
 
