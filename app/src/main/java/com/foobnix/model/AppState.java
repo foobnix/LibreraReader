@@ -344,8 +344,14 @@ public class AppState {
     public boolean isEnableBC = false;
     @IgnoreHashCode
     public boolean stopReadingOnCall = true;
+
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
+
+    @IgnoreHashCode
+    public int appBrightnessNight = AUTO_BRIGTNESS;
+
+
     public volatile int fastReadSpeed = 200;
     public volatile int fastReadFontSize = 32;
     public volatile int fastManyWords = 2;
