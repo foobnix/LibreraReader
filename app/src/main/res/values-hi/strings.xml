@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">.mp3 प्रारूप में रिकॉर्ड करें</string>
    <string name="speak_into_file_wav">रिकॉर्ड tts (एमपी 3, wav)</string>
    <string name="text_is_too_long">पाठ बहुत लंबा है</string>
+   <string name="settings">समायोजन</string>
+   <string name="play_pause">चालू करे रोके</string>
+   <string name="next_track">अगला गाना</string>
+   <string name="previous_track">पिछला ट्रैक</string>
+   <string name="copied_text">नकल पाठ</string>
+   <string name="reference_mode_like_in_calibre_viewer">संदर्भ मोड (कैलिबर दर्शक की तरह)</string>
+   <string name="profile_root">प्रोफाइल रूट</string>
+   <string name="create_folder">फोल्डर बनाएं</string>
+   <string name="show_hidden">छुपा हुआ दिखाए</string>
 </resources>

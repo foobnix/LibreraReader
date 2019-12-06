@@ -2,62 +2,60 @@
 layout: main
 ---
 
-# Personalização de temas (branco, preto, AMOLED, cores, tamanho da fonte, cores dos links)
+# Theming Librera UI
 
-> Librera permite que você personalize os temas e faça a interface com suas preferências de cores.
+> **Librera** permite que você personalize todos os detalhes da interface do usuário.
 
-Você pode personalizar:
+No painel _General Settings_ da guia **Preferences**, você pode escolher o seu:
 
-* Tamanho da fonte aumentando ou diminuindo
-* Escolha o tema da cor do aplicativo
-* Escolha a cor dos cabeçalhos
-* Escolha a cor dos links
-
-**Todas as configurações do programa podem ser combinadas.**
+* tamanho da fonte
+* Tema e cor do tema
+* Aparar cor
+* Cor do link
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Definindo o tamanho da fonte:**
+**Configuração do tamanho da fonte**
 
-* Clique no item de menu &quot;Tamanho da fonte&quot;
-* Escolha o tamanho da fonte desejado, aumentando ou diminuindo.
+* Toque em _Font Size_ para abrir uma lista suspensa de tamanhos de fonte relativos
+* Escolha o tamanho da fonte diminuindo ou aumentando o tamanho da fonte atual
 
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
 
-**Personalize o tema do aplicativo:**
+**Configuração geral de temas**
 
-* Clique no item de menu &quot;Tema&quot;
-* Selecione o tema que você precisa. Você também pode escolher um tema para a tela E-Ink.
+* Toque em _Theme_ para abrir uma lista suspensa de temas disponíveis
+* Selecione o tema que você deseja. Você também pode escolher o tema para as telas de E-Ink.
 
-_Você também pode personalizar o tema da sua tela enquanto lê &quot;Dia/Noite&quot;. Leia mais na definição de Faq, o tema da leitura &quot;Dia/Noite&quot;.
+> _Alguns temas extras virão da sua escolha de cores e fontes enquanto você configura seus modos de leitura diurno/noturno_
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
 
-**Configurando a cor do título (Aparar):**
+**Configuração da cor do cabeçalho e do título (aparar)**
 
-* Você pode personalizar da cor predefinida clicando na cor que precisa
-* Para selecionar sua própria cor, clique no ícone mais e selecione uma cor usando a paleta de cores.
+* Você pode selecionar uma das predefinições disponíveis tocando nela
+* Ou você pode escolher algo totalmente diferente tocando em **+**
+* Selecione sua cor na paleta de cores aberta
 
 ||||
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
-**Definindo a cor do link:**
+**Configuração da cor do link**
 
-* Clique na cor do link
-* Você pode personalizar da cor predefinida clicando na cor que precisa
-* Para selecionar sua própria cor, clique no ícone mais e selecione uma cor usando a paleta de cores.
+* Você precisa _Ativar_ cores personalizadas, substituindo as configurações do sistema
+* Selecione uma das predefinições disponíveis tocando nela
+* Ou você pode escolher algo totalmente diferente tocando em **+**
+* Selecione sua cor na paleta de cores aberta
 
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
 
-
-
-
+> **A melhor coisa oferecida por * Librera * é a capacidade de tema de cada perfil que você criar nele individualmente. Você pode criar um tema para seus perfis criados para mudanças de humor, leitura diurna e noturna, gêneros de livros etc.**

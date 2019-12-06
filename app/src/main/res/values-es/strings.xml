@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Grabar en formato .mp3</string>
    <string name="speak_into_file_wav">Grabar tts (mp3, wav)</string>
    <string name="text_is_too_long">El texto es demasiado largo</string>
+   <string name="settings">Ajustes</string>
+   <string name="play_pause">Reproducir pausar</string>
+   <string name="next_track">Siguiente pista</string>
+   <string name="previous_track">Pista anterior</string>
+   <string name="copied_text">Texto copiado</string>
+   <string name="reference_mode_like_in_calibre_viewer">Modo de referencia (como en el visor de calibre)</string>
+   <string name="profile_root">Raíz del perfil</string>
+   <string name="create_folder">Crear carpeta</string>
+   <string name="show_hidden">Mostrar oculto</string>
 </resources>

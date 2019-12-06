@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Įrašyti .mp3 formatu</string>
    <string name="speak_into_file_wav">Įrašyti tts (mp3, wav)</string>
    <string name="text_is_too_long">Tekstas per ilgas</string>
+   <string name="settings">Nustatymai</string>
+   <string name="play_pause">Žaisti / pristabdyti</string>
+   <string name="next_track">Kitas takelis</string>
+   <string name="previous_track">Ankstesnis takelis</string>
+   <string name="copied_text">Nukopijuotas tekstas</string>
+   <string name="reference_mode_like_in_calibre_viewer">Atskaitos režimas (kaip ir kalibro peržiūros priemonėje)</string>
+   <string name="profile_root">Profilio šaknis</string>
+   <string name="create_folder">Sukurti aplanką</string>
+   <string name="show_hidden">Rodyti paslėptą</string>
 </resources>

@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.sys.TempHolder;
 
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class DictsHelper {
         intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM);
         intentCustom.putExtra("EXTRA_FULLSCREEN", false);
 
-        if (AppTemp.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
+        if (AppSP.get().isDouble || Dips.screenWidth() > Dips.screenHeight()) {
 
             if (TempHolder.get().textFromPage == 1) {
                 intentCustom.putExtra("EXTRA_GRAVITY", Gravity.BOTTOM | Gravity.RIGHT);

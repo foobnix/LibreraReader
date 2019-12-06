@@ -19,8 +19,6 @@ cd Builder
 
 cd ../
 ./gradlew assembleBetaRelease
-#./gradlew assembleProRelease
-
 
 
 ./gradlew copyApks -Pbeta

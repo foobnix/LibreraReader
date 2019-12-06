@@ -1,0 +1,55 @@
+#
+# Makefile for !Antiword (RISC OS version)
+#
+
+CC	= cc
+LD	= link
+TOUCH	= stamp
+
+# must equal to DEBUG or NDEBUG
+DB = DEBUG
+
+OPTIONS	= -throwback
+#LDFLAGS = -d
+LDLIBS	= C:o.stubs DeskLib:o.DeskLib230
+
+CFLAGS	= -IC:,DeskLib:,flexlib: -D__riscos -D$(DB) -DTRACE
+#CFLAGS	= -IC:,DeskLib:,flexlib: -g -D__riscos -D$(DB)
+
+OBJS1	= o.main_ros\
+	o.blocklist o.chartrans o.datalist o.depot o.dib2sprt o.doclist\
+	o.draw o.drawfile o.fail o.finddata o.findtext o.fontlist o.fonts\
+	o.fonts_r o.hdrftrlist o.icons o.imgexam o.imgtrans o.jpeg2sprt\
+	o.listlist o.misc o.notes o.options o.out2window o.pictlist\
+	o.png2sprt o.prop0 o.prop2 o.prop6 o.prop8 o.properties o.propmod\
+	o.rowlist o.riscos o.saveas o.sectlist o.stylelist o.stylesheet\
+	o.summary o.tabstop o.word2text o.worddos o.wordlib o.wordmac\
+	o.wordole o.wordwin o.xmalloc
+
+OBJS2	= o.startup\
+	o.riscos\
+	o.fail
+
+IMAGE1	= @.!Antiword
+IMAGE2	= @.!RunImage
+
+All:		Antiword Startup
+
+Antiword:	$(IMAGE1)
+	@	time
+
+$(IMAGE1):	$(OBJS1)
+		$(LD) $(LDFLAGS) $(OBJS1) $(LDLIBS) -o $@
+	@	$(TOUCH) $@
+
+Startup:	$(IMAGE2)
+	@	time
+
+$(IMAGE2):	$(OBJS2)
+		$(LD) $(LDFLAGS) $(OBJS2) $(LDLIBS) -o $@
+	@	$(TOUCH) $@
+
+.c.o:
+		$(CC) $(CFLAGS) $(OPTIONS) -c c.$*
+
+o.main_ros:	h.version

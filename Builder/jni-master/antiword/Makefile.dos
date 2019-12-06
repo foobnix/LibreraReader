@@ -1,0 +1,62 @@
+#
+# Makefile for antiword (Dos version)
+#
+# TurboC++ 3.0 for DOS
+#
+
+.SUFFIXES: .exe .obj .c .asm
+
+CC	= d:\tc\bin\tcc
+# Link is a copy of tlink for the benefit of ndmake
+LD	= d:\tc\bin\link
+CP	= copy
+RM	= del
+
+# Memory model: one of s, m, c, l, h (small, medium, compact, large, huge)
+MODEL = h
+
+# must be equal to DEBUG or NDEBUG
+DB	= DEBUG
+
+STARTUP	= d:\tc\lib\c0$(MODEL).obj
+LDLIBS	= d:\tc\lib\emu d:\tc\lib\math$(MODEL) d:\tc\lib\c$(MODEL).lib
+
+CFLAGS	= -O2 -Z -m$(MODEL) -D__dos -D$(DB)
+LDFLAGS	= -c
+
+OBJS	=\
+	main_u.obj asc85enc.obj blocklis.obj chartran.obj datalist.obj\
+	depot.obj dib2eps.obj doclist.obj fail.obj finddata.obj findtext.obj\
+	fmt_text.obj fontlist.obj fonts.obj fonts_u.obj hdrftrli.obj\
+	imgexam.obj imgtrans.obj jpeg2eps.obj listlist.obj misc.obj notes.obj\
+	options.obj out2wind.obj output.obj pdf.obj pictlist.obj png2eps.obj\
+	postscri.obj prop0.obj prop2.obj prop6.obj prop8.obj properti.obj\
+	propmod.obj rowlist.obj sectlist.obj stylelis.obj styleshe.obj\
+	summary.obj tabstop.obj text.obj unix.obj utf8.obj word2tex.obj\
+	worddos.obj wordlib.obj wordmac.obj wordole.obj wordwin.obj\
+	xmalloc.obj xml.obj dos.obj getopt.obj
+
+PROG	= antiword.exe
+
+INSTALL_DIR = $(HOME)\bin
+
+all:		$(PROG)
+
+install:	all
+		$(CP) $(PROG) $(INSTALL_DIR)
+
+clean:
+		$(RM) $(OBJS)
+		$(RM) $(PROG)
+
+$(PROG):	$(OBJS)
+		if exist $@ $(RM) $@
+		$(LD) $(LDFLAGS) $(STARTUP) $(OBJS), $@,, $(LDLIBS)
+
+.c.obj:
+		$(CC) $(CFLAGS) -c $<
+
+main_u.obj:	version.h
+postscri.obj:	version.h
+pdf.obj:	version.h
+fonts_u.obj:	fontinfo.h

@@ -31,8 +31,8 @@ import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.OdtExtractor;
 import com.foobnix.ext.RtfExtract;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -597,7 +597,7 @@ public class ImageExtractor implements ImageDownloader {
             } else {
                 if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
-                    if (AppTemp.get().isDoubleCoverAlone) {
+                    if (AppSP.get().isDoubleCoverAlone) {
                         pageUrl.setPage(pageUrl.getPage() - 1);
                     }
 

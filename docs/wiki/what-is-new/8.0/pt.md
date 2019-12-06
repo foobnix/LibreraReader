@@ -4,24 +4,24 @@ layout: main
 
 # 8.0
 
-By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+Ao usar este aplicativo, você concorda com os termos da [Política de privacidade](/wiki/PrivacyPolicy/pt)
 
-**Melhorias Gerais**
+**Melhorias gerais**
 
 * Todas as bibliotecas foram atualizadas
-* Dark theme foi melhorado
+* Tema escuro foi aprimorado
 
 **Novos recursos**
 
 * Opção para alterar a posição das guias
-* suporte ao formato do documento
-* Suporte ao formato Docx nos dispositivos Anroid 8+
-* predefinições do modo de leitura
+* Suporte ao formato Doc
+* Suporte ao formato Docx em dispositivos Android 8+
+* predefinições no modo de leitura
 
 **Correções de bugs**
 
-* Arquivos e pastas excluídos não são mais _ghost_ Library
-* Arquivos abertos de outros aplicativos permanecerão na Biblioteca até serem excluídos (e o cache será limpo)
+* arquivos e pastas excluídos não são mais _ghost_ Library
+* Os arquivos abertos de outros aplicativos permanecerão na Biblioteca até serem excluídos (e o cache limpo)
 
 **Escolha a posição das guias: superior ou inferior**
 
@@ -29,7 +29,7 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](2.png)|![](3.png)|![](1.png)|
 
-**Pré-configurações do modo de leitura**
+**Predefinições no modo de leitura**
 
 * Diga ao **Librera** qual modo de leitura padrão você prefere para um formato de livro específico
 * Adicione manualmente qualquer formato desejado
@@ -38,14 +38,11 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**Dark &amp; Dark OLED Themes**
+**Temas OLED escuros e escuros**
 
-* Escolha tema OLED escuro com cor preta
+* Escolha o tema OLED escuro com cor preto escuro
 
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
 
-# O que há de novo no Librera Book Reader
-
-)

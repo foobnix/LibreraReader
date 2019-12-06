@@ -2,24 +2,24 @@
 layout: main
 ---
 
-# Como excluir livros do cartão SD externo
+# Como excluir um livro de um cartão SD externo
 
-O Android 7+ não permite excluir arquivos do cartão SD externo pelo
-razões de segurança.
-Você precisa adicionar o cartão SD como recurso e permitir que o aplicativo exclua arquivos dele
+> Por motivos de segurança, o sistema não permitirá que os usuários excluam arquivos de cartões SD externos no Android 7+.
 
-* Abra a guia do gerenciador de arquivos
-* Clique em adicionar recurso
-* Escolha o cartão SD
-* Selecione e permita excluir do cartão SD escolhido
+No **Librera**, você precisa adicionar seu cartão SD como um recurso (_bookshelf_) e permitir a exclusão.
+
+* Na guia _Pasta_, toque no ícone do gerenciador de arquivos para abrir a lista de recursos suspenso
+* Toque em **+** para adicionar uma estante de livros
+* Selecione seu cartão SD
+* Pressione _SELECT_ para permitir a exclusão do local escolhido
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-* Abra o cartão SD no gerenciador de arquivos
-* Clique no menu Arquivo
-* Excluir livro
+* Escolha seu cartão SD na lista de recursos do menu suspenso
+* Abra o menu de arquivo do livro que você deseja excluir tocando no ícone de três pontos
+* Pressione _Delete_ e confirme a operação
 
 ||||
 |-|-|-|

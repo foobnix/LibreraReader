@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">با فرمت .mp3 ضبط کنید</string>
    <string name="speak_into_file_wav">ضبط tts (mp3 ، wav)</string>
    <string name="text_is_too_long">متن خیلی طولانی است</string>
+   <string name="settings">تنظیمات</string>
+   <string name="play_pause">پخش توقف</string>
+   <string name="next_track">آهنگ بعدی</string>
+   <string name="previous_track">آهنگ قبلی</string>
+   <string name="copied_text">متن کپی شده</string>
+   <string name="reference_mode_like_in_calibre_viewer">حالت مرجع (مانند در بیننده کالیبر)</string>
+   <string name="profile_root">ریشه مشخصات</string>
+   <string name="create_folder">پرونده بساز</string>
+   <string name="show_hidden">نمایش پنهان</string>
 </resources>

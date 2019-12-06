@@ -5,21 +5,21 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
+import org.librera.JSONArray;
+import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.BufferedOutputStream;
@@ -72,44 +72,6 @@ public class EpubExtractor extends BaseExtractor {
 
     }
 
-    @Deprecated
-    private void proccessHypensDefault(String input, String output) throws Exception {
-        LOG.d("proccessHypens1", input, output);
-
-        FileInputStream inputStream = new FileInputStream(new File(input));
-        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
-        ZipEntry nextEntry = null;
-
-        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
-        zos.setLevel(0);
-
-        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-            if (TempHolder.get().loadingCancelled) {
-                break;
-            }
-            String name = nextEntry.getName();
-            String nameLow = name.toLowerCase(Locale.US);
-
-            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
-
-                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null);
-                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
-            } else {
-                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
-                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
-
-            }
-
-        }
-        zipInputStream.close();
-        inputStream.close();
-
-        zos.close();
-
-    }
-
     public static void proccessHypensApache(String input, String output, final Map<String, String> notes) throws Exception {
 
         LOG.d("proccessHypens2", input, output);
@@ -120,9 +82,50 @@ public class EpubExtractor extends BaseExtractor {
         ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
         zos.setLevel(0);
 
-        HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+        HypenUtils.applyLanguage(AppSP.get().hypenLang);
 
         Map<String, String> svgs = new HashMap<>();
+
+        List<String> spine = new ArrayList<>();
+        Map<String, String> manifest = new HashMap<>();
+        if (AppState.get().isReferenceMode) {
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                String name = nextEntry.getName().toLowerCase(Locale.US);
+                if (name.endsWith(".opf")) {
+
+                    XmlPullParser xpp = XmlParser.buildPullParser();
+                    xpp.setInput(zipInputStream, "utf-8");
+
+                    int eventType = xpp.getEventType();
+
+                    while (eventType != XmlPullParser.END_DOCUMENT) {
+                        if (eventType == XmlPullParser.START_TAG) {
+                            if ("item".equals(xpp.getName())) {
+                                String id = xpp.getAttributeValue(null, "id");
+                                String href = xpp.getAttributeValue(null, "href");
+                                String nav = xpp.getAttributeValue(null, "properties");
+
+                                manifest.put(href, id);
+                                LOG.d("isReferenceMode-manifest", id, href);
+
+                            } else if ("itemref".equals(xpp.getName())) {
+                                final String idref = xpp.getAttributeValue(null, "idref");
+                                final String linear = xpp.getAttributeValue(null, "linear");
+                                if ("no".equals(linear)) {
+                                    LOG.d("isReferenceMode-itemref skip", idref);
+                                } else {
+                                    spine.add(idref);
+                                }
+                                LOG.d("isReferenceMode-itemref", idref);
+                            }
+                        }
+                        eventType = xpp.next();
+                    }
+                }
+            }
+            zipInputStream.close();
+            zipInputStream = Zips.buildZipArchiveInputStream(input);
+        }
 
         while ((nextEntry = zipInputStream.getNextEntry()) != null) {
             if (TempHolder.get().loadingCancelled) {
@@ -131,11 +134,35 @@ public class EpubExtractor extends BaseExtractor {
             String name = nextEntry.getName();
             String nameLow = name.toLowerCase(Locale.US);
 
-            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
-                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
+            if (nameLow.contains("encryption.xml") || //
+                    nameLow.contains("container.xml") || //
+                    nameLow.contains("nav") || //
+                    nameLow.contains("toc")//
+            ) {
+                LOG.d("nextEntry HTML skip", name);
+                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+                continue;
+            }
+
+            if (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml")) {
+
+                int count = 0;
+                if (AppState.get().isReferenceMode) {
+                    String ch = "";
+                    for (String key : manifest.keySet()) {
+                        if (name.contains(key)) {
+                            ch = manifest.get(key);
+                            break;
+                        }
+                    }
+
+                    count = spine.indexOf(ch) + 1;
+                    LOG.d("isReferenceMode ok", name, ch, count);
+                }
 
                 ByteArrayOutputStream hStream = new ByteArrayOutputStream();
-                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs);
+
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), notes, hStream, name, svgs, count);
 
 
                 Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
@@ -177,6 +204,117 @@ public class EpubExtractor extends BaseExtractor {
 
     }
 
+    public static File extractAttachment(File bookPath, String attachmentName) {
+        LOG.d("Begin extractAttachment", bookPath.getPath(), attachmentName);
+        try {
+
+            InputStream in = new FileInputStream(bookPath);
+            ZipInputStream zipInputStream = new ZipInputStream(in);
+
+            ZipEntry nextEntry = null;
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
+                if (nextEntry.getName().equals(attachmentName)) {
+                    if (attachmentName.contains("/")) {
+                        attachmentName = attachmentName.substring(attachmentName.lastIndexOf("/") + 1);
+                    }
+                    File extractMedia = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, attachmentName);
+
+                    LOG.d("Begin extractAttachment extract", extractMedia.getPath());
+
+                    FileOutputStream fileOutputStream = new FileOutputStream(extractMedia);
+                    OutputStream out = new BufferedOutputStream(fileOutputStream);
+                    writeToStream(zipInputStream, out);
+                    return extractMedia;
+                }
+                // zipInputStream.closeEntry();
+            }
+
+            return null;
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
+    }
+
+    public static void writeToStream(InputStream zipInputStream, OutputStream out) throws IOException {
+
+        byte[] bytesIn = new byte[BUFFER_SIZE];
+        int read = 0;
+        while ((read = zipInputStream.read(bytesIn)) != -1) {
+            out.write(bytesIn, 0, read);
+        }
+        out.close();
+    }
+
+    public static List<String> getAttachments(String inputPath) throws IOException {
+        List<String> attachments = new ArrayList<String>();
+        try {
+            ArchiveEntry nextEntry = null;
+            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
+            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                if (TempHolder.get().loadingCancelled) {
+                    break;
+                }
+                String name = nextEntry.getName();
+                LOG.d("getAttachments", name);
+                if (ExtUtils.isMediaContent(name)) {
+                    if (nextEntry.getSize() > 0) {
+                        name = name + "," + nextEntry.getSize();
+                    } else if (nextEntry.getCompressedSize() > 0) {
+                        name = name + "," + nextEntry.getCompressedSize();
+                    } else {
+                        name = name + "," + 0;
+                    }
+                    attachments.add(name);
+                }
+            }
+            zipInputStream.close();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return attachments;
+    }
+
+    @Deprecated
+    private void proccessHypensDefault(String input, String output) throws Exception {
+        LOG.d("proccessHypens1", input, output);
+
+        FileInputStream inputStream = new FileInputStream(new File(input));
+        ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+        ZipEntry nextEntry = null;
+
+        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));
+        zos.setLevel(0);
+
+        while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+            if (TempHolder.get().loadingCancelled) {
+                break;
+            }
+            String name = nextEntry.getName();
+            String nameLow = name.toLowerCase(Locale.US);
+
+            if (!name.endsWith("container.xml") && (nameLow.endsWith("html") || nameLow.endsWith("htm") || nameLow.endsWith("xml"))) {
+                LOG.d("nextEntry HTML cancell", TempHolder.get().loadingCancelled, name);
+
+                ByteArrayOutputStream hStream = new ByteArrayOutputStream();
+                Fb2Extractor.generateHyphenFileEpub(new InputStreamReader(zipInputStream), null, hStream, null, null, 0);
+                Fb2Extractor.writeToZipNoClose(zos, name, new ByteArrayInputStream(hStream.toByteArray()));
+            } else {
+                LOG.d("nextEntry cancell", TempHolder.get().loadingCancelled, name);
+                Fb2Extractor.writeToZipNoClose(zos, name, zipInputStream);
+
+            }
+
+        }
+        zipInputStream.close();
+        inputStream.close();
+
+        zos.close();
+
+    }
 
     @Override
     public String getBookOverview(String path) {
@@ -221,6 +359,7 @@ public class EpubExtractor extends BaseExtractor {
     @Override
     public EbookMeta getBookMetaInformation(String path) {
         try {
+            LOG.d("getBookMetaInformation path", path);
             ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
             ArchiveEntry nextEntry = null;
@@ -249,9 +388,9 @@ public class EpubExtractor extends BaseExtractor {
                     while (eventType != XmlPullParser.END_DOCUMENT) {
                         if (eventType == XmlPullParser.START_TAG) {
                             if ("dc:title".equals(xpp.getName()) || "dcns:title".equals(xpp.getName())) {
-                                if(title==null){
+                                if (title == null) {
                                     title = xpp.nextText();
-                                }else {
+                                } else {
                                     title = title + " - " + xpp.nextText();
                                 }
                             }
@@ -284,20 +423,26 @@ public class EpubExtractor extends BaseExtractor {
                                 lang = xpp.nextText();
                             }
 
-                            if ("meta".equals(xpp.getName())) {
-                                String nameAttr = xpp.getAttributeValue(null, "name");
-                                String value = xpp.getAttributeValue(null, "content");
-                                if ("calibre:series".equals(nameAttr)) {
+                            if ("meta".equals(xpp.getName()) || "opf:meta".equals(xpp.getName())) {
+
+                                String nameAttr = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "name"));
+                                String propertyAttr = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "property"));
+                                String value = TxtUtils.nullToEmpty(xpp.getAttributeValue(null, "content"));
+
+                                if (propertyAttr.equals("belongs-to-collection")) {
+                                    series = xpp.nextText();
+                                    LOG.d("belongs-to-collection series", series);
+                                } else if (propertyAttr.equals("group-position")) {
+                                    number = xpp.nextText();
+                                    LOG.d("belongs-to-collection group-position number", number);
+                                } else if (nameAttr.endsWith(":series")) {
                                     series = value;
-                                } else if ("calibre:series_index".equals(nameAttr)) {
+                                } else if (nameAttr.endsWith(":series_index")) {
                                     number = value;
-                                    if (number != null) {
-                                        number = number.replace(".0", "");
-                                    }
                                 } else if ("calibre:user_metadata:#genre".equals(nameAttr)) {
                                     LOG.d("userGenre", value);
                                     try {
-                                        JSONObject obj = new JSONObject(value);
+                                        LinkedJSONObject obj = new LinkedJSONObject(value);
                                         JSONArray jsonArray = obj.getJSONArray("#value#");
                                         String res = "";
                                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -339,7 +484,14 @@ public class EpubExtractor extends BaseExtractor {
             EbookMeta ebookMeta = new EbookMeta(title, author, series, allGenres.replaceAll(",$", ""));
             try {
                 if (number != null) {
-                    ebookMeta.setsIndex(Integer.parseInt(number));
+                    number = number.replace(".0", "");
+                    if (number.contains(".")) {
+                        ebookMeta.setsIndex((int) Float.parseFloat(number));
+                    } else {
+                        ebookMeta.setsIndex(Integer.parseInt(number));
+                    }
+                    LOG.d("epub3", series, ebookMeta.getsIndex());
+
                 }
             } catch (Exception e) {
                 title = title + " [" + number + "]";
@@ -352,9 +504,8 @@ public class EpubExtractor extends BaseExtractor {
             ebookMeta.setIsbn(ibsn);
             // ebookMeta.setPagesCount((int) size / 1024);
             return ebookMeta;
-        } catch (
-
-                Exception e) {
+        } catch (Exception e) {
+            LOG.e(e);
             return EbookMeta.Empty();
         }
     }
@@ -452,80 +603,6 @@ public class EpubExtractor extends BaseExtractor {
             LOG.e(e);
         }
         return cover;
-    }
-
-    public static File extractAttachment(File bookPath, String attachmentName) {
-        LOG.d("Begin extractAttachment", bookPath.getPath(), attachmentName);
-        try {
-
-            InputStream in = new FileInputStream(bookPath);
-            ZipInputStream zipInputStream = new ZipInputStream(in);
-
-            ZipEntry nextEntry = null;
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled) {
-                    break;
-                }
-                if (nextEntry.getName().equals(attachmentName)) {
-                    if (attachmentName.contains("/")) {
-                        attachmentName = attachmentName.substring(attachmentName.lastIndexOf("/") + 1);
-                    }
-                    File extractMedia = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, attachmentName);
-
-                    LOG.d("Begin extractAttachment extract", extractMedia.getPath());
-
-                    FileOutputStream fileOutputStream = new FileOutputStream(extractMedia);
-                    OutputStream out = new BufferedOutputStream(fileOutputStream);
-                    writeToStream(zipInputStream, out);
-                    return extractMedia;
-                }
-                // zipInputStream.closeEntry();
-            }
-
-            return null;
-        } catch (Exception e) {
-            LOG.e(e);
-            return null;
-        }
-    }
-
-    public static void writeToStream(InputStream zipInputStream, OutputStream out) throws IOException {
-
-        byte[] bytesIn = new byte[BUFFER_SIZE];
-        int read = 0;
-        while ((read = zipInputStream.read(bytesIn)) != -1) {
-            out.write(bytesIn, 0, read);
-        }
-        out.close();
-    }
-
-    public static List<String> getAttachments(String inputPath) throws IOException {
-        List<String> attachments = new ArrayList<String>();
-        try {
-            ArchiveEntry nextEntry = null;
-            ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(inputPath);
-            while ((nextEntry = zipInputStream.getNextEntry()) != null) {
-                if (TempHolder.get().loadingCancelled) {
-                    break;
-                }
-                String name = nextEntry.getName();
-                LOG.d("getAttachments", name);
-                if (ExtUtils.isMediaContent(name)) {
-                    if (nextEntry.getSize() > 0) {
-                        name = name + "," + nextEntry.getSize();
-                    } else if (nextEntry.getCompressedSize() > 0) {
-                        name = name + "," + nextEntry.getCompressedSize();
-                    } else {
-                        name = name + "," + 0;
-                    }
-                    attachments.add(name);
-                }
-            }
-            zipInputStream.close();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return attachments;
     }
 
     @Override

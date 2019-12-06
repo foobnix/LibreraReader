@@ -1,6 +1,6 @@
 package com.foobnix.pdf.info.model;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 public class Content {
 
@@ -19,7 +19,7 @@ public class Content {
     private int impressions;
     private String ownerDisplayName;
 
-    public Content(final JSONObject obj) {
+    public Content(final LinkedJSONObject obj) {
         publicationId = obj.optString("publicationId");
         revisionId = obj.optString("revisionId");
         publicationName = obj.optString("publicationName");

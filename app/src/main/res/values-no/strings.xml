@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Ta opp i .mp3-format</string>
    <string name="speak_into_file_wav">Ta opp tts (mp3, wav)</string>
    <string name="text_is_too_long">Teksten er for lang</string>
+   <string name="settings">Innstillinger</string>
+   <string name="play_pause">Play / pause</string>
+   <string name="next_track">Neste spor</string>
+   <string name="previous_track">Forrige spor</string>
+   <string name="copied_text">Kopiert tekst</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referansemodus (som i kaliberviseren)</string>
+   <string name="profile_root">Profilrot</string>
+   <string name="create_folder">Lag mappe</string>
+   <string name="show_hidden">Vis skjult</string>
 </resources>

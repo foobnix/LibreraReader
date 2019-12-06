@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dip"
+    android:orientation="horizontal"
+    android:padding="2dip">
+
+    <ImageView
+        android:id="@+id/ttsIcon"
+        android:layout_width="60dip"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bg_clickable"
+        android:cropToPadding="true"
+        android:maxHeight="90dip"
+        android:src="@mipmap/icon_pdf_pro" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bookInfo"
+            style="@style/TextAppearance.Compat.Notification.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:padding="4dip"
+            android:lines="1"
+            android:text="Book Title  "
+            android:textStyle="normal" />
+
+        <include layout="@layout/tts_line" />
+    </LinearLayout>
+
+</LinearLayout>

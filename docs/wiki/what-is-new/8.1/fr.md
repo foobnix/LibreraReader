@@ -6,29 +6,32 @@ layout: main
 
 En utilisant cette application, vous acceptez les conditions de la [Politique de confidentialité](/wiki/PrivacyPolicy/fr)
 
-**Nouvelles fonctionnalités**
+**Nouvelles fonctionnalités et améliorations**
 
-* Synchroniser avec Google Drive (progrès, signets, livres)
-* Profils
-* Les remplacements, marques de soulagement, règles RegEx dans TTS
-* Autres paramètres en mode Musicien
+* TTS: enregistrement de livres entiers ou de plages de pages dans des fichiers MP3 (une page par fichier)
+* Synchronisation sur des appareils Android via Google Drive (progrès de la lecture, signets, etc.)
+* profils multiples
+* TTS: remplacements de caractères, marques de contrainte manuelle, règles RegEx
+* Paramètres supplémentaires et navigation en mode Musician
+* Fonctions supplémentaires accessibles via l'interface utilisateur
+* Améliorations diverses apportées à l'interface utilisateur et aux fonctionnalités
 
-# Synchroniser avec Google Drive
+# Synchronisation via Google Drive
 
-Sync vous permet de tout synchroniser dans le nuage et de lire le même livre sur de nombreux appareils.
-avec enregistrer des progrès. Sync si GRATUIT dans toutes les applications Librera.
+La synchronisation est destinée à être utilisée sur plusieurs appareils Android connectés à Google Drive. En lisant un livre, vous pourrez lire votre tablette la nuit là où vous l'avez laissée au téléphone pendant la journée. La synchronisation est prise en charge par **toutes les** applications de la famille Librera. Et c'est GRATUIT.
 
-* Synchroniser la progression de la lecture de tous les livres (synchronisés et non synchronisés). Si vous pouvez utiliser le même nom de livre
-la progression des appareils sera synchronisée automatiquement
-* Synchroniser les favoris
-* Liste récente de synchronisation
-* Synchroniser les livres et les tags favoris
+Vous pouvez synchroniser les paramètres suivants:
+
+* Lecture Progression de tous les livres que vous lisez actuellement (synchronisés ou non). Conservez les mêmes noms de fichiers sur tous vos appareils et vos livres seront automatiquement synchronisés.
+* Signets
+* Liste récente
+* Favoris et tags
 
 Exemples de synchronisation
 
-* Activer la synchronisation avec Google Drive
-* Cliquez sur le menu du livre pour synchroniser un livre.
-* Tous les livres synchronisés dans l'onglet Favoris
+* Activer la synchronisation via Google Drive (vous devez disposer de vos informations d'identification Google)
+* Pour synchroniser un livre, appelez son menu et choisissez _Sync_
+* Tous vos livres de l'onglet Favoris seront synchronisés.
 
 ||||
 |-|-|-|
@@ -37,58 +40,57 @@ Exemples de synchronisation
  
 # Profils
 
-Profils est comme une installation d'application séparée avec différents paramètres, livres, progression du livre, signets.
-Vous pouvez créer et supprimer des profils. Toutes les applications Librera utilisent les mêmes profils dans toutes les applications.
-Profils stockés dans la mémoire interne du périphérique /sdcard/Librera/profile.[NAME]
-Dans ce dossier, tous les paramètres, signets, progrès enregistrés dans les fichiers JSON.
-Vous pouvez le voir mais ne le modifiez pas manuellement.
+Utiliser des profils revient à avoir plusieurs instances de Librera installées sur votre appareil, chacune avec ses paramètres, ses listes de lecture, ses progrès de lecture et ses signets distincts. Vous êtes autorisé à créer de nouveaux profils et à supprimer les anciens. Toutes les applications de la famille Librera ont cette fonctionnalité.
 
-**Un clic long sur** le nom du profil affichera une boîte de dialogue pour restaurer les paramètres par défaut (les signets et la progression ne sont pas clairs).
+Les profils sont stockés dans la mémoire interne de l'appareil sous /sdcard/Librera/profile.[NAME]. Leurs paramètres, signets, progrès de lecture sont stockés dans des fichiers JSON, qui peuvent être visualisés avec n’importe quel visualiseur JSON (évitez toutefois de les modifier!).
+
+Un **appui long sur** sur un nom de profil ouvrira une fenêtre d'alerte vous permettant de restaurer ses paramètres (initiaux) par défaut (vos signets et votre progression de lecture resteront intacts).
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-# Le remplace dans TTS
+# Remplacements et dictionnaires TTS
 
-* Activez &quot;Repalces&quot;, puis ajoutez des règles.
-* Ajouter une règle pour remplacer tous les caractères de la liste par un autre &quot;[/.,]&quot; -&gt; &quot;&quot;
-* Remplacer un mot par un autre &quot;lib&quot; -&gt; &quot;Librera&quot;
-* Ajoutez des marques de contrainte (si le moteur TTS le prend en charge) &quot;Librera&quot; -&gt; &quot;Libréra&quot;
-* Afficher le texte du résultat avec remplace dans la boîte de dialogue
-* Prise en charge de @Voice Aloud externe .txt RegEx remplace le fichier
+* Appuyez sur &quot;Remplacements&quot; dans **Paramètres TTS** et ajoutez une nouvelle règle de lecture.
+* Remplacer un ensemble de caractères (entre parenthèses) par un seul caractère à lire ou à ignorer
+* Remplacez un mot par un autre, par exemple, &quot;lib&quot; -&gt; &quot;Librera&quot;
+* Ajoutez des marques de contrainte manuellement (si votre moteur TTS le prend en charge): &quot;Librera&quot; -&gt; &quot;Libréra&quot;.
+* Appuyez sur &quot;Afficher&quot; pour afficher les résultats des remplacements.
+* Ajouter un dictionnaire externe: Librera prend en charge les fichiers de remplacement @Voice Aloud et .txt RegEx.
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-# Autres paramètres en mode Musicien
+# Paramètres supplémentaires en mode Musicien
 
-* Afficher \ masquer les rectangles des zones de prise
-* Marquez la dernière page avec des lignes rouges (petites et grandes)
-* Souligner les séparations de pages
-* Cliquez sur la page suivante de la dernière page pour accéder à la première page.
-* Cliquez sur la première page pour accéder à la dernière page.
+* Afficher \ masquer les zones de frappe (délimitées par des lignes en pointillés)
+* Indiquez la dernière page avec des bandes rouges (étroites et larges)
+* Mettez en surbrillance les séparateurs de page pour améliorer la lisibilité
+* Naviguez de la première à la dernière page en appuyant sur la zone Page précédente
+* Naviguez de la dernière à la première page en touchant la zone Page suivante
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-# Améliorations de l'interface utilisateur
+# Fonctions supplémentaires et améliorations de l'interface utilisateur
 
-* Partager \ copier la page en tant que imge \ text (clic long sur l'aperçu de la page)
-* Prise en charge des écrans cochés (découpés)
-* Trier le livre par **éditeur** et **date de publication**
+* Partager \ copier des pages en tant qu'images \ texte (appuyez longuement sur une vignette de page dans la fenêtre _Allez à parcourir)
+* Prise en charge des écrans cochés
+* Nouveaux paramètres de tri: trier par **éditeur** et **date de publication**
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
 
-# Autres
+# Divers
 
-* Support MathML et SVG (activation dans les options avancées, le premier chargement du livre est très lent)
-* Option de bibliothèque permettant d'ignorer l'extraction de métadonnées dans les livres
-* Mot de passe du doigt pour ouvrir l'application (Android 9+)
-* Définir le délai d'extinction de l'écran en minutes ou en valeur système
+* Prise en charge des formats MathML et SVG. Activez-le dans les options avancées (peut ralentir le chargement du livre initial)
+* Option permettant d'ignorer les métadonnées dans les vues Bibliothèque et Dossier (seuls les noms de fichiers seront affichés)
+* Signet mobile, avec indicateur flottant (marque automatiquement votre position de lecture actuelle et vous permet d'y revenir, via un flotteur situé dans le coin inférieur droit, après des visites temporaires dans d'autres parties et sections du livre). Pour créer (ajouter) un signet mobile, cochez la case **Flottante**.
+* Autoriser l'utilisation des empreintes digitales à la place du mot de passe (Android 9+)
+* Autoriser l'utilisation du délai de mise en veille du système pour éteindre l'écran
 
- 
+

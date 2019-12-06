@@ -2,6 +2,6 @@
 layout: main
 ---
 
-# Lo nuevo en el lector de libros de Librera
+# Qué hay de nuevo en el lector de libros de Librera
 
     

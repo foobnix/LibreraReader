@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Opnemen in .mp3-indeling</string>
    <string name="speak_into_file_wav">Record tts (mp3, wav)</string>
    <string name="text_is_too_long">Tekst is te lang</string>
+   <string name="settings">Instellingen</string>
+   <string name="play_pause">Speel pauze</string>
+   <string name="next_track">Volgende track</string>
+   <string name="previous_track">Vorig nummer</string>
+   <string name="copied_text">Gekopieerde tekst</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referentiemodus (zoals in kaliberviewer)</string>
+   <string name="profile_root">Profiel root</string>
+   <string name="create_folder">Map aanmaken</string>
+   <string name="show_hidden">Toon verborgen</string>
 </resources>

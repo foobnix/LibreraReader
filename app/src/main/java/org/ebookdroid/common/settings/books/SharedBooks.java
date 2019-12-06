@@ -10,7 +10,7 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.ui2.AppDB;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.HashMap;
@@ -41,11 +41,11 @@ public class SharedBooks {
     public static void deleteProgress(String path) {
         cache.clear();
         for (File fileName : AppProfile.getAllFiles(AppProfile.APP_PROGRESS_JSON)) {
-            JSONObject jsonObject = IO.readJsonObject(fileName);
+            LinkedJSONObject linkedJsonObject = IO.readJsonObject(fileName);
             String key = ExtUtils.getFileName(path);
-            if (jsonObject.has(key)) {
-                jsonObject.remove(key);
-                IO.writeObjAsync(fileName, jsonObject);
+            if (linkedJsonObject.has(key)) {
+                linkedJsonObject.remove(key);
+                IO.writeObjAsync(fileName, linkedJsonObject);
                 LOG.d("deleteProgress", path);
             }
         }
@@ -88,7 +88,7 @@ public class SharedBooks {
 
     }
 
-    private static AppBook load(JSONObject obj, String fileName) {
+    private static AppBook load(LinkedJSONObject obj, String fileName) {
         AppBook bs = new AppBook(fileName);
         try {
 
@@ -97,7 +97,7 @@ public class SharedBooks {
             if (!obj.has(key)) {
                 return bs;
             }
-            final JSONObject rootObj = obj.getJSONObject(key);
+            final LinkedJSONObject rootObj = obj.getJSONObject(key);
             Objects.loadFromJson(bs, rootObj);
         } catch (Exception e) {
             LOG.e(e);
@@ -126,7 +126,7 @@ public class SharedBooks {
             LOG.d("Can't save AppBook");
             return;
         }
-        final JSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+        final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
 
         try {
             if (bs.p > 1) {
@@ -134,7 +134,7 @@ public class SharedBooks {
             }
 
             final String fileName = ExtUtils.getFileName(bs.path);
-            final JSONObject value = Objects.toJSONObject(bs);
+            final LinkedJSONObject value = Objects.toJSONObject(bs);
             obj.put(fileName, value);
             cache.put(fileName, bs);
 

@@ -132,6 +132,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginRight="8dip"
                 android:id="@+id/infoLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

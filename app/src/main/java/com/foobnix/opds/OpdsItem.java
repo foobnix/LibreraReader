@@ -2,7 +2,7 @@ package com.foobnix.opds;
 
 import com.foobnix.android.utils.LOG;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 public class OpdsItem {
 
@@ -20,8 +20,8 @@ public class OpdsItem {
 
 
 
-    public JSONObject toJSON() {
-        JSONObject o = new JSONObject();
+    public LinkedJSONObject toJSON() {
+        LinkedJSONObject o = new LinkedJSONObject();
         try {
             o.put("homeUrl", homeUrl);
             o.put("title", title);
@@ -35,7 +35,7 @@ public class OpdsItem {
 
     public OpdsItem fromJSON(String json) {
         try {
-            JSONObject o = new JSONObject(json);
+            LinkedJSONObject o = new LinkedJSONObject(json);
 
             String homeUrl = o.optString("homeUrl");
             String title = o.optString("title");

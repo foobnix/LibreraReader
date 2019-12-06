@@ -13,7 +13,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
+
+import static com.foobnix.pdf.info.FileMetaComparators.naturalOrderComparator;
 
 public class ZipArchiveInputStream extends InputStream {
 
@@ -29,11 +34,25 @@ public class ZipArchiveInputStream extends InputStream {
         // CacheZipUtils.cacheLock.lock();
         try {
             zp = new ZipFile(file);
-            iterator = zp.getFileHeaders().iterator();
+            final List fileHeaders = zp.getFileHeaders();
+
+            Collections.sort(fileHeaders, new Comparator<FileHeader>() {
+                @Override
+                public int compare(FileHeader o1, FileHeader o2) {
+                    try {
+                        return naturalOrderComparator.compare(o1.getFileName(), o2.getFileName());
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        return 0;
+                    }
+                }
+            });
+
+            iterator = fileHeaders.iterator();
             LOG.d("ZipArchiveInputStream", file);
 
         } catch (ZipException e) {
-            LOG.e(e);
+            LOG.e(e, file);
         }
     }
 
@@ -66,7 +85,8 @@ public class ZipArchiveInputStream extends InputStream {
         // CacheZipUtils.cacheLock.unlock();
         closeStream();
     }
-    public void release(){
+
+    public void release() {
         if (tempFile != null) {
             tempFile.delete();
         }

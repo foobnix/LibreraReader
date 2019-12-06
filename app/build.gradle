@@ -10,8 +10,8 @@ ext {
         db = Integer.parseInt(appDB)
 
     }else{
-        codeNumber = 3270
-        versionNumber = "8.1.305"
+        codeNumber = 3420
+        versionNumber = "8.2.11"
         db = 8
     }
 
@@ -22,11 +22,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -72,7 +72,7 @@ android {
 
 
     }
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -84,7 +84,11 @@ android {
             enable true
             reset()
             //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            include "armeabi-v7a", "arm64-v8a"
+
+            if(!taskName.contains("Fdroid")) {
+                include "armeabi-v7a", "arm64-v8a"
+            }
+
             if(taskName.contains("Debug") || taskName.contains("Pro")){
                 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
@@ -112,26 +116,23 @@ android {
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "int", "MUPDF_VERSION", "111"
         }
 
         alpha {
             dimension "version"
-            applicationId "com.foobnix.pdf.reader"
+            applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
                     appName       : "Alpha Librera",
                     appIcon       : "@mipmap/icon_pdf_reader",
                     appRoundIcon  : "@mipmap/icon_pdf_reader",
-                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
-                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
-                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
+                    appGdriveKey  : "",
+                    admobAppId    : "",
+                    admobBannerId : "",
+                    admobFullId   : ""
             ]
-
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "int", "MUPDF_VERSION", "116"
 
         }
 
@@ -150,7 +151,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
 
         }
         pro {
@@ -168,7 +168,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
-            buildConfigField "int", "MUPDF_VERSION", "111"
         }
         pdf_classic {
             dimension "version"
@@ -185,7 +184,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
 
 
         }
@@ -204,9 +202,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
-
-
         }
         pdf_v2 {
             dimension "version"
@@ -223,9 +218,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
-
-
         }
         tts_reader {
             dimension "version"
@@ -242,9 +234,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
-
-
         }
         epub_reader {
             dimension "version"
@@ -261,9 +250,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "111"
-
-
         }
         fdroid {
             dimension "version"
@@ -281,9 +267,6 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "true"
             buildConfigField "boolean", "LOG", "false"
-            buildConfigField "int", "MUPDF_VERSION", "116"
-
-
         }
 
     }
@@ -300,11 +283,13 @@ android {
                 abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
                 output.versionCodeOverride = code
-                def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+                def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk";
                 output.outputFileName = fullName;
             }else{
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
-                def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
+                //def fullName = "Librera ${flavor}-${versionNumber}-universal.apk";
+                def fullName = "Librera ${flavor}-${versionNumber}-uni.apk";
                 output.versionCodeOverride = codeNumber
                 output.outputFileName = fullName;
 
@@ -358,17 +343,18 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.4.0'
     implementation 'javax.xml.stream:stax-api:1.0-2'
 
+
     alphaImplementation project(':pro')
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
 
-    betaImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    libreraImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    pdf_v2Implementation 'com.google.firebase:firebase-ads:18.1.1'
-    ebookaImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    tts_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    pdf_classicImplementation 'com.google.firebase:firebase-ads:18.1.1'
-    epub_readerImplementation 'com.google.firebase:firebase-ads:18.1.1'
+    betaImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    libreraImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    pdf_v2Implementation 'com.google.firebase:firebase-ads:18.3.0'
+    ebookaImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    tts_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    pdf_classicImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    epub_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
 
 }
 

@@ -1303,6 +1303,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="135dip"
+                android:text="@string/profile_root" />
+
+            <TextView
+                android:id="@+id/rootFolder"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="start"
+                android:text="[]" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="135dip"
                 android:text="@string/folder_with_fonts" />
 
             <TextView
@@ -1528,17 +1549,18 @@
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dip"
-                android:text="Wiki" />
+                android:text="FAQ" />
 
             <TextView
                 android:id="@+id/openWiki"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="http://wiki.librera.mobi" />
+                android:text="http://wiki.librera.mobi/faq" />
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/onTelegram"
             style="@style/textLink"
             android:layout_width="wrap_content"

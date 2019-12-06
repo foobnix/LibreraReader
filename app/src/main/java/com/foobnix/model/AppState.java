@@ -22,7 +22,7 @@ import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 
-import org.json.JSONObject;
+import org.librera.LinkedJSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -122,7 +122,7 @@ public class AppState {
     public static final String TTS_REPLACEMENTS =
 
             "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
-                    "'*[?!:;–|—|―]':',' , " +//
+                    "'*[?!:;–|—|―]':'.' , " +//
                     "'it’s':'it is' , " +//
                     "'#bla':'bla disabled' , " +//
                     "'*(L|l)ib.':'$1ibréra'}";//
@@ -344,8 +344,14 @@ public class AppState {
     public boolean isEnableBC = false;
     @IgnoreHashCode
     public boolean stopReadingOnCall = true;
+
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
+
+    @IgnoreHashCode
+    public int appBrightnessNight = AUTO_BRIGTNESS;
+
+
     public volatile int fastReadSpeed = 200;
     public volatile int fastReadFontSize = 32;
     public volatile int fastManyWords = 2;
@@ -359,6 +365,8 @@ public class AppState {
     public boolean ttsTunnOnLastWord = false;
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
+
+    public boolean isReferenceMode = false;
 
 
     @IgnoreHashCode
@@ -544,8 +552,17 @@ public class AppState {
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     @IgnoreHashCode
     public int blueLightAlpha = 30;
+
+    @IgnoreHashCode
+    public int blueLightAlphaNight = 30;
+
     @IgnoreHashCode
     public boolean isEnableBlueFilter = false;
+
+    @IgnoreHashCode
+    public boolean isEnableBlueFilterNight = false;
+
+
     public boolean proxyEnable = false;
     public String proxyServer = "";
     public int proxyPort = 0;
@@ -670,8 +687,8 @@ public class AppState {
 
             try{
                 if(TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)){
-                    JSONObject o1 =  new JSONObject(AppState.get().lineTTSReplacements);
-                    JSONObject o3 =  new JSONObject(AppState.get().lineTTSReplacements3);
+                    LinkedJSONObject o1 =  new LinkedJSONObject(AppState.get().lineTTSReplacements);
+                    LinkedJSONObject o3 =  new LinkedJSONObject(AppState.get().lineTTSReplacements3);
                     Iterator<String> keys = o1.keys();
                     while(keys.hasNext()){
                         String key = keys.next();

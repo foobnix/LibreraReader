@@ -128,7 +128,10 @@ public class Link {
         }
         String name = TxtUtils.fixFileName(parentTitle);
         String ext = getDownloadDisplayFormat();
+        
+
         if (ext != null) {
+            ext = ext.replace("x-cbz", "cbz").replace("x-cbr", "cbr");
             return name + "." + ext;
         }
         if (type == null) {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dip" >
+    android:padding="4dip">
 
     <ImageView
         android:id="@+id/ttsIcon"
@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/bookInfo"
@@ -28,9 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
-            android:gravity="center_vertical|left"
-            android:lines="2"
-            android:text="Book Title"
+            android:maxLines="3"
+            android:text="Book Title long long long long long long long long long long long long long long long long  long long long long long long long long long long long long "
             android:textStyle="normal" />
 
         <include layout="@layout/tts_line" />

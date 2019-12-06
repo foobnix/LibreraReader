@@ -1,7 +1,6 @@
 ---
 layout: main
 ---
-[What is new](/wiki/what-is-new)
 
 # 7.11
 

@@ -19,6 +19,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 
+import org.jsoup.Jsoup;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -240,7 +242,7 @@ public class AndroidWhatsNew {
         }
 
 
-        final String url = "https://www.dropbox.com/s/gom54hvrhei3o85/version.txt?raw=1";
+        final String url = "https://t.me/s/LibreraBeta";
 
 
         LOG.d("checkForNewBeta");
@@ -248,30 +250,50 @@ public class AndroidWhatsNew {
             @Override
             public void run() {
 
-                final String result = OPDS.getHttpResponseNoException(url);
-                LOG.d("checkForNewBeta result", result);
-                c.runOnUiThread(() -> {
-                    try {
-                        if (result == null || TxtUtils.isEmpty("" + result)) {
-                            return;
-                        }
-
-                        final String my = Apps.getVersionName(c);
-                        if (my.equals(result)) {
-                            return;
-                        }
-
-                        AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + result, c.getString(R.string.open_in_browser), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                Urls.open(c, "http://beta.librera.mobi");
-                            }
-                        });
-                    } catch (Exception e) {
-                        LOG.e(e);
+                try {
+                    final String resultHTTP = OPDS.getHttpResponseNoException(url);
+                    String result = Jsoup.parse(resultHTTP).select("div[class=tgme_widget_message_document_title]").last().text();
+                    LOG.d("checkForNewBeta result 2", result);
+                    if (!result.contains(".apk")) {
+                        return;
                     }
-                });
+
+                    result = result.replace("Librera Beta-","");
+                    result = result.replace("Librera Alpha-","");
+                    result = result.replace("-arm64.apk","");
+                    result = result.replace("-arm.apk","");
+
+                    final String resultFinal = result;
+                    LOG.d("checkForNewBeta result 3", result);
+
+
+                    c.runOnUiThread(() -> {
+                        try {
+
+
+                            if (resultFinal == null || TxtUtils.isEmpty("" + resultFinal)) {
+                                return;
+                            }
+
+                            final String my = Apps.getVersionName(c);
+                            if (my.equals(resultFinal)) {
+                                return;
+                            }
+
+                            AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + resultFinal, c.getString(R.string.download), new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    Urls.open(c, "https://t.me/LibreraBeta/");
+                                }
+                            });
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
+                    });
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
             }
         }.start();
 

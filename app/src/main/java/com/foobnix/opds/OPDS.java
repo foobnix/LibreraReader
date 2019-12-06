@@ -44,9 +44,9 @@ public class OPDS {
 
     public static OkHttpClient.Builder builder = new OkHttpClient.Builder()//
             .cookieJar(new WebviewCookieHandler())//
-            .connectTimeout(10, TimeUnit.SECONDS)//
-            .writeTimeout(10, TimeUnit.SECONDS)//
-            .readTimeout(10, TimeUnit.SECONDS)//
+            .connectTimeout(20, TimeUnit.SECONDS)//
+            .writeTimeout(20, TimeUnit.SECONDS)//
+            .readTimeout(30, TimeUnit.SECONDS)//
             .cache(cache);//
 
     public static OkHttpClient client = builder.build();//
@@ -181,6 +181,7 @@ public class OPDS {
         }
 
         String string = response.body().string();
+        string = string.replace("\u0001M\u0001J","");
         response.close();
         return string;
     }

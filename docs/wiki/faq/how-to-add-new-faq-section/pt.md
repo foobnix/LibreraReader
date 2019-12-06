@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# Como adicionar uma nova seção de perguntas frequentes
+# Como adicionar um novo tópico de FAQ
 
-Se você deseja adicionar uma nova seção de Perguntas frequentes, crie uma pasta **[exemplo-faq-título]** com apenas o arquivo inglês **index.md** aqui.
-[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faqorgeous(https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+Se você deseja adicionar um novo tópico de FAQ, crie uma pasta **[qualquer nome separado por hífen]** com um único arquivo en-us **index.md** em [aqui](https : //github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-Em seguida, o script atualiza automaticamente o índice faq e adiciona traduções para todos os idiomas
+O script atualizará automaticamente o índice das perguntas frequentes e adicionará arquivos de localidade para todos os idiomas suportados.
 
-Formato do cabeçalho do arquivo: **index.md**
+Formato do cabeçalho do arquivo para **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-Todas as imagens relacionadas a esta seção devem estar na pasta
+Você pode ilustrar sua discussão com imagens (JPEG). Todos os arquivos de imagem relacionados a este tópico devem ser colocados na pasta, ao lado de **index.md**
 
 ```
 * Image description 1

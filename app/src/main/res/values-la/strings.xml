@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Recordum in MP3 format</string>
    <string name="speak_into_file_wav">Tts record (mp3, hue)</string>
    <string name="text_is_too_long">Illud est nimis longum</string>
+   <string name="settings">Occasus</string>
+   <string name="play_pause">Play / diapsalma</string>
+   <string name="next_track">Deinde semita</string>
+   <string name="previous_track">Prior semita</string>
+   <string name="copied_text">Copied illud</string>
+   <string name="reference_mode_like_in_calibre_viewer">Reference mode (ut in gente videntium)</string>
+   <string name="profile_root">Radix profile</string>
+   <string name="create_folder">Partum folder</string>
+   <string name="show_hidden">Ostende occultatum</string>
 </resources>

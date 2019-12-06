@@ -14,10 +14,9 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AppsConfig;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -156,7 +155,7 @@ public class BookCSS {
 
     public boolean isTextFormat() {
         try {
-            return ExtUtils.isTextFomat(AppTemp.get().lastBookPath);
+            return ExtUtils.isTextFomat(AppSP.get().lastBookPath);
         } catch (Exception e) {
             return false;
         }
@@ -189,7 +188,7 @@ public class BookCSS {
 
         documentStyle = STYLES_DOC_AND_USER;
         isAutoHypens = true;
-        AppTemp.get().hypenLang = null;
+        AppSP.get().hypenLang = null;
 
         linkColorDay = LINK_COLOR_UNIVERSAL;
         linkColorNight = LINK_COLOR_UNIVERSAL;
@@ -336,8 +335,8 @@ public class BookCSS {
 
     public List<String> getAllFonts() {
         List<String> all = new ArrayList<String>();
-        if (AppTemp.get().lastBookPath != null) {
-            all.addAll(getAllFontsFromFolder(new File(AppTemp.get().lastBookPath).getParent()));
+        if (AppSP.get().lastBookPath != null) {
+            all.addAll(getAllFontsFromFolder(new File(AppSP.get().lastBookPath).getParent()));
         }
         all.add(ARIAL);
         all.add(COURIER);
@@ -356,8 +355,8 @@ public class BookCSS {
 
     public List<FontPack> getAllFontsPacks() {
         List<FontPack> all = new ArrayList<FontPack>();
-        if (AppTemp.get().lastBookPath != null) {
-            all.addAll(getAllFontsFiltered(new File(AppTemp.get().lastBookPath).getParent()));
+        if (AppSP.get().lastBookPath != null) {
+            all.addAll(getAllFontsFiltered(new File(AppSP.get().lastBookPath).getParent()));
         }
         all.add(new FontPack(ARIAL));
         all.add(new FontPack(COURIER));
@@ -532,7 +531,7 @@ public class BookCSS {
         String textColor = MagicHelper.colorToString(MagicHelper.getTextColor());
 
         builder.append("documentStyle" + documentStyle + "{}");
-        builder.append("isAutoHypens1" + isAutoHypens + AppTemp.get().hypenLang + "{}");
+        builder.append("isAutoHypens1" + isAutoHypens + AppSP.get().hypenLang + "{}");
 
         builder.append("b>span,strong>span{font-weight:normal}");// fix chess
 
@@ -680,7 +679,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
                 }
             }
@@ -695,7 +694,7 @@ public class BookCSS {
             builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if (BuildConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
                 }
             }
@@ -726,13 +725,13 @@ public class BookCSS {
         if (meta == null) {
             meta = FileMetaCore.createMetaIfNeed(bookPath, false);
         }
-        AppTemp.get().hypenLang = meta != null ? meta.getLang() : null;
-        LOG.d("detectLang", bookPath, AppTemp.get().hypenLang);
+        AppSP.get().hypenLang = meta != null ? meta.getLang() : null;
+        LOG.d("detectLang", bookPath, AppSP.get().hypenLang);
 
-        if (TxtUtils.isEmpty(AppTemp.get().hypenLang)) {
+        if (TxtUtils.isEmpty(AppSP.get().hypenLang)) {
             final AppBook load = SharedBooks.load(bookPath);
             if (load != null) {
-                AppTemp.get().hypenLang = load.ln;
+                AppSP.get().hypenLang = load.ln;
             }
         }
     }

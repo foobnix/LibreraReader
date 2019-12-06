@@ -2,17 +2,13 @@
 layout: main
 ---
 
-# Comment augmenter la taille de la police dans un document PDF sous Android
+# Augmentation de la taille de la police dans les documents PDF
 
-Les gens demandent souvent
-
-* Comment puis-je agrandir la taille de la police sur un fichier PDF?
-* Comment modifier la taille de la police dans un formulaire PDF à remplir?
-* Comment puis-je augmenter la taille de la police dans un document PDF?
-* Comment modifier la taille de la police d'un commentaire PDF?
-* Comment modifier la taille de la police dans un fichier PDF
-
-Dans l'application Librera, vous pouvez ouvrir un fichier PDF en mode **Redistribution du texte** et modifier la taille de la police selon vos besoins.
+Pour améliorer la lisibilité de votre document PDF (taille de caractère trop petite), vous pouvez le convertir au format **Librera** vers un autre format de fichier (EPUB):
+* Ouvrez votre document PDF dans le **Librera**.
+* Ouvrez le menu général en appuyant sur l'écran central
+* Tapez sur l'icône du menu du livre (icône à trois points) en bas de l'écran.
+* Appuyez sur l'élément _Reflow PDF_, attendez la fin de la conversion, puis modifiez la taille de la police dans la fenêtre **Préférences**.
 
 |1|2|3|
 |-|-|-|

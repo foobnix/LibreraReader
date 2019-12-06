@@ -2,62 +2,56 @@
 layout: main
 ---
 
-# So passen Sie das Erscheinungsbild Ihrer Bibliothek und Ihrer Buchcover an
+# Anpassen des Erscheinungsbilds Ihrer Bibliothek
 
-> Mit Librera können Sie das Erscheinungsbild Ihrer Bibliothek, die Größe der Buchumschläge, die vom Buch angezeigten Informationen und die Sortierung der Bücher in Ihrer Bibliothek flexibel anpassen.
+> **Librera** ermöglicht es Ihnen, die Art und Weise anzupassen, in der Ihre Bücher in den &quot;Regalen&quot; Ihrer Bibliothek angezeigt werden. Sie können die Anzahl der Bücher in einem Regal, deren Aussehen, Regalgröße, Buchgruppierung und Auflistung usw. ändern.
 
-Um die Bibliotheksansicht schnell zu konfigurieren, müssen Sie:
+Ihre Bücher werden auf der Registerkarte _Bibliothek_ angezeigt, auf der Sie Änderungen an der Buchpräsentation vornehmen können. Weitere Einstellungen, die sich auf Ihre Bibliotheksansicht auswirken, finden Sie auf der Registerkarte _Preferences_ im Bereich _Book Covers_.
 
-* Wechseln Sie zum Tab Bibliothek
-* Klicken Sie auf den Bibliotheksanzeigemodus und wählen Sie den gewünschten aus.
+* Um das Buchlayout (Liste, Raster, komprimiert usw.) zu ändern, tippen Sie auf das Hamburger-Symbol in der oberen rechten Ecke des Tabs _Bibliothek_
+* Streichen Sie vom linken Bildschirmrand nach rechts, um den Tab &quot;Einstellungen&quot; zu öffnen
 
-Sie können auch das Aussehen der Bibliothek und der Buchcover in den Einstellungen weiter anpassen:
+> Wenn Sie das Kontrollkästchen _Preferences_ aktiviert haben (keine Animation), befindet sich die Registerkarte _Preferences_ oben neben der Registerkarte _Library_.
 
-* Streichen Sie, um das Einstellungsfeld zu öffnen
-* Streichen Sie nach unten zu den Einstellungen für Buchumschläge.
+* Streichen Sie nach unten und suchen Sie das Bedienfeld _Buchumschläge_
 
 ||||
 |-|-|-|
 |![](3.jpg)|![](1.jpg)|![](2.jpg)|
 
-In der Schnellkonfiguration der Bibliothek können Sie eine andere Art davon auswählen, ich werde zum Beispiel einige nennen.
+* Nachfolgend finden Sie Beispiele für die Ansichten einiger weniger Layoutoptionen:
+ 
+> Denken Sie daran, ein anderes Layout ist nur zwei Klicks entfernt. Sie können jederzeit auf die bequemste umschalten.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-In den Einstellungen für Buchumschläge können Sie den Buchumschlag deaktivieren oder aktivieren.
+## Das _Bucheinband_-Bedienfeld
 
-* Deaktivieren Sie das Kontrollkästchen, um die Anzeige des Buchdeckels zu entfernen
-* Wenn Sie die Umschläge von Büchern in der Bibliothek anzeigen möchten, aktivieren Sie dieses Kontrollkästchen.
+* Sie können die Anzeige von Buchumschlägen deaktivieren, indem Sie das entsprechende Kontrollkästchen deaktivieren
+* Sie haben noch viele Layoutoptionen
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-So ändern Sie die Größe des angezeigten Buchdeckels:
-
-* Verwenden Sie den Schieberegler, um die Größe des angezeigten Buchdeckels auszuwählen
+* Ihre Manipulationen mit der Größe der Buchumschläge hängen vom ausgewählten Layout ab (Liste oder Raster).
+* Verwenden Sie für &quot;Liste&quot; den entsprechenden Schieberegler, um die Größe der Buchdeckel (Regalgröße) zu ändern.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-So ändern Sie das auf dem Buchdeckelbildschirm angezeigte Raster:
+Sie haben mehr Optionen für &quot;Gitter&quot;.
 
-* Ein Schieberegler zum Auswählen der Größe des Rasters
-* Sie können die Anzahl der Spalten auswählen
+* Verwenden Sie den entsprechenden Schieberegler, um die Größe der Buchumschläge zu ändern
+* Sie können auch die Anzahl der Spalten im Raster Ihrer Bibliothek festlegen
+
+> Hinweis: Sie können jederzeit zu Ihren ursprünglichen Einstellungen zurückkehren, indem Sie auf _Restore default_ tippen und den Vorgang mit _OK_ bestätigen.
+
+**Wenn Sie die Umschläge Ihrer Bücher anzeigen möchten, verwenden Sie andere Optionen im Bereich &quot;Buchumschläge&quot;, um die Ansicht zu optimieren.**
 
 ||||
 |-|-|-|
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
-
-Wenn Sie die Buchdeckeleinstellungen auf den ursprünglichen Zustand zurücksetzen möchten:
-
-* Klicken Sie auf &quot;Standard wiederherstellen&quot;.
-* Bestätigen Sie Ihre Aktion mit &quot;OK&quot;.
-
-Die Cover werden auf ihre ursprünglichen Einstellungen zurückgesetzt.
-
-
-

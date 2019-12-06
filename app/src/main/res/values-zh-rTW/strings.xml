@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">以mp3格式錄製</string>
    <string name="speak_into_file_wav">Tts錄製（mp3，wav）</string>
    <string name="text_is_too_long">文本過長</string>
+   <string name="settings">設置</string>
+   <string name="play_pause">播放/暫停</string>
+   <string name="next_track">下一軌</string>
+   <string name="previous_track">上一軌</string>
+   <string name="copied_text">複製文本</string>
+   <string name="reference_mode_like_in_calibre_viewer">參考模式（例如在口徑查看器中）</string>
+   <string name="profile_root">個人資料根</string>
+   <string name="create_folder">創建文件夾</string>
+   <string name="show_hidden">顯示隱藏</string>
 </resources>

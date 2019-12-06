@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">.mp3形式で記録する</string>
    <string name="speak_into_file_wav">レコードTTS（mp3、wav）</string>
    <string name="text_is_too_long">テキストが長すぎます</string>
+   <string name="settings">設定</string>
+   <string name="play_pause">プレイ/一時停止</string>
+   <string name="next_track">次のトラック</string>
+   <string name="previous_track">前のトラック</string>
+   <string name="copied_text">コピーされたテキスト</string>
+   <string name="reference_mode_like_in_calibre_viewer">参照モード（キャリバービューアーなど）</string>
+   <string name="profile_root">プロファイルルート</string>
+   <string name="create_folder">フォルダーを作る</string>
+   <string name="show_hidden">隠されたショー</string>
 </resources>

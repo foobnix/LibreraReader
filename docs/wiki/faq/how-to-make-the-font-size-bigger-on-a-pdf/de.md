@@ -2,17 +2,13 @@
 layout: main
 ---
 
-# So erhöhen Sie die Schriftgröße im PDF-Dokument in Android
+# Vergrößern der Schriftgröße in PDF-Dokumenten
 
-Die Leute fragen oft
-
-* Wie vergrößere ich die Schriftgröße in einer PDF-Datei?
-* Wie ändere ich die Schriftgröße in einem ausfüllbaren PDF-Formular?
-* Wie erhöhe ich die Schriftgröße in einem PDF-Dokument?
-* Wie ändere ich die Schriftgröße eines PDF-Kommentars?
-* Wie ändere ich die Schriftgröße in PDF-Dateien?
-
-In der Librera-Anwendung können Sie PDF im Modus **Text Reflow** öffnen und die Schriftgröße nach Bedarf ändern.
+Um die Lesbarkeit Ihres PDF-Dokuments zu verbessern (zu kleine Zeichengröße), können Sie es in **Librera** in ein anderes Dateiformat (EPUB) konvertieren:
+* Öffnen Sie Ihr PDF-Dokument in **Librera**.
+* Öffnen Sie das allgemeine Menü, indem Sie in der Mitte auf tippen
+* Tippen Sie unten auf dem Bildschirm auf das Buchmenüsymbol (Dreipunktsymbol)
+* Tippen Sie auf das Element _Reflow PDF_, warten Sie, bis die Konvertierung beendet ist, und ändern Sie dann die Schriftgröße im Fenster **Einstellungen**.
 
 |1|2|3|
 |-|-|-|

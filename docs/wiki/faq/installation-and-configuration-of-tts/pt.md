@@ -2,30 +2,30 @@
 layout: main
 ---
 
-# Instalando e configurando o Text-to-Speech (TTS)
+# Usando um mecanismo de conversão de texto em fala com _Librera_
 
-> O Librera permite que você exprima o texto dos seus documentos por meio de sintetizadores de voz de terceiros instalados no sistema Android.
+> **O Librera** pode ler seus livros (e outros documentos) em voz alta usando um mecanismo de conversão de texto em fala (TTS) de terceiros instalado no sistema Android. Ele suporta leitura em voz alta para um grande número de formatos de e-book, de EPUB a Kindle e PDF.
 
-## Para instalar o sintetizador de voz (TTS). Usando o exemplo do Google Text-to-Speech.
+# Escolhendo um mecanismo TTS
 
-* Clique no ícone &quot;reprodução de voz do texto&quot;
-* Nas configurações do TTS, selecione o ícone **&quot;i&quot;**
-* Selecione sintetizador de voz do Google Text-to-Speech no menu suspenso. Você irá ao Google Market, na seção de instalação do sintetizador de voz. Clique em &quot;instalar&quot; sintetizador de voz do Google Text-to-Speech
-* Após a instalação, volte às configurações do TTS Librera.
+* Toque no ícone TTS na parte inferior da tela para abrir a janela **Configurações do TTS**
+* Toque em **&quot;i&quot;** para abrir uma lista suspensa de mecanismos TTS
+* Selecione o mecanismo que desejar. Se o mecanismo que você escolheu ainda não estiver instalado no seu sistema, você será redirecionado para a Google Play Store. Siga as instruções do seu mecanismo preferido para configurá-lo, fazer o download de vozes principais e adicionais, etc.
+
+> Nota: Você pode ser cobrado por recursos extras, por exemplo, vozes adicionais, pelos desenvolvedores do mecanismo.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
 
-## Para configurar o Google Text-to-Speech:
+## Exemplo: configurando o mecanismo de conversão de texto em voz do Google
 
-* Clique no link &quot;Voz&quot;. Você será direcionado para as configurações de conversão de texto em fala do Google
-* Clique no ícone de configurações de conversão de texto em fala do Google
-* Selecione &quot;instalar dados de voz&quot; - defina o idioma do sintetizador de voz
-* Selecione o idioma do sintetizador de voz que você precisa. Você pode visualizar os idiomas deslizando para cima ou para baixo
-* Escolha o tipo de som de voz que você precisa, de acordo com sua preferência.
+* Na janela **Configurações do TTS** do Librera**, siga o link _Voice_ da página de configurações **Saída de texto para voz** do seu sistema**
+* Toque no ícone de configurações ao lado de _Preferred engine_
+* Toque em _Instalar dados de voz_ para selecionar seu idioma e voz TTS.
+* Teste a voz que você selecionou tocando em _PLAY_ na página **Saída de conversão de texto em voz**
 
-Depois de selecionar todas as opções, clique na barra de navegação &quot;voltar&quot;, volte para as configurações de conversão de texto em fala do Google, clique em &quot;Reproduzir&quot;. A saudação de teste do sintetizador de voz do Google com o idioma e o som de Sua escolha será tocada. Vá para Librera, toque no ícone &quot;reprodução por voz do texto&quot;, toque em &quot;Reproduzir&quot; e ouça seu livro.
+> Você pode ajustar as configurações do mecanismo (por exemplo, velocidade de leitura, afinação e/ou volume) na janela **Librera** **Configurações TTS** da **Librera**.
 
 ||||
 |-|-|-|
@@ -34,3 +34,5 @@ Depois de selecionar todas as opções, clique na barra de navegação &quot;vol
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+> Nota: A configuração de voz em outros mecanismos TTS é realizada de maneira semelhante. Lembre-se de que os arquivos de dados de voz podem ser bem grandes. Para poupar seus planos limitados de dados de celular, verifique se eles foram baixados apenas via conexão WiFi.

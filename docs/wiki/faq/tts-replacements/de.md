@@ -4,38 +4,38 @@ layout: main
 
 # TTS-Ersatz
 
-> Ersetzungen werden verwendet, um die Aussprache einiger Wörter zu ändern, unerwünschten Text zu löschen und die richtige Betonung zu setzen
+> Text-zu-Sprache-Ersetzungen werden verwendet, um die Art und Weise zu ändern, in der die Suchmaschine bestimmte Wörter ausspricht, bestimmte Zeichen beim Lesen zu überspringen oder korrekte Betonungsmarkierungen festzulegen.
 
 * TTS-Ersetzungen aktivieren
-* Zeigen Sie den Ergebnistext der Ersetzungen an
-* Dialogfeld &quot;Ersetzungen&quot;
+* Zeigen Sie die Passage mit den Ersatzergebnissen an
+* Das Dialogfeld **Ersetzungen** zum Festlegen von Ersetzungsregeln
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Ersetzungen unterstützen das klassische Ersetzen einer Zeichenfolge durch eine andere oder Sie können RegExp-Ausdrücke verwenden
+Klassische Ersetzungen werden unterstützt (einfaches Ändern einer Zeichenfolge durch eine andere) oder Sie können reguläre Ausdrücke (RegExp) verwenden.
 
-## Ausdruck
+## Ausdrücke
 
 * &quot;text&quot; - Einfacher Text
 * &quot;* text&quot; - * RexExp-Regel
-* &quot;# text&quot; - # deaktivierte Regel
+* &quot;# text&quot; - deaktivierte Regel
 * &quot;text256&quot; - deaktivierte Regel
 
 ## Beispiele
 
-* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - Lib ersetzen. nach Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - korrekte Spannungsmarkierung hinzufügen
-* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot;, um die Regel zu deaktivieren
-* * (L | l) ib. -&gt; &quot;$ 1ibrera&quot; - Lib ersetzen. zu Librera und lib. zu librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Ersetzen Sie die Zeichen durch leere Zeichen
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen ersetzen, um (,) char anzuhalten
+* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - Lib ersetzen. mit Librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - Fügen Sie eine korrekte Belastungsmarke hinzu
+* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - Benutze &quot;#&quot; um eine Regel zu deaktivieren
+* * (L | l) ib. -&gt; &quot;$ 1ibrera&quot; - Lib ersetzen. mit Librera und lib. mit Librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Zeichen überspringen
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen durch eine Pause ersetzen (,)
 
-## Regeldatei hinzufügen
+## Fügen Sie eine Regeldatei hinzu
 
-Librera unterstützt Regexp-Regeldateien vom @ Voice Reader
-Hier einige Beispiele **demo-replaces.txt**
+**Librera** unterstützt RegExp-Regeldateien von **@Voice Reader**.
+Schauen Sie sich das folgende Beispiel **demo-replaces.txt** an:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,16 @@ Hier einige Beispiele **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Ausgeschnittene Bereiche in PDF-Dokumenten überspringen
+> Sehr häufig enthalten Seiten in PDF-Dateien (Bücher, Zeitschriftenartikel, Lehrbücher usw.) Kopf- und Fußzeilen, die sich über das gesamte Dokument erstrecken. Sie können die auslaufenden Köpfe mit zwei Fingern zuschneiden, um zur nächsten (und vorherigen) Seite zu gelangen. Ihre TTS-Engine hat jedoch keine Ahnung von Ihren Manipulationen. Sie müssen also angeben, was zu tun ist (überspringen Sie die nervige Sache!), Während Sie das Dokument vorlesen.
 
-   
+In **Librera** haben wir spezielle Ersetzungen (Befehle) eingeführt, mit denen Sie zugeschnittene Bereiche ignorieren und ein kontinuierliches, ununterbrochenes Lesen sicherstellen können.
+* Geben Sie im Fenster **Ersetzungen** ein Wort oder eine Wortfolge in die linke Spalte ein und _ttsSKIP_ als Ersatz. Durch diesen Ersatz wird die Engine angewiesen, den Satz mit diesem Wort/dieser Wortfolge zu überspringen
+* Geben Sie ein Wort oder eine Wortfolge in die linke Spalte ein und _ttsNEXT_ als Ersatz. Der Ersatz weist die Engine an, den Satz mit diesem Wort/dieser Wortfolge zu überspringen und sofort zur nächsten Seite zu wechseln
+* Vergessen Sie nicht, _APPLY_ zu drücken, damit die Ersetzungen beibehalten werden
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Testen Sie Ihre Änderungen einige Male, um sicherzustellen, dass alles ordnungsgemäß funktioniert.**

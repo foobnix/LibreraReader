@@ -2,42 +2,30 @@
 layout: main
 ---
 
-# Comment définir la sélection de texte
+# Comment sélectionner du texte dans Librera
 
-> Librera vous permet de travailler avec souplesse avec la sélection de texte. Dans le texte Vous pouvez sélectionner des mots individuels ou des phrases entières, des pages.
-Par la suite, envoyez le texte sélectionné, par exemple, aux signets ou au traducteur.
+> Les options de sélection de texte de **Librera** sont assez sophistiquées. Avec un appui long (et en faisant glisser), vous pouvez sélectionner des mots, des passages et des pages entières. Ensuite, vous pouvez facilement, en un clic, copier du texte pour le coller dans une autre application, partager votre sélection avec d'autres utilisateurs, créer un signet, l'envoyer à un moteur TTS (pour le lire à voix haute) ou pour l'activer/désactiver. traducteurs/dictionnaires en ligne, etc.
 
-Pour activer et configurer les modes de sélection, vous devez:
-* Cliquez sur l'icône des paramètres.
-* Accédez à l'onglet du menu des paramètres avancés.
+Pour activer la sélection de texte:
+* Appuyez sur au centre de l'écran pour ouvrir le menu.
+* Appuyez sur l'icône des paramètres pour ouvrir la fenêtre **Préférences**.
+* Accédez à l'onglet &quot;Paramètres avancés&quot; et cochez la case correspondante.
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-> Lorsque le mode de sélection est désactivé dans le texte du livre, lorsque vous appuyez sur une note de bas de page, la transition ne fonctionne pas. Si vous devez naviguer par note de bas de page, activez le premier élément &quot;Activer la sélection de texte&quot;.
+## Options de sélection de texte
+* Les utilisateurs impatients peuvent cocher la case &quot;Une seule fois pour sélectionner&quot;. (Cette option fonctionne très bien avec l'option _Open selection in dictionary_ de l'onglet_ de l'onglet principal de la fenêtre **Préférences**.)
+* L'option _Sélectionner lettre par lettre_ devrait être utile lors de la sélection de texte dans certaines langues asiatiques.
 
-Le mode de sélection est configuré en activant les cases à cocher:
-* Activer la sélection de texte - active ou désactive la sélection de texte dans le document. Le texte est surligné uniquement par un appui long
-* Appuyez une fois pour sélectionner du texte - le texte est sélectionné lorsque vous cliquez avec le bouton droit de la souris sur le mot.
-* Sélectionnez le texte lettre par lettre - pour les langues hiéroglyphiques.
-
-La sélection de texte peut être un mot unique, une phrase ou la page entière:
-* Appuyez sur le mot court ou long, en fonction de vos paramètres.
-* Pour mettre en surbrillance plusieurs mots, faites glisser votre doigt sur plusieurs mots, la proposition. Vous pouvez également utiliser les marqueurs de début et de fin
-texte sélectionné, en les agrandissant ou en réduisant la distance de capture des mots entre eux
-* Pour afficher le menu lorsque les plans courts et plein écran sont activés, appuyez longuement sur le centre de l'écran.
+## Sélection de segments de texte et de pages entières
+* Appuyez longuement sur un mot du passage que vous souhaitez sélectionner.
+* Faites glisser votre doigt dans le sens de la sélection. Lorsque vous voyez les poignées de début et de fin, vous pouvez relâcher votre doigt, fermer la fenêtre _Text_ et continuer à sélectionner du texte en faisant glisser les poignées.
+* Pour sélectionner une page entière, ouvrez la fenêtre _Go to Page_ en appuyant sur l'icône Vue miniature
+* Appuyez longuement sur la page que vous souhaitez sélectionner et choisissez une option dans la liste déroulante.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
-Texte sélectionné, vous pouvez:
-* Ajouter ce livre aux favoris
-* Transférer vers une autre application
-* Jouer à la parole
-* Envoyer pour traduction
-* Effectuez une recherche dans un document ou sur Internet.
-* Copie pour traitement ultérieur
-

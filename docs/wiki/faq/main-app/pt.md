@@ -2,13 +2,13 @@
 layout: main
 ---
 
-# A tela principal
+# Navegando na guia _Library_
 
-> Guia Biblioteca ou Estante
+> Uma vez instalado, o **Librera** por padrão será aberto com sua guia _Library_, repleta de informações úteis sobre os livros (e outros documentos) encontrados no seu dispositivo. Aqui está um guia rápido em torno da guia _Library_.
 
-* Guia Biblioteca - exibe todos os livros encontrados no dispositivo
-* Altere a ordem de classificação por Dados, Tamanho do arquivo, Autor etc.
-* Reorganize os livros alterando o modo de visualização: Lista, Grade, Apenas capas, etc.
+* A guia _Library_, exibição padrão
+* Classifique os livros nas prateleiras da sua biblioteca de acordo com certos critérios (por nome do arquivo, autor, data etc.)
+* Você pode alterar a maneira como seus livros são exibidos nas prateleiras, alterando o layout da Biblioteca (lista, grade, capa de livro etc.)
 
 ||||
 |-|-|-|
@@ -16,28 +16,28 @@ layout: main
 
 * Visualização condensada (duas colunas)
 * Visualização em grade
-* Apenas capas (capa de livro)
+* Apenas capas de livros
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-* Pesquise na biblioteca a string &quot;comm&quot;
-* Toque em estrela para adicionar um livro à lista de Favoritos
-* Mantenha pressionada a estrela para adicionar uma tag personalizada
-* Toque em Histórico para adicionar uma tag personalizada a um livro
-* Mantenha pressionado um livro para abrir a janela Informações
-* Toque em três pontos para abrir a janela Menu
+* Encontre livros em sua biblioteca
+* Toque no ícone de estrela para adicionar um livro aos **Favoritos**
+* Toque no ícone de três pontos para abrir o menu do livro
+* Uma pressão longa no ícone de estrela solicitará que você adicione uma tag personalizada
+* Toque em #History para adicionar uma tag personalizada a um livro
+* Pressione e segure a capa do livro para abrir a janela **Informações do livro**
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-* Procure um livro por extensão (FB2)
-* Clique em Autor para encontrar todos os livros deste autor
+* Encontre um livro por extensão (FB2, no nosso exemplo abaixo)
+* Toque no nome do autor para encontrar todos os livros desse autor na Biblioteca.
 * Toque em _x_ para limpar os resultados da pesquisa
 * Pressione e segure a marca de seleção para visualizar e editar o histórico de pesquisa e a lista de preenchimento automático.
-* Informações do livro e progresso da leitura
+* Veja **Informações do livro** e verifique até onde você está neste livro (Dica: você pode redefinir o progresso da leitura através do menu do livro)
 
 ||||
 |-|-|-|

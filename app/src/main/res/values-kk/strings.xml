@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">.mp3 форматында жазу</string>
    <string name="speak_into_file_wav">Жазба tts (mp3, wav)</string>
    <string name="text_is_too_long">Мәтін тым ұзын</string>
+   <string name="settings">Параметрлерін таңдаңыз</string>
+   <string name="play_pause">Ойнату / тоқтата тұру</string>
+   <string name="next_track">Келесі трек</string>
+   <string name="previous_track">Алдыңғы трек</string>
+   <string name="copied_text">Көшірілген мәтін</string>
+   <string name="reference_mode_like_in_calibre_viewer">Сілтеме режимі (калибр қарау құралындағы сияқты)</string>
+   <string name="profile_root">Профиль түбірі</string>
+   <string name="create_folder">Қалта жасау</string>
+   <string name="show_hidden">Жасырын шоу</string>
 </resources>

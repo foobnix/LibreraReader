@@ -2,6 +2,6 @@
 layout: main
 ---
 
-# Librera图书阅读器的新功能
+# Librera图书阅读器中的新增功能
 
     

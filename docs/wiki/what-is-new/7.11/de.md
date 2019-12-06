@@ -7,45 +7,46 @@ layout: main
 **Neue Funktionen**
 
 * Auswählen von Text mit Start- und Endmarkierungen
-* RSVP (Rapid Serial Visual Presentation) - Geschwindigkeitslesemodus (mit einer Drehung!)
+* RSVP (Rapid Serial Visual Presentation) Geschwindigkeitslesemodus (mit einer Wendung!)
 * Textauswahl und Suche in DjVu-Dokumenten
-* Option zum Ändern der Statusleiste (oben oder unten) im Buchmodus
-* Lesezeichen sind jetzt mit dem Lesen von Prozentsatzwerten für den Fortschritt verknüpft
-* Nun können Ordner als Bücher geöffnet werden
+* Option zum Ändern der Position der Statusleiste (oben oder unten) im Buchmodus
+* Lesezeichen sind jetzt mit Fortschrittsprozentsatzwerten verknüpft
+* Ordner können jetzt als Bücher geöffnet werden
+* Buchbibliothek nach Sprache sortieren
 
 **Korrekturen**
 
-* Deckblatterstellung für große Bücher von AZW und AZW3
-* Adaptives Anwendungssymbol in Übereinstimmung mit den neuesten Android 8+ -Trends
-* Trennungsregeln für mehr Sprachen
-* Das TTS-Lesen stoppt, wenn Ihr Bluetooth-Gerät getrennt wird
+* Deckblattgenerierung für große AZW- und AZW3-Bücher
+* Adaptives Anwendungssymbol gemäß den neuesten Trends für Android 8+
+* Silbentrennungsregeln für mehr Sprachen
+* Der TTS-Lesevorgang wird beendet, wenn die Verbindung zu Ihrem Bluetooth-Gerät getrennt wird
 
-Abonnieren Sie den **Librera Reader** -Telegrammkanal [https://t.me/LibreraReader((ttps://t.me/LibreraReader)). Erfahren Sie als Erster die neuesten Entwicklungen, verpassen Sie nie die neuesten Nachrichten, Ankündigungen und andere interessante Informationen zu den neuen Funktionen und Funktionen von Librera.
+Abonnieren Sie den **Librera Reader** -Telegrammkanal [https://t.me/LibreraReader)(https://t.me/LibreraReader). Erfahren Sie als Erster von unseren neuesten Entwicklungen, und verpassen Sie nie die neuesten Nachrichten, Ankündigungen und andere interessante Informationen zu den neuen Funktionen und Merkmalen von Librera.
 
-**Auswählen von Text mit Start- und Endmarkierungen**
+**Textauswahlgriffe**
 
-* Wenn der Benutzer mehrere Wortmarken auswählt, werden diese sichtbar.
-* Es ist möglich, Text **durch Buchstaben** oder **durch Wörter** auszuwählen.
-* Sie können Markierungen in Echtzeit verschieben
+* Wenn der Benutzer mehr als ein Wort auswählt, werden die Textauswahlpunkte angezeigt
+* Text kann entweder **buchstabenweise** oder **wortweise** ausgewählt werden
+* Jedes Handle (Anfang oder Ende) kann separat in Echtzeit gezogen werden
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-**RSVP (Rapid Serial Visual Presentation) Lesen / Geschwindigkeitslesen**
+**RSVP-Lesung (Rapid Serial Visual Presentation)/Geschwindigkeitslesung**
 
-Durch das Lesen der Geschwindigkeit mit **Librera** können Sie die Lesegeschwindigkeit auf bis zu 700 Wörter pro Minute (WPM) verbessern, indem Sie die RSVP-Methode verwenden.
-Bitte folgen Sie dem Link, um weitere Informationen zum Thema zu erhalten [Abschnitt Geschwindigkeitsmessung](/wiki/manual/Rapid-Serial-Visual-Presentation/de)
+Mit der Lesegeschwindigkeit von **Librera** können Sie Ihre Lesegeschwindigkeit mit der RSVP-Methode auf bis zu 700 Wörter pro Minute (WPM) steigern.
+Folgen Sie dem Link, um weitere Informationen zum Thema [Abschnitt zum Schnelllesen](/wiki/manual/Rapid-Serial-Visual-Presentation/de) zu erhalten.
 
-* Der RSVP-Modus kann über das Buchmenü gestartet werden (Geschwindigkeit lesen).
-* Geschwindigkeitsmessung mit nur einem Tastendruck
-* Minimale Zeilenlänge einstellen: bis zu 30 CPL
+* Der RSVP-Modus kann über das Buchmenü gestartet werden (Schnelllesen).
+* Geschwindigkeitslesung mit nur einem Fingertipp
+* Passen Sie die minimale Zeilenlänge an: bis zu 30 CPL
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Rapid-Serial-Visual-Presentation/1.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/2.png)|![](/wiki/manual/Rapid-Serial-Visual-Presentation/3.png)|
 
-**Statusleiste (oben oder unten) im Buchmodus**
+**Position der Statusleiste (oben oder unten) im Buchmodus**
 
 * Die Statusleiste befindet sich standardmäßig unten
 * Wählen Sie seine Position aus der Dropdown-Liste aus
@@ -57,15 +58,23 @@ Bitte folgen Sie dem Link, um weitere Informationen zum Thema zu erhalten [Absch
 
 **Ordner mit Bildern als Buch öffnen (In einem Buch binden)**
 
-Um einen Ordner als Buch zu öffnen, navigieren Sie auf der Registerkarte Ordner zu diesem Ordner und tippen Sie auf den Namen. Wenn es mindestens eine Bilddatei enthält, wird die Option In ein Buch binden angezeigt.
+Um einen Ordner als Buch zu öffnen, navigieren Sie auf der Registerkarte Ordner zu diesem Ordner und tippen Sie auf seinen Namen. Wenn es mindestens eine Bilddatei enthält, wird die Option In einem Buch binden angezeigt.
 
-* Öffnen Sie einen Ordner mit Bildern und binden Sie diese in ein Buch
+* Öffnen Sie einen Ordner mit Bildern und binden Sie sie in ein Buch
 * Ordner mit Bildern, die als virtuelles Buch geöffnet wurden
-* Leerraum beschneiden, Kontrast und Helligkeit anpassen, usw.
+* Zuschneiden von Leerzeichen, Anpassen von Kontrast und Helligkeit usw.
 
 ||||
 |-|-|-|
 |![](/wiki/manual/Open-Folder-With-Images-As-A-Book/1.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/2.png)|![](/wiki/manual/Open-Folder-With-Images-As-A-Book/3.png)|
 
-# Was ist neu in Librera Book Reader?
+**Bücher nach Sprache sortieren**
+
+* Alle in der Bibliothek verfügbaren Sprachen anzeigen
+* Bücher nach Sprachen sortieren
+
+||||
+|-|-|-|
+|![](7.png)|![](8.png)|![](9.png)|
+
 

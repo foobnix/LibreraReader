@@ -4,49 +4,44 @@ layout: main
 
 # Impostazione della protezione delle impronte digitali o della password
 
-> Librera ti consente di proteggere i tuoi documenti dalla visualizzazione limitando l'accesso con una password o un'impronta digitale.
+> In **Librera**, puoi proteggere i tuoi documenti più sensibili dalla visualizzazione di utenti non autorizzati che potrebbero accidentalmente o altrimenti acquisire l'accesso al tuo dispositivo. È un dato di fatto, proteggerai TUTTI i tuoi documenti poiché stai limitando l'accesso all'app stessa.
+I documenti possono essere protetti da impronte digitali o password.
 
-L'iscrizione al programma può essere limitata a diversi tipi di protezione, a scelta:
+## Abilitazione dell'autorizzazione all'avvio
 
-* **Protezione dell'impronta digitale. L'impronta digitale viene utilizzata dal sistema Android**
-* **Protezione password.**
-
-Per abilitare la protezione con password è necessario:
-
-* Fai clic nell'angolo in alto a sinistra per visualizzare il menu o scorri da sinistra a destra
-* Scorri il menu verso il basso fino alle impostazioni della password di accesso.
+* Chiudi il libro che stai leggendo
+* Tocca la scheda **Preferenze** e scorri verso il basso fino al pannello _General Settings_
+* Seleziona la casella _Prompt for password_
+> Se la finestra **Preferenze** è animata, la chiamerai toccando l'icona dell'hamburger nell'angolo in alto a sinistra o scorrendo verso destra dal bordo sinistro dello schermo.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Protezione dell'impronta digitale**
+## Protezione delle impronte digitali
 
-Impostazione dell'accesso tramite impronta digitale:
-* Metti una casella per attivare il login con password
-* Nella finestra di dialogo a comparsa, selezionare la casella &quot;Consenti identificazione delle impronte digitali&quot;
-* Conferma la tua scelta &quot;OK&quot;, apparirà una finestra sull'impostazione della password, esci dal programma.
+> Per attivare la protezione delle impronte digitali in **Librera**, devi prima impostare l'accesso alle impronte digitali sul tuo dispositivo.
+* Nella finestra **Imposta password**, seleziona la casella _Consente autenticazione impronte digitali_
+* Conferma la tua scelta toccando **OK**
 
-L'immissione delle impronte digitali è installata. Quando accedi di nuovo a Librera, ti verrà chiesto di identificare le impronte digitali, se corretto
-antideficit eseguirà il programma. L'impronta digitale viene aggiunta, adattata al sistema Android.
+> È necessario riavviare **Librera** per attivare l'autenticazione dell'accesso alle impronte digitali.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](7.jpg)|
 
-**Protezione password**
+## Protezione password
 
 Impostazione dell'accesso con password:
 
-* Metti una casella per attivare il login con password
-* Immettere la password sulla prima riga
-* Conferma la password sulla seconda riga. **Importante: le password nella prima e nella seconda riga devono essere identiche!**
-* Conferma la tua scelta &quot;OK&quot;, apparirà una finestra sull'impostazione della password, esci dal programma.
+* Inserisci e reinserisci la password nei rispettivi campi della finestra **Imposta password** e premi **OK**
+> Le password devono corrispondere!
+* Conferma la tua scelta toccando **OK**
 
-L'accesso con password è installato. Quando accedi, una finestra di dialogo ti chiede di inserire la password. Se la password inserita è corretta, il programma verrà effettuato l'accesso. Se la password non è corretta, verrà visualizzata una finestra pop-up che indica che la password non è corretta.
+> È necessario riavviare **Librera** per rendere effettiva la protezione con password. Da questo momento in poi, ti verrà richiesta la password su uno schermo vuoto quando apri un documento in **Librera**.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](8.jpg)|![](10.jpg)|
 
-Per rimuovere la password, eseguire Librera, per favore antideficito, nelle impostazioni in cui la password di accesso era stata precedentemente attivata, deselezionare la casella di controllo di questa funzione.
+> Per rimuovere la protezione con password/impronte digitali, esegui **Librera**, autenticati sull'applicazione, vai alla casella _Prompt for password_ e deseleziona.

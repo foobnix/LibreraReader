@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">Rögzítés .mp3 formátumban</string>
    <string name="speak_into_file_wav">Rekord tts (mp3, wav)</string>
    <string name="text_is_too_long">A szöveg túl hosszú</string>
+   <string name="settings">Beállítások</string>
+   <string name="play_pause">Lejátszás / szünet</string>
+   <string name="next_track">Következő szám</string>
+   <string name="previous_track">Előző szám</string>
+   <string name="copied_text">Másolt szöveg</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referencia mód (mint a kalibrált nézegetőben)</string>
+   <string name="profile_root">Profil gyökér</string>
+   <string name="create_folder">Mappa létrehozás</string>
+   <string name="show_hidden">Rejtett megjelenítése</string>
 </resources>

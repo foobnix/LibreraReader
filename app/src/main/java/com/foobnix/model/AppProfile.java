@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -27,7 +26,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -44,6 +42,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class AppProfile {
+
     public static final String PROFILE_PREFIX = "profile.";
     public static final String DEVICE_PREFIX = "device.";
     public static final File DOWNLOADS_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -56,11 +55,13 @@ public class AppProfile {
     public static final String APP_BOOKMARKS_JSON = "app-Bookmarks.json";
     public static final String APP_PROGRESS_JSON = "app-Progress.json";
     public static final String APP_TAGS_JSON = "app-Tags.json";
+    public static final String SYNC_FOLDER_ROOT_KEY = "syncFolderRoot";
+    public static final String APP_PROFILE_SP = "AppProfile";
 
 
-    public static File SYNC_FOLDER_ROOT = new File(Environment.getExternalStorageDirectory(), "Librera");
-    public static File SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
-    public static File SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
+    public static File SYNC_FOLDER_ROOT;
+    public static File SYNC_FOLDER_BOOKS;
+    public static File SYNC_FOLDER_DICT;
     public static File SYNC_FOLDER_PROFILE;
     public static File SYNC_FOLDER_DEVICE_PROFILE;
     public static File syncRecent;
@@ -72,8 +73,10 @@ public class AppProfile {
     public static File syncPlaylist;
     public static File syncProgress;
     public static File syncBookmarks;
+
+    public static File FONT_LOCAL_ZIP;
+
     public static String profile = "";
-    static SharedPreferences sp;
 
     public synchronized static void init(Context c) {
 
@@ -81,21 +84,24 @@ public class AppProfile {
             LOG.d("AppProfile init null");
             return;
         }
+        AppSP.get().init(c);
 
         if (!Android6.canWrite(c)) {
             return;
         }
-
-        sp = c.getSharedPreferences("AppProfile", Context.MODE_PRIVATE);
 
         if (profile.equals(getCurrent(c))) {
             LOG.d("AppProfile skip", profile);
             return;
         }
         profile = getCurrent(c);
-        AppDB.get().open(c, profile);
+        AppDB.get().open(c, "db-"+AppSP.get().rootPath.hashCode()+"-"+profile);
         LOG.d("AppProfile init", profile);
 
+        SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
+        SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
+        SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
+        FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip");
 
         SYNC_FOLDER_PROFILE = new File(SYNC_FOLDER_ROOT, PROFILE_PREFIX + getCurrent(c));
         SYNC_FOLDER_DEVICE_PROFILE = new File(SYNC_FOLDER_PROFILE, DEVICE_MODEL);
@@ -118,7 +124,7 @@ public class AppProfile {
         }
         TintUtil.init();
         BookCSS.get().load1(c);
-        AppTemp.get().init(c);
+
         PasswordState.get().load(c);
         DragingPopup.loadCache(c);
         ExtUtils.init(c);
@@ -178,17 +184,18 @@ public class AppProfile {
             PasswordState.get().save(a);
             AppState.get().save(a);
             BookCSS.get().save(a);
-            AppTemp.get().save();
+            AppSP.get().save();
         }
     }
 
     public static String getCurrent(Context c) {
-        return sp.getString(PROFILE_PREFIX, BuildConfig.IS_BETA ? "BETA" : "Librera");
+        return AppSP.get().currentProfile;
     }
 
     public static void saveCurrent(Context c, String name) {
+        AppSP.get().currentProfile = name;
         save(c);
-        sp.edit().putString(PROFILE_PREFIX, name).commit();
+
     }
 
 
@@ -282,7 +289,7 @@ public class AppProfile {
 
                     @Override
                     public void onClick(View v) {
-                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_), new Runnable() {
+                        AlertDialogs.showOkDialog(a, a.getString(R.string.do_you_want_to_delete_) + " " + tagName, new Runnable() {
 
                             @Override
                             public void run() {

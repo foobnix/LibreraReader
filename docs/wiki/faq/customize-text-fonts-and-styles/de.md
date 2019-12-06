@@ -2,34 +2,35 @@
 layout: main
 ---
 
-# So konfigurieren Sie Schriftarten und Stile
+# Konfigurieren von Schriftarten und Stilen
 
-> Zum bequemen Lesen können Sie mit Librera das Erscheinungsbild Ihres Dokuments anpassen, Schriftarten und CSS-Stile ändern und einen Großbuchstaben hinzufügen.
+> **Mit Librera** können Sie das Erscheinungsbild des Dokuments, das Sie lesen, anpassen. Wählen Sie die gewünschten Schriftarten aus, passen Sie deren Größe an, passen Sie die CSS-Stile an und ändern Sie die Anfangsbuchstaben in führende Initialen (FB2).
 
-Sie können die Schriftart und den Textstil in den Menüregistern anpassen:
+Sie führen alle oben genannten Schritte auf dem Haupt-Tab des Fensters **Einstellungen** und natürlich auf dem Tab _Leseeinstellungen_ aus.
 
-* **Erweiterte Einstellungen**
-* **Einstellungen lesen.**
 
-Um auf diese Einstellungen zuzugreifen, klicken Sie auf das Einstellungssymbol.
+> Tippen Sie auf das Symbol **Einstellungen**, um das Fenster **Einstellungen** zu öffnen.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-## Erweiterte Einstellung
+## Schriftanpassungen
 
-In diesem Menü-Tab können Sie die Dokumentschriftart für den **&quot;Benutzerdefiniert&quot;** -Dokumentstil ändern (eine Beschreibung der Stile finden Sie im Abschnitt **&quot;Leseeinstellungen&quot;** unten):
+* Wählen Sie Ihre Hauptschriftart aus, indem Sie auf den Link _Font_ tippen und die Dropdown-Liste der verfügbaren Schriftarten durchgehen.
 
-* Klicken Sie auf den Titellink der Schriftart
-* Streichen Sie in der Dropdown-Liste der Schriftarten nach oben oder unten, und wählen Sie die gewünschte Schriftart aus.
-* Wenn Sie Schriftarten zum Lesen herunterladen möchten, lesen Sie den folgenden Abschnitt **&quot;Leseeinstellungen&quot;**.
+> Sie können Ihre Lieblingsschriften zur Liste hinzufügen:
+1. Erstellen Sie einen Ordner mit dem Namen _Fonts_ im internen Speicher Ihres Geräts.
+> Hinweis: In Ihrem internen Speicher befindet sich ein anderer _Fonts_-Ordner, der bereits von **Librera** automatisch erstellt wurde.
+2. Speichern Sie Ihre Lieblingsschriften in Ihrem _Fonts_-Ordner (oder im _Fonts_-Ordner von **Librera**).
+> (Sie können auch einige schöne Schriftarten von unserer Website herunterladen. Anweisungen hierzu finden Sie im Abschnitt **Leseeinstellungen**.)
+> Beachten Sie, dass Ihre Zeichensätze nur dann berücksichtigt werden, wenn in den _Stilen_, die Sie auf dem Tab **Leseeinstellungen** ausgewählt haben, _Nutzerdefiniert_ enthalten ist.
 
-Wenn Sie die Schriftarten optimieren möchten:
+Um benutzerspezifische Schriftarten für verschiedene Schriftstile einzurichten, tippen Sie auf das Symbol neben dem Link _Fonts_, um das Fenster _Configure Fonts_ zu öffnen.
 
-* Klicken Sie auf das Symbol für das Schriftartkonfigurationsmenü
-* Im Einblendmenü &quot;Einstellungen&quot; können Sie die Schriftart für jeden Texttyp ändern. Klicken Sie nach der Änderung auf &quot;Übernehmen&quot;.
-* Schließen Sie die Einstellungen und lesen Sie weiter.
+* Tippen Sie auf die Einstellung für jeden Stil und wählen Sie eine Schriftart dafür aus.
+* Verwenden Sie die Schaltflächen **Nach oben** und **Nach unten**, um zur nächsten Schriftart in der Liste zu springen (manchmal reicht dies für Ihren Zweck aus).
+* Vergessen Sie nicht, auf **ANWENDEN** zu tippen, wenn Sie fertig sind.
 
 ||||
 |-|-|-|
@@ -39,42 +40,49 @@ Wenn Sie die Schriftarten optimieren möchten:
 |-|-|-|
 |![](6.jpg)|![](42.jpg)|![](43.jpg)|
 
-Für das Buchformat **fb2** können Sie den Buchstaben anpassen:
+## Führende Initialen in FB2-Büchern
 
-* Klicken Sie auf das Symbol für das Schriftartkonfigurationsmenü
-* Aktivieren Sie das Kontrollkästchen &quot;Lead-Kapitel mit Initiativen&quot;
-* Wählen Sie die Schriftart des Buchstabens aus
-* Passen Sie Größe und Farbe an
-* Klicken Sie auf &quot;Übernehmen&quot;, um die Einstellungen zu übernehmen.
+Sie können jedes Kapitel in Ihrem Buch mit einer gut aussehenden Initiale beginnen lassen.
+ 
+> Diese Einstellung wird beim Lesen in keinem anderen Format angezeigt.
+
+* Tippen Sie auf das Symbol neben dem Link _Fonts_, um das Fenster _Configure Fonts_ zu öffnen
+* Aktivieren Sie das Kontrollkästchen &quot;Kapitel mit Initialen führen&quot;, um Initialen zu aktivieren
+* Tippen Sie auf den Link für die Schriftart, um eine Schriftart für Ihre Initiale aus einer Dropdown-Liste auszuwählen
+* Wählen Sie nun Größe und Farbe für Ihre Initiale aus, indem Sie auf die entsprechenden Links tippen
+* Tippen Sie auf **ANWENDEN**, um die Einstellungen zu speichern
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-## Einstellungen lesen
+## Der Tab **Leseeinstellungen**
 
-In diesem Abschnitt des Menüs können Sie mit Ihren Schriftdateien arbeiten, neue Schriften hinzufügen oder herunterladen. Festlegen der Anzeigestile von Text.
+> Dies sind benutzerdefinierte Einstellungen. Sie überschreiben hauptsächlich die Stileinstellungen, die in der CSS-Datei Ihres Buches kodiert sind. Sie müssen benutzerdefinierte Stile auswählen, damit dies funktioniert.
 
-Um Schriften anzupassen, herunterzuladen oder neue hinzuzufügen, müssen Sie:
-
-* Geben Sie ggf. den Pfad zu Ihren Zeichensätzen an, indem Sie den Zeichensatzordner auf Ihrem Gerät auswählen
-Laden Sie weitere Schriften herunter, indem Sie auf das Symbol &quot;Schriften herunterladen&quot; klicken. Ein Bestätigungsfenster für den Download wird angezeigt. Klicken Sie auf &quot;Download&quot;.
-* Die Schriftarten haben eine Größe von 10 Megabyte. Nach dem Herunterladen werden sie zur Auswahl in der allgemeinen Schriftartenauswahl auf der Menüregisterkarte **&quot;Erweiterte Einstellungen&quot;** angezeigt.
+* Wählen Sie Ihre bevorzugte Textausrichtung aus der Dropdown-Liste aus.
+* Verwenden Sie die Schieberegler oder die Tasten **-** und **+**, um den Zeilen- und Absatzabstand, die Texteinrückungen und die Seitenränder anzupassen.
+* Indem Sie die Schriftgröße normalisieren, stimmen alle Schriftarten im Dokument überein (1em, regular).
+* Sie können auch die Farbe der Links in Ihrem Dokument für jeden Modus (Tag und Nacht) angeben.
 
 ||||
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Passen Sie die Stile des angezeigten Texts an.**
+**Wähle _Styles_ für dein Buch mit Bedacht aus**
 
-Mit dem Programm können Sie die Textanzeige und den Stil auswählen, die der Autor des Dokuments im Text festgelegt hat:
+* _Document_, die CSS-Einstellungen des Buches werden verwendet
+* _Nutzerdefiniert_, die Einstellungen dieses Tabs werden verwendet
+* _Document + User-defined_ (Standardeinstellung, empfohlen), unser Versuch, Benutzereinstellungen in die CSS-Einstellungen des Buchs (oder umgekehrt) zu integrieren. Funktioniert die meiste Zeit!
 
-* Dokument - Verwendet den vom Autor des Dokuments festgelegten Textstil
-* Benutzerdefiniert: Verwenden Sie Ihre Stileinstellungen für Schriftarten, Einrückungen und Markierungen des Dokuments
-* Dokument + Benutzerdefinierte Benutzer- und Autorenstile werden zusammen verwendet.
+## Das Fenster **Benutzerdefinierter CSS-Code**
 
-Durch Klicken auf das Symbol für Stileinstellungen können Sie mithilfe der CSS-Sprache für Hypertext-Markups Ihre eigenen Textanzeigestile hinzufügen
+Dieses Fenster wird geöffnet, wenn Sie auf das Symbol neben _Styles_ tippen.
+
+Diejenigen, die mit CSS-Codierung vertraut sind, können die Darstellung Ihres Buches ad-hoc anpassen. (Weitere Informationen finden Sie unter **Anpassen von Buch-CSS-Stilen** in den häufig gestellten Fragen.)
+
+> Vergessen Sie nicht, den Code zu entfernen, wenn Sie mit dem Buch fertig sind! Im nächsten Fall funktioniert es möglicherweise nicht.
 
 ||||
 |-|-|-|
@@ -83,8 +91,3 @@ Durch Klicken auf das Symbol für Stileinstellungen können Sie mithilfe der CSS
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
-
-
-

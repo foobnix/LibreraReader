@@ -40,8 +40,8 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.AndroidWhatsNew;
@@ -200,11 +200,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (a == null || swipeRefreshLayout == null) {
             return false;
         }
-        return AppTemp.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
+        return AppSP.get().isEnableSync && GoogleSignIn.getLastSignedInAccount(a) != null && BookCSS.get().isSyncPullToRefresh;
     }
 
     public static void startActivity(Activity c, int tab) {
-        AppTemp.get().lastClosedActivity = null;
+        AppSP.get().lastClosedActivity = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
@@ -274,23 +274,23 @@ public class MainTabs2 extends AdsFragmentActivity {
         } else if (requestCode == GFile.REQUEST_CODE_SIGN_IN) {
             GoogleSignIn.getSignedInAccountFromIntent(data)
                     .addOnSuccessListener(googleAccount -> {
-                        AppTemp.get().isEnableSync = true;
+                        AppSP.get().isEnableSync = true;
                         Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
 
                         swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
 
-                        AppTemp.get().save();
+                        AppSP.get().save();
 
                     })
                     .addOnFailureListener(exception ->
                             {
                                 LOG.e(exception);
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
-                                AppTemp.get().isEnableSync = false;
+                                AppSP.get().isEnableSync = false;
                                 swipeRefreshLayout.setEnabled(false);
-                                AppTemp.get().save();
+                                AppSP.get().save();
 
                             }
                     );
@@ -527,7 +527,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
-                if (AppTemp.get().isEnableSync) {
+                if (AppSP.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -536,7 +536,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             @Override
             public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
-                if (AppTemp.get().isEnableSync) {
+                if (AppSP.get().isEnableSync) {
                     swipeRefreshLayout.setEnabled(false);
                 }
 
@@ -622,7 +622,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        AppTemp.get().lastClosedActivity = null;
+                        AppSP.get().lastClosedActivity = null;
                         pager.postDelayed(new Runnable() {
 
                             @Override
@@ -652,47 +652,47 @@ public class MainTabs2 extends AdsFragmentActivity {
         EventBus.getDefault().register(this);
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs, AppTemp.get().lastMode);
+        LOG.d("EXTRA_SHOW_TABS", showTabs, AppSP.get().lastMode);
         if (showTabs == false && AppState.get().isOpenLastBook) {
-            LOG.d("Open lastBookPath", AppTemp.get().lastBookPath);
-            if (AppTemp.get().lastBookPath == null || !new File(AppTemp.get().lastBookPath).isFile()) {
+            LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
+            if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
-            AppTemp.get().lastClosedActivity = null;
+            AppSP.get().lastClosedActivity = null;
 
             Safe.run(new Runnable() {
 
                 @Override
                 public void run() {
-                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppTemp.get().lastMode);
+                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastMode);
                     Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
                     intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-                    intent.setData(Uri.fromFile(new File(AppTemp.get().lastBookPath)));
+                    intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                     startActivity(intent);
                 }
             });
         } else if (!AppState.get().isOpenLastBook) {
-            LOG.d("Open book lastA", AppTemp.get().lastClosedActivity);
+            LOG.d("Open book lastA", AppSP.get().lastClosedActivity);
 
-            if (AppTemp.get().lastBookPath == null || !new File(AppTemp.get().lastBookPath).isFile()) {
+            if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
-            final String saveMode = AppTemp.get().lastClosedActivity;
+            final String saveMode = AppSP.get().lastClosedActivity;
             Safe.run(new Runnable() {
 
                 @Override
                 public void run() {
-                    LOG.d("Open AppTemp.get().lastBookPath", AppTemp.get().lastBookPath);
+                    LOG.d("Open AppSP.get().lastBookPath", AppSP.get().lastBookPath);
                     if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppTemp.get().lastBookPath)));
+                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                         startActivity(intent);
                         LOG.d("Start lastA", saveMode);
                     } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppTemp.get().lastBookPath)));
+                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                         startActivity(intent);
                         LOG.d("Start lastA", saveMode);
                     }
@@ -757,7 +757,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
-        AppTemp.get().lastClosedActivity = MainTabs2.class.getSimpleName();
+        AppSP.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());

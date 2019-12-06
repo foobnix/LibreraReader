@@ -30,8 +30,8 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.MyADSProvider;
@@ -242,9 +242,9 @@ public abstract class DocumentController {
 
                 AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
 
-                if (getCurrentBook().getPath().equals(AppTemp.get().lastBookPath)) {
+                if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
                     onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                    LOG.d("goToPageByTTS", AppTemp.get().lastBookPage + 1);
+                    LOG.d("goToPageByTTS", AppSP.get().lastBookPage + 1);
                 }
             }
         } catch (Exception e) {
@@ -330,15 +330,15 @@ public abstract class DocumentController {
     }
 
     public boolean isBookMode() {
-        return AppTemp.get().readingMode == AppState.READING_MODE_BOOK;
+        return AppSP.get().readingMode == AppState.READING_MODE_BOOK;
     }
 
     public boolean isScrollMode() {
-        return AppTemp.get().readingMode == AppState.READING_MODE_SCROLL;
+        return AppSP.get().readingMode == AppState.READING_MODE_SCROLL;
     }
 
     public boolean isMusicianMode() {
-        return AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN;
+        return AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN;
     }
 
     public void onResume() {

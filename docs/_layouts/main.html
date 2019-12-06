@@ -18,6 +18,11 @@
 </head>
 <body>
 
+
+
+
+
+
 <div class="sidebar sidebar-default">
     <div class="navigation">
         
@@ -26,9 +31,6 @@
         
      {% capture my_include %}{% include menu.md %}{% endcapture %}
    {{ my_include | markdownify }}
-
-
-       
     </div>
 
     <div class="version">
@@ -39,10 +41,10 @@
 </div>
 
 <div class="content">
-    
     <section class="page">
-
+        {% assign ask=false %}
         {% if parent == '/wiki/faq/' or  parent == '/wiki/' or parent == '/wiki/what-is-new/' %}
+            {% assign ask=true %}
             <a href="{{parent}}{{lang}}"> < </a>
         {% endif %}
 
@@ -52,10 +54,6 @@
             {% capture my_include2 %}{% include versions.md %}{% endcapture %}
             {{ my_include2 | markdownify }}
         {% endif %}
-
-
-
-        <a target="_blank" href="https://github.com/foobnix/LibreraReader/tree/master/docs{{page.dir}}">&gt; github</a>
 
      </section>
         
@@ -95,7 +93,14 @@ var span = document.getElementsByClassName("modal-content")[0];
 span.onclick = function() { 
     modal.style.display = "none";
 }
-
+	
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
+}
+	
 document.onkeydown = function(evt) {
     evt = evt || window.event;
     var isEscape = false;
@@ -111,6 +116,17 @@ document.onkeydown = function(evt) {
 
 </script>
 
+{%if ask_temp %}
+<div class="content"> 
+    <div class="as">
+        <div class="title">Эта информация оказалась полезной?</div>
+        <div class="button-group">
+            <button class="as-button" data-value="5" type="button">Да</button>
+            <button class="as-button" data-value="1" type="button">Нет</button>
+        </div>
+    </div> 
+</div>
+{% endif %}
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36581296-7"></script>
 <script>

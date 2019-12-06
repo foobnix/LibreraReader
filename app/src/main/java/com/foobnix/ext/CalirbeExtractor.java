@@ -4,10 +4,10 @@ import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+import org.librera.JSONArray;
+import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
@@ -99,7 +99,7 @@ public class CalirbeExtractor {
                         if ("calibre:user_metadata:#genre".equals(attrName)) {
                             LOG.d("userGenre", attrContent);
                             try {
-                                JSONObject obj = new JSONObject(attrContent);
+                                LinkedJSONObject obj = new LinkedJSONObject(attrContent);
                                 JSONArray jsonArray = obj.getJSONArray("#value#");
                                 String res = "";
                                 for (int i = 0; i < jsonArray.length(); i++) {

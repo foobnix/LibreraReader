@@ -2,24 +2,23 @@
 layout: main
 ---
 
-# كيفية إضافة قسم الأسئلة الشائعة الجديد
+# كيفية إضافة موضوع جديد للأسئلة المتكررة
 
-إذا كنت تريد إضافة قسم أسئلة وأجوبة جديد ، فقم بإنشاء مجلد **[example-faq-title]** مع ملف {{}} index.md** باللغة الإنجليزية فقط هنا.
-[https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq](https://github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq)
+إذا كنت ترغب في إضافة موضوع أسئلة وأجوبة جديد ، فقم بإنشاء مجلد **[اسم الفصل بين الواصلين]** مع ملف index-m index** واحد خاص بنا في [هنا](https : //github.com/foobnix/LibreraReader/tree/master/docs/wiki/faq).
 
-ثم يقوم البرنامج النصي تلقائيًا بتحديث جدول المحتويات faq ويضيف ترجمات لجميع اللغات
+سيقوم البرنامج النصي تلقائيًا بتحديث جدول محتويات الأسئلة الشائعة وإضافة ملفات الإعدادات المحلية لجميع اللغات المدعومة.
 
-تنسيق رأس الملف: **index.md**
+تنسيق رأس الملف لـ **index.md**:
 
 ```
 ---
 layout: main
 ---
 
-# Example of Title
+# Topic Name from Here Goes to the FAQ Page
 ```
 
-يجب أن تكون جميع الصور المتعلقة بهذا القسم في المجلد
+يمكنك توضيح مناقشتك مع الصور (JPEG). يجب وضع جميع ملفات الصور المتعلقة بهذا الموضوع في المجلد ، جنبًا إلى جنب مع **index.md**
 
 ```
 * Image description 1

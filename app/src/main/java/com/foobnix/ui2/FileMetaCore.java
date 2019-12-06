@@ -72,7 +72,7 @@ public class FileMetaCore {
 
         FileMeta fileMeta = AppDB.get().getOrCreate(path);
 
-        LOG.d("BooksService createMetaIfNeed", path, fileMeta.getState());
+        LOG.d("BooksService-createMetaIfNeed", path, fileMeta.getState());
 
         if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
             EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);

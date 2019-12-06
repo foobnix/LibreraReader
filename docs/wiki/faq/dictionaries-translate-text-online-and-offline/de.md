@@ -2,15 +2,16 @@
 layout: main
 ---
 
-# Wörterbücher, Übersetzung von Wörtern und Sätzen
+# Verwenden von Wörterbüchern und Übersetzern
 
-> Wenn Sie Bücher lesen, müssen Sie möglicherweise die Bedeutung eines Wortes nachschlagen, das Sie in einem Wörterbuch nicht kennen. Mit Librera können Sie mit vielen Wörterbüchern arbeiten und Informationen zu Wörtern mit einem Klick abrufen.
+> Wenn Sie ein Buch lesen, insbesondere in einer Fremdsprache, müssen Sie möglicherweise die Bedeutung eines Wortes nachschlagen, das Sie in einem Wörterbuch nicht kennen. Mit **Librera** können Sie dies einfach mit einem Klick online und offline erledigen.
 
-Librera unterstützt Online- (Web) und Offline-Wörterbücher (Anwendungen).
+Mit** Librera** können Sie ein einzelnes Wort nachschlagen oder ganze Passagen mit Online-Übersetzern (Wörterbüchern) übersetzen.
 
-**Online** - ohne das Wörterbuch auf Ihr Mobilgerät herunterzuladen, wenn Sie Zugang zum Internet haben. Informationen zur Bedeutung Ihres Wortes werden im Internetbrowser angezeigt.
-
-Zum Beispiel:
+Es gibt viele **ONLINE** Wörterbücher und Übersetzer im Internet. Mit ihnen können Sie die Bedeutung eines Wortes überprüfen, ohne etwas auf Ihrem Gerät zu installieren.
+> **Librera** öffnet ein Browserfenster für Sie mit dem ausgewählten Wort im Suchfeld des ausgewählten Wörterbuchs.
+ 
+Sie können aus folgenden Optionen wählen (um nur einige zu nennen):
 
 * Lingvo
 * Oxford
@@ -26,64 +27,56 @@ Zum Beispiel:
 * Academic.ru
 * Vocabulary.com
 * Deepl.com
-* Treccani.it
+* Treccani.it usw.
 
-**Offline** - Wenn das Wörterbuch aus dem Google Play Store auf Ihr Mobilgerät heruntergeladen wird, werden die Informationen im Wörterbuchprogramm oder in dessen Popup-Fenster angezeigt.
+**OFFLINE** Wörterbücher und Übersetzer müssen von Google Play (oder anderswo) auf Ihrem Gerät installiert werden. Sie öffnen ein Fenster mit der Übersetzung oder Definition eines ausgewählten Wortes und verlassen sich nicht auf das Internet, um zu funktionieren.
 
-Zum Beispiel:
-
+1. Eine Liste der beliebtesten kostenlosen Wörterbücher und Übersetzer bei Google Play lautet wie folgt:
 * Google Translate
 * Microsoft Translator
-* Multitran-Wörterbuch
+* Multitran Russian Dictionary
 * Oxford-Wörterbuch
+* Yandex.Translate usw.
+2. Sie können auch eine **Dictionary-Shell** installieren, die Wörterbücher von Compilern von Drittanbietern verarbeitet, z. B .:
+* GoldenDict
+* Forenwörterbuch usw.
+ 
+> **Wenn Sie die gesuchte Online-Ressource nicht in * Librera * gefunden haben, senden Sie Ihre Anfrage bitte an die Entwickler unter librera.reader@gmail.com oder werfen ein Problem bei github auf.**
 
-Wenn Sie das erforderliche Wörterbuch nicht gefunden haben, können Sie einen Vorschlag senden, um es der Mail librera.reader@gmail.com hinzuzufügen, oder ein Problem bei github melden.
-
+**Ein-Klick-Wörterbuchsuche**
+Um die sofortige Wörterbuchsuche für ein ausgewähltes Wort zu aktivieren, müssen Sie:
+* Öffnen Sie das Fenster **Einstellungen**, indem Sie auf das Symbol **Einstellungen** tippen
+* Aktivieren Sie das Kontrollkästchen &quot;Auswahl im Wörterbuch öffnen&quot; auf dem Haupt-Tab
+* Wählen Sie ein Wort (oder eine Wortfolge) durch langes Drücken (und Ziehen) aus.
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-
-Um das gewünschte Wörterbuch zu konfigurieren und auszuwählen, benötigen Sie:
-
-* Klicken Sie auf das Einstellungssymbol
-* Klicken Sie auf den Tab &quot;Erweiterte Einstellungen&quot;
-* Klicken Sie auf das Referenzwörterbuch
-* Wählen Sie Ihr installiertes Offline- oder Online-Wörterbuch aus der Liste aus und streichen Sie nach oben oder unten.
-
-In diesem Beispiel werden die Offline-Wörterbücher Google Übersetzer und Oxford Dictionary of English verwendet.
+**Einrichten eines Standardwörterbuchs**
+Sie können auch Ihr Standardwörterbuch konfigurieren (dasjenige, dessen Fenster bei einer Wortauswahl erscheint):
+* Tippen Sie auf den Link _Dictionary_ neben dem Feld _Open selection_
+* Wählen Sie das gewünschte Wörterbuch aus der Dropdown-Liste der Wörterbücher und Übersetzer aus. (Hinweis: Die Liste enthält sowohl Online- als auch Offline-Wörterbücher.)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](55.jpg)|![](66.jpg)|
 
-
-**Arbeiten mit dem Online-Wörterbuch:**
-
-* Tippen Sie lange auf das Wort
-* Wählen Sie &quot;Web Dictionary Lookup&quot; aus.
-* Wählen Sie das Wörterbuch aus, an das Sie das Wort übergeben möchten. Lassen Sie uns zum Beispiel zum Collins-Wörterbuch übergehen.
-
+**Deaktivieren Sie das Auswahlfeld**
+Wenn Sie das Kontrollkästchen &quot;Auswahl öffnen&quot; nicht aktivieren, wird beim Auswählen eines Wortes oder einer Wortfolge das Fenster &quot;**Text**&quot; angezeigt. Hier können Sie:
+* Suchen oder übersetzen Sie dieses Wort (diese Sequenz) in der Online-Ressource Ihrer Wahl (indem Sie auf _Web Dictionary Lookup_ tippen).
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-**Arbeiten mit dem Offline-Wörterbuch:**
-
-* Tippen Sie lange auf das Wort
-* Wählen Sie das Symbol des gewünschten Wörterbuchs aus, z. B. Oxford Dictionary of English
-* Wenn Sie eine Verknüpfung zu einem anderen bereits installierten Wörterbuch hinzufügen möchten, klicken Sie auf das &quot;Plus&quot; -Symbol und wählen Sie es aus.
-* Sie können die einfache Berührung konfigurieren, um das Wort zu übersetzen
+* Suchen Sie (durch Tippen auf **+**, falls erforderlich) Ihr bevorzugtes installiertes Wörterbuch oder Ihren bevorzugten Übersetzer
+* Tippen Sie auf das entsprechende Symbol, um das Popup-Fenster mit der Wortübersetzung (Definition) aufzurufen.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-Wenn Sie die Wörterbuchauswahl überspringen möchten, tippen Sie auf das Wort, damit der Text sofort in Ihr Wörterbuch übertragen wird:
-
-* Aktivieren Sie das Kontrollkästchen &quot;Auswahl im Wörterbuch öffnen&quot; und wählen Sie das gewünschte Wörterbuch aus.
+> Eine kurze Erinnerung: Vergessen Sie nicht, Ihr Standardwörterbuch auszuwählen, BEVOR Sie das Kontrollkästchen &quot;Auswahl im Wörterbuch öffnen&quot; aktivieren.
 
 ||||
 |-|-|-|

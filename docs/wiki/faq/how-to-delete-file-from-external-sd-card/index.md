@@ -2,24 +2,24 @@
 layout: main
 ---
 
-# How to delete books from the External SD card
+# How to Delete a Book from an External SD Card
 
-Android 7+ do not allow to delete files from the external sd card by the 
-security reasons.
-You need to add SD card as the resource and allow applicatoin to delete files from it
+> For security reasons, the system won't allow users to delete files from external SD cards on Android 7+.
 
-* Open file manager tab
-* Click add resource
-* Choose SD card
-* Select and allow to delete from choosed sd card
+In **Librera**, you need to add your SD card as a resource (_bookshelf_) and then allow deletion.
+
+* In the _Folder_ tab, tap on the file manager icon to open the dropdown resources list
+* Tap **+** to add a bookshelf
+* Select your SD card
+* Hit _SELECT_ to allow deletion from the chosen location
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-* Open SD card in file manager
-* Click file menu
-* Delete book
+* Choose your SD card from the dropdown resources list
+* Open the file menu of the book you intend to delete by tapping its triple-dot icon
+* Hit _Delete_ and confirm the operation
 
 ||||
 |-|-|-|

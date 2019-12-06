@@ -2,34 +2,35 @@
 layout: main
 ---
 
-# Come configurare caratteri, stili
+# Configurazione di caratteri e stili
 
-> Per una lettura comoda, Librera ti consente di personalizzare l'aspetto del tuo documento, modificare i caratteri, gli stili CSS, aggiungere una lettera maiuscola.
+> **Librera** ti consente di personalizzare l'aspetto del documento che stai leggendo: scegli i caratteri a tuo piacimento e regola le loro dimensioni, regola gli stili CSS e cambia le prime lettere in iniziali iniziali (FB2).
 
-È possibile regolare il carattere e lo stile del testo nelle schede del menu:
+Farai tutto quanto sopra nella scheda principale della finestra **Preference** e, ovviamente, nella scheda _Leggi impostazioni_.
 
-* **Impostazioni avanzate**
-* **Impostazioni di lettura.**
 
-Per accedere a queste impostazioni, fai clic sull'icona delle impostazioni.
+> Tocca l'icona **Impostazioni** per aprire la finestra **Preferenze**.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-## Impostazioni avanzate
+## Aggiustamenti dei caratteri
 
-In questa scheda di menu, puoi modificare il carattere del documento per lo stile di documento **&quot;Definito dall'utente&quot;** (vedi la sezione **&quot;Impostazioni di lettura&quot;** di seguito per una descrizione degli stili):
+* Seleziona il carattere principale toccando il link _Font_ e scorrendo l'elenco a discesa dei caratteri disponibili.
 
-* Fai clic sul collegamento del titolo del carattere
-* Nell'elenco a discesa dei caratteri, scorrere verso l'alto o verso il basso, selezionare il carattere desiderato.
-* Se desideri scaricare i caratteri per la lettura, vedi come farlo di seguito, la sezione delle impostazioni **&quot;Impostazioni di lettura&quot;**
+> Puoi aggiungere i tuoi caratteri preferiti all'elenco:
+1. Creare una cartella denominata _Fonts_ nella memoria interna del dispositivo.
+> Nota: esiste un'altra cartella _Fonts_ nella memoria interna già creata automaticamente da **Librera**.
+2. Salva i tuoi caratteri preferiti nella cartella _Fonts_ (o nella cartella _Fonts_ di **di Librera**).
+> (Puoi anche scaricare alcuni caratteri interessanti dal nostro sito. Consulta la sezione **Impostazioni di lettura** per istruzioni.)
+> Ricorda che i tuoi caratteri saranno onorati solo se i _Styles_ che hai selezionato nella scheda **Impostazioni di lettura** contengono _User-definite_.
 
-Se vuoi mettere a punto i caratteri del testo:
+Per impostare caratteri specifici dell'utente per diversi stili di carattere, toccare l'icona accanto al collegamento _Fonts_ per aprire la finestra _Configura caratteri_.
 
-* Fai clic sull'icona del menu di configurazione del carattere
-* Nel menu a comparsa delle impostazioni, è possibile modificare il carattere per ciascun tipo di testo. Dopo la modifica, fai clic su &quot;Applica&quot;
-* Chiudi le impostazioni e procedi alla lettura.
+* Tocca l'impostazione per ogni stile e seleziona un carattere per esso.
+* Utilizza i pulsanti **su** e **giù** per passare al carattere successivo nell'elenco (a volte questo sarà sufficiente per il tuo scopo).
+* Non dimenticare di toccare **APPLICA** al termine.
 
 ||||
 |-|-|-|
@@ -39,42 +40,49 @@ Se vuoi mettere a punto i caratteri del testo:
 |-|-|-|
 |![](6.jpg)|![](42.jpg)|![](43.jpg)|
 
-Per il formato del libro **fb2** puoi regolare la lettera:
+## Iniziali principali nei libri di FB2
 
-* Fai clic sull'icona del menu di configurazione del carattere
-* Abilita la casella di controllo &quot;Capitoli di testa con iniziative&quot;
-* Seleziona il carattere della lettera
-* Regola dimensione e colore
-* Fai clic su &quot;Applica&quot; per applicare le impostazioni.
+Puoi far iniziare ogni capitolo del tuo libro con un'iniziale gradevole.
+ 
+> Questa impostazione non verrà visualizzata durante la lettura in nessun altro formato.
+
+* Tocca l'icona accanto al link _Fonts_ per aprire la finestra _Configure Fonts_
+* Seleziona la casella _Lead capitoli con iniziali_ per abilitare le iniziali
+* Tocca il link font-face per selezionare un font per la tua iniziale da un elenco a discesa
+* Ora scegli la dimensione e il colore della tua iniziale toccando i rispettivi collegamenti
+* Tocca **APPLICA** per salvare le impostazioni
 
 ||||
 |-|-|-|
 |![](19.jpg)|![](20.jpg)|![](22.jpg)|
 
 
-## Impostazioni di lettura
+## La scheda **Impostazioni di lettura**
 
-In questa sezione del menu è possibile lavorare con i file dei caratteri, aggiungere o scaricare nuovi caratteri. Per impostare gli stili di visualizzazione del testo.
+> Queste sono le impostazioni definite dall'utente. Sovrascrivono principalmente le impostazioni di stile codificate nel file .css del tuo libro. Devi scegliere gli stili definiti dall'utente per farlo funzionare.
 
-Per personalizzare i caratteri, scaricarli o aggiungerne di nuovi, è necessario:
-
-* Specifica il percorso dei tuoi caratteri, se presenti, selezionando la cartella dei caratteri sul tuo dispositivo
-Scarica caratteri aggiuntivi facendo clic sull'icona &quot;Scarica caratteri&quot;. Apparirà una finestra di conferma sul download, fare clic su &quot;Download&quot;.
-* I caratteri hanno una dimensione di 10 megabyte, dopo il download verranno visualizzati per la selezione nella selezione carattere generale, scheda menu **&quot;Impostazioni avanzate&quot;**.
+* Seleziona il tuo allineamento di testo preferito dall'elenco a discesa.
+* Usa i cursori o i tocchi **-** e **+** per regolare la spaziatura di riga e paragrafo, rientri del testo e margini della pagina.
+* _normalizzando la dimensione-carattere_ si rendono uguali tutti i caratteri nel documento (1em, normale).
+* È inoltre possibile specificare il colore dei collegamenti nel documento per ciascuna modalità (giorno e notte).
 
 ||||
 |-|-|-|
 |![](8.jpg)|![](9.jpg)|![](10.jpg)|
 
-**Personalizza gli stili del testo visualizzato.**
+**Scegli saggiamente _Styles_ per il tuo libro**
 
-Il programma consente di selezionare la visualizzazione del testo e lo stile impostati nel testo dall'autore del documento:
+* _Document_, verranno utilizzate le impostazioni .css del libro
+* _ Definito dall'utente_, verranno utilizzate le impostazioni di questa scheda
+* _Documento + Definito dall'utente_ (predefinito, consigliato), il nostro tentativo di incorporare le impostazioni dell'utente nelle impostazioni .css del libro (o viceversa). Funziona la maggior parte del tempo!
 
-* Documento: utilizza lo stile di testo impostato dall'autore Creatore del documento
-* Definito dall'utente: usa le tue impostazioni di stile per caratteri, rientro, markup del documento
-* Documento + Gli stili utente e autore definiti dall'utente vengono utilizzati insieme.
+## La finestra **Codice CSS personalizzato**
 
-Facendo clic sull'icona delle impostazioni di stile è possibile aggiungere i propri stili di visualizzazione del testo utilizzando il linguaggio ipertestuale markup css
+Questa finestra si apre toccando l'icona accanto a _Styles_
+
+Chi ha familiarità con la codifica CSS può personalizzare un po 'ad hoc il modo in cui il tuo libro viene visualizzato. (Vedi di più sotto le FAQ **Personalizza gli stili CSS del libro**).
+
+> Non dimenticare di rimuovere il codice una volta terminato il libro! Potrebbe non funzionare nel prossimo.
 
 ||||
 |-|-|-|
@@ -83,8 +91,3 @@ Facendo clic sull'icona delle impostazioni di stile è possibile aggiungere i pr
 ||||
 |-|-|-|
 |![](14.jpg)|![](15.jpg)|![](16.jpg)|
-
-
-
-
-

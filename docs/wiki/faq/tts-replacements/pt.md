@@ -4,38 +4,38 @@ layout: main
 
 # substituições TTS
 
-> Substituições são usadas para alterar a pronúncia de algumas palavras, excluir texto indesejado e definir a marca de estresse correta
+> As substituições de conversão de texto em fala são usadas para alterar a maneira como o mecanismo pronuncia certas palavras, para ignorar certos caracteres durante a leitura ou para definir marcas de tensão corretas.
 
 * Ativar substituições TTS
-* Mostrar o texto resultante das substituições
-Caixa de diálogo * Substituições
+* Mostre a passagem com resultados de substituição
+* A caixa de diálogo **Substituições** para definir regras de substituição
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-As substituições suportam a substituição clássica de uma sequência por outra ou é possível usar expressões RegExp
+Substituições clássicas são suportadas (alteração direta de uma cadeia de caracteres por outra) ou você pode usar expressões regulares (RegExp).
 
-## expressão
+Expressões
 
 * &quot;texto&quot; - texto simples
 * &quot;* texto&quot; - * regra RexExp
-* &quot;# text&quot; - # regra desativada
+* &quot;# texto&quot; - regra desativada
 * &quot;text256&quot; - regra desabilitada
 
 ## exemplos
 
-* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - substitua Lib. para Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - adicione marca de tensão correta
-* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - &quot;#&quot; para desativar a regra
-* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Substitua Lib. para Librera e lib. a librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Substitua caracteres por caracteres vazios
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Substitua chars para pausar (,) char
+* &quot;Lib.&quot; -&gt; &quot;Librera&quot; - substitua Lib. com Librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - adicione uma marca de tensão correta
+* &quot;# Lib.&quot; -&gt; &quot;Librera&quot; - use &quot;#&quot; para desativar uma regra
+* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - substitua Lib. com Librera e lib. com librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- ignorar caracteres
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - substitui chars por uma pausa (,)
 
-## Adicionar arquivo de regras
+## Adicione um arquivo de regras
 
-O Librera suporta arquivos de regras Regexp do @Voice reader
-aqui está uma amostra **demo-replaces.txt**
+O** Librera** suporta arquivos de regras RegExp do **@Voice Reader**
+Confira este exemplo **demo-replaces.txt** abaixo:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,16 @@ aqui está uma amostra **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Ignorar áreas cortadas em documentos PDF
+> Muitas vezes, as páginas em arquivos PDF (livros, artigos de periódicos, livros didáticos etc.) têm cabeçalhos e rodapés que são executados em todo o documento. Você pode cortar as cabeças de corrida com uma pitada de dois dedos, que continuará nas páginas seguintes (e anteriores). Mas seu mecanismo TTS não tem idéia sobre suas manipulações. Portanto, você precisa dizer o que fazer (ignore a coisa chata!) Enquanto lê o documento em voz alta para você.
 
-   
+No **Librera**, introduzimos substituições (comandos) especiais que permitem ignorar as áreas cortadas e garantir uma leitura contínua e ininterrupta.
+* Na janela **Substituições**, insira uma palavra ou sequência de palavras na coluna esquerda e _ttsSKIP_ como sua substituição. Esta substituição informará o mecanismo para pular a frase com esta sequência de palavras/palavras
+* Digite uma palavra ou sequência de palavras na coluna esquerda e _ttsNEXT_ como substituto. A substituição informará o mecanismo para pular a frase com esta sequência de palavras/palavras e ir imediatamente para a próxima página
+* Não se esqueça de pressionar _APPLY_ para deixar as substituições
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Teste suas alterações algumas vezes para garantir que tudo esteja funcionando como deveria!**

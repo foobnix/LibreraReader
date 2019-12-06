@@ -1,7 +1,7 @@
 package com.foobnix.pdf.info.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.Serializable;
 
@@ -31,7 +31,7 @@ public class Doc implements Serializable{
     public Doc() {
 
     }
-	public Doc(final JSONObject obj) {
+	public Doc(final LinkedJSONObject obj) {
 		docname = obj.optString("docname");
 		username = obj.optString("username");
 		documentId = obj.optString("documentId");
@@ -44,8 +44,8 @@ public class Doc implements Serializable{
 		rating = obj.optDouble("rating");
 
 	}
-	public JSONObject toJSON() throws JSONException{
-		final JSONObject obj = new JSONObject();
+	public LinkedJSONObject toJSON() throws JSONException{
+		final LinkedJSONObject obj = new LinkedJSONObject();
 		obj.put("docname", docname);
 		obj.put("username", username);
 		obj.put("documentId", documentId);

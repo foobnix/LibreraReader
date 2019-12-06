@@ -2,62 +2,56 @@
 layout: main
 ---
 
-# How to customize the look of your library and book covers
+# Customizing the Look and Feel of Your Library
 
-> Librera allows you to flexibly customize the overall look of your library, the size of the book covers, the information displayed by the book, the sorting of books in your library.
+> **Librera** allows you to adjust the way your books are displayed on the "shelves" of your Library. You can change the number of books on a shelf, their appearance, shelf size, book grouping and listing, etc.
 
-To quickly configure the library view, you must:
+Your books are shown in the _Library_ tab, where you can make adjustments to the book presentation. Additional settings affecting your Library view are located in the slide-out _Preferences_ tab, the _Book Covers_ panel.
 
-* Go to the Library tab
-* Click on the library display mode and select the desired one.
+* To change the book layout (list, grid, condensed, etc.), tap on the hamburger icon in the upper right corner of the _Library_ tab
+* Swipe right from the left edge of the screen to open the _Preferences_ tab
 
-You can also further customize the look of the library and book covers in the settings:
+> If you have the _Preferences_ box checked (no animation), you will find the _Preferences_ tab alongside the _Library_ tab on top.
 
-* Swipe to pull the settings panel
-* Swipe down to the settings of book covers.
+* Swipe down and find the _Book Covers_ panel
 
 ||||
 |-|-|-|
 |![](3.jpg)|![](1.jpg)|![](2.jpg)|
 
-In the quick setup of the library, you can choose a different kind of it, I will give, for example, some.
+* Examples of the views of just a few layout choices are given below:
+ 
+> Remember, another layout is just two taps away. You can switch to the most convenient one at any time.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-In the book covers settings, you can disable or enable the book cover.
+## The _Book Covers_ Panel
 
-* Turn off the checkbox to remove the display of the book cover
-* If you want to display the covers of books in the library then enable this checkbox.
+* You can opt out of seeing book covers altogether by unchecking the respective box
+* You still have plenty of layout options
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-To change the size of the displayed book cover:
-
-* Use the slider to select the size of the displayed book cover 
+* Your manipulations with the size of book covers will depend on the layout you've chosen (list or grid)
+* For "list," use the respective slider to change the size of the book covers (shelf size)
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-To change the grid displayed on the book covers screen:
+You will have more options for "grid."
 
-* A slider to choose the size of the grid
-* You can choose the number of columns
+* Use the respective slider to change the size of the book covers
+* You can also choose the number of columns in your Library's grid
+
+> Note: You can always revert to your initial settings by tapping _Restore default_ and confirming the operation with _OK_.
+
+**If you choose displaying the covers of your books, use other options in the _Book Covers_ panel to pretty up the view.**
 
 ||||
 |-|-|-|
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
-
-If you want to return the book cover settings to their initial state:
-
-* Click "restore default"
-* Confirm your action "OK"
-
-The covers will be restored to their initial settings.
-
-
-

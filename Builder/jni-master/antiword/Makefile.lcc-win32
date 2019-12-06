@@ -1,0 +1,601 @@
+# Wedit Makefile for project antiword
+SRCDIR=.
+CFLAGS=-I. -DNDEBUG  -g2 
+CC=$(LCCROOT)\bin\lcc.exe
+LINKER=$(LCCROOT)\bin\lcclnk.exe
+OBJS=\
+	asc85enc.obj \
+	blocklist.obj \
+	chartrans.obj \
+	datalist.obj \
+	depot.obj \
+	dib2eps.obj \
+	doclist.obj \
+	fail.obj \
+	finddata.obj \
+	findtext.obj \
+	fmt_text.obj \
+	fontlist.obj \
+	fonts.obj \
+	fonts_u.obj \
+	hdrftrlist.obj \
+	imgexam.obj \
+	imgtrans.obj \
+	jpeg2eps.obj \
+	listlist.obj \
+	main_u.obj \
+	misc.obj \
+	notes.obj \
+	options.obj \
+	out2window.obj \
+	output.obj \
+	pdf.obj \
+	pictlist.obj \
+	png2eps.obj \
+	postscript.obj \
+	prop0.obj \
+	prop2.obj \
+	prop6.obj \
+	prop8.obj \
+	properties.obj \
+	propmod.obj \
+	rowlist.obj \
+	sectlist.obj \
+	stylelist.obj \
+	stylesheet.obj \
+	summary.obj \
+	tabstop.obj \
+	text.obj \
+	unix.obj \
+	utf8.obj \
+	word2text.obj \
+	worddos.obj \
+	wordlib.obj \
+	wordmac.obj \
+	wordole.obj \
+	wordwin.obj \
+	xmalloc.obj \
+	xml.obj
+
+LIBS=
+EXE=antiword.exe
+
+$(EXE):	$(OBJS) Makefile
+	$(LINKER)  -s -subsystem console -o $(SRCDIR)\antiword.exe $(OBJS) $(LIBS)
+
+# Build asc85enc.c
+ASC85ENC_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+asc85enc.obj: $(ASC85ENC_C) $(SRCDIR)\asc85enc.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\asc85enc.c
+
+# Build blocklist.c
+BLOCKLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+blocklist.obj: $(BLOCKLIST_C) $(SRCDIR)\blocklist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\blocklist.c
+
+# Build chartrans.c
+CHARTRANS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+chartrans.obj: $(CHARTRANS_C) $(SRCDIR)\chartrans.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\chartrans.c
+
+# Build datalist.c
+DATALIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+datalist.obj: $(DATALIST_C) $(SRCDIR)\datalist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\datalist.c
+
+# Build depot.c
+DEPOT_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+depot.obj: $(DEPOT_C) $(SRCDIR)\depot.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\depot.c
+
+# Build dib2eps.c
+DIB2EPS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+dib2eps.obj: $(DIB2EPS_C) $(SRCDIR)\dib2eps.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\dib2eps.c
+
+# Build fail.c
+FAIL_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+fail.obj: $(FAIL_C) $(SRCDIR)\fail.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\fail.c
+
+# Build finddata.c
+FINDDATA_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+finddata.obj: $(FINDDATA_C) $(SRCDIR)\finddata.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\finddata.c
+
+# Build findtext.c
+FINDTEXT_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+findtext.obj: $(FINDTEXT_C) $(SRCDIR)\findtext.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\findtext.c
+
+# Build fontlist.c
+FONTLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+fontlist.obj: $(FONTLIST_C) $(SRCDIR)\fontlist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\fontlist.c
+
+# Build fonts.c
+FONTS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+fonts.obj: $(FONTS_C) $(SRCDIR)\fonts.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\fonts.c
+
+# Build fonts_u.c
+FONTS_U_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+	$(SRCDIR)\fontinfo.h\
+
+fonts_u.obj: $(FONTS_U_C) $(SRCDIR)\fonts_u.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\fonts_u.c
+
+# Build imgexam.c
+IMGEXAM_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+imgexam.obj: $(IMGEXAM_C) $(SRCDIR)\imgexam.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\imgexam.c
+
+# Build imgtrans.c
+IMGTRANS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+imgtrans.obj: $(IMGTRANS_C) $(SRCDIR)\imgtrans.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\imgtrans.c
+
+# Build jpeg2eps.c
+JPEG2EPS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+jpeg2eps.obj: $(JPEG2EPS_C) $(SRCDIR)\jpeg2eps.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\jpeg2eps.c
+
+# Build listlist.c
+LISTLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+listlist.obj: $(LISTLIST_C) $(SRCDIR)\listlist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\listlist.c
+
+# Build main_u.c
+MAIN_U_C=\
+	$(SRCDIR)\version.h\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+main_u.obj: $(MAIN_U_C) $(SRCDIR)\main_u.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\main_u.c
+
+# Build misc.c
+MISC_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+misc.obj: $(MISC_C) $(SRCDIR)\misc.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\misc.c
+
+# Build notes.c
+NOTES_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+notes.obj: $(NOTES_C) $(SRCDIR)\notes.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\notes.c
+
+# Build options.c
+OPTIONS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+options.obj: $(OPTIONS_C) $(SRCDIR)\options.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\options.c
+
+# Build out2window.c
+OUT2WINDOW_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+out2window.obj: $(OUT2WINDOW_C) $(SRCDIR)\out2window.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\out2window.c
+
+# Build output.c
+OUTPUT_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+output.obj: $(OUTPUT_C) $(SRCDIR)\output.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\output.c
+
+# Build pictlist.c
+PICTLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+pictlist.obj: $(PICTLIST_C) $(SRCDIR)\pictlist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\pictlist.c
+
+# Build png2eps.c
+PNG2EPS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+png2eps.obj: $(PNG2EPS_C) $(SRCDIR)\png2eps.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\png2eps.c
+
+# Build postscript.c
+POSTSCRIPT_C=\
+	$(SRCDIR)\version.h\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+postscript.obj: $(POSTSCRIPT_C) $(SRCDIR)\postscript.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\postscript.c
+
+# Build prop0.c
+PROP0_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+prop0.obj: $(PROP0_C) $(SRCDIR)\prop0.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\prop0.c
+
+# Build prop2.c
+PROP2_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+prop2.obj: $(PROP2_C) $(SRCDIR)\prop2.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\prop2.c
+
+# Build prop6.c
+PROP6_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+prop6.obj: $(PROP6_C) $(SRCDIR)\prop6.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\prop6.c
+
+# Build prop8.c
+PROP8_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+prop8.obj: $(PROP8_C) $(SRCDIR)\prop8.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\prop8.c
+
+# Build properties.c
+PROPERTIES_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+properties.obj: $(PROPERTIES_C) $(SRCDIR)\properties.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\properties.c
+
+# Build propmod.c
+PROPMOD_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+propmod.obj: $(PROPMOD_C) $(SRCDIR)\propmod.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\propmod.c
+
+# Build rowlist.c
+ROWLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+rowlist.obj: $(ROWLIST_C) $(SRCDIR)\rowlist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\rowlist.c
+
+# Build sectlist.c
+SECTLIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+sectlist.obj: $(SECTLIST_C) $(SRCDIR)\sectlist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\sectlist.c
+
+# Build stylelist.c
+STYLELIST_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+stylelist.obj: $(STYLELIST_C) $(SRCDIR)\stylelist.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\stylelist.c
+
+# Build stylesheet.c
+STYLESHEET_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+stylesheet.obj: $(STYLESHEET_C) $(SRCDIR)\stylesheet.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\stylesheet.c
+
+# Build summary.c
+SUMMARY_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+summary.obj: $(SUMMARY_C) $(SRCDIR)\summary.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\summary.c
+
+# Build tabstop.c
+TABSTOP_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+tabstop.obj: $(TABSTOP_C) $(SRCDIR)\tabstop.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\tabstop.c
+
+# Build text.c
+TEXT_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+text.obj: $(TEXT_C) $(SRCDIR)\text.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\text.c
+
+# Build unix.c
+UNIX_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+unix.obj: $(UNIX_C) $(SRCDIR)\unix.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\unix.c
+
+# Build utf8.c
+UTF8_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+utf8.obj: $(UTF8_C) $(SRCDIR)\utf8.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\utf8.c
+
+# Build word2text.c
+WORD2TEXT_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+word2text.obj: $(WORD2TEXT_C) $(SRCDIR)\word2text.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\word2text.c
+
+# Build worddos.c
+WORDDOS_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+worddos.obj: $(WORDDOS_C) $(SRCDIR)\worddos.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\worddos.c
+
+# Build wordlib.c
+WORDLIB_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+wordlib.obj: $(WORDLIB_C) $(SRCDIR)\wordlib.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\wordlib.c
+
+# Build wordmac.c
+WORDMAC_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+wordmac.obj: $(WORDMAC_C) $(SRCDIR)\wordmac.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\wordmac.c
+
+# Build wordole.c
+WORDOLE_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+wordole.obj: $(WORDOLE_C) $(SRCDIR)\wordole.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\wordole.c
+
+# Build wordwin.c
+WORDWIN_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+wordwin.obj: $(WORDWIN_C) $(SRCDIR)\wordwin.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\wordwin.c
+
+# Build xmalloc.c
+XMALLOC_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+xmalloc.obj: $(XMALLOC_C) $(SRCDIR)\xmalloc.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\xmalloc.c
+
+# Build xml.c
+XML_C=\
+	$(SRCDIR)\antiword.h\
+	$(SRCDIR)\wordconst.h\
+	$(SRCDIR)\wordtypes.h\
+	$(SRCDIR)\fail.h\
+	$(SRCDIR)\debug.h\
+
+xml.obj: $(XML_C) $(SRCDIR)\xml.c
+	$(CC) -c $(CFLAGS) $(SRCDIR)\xml.c
+
+link:
+	$(LINKER)  -s -subsystem console -o $(SRCDIR)\antiword.exe $(OBJS) $(LIBS)
+
+clean:
+	del $(OBJS) antiword.exe

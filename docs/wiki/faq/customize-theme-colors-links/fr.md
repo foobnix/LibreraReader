@@ -2,62 +2,60 @@
 layout: main
 ---
 
-# Personnalisation du thème (blanc, noir, AMOLED, couleurs, taille de la police, couleurs des liens)
+# Interface utilisateur de Theming Librera
 
-> Librera vous permet de personnaliser les thèmes et l'interface selon vos préférences de couleur.
+> **Librera** vous permet de personnaliser chaque détail de l'interface utilisateur.
 
-Vous pouvez personnaliser:
+Dans le panneau &quot;Paramètres généraux&quot; de l'onglet **Préférences**, vous pouvez choisir votre nom personnel:
 
-* Taille de la police en l'augmentant ou en la diminuant
-* Choisissez le thème de couleur de l'application.
-* Choisissez la couleur des en-têtes.
-* Choisissez la couleur des liens
-
-**Tous les paramètres du programme peuvent être combinés les uns avec les autres**
+* Taille de la police
+* Motif et couleur du thème
+* Couleur de rognage
+* Couleur du lien
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Définition de la taille de la police:**
+**Paramètre de taille de police**
 
-* Cliquez sur l'option de menu &quot;Taille de la police&quot;.
-* Choisissez la taille de police souhaitée en l'augmentant ou en la diminuant.
+* Appuyez sur _Font Taille du texte_ pour ouvrir une liste déroulante de tailles de police relatives.
+* Choisissez la taille de la police en diminuant ou en augmentant votre taille de police actuelle.
 
 ||||
 |-|-|-|
 |![](34.jpg)|![](32.jpg)|![](33.jpg)|
 
-**Personnalisez le thème de l'application:**
+**Paramètre de thème général**
 
-* Cliquez sur l'élément de menu &quot;Thème&quot;.
-* Sélectionnez le thème dont vous avez besoin. Vous pouvez également choisir un thème pour l'écran E-Ink.
+* Appuyez sur _Theme_ pour ouvrir une liste déroulante des thèmes disponibles.
+* Sélectionnez le thème souhaité. Vous pouvez également choisir le thème des écrans E-Ink.
 
-_Vous pouvez également personnaliser le thème de votre écran lors de la lecture de «Jour/Nuit». Lisez-en plus dans les Faq définissant le thème de la lecture «Jour \ Nuit» _
+> _Quelques thèmes supplémentaires viendront de votre choix de couleurs et de polices lors de la configuration de vos modes de lecture jour/nuit_
 
 ||||
 |-|-|-|
 |![](21.jpg)|![](22.jpg)|![](23.jpg)|
 
-**Définition de la couleur du titre (Rogner):**
+**Paramètres de couleur d'en-tête et de titre (Rogner)**
 
-* Vous pouvez personnaliser une couleur prédéfinie en cliquant sur la couleur dont vous avez besoin.
-* Pour sélectionner votre propre couleur, cliquez sur l'icône Plus et sélectionnez une couleur à l'aide de la palette de couleurs.
+* Vous pouvez sélectionner l'un des préréglages disponibles en appuyant dessus.
+* Ou vous pouvez choisir quelque chose de complètement différent en appuyant sur **+**.
+* Sélectionnez votre couleur dans la palette de couleurs ouverte.
 
 ||||
 |-|-|-|
 |![](11.jpg)|![](12.jpg)|![](13.jpg)|
 
-**Définition de la couleur du lien:**
+**Paramètres de couleur des liens**
 
-* Cliquez sur la couleur du lien.
-* Vous pouvez personnaliser une couleur prédéfinie en cliquant sur la couleur dont vous avez besoin.
-* Pour sélectionner votre propre couleur, cliquez sur l'icône Plus et sélectionnez une couleur à l'aide de la palette de couleurs.
+* Vous devez activer les couleurs personnalisées en remplaçant les paramètres système.
+* Sélectionnez l'un des paramètres prédéfinis disponibles en appuyant dessus.
+* Ou vous pouvez choisir quelque chose de complètement différent en appuyant sur **+**.
+* Sélectionnez votre couleur dans la palette de couleurs ouverte.
 
 ||||
 |-|-|-|
 |![](41.jpg)|![](42.jpg)|![](43.jpg)|
 
-
-
-
+> **La meilleure chose offerte par * Librera * est la possibilité de thème chaque profil que vous créez individuellement. Vous pouvez cibler vos profils créés en fonction de vos changements d'humeur, de vos lectures de jour et de nuit, des genres de livres, etc.**

@@ -2,58 +2,66 @@
 layout: main
 ---
 
-# Arbeiten mit Lesezeichen im erweiterten Bedienfeld (Multifunktionsleisten-Lesezeichen)
+# Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)
 
-> In Librera können Sie eine erweiterte Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) auf dem Lesebildschirm anzeigen. Es dient zum schnellen Hinzufügen eines Lesezeichens und zum Wechseln zwischen Lesezeichen.
+> Sie können festlegen, dass **Librera** Ihre Lesezeichen jederzeit auf dem Bildschirm anzeigt, während Sie ein Buch lesen. Sie werden oben auf dem Bildschirm in einem sogenannten Lesezeichen-Menüband angezeigt. Dieser erweiterte Lesezeichenmodus sollte nützlich sein, wenn Sie neue Lesezeichen hinzufügen oder sofort zwischen ihnen wechseln müssen.
+> Wir erwarten, dass diese coole Funktion bei Musikern sehr gefragt ist, während die App im _Musician's_ -Modus ausgeführt wird. In diesem Modus ist die Multifunktionsleiste standardmäßig aktiviert.
 
-Um es zu aktivieren, müssen Sie:
+So aktivieren Sie es in den anderen Modi:
 
-* Klicken Sie auf das Einstellungssymbol
-* Gehen Sie zu den Einstellungen &quot;Statusleiste&quot;
-* Aktivieren Sie das Kontrollkästchen für das erweiterte Lesezeichenfenster (Multifunktionsleisten-Lesezeichen) im gewünschten Lesemodus.
+* Tippen Sie auf das Symbol _Einstellungen_, um das Fenster **Einstellungen** zu öffnen
+* Tippen Sie auf den Tab _Statusleiste_
+* Aktivieren Sie im Bereich &quot;Lesezeichen-Multifunktionsleiste&quot; das Kontrollkästchen neben dem Modus, für den Sie die Multifunktionsleiste aktivieren möchten.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Als Nächstes erfahren Sie, wie Sie mit der Schnelllesezeichenleiste im Modus &quot;Buch lesen&quot; arbeiten. Sie können diese Aktionen in allen drei Modi wiederholen, sie sind gleich.
+Vorgänge mit der _Bookmarks-Multifunktionsleiste_ werden im _Book_-Modus veranschaulicht. Für alle drei Modi funktioniert alles gleich.
 
-**Wenn Sie keine erweiterte Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) mehr benötigen, können Sie diese deaktivieren, indem Sie das Kontrollkästchen &quot;Statusleiste&quot; in Ihrem Lesemodus deaktivieren. Das Lesezeichensymbol in der oberen rechten Ecke wird entfernt.**
+> Wenn Sie das _Bookmark Ribbon_ nicht mehr benötigen, können Sie es deaktivieren, indem Sie das entsprechende Kontrollkästchen auf der Registerkarte _Statusleiste_ deaktivieren.
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
 
-**Hinzufügen von Lesezeichen:**
+**Hinzufügen von Lesezeichen**
 
-* Klicken Sie auf das Lesezeichensymbol in der oberen rechten Ecke des Bildschirms
-* Wählen Sie das Lesezeichen &quot;Hinzufügen&quot;
-* Kommentieren Sie das Lesezeichen. Aus diesem Kommentar wird dem Lesezeichen ein Name zugewiesen. In diesem Beispiel der Kommentar &quot;erstes Lesezeichen&quot;
-Klicken Sie auf &quot;Hinzufügen&quot;
+> Der Lesezeichen-Floater in der oberen rechten Ecke zeigt an, dass Sie sich derzeit im _Bookmarks Ribbon_-Modus befinden.
+
+* Tippen Sie auf der Seite, für die Sie ein Lesezeichen erstellen möchten, auf den Lesezeichen-Floater
+* Tippen Sie auf _ADD_, um das Lesezeichen über das Fenster _Bookmarks_ hinzuzufügen
+* Kommentieren Sie das Lesezeichen. Beachten Sie, dass der Name des Lesezeichens aus Ihrem Kommentar stammt (**erstes Lesezeichen** in unserem Beispiel).
+* Tippen Sie auf **HINZUFÜGEN**, um den Vorgang abzuschließen.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-Ein Lesezeichen wird im Lesezeichenfenster und oben in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) hinzugefügt. Wenn Sie jetzt zu dieser Registerkarte wechseln möchten, klicken Sie beim Lesen einfach oben im Bedienfeld darauf. Wenn Sie es bearbeiten möchten, tippen Sie lange auf das Lesezeichen im Lesezeichenfenster. Das Bearbeitungsfenster wird angezeigt. Wenn Sie über viele Lesezeichen verfügen, können Sie in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) nach links oder rechts wischen.
+Ihr neues Lesezeichen wird im Fenster &quot;Lesezeichen&quot; angezeigt, und gleichzeitig wird es oben in der Multifunktionsleiste &quot;Lesezeichen&quot; angezeigt. Um zu diesem Lesezeichen zurückzukehren, müssen Sie es nur in der Multifunktionsleiste antippen.
+
+> Hinweis: Durch langes Drücken auf ein Lesezeichen in der Multifunktionsleiste wird ein Bearbeitungsfenster geöffnet.
+* Speichern Sie Ihre Bearbeitungsergebnisse, indem Sie auf **SPEICHERN** tippen.
+* Sie können das Lesezeichen auch löschen, indem Sie auf **LÖSCHEN** tippen.
+Die Multifunktionsleiste wird zu einer vollständigen Multifunktionsleiste auf Ihrem Bildschirm, wenn Sie viele Lesezeichen haben. Sie können durch Wischen mit dem Finger durch sie navigieren.
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](15.jpg)|![](11.jpg)|
 
-**Hinzufügen eines Schnelllesezeichens**
+**Hinzufügen von Schnelllesezeichen**
 
-* Klicken Sie auf das Lesezeichensymbol in der oberen rechten Ecke des Bildschirms
-* Wählen Sie &quot;Schnelllesezeichen&quot;.
-* Ein &quot;Schnelllesezeichen&quot; wird erstellt. Es wird eine Namensseitennummer vergeben. Wenn Sie zum Lesezeichenfenster gehen, sehen Sie ein Schnelllesezeichen mit dem Namen - 15. &quot;Schnelllesezeichen&quot;. Wenn Sie im Lesezeichenfenster lange auf ein Lesezeichen klicken, wird das Fenster zum Bearbeiten und Löschen geöffnet.
+* Tippen Sie oben rechts auf den Lesezeichen-Floater, um das Fenster &quot;Lesezeichen&quot; zu öffnen.
+* Tippen Sie auf **SCHNELLES LESEZEICHEN**.
+* Auf diese Weise wird ein &quot;Schnelllesezeichen&quot; erstellt, das durch die Seitenzahl in der Multifunktionsleiste oben angegeben wird. In der Liste im Fenster &quot;Lesezeichen&quot; werden die Seite # und das _Schnelle Lesezeichen_ daneben angezeigt.
+> Sie können ein schnelles Lesezeichen in der Liste lange drücken, um es in einem Popup-Fenster zum Bearbeiten von Lesezeichen zu bearbeiten oder zu löschen.
 
 ||||
 |-|-|-|
 |![](12.jpg)|![](13.jpg)|![](14.jpg)|
 
-Mithilfe von Schnellaktionen können Sie Lesezeichen in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) hinzufügen oder entfernen:
+> Sie können einige Vorgänge umgehen, wenn Sie Lesezeichen hinzufügen oder löschen, indem Sie das _Bookmarks Ribbon_ verwenden:
 
-* Langes Tippen auf das Lesezeichensymbol in der oberen rechten Ecke fügt ein schnelles Lesezeichen hinzu
-* Wenn Sie in der erweiterten Lesezeichenleiste (Multifunktionsleisten-Lesezeichen) lange auf den Namen des Lesezeichens tippen, werden Sie aufgefordert, das Lesezeichen zu löschen.
-
+* Ein langer Druck auf den Lesezeichen-Floater in der oberen rechten Ecke fügt ein schnelles Lesezeichen hinzu.
+* Durch langes Drücken auf ein Lesezeichen in der _Bookmarks-Multifunktionsleiste_ wird eine Eingabeaufforderung geöffnet, die Sie zum Löschen auffordert.

@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -411,7 +412,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             //Clouds.showHideCloudImage(holder.imageCloud, fileMeta.getPath());
 
-            TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
             bindItemClickAndLongClickListeners(holder.parent, fileMeta);
 
@@ -423,6 +423,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.starIcon.setImageResource(R.drawable.star_1);
             } else {
                 holder.starIcon.setImageResource(R.drawable.star_2);
+            }
+
+            if(new File(fileMeta.getPath(),"Fonts").isDirectory()){
+                holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
+                TintUtil.setNoTintImage(holder.image);
+            }else{
+                holder.image.setImageResource(R.drawable.glyphicons_441_folder_closed);
+                TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
             }
 
             TintUtil.setTintImageWithAlpha(holder.starIcon, holder.starIcon.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());

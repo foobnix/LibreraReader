@@ -584,4 +584,13 @@
    <string name="record_in_mp3_format">.mp3 formatında kayıt</string>
    <string name="speak_into_file_wav">Kayıt tts (mp3, wav)</string>
    <string name="text_is_too_long">Metin çok uzun</string>
+   <string name="settings">Ayarlar</string>
+   <string name="play_pause">Oynat durdur</string>
+   <string name="next_track">Sonraki parça</string>
+   <string name="previous_track">Önceki parça</string>
+   <string name="copied_text">Kopyalanan metin</string>
+   <string name="reference_mode_like_in_calibre_viewer">Referans modu (calibre görüntüleyicide olduğu gibi)</string>
+   <string name="profile_root">Profil kökü</string>
+   <string name="create_folder">Klasör oluşturun</string>
+   <string name="show_hidden">Gizli göster</string>
 </resources>

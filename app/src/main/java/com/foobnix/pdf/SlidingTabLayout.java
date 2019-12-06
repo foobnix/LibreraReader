@@ -21,8 +21,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
@@ -129,7 +129,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         LOG.d("onTouchEvent-ev", ev);
-        if (swipeRefreshLayout != null && AppTemp.get().isEnableSync) {
+        if (swipeRefreshLayout != null && AppSP.get().isEnableSync) {
             final int action = ev.getAction();
 
             switch (action & MotionEvent.ACTION_MASK) {
@@ -303,11 +303,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setOnClickListener(tabClickListener);
 
 
-                if (myPOS == POS_VERTICAL) {
-                    getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(Dips.DP_80, LayoutParams.WRAP_CONTENT));
-                } else {
-                    getmTabStrip().addView(tabView);
-                }
+                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+
             }
         }
         updateIcons(0);

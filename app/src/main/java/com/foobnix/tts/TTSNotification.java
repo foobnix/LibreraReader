@@ -21,7 +21,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -49,17 +49,21 @@ public class TTSNotification {
     public static final String TTS_STOP_DESTROY = "TTS_STOP_DESTROY";
     public static final String TTS_NEXT = "TTS_NEXT";
     public static final String TTS_PREV = "TTS_PREV";
-
-    private static final String KEY_TEXT_REPLY = "key_text_reply";
-
     public static final int NOT_ID = 10;
     public static final int NOT_ID_2 = 11;
-
+    private static final String KEY_TEXT_REPLY = "key_text_reply";
     static String bookPath1;
     static int page1;
     static int pageCount;
 
     private static Context context;
+    static Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+            show(bookPath1, page1, pageCount);
+        }
+    };
     private static Handler handler;
 
     @TargetApi(26)
@@ -88,7 +92,7 @@ public class TTSNotification {
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppTemp.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
+            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {
@@ -105,24 +109,40 @@ public class TTSNotification {
             PendingIntent stopDestroy = PendingIntent.getService(context, 0, new Intent(TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
+            RemoteViews remoteViewsSmall = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line_small);
 
             Bitmap bookImage = getBookImage(bookPath);
-            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
 
+            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
             remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
+
+            remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bookImage);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPlay, playPause);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsNext, next);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPrev, prev);
+            remoteViewsSmall.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
+
+
             remoteViews.setViewVisibility(R.id.ttsNextTrack, View.GONE);
             remoteViews.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
 
+            remoteViewsSmall.setViewVisibility(R.id.ttsNextTrack, View.GONE);
+            remoteViewsSmall.setViewVisibility(R.id.ttsPrevTrack, View.GONE);
+
+
             remoteViews.setViewVisibility(R.id.ttsDialog, View.GONE);
+            remoteViewsSmall.setViewVisibility(R.id.ttsDialog, View.GONE);
 
             if (TTSEngine.get().isPlaying()) {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_175_pause);
             } else {
                 remoteViews.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
+                remoteViewsSmall.setImageViewResource(R.id.ttsPlay, R.drawable.glyphicons_174_play);
             }
 
             final int color = TintUtil.color == Color.BLACK ? Color.LTGRAY : TintUtil.color;
@@ -131,8 +151,14 @@ public class TTSNotification {
             remoteViews.setInt(R.id.ttsPrev, "setColorFilter", color);
             remoteViews.setInt(R.id.ttsStop, "setColorFilter", color);
 
+            remoteViewsSmall.setInt(R.id.ttsPlay, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsNext, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsPrev, "setColorFilter", color);
+            remoteViewsSmall.setInt(R.id.ttsStop, "setColorFilter", color);
+
             String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
-            String pageNumber = "(" + page + "/" + maxPages + ")";
+
+            String pageNumber = "(" +TxtUtils.getProgressPercent(page, maxPages) + " "  + page + "/" + maxPages + ")";
 
             if (page == -1 || maxPages == -1) {
                 pageNumber = "";
@@ -144,8 +170,11 @@ public class TTSNotification {
                 textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPath) + "] " + textLine;
             }
 
-            remoteViews.setTextViewText(R.id.bookInfo, textLine.trim());
+            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1+ " ","\n").trim());
             remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+
+            remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
+            remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
@@ -154,6 +183,7 @@ public class TTSNotification {
                     // .setTicker(context.getString(R.string.app_name)) //
                     // .setWhen(System.currentTimeMillis()) //
                     .setOngoing(true)//
+                    .setPriority(NotificationCompat.PRIORITY_MAX) //
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
                     // .addAction(R.drawable.glyphicons_175_pause,
                     // context.getString(R.string.to_paly_pause), playPause)//
@@ -166,7 +196,7 @@ public class TTSNotification {
                     // .setStyle(new NotificationCompat.DecoratedCustomViewStyle())//
                     // .addAction(action)//
                     .setCustomBigContentView(remoteViews) ///
-                    .setCustomContentView(remoteViews); ///
+                    .setCustomContentView(remoteViewsSmall); ///
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
@@ -196,14 +226,6 @@ public class TTSNotification {
         }
 
     }
-
-    static Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-            show(bookPath1, page1, pageCount);
-        }
-    };
 
     public static Bitmap getBookImage(String path) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());

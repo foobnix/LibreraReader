@@ -10,6 +10,7 @@
         android:layout_height="@dimen/wh_button_big"
         android:background="@drawable/bg_clickable"
         android:padding="7dip"
+        android:contentDescription="@string/settings"
         android:src="@drawable/glyphicons_185_volume_up1" />
 
     <ImageView
@@ -17,6 +18,8 @@
         android:layout_width="@dimen/wh_button_big"
         android:layout_height="@dimen/wh_button_big"
         android:layout_gravity="center"
+        android:contentDescription="@string/previous_page"
+
         android:layout_marginLeft="10dp"
         android:background="@drawable/bg_clickable"
         android:padding="6dp"
@@ -27,13 +30,16 @@
         android:layout_width="@dimen/wh_button_big"
         android:layout_height="@dimen/wh_button_big"
         android:layout_gravity="center"
+        android:contentDescription="@string/play_pause"
         android:layout_marginLeft="14dp"
         android:background="@drawable/bg_clickable"
-        android:padding="2dp"
+        android:padding="4dp"
         android:src="@drawable/glyphicons_174_play" />
 
 
     <ImageView
+        android:contentDescription="@string/next_page"
+
         android:id="@+id/ttsNext"
         android:layout_width="@dimen/wh_button_big"
         android:layout_height="@dimen/wh_button_big"
@@ -46,6 +52,7 @@
     
     <ImageView
         android:id="@+id/ttsPrevTrack"
+        android:contentDescription="@string/next_track"
         android:layout_width="@dimen/wh_button_big"
         android:layout_height="@dimen/wh_button_big"
         android:layout_gravity="center"
@@ -56,6 +63,7 @@
     
     
     <ImageView
+        android:contentDescription="@string/previous_track"
         android:id="@+id/ttsNextTrack"
         android:layout_width="@dimen/wh_button_big"
         android:layout_height="@dimen/wh_button_big"
@@ -72,6 +80,7 @@
         android:layout_height="@dimen/wh_button_big"
         android:layout_gravity="center"
         android:layout_marginLeft="10dip"
+        android:contentDescription="@string/close"
         android:background="@drawable/bg_clickable"
         android:padding="10dp"
         android:src="@drawable/glyphicons_208_remove_2" />

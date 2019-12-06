@@ -53,8 +53,8 @@ import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.PrefDialogs;
@@ -757,15 +757,15 @@ public class ExtUtils {
             String ext = getFileExtension(file.getName().toLowerCase());
 
             if (AppState.get().prefScrollMode.contains(ext)) {
-                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             } else if (AppState.get().prefBookMode.contains(ext)) {
-                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             } else if (AppState.get().prefMusicianMode.contains(ext)) {
-                AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, null);
                 return true;
             }
@@ -896,7 +896,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -905,7 +905,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -915,7 +915,7 @@ public class ExtUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                AppTemp.get().readingMode = AppState.READING_MODE_MUSICIAN;
+                AppSP.get().readingMode = AppState.READING_MODE_MUSICIAN;
                 showDocumentWithoutDialog(c, file, null);
             }
         });
@@ -959,7 +959,7 @@ public class ExtUtils {
         }
         LOG.d("showDocumentWithoutDialog2", uri.getPath(), percent, playlist);
 
-        if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
             openHorizontalView(c, uri, percent, playlist);
             return;
         }
@@ -1312,7 +1312,7 @@ public class ExtUtils {
                 try {
                     String json = new Scanner(toFile).useDelimiter("\\A").next();
 
-//                    JSONObject jsonObject = new JSONObject(json);
+//                    LinkedJSONObject jsonObject = new LinkedJSONObject(json);
 //                    if (jsonObject.has(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES)) {
 //                        jsonObject = jsonObject.getJSONObject(ExportSettingsManager.PREFIX_BOOKMARKS_PREFERENCES);
 //                    }
@@ -1353,7 +1353,7 @@ public class ExtUtils {
                 }
 
 //                try {
-//                    JSONObject result = ExportSettingsManager.exportToJSon("bookmarks", BookmarksData.get().getBookmarkPreferences(), BookmarksData.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
+//                    LinkedJSONObject result = ExportSettingsManager.exportToJSon("bookmarks", BookmarksData.get().getBookmarkPreferences(), BookmarksData.RECENT_, book != null ? AppBookmark.fixText(book.getPath()) : null);
 //                    FileWriter writer = new FileWriter(toFile);
 //                    writer.write(result.toString(2));
 //                    writer.flush();
@@ -1483,11 +1483,11 @@ public class ExtUtils {
                         @Override
                         public void run() {
                             if (a instanceof VerticalViewActivity) {
-                                AppTemp.get().readingMode = AppState.READING_MODE_SCROLL;
+                                AppSP.get().readingMode = AppState.READING_MODE_SCROLL;
                                 showDocumentWithoutDialog(a, (File) result, null);
 
                             } else if (a instanceof HorizontalViewActivity) {
-                                AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+                                AppSP.get().readingMode = AppState.READING_MODE_BOOK;
                                 showDocumentWithoutDialog(a, (File) result, null);
                             } else {
                                 showDocumentWithoutDialog2(a, (File) result);

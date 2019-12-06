@@ -4,38 +4,38 @@ layout: main
 
 # reemplazos TTS
 
-> Los reemplazos se usan para cambiar la pronunciación de algunas palabras, para eliminar texto no deseado, para establecer la marca de estrés correcta
+> Los reemplazos de texto a voz se usan para cambiar la forma en que el motor pronuncia ciertas palabras, para omitir ciertos caracteres mientras lee o para establecer las marcas de estrés correctas.
 
 * Habilitar reemplazos TTS
-* Mostrar el texto resultante de los reemplazos
-* Diálogo de reemplazos
+* Mostrar el pasaje con resultados de reemplazo
+* El cuadro de diálogo **Reemplazos** para establecer reglas de reemplazo
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Los reemplazos admiten el reemplazo clásico de una cadena a otra o puede usar expresiones RegExp
+Se admiten reemplazos clásicos (cambio directo de una cadena por otra), o puede usar expresiones regulares (RegExp).
 
-## Expresión
+## Expresiones
 
 * &quot;texto&quot; - Texto simple
 * &quot;* texto&quot; - * regla RexExp
-* &quot;# texto&quot; - # regla deshabilitada
+* &quot;# texto&quot; - regla deshabilitada
 * &quot;text256&quot; - regla deshabilitada
 
 ## Ejemplos
 
-* &quot;Lib&quot;. -&gt; &quot;Librera&quot; - reemplaza Lib. a Librera
-* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - agregue la marca de tensión correcta
-* &quot;# Lib&quot;. -&gt; &quot;Librera&quot; - &quot;#&quot; para deshabilitar la regla
-* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - Reemplazar Lib. a Librera y lib. a librera
-* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Reemplazar caracteres por caracteres vacíos
-* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Reemplazar caracteres para pausar (,) char
+* &quot;Lib&quot;. -&gt; &quot;Librera&quot; - reemplaza Lib. con librera
+* &quot;Librera&quot; -&gt; &quot;Libréra&quot; - agregue una marca de tensión correcta
+* &quot;# Lib&quot;. -&gt; &quot;Librera&quot; - usa &quot;#&quot; para deshabilitar una regla
+* &quot;* (L | l) ib.&quot; -&gt; &quot;$ 1ibrera&quot; - reemplaza Lib. con Librera y lib. con librera
+* &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- saltar caracteres
+* &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - reemplazar caracteres con una pausa (,)
 
-## Agregar archivo de regla
+## Agregar un archivo de reglas
 
-Librera admite archivos de reglas Regexp de @Voice reader
-aquí hay algunos samle **demo-replaceces.txt**
+**Librera** admite archivos de reglas RegExp de **@Voice Reader**
+Consulte este ejemplo **demo-replaceces.txt** a continuación:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,16 @@ aquí hay algunos samle **demo-replaceces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Saltar áreas recortadas en documentos PDF
+> Muy a menudo, las páginas en archivos PDF (libros, artículos de revistas, libros de texto, etc.) tienen encabezados y pies de página que se ejecutan en todo el documento. Puede recortar los cabezales con una pizca de dos dedos, que pasará a las páginas siguientes (y anteriores). Pero su motor TTS no tiene ni idea de sus manipulaciones. Por lo tanto, debe decirle qué hacer (¡omita lo molesto!) Mientras le lee el documento en voz alta.
 
-   
+En **Librera** hemos introducido reemplazos especiales (comandos) que le permitirán ignorar las áreas recortadas y garantizar una lectura continua e ininterrumpida.
+* En la ventana **Reemplazos**, ingrese una palabra o secuencia de palabras en la columna izquierda y _ttsSKIP_ como su reemplazo. Este reemplazo le indicará al motor que omita la oración con esta palabra/secuencia de palabras
+* Ingrese una palabra o secuencia de palabras en la columna izquierda y _ttsNEXT_ como su reemplazo. El reemplazo le indicará al motor que omita la oración con esta palabra/secuencia de palabras e inmediatamente vaya a la página siguiente
+* No olvides presionar _APPLY_ para permitir que se mantengan los reemplazos
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **¡Pruebe sus cambios varias veces para asegurarse de que todo funcione como debería!**

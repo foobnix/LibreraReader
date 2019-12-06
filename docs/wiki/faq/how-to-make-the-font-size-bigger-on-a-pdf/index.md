@@ -2,17 +2,13 @@
 layout: main
 ---
 
-# How to increase font size in PDF document in Android
+# Increasing Font-Size in PDF Documents
 
-People often ask 
-
-* How do I make the font size bigger on a PDF?
-* How do I change the font size in a PDF fillable form?
-* How do I increase font size in PDF document?
-* How do I change the font size of a PDF comment?
-* How do I change font size on PDF
-
-In Librera application you can open PDF in **Text Reflow** mode and change font size to any you need.
+To improve readability of your PDF document (too small character size), you can convert it in **Librera** to another file format (EPUB):
+* Open your PDF document in **Librera**
+* Open the general menu by tapping at center screen
+* Tap on the book menu icon (three-dot icon) at the bottom of the screen
+* Tap on the _Reflow PDF_ item, wait for the conversion to end, and then change the font-size in the **Preferences** window.
 
 |1|2|3|
 |-|-|-|

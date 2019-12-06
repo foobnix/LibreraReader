@@ -12,9 +12,9 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.librera.JSONArray;
+import org.librera.JSONException;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -255,7 +255,7 @@ public class AppData {
         try {
             JSONArray array = new JSONArray(in);
             for (int i = 0; i < array.length(); i++) {
-                final JSONObject it = array.getJSONObject(i);
+                final LinkedJSONObject it = array.getJSONObject(i);
                 SimpleMeta meta = new SimpleMeta();
                 meta.path = it.optString(SimpleMeta.JSON_PATH);
                 meta.time = it.optLong(SimpleMeta.JSON_TIME);
@@ -272,7 +272,7 @@ public class AppData {
     public static void writeSimpleMeta(List<SimpleMeta> list, File file) {
         JSONArray array = new JSONArray();
         for (SimpleMeta meta : list) {
-            JSONObject o = new JSONObject();
+            LinkedJSONObject o = new LinkedJSONObject();
             try {
                 o.put(SimpleMeta.JSON_PATH, meta.path);
                 o.put(SimpleMeta.JSON_TIME, meta.time);

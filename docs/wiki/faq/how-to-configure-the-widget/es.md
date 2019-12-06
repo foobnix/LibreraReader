@@ -2,35 +2,28 @@
 layout: main
 ---
 
-# Cómo configurar el widget
+# Usando el widget de _Librera_
 
-> Para un acceso más rápido a los libros En su biblioteca, puede comenzar a leerlos desde el escritorio de su iniciador,
-necesitas agregar el widget Librera.
+> El widget lo ayudará a iniciar **Librera** directamente desde el escritorio de su dispositivo. Y con el libro que elijas.
+
+Para comenzar a usar el widget de **Librera**, debe colocarlo en el escritorio a través de la pestaña _Widgets_ en su lanzador.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
-Para agregar y personalizar el widget:
+## Personalizar el widget
 
-* Vaya a la configuración del widget de escritorio de su lanzador y agregue el widget de Librera a su escritorio
-* Una vez que haya agregado el widget, inicie sesión en Librera
-* Desliza el dedo de izquierda a derecha para abrir el menú
-* Desplácese hacia abajo en el menú hasta el elemento de configuración del widget.
+* Abra la pestaña deslizable **Preferencias** y deslícese hacia abajo hasta el panel _Widget_
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-En la configuración del widget Puedes personalizar el aspecto de Tu widget tiene Librera:
-
-* Información que se muestra en el widget: libros recientes o favoritos
-* Su vista es una Lista o Cuadrícula
-* El número de libros que se muestran en el widget.
-
-**Puede configurar el widget de manera óptima para usted.**
+* Puedes decirle al widget qué mostrar eligiendo entre tus _Favorites_ y _Recent_ documentos
+* Seleccione el diseño de los libros en el widget de **Librera**
+* Puede elegir el tamaño del widget de **Librera** aumentando o disminuyendo el número de libros en la estantería de su widget
 
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-

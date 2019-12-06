@@ -2,42 +2,30 @@
 layout: main
 ---
 
-# Festlegen der Textauswahl
+# Auswählen von Text in _Librera_
 
-> Mit Librera können Sie flexibel mit der Textauswahl arbeiten. Im Text können Sie sowohl einzelne Wörter als auch ganze Sätze, Seiten auswählen.
-Anschließend wird der ausgewählte Text beispielsweise an Lesezeichen oder Übersetzer gesendet.
+> Die Textauswahloptionen für **Librera** sind recht ausgefeilt. Durch langes Drücken (und Ziehen) können Sie Wörter, Passagen und ganze Seiten auswählen. Dann können Sie einfach mit einem einzigen Tastendruck Text kopieren, in eine andere App einfügen, Ihre Auswahl mit anderen Benutzern teilen, ein Lesezeichen erstellen, es an eine TTS-Engine senden (um es laut vorzulesen) oder ein-/ausschalten. Zeilenübersetzer/Wörterbücher usw.
 
-So aktivieren und konfigurieren Sie Auswahlmodi:
-* Klicken Sie auf das Einstellungssymbol
-* Wechseln Sie zum Menüreiter für erweiterte Einstellungen.
+So aktivieren Sie die Textauswahl:
+* Tippen Sie in der Mitte auf, um das Menü zu öffnen
+* Tippen Sie auf das Einstellungssymbol, um das Fenster **Einstellungen** zu öffnen
+* Wechseln Sie zum Tab &quot;Erweiterte Einstellungen&quot; und aktivieren Sie das entsprechende Kontrollkästchen
 
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-> Wenn der Auswahlmodus im Text des Buches deaktiviert ist und Sie auf eine Fußnote tippen, funktioniert der Übergang nicht. Wenn Sie per Fußnote navigieren müssen, aktivieren Sie den ersten Punkt &quot;Textauswahl aktivieren&quot;.
+## Textauswahloptionen
+* Ungeduldige Benutzer können das Kontrollkästchen &quot;Zum Auswählen einmal tippen&quot; aktivieren. (Diese Option eignet sich hervorragend für die Option _Open selection in dictionary_ im Haupt-Tab des Fensters **Preferences**.)
+* Die Option &quot;Text Buchstaben für Buchstaben auswählen&quot; sollte nützlich sein, wenn Sie Text in einigen asiatischen Sprachen auswählen
 
-Der Auswahlmodus wird durch Aktivieren der Kontrollkästchen konfiguriert:
-* Textauswahl aktivieren - Aktiviert oder deaktiviert die Textauswahl im Dokument. Der Text wird nur durch langes Tippen hervorgehoben
-* Tippen Sie einmal, um Text auszuwählen. Die Auswahl des Texts erfolgt, wenn Sie kurz auf das Wort klicken
-* Wählen Sie den Text Buchstabe für Buchstabe aus - für Hieroglyphensprachen.
-
-Die Textauswahl kann ein einzelnes Wort, ein Satz oder die gesamte Seite sein:
-* Tippen Sie je nach Ihren Einstellungen kurz oder lang auf das Wort
-* Um mehr als ein Wort zu markieren, fahren Sie mit dem Finger über mehrere Wörter. Sie können auch die Start- und Endmarkierungen verwenden
-Text auswählen, vergrößern oder den Abstand zwischen den Wörtern verringern
-* Um das Menü aufzurufen, wenn kurze Oberseiten und Vollbild angezeigt werden, tippen Sie lange in die Mitte des Bildschirms.
+## Auswählen von Textsegmenten und ganzen Seiten
+* Halten Sie in der Passage, die Sie auswählen möchten, ein Wort gedrückt
+* Ziehen Sie Ihren Finger in die Auswahlrichtung. Wenn Sie die Start- und Endpunkte sehen, können Sie Ihren Finger loslassen, das _Text_-Fenster schließen und mit der Auswahl von Text fortfahren, indem Sie die Ziehpunkte ziehen
+* Um eine ganze Seite auszuwählen, öffnen Sie das Fenster _Zur Seite wechseln, indem Sie auf das Miniaturansichtsymbol tippen
+* Drücken Sie lange auf die Seite, die Sie auswählen möchten, und wählen Sie eine Option aus der Dropdown-Liste aus
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
-
-Ausgewählter Text, den Sie können:
-* Setze ein Lesezeichen für dieses Buch
-* Zu einer anderen Anwendung übertragen
-* Vorlesen
-* Zur Übersetzung senden
-* Führen Sie eine Suche in einem Dokument oder im Internet durch
-* Zur weiteren Verarbeitung kopieren
-

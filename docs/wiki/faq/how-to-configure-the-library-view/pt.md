@@ -2,62 +2,56 @@
 layout: main
 ---
 
-# Como personalizar a aparência da sua biblioteca e capas de livros
+# Personalizando a aparência da sua biblioteca
 
-> O Librera permite que você personalize de forma flexível a aparência geral da sua biblioteca, o tamanho da capa do livro, as informações exibidas no livro, a classificação dos livros na sua biblioteca.
+> **O Librera** permite ajustar a maneira como seus livros são exibidos nas &quot;prateleiras&quot; da sua Biblioteca. Você pode alterar o número de livros em uma prateleira, sua aparência, tamanho da prateleira, agrupamento e listagem de livros, etc.
 
-Para configurar rapidamente a exibição da biblioteca, você deve:
+Seus livros são mostrados na guia _Library_, onde você pode fazer ajustes na apresentação do livro. Configurações adicionais que afetam a visualização da Biblioteca estão localizadas na guia _Preferências_ deslizantes, no painel _Capas do livro_.
 
-* Vá para a guia Biblioteca
-* Clique no modo de exibição da biblioteca e selecione o desejado.
+* Para alterar o layout do livro (lista, grade, condensado etc.), toque no ícone de hambúrguer no canto superior direito da guia _Biblioteca_
+* Deslize para a direita a partir da borda esquerda da tela para abrir a guia _Preferences_
 
-Você também pode personalizar ainda mais a aparência da biblioteca e capas de livros nas configurações:
+> Se você tiver a caixa _Preferences_ marcada (sem animação), encontrará a guia _Preferences_ ao lado da guia _Library_ na parte superior.
 
-* Deslize para puxar o painel de configurações
-* Deslize para baixo até as configurações de capas de livros.
+* Deslize para baixo e encontre o painel _Book Covers_
 
 ||||
 |-|-|-|
 |![](3.jpg)|![](1.jpg)|![](2.jpg)|
 
-Na configuração rápida da biblioteca, você pode escolher um tipo diferente, darei, por exemplo, alguns.
+* Exemplos das visualizações de apenas algumas opções de layout são apresentados abaixo:
+ 
+> Lembre-se, outro layout está a apenas dois toques de distância. Você pode mudar para o mais conveniente a qualquer momento.
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-Nas configurações de capas de livros, você pode desativar ou ativar a capa.
+## O painel _Capas de livros_
 
-* Desative a caixa de seleção para remover a exibição da capa do livro
-* Se você deseja exibir as capas dos livros na biblioteca, ative esta caixa de seleção.
+* Você pode optar por não ver as capas dos livros desmarcando a respectiva caixa
+* Você ainda tem muitas opções de layout
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Para alterar o tamanho da capa do livro exibida:
-
-* Use o controle deslizante para selecionar o tamanho da capa do livro exibida
+* Suas manipulações com o tamanho das capas de livros dependerão do layout que você escolheu (lista ou grade)
+* Para &quot;lista&quot;, use o respectivo controle deslizante para alterar o tamanho das capas dos livros (tamanho da prateleira)
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-Para alterar a grade exibida na tela de capas de livros:
+Você terá mais opções para &quot;grade&quot;.
 
-* Um controle deslizante para escolher o tamanho da grade
-* Você pode escolher o número de colunas
+* Use o respectivo controle deslizante para alterar o tamanho das capas dos livros
+* Você também pode escolher o número de colunas na grade da sua Biblioteca
+
+> Nota: você sempre pode voltar às configurações iniciais tocando em _Restaurar padrão_ e confirmando a operação com _OK_.
+
+**Se você optar por exibir as capas de seus livros, use outras opções no painel _Capas de livros_ para melhorar a visualização.**
 
 ||||
 |-|-|-|
 |![](13.jpg)|![](14.jpg)|![](15.jpg)|
-
-Se você deseja retornar as configurações da capa do livro ao estado inicial:
-
-* Clique em &quot;restaurar padrão&quot;
-* Confirme sua ação &quot;OK&quot;
-
-As capas serão restauradas para suas configurações iniciais.
-
-
-

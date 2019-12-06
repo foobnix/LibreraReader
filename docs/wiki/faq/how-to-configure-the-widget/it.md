@@ -2,35 +2,28 @@
 layout: main
 ---
 
-# Come configurare il widget
+# Uso del widget di _Librera_
 
-> Per un accesso più rapido ai libri Nella tua libreria puoi avviarli a leggere dal desktop del tuo launcher,
-devi aggiungere il widget Librera.
+> Il widget ti aiuterà ad avviare **Librera** direttamente dal desktop del tuo dispositivo. E con il libro che preferisci.
+
+Per iniziare a utilizzare il widget di **Librera**, è necessario posizionarlo sul desktop tramite la scheda _Widgets_ nel programma di avvio.
 
 ||||
 |-|-|-|
 |![](6.jpg)|![](9.jpg)|![](10.jpg)|
 
-Per aggiungere e personalizzare il widget:
+## Personalizzazione del widget
 
-* Vai alle impostazioni del widget desktop del tuo launcher e aggiungi il widget Librera sul desktop
-* Dopo aver aggiunto il widget, accedi a Librera
-* Scorri da sinistra a destra per aprire il menu
-* Scorri verso il basso il menu fino alla voce Impostazioni widget.
+* Apri la scheda **Preferenze** e scorri verso il basso fino al pannello _Widget_
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](21.jpg)|![](22.jpg)|
 
-Nelle impostazioni del widget Puoi personalizzare l'aspetto del tuo widget con Librera:
-
-* Informazioni visualizzate nel widget - Libri recenti o Preferiti
-* La sua vista è un elenco o una griglia
-* Il numero di libri visualizzati nel widget.
-
-**Puoi configurare il widget in modo ottimale per te.**
+* Puoi dire al widget cosa visualizzare scegliendo tra i tuoi documenti _Favorites_ e _Recent_
+* Seleziona il layout dei libri nel widget di **Librera**
+* Puoi scegliere la dimensione del widget di **Librera** aumentando o diminuendo il numero di libri sullo scaffale del tuo widget
 
 ||||
 |-|-|-|
 |![](2.jpg)|![](3.jpg)|![](4.jpg)|
-

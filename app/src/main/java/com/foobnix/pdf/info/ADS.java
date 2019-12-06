@@ -24,9 +24,6 @@ public class ADS {
     private static final String TAG = "ADS";
     public static int FULL_SCREEN_TIMEOUT_SEC = 10;
 
-    public static AdRequest adRequest = new AdRequest.Builder()//
-            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-            .build();//
 
     public static void hideAdsTemp(Activity a) {
         try {
@@ -79,7 +76,7 @@ public class ADS {
             }
             adView.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_BANNER_ID"));
 
-            adView.loadAd(adRequest);
+            adView.loadAd(getAdRequest(a));
 
             adView.setAdListener(new AdListener() {
                 @Override
@@ -108,7 +105,6 @@ public class ADS {
         }
 
     }
-
 
     public static void onPauseAll(AdView adView) {
         if (adView != null) {
@@ -156,5 +152,18 @@ public class ADS {
         } catch (NoSuchAlgorithmException e) {
         }
         return "";
+    }
+
+    public static AdRequest getAdRequest(Activity a) {
+        if (BuildConfig.DEBUG) {
+            String myID = ADS.getByTestID(a);
+            return new AdRequest.Builder()//
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
+                    .addTestDevice(myID)//
+                    .build();//
+        } else {
+            return new AdRequest.Builder().build();//
+
+        }
     }
 }

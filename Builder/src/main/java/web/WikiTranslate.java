@@ -21,28 +21,35 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
+    final static String HOME = "/home/ivan-dev/git/LibreraReader";
 
     public static void main(String[] args) throws Exception {
 
+        GenerateFAQ.updateIndex(HOME + "/docs/wiki/faq", "Frequently Asked Questions");
 
-        GenerateFAQ.updateIndex("/home/ivan-dev/git/LibreraReader/docs/wiki/faq", "Frequently asked questions");
+        List<String> paths = Arrays.asList(
+                HOME + "/docs/wiki/faq",
+                HOME + "/docs/wiki/what-is-new"
+        );
 
-        String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq";
-      // String root = "/home/ivan-dev/git/LibreraReader/docs/wiki/faq/how-to-set-up-a-status-bar";
-
-
-        File file = new File("/home/ivan-dev/git/LibreraReader/Builder/cache.json");
+        File file = new File(HOME + "/Builder/cache.json");
         cache = new JSONObject(readString(file));
 
         try {
-            syncPaths(root, "ru");
-            syncPaths(root, "fr");
-            syncPaths(root, "de");
-            syncPaths(root, "it");
-            syncPaths(root, "pt");
-            syncPaths(root, "es");
-            syncPaths(root, "zh");
-            syncPaths(root, "ar");
+
+            for(String path: paths) {
+                syncPaths(path, "ru");
+                syncPaths(path, "fr");
+                syncPaths(path, "de");
+                syncPaths(path, "it");
+                syncPaths(path, "pt");
+                syncPaths(path, "es");
+                syncPaths(path, "zh");
+                syncPaths(path, "ar");
+            }
+
+
+
         } finally {
             writeString(file, cache.toString());
         }
@@ -100,6 +107,8 @@ public class WikiTranslate {
             return in;
         }
 
+
+
         String key = in + ln;
         if (cache.has(key)) {
             return cache.getString(key);
@@ -138,14 +147,20 @@ public class WikiTranslate {
 
         Map<String, String> reverse = new LinkedHashMap<>();
         reverse.put("{1} ", "# ");
+        reverse.put("{1}", "#");
 
         reverse.put(" {2}", "**");
+        reverse.put("{2}", "**");
+
         reverse.put("{3} ", "**");
+        reverse.put("{3}", "**");
 
         reverse.put(" {6}", "**");
         reverse.put("{6} ", "**");
+        reverse.put("{6}", "**");
 
         reverse.put("{4} ", "* ");
+        reverse.put("{4}", "*");
 
         reverse.put("{7}", "&nbsp;");
         reverse.put("{8}", "###");
@@ -232,6 +247,13 @@ public class WikiTranslate {
             }
             if (line.trim().equals("---")) {
                 findHeader = !findHeader;
+            }
+
+            //if(line.trim().equals("layout: main")){
+                //line += "\ninfo: this file is generated automatically, please do not modify it";
+            //}
+            if(line.startsWith("info:")){
+                continue;
             }
 
             if (findCode || findHeader) {

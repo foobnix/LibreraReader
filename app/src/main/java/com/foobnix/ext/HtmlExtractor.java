@@ -5,8 +5,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.WebViewUtils;
 import com.foobnix.hypen.HypenUtils;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -133,8 +133,8 @@ public class HtmlExtractor {
                 string = html.toString();
             }
 
-            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang)) {
-                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+            if (BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang)) {
+                HypenUtils.applyLanguage(AppSP.get().hypenLang);
                 int bodyInt = string.indexOf("<body");
                 bodyInt = string.indexOf(">", bodyInt);
 
@@ -176,6 +176,9 @@ public class HtmlExtractor {
 
             boolean isFlag = false;
             HypenUtils.resetTokenizer();
+            if (BookCSS.get().isAutoHypens) {
+                HypenUtils.applyLanguage(AppSP.get().hypenLang);
+            }
             while ((line = input.readLine()) != null) {
 
                 if (line.contains("<ht") || line.contains("<HT")) {
@@ -205,7 +208,6 @@ public class HtmlExtractor {
             String string = Jsoup.clean(html.toString(), Whitelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
-                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
                 string = HypenUtils.applyHypnes(string);
             }
 

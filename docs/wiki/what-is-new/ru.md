@@ -2,7 +2,6 @@
 layout: main
 ---
 
-# Что нового в читателе книг Librera
-
+# Что нового в Librera Book Reader
 
     

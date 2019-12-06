@@ -4,7 +4,7 @@ layout: main
 
 # 8.0
 
-By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPolicy/)
+En utilisant cette application, vous acceptez les conditions de la [Politique de confidentialité](/wiki/PrivacyPolicy/fr)
 
 **Améliorations générales**
 
@@ -15,7 +15,7 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 
 * Option permettant de modifier la position des onglets
 * Prise en charge du format de document
-* Prise en charge du format Docx sur les appareils Anroid 8+
+* Prise en charge du format Docx sur les appareils Android 8+
 * paramètres prédéfinis en mode lecture
 
 **Correction de bugs**
@@ -45,3 +45,4 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 ||||
 |-|-|-|
 |![](9.png)|![](8.png)|![](7.png)|
+

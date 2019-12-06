@@ -4,38 +4,38 @@ layout: main
 
 # TTS Replacements
 
-> Replacements are used to change the pronunciation of some words, to delete unwanted text, to set correct stress mark 
+> Text-to-Speech Replacements are used to change the way the engine pronounces certain words, to skip certain characters while reading, or set correct stress marks.
 
 * Enable TTS Replacements
-* Show the replacements resulted text
-* Replacements dialog
+* Show the passage with replacement results
+* The **Replacements** dialog for setting replacement rules
 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Replacements support classic replace one string to other or you can use RegExp expressions  
+Classic replacements are supported (straightforward change of one string for another), or you can use regular expressions (RegExp).
 
-## Expression
+## Expressions
 
 * "text" - Simple text
 * "*text" - * RexExp rule
-* "#text" - # disabled rule
+* "#text" -  disabled rule
 * "text256" - disabled rule
 
 ## Examples
 
-* "Lib." -> "Librera" - replace Lib. to Librera  
-* "Librera" -> "Libréra" - add correct stress mark
-* "#Lib." -> "Librera" - "#" to disable rule
-* "*(L&#124;l)ib." -> "$1ibrera" - Replace Lib. to Librera and lib. to librera
-* "*[()"«»*”“/[]]" -> "" - Replace chars to empty char
-* "*[?!:;–|—|―]" -> "," - Replace chars to pause(,) char
+* "Lib." -> "Librera" - replace Lib. with Librera  
+* "Librera" -> "Libréra" - add a correct stress mark
+* "#Lib." -> "Librera" - use "#" to disable a rule
+* "*(L&#124;l)ib." -> "$1ibrera" - replace Lib. with Librera and lib. with librera
+* "*[()"«»*”“/[]]" -> "" - skip chars
+* "*[?!:;–|—|―]" -> "," - replace chars with a pause (,)
 
-## Add rule file
+## Add a Rule-File
 
-Librera support Regexp rule files from @Voice reader
-here is some samle **demo-replaces.txt**
+**Librera** supports RegExp rule-files from **@Voice Reader**
+Check out this sample **demo-replaces.txt** below:
 
 ```
 " живого " "живо́ва"
@@ -67,5 +67,16 @@ here is some samle **demo-replaces.txt**
 "(^| )(Г|г)-н" " господин"
 *"(\d+)\s?-\s?я\b(?# ""я"" на границе слова)" "$1-я "
 ```
+## Skip Cropped Areas in PDF Documents
+> Very often pages in PDF files (books, journal articles, textbooks, etc.) have headers and footers that run throughout the entire document. You can crop the running heads out by two-finger pinch, which will carry on to the next (and previous) pages. But your TTS engine does not have a clue about your manipulations. So, you need to tell it what to do (Skip the annoying thing!) while reading the document out loud to you.
 
-   
+In **Librera** we have introduced special replacements (commands) that will allow you to ignore cropped areas and ensure continuous, uninterrupted reading.
+* In the **Replacements** window, enter a word or word sequence in the left column and _ttsSKIP_ as its replacement. This replacement will tell the engine to skip the sentence with this word/word sequence
+* Enter a word or word sequence in the left column and _ttsNEXT_ as its replacement. The replacement will tell the engine to skip the sentence with this word/word sequence and immediately go to next page
+* Don't forget to hit _APPLY_ to let the replacements hold
+
+|4|5|
+|-|-|
+|![](4.png)|![](5.png)|
+
+> **Please test your changes a few times to make sure everything is working as it should!**
