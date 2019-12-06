@@ -322,7 +322,7 @@ public class BrightnessHelper {
     }
 
     public static int getAppBrightness() {
-        if (AppState.get().isDayNotInvert) {
+        if (true) {
             return AppState.get().appBrightness;
         } else {
             return AppState.get().appBrightnessNight;
@@ -330,7 +330,7 @@ public class BrightnessHelper {
     }
 
     public static void setAppBrightness(int value) {
-        if (AppState.get().isDayNotInvert) {
+        if (true) {
             AppState.get().appBrightness = value;
         } else {
             AppState.get().appBrightnessNight = value;
