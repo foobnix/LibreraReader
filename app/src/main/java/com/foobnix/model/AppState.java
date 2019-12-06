@@ -552,8 +552,17 @@ public class AppState {
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     @IgnoreHashCode
     public int blueLightAlpha = 30;
+
+    @IgnoreHashCode
+    public int blueLightAlphaNight = 30;
+
     @IgnoreHashCode
     public boolean isEnableBlueFilter = false;
+
+    @IgnoreHashCode
+    public boolean isEnableBlueFilterNight = false;
+
+
     public boolean proxyEnable = false;
     public String proxyServer = "";
     public int proxyPort = 0;

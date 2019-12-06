@@ -50,7 +50,7 @@ public class BrightnessHelper {
 
     public static void applyBrigtness(final Activity a) {
         try {
-            int appBrightness = getAppBrightness();
+            int appBrightness = appBrightness();
 
             final WindowManager.LayoutParams lp = a.getWindow().getAttributes();
 
@@ -130,22 +130,22 @@ public class BrightnessHelper {
         });
 
         if (value == AppState.AUTO_BRIGTNESS) {
-            AppState.get().isEnableBlueFilter = false;
+            isEnableBlueFilter(false);
             // AppState.get().blueLightAlpha = 0;
 
-            setAppBrightness(AppState.AUTO_BRIGTNESS);
+            appBrightness(AppState.AUTO_BRIGTNESS);
             textView.setText(textView.getContext().getString(R.string.system_brightness));
 
         } else if (value < 0) {
-            AppState.get().isEnableBlueFilter = true;
-            AppState.get().blueLightAlpha = Math.abs(value);
-            setAppBrightness(0);
+            isEnableBlueFilter (true);
+            blueLightAlpha(Math.abs(value));
+            appBrightness(0);
 
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         } else {
-            AppState.get().isEnableBlueFilter = false;
+            isEnableBlueFilter(false);
             // AppState.get().blueLightAlpha = 0;
-            setAppBrightness(value);
+            appBrightness(value);
 
             textView.setText(textView.getContext().getString(R.string.brightness) + " " + value + "%");
         }
@@ -159,14 +159,14 @@ public class BrightnessHelper {
         if (overlay == null) {
             return;
         }
-        if (AppState.get().isEnableBlueFilter) {
+        if (isEnableBlueFilter()) {
             overlay.setVisibility(View.VISIBLE);
             int alpha;
 
             if (AppState.get().isAllowMinBrigthness) {
-                alpha = Math.min(200, (200 * AppState.get().blueLightAlpha) / 100);
+                alpha = Math.min(200, (200 * blueLightAlpha()) / 100);
             } else {
-                alpha = Math.min(160, (160 * AppState.get().blueLightAlpha) / 100);
+                alpha = Math.min(160, (160 * blueLightAlpha()) / 100);
             }
 
 
@@ -186,7 +186,7 @@ public class BrightnessHelper {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppState.get().isEnableBlueFilter = isChecked;
+                isEnableBlueFilter(isChecked);
                 if (onRefresh != null) {
                     onRefresh.run();
                 }
@@ -213,7 +213,7 @@ public class BrightnessHelper {
 
                     @Override
                     public boolean onResultRecive(String string) {
-                        AppState.get().isEnableBlueFilter = true;
+                        isEnableBlueFilter(true);
                         AppState.get().blueLightColor = Color.parseColor(string);
                         if (onRefresh != null) {
                             onRefresh.run();
@@ -224,21 +224,21 @@ public class BrightnessHelper {
                 });
 
                 final CustomSeek blueLightAlpha = (CustomSeek) inflate.findViewById(R.id.blueLightAlpha);
-                blueLightAlpha.init(0, 99, AppState.get().blueLightAlpha);
+                blueLightAlpha.init(0, 99, blueLightAlpha());
                 blueLightAlpha.setOnSeekChanged(new IntegerResponse() {
 
                     @Override
                     public boolean onResultRecive(int result) {
-                        AppState.get().isEnableBlueFilter = true;
-                        AppState.get().blueLightAlpha = result;
-                        blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
+                        isEnableBlueFilter(true);
+                        blueLightAlpha(result);
+                        blueLightAlpha.setValueText("" + blueLightAlpha() + "%");
                         if (onRefresh != null) {
                             onRefresh.run();
                         }
                         return false;
                     }
                 });
-                blueLightAlpha.setValueText("" + AppState.get().blueLightAlpha + "%");
+                blueLightAlpha.setValueText("" + blueLightAlpha() + "%");
 
                 builder.setView(inflate);
 
@@ -246,7 +246,7 @@ public class BrightnessHelper {
 
                     @Override
                     public void onClick(final DialogInterface dialog, final int id) {
-                        isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
+                        isEnableBlueFilter.setChecked(isEnableBlueFilter());
                         if (dialog != null) {
                             dialog.dismiss();
                         }
@@ -274,10 +274,10 @@ public class BrightnessHelper {
         final CustomSeek customBrightness = (CustomSeek) inflate.findViewById(R.id.customBrightness);
 
         int value = 0;
-        if (getAppBrightness() == AppState.AUTO_BRIGTNESS) {
+        if (appBrightness() == AppState.AUTO_BRIGTNESS) {
             value = systemBrigtnessInt;
         } else {
-            value = AppState.get().isEnableBlueFilter ? AppState.get().blueLightAlpha * -1 : getAppBrightness();
+            value = isEnableBlueFilter() ? blueLightAlpha() * -1 : appBrightness();
         }
 
         customBrightness.init(-100, 100, value);
@@ -289,7 +289,7 @@ public class BrightnessHelper {
                 customBrightness.setValueText("" + result);
                 EventBus.getDefault().post(new MessegeBrightness(result));
 
-                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
+                isEnableBlueFilter.setChecked(isEnableBlueFilter());
                 return false;
             }
         });
@@ -310,38 +310,60 @@ public class BrightnessHelper {
                     EventBus.getDefault().post(new MessegeBrightness(systemBrigtnessInt));
                 }
 
-                isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
+                isEnableBlueFilter.setChecked(isEnableBlueFilter());
 
             }
         });
 
-        isEnableBlueFilter.setChecked(AppState.get().isEnableBlueFilter);
-        autoSettings.setChecked(getAppBrightness() == AppState.AUTO_BRIGTNESS);
-        customBrightness.setEnabled(getAppBrightness() != AppState.AUTO_BRIGTNESS);
+        isEnableBlueFilter.setChecked(isEnableBlueFilter());
+        autoSettings.setChecked(appBrightness() == AppState.AUTO_BRIGTNESS);
+        customBrightness.setEnabled(appBrightness() != AppState.AUTO_BRIGTNESS);
 
     }
 
-    public static int getAppBrightness() {
-        if (true) {
-            return AppState.get().appBrightness;
-        } else {
-            return AppState.get().appBrightnessNight;
-        }
+    public static int appBrightness() {
+        return AppState.get().isDayNotInvert ? AppState.get().appBrightness : AppState.get().appBrightnessNight;
     }
 
-    public static void setAppBrightness(int value) {
-        if (true) {
+    public static void appBrightness(int value) {
+        if (AppState.get().isDayNotInvert) {
             AppState.get().appBrightness = value;
         } else {
             AppState.get().appBrightnessNight = value;
         }
     }
 
-    public void updateCurrentValue() {
-        if (AppState.get().isEnableBlueFilter) {
-            currentPercent = AppState.get().blueLightAlpha * -1;
+    public static boolean isEnableBlueFilter() {
+        return AppState.get().isDayNotInvert ? AppState.get().isEnableBlueFilter : AppState.get().isEnableBlueFilterNight;
+    }
+
+    public static void isEnableBlueFilter(boolean value) {
+        if (AppState.get().isDayNotInvert) {
+            AppState.get().isEnableBlueFilter = value;
         } else {
-            currentPercent = getAppBrightness() == AppState.AUTO_BRIGTNESS ? 0 : getAppBrightness();
+            AppState.get().isEnableBlueFilterNight = value;
+        }
+    }
+
+
+    public static int blueLightAlpha() {
+        return AppState.get().isDayNotInvert ? AppState.get().blueLightAlpha : AppState.get().blueLightAlphaNight;
+    }
+
+    public static void blueLightAlpha(int value) {
+        if (AppState.get().isDayNotInvert) {
+            AppState.get().blueLightAlpha = value;
+        } else {
+            AppState.get().blueLightAlphaNight = value;
+        }
+    }
+
+
+    public void updateCurrentValue() {
+        if (isEnableBlueFilter()) {
+            currentPercent = blueLightAlpha() * -1;
+        } else {
+            currentPercent = appBrightness() == AppState.AUTO_BRIGTNESS ? 0 : appBrightness();
         }
     }
 
