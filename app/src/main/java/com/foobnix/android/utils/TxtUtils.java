@@ -20,8 +20,8 @@ import android.widget.TextView;
 import androidx.core.util.Pair;
 
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -345,9 +345,9 @@ public class TxtUtils {
 
         pageHTML = pageHTML.replace("<end-line>.", ".");
 
-        if (AppState.get().isShowFooterNotesInText && AppTemp.get().hypenLang != null) {
+        if (AppState.get().isShowFooterNotesInText && AppSP.get().hypenLang != null) {
             try {
-                String string = getLocaleStringResource(new Locale(AppTemp.get().hypenLang), R.string.foot_notes, LibreraApp.context);
+                String string = getLocaleStringResource(new Locale(AppSP.get().hypenLang), R.string.foot_notes, LibreraApp.context);
                 pageHTML = replaceAll(pageHTML, "[\\[{][0-9]+[\\]}]", TTS_PAUSE + " " + TTS_PAUSE + string + TTS_PAUSE);
             } catch (Exception e) {
                 LOG.e(e);

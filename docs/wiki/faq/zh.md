@@ -4,6 +4,9 @@ layout: main
 
 #常见问题
 
+* [口径样式参考模式](/wiki/faq/reference-mode-calibre/zh)
+* [两列模式，半页模式，单页模式](/wiki/faq/how-to-set-up-reading-mode/zh)
+* [与_Librera_一起使用文本语音转换引擎](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何在_Librera_中选择文本](/wiki/faq/how-to-set-text-selection/zh)
 * [跨多个设备同步您的阅读设置](/wiki/faq/setting-up-synchronization/zh)
 * [重新分页文档以匹配书的页码](/wiki/faq/relative-page-numbers/zh)
@@ -17,12 +20,10 @@ layout: main
 * [设置指纹或密码保护](/wiki/faq/setting-up-fingerprint-or-password-protection/zh)
 * [PDF的对比度和亮度增强(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
 * [使用RTL语言阅读](/wiki/faq/rtl-or-ltr-text-direction/zh)
-* [安装和配置语音合成(TTS)](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [主题库用户界面](/wiki/faq/customize-theme-colors-links/zh)
 * [增加PDF文档的字体大小](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)
 * [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
-* [如何设置阅读模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)

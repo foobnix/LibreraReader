@@ -590,4 +590,7 @@
    <string name="previous_track">Попередній трек</string>
    <string name="copied_text">Скопійований текст</string>
    <string name="reference_mode_like_in_calibre_viewer">Довідковий режим (як у переглядачі калібру)</string>
+   <string name="profile_root">Корінь профілю</string>
+   <string name="create_folder">Створити папку</string>
+   <string name="show_hidden">Показати приховано</string>
 </resources>

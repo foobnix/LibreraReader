@@ -9,8 +9,8 @@ import android.view.MotionEvent;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
@@ -166,7 +166,7 @@ public abstract class AbstractViewController extends AbstractComponentController
             final Page page = bs.getCurrentPage(getBase().getDocumentModel().getPageCount()).getActualPage(model, bs);
              int toPage = page != null ? page.index.viewIndex : 0;
 
-            if (toPage > 0 && AppTemp.get().isCut) {
+            if (toPage > 0 && AppSP.get().isCut) {
                 toPage = toPage / 2;
             }
 

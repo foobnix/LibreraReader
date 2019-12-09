@@ -23,8 +23,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.ExtUtils;
@@ -104,14 +104,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
                 final boolean isTextFomat = ExtUtils.isTextFomat(bs.path);
-                AppTemp.get().isCut = isTextFomat ? false : bs.sp;
-                AppTemp.get().isCrop = bs.cp;
-                AppTemp.get().isDouble = false;
-                AppTemp.get().isDoubleCoverAlone = false;
-                AppTemp.get().isLocked = bs.getLock(isTextFomat);
+                AppSP.get().isCut = isTextFomat ? false : bs.sp;
+                AppSP.get().isCrop = bs.cp;
+                AppSP.get().isDouble = false;
+                AppSP.get().isDoubleCoverAlone = false;
+                AppSP.get().isLocked = bs.getLock(isTextFomat);
                 TempHolder.get().pageDelta = bs.d;
                 if (AppState.get().isCropPDF && !isTextFomat) {
-                    AppTemp.get().isCrop = true;
+                    AppSP.get().isCrop = true;
                 }
             }
             BookCSS.get().detectLang(path);

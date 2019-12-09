@@ -2,12 +2,17 @@ package com.foobnix.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 
 import com.foobnix.android.utils.Objects;
+import com.foobnix.pdf.info.BuildConfig;
 
-public class AppTemp {
+import java.io.File;
 
-    private static AppTemp instance = new AppTemp();
+public class AppSP {
+
+
+    private static AppSP instance = new AppSP();
     public String lastBookPath;
     public String lastClosedActivity;
     public String lastMode;
@@ -34,9 +39,13 @@ public class AppTemp {
     public boolean isCropSymetry = false;
     public boolean isEnableSync;
     public String syncRootID;
+
+    public String currentProfile = BuildConfig.IS_BETA ? "BETA" : "Librera";
+    public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
+
     transient SharedPreferences sp;
 
-    public static AppTemp get() {
+    public static AppSP get() {
         return instance;
     }
 

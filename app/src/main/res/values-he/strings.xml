@@ -590,4 +590,7 @@
    <string name="previous_track">רצועה קודמת</string>
    <string name="copied_text">טקסט מועתק</string>
    <string name="reference_mode_like_in_calibre_viewer">מצב הפניה (כמו בצופה בקליבר)</string>
+   <string name="profile_root">שורש פרופיל</string>
+   <string name="create_folder">צור תיקיה</string>
+   <string name="show_hidden">הראה את המוסתר</string>
 </resources>

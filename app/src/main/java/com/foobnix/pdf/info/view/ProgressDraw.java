@@ -13,8 +13,8 @@ import androidx.core.graphics.ColorUtils;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 
@@ -90,7 +90,7 @@ public class ProgressDraw extends View {
             int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
             // int titleColor = AppState.get().isInvert ? Color.WHITE :
             // Color.BLACK;
-            if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+            if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
 
             } else {
                 canvas.drawColor(titleColor);

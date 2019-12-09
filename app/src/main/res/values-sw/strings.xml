@@ -590,4 +590,7 @@
    <string name="previous_track">Wimbo wa zamani</string>
    <string name="copied_text">Nakala iliyonakiliwa</string>
    <string name="reference_mode_like_in_calibre_viewer">Hali ya kumbukumbu (kama ilivyo kwa mtazamaji wa caliber)</string>
+   <string name="profile_root">Mzizi wa wasifu</string>
+   <string name="create_folder">Unda folda</string>
+   <string name="show_hidden">Onyesha siri</string>
 </resources>

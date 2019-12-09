@@ -3,8 +3,8 @@ package com.foobnix.android.utils;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.librera.JSONException;
@@ -163,7 +163,7 @@ public class Objects {
     }
 
     public static int appHash() {
-        return Objects.hashCode(BookCSS.get(), AppState.get(), AppTemp.get().hypenLang);
+        return Objects.hashCode(BookCSS.get(), AppState.get(), AppSP.get().hypenLang);
     }
 
     public static int hashCode(Object... objects) {

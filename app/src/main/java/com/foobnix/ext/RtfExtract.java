@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.rtfparserkit.converter.text.AbstractTextConverter;
 import com.rtfparserkit.parser.IRtfParser;
@@ -60,9 +60,9 @@ public class RtfExtract {
                 }
             };
 
-            boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppTemp.get().hypenLang);
+            boolean isEnableHypens = BookCSS.get().isAutoHypens && TxtUtils.isNotEmpty(AppSP.get().hypenLang);
             if (isEnableHypens) {
-                HypenUtils.applyLanguage(AppTemp.get().hypenLang);
+                HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
 
             HypenUtils.resetTokenizer();

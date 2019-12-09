@@ -590,4 +590,7 @@
    <string name="previous_track">Önceki parça</string>
    <string name="copied_text">Kopyalanan metin</string>
    <string name="reference_mode_like_in_calibre_viewer">Referans modu (calibre görüntüleyicide olduğu gibi)</string>
+   <string name="profile_root">Profil kökü</string>
+   <string name="create_folder">Klasör oluşturun</string>
+   <string name="show_hidden">Gizli göster</string>
 </resources>

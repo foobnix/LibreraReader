@@ -20,8 +20,8 @@ import android.widget.RemoteViews;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -50,7 +50,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_MY)) {
 
             String className = VerticalViewActivity.class.getName();
-            if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+            if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
                 className = HorizontalViewActivity.class.getName();
             }
 
@@ -147,7 +147,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         AppDB.removeClouds(recent);
 
         String className = VerticalViewActivity.class.getName();
-        if (AppTemp.get().readingMode == AppState.READING_MODE_BOOK) {
+        if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
             className = HorizontalViewActivity.class.getName();
         }
         remoteViews.removeAllViews(R.id.linearLayout);

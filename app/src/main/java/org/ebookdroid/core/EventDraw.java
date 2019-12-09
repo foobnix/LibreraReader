@@ -13,8 +13,8 @@ import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -125,13 +125,13 @@ public class EventDraw implements IEvent {
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.top - Dips.DP_1, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
         }
 
-        if (AppState.get().isShowLastPageRed && AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
+        if (AppState.get().isShowLastPageRed && AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && page.isLastPage) {
             rect.setColor(ColorUtils.setAlphaComponent(Color.RED, 150));
             rect.setStyle(Style.FILL);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_25, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4 - Dips.DP_5, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom - fixedPageBounds.height() / 4, rect);
 
-        } else if (AppState.get().isShowLineDividing && AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN) {
+        } else if (AppState.get().isShowLineDividing && AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) {
             rect.setColor(ColorUtils.setAlphaComponent(Color.GRAY, 200));
             rect.setStyle(Style.FILL);
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.bottom - Dips.DP_2, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);
@@ -141,7 +141,7 @@ public class EventDraw implements IEvent {
 
         // TODO Draw there
         // drawLine(page);
-        if (!(BookCSS.get().isTextFormat() || AppTemp.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
+        if (!(BookCSS.get().isTextFormat() || AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN)) {
             drawPageLinks(page);
         }
         // drawSomething(page);

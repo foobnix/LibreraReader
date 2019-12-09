@@ -19,8 +19,8 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -347,18 +347,18 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         try {
             String file = a.getIntent().getData().getPath();
 
-            AppTemp.get().lastBookPath = file;
-            AppTemp.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
-            AppTemp.get().lastMode = VerticalViewActivity.class.getSimpleName();
+            AppSP.get().lastBookPath = file;
+            AppSP.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
+            AppSP.get().lastMode = VerticalViewActivity.class.getSimpleName();
 
-            LOG.d("lasta save", AppTemp.get().lastClosedActivity);
+            LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(file)) {
-                AppTemp.get().isLocked = true;
+                AppSP.get().isLocked = true;
             } else {
                 if (AppState.get().isLockPDF) {
-                    AppTemp.get().isLocked = true;
+                    AppSP.get().isLocked = true;
                 }
             }
         } catch (Exception e) {

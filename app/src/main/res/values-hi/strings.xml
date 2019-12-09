@@ -590,4 +590,7 @@
    <string name="previous_track">पिछला ट्रैक</string>
    <string name="copied_text">नकल पाठ</string>
    <string name="reference_mode_like_in_calibre_viewer">संदर्भ मोड (कैलिबर दर्शक की तरह)</string>
+   <string name="profile_root">प्रोफाइल रूट</string>
+   <string name="create_folder">फोल्डर बनाएं</string>
+   <string name="show_hidden">छुपा हुआ दिखाए</string>
 </resources>

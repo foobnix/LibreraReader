@@ -87,7 +87,9 @@ public class MyPopupMenu {
                 TextView profileLetter = (TextView) layout.findViewById(R.id.profileLetter);
                 profileLetter.setVisibility(View.GONE);
 
-                textView.setText(item.stringRes);
+                final String stringRes = item.stringRes;
+                textView.setVisibility(TxtUtils.visibleIf(TxtUtils.isNotEmpty(stringRes)));
+                textView.setText(stringRes);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
                 if (TxtUtils.isNotEmpty(item.fontPath)) {
@@ -98,6 +100,8 @@ public class MyPopupMenu {
                 }
 
                 CheckBox checkbox1 = (CheckBox) layout.findViewById(R.id.checkbox1);
+                checkbox1.setVisibility(View.GONE);
+
                 if (TxtUtils.isNotEmpty(item.checkboxString)) {
                     checkbox1.setVisibility(View.VISIBLE);
                     checkbox1.setText(item.checkboxString);
@@ -108,7 +112,9 @@ public class MyPopupMenu {
 
 
                 ImageView imageView = (ImageView) layout.findViewById(R.id.image1);
+                imageView.setVisibility(View.GONE);
                 if (item.iconRes != 0) {
+                    imageView.setVisibility(View.VISIBLE);
                     imageView.setImageResource(item.iconRes);
                     if (item.iconRes == R.mipmap.icon_pdf_pro || Boolean.TRUE.equals(item.active)) {
                         TintUtil.setNoTintImage(imageView);
@@ -143,7 +149,7 @@ public class MyPopupMenu {
                     @Override
                     public void onClick(View v) {
                         if (item.click != null) {
-                            item.click.onMenuItemClick(new MyMenuItem(item.stringRes));
+                            item.click.onMenuItemClick(new MyMenuItem(stringRes));
                         }
                         try {
                             p1.dismiss();
@@ -160,7 +166,7 @@ public class MyPopupMenu {
                         if (item.onLongClick == null) {
                             return false;
                         }
-                        item.onLongClick.onMenuItemClick(new MyMenuItem(item.stringRes));
+                        item.onLongClick.onMenuItemClick(new MyMenuItem(stringRes));
                         try {
                             p1.dismiss();
                         } catch (Exception e) {
@@ -208,6 +214,7 @@ public class MyPopupMenu {
             try {
                 p1.setWidth(measureContentWidth(a, c) + Dips.dpToPx(20));
             } catch (Exception e) {
+                LOG.e(e);
                 p1.setWidth(200);
             }
             if(isLong) {

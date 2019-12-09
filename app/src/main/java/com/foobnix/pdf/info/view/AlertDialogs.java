@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.pdf.info.R;
@@ -186,6 +188,56 @@ public class AlertDialogs {
         t.setText(textForPage);
         final AlertDialog alertDialog = AlertDialogs.showViewDialog(controller.getActivity(), t);
         t.setOnClickListener(a -> alertDialog.dismiss());
+    }
+
+    public static void showEditDialog(Activity a, String title, String hint, StringResponse onAdd){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+        builder.setTitle(title);
+
+        final EditText edit = new EditText(a);
+        edit.setHint(hint);
+
+        builder.setView(edit);
+
+        builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
+            }
+        });
+
+        builder.setPositiveButton(R.string.add, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
+            }
+        });
+
+        final AlertDialog create = builder.create();
+        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+        create.show();
+
+        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String text = edit.getText().toString().trim();
+                if(onAdd.onResultRecive(text)) {
+                    create.dismiss();
+                    Keyboards.close(edit);
+                    Keyboards.hideNavigation((Activity) a);
+                }
+
+
+            }
+        });
     }
 
 }

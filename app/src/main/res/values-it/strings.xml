@@ -590,4 +590,7 @@
    <string name="previous_track">Traccia precedente</string>
    <string name="copied_text">Testo copiato</string>
    <string name="reference_mode_like_in_calibre_viewer">Modalità di riferimento (come nel visualizzatore di calibri)</string>
+   <string name="profile_root">Radice del profilo</string>
+   <string name="create_folder">Creare una cartella</string>
+   <string name="show_hidden">Mostra nascosto</string>
 </resources>

@@ -14,8 +14,8 @@ import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.PageUrl;
@@ -76,26 +76,26 @@ public abstract class HorizontalModeController extends DocumentController {
 
 
         if (isTextFormat) {
-            AppTemp.get().isCrop = false;
-            AppTemp.get().isCut = false;
-            AppTemp.get().isLocked = true;
+            AppSP.get().isCrop = false;
+            AppSP.get().isCut = false;
+            AppSP.get().isLocked = true;
         }
 
         bookPath = getBookPathFromActivity(activity);
-        AppTemp.get().lastBookPath = bookPath;
+        AppSP.get().lastBookPath = bookPath;
 
         AppBook bs = SettingsManager.getBookSettings(bookPath);
 
         if (bs != null) {
-            AppTemp.get().isCut = bs.sp;
-            AppTemp.get().isCrop = bs.cp;
-            AppTemp.get().isDouble = bs.dp;
-            AppTemp.get().isDoubleCoverAlone = bs.dc;
-            AppTemp.get().isLocked = bs.getLock(isTextFormat);
+            AppSP.get().isCut = bs.sp;
+            AppSP.get().isCrop = bs.cp;
+            AppSP.get().isDouble = bs.dp;
+            AppSP.get().isDoubleCoverAlone = bs.dc;
+            AppSP.get().isLocked = bs.getLock(isTextFormat);
             TempHolder.get().pageDelta = bs.d;
 
             if (AppState.get().isCropPDF && !isTextFormat) {
-                AppTemp.get().isCrop = true;
+                AppSP.get().isCrop = true;
             }
         }
 
@@ -106,7 +106,7 @@ public abstract class HorizontalModeController extends DocumentController {
         String pasw = activity.getIntent().getStringExtra(EXTRA_PASSWORD);
         pasw = TxtUtils.nullToEmpty(pasw);
 
-        if (AppTemp.get().isDouble && isTextFormat) {
+        if (AppSP.get().isDouble && isTextFormat) {
             imageWidth = Dips.screenWidth() / 2;
         }
 
@@ -152,7 +152,7 @@ public abstract class HorizontalModeController extends DocumentController {
             if (TxtUtils.isNotEmpty(bookPath) && !ExtUtils.isTextFomat(bookPath)) {
                 String string = matrixSP.getString(bookPath.hashCode() + "", "");
                 LOG.d("MATRIX", "READ STR", string);
-                if (TxtUtils.isEmpty(string) || AppTemp.get().isCut || AppTemp.get().isCrop) {
+                if (TxtUtils.isEmpty(string) || AppSP.get().isCut || AppSP.get().isCrop) {
                     PageImageState.get().needAutoFit = true;
                 } else {
                     PageImageState.get().needAutoFit = false;

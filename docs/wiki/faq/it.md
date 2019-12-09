@@ -4,6 +4,9 @@ layout: main
 
 # Domande frequenti
 
+* [Modalità di riferimento in stile calibro](/wiki/faq/reference-mode-calibre/it)
+* [Modalità a due colonne, modalità Mezza pagina, modalità Pagina singola](/wiki/faq/how-to-set-up-reading-mode/it)
+* [Uso di un motore di sintesi vocale con _Librera _](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Come selezionare il testo in _Librera _](/wiki/faq/how-to-set-text-selection/it)
 * [Sincronizzazione della configurazione della lettura su più dispositivi](/wiki/faq/setting-up-synchronization/it)
 * [Nuova paginazione del documento per abbinare i numeri di pagina del libro](/wiki/faq/relative-page-numbers/it)
@@ -17,12 +20,10 @@ layout: main
 * [Impostazione della protezione delle impronte digitali o della password](/wiki/faq/setting-up-fingerprint-or-password-protection/it)
 * [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Lettura in lingue RTL](/wiki/faq/rtl-or-ltr-text-direction/it)
-* [Installazione e configurazione della sintesi vocale (TTS)](/wiki/faq/installation-and-configuration-of-tts/it)
 * [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [UI di Theming Librera](/wiki/faq/customize-theme-colors-links/it)
 * [Aumento della dimensione del carattere nei documenti PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
-* [Come impostare la modalità di lettura](/wiki/faq/how-to-set-up-reading-mode/it)
 * [Controllo luminosità e filtro Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/it)
 * [Come aggiungere un nuovo argomento FAQ](/wiki/faq/how-to-add-new-faq-section/it)
 * [Configurazione di caratteri e stili](/wiki/faq/customize-text-fonts-and-styles/it)

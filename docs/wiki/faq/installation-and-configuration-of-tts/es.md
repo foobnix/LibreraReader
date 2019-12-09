@@ -2,30 +2,30 @@
 layout: main
 ---
 
-# Instalación y configuración de texto a voz (TTS)
+# Uso de un motor de texto a voz con _Librera_
 
-> Librera le permite expresar el texto de sus documentos por medio de sintetizadores de voz de terceros instalados en el sistema Android. Texto a voz (TTS)
+> **Librera** puede leer sus libros (y otros documentos) en voz alta utilizando un motor de texto a voz (TTS) de terceros instalado en su sistema Android. Admite lectura en voz alta para una gran cantidad de formatos de libros electrónicos, desde EPUB a Kindle a PDF.
 
-## Para instalar el sintetizador de voz y voz (TTS). Usando el ejemplo de Google Text-to-Speech.
+# Elección de un motor TTS
 
-* Haga clic en el icono &quot;reproducción de voz del texto&quot;
-* En la configuración de TTS, seleccione el icono **&quot;i&quot;**
-* Seleccione el sintetizador de voz de texto a voz de Google en el menú desplegable. Irás a Google Market, en la sección de instalación del sintetizador de voz. Haga clic en &quot;instalar&quot; sintetizador de voz de texto a voz de Google
-* Después de la instalación, regrese a la configuración de TTS Librera.
+* Toque el icono TTS en la parte inferior de la pantalla para abrir la ventana **Configuración TTS**
+* Toque **&quot;i&quot;** para abrir una lista desplegable de motores TTS
+* Seleccione el motor que desee. Si el motor que ha elegido aún no está instalado en su sistema, será redirigido a Google Play Store. Siga las instrucciones de su motor preferido para configurarlo, descargar voces principales y adicionales, etc.
+
+> Nota: Es posible que los desarrolladores del motor le cobren funciones adicionales, por ejemplo, voces adicionales.
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](3.jpg)|![](2.jpg)|
 
-## Para configurar Google Text-to-Speech:
+## Ejemplo: Configuración de Google Text-to-Speech Engine
 
-* Haga clic en el enlace &quot;Voz&quot;. Accederá a la configuración de texto a voz de Google.
-* Haz clic en el ícono de configuración de Google Text-to-Speech
-* Seleccione &quot;instalar datos de voz&quot;: configure el idioma del sintetizador de voz
-* Seleccione el idioma del sintetizador de voz que necesita. Puede ver los idiomas deslizando hacia arriba o hacia abajo
-* Elija el tipo de sonido de voz que necesita, según su preferencia.
+* En la ventana **Configuración de TTS** de **Librera**, siga el enlace _Voz_ a la página de configuración de **Salida de texto a voz** de su sistema
+* Toque el ícono de configuración junto a _Motor preferido_
+* Toque _Instalar datos de voz_ para seleccionar su idioma y voz TTS
+* Pruebe la voz que ha seleccionado tocando _PLAY_ en la página **Salida de texto a voz**
 
-Después de seleccionar todas las opciones, haga clic en la barra de navegación &quot;Atrás&quot;, regrese a la configuración de Google Text-to-Speech, haga clic en &quot;Reproducir&quot;. Sonará el saludo de prueba del sintetizador de voz de Google con el idioma y el sonido de su elección. Vaya a Librera, toque el icono &quot;reproducción de voz del texto&quot;, toque &quot;Reproducir&quot; y escuche su libro.
+> Puede ajustar la configuración del motor (p. Ej., Velocidad de lectura, tono y/o volumen) en la ventana **Librera** '**Configuración TTS** de Librera**.
 
 ||||
 |-|-|-|
@@ -34,3 +34,5 @@ Después de seleccionar todas las opciones, haga clic en la barra de navegación
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
+
+> Nota: La configuración de voz en otros motores TTS se realiza de manera similar. Recuerde que los archivos de datos de voz pueden ser bastante grandes. Para ahorrar sus planes de datos celulares limitados, asegúrese de que se descarguen solo a través de la conexión WiFi.

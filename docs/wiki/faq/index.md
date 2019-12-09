@@ -5,6 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Calibre-Style Reference Mode](/wiki/faq/reference-mode-calibre)
+* [Two columns mode, Half page mode, Single-page mode](/wiki/faq/how-to-set-up-reading-mode)
+* [Using a Text-to-Speech Engine with _Librera_](/wiki/faq/installation-and-configuration-of-tts)
 * [How to Select Text in _Librera_](/wiki/faq/how-to-set-text-selection)
 * [Syncing Your Reading Setup Across Multiple Devices](/wiki/faq/setting-up-synchronization)
 * [Re-paginating Your Document to Match the Book's Page Numbers](/wiki/faq/relative-page-numbers)
@@ -18,12 +21,10 @@ info: this file is generated automatically, please do not modify it
 * [Setting Up Fingerprint or Password Protection](/wiki/faq/setting-up-fingerprint-or-password-protection)
 * [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [Reading in RTL Languages](/wiki/faq/rtl-or-ltr-text-direction)
-* [Installing and configuring Text-to-Speech (TTS)](/wiki/faq/installation-and-configuration-of-tts)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Theming Librera's UI](/wiki/faq/customize-theme-colors-links)
 * [Increasing Font-Size in PDF Documents](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/wiki/faq/bookmarks-extended-panel)
-* [How to set up reading mode](/wiki/faq/how-to-set-up-reading-mode)
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [How to Add a New FAQ Topic](/wiki/faq/how-to-add-new-faq-section)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)

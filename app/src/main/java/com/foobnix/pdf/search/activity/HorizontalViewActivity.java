@@ -53,8 +53,8 @@ import com.foobnix.android.utils.Views;
 import com.foobnix.drive.GFile;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
@@ -435,7 +435,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         boolean isTextFomat = ExtUtils.isTextFomat(getIntent());
 
 
-        // AppTemp.get().isCut = false;
+        // AppSP.get().isCut = false;
         PageImageState.get().isShowCuttingLine = false;
 
         PageImageState.get().cleanSelectedWords();
@@ -751,8 +751,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(final View v) {
-                LOG.d("bookTTS", AppTemp.get().isDoubleCoverAlone, AppTemp.get().isDouble, AppTemp.get().isCut);
-                if (AppTemp.get().isDouble || AppTemp.get().isCut) {
+                LOG.d("bookTTS", AppSP.get().isDoubleCoverAlone, AppSP.get().isDouble, AppSP.get().isCut);
+                if (AppSP.get().isDouble || AppSP.get().isCut) {
                     modeOnePage();
                     return;
                 }
@@ -790,9 +790,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                        AppTemp.get().isDouble = false;
-                        AppTemp.get().isDoubleCoverAlone = false;
-                        AppTemp.get().isCut = false;
+                        AppSP.get().isDouble = false;
+                        AppSP.get().isDoubleCoverAlone = false;
+                        AppSP.get().isCut = false;
 
                         SettingsManager.getBookSettings().updateFromAppState();
                         SharedBooks.save(SettingsManager.getBookSettings());
@@ -818,9 +818,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         closeDialogs();
                         onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
-                        AppTemp.get().isDouble = true;
-                        AppTemp.get().isCut = false;
-                        AppTemp.get().isDoubleCoverAlone = false;
+                        AppSP.get().isDouble = true;
+                        AppSP.get().isCut = false;
+                        AppSP.get().isDoubleCoverAlone = false;
 
                         SettingsManager.getBookSettings().updateFromAppState();
                         SharedBooks.save(SettingsManager.getBookSettings());
@@ -847,9 +847,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                             closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
-                            AppTemp.get().isDouble = true;
-                            AppTemp.get().isCut = false;
-                            AppTemp.get().isDoubleCoverAlone = true;
+                            AppSP.get().isDouble = true;
+                            AppSP.get().isCut = false;
+                            AppSP.get().isDoubleCoverAlone = true;
                             SettingsManager.getBookSettings().updateFromAppState();
                             SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -876,15 +876,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                             closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                            AppTemp.get().isDouble = false;
-                            AppTemp.get().isCut = true;
-                            // AppTemp.get().isCrop = false;
+                            AppSP.get().isDouble = false;
+                            AppSP.get().isCut = true;
+                            // AppSP.get().isCrop = false;
                             SettingsManager.getBookSettings().updateFromAppState();
                             SharedBooks.save(SettingsManager.getBookSettings());
 
                             TTSEngine.get().stop();
 
-                            // onCrop.underline(AppTemp.get().isCrop);
+                            // onCrop.underline(AppSP.get().isCrop);
 
                             dc.cleanImageMatrix();
                             reloadDoc.run();
@@ -901,12 +901,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onCrop = (UnderlineImageView) findViewById(R.id.onCrop);
-        onCrop.setVisibility(isTextFomat && !AppTemp.get().isCrop ? View.GONE : View.VISIBLE);
+        onCrop.setVisibility(isTextFomat && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
 
         final Runnable onCropChange = () -> {
-            SettingsManager.getBookSettings().cp = AppTemp.get().isCrop;
+            SettingsManager.getBookSettings().cp = AppSP.get().isCrop;
             reloadDocBrigntness.run();
-            onCrop.underline(AppTemp.get().isCrop);
+            onCrop.underline(AppSP.get().isCrop);
 
             PageImageState.get().isAutoFit = true;
             EventBus.getDefault().post(new MessageAutoFit(viewPager.getCurrentItem()));
@@ -917,7 +917,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         onCrop.setOnClickListener(v -> DragingDialogs.customCropDialog(anchor, dc, onCropChange));
         onCrop.setOnLongClickListener(v -> {
-            AppTemp.get().isCrop = !AppTemp.get().isCrop;
+            AppSP.get().isCrop = !AppSP.get().isCrop;
             onCropChange.run();
             return true;
         });
@@ -1008,7 +1008,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             public void onClick(View v) {
-                AppTemp.get().isLocked = !AppTemp.get().isLocked;
+                AppSP.get().isLocked = !AppSP.get().isLocked;
                 updateLockMode();
             }
         });
@@ -1191,9 +1191,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomIndicators.setVisibility(View.VISIBLE);
                     onModeChange.setVisibility(View.VISIBLE);
 
-                    AppTemp.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
-                    AppTemp.get().lastMode = HorizontalViewActivity.class.getSimpleName();
-                    LOG.d("lasta save", AppTemp.get().lastClosedActivity);
+                    AppSP.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
+                    AppSP.get().lastMode = HorizontalViewActivity.class.getSimpleName();
+                    LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
@@ -1202,7 +1202,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         // moveCenter.setVisibility(View.GONE);
                     } else if (AppState.get().isLockPDF) {
                         // moveCenter.setVisibility(View.VISIBLE);
-                        AppTemp.get().isLocked = true;
+                        AppSP.get().isLocked = true;
                     }
 
                     if (ExtUtils.isNoTextLayerForamt(dc.getCurrentBook().getPath())) {
@@ -1230,14 +1230,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     updateIconMode();
 
-                    onCrop.setVisibility(dc.isTextFormat() && !AppTemp.get().isCrop ? View.GONE : View.VISIBLE);
+                    onCrop.setVisibility(dc.isTextFormat() && !AppSP.get().isCrop ? View.GONE : View.VISIBLE);
                     onMove.setVisibility(DocumentController.isEinkOrMode(HorizontalViewActivity.this) && !dc.isTextFormat() ? View.VISIBLE : View.GONE);
                     onBC.setVisibility(dc.isTextFormat() ? View.GONE : View.VISIBLE);
                     if (Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK || AppState.get().isEnableBC) {
                         onBC.setVisibility(View.VISIBLE);
                     }
 
-                    onCrop.underline(AppTemp.get().isCrop);
+                    onCrop.underline(AppSP.get().isCrop);
                     onCrop.invalidate();
 
                     ttsActive.setDC(dc);
@@ -1364,13 +1364,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateIconMode() {
-        if (AppTemp.get().isDouble) {
-            if (AppTemp.get().isDoubleCoverAlone) {
+        if (AppSP.get().isDouble) {
+            if (AppSP.get().isDoubleCoverAlone) {
                 onModeChange.setImageResource(R.drawable.glyphicons_two_pages_23);
             } else {
                 onModeChange.setImageResource(R.drawable.glyphicons_two_pages_12);
             }
-        } else if (AppTemp.get().isCut) {
+        } else if (AppSP.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
         } else {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
@@ -1384,9 +1384,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void modeOnePage() {
         onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-        AppTemp.get().isDouble = false;
-        AppTemp.get().isDoubleCoverAlone = false;
-        AppTemp.get().isCut = false;
+        AppSP.get().isDouble = false;
+        AppSP.get().isDoubleCoverAlone = false;
+        AppSP.get().isCut = false;
         SettingsManager.getBookSettings().updateFromAppState();
         SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -1542,13 +1542,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     private void showSearchDialog() {
 
-        if (AppTemp.get().isCrop || AppTemp.get().isCut) {
+        if (AppSP.get().isCrop || AppSP.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-            AppTemp.get().isCrop = false;
-            AppTemp.get().isCut = false;
-            AppTemp.get().isDouble = false;
+            AppSP.get().isCrop = false;
+            AppSP.get().isCut = false;
+            AppSP.get().isDouble = false;
 
-            onCrop.underline(AppTemp.get().isCrop);
+            onCrop.underline(AppSP.get().isCrop);
             onCrop.invalidate();
             reloadDoc.run();
         }
@@ -1561,7 +1561,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void updateLockMode() {
-        if (AppTemp.get().isLocked) {
+        if (AppSP.get().isLocked) {
             lockModelImage.setImageResource(R.drawable.glyphicons_204_lock);
         } else {
             lockModelImage.setImageResource(R.drawable.glyphicons_205_unlock);
@@ -1614,7 +1614,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         nullAdapter();
 
-        // AppTemp.get().isCut = false;
+        // AppSP.get().isCut = false;
         PageImageState.get().clearResouces();
 
 
@@ -1955,12 +1955,12 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void showHelp() {
-        if (AppTemp.get().isFirstTimeHorizontal) {
+        if (AppSP.get().isFirstTimeHorizontal) {
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    AppTemp.get().isFirstTimeHorizontal = false;
+                    AppSP.get().isFirstTimeHorizontal = false;
                     AppState.get().isEditMode = true;
                     hideShow();
                     Views.showHelpToast(lockModelImage);
@@ -2451,7 +2451,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onFinishActivity() {
-        AppTemp.get().lastClosedActivity = null;
+        AppSP.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

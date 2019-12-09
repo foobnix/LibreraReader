@@ -4,6 +4,9 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Modo de referencia de estilo calibre](/wiki/faq/reference-mode-calibre/es)
+* [Modo de dos columnas, modo de media página, modo de página única](/wiki/faq/how-to-set-up-reading-mode/es)
+* [Uso de un motor de texto a voz con _Librera _](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Cómo seleccionar texto en _Librera _](/wiki/faq/how-to-set-text-selection/es)
 * [Sincronizando su configuración de lectura en múltiples dispositivos](/wiki/faq/setting-up-synchronization/es)
 * [Volver a paginar su documento para que coincida con los números de página del libro](/wiki/faq/relative-page-numbers/es)
@@ -17,12 +20,10 @@ layout: main
 * [Configuración de protección de huella digital o contraseña](/wiki/faq/setting-up-fingerprint-or-password-protection/es)
 * [Mejora de contraste y brillo en PDF (efecto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/es)
 * [Lectura en idiomas RTL](/wiki/faq/rtl-or-ltr-text-direction/es)
-* [Instalación y configuración de texto a voz (TTS)](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Notas en el texto versus notas al pie](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Temiendo la IU de Librera](/wiki/faq/customize-theme-colors-links/es)
 * [Aumento del tamaño de fuente en documentos PDF](/wiki/faq/how-to-make-the-font-size-bigger-on-a-pdf/es)
 * [Trabajar con marcadores en modo extendido (cinta de marcadores)](/wiki/faq/bookmarks-extended-panel/es)
-* [Cómo configurar el modo de lectura](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
 * [Cómo agregar un nuevo tema de preguntas frecuentes](/wiki/faq/how-to-add-new-faq-section/es)
 * [Configuración de fuentes y estilos](/wiki/faq/customize-text-fonts-and-styles/es)

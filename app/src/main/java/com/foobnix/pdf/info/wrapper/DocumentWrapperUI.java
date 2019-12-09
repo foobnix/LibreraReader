@@ -36,8 +36,8 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Vibro;
 import com.foobnix.android.utils.Views;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
-import com.foobnix.model.AppTemp;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.DictsHelper;
@@ -99,7 +99,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppTemp.get().isLocked = !AppTemp.get().isLocked;
+            AppSP.get().isLocked = !AppSP.get().isLocked;
             updateLock();
         }
     };
@@ -195,7 +195,7 @@ public class DocumentWrapperUI {
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-                    AppTemp.get().isCut = !false;
+                    AppSP.get().isCut = !false;
                     onCut.onClick(null);
                     hideShowEditIcon();
                     return false;
@@ -207,7 +207,7 @@ public class DocumentWrapperUI {
                 public boolean onMenuItemClick(MenuItem item) {
                     closeDialogs();
                     onModeChange.setImageResource(R.drawable.glyphicons_page_split);
-                    AppTemp.get().isCut = !true;
+                    AppSP.get().isCut = !true;
                     onCut.onClick(null);
                     hideShowEditIcon();
                     return false;
@@ -273,7 +273,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            if (AppTemp.get().isCrop) {
+            if (AppSP.get().isCrop) {
                 onCrop.onClick(null);
             }
 
@@ -334,7 +334,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View v) {
-            if (AppTemp.get().isCut) {
+            if (AppSP.get().isCut) {
                 onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
                 onCut.onClick(null);
                 return;
@@ -503,7 +503,7 @@ public class DocumentWrapperUI {
 
         @Override
         public boolean onLongClick(View v) {
-            AppTemp.get().isCrop = !AppTemp.get().isCrop;
+            AppSP.get().isCrop = !AppSP.get().isCrop;
 
             dc.onCrop();
             updateUI();
@@ -518,11 +518,11 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppTemp.get().isCrop = false; // no crop with cut
+            AppSP.get().isCrop = false; // no crop with cut
             AppState.get().cutP = 50;
-            AppTemp.get().isCut = !AppTemp.get().isCut;
+            AppSP.get().isCut = !AppSP.get().isCut;
 
-            crop.setVisibility(AppTemp.get().isCut ? View.GONE : View.VISIBLE);
+            crop.setVisibility(AppSP.get().isCut ? View.GONE : View.VISIBLE);
 
 
             dc.onCrop();// crop false
@@ -603,7 +603,7 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            AppTemp.get().readingMode = AppState.READING_MODE_BOOK;
+            AppSP.get().readingMode = AppState.READING_MODE_BOOK;
             initUI(a);
             hideShow();
         }
@@ -882,7 +882,7 @@ public class DocumentWrapperUI {
     public void closeAndRunList() {
         EventBus.getDefault().unregister(this);
 
-        AppTemp.get().lastClosedActivity = null;
+        AppSP.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
@@ -963,16 +963,16 @@ public class DocumentWrapperUI {
             } else {
                 onBC.setVisibility(View.GONE);
             }
-            if (AppTemp.get().isCrop) {
+            if (AppSP.get().isCrop) {
                 crop.setVisibility(View.VISIBLE);
             }
-            if (AppTemp.get().isCut) {
+            if (AppSP.get().isCut) {
                 cut.setVisibility(View.VISIBLE);
             }
         }
 
-        crop.underline(AppTemp.get().isCrop);
-        cut.underline(AppTemp.get().isCut);
+        crop.underline(AppSP.get().isCrop);
+        cut.underline(AppSP.get().isCut);
 
         progressDraw.updateProgress(current - 1);
 
@@ -1064,7 +1064,7 @@ public class DocumentWrapperUI {
     public void updateLock() {
         // int mode = View.VISIBLE;
 
-        if (AppTemp.get().isLocked) {
+        if (AppSP.get().isLocked) {
             lockUnlock.setImageResource(R.drawable.glyphicons_204_lock);
             lockUnlockTop.setImageResource(R.drawable.glyphicons_204_lock);
             // lockUnlock.setColorFilter(a.getResources().getColor(R.color.tint_yellow));
@@ -1281,7 +1281,7 @@ public class DocumentWrapperUI {
         crop.setOnClickListener(onCrop);
         crop.setOnLongClickListener(onCropLong);
 
-        if (AppTemp.get().isCut) {
+        if (AppSP.get().isCut) {
             crop.setVisibility(View.GONE);
         }
 
@@ -1291,7 +1291,7 @@ public class DocumentWrapperUI {
 
         onModeChange = (ImageView) a.findViewById(R.id.onModeChange);
         onModeChange.setOnClickListener(onModeChangeClick);
-        onModeChange.setImageResource(AppTemp.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
+        onModeChange.setImageResource(AppSP.get().isCut ? R.drawable.glyphicons_page_split : R.drawable.glyphicons_two_page_one);
 
         View prefTop = a.findViewById(R.id.prefTop);
         prefTop.setOnClickListener(onPrefTop);
@@ -1838,12 +1838,12 @@ public class DocumentWrapperUI {
     }
 
     public void showSearchDialog() {
-        if (AppTemp.get().isCut) {
+        if (AppSP.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
-            AppTemp.get().isCut = !false;
+            AppSP.get().isCut = !false;
             onCut.onClick(null);
         }
-        if (AppTemp.get().isCrop) {
+        if (AppSP.get().isCrop) {
             onCrop.onClick(null);
         }
 
@@ -1928,7 +1928,7 @@ public class DocumentWrapperUI {
     public void hideShowEditIcon() {
         if (dc != null && !BookType.PDF.is(dc.getCurrentBook().getPath())) {
             editTop2.setVisibility(View.GONE);
-        } else if (AppTemp.get().isCrop || AppTemp.get().isCut) {
+        } else if (AppSP.get().isCrop || AppSP.get().isCut) {
             editTop2.setVisibility(View.GONE);
         } else {
             boolean passwordProtected = dc.isPasswordProtected();
@@ -1955,12 +1955,12 @@ public class DocumentWrapperUI {
     }
 
     public void showHelp() {
-        if (AppTemp.get().isFirstTimeVertical) {
+        if (AppSP.get().isFirstTimeVertical) {
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
-                    AppTemp.get().isFirstTimeVertical = false;
+                    AppSP.get().isFirstTimeVertical = false;
                     AppState.get().isEditMode = true;
                     hideShow();
                     Views.showHelpToast(lockUnlock);

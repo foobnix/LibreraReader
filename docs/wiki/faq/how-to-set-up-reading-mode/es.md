@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Cómo configurar el modo de lectura
+# Modo de dos columnas, modo de media página, modo de una sola página
 
 > Para una lectura cómoda en Libera, puede configurar diferentes modos de documentos, dependiendo de su formato.
 

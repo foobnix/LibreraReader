@@ -590,4 +590,7 @@
    <string name="previous_track">Föregående spår</string>
    <string name="copied_text">Kopierad text</string>
    <string name="reference_mode_like_in_calibre_viewer">Referensläge (som i kalibervisaren)</string>
+   <string name="profile_root">Profilrot</string>
+   <string name="create_folder">Skapa mapp</string>
+   <string name="show_hidden">Visa dold</string>
 </resources>

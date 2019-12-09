@@ -590,4 +590,7 @@
    <string name="previous_track">آهنگ قبلی</string>
    <string name="copied_text">متن کپی شده</string>
    <string name="reference_mode_like_in_calibre_viewer">حالت مرجع (مانند در بیننده کالیبر)</string>
+   <string name="profile_root">ریشه مشخصات</string>
+   <string name="create_folder">پرونده بساز</string>
+   <string name="show_hidden">نمایش پنهان</string>
 </resources>

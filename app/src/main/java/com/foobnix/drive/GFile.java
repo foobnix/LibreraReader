@@ -10,7 +10,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
-import com.foobnix.model.AppTemp;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
@@ -83,8 +83,8 @@ public class GFile {
         GoogleSignInClient client = GoogleSignIn.getClient(c, signInOptions);
         client.signOut();
         googleDriveService = null;
-        AppTemp.get().syncRootID = "";
-        AppTemp.get().syncTime = 0;
+        AppSP.get().syncRootID = "";
+        AppSP.get().syncTime = 0;
 
     }
 
@@ -484,22 +484,22 @@ public class GFile {
             debugOut += "\nBegin: " + DateFormat.getTimeInstance().format(new Date());
             buildDriveService(c);
             LOG.d(TAG, "sycnronizeAll", "begin");
-            if (TxtUtils.isEmpty(AppTemp.get().syncRootID)) {
+            if (TxtUtils.isEmpty(AppSP.get().syncRootID)) {
                 File syncRoot = GFile.findLibreraSync();
                 LOG.d(TAG, "findLibreraSync finded", syncRoot);
                 if (syncRoot == null || syncRoot.getTrashed() == true) {
                     syncRoot = GFile.createFolder("root", "Librera");
                     debugOut += "\n Create remote [Librera]";
                 }
-                AppTemp.get().syncRootID = syncRoot.getId();
+                AppSP.get().syncRootID = syncRoot.getId();
                 AppProfile.save(c);
             } else {
 //                try {
-//                    final File execute = GFile.googleDriveService.files().get(AppTemp.get().syncRootID).execute();
+//                    final File execute = GFile.googleDriveService.files().get(AppSP.get().syncRootID).execute();
 //                    if (execute.getTrashed() == true) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
 //                        debugOut += "\n Create remote [Librera]";
-//                        AppTemp.get().syncRootID = syncRoot.getId();
+//                        AppSP.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
 //                } catch (GoogleJsonResponseException e) {
@@ -507,7 +507,7 @@ public class GFile {
 //                    if (e.getDetails().getCode() == 404) {
 //                        File syncRoot = GFile.createFolder("root", "Librera");
 //                        debugOut += "\n Create remote [Librera]";
-//                        AppTemp.get().syncRootID = syncRoot.getId();
+//                        AppSP.get().syncRootID = syncRoot.getId();
 //                        AppProfile.save(c);
 //                    }
 //                }
@@ -516,7 +516,7 @@ public class GFile {
             }
 
 
-            //googleDriveService.files().update( AppTemp.get().syncRootID, metadata).execute();
+            //googleDriveService.files().update( AppSP.get().syncRootID, metadata).execute();
 
 
             if (!AppProfile.SYNC_FOLDER_ROOT.exists()) {
@@ -529,7 +529,7 @@ public class GFile {
             LOG.d("Begin");
             SharedBooks.cache.clear();
 
-            sync(AppTemp.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
+            sync(AppSP.get().syncRootID, AppProfile.SYNC_FOLDER_ROOT);
 
             //updateLock(AppState.get().syncRootID, beginTime);
 
@@ -720,7 +720,7 @@ public class GFile {
             return SKIP;
         }
 
-        if (file.getId().equals(AppTemp.get().syncRootID)) {
+        if (file.getId().equals(AppSP.get().syncRootID)) {
             return "";
         }
 
@@ -737,7 +737,7 @@ public class GFile {
     public static void runSyncService(Activity a, boolean force) {
 
         try {
-            if (AppTemp.get().isEnableSync && !BooksService.isRunning) {
+            if (AppSP.get().isEnableSync && !BooksService.isRunning) {
 //                if (!force && BookCSS.get().isSyncPullToRefresh) {
 //                    LOG.d("runSyncService", "manual sync only");
 //                    return;

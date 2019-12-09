@@ -39,7 +39,12 @@ public class ZipArchiveInputStream extends InputStream {
             Collections.sort(fileHeaders, new Comparator<FileHeader>() {
                 @Override
                 public int compare(FileHeader o1, FileHeader o2) {
-                    return naturalOrderComparator.compare(o1.getFileName(), o2.getFileName());
+                    try {
+                        return naturalOrderComparator.compare(o1.getFileName(), o2.getFileName());
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        return 0;
+                    }
                 }
             });
 
@@ -47,7 +52,7 @@ public class ZipArchiveInputStream extends InputStream {
             LOG.d("ZipArchiveInputStream", file);
 
         } catch (ZipException e) {
-            LOG.e(e);
+            LOG.e(e, file);
         }
     }
 
@@ -80,7 +85,8 @@ public class ZipArchiveInputStream extends InputStream {
         // CacheZipUtils.cacheLock.unlock();
         closeStream();
     }
-    public void release(){
+
+    public void release() {
         if (tempFile != null) {
             tempFile.delete();
         }
