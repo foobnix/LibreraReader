@@ -39,7 +39,7 @@ ln -s "$MUPDF_JAVA"/libs/x86_64 "$LIBS"
 
 cd "$MUPDF_JAVA"
 echo "=================="
-ndk-build "$1"
+ndk-build $1
 echo "=================="
 echo "MUPDF:" "$MUPDF_JAVA"
 echo "LIBS:"  "$LIBS"

@@ -48,7 +48,7 @@ cp -rp "$SRC"/xml.c               "$DEST"/fitz/xml.c
 cp -rp "$SRC"/pdf-colorspace.c    "$DEST"/pdf/pdf-colorspace.c
 
 cd "$MUPDF_JAVA"
-ndk-build "$1"
+ndk-build $1
 echo "=================="
 echo "MUPDF:" "$MUPDF_JAVA"
 echo "LIBS:"  "$LIBS"

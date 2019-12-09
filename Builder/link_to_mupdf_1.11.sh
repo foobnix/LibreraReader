@@ -36,7 +36,7 @@ cp -rp jni-1.11/~mupdf/structured-text.h "$MUPDF_ROOT"/include/mupdf/fitz/struct
 
 
 cd "$MUPDF_JAVA"
-ndk-build "$1"
+ndk-build $1
 
 echo "MUPDF:" "$MUPDF_JAVA"
 echo "LIBS:"  "$LIBS"
