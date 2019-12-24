@@ -5,8 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Customizing Page Background](/wiki/faq/how-to-set-page-background-image)
+* [Working with OPDS Catalogs](/wiki/faq/working-with-opds-online-catalogs)
+* [Page Viewing/Layout Options](/wiki/faq/how-to-set-up-reading-mode)
 * [Calibre-Style Reference Mode](/wiki/faq/reference-mode-calibre)
-* [Two columns mode, Half page mode, Single-page mode](/wiki/faq/how-to-set-up-reading-mode)
 * [Using a Text-to-Speech Engine with _Librera_](/wiki/faq/installation-and-configuration-of-tts)
 * [How to Select Text in _Librera_](/wiki/faq/how-to-set-text-selection)
 * [Syncing Your Reading Setup Across Multiple Devices](/wiki/faq/setting-up-synchronization)
@@ -14,7 +16,6 @@ info: this file is generated automatically, please do not modify it
 * [Using _Librera_'s Widget](/wiki/faq/how-to-configure-the-widget)
 * [Updating Your Library](/wiki/faq/update-the-library)
 * [How to Delete a Book from an External SD Card](/wiki/faq/how-to-delete-file-from-external-sd-card)
-* [Working with OPDS online catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
 * [How to Restore Default Settings/Clear Cache](/wiki/faq/how-to-restore-default-settings-clear-cache)
 * [Adding and Handling Custom Tags](/wiki/faq/custom-tags)
@@ -35,7 +36,6 @@ info: this file is generated automatically, please do not modify it
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles)
 * [Customizing the Look and Feel of Your Library](/wiki/faq/how-to-configure-the-library-view)
 * [Sorting Your Library by Latest Reads](/wiki/faq/sort-library-by-last-read-date)
-* [Set own background for book page](/wiki/faq/how-to-set-page-background-image)
 * [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [RSVP Speed Reading](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [Using Dictionaries and Translators](/wiki/faq/dictionaries-translate-text-online-and-offline)
