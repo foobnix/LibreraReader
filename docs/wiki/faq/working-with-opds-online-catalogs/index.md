@@ -2,20 +2,22 @@
 layout: main
 ---
 
-# Working with OPDS online catalogs
+# Working with OPDS Catalogs
 
-> Librera supports work with OPDS online catalogs that allows you to connect the necessary libraries and download books.
+> The Open Publication Distribution System (OPDS) format is a syndication format for electronic publications. OPDS catalogs enable the aggregation, distribution, discovery, and acquisition of electronic publications (Wikipedia).
 
-## To add the necessary online directory OPDS you need:
-* Go to the "Network" tab
-* Tap on the icon to add a directory. Consider the example of adding OPDS library directory " Project Gutenberg"
-* Enter the internet address of the ops directory
-* Tap "Add"
-* OPDS library added
+**Librera** allows the user to open OPDS catalogs, use their search engines to navigate within them, and download books from them.
 
-To return the OPDS / Library settings to their initial state, click the "Restore default" button at the bottom left of the window
+## Opening a Catalog
+* **Librera** comes with a preconfigured list of catalogs in the _Networks_ tab
+* Tap on a list item to open a catalog (some of them require registration, so make sure you've already registered with those)
 
-If you want to know what OPDS catalogs are, click on the link "What is an OPDS online catalogs" at the bottom of the window on the left.
+## Adding a Catalog to the List
+* Tap the add icon (**+**) to open the _New Catalog_ dialog
+* Enter the address of the catalog and its name and description (optional), and then tap _ADD_
+> **Librera** will open this dialog again if the connection fails. Check _Add as a WEB site_ box and try again
+
+**To remove all OPDS catalogs you've added to the original list, tap the _Restore default_ link at the bottom**
 
 ||||
 |-|-|-|
@@ -25,40 +27,34 @@ If you want to know what OPDS catalogs are, click on the link "What is an OPDS o
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
-## To download a book from the OPDS catalog you need:
-* Select the book you need
-* Select the desired format of books, tap on it
-* Confirm the download of the book
-* After downloading the book will be highlighted in color, click on it
-* Enjoy reading.
+## Downloading a Book from an OPDS Catalog
+* Navigate to the book you intend to download
+* Select the desired book format by tapping on it
+* Confirm the download
+* The entry of the book you've just downloaded will be highlighted
+* Open the book and enjoy
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-
-## You can add links from the OPDS directory to your favorites:
-* Navigate in the OPDS directory to the book you need
-* Tap on the favorites icon 
-* Confirm the addition 
-* A directory with your links will be added to the main window of OPDS libraries.
+## Adding Directories in OPDS Catalogs to Favorites
+* Navigate to your favorite directory in an OPDS catalog
+* Tap on the star (favorites) icon
+* Make meaningful changes to the name
+* Confirm addition to the list by tapping _ADD_ 
+* The directory will appear on the Catalogs list
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-## General configuration of OPDS directories:
+## Changing the Settings
 * Tap on the settings icon
-* You can configure a proxy to connect to OPDS
-* You can specify the directory where your downloaded books will be saved.
+* You can route connection to OPDS catalogs via a proxy server specified in the _Proxy Server Settings_ panel of the settings window
+* You can change the folder for your downloads from OPDS catalogs
+* If you prefer seeing large book covers while browsing the catalogs, check the respective box
 
 ||||
 |-|-|-|
 |![](17.jpg)|![](18.jpg)|![](19.jpg)|
-
-
-
-
-
