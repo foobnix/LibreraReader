@@ -2,44 +2,39 @@
 layout: main
 ---
 
-# Legen Sie einen eigenen Hintergrund für die Buchseite fest
+# Anpassen des Seitenhintergrunds
 
-> Mit dem Librera Book Reader können Sie den Seitenhintergrund während des Lesens anpassen. Dies trägt zu einer geringeren Ermüdung der Augen bei und erhöht den Komfort beim Lesen.
-Der Hintergrund kann einfarbig oder aus einem Texturbild ausgewählt werden.
+> **Librera** ermöglicht dem Benutzer das Lesen seiner Bücher vor einem anpassbaren Hintergrund. Der Benutzer kann für jedes Profil einen spezifischen Hintergrund festlegen, der für Tag- und Nachtlesemodi separat konfiguriert werden kann. Hintergründe können nur einfarbig sein oder der Benutzer kann ihnen Texturen (oder Bilder) hinzufügen, entweder aus den Beispieldateien von **Librera** oder unter Verwendung seiner eigenen Bilder.
 
-Um Ihren Hintergrund festzulegen, sollten Sie:
-
-* Klicken Sie auf das Einstellungssymbol.
-* Wählen Sie in den Einstellungen das Profil aus, in dem Sie den Hintergrund ändern möchten. Wählen Sie zum Beispiel &quot;Tag&quot;.
-* In dem sich öffnenden Dialogfeld können Sie auswählen, wie Sie den Hintergrund beim Lesen ausfüllen möchten:
+## Einrichten Ihres eigenen Hintergrunds
+* Tippen Sie auf das Einstellungssymbol, um das Fenster **Einstellungen** zu öffnen
+* Tippen Sie auf _Day_, um den Hintergrund für den Tagmodus (oder _Night_ für den Nachtmodus) zu ändern.
+* Im Feld &quot;Hintergrund&quot; können Sie die Hintergrundfarbe und -textur ändern (oder einfach Ihr eigenes Bild im Hintergrund aufhängen).
+* Die Transparenz Ihres Hintergrundbilds kann durch Ziehen des Schiebereglers _Transparency_ geändert werden
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Farbe** Nur die Füllfarbe des Lesehintergrunds und dessen Transparenz werden ausgewählt.
-
-**Bild** Das Bild des Lesehintergrunds und dessen Transparenz werden ausgewählt.
-
-## Einfarbig hinzufügen
-
-* Wählen Sie &quot;Farbe&quot; und passen Sie die Kreuzhintergrundfarbe in der Farbpalette des Kreises an.
-* Klicken Sie nach Auswahl der Farbe auf OK, und schließen Sie die Einstellungen. Die Hintergrundfarbe wird angewendet.
+## Ändern eines einfarbigen Hintergrunds
+* Tippen Sie auf **Farbe**, um eine Farbpalette mit einem Kreuz zu öffnen, und ziehen Sie das Kreuz über die Palette (folgen Sie den Änderungen in der Echtzeit-Seitenansicht oben).
+* Sie können den einfarbigen Hintergrund heller oder dunkler machen, indem Sie den Schieberegler über das Farbband ziehen
+* Vergessen Sie nicht, auf _OK_ zu tippen, um die Änderungen zu speichern, sobald Sie fertig sind
 
 ||||
 |-|-|-|
-|![](3.jpg)|![](5.jpg)|![](8.jpg)|
+|![](6.jpg)|![](5.jpg)|![](8.jpg)|
 
-
-## Bildtextur hinzufügen
-
-* Ausgewähltes &quot;Bild&quot;.
-* Klicken Sie im Einstellungsdialogfeld auf das Pluszeichen.
-* Wählen Sie den Ordner aus, in dem sich Ihr Hintergrund befindet. Geben Sie es ein, klicken Sie auf den gewünschten Hintergrund, schauen Sie unten, sollte sein Name erscheinen, klicken Sie auf Auswählen.
-* Verlassen Sie die Einstellungen und sehen Sie sich das Ergebnis an.
+## Hinzufügen von Texturen oder Bildern zum Hintergrund
+* Tippen Sie im Bereich _Background_ auf **Image**
+* Sie können eine der eingebauten Texturdateien verwenden, indem Sie darauf tippen
+* Um Ihr eigenes Bild hinzuzufügen, tippen Sie auf **+** und navigieren Sie zu dem Ordner mit dem Bild, das Sie hinzufügen möchten
+* Suchen Sie Ihr Bild, tippen Sie darauf und anschließend auf _SELECT_.
+* Passen Sie die Transparenz mithilfe der Echtzeitvorschau an
+* Tippen Sie auf _OK_, wenn Sie fertig sind
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
-
+> Sie können jederzeit die in Abb. 2 gezeigten Voreinstellungen für Hintergrund und Schriftarten verwenden. Sie können ganz einfach im Fenster **Konfigurieren** bearbeitet werden (tippen Sie auf das Bearbeitungssymbol, das durch den violetten Pfeil gekennzeichnet ist).

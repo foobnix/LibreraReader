@@ -2,20 +2,22 @@
 layout: main
 ---
 
-# Trabajar con catálogos en línea OPDS
+# Trabajar con catálogos OPDS
 
-> Librera admite el trabajo con catálogos en línea OPDS que le permite conectar las bibliotecas necesarias y descargar libros.
+> El formato Open Publication Distribution System (OPDS) es un formato de sindicación para publicaciones electrónicas. Los catálogos OPDS permiten la agregación, distribución, descubrimiento y adquisición de publicaciones electrónicas (Wikipedia).
 
-## Para agregar el directorio en línea necesario OPDS que necesita:
-* Vaya a la pestaña &quot;Red&quot;
-* Toque el icono para agregar un directorio. Considere el ejemplo de agregar el directorio de la biblioteca OPDS &quot;Proyecto Gutenberg&quot;
-* Ingrese la dirección de internet del directorio de operaciones
-* Toque &quot;Agregar&quot;
-* biblioteca OPDS añadida
+**Librera** permite al usuario abrir catálogos OPDS, usar sus motores de búsqueda para navegar dentro de ellos y descargar libros de ellos.
 
-Para devolver la configuración de OPDS/Biblioteca a su estado inicial, haga clic en el botón &quot;Restaurar predeterminado&quot; en la parte inferior izquierda de la ventana
+## Abrir un catálogo
+* **Librera** viene con una lista preconfigurada de catálogos en la pestaña _Networks_
+* Toque un elemento de la lista para abrir un catálogo (algunos de ellos requieren registro, así que asegúrese de que ya se haya registrado con ellos)
 
-Si desea saber qué son los catálogos OPDS, haga clic en el enlace &quot;Qué es un catálogo en línea OPDS&quot; en la parte inferior de la ventana a la izquierda.
+## Agregar un catálogo a la lista
+* Toque el icono de agregar (**+**) para abrir el cuadro de diálogo _Nuevo Catálogo_
+* Ingrese la dirección del catálogo y su nombre y descripción (opcional), y luego toque _ADD_
+> **Librera** abrirá este diálogo nuevamente si falla la conexión. Marque la casilla _Agregar como sitio WEB_ e intente nuevamente
+
+**Para eliminar todos los catálogos OPDS que ha agregado a la lista original, toque el enlace _Restore default_ en la parte inferior**
 
 ||||
 |-|-|-|
@@ -25,40 +27,34 @@ Si desea saber qué son los catálogos OPDS, haga clic en el enlace &quot;Qué e
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
-## Para descargar un libro del catálogo OPDS necesita:
-* Selecciona el libro que necesitas
-* Seleccione el formato de libros deseado, tóquelo
-* Confirma la descarga del libro
-* Después de descargar el libro se resaltará en color, haga clic en él
-* Disfruta leyendo.
+## Descargar un libro de un catálogo OPDS
+* Navega hasta el libro que deseas descargar
+* Seleccione el formato de libro deseado tocándolo
+* Confirma la descarga
+* Se resaltará la entrada del libro que acaba de descargar.
+* Abre el libro y disfruta
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-
-## Puede agregar enlaces del directorio OPDS a sus favoritos:
-* Navegue en el directorio OPDS hasta el libro que necesita
-* Toque el icono de favoritos
-* Confirmar la adición
-* Se agregará un directorio con sus enlaces a la ventana principal de las bibliotecas OPDS.
+## Agregar directorios en los catálogos OPDS a favoritos
+* Navegue a su directorio favorito en un catálogo OPDS
+* Toque el ícono de estrella (favoritos)
+* Realizar cambios significativos en el nombre
+* Confirme la adición a la lista tocando _ADD_
+* El directorio aparecerá en la lista de catálogos
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-## Configuración general de directorios OPDS:
+## Cambiar la configuración
 * Toque el icono de configuración
-* Puede configurar un proxy para conectarse a OPDS
-* Puede especificar el directorio donde se guardarán sus libros descargados.
+* Puede enrutar la conexión a los catálogos OPDS a través de un servidor proxy especificado en el panel _Proxy Server Settings_ de la ventana de configuración
+* Puede cambiar la carpeta para sus descargas desde los catálogos OPDS
+* Si prefiere ver portadas de libros grandes mientras navega por los catálogos, marque la casilla correspondiente
 
 ||||
 |-|-|-|
 |![](17.jpg)|![](18.jpg)|![](19.jpg)|
-
-
-
-
-

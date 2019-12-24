@@ -2,20 +2,22 @@
 layout: main
 ---
 
-# Trabalhando com catálogos online do OPDS
+# Trabalhando com catálogos OPDS
 
-> O Librera suporta o trabalho com catálogos on-line do OPDS, que permitem conectar as bibliotecas necessárias e fazer download de livros.
+> O formato Open Publication Distribution System (OPDS) é um formato de distribuição para publicações eletrônicas. Os catálogos OPDS permitem a agregação, distribuição, descoberta e aquisição de publicações eletrônicas (Wikipedia).
 
-## Para adicionar o diretório online OPDS necessário, você precisa:
-* Vá para a guia &quot;Rede&quot;
-* Toque no ícone para adicionar um diretório. Considere o exemplo de adição do diretório da biblioteca OPDS &quot;Project Gutenberg&quot;
-* Digite o endereço da Internet do diretório ops
-* Toque em &quot;Adicionar&quot;
-* biblioteca OPDS adicionada
+O** Librera** permite ao usuário abrir catálogos OPDS, usar seus mecanismos de pesquisa para navegar neles e fazer o download de livros a partir deles.
 
-Para retornar as configurações do OPDS/Library ao seu estado inicial, clique no botão &quot;Restaurar padrão&quot; na parte inferior esquerda da janela
+## Abrindo um catálogo
+O * **Librera** vem com uma lista pré-configurada de catálogos na guia _Networks_
+* Toque em um item da lista para abrir um catálogo (alguns deles requerem registro, verifique se você já se registrou com eles)
 
-Se você quiser saber o que são catálogos OPDS, clique no link &quot;O que são catálogos on-line OPDS&quot; na parte inferior da janela à esquerda.
+## Adicionando um catálogo à lista
+* Toque no ícone Adicionar (**+**) para abrir a caixa de diálogo _New Catalog_
+* Digite o endereço do catálogo e seu nome e descrição (opcional) e depois toque em _ADD_
+> **O Librera** abrirá este diálogo novamente se a conexão falhar. Marque a caixa _Adicionar como site da Web_ e tente novamente
+
+**Para remover todos os catálogos OPDS que você adicionou à lista original, toque no link _Restaurar padrão_ na parte inferior**
 
 ||||
 |-|-|-|
@@ -25,40 +27,34 @@ Se você quiser saber o que são catálogos OPDS, clique no link &quot;O que sã
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-
-## Para baixar um livro do catálogo OPDS, você precisa:
-* Selecione o livro que você precisa
-* Selecione o formato desejado de livros, toque nele
-* Confirme o download do livro
-* Após o download do livro ser destacado em cores, clique nele
-* Aproveite a leitura.
+## Download de um livro de um catálogo OPDS
+* Navegue até o livro que você deseja baixar
+* Selecione o formato de livro desejado tocando nele
+* Confirme o download
+* A entrada do livro que você acabou de baixar será destacada
+* Abra o livro e aproveite
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](8.jpg)|![](9.jpg)|
 
-
-## Você pode adicionar links do diretório OPDS aos seus favoritos:
-* Navegue no diretório OPDS até o livro que você precisa
-* Toque no ícone de favoritos
-* Confirme a adição
-* Um diretório com seus links será adicionado à janela principal das bibliotecas OPDS.
+## Adicionando diretórios nos catálogos OPDS aos favoritos
+* Navegue para o seu diretório favorito em um catálogo OPDS
+* Toque no ícone de estrela (favoritos)
+* Faça alterações significativas no nome
+* Confirme a adição à lista tocando em _ADD_
+* O diretório aparecerá na lista de Catálogos
 
 ||||
 |-|-|-|
 |![](10.jpg)|![](11.jpg)|![](12.jpg)|
 
-
-## Configuração geral dos diretórios OPDS:
+## Alteração das configurações
 * Toque no ícone de configurações
-* Você pode configurar um proxy para conectar-se ao OPDS
-* Você pode especificar o diretório em que seus livros baixados serão salvos.
+* Você pode rotear a conexão com catálogos OPDS através de um servidor proxy especificado no painel _Proxy Server Settings_ da janela de configurações
+* Você pode alterar a pasta dos seus downloads nos catálogos OPDS
+* Se você preferir ver grandes capas de livros enquanto navega nos catálogos, marque a respectiva caixa
 
 ||||
 |-|-|-|
 |![](17.jpg)|![](18.jpg)|![](19.jpg)|
-
-
-
-
-

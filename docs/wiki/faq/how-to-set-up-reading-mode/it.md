@@ -2,37 +2,38 @@
 layout: main
 ---
 
-# Modalità a due colonne, modalità Mezza pagina, modalità Pagina singola
+# Opzioni di visualizzazione/layout della pagina
 
-> Per una lettura comoda in Libera, è possibile configurare diverse modalità documento, a seconda del suo formato.
+> Per garantire una lettura confortevole, **Librera** consente all'utente di apportare modifiche al layout della pagina in tutti i formati di ebook supportati.
 
-Impostazione delle modalità di lettura in modalità libro, ad esempio il formato libro .epub:
+Per accedere alle opzioni di visualizzazione:
+* Tocca al centro lo schermo per aprire il menu
+* Tocca l'icona del layout in basso a destra per aprire un elenco a discesa di opzioni
 
-* Premere l'icona per selezionare la modalità di lettura
-* Scegli una vista di lettura a pagina singola o a due pagine
-* Lo stesso vale per i formati di libri mobi, fb2, azw, azw3
+## Regolazione del layout della pagina in EPUB, MOBI, FB2, AWZ, ecc.
+
+* _Single Page_ layout è preferito per l'orientamento dello schermo _Portrait_
+* Se l'orientamento dello schermo cambia (automaticamente o manualmente) in _Paesaggio_, puoi continuare con il passaggio al layout _Due pagine_
+* Torna a _ Pagina singola_ dopo aver ruotato il dispositivo in orientamento _Portrait_
+
+> **È possibile preimpostare combinazioni di orientamenti dello schermo e layout di pagina e utilizzare tali combinazioni in base al profilo.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Impostazione delle modalità di lettura per documenti in formato pdf (djvu)
+## Regolazione del layout di pagina in PDF/DjVu
 
-* Premere l'icona per selezionare la modalità di lettura
-* Seleziona la modalità di lettura desiderata.
-
-## Modalità lettura:
-
-* Modalità pagina singola: una pagina viene visualizzata sullo schermo
-* Modalità a due pagine: due pagine del documento vengono visualizzate contemporaneamente sullo schermo
-* Copertina, vengono visualizzate due pagine, prima una copertina del documento, quindi due pagine del documento
-* Mezza pagina: se un documento ha più colonne su una pagina, puoi dividerle visualizzando ciascuna su una pagina separata.
+La &quot;rigidità&quot; della pagina in PDF/DjVu e le dimensioni dello schermo determineranno le scelte del layout della pagina:
+* _Single Page_ o _Due pagine_ mode per l'orientamento _Portrait_ su schermi di grandi dimensioni
+* _Modalità due pagine_, preferita per schermi di grandi dimensioni e orientamento _Paesaggio_
+* A volte la copertina deve essere presentata separatamente, soprattutto se le illustrazioni nel tuo libro si estendono su spread (scegli _Cover, Two Pages_ in questo caso)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Esempio di funzionamento in modalità &quot;Mezza pagina&quot;
+La modalità * _Half-Page_ è utile nei layout di pagina a due colonne. Basta dividere la pagina in due scegliendo questa opzione
 
 ||||
 |-|-|-|

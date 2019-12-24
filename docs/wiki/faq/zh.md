@@ -4,8 +4,10 @@ layout: main
 
 #常见问题
 
+* [自定义页面背景](/wiki/faq/how-to-set-page-background-image/zh)
+* [使用OPDS目录](/wiki/faq/working-with-opds-online-catalogs/zh)
+* [页面查看/布局选项](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [口径样式参考模式](/wiki/faq/reference-mode-calibre/zh)
-* [两列模式，半页模式，单页模式](/wiki/faq/how-to-set-up-reading-mode/zh)
 * [与_Librera_一起使用文本语音转换引擎](/wiki/faq/installation-and-configuration-of-tts/zh)
 * [如何在_Librera_中选择文本](/wiki/faq/how-to-set-text-selection/zh)
 * [跨多个设备同步您的阅读设置](/wiki/faq/setting-up-synchronization/zh)
@@ -13,7 +15,6 @@ layout: main
 * [使用_Librera_的小部件](/wiki/faq/how-to-configure-the-widget/zh)
 * [更新您的图书馆](/wiki/faq/update-the-library/zh)
 * [如何从外部SD卡删除书籍](/wiki/faq/how-to-delete-file-from-external-sd-card/zh)
-* [使用OPDS在线目录](/wiki/faq/working-with-opds-online-catalogs/zh)
 * [打开带有图像作为书本的文件夹(书本装订)](/wiki/faq/open-folder-with-images-as-a-book/zh)
 * [如何还原默认设置/清除缓存](/wiki/faq/how-to-restore-default-settings-clear-cache/zh)
 * [添加和处理自定义标签](/wiki/faq/custom-tags/zh)
@@ -34,7 +35,6 @@ layout: main
 * [自定义CSS编码](/wiki/faq/customize-book-css-styles/zh)
 * [自定义您的图书馆外观](/wiki/faq/how-to-configure-the-library-view/zh)
 * [按最新阅读顺序分类图书馆](/wiki/faq/sort-library-by-last-read-date/zh)
-* [为书页设置背景](/wiki/faq/how-to-set-page-background-image/zh)
 * [学习外语的图书馆](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [RSVP快速阅读](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
 * [使用字典和翻译器](/wiki/faq/dictionaries-translate-text-online-and-offline/zh)

@@ -2,44 +2,39 @@
 layout: main
 ---
 
-# Définir son propre arrière-plan pour la page du livre
+# Personnalisation de l'arrière-plan de la page
 
-> Librera Book Reader vous permet de personnaliser l’arrière-plan de la page pendant la lecture, ce qui contribue à réduire la fatigue oculaire et à améliorer le confort de lecture.
-L'arrière-plan peut être sélectionné en tant que couleur unie ou à partir d'une image de texture.
+> **Librera** permet à l'utilisateur de lire ses livres sur un fond personnalisable. L'utilisateur peut avoir un arrière-plan spécifique pour chaque profil, configurable séparément pour les modes de lecture de jour et de nuit. Les arrière-plans peuvent être uniquement des couleurs unies ou l'utilisateur peut leur ajouter des textures (ou des images), à partir des fichiers d'exemple de **Librera** ou en utilisant leurs propres images.
 
-Afin de définir votre arrière-plan, vous devriez:
-
-* Cliquez sur l'icône des paramètres.
-* Dans les paramètres, sélectionnez le profil dans lequel vous souhaitez modifier l'arrière-plan. Choisissez, par exemple, &quot;Jour&quot;.
-* Dans la boîte de dialogue qui s'ouvre, vous pouvez choisir le mode de remplissage de l'arrière-plan lors de la lecture:
+## Configuration de votre propre arrière-plan
+* Appuyez sur l'icône des paramètres pour ouvrir la fenêtre **Préférences**.
+* Appuyez sur _Jour_ pour modifier l'arrière-plan du mode jour (ou _Nuit_ pour le mode nuit)
+* Dans le panneau _Background_, vous pourrez modifier la couleur et la texture de votre arrière-plan (ou vous pouvez simplement accrocher votre propre image en arrière-plan)
+* La transparence de votre image d'arrière-plan peut être modifiée en faisant glisser le curseur _Transparency_
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-**Couleur** seules la couleur de remplissage du fond de lecture et sa transparence sont sélectionnées.
-
-**Image** l'image de l'arrière-plan de lecture et sa transparence sont sélectionnées.
-
-## Ajouter une couleur unie
-
-* Choisissez &quot;Couleur&quot; et réglez la couleur d'arrière-plan croisé sur la palette de couleurs du cercle.
-* Après avoir sélectionné la couleur, cliquez sur OK, quittez les paramètres, la couleur d'arrière-plan sera appliquée.
+## Modification d'un arrière-plan uni
+* Appuyez sur **Couleur** pour ouvrir une palette de couleurs avec une croix et faites glisser la croix autour de la palette (suivez les modifications dans l'aperçu de la page en temps réel en haut)
+* Vous pouvez éclaircir ou assombrir votre arrière-plan uni en faisant glisser le curseur sur la bande de couleur
+* N'oubliez pas d'appuyer sur _OK_ pour enregistrer les modifications une fois que vous avez terminé
 
 ||||
 |-|-|-|
-|![](3.jpg)|![](5.jpg)|![](8.jpg)|
+|![](6.jpg)|![](5.jpg)|![](8.jpg)|
 
-
-## Ajouter une texture d'image
-
-* &quot;Image&quot; sélectionnée.
-* Dans la boîte de dialogue des paramètres, cliquez sur l'icône &quot;plus&quot;.
-* Choisissez le dossier contenant votre fond. Entrez-le, cliquez sur le fond souhaité, regardez en bas, son nom doit apparaître, cliquez sur sélectionner.
-* Quittez les paramètres, regardez le résultat.
+## Ajout d'une texture ou d'une image à l'arrière-plan
+* Appuyez sur **Image** dans le panneau _Background_
+* Vous pouvez utiliser n'importe quel fichier de texture intégré en appuyant dessus
+* Pour ajouter votre propre image, appuyez sur **+** et accédez au dossier contenant l'image que vous êtes sur le point d'ajouter
+* Trouvez votre image, appuyez dessus, puis appuyez sur _SELECT_
+* Ajustez sa transparence à l'aide de l'aperçu en temps réel
+* Appuyez sur _OK_ lorsque vous avez terminé
 
 ||||
 |-|-|-|
 |![](7.jpg)|![](4.jpg)|![](9.jpg)|
 
-
+> Vous pouvez toujours utiliser les préréglages d'arrière-plan et de police illustrés à la Fig. 2. Ils peuvent être modifiés assez facilement dans la fenêtre **Configurer** (appuyez sur l'icône d'édition indiquée par la flèche violette).

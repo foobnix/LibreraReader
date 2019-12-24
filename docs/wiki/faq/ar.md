@@ -4,8 +4,10 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [تخصيص خلفية الصفحة](/wiki/faq/how-to-set-page-background-image/ar)
+* [العمل مع كتالوجات OPDS](/wiki/faq/working-with-opds-online-catalogs/ar)
+* [خيارات عرض/تخطيط الصفحة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [وضع مرجع Caliber-Style]
-* [وضع عمودين ، وضع نصف صفحة ، وضع صفحة واحدة](/wiki/faq/how-to-set-up-reading-mode/ar)
 * [استخدام محرك تحويل النص إلى كلام مع _Librera _](/wiki/faq/installation-and-configuration-of-tts/ar)
 * [كيفية اختيار النص في _Librera _](/wiki/faq/how-to-set-text-selection/ar)
 * [مزامنة إعداد القراءة عبر أجهزة متعددة](/wiki/faq/setting-up-synchronization/ar)
@@ -13,7 +15,6 @@ layout: main
 * [باستخدام أداة _Librera_'s](/wiki/faq/how-to-configure-the-widget/ar)
 * [تحديث مكتبتك](/wiki/faq/update-the-library/ar)
 * [كيفية حذف كتاب من بطاقة SD خارجية](/wiki/faq/how-to-delete-file-from-external-sd-card/ar)
-* [العمل مع كتالوجات OPDS عبر الإنترنت](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
 * [كيفية استعادة الإعدادات الافتراضية/مسح ذاكرة التخزين المؤقت](/wiki/faq/how-to-restore-default-settings-clear-cache/ar)
 * [إضافة علامات مخصصة ومعالجتها](/wiki/faq/custom-tags/ar)
@@ -34,7 +35,6 @@ layout: main
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles/ar)
 * [تخصيص الشكل والمظهر لمكتبتك](/wiki/faq/how-to-configure-the-library-view/ar)
 * [فرز مكتبتك حسب أحدث القراءات](/wiki/faq/sort-library-by-last-read-date/ar)
-* [تعيين الخلفية الخاصة لصفحة الكتاب](/wiki/faq/how-to-set-page-background-image/ar)
 * [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
 * [قراءة سرعة RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [استخدام القواميس والمترجمين](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)

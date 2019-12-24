@@ -4,8 +4,10 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Personalizando o plano de fundo da página](/wiki/faq/how-to-set-page-background-image/pt)
+* [Trabalhando com catálogos OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
+* [Opções de exibição/layout da página](/wiki/faq/how-to-set-up-reading-mode/pt)
 * [Modo de referência no estilo calibre](/wiki/faq/reference-mode-calibre/pt)
-* [Modo de duas colunas, modo de meia página, modo de página única](/wiki/faq/how-to-set-up-reading-mode/pt)
 * [Usando um mecanismo de conversão de texto em fala com _Librera _](/wiki/faq/installation-and-configuration-of-tts/pt)
 * [Como selecionar texto em _Librera _](/wiki/faq/how-to-set-text-selection/pt)
 * [Sincronizando sua configuração de leitura em vários dispositivos](/wiki/faq/setting-up-synchronization/pt)
@@ -13,7 +15,6 @@ layout: main
 * [Usando o widget de _Librera_](/wiki/faq/how-to-configure-the-widget/pt)
 * [Atualizando sua biblioteca](/wiki/faq/update-the-library/pt)
 * [Como excluir um livro de um cartão SD externo](/wiki/faq/how-to-delete-file-from-external-sd-card/pt)
-* [Trabalhando com catálogos online do OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
 * [Abrindo uma pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
 * [Como restaurar configurações padrão/limpar cache](/wiki/faq/how-to-restore-default-settings-clear-cache/pt)
 * [Adicionando e manipulando tags personalizadas](/wiki/faq/custom-tags/pt)
@@ -34,7 +35,6 @@ layout: main
 * [Codificação CSS personalizada](/wiki/faq/customize-book-css-styles/pt)
 * [Personalizando a aparência da sua biblioteca](/wiki/faq/how-to-configure-the-library-view/pt)
 * [Classificando sua biblioteca pelas últimas leituras](/wiki/faq/sort-library-by-last-read-date/pt)
-* [Definir plano de fundo próprio para a página do livro](/wiki/faq/how-to-set-page-background-image/pt)
 * [Librera para aprender línguas estrangeiras](/wiki/faq/librera-for-study-foreign-languages/pt)
 * [Leitura rápida de confirmação de presença](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/pt)
 * [Usando dicionários e tradutores](/wiki/faq/dictionaries-translate-text-online-and-offline/pt)

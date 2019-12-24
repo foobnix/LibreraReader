@@ -2,37 +2,38 @@
 layout: main
 ---
 
-# Mode deux colonnes, mode demi-page, mode page unique
+# Options d'affichage/de mise en page
 
-> Pour une lecture aisée dans Libera, vous pouvez configurer différents modes de document, en fonction de son format.
+> Pour garantir une lecture confortable, **Librera** permet à l'utilisateur de régler la mise en page dans tous les formats de livre électronique pris en charge.
 
-Configuration des modes de lecture en mode livre, par exemple, le format du livre .epub:
+Pour accéder aux options de visualisation:
+* Appuyez au centre de votre écran pour ouvrir le menu
+* Appuyez sur l'icône de disposition en bas à droite pour ouvrir une liste déroulante d'options
 
-* Appuyez sur l'icône pour sélectionner le mode de lecture.
-* Choix d'un mode de lecture d'une page ou de deux pages
-* Il en va de même pour les formats de livre mobi, fb2, azw, azw3
+## Réglage de la mise en page dans EPUB, MOBI, FB2, AWZ, etc.
+
+* _La mise en page à une seule publication est préférée pour l'orientation de l'écran _Portrait_
+* Si l'orientation de votre écran change (automatiquement ou manuellement) en _Landscape_, vous pouvez poursuivre en passant à la disposition _Dwo Pages_
+* Revenez à la _Saisie unique après avoir fait pivoter votre appareil en orientation _Portrait_
+
+> **Vous pouvez prédéfinir des combinaisons d'orientations d'écran et de mises en page et utiliser ces combinaisons en fonction du profil.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Configuration des modes de lecture pour les documents de format pdf (djvu)
+## Réglage de la mise en page dans PDF/DjVu
 
-* Appuyez sur l'icône pour sélectionner le mode de lecture.
-* Sélectionnez le mode de lecture souhaité.
-
-## Mode lecture:
-
-* Mode page unique - une page est affichée à l'écran
-* Mode deux pages - deux pages du document sont affichées à la fois sur l'écran
-* Couverture, deux pages - une couverture du document est d'abord affichée, puis deux pages du document
-* Demi-page: si un document comporte plusieurs colonnes sur une page, vous pouvez les diviser en les affichant chacune sur une page distincte.
+La &quot;rigidité&quot; de la page en PDF/DjVu et la taille de votre écran dicteront vos choix de mise en page:
+* _Mode unique ou _Deux pages_ pour l'orientation _Portrait_ sur les grands écrans
+* Mode _Deux pages_, préféré pour les grands écrans et l'orientation _Paysage_
+* Parfois, la page de couverture doit être présentée séparément, en particulier si les illustrations de votre livre sont réparties sur plusieurs feuilles (choisissez _Cover, Two Pages_ dans ce cas)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Exemple de fonctionnement en mode &quot;demi-page&quot;
+* _Le mode demi-publication est très pratique dans les mises en page à deux colonnes. Divisez simplement votre page en deux en choisissant cette option
 
 ||||
 |-|-|-|

@@ -4,8 +4,10 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Personalizar el fondo de la página](/wiki/faq/how-to-set-page-background-image/es)
+* [Trabajando con catálogos OPDS](/wiki/faq/working-with-opds-online-catalogs/es)
+* [Opciones de visualización/diseño de página](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Modo de referencia de estilo calibre](/wiki/faq/reference-mode-calibre/es)
-* [Modo de dos columnas, modo de media página, modo de página única](/wiki/faq/how-to-set-up-reading-mode/es)
 * [Uso de un motor de texto a voz con _Librera _](/wiki/faq/installation-and-configuration-of-tts/es)
 * [Cómo seleccionar texto en _Librera _](/wiki/faq/how-to-set-text-selection/es)
 * [Sincronizando su configuración de lectura en múltiples dispositivos](/wiki/faq/setting-up-synchronization/es)
@@ -13,7 +15,6 @@ layout: main
 * [Usando el widget de _Librera_](/wiki/faq/how-to-configure-the-widget/es)
 * [Actualizando su biblioteca](/wiki/faq/update-the-library/es)
 * [Cómo eliminar un libro de una tarjeta SD externa](/wiki/faq/how-to-delete-file-from-external-sd-card/es)
-* [Trabajando con catálogos en línea OPDS](/wiki/faq/working-with-opds-online-catalogs/es)
 * [Abrir una carpeta con imágenes como un libro (Enlazar en un libro)](/wiki/faq/open-folder-with-images-as-a-book/es)
 * [Cómo restaurar la configuración predeterminada/Borrar caché](/wiki/faq/how-to-restore-default-settings-clear-cache/es)
 * [Agregar y manejar etiquetas personalizadas](/wiki/faq/custom-tags/es)
@@ -34,7 +35,6 @@ layout: main
 * [Codificación CSS personalizada](/wiki/faq/customize-book-css-styles/es)
 * [Personalizando la apariencia de su biblioteca](/wiki/faq/how-to-configure-the-library-view/es)
 * [Ordenar su biblioteca por las últimas lecturas](/wiki/faq/sort-library-by-last-read-date/es)
-* [Establecer fondo propio para la página del libro](/wiki/faq/how-to-set-page-background-image/es)
 * [Librera para aprender idiomas extranjeros](/wiki/faq/librera-for-study-foreign-languages/es)
 * [Lectura de velocidad de RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/es)
 * [Uso de diccionarios y traductores](/wiki/faq/dictionaries-translate-text-online-and-offline/es)

@@ -4,8 +4,10 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Anpassen des Seitenhintergrunds](/wiki/faq/how-to-set-page-background-image/de)
+* [Arbeiten mit OPDS-Katalogen](/wiki/faq/working-with-opds-online-catalogs/de)
+* [Seitenanzeige-/Layoutoptionen](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Referenzmodus im Kaliberstil](/wiki/faq/reference-mode-calibre/de)
-* [Zweispaltenmodus, Halbseitenmodus, Einzelseitenmodus](/wiki/faq/how-to-set-up-reading-mode/de)
 * [Verwenden einer Text-to-Speech-Engine mit _Librera _](/wiki/faq/installation-and-configuration-of-tts/de)
 * [Auswählen von Text in _Librera _](/wiki/faq/how-to-set-text-selection/de)
 * [Synchronisieren des Lese-Setups auf mehreren Geräten](/wiki/faq/setting-up-synchronization/de)
@@ -13,7 +15,6 @@ layout: main
 * [Verwenden von _Librera_s Widget](/wiki/faq/how-to-configure-the-widget/de)
 * [Aktualisieren Ihrer Bibliothek](/wiki/faq/update-the-library/de)
 * [Löschen eines Buches von einer externen SD-Karte](/wiki/faq/how-to-delete-file-from-external-sd-card/de)
-* [Arbeiten mit OPDS-Onlinekatalogen](/wiki/faq/working-with-opds-online-catalogs/de)
 * [Ordner mit Bildern als Buch öffnen (in einem Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
 * [Wiederherstellen der Standardeinstellungen/Cache löschen](/wiki/faq/how-to-restore-default-settings-clear-cache/de)
 * [Hinzufügen und Behandeln von benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
@@ -34,7 +35,6 @@ layout: main
 * [Benutzerdefinierte CSS-Codierung](/wiki/faq/customize-book-css-styles/de)
 * [Anpassen des Erscheinungsbilds Ihrer Bibliothek](/wiki/faq/how-to-configure-the-library-view/de)
 * [Sortieren Ihrer Bibliothek nach den letzten Lesungen](/wiki/faq/sort-library-by-last-read-date/de)
-* [Hintergrund für Buchseite festlegen](/wiki/faq/how-to-set-page-background-image/de)
 * [Librera zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
 * [RSVP-Geschwindigkeitsanzeige](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/de)
 * [Verwenden von Wörterbüchern und Übersetzern](/wiki/faq/dictionaries-translate-text-online-and-offline/de)

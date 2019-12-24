@@ -2,37 +2,38 @@
 layout: main
 ---
 
-# Modo de duas colunas, modo de meia página, modo de página única
+# Opções de exibição/layout de página
 
-> Para uma leitura confortável no Libera, você pode configurar diferentes modos de documento, dependendo do formato.
+> Para garantir uma leitura confortável, o **Librera** permite que o usuário faça ajustes no layout da página em todos os formatos de e-book suportados.
 
-Configurando modos de leitura no modo livro, por exemplo, no formato de livro .epub:
+Para acessar as opções de visualização:
+* Toque no centro da tela para abrir o menu
+* Toque no ícone de layout no canto inferior direito para abrir uma lista suspensa de opções
 
-* Pressione o ícone para selecionar o modo de leitura
-* Escolha a visualização de leitura de uma página ou duas páginas
-* O mesmo se aplica aos formatos de livros mobi, fb2, azw, azw3
+## Ajustando o layout da página em EPUB, MOBI, FB2, AWZ etc.
+
+* O layout _Single Page_ é preferido para a orientação da tela _Retrato_
+* Se a orientação da tela mudar (automática ou manualmente) para _Landscape_, você poderá acompanhar a mudança para o layout _Duas Páginas_
+* Volte para _Single Page_ depois de girar o dispositivo para a orientação _Portrait_
+
+> **Você pode predefinir combinações de orientações de tela e layouts de página e usar essas combinações em perfil.**
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Configurando modos de leitura para documentos em formato pdf (djvu)
+## Ajustando o layout da página em PDF/DjVu
 
-* Pressione o ícone para selecionar o modo de leitura
-* Selecione o modo de leitura desejado.
-
-## modo de leitura:
-
-* Modo de página única - uma página é exibida na tela
-* Modo de duas páginas - duas páginas do documento são exibidas na tela ao mesmo tempo
-* Capa, duas páginas - a primeira capa do documento é exibida e, em seguida, duas páginas do documento
-* Meia página - Se um documento tiver várias colunas em uma página, você poderá dividi-las exibindo cada uma em uma página separada.
+A &quot;rigidez&quot; da página em PDF/DjVu e o tamanho da tela ditarão as opções de layout da página:
+* modo _Página única_ ou _Duas páginas_ para orientação _Retrato_ em telas grandes
+* Modo _Duas Páginas_, preferido para telas grandes e orientação _Paisagem_
+* Às vezes, a página de rosto deve ser apresentada separadamente, principalmente se as ilustrações do seu livro estiverem espalhadas por páginas espelhadas (escolha _Capa, duas páginas_ neste caso)
 
 ||||
 |-|-|-|
 |![](4.jpg)|![](5.jpg)|![](6.jpg)|
 
-Exemplo de operação no modo &quot;Meia página&quot;
+O modo * _Meia Página_ é útil nos layouts de página de duas colunas. Apenas divida sua página em duas escolhendo esta opção
 
 ||||
 |-|-|-|

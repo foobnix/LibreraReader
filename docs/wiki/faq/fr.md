@@ -4,8 +4,10 @@ layout: main
 
 # Foire aux questions
 
+* [Personnalisation de l'arrière-plan de la page](/wiki/faq/how-to-set-page-background-image/fr)
+* [Utilisation des catalogues OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
+* [Options d'affichage/de mise en page](/wiki/faq/how-to-set-up-reading-mode/fr)
 * [Mode de référence de style calibre](/wiki/faq/reference-mode-calibre/fr)
-* [Mode deux colonnes, mode demi-page, mode page unique](/wiki/faq/how-to-set-up-reading-mode/fr)
 * [Utilisation d'un moteur de synthèse vocale avec _Librera _](/wiki/faq/installation-and-configuration-of-tts/fr)
 * [Comment sélectionner du texte dans _Librera _](/wiki/faq/how-to-set-text-selection/fr)
 * [Synchronisation de votre configuration de lecture sur plusieurs appareils](/wiki/faq/setting-up-synchronization/fr)
@@ -13,7 +15,6 @@ layout: main
 * [Utilisation du widget de _Librera_](/wiki/faq/how-to-configure-the-widget/fr)
 * [Mise à jour de votre bibliothèque](/wiki/faq/update-the-library/fr)
 * [Comment supprimer un livre d'une carte SD externe](/wiki/faq/how-to-delete-file-from-external-sd-card/fr)
-* [Utilisation des catalogues en ligne OPDS](/wiki/faq/working-with-opds-online-catalogs/fr)
 * [Ouverture d'un dossier contenant des images sous forme de livre (relié dans un livre)](/wiki/faq/open-folder-with-images-as-a-book/fr)
 * [Comment restaurer les paramètres par défaut/Effacer le cache](/wiki/faq/how-to-restore-default-settings-clear-cache/fr)
 * [Ajout et gestion des tags personnalisés](/wiki/faq/custom-tags/fr)
@@ -34,7 +35,6 @@ layout: main
 * [Codage CSS personnalisé](/wiki/faq/customize-book-css-styles/fr)
 * [Personnalisation de l'apparence de votre bibliothèque](/wiki/faq/how-to-configure-the-library-view/fr)
 * [Tri de votre bibliothèque en fonction des dernières lectures](/wiki/faq/sort-library-by-last-read-date/fr)
-* [Définir un arrière-plan pour la page du livre](/wiki/faq/how-to-set-page-background-image/fr)
 * [Librera pour l'apprentissage des langues étrangères](/wiki/faq/librera-for-study-foreign-languages/fr)
 * [Relevé de vitesse RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/fr)
 * [Utilisation de dictionnaires et de traducteurs](/wiki/faq/dictionaries-translate-text-online-and-offline/fr)
