@@ -96,6 +96,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
@@ -976,8 +977,8 @@ public class DragingDialogs {
                         });
 
                         delete.setOnClickListener(v1 -> {
-                            if(TempHolder.isRecordTTS){
-                                Toast.makeText(controller.getActivity(),R.string.please_wait,Toast.LENGTH_SHORT).show();
+                            if (TempHolder.isRecordTTS) {
+                                Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
@@ -1355,7 +1356,9 @@ public class DragingDialogs {
         });
     }
 
-    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
+    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
+
+        final boolean withAnnotation = AppsConfig.PDF_DRAW_ENABLE ? withAnnotation1 : false;
 
         // try {
         // int number = Integer.parseInt(AppState.get().selectedText);
@@ -1616,7 +1619,7 @@ public class DragingDialogs {
                             ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
                             clipboard.setPrimaryClip(clip);
                         }
-                        Toast.makeText(c, c.getString(R.string.copied_text)+": "+trim, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
                 });
