@@ -14,7 +14,7 @@
    <string name="landscape_180">Альбомная (180°)</string>
    <string name="portrait_180">Портретная (180°)</string>
    <string name="system_language">Системный</string>
-   <string name="system">Система</string>
+   <string name="system">Системное знач-е</string>
    <string name="small">Мелкий</string>
    <string name="normal">Обычный</string>
    <string name="large">Крупный</string>
@@ -46,7 +46,7 @@
    <string name="borders_and_shadow_around_the_book_cover">Отображать границы и тени</string>
    <string name="tabs_position">Вкладки</string>
    <string name="show_preferences_tab_in_the_left_menu">Показывать вкладку \"Настройки\" как боковое меню</string>
-   <string name="visible">Показывать</string>
+   <string name="visible">Показ-ть</string>
    <string name="application_user_guide_">Руководство пользователя</string>
    <string name="import_or_export_application_settings_to_json_file">Импорт/экспорт всех настроек приложения</string>
    <string name="import_">Импорт</string>
@@ -502,7 +502,7 @@
    <string name="message">Важная информация</string>
    <string name="exit_application">Выйти из приложения</string>
    <string name="exit_application_question">Выйти из приложения?</string>
-   <string name="open_folder_as_a_book">Открыть файлы папки как книгу</string>
+   <string name="open_folder_as_a_book">Скомпоновать файлы папки в книгу</string>
    <string name="read_out_loud_with_tts">TTS-аудионачитка книги</string>
    <string name="allow_minimum_brightness">Разрешать предельно минимальные значения яркости подсветки экрана</string>
    <string name="select">Выбрать</string>
@@ -526,7 +526,7 @@
    <string name="export_as_text">Экспортировать как обычный txt-файл</string>
    <string name="export_as_backup_json_">Экспортировать в виде резервной копии (JSON)</string>
    <string name="import_from_backup_json_">Импортировать из резервной копии (JSON)</string>
-   <string name="additional_bookmarks_bar">Отображать при чтении расширенную панель закладок на экране:</string>
+   <string name="additional_bookmarks_bar">Режимы, при которых на экране поверх текста будет всегда отображаться расширенная панель закладок:</string>
    <string name="turn_the_page_on_the_last_word">Перелистывать страницу на последнем слове</string>
    <string name="paste">Вставить</string>
    <string name="move">Переместить</string>
@@ -555,13 +555,13 @@
    <string name="synchronized_books">Синхронизированные книги</string>
    <string name="publication_date">Год издания</string>
    <string name="empy">Пусто</string>
-   <string name="show_quick_bookmarks">Показывать быстрые закладки</string>
-   <string name="show_only_available_books">Показывать только доступные книги</string>
+   <string name="show_quick_bookmarks">Отображать быстрые закладки</string>
+   <string name="show_only_available_books">Показ-ть закладки только к имеющимся в библ-ке книгам</string>
    <string name="share_as_text">Поделиться в виде текста</string>
    <string name="share_as_image">Поделиться в виде изображения</string>
    <string name="copy_text">Скопировать текст</string>
    <string name="show_fast_scroll">Отобр. бегунок быстрой прокрутки</string>
-   <string name="replacements">Замены</string>
+   <string name="replacements">Автозамены</string>
    <string name="add_dictionary">Добавить словарь</string>
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>
@@ -578,11 +578,11 @@
    <string name="floating_bookmark">"Плавающая" закладка</string>
    <string name="animate_sync_progress">Анимировать прогресс синхронизации</string>
    <string name="pull_to_start_sync">Запускать синхронизицию свайпом сверху-вниз</string>
-   <string name="show_book_title">Показать название книги в строке состояния</string>
+   <string name="show_book_title">Видеть название книги в строке состояния</string>
    <string name="delete_reading_progress">Удалить прогресс чтения</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Игнорировать сканирование папки, если файл .nomedia существует</string>
-   <string name="record_in_mp3_format">Запись в формате .mp3</string>
-   <string name="speak_into_file_wav">Запись tts (mp3, wav)</string>
+   <string name="ignore_folder_scan_if_.nomedia_file_exists">Не сканировать папки, если в них находится файл .nomedia</string>
+   <string name="record_in_mp3_format">Сохранить в формате .mp3</string>
+   <string name="speak_into_file_wav">Создание TTS-начитки (.mp3, .wav)</string>
    <string name="text_is_too_long">Текст слишком длинный</string>
    <string name="settings">Настройки</string>
    <string name="play_pause">Воспроизведение / пауза</string>
@@ -592,5 +592,5 @@
    <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе просмотра калибров)</string>
    <string name="profile_root">Корень профиля</string>
    <string name="create_folder">Создать папку</string>
-   <string name="show_hidden">Показать скрытое</string>
+   <string name="show_hidden">Показывать скрытое</string>
 </resources>
