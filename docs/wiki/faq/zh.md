@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [如何创建新书或文件.txt](/wiki/faq/create-new-book-or-file-txt/zh)
 * [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
 * [**学习外语的图书馆**](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [TTS替换](/wiki/faq/tts-replacements/zh)

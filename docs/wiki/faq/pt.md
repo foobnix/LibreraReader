@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Como criar um novo livro ou arquivo .txt](/wiki/faq/create-new-book-or-file-txt/pt)
 * [Configurando a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
 * [**Librera** para aprender idiomas estrangeiros](/wiki/faq/librera-for-study-foreign-languages/pt)
 * [Substituições TTS](/wiki/faq/tts-replacements/pt)

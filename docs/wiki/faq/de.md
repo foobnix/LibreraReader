@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Erstellen eines neuen Buches oder einer neuen Datei .txt](/wiki/faq/create-new-book-or-file-txt/de)
 * [Einrichten der Statusleiste](/wiki/faq/how-to-set-up-a-status-bar/de)
 * [**Librera** zum Erlernen von Fremdsprachen](/wiki/faq/librera-for-study-foreign-languages/de)
 * [TTS-Ersatz](/wiki/faq/tts-replacements/de)
