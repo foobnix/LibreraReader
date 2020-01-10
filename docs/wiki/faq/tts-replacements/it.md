@@ -32,6 +32,13 @@ Sono supportati i sostituti classici (cambio diretto di una stringa per un'altra
 * &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- salta i caratteri
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - sostituisci i caratteri con una pausa (,)
 
+## Comandi TTS
+
+* &quot;testo&quot; -&gt; ttsPAUSE - Aggiungi pausa dopo &quot;testo&quot;
+* &quot;testo&quot; -&gt; ttsSTOP - Ferma TTS se trova &quot;testo&quot; nella frase
+* &quot;testo&quot; -&gt; ttsNEXT - Vai alla pagina successiva se trova &quot;testo&quot; nella frase
+* &quot;text&quot; -&gt; ttsSKIP - Salta la lettura della frase se trova &quot;text&quot; nella frase
+
 ## Aggiungi un file di regole
 
 **Librera** supporta i file delle regole RegExp da **@Voice Reader**

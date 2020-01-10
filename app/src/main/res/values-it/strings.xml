@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Tirare per avviare la sincronizzazione</string>
    <string name="show_book_title">Mostra il titolo del libro nella barra di stato</string>
    <string name="delete_reading_progress">Elimina l\'avanzamento della lettura</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignora la scansione delle cartelle se esiste un file .nomedia</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ignora le cartelle con i file .nomedia</string>
    <string name="record_in_mp3_format">Registrare in formato .mp3</string>
    <string name="speak_into_file_wav">Registrazione tts (mp3, wav)</string>
    <string name="text_is_too_long">Il testo è troppo lungo</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Radice del profilo</string>
    <string name="create_folder">Creare una cartella</string>
    <string name="show_hidden">Mostra nascosto</string>
+   <string name="new_file">Nuovo file</string>
 </resources>

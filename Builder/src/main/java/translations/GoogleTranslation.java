@@ -39,7 +39,7 @@ public class GoogleTranslation {
         // System.out.println(translate);
 
         try {
-            Thread.sleep(150);
+            Thread.sleep(250);
         } catch (InterruptedException e) {
         }
 

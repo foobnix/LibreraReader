@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Trekke for å starte synkronisering</string>
    <string name="show_book_title">Vis boktittelen i statuslinjen</string>
    <string name="delete_reading_progress">Slett leseutviklingen</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorere mappesøk hvis .nomedia-fil eksisterer</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorere mapper med .nomedia-filer</string>
    <string name="record_in_mp3_format">Ta opp i .mp3-format</string>
    <string name="speak_into_file_wav">Ta opp tts (mp3, wav)</string>
    <string name="text_is_too_long">Teksten er for lang</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Profilrot</string>
    <string name="create_folder">Lag mappe</string>
    <string name="show_hidden">Vis skjult</string>
+   <string name="new_file">Ny fil</string>
 </resources>

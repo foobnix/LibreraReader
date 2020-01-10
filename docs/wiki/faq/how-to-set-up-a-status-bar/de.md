@@ -2,53 +2,55 @@
 layout: main
 ---
 
-# Festlegen der Statusleiste
+# Einrichten der Statusleiste
 
-> Mit Librera können Sie die Benutzeroberfläche der Statusleiste flexibel konfigurieren und die Informationen anzeigen oder daraus entfernen, die Sie beim Lesen benötigen.
+> Sie können die Statusleiste von **Librera** so konfigurieren, dass unzählige nützliche Informationen auf Ihrem Lesebildschirm angezeigt werden ... oder Sie können sie als störende Ablenkung ganz entfernen.
 
-Um zu den Einstellungen in der Statusleiste zu gelangen, müssen Sie:
-* Klicken Sie auf das Einstellungssymbol
-* Wählen Sie ein Element im Menü &quot;Statusleiste&quot; aus
+Sie können alle Änderungen an der Statusleiste auf der Registerkarte _Statusleiste_ vornehmen:
+* Tippen Sie in der Mitte auf, um das Hauptmenü aufzurufen
+* Tippen Sie auf das Einstellungssymbol
+* Öffnen Sie den Tab _Statusleiste_
 
 ||||
 |-|-|-|
 |![](1.jpg)|![](2.jpg)|![](3.jpg)|
 
-Nach den Aktionen gelangen Sie in die Statusleiste der Einstellungen, in der Sie Folgendes konfigurieren können:
-* Aktivieren oder Deaktivieren der Anzeige der Statusleiste
-* Passen Sie die Position oben oder unten auf dem Bildschirm an.
+Standardmäßig befindet sich die Statusleiste am unteren Bildschirmrand. Verwenden Sie die Dropdown-Liste _Position_, um den Speicherort zu ändern.
+> Hinweis! Wenn die Einstellung _Top_ ausgewählt ist, wird der Titel des _Immer oben _ abgeblendet.
+* Das Kontrollkästchen &quot;Statusleiste anzeigen&quot; muss aktiviert sein, damit Informationen angezeigt werden, während Sie ein Buch lesen
 
 ||||
 |-|-|-|
 |![](20.jpg)|![](22.jpg)|![](21.jpg)|
 
-
-Ändern Sie die Art der Informationen zum Buch, die im Textteil der Statusleiste angezeigt werden
+Aktivieren/Deaktivieren Sie die Kontrollkästchen nach Ihren Wünschen. Du kannst auch:
+* Ändern Sie die Skalierung des Schiebereglers, der bei einem Tippen auf den mittleren Bildschirm unten eingeblendet wird
+* Wählen Sie aus, wie die numerischen (dynamischen) Informationen in der Statusleiste angezeigt werden (Kapitel, Seiten, Seiten bis zum Kapitelende usw.).
+* Ändern Sie die Schriftgröße und Farbe der Statusleiste für den Tag- und den Nachtmodus
+* Aktivieren/Deaktivieren Sie das Lesezeichen-Menüband auf dem Lesebildschirm
 
 ||||
 |-|-|-|
 |![](30.jpg)|![](31.jpg)|![](32.jpg)|
 
-* Zeigen Sie den Buchtitel in der Statusleiste an
-* Zeigt die aktuelle Uhrzeit an
-* Der Prozentsatz der Akkuladung.
-
+* Wenn die Position der Statusleiste &quot;Unten&quot; ist, können Sie die permanente Anzeige eines Buchtitels oben auf dem Bildschirm aktivieren (auch wenn die Statusleiste nicht angezeigt wird).
+* Außerdem können Sie die aktuelle Uhrzeit und den verbleibenden Batteriesaft auswählen, der mit dem Buchstatus angezeigt werden soll
+> **Wenn die Statusleiste deaktiviert ist, können Sie jederzeit einen Blick auf die Uhr werfen, indem Sie in die Mitte des Bildschirms tippen (siehe linke obere Ecke).**
+ 
 ||||
 |-|-|-|
 |![](40.jpg)|![](41.jpg)|![](42.jpg)|
 
-
-* Aktivieren oder deaktivieren Sie den Fortschrittsbalken
-* Festlegen der Anzeige von Beschriftungen, die in der Fortschrittsleiste angezeigt werden
-* Zeigt das Lesezeichensymbol an. Aktivieren Sie das Kontrollkästchen, in welchen Modi dieses Symbol angezeigt werden soll.
+* Aktivieren oder deaktivieren Sie die Statusanzeige für das Lesen
+* Wählen Sie die gewünschten Häkchen in der Fortschrittsanzeige aus.
+* Aktivieren Sie dieses Kontrollkästchen, um das Lesezeichenband auf Ihrem Lesebildschirm anzuzeigen
 
 ||||
 |-|-|-|
 |![](50.jpg)|![](51.jpg)|![](52.jpg)|
 
-* Ändern Sie die Textgröße in der Statusleiste und in der Kopfzeile
-* So ändern Sie die Größe der Statusleiste
-* Ändern Sie die Farbe in der Statusleiste und in der Kopfzeile.
+* Ändern Sie die Schriftgröße und -farbe der Statusleiste
+* Ändern Sie die Höhe des Fortschrittsbalkens
 
 ||||
 |-|-|-|

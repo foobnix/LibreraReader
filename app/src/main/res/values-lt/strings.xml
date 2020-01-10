@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Traukti, kad pradėtumėte sinchronizavimą</string>
    <string name="show_book_title">Rodyti knygos pavadinimą būsenos juostoje</string>
    <string name="delete_reading_progress">Ištrinti skaitymo eigą</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Nepaisyti aplanko nuskaitymo, jei yra .nomedia failas</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ignoruoti aplankus su .nomedia failais</string>
    <string name="record_in_mp3_format">Įrašyti .mp3 formatu</string>
    <string name="speak_into_file_wav">Įrašyti tts (mp3, wav)</string>
    <string name="text_is_too_long">Tekstas per ilgas</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Profilio šaknis</string>
    <string name="create_folder">Sukurti aplanką</string>
    <string name="show_hidden">Rodyti paslėptą</string>
+   <string name="new_file">Naujas failas</string>
 </resources>

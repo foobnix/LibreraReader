@@ -5,6 +5,9 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Setting Up the Status Bar](/wiki/faq/how-to-set-up-a-status-bar)
+* [**Librera** for Learning Foreign Languages](/wiki/faq/librera-for-study-foreign-languages)
+* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Customizing Page Background](/wiki/faq/how-to-set-page-background-image)
 * [Working with OPDS Catalogs](/wiki/faq/working-with-opds-online-catalogs)
 * [Page Viewing/Layout Options](/wiki/faq/how-to-set-up-reading-mode)
@@ -29,14 +32,11 @@ info: this file is generated automatically, please do not modify it
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [How to Add a New FAQ Topic](/wiki/faq/how-to-add-new-faq-section)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)
-* [TTS Replacements](/wiki/faq/tts-replacements)
 * [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)
 * [Open book with "Tag Manager"](/wiki/faq/open-book-with-tag-manager)
-* [Setting the status bar](/wiki/faq/how-to-set-up-a-status-bar)
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles)
 * [Customizing the Look and Feel of Your Library](/wiki/faq/how-to-configure-the-library-view)
 * [Sorting Your Library by Latest Reads](/wiki/faq/sort-library-by-last-read-date)
-* [Librera for learning foreign languages](/wiki/faq/librera-for-study-foreign-languages)
 * [RSVP Speed Reading](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation)
 * [Using Dictionaries and Translators](/wiki/faq/dictionaries-translate-text-online-and-offline)
 * [Working with _Librera_'s Profiles](/wiki/faq/working-with-profiles)

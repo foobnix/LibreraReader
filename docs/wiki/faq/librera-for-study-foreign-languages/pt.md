@@ -2,48 +2,43 @@
 layout: main
 ---
 
-# Librera para aprender línguas estrangeiras
+# **Librera** para aprender idiomas estrangeiros
 
-> Use o aplicativo para muitos estudantes e pessoas que leem livros em diferentes idiomas.
-As informações serão úteis para os alunos que estão aprendendo idiomas ou simplesmente lendo livros em outros idiomas.
+> **Librera** é uma excelente ferramenta para quem aprende uma língua estrangeira ... ou simplesmente lê um livro em outra língua.
 
-O aplicativo pode traduzir a palavra ou aplicativo destacado com os atributos.
-Os dicionários podem ser um programa em um computador ou dicionários da web.
+Basta usar o dedo (qualquer dedo) para destacar/selecionar o texto
+* Traduza com facilidade e rapidez uma palavra, passagem ou página selecionada
+* Configure o **Librera** para trabalhar com tradutores e/ou dicionários online e offline
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Você pode ativar a opção de abrir imediatamente uma palavra ou sentença conhecida no dicionário selecionado.
+* Ative a pesquisa de dicionário de toque único (pressão longa) (marque a caixa)
+* Isso também vale para traduções de passagens se o seu &quot;dicionário de escolha&quot; for, por exemplo, o Google Tradutor (verifique se a sua conexão com a Internet está funcionando)
+> Nota! Você pode configurar o **Librera** para selecionar palavras com um único toque na guia _Configurações avançadas_ (não recomendado)
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-* Ouça a pronúncia da palavra ou frase selecionada
-* Ouça o livro por voz
-* Adicione palavras e frases às notas.
+Se a seleção _Abrir no dicionário_ estiver desmarcada, você verá várias opções na janela _Texto_:
+* Faça **Librera** pronunciar a palavra para você ou leia sua seleção em voz alta para você
+* Faça com que leia o livro inteiro em voz alta (leitura acompanhada de voz)
+* Abra a palavra/passagem em outro dicionário/tradutor
+* Marque páginas com sequências de palavras significativas
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-* Adicione um arquivo audi que vai para o livro
-* Ouça o livro por voz
-* Adicione palavras e frases às notas.
-
-||||
-|-|-|-|
-|![](7.png)|![](8.png)|![](9.png)|
-
-Librera pode reproduzir arquivos de áudio externos com o livro
-O aplicativo exibe os formatos .mp3, .mp4, .wav, .ogg, .m4a, .flac
-Longo clique no botão play \ pause redefinir faixa para o início
-
-* Adicione um arquivo audi que vai para o livro
-* Gerenciar escuta, pausa na reprodução
-* Assista todas as suas anotações de livros.
+> Você pode reproduzir arquivos de áudio externos com o **Librera**. Ele suporta todos os formatos de áudio usados com freqüência, por exemplo, .mp3, .mp4, .wav, .ogg, .m4a e .flac.
+* Reproduza audiolivros juntamente com suas cópias de e-books (leitura acompanhada por voz)
+* Controle o ritmo da sua leitura com os controles de reprodução na parte inferior
+* Use a janela **Favoritos** para navegar no livro
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
+
+> **Pressione e segure o botão Play/Pause para rebobinar a faixa desde o início.**

@@ -325,6 +325,13 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/sectionSync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
 
         <LinearLayout
             android:id="@+id/section8"
@@ -402,6 +409,8 @@
                 android:src="@drawable/glyphicons_137_cogwheel"
                 android:tint="@color/tint_gray" />
         </LinearLayout>
+
+    </LinearLayout>
 
         <TextView
             android:id="@+id/section2"
@@ -971,6 +980,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/document_converter_online_" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:src="@drawable/glyphicons_433_plus"
+                android:tint="@color/tint_gray" />
+
+            <TextView
+                android:id="@+id/newFile"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_file" />
         </LinearLayout>
 
         <LinearLayout

@@ -4,6 +4,9 @@ layout: main
 
 #常见问题
 
+* [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
+* [**学习外语的图书馆**](/wiki/faq/librera-for-study-foreign-languages/zh)
+* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [自定义页面背景](/wiki/faq/how-to-set-page-background-image/zh)
 * [使用OPDS目录](/wiki/faq/working-with-opds-online-catalogs/zh)
 * [页面查看/布局选项](/wiki/faq/how-to-set-up-reading-mode/zh)
@@ -28,14 +31,11 @@ layout: main
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)
-* [TTS替换](/wiki/faq/tts-replacements/zh)
 * [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)
-* [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
 * [自定义CSS编码](/wiki/faq/customize-book-css-styles/zh)
 * [自定义您的图书馆外观](/wiki/faq/how-to-configure-the-library-view/zh)
 * [按最新阅读顺序分类图书馆](/wiki/faq/sort-library-by-last-read-date/zh)
-* [学习外语的图书馆](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [RSVP快速阅读](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
 * [使用字典和翻译器](/wiki/faq/dictionaries-translate-text-online-and-offline/zh)
 * [使用_Librera_的个人资料](/wiki/faq/working-with-profiles/zh)

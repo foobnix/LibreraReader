@@ -4,6 +4,9 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
+* [**Librera** لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
+* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [تخصيص خلفية الصفحة](/wiki/faq/how-to-set-page-background-image/ar)
 * [العمل مع كتالوجات OPDS](/wiki/faq/working-with-opds-online-catalogs/ar)
 * [خيارات عرض/تخطيط الصفحة](/wiki/faq/how-to-set-up-reading-mode/ar)
@@ -28,14 +31,11 @@ layout: main
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
-* [TTS Replacements](/wiki/faq/tts-replacements/ar)
 * [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
-* [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles/ar)
 * [تخصيص الشكل والمظهر لمكتبتك](/wiki/faq/how-to-configure-the-library-view/ar)
 * [فرز مكتبتك حسب أحدث القراءات](/wiki/faq/sort-library-by-last-read-date/ar)
-* [Librera لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
 * [قراءة سرعة RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ar)
 * [استخدام القواميس والمترجمين](/wiki/faq/dictionaries-translate-text-online-and-offline/ar)
 * [العمل مع ملفات تعريف _Librera_](/wiki/faq/working-with-profiles/ar)

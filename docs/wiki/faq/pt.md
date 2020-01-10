@@ -4,6 +4,9 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Configurando a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
+* [**Librera** para aprender idiomas estrangeiros](/wiki/faq/librera-for-study-foreign-languages/pt)
+* [Substituições TTS](/wiki/faq/tts-replacements/pt)
 * [Personalizando o plano de fundo da página](/wiki/faq/how-to-set-page-background-image/pt)
 * [Trabalhando com catálogos OPDS](/wiki/faq/working-with-opds-online-catalogs/pt)
 * [Opções de exibição/layout da página](/wiki/faq/how-to-set-up-reading-mode/pt)
@@ -28,14 +31,11 @@ layout: main
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Configurando fontes e estilos](/wiki/faq/customize-text-fonts-and-styles/pt)
-* [Substituições TTS](/wiki/faq/tts-replacements/pt)
 * [Modos de leitura: modo de rolagem, modo Livro e modo Músico](/wiki/faq/reading-mode-vertical-book-musician/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)
-* [Definindo a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
 * [Codificação CSS personalizada](/wiki/faq/customize-book-css-styles/pt)
 * [Personalizando a aparência da sua biblioteca](/wiki/faq/how-to-configure-the-library-view/pt)
 * [Classificando sua biblioteca pelas últimas leituras](/wiki/faq/sort-library-by-last-read-date/pt)
-* [Librera para aprender línguas estrangeiras](/wiki/faq/librera-for-study-foreign-languages/pt)
 * [Leitura rápida de confirmação de presença](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/pt)
 * [Usando dicionários e tradutores](/wiki/faq/dictionaries-translate-text-online-and-offline/pt)
 * [Trabalhando com os perfis de _Librera_](/wiki/faq/working-with-profiles/pt)

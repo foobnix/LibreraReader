@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Потягніть, щоб почати синхронізацію</string>
    <string name="show_book_title">Показати назву книги в рядку стану</string>
    <string name="delete_reading_progress">Видалити хід читання</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ігноруйте сканування папок, якщо файл .nomedia існує</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ігноруйте папки з файлами .nomedia</string>
    <string name="record_in_mp3_format">Запис у форматі .mp3</string>
    <string name="speak_into_file_wav">Запис tts (mp3, wav)</string>
    <string name="text_is_too_long">Текст занадто довгий</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Корінь профілю</string>
    <string name="create_folder">Створити папку</string>
    <string name="show_hidden">Показати приховано</string>
+   <string name="new_file">Новий файл</string>
 </resources>

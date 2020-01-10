@@ -32,6 +32,13 @@ Se admiten reemplazos clásicos (cambio directo de una cadena por otra), o puede
 * &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- saltar caracteres
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - reemplazar caracteres con una pausa (,)
 
+## Comandos TTS
+
+* &quot;texto&quot; -&gt; ttsPAUSE - Agregar pausa después de &quot;texto&quot;
+* &quot;texto&quot; -&gt; ttsSTOP - Detiene TTS si encuentra &quot;texto&quot; en la oración
+* &quot;texto&quot; -&gt; ttsSIGUIENTE - Ir a la página siguiente si encuentra &quot;texto&quot; en la oración
+* &quot;texto&quot; -&gt; ttsSKIP - Omita la lectura de la oración si encuentra &quot;texto&quot; en la oración
+
 ## Agregar un archivo de reglas
 
 **Librera** admite archivos de reglas RegExp de **@Voice Reader**

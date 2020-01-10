@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Tarik untuk mulai menyinkronkan</string>
    <string name="show_book_title">Tampilkan judul buku di bilah status</string>
    <string name="delete_reading_progress">Hapus kemajuan membaca</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Abaikan pemindaian folder jika ada file .nomedia</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Abaikan folder dengan file .nomedia</string>
    <string name="record_in_mp3_format">Rekam dalam format .mp3</string>
    <string name="speak_into_file_wav">Rekam tts (mp3, wav)</string>
    <string name="text_is_too_long">Teks terlalu panjang</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Akar profil</string>
    <string name="create_folder">Membuat folder</string>
    <string name="show_hidden">Tampilkan disembunyikan</string>
+   <string name="new_file">File baru</string>
 </resources>

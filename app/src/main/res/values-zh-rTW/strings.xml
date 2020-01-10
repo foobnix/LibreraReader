@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">手動同步（下拉刷新）</string>
    <string name="show_book_title">頂部顯示書名</string>
    <string name="delete_reading_progress">重置進度</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">忽略帶有.nomedia文件的檔夾</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">忽略帶有.nomedia文件的文件夾</string>
    <string name="record_in_mp3_format">以mp3格式錄製</string>
    <string name="speak_into_file_wav">Tts錄製（mp3，wav）</string>
    <string name="text_is_too_long">文本過長</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">配置文件根</string>
    <string name="create_folder">創建檔夾</string>
    <string name="show_hidden">顯示隱藏</string>
+   <string name="new_file">新文件</string>
 </resources>

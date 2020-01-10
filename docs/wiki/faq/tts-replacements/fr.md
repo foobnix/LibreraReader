@@ -32,6 +32,13 @@ Les remplacements classiques sont pris en charge (changement simple d'une chaîn
 * &quot;* [()&quot; «» * &quot;&quot;/[] &quot;-&gt;&quot; &quot;- Ignorer les caractères
 * &quot;* [?!:; - - | - | -]&quot; -&gt; &quot;,&quot; - remplace les caractères par une pause (,)
 
+## Commandes TTS
+
+* &quot;text&quot; -&gt; ttsPAUSE - Ajouter une pause après &quot;text&quot;
+* &quot;text&quot; -&gt; ttsSTOP - Arrêtez TTS si vous trouvez &quot;text&quot; dans la phrase
+* &quot;texte&quot; -&gt; ttsNEXT - Aller à la page suivante si trouver &quot;texte&quot; dans la phrase
+* &quot;texte&quot; -&gt; ttsSKIP - Sauter la lecture de la phrase si trouver &quot;texte&quot; dans la phrase
+
 ## Ajouter un fichier de règles
 
 **Librera** prend en charge les fichiers de règles RegExp de **@ Voice Reader**.

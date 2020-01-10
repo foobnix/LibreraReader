@@ -2,48 +2,43 @@
 layout: main
 ---
 
-# Librera pour l'apprentissage des langues étrangères
+# **Librera** pour l'apprentissage des langues étrangères
 
-> Utilisez l'application beaucoup d'étudiants et de gens qui lisent des livres dans différentes langues.
-L'information sera utile aux étudiants qui apprennent des langues ou lisent simplement des livres dans d'autres langues.
+> **Librera** est un excellent outil pour ceux qui apprennent une langue étrangère ... ou se contentent de lire un livre dans une autre langue.
 
-L'application peut traduire le mot en surbrillance ou l'application avec les attributs.
-Les dictionnaires peuvent être un programme sur un ordinateur ou des dictionnaires Web.
+Utilisez simplement votre doigt (n'importe quel doigt) pour mettre en surbrillance/sélectionner du texte
+* Traduisez facilement et rapidement un mot, un passage ou une page sélectionné
+* Configurer **Librera** pour fonctionner avec des traducteurs et/ou des dictionnaires en ligne et hors ligne
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-Vous pouvez activer l'option permettant d'ouvrir immédiatement un mot connu ou une phrase du dictionnaire sélectionné.
+* Activer la recherche de dictionnaire par simple pression (appui long) (cochez la case)
+* Cela vaut également pour les traductions de passages si votre &quot;dictionnaire de choix&quot; est, par exemple, Google Translate (assurez-vous que votre connexion Internet est opérationnelle)
+> Remarque! Vous pouvez configurer **Librera** pour sélectionner des mots en un seul clic dans l'onglet _Paramètres avancés_ (non recommandé)
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-* Écoutez la prononciation du mot ou de la phrase sélectionnée
-* Écoutez le livre à voix haute
-* Ajoutez des mots et des phrases aux notes.
+Si la sélection _Ouvrir dans le dictionnaire_ n'est pas cochée, vous aurez plusieurs choix dans la fenêtre _Texte_:
+* Faites **Librera** prononcer le mot pour vous ou relisez votre sélection à haute voix
+* Faites-le lire tout le livre à haute voix (lecture accompagnée par la voix)
+* Ouvrez le mot/passage dans un autre dictionnaire/traducteur
+* Pages de signets avec des séquences de mots significatives
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-* Ajouter un fichier audi qui va au livre
-* Écoutez le livre à voix haute
-* Ajoutez des mots et des phrases aux notes.
-
-||||
-|-|-|-|
-|![](7.png)|![](8.png)|![](9.png)|
-
-Librera peut lire des fichiers audio externes avec le livre.
-L'application affiche les formats .mp3, .mp4, .wav, .ogg, .m4a, .flac
-Cliquez longuement sur le bouton lecture \ pause pour réinitialiser la piste au début
-
-* Ajouter un fichier audi qui va au livre
-* Gérer l'écoute, mettre en pause
-* Consultez toutes les notes de votre livre.
+> Vous pouvez lire des fichiers audio externes avec **Librera**. Il prend en charge tous les formats audio fréquemment utilisés, par exemple, .mp3, .mp4, .wav, .ogg, .m4a et .flac.
+* Lisez des livres audio à côté de leurs copies de livres électroniques (lecture accompagnée par la voix)
+* Gérez le rythme de votre lecture avec les commandes de lecture en bas
+* Utilisez la fenêtre **Signets** pour parcourir le livre
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
+
+> **Un appui long sur le bouton Lecture/Pause permet de rembobiner la piste au tout début.**

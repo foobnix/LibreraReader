@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Tahem zahájíte synchronizaci</string>
    <string name="show_book_title">Zobrazit název knihy ve stavovém řádku</string>
    <string name="delete_reading_progress">Smazat průběh čtení</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignorovat kontrolu složky, pokud existuje soubor .nomedia</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ignorovat složky se soubory .nomedia</string>
    <string name="record_in_mp3_format">Záznam ve formátu .mp3</string>
    <string name="speak_into_file_wav">Záznam tts (mp3, wav)</string>
    <string name="text_is_too_long">Text je příliš dlouhý</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Kořen profilu</string>
    <string name="create_folder">Vytvořit složku</string>
    <string name="show_hidden">Zobrazit skryté</string>
+   <string name="new_file">Nový soubor</string>
 </resources>

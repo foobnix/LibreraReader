@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Húzza a szinkronizálás megkezdéséhez</string>
    <string name="show_book_title">A könyv címe az állapotsoron</string>
    <string name="delete_reading_progress">Törölje az olvasási folyamatot</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Figyelmen kívül hagyja a mappák ellenőrzését, ha létezik .nomedia fájl</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Figyelmen kívül hagyja a .nomedia fájlokat tartalmazó mappákat</string>
    <string name="record_in_mp3_format">Rögzítés .mp3 formátumban</string>
    <string name="speak_into_file_wav">Rekord tts (mp3, wav)</string>
    <string name="text_is_too_long">A szöveg túl hosszú</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Profil gyökér</string>
    <string name="create_folder">Mappa létrehozás</string>
    <string name="show_hidden">Rejtett megjelenítése</string>
+   <string name="new_file">Új fájl</string>
 </resources>

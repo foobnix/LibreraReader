@@ -1,14 +1,20 @@
 package com.foobnix.android.utils;
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class UI {
 
-    public static LinearLayout verticalLayout(Activity a) {
+    public static LinearLayout verticalLayout(Activity a, View... views) {
         LinearLayout l = new LinearLayout(a);
         l.setOrientation(LinearLayout.VERTICAL);
+        if(views!=null){
+            for(View v: views){
+                l.addView(v);
+            }
+        }
         return l;
     }
 

@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Запускать синхронизицию свайпом сверху-вниз</string>
    <string name="show_book_title">Показать название книги в строке состояния</string>
    <string name="delete_reading_progress">Удалить прогресс чтения</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Игнорировать сканирование папки, если файл .nomedia существует</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Игнорировать папки с файлами .nomedia</string>
    <string name="record_in_mp3_format">Запись в формате .mp3</string>
    <string name="speak_into_file_wav">Запись tts (mp3, wav)</string>
    <string name="text_is_too_long">Текст слишком длинный</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Корень профиля</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показать скрытое</string>
+   <string name="new_file">Новый файл</string>
 </resources>

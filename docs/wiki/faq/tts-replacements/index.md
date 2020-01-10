@@ -32,6 +32,13 @@ Classic replacements are supported (straightforward change of one string for ano
 * "*[()"«»*”“/[]]" -> "" - skip chars
 * "*[?!:;–|—|―]" -> "," - replace chars with a pause (,)
 
+## TTS Commands
+
+* "text" -> ttsPAUSE - Add pause after "text"
+* "text" -> ttsSTOP  - Stop TTS if find "text" in the sentence 
+* "text" -> ttsNEXT  - Go to next page if find "text" in the sentence 
+* "text" -> ttsSKIP  - Skip reading sentence if find "text" in the sentence
+
 ## Add a Rule-File
 
 **Librera** supports RegExp rule-files from **@Voice Reader**

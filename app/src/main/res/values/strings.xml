@@ -562,7 +562,7 @@
    <string name="copy_text">Copy text</string>
    <string name="show_fast_scroll">Show scrollbar</string>
    <string name="replacements">Replacements</string>
-   <string name="add_dictionary">New dictionary</string>
+   <string name="add_dictionary">Add dictionary</string>
    <string name="add_rule">New rule</string>
    <string name="emphasis">Manual Stress Mark(s)</string>
    <string name="with_cutout">Notched</string>
@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Manual sync (à la pull-to-refresh)</string>
    <string name="show_book_title">Always display book title on top</string>
    <string name="delete_reading_progress">Reset progress</string>
-   <string name="ignore_folder_scan_if_.nomedia_file_exists">Ignore folders with .nomedia files</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Ignore folders with .nomedia files</string>
    <string name="record_in_mp3_format">Save to MP3</string>
    <string name="speak_into_file_wav">Record TTS (MP3, WAV)</string>
    <string name="text_is_too_long">Character limit is exceeded</string>
@@ -593,4 +593,5 @@
    <string name="profile_root">Profiles</string>
    <string name="create_folder">New folder</string>
    <string name="show_hidden">Show hidden</string>
+   <string name="new_file">New File</string>
 </resources>

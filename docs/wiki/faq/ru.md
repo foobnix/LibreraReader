@@ -4,6 +4,9 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Настройка строки состояния](/wiki/faq/how-to-set-up-a-status-bar/ru)
+* [**Librera** для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
+* [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Настройка фона страницы](/wiki/faq/how-to-set-page-background-image/ru)
 * [Работа с каталогами OPDS](/wiki/faq/working-with-opds-online-catalogs/ru)
 * [Просмотр страницы/Параметры макета](/wiki/faq/how-to-set-up-reading-mode/ru)
@@ -28,14 +31,11 @@ layout: main
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)
-* [Замена TTS](/wiki/faq/tts-replacements/ru)
 * [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)
 * [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)
-* [Настройка строки состояния](/wiki/faq/how-to-set-up-a-status-bar/ru)
 * [Пользовательское кодирование CSS](/wiki/faq/customize-book-css-styles/ru)
 * [Настройка внешнего вида вашей библиотеки](/wiki/faq/how-to-configure-the-library-view/ru)
 * [Сортировка вашей библиотеки по последним прочтениям](/wiki/faq/sort-library-by-last-read-date/ru)
-* [Librera для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
 * [Чтение скорости RSVP](/wiki/faq/rsvp-speed-reading-rapid-serial-visual-presentation/ru)
 * [Использование словарей и переводчиков](/wiki/faq/dictionaries-translate-text-online-and-offline/ru)
 * [Работа с профилями _Librera_](/wiki/faq/working-with-profiles/ru)

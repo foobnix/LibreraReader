@@ -32,6 +32,13 @@ layout: main
 * &quot;* [()&quot; «» * &quot;&quot;/[] &quot;-&gt;&quot; &quot;- تخطي الأحرف
 * &quot;* [؟!:؛ - | - | -]&quot; -&gt; &quot;،&quot; - استبدل الحروف الموقفة بإيقاف مؤقت (،)
 
+## أوامر TTS
+
+* &quot;text&quot; -&gt; ttsPAUSE - إضافة وقفة بعد &quot;النص&quot;
+* &quot;text&quot; -&gt; ttsSTOP - إيقاف TTS إذا عثر على &quot;نص&quot; في الجملة
+* &quot;text&quot; -&gt; ttsNEXT - انتقل إلى الصفحة التالية إذا عثر على &quot;نص&quot; في الجملة
+* &quot;text&quot; -&gt; ttsSKIP - تخطي جملة القراءة إذا وجدت &quot;نص&quot; في الجملة
+
 ## أضف ملف قاعدة
 
 **Librera** يدعم ملفات قواعد RegExp من **Voice Reader**

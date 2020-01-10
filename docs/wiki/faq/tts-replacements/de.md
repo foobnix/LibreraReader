@@ -32,6 +32,13 @@ Klassische Ersetzungen werden unterstützt (einfaches Ändern einer Zeichenfolge
 * &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- Zeichen überspringen
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - Zeichen durch eine Pause ersetzen (,)
 
+## TTS-Befehle
+
+* &quot;text&quot; -&gt; ttsPAUSE - Pause nach &quot;text&quot; hinzufügen
+* &quot;text&quot; -&gt; ttsSTOP - Stoppt TTS, wenn &quot;text&quot; im Satz gefunden wird
+* &quot;text&quot; -&gt; ttsNEXT - Wechselt zur nächsten Seite, wenn der Satz &quot;text&quot; enthält
+* &quot;text&quot; -&gt; ttsSKIP - Lesesatz überspringen, wenn &quot;text&quot; im Satz gefunden wird
+
 ## Fügen Sie eine Regeldatei hinzu
 
 **Librera** unterstützt RegExp-Regeldateien von **@Voice Reader**.

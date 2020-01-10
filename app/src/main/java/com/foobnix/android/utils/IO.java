@@ -123,8 +123,9 @@ public class IO {
                 out.close();
             } catch (Exception e) {
                 LOG.e(e);
+                return false;
             }
-            return false;
+            return true;
         }
     }
 

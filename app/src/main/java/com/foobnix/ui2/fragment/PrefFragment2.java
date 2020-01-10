@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -50,6 +51,7 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.UI;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
@@ -87,6 +89,7 @@ import com.foobnix.pdf.search.activity.msg.GDriveSycnEvent;
 import com.foobnix.pdf.search.activity.msg.MessageSync;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
+import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -309,7 +312,7 @@ public class PrefFragment2 extends UIFragment {
 
         section8 = inflate.findViewById(R.id.section8);
 
-        section8.setVisibility(BuildConfig.IS_FDROID ? View.GONE : View.VISIBLE);
+        inflate.findViewById(R.id.sectionSync).setVisibility(BuildConfig.IS_FDROID ? View.GONE : View.VISIBLE);
 
         section9 = inflate.findViewById(R.id.section9);
 
@@ -1160,7 +1163,7 @@ public class PrefFragment2 extends UIFragment {
         inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(v -> {
 
             final CheckBox isSkipFolderWithNOMEDIA = new CheckBox(v.getContext());
-            isSkipFolderWithNOMEDIA.setText(getString(R.string.ignore_folder_scan_if__nomedia_file_exists));
+            isSkipFolderWithNOMEDIA.setText(getString(R.string.ignore_folder_scan_if_nomedia_file_exists));
 
             final CheckBox isAuthorTitleFromMetaPDF = new CheckBox(v.getContext());
             isAuthorTitleFromMetaPDF.setText(R.string.displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags);
@@ -1591,7 +1594,7 @@ public class PrefFragment2 extends UIFragment {
                                                           public boolean onResultRecive(String nPath, Dialog dialog) {
                                                               if (new File(nPath).canWrite()) {
                                                                   AppSP.get().rootPath = nPath;
-                                                                  new File(nPath,"Fonts").mkdirs();
+                                                                  new File(nPath, "Fonts").mkdirs();
                                                                   TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(nPath));
                                                                   onTheme();
                                                               } else {
@@ -2239,6 +2242,97 @@ public class PrefFragment2 extends UIFragment {
                                                         p.show();
                                                     }
                                                 });
+
+        final TextView newFile = (TextView) inflate.findViewById(R.id.newFile);
+        TxtUtils.underlineTextView(newFile);
+        newFile.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+
+                final EditText name = new EditText(getActivity());
+                name.setHint(getString(R.string.name)+".txt");
+                name.setSingleLine();
+
+                final EditText edit = new EditText(getActivity());
+                edit.setHint(R.string.content_of_book);
+                edit.setGravity(Gravity.TOP);
+                edit.setMinHeight(Dips.screenHeight());
+                edit.setMinWidth(Dips.screenWidth());
+
+                LinearLayout v1 = UI.verticalLayout(getActivity(), name, edit);
+                //v1.addView(name);
+                //v1.addView(edit);
+                builder.setView(v1);
+
+                builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Keyboards.close(edit);
+                    }
+                });
+
+                builder.setPositiveButton(R.string.add, new AlertDialog.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Keyboards.close(edit);
+                    }
+                });
+
+                final AlertDialog create = builder.create();
+                create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                    }
+                });
+                create.show();
+
+                create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        String text = edit.getText().toString().trim();
+                        String title = name.getText().toString().trim();
+                        if(!title.endsWith(".txt")){
+                            title += ".txt";
+                        }
+
+                        final File out = new File(AppProfile.DOWNLOADS_DIR, title);
+                        LOG.d("create file exists",out.exists());
+                        LOG.d("create file isFile",out.isFile());
+                        if(out.exists()){
+                            name.requestFocus();
+                            Toast.makeText(getActivity(), "Can't create file, exists" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        boolean res = IO.writeString(out,text);
+                        if(!res) {
+                            name.requestFocus();
+                            Toast.makeText(getActivity(), "Can't create file" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+
+                        FileMetaCore.createMetaIfNeed(out.getPath(),true);
+
+
+                        create.dismiss();
+                        Keyboards.close(edit);
+                        Keyboards.hideNavigation(getActivity());
+
+                        Toast.makeText(getActivity(),R.string.success,Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+
+
+            }
+        });
 
         overlay =
 

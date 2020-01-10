@@ -32,6 +32,13 @@ Expressões
 * &quot;* [()&quot; «» * ”“/[] &quot;-&gt;&quot; &quot;- ignorar caracteres
 * &quot;* [?!:; - | - | -]&quot; -&gt; &quot;,&quot; - substitui chars por uma pausa (,)
 
+## Comandos TTS
+
+* &quot;text&quot; -&gt; ttsPAUSE - Adiciona uma pausa após &quot;text&quot;
+* &quot;text&quot; -&gt; ttsSTOP - Interrompa o TTS se encontrar &quot;text&quot; na frase
+* &quot;text&quot; -&gt; ttsNEXT - Vá para a próxima página se encontrar &quot;text&quot; na frase
+* &quot;text&quot; -&gt; ttsSKIP - Pule a frase de leitura se encontrar &quot;text&quot; na frase
+
 ## Adicione um arquivo de regras
 
 O** Librera** suporta arquivos de regras RegExp do **@Voice Reader**
