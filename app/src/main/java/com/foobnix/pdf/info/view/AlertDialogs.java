@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -14,10 +16,18 @@ import android.widget.Toast;
 
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.UI;
+import com.foobnix.dao2.FileMeta;
+import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.DocumentController;
+import com.foobnix.ui2.FileMetaCore;
+
+import java.io.File;
 
 public class AlertDialogs {
 
@@ -234,6 +244,114 @@ public class AlertDialogs {
                     Keyboards.close(edit);
                     Keyboards.hideNavigation((Activity) a);
                 }
+
+
+            }
+        });
+    }
+
+    public static void editFileTxt(Activity a, File file, StringResponse onSave){
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(a);
+
+
+        final EditText name = new EditText(a);
+        name.setHint(a.getString(R.string.name)+".txt");
+        name.setSingleLine();
+
+
+        final EditText edit = new EditText(a);
+        edit.setHint(R.string.content_of_book);
+        edit.setGravity(Gravity.TOP);
+        edit.setMinHeight(Dips.screenHeight());
+        edit.setMinWidth(Dips.screenWidth());
+
+        //edit.setLines(20);
+        edit.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+
+        if(file!=null && file.isFile()){
+            name.setText(file.getName());
+            edit.setText(IO.readString(file, true));
+        }
+
+        LinearLayout v1 = UI.verticalLayout(a, name, edit);
+        //v1.addView(name);
+        //v1.addView(edit);
+        builder.setView(v1);
+
+        builder.setNegativeButton(R.string.cancel, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
+            }
+        });
+
+        builder.setPositiveButton(R.string.save, new AlertDialog.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Keyboards.close(edit);
+            }
+        });
+
+        final AlertDialog create = builder.create();
+        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
+        create.show();
+
+        create.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String text = edit.getText().toString().trim();
+                String title = name.getText().toString().trim();
+                if(!title.endsWith(".txt")){
+                    title += ".txt";
+                }
+
+                final File out = new File(AppProfile.DOWNLOADS_DIR, title);
+                LOG.d("create file exists",out.exists());
+                LOG.d("create file isFile",out.isFile());
+                if(out.exists()){
+                    AlertDialogs.showOkDialog(a, "File with the same name is already present, overwrite?", new Runnable() {
+                        @Override
+                        public void run() {
+                            boolean res = IO.writeString(out,text);
+                            if(!res) {
+                                name.requestFocus();
+                                Toast.makeText(a, "Can't create file" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            create.dismiss();
+                            onSave.onResultRecive(out.getPath());
+
+                        }
+                    });
+                    return;
+                }
+                boolean res = IO.writeString(out,text);
+                if(!res) {
+                    name.requestFocus();
+                    Toast.makeText(a, "Can't create file" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                final FileMeta meta = FileMetaCore.createMetaIfNeed(out.getPath(), true);
+
+
+                create.dismiss();
+                Keyboards.close(edit);
+                Keyboards.hideNavigation(a);
+
+                Toast.makeText(a,R.string.success,Toast.LENGTH_SHORT).show();
+
+                onSave.onResultRecive(out.getPath());
 
 
             }

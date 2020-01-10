@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.Keyboards;
@@ -37,6 +38,7 @@ import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -240,6 +242,11 @@ public class ShareDialog {
 
         List<String> items = new ArrayList<String>();
 
+        final boolean isTxt = BookType.TXT.is(file.getPath());
+        if (isTxt) {
+            items.add(a.getString(R.string.edit));
+        }
+
         if (isLibrary) {
             items.add(a.getString(R.string.library));
         }
@@ -308,7 +315,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.sync_book));
         }
 
-        if(isMainTabs){
+        if (isMainTabs) {
             items.add(a.getString(R.string.delete_reading_progress));
         }
 
@@ -322,6 +329,26 @@ public class ShareDialog {
             public void onClick(final DialogInterface dialog, final int which) {
                 int i = 0;
 
+                if (isTxt && which == i++) {
+                    AlertDialogs.editFileTxt(a, file, new StringResponse() {
+                        @Override
+                        public boolean onResultRecive(String string) {
+                            if ((a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity) && dc != null) {
+                                dc.onCloseActivityFinal(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        ExtUtils.openFile(a, new FileMeta(string));
+
+                                    }
+                                });
+                            } else {
+                                ExtUtils.openFile(a, new FileMeta(string));
+                            }
+                            return false;
+                        }
+                    });
+                }
                 if (isLibrary && which == i++) {
                     a.finish();
                     MainTabs2.startActivity(a, UITab.getCurrentTabIndex(UITab.SearchFragment));

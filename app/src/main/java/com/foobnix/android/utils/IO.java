@@ -85,6 +85,9 @@ public class IO {
     }
 
     public static String readString(File file) {
+        return  readString(file, false);
+    }
+    public static String readString(File file, boolean withSeparator) {
         synchronized (getLock(file)) {
 
             try {
@@ -95,8 +98,13 @@ public class IO {
                 StringBuilder builder = new StringBuilder();
                 String aux = "";
                 BufferedReader reader = new BufferedReader(new FileReader(file));
+                String separator = System.getProperty("line.separator");
+
                 while ((aux = reader.readLine()) != null) {
                     builder.append(aux);
+                    if(withSeparator) {
+                        builder.append(separator);
+                    }
                 }
                 reader.close();
                 return builder.toString();
