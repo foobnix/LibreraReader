@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Reading Modes: Scroll, Book, and Musician's](/wiki/faq/reading-mode-vertical-book-musician)
 * [How to create new book or file .txt](/wiki/faq/create-new-book-or-file-txt)
 * [Setting Up the Status Bar](/wiki/faq/how-to-set-up-a-status-bar)
 * [**Librera** for Learning Foreign Languages](/wiki/faq/librera-for-study-foreign-languages)
@@ -33,7 +34,6 @@ info: this file is generated automatically, please do not modify it
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [How to Add a New FAQ Topic](/wiki/faq/how-to-add-new-faq-section)
 * [Configuring Fonts and Styles](/wiki/faq/customize-text-fonts-and-styles)
-* [Reading modes: Scroll mode, Book mode and Musician mode](/wiki/faq/reading-mode-vertical-book-musician)
 * [Open book with "Tag Manager"](/wiki/faq/open-book-with-tag-manager)
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles)
 * [Customizing the Look and Feel of Your Library](/wiki/faq/how-to-configure-the-library-view)

@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [أوضاع القراءة: التمرير والكتاب والموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
 * [كيفية إنشاء كتاب أو ملف جديد. txt](/wiki/faq/create-new-book-or-file-txt/ar)
 * [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
 * [**Librera** لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
@@ -32,7 +33,6 @@ layout: main
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [كيفية إضافة موضوع جديد للأسئلة الشائعة](/wiki/faq/how-to-add-new-faq-section/ar)
 * [تكوين الخطوط والأنماط](/wiki/faq/customize-text-fonts-and-styles/ar)
-* [أوضاع القراءة: وضع التمرير ، وضع الكتاب ووضع الموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)
 * [Custom CSS Coding](/wiki/faq/customize-book-css-styles/ar)
 * [تخصيص الشكل والمظهر لمكتبتك](/wiki/faq/how-to-configure-the-library-view/ar)

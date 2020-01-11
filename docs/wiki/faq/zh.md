@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [阅读模式：滚动，读书和音乐家的音乐](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [如何创建新书或文件.txt](/wiki/faq/create-new-book-or-file-txt/zh)
 * [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
 * [**学习外语的图书馆**](/wiki/faq/librera-for-study-foreign-languages/zh)
@@ -32,7 +33,6 @@ layout: main
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [如何添加新的常见问题解答主题](/wiki/faq/how-to-add-new-faq-section/zh)
 * [配置字体和样式](/wiki/faq/customize-text-fonts-and-styles/zh)
-* [阅读模式：滚动模式，书本模式和音乐家模式](/wiki/faq/reading-mode-vertical-book-musician/zh)
 * [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)
 * [自定义CSS编码](/wiki/faq/customize-book-css-styles/zh)
 * [自定义您的图书馆外观](/wiki/faq/how-to-configure-the-library-view/zh)

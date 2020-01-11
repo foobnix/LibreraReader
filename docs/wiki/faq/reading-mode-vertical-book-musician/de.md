@@ -2,63 +2,74 @@
 layout: main
 ---
 
-# Lesemodi: Bildlaufmodus, Buchmodus und Musikermodus
+# Lesemodi: Blättern, Buch und Musiker
 
-> Der Librera-Buchleser unterstützt drei Arten von Lesemodi. Ansicht eins ist besser für Sie selbst zu entscheiden.
+> **Librera** ermöglicht dem Leser die Auswahl zwischen drei Lesemodi. Jeder geht auf bestimmte Anforderungen ein und der Benutzer kann ganz einfach von einem Modus in einen anderen wechseln.
 
-**Bildlaufmodus** ist vertikales Lesen zum Blättern von Dokumenten nach oben und unten.
+Im **Bildlaufmodus** werden Buchseiten mit dem Finger nach oben und unten gescrollt
 
-**Buchmodus** ist der horizontale Lesemodus zum Streichen von Seiten nach rechts und links.
+> Sie können auch das automatische Scrollen aktivieren und die Geschwindigkeit einstellen.
 
-Der** Musikermodus** wurde speziell für Musiker entwickelt.
+Im **Buchmodus** werden die Seiten horizontal gespiegelt, wenn Sie mit dem Finger nach links, rechts oder oben oder unten streichen (oder auf die Bildschirmränder tippen).
 
-* Klicken Sie auf das Buch, um den Lesemodus auszuwählen
-* Sie können sich an den Lesemodus für zukünftige offene Bücher erinnern
-* Sie können den Lesemodus im linken Menü ändern
-* Sie können die Namen der Lesemodi selbst bearbeiten
-* Tippen Sie lange auf &quot;Bearbeiten&quot;, um die Namen auf die Standardnamen zurückzusetzen
+Der** Musiker-Modus** ist ein Fall des Auto-Scroll-Modus, der speziell für Musiker entwickelt wurde.
+
+* Wenn Sie auf ein Buch tippen, wird das Fenster **Lesemodus** geöffnet, in dem Sie einen Lesemodus für dieses Buch auswählen können
+* Aktivieren Sie das Kontrollkästchen &quot;Lesemodus speichern&quot; und wählen Sie den Standardmodus für alle Bücher aus
+* Sie können die Namen der Lesemodi bearbeiten, nachdem Sie auf &quot;Bearbeiten&quot; getippt haben.
+* Wenn Sie lange auf &quot;Bearbeiten&quot; drücken, werden die Standardnamen wiederhergestellt
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-* Ändern Sie den Lesemodus aus dem Buch
-* Klicken Sie auf das untere Bedienfeld oder das Menüsymbol
-* Wählen Sie den gewünschten Modus
+**Sie können auch Standard-Lesemodi für jedes E-Book-Format festlegen.**
+
+* Tippen Sie auf das Einstellungssymbol, um den Voreinstellungsdialog aufzurufen
+* Aktivieren Sie das Kontrollkästchen, um Voreinstellungen zu aktivieren und die Listen bei Bedarf zu bearbeiten
+* Vergessen Sie nicht, auf _SAVE_ zu tippen, wenn Sie Änderungen vorgenommen haben
+* Sie können die Standardeinstellungen der Listen wiederherstellen, indem Sie auf _Restore default_ tippen.
+
+||||
+|-|-|-|
+|![](1a.jpg)|![](2a.jpg)|![](3a.jpg)|
+
+* Um den Lesemodus für ein aktuelles Buch zu ändern, tippen Sie in der Mitte auf den Bildschirm und anschließend auf das Dreifachpunktsymbol unten
+* Tippen Sie im Dialogfeld auf den bevorzugten Modus
+* Voilà!
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
 ## Bildlaufmodus
+* Wählen Sie die Größe Ihrer Bildlaufstreifen aus: nach Seite, Bildschirm, Bildschirmprozentsatzvorgaben oder einem benutzerdefinierten Wert
 
-* Blättern Sie nach Seiten, nach Bildschirmhöhe oder nach benutzerdefinierter Wertehöhe.
-* Blättern Sie mit den Lautstärketasten, der Hardwaretaste und den Bluetooth-Pedalen, indem Sie auf den Bildschirm tippen
-* Benutzerdefinierten Wert für Bildlauf konfigurieren
+> **Blättern Sie mit den Lautstärketasten, Hardwaretasten, Tasten Ihres Bluetooth-Geräts und tippen Sie auf den Bildschirm.**
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
 ## Buchmodus
-* Streichen Sie horizontal, um die nächste Seite anzuzeigen
-* Streichen Sie vertikal zur nächsten vorherigen Seite
-* Vertikale Wischrichtung ändern
-* Wechseln Sie die Seiten mit Lautstärketasten, Hardwaretasten und Bluetooth-Pedalen, indem Sie auf den Bildschirm tippen
-* Sie können die Größe der Tap-Zonen und die Tab-Zonen-Aktion ändern. Klicken Sie zum Beispiel auf die linke Seite, um zur nächsten Seite zu gelangen (für Linkshänder).
+* Streichen Sie horizontal zur nächsten/vorherigen Seite
+* Streichen Sie vertikal zur nächsten/vorherigen Seite
+* Ändern Sie die Reaktion auf Ihre vertikalen Wischbewegungen
+> **Blättern Sie durch Seiten mit Lautstärketasten, Hardwaretasten, Tasten auf Ihrem Bluetooth-Gerät oder tippen Sie auf den Bildschirm.**
+
+**Denken Sie daran, dass Ihre Tap-Zonen in Bezug auf Größe und Aktion anpassbar sind.**
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
 ## Musikermodus
-* Ein Klick, um das automatische Scrollen/Abspielen zu starten oder zu stoppen
-* Einfaches Wechseln der nächsten/vorherigen Seite
-* Ändern Sie die Geschwindigkeit des automatischen Bildlaufs während der Ausführung
-* Klicken Sie oben, um die Benutzeroberfläche mit den Schaltflächensteuerelementen anzuzeigen
-* Symbol, um zur ersten Seite (Nr. 1) zu gelangen
+* Tippen Sie einmal, um den automatischen Bildlauf zu starten/zu stoppen
+* Tippen Sie in bestimmten Bereichen auf, um zur nächsten/vorherigen Seite zu gelangen
+* Ändern Sie die Geschwindigkeit des automatischen Bildlaufs im laufenden Betrieb
+* Tippen Sie oben auf, um die Steuerelemente anzuzeigen
+* Tippen Sie auf das Zurückspul-Symbol, um zu einem beliebigen Zeitpunkt zum Anfang zurückzukehren
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
-

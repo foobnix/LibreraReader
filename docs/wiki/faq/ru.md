@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Режимы чтения: свиток, книга и музыка](/wiki/faq/reading-mode-vertical-book-musician/ru)
 * [Как создать новую книгу или файл .txt](/wiki/faq/create-new-book-or-file-txt/ru)
 * [Настройка строки состояния](/wiki/faq/how-to-set-up-a-status-bar/ru)
 * [**Librera** для изучения иностранных языков](/wiki/faq/librera-for-study-foreign-languages/ru)
@@ -32,7 +33,6 @@ layout: main
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Как добавить новую тему FAQ](/wiki/faq/how-to-add-new-faq-section/ru)
 * [Настройка шрифтов и стилей](/wiki/faq/customize-text-fonts-and-styles/ru)
-* [Режимы чтения: режим прокрутки, режим книги и режим музыканта](/wiki/faq/reading-mode-vertical-book-musician/ru)
 * [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)
 * [Пользовательское кодирование CSS](/wiki/faq/customize-book-css-styles/ru)
 * [Настройка внешнего вида вашей библиотеки](/wiki/faq/how-to-configure-the-library-view/ru)

@@ -2,63 +2,74 @@
 layout: main
 ---
 
-# Modos de leitura: modo de rolagem, modo de livro e modo de músico
+# Modos de leitura: pergaminho, livro e música de músicos
 
-> O leitor de livros Librera suporta 3 tipos de modos de leitura. Ver um é melhor para você decidir.
+> **Librera** permite ao leitor escolher entre três modos de leitura. Cada um aborda requisitos específicos e o usuário pode alternar de um modo para outro com bastante facilidade.
 
-**O modo de rolagem** é a leitura vertical dos documentos de rolagem para cima e para baixo.
+No **modo de rolagem**, as páginas dos livros são roladas para cima e para baixo com os dedos
 
-**O modo Livro** é o modo de leitura horizontal para deslizar as páginas para a direita e para a esquerda.
+> Você também pode ativar a rolagem automática e configurar sua velocidade.
 
-**Modo músico** é um modo especialmente projetado para músicos.
+No **modo Livro**, as páginas são invertidas horizontalmente com deslizamentos dos dedos da esquerda para a direita ou de cima para baixo (ou toques nas bordas da tela)
 
-* Clique no livro para escolher o modo de leitura
-* Você pode se lembrar do modo de leitura para futuros livros abertos
-* Você pode alterar o modo de leitura no menu esquerdo
-* Você pode editar os nomes dos modos de leitura por conta própria
-* Toque longo em &quot;Editar&quot; para redefinir os nomes para os nomes padrão
+**O modo do músico** é um caso do modo de rolagem automática projetado especificamente para músicos.
+
+* Um toque em um livro abrirá a janela **Modo de leitura** para você escolher um modo de leitura para este livro
+* Marque a caixa _Lembre-se do modo de leitura_ e selecione seu modo padrão para todos os livros
+* Você pode editar os nomes dos modos de leitura depois de tocar em _Edit_
+* Pressionar longamente _Edit_ restaurará os nomes padrão
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-* Mude o modo de leitura do livro
-* Clique no painel inferior ou no ícone do menu
-* Escolha o modo que você precisa
+**Você também pode especificar modos de leitura padrão para cada formato de e-book.**
+
+* Toque no ícone de configurações para acessar a caixa de diálogo de predefinições.
+* Marque a caixa para ativar as predefinições e editar as listas, se necessário
+* Não se esqueça de tocar em _SAVE_ se você fez alterações
+* Você pode restaurar as listas para os padrões tocando em _Restaurar padrão_
+
+||||
+|-|-|-|
+|![](1a.jpg)|![](2a.jpg)|![](3a.jpg)|
+
+* Para alterar o modo de leitura de um livro atual, toque no centro da tela e toque no ícone de três pontos na parte inferior
+* Toque no modo preferido na caixa de diálogo
+* Voilà!
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-## modo de rolagem
+## Modo de rolagem
+* Escolha o indicador de suas rolagens: por página, tela, predefinições de porcentagem da tela ou um valor personalizado
 
-* Role por Páginas, por Altura da tela ou por altura do valor personalizado.
-* Role com os botões de volume, tecla de hardware, pedais Bluetooth, toque na tela
-* Configure o valor personalizado para rolagem
+> **Role com os botões de volume, teclas de hardware, botões do dispositivo bluetooth e toque na tela.**
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-## modo de livro
-* Deslize horizontalmente para a página anterior anterior
-* Deslize verticalmente para a próxima página anterior
-* Alterar a direção do furto vertical
-* Altere as páginas com botões de volume, teclas de hardware, pedais Bluetooth, tocando na tela
-* Você pode alterar o tamanho das zonas de toque e a ação da zona de tabulação, por exemplo, clique no lado esquerdo para a próxima página (para pessoas à esquerda)
+## Modo Livro
+* Deslize horizontalmente para a página seguinte/anterior
+* Deslize verticalmente para a página seguinte/anterior
+* Altere a resposta aos seus furtos verticais
+> **Inverta as páginas com botões de volume, teclas de hardware, botões no dispositivo bluetooth ou toque na tela.**
+
+**Lembre-se de que suas zonas de toque são personalizáveis em termos de tamanho e ação!**
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-## modo músico
-* Um clique para iniciar ou parar a rolagem/reprodução automática
-* Fácil alteração da página anterior/anterior
-* Alterar a velocidade de rolagem automática durante o desempenho
-* Clique na parte superior para exibir a interface do usuário com os controles do botão
-* Ícone para ir para a primeira página (nº 1)
+## Modo Músico
+* Toque único para iniciar/parar a rolagem automática
+* Use toques nas zonas designadas para ir para a página seguinte/anterior
+* Altere a velocidade de rolagem automática rapidamente
+* Toque na parte superior para mostrar os controles
+* Toque no ícone de rebobinar para voltar ao início a qualquer momento
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
-

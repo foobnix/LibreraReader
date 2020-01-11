@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Modos de leitura: pergaminho, livro e músico](/wiki/faq/reading-mode-vertical-book-musician/pt)
 * [Como criar um novo livro ou arquivo .txt](/wiki/faq/create-new-book-or-file-txt/pt)
 * [Configurando a barra de status](/wiki/faq/how-to-set-up-a-status-bar/pt)
 * [**Librera** para aprender idiomas estrangeiros](/wiki/faq/librera-for-study-foreign-languages/pt)
@@ -32,7 +33,6 @@ layout: main
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Como adicionar um novo tópico da FAQ](/wiki/faq/how-to-add-new-faq-section/pt)
 * [Configurando fontes e estilos](/wiki/faq/customize-text-fonts-and-styles/pt)
-* [Modos de leitura: modo de rolagem, modo Livro e modo Músico](/wiki/faq/reading-mode-vertical-book-musician/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)
 * [Codificação CSS personalizada](/wiki/faq/customize-book-css-styles/pt)
 * [Personalizando a aparência da sua biblioteca](/wiki/faq/how-to-configure-the-library-view/pt)
