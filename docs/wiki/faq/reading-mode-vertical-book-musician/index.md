@@ -2,63 +2,74 @@
 layout: main
 ---
 
-# Reading modes: Scroll mode, Book mode and Musician mode
+# Reading Modes: Scroll, Book, and Musician's
 
-> Librera book reader supports 3 types of reading modes. View one is better for you decide yourself.
+> **Librera** allows the reader to choose among three reading modes.  Each one addresses particular requirements and the user can switch from one mode to another quite easily.
 
-**Scroll mode** is vertical reading for scroll document up and down.
+In **Scroll mode**, book pages are scrolled up and down with finger swipes
 
-**Book mode** is horizontal reading mode to swipe pages right and left.
+> You can also enable auto-scroll and set up its speed.
 
-**Musician mode** is specially designed mode for musicians.
+In **Book mode**, pages are flipped horizontally with left-right or up-down finger swipes (or taps on the screen edges)
 
-* Click on the book to choose the reading mode
-* You can remember reading mode for future open books
-* You can change reading mode in the left menu
-* You can edit reading mode names by you own
-* Long tap on "Edit" to reset names to default names
+**Musician's mode** is a case of the auto-scroll mode specifically designed for musicians.
+
+* A tap on a book will pop up the **Reading Mode** window for you to choose a reading mode for this book
+* Check the _Remember reading mode_ box and select your default mode for all books
+* You can edit the reading modes' names after tapping on _Edit_
+* A long-press on _Edit_ will restore the default names
 
 ||||
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
 
-* Change reading mode from the book
-* Click on the bottom panel or menu icon
-* Choose mode your need 
+**You can also specify default reading modes for each and every ebook format.**
+
+* Tap on the settings icon to call out the presets dialog
+* Check the box to enable presets and edit the lists if needed
+* Don't forget to tap _SAVE_ if you've made changes
+* You can restore the lists to defaults by tapping _Restore default_
+
+||||
+|-|-|-|
+|![](1a.jpg)|![](2a.jpg)|![](3a.jpg)|
+
+* To change the reading mode for a current book, center-tap the screen and then tap on the triple-dot icon at the bottom
+* Tap on the preferred mode in the dialog
+* Voilà!
 
 ||||
 |-|-|-|
 |![](4.png)|![](5.png)|![](6.png)|
 
-## Scroll mode
+## Scroll Mode
+* Choose the gage of your scroll-swipes: by Page, Screen, screen percentage presets, or a custom value
 
-* Scroll by Pages, by Screen height or by custom value height.
-* Scroll with volume buttons, hardware key, Bluetooth pedals, by tap on the screen
-* Configure custom value for scroll
+> **Scroll with volume buttons, hardware keys, buttons on your bluetooth device, taps on the screen.**
 
 ||||
 |-|-|-|
 |![](7.png)|![](8.png)|![](9.png)|
 
-## Book mode
-* Swipe horizontally for next-prev page
-* Swipe vertically for next prev page
-* Change vertical swipe direction
-* Change pages with volume buttons, hardware keys, Bluetooth pedals, by tap on the screen
-* You can change tap zones size, and tab zone action, for example click by the left side for next page (for left hand people)
+## Book Mode
+* Swipe horizontally for next/previous page
+* Swipe vertically for next/previous page
+* Change the response to your vertical swipes
+> **Flip pages with volume buttons, hardware keys, buttons on your bluetooth device, or taps on the screen.**
+
+**Just remember that your tap zones are customizable in terms of size and action!**
 
 ||||
 |-|-|-|
 |![](10.png)|![](11.png)|![](12.png)|
 
-## Musician mode
-* One click to start or stop auto scrolling/playing
-* Easy next/prev page changing
-* Change auto scroll speed during performance
-* Click on the top to show UI with button controls
-* Icon for go to the first (#1) page
+## Musician's Mode
+* Single-tap to start/stop auto-scroll
+* Use taps in designated zones to go to next/previous page
+* Change auto scroll speed on-the-fly
+* Tap on the top to show the controls
+* Tap on the rewind icon to go back to the beginning at any point in time
 
 ||||
 |-|-|-|
 |![](13.png)|![](14.png)|![](15.png)|
-
