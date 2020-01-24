@@ -85,7 +85,8 @@ public class HtmlExtractor {
 
                             LOG.d("MathMl", "begin");
 
-                        } else if (line.contains("</math>")) {
+                        }
+                        if (line.contains("</math>")) {
 
                             svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.11.sh
 
 cd ../
 
@@ -15,7 +15,6 @@ cd ../
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleTts_readerRelease
 
-./gradlew assembleFdroidRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

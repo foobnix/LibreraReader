@@ -326,10 +326,10 @@
         </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/sectionSync"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
 

@@ -190,7 +190,8 @@ public class Fb2Extractor extends BaseExtractor {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<svg"));
-                } else if (line.contains("<math")) {
+                }else
+                if (line.contains("<math")) {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<math"));
@@ -222,7 +223,8 @@ public class Fb2Extractor extends BaseExtractor {
 
                     findSVG = false;
                     svg = "";
-                } else if (line.contains("</math>")) {
+                }
+                if (line.contains("</math>")) {
 
                     svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
 
@@ -237,7 +239,8 @@ public class Fb2Extractor extends BaseExtractor {
 
                     findSVG = false;
                     svg = "";
-                } else if (findSVG) {
+                }
+                if (findSVG) {
                     svg += line;
                 }
 
