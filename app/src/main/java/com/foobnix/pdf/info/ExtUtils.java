@@ -232,7 +232,7 @@ public class ExtUtils {
         if (AppState.get().supportFB2) {
             result.add(".fb2");
             if (!AppState.get().supportZIP) {
-                result.add("fb2.zip");
+                result.add(".fb2.zip");
             }
         }
         if (AppState.get().supportTXT) {
