@@ -165,6 +165,7 @@ public class DialogSpeedRead {
                     });
 
                     String textForPage = dc.getTextForPage(currentPage - 1);
+                    LOG.d("textForPage",textForPage);
                     if (TxtUtils.isEmpty(textForPage)) {
                         counter++;
                     }
@@ -173,7 +174,7 @@ public class DialogSpeedRead {
                         break;
                     }
 
-                    List<String> tempList = Arrays.asList(textForPage.split(" "));
+                    List<String> tempList = Arrays.asList(textForPage.split("\\s"));
                     List<String> res = new ArrayList<String>();
                     for (String item : tempList) {
                         //currentWord = 0;
