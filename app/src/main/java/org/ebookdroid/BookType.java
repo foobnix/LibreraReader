@@ -54,9 +54,9 @@ public enum BookType {
 
     JSON(TxtContext.class, true, Arrays.asList("json"), Arrays.asList("application/json")),
 
-    HTML(HtmlContext.class, true, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
+    HTML(HtmlContext.class, true, Arrays.asList("html", "htm", "xhtml", "xhtm", "xml"), Arrays.asList("text/html", "text/xml")),
 
-    MHT(MhtContext.class, true, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
+    MHT(MhtContext.class, true, Arrays.asList("mht", "mhtml","shtml"), Arrays.asList("message/rfc822")),
 
     DOCX(DocxContext.class, true, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
