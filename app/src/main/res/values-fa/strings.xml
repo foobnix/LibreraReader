@@ -594,4 +594,5 @@
    <string name="create_folder">پرونده بساز</string>
    <string name="show_hidden">نمایش پنهان</string>
    <string name="new_file">پرونده جدید</string>
+   <string name="paste_or_type_text_in_here">در اینجا جایگذاری کنید یا متن را تایپ کنید</string>
 </resources>

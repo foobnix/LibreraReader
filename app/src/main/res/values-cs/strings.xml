@@ -594,4 +594,5 @@
    <string name="create_folder">Vytvořit složku</string>
    <string name="show_hidden">Zobrazit skryté</string>
    <string name="new_file">Nový soubor</string>
+   <string name="paste_or_type_text_in_here">Sem vložte nebo zadejte text</string>
 </resources>

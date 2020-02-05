@@ -594,4 +594,5 @@
    <string name="create_folder">Skapa mapp</string>
    <string name="show_hidden">Visa dold</string>
    <string name="new_file">Ny fil</string>
+   <string name="paste_or_type_text_in_here">Klistra in eller skriv text här</string>
 </resources>

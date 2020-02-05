@@ -594,4 +594,5 @@
    <string name="create_folder">创建档夹</string>
    <string name="show_hidden">显示隐藏</string>
    <string name="new_file">新文件</string>
+   <string name="paste_or_type_text_in_here">在此处粘贴或键入文本</string>
 </resources>

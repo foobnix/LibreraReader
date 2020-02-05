@@ -261,7 +261,7 @@ public class AlertDialogs {
 
 
         final EditText edit = new EditText(a);
-        edit.setHint(R.string.content_of_book);
+        edit.setHint(R.string.paste_or_type_text_in_here);
         edit.setGravity(Gravity.TOP);
         edit.setMinHeight(Dips.screenHeight());
         edit.setMinWidth(Dips.screenWidth());

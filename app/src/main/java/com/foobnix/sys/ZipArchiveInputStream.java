@@ -22,18 +22,22 @@ import static com.foobnix.pdf.info.FileMetaComparators.naturalOrderComparator;
 
 public class ZipArchiveInputStream extends InputStream {
 
+    public boolean isValid;
     private Iterator<FileHeader> iterator;
     private FileHeader current;
     private ZipFile zp;
     private ZipInputStream inputStream;
     private File tempFile;
-
     // public static final Lock lock = new ReentrantLock();
 
     public ZipArchiveInputStream(String file) {
         // CacheZipUtils.cacheLock.lock();
         try {
+
+
             zp = new ZipFile(file);
+
+
             final List fileHeaders = zp.getFileHeaders();
 
             Collections.sort(fileHeaders, new Comparator<FileHeader>() {
@@ -51,7 +55,7 @@ public class ZipArchiveInputStream extends InputStream {
             iterator = fileHeaders.iterator();
             LOG.d("ZipArchiveInputStream", file);
 
-        } catch (ZipException e) {
+        } catch (Exception e) {
             LOG.e(e, file);
         }
     }

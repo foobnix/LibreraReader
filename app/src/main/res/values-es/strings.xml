@@ -594,4 +594,5 @@
    <string name="create_folder">Crear carpeta</string>
    <string name="show_hidden">Mostrar oculto</string>
    <string name="new_file">Archivo nuevo</string>
+   <string name="paste_or_type_text_in_here">Pegar o escribir texto aquí</string>
 </resources>

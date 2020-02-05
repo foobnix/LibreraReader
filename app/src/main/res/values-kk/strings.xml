@@ -594,4 +594,5 @@
    <string name="create_folder">Қалта жасау</string>
    <string name="show_hidden">Жасырын шоу</string>
    <string name="new_file">Жаңа файл</string>
+   <string name="paste_or_type_text_in_here">Мәтінді осы жерге қойыңыз немесе теріңіз</string>
 </resources>

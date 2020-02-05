@@ -594,4 +594,5 @@
    <string name="create_folder">फोल्डर बनाएं</string>
    <string name="show_hidden">छुपा हुआ दिखाए</string>
    <string name="new_file">नई फ़ाइल</string>
+   <string name="paste_or_type_text_in_here">यहां पेस्ट या टेक्स्ट टाइप करें</string>
 </resources>

@@ -594,4 +594,5 @@
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показать скрытое</string>
    <string name="new_file">Новый файл</string>
+   <string name="paste_or_type_text_in_here">Вставьте или введите текст здесь</string>
 </resources>
