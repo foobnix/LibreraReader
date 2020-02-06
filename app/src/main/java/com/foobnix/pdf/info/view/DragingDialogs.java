@@ -1576,8 +1576,21 @@ public class DragingDialogs {
                         text = text.replace(TxtUtils.TTS_PAUSE, "");
 
                         TTSEngine.get().speek(text);
+                        Toast.makeText(controller.getActivity(),text,Toast.LENGTH_SHORT).show();
                     }
                 });
+                view.findViewById(R.id.readTTS).setOnLongClickListener(new OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        TTSEngine.get().stop();
+                        String text = editText.getText().toString().trim();
+                        TTSEngine.get().speek(text);
+                        Toast.makeText(controller.getActivity(),text,Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+
+
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new OnClickListener() {
 
                     @Override
