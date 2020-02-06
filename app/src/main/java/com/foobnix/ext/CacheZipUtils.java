@@ -120,12 +120,16 @@ public class CacheZipUtils {
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
         try {
-            net.lingala.zip4j.core.ZipFile zp = new net.lingala.zip4j.core.ZipFile(file);
+            net.lingala.zip4j.ZipFile zp = new net.lingala.zip4j.ZipFile(file);
             List<FileHeader> fileHeaders = zp.getFileHeaders();
             int count = 0;
             FileHeader last = null;
+            boolean isOkular = BookType.OKULAR.is(file);
             for (FileHeader h : fileHeaders) {
                 if (h.isDirectory()) {
+                    continue;
+                }
+                if(isOkular && h.getFileName().endsWith(".xml")){
                     continue;
                 }
                 count++;
@@ -173,7 +177,7 @@ public class CacheZipUtils {
     }
 
     public static UnZipRes extracIfNeed(String path, CacheDir folder, long salt) {
-        if (!path.endsWith(".zip")) {
+        if (!ExtUtils.isZip(path)) {
             return new UnZipRes(path, path, null);
         }
 

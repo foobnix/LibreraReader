@@ -12,10 +12,11 @@ import com.foobnix.model.AppProfile;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
+import net.lingala.zip4j.model.enums.CompressionLevel;
+import net.lingala.zip4j.model.enums.CompressionMethod;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.librera.JSONArray;
@@ -186,8 +187,8 @@ public class ExportConverter {
         ZipParameters parameters = new ZipParameters();
 
         //parameters.setIncludeRootFolder(false);
-        parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-        parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+        parameters.setCompressionMethod(CompressionMethod.DEFLATE);
+        parameters.setCompressionLevel(CompressionLevel.NORMAL);
 
         final File[] files = input.listFiles();
         if (files != null) {

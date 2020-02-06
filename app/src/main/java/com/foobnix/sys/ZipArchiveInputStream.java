@@ -4,9 +4,9 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
 import com.foobnix.mobi.parser.IOUtils;
 
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.ZipInputStream;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
 
 import java.io.File;
@@ -103,7 +103,7 @@ public class ZipArchiveInputStream extends InputStream {
     private void closeStream() {
         if (inputStream != null) {
             try {
-                inputStream.close(true);
+                inputStream.close();
                 inputStream = null;
             } catch (Exception e) {
                 LOG.e(e);

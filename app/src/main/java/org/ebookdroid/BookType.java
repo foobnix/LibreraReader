@@ -68,7 +68,9 @@ public enum BookType {
 
     DJVU(DjvuContext.class, false, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
 
-    ZIP(ZipContext.class, true, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
+    ZIP(ZipContext.class, true, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed")),
+
+    OKULAR(ZipContext.class, false, Arrays.asList("okular"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
 
     private final static Map<String, BookType> extensionToActivity;
 
@@ -143,6 +145,10 @@ public enum BookType {
 
     public static boolean isTextFormat(String path) {
         List<String> list = new ArrayList<String>();
+
+        if(path.endsWith(".okular")){
+            return false;
+        }
 
         for (final BookType a : values()) {
             if (!a.isTextFormat) {

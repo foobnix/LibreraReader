@@ -30,7 +30,6 @@ import org.jsoup.safety.Whitelist;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 public class FileMetaCore {
 
@@ -153,7 +152,7 @@ public class FileMetaCore {
 
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
-            if (path.toLowerCase(Locale.US).endsWith(".zip")) {
+            if (ExtUtils.isZip(path)) {
                 CacheZipUtils.cacheLock.lock();
                 try {
                     UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
@@ -266,7 +265,7 @@ public class FileMetaCore {
             ebookMeta.setTitle(ebookMeta.getTitle() + " [" + ebookMeta.getsIndex() + "]");
         }
 
-        if (path.endsWith(".zip") && !unZipPath.endsWith("fb2")) {
+        if (ExtUtils.isZip(path) && !unZipPath.endsWith("fb2")) {
             ebookMeta.setTitle("{" + fileNameOriginal + "} " + ebookMeta.getTitle());
         }
 

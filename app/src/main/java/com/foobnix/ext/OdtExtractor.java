@@ -3,8 +3,8 @@ package com.foobnix.ext;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.io.ZipInputStream;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
 
 import java.util.List;

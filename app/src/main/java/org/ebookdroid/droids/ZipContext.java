@@ -5,6 +5,7 @@ import androidx.core.util.Pair;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecContext;
@@ -36,7 +37,7 @@ public class ZipContext extends PdfContext {
 
 
         String path = CacheZipUtils.extracIfNeed(fileName, CacheDir.ZipApp, getFileNameSalt(fileName)).unZipPath;
-        if (path.endsWith("zip")) {
+        if (ExtUtils.isZip(path)) {
             return null;
         }
 

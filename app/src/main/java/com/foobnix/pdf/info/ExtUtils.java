@@ -255,6 +255,7 @@ public class ExtUtils {
         }
         if (AppState.get().supportZIP) {
             result.add(".zip");
+            result.add(".okular");
         }
         if (AppState.get().supportArch) {
             result.addAll(archiveExts);
@@ -666,7 +667,7 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return path.toLowerCase(Locale.US).endsWith(".zip");
+        return BookType.ZIP.is(path.toLowerCase()) || BookType.OKULAR.is(path.toLowerCase());
     }
 
     public static synchronized boolean isNoMetaFomat(String path) {
