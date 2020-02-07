@@ -595,4 +595,5 @@
    <string name="show_hidden">Näytä piilotettu</string>
    <string name="new_file">Uusi tiedosto</string>
    <string name="paste_or_type_text_in_here">Liitä tai kirjoita teksti tähän</string>
+   <string name="go_to_the_folder">Mene kansioon</string>
 </resources>

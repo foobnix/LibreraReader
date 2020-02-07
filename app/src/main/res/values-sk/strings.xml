@@ -595,4 +595,5 @@
    <string name="show_hidden">Zobraziť skryté</string>
    <string name="new_file">Nový súbor</string>
    <string name="paste_or_type_text_in_here">Sem vložte alebo zadajte text</string>
+   <string name="go_to_the_folder">Prejdite do priečinka</string>
 </resources>

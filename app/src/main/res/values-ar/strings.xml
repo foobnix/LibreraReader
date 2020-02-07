@@ -595,4 +595,5 @@
    <string name="show_hidden">أظهر المخفي</string>
    <string name="new_file">ملف جديد</string>
    <string name="paste_or_type_text_in_here">الصق أو كتابة النص هنا</string>
+   <string name="go_to_the_folder">اذهب الى الحافظة</string>
 </resources>

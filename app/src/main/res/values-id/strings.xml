@@ -595,4 +595,5 @@
    <string name="show_hidden">Tampilkan disembunyikan</string>
    <string name="new_file">File baru</string>
    <string name="paste_or_type_text_in_here">Rekatkan atau ketikkan teks di sini</string>
+   <string name="go_to_the_folder">Buka folder</string>
 </resources>

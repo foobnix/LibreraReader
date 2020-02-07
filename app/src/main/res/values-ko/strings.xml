@@ -595,4 +595,5 @@
    <string name="show_hidden">숨겨지다</string>
    <string name="new_file">새로운 파일</string>
    <string name="paste_or_type_text_in_here">여기에 텍스트 붙여 넣기 또는 입력</string>
+   <string name="go_to_the_folder">폴더로 이동</string>
 </resources>

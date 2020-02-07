@@ -58,6 +58,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -507,6 +508,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 onBackAction();
             }
         });
+
+
 
         searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
 
@@ -1105,7 +1108,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             });
                             return true;
                         } else {
-                            deleteFolderPopup(getActivity(), pathFull);
+                            //deleteFolderPopup(getActivity(), pathFull);
+                            Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
+                                @Override
+                                public boolean onResultRecive(String path1) {
+                                    if(TxtUtils.isEmpty(path1)){
+                                        path1 = "/";
+                                    }
+                                    displayAnyPath(path1);
+                                    return false;
+                                }
+                            });
                         }
 
 

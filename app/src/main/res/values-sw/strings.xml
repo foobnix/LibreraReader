@@ -595,4 +595,5 @@
    <string name="show_hidden">Onyesha siri</string>
    <string name="new_file">Faili mpya</string>
    <string name="paste_or_type_text_in_here">Kubandika au chapa maandishi hapa</string>
+   <string name="go_to_the_folder">Nenda kwenye folda</string>
 </resources>

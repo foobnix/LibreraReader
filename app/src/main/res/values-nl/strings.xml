@@ -595,4 +595,5 @@
    <string name="show_hidden">Toon verborgen</string>
    <string name="new_file">Nieuw bestand</string>
    <string name="paste_or_type_text_in_here">Plak of typ hier tekst in</string>
+   <string name="go_to_the_folder">Ga naar de map</string>
 </resources>

@@ -595,4 +595,5 @@
    <string name="show_hidden">Visa dold</string>
    <string name="new_file">Ny fil</string>
    <string name="paste_or_type_text_in_here">Klistra in eller skriv text här</string>
+   <string name="go_to_the_folder">Gå till mappen</string>
 </resources>

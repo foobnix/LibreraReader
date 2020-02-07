@@ -595,4 +595,5 @@
    <string name="show_hidden">Hiển thị ẩn</string>
    <string name="new_file">Tập tin mới</string>
    <string name="paste_or_type_text_in_here">Dán hoặc gõ văn bản vào đây</string>
+   <string name="go_to_the_folder">Đi đến thư mục</string>
 </resources>

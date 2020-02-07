@@ -595,4 +595,5 @@
    <string name="show_hidden">Pokaż ukryte</string>
    <string name="new_file">Nowy plik</string>
    <string name="paste_or_type_text_in_here">Wklej lub wpisz tekst tutaj</string>
+   <string name="go_to_the_folder">Przejdź do folderu</string>
 </resources>

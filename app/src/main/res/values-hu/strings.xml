@@ -595,4 +595,5 @@
    <string name="show_hidden">Rejtett megjelenítése</string>
    <string name="new_file">Új fájl</string>
    <string name="paste_or_type_text_in_here">Illessze be vagy írja be a szöveget ide</string>
+   <string name="go_to_the_folder">Menjen a mappába</string>
 </resources>

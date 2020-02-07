@@ -595,4 +595,5 @@
    <string name="show_hidden">Vis skjult</string>
    <string name="new_file">Ny fil</string>
    <string name="paste_or_type_text_in_here">Lim inn eller skriv inn tekst her</string>
+   <string name="go_to_the_folder">Gå til mappen</string>
 </resources>

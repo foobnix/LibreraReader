@@ -595,4 +595,5 @@
    <string name="show_hidden">Mostrar oculto</string>
    <string name="new_file">Novo arquivo</string>
    <string name="paste_or_type_text_in_here">Cole ou digite texto aqui</string>
+   <string name="go_to_the_folder">Vá para a pasta</string>
 </resources>

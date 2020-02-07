@@ -595,4 +595,5 @@
    <string name="show_hidden">Показати приховано</string>
    <string name="new_file">Новий файл</string>
    <string name="paste_or_type_text_in_here">Вставте або введіть текст сюди</string>
+   <string name="go_to_the_folder">Перейти до папки</string>
 </resources>

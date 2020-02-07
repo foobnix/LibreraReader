@@ -595,4 +595,5 @@
    <string name="show_hidden">隠されたショー</string>
    <string name="new_file">新しいファイル</string>
    <string name="paste_or_type_text_in_here">ここにテキストを貼り付けるか入力します</string>
+   <string name="go_to_the_folder">フォルダに行きます</string>
 </resources>

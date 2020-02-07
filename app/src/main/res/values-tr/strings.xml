@@ -595,4 +595,5 @@
    <string name="show_hidden">Gizli göster</string>
    <string name="new_file">Yeni dosya</string>
    <string name="paste_or_type_text_in_here">Buraya metin yapıştır veya yaz</string>
+   <string name="go_to_the_folder">Klasöre git</string>
 </resources>

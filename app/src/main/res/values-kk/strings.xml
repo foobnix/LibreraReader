@@ -595,4 +595,5 @@
    <string name="show_hidden">Жасырын шоу</string>
    <string name="new_file">Жаңа файл</string>
    <string name="paste_or_type_text_in_here">Мәтінді осы жерге қойыңыз немесе теріңіз</string>
+   <string name="go_to_the_folder">Қалтаға өтіңіз</string>
 </resources>
