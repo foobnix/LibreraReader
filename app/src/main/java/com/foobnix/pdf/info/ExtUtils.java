@@ -273,7 +273,7 @@ public class ExtUtils {
 
         for (String ext : result) {
             seachExts.add(ext);
-            // seachExts.add(ext.toUpperCase(Locale.US));
+            seachExts.add(ext.toUpperCase());
         }
 
     }
