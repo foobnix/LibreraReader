@@ -330,7 +330,7 @@ public class ShareDialog {
                 int i = 0;
 
                 if (isTxt && which == i++) {
-                    AlertDialogs.editFileTxt(a, file, new StringResponse() {
+                    AlertDialogs.editFileTxt(a, file,AppProfile.DOWNLOADS_DIR, new StringResponse() {
                         @Override
                         public boolean onResultRecive(String string) {
                             if ((a instanceof HorizontalViewActivity || a instanceof VerticalViewActivity) && dc != null) {

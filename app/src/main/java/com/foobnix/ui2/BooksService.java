@@ -211,6 +211,10 @@ public class BooksService extends IntentService {
                 }
 
                 List<FileMeta> localMeta = new LinkedList<FileMeta>();
+                if(TxtUtils.isEmpty(BookCSS.get().searchPaths)){
+                    sendFinishMessage();
+                    return;
+                }
 
                 for (final String path : BookCSS.get().searchPaths.split(",")) {
                     if (path != null && path.trim().length() > 0) {

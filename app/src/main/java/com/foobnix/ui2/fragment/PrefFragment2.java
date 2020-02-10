@@ -2248,7 +2248,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
 
-                AlertDialogs.editFileTxt(getActivity(), null, new StringResponse() {
+                AlertDialogs.editFileTxt(getActivity(), null, AppProfile.DOWNLOADS_DIR,new StringResponse() {
                     @Override
                     public boolean onResultRecive(String string) {
                         ExtUtils.openFile(getActivity(), new FileMeta(string));

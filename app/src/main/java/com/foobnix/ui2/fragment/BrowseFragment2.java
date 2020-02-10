@@ -105,9 +105,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     boolean isRestorePos = false;
     private LinearLayout paths;
     private TextView stub;
-    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder;
+    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
     private EditText editPath;
-    private View pathContainer, onClose, onAction, openAsBook, createFolder;
+    private View pathContainer, onClose, onAction, openAsBook;
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
     private ResultResponse<String> onPositiveAction;
@@ -164,7 +164,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setBackgroundFillColor(createFolder, TintUtil.color);
         TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
     }
@@ -250,7 +249,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onAction.setOnClickListener(onSelectAction);
 
         createFolder = view.findViewById(R.id.createFolder);
-        createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
 
         if (TYPE_DEFAULT == fragmentType) {
             editPath.setVisibility(View.GONE);
@@ -260,7 +258,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             editPath.setVisibility(View.VISIBLE);
             editPath.setEnabled(false);
             onCloseActionPaner.setVisibility(View.VISIBLE);
-            createFolder.setVisibility(View.VISIBLE);
+
         }
         if (TYPE_SELECT_FILE == fragmentType) {
             editPath.setVisibility(View.VISIBLE);
@@ -510,7 +508,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         });
 
 
-
         searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
 
             @Override
@@ -651,22 +648,62 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
 
-                AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), new StringResponse() {
+                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
 
+                menu.getMenu().add(R.string.new_file).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                     @Override
-                    public boolean onResultRecive(String string) {
-                        File folder = new File(displayPath, string);
-                        LOG.d("create_folder",folder);
-                        if (!folder.mkdirs()) {
-                            Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
-
-                            return false;
-                        }
-                        Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
-                        populate();
-                        return true;
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AlertDialogs.editFileTxt(getActivity(), null, new File(displayPath), new StringResponse() {
+                            @Override
+                            public boolean onResultRecive(String string) {
+                                //ExtUtils.openFile(getActivity(), new FileMeta(string));
+                                resetFragment();
+                                return false;
+                            }
+                        });
+                        return false;
                     }
                 });
+                menu.getMenu().add(R.string.create_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), new StringResponse() {
+
+                            @Override
+                            public boolean onResultRecive(String string) {
+                                AppState.get().isDisplayAllFilesInFolder = true;
+                                File folder = new File(displayPath, string);
+                                LOG.d("create_folder", folder);
+                                if (!folder.mkdirs()) {
+                                    Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
+
+                                    return false;
+                                }
+                                Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
+                                populate();
+                                return true;
+                            }
+                        });
+                        return false;
+                    }
+                });
+
+                menu.getMenu().add(R.string.go_to_the_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath, new ResultResponse<String>() {
+                            @Override
+                            public boolean onResultRecive(String path1) {
+                                displayAnyPath(path1);
+                                return false;
+                            }
+                        });
+                        return false;
+                    }
+                });
+                menu.show();
+
+
             }
         });
 
@@ -827,7 +864,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 return items;
 
             } else {
-                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, createFolder.getVisibility()==View.VISIBLE || AppState.get().isDisplayAllFilesInFolder);
+                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -888,6 +925,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     public void displayAnyPath(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            path = "/";
+        }
         LOG.d("Display-path", path);
         isRestorePos = false;
         displayPath = path;
@@ -1112,9 +1152,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
                                 @Override
                                 public boolean onResultRecive(String path1) {
-                                    if(TxtUtils.isEmpty(path1)){
-                                        path1 = "/";
-                                    }
                                     displayAnyPath(path1);
                                     return false;
                                 }
@@ -1247,7 +1284,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isDisplayAllFilesInFolder = isChecked;
-                createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
+
                 populate();
             }
         });
@@ -1265,7 +1302,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
             });
         }
-
 
 
         p.show();

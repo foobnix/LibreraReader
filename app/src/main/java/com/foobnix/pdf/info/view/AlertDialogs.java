@@ -21,7 +21,6 @@ import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.UI;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.model.AppProfile;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -189,7 +188,8 @@ public class AlertDialogs {
         create.show();
         return create;
     }
-    public static void showTTSDebug(DocumentController controller){
+
+    public static void showTTSDebug(DocumentController controller) {
         TextView t = new TextView(controller.getActivity());
         t.setMinWidth(Dips.DP_800);
         t.setTextIsSelectable(true);
@@ -200,7 +200,7 @@ public class AlertDialogs {
         t.setOnClickListener(a -> alertDialog.dismiss());
     }
 
-    public static void showEditDialog(Activity a, String title, String hint, StringResponse onAdd){
+    public static void showEditDialog(Activity a, String title, String hint, StringResponse onAdd) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(title);
 
@@ -239,7 +239,7 @@ public class AlertDialogs {
             @Override
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
-                if(onAdd.onResultRecive(text)) {
+                if (onAdd.onResultRecive(text)) {
                     create.dismiss();
                     Keyboards.close(edit);
                     Keyboards.hideNavigation((Activity) a);
@@ -250,13 +250,13 @@ public class AlertDialogs {
         });
     }
 
-    public static void editFileTxt(Activity a, File file, StringResponse onSave){
+    public static void editFileTxt(Activity a, File file, final File outDir, StringResponse onSave) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
 
         final EditText name = new EditText(a);
-        name.setHint(a.getString(R.string.name)+".txt");
+        name.setHint(a.getString(R.string.name) + ".txt");
         name.setSingleLine();
 
 
@@ -267,9 +267,9 @@ public class AlertDialogs {
         edit.setMinWidth(Dips.screenWidth());
 
         //edit.setLines(20);
-        edit.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        edit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 
-        if(file!=null && file.isFile()){
+        if (file != null && file.isFile()) {
             name.setText(file.getName());
             edit.setText(IO.readString(file, true));
         }
@@ -310,19 +310,19 @@ public class AlertDialogs {
             public void onClick(View v) {
                 String text = edit.getText().toString().trim();
                 String title = name.getText().toString().trim();
-                if(!title.endsWith(".txt")){
+                if (!title.endsWith(".txt")) {
                     title += ".txt";
                 }
 
-                final File out = new File(AppProfile.DOWNLOADS_DIR, title);
-                LOG.d("create file exists",out.exists());
-                LOG.d("create file isFile",out.isFile());
-                if(out.exists()){
+                final File out = new File(outDir , title);
+                LOG.d("create file exists", out.exists());
+                LOG.d("create file isFile", out.isFile());
+                if (out.exists()) {
                     AlertDialogs.showOkDialog(a, "File with the same name is already present, overwrite?", new Runnable() {
                         @Override
                         public void run() {
-                            boolean res = IO.writeString(out,text);
-                            if(!res) {
+                            boolean res = IO.writeString(out, text);
+                            if (!res) {
                                 name.requestFocus();
                                 Toast.makeText(a, "Can't create file" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
                                 return;
@@ -334,8 +334,8 @@ public class AlertDialogs {
                     });
                     return;
                 }
-                boolean res = IO.writeString(out,text);
-                if(!res) {
+                boolean res = IO.writeString(out, text);
+                if (!res) {
                     name.requestFocus();
                     Toast.makeText(a, "Can't create file" + ": " + out.getPath(), Toast.LENGTH_SHORT).show();
                     return;
@@ -349,7 +349,7 @@ public class AlertDialogs {
                 Keyboards.close(edit);
                 Keyboards.hideNavigation(a);
 
-                Toast.makeText(a,R.string.success,Toast.LENGTH_SHORT).show();
+                Toast.makeText(a, R.string.success, Toast.LENGTH_SHORT).show();
 
                 onSave.onResultRecive(out.getPath());
 

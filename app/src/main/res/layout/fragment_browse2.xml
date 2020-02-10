@@ -64,6 +64,26 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />
 
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:id="@+id/createFolder"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_433_plus"
+            android:tint="@color/tint_white" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
@@ -206,20 +226,12 @@
             android:layout_height="match_parent"
             android:padding="4dip" >
         </com.foobnix.ui2.fast.FastScrollRecyclerView>
+
+
         
     </FrameLayout>
 
-    <Button
-        android:id="@+id/createFolder"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:padding="10dip"
-        android:drawablePadding="10dip"
-        style="@style/textLinkWhite"
-        android:background="@drawable/bg_search_second_clickable"
-        android:text="@string/create_folder"
-        />
+
 
     <EditText
         android:id="@+id/editPath"
