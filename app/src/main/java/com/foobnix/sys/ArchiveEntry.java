@@ -2,15 +2,16 @@ package com.foobnix.sys;
 
 import com.foobnix.android.utils.TxtUtils;
 
-import net.lingala.zip4j.model.FileHeader;
+import net.lingala.zip4j.model.AbstractFileHeader;
 
 public class ArchiveEntry {
 
-    private FileHeader header;
+    private AbstractFileHeader header;
 
-    public ArchiveEntry(FileHeader header) {
+    public ArchiveEntry(AbstractFileHeader header) {
         this.header = header;
     }
+
 
     public long getSize() {
         return header.getUncompressedSize();
