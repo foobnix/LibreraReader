@@ -342,14 +342,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if(new File(BookCSS.get().downlodsPath).isDirectory()) {
+                    menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(BookCSS.get().downlodsPath);
-                        return false;
-                    }
-                }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            displayAnyPath(BookCSS.get().downlodsPath);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                }
 
 
                 menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {

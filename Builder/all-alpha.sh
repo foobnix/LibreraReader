@@ -11,6 +11,7 @@ cd ../
 ./gradlew assembleAlphaRelease
 ./gradlew assembleFdroidRelease
 
+
 ./gradlew -stop
 
 ### 1.11.1
@@ -20,6 +21,7 @@ cd Builder
 
 cd ../
 ./gradlew assembleBetaRelease
+./gradlew assembleProRelease
 
 
 ./gradlew copyApks -Pbeta
