@@ -693,7 +693,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 menu.getMenu().add(R.string.go_to_the_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath, new ResultResponse<String>() {
+                        String displayPath1 = BrowseFragment2.this.displayPath;
+
+                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath1, new ResultResponse<String>() {
                             @Override
                             public boolean onResultRecive(String path1) {
                                 displayAnyPath(path1);

@@ -191,7 +191,7 @@ public class Dialogs {
                 root.setViewDraggable(h, move);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
@@ -268,7 +268,7 @@ public class Dialogs {
                             } else if (TxtUtils.isNotEmpty(from)) {
                                 res.put(from, to);
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             LOG.e(e);
                         }
 
@@ -384,7 +384,6 @@ public class Dialogs {
         add.setEllipsize(TextUtils.TruncateAt.END);
         export.setEllipsize(TextUtils.TruncateAt.END);
         importFile.setEllipsize(TextUtils.TruncateAt.END);
-
 
 
         line.addView(add);
@@ -787,13 +786,17 @@ public class Dialogs {
     }
 
     public static void showEditDialog2(final Activity c, String title, String init,
-                                      final ResultResponse<String> onresult) {
+                                       final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
         final EditText input = new EditText(c);
         input.setSingleLine();
-        input.setText(init);
-        if(init!=null) {
+
+        if (init != null) {
+            if (!init.endsWith("/")) {
+                init += "/";
+            }
+            input.setText(init);
             input.setSelection(init.length());
         }
         builder.setView(input);
