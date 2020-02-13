@@ -230,6 +230,8 @@ public class AlertDialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(edit);
+                Keyboards.hideNavigation(a);
             }
         });
         create.show();
@@ -300,6 +302,8 @@ public class AlertDialogs {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(edit);
+                Keyboards.hideNavigation(a);
             }
         });
         create.show();

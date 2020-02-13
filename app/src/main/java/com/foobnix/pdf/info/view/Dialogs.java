@@ -755,7 +755,17 @@ public class Dialogs {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+
+
         AlertDialog create = builder.show();
+
+        create.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(input);
+
+            }
+        });
 
         create.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new OnClickListener() {
 
@@ -776,7 +786,7 @@ public class Dialogs {
 
     }
 
-    public static void showEditDialog2(final Context c, String title, String init,
+    public static void showEditDialog2(final Activity c, String title, String init,
                                       final ResultResponse<String> onresult) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
@@ -794,15 +804,21 @@ public class Dialogs {
             }
         });
 
+
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-        builder.show();
-
-
-
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(input);
+                Keyboards.hideNavigation(c);
+            }
+        });
+        alertDialog.show();
     }
 
     public static void showDeltaPage(final FrameLayout anchor,
