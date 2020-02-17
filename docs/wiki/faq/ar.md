@@ -4,8 +4,8 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [إنشاء ملف TXT جديد للملاحظات والاقتباسات ، إلخ.](/wiki/faq/create-new-book-or-file-txt/ar)
 * [أوضاع القراءة: التمرير والكتاب والموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)
-* [كيفية إنشاء كتاب أو ملف جديد. txt](/wiki/faq/create-new-book-or-file-txt/ar)
 * [إعداد شريط الحالة](/wiki/faq/how-to-set-up-a-status-bar/ar)
 * [**Librera** لتعلم اللغات الأجنبية](/wiki/faq/librera-for-study-foreign-languages/ar)
 * [TTS Replacements](/wiki/faq/tts-replacements/ar)

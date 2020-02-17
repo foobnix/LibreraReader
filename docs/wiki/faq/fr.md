@@ -4,8 +4,8 @@ layout: main
 
 # Foire aux questions
 
+* [Création d'un nouveau fichier TXT pour notes, devis, etc.](/wiki/faq/create-new-book-or-file-txt/fr)
 * [Modes de lecture: défilement, livre et musicien](/wiki/faq/reading-mode-vertical-book-musician/fr)
-* [Comment créer un nouveau livre ou fichier .txt](/wiki/faq/create-new-book-or-file-txt/fr)
 * [Configuration de la barre d'état](/wiki/faq/how-to-set-up-a-status-bar/fr)
 * [**Librera** pour l'apprentissage des langues étrangères](/wiki/faq/librera-for-study-foreign-languages/fr)
 * [Remplacements TTS](/wiki/faq/tts-replacements/fr)

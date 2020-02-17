@@ -2,16 +2,16 @@
 layout: main
 ---
 
-# Come creare un nuovo libro o file .txt
+# Creazione di un nuovo file TXT per note, preventivi, ecc.
 
-> È possibile creare il proprio file o libro, quindi incollare qualsiasi contenuto lì.
+> È possibile utilizzare la funzionalità di blocco note di **Librera** per creare i propri file in formato .txt. Sarà utile quando deciderai di fare una raccolta di citazioni dai libri che stai leggendo (copiando/incollando), annotando le tue note su un libro, compilando un file per la registrazione audio (TTS), ecc.
 
-* Premi &quot;Nuovo file&quot; nel menu a sinistra
-* Inserisci il nome del file nel formato name.txt, il nuovo file verrà inserito nella cartella Download
-* Salva e apri questo file come libro
-
+Per creare un nuovo file:
+* Tocca il link _Nuovo file_ nella scheda Preferenze scorrevole (menu)
+* Inserisci un nome significativo per il tuo file, che termina con &quot;.txt&quot;
+* Digita o incolla il contenuto di questo nuovo file TXT e tocca _SAVE_
+> **Il nuovo file verrà salvato nella cartella _Downloads_ sul dispositivo (memoria interna).**
 
 ||||
 |-|-|-|
-|![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
+|![](1.png)|![](2.png)|![](3.png)|

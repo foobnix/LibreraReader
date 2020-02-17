@@ -14,7 +14,7 @@
    <string name="landscape_180">Альбомная (180°)</string>
    <string name="portrait_180">Портретная (180°)</string>
    <string name="system_language">Системный</string>
-   <string name="system">Системное знач-е</string>
+   <string name="system">Системное значение</string>
    <string name="small">Мелкий</string>
    <string name="normal">Обычный</string>
    <string name="large">Крупный</string>
@@ -96,8 +96,8 @@
    <string name="margin_width">Ширина отступов</string>
    <string name="top">Сверху</string>
    <string name="bottom">Снизу</string>
-   <string name="links_color_day">Цвет примеч-й (\"День\")</string>
-   <string name="links_color_night">Цвет примеч-й (\"Ночь\")</string>
+   <string name="links_color_day">Цвет примечаний (\"День\")</string>
+   <string name="links_color_night">Цвет примечаний (\"Ночь\")</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Расширенные функции</string>
    <string name="direction_of_scrolling">Прокрутка текста</string>
@@ -116,14 +116,14 @@
    <string name="next_page">Следущая страница</string>
    <string name="previous_page">Предыдущая страница</string>
    <string name="db_do_nothing">Ничего не делать</string>
-   <string name="remind_about_rest_every">Увед-е об отдыхе каждые</string>
+   <string name="remind_about_rest_every">Уведомление об отдыхе каждые</string>
    <string name="action_on_double_tap">Два тапа по центру экрана</string>
    <string name="db_auto_scroll">Автопрокрутка текста</string>
    <string name="opening_book_with_losed_lock">Всегда блокировать смещения страниц в стороны при открытии PDF/DJVU (\"закрывать\" замочек)</string>
    <string name="opening_book_with_cropped_borders">Активировать обрезку пустых полей при каждом открытии PDF/DJVU</string>
    <string name="db_auto_alignemnt">Вписать в ширину экрана</string>
    <string name="db_auto_center_horizontally">Выровнять по горизонтали</string>
-   <string name="zoom_in_zoom_out">Увел./умен. масштаб стр-ц в 2 раза</string>
+   <string name="zoom_in_zoom_out">Увел./умен. масштаб страниц в 2 раза</string>
    <string name="enhancements_for_oled_display">Заполнять пустующие области вокруг страниц черным цветом при чтении в режиме \"Ночь\" (OLED-адаптация)</string>
    <string name="ignore_annotations_on_click">Не открывать окно редактирования комментариев/пометок при тапах в области их расположения</string>
    <string name="save_new_annotations_automatically">Автоматически сохранять новые комментарии и пометки при закрытии книги или выходе из приложения</string>
@@ -131,7 +131,7 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой кромки экрана</string>
    <string name="scroll_speed">Прокр. текста колес. мыши</string>
-   <string name="page_quality">Кач-во прорисовки стр-ц</string>
+   <string name="page_quality">Качество прорисовки страниц</string>
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
@@ -139,7 +139,7 @@
    <string name="show_status_bar">Показывать строку состояния</string>
    <string name="show_progress_of_reading">Отображать полосу прогресса</string>
    <string name="enable_rewind_of_pages_using_the_read_progress_line">Переходить между страницами скольжением пальца по строке состояния</string>
-   <string name="text_size">Размер текста строки сост-я</string>
+   <string name="text_size">Размер текста строки состояния</string>
    <string name="line_height">Толщина полосы прогресса</string>
    <string name="text_color_day">Цвет текста (\"День\")</string>
    <string name="text_color_night">Цвет текста (\"Ночь\")</string>
@@ -494,7 +494,7 @@
    <string name="play_a_music_file">Выбрать и проиграть музык. файл</string>
    <string name="rate_us">Поставить оценку</string>
    <string name="reset">Сброс</string>
-   <string name="status_bar_location">Расположение строки сост-ния</string>
+   <string name="status_bar_location">Расположение строки состояния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
    <string name="fast_reading">Скорочтение (RSVP)</string>
    <string name="minimum_line_length">Минимальная длина линии текста (CPL)</string>
@@ -556,7 +556,7 @@
    <string name="publication_date">Год издания</string>
    <string name="empy">Пусто</string>
    <string name="show_quick_bookmarks">Отображать быстрые закладки</string>
-   <string name="show_only_available_books">Показывать закладки только к имеющимся в биб-ке книгам</string>
+   <string name="show_only_available_books">Показывать закладки только к имеющимся в библиотеке книгам</string>
    <string name="share_as_text">Поделиться в виде текста</string>
    <string name="share_as_image">Поделиться в виде изображения</string>
    <string name="copy_text">Скопировать текст</string>

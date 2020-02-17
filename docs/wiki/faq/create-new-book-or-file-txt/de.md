@@ -2,16 +2,16 @@
 layout: main
 ---
 
-# So erstellen Sie ein neues Buch oder eine neue TXT-Datei
+# Erstellen einer neuen TXT-Datei für Notizen, Zitate usw.
 
-> Sie können eine eigene Datei oder ein eigenes Buch erstellen und dann dort Inhalte einfügen.
+> Mit der Notepad-Funktion von **Librera** können Sie Ihre eigenen Dateien im TXT-Format erstellen. Dies ist nützlich, wenn Sie eine Zusammenstellung von Zitaten aus den Büchern erstellen, die Sie gerade lesen (durch Kopieren/Einfügen), Ihre Notizen in ein Buch eintragen, eine Datei für Audioaufnahmen (TTS) zusammenstellen usw.
 
-* Drücken Sie im linken Menü auf &quot;Neue Datei&quot;
-* Geben Sie den Dateinamen im Format name.txt ein. Eine neue Datei wird im Ordner Downloads abgelegt
-* Speichern und öffnen Sie diese Datei als Buch
-
+So erstellen Sie eine neue Datei:
+* Tippen Sie auf der Registerkarte &quot;Einstellungen&quot; (Menü) auf den Link &quot;Neue Datei&quot;.
+* Geben Sie einen aussagekräftigen Namen für Ihre Datei ein, der mit &quot;.txt&quot; endet.
+* Geben Sie den Inhalt dieser neuen TXT-Datei ein oder fügen Sie ihn ein und tippen Sie auf _SAVE_.
+> **Die neue Datei wird im Ordner _Downloads_ auf Ihrem Gerät (interner Speicher) gespeichert.**
 
 ||||
 |-|-|-|
-|![](1.jpg)|![](2.jpg)|![](3.jpg)|
-
+|![](1.png)|![](2.png)|![](3.png)|

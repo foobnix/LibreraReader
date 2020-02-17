@@ -5,8 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Creating a New TXT File for Notes, Quotes, etc.](/wiki/faq/create-new-book-or-file-txt)
 * [Reading Modes: Scroll, Book, and Musician's](/wiki/faq/reading-mode-vertical-book-musician)
-* [How to create new book or file .txt](/wiki/faq/create-new-book-or-file-txt)
 * [Setting Up the Status Bar](/wiki/faq/how-to-set-up-a-status-bar)
 * [**Librera** for Learning Foreign Languages](/wiki/faq/librera-for-study-foreign-languages)
 * [TTS Replacements](/wiki/faq/tts-replacements)

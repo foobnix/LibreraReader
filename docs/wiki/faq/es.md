@@ -4,8 +4,8 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Creación de un nuevo archivo TXT para notas, citas, etc.](/wiki/faq/create-new-book-or-file-txt/es)
 * [Modos de lectura: desplazamiento, libro y músico](/wiki/faq/reading-mode-vertical-book-musician/es)
-* [Cómo crear un nuevo libro o archivo .txt](/wiki/faq/create-new-book-or-file-txt/es)
 * [Configuración de la barra de estado](/wiki/faq/how-to-set-up-a-status-bar/es)
 * [**Librera** para aprender idiomas extranjeros](/wiki/faq/librera-for-study-foreign-languages/es)
 * [Reemplazos de TTS](/wiki/faq/tts-replacements/es)

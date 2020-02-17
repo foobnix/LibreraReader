@@ -4,8 +4,8 @@ layout: main
 
 #常见问题
 
+* [为注释，引号等创建新的TXT文件](/wiki/faq/create-new-book-or-file-txt/zh)
 * [阅读模式：滚动，读书和音乐家的音乐](/wiki/faq/reading-mode-vertical-book-musician/zh)
-* [如何创建新书或文件.txt](/wiki/faq/create-new-book-or-file-txt/zh)
 * [设置状态栏](/wiki/faq/how-to-set-up-a-status-bar/zh)
 * [**学习外语的图书馆**](/wiki/faq/librera-for-study-foreign-languages/zh)
 * [TTS替换](/wiki/faq/tts-replacements/zh)

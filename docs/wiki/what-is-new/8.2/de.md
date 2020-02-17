@@ -8,8 +8,14 @@ Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtl
 
 **Neue Funktionen und Verbesserungen**
 
-* Umstellung auf MuPDF 1.16.1
+* Übergang zu MuPDF 1.16.1 (Librera Alpha)
 * Verbesserte PDF-Unterstützung
-* Verbesserungen beim TTS-Lesen von PDF-Dokumenten (Überspringen zugeschnittener Bereiche)
-* TTS-Verbesserungen und TTS-Ersatzliste importieren/exportieren
+* Verbesserungen beim TTS-Lesen von PDF-Dokumenten (Überspringen von zugeschnittenen Bereichen)
+* Import/Export von TTS-Ersatzlisten
 * Riesige Verbesserungen beim Rendern mehrspaltiger Tabellen
+* Unterstützung für .ocular- und .md-Formate
+* Möglichkeit, neue Dateien (.txt) für Notizen und Anführungszeichen zu erstellen
+* Möglichkeit, neue Ordner zu erstellen
+* Referenzmodus im Kaliberstil
+* Verbessertes Rendern von <ol> und <ul> Listen
+* Langere Aktionen: TTS-Lesen und Navigation zwischen Ordnern
