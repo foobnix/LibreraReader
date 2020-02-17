@@ -8,8 +8,8 @@ cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleAlphaRelease
 ./gradlew assembleFdroidRelease
+./gradlew assembleAlphaRelease
 
 
 ./gradlew -stop
@@ -20,8 +20,8 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-./gradlew assembleBetaRelease
 ./gradlew assembleProRelease
+./gradlew assembleBetaRelease
 
 
 ./gradlew copyApks -Pbeta

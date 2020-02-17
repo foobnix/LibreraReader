@@ -8,13 +8,15 @@ cd ../
 
 ./gradlew clean incVersion
 
+./gradlew assembleProRelease
+
 /.gradlew assembleBetaRelease
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
-
+./gradlew assembleEpub_readerRelease
 ./gradlew assembleLibreraRelease
-./gradlew assembleProRelease
+
 
 #./gradlew assembleFdroidRelease
 
