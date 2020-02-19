@@ -1,38 +1,45 @@
 package com.foobnix.sys;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 
-import com.foobnix.android.utils.Apps;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
+import com.foobnix.pdf.info.R;
+
+import mobi.librera.smartreflow.AndroidPlatformImage;
+import mobi.librera.smartreflow.ImageUtils;
+import mobi.librera.smartreflow.SmartReflow;
 
 public class TestActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ImageUtils.platformLogger = new ImageUtils.Logger() {
+            @Override
+            public void log(String str) {
+                LOG.d(str);
+            }
+        };
 
-        AdView adView = new AdView(this);
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(Apps.getMetaData(this, "librera.ADMOB_BANNER_ID"));
+        try {
+
+            final AndroidPlatformImage input = new AndroidPlatformImage(BitmapFactory.decodeResource(getResources(), R.drawable.sample6));
+            final AndroidPlatformImage output = new AndroidPlatformImage(input.getWidth() / 2, Dips.screenHeight());
+
+            SmartReflow sm = new SmartReflow(input);
+            sm.smartReflow(output);
+
+            ImageView img = new ImageView(this);
+            img.setImageBitmap(output.getImage());
 
 
-
-        AdRequest adRequest = new AdRequest.Builder()//
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)//
-                //.addTestDevice("FB4F2F5FAA65DBF3F1D51900356E85D9")//
-                .build();//
-        adView.loadAd(adRequest);
-
-        LinearLayout l = new LinearLayout(this);
-        l.setBackgroundColor(Color.RED);
-        l.setOrientation(LinearLayout.VERTICAL);
-        l.addView(adView);
-
-        setContentView(l);
+            setContentView(img);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
     }
 }

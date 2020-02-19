@@ -348,6 +348,7 @@ dependencies {
     alphaImplementation project(':pro')
     proImplementation project(':pro')
     fdroidImplementation project(':pro')
+    implementation project(':smartreflow')
 
     betaImplementation 'com.google.firebase:firebase-ads:18.3.0'
     libreraImplementation 'com.google.firebase:firebase-ads:18.3.0'
@@ -356,6 +357,7 @@ dependencies {
     tts_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
     pdf_classicImplementation 'com.google.firebase:firebase-ads:18.3.0'
     epub_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
+
 
 }
 
