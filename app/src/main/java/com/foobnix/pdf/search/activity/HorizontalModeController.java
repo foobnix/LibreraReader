@@ -74,6 +74,7 @@ public abstract class HorizontalModeController extends DocumentController {
         PageImageState.get().cleanSelectedWords();
         PageImageState.get().pagesText.clear();
 
+        AppSP.get().isSmartReflow = false;
 
         if (isTextFormat) {
             AppSP.get().isCrop = false;

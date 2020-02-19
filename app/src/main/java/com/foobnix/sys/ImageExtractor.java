@@ -64,6 +64,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
+import mobi.librera.smartreflow.AndroidPlatformImage;
+import mobi.librera.smartreflow.SmartReflow;
 import okhttp3.Request;
 
 public class ImageExtractor implements ImageDownloader {
@@ -427,6 +429,24 @@ public class ImageExtractor implements ImageDownloader {
             }
         }
 
+        if (AppSP.get().isSmartReflow) {
+            try {
+                final AndroidPlatformImage input = new AndroidPlatformImage(bitmap);
+
+
+                SmartReflow sm = new SmartReflow(input);
+
+                final AndroidPlatformImage  output  = new AndroidPlatformImage((int) (bitmap.getWidth() * 0.6), (int)(bitmap.getHeight()*0.8));
+
+                sm.smartReflow(output);
+                bitmap.recycle();
+                bitmap = output.getImage();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
+
         if (pageUrl.isInvert()) {
             final RawBitmap bmp = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
             bmp.invert();
@@ -434,6 +454,8 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bmp.toBitmap().getBitmap();
 
         }
+
+
         if (pageUrl.getRotate() > 0) {
             final Matrix matrix = new Matrix();
             matrix.postRotate(pageUrl.getRotate());
@@ -457,6 +479,7 @@ public class ImageExtractor implements ImageDownloader {
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }
+
 
         return bitmap;
     }

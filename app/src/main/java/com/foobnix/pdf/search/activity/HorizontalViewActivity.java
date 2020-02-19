@@ -793,6 +793,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppSP.get().isDouble = false;
                         AppSP.get().isDoubleCoverAlone = false;
                         AppSP.get().isCut = false;
+                        AppSP.get().isSmartReflow = false;
 
                         SettingsManager.getBookSettings().updateFromAppState();
                         SharedBooks.save(SettingsManager.getBookSettings());
@@ -821,6 +822,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         AppSP.get().isDouble = true;
                         AppSP.get().isCut = false;
                         AppSP.get().isDoubleCoverAlone = false;
+                        AppSP.get().isSmartReflow = false;
 
                         SettingsManager.getBookSettings().updateFromAppState();
                         SharedBooks.save(SettingsManager.getBookSettings());
@@ -850,6 +852,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             AppSP.get().isDouble = true;
                             AppSP.get().isCut = false;
                             AppSP.get().isDoubleCoverAlone = true;
+                            AppSP.get().isSmartReflow = false;
                             SettingsManager.getBookSettings().updateFromAppState();
                             SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -878,7 +881,35 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
                             AppSP.get().isDouble = false;
                             AppSP.get().isCut = true;
+                            AppSP.get().isSmartReflow = false;
                             // AppSP.get().isCrop = false;
+                            SettingsManager.getBookSettings().updateFromAppState();
+                            SharedBooks.save(SettingsManager.getBookSettings());
+
+                            TTSEngine.get().stop();
+
+                            // onCrop.underline(AppSP.get().isCrop);
+
+                            dc.cleanImageMatrix();
+                            reloadDoc.run();
+                            authoFit();
+                            return false;
+                        }
+                    });
+                }
+                if (!dc.isTextFormat()) {
+                    p.getMenu().add("Smart Reflow").setIcon(R.drawable.glyphicons_108_text_resize).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+
+                            closeDialogs();
+                            onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
+                            AppSP.get().isDouble = false;
+                            AppSP.get().isCut = false;
+                            AppSP.get().isCrop = false;
+                            AppSP.get().isSmartReflow = true;
+
                             SettingsManager.getBookSettings().updateFromAppState();
                             SharedBooks.save(SettingsManager.getBookSettings());
 
@@ -1372,6 +1403,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             }
         } else if (AppSP.get().isCut) {
             onModeChange.setImageResource(R.drawable.glyphicons_page_split);
+        } else if (AppSP.get().isSmartReflow) {
+            onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
         } else {
             onModeChange.setImageResource(R.drawable.glyphicons_two_page_one);
         }

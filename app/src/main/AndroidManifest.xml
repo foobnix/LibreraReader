@@ -254,8 +254,8 @@
             android:name="com.foobnix.sys.TestActivity"
             android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN1" />
+                <category android:name="android.intent.category.LAUNCHER1" />
             </intent-filter>
         </activity>
         <activity
@@ -276,9 +276,9 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN1" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER1" />
+                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>

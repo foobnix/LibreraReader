@@ -29,6 +29,9 @@ public class SmartReflow {
         process(image);
     }
 
+    public boolean isMultyColumn() {
+        return columns.size() >= 2;
+    }
 
     private void process(PlatformImage img) throws Exception {
 
