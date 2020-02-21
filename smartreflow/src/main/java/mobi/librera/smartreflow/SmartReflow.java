@@ -3,17 +3,23 @@ package mobi.librera.smartreflow;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SmartReflow {
+import mobi.librera.smartreflow.model.Column;
+import mobi.librera.smartreflow.model.Line;
+import mobi.librera.smartreflow.model.Word;
+
+public class SmartReflow implements SmartReflowInterface {
 
     public static final int MIN_WORD_SIZE = 5;
     public static final int MIN_LINE_HEIGHT = 10;
+
     public static int PADDING = 15;
+
     public boolean isDrawColums;
     public boolean isDrawLines;
     public boolean isDrawWords;
     public boolean isDrawWordsOffsetLeft;
     public boolean isDrawChars;
-    public boolean isDrawResultUsingWords;
+    public boolean isDrawResultUsingWords = true;
     float averageTop = 0;
     int averageTopCount = 0;
     List<Column> columns = new ArrayList();
@@ -33,7 +39,25 @@ public class SmartReflow {
         return columns.size() >= 2;
     }
 
-    private void process(PlatformImage img) throws Exception {
+
+    public List<String> getStatistics() {
+        List<String> list = new ArrayList<>();
+        list.add("Columns :" + columns.size());
+        list.add("Lines   :" + lines.size());
+        list.add("Words   :" + words.size());
+        list.add("Padding :" + PADDING);
+        int sum = 0;
+        for (Word w : wordsLong) {
+            sum += w.offsetLeft;
+        }
+        list.add("Mid offset :" + sum / wordsLong.size());
+
+        return list;
+    }
+
+
+    @Override
+    public void process(PlatformImage img) throws Exception {
 
         ImageUtils.log("img", "w", img.getWidth(), "h", img.getHeight());
         PADDING = img.getWidth() / 200;
@@ -60,6 +84,7 @@ public class SmartReflow {
 
         Column column = null;
         int number = 0;
+
         for (int x = 0; x < img.getWidth(); x++) {
             isColumn = false;
             for (int y = 0; y < img.getHeight(); y++) {
@@ -79,8 +104,6 @@ public class SmartReflow {
                 column.y2 = img.getHeight() - 1;
                 columns.add(column);
                 column = null;
-                System.out.println("Column added");
-
             }
         }
         System.out.println("Columns size" + columns.size());
@@ -136,8 +159,9 @@ public class SmartReflow {
                 word = null;
             }
             prevCh = ch;
-
-
+        }
+        if (word != null) {
+            wordsLong.add(prevCh);
         }
 
     }
@@ -152,7 +176,7 @@ public class SmartReflow {
         Line findLine = null;
         for (int y = col.y1; y < col.y2; y++) {
 
-            boolean isBank = isBlankHorizontal(img, y, col.x1, col.x2);
+            boolean isBank = isBlackHorizontal(img, y, col.x1, col.x2);
 
             if (!isBank && findLine == null) {
                 findLine = new Line();
@@ -234,6 +258,7 @@ public class SmartReflow {
     }
 
 
+    @Override
     public void drawObjects(PlatformImage output) {
         output.create(image.getWidth(), image.getHeight());
 
@@ -247,19 +272,28 @@ public class SmartReflow {
             }
         }
 
-        for (Column col : columns) {
-            ImageUtils.drawRect(output, col.x1, col.y1, col.x2, col.y2, PlatformImage.GREEN);
+        if (isDrawColums) {
+            for (Column col : columns) {
+                ImageUtils.drawRect(output, col.x1, col.y1, col.x2, col.y2, PlatformImage.GREEN);
+            }
         }
 
-        for (Line l : lines) {
-            ImageUtils.drawRect(output, l.x1, l.y1, l.x2, l.y2, PlatformImage.RED);
+        if (isDrawLines) {
+            for (Line l : lines) {
+                ImageUtils.drawRect(output, l.x1, l.y1, l.x2, l.y2, PlatformImage.RED);
+            }
         }
+
 
         for (Word w : words) {
-            ImageUtils.drawRect(output, w.x1, w.y1, w.x2, w.y2, PlatformImage.BLUE);
+            if (isDrawChars) {
+                ImageUtils.drawRect(output, w.x1, w.y1, w.x2, w.y2, PlatformImage.BLUE);
+            }
             int dy = w.y1;
             ImageUtils.drawRect(output, w.x1 - w.offsetLeft, dy, w.x1, dy + 2, PlatformImage.YELLOW);
+
         }
+
 
         for (Word w : wordsLong) {
             ImageUtils.drawRect(output, w.x1, w.y1, w.x2, w.y2, PlatformImage.MAROON);
@@ -267,12 +301,22 @@ public class SmartReflow {
 
     }
 
-    public void smartReflow(PlatformImage des) {
-        for (int x = 0; x < des.getWidth(); x++) {
-            for (int y = 0; y < des.getHeight(); y++) {
-                des.setPixel(x, y, PlatformImage.WHITE);
+
+    @Override
+    public void reflow(PlatformImage des) {
+        if (columns.isEmpty()) {
+            des.create(image.getWidth(), image.getHeight());
+            for (int x = 0; x < des.getWidth(); x++) {
+                for (int y = 0; y < des.getHeight(); y++) {
+                    des.setPixel(x, y, image.getPixel(x, y));
+                }
             }
+
+            return;
         }
+
+        ImageUtils.setBackgroundColor(des, PlatformImage.WHITE);
+
 
         int dx = PADDING;
         int dy = 0;
@@ -284,12 +328,18 @@ public class SmartReflow {
 
         boolean isDrawResult = true;
         //if (isDrawResultUsingWords) {
-        if (true) {
+        if (isDrawResultUsingWords) {
             input = wordsLong;
         } else {
             input = words;
         }
         for (Word w : input) {
+            if (w.height() > des.getHeight()) {
+                //w.y2 = w.y2 / 2;
+            }
+            if (w.width() > des.getWidth()) {
+                //w.x2 = w.x2
+            }
             dx = dx + w.offsetLeft;
 
             if (w.height() != prev.height() && prev.height() > 0) {
@@ -298,7 +348,8 @@ public class SmartReflow {
 
             //chapter
             if (w.isFirstWord) {
-                ImageUtils.log("w.offsetLeft", w.offsetLeft);
+                //w.offsetTop = PADDING;
+                //ImageUtils.log("w.offsetLeft", w.offsetLeft);
             }
             if (w.isFirstWord && (w.offsetLeft > PADDING * 2 || w.offsetTop > PADDING + 5)) {
                 dx = w.offsetLeft + PADDING;
@@ -312,16 +363,16 @@ public class SmartReflow {
                 dx = PADDING;
                 dy += w.height() + averageTop;
             }
+
             try {
                 drawWordAt(w, dx, dy, image, des);
                 dx += w.width();
-
                 prev = w;
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                //continue;
                 break;
             }
-
         }
 
 
@@ -331,7 +382,11 @@ public class SmartReflow {
         for (int i = w.x1; i < w.x2; i++) {
             for (int j = w.y1; j < w.y2; j++) {
                 int pixel[] = input.getPixel(i, j);
-                output.setPixel(dx + (i - w.x1), dy + (j - w.y1), pixel);
+                final int x = dx + (i - w.x1);
+                final int y = dy + (j - w.y1);
+
+                output.setPixel(x, y, pixel);
+
 
             }
         }
@@ -339,7 +394,7 @@ public class SmartReflow {
     }
 
 
-    public boolean isBlankHorizontal(PlatformImage img, int y, int x1, int x2) {
+    public boolean isBlackHorizontal(PlatformImage img, int y, int x1, int x2) {
         boolean isBlank = true;
 
         for (int x = x1; x < x2; x++) {
@@ -366,35 +421,6 @@ public class SmartReflow {
     }
 
 
-    static class Line extends Rect {
-        int columnNumber;
-    }
 
-    static class Column extends Rect {
-        int number;
-    }
-
-    static class Word extends Rect {
-        public int offsetLeft;
-        public int offsetTop;
-        public boolean isFirstWord;
-        public boolean isLastWord;
-    }
-
-
-    static class Rect {
-        public int x1;
-        public int y1;
-        public int x2;
-        public int y2;
-
-        public int width() {
-            return x2 - x1;
-        }
-
-        public int height() {
-            return y2 - y1;
-        }
-    }
 
 }

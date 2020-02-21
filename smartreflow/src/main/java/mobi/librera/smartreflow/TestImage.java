@@ -25,7 +25,7 @@ public class TestImage {
         final AwtPlatformImage output = new AwtPlatformImage(600,1000);
 
         SmartReflow sm = new SmartReflow(input);
-        sm.smartReflow(output);
+        sm.reflow(output);
 
 
         frame.add(new JLabel(new ImageIcon(output.getImage())));

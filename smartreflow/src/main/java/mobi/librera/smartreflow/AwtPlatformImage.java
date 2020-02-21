@@ -59,7 +59,12 @@ public class AwtPlatformImage implements PlatformImage<Image> {
 
     @Override
     public void setPixel(int x, int y, int[] color) {
-        raster.setPixel(x, y, color);
+        try {
+            raster.setPixel(x, y, color);
+        }catch (Exception e){
+            ImageUtils.log("setPixel", raster.getHeight(), raster.getHeight(), x,y);
+            throw  e;
+        }
     }
 
     @Override

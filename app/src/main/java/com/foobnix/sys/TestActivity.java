@@ -11,7 +11,7 @@ import com.foobnix.pdf.info.R;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
 import mobi.librera.smartreflow.ImageUtils;
-import mobi.librera.smartreflow.SmartReflow;
+import mobi.librera.smartreflow.SmartReflow1;
 
 public class TestActivity extends Activity {
 
@@ -30,8 +30,9 @@ public class TestActivity extends Activity {
             final AndroidPlatformImage input = new AndroidPlatformImage(BitmapFactory.decodeResource(getResources(), R.drawable.sample6));
             final AndroidPlatformImage output = new AndroidPlatformImage(input.getWidth() / 2, Dips.screenHeight());
 
-            SmartReflow sm = new SmartReflow(input);
-            sm.smartReflow(output);
+            SmartReflow1 sm = new SmartReflow1();
+            sm.process(input);
+            sm.reflow(output);
 
             ImageView img = new ImageView(this);
             img.setImageBitmap(output.getImage());

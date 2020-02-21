@@ -897,12 +897,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
                 }
-                if (!dc.isTextFormat()) {
+                if ((BuildConfig.IS_BETA || AppState.get().isExperimental) && !dc.isTextFormat()) {
                     p.getMenu().add("Smart Reflow").setIcon(R.drawable.glyphicons_108_text_resize).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-
                             closeDialogs();
                             onModeChange.setImageResource(R.drawable.glyphicons_108_text_resize);
                             AppSP.get().isDouble = false;

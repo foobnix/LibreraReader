@@ -65,7 +65,7 @@ import java.io.InputStream;
 import java.util.Locale;
 
 import mobi.librera.smartreflow.AndroidPlatformImage;
-import mobi.librera.smartreflow.SmartReflow;
+import mobi.librera.smartreflow.SmartReflow1;
 import okhttp3.Request;
 
 public class ImageExtractor implements ImageDownloader {
@@ -377,6 +377,9 @@ public class ImageExtractor implements ImageDownloader {
 
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) pageInfo.height / pageInfo.width;
+        final float kScreen = (float) pageUrl.getHeight() / pageUrl.getWidth();
+        //final float kScreen = Dips.screenHeight()/Dips.screenWidth();
+
         int width = pageUrl.getWidth();
         int height = (int) (width * k);
 
@@ -433,12 +436,14 @@ public class ImageExtractor implements ImageDownloader {
             try {
                 final AndroidPlatformImage input = new AndroidPlatformImage(bitmap);
 
+                SmartReflow1 sm = new SmartReflow1();
+                sm.process(input);
 
-                SmartReflow sm = new SmartReflow(input);
-
-                final AndroidPlatformImage  output  = new AndroidPlatformImage((int) (bitmap.getWidth() * 0.6), (int)(bitmap.getHeight()*0.8));
-
-                sm.smartReflow(output);
+                final int rWidth = (int) (bitmap.getWidth() * 0.6);
+                final int rHeight = (int) (rWidth * kScreen);
+                LOG.d("SmartReflow", rWidth, rHeight, k,kScreen);
+                final AndroidPlatformImage output = new AndroidPlatformImage(rWidth, rHeight);
+                sm.reflow(output);
                 bitmap.recycle();
                 bitmap = output.getImage();
             } catch (Exception e) {

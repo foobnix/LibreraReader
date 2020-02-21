@@ -27,7 +27,8 @@ public class SmartImageRunUI {
 
     static GraphicsConfiguration gc;
 
-    static String img = "/home/ivan-dev/IdeaProjects/SmartReflow/images/sample6.png";
+    //static String img = "/home/ivan-dev/Downloads/testSM/2.jpg";
+    static String img = "/home/ivan-dev/IdeaProjects/SmartReflow/images/sample1.png";
 
     public static void main(String[] args) throws Exception {
         runIU(img);
@@ -37,15 +38,16 @@ public class SmartImageRunUI {
 
         AwtPlatformImage image = new AwtPlatformImage(path);
 
-        SmartReflow reflow = new SmartReflow(image);
-        reflow.isDrawResult = true;
-        reflow.isDrawResultUsingWords = true;
-
-        reflow.isDrawColums = false;
-        reflow.isDrawLines = false;
-        reflow.isDrawWords = true;
-        reflow.isDrawChars = false;
-        reflow.isDrawWordsOffsetLeft = true;
+        SmartReflow1 reflow = new SmartReflow1();
+        reflow.process(image);
+//        reflow.isDrawResult = true;
+//        reflow.isDrawResultUsingWords = true;
+//
+//        reflow.isDrawColums = true;
+//        reflow.isDrawLines = false;
+//        reflow.isDrawWords = true;
+//        reflow.isDrawChars = false;
+//        reflow.isDrawWordsOffsetLeft = true;
 
 
         AwtPlatformImage out = new AwtPlatformImage();
@@ -82,9 +84,10 @@ public class SmartImageRunUI {
         }
 
         vertical.add(makeLabel("Statistics"));
-        vertical.add(makeText("Columns :" + reflow.columns.size()));
-        vertical.add(makeText("Lines   :" + reflow.lines.size()));
-        vertical.add(makeText("Words   :" + reflow.words.size()));
+
+        for (String line : reflow.getStatistics()) {
+            vertical.add(makeText(line));
+        }
 
         JPanel vertical2 = new JPanel();
         vertical2.setAlignmentY(Component.TOP_ALIGNMENT);
@@ -92,23 +95,23 @@ public class SmartImageRunUI {
         vertical2.setLayout(new BoxLayout(vertical2, BoxLayout.PAGE_AXIS));
 
 
-        if (reflow.isDrawResult) {
-            try {
-                AwtPlatformImage out2 = new AwtPlatformImage(800, 1400);
-                reflow.smartReflow(out2);
-                vertical2.add(makeLabel("Reflow " + out2.getWidth() + "x" + out2.getHeight()));
+        try {
+            final int w = 407;
+            AwtPlatformImage out2 = new AwtPlatformImage(w, w * 2);
+            reflow.reflow(out2);
+            vertical2.add(makeLabel("Reflow " + out2.getWidth() + "x" + out2.getHeight()));
 
 
-                Image reflowed = out2.getImage();
-                if (reflowed != null) {
-                    vertical2.add(new JLabel(new ImageIcon(reflowed)));
-                }
-            } catch (Exception e) {
-                vertical2.add(makeLabel("Error : " + e.getMessage()));
-                e.printStackTrace();
-
+            Image reflowed = out2.getImage();
+            if (reflowed != null) {
+                vertical2.add(new JLabel(new ImageIcon(reflowed)));
             }
+        } catch (Exception e) {
+            vertical2.add(makeLabel("Error : " + e.getMessage()));
+            e.printStackTrace();
+
         }
+
 
         horizontal.add(vertical);
         horizontal.add(vertical2);
