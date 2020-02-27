@@ -511,7 +511,7 @@ public class FileInformationDialog {
         });
         final String url = IMG.toUrl(path, -2, Dips.screenWidth());
 
-        Glide.with(imageView).load(url).into(imageView);
+        Glide.with(imageView).asBitmap().load(url).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
@@ -537,7 +537,7 @@ public class FileInformationDialog {
 
             }
         });
-        Glide.with(imageView).load(path).into(imageView);
+        Glide.with(imageView).asBitmap().load(path).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
