@@ -46,7 +46,6 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -640,7 +639,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     FileMeta meta = AppDB.get().getOrCreate(bookPath);
                                     meta.setIsSearchBook(true);
                                     AppDB.get().updateOrSave(meta);
-                                    IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+                                    //IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                                 }
                                 TempHolder.listHash++;
 

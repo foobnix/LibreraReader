@@ -46,6 +46,7 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
@@ -555,6 +556,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
+            IMG.clearMemoryCache();
+            IMG.clearDiscCache();
             BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
         } catch (Exception e) {
             LOG.e(e);

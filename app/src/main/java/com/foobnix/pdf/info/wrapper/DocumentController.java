@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
@@ -47,7 +46,6 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -86,38 +84,24 @@ public abstract class DocumentController {
             R.string.landscape_180, //
             R.string.portrait_180////
     );
-
-    public static int getRotationText() {
-        return orientationTexts.get(orientationIds.indexOf(AppState.get().orientation));
-    }
-
     protected final Activity activity;
-    private DocumentWrapperUI ui;
-
+    private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
     public Handler handler = new Handler(Looper.getMainLooper());
     public Handler handler2 = new Handler(Looper.getMainLooper());
-
     public long readTimeStart;
-
     public volatile AppBookmark floatingBookmark;
-
-    public DocumentController(final Activity activity) {
-        this.activity = activity;
-        readTimeStart = System.currentTimeMillis();
-    }
-
-
+    protected volatile List<OutlineLinkWrapper> outline;
+    Runnable saveCurrentPageRunnable = new Runnable() {
+        @Override
+        public void run() {
+            saveCurrentPageAsync();
+        }
+    };
+    private DocumentWrapperUI ui;
     private File currentBook;
     private String title;
-
-    public boolean isPasswordProtected() {
-        try {
-            return TxtUtils.isNotEmpty(activity.getIntent().getStringExtra(EXTRA_PASSWORD));
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
+    private int timeout;
+    private Runnable timerTask;
     Runnable timer = new Runnable() {
 
         @Override
@@ -131,346 +115,20 @@ public abstract class DocumentController {
             }
         }
     };
-
-    private int timeout;
-    private Runnable timerTask;
-
-    public synchronized void runTimer(int timeout, Runnable run) {
-        this.timeout = timeout;
-        this.timerTask = run;
-        stopTimer();
-        if (handler != null) {
-            handler.post(timer);
-        }
-    }
-
-    public void stopTimer() {
-        if (handler != null) {
-            handler.removeCallbacks(timer);
-        }
-    }
-
-    private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
-
-    public abstract void onGoToPage(int page);
-
-    public abstract void onSrollLeft();
-
-    public abstract void onSrollRight();
-
-    public abstract void onScrollUp();
-
-    public abstract void onScrollDown();
-
-    public abstract void onNextPage(boolean animate);
-
-    public abstract void onPrevPage(boolean animate);
-
-    public abstract void onNextScreen(boolean animate);
-
-    public abstract void onPrevScreen(boolean animate);
-
-    public abstract void onZoomInc();
-
-    public abstract void onZoomDec();
-
-    public abstract void onZoomInOut(int x, int y);
-
-    public abstract void onCloseActivityAdnShowInterstial();
-
-    public abstract void onCloseActivityFinal(Runnable run);
-
-
-    public abstract void onNightMode();
-
-    public abstract void onCrop();
-
-    public abstract void onFullScreen();
-
-    public abstract int getCurentPage();
-
-    public abstract int getCurentPageFirst1();
-
-    public abstract int getPageCount();
-
-    public abstract void onScrollY(int value);
-
-    public abstract void onScrollYPercent(float value);
-
-    public abstract void onAutoScroll();
-
-    public abstract void clearSelectedText();
-
-    public abstract void saveChanges(List<PointF> points, int color);
-
-    public abstract void deleteAnnotation(long pageHander, int page, int index);
-
-    public abstract void underlineText(int color, float width, AnnotationType type);
-
-    public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse);
-
-    public abstract String getFootNote(String text);
-
-    public abstract List<String> getMediaAttachments();
-
-    public abstract PageUrl getPageUrl(int page);
-
-    public abstract void saveAnnotationsToFile();
-
-    public abstract int getBookWidth();
-
-    public abstract int getBookHeight();
-
-    public void saveSettings() {
-
-    }
-
-    public float getPercentage() {
-        return MyMath.percent(getCurentPageFirst1(), getPageCount());
-    }
-
-
-    public MyADSProvider getAdsProvider() {
-        return null;
-    }
-
-    public abstract void updateRendering();
-
-    public void goToPageByTTS() {
-        try {
-            if (TTSEngine.get().isPlaying()) {
-
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-
-                if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
-                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                    LOG.d("goToPageByTTS", AppSP.get().lastBookPage + 1);
-                }
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public abstract void cleanImageMatrix();
-
-    public void checkReadingTimer() {
-        long timeout = System.currentTimeMillis() - readTimeStart;
-        if (AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
-            AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
-
-                @Override
-                public void run() {
-                    readTimeStart = System.currentTimeMillis();
-                }
-            }, new Runnable() {
-                @Override
-                public void run() {
-                    readTimeStart = System.currentTimeMillis();
-                }
-            });
-        }
-
-    }
-
-    public void closeActivity() {
-        handler2.removeCallbacksAndMessages(null);
-        handler.removeCallbacksAndMessages(null);
-    }
-
-    public void saveCurrentPage() {
-        AppBook bs = SettingsManager.getBookSettings();
-        if (bs != null) {
-            bs.updateFromAppState();
-            bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
-            handler2.removeCallbacks(saveCurrentPageRunnable);
-            handler2.postDelayed(saveCurrentPageRunnable, 1000);
-        }
-    }
-
-
-    Runnable saveCurrentPageRunnable = new Runnable() {
-        @Override
-        public void run() {
-            saveCurrentPageAsync();
-        }
-    };
-
-    public void saveCurrentPageAsync() {
-        if (TempHolder.get().loadingCancelled) {
-            LOG.d("Loading cancelled");
-            return;
-        }
-        // int page = PageUrl.fakeToReal(currentPage);
-        LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
-        try {
-            if (getPageCount() <= 0) {
-                LOG.d("_PAGE", "saveCurrentPage skip");
-                return;
-            }
-            AppBook bs = SettingsManager.getBookSettings();
-            bs.updateFromAppState();
-            SharedBooks.save(bs);
-
-            //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-            //bs.updateFromAppState();
-            //bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
-            //SharedBooks.save(bs);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-
-    }
-
-    public void onChangeTextSelection() {
-        Vibro.vibrate();
-        AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
-        String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_highlight_mode_is_enable) : getString(R.string.text_highlight_mode_is_disable);
-        Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
-    }
-
-    public boolean isBookMode() {
-        return AppSP.get().readingMode == AppState.READING_MODE_BOOK;
-    }
-
-    public boolean isScrollMode() {
-        return AppSP.get().readingMode == AppState.READING_MODE_SCROLL;
-    }
-
-    public boolean isMusicianMode() {
-        return AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN;
-    }
-
-    public void onResume() {
-        readTimeStart = System.currentTimeMillis();
-        try {
-            if (getPageCount() != 0) {
-                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
-                if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
-                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
-                }
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public Bitmap getBookImage() {
-        String url = IMG.toUrl(getCurrentBook().getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        return ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-    }
-
-    public FileMeta getBookFileMeta() {
-        return AppDB.get().getOrCreate(getCurrentBook().getPath());
-    }
-
-    public String getBookFileMetaName() {
-        return TxtUtils.getFileMetaBookName(getBookFileMeta());
-    }
-
-    public void loadOutline(final ResultResponse<List<OutlineLinkWrapper>> resultTop) {
-        getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-
-            @Override
-            public boolean onResultRecive(List<OutlineLinkWrapper> result) {
-                outline = result;
-                if (resultTop != null) {
-                    resultTop.onResultRecive(result);
-                }
-                return false;
-            }
-        }, false);
-    }
-
-    protected volatile List<OutlineLinkWrapper> outline;
     private FrameLayout anchor;
 
-    public void initAnchor(FrameLayout anchor) {
-        this.anchor = anchor;
+    public DocumentController(final Activity activity) {
+        this.activity = activity;
+        readTimeStart = System.currentTimeMillis();
     }
 
-    public List<OutlineLinkWrapper> getCurrentOutline() {
-        return outline;
-    }
-
-    public String getCurrentChapter() {
-        return OutlineHelper.getCurrentChapterAsString(this);
+    public static int getRotationText() {
+        return orientationTexts.get(orientationIds.indexOf(AppState.get().orientation));
     }
 
     public static boolean isEinkOrMode(Context c) {
         return Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK;
 
-    }
-
-    public boolean isTextFormat() {
-        try {
-            boolean textFomat = ExtUtils.isTextFomat(getCurrentBook().getPath());
-            LOG.d("isTextFormat", getCurrentBook().getPath(), textFomat);
-            return textFomat;
-        } catch (Exception e) {
-            LOG.e(e);
-            return false;
-        }
-    }
-
-
-    public boolean isVisibleDialog() {
-        return anchor != null && anchor.getVisibility() == View.VISIBLE;
-    }
-
-    public boolean closeDialogs() {
-        if (anchor == null) {
-            LOG.d("closeDialogs","anchor false");
-            return false;
-        }
-        boolean isVisible = anchor.getVisibility() == View.VISIBLE;
-        LOG.d("closeDialogs","isVisible",isVisible);
-        if (isVisible) {
-            try {
-                activity.findViewById(R.id.closePopup).performClick();
-                LOG.d("closeDialogs","performClick");
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-            clearSelectedText();
-        }
-        return isVisible;
-    }
-
-    public abstract boolean isCropCurrentBook();
-
-    public float getOffsetX() {
-        return -1;
-    }
-
-    public float getOffsetY() {
-        return -1;
-    }
-
-    public void onGoToPage(final int page, final float offsetX, final float offsetY) {
-
-    }
-
-    public void addRecent(final Uri uri) {
-        AppDB.get().addRecent(uri.getPath());
-        // BookmarksData.get().addRecent(uri);
-    }
-
-    public void onClickTop() {
-
-    }
-
-    public String getString(int resId) {
-        return activity.getString(resId);
-    }
-
-    public void onLinkHistory() {
-        if (!getLinkHistory().isEmpty()) {
-            final int last = getLinkHistory().removeLast();
-            onScrollY(last);
-            LOG.d("onLinkHistory", last);
-
-        }
     }
 
     public static void turnOffButtons(final Activity a) {
@@ -519,7 +177,6 @@ public abstract class DocumentController {
             }
 
 
-
             Keyboards.hideNavigation(a);
         } catch (Exception e) {
             LOG.e(e);
@@ -549,7 +206,6 @@ public abstract class DocumentController {
                 a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
                 a.getWindow().setAttributes(a.getWindow().getAttributes());
             }
-
 
 
         } catch (Exception e) {
@@ -626,12 +282,342 @@ public abstract class DocumentController {
         }
     }
 
-
     private static void applyTheme(final Activity a) {
         if (AppState.get().appTheme == AppState.THEME_LIGHT) {
             a.setTheme(R.style.StyledIndicatorsWhite);
         } else {
             a.setTheme(R.style.StyledIndicatorsBlack);
+        }
+    }
+
+    public static void doRotation(final Activity a) {
+        try {
+            // LOG.d("isSystemAutoRotation isSystemAutoRotation",
+            // Dips.isSystemAutoRotation(a));
+            // LOG.d("isSystemAutoRotation geUserRotation", Dips.geUserRotation(a));
+            a.setRequestedOrientation(AppState.get().orientation);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public boolean isPasswordProtected() {
+        try {
+            return TxtUtils.isNotEmpty(activity.getIntent().getStringExtra(EXTRA_PASSWORD));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public synchronized void runTimer(int timeout, Runnable run) {
+        this.timeout = timeout;
+        this.timerTask = run;
+        stopTimer();
+        if (handler != null) {
+            handler.post(timer);
+        }
+    }
+
+    public void stopTimer() {
+        if (handler != null) {
+            handler.removeCallbacks(timer);
+        }
+    }
+
+    public abstract void onGoToPage(int page);
+
+    public abstract void onSrollLeft();
+
+    public abstract void onSrollRight();
+
+    public abstract void onScrollUp();
+
+    public abstract void onScrollDown();
+
+    public abstract void onNextPage(boolean animate);
+
+    public abstract void onPrevPage(boolean animate);
+
+    public abstract void onNextScreen(boolean animate);
+
+    public abstract void onPrevScreen(boolean animate);
+
+    public abstract void onZoomInc();
+
+    public abstract void onZoomDec();
+
+    public abstract void onZoomInOut(int x, int y);
+
+    public abstract void onCloseActivityAdnShowInterstial();
+
+    public abstract void onCloseActivityFinal(Runnable run);
+
+    public abstract void onNightMode();
+
+    public abstract void onCrop();
+
+    public abstract void onFullScreen();
+
+    public abstract int getCurentPage();
+
+    public abstract int getCurentPageFirst1();
+
+    public abstract int getPageCount();
+
+    public abstract void onScrollY(int value);
+
+    public abstract void onScrollYPercent(float value);
+
+    public abstract void onAutoScroll();
+
+    public abstract void clearSelectedText();
+
+    public abstract void saveChanges(List<PointF> points, int color);
+
+    public abstract void deleteAnnotation(long pageHander, int page, int index);
+
+    public abstract void underlineText(int color, float width, AnnotationType type);
+
+    public abstract void getOutline(ResultResponse<List<OutlineLinkWrapper>> outline, boolean forse);
+
+    public abstract String getFootNote(String text);
+
+    public abstract List<String> getMediaAttachments();
+
+    public abstract PageUrl getPageUrl(int page);
+
+    public abstract void saveAnnotationsToFile();
+
+    public abstract int getBookWidth();
+
+    public abstract int getBookHeight();
+
+    public void saveSettings() {
+
+    }
+
+    public float getPercentage() {
+        return MyMath.percent(getCurentPageFirst1(), getPageCount());
+    }
+
+    public MyADSProvider getAdsProvider() {
+        return null;
+    }
+
+    public abstract void updateRendering();
+
+    public void goToPageByTTS() {
+        try {
+            if (TTSEngine.get().isPlaying()) {
+
+                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+
+                if (getCurrentBook().getPath().equals(AppSP.get().lastBookPath)) {
+                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
+                    LOG.d("goToPageByTTS", AppSP.get().lastBookPage + 1);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public abstract void cleanImageMatrix();
+
+    public void checkReadingTimer() {
+        long timeout = System.currentTimeMillis() - readTimeStart;
+        if (AppState.get().remindRestTime != -1 && timeout >= TimeUnit.MINUTES.toMillis(AppState.get().remindRestTime)) {
+            AlertDialogs.showOkDialog(activity, getString(R.string.remind_msg), new Runnable() {
+
+                @Override
+                public void run() {
+                    readTimeStart = System.currentTimeMillis();
+                }
+            }, new Runnable() {
+                @Override
+                public void run() {
+                    readTimeStart = System.currentTimeMillis();
+                }
+            });
+        }
+
+    }
+
+    public void closeActivity() {
+        handler2.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    public void saveCurrentPage() {
+        AppBook bs = SettingsManager.getBookSettings();
+        if (bs != null) {
+            bs.updateFromAppState();
+            bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
+            handler2.removeCallbacks(saveCurrentPageRunnable);
+            handler2.postDelayed(saveCurrentPageRunnable, 1000);
+        }
+    }
+
+    public void saveCurrentPageAsync() {
+        if (TempHolder.get().loadingCancelled) {
+            LOG.d("Loading cancelled");
+            return;
+        }
+        // int page = PageUrl.fakeToReal(currentPage);
+        LOG.d("_PAGE", "saveCurrentPage", getCurentPageFirst1(), getPageCount());
+        try {
+            if (getPageCount() <= 0) {
+                LOG.d("_PAGE", "saveCurrentPage skip");
+                return;
+            }
+            AppBook bs = SettingsManager.getBookSettings();
+            bs.updateFromAppState();
+            SharedBooks.save(bs);
+
+            //AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+            //bs.updateFromAppState();
+            //bs.currentPageChanged(getCurentPageFirst1(), getPageCount());
+            //SharedBooks.save(bs);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+    }
+
+    public void onChangeTextSelection() {
+        Vibro.vibrate();
+        AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
+        String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_highlight_mode_is_enable) : getString(R.string.text_highlight_mode_is_disable);
+        Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
+    }
+
+    public boolean isBookMode() {
+        return AppSP.get().readingMode == AppState.READING_MODE_BOOK;
+    }
+
+    public boolean isScrollMode() {
+        return AppSP.get().readingMode == AppState.READING_MODE_SCROLL;
+    }
+
+    public boolean isMusicianMode() {
+        return AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN;
+    }
+
+    public void onResume() {
+        readTimeStart = System.currentTimeMillis();
+        try {
+            if (getPageCount() != 0) {
+                AppBook bs = SettingsManager.getBookSettings(getCurrentBook().getPath());
+                if (getCurentPage() != bs.getCurrentPage(getPageCount()).viewIndex + 1) {
+                    onGoToPage(bs.getCurrentPage(getPageCount()).viewIndex + 1);
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public FileMeta getBookFileMeta() {
+        return AppDB.get().getOrCreate(getCurrentBook().getPath());
+    }
+
+    public String getBookFileMetaName() {
+        return TxtUtils.getFileMetaBookName(getBookFileMeta());
+    }
+
+    public void loadOutline(final ResultResponse<List<OutlineLinkWrapper>> resultTop) {
+        getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
+
+            @Override
+            public boolean onResultRecive(List<OutlineLinkWrapper> result) {
+                outline = result;
+                if (resultTop != null) {
+                    resultTop.onResultRecive(result);
+                }
+                return false;
+            }
+        }, false);
+    }
+
+    public void initAnchor(FrameLayout anchor) {
+        this.anchor = anchor;
+    }
+
+    public List<OutlineLinkWrapper> getCurrentOutline() {
+        return outline;
+    }
+
+    public String getCurrentChapter() {
+        return OutlineHelper.getCurrentChapterAsString(this);
+    }
+
+    public boolean isTextFormat() {
+        try {
+            boolean textFomat = ExtUtils.isTextFomat(getCurrentBook().getPath());
+            LOG.d("isTextFormat", getCurrentBook().getPath(), textFomat);
+            return textFomat;
+        } catch (Exception e) {
+            LOG.e(e);
+            return false;
+        }
+    }
+
+    public boolean isVisibleDialog() {
+        return anchor != null && anchor.getVisibility() == View.VISIBLE;
+    }
+
+    public boolean closeDialogs() {
+        if (anchor == null) {
+            LOG.d("closeDialogs", "anchor false");
+            return false;
+        }
+        boolean isVisible = anchor.getVisibility() == View.VISIBLE;
+        LOG.d("closeDialogs", "isVisible", isVisible);
+        if (isVisible) {
+            try {
+                activity.findViewById(R.id.closePopup).performClick();
+                LOG.d("closeDialogs", "performClick");
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+            clearSelectedText();
+        }
+        return isVisible;
+    }
+
+    public abstract boolean isCropCurrentBook();
+
+    public float getOffsetX() {
+        return -1;
+    }
+
+    public float getOffsetY() {
+        return -1;
+    }
+
+    public void onGoToPage(final int page, final float offsetX, final float offsetY) {
+
+    }
+
+    public void addRecent(final Uri uri) {
+        AppDB.get().addRecent(uri.getPath());
+        // BookmarksData.get().addRecent(uri);
+    }
+
+    public void onClickTop() {
+
+    }
+
+    public String getString(int resId) {
+        return activity.getString(resId);
+    }
+
+    public void onLinkHistory() {
+        if (!getLinkHistory().isEmpty()) {
+            final int last = getLinkHistory().removeLast();
+            onScrollY(last);
+            LOG.d("onLinkHistory", last);
+
         }
     }
 
@@ -653,17 +639,6 @@ public abstract class DocumentController {
 
     public void saveAppState() {
         AppProfile.save(activity);
-    }
-
-    public static void doRotation(final Activity a) {
-        try {
-            // LOG.d("isSystemAutoRotation isSystemAutoRotation",
-            // Dips.isSystemAutoRotation(a));
-            // LOG.d("isSystemAutoRotation geUserRotation", Dips.geUserRotation(a));
-            a.setRequestedOrientation(AppState.get().orientation);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
     }
 
     public void onLeftPress() {

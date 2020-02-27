@@ -17,12 +17,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 
 public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";
@@ -92,24 +89,25 @@ public class ImagePageFragment extends Fragment {
 
         return view;
     }
-    public void loadImageGlide(){
+
+    public void loadImageGlide() {
         Glide.with(this)
                 .asBitmap()
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                text.setVisibility(View.GONE);
-                image.addBitmap(resource);
-            }
-        });
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        text.setVisibility(View.GONE);
+                        image.addBitmap(resource);
+                    }
+                });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(image!=null) {
+        if (image != null) {
             image.clickUtils.init();
         }
         LOG.d("fonResume", page);
@@ -119,72 +117,6 @@ public class ImagePageFragment extends Fragment {
         return Math.min(Math.abs(PageImageState.currentPage - page), 10);
     }
 
-    public void loadImage() {
-
-        LOG.d("onResourceReady loadImage");
-
-    }
-
-    public void loadImage1() {
-        if (getPriority() > 2 || isDetached() || !isAdded() || !isVisible()) {
-            LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority(), "page");
-            return;
-        }
-
-        LOG.d("ImagePageFragment1 loadImage start with lifetime ", page, System.currentTimeMillis() - lifeTime);
-
-        loadImageId = ImageLoader.getInstance().loadImage(getPath(), IMG.ligthOptions, new ImageLoadingListener() {
-
-            @Override
-            public void onLoadingStarted(String arg0, View arg1) {
-                LOG.d("ImagePageFragment1 onLoadingStarted ", page, isVisible(), isDetached(), isInLayout(), isAdded());
-                count++;
-
-                if (LOG.isEnable) {
-                    text.setText("onLoadingStarted");
-                }
-            }
-
-            @Override
-            public void onLoadingFailed(String arg0, View arg1, FailReason arg2) {
-                text.setText("Failed " + arg2.getType());
-                // text.setVisibility(View.GONE);
-                // loadImage();
-                count--;
-
-                if (LOG.isEnable) {
-                    text.setText("onLoadingFailed");
-                }
-            }
-
-            @Override
-            public void onLoadingComplete(String arg0, View arg1, Bitmap bitmap) {
-                LOG.d("ImagePageFragment1 onLoadingComplete ", page, "isVisible", isVisible());
-                if (text != null && isVisible()) {
-                    text.setVisibility(View.GONE);
-                    image.addBitmap(bitmap);
-                } else {
-                    bitmap.recycle();
-                    bitmap = null;
-                }
-                count--;
-
-                if (LOG.isEnable) {
-                    text.setText("onLoadingComplete");
-                }
-            }
-
-            @Override
-            public void onLoadingCancelled(String arg0, View arg1) {
-                count--;
-                loadImage();
-
-                if (LOG.isEnable) {
-                    text.setText("onLoadingCancelled");
-                }
-            }
-        });
-    }
 
     @Override
     public void onDestroyView() {

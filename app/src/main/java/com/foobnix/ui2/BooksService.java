@@ -249,9 +249,17 @@ public class BooksService extends IntentService {
 
                 AppProfile.init(this);
 
-                IMG.clearDiscCache();
-                //IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();
+                IMG.clearDiscCache();
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        IMG.clearMemoryCache();
+                    }
+                });
+
+
 
 
                 AppDB.get().deleteAllData();

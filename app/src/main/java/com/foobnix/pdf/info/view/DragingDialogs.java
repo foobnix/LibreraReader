@@ -140,7 +140,6 @@ import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -4997,8 +4996,9 @@ public class DragingDialogs {
                                 AppState.get().colorDayText = colorText;
                                 AppState.get().colorDayBg = colorBg;
 
-                                ImageLoader.getInstance().clearDiskCache();
-                                ImageLoader.getInstance().clearMemoryCache();
+
+                                IMG.clearMemoryCache();
+                                IMG.clearDiscCache();
 
                                 if (AppState.get().isUseBGImageDay) {
                                     textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));

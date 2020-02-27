@@ -34,11 +34,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.os.EnvironmentCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
@@ -64,7 +69,6 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
@@ -99,23 +103,37 @@ import java.util.concurrent.Executors;
 
 public class ExtUtils {
 
-    private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
-    private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
     public static final String REFLOW_EPUB = "-reflow.epub";
     public static final String REFLOW_HTML = "-reflow.html";
-    private static final String IMAGE_BEGIN = "<image-begin>";
-    private static final String IMAGE_END = "<image-end>";
-
-    public static ExecutorService ES = Executors.newFixedThreadPool(4);
-
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
     public final static List<String> lirbeExt = Arrays.asList(AppState.LIBRE_EXT);
     public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg", ".gif");
     public final static List<String> imageMimes = Arrays.asList("image/png", "image/jpg", "image/jpeg", "image/gif");
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
-    public static Map<String, String> mimeCache = new HashMap<String, String>();
     public final static List<String> AUDIO = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a", ".flac");
+    private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
+    private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
+    private static final String IMAGE_BEGIN = "<image-begin>";
+    private static final String IMAGE_END = "<image-end>";
+    public static ExecutorService ES = Executors.newFixedThreadPool(4);
+    public static Map<String, String> mimeCache = new HashMap<String, String>();
+    public static List<String> seachExts = new ArrayList<String>();
+    static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
+    private static java.text.DateFormat dateFormat;
+    private static java.text.DateFormat timeFormat;
+    private static Context context;
+    private static FileFilter filter = new FileFilter() {
+        @Override
+        public boolean accept(final File pathname) {
+            for (final String s : browseExts) {
+                if (pathname.getName().endsWith(s)) {
+                    return true;
+                }
+            }
+            return pathname.isDirectory();
+        }
+    };
 
     static {
         browseExts.addAll(otherExts);
@@ -179,17 +197,18 @@ public class ExtUtils {
         mimeCache.put(".mp4", "video/mp4");
         mimeCache.put(".webm", "video/webm");
     }
-    public static String getExtByMimeType(String mime){
-        if(TxtUtils.isEmpty(mime)){
-            return  mime;
+
+    public static String getExtByMimeType(String mime) {
+        if (TxtUtils.isEmpty(mime)) {
+            return mime;
         }
-        for(String key:mimeCache.keySet()){
-            if(mime.equals(mimeCache.get(key))){
-                return  key.replace(".","");
+        for (String key : mimeCache.keySet()) {
+            if (mime.equals(mimeCache.get(key))) {
+                return key.replace(".", "");
             }
         }
         String ext = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime);
-        return  ext;
+        return ext;
     }
 
     public static void updateSearchExts() {
@@ -277,8 +296,6 @@ public class ExtUtils {
         }
 
     }
-
-    static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
     public static void openFile(Activity a, FileMeta meta) {
         File file = new File(meta.getPath());
@@ -551,11 +568,6 @@ public class ExtUtils {
         return false;
     }
 
-    public static List<String> seachExts = new ArrayList<String>();
-
-    private static java.text.DateFormat dateFormat;
-    private static java.text.DateFormat timeFormat;
-
     public static void init(Context c) {
         context = c;
 
@@ -620,8 +632,6 @@ public class ExtUtils {
     public static FileFilter getFileFilter() {
         return filter;
     }
-
-    private static Context context;
 
     public static boolean doifFileExists(Context c, File file) {
         if (Clouds.isCloud(file.getPath())) {
@@ -711,18 +721,6 @@ public class ExtUtils {
         return new DecimalFormat("#,##0").format(size / Math.pow(1024, digitGroups)) + "" + units[digitGroups];
     }
 
-    private static FileFilter filter = new FileFilter() {
-        @Override
-        public boolean accept(final File pathname) {
-            for (final String s : browseExts) {
-                if (pathname.getName().endsWith(s)) {
-                    return true;
-                }
-            }
-            return pathname.isDirectory();
-        }
-    };
-
     public static boolean isNotValidFile(final File file) {
         return !isValidFile(file);
     }
@@ -751,7 +749,8 @@ public class ExtUtils {
             return false;
         }
 
-        ImageLoader.getInstance().clearAllTasks();
+        //ImageLoader.getInstance().clearAllTasks();
+        //Glide.with(LibreraApp.context).pauseRequests();
 
 
         if (AppState.get().isPrefFormatMode) {
@@ -1174,42 +1173,53 @@ public class ExtUtils {
     }
 
     public static void sharePage(final Activity a, final File file, int page, String pageUrl) {
-        try {
-            if (AppState.get().fileToDelete != null) {
-                new File(AppState.get().fileToDelete).delete();
-            }
 
-            if (TxtUtils.isEmpty(pageUrl)) {
-                pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
-            }
 
-            Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
-
-            String title = file.getName() + "." + (page + 1) + ".jpg";
-
-            File oFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, title);
-            oFile.getParentFile().mkdirs();
-            String pathofBmp = oFile.getPath();
-
-            FileOutputStream out = new FileOutputStream(oFile);
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.close();
-
-            AppState.get().fileToDelete = pathofBmp;
-            AppProfile.save(a);
-
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
-            shareIntent.setType("image/jpeg");
-            a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
-
-        } catch (Exception e) {
-            Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
-            LOG.e(e);
+        if (AppState.get().fileToDelete != null) {
+            new File(AppState.get().fileToDelete).delete();
         }
+
+        if (TxtUtils.isEmpty(pageUrl)) {
+            pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
+        }
+        // Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
+
+        Glide.with(LibreraApp.context).asBitmap().load(pageUrl).into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap imageBitmap, @Nullable Transition<? super Bitmap> transition) {
+                try {
+
+
+                    String title = file.getName() + "." + (page + 1) + ".jpg";
+
+                    File oFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, title);
+                    oFile.getParentFile().mkdirs();
+                    String pathofBmp = oFile.getPath();
+
+                    FileOutputStream out = new FileOutputStream(oFile);
+                    imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    out.close();
+
+                    AppState.get().fileToDelete = pathofBmp;
+                    AppProfile.save(a);
+
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
+                    shareIntent.setType("image/jpeg");
+                    a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
+
+
+                } catch (Exception e) {
+                    Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    LOG.e(e);
+                }
+            }
+        });
+
+
     }
 
     public static void sendBookmarksTo(final Activity a, final File file) {

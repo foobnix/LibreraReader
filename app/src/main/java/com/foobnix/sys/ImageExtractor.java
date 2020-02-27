@@ -43,10 +43,9 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 import org.ebookdroid.core.codec.CodecContext;
@@ -68,7 +67,7 @@ import mobi.librera.smartreflow.AndroidPlatformImage;
 import mobi.librera.smartreflow.SmartReflow1;
 import okhttp3.Request;
 
-public class ImageExtractor implements ImageDownloader {
+public class ImageExtractor {
 
     public static final int COVER_PAGE_WITH_EFFECT = -3;
     public static final int COVER_PAGE_NO_EFFECT = -2;
@@ -80,12 +79,10 @@ public class ImageExtractor implements ImageDownloader {
     static int pageCount = 0;
     static int whCache;
     private static ImageExtractor instance;
-    private final BaseImageDownloader baseImage;
     private final Context c;
 
     private ImageExtractor(final Context c) {
         this.c = c;
-        baseImage = new BaseImageDownloader(c);
     }
 
     public static synchronized ImageExtractor getInstance(final Context c) {
@@ -441,7 +438,7 @@ public class ImageExtractor implements ImageDownloader {
 
                 final int rWidth = (int) (bitmap.getWidth() * 0.6);
                 final int rHeight = (int) (rWidth * kScreen);
-                LOG.d("SmartReflow", rWidth, rHeight, k,kScreen);
+                LOG.d("SmartReflow", rWidth, rHeight, k, kScreen);
                 final AndroidPlatformImage output = new AndroidPlatformImage(rWidth, rHeight);
                 sm.reflow(output);
                 bitmap.recycle();
@@ -507,16 +504,32 @@ public class ImageExtractor implements ImageDownloader {
 
     }
 
-    @Override
-    public InputStream getStream(final String imageUri, final Object extra) throws
+    public InputStream getStream(String imageUri, final Object extra) throws
             IOException {
+        if (imageUri == null) {
+            imageUri = "";
+        }
+        final String hash = "" + imageUri.hashCode();
         try {
-            return getStreamInner(imageUri);
+            final InputStream streamInner;
+            try {
+                if (sp.contains(hash)) {
+                    LOG.d("Error-crash", imageUri, hash);
+                    //return messageFile("#crash", "");
+                }
+
+                sp.edit().putBoolean(hash, true).commit();
+                streamInner = getStreamInner(imageUri, hash);
+            } finally {
+                sp.edit().remove(hash).commit();
+            }
+            return streamInner;
         } finally {
+
         }
     }
 
-    public InputStream getStreamInner(final String imageUri) throws IOException {
+    public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
@@ -526,9 +539,9 @@ public class ImageExtractor implements ImageDownloader {
             // } catch (InterruptedException e) {
             // e.printStackTrace();
             // }
-            return baseImage.getStream("assets://opds/web.png", null);
+            //return baseImage.getStream("assets://opds/web.png", null);
         }
-        if (imageUri.startsWith("https")) {
+        if (imageUri.startsWith("http")) {
 
             Request request = new Request.Builder()//
                     .header("User-Agent", OPDS.USER_AGENT).url(imageUri)//
@@ -548,35 +561,34 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("Load image data ", uri);
             return new ByteArrayInputStream(Base64.decode(uri, Base64.DEFAULT));
         }
-        if (!imageUri.startsWith("{")) {
-            return baseImage.getStream(imageUri, null);
-        }
+        if (imageUri.startsWith("assets:")) {
+            return LibreraApp.context.getResources().getAssets().open(imageUri.replace("assets://",""));
 
-        if (sp.contains("" + imageUri.hashCode())) {
-            LOG.d("Error FILE", imageUri);
-            return messageFile("#crash", "");
         }
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
 
-        if (ExtUtils.isExteralSD(path)) {
-            if (ExtUtils.isImagePath(path)) {
-                return c.getContentResolver().openInputStream(Uri.parse(path));
-            }
-            String display = ExtUtils.getFileName(Uri.decode(path));
-            return messageFile("", display);
-        }
+        try {
 
-        if (path.startsWith(Clouds.PREFIX_CLOUD)) {
-            if (!Clouds.isCacheFileExist(path)) {
-                String display = ExtUtils.getFileName(path);
+
+            if (ExtUtils.isExteralSD(path)) {
+                if (ExtUtils.isImagePath(path)) {
+                    return c.getContentResolver().openInputStream(Uri.parse(path));
+                }
+                String display = ExtUtils.getFileName(Uri.decode(path));
                 return messageFile("", display);
             }
-        }
 
-        // File file = new File(path);
-        try {
+            if (path.startsWith(Clouds.PREFIX_CLOUD)) {
+                if (!Clouds.isCacheFileExist(path)) {
+                    String display = ExtUtils.getFileName(path);
+                    return messageFile("", display);
+                }
+            }
+
+            // File file = new File(path);
+
 
             if (ExtUtils.isImagePath(path)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
@@ -603,7 +615,6 @@ public class ImageExtractor implements ImageDownloader {
             // return messageFile("#no file", "");
             // }
 
-            sp.edit().putBoolean("" + imageUri.hashCode(), true).commit();
 
             int page = pageUrl.getPage();
 
@@ -672,7 +683,7 @@ public class ImageExtractor implements ImageDownloader {
             IMG.clearMemoryCache();
             return messageFile("#error", "");
         } finally {
-            sp.edit().remove("" + imageUri.hashCode()).commit();
+
         }
     }
 

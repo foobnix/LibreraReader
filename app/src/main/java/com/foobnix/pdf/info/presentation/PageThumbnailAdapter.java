@@ -10,12 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class PageThumbnailAdapter extends BaseAdapter {
 
@@ -68,7 +68,8 @@ public class PageThumbnailAdapter extends BaseAdapter {
 
         PageUrl pageUrl = getPageUrl(position);
         final String url = pageUrl.toString();
-        ImageLoader.getInstance().displayImage(url, img, IMG.displayImageOptionsNoDiscCache);
+
+        Glide.with(img).load(url).into(img);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
         txt.setText(TxtUtils.deltaPage((position + 1)));

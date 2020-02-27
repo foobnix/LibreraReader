@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -28,12 +29,10 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class AddCatalogDialog {
 
@@ -137,7 +136,8 @@ public class AddCatalogDialog {
             url.setText(line[0]);
             name.setText(line[1]);
             description.setText(line[2]);
-            ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
+            //ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
+            Glide.with(image).load(line[3]).into(image);
 
             if (e.logo != null) {
                 image.setTag(e.logo);
@@ -267,7 +267,8 @@ public class AddCatalogDialog {
                                 image.setVisibility(View.VISIBLE);
                                 feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
                                 image.setTag(feed.icon);
-                                ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
+                                //ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
+                                Glide.with(image).load(feed.icon).into(image);
                             } else {
                                 image.setTag("assets://opds/web.png");
                             }

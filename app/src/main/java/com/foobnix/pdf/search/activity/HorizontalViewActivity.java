@@ -109,7 +109,6 @@ import com.foobnix.ui2.AdsFragmentActivity;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -168,7 +167,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                 f2.setArguments(b);
 
-                f2.loadImage();
+                f2.loadImageGlide();
             }
             return;
         }
@@ -1659,7 +1658,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (viewPager != null) {
             try {
 
-                ImageLoader.getInstance().clearAllTasks();
+                //ImageLoader.getInstance().clearAllTasks();
                 closeDialogs();
                 viewPager.setAdapter(null);
             } catch (Exception e) {

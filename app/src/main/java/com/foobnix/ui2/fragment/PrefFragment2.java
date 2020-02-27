@@ -93,7 +93,6 @@ import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -1052,8 +1051,10 @@ public class PrefFragment2 extends UIFragment {
                                                                  public void onCheckedChanged(final CompoundButton buttonView,
                                                                                               final boolean isChecked) {
                                                                      AppState.get().isBookCoverEffect = isChecked;
-                                                                     ImageLoader.getInstance().clearMemoryCache();
-                                                                     ImageLoader.getInstance().clearDiskCache();
+                                                                     IMG.clearMemoryCache();
+                                                                     IMG.clearDiscCache();
+
+
                                                                      TempHolder.listHash++;
                                                                      if (isChecked) {
                                                                          isCropBookCovers.setEnabled(false);
@@ -1877,8 +1878,8 @@ public class PrefFragment2 extends UIFragment {
                                                                 AppState.get().colorDayText = colorText;
                                                                 AppState.get().colorDayBg = colorBg;
 
-                                                                ImageLoader.getInstance().clearDiskCache();
-                                                                ImageLoader.getInstance().clearMemoryCache();
+                                                                IMG.clearDiscCache();
+                                                                IMG.clearMemoryCache();
                                                             }
                                                         });
                                                     }
@@ -2033,8 +2034,8 @@ public class PrefFragment2 extends UIFragment {
 
                             @Override
                             public void run() {
-                                ImageLoader.getInstance().clearDiskCache();
-                                ImageLoader.getInstance().clearMemoryCache();
+                                IMG.clearDiscCache();
+                                IMG.clearMemoryCache();
                                 TempHolder.listHash++;
                                 notifyFragment();
 
@@ -2249,7 +2250,7 @@ public class PrefFragment2 extends UIFragment {
             @Override
             public void onClick(View v) {
 
-                AlertDialogs.editFileTxt(getActivity(), null, AppProfile.DOWNLOADS_DIR,new StringResponse() {
+                AlertDialogs.editFileTxt(getActivity(), null, AppProfile.DOWNLOADS_DIR, new StringResponse() {
                     @Override
                     public boolean onResultRecive(String string) {
                         ExtUtils.openFile(getActivity(), new FileMeta(string));

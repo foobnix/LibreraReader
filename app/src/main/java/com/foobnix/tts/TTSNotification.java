@@ -7,7 +7,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +16,8 @@ import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.NotificationTarget;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -30,7 +31,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -111,16 +111,17 @@ public class TTSNotification {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
             RemoteViews remoteViewsSmall = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line_small);
 
-            Bitmap bookImage = getBookImage(bookPath);
 
-            remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
+
+
+            //remoteViews.setImageViewBitmap(R.id.ttsIcon, bookImage);
             remoteViews.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             remoteViews.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViews.setOnClickPendingIntent(R.id.ttsPrev, prev);
             remoteViews.setOnClickPendingIntent(R.id.ttsStop, stopDestroy);
 
 
-            remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bookImage);
+            //remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, bookImage);
             remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPlay, playPause);
             remoteViewsSmall.setOnClickPendingIntent(R.id.ttsNext, next);
             remoteViewsSmall.setOnClickPendingIntent(R.id.ttsPrev, prev);
@@ -200,6 +201,11 @@ public class TTSNotification {
 
             Notification n = builder.build(); //
             nm.notify(NOT_ID, n);
+
+            String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
+            Glide.with(context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
+            Glide.with(context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
+
             return n;
         } catch (Exception e) {
             LOG.e(e);
@@ -227,8 +233,5 @@ public class TTSNotification {
 
     }
 
-    public static Bitmap getBookImage(String path) {
-        String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        return ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-    }
+
 }

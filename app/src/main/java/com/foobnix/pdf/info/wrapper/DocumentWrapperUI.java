@@ -75,7 +75,6 @@ import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.greenrobot.eventbus.EventBus;
@@ -130,7 +129,8 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            ImageLoader.getInstance().clearAllTasks();
+            //ImageLoader.getInstance().clearAllTasks();
+            //Glide.with(LibreraApp.context).
             closeDialogs();
             closeAndRunList();
         }

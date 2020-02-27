@@ -87,7 +87,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
         @Override
         public boolean handles(@NonNull String s) {
             LOG.d("LibreraAppGlideModule handles", s);
-            return s.startsWith("{");
+            return true;//s.startsWith("{");
         }
     };
 

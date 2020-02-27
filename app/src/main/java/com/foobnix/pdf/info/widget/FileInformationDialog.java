@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -50,7 +51,6 @@ import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -203,7 +203,7 @@ public class FileInformationDialog {
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
-            sequence = sequence.replace(",","");
+            sequence = sequence.replace(",", "");
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
 
             if (fileMeta.getSIndex() != null && fileMeta.getSIndex() > 0) {
@@ -445,7 +445,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImageNoAlpha(starIcon,TintUtil.getColorInDayNighth());
+                TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
             }
         });
@@ -456,10 +456,9 @@ public class FileInformationDialog {
             starIcon.setImageResource(R.drawable.star_1);
         }
 
-        TintUtil.setTintImageNoAlpha(starIcon,TintUtil.getColorInDayNighth());
+        TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
-
 
 
         // builder.setTitle(R.string.file_info);
@@ -510,7 +509,9 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, -2, Dips.screenWidth()), imageView, IMG.ExportOptions);
+        final String url = IMG.toUrl(path, -2, Dips.screenWidth());
+
+        Glide.with(imageView).load(url).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
@@ -536,7 +537,7 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(path, imageView, IMG.displayCacheMemoryDisc);
+        Glide.with(imageView).load(path).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);

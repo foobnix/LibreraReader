@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.presentation;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,6 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -32,9 +29,9 @@ import java.util.List;
 
 public class BrowserAdapter extends BaseAdapter {
     private final Context c;
+    private final FileFilter filter;
     private File currentDirectory;
     private List<FileMeta> files = Collections.emptyList();
-    private final FileFilter filter;
     private ResultResponse<File> onMenuPressed;
 
     public BrowserAdapter(final Context c, FileFilter filter) {
@@ -182,38 +179,8 @@ public class BrowserAdapter extends BaseAdapter {
             }
 
 
-            IMG.getCoverPageWithEffect(imageView, file.getPath(), IMG.getImageSize(), new ImageLoadingListener() {
+            IMG.getCoverPageWithEffect(imageView, file.getPath(), IMG.getImageSize());
 
-                @Override
-                public void onLoadingStarted(String arg0, View arg1) {
-                    // TODO Auto-generated method stub
-
-                }
-
-                @Override
-                public void onLoadingFailed(String arg0, View arg1, FailReason arg2) {
-                    // TODO Auto-generated method stub
-
-                }
-
-                @Override
-                public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
-                    FileMeta info = null;// MetaCache.get().getByPath(file.getPath());
-                    if (info != null) {
-                        title1.setText("" + info.getTitle());
-                        title2.setText("" + info.getAuthor());
-                        textPath.setText(info.getPathTxt());
-                        extFile.setText(info.getExt());
-                        StarsWrapper.addStars(starIcon, info);
-                    }
-                }
-
-                @Override
-                public void onLoadingCancelled(String arg0, View arg1) {
-                    // TODO Auto-generated method stub
-
-                }
-            });
             textPath.setText(file.getPathTxt());
             infoLayout.setVisibility(View.VISIBLE);
             itemMenu.setVisibility(View.VISIBLE);
@@ -251,9 +218,18 @@ public class BrowserAdapter extends BaseAdapter {
         this.onMenuPressed = onMenuPressed;
     }
 
+    public void setFiles(List<File> files) {
+        // this.files = MetaCache.get().createGetSimpleMetafromFiles(files);
+        notifyDataSetInvalidated();
+    }
+
+    public File getCurrentDirectory() {
+        return currentDirectory;
+    }
+
     public void setCurrentDirectory(File currentDirectory) {
         final File[] fileArray = currentDirectory.listFiles(filter);
-        ArrayList<File> files = new ArrayList<File>(fileArray != null ? Arrays.asList(fileArray) : Collections.<File> emptyList());
+        ArrayList<File> files = new ArrayList<File>(fileArray != null ? Arrays.asList(fileArray) : Collections.<File>emptyList());
         this.currentDirectory = currentDirectory;
         Collections.sort(files, new Comparator<File>() {
             @Override
@@ -269,14 +245,5 @@ public class BrowserAdapter extends BaseAdapter {
             files.add(0, currentDirectory.getParentFile());
         }
         setFiles(files);
-    }
-
-    public void setFiles(List<File> files) {
-        // this.files = MetaCache.get().createGetSimpleMetafromFiles(files);
-        notifyDataSetInvalidated();
-    }
-
-    public File getCurrentDirectory() {
-        return currentDirectory;
     }
 }

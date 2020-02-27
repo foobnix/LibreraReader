@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -38,8 +39,8 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import com.foobnix.ui2.fast.FastScrollStateChangeListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -91,7 +92,7 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStop() {
-                    ImageLoader.getInstance().resume();
+                    Glide.with(LibreraApp.context).resumeRequests();
                     LOG.d("ImageLoader resume");
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
                         if(swipeRefreshLayout!=null) {
@@ -103,7 +104,7 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 public void onFastScrollStart() {
                     LOG.d("ImageLoader pause");
-                    ImageLoader.getInstance().pause();
+                    Glide.with(LibreraApp.context).pauseRequests();
                     if(swipeRefreshLayout!=null) {
                         swipeRefreshLayout.setEnabled(false);
                     }
@@ -208,7 +209,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ImageLoader.getInstance().resume();
+        Glide.with(LibreraApp.context).resumeRequests();
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);

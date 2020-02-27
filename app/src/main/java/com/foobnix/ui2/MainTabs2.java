@@ -78,7 +78,6 @@ import com.foobnix.ui2.fragment.RecentFragment2;
 import com.foobnix.ui2.fragment.SearchFragment2;
 import com.foobnix.ui2.fragment.UIFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
@@ -778,7 +777,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
 
-
     }
 
     public void updateCurrentFragment() {
@@ -821,7 +819,7 @@ public class MainTabs2 extends AdsFragmentActivity {
     protected void onPause() {
         super.onPause();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-        ImageLoader.getInstance().clearAllTasks();
+
 
         AppProfile.save(this);
 
@@ -853,9 +851,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
 
         EventBus.getDefault().unregister(this);
-
-        ImageLoader.getInstance().clearMemoryCache();
-        ImageLoader.getInstance().clearAllTasks();
+        IMG.clearMemoryCache();
         super.onDestroy();
     }
 

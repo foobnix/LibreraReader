@@ -380,7 +380,8 @@ public class GFile {
                     IMG.clearCache(file.getPath());
                     FileMeta meta = AppDB.get().getOrCreate(file.getPath());
                     FileMetaCore.createMetaIfNeed(file.getPath(), true);
-                    IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+                    //IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+
                 }
 
 
