@@ -8,8 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
@@ -22,18 +28,31 @@ public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";
     public static final String PAGE_PATH = "pagePath";
     public static final String IS_TEXTFORMAT = "isTEXT";
-
-    int page;
-
     public static volatile int count = 0;
-
+    int page;
     Handler handler;
 
     long lifeTime = 0;
+    int loadImageId;
+    private PageImaveView image;
+    private TextView text;
+    Runnable callback = new Runnable() {
+
+        @Override
+        public void run() {
+            if (!isDetached()) {
+                loadImageGlide();
+            } else {
+                LOG.d("Image page is detached");
+            }
+        }
+
+    };
 
     public String getPath() {
         return getArguments().getString(PAGE_PATH);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,13 +89,29 @@ public class ImagePageFragment extends Fragment {
         }, 150);
         lifeTime = System.currentTimeMillis();
 
+
         return view;
+    }
+    public void loadImageGlide(){
+        Glide.with(this)
+                .asBitmap()
+                .load(getPath())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                text.setVisibility(View.GONE);
+                image.addBitmap(resource);
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        image.clickUtils.init();
+        if(image!=null) {
+            image.clickUtils.init();
+        }
         LOG.d("fonResume", page);
     }
 
@@ -84,9 +119,13 @@ public class ImagePageFragment extends Fragment {
         return Math.min(Math.abs(PageImageState.currentPage - page), 10);
     }
 
-    int loadImageId;
-
     public void loadImage() {
+
+        LOG.d("onResourceReady loadImage");
+
+    }
+
+    public void loadImage1() {
         if (getPriority() > 2 || isDetached() || !isAdded() || !isVisible()) {
             LOG.d("ImagePageFragment1  skip loading page ", page, "getPriority", getPriority(), "page");
             return;
@@ -147,35 +186,25 @@ public class ImagePageFragment extends Fragment {
         });
     }
 
-    Runnable callback = new Runnable() {
-
-        @Override
-        public void run() {
-            if (!isDetached()) {
-                loadImage();
-            } else {
-                LOG.d("Image page is detached");
-            }
-        }
-
-    };
-    private PageImaveView image;
-    private TextView text;
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         LOG.d("ImagePageFragment1 onDestroyView ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         // ImageLoader.getInstance().cancelDisplayTaskForID(loadImageId);
-        handler.removeCallbacksAndMessages(null);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
         image = null;
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
-        handler.removeCallbacksAndMessages(null);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
         image = null;
     }
 

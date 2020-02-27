@@ -665,11 +665,11 @@ public class PageImaveView extends View {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         LOG.d("ImagePageFragment", "onDetachedFromWindow");
-        if (bitmap != null && !bitmap.isRecycled()) {
-            LOG.d("recycle onDetachedFromWindow");
-            bitmap.recycle();
-            bitmap = null;
-        }
+//        if (bitmap != null && !bitmap.isRecycled()) {
+//            LOG.d("recycle onDetachedFromWindow");
+//            bitmap.recycle();
+//            bitmap = null;
+//        }
         imageDrawable = null;
         EventBus.getDefault().unregister(this);
     }

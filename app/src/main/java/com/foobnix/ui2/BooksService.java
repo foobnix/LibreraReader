@@ -250,7 +250,7 @@ public class BooksService extends IntentService {
                 AppProfile.init(this);
 
                 IMG.clearDiscCache();
-                IMG.clearMemoryCache();
+                //IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();
 
 

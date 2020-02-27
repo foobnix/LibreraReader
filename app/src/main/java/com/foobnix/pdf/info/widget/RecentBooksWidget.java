@@ -17,6 +17,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
@@ -28,7 +34,6 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
@@ -101,18 +106,15 @@ public class RecentBooksWidget extends AppWidgetProvider {
             if (Build.VERSION.SDK_INT >= 16 && AppState.get().widgetType == AppState.WIDGET_GRID) {
                 remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_grid);
                 // remoteViews.setInt(R.id.gridView1, "setColumnWidth", 100);
-                updateGrid(remoteViews);
+                updateGrid(remoteViews, appWidgetManager, widgetId);
+
+
+                appWidgetManager.updateAppWidget(widgetId, remoteViews);
             } else {
                 remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_list);
-                updateList(remoteViews);
+                updateList(remoteViews, appWidgetManager, widgetId);
             }
 
-            try {
-                appWidgetManager.updateAppWidget(widgetId, remoteViews);
-            } catch (Exception e) {
-                AppState.get().widgetItemsCount = 1;
-
-            }
         }
     }
 
@@ -125,7 +127,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
     }
 
     @SuppressLint("NewApi")
-    private void updateGrid(RemoteViews remoteViews) {
+    private void updateGrid(RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
         Intent intent = new Intent(context, StackGridWidgetService.class);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         remoteViews.setRemoteAdapter(R.id.gridView1, intent);
@@ -137,7 +139,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         remoteViews.setPendingIntentTemplate(R.id.gridView1, toastPendingIntent);
     }
 
-    private void updateList(final RemoteViews remoteViews) {
+    private void updateList(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
         List<FileMeta> recent = null;
         if (AppState.get().isStarsInWidget) {
             recent = AppData.get().getAllFavoriteFiles();
@@ -170,15 +172,38 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                 RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
                 String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-                v.setImageViewBitmap(R.id.imageView1, image);
+                //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
+                // v.setImageViewBitmap(R.id.imageView1, image);
 
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
-                intent.setClassName(context, className);
-                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-                v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
+//                intent.setClassName(context, className);
+//                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+//                v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+//
+//                remoteViews.addView(R.id.linearLayout, v);
 
-                remoteViews.addView(R.id.linearLayout, v);
+
+                Glide.with(context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+
+
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
+                        v.setImageViewBitmap(R.id.imageView1, resource);
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
+                        intent.setClassName(context, HorizontalViewActivity.class.getName());
+                        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                        v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+
+                        remoteViews.addView(R.id.linearLayout, v);
+
+                        //for (int widgetId : appWidgetIds) {
+                        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                        //}
+
+                    }
+                });
             }
         }
 

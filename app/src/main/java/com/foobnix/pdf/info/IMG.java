@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -29,6 +31,8 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.utils.MemoryCacheUtils;
+
+import org.ebookdroid.LibreraApp;
 
 import java.io.File;
 import java.util.regex.Pattern;
@@ -263,6 +267,7 @@ public class IMG {
     }
 
     public static void clearMemoryCache() {
+        Glide.get(LibreraApp.context).clearMemory();
         try {
             ImageLoader.getInstance().clearMemoryCache();
         } catch (Exception e) {
@@ -272,6 +277,14 @@ public class IMG {
 
     public static void clearDiscCache() {
         try {
+            Glide.get(LibreraApp.context).clearDiskCache();
+
+            new Thread(){
+                @Override
+                public void run() {
+                    Glide.get(LibreraApp.context).clearDiskCache();
+                }
+            }.start();
             ImageLoader.getInstance().clearDiskCache();
         } catch (Exception e) {
             LOG.e(e);
@@ -280,6 +293,16 @@ public class IMG {
 
     public static void clearCache(String path) {
         try {
+
+
+            new Thread(){
+                @Override
+                public void run() {
+                    Glide.get(LibreraApp.context).clearMemory();
+                    Glide.get(LibreraApp.context).clearDiskCache();
+                }
+            }.start();
+
             String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, IMG.getImageSize());
 
             String key = MemoryCacheUtils.generateKeyNoTarget(url);
@@ -311,7 +334,10 @@ public class IMG {
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, ImageLoadingListener listener) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        ImageLoader.getInstance().displayImage(url, img, IMG.displayCacheMemoryDisc, listener);
+        Glide.with(img).asBitmap().load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(img);
+        //ImageLoader.getInstance().displayImage(url, img, IMG.displayCacheMemoryDisc, listener);
     }
 
     public static Bitmap loadCoverPageWithEffect(String path, int width) {

@@ -1818,6 +1818,7 @@ public class PrefFragment2 extends UIFragment {
                                                                         AppState.get().widgetItemsCount = k;
                                                                         widgetItemsCount.setText("" + k);
                                                                         TxtUtils.underlineTextView(widgetItemsCount);
+                                                                        RecentUpates.updateAll(getActivity());
                                                                         return false;
                                                                     }
                                                                 });

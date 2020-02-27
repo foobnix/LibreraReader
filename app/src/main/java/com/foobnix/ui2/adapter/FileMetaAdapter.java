@@ -347,6 +347,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             bindFileMetaView(holder, position);
 
+
+
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new SimpleImageLoadingListener() {
 
                 @Override
