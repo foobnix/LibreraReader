@@ -213,7 +213,22 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             bindFileMetaView(holder, position);
 
 
-            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize());
+            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable(){
+
+
+                @Override
+                public void run() {
+
+                    if (position <= items.size() - 1) {
+                        FileMeta it = AppDB.get().load(fileMeta.getPath());
+                        if (it != null) {
+                            items.set(position, it);
+                            bindFileMetaView(holder, position);
+                        }
+                    }
+
+                }
+            });
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
 

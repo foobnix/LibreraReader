@@ -6,6 +6,7 @@ import android.os.Environment;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
@@ -58,7 +59,7 @@ public class BookCSS {
     public static int STYLES_ONLY_USER = 2;
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
     private static BookCSS instance = new BookCSS();
-    public String searchPaths;
+    public String searchPathsJson;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
 
@@ -216,7 +217,7 @@ public class BookCSS {
         IO.readObj(AppProfile.syncCSS, instance);
 
         try {
-            if (TxtUtils.isEmpty(instance.searchPaths)) {
+            if (TxtUtils.isEmpty(instance.searchPathsJson)) {
                 List<String> extFolders = ExtUtils.getExternalStorageDirectories(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
@@ -228,9 +229,8 @@ public class BookCSS {
                         extFolders.add(sdPath);
                     }
                 }
-                instance.searchPaths = TxtUtils.joinList(",", extFolders);
-                //searchPaths = Environment.getExternalStorageDirectory().getPath();
-                LOG.d("searchPaths-all", searchPaths, instance.searchPaths);
+                instance.searchPathsJson = JsonDB.set(extFolders);
+                LOG.d("searchPaths-all", instance.searchPathsJson);
             }
         } catch (Exception e) {
             LOG.e(e);

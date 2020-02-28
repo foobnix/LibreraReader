@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -211,12 +212,12 @@ public class BooksService extends IntentService {
                 }
 
                 List<FileMeta> localMeta = new LinkedList<FileMeta>();
-                if(TxtUtils.isEmpty(BookCSS.get().searchPaths)){
+                if(JsonDB.isEmpty(BookCSS.get().searchPathsJson)){
                     sendFinishMessage();
                     return;
                 }
 
-                for (final String path : BookCSS.get().searchPaths.split(",")) {
+                for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
@@ -268,11 +269,11 @@ public class BooksService extends IntentService {
                 handler.post(timer);
 
 
-                for (final String path : BookCSS.get().searchPaths.split(",")) {
+                for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
-                            LOG.d("Searcin in " + root.getPath());
+                            LOG.d("Search in: " + root.getPath());
                             SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
                         }
                     }

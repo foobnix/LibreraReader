@@ -22,6 +22,7 @@ import androidx.core.util.Pair;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.MyPath;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -117,6 +118,13 @@ public class TxtUtils {
         return line.substring(indexOf + 1);
     }
 
+    public static String smallPathFormat(String txt) {
+        if (TxtUtils.isEmpty(txt)) {
+            return "[]";
+        }
+        txt = Uri.decode(txt);
+        return txt.replace(MyPath.INTERNAL_ROOT, "...");
+    }
     public static String lastTwoPath(String txt) {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";

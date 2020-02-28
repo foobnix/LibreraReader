@@ -37,12 +37,10 @@ public class PathAdapter extends BaseAdapter {
         return 0;
     }
 
-    public void setPaths(String paths) {
+    public void setPaths(List<String> paths) {
         List<Uri> uris = new ArrayList<Uri>();
-        for (String str : paths.split(",")) {
-            if (str.trim().length() != 0) {
+        for (String str : paths) {
                 uris.add(Uri.fromFile(new File(str)));
-            }
         }
         Collections.sort(uris, comparator);
         this.uris = uris;

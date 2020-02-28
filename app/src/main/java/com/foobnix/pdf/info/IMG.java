@@ -2,6 +2,7 @@ package com.foobnix.pdf.info;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,8 +14,14 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -158,11 +165,26 @@ public class IMG {
         Glide.with(img).asBitmap().load(url).into(img);
     }
 
-    public static void getCoverPageWithEffect(ImageView img, String path, int width) {
+    public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
         Glide.with(img)
                 .asBitmap()
                 .load(url)
+                .addListener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        target.onResourceReady(resource,null);
+                        if(run!=null) {
+                            run.run();
+                        }
+                        return true;
+                    }
+                })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(img);
     }

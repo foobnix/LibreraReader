@@ -47,6 +47,7 @@ import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.IntegerResponse;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse2;
@@ -1544,9 +1545,7 @@ public class PrefFragment2 extends UIFragment {
         initKeys();
 
         searchPaths = (TextView) inflate.findViewById(R.id.searchPaths);
-        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
-        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
-        searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
+        searchPaths.setText(JsonDB.fromHtml(BookCSS.get().searchPathsJson));
         searchPaths.setOnClickListener(new
 
                                                OnClickListener() {
@@ -1582,7 +1581,7 @@ public class PrefFragment2 extends UIFragment {
         // folders
 
         final TextView rootFolder = (TextView) inflate.findViewById(R.id.rootFolder);
-        TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(AppSP.get().rootPath));
+        TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(AppSP.get().rootPath));
         rootFolder.setOnClickListener(new
 
                                               OnClickListener() {
@@ -1595,7 +1594,7 @@ public class PrefFragment2 extends UIFragment {
                                                               if (new File(nPath).canWrite()) {
                                                                   AppSP.get().rootPath = nPath;
                                                                   new File(nPath, "Fonts").mkdirs();
-                                                                  TxtUtils.underline(rootFolder, TxtUtils.lastTwoPath(nPath));
+                                                                  TxtUtils.underline(rootFolder, TxtUtils.smallPathFormat(nPath));
                                                                   onTheme();
                                                               } else {
                                                                   Toast.makeText(getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
@@ -1608,7 +1607,7 @@ public class PrefFragment2 extends UIFragment {
                                               });
 
         final TextView fontFolder = (TextView) inflate.findViewById(R.id.fontFolder);
-        TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
+        TxtUtils.underline(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));
         fontFolder.setOnClickListener(new
 
                                               OnClickListener() {
@@ -1619,7 +1618,7 @@ public class PrefFragment2 extends UIFragment {
                                                           @Override
                                                           public boolean onResultRecive(String nPath, Dialog dialog) {
                                                               BookCSS.get().fontFolder = nPath;
-                                                              TxtUtils.underline(fontFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
+                                                              TxtUtils.underline(fontFolder, TxtUtils.smallPathFormat(BookCSS.get().fontFolder));
                                                               dialog.dismiss();
                                                               return false;
                                                           }
@@ -1628,7 +1627,7 @@ public class PrefFragment2 extends UIFragment {
                                               });
 
         final TextView downloadFolder = (TextView) inflate.findViewById(R.id.downloadFolder);
-        TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
+        TxtUtils.underline(downloadFolder, TxtUtils.smallPathFormat(BookCSS.get().downlodsPath));
         downloadFolder.setOnClickListener(new
 
                                                   OnClickListener() {
@@ -1639,7 +1638,7 @@ public class PrefFragment2 extends UIFragment {
                                                               @Override
                                                               public boolean onResultRecive(String nPath, Dialog dialog) {
                                                                   BookCSS.get().downlodsPath = nPath;
-                                                                  TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
+                                                                  TxtUtils.underline(downloadFolder, TxtUtils.smallPathFormat(BookCSS.get().downlodsPath));
                                                                   dialog.dismiss();
                                                                   return false;
                                                               }
@@ -1648,7 +1647,7 @@ public class PrefFragment2 extends UIFragment {
                                                   });
 
         final TextView syncPath = (TextView) inflate.findViewById(R.id.syncPath);
-        TxtUtils.underline(syncPath, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
+        TxtUtils.underline(syncPath, TxtUtils.smallPathFormat(BookCSS.get().syncDropboxPath));
         syncPath.setOnClickListener(new
 
                                             OnClickListener() {
@@ -1659,7 +1658,7 @@ public class PrefFragment2 extends UIFragment {
                                                         @Override
                                                         public boolean onResultRecive(String nPath, Dialog dialog) {
                                                             BookCSS.get().syncDropboxPath = nPath;
-                                                            TxtUtils.underline(downloadFolder, TxtUtils.lastTwoPath(BookCSS.get().syncDropboxPath));
+                                                            TxtUtils.underline(downloadFolder, TxtUtils.smallPathFormat(BookCSS.get().syncDropboxPath));
                                                             dialog.dismiss();
                                                             return false;
                                                         }
@@ -1668,7 +1667,7 @@ public class PrefFragment2 extends UIFragment {
                                             });
 
         final TextView ttsFolder = (TextView) inflate.findViewById(R.id.ttsFolder);
-        TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
+        TxtUtils.underline(ttsFolder, TxtUtils.smallPathFormat(BookCSS.get().ttsSpeakPath));
         ttsFolder.setOnClickListener(new
 
                                              OnClickListener() {
@@ -1679,7 +1678,7 @@ public class PrefFragment2 extends UIFragment {
                                                          @Override
                                                          public boolean onResultRecive(String nPath, Dialog dialog) {
                                                              BookCSS.get().ttsSpeakPath = nPath;
-                                                             TxtUtils.underline(ttsFolder, TxtUtils.lastTwoPath(BookCSS.get().ttsSpeakPath));
+                                                             TxtUtils.underline(ttsFolder, TxtUtils.smallPathFormat(BookCSS.get().ttsSpeakPath));
                                                              dialog.dismiss();
                                                              return false;
                                                          }
@@ -1688,7 +1687,7 @@ public class PrefFragment2 extends UIFragment {
                                              });
 
         final TextView backupPath = (TextView) inflate.findViewById(R.id.backupFolder);
-        TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
+        TxtUtils.underline(backupPath, TxtUtils.smallPathFormat(BookCSS.get().backupPath));
         backupPath.setOnClickListener(new
 
                                               OnClickListener() {
@@ -1699,7 +1698,7 @@ public class PrefFragment2 extends UIFragment {
                                                           @Override
                                                           public boolean onResultRecive(String nPath, Dialog dialog) {
                                                               BookCSS.get().backupPath = nPath;
-                                                              TxtUtils.underline(backupPath, TxtUtils.lastTwoPath(BookCSS.get().backupPath));
+                                                              TxtUtils.underline(backupPath, TxtUtils.smallPathFormat(BookCSS.get().backupPath));
                                                               dialog.dismiss();
                                                               return false;
                                                           }
@@ -2423,19 +2422,12 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onFolderConfigDialog() {
-        BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-        BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
-        BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
 
         PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
 
             @Override
             public void run() {
-                BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-                BookCSS.get().searchPaths = TxtUtils.replaceFirst(BookCSS.get().searchPaths, ",", "");
-                BookCSS.get().searchPaths = TxtUtils.replaceLast(BookCSS.get().searchPaths, ",", "");
-
-                searchPaths.setText(TxtUtils.fromHtml(BookCSS.get().searchPaths.replace(",", "<br>")));
+                searchPaths.setText(JsonDB.fromHtml(BookCSS.get().searchPathsJson));
                 saveChanges();
                 LOG.d("Save Changes", 2);
             }

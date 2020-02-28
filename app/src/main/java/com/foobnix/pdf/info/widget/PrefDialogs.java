@@ -27,6 +27,7 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -69,7 +70,7 @@ public class PrefDialogs {
     public static void chooseFolderDialog(final FragmentActivity a, final Runnable onChanges, final Runnable onScan) {
 
         final PathAdapter recentAdapter = new PathAdapter();
-        recentAdapter.setPaths(BookCSS.get().searchPaths);
+        recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(a);
         builder.setTitle(R.string.scan_device_for_new_books);
@@ -100,7 +101,7 @@ public class PrefDialogs {
                         }
                         boolean isExists = false;
                         String existPath = "";
-                        for (String str : BookCSS.get().searchPaths.split(",")) {
+                        for (String str : JsonDB.get(BookCSS.get().searchPathsJson)) {
                             if (str != null && str.trim().length() != 0 && nPath.equals(str)) {
                                 isExists = true;
                                 existPath = str;
@@ -112,11 +113,7 @@ public class PrefDialogs {
                         } else if (isExists) {
                             Toast.makeText(a, String.format("[ %s == %s ] %s", nPath, existPath, a.getString(R.string.this_directory_is_already_in_the_list)), Toast.LENGTH_LONG).show();
                         } else {
-                            if (BookCSS.get().searchPaths.endsWith(",")) {
-                                BookCSS.get().searchPaths = BookCSS.get().searchPaths + "" + nPath;
-                            } else {
-                                BookCSS.get().searchPaths = BookCSS.get().searchPaths + "," + nPath;
-                            }
+                            BookCSS.get().searchPathsJson = JsonDB.add(BookCSS.get().searchPathsJson, nPath);
                         }
                         dialog.dismiss();
                         onChanges.run();
@@ -140,18 +137,10 @@ public class PrefDialogs {
             @Override
             public boolean onResultRecive(Uri result) {
                 String path = result.getPath();
-                LOG.d("TEST", "Remove " + BookCSS.get().searchPaths);
                 LOG.d("TEST", "Remove " + path);
-                StringBuilder builder = new StringBuilder();
-                for (String str : BookCSS.get().searchPaths.split(",")) {
-                    if (str != null && str.trim().length() > 0 && !str.equals(path)) {
-                        builder.append(str);
-                        builder.append(",");
-                    }
-                }
-                BookCSS.get().searchPaths = builder.toString();
-                LOG.d("TEST", "Remove " + BookCSS.get().searchPaths);
-                recentAdapter.setPaths(BookCSS.get().searchPaths);
+                BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
+                LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson );
+                recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
                 onChanges.run();
                 return false;
             }

@@ -8,8 +8,8 @@ import java.io.File;
 
 public class MyPath {
 
-    final static String INTERNAL_ROOT = Environment.getExternalStorageDirectory().getPath();
-    final static String INTERNAL_PREFIX = "internal-storage:";
+    final public static String INTERNAL_ROOT = Environment.getExternalStorageDirectory().getPath();
+    final public static String INTERNAL_PREFIX = "internal-storage:";
 
     private String path;
 
