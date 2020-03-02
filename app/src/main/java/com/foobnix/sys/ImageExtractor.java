@@ -700,5 +700,9 @@ public class ImageExtractor {
     private InputStream messageFile(String msg, String name) {
         return bitmapToStream(BaseExtractor.getBookCoverWithTitle(msg, name, true));
     }
+    public static Bitmap messageFileBitmap(String msg, String name) {
+        return BaseExtractor.getBookCoverWithTitle(msg, name, true);
+    }
+
 
 }

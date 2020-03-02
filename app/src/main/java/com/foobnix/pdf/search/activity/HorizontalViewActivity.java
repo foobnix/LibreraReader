@@ -1659,6 +1659,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             try {
 
                 //ImageLoader.getInstance().clearAllTasks();
+                IMG.clearMemoryCache();
                 closeDialogs();
                 viewPager.setAdapter(null);
             } catch (Exception e) {

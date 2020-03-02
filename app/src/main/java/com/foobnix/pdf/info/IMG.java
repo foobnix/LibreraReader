@@ -122,8 +122,6 @@ public class IMG {
 
     public static void clearDiscCache() {
         try {
-            Glide.get(LibreraApp.context).clearDiskCache();
-
             new Thread() {
                 @Override
                 public void run() {

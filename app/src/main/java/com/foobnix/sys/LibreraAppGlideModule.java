@@ -26,7 +26,6 @@ import com.foobnix.android.utils.LOG;
 
 import org.ebookdroid.LibreraApp;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static com.bumptech.glide.load.engine.executor.GlideExecutor.newSourceBuilder;
@@ -54,7 +53,8 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         }
                         LOG.d("LibreraAppGlideModule onDataReady", stream);
 
-                    } catch (IOException e) {
+                    } catch (Exception e) {
+                        callback.onDataReady( ImageExtractor.messageFileBitmap("#error", ""));
                         LOG.e(e);
                     }
 
@@ -95,7 +95,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
         super.applyOptions(context, builder);
         builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
-        builder.setSourceExecutor(newSourceBuilder().setThreadCount(4).build());
+        builder.setSourceExecutor(newSourceBuilder().setThreadCount(2).build());
 
 
     }
