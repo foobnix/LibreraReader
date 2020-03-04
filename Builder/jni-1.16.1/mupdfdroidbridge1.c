@@ -1139,8 +1139,18 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_getAnnotationsInternal(JNIEnv *
 	ctm = fz_scale(1, 1);
 
 	count = 0;
+	fz_try(ctx)
+    	{
 	for (annot = pdf_first_annot(ctx, page->page); annot; annot = pdf_next_annot(ctx, annot))
 		count ++;
+    }
+    fz_catch(ctx)
+        {
+            //jni_rethrow(env, ctx);
+            return NULL;
+        }
+
+	if(count == 0){return NULL;}
 
 	arr = (*env)->NewObjectArray(env, count, annotClass, NULL);
 	if (arr == NULL) return NULL;

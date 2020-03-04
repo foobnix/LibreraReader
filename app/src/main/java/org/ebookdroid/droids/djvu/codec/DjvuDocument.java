@@ -6,6 +6,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.core.codec.AbstractCodecDocument;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.codec.OutlineLink;
@@ -25,6 +26,11 @@ public class DjvuDocument extends AbstractCodecDocument {
         super(djvuContext, open(djvuContext.getContextHandle(), fileName));
         this.fileName = fileName;
         LOG.d("MUPDF! open document djvu", documentHandle, fileName);
+    }
+
+    @Override
+    public BookType getBookType() {
+        return BookType.DJVU;
     }
 
     private static native String getMeta(long docHandle, String key);

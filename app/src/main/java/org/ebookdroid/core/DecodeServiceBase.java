@@ -17,6 +17,7 @@ import com.foobnix.sys.Colors;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -331,7 +332,8 @@ public class DecodeServiceBase implements DecodeService {
                 }
             }
 
-            if (task.node.page.annotations == null) {
+
+            if (codecDocument.getBookType()== BookType.PDF && task.node.page.annotations == null) {
                 task.node.page.annotations = vuPage.getAnnotations();
             }
 
