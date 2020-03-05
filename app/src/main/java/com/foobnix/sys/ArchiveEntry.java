@@ -26,7 +26,11 @@ public class ArchiveEntry {
     }
 
     public String getName() {
-        return TxtUtils.encode1251(header.getFileName());
+        if (header.isFileNameUTF8Encoded()) {
+            return header.getFileName();
+        } else {
+            return TxtUtils.encode1251(header.getFileName());
+        }
     }
 
 }
