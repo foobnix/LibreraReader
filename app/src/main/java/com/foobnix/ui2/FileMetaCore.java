@@ -143,6 +143,16 @@ public class FileMetaCore {
         return input;
     }
 
+    public static void reUpdateIfNeed(FileMeta fileMeta) {
+        if (fileMeta.getState() != null && fileMeta.getState() != FileMetaCore.STATE_FULL) {
+            LOG.d("reupdateIfNeed", fileMeta.getPath(), fileMeta.getState());
+            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileMeta.getPath(), CacheDir.ZipApp, true);
+            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(fileMeta.getPath()));
+            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+            AppDB.get().updateOrSave(fileMeta);
+        }
+    }
+
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 
 
@@ -285,16 +295,6 @@ public class FileMetaCore {
         }
 
         return ebookMeta;
-    }
-
-    public static void reUpdateIfNeed(FileMeta fileMeta){
-        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            LOG.d("reupdateIfNeed", fileMeta.getPath(), fileMeta.getState());
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileMeta.getPath(), CacheDir.ZipApp, true);
-            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(fileMeta.getPath()));
-            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-            AppDB.get().updateOrSave(fileMeta);
-        }
     }
 
     public void udpateFullMeta(FileMeta fileMeta, EbookMeta meta) {

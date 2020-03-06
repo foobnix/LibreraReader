@@ -17,8 +17,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+
+import org.ebookdroid.LibreraApp;
 
 
 public class ImagePageFragment extends Fragment {
@@ -91,17 +94,19 @@ public class ImagePageFragment extends Fragment {
     }
 
     public void loadImageGlide() {
-        Glide.with(this)
+        Glide.with(LibreraApp.context)
                 .asBitmap()
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(new SimpleTarget<Bitmap>() {
+                .into(Safe.target(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         text.setVisibility(View.GONE);
-                        image.addBitmap(resource);
+                        if (resource != null && image != null) {
+                            image.addBitmap(resource);
+                        }
                     }
-                });
+                }));
     }
 
     @Override

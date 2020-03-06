@@ -24,6 +24,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Safe;
 import com.foobnix.model.AppState;
 import com.foobnix.sys.ImageExtractor;
 
@@ -160,12 +161,12 @@ public class IMG {
 
     public static void getCoverPage(ImageView img, String path, int width) {
         final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        Glide.with(img).asBitmap().load(url).into(img);
+        Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
     }
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        Glide.with(img)
+        Glide.with(LibreraApp.context)
                 .asBitmap()
                 .load(url)
                 .addListener(new RequestListener<Bitmap>() {
@@ -184,13 +185,13 @@ public class IMG {
                     }
                 })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(img);
+                .into(Safe.targetView(img));
     }
 
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos) {
         final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
-        Glide.with(img).asBitmap().load(url).into(img);
+        Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
     }
 
     public static String toUrl(final String path, final int page, final int width) {

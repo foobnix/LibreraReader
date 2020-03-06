@@ -203,8 +203,8 @@ public class TTSNotification {
             nm.notify(NOT_ID, n);
 
             String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-            Glide.with(context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
-            Glide.with(context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
+            Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViews, n, NOT_ID));
+            Glide.with(LibreraApp.context).asBitmap().load(url).into(new NotificationTarget(context, R.id.ttsIcon, remoteViewsSmall, n, NOT_ID));
 
             return n;
         } catch (Exception e) {

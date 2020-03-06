@@ -219,6 +219,10 @@ public class ImageExtractor {
 
     }
 
+    public static Bitmap messageFileBitmap(String msg, String name) {
+        return BaseExtractor.getBookCoverWithTitle(msg, name, true);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
@@ -534,12 +538,8 @@ public class ImageExtractor {
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
-            // try {
-            // Thread.sleep(1500);
-            // } catch (InterruptedException e) {
-            // e.printStackTrace();
-            // }
-            //return baseImage.getStream("assets://opds/web.png", null);
+            return LibreraApp.context.getResources().getAssets().open("opds/web.png");
+
         }
         if (imageUri.startsWith("http")) {
 
@@ -562,8 +562,7 @@ public class ImageExtractor {
             return new ByteArrayInputStream(Base64.decode(uri, Base64.DEFAULT));
         }
         if (imageUri.startsWith("assets:")) {
-            return LibreraApp.context.getResources().getAssets().open(imageUri.replace("assets://",""));
-
+            return LibreraApp.context.getResources().getAssets().open(imageUri.replace("assets://", ""));
         }
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
@@ -699,9 +698,6 @@ public class ImageExtractor {
 
     private InputStream messageFile(String msg, String name) {
         return bitmapToStream(BaseExtractor.getBookCoverWithTitle(msg, name, true));
-    }
-    public static Bitmap messageFileBitmap(String msg, String name) {
-        return BaseExtractor.getBookCoverWithTitle(msg, name, true);
     }
 
 

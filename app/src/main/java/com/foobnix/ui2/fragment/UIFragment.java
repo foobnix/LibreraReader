@@ -40,6 +40,7 @@ import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import com.foobnix.ui2.fast.FastScrollStateChangeListener;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -91,7 +92,7 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStop() {
-                    Glide.with(getActivity()).resumeRequests();
+                    Glide.with(LibreraApp.context).resumeRequests();
                     LOG.d("ImageLoader resume");
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
                         if(swipeRefreshLayout!=null) {
@@ -103,7 +104,7 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 public void onFastScrollStart() {
                     LOG.d("ImageLoader pause");
-                    Glide.with(getActivity()).pauseRequests();
+                    Glide.with(LibreraApp.context).pauseRequests();
                     if(swipeRefreshLayout!=null) {
                         swipeRefreshLayout.setEnabled(false);
                     }
@@ -208,7 +209,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Glide.with(getActivity()).resumeRequests();
+        Glide.with(LibreraApp.context).resumeRequests();
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);

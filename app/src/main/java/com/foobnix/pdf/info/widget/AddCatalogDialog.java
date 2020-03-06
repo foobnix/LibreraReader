@@ -34,6 +34,8 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.LibreraApp;
+
 public class AddCatalogDialog {
 
     public static final String OPDS = "opds";
@@ -137,7 +139,7 @@ public class AddCatalogDialog {
             name.setText(line[1]);
             description.setText(line[2]);
             //ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
-            Glide.with(image).load(line[3]).into(image);
+            Glide.with(LibreraApp.context).load(line[3]).into(image);
 
             if (e.logo != null) {
                 image.setTag(e.logo);
@@ -268,7 +270,7 @@ public class AddCatalogDialog {
                                 feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
                                 image.setTag(feed.icon);
                                 //ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
-                                Glide.with(image).load(feed.icon).into(image);
+                                Glide.with(LibreraApp.context).load(feed.icon).into(image);
                             } else {
                                 image.setTag("assets://opds/web.png");
                             }

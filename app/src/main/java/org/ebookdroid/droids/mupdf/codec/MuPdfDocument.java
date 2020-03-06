@@ -230,8 +230,14 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     protected void freeDocument() {
-        free(documentHandle);
-        cacheHandle = -1;
+        TempHolder.lock.lock();
+        try {
+            free(documentHandle);
+            cacheHandle = -1;
+        }finally {
+            TempHolder.lock.unlock();
+        }
+
         LOG.d("MUPDF! <<< recycle [document]", documentHandle, ExtUtils.getFileName(fname));
     }
 
