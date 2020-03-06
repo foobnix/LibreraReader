@@ -27,8 +27,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
@@ -93,12 +91,8 @@ public class FileInformationDialog {
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
         LOG.d("FileMeta-State", fileMeta.getState());
 
-        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(file.getPath(), CacheDir.ZipApp, true);
-            FileMetaCore.get().upadteBasicMeta(fileMeta, file);
-            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-            AppDB.get().updateOrSave(fileMeta);
-        }
+        FileMetaCore.reUpdateIfNeed(fileMeta);
+
 
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
