@@ -210,16 +210,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 adapterType = ADAPTER_GRID;
             }
 
+            LOG.d("bindFileMetaView-1", items.get(position).getTitle());
             bindFileMetaView(holder, position);
 
-
+            boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable(){
 
 
                 @Override
                 public void run() {
 
-                    if (position <= items.size() - 1) {
+                    if (position <= items.size() - 1 && needRefresh) {
                         FileMeta it = AppDB.get().load(fileMeta.getPath());
                         if (it != null) {
                             items.set(position, it);
