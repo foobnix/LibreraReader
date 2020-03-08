@@ -10,8 +10,8 @@ ext {
         db = Integer.parseInt(appDB)
 
     }else{
-        codeNumber = 3570
-        versionNumber = "8.3.3"
+        codeNumber = 3592
+        versionNumber = "8.3.7"
         db = 8
     }
 
