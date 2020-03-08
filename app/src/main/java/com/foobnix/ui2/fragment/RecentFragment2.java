@@ -149,8 +149,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     @Override
     public void populateDataInUI(List<FileMeta> items) {
         if (recentAdapter != null) {
-            LOG.d("items-1",items.get(0).getTitle());
-            LOG.d("items-2",items.get(1).getTitle());
             recentAdapter.getItemsList().clear();
             recentAdapter.getItemsList().addAll(items);
             recentAdapter.notifyDataSetChanged();

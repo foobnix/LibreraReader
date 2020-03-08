@@ -95,7 +95,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
         super.applyOptions(context, builder);
         builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
-        builder.setSourceExecutor(newSourceBuilder().setThreadCount(2).build());
+        builder.setSourceExecutor(newSourceBuilder().setThreadCount(1).build());
 
 
     }

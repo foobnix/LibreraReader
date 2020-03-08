@@ -57,6 +57,9 @@ public class Safe {
 
     }
 
+    public static void clearAll() {
+        clearAll(null);
+    }
     public static void clearAll(Target exlude) {
 
         for (Target t : targets) {
