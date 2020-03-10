@@ -1,6 +1,7 @@
 package com.foobnix.pdf.search.activity;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,8 +14,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
@@ -34,6 +39,7 @@ public class ImagePageFragment extends Fragment {
 
     long lifeTime = 0;
     int loadImageId;
+    boolean fistTime = true;
     private PageImaveView image;
     private TextView text;
     Runnable callback = new Runnable() {
@@ -52,7 +58,6 @@ public class ImagePageFragment extends Fragment {
     public String getPath() {
         return getArguments().getString(PAGE_PATH);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,6 +103,26 @@ public class ImagePageFragment extends Fragment {
                 .asBitmap()
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .listener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        LOG.d("listener-onLoadFailed", page, isFirstResource);
+                        if (fistTime) {
+                            text.setVisibility(View.VISIBLE);
+                            loadImageGlide();
+                            fistTime = false;
+                        }
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        LOG.d("listener-onResourceReady", page, resource);
+
+                        target.onResourceReady(resource, null);
+                        return true;
+                    }
+                })
                 .into(Safe.target(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -109,13 +134,20 @@ public class ImagePageFragment extends Fragment {
                 }));
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         if (image != null) {
             image.clickUtils.init();
+            float[] values = new float[10];
+            image.imageMatrix().getValues(values);
+            if (values[Matrix.MSCALE_X] == 0) {
+                PageImageState.get().isAutoFit = true;
+                image.autoFit();
+                LOG.d("fonResume-autofit", page);
+            }
         }
-        LOG.d("fonResume", page);
     }
 
     public int getPriority() {

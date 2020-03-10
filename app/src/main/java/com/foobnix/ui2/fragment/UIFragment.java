@@ -23,7 +23,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -210,7 +209,7 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Safe.clearAll();
+        //Safe.clearAll();
         Glide.with(LibreraApp.context).resumeRequests();
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
