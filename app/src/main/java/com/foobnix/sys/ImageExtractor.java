@@ -519,7 +519,7 @@ public class ImageExtractor {
             try {
                 if (sp.contains(hash)) {
                     LOG.d("Error-crash", imageUri, hash);
-                    //return messageFile("#crash", "");
+                    return messageFile("#crash", "");
                 }
 
                 sp.edit().putBoolean(hash, true).commit();
