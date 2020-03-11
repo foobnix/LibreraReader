@@ -16,6 +16,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
+import com.bumptech.glide.load.engine.executor.GlideExecutor;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
@@ -95,7 +96,11 @@ public class LibreraAppGlideModule extends AppGlideModule {
     public void applyOptions(@NonNull Context context, @NonNull GlideBuilder builder) {
         super.applyOptions(context, builder);
         builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
-        builder.setSourceExecutor(newSourceBuilder().setThreadCount(1).build());
+        builder.setSourceExecutor(
+                newSourceBuilder()
+                        .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
+                        .setThreadCount(1)
+                        .build());
 
 
     }

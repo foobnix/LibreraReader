@@ -71,6 +71,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemAdapter;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
@@ -142,6 +143,7 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -1575,7 +1577,7 @@ public class DragingDialogs {
                         text = text.replace(TxtUtils.TTS_PAUSE, "");
 
                         TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(),text,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
                     }
                 });
                 view.findViewById(R.id.readTTS).setOnLongClickListener(new OnLongClickListener() {
@@ -1584,7 +1586,7 @@ public class DragingDialogs {
                         TTSEngine.get().stop();
                         String text = editText.getText().toString().trim();
                         TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(),text,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -1933,6 +1935,7 @@ public class DragingDialogs {
 
                         ;
                     });
+
                 }
 
                 grid.setOnItemClickListener(new OnItemClickListener() {
@@ -1989,7 +1992,12 @@ public class DragingDialogs {
 
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+                        if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
+                            Glide.with(LibreraApp.context).pauseRequests();
+                        } else {
+                            Glide.with(LibreraApp.context).resumeRequests();
+                        }
+                        LOG.d("onScrollStateChanged", scrollState);
                     }
 
                     @Override
