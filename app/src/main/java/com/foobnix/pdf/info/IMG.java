@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -24,11 +25,13 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Safe;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.LibreraApp;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.util.regex.Pattern;
 
@@ -118,7 +121,36 @@ public class IMG {
 
     public static void clearMemoryCache() {
         Glide.get(LibreraApp.context).clearMemory();
+    }
+    public static RequestManager with(Context a) {
+        if (a instanceof HorizontalViewActivity) {
+            return Glide.with((HorizontalViewActivity) a);
+        } else if (a instanceof VerticalViewActivity) {
+            return Glide.with((VerticalViewActivity) a);
+        } else if (a instanceof MainTabs2) {
+            return Glide.with((MainTabs2) a);
+        } else {
+            return Glide.with(a);
+        }
+    }
 
+    public static void pauseRequests(Context a) {
+        LOG.d("Glide-pause", a);
+        with(a).pauseRequests();
+    }
+
+    public static void resumeRequests(Context a) {
+        LOG.d("Glide-resume", a);
+        with(a).resumeRequests();
+    }
+
+    public static void clear(ImageView image) {
+        LOG.d("Glide-clear", image.getContext());
+        with(image.getContext()).clear(image);
+    }
+    public static void clear(Context c, Target t) {
+        LOG.d("Glide-clear", c);
+        with(c).clear(t);
     }
 
     public static void clearDiscCache() {
@@ -166,7 +198,8 @@ public class IMG {
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        Glide.with(LibreraApp.context)
+        LOG.d("Glide-load-into", img.getContext());
+        IMG.with(img.getContext())
                 .asBitmap()
                 .load(url)
                 .addListener(new RequestListener<Bitmap>() {
@@ -177,15 +210,15 @@ public class IMG {
 
                     @Override
                     public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        target.onResourceReady(resource,null);
-                        if(run!=null) {
+                        target.onResourceReady(resource, null);
+                        if (run != null) {
                             run.run();
                         }
                         return true;
                     }
                 })
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(Safe.target(img));
+                .into(img);
     }
 
 

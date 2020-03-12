@@ -743,6 +743,15 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+        AppProfile.save(this);
+        IMG.pauseRequests(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 
@@ -776,7 +785,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             adapter.notifyDataSetChanged();
         }
 
-
+        IMG.resumeRequests(this);
     }
 
     public void updateCurrentFragment() {
@@ -815,15 +824,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         return super.onKeyUp(keyCode, event);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
 
-
-        AppProfile.save(this);
-
-    }
 
     @Override
     protected void onStop() {

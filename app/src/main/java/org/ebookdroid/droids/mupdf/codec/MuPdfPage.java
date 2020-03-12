@@ -71,6 +71,10 @@ public class MuPdfPage extends AbstractCodecPage {
 
     private static native long open(long dochandle, int pageno);
 
+    private static void renderPageSafe(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b) {
+            renderPage(dochandle, pagehandle, viewboxarray, matrixarray, bufferarray, r, g, b);
+    }
+
     private static native void renderPage(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b);
 
     private native static TextChar[][][][] text(long docHandle, long pageHandle);
@@ -152,7 +156,7 @@ public class MuPdfPage extends AbstractCodecPage {
     public void recycle() {
         try {
             TempHolder.lock.lock();
-            if (pageHandle != 0 && docHandle != 0) {
+            if (pageHandle != 0 && docHandle != 0 && MuPdfDocument.cacheHandle != -1) {
                 LOG.d("MUPDF! -recycle page", docHandle, pageNumber);
                 free(docHandle, pageHandle);
             }
@@ -200,7 +204,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
             final int[] bufferarray = new int[width * height];
 
-            renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+            renderPageSafe(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
 
             final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
@@ -234,7 +238,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 int r = Color.red(color);
                 int g = Color.green(color);
                 int b = Color.blue(color);
-                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
+                renderPageSafe(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
 
                 if (AppState.get().isReplaceWhite && MagicHelper.isNeedMagicSimple()) {
                     MagicHelper.udpateColorsMagicSimple(bufferarray);
@@ -243,7 +247,7 @@ public class MuPdfPage extends AbstractCodecPage {
             } else if (MagicHelper.isNeedMagic()) {
 
                 if (AppState.get().isCustomizeBgAndColors) {
-                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+                    renderPageSafe(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
                     MagicHelper.udpateColorsMagic(bufferarray);
                 } else {
                     int color = MagicHelper.getBgColor();
@@ -253,11 +257,11 @@ public class MuPdfPage extends AbstractCodecPage {
                     int r = Color.red(color);
                     int g = Color.green(color);
                     int b = Color.blue(color);
-                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
+                    renderPageSafe(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
 
                 }
             } else {
-                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+                renderPageSafe(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
             }
 
             if (MagicHelper.isNeedBC) {
@@ -272,7 +276,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
     }
 
-    //private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
+    //private static native boolean renderPageSafeBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
 
     @Override
     public List<PageLink> getPageLinks() {

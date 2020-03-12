@@ -20,8 +20,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
-
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -84,7 +82,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         String url = IMG.toUrl(uri.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
 
         try {
-            Bitmap image = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+            Bitmap image = Glide.with(context).asBitmap().load(url).submit().get();
             v.setImageViewBitmap(R.id.imageView1, image);
         } catch (ExecutionException e) {
             e.printStackTrace();

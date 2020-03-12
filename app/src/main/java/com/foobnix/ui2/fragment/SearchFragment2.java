@@ -63,6 +63,7 @@ import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -297,6 +298,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
+
+        LOG.d("Context-SF-getContext", getContext());
+        LOG.d("Context-SF-getApplicationContext", getActivity().getApplicationContext());
+        LOG.d("Context-SF-getBaseContext", getActivity().getBaseContext());
+        LOG.d("Context-SF-LibreraApp.context", LibreraApp.context);
 
         LOG.d("SearchFragment2 onCreateView");
 
@@ -1001,6 +1007,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onGridList();
         searchAndOrderAsync();
     }
+
 
     @Override
     public void onDestroy() {

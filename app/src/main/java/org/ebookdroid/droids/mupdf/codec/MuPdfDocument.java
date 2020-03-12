@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MuPdfDocument extends AbstractCodecDocument {
 
     public static final int FORMAT_PDF = 0;
-    private static long cacheHandle;
+    public static long cacheHandle;
     private static int cacheWH;
     private static long cacheSize;
     private static int cacheCount;
@@ -91,6 +91,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
             LOG.d("TEST", "Open document " + fname + " " + open);
             LOG.d("TEST", "Open document css ", css);
             LOG.d("MUPDF! >>> open [document]", open, ExtUtils.getFileName(fname));
+
+
 
             if (open == -1) {
                 throw new RuntimeException("Document is corrupted");
@@ -232,8 +234,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     protected void freeDocument() {
         TempHolder.lock.lock();
         try {
-            free(documentHandle);
             cacheHandle = -1;
+            free(documentHandle);
         }finally {
             TempHolder.lock.unlock();
         }

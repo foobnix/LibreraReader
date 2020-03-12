@@ -71,7 +71,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.foobnix.StringResponse;
 import com.foobnix.android.utils.BaseItemAdapter;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
@@ -143,7 +142,6 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -1993,9 +1991,9 @@ public class DragingDialogs {
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
                         if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
-                            Glide.with(LibreraApp.context).pauseRequests();
+                            IMG.pauseRequests(grid.getContext());
                         } else {
-                            Glide.with(LibreraApp.context).resumeRequests();
+                            IMG.resumeRequests(grid.getContext());
                         }
                         LOG.d("onScrollStateChanged", scrollState);
                     }

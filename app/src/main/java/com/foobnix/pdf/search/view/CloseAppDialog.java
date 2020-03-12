@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -122,6 +123,7 @@ public class CloseAppDialog {
     }
 
     public static void showOnLongClickDialog(final Activity a, View v, final DocumentController c) {
+        IMG.pauseRequests(a);
         if (c == null) {
             if (a != null) {
                 a.finish();

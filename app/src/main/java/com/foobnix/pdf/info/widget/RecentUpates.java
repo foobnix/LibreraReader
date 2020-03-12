@@ -29,7 +29,6 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSActivity;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -66,7 +65,7 @@ public class RecentUpates {
                     String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
                     //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 
-                    Glide.with(LibreraApp.context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+                    Glide.with(c).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
 

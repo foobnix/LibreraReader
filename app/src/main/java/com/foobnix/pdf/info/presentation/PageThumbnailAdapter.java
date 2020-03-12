@@ -10,15 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
-
-import org.ebookdroid.LibreraApp;
 
 public class PageThumbnailAdapter extends BaseAdapter {
 
@@ -72,7 +70,8 @@ public class PageThumbnailAdapter extends BaseAdapter {
         PageUrl pageUrl = getPageUrl(position);
         final String url = pageUrl.toString();
 
-        Glide.with(LibreraApp.context).asBitmap().diskCacheStrategy(DiskCacheStrategy.NONE).load(url).into(img);
+        LOG.d("Glide-load-into", c);
+        IMG.with(c).asBitmap().diskCacheStrategy(DiskCacheStrategy.NONE).load(url).into(img);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
         txt.setText(TxtUtils.deltaPage((position + 1)));
@@ -83,6 +82,8 @@ public class PageThumbnailAdapter extends BaseAdapter {
 
         return view;
     }
+
+
 
     public PageUrl getPageUrl(int page) {
         return null;

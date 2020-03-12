@@ -25,6 +25,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -92,8 +93,7 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStop() {
-                    Glide.with(LibreraApp.context).resumeRequests();
-                    LOG.d("ImageLoader resume");
+                    IMG.resumeRequests(getContext());
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
                         if(swipeRefreshLayout!=null) {
                             swipeRefreshLayout.setEnabled(true);
@@ -103,8 +103,7 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStart() {
-                    LOG.d("ImageLoader pause");
-                    Glide.with(LibreraApp.context).pauseRequests();
+                    IMG.pauseRequests(getContext());
                     if(swipeRefreshLayout!=null) {
                         swipeRefreshLayout.setEnabled(false);
                     }

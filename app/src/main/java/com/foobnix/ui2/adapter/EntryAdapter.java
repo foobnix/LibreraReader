@@ -37,8 +37,6 @@ import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.ui2.AppRecycleAdapter;
 
-import org.ebookdroid.LibreraApp;
-
 public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHolder> {
 
     private static final int PD = Dips.dpToPx(4);
@@ -158,7 +156,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
                 //ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
-                Glide.with(LibreraApp.context).load(link.href).into(holder.image);
+                Glide.with(context).load(link.href).into(holder.image);
 
             } else if (link.isSearchLink()) {
                 LinearLayout l = new LinearLayout(context);
@@ -216,7 +214,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
                     //ImageLoader.getInstance().displayImage(link.href, img, IMG.displayCacheMemoryDisc);
-                    Glide.with(LibreraApp.context).load(link.href).into(img);
+                    Glide.with(context).load(link.href).into(img);
 
                     holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
                     imgLink = link.href;

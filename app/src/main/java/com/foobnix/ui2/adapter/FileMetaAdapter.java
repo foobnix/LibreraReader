@@ -17,6 +17,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
@@ -61,14 +62,12 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_LAYOUT_STARS = 4;
     public static final int DISPLAY_TYPE_PLAYLIST = 11;
     public static final int DISPLAY_TYPE_NONE = -1;
-
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
     public static final int DISPALY_TYPE_SERIES = 7;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
     public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_DIVIDER = 10;
-
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
     public static final int ADAPTER_COVERS = 3;
@@ -79,8 +78,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int TEMP_VALUE_SERIES = 3;
     public static final int TEMP2_NONE = 0;
     public static final int TEMP2_RECENT_FROM_BOOK = 1;
+    public Fragment fragment;
     public int tempValue = TEMP_VALUE_NONE;
     public int tempValue2 = TEMP2_NONE;
+
     private int adapterType = ADAPTER_LIST;
     private ResultResponse<FileMeta> onMenuClickListener;
     private ResultResponse<FileMeta> onDeleteClickListener;
@@ -91,6 +92,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     private Runnable clearAllStarredFolders;
     private Runnable clearAllStarredBooks;
     private ResultResponse<ImageView> onGridOrList;
+
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -161,7 +165,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //LOG.d("onViewRecycled");
+            IMG.clear(holder.image);
         }
+
     }
 
     @Override

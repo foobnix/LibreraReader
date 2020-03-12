@@ -40,6 +40,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
@@ -470,9 +471,11 @@ public class ImageExtractor {
             bitmap = bitmap1;
         }
 
-        if (pageUrl.isDoText() && !pageCodec.isRecycled()) {
-            PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
-            PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+        if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
+            if(HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+                PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
+                PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+            }
         }
 
         if (!pageCodec.isRecycled()) {

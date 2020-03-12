@@ -34,6 +34,7 @@ import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -226,6 +227,9 @@ public class ShareDialog {
     }
 
     public static void show(final Activity a, final File file, final Runnable onDeleteAction, final int page, final DocumentController dc, final Runnable hideShow) {
+
+
+
         if (file == null) {
             Toast.makeText(a, R.string.file_not_found, Toast.LENGTH_LONG).show();
             return;
@@ -485,10 +489,14 @@ public class ShareDialog {
 
         });
         AlertDialog create = builder.create();
+
+
+        IMG.pauseRequests(a);
         create.setOnDismissListener(new OnDismissListener() {
 
             @Override
             public void onDismiss(DialogInterface dialog) {
+                IMG.resumeRequests(a);
                 Keyboards.hideNavigation(a);
             }
 

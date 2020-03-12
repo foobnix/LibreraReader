@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -749,8 +750,7 @@ public class ExtUtils {
             return false;
         }
 
-        //ImageLoader.getInstance().clearAllTasks();
-        //Glide.with(LibreraApp.context).pauseRequests();
+
 
 
         if (AppState.get().isPrefFormatMode) {
@@ -930,6 +930,14 @@ public class ExtUtils {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isRememberMode = isChecked;
+            }
+        });
+
+        IMG.pauseRequests(c);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                IMG.resumeRequests(c);
             }
         });
 

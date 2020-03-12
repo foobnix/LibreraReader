@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -22,11 +22,9 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.Safe;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
-
-import org.ebookdroid.LibreraApp;
 
 
 public class ImagePageFragment extends Fragment {
@@ -97,9 +95,20 @@ public class ImagePageFragment extends Fragment {
 
         return view;
     }
+    SimpleTarget<Bitmap> target = null;
 
     public void loadImageGlide() {
-        Glide.with(LibreraApp.context)
+        target = new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                text.setVisibility(View.GONE);
+                if (resource != null && image != null) {
+                    image.addBitmap(resource);
+                }
+            }
+        };
+        LOG.d("Glide-load-into", getActivity());
+        IMG.with(getActivity())
                 .asBitmap()
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -123,15 +132,7 @@ public class ImagePageFragment extends Fragment {
                         return true;
                     }
                 })
-                .into(Safe.target(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        text.setVisibility(View.GONE);
-                        if (resource != null && image != null) {
-                            image.addBitmap(resource);
-                        }
-                    }
-                }));
+                .into(target);
     }
 
 
@@ -160,6 +161,9 @@ public class ImagePageFragment extends Fragment {
         super.onDestroyView();
         LOG.d("ImagePageFragment1 onDestroyView ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         // ImageLoader.getInstance().cancelDisplayTaskForID(loadImageId);
+//        IMG.clear(getActivity(), target);
+
+
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
@@ -170,6 +174,10 @@ public class ImagePageFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        if(Build.VERSION.SDK_INT >= 17 && !getActivity().isDestroyed()) {
+            IMG.clear(getActivity(), target);
+        }
+
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);

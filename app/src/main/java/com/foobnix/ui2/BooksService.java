@@ -230,7 +230,7 @@ public class BooksService extends IntentService {
 
                 for (FileMeta meta : localMeta) {
                     if (!all.contains(meta)) {
-                        FileMetaCore.createMetaIfNeed(meta.getPath(), true);
+                        FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
                         LOG.d("BooksService add book", meta.getPath());
                     }
                 }
@@ -238,8 +238,8 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
-                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
                 sendFinishMessage();
@@ -328,9 +328,12 @@ public class BooksService extends IntentService {
                 AppDB.get().updateAll(itemsMeta);
                 sendFinishMessage();
 
+
                 for (FileMeta meta : itemsMeta) {
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                    FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
+                        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
+                        FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    }
                 }
 
                 SharedBooks.updateProgress(itemsMeta, true);
@@ -350,8 +353,8 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
-                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
                 sendFinishMessage();
