@@ -674,7 +674,7 @@ public class BookCSS {
                 builder.append("}");
             }
 
-            builder.append("body,p{");
+            builder.append("body,p,span{");
 
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
@@ -691,7 +691,7 @@ public class BookCSS {
             }
             builder.append("}");
 
-            builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
+            builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
                 if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
