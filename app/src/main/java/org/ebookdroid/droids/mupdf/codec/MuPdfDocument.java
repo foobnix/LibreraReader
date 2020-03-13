@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MuPdfDocument extends AbstractCodecDocument {
 
     public static final int FORMAT_PDF = 0;
-    public static long cacheHandle;
+    private static long cacheHandle;
     private static int cacheWH;
     private static long cacheSize;
     private static int cacheCount;
@@ -33,6 +33,8 @@ public class MuPdfDocument extends AbstractCodecDocument {
     private volatile List<String> mediaAttachment;
     private int pagesCount = -1;
     private String fname;
+
+
 
     public MuPdfDocument(final MuPdfContext context, final int format, final String fname, final String pwd) {
         super(context, openFile(format, fname, pwd, BookCSS.get().toCssString(fname)));
@@ -175,7 +177,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     @Override
     public CodecPage getPageInner(final int pageNumber) {
-        MuPdfPage createPage = MuPdfPage.createPage(documentHandle, pageNumber + 1);
+        MuPdfPage createPage = MuPdfPage.createPage(this, pageNumber + 1);
         return createPage;
     }
 
