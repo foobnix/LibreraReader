@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
@@ -72,6 +74,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemAdapter;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
@@ -518,6 +521,35 @@ public class DragingDialogs {
 
                 final Activity activity = controller.getActivity();
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
+
+                final TextView textBGwarning = (TextView) view.findViewById(R.id.textBGwarning);
+
+                textBGwarning.setVisibility(View.GONE);
+                if (Build.VERSION.SDK_INT >= 28) {
+                    ActivityManager activityManager = (ActivityManager)
+                            controller.getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+                    if (activityManager.isBackgroundRestricted()) {
+
+                        textBGwarning.setVisibility(View.VISIBLE);
+                        TxtUtils.underlineTextView(textBGwarning);
+                        textBGwarning.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                            Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    controller.getActivity().startActivity(intent);
+                                    closeDialog();
+                                } catch (Exception e) {
+                                    Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                    LOG.e(e);
+                                }
+                            }
+                        });
+                    }
+                }
+
 
                 final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
 

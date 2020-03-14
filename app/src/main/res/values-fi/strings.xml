@@ -596,4 +596,5 @@
    <string name="new_file">Uusi tiedosto</string>
    <string name="paste_or_type_text_in_here">Liitä tai kirjoita teksti tähän</string>
    <string name="go_to_the_folder">Mene kansioon</string>
+   <string name="you_should_enable_allow_battery">Sinun pitäisi ottaa \"akku\"&gt; \"salli taustatoiminnot\" kuunnella taustalla</string>
 </resources>

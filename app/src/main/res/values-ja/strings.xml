@@ -596,4 +596,5 @@
    <string name="new_file">新しいファイル</string>
    <string name="paste_or_type_text_in_here">ここにテキストを貼り付けるか入力します</string>
    <string name="go_to_the_folder">フォルダに行きます</string>
+   <string name="you_should_enable_allow_battery">バックグラウンドでリッスンするには、[バッテリー]&gt; [バックグラウンドアクティビティを許可]を有効にする必要があります</string>
 </resources>

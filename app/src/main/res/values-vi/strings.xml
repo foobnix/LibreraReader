@@ -596,4 +596,5 @@
    <string name="new_file">Tập tin mới</string>
    <string name="paste_or_type_text_in_here">Dán hoặc gõ văn bản vào đây</string>
    <string name="go_to_the_folder">Đi đến thư mục</string>
+   <string name="you_should_enable_allow_battery">Bạn nên bật \"pin\"&gt; \"cho phép hoạt động nền\" để nghe trong nền</string>
 </resources>

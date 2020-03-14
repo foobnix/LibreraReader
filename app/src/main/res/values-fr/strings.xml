@@ -596,4 +596,5 @@
    <string name="new_file">Nouveau fichier</string>
    <string name="paste_or_type_text_in_here">Coller ou taper du texte ici</string>
    <string name="go_to_the_folder">Aller dans le dossier</string>
+   <string name="you_should_enable_allow_battery">Vous devez activer \"batterie\"&gt; \"autoriser l\'activité en arrière-plan\" pour écouter en arrière-plan</string>
 </resources>

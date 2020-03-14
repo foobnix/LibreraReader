@@ -855,6 +855,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     private void sortByPopup(final View view) {
 
+
+
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
             popup.getMenu().add(sortBy.getResName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {

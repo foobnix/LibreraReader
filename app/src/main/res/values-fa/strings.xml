@@ -596,4 +596,5 @@
    <string name="new_file">پرونده جدید</string>
    <string name="paste_or_type_text_in_here">در اینجا جایگذاری کنید یا متن را تایپ کنید</string>
    <string name="go_to_the_folder">به پوشه بروید</string>
+   <string name="you_should_enable_allow_battery">شما باید \"باتری\"&gt; \"فعالیت پس زمینه\" را فعال کنید تا در پس زمینه گوش کند</string>
 </resources>

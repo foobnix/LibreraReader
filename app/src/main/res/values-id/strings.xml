@@ -596,4 +596,5 @@
    <string name="new_file">File baru</string>
    <string name="paste_or_type_text_in_here">Rekatkan atau ketikkan teks di sini</string>
    <string name="go_to_the_folder">Buka folder</string>
+   <string name="you_should_enable_allow_battery">Anda harus mengaktifkan \"baterai\"&gt; \"izinkan aktivitas latar belakang\" untuk mendengarkan di latar belakang</string>
 </resources>

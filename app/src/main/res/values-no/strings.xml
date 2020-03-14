@@ -596,4 +596,5 @@
    <string name="new_file">Ny fil</string>
    <string name="paste_or_type_text_in_here">Lim inn eller skriv inn tekst her</string>
    <string name="go_to_the_folder">Gå til mappen</string>
+   <string name="you_should_enable_allow_battery">Bør du aktivere \"batteri\"&gt; \"la bakgrunnsaktivitet\" lytte i bakgrunnen</string>
 </resources>
