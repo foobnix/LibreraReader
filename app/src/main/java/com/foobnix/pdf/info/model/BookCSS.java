@@ -674,7 +674,7 @@ public class BookCSS {
                 builder.append("}");
             }
 
-            builder.append("body,p,span{");
+            builder.append("body,p{");
 
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
