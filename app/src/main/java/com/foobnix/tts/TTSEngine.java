@@ -144,7 +144,7 @@ public class TTSEngine {
         synchronized (helpObject) {
 
             if (TTSEngine.get().isMp3() && mp == null) {
-                TTSEngine.get().loadMP3(BookCSS.get().mp3BookPath);
+                TTSEngine.get().loadMP3(BookCSS.get().mp3BookPathGet());
             }
 
             if (ttsEngine != null) {
@@ -166,6 +166,7 @@ public class TTSEngine {
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     public void stop() {
+
         LOG.d(TAG, "stop");
         synchronized (helpObject) {
 
@@ -474,6 +475,11 @@ public class TTSEngine {
     }
 
     public void loadMP3(String ttsPlayMp3Path, final boolean play) {
+        LOG.d("loadMP3-", ttsPlayMp3Path);
+        if(TxtUtils.isEmpty(ttsPlayMp3Path) || !new File(ttsPlayMp3Path).isFile()){
+            LOG.d("loadMP3-skip mp3");
+            return;
+        }
         try {
             mp3Destroy();
             mp = new MediaPlayer();
@@ -540,7 +546,7 @@ public class TTSEngine {
     public boolean isMp3PlayPause() {
         if (isMp3()) {
             if (mp == null) {
-                loadMP3(BookCSS.get().mp3BookPath);
+                loadMP3(BookCSS.get().mp3BookPathGet());
             }
             if (mp.isPlaying()) {
                 mp.pause();
@@ -566,7 +572,7 @@ public class TTSEngine {
     }
 
     public boolean isMp3() {
-        return TxtUtils.isNotEmpty(BookCSS.get().mp3BookPath);
+        return TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet());
     }
 
     public void seekTo(int i) {

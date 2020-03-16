@@ -167,8 +167,8 @@ public class TTSNotification {
 
             String textLine = pageNumber + " " + fileMetaBookName;
 
-            if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPath)) {
-                textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPath) + "] " + textLine;
+            if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet())) {
+                textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
             }
 
             remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1+ " ","\n").trim());

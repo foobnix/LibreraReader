@@ -368,7 +368,7 @@ public class TTSService extends Service {
 
         if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
             TTSEngine.get().mp3Destroy();
-            BookCSS.get().mp3BookPath = null;
+            BookCSS.get().mp3BookPath(null);
             AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
 

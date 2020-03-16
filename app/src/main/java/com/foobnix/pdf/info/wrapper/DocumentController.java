@@ -120,6 +120,7 @@ public abstract class DocumentController {
     public DocumentController(final Activity activity) {
         this.activity = activity;
         readTimeStart = System.currentTimeMillis();
+        TTSEngine.get().mp3Destroy();
     }
 
     public static int getRotationText() {

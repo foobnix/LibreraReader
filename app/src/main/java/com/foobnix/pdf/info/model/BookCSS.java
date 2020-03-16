@@ -25,6 +25,7 @@ import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.DocContext;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -76,7 +77,7 @@ public class BookCSS {
     public String fontFolder = DEFAULT_FOLDER;
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
     public float appFontScale = 1.0f;
-    public String mp3BookPath;
+    public String mp3BookPathJson;
     public String dirLastPath;
     public String pathSAF = "";
     public boolean isSyncWifiOnly;
@@ -114,6 +115,9 @@ public class BookCSS {
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
     public String linkColorNigths = LINKCOLOR_NIGTHS;
+
+    private String lastBookPathCache = "";
+    private String trackPathCache;
 
     public static String filterFontName(String fontName) {
         if (!fontName.contains(".")) {
@@ -154,6 +158,29 @@ public class BookCSS {
         } catch (Exception e) {
             return Typeface.DEFAULT;
         }
+    }
+
+    public void mp3BookPath(String track) {
+        final LinkedJSONObject obj = (mp3BookPathJson == null) ? new LinkedJSONObject() : new LinkedJSONObject(mp3BookPathJson);
+        obj.put(AppSP.get().lastBookPath, track);
+        LOG.d("mp3BookPath-set", AppSP.get().lastBookPath, track);
+        mp3BookPathJson = obj.toString();
+
+        trackPathCache = track;
+        lastBookPathCache = AppSP.get().lastBookPath;
+    }
+
+    public String mp3BookPathGet() {
+        if (lastBookPathCache != null && lastBookPathCache.equals(AppSP.get().lastBookPath)) {
+            return trackPathCache;
+        }
+        final LinkedJSONObject obj = (mp3BookPathJson == null) ? new LinkedJSONObject() : new LinkedJSONObject(mp3BookPathJson);
+        final String track = obj.optString(AppSP.get().lastBookPath);
+        LOG.d("mp3BookPath-get", AppSP.get().lastBookPath, track);
+        trackPathCache = track;
+        lastBookPathCache = AppSP.get().lastBookPath;
+
+        return track;
     }
 
     public boolean isTextFormat() {
@@ -221,11 +248,11 @@ public class BookCSS {
         try {
             if (TxtUtils.isNotEmpty(instance.searchPaths)) {
                 String sub[] = instance.searchPaths.split(",");
-                instance.searchPaths =null;
-                for(String line:sub){
-                    if(new File(line).isDirectory()){
-                        instance.searchPathsJson = JsonDB.add(instance.searchPathsJson,line);
-                        LOG.d("Migration-add",line);
+                instance.searchPaths = null;
+                for (String line : sub) {
+                    if (new File(line).isDirectory()) {
+                        instance.searchPathsJson = JsonDB.add(instance.searchPathsJson, line);
+                        LOG.d("Migration-add", line);
                     }
                 }
             }

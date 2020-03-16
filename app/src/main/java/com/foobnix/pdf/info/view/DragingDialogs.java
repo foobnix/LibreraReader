@@ -589,6 +589,7 @@ public class DragingDialogs {
                 final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
 
+
                 TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
 
                 final TextView ttsLang = (TextView) view.findViewById(R.id.ttsLang);
@@ -941,7 +942,7 @@ public class DragingDialogs {
                                 }
                                 if (ExtUtils.isAudioContent(result1)) {
 
-                                    BookCSS.get().mp3BookPath = result1;
+                                    BookCSS.get().mp3BookPath(result1);
                                     AppState.get().mp3seek = 0;
 
                                     tts.udateButtons();
@@ -2501,7 +2502,7 @@ public class DragingDialogs {
                                                 LOG.d("Try to open path", aPath);
                                                 if (ExtUtils.isAudioContent(aPath.getPath())) {
                                                     TTSEngine.get().mp3Destroy();
-                                                    BookCSS.get().mp3BookPath = aPath.getPath();
+                                                    BookCSS.get().mp3BookPath(aPath.getPath());
                                                     AppState.get().mp3seek = 0;
                                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                                                 } else {
