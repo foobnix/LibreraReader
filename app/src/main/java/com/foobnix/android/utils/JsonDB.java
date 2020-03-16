@@ -53,8 +53,9 @@ public class JsonDB {
 
     public static List<String> get(String db) {
         try {
+
             List<String> res = new ArrayList<>();
-            JSONArray array = new JSONArray(db);
+            JSONArray array = TxtUtils.isEmpty(db) ? new JSONArray() : new JSONArray(db);
             for (int i = 0; i < array.length(); i++) {
                 res.add(array.getString(i));
             }

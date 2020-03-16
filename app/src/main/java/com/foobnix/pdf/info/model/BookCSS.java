@@ -60,6 +60,8 @@ public class BookCSS {
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
     private static BookCSS instance = new BookCSS();
     public String searchPathsJson;
+    @Deprecated
+    public String searchPaths;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
     public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
 
@@ -215,6 +217,22 @@ public class BookCSS {
         resetToDefault(c);
 
         IO.readObj(AppProfile.syncCSS, instance);
+
+        try {
+            if (TxtUtils.isNotEmpty(instance.searchPaths)) {
+                String sub[] = instance.searchPaths.split(",");
+                instance.searchPaths =null;
+                for(String line:sub){
+                    if(new File(line).isDirectory()){
+                        instance.searchPathsJson = JsonDB.add(instance.searchPathsJson,line);
+                        LOG.d("Migration-add",line);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
 
         try {
             if (TxtUtils.isEmpty(instance.searchPathsJson)) {
