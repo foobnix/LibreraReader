@@ -576,6 +576,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.by_title), //
+                        getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
                         getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_extension) //
@@ -586,6 +587,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_TITLE, //
+                        AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
                         AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_EXT//
@@ -974,6 +976,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
                 Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+            }else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
+                Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
             }
             if (AppState.get().sortByReverse) {
                 Collections.reverse(items);
