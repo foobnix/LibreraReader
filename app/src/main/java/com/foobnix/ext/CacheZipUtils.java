@@ -121,6 +121,10 @@ public class CacheZipUtils {
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
         try {
             LOG.d("isSingleAndSupportEntry 1", file);
+            if(!CbzCbrExtractor.isZip(file)){
+                return new Pair<Boolean, String>(false, "");
+            }
+
             net.lingala.zip4j.ZipFile zp = new net.lingala.zip4j.ZipFile(file);
             if(!zp.isValidZipFile()){
                 return new Pair<Boolean, String>(false, "");
