@@ -120,8 +120,13 @@ public class CacheZipUtils {
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
         try {
+            LOG.d("isSingleAndSupportEntry 1", file);
             net.lingala.zip4j.ZipFile zp = new net.lingala.zip4j.ZipFile(file);
+            if(!zp.isValidZipFile()){
+                return new Pair<Boolean, String>(false, "");
+            }
             List<FileHeader> fileHeaders = zp.getFileHeaders();
+
             int count = 0;
             FileHeader last = null;
             boolean isOkular = BookType.OKULAR.is(file);
@@ -129,7 +134,7 @@ public class CacheZipUtils {
                 if (h.isDirectory()) {
                     continue;
                 }
-                if(isOkular && h.getFileName().endsWith(".xml")){
+                if (isOkular && h.getFileName().endsWith(".xml")) {
                     continue;
                 }
                 count++;

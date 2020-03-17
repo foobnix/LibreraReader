@@ -101,6 +101,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 newSourceBuilder()
                         .setUncaughtThrowableStrategy(GlideExecutor.UncaughtThrowableStrategy.IGNORE)
                         .setThreadCount(1)
+                        //.setThreadTimeoutMillis(2000)
                         .build());
 
 
