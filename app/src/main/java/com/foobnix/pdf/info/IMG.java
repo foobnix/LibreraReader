@@ -198,7 +198,7 @@ public class IMG {
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        LOG.d("Glide-load-into", img.getContext());
+        //LOG.d("Glide-load-into", img.getContext());
         IMG.with(img.getContext())
                 .asBitmap()
                 .load(url)
@@ -212,7 +212,7 @@ public class IMG {
                     @Override
                     public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         target.onResourceReady(bitmap, null);
-                        LOG.d("Bitmap-test 2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                       // LOG.d("Bitmap-test 2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         if (run != null) {
                             run.run();

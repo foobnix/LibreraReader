@@ -43,12 +43,12 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 @Override
                 public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
                     try {
-                        LOG.d("LibreraAppGlideModule loadData", priority, s);
+                       // LOG.d("LibreraAppGlideModule loadData", priority, s);
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
                             callback.onDataReady(bitmap);
-                            LOG.d("Bitmap-test-1",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                            //LOG.d("Bitmap-test-1",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                         }else {
 
                             callback.onDataReady( BitmapFactory.decodeStream(stream));
