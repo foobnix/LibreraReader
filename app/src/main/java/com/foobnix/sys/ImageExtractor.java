@@ -317,32 +317,16 @@ public class ImageExtractor {
         return cover;
     }
 
-    public InputStream generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {
-        try {
-            LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            Bitmap res;
-            if (AppState.get().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
-                res = MagicHelper.scaleCenterCrop(cover, pageUrl.getHeight(), pageUrl.getWidth(), !pageUrl.tempWithWatermakr);
-                res.compress(CompressFormat.PNG, 90, out);
-            } else {
-                res = cover;
-                res.compress(CompressFormat.JPEG, 90, out);
-            }
 
-            byte[] byteArray = out.toByteArray();
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
-            res.recycle();
-            res = null;
-
-            out.close();
-            out = null;
-            byteArray = null;
-            return byteArrayInputStream;
-        } catch (Exception e) {
-            LOG.e(e);
-            return null;
+    public Bitmap generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {
+        LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
+        Bitmap res;
+        if (AppState.get().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
+            res = MagicHelper.scaleCenterCrop(cover, pageUrl.getHeight(), pageUrl.getWidth(), !pageUrl.tempWithWatermakr);
+        } else {
+            res = cover;
         }
+        return res;
     }
 
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
@@ -472,7 +456,7 @@ public class ImageExtractor {
         }
 
         if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
-            if(HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+            if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
                 PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
                 PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
             }
@@ -628,13 +612,13 @@ public class ImageExtractor {
                 try {
                     MagicHelper.isNeedBC = false;
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
-                    return generalCoverWithEffect(pageUrl, proccessCoverPage);
+                    return  bitmapToStreamRAW(generalCoverWithEffect(pageUrl, proccessCoverPage));
                 } finally {
                     MagicHelper.isNeedBC = true;
                 }
             } else if (page == COVER_PAGE_NO_EFFECT) {
-                ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
-                return bitmapToStream;
+                //ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
+                return bitmapToStreamRAW(proccessCoverPage(pageUrl));
             } else {
                 if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());

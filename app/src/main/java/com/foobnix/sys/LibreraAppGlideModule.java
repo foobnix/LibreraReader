@@ -48,6 +48,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
                             callback.onDataReady(bitmap);
+                            LOG.d("Bitmap-test-1",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                         }else {
 
                             callback.onDataReady( BitmapFactory.decodeStream(stream));

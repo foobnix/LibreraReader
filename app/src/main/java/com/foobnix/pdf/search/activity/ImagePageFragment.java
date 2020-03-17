@@ -125,10 +125,10 @@ public class ImagePageFragment extends Fragment {
                     }
 
                     @Override
-                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        LOG.d("listener-onResourceReady", page, resource);
+                    public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        target.onResourceReady(bitmap, null);
+                        LOG.d("Bitmap-test-3",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
-                        target.onResourceReady(resource, null);
                         return true;
                     }
                 })

@@ -202,6 +202,7 @@ public class IMG {
         IMG.with(img.getContext())
                 .asBitmap()
                 .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .addListener(new RequestListener<Bitmap>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
@@ -209,8 +210,10 @@ public class IMG {
                     }
 
                     @Override
-                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        target.onResourceReady(resource, null);
+                    public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        target.onResourceReady(bitmap, null);
+                        LOG.d("Bitmap-test 2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+
                         if (run != null) {
                             run.run();
                         }
