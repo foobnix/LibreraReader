@@ -1,18 +1,22 @@
 ---
 layout: main
 ---
-{1}下载
+#下载
 
-[Google Play上的Librera Reader]（https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader）
+[Librera Reader(Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pdf.reader)
 
-[Google Play上的Librera PRO]（https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader）
+[Librera PRO(Google Play)](https://play.google.com/store/apps/details?id=com.foobnix.pro.pdf.reader)
 
-[Google Play上的Librera Beta]（https://play.google.com/apps/testing/com.foobnix.pdf.reader）
+[Librera Beta(Google Play)](https://play.google.com/apps/testing/com.foobnix.pdf.reader)
 
-[Beta build [apk]]（http://beta.librera.mobi）
+[Librera PRO(F-Droid)](https://f-droid.org/en/packages/com.foobnix.pro.pdf.reader/)
 
-[GitHub的]（https://github.com/foobnix/LibreraReader）
+[Beta APK(Dropbox)](http://beta.librera.mobi)
 
-[电报]（https://t.me/LibreraReader）（有关新功能的新闻，公告和许多有趣内容。）
+[Beta APK(Telegram @LibreraBeta)](https://t.me/LibreraBeta)
 
-[隐私政策](/wiki/PrivacyPolicy/zh)
+[图书馆新闻(Telegram @LibreraReader)](https://t.me/LibreraReader)
+
+[GitHub](https://github.com/foobnix/LibreraReader)
+
+[隐私权政策](/wiki/PrivacyPolicy/zh)

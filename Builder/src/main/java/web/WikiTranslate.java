@@ -29,6 +29,7 @@ public class WikiTranslate {
 
         List<String> paths = Arrays.asList(
                 HOME + "/docs/wiki/faq",
+                HOME + "/docs/wiki/download",
                 HOME + "/docs/wiki/what-is-new"
         );
 
@@ -126,7 +127,7 @@ public class WikiTranslate {
 
         in = in.replace("__", "**");
 
-        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.");
+        List<String> ignoreLines = Arrays.asList("[<]", "|", "{", "<", "!", "---", "# 7.", "# 8.","[t.me","[@");
 
         boolean findCode = false;
         for (String pr : ignoreLines) {
