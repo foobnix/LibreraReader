@@ -1,3 +1,4 @@
+* [Librera 8.3](/wiki/what-is-new/8.2/{{lang}})
 * [Librera 8.2](/wiki/what-is-new/8.2/{{lang}})
 * [Librera 8.1](/wiki/what-is-new/8.1/{{lang}})
 * [Librera 8.0](/wiki/what-is-new/8.0/{{lang}})
