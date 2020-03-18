@@ -42,7 +42,6 @@ public class ExportSettingsManager {
 
         try {
             AppProfile.save(c);
-            com.foobnix.pdf.info.model.BookCSS.get().checkBeforeExport(c);
 
             LinkedJSONObject root = new LinkedJSONObject();
             root.put("pdf", exportToJSon("pdf", pdf, null, null));

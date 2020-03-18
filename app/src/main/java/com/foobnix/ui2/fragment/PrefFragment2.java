@@ -2335,6 +2335,7 @@ public class PrefFragment2 extends UIFragment {
                     b.resetToDefault(getActivity());
                     IO.writeObjAsync(AppProfile.syncCSS, b);
 
+
                     final AppState o = new AppState();
                     o.defaults(getActivity());
 

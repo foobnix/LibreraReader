@@ -10,7 +10,6 @@ import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
-import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
@@ -54,7 +53,6 @@ public class BookCSS {
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
     public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
     private static final Object TAG = "BookCSS";
-    public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
     public static int STYLES_DOC_AND_USER = 0;
     public static int STYLES_ONLY_DOC = 1;
     public static int STYLES_ONLY_USER = 2;
@@ -64,7 +62,7 @@ public class BookCSS {
     @Deprecated
     public String searchPaths;
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
-    public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
+    public String downlodsPath;
 
     ///
     public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
@@ -74,7 +72,7 @@ public class BookCSS {
     public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
-    public String fontFolder = DEFAULT_FOLDER;
+    public String fontFolder;
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
     public float appFontScale = 1.0f;
     public String mp3BookPathJson;
@@ -207,7 +205,8 @@ public class BookCSS {
         textIndent = 10;
         fontWeight = 400;
 
-        fontFolder = DEFAULT_FOLDER;
+        fontFolder = AppProfile.syncFontFolder.getPath();
+        downlodsPath = AppProfile.syncDownloadFolder.getPath();
         displayFontName = DEFAULT_FONT;
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
@@ -307,14 +306,6 @@ public class BookCSS {
 
     }
 
-    public void checkBeforeExport(Context c) {
-        if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER)) {
-            fontFolder = null;
-            fontFolder = DEFAULT_FOLDER;
-            AppProfile.save(c);
-        }
-
-    }
 
     public void allFonts(String fontName) {
         normalFont = fontName;
@@ -391,9 +382,8 @@ public class BookCSS {
 
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
-            all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
-        }
+        all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
+
 
         return all;
     }
@@ -411,9 +401,8 @@ public class BookCSS {
 
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
-            all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
-        }
+        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
+
 
         return all;
     }

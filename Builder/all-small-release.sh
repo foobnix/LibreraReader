@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+#/home/ivan-dev/git/LibreraReader/Builder
 ### 1.11.1
 ./link_to_mupdf_1.11.sh
 
@@ -14,11 +14,15 @@ cd ../
 ./gradlew assemblePdf_v2Release
 ./gradlew assembleEbookaRelease
 ./gradlew assembleTts_readerRelease
-./gradlew assembleEpub_readerRelease
 ./gradlew assembleLibreraRelease
 
 
-#./gradlew assembleFdroidRelease
+### 1.16.1
+cd Builder
+./link_to_mupdf_1.16.1.sh
+cd ../
+./gradlew assembleAlphaRelease
+./gradlew assembleFdroidRelease
 
 
 ./gradlew copyApks -Pbeta
