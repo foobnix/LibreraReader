@@ -18,8 +18,6 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 
-import org.ebookdroid.common.bitmaps.BitmapManager;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -113,7 +111,6 @@ public class LibreraApp extends MultiDexApplication {
         super.onLowMemory();
         LOG.d("AppState save onLowMemory");
         IMG.clearMemoryCache();
-        BitmapManager.clear("on Low Memory: ");
         TintUtil.clean();
     }
 

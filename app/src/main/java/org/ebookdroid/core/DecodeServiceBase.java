@@ -355,7 +355,7 @@ public class DecodeServiceBase implements DecodeService {
                 vuPage.recycle();
             }
 
-            BitmapManager.clear("DecodeService OutOfMemoryError: ");
+            //BitmapManager.clear("DecodeService OutOfMemoryError: ");
 
             abortDecoding(task, null, null);
         } catch (final Throwable th) {
@@ -549,7 +549,7 @@ public class DecodeServiceBase implements DecodeService {
                 while (run.get()) {
                     final Runnable r = nextTask();
                     if (r != null) {
-                        BitmapManager.release();
+                        //BitmapManager.release();
                         r.run();
                     }
                 }
@@ -557,7 +557,7 @@ public class DecodeServiceBase implements DecodeService {
             } catch (final Throwable th) {
                 th.printStackTrace();
             } finally {
-                BitmapManager.release();
+                //BitmapManager.release();
             }
         }
 

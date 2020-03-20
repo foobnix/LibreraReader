@@ -34,7 +34,6 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
@@ -508,7 +507,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 getManagedComponent().finish();
 
                 System.gc();
-                BitmapManager.clear("finish");
+                //BitmapManager.clear("finish");
 
                 if (action != null) {
                     action.run();
@@ -523,7 +522,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         getManagedComponent().finish();
 
         System.gc();
-        BitmapManager.clear("finish");
+        //BitmapManager.clear("finish");
 
         LOG.d("ViewerActivityController closeActivity1");
     }

@@ -38,6 +38,7 @@ public class ImagePageFragment extends Fragment {
     long lifeTime = 0;
     int loadImageId;
     boolean fistTime = true;
+    SimpleTarget<Bitmap> target = null;
     private PageImaveView image;
     private TextView text;
     Runnable callback = new Runnable() {
@@ -95,7 +96,6 @@ public class ImagePageFragment extends Fragment {
 
         return view;
     }
-    SimpleTarget<Bitmap> target = null;
 
     public void loadImageGlide() {
         target = new SimpleTarget<Bitmap>() {
@@ -127,7 +127,7 @@ public class ImagePageFragment extends Fragment {
                     @Override
                     public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         target.onResourceReady(bitmap, null);
-                        LOG.d("Bitmap-test-3",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                        LOG.d("Bitmap-test-3", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         return true;
                     }
@@ -141,13 +141,17 @@ public class ImagePageFragment extends Fragment {
         super.onResume();
         if (image != null) {
             image.clickUtils.init();
+
             float[] values = new float[10];
-            image.imageMatrix().getValues(values);
-            if (values[Matrix.MSCALE_X] == 0) {
-                PageImageState.get().isAutoFit = true;
-                image.autoFit();
-                LOG.d("fonResume-autofit", page);
+            if (image != null) {
+                image.imageMatrix().getValues(values);
+                if (values[Matrix.MSCALE_X] == 0) {
+                    PageImageState.get().isAutoFit = true;
+                    image.autoFit();
+                    LOG.d("fonResume-autofit", page);
+                }
             }
+
         }
     }
 
@@ -174,7 +178,7 @@ public class ImagePageFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        if(Build.VERSION.SDK_INT >= 17 && !getActivity().isDestroyed()) {
+        if (Build.VERSION.SDK_INT >= 17 && !getActivity().isDestroyed()) {
             IMG.clear(getActivity(), target);
         }
 

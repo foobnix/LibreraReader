@@ -99,7 +99,6 @@ public class DocumentModel extends ListenerProxy {
                 page.recycle(bitmapsToRecycle);
             }
             BitmapManager.release(bitmapsToRecycle);
-            BitmapManager.release();
         }
         pages = EMPTY_PAGES;
     }
