@@ -318,7 +318,7 @@ public class DecodeServiceBase implements DecodeService {
             final RectF actualSliceBounds = task.node.croppedBounds != null ? task.node.croppedBounds : task.node.pageSliceBounds;
 
             // TempHolder.lock.lock();
-            final BitmapRef bitmap = vuPage.renderBitmap(r.width(), r.height(), actualSliceBounds);
+            final BitmapRef bitmap = vuPage.renderBitmap(r.width(), r.height(), actualSliceBounds, true);
             // TempHolder.lock.unlock();
 
             if (executor.isTaskDead(task)) {

@@ -20,7 +20,7 @@ public class BitmapRef {
     String name;
     Bitmap bitmap;
 
-    BitmapRef(final Bitmap bitmap, final long generation) {
+    public BitmapRef(final Bitmap bitmap, final long generation) {
         this.bitmap = bitmap;
         this.width = bitmap.getWidth();
         this.height = bitmap.getHeight();

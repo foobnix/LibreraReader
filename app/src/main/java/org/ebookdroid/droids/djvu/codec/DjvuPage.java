@@ -165,7 +165,7 @@ public class DjvuPage extends AbstractCodecPage {
     }
 
     @Override
-    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
+    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds, boolean cache) {
         LOG.d("Render DJVU Page", width, height, pageSliceBounds);
         final int renderMode = CoreSettings.getInstance().djvuRenderingMode;
         BitmapRef bmp = null;
@@ -215,7 +215,7 @@ public class DjvuPage extends AbstractCodecPage {
         RectF rectF = new RectF(0, 0, 1f, 1f);
         float k = (float) originH / originW;
         LOG.d("TEST", "Render!" + " w" + originW + " H " + originH + " " + k + " " + width * k);
-        BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF);
+        BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF, false);
         return renderBitmap.getBitmap();
     }
 

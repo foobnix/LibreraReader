@@ -381,7 +381,7 @@ public class ImageExtractor {
             if (isNeedDisableMagicInPDFDjvu) {
                 bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
             } else {
-                bitmapRef = pageCodec.renderBitmap(width, height, rectF);
+                bitmapRef = pageCodec.renderBitmap(width, height, rectF,false);
             }
 
             bitmap = bitmapRef.getBitmap();
@@ -400,7 +400,7 @@ public class ImageExtractor {
         } else if (pageUrl.getNumber() == 1) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(0, 0, right, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF, false);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -410,7 +410,7 @@ public class ImageExtractor {
         } else if (pageUrl.getNumber() == 2) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(right, 0, 1f, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF, false);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -490,7 +490,7 @@ public class ImageExtractor {
 
         bitmap.recycle();
         codecDocumentLocal.getPage(page).recycle();
-        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF).getBitmap();
+        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF,false).getBitmap();
         return new Pair<Bitmap, RectF>(result, rectF);
 
     }

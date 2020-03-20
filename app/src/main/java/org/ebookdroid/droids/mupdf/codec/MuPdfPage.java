@@ -101,9 +101,9 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
+    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds, boolean cache) {
         final float[] matrixArray = calculateFz(width, height, pageSliceBounds);
-        return render(new Rect(0, 0, width, height), matrixArray);
+        return render(new Rect(0, 0, width, height), matrixArray, cache);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class MuPdfPage extends AbstractCodecPage {
         final RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) originH / originW;
         LOG.d("TEST", "Render" + " w" + getWidth() + " H " + getHeight() + " " + k + " " + width * k);
-        final BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF);
+        final BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF, false);
         return renderBitmap.getBitmap();
     }
 
@@ -218,7 +218,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
     }
 
-    public BitmapRef render(final Rect viewbox, final float[] ctm) {
+    public BitmapRef render(final Rect viewbox, final float[] ctm, boolean cache) {
         TempHolder.lock.lock();
         try {
 
@@ -271,8 +271,12 @@ public class MuPdfPage extends AbstractCodecPage {
             if (MagicHelper.isNeedBC) {
                 MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
             }
-
-            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            BitmapRef b;
+            if (cache) {
+                b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            } else {
+                b = new BitmapRef(Bitmap.createBitmap(width, height, Config.RGB_565), 0l);
+            }
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
             return b;
         } finally {
