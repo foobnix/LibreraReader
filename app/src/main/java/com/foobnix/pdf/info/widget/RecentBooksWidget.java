@@ -35,6 +35,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -183,7 +184,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 //                remoteViews.addView(R.id.linearLayout, v);
 
 
-                Glide.with(context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+                Glide.with(LibreraApp.context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
 
 
                     @Override

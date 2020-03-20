@@ -161,6 +161,7 @@ public class BookCSS {
     public void mp3BookPath(String track) {
         final LinkedJSONObject obj = (mp3BookPathJson == null) ? new LinkedJSONObject() : new LinkedJSONObject(mp3BookPathJson);
         obj.put(AppSP.get().lastBookPath, track);
+
         LOG.d("mp3BookPath-set", AppSP.get().lastBookPath, track);
         mp3BookPathJson = obj.toString();
 

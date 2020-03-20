@@ -130,7 +130,7 @@ public class IMG {
         } else if (a instanceof MainTabs2) {
             return Glide.with((MainTabs2) a);
         } else {
-            return Glide.with(a);
+            return Glide.with(LibreraApp.context);
         }
     }
 

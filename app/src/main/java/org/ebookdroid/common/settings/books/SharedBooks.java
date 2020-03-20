@@ -126,9 +126,10 @@ public class SharedBooks {
             LOG.d("Can't save AppBook");
             return;
         }
-        final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
 
         try {
+            final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+
             if (bs.p > 1) {
                 bs.p = 0;
             }
