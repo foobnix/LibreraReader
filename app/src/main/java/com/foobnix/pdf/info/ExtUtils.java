@@ -681,7 +681,7 @@ public class ExtUtils {
             return false;
         }
         boolean isExt = BookType.ZIP.is(path.toLowerCase()) || BookType.OKULAR.is(path.toLowerCase());
-        return  isExt && CbzCbrExtractor.isZip(path);
+        return isExt && CbzCbrExtractor.isZip(path);
     }
 
     public static synchronized boolean isNoMetaFomat(String path) {
@@ -1757,6 +1757,9 @@ public class ExtUtils {
                 File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
 
                 for (File file : externalDirs) {
+                    if (file == null) {
+                        continue;
+                    }
                     LOG.d("getExternalFilesDirs", file.getPath());
                     String path = file.getPath().split("/Android")[0];
 

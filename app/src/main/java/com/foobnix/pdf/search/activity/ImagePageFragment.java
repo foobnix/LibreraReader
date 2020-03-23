@@ -16,7 +16,6 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
-import com.BaseExtractor;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -26,7 +25,6 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
-import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.ImageExtractor;
@@ -40,8 +38,8 @@ public class ImagePageFragment extends Fragment {
     public static final String POS = "pos";
     public static final String PAGE_PATH = "pagePath";
     public static final String IS_TEXTFORMAT = "isTEXT";
-    public static volatile int count = 0;
     final static ExecutorService executorService = Executors.newSingleThreadExecutor();
+    public static volatile int count = 0;
     int page;
     Handler handler;
     long lifeTime = 0;
@@ -107,18 +105,19 @@ public class ImagePageFragment extends Fragment {
         return view;
     }
 
-    public void loadImageGlide() {
+    public void loadImageGlide21() {
 
         submit = executorService.submit(new Runnable() {
             @Override
             public void run() {
                 if (submit.isCancelled()) {
-                    LOG.d("loadImageGlide-isCancelled");
+                    LOG.d("loadImageGlide-isCancelled 1");
                     return;
                 }
-                Bitmap bitmap = ImageExtractor.getInstance(getContext()).proccessOtherPage(PageUrl.fromString(getPath()));
+                Bitmap bitmap = ImageExtractor.getInstance(getContext()).proccessOtherPage(getPath());
+
                 if (submit.isCancelled()) {
-                    LOG.d("loadImageGlide-isCancelled");
+                    LOG.d("loadImageGlide-isCancelled 2");
                     return;
                 }
 
@@ -137,7 +136,7 @@ public class ImagePageFragment extends Fragment {
 
     }
 
-    public void loadImageGlide3() {
+    public void loadImageGlide2() {
         final LoaderManager.LoaderCallbacks<Bitmap> callback = new LoaderManager.LoaderCallbacks<Bitmap>() {
             @NonNull
             @Override
@@ -147,11 +146,8 @@ public class ImagePageFragment extends Fragment {
                     @Nullable
                     @Override
                     public Bitmap loadInBackground() {
-                        try {
-                            return ImageExtractor.getInstance(getContext()).proccessOtherPage(PageUrl.fromString(getPath()));
-                        } catch (Exception e) {
-                            return BaseExtractor.getBookCoverWithTitle("error", "", true);
-                        }
+                        return ImageExtractor.getInstance(getContext()).proccessOtherPage(getPath());
+
                     }
                 };
             }
@@ -174,7 +170,7 @@ public class ImagePageFragment extends Fragment {
         LoaderManager.getInstance(getActivity()).initLoader(getPath().hashCode(), null, callback).forceLoad();
     }
 
-    public void loadImageGlide2() {
+    public void loadImageGlide() {
         target = new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -241,13 +237,17 @@ public class ImagePageFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         LOG.d("loadImageGlide-onDestroyView");
-        if(submit!=null) {
-            submit.cancel(true);
-            image.recycle();
-        }
-        //LoaderManager.getInstance(getActivity()).destroyLoader(getPath().hashCode());
+//        if (submit != null) {
+//            submit.cancel(true);
+//
+//        }
+//        if (image != null) {
+//            image.recycle();
+//        }
+//        LoaderManager.getInstance(getActivity()).destroyLoader(getPath().hashCode());
 
-        //IMG.clear(getActivity(), target);
+            IMG.clear(getActivity(), target);
+
 
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         if (handler != null) {

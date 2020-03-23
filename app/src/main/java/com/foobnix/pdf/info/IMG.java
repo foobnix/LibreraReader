@@ -146,11 +146,20 @@ public class IMG {
 
     public static void clear(ImageView image) {
         LOG.d("Glide-clear", image.getContext());
-        with(image.getContext()).clear(image);
+        try {
+            with(image.getContext()).clear(image);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
     public static void clear(Context c, Target t) {
         LOG.d("Glide-clear", c);
-        with(c).clear(t);
+        try {
+            with(c).clear(t);
+        }catch (Exception e){
+            LOG.e(e);
+        }
+
     }
 
     public static void clearDiscCache() {

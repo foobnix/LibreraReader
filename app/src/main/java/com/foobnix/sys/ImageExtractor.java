@@ -329,6 +329,14 @@ public class ImageExtractor {
         return res;
     }
 
+    public Bitmap proccessOtherPage(String pageUrl) {
+        try {
+            return proccessOtherPage(PageUrl.fromString(pageUrl));
+        } catch (Exception e) {
+            return BaseExtractor.getBookCoverWithTitle("error", "", true);
+        }
+
+    }
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
