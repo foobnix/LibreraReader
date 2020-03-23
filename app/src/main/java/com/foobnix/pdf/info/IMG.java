@@ -207,21 +207,24 @@ public class IMG {
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {
         String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        //LOG.d("Glide-load-into", img.getContext());
+        LOG.d("Bitmap-test-load", path);
         IMG.with(img.getContext())
                 .asBitmap()
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .addListener(new RequestListener<Bitmap>() {
+                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .listener(new RequestListener<Bitmap>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+                        LOG.d("Bitmap-test-2","failed");
+
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         target.onResourceReady(bitmap, null);
-                       // LOG.d("Bitmap-test 2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                       LOG.d("Bitmap-test-2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         if (run != null) {
                             run.run();
@@ -229,7 +232,6 @@ public class IMG {
                         return true;
                     }
                 })
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(img);
     }
 

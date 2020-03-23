@@ -33,30 +33,50 @@ import static com.bumptech.glide.load.engine.executor.GlideExecutor.newSourceBui
 
 @GlideModule
 public class LibreraAppGlideModule extends AppGlideModule {
+
+    static Bitmap cache;
+    static String path;
+
     final static ModelLoader<String, Bitmap> modelLoader = new ModelLoader<String, Bitmap>() {
         @Nullable
         @Override
         public LoadData<Bitmap> buildLoadData(@NonNull final String s, int width, int height, @NonNull Options options) {
-            LOG.d("LibreraAppGlideModule buildLoadData", s);
 
-            return new LoadData<>(new ObjectKey(s), new DataFetcher<Bitmap>() {
+            final ObjectKey sourceKey = new ObjectKey(s);
+            LOG.d("LibreraAppGlideModule sourceKey", s, sourceKey.hashCode());
+
+
+            return new LoadData<>(sourceKey, new DataFetcher<Bitmap>() {
+                boolean isCanced = false;
+
                 @Override
                 public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
                     try {
-                       // LOG.d("LibreraAppGlideModule loadData", priority, s);
+                        if (isCanced) {
+                            return;
+                        }
+                        if(s.equals(path)){
+                            callback.onDataReady(cache);
+                            return;
+                        }
+                        LOG.d("LibreraAppGlideModule loadData", s);
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
                             callback.onDataReady(bitmap);
-                            //LOG.d("Bitmap-test-1",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-                        }else {
 
-                            callback.onDataReady( BitmapFactory.decodeStream(stream));
+                            path = s;
+                            cache = bitmap;
+
+                            LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                        } else {
+
+                            callback.onDataReady(BitmapFactory.decodeStream(stream));
                         }
                         LOG.d("LibreraAppGlideModule onDataReady", stream);
 
                     } catch (Exception e) {
-                        callback.onDataReady( ImageExtractor.messageFileBitmap("#error", ""));
+                        callback.onDataReady(ImageExtractor.messageFileBitmap("#error", ""));
                         LOG.e(e);
                     }
 
@@ -64,11 +84,16 @@ public class LibreraAppGlideModule extends AppGlideModule {
 
                 @Override
                 public void cleanup() {
+                    isCanced = true;
+                    LOG.d("LibreraAppGlideModule cleanup", s);
+
 
                 }
 
                 @Override
                 public void cancel() {
+                    isCanced = true;
+                    LOG.d("LibreraAppGlideModule cancel", s);
 
                 }
 
