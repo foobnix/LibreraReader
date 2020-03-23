@@ -200,7 +200,9 @@ public class RecentBooksWidget extends AppWidgetProvider {
                         remoteViews.addView(R.id.linearLayout, v);
 
                         //for (int widgetId : appWidgetIds) {
-                        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                        if(appWidgetManager!=null) {
+                            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                        }
                         //}
 
                     }

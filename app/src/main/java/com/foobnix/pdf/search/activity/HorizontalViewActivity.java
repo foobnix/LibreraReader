@@ -449,7 +449,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 
-        viewPager = (VerticalViewPager) findViewById(R.id.pager);
+        viewPager = (VerticalViewPager) findViewById(R.id.pager2);
 
         parentParent = findViewById(R.id.parentParent);
         pannelBookTitle = findViewById(R.id.pannelBookTitle);
