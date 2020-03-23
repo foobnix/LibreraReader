@@ -596,5 +596,6 @@
    <string name="new_file">新文件</string>
    <string name="paste_or_type_text_in_here">在此處粘貼或鍵入文本</string>
    <string name="go_to_the_folder">轉到文件夾</string>
-   <string name="you_should_enable_allow_battery">您應該啟用“電池”&gt;“允許後台活動”以在後台收聽</string>
+   <string name="you_should_enable_allow_battery">您應該啟用“電池”>“允許後台活動”以在後台收聽</string>
+   <string name="use_calibre_metadata">使用口徑metadata.opf</string>
 </resources>

@@ -596,5 +596,6 @@
    <string name="new_file">ไฟล์ใหม่</string>
    <string name="paste_or_type_text_in_here">วางหรือพิมพ์ข้อความที่นี่</string>
    <string name="go_to_the_folder">ไปที่โฟลเดอร์</string>
-   <string name="you_should_enable_allow_battery">คุณควรเปิดใช้งาน \"แบตเตอรี่\"&gt; \"อนุญาตกิจกรรมพื้นหลัง\" เพื่อฟังในพื้นหลัง</string>
+   <string name="you_should_enable_allow_battery">คุณควรเปิดใช้งาน \"แบตเตอรี่\"> \"อนุญาตกิจกรรมพื้นหลัง\" เพื่อฟังในพื้นหลัง</string>
+   <string name="use_calibre_metadata">ใช้ความสามารถ metadata.opf</string>
 </resources>

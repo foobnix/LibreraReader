@@ -596,5 +596,6 @@
    <string name="new_file">Novus lima</string>
    <string name="paste_or_type_text_in_here">Typus vel crustulum in text here</string>
    <string name="go_to_the_folder">Ad folder</string>
-   <string name="you_should_enable_allow_battery">Ut possimus \"pugna\"&gt; &lt;font actionem patietur \"background audire</string>
+   <string name="you_should_enable_allow_battery"><![CDATA[Ut possimus \"pugna\"> <font actionem patietur \"background audire]]></string>
+   <string name="use_calibre_metadata">INGENIUM usum metadata.opf</string>
 </resources>

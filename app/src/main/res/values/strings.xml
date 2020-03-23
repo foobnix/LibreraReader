@@ -597,4 +597,5 @@
    <string name="paste_or_type_text_in_here">Paste or type text in here</string>
    <string name="go_to_the_folder">Go to Folder</string>
    <string name="you_should_enable_allow_battery">You should enable \"Battery\" > \"Allow background activity\" to listen in the background</string>
+   <string name="use_calibre_metadata">Use Calibre metadata.opf</string>
 </resources>

@@ -583,6 +583,7 @@ public class AppState {
     public boolean isSelectTexByTouch = false;
     public boolean isAppPassword;
     public boolean isLoaded = false;
+    public boolean isUseCalibreOpf = true;
 
     public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<String, String>();

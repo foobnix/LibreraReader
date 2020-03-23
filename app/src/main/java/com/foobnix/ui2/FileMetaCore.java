@@ -224,7 +224,7 @@ public class FileMetaCore {
             fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
             fileName = TxtUtils.encode1251(fileNameOriginal);
         }
-        if (CalirbeExtractor.isCalibre(unZipPath)) {
+        if (AppState.get().isUseCalibreOpf && CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
             LOG.d("isCalibre find", unZipPath);
         } else if (BookType.EPUB.is(unZipPath) || BookType.ODT.is(unZipPath)) {

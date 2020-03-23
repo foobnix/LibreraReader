@@ -596,5 +596,6 @@
    <string name="new_file">नई फ़ाइल</string>
    <string name="paste_or_type_text_in_here">यहां पेस्ट या टेक्स्ट टाइप करें</string>
    <string name="go_to_the_folder">फ़ोल्डर पर जाएं</string>
-   <string name="you_should_enable_allow_battery">आपको पृष्ठभूमि में सुनने के लिए \"बैटरी\"&gt; \"पृष्ठभूमि गतिविधि की अनुमति दें\" को सक्षम करना चाहिए</string>
+   <string name="you_should_enable_allow_battery">आपको पृष्ठभूमि में सुनने के लिए \"बैटरी\"> \"पृष्ठभूमि गतिविधि की अनुमति दें\" को सक्षम करना चाहिए</string>
+   <string name="use_calibre_metadata">कैलिबर मेटाडेटा का उपयोग करें</string>
 </resources>

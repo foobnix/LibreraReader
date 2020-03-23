@@ -1172,17 +1172,27 @@ public class PrefFragment2 extends UIFragment {
             final CheckBox isShowOnlyOriginalFileNames = new CheckBox(v.getContext());
             isShowOnlyOriginalFileNames.setText(R.string.display_original_file_names_without_metadata);
 
-            final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null, isSkipFolderWithNOMEDIA, isShowOnlyOriginalFileNames, isAuthorTitleFromMetaPDF);
+
+            final CheckBox isUseCalibreOpf = new CheckBox(v.getContext());
+            isUseCalibreOpf.setText(R.string.use_calibre_metadata);
+
+            final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null,
+                    isSkipFolderWithNOMEDIA,
+                    isShowOnlyOriginalFileNames,
+                    isAuthorTitleFromMetaPDF,
+                    isUseCalibreOpf);
 
             isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
             isAuthorTitleFromMetaPDF.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
             isShowOnlyOriginalFileNames.setChecked(AppState.get().isShowOnlyOriginalFileNames);
+            isUseCalibreOpf.setChecked(AppState.get().isUseCalibreOpf);
 
 
             final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
                 AppState.get().isSkipFolderWithNOMEDIA = isSkipFolderWithNOMEDIA.isChecked();
                 AppState.get().isAuthorTitleFromMetaPDF = isAuthorTitleFromMetaPDF.isChecked();
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
+                AppState.get().isUseCalibreOpf = isUseCalibreOpf.isChecked();
 
 
                 handler.removeCallbacksAndMessages(null);
@@ -1199,6 +1209,7 @@ public class PrefFragment2 extends UIFragment {
             isAuthorTitleFromMetaPDF.setOnCheckedChangeListener(listener);
             isSkipFolderWithNOMEDIA.setOnCheckedChangeListener(listener);
             isShowOnlyOriginalFileNames.setOnCheckedChangeListener(listener);
+            isUseCalibreOpf.setOnCheckedChangeListener(listener);
 
         });
 

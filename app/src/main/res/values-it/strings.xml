@@ -596,5 +596,6 @@
    <string name="new_file">Nuovo file</string>
    <string name="paste_or_type_text_in_here">Incolla o digita il testo qui</string>
    <string name="go_to_the_folder">Vai alla cartella</string>
-   <string name="you_should_enable_allow_battery">Dovresti abilitare \"batteria\"&gt; \"consenti attività in background\" per ascoltare in background</string>
+   <string name="you_should_enable_allow_battery">Dovresti abilitare \"batteria\"> \"consenti attività in background\" per ascoltare in background</string>
+   <string name="use_calibre_metadata">Usa calibre metadata.opf</string>
 </resources>

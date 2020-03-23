@@ -596,5 +596,6 @@
    <string name="new_file">ملف جديد</string>
    <string name="paste_or_type_text_in_here">الصق أو كتابة النص هنا</string>
    <string name="go_to_the_folder">اذهب الى الحافظة</string>
-   <string name="you_should_enable_allow_battery">يجب تمكين \"البطارية\"&gt; \"السماح بنشاط الخلفية\" للاستماع في الخلفية</string>
+   <string name="you_should_enable_allow_battery">يجب تمكين \"البطارية\"> \"السماح بنشاط الخلفية\" للاستماع في الخلفية</string>
+   <string name="use_calibre_metadata">استخدام بيانات التعريف العيار. opf</string>
 </resources>

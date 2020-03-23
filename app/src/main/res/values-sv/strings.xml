@@ -596,5 +596,6 @@
    <string name="new_file">Ny fil</string>
    <string name="paste_or_type_text_in_here">Klistra in eller skriv text här</string>
    <string name="go_to_the_folder">Gå till mappen</string>
-   <string name="you_should_enable_allow_battery">Bör du aktivera \"batteri\"&gt; \"tillåta bakgrundsaktivitet\" att lyssna i bakgrunden</string>
+   <string name="you_should_enable_allow_battery">Bör du aktivera \"batteri\"> \"tillåta bakgrundsaktivitet\" att lyssna i bakgrunden</string>
+   <string name="use_calibre_metadata">Använd kaliber metadata.opf</string>
 </resources>
