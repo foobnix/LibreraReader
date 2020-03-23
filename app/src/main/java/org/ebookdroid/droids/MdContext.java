@@ -1,7 +1,8 @@
 package org.ebookdroid.droids;
 
+import android.text.TextUtils;
+
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.hypen.HypenUtils;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class MdContext extends PdfContext {
 
     public static final String OUT_FB2_XML = "md.html";
+    static String regTEXT = "([\\w\\s/ \\ -.#:&;]+)";
 
     public static FooterNote extractMd(String inputPath, final String outputDir) throws IOException {
 
@@ -31,81 +33,48 @@ public class MdContext extends PdfContext {
         try {
             BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath)));
             StringBuilder html = new StringBuilder();
-            String line;
+
 
             HypenUtils.resetTokenizer();
             if (BookCSS.get().isAutoHypens) {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
-            boolean isBold;
-            boolean isList;
-            boolean isBlock;
-            while ((line = input.readLine()) != null) {
-                isBold = false;
-                isList = false;
-                isBlock = false;
-                if (line.trim().isEmpty()) {
-                    html.append("<empty-line/>");
+
+
+            String l;
+            String line = "";
+            while ((l = input.readLine()) != null) {
+
+
+                if (!l.trim().isEmpty()) {
+                    l = TextUtils.htmlEncode(l);
+                    l = applyPre(l);
+                    line = line + l + " ";
                     continue;
                 }
 
-                if (line.startsWith("#") || line.startsWith("**")) {
-                    isBold = true;
-                }
-                if (line.startsWith("* ")) {
-                    line = line.replace("* ", "*" + TxtUtils.NON_BREAKE_SPACE);
-                    isList = true;
-                }
-                if (line.startsWith("> ")) {
-                    line = line.replace("> ", ">" + TxtUtils.NON_BREAKE_SPACE);
-
-                    isBlock = true;
-                }
 
                 if (BookCSS.get().isAutoHypens) {
                     line = HypenUtils.applyHypnes(line);
                 }
 
                 html.append("<p>");
-
-                if (isBold) {
-                    html.append("<b>");
-                }
-                if (isList) {
-                    html.append("<small>");
-                }
-
-                if (isBlock) {
-                    html.append("<blockquote>");
-                }
-
-                html.append(line);
-
-
-                if (isBlock) {
-                    html.append("</blockquote>");
-                }
-
-                if (isList) {
-                    html.append("</small>");
-                }
-
-                if (isBold) {
-                    html.append("</b>");
-                }
-
+                html.append(applyRegexp(line));
                 html.append("</p>");
                 html.append("\n");
+                line = "";
             }
+
+            html.append(applyRegexp(line));
 
             input.close();
 
             FileOutputStream out = new FileOutputStream(file);
 
 
-            line = "<html><head></head><body style='text-align:justify;'><br/>" + html.toString() + "</body></html>";
+            String line2 = "<html><head></head><body style='text-align:justify;'><br/>" + html.toString() + "</body></html>";
 
-            out.write(line.getBytes());
+            out.write(line2.getBytes());
             out.flush();
             out.close();
         } catch (Exception e) {
@@ -114,6 +83,57 @@ public class MdContext extends PdfContext {
 
         return new FooterNote(file.getPath(), null);
     }
+
+
+    public static String ALL = "(.+)";
+    public static String all(String ignore) {return "([^"+ignore+"]+)"; }
+
+    public static String applyPre(String line){
+        if (line.startsWith("- ")) line = "<small>" + line + "</small><br/>";
+        if (line.startsWith(" - ")) line = "<small>" + line + "</small><br/>";
+
+        if (line.startsWith("* ")) line = "<small>" + line + "</small><br/>";
+        if (line.startsWith(" * ")) line = "<small>" + line + "</small><br/>";
+
+        if (line.startsWith("+ ")) line = "<small>" + line + "</small><br/>";
+        if (line.startsWith(" + ")) line = "<small>" + line + "</small><br/>";
+
+        if (line.startsWith("    ")) line = "<blockquote>" + line + "</blockquote>";
+        if (line.startsWith("&gt; ")) line = "<blockquote>" + line + "</blockquote>";
+        if (line.startsWith("&gt;&gt; ")) line = "<blockquote>" + line + "</blockquote>";
+        return  line;
+    }
+
+    public static String applyRegexp(String line) {
+        LOG.d("md-before", line);
+        line = line.replaceAll("\\*\\*" + all("\\*\\*") + "\\*\\*", "<b>$1</b>");//bold
+        line = line.replaceAll("__" + all("__") + "__", "<b>$1</b>");//bold
+
+        line = line.replaceAll("\\*" + all("\\*") + "\\*", "<em>$1</em>");//italic
+        line = line.replaceAll("_" + all("_") + "_", "<em>$1</em>");//italic
+
+
+        line = line.replaceAll("\\[" + all("\\]") + "\\]\\(" +  all("\\)") + "\\)", "<a href='$2'>$1</a>");//url
+        //line = line.replaceAll("&lt;" + ALL + "&gt;", "<a href='$1'>$1</a>");//url
+
+
+        if (line.startsWith("###")) line = "<h3>" + line.replace("#","") + "</h3>";
+        if (line.startsWith("##")) line = "<h2>" + line.replace("#","") + "</h2>";
+        if (line.startsWith("#")) line = "<h1>" + line.replace("#","") + "</h1>";
+
+        if(line.endsWith("---- ")){//-------
+            line = "<h2>" + line.replace("-","") + "</h2>";
+        }
+        if(line.endsWith("==== ")){//-------
+            line = "<h1>" + line.replace("=","") + "</h1>";
+        }
+
+        LOG.d("md-after", line);
+
+
+        return line;
+    }
+
 
     @Override
     public CodecDocument openDocumentInner(String fileName, String password) {
