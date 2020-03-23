@@ -2,7 +2,6 @@ package com.foobnix.pdf.search.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,7 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
 
+import com.BaseExtractor;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
@@ -23,8 +26,14 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.PageUrl;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.sys.ImageExtractor;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 
 public class ImagePageFragment extends Fragment {
@@ -32,13 +41,14 @@ public class ImagePageFragment extends Fragment {
     public static final String PAGE_PATH = "pagePath";
     public static final String IS_TEXTFORMAT = "isTEXT";
     public static volatile int count = 0;
+    final static ExecutorService executorService = Executors.newSingleThreadExecutor();
     int page;
     Handler handler;
-
     long lifeTime = 0;
     int loadImageId;
     boolean fistTime = true;
     SimpleTarget<Bitmap> target = null;
+    Future<?> submit;
     private PageImaveView image;
     private TextView text;
     Runnable callback = new Runnable() {
@@ -98,6 +108,73 @@ public class ImagePageFragment extends Fragment {
     }
 
     public void loadImageGlide() {
+
+        submit = executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                if (submit.isCancelled()) {
+                    LOG.d("loadImageGlide-isCancelled");
+                    return;
+                }
+                Bitmap bitmap = ImageExtractor.getInstance(getContext()).proccessOtherPage(PageUrl.fromString(getPath()));
+                if (submit.isCancelled()) {
+                    LOG.d("loadImageGlide-isCancelled");
+                    return;
+                }
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        text.setVisibility(View.GONE);
+                        if (bitmap != null && image != null) {
+                            image.addBitmap(bitmap);
+                        }
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    public void loadImageGlide3() {
+        final LoaderManager.LoaderCallbacks<Bitmap> callback = new LoaderManager.LoaderCallbacks<Bitmap>() {
+            @NonNull
+            @Override
+            public Loader<Bitmap> onCreateLoader(int id, @Nullable Bundle args) {
+                return new AsyncTaskLoader<Bitmap>(getContext()) {
+
+                    @Nullable
+                    @Override
+                    public Bitmap loadInBackground() {
+                        try {
+                            return ImageExtractor.getInstance(getContext()).proccessOtherPage(PageUrl.fromString(getPath()));
+                        } catch (Exception e) {
+                            return BaseExtractor.getBookCoverWithTitle("error", "", true);
+                        }
+                    }
+                };
+            }
+
+            @Override
+            public void onLoadFinished(@NonNull Loader<Bitmap> loader, Bitmap data) {
+                LOG.d("loadImageGlide-onLoadFinished");
+
+                text.setVisibility(View.GONE);
+                if (data != null && image != null) {
+                    image.addBitmap(data);
+                }
+            }
+
+            @Override
+            public void onLoaderReset(@NonNull Loader<Bitmap> loader) {
+                LOG.d("loadImageGlide-onLoaderReset");
+            }
+        };
+        LoaderManager.getInstance(getActivity()).initLoader(getPath().hashCode(), null, callback).forceLoad();
+    }
+
+    public void loadImageGlide2() {
         target = new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -163,24 +240,14 @@ public class ImagePageFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        LOG.d("ImagePageFragment1 onDestroyView ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
-        // ImageLoader.getInstance().cancelDisplayTaskForID(loadImageId);
-//        IMG.clear(getActivity(), target);
-
-
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
+        LOG.d("loadImageGlide-onDestroyView");
+        if(submit!=null) {
+            submit.cancel(true);
+            image.recycle();
         }
-        image = null;
+        //LoaderManager.getInstance(getActivity()).destroyLoader(getPath().hashCode());
 
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if (Build.VERSION.SDK_INT >= 17 && !getActivity().isDestroyed()) {
-            IMG.clear(getActivity(), target);
-        }
+        //IMG.clear(getActivity(), target);
 
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);
         if (handler != null) {
