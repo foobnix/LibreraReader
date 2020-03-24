@@ -63,6 +63,13 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
+
+                            if (isCanced) {
+                                LOG.d("Bitmap-test-1-cancel", bitmap,s);
+                                bitmap.recycle();
+                                return;
+                            }
+
                             callback.onDataReady(bitmap);
 
                             path = s;

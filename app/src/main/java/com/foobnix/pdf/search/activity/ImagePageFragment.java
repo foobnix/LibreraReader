@@ -171,6 +171,9 @@ public class ImagePageFragment extends Fragment {
     }
 
     public void loadImageGlide() {
+        if (image != null && image.getWidth() == 0) {
+            return;
+        }
         target = new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -200,6 +203,7 @@ public class ImagePageFragment extends Fragment {
                     @Override
                     public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         target.onResourceReady(bitmap, null);
+                        LOG.d("listener-onResourceReady", page, getActivity());
                         LOG.d("Bitmap-test-3", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         return true;
@@ -246,7 +250,7 @@ public class ImagePageFragment extends Fragment {
 //        }
 //        LoaderManager.getInstance(getActivity()).destroyLoader(getPath().hashCode());
 
-            IMG.clear(getActivity(), target);
+        IMG.clear(getActivity(), target);
 
 
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);

@@ -119,6 +119,7 @@ public class PageImaveView extends View {
         EventBus.getDefault().register(this);
         clickUtils = new ClickUtils();
         brightnessHelper = new BrightnessHelper(context);
+        setSaveEnabled(false);
     }
 
     public RectF transform(RectF origin, int number) {
