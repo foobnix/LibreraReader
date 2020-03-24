@@ -136,12 +136,12 @@ public class IMG {
 
     public static void pauseRequests(Context a) {
         LOG.d("Glide-pause", a);
-        with(a).pauseRequests();
+        //with(a).pauseRequests();
     }
 
     public static void resumeRequests(Context a) {
         LOG.d("Glide-resume", a);
-        with(a).resumeRequests();
+        //with(a).resumeRequests();
     }
 
     public static void clear(ImageView image) {

@@ -23,12 +23,12 @@ public class Safe {
     static int counter;
 
     public static void run(final Runnable action) {
-        if (action != null) {
-            action.run();
-        }
-        if (true) {
-            return;
-        }
+//        if (action != null) {
+//            action.run();
+//        }
+//        if (true) {
+//            return;
+//        }
         Glide.with(LibreraApp.context)
                 .asBitmap().load(TXT_SAFE_RUN)
                 .skipMemoryCache(true)

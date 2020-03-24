@@ -51,7 +51,7 @@ public class AppState {
     public static final String PNG = "PNG";
     public static final String JPG = "JPG";
     public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt".split(", ");
-    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
+    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
     public static final String PREF_SCROLL_MODE = "pdf, djvu";
     public static final String PREF_BOOK_MODE = "epub, mobi, fb2, azw, azw3";
