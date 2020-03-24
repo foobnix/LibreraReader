@@ -749,6 +749,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
         AppProfile.save(this);
         IMG.pauseRequests(this);
+
+        if(Dips.isEInk()) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 
     @Override
@@ -758,8 +762,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if(Dips.isEInk()) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }else{
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
         LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
 
 
