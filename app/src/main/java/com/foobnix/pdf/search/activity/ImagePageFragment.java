@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -16,12 +17,8 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
@@ -188,30 +185,8 @@ public class ImagePageFragment extends Fragment {
                 .asBitmap()
                 .load(getPath())
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .listener(new RequestListener<Bitmap>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        LOG.d("listener-onLoadFailed", page, isFirstResource);
-                        if (fistTime) {
-                            text.setVisibility(View.VISIBLE);
-                            loadImageGlide();
-                            fistTime = false;
-                        }
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
-                        target.onResourceReady(bitmap, null);
-                        LOG.d("listener-onResourceReady", page, getActivity());
-                        LOG.d("Bitmap-test-3", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-
-                        return true;
-                    }
-                })
                 .into(target);
     }
-
 
     @Override
     public void onResume() {
@@ -239,6 +214,7 @@ public class ImagePageFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+
         super.onDestroyView();
         LOG.d("loadImageGlide-onDestroyView");
 //        if (submit != null) {
@@ -250,7 +226,11 @@ public class ImagePageFragment extends Fragment {
 //        }
 //        LoaderManager.getInstance(getActivity()).destroyLoader(getPath().hashCode());
 
-        IMG.clear(getActivity(), target);
+        if (Build.VERSION.SDK_INT >= 17 && !getActivity().isDestroyed()) {
+            IMG.clear(getActivity(), target);
+        } else if (!getActivity().isFinishing()) {
+            IMG.clear(getActivity(), target);
+        }
 
 
         LOG.d("ImagePageFragment1 onDetach ", page, "Lifi Time: ", System.currentTimeMillis() - lifeTime);

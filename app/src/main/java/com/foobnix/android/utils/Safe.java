@@ -2,15 +2,13 @@ package com.foobnix.android.utils;
 
 import android.graphics.Bitmap;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import org.ebookdroid.LibreraApp;
 
@@ -29,31 +27,22 @@ public class Safe {
 //        if (true) {
 //            return;
 //        }
+
         Glide.with(LibreraApp.context)
                 .asBitmap().load(TXT_SAFE_RUN)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .priority(Priority.HIGH)
-                .listener(new RequestListener<Bitmap>() {
+                .into(new SimpleTarget<Bitmap>() {
                     @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                         if (action != null) {
                             action.run();
                         }
-                        return false;
                     }
-                }).submit();
+                });
 
 
     }
-
-
-
 
 
 }

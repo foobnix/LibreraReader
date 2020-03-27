@@ -52,6 +52,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                 @Override
                 public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
                     try {
+
                         if (isCanced) {
                             return;
                         }
@@ -63,6 +64,11 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
+                            if(bitmap==null){
+                                LOG.d("Bitmap-test-1-cancel", bitmap,s);
+                                callback.onDataReady(ImageExtractor.messageFileBitmap("#error null", ""));
+                                return;
+                            }
 
                             if (isCanced) {
                                 LOG.d("Bitmap-test-1-cancel", bitmap,s);
@@ -70,14 +76,12 @@ public class LibreraAppGlideModule extends AppGlideModule {
                                 return;
                             }
 
+                            LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                             callback.onDataReady(bitmap);
 
                             path = s;
                             cache = bitmap;
-
-                            LOG.d("Bitmap-test-1", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                         } else {
-
                             callback.onDataReady(BitmapFactory.decodeStream(stream));
                         }
                         LOG.d("LibreraAppGlideModule onDataReady", stream);

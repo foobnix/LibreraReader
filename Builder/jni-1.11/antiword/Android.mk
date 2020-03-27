@@ -1,7 +1,10 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_ARM_MODE := $(MY_ARM_MODE)
+LOCAL_CFLAGS    := $(APP_CFLAGS)
+LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
+LOCAL_ARM_MODE  := $(APP_ARM_MODE)
+
 LOCAL_MODULE  := antiword
 
 LOCAL_CFLAGS += -funwind-tables -Wl,--no-merge-exidx-entries
@@ -22,8 +25,6 @@ LOCAL_SRC_FILES := \
 	worddos.c wordlib.c wordmac.c wordole.c \
 	wordwin.c xmalloc.c xml.c
 
-
-LOCAL_CFLAGS += $(MY_O)
 
 LOCAL_LDLIBS  := -llog
 
