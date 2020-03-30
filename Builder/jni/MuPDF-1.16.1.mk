@@ -25,7 +25,9 @@ MUPDF_PATH := $(realpath $(LOCAL_PATH)/../../..)
 # --- Build a local static library for core mupdf ---
 
 include $(CLEAR_VARS)
-LOCAL_ARM_MODE := $(MY_ARM_MODE)
+LOCAL_CFLAGS    := $(APP_CFLAGS)
+LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
+LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 LOCAL_MODULE := mupdf_core
 
@@ -71,7 +73,10 @@ include $(BUILD_STATIC_LIBRARY)
 # --- Build a local static library for thirdparty libraries ---
 
 include $(CLEAR_VARS)
-LOCAL_ARM_MODE := $(MY_ARM_MODE)
+LOCAL_CFLAGS    := $(APP_CFLAGS)
+LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
+LOCAL_ARM_MODE  := $(APP_ARM_MODE)
+
 LOCAL_MODULE := mupdf_thirdparty
 
 LOCAL_CPP_EXTENSION := .cc

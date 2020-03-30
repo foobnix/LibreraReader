@@ -1390,7 +1390,7 @@ public class DragingDialogs {
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
 
-        final boolean withAnnotation = AppsConfig.PDF_DRAW_ENABLE ? withAnnotation1 : false;
+        final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() ? withAnnotation1 : false;
 
         // try {
         // int number = Integer.parseInt(AppState.get().selectedText);

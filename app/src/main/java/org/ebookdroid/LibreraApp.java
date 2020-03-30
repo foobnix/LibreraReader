@@ -18,6 +18,8 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -27,11 +29,14 @@ import java.io.StringWriter;
 public class LibreraApp extends MultiDexApplication {
 
     public static Context context;
+    public static int MUPDF_VERSION = 0;
+
 
     static {
         System.loadLibrary("mypdf");
         System.loadLibrary("mobi");
         System.loadLibrary("antiword");
+        MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
     }
 
     @Override

@@ -95,6 +95,7 @@ import com.foobnix.ui2.MyContextWrapper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.jmedeisis.draglinearlayout.DragLinearLayout;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -569,7 +570,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + AppsConfig.MUPDF_VERSION + ")";
+            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }

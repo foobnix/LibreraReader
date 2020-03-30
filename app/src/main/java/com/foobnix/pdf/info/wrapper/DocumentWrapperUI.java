@@ -77,6 +77,7 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -1936,7 +1937,7 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     editTop2.setVisibility(View.VISIBLE);
                 } else {
                     editTop2.setVisibility(View.VISIBLE);

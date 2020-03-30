@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -32,7 +33,7 @@ public class FolderContext extends PdfContext {
         }
 
         File file;
-        if (AppsConfig.MUPDF_1_16 == AppsConfig.MUPDF_VERSION) {
+        if (AppsConfig.MUPDF_1_16 == LibreraApp.MUPDF_VERSION) {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
         } else {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());

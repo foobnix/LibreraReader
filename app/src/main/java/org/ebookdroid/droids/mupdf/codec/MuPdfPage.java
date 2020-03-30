@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.AbstractCodecPage;
@@ -418,7 +419,7 @@ public class MuPdfPage extends AbstractCodecPage {
     public TextWord[][] getText() {
 
 
-        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
+        if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
             return getText_116();
         } else {
             return getText_111();

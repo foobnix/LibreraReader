@@ -22,6 +22,7 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.DocContext;
 import org.librera.LinkedJSONObject;
@@ -714,7 +715,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
                 }
             }
@@ -729,7 +730,7 @@ public class BookCSS {
             builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
                 }
             }
