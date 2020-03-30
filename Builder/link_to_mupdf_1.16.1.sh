@@ -8,7 +8,7 @@ MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
 LIBS=/home/ivan-dev/git/LibreraReader/app/src/main/jniLibs
 
-SRC=jni-$VERSION/~mupdf
+SRC=jni/~mupdf-$VERSION
 DEST=$MUPDF_ROOT/source/
 
 echo "MUPDF :" $VERSION
@@ -26,7 +26,8 @@ echo "=================="
 cd ..
 
 rm -rf  $MUPDF_JAVA/jni
-cp -rRp jni-$VERSION $MUPDF_JAVA/jni
+cp -rRp jni $MUPDF_JAVA/jni
+mv $MUPDF_JAVA/jni/Android-$VERSION.mk $MUPDF_JAVA/jni/Android.mk
 
 rm -r $LIBS
 mkdir $LIBS
