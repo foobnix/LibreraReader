@@ -29,7 +29,7 @@ import java.io.StringWriter;
 public class LibreraApp extends MultiDexApplication {
 
     public static Context context;
-    public static int MUPDF_VERSION = 0;
+    public final static int MUPDF_VERSION;
 
 
     static {

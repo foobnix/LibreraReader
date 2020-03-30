@@ -47,7 +47,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
 
 
             return new LoadData<>(sourceKey, new DataFetcher<Bitmap>() {
-                boolean isCanced = false;
+                volatile boolean isCanced = false;
 
                 @Override
                 public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super Bitmap> callback) {
@@ -56,7 +56,7 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         if (isCanced) {
                             return;
                         }
-                        if(s.equals(path)){
+                        if (s.equals(path)) {
                             callback.onDataReady(cache);
                             return;
                         }
@@ -64,14 +64,18 @@ public class LibreraAppGlideModule extends AppGlideModule {
                         final InputStream stream = ImageExtractor.getInstance(LibreraApp.context).getStream(s, null);
                         if (stream instanceof InputStreamBitmap) {
                             Bitmap bitmap = ((InputStreamBitmap) stream).getBitmap();
-                            if(bitmap==null){
-                                LOG.d("Bitmap-test-1-cancel", bitmap,s);
-                                callback.onDataReady(ImageExtractor.messageFileBitmap("#error null", ""));
-                                return;
+                            if (bitmap == null) {
+                                Thread.sleep(250);
+                                bitmap = ImageExtractor.getInstance(LibreraApp.context).proccessOtherPage(s);
+                                if (bitmap == null) {
+                                    LOG.d("Bitmap-test-1-cancel", bitmap, s);
+                                    callback.onDataReady(ImageExtractor.messageFileBitmap("#error null", ""));
+                                    return;
+                                }
                             }
 
                             if (isCanced) {
-                                LOG.d("Bitmap-test-1-cancel", bitmap,s);
+                                LOG.d("Bitmap-test-1-cancel", bitmap, s);
                                 bitmap.recycle();
                                 return;
                             }
