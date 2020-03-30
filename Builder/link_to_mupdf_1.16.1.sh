@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 #. ~/.profile
 
+# get the location of this script, we will checkout mupdf into the same directory
+BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+cd $BUILD_DIR
+
 VERSION=1.16.1
 
-MUPDF_ROOT=/home/ivan-dev/git/LibreraReader/Builder/mupdf-$VERSION
+MUPDF_ROOT=${BUILD_DIR}/mupdf-$VERSION
 MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
-LIBS=/home/ivan-dev/git/LibreraReader/app/src/main/jniLibs
+LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
 SRC=jni/~mupdf-$VERSION
 DEST=$MUPDF_ROOT/source/
