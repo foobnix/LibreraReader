@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 #. ~/.profile
 
+echo "MUPDF : 1.11"
+echo "================== "
+
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.11 mupdf-1.11
 cd mupdf-1.11
+echo "================== "
 make
+echo "================== "
 cd ..
 
 MUPDF_ROOT=/home/ivan-dev/git/LibreraReader/Builder/mupdf-1.11
@@ -37,6 +42,7 @@ cp -rp jni/~mupdf-1.11/structured-text.h $MUPDF_ROOT/include/mupdf/fitz/structur
 
 cd $MUPDF_JAVA
 ndk-build $1
-
+echo "================== "
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
+echo "================== "

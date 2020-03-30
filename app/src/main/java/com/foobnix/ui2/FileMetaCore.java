@@ -83,18 +83,22 @@ public class FileMetaCore {
 
         LOG.d("BooksService-createMetaIfNeed", path, fileMeta.getState());
 
-        if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+        try {
+            if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
+                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
-            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-            if (isSearhcBook) {
-                fileMeta.setIsSearchBook(isSearhcBook);
+                if (isSearhcBook) {
+                    fileMeta.setIsSearchBook(isSearhcBook);
+                }
+
+                AppDB.get().update(fileMeta);
+                LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
             }
-
-            AppDB.get().update(fileMeta);
-            LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
+        }catch (Exception e){
+            LOG.e(e);
         }
         return fileMeta;
 
