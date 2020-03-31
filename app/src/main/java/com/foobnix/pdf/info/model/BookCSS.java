@@ -52,7 +52,7 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String DEFAULT_FONT = "Times New Roman";
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
-    public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
     private static final Object TAG = "BookCSS";
     public static int STYLES_DOC_AND_USER = 0;
     public static int STYLES_ONLY_DOC = 1;
@@ -113,7 +113,7 @@ public class BookCSS {
     @IgnoreHashCode
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
-    public String linkColorNigths = LINKCOLOR_NIGTHS;
+    public String linkColorNigths = LINKCOLOR_NIGHTS;
 
     private String lastBookPathCache = "";
     private String trackPathCache;
@@ -225,7 +225,7 @@ public class BookCSS {
         linkColorNight = LINK_COLOR_UNIVERSAL;
 
         linkColorDays = LINKCOLOR_DAYS;
-        linkColorNigths = LINKCOLOR_NIGTHS;
+        linkColorNigths = LINKCOLOR_NIGHTS;
 
         customCSS2 = //
                 "code,pre,pre>* {white-space: pre-line;}\n" + //
@@ -761,7 +761,7 @@ public class BookCSS {
         if (meta == null) {
             meta = FileMetaCore.createMetaIfNeed(bookPath, false);
         }
-        AppSP.get().hypenLang = meta != null ? meta.getLang() : null;
+        AppSP.get().hypenLang = meta.getLang();
         LOG.d("detectLang", bookPath, AppSP.get().hypenLang);
 
         if (TxtUtils.isEmpty(AppSP.get().hypenLang)) {

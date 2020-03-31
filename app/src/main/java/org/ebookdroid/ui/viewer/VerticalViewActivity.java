@@ -103,14 +103,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bs != null) {
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
-                final boolean isTextFomat = ExtUtils.isTextFomat(bs.path);
-                AppSP.get().isCut = isTextFomat ? false : bs.sp;
+                final boolean isTextFormat = ExtUtils.isTextFomat(bs.path);
+                AppSP.get().isCut = !isTextFormat;
                 AppSP.get().isCrop = bs.cp;
                 AppSP.get().isDouble = false;
                 AppSP.get().isDoubleCoverAlone = false;
-                AppSP.get().isLocked = bs.getLock(isTextFomat);
+                AppSP.get().isLocked = bs.getLock(isTextFormat);
                 TempHolder.get().pageDelta = bs.d;
-                if (AppState.get().isCropPDF && !isTextFomat) {
+                if (AppState.get().isCropPDF && !isTextFormat) {
                     AppSP.get().isCrop = true;
                 }
             }
@@ -163,7 +163,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
                     @Override
                     public void run() {
-                        isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
+                        isInitPosition = Dips.screenHeight() > Dips.screenWidth();
                         isInitOrientation = AppState.get().orientation;
                     }
                 }, 1000);
@@ -180,7 +180,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
@@ -269,31 +269,31 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onDestroy();
     }
 
-    Dialog rotatoinDialog;
-    Boolean isInitPosistion;
+    Dialog rotationDialog;
+    Boolean isInitPosition;
     int isInitOrientation;
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         TempHolder.isActiveSpeedRead.set(false);
-        if (isInitPosistion == null) {
+        if (isInitPosition == null) {
             return;
         }
 
-        final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
+        final boolean currentPosition = Dips.screenHeight() > Dips.screenWidth();
 
         if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
 
-            if (rotatoinDialog != null) {
+            if (rotationDialog != null) {
                 try {
-                    rotatoinDialog.dismiss();
+                    rotationDialog.dismiss();
                 } catch (Exception e) {
                     LOG.e(e);
                 }
             }
 
-            if (isInitPosistion != currentPosistion) {
+            if (isInitPosition != currentPosition) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setCancelable(false);
                 dialog.setMessage(R.string.apply_a_new_screen_orientation_);
@@ -301,22 +301,22 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        doConifChange();
-                        isInitPosistion = currentPosistion;
+                        doConfigChange();
+                        isInitPosition = currentPosition;
                     }
                 });
-                rotatoinDialog = dialog.show();
-                rotatoinDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
+                rotationDialog = dialog.show();
+                rotationDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
 
             }
         } else {
-            doConifChange();
+            doConfigChange();
         }
 
         isInitOrientation = AppState.get().orientation;
     }
 
-    public void doConifChange() {
+    public void doConfigChange() {
         try {
             if (!getController().getDocumentController().isInitialized()) {
                 LOG.d("Skip onConfigurationChanged");
@@ -389,7 +389,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (AppState.get().isShowLongBackDialog) {
             CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
         } else {
-            // showInterstial();
+            //showInterstial();
             getController().getListener().onCloseActivityAdnShowInterstial();
         }
 
