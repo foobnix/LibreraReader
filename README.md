@@ -31,7 +31,7 @@ Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
 ~~~~
 
-You also need the Android NDK in version 20.0.5594570.
+You also need the Android NDK in version 20+
 Please ensure to download it using android studio and add the NDK to your PATH.
 
 ## Create a keystore
@@ -63,7 +63,7 @@ cd Builder
 ./gradlew assembleLibrera
 ~~~~
 
-## Librera Build on MuPdf 1.16.1 (Optional, alpha)
+## Librera Build on MuPdf 1.16.1 (Optional, alpha, F-Droid)
 
 ~~~~
 cd Builder
@@ -71,28 +71,27 @@ cd Builder
 ./gradlew assembleAlpha
 ~~~~
 
-## Building for Fdroid
+## Building for F-Droid
 
-If you wish to build for Fdroid (e.g. not using google services) you can run the build with
+If you wish to build for F-Droid (e.g. not using google services) you can run the build with
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.11.sh (Change the paths to mupdf and jniLibs folders)
+./link_to_mupdf_1.16.1.sh
 ./gradlew assembleFdroid
 ~~~~
 
-This build does also not need a google-services.json.
-You can also use this build with the MuPdf 1.16.1 as described before.
+F-Droid build does also not need a **google-services.json**
 
 ## Librera depends on:
 
 MuPDF - (AGPL License) https://mupdf.com/downloads/archive/
 
-* EbookDroid
+* ebookdroid
 * djvulibre
 * hpx
 * junrar
-* Universal Image Loader
+* glide
 * libmobi
 * commons-compress
 * eventbus
@@ -105,6 +104,7 @@ MuPDF - (AGPL License) https://mupdf.com/downloads/archive/
 * okio
 * rtfparserkit
 * java-mammoth
+* zip4j
 
 Librera is distributed under the GPL
 
