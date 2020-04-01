@@ -9,7 +9,9 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 **New Features and Improvements**
 
 * New image display library
-* Improvements in stability
-* Possibility to add mp3 audio file for books
+* Stability improvement
+* Add MP3 files to books
 * Sort by Author in Folder Tab
-* Many small fixes
+
+**Fixes**
+* Various all-around minor fixes
