@@ -55,6 +55,17 @@ RELEASE_KEY_PASSWORD=PASSWD
 RELEASE_KEY_ALIAS=ALIAS
 ~~~~
 
+## Create Firebase Authentication file
+
+To build with firebase support (all version but the ones for Fdroid) you need to get an
+authentication file for firebase services offered by google. Therefore please follow
+https://firebase.google.com/docs/android/setup to create your own project. You need to
+register for the packages com.foobnix.pdf.info and com.foobnix.pdf.reader.a1. This way
+you will get a google-services.json file that you have to place in the app folder of 
+the repository.
+
+For this project only Analytics is used, so a spakling plan is all you need.
+
 ## Librera Build on MuPdf 1.11 (Default)
 
 ~~~~
