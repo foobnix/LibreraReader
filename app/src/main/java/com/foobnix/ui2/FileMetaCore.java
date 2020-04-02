@@ -230,7 +230,7 @@ public class FileMetaCore {
         }
         if (AppState.get().isUseCalibreOpf && CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
-            LOG.d("isCalibre find", unZipPath);
+            LOG.d("isCalibre find", unZipPath, ebookMeta.coverImage);
         } else if (BookType.EPUB.is(unZipPath) || BookType.ODT.is(unZipPath)) {
             ebookMeta = EpubExtractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.FB2.is(unZipPath)) {

@@ -17,6 +17,7 @@ public class EbookMeta {
     private String publisher;
     private String isbn;
 
+
     public EbookMeta(String title, String author, byte[] coverImage) {
         this.title = updateString(title);
         this.author = updateString(author);
@@ -34,15 +35,17 @@ public class EbookMeta {
         this.genre = updateString(genre);
     }
 
+
+
+    public static EbookMeta Empty() {
+        return new EbookMeta(null, null, null);
+    }
+
     public String updateString(String input) {
         if (input == null) {
             return "";
         }
         return input.replace("  ", " ").trim();
-    }
-
-    public static EbookMeta Empty() {
-        return new EbookMeta(null, null, null);
     }
 
     public String getTitle() {

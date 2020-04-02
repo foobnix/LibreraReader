@@ -24,6 +24,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
@@ -262,7 +263,7 @@ public class ImageExtractor {
 
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta.getState() != FileMetaCore.STATE_FULL);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, CalirbeExtractor.isCalibre(fileMeta.getPath()) || fileMeta.getState() != FileMetaCore.STATE_FULL);
         String unZipPath = ebookMeta.getUnzipPath();
 
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
@@ -279,6 +280,7 @@ public class ImageExtractor {
 
         if (ebookMeta.coverImage != null) {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
+            LOG.d("Calibre-image", pageUrl);
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath != null && unZipPath.endsWith(".docx"))) {

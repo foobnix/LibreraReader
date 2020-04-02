@@ -3,6 +3,7 @@ package com.foobnix.ext;
 import com.BaseExtractor;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.pdf.info.ExtUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
@@ -16,16 +17,23 @@ import java.io.FileInputStream;
 public class CalirbeExtractor {
 
     public static boolean isCalibre(String path) {
+        return getCalibreOPF(path) != null;
+    }
+
+    public static File getCalibreOPF(String path) {
         File rootFolder = new File(path).getParentFile();
         File metadata = new File(rootFolder, "metadata.opf");
-        return metadata.isFile();
+        if (!metadata.isFile()) {
+            metadata = new File(rootFolder, ExtUtils.getFileName(ExtUtils.getFileNameWithoutExt(path)) + ".opf");
+        }
+        return metadata.isFile() ? metadata : null;
+
     }
 
     public static String getBookOverview(String path) {
         try {
 
-            File rootFolder = new File(path).getParentFile();
-            File metadata = new File(rootFolder, "metadata.opf");
+            File metadata = getCalibreOPF(path);
             if (!metadata.isFile()) {
                 return null;
             }
@@ -49,12 +57,17 @@ public class CalirbeExtractor {
         return "";
     }
 
+    public static String add(String value, String div, String value2) {
+        return TxtUtils.isEmpty(value) ? value2 : value + div + value2;
+    }
+
     public static EbookMeta getBookMetaInformation(String path) {
         EbookMeta meta = EbookMeta.Empty();
         try {
 
-            File rootFolder = new File(path).getParentFile();
-            File metadata = new File(rootFolder, "metadata.opf");
+
+            File metadata = getCalibreOPF(path);
+
             if (!metadata.isFile()) {
                 return null;
             }
@@ -67,21 +80,38 @@ public class CalirbeExtractor {
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
-                    if ("dc:title".equals(xpp.getName())) {
-                        meta.setTitle(xpp.nextText());
+                    if ("dc:title".equals(xpp.getName()) || "dcns:title".equals(xpp.getName())) {
+                        meta.setTitle(add(meta.getTitle(), " - ", xpp.nextText()));
                     }
 
-                    if ("dc:creator".equals(xpp.getName())) {
-                        String author = xpp.nextText();
-                        if (TxtUtils.isNotEmpty(meta.getAuthor())) {
-                            meta.setAuthor(meta.getAuthor() + ", " + author);
-                        } else {
-                            meta.setAuthor(author);
+                    if ("dc:creator".equals(xpp.getName()) || "dcns:creator".equals(xpp.getName())) {
+                        meta.setAuthor(add(meta.getAuthor(), ", ", xpp.nextText()));
+                    }
+
+                    if ("dc:date".equals(xpp.getName()) || "dcns:date".equals(xpp.getName())) {
+                        if (meta.getYear() != null && xpp.getAttributeCount() == 0) {
+                            meta.setYear(xpp.nextText());
+                        } else if (meta.getYear() == null) {
+                            meta.setYear(xpp.nextText());
                         }
                     }
 
-                    if ("dc:description".equals(xpp.getName())) {
-                        meta.setAnnotation(xpp.nextText());
+                    if ("dc:subject".equals(xpp.getName()) || "dcns:subject".equals(xpp.getName())) {
+                        meta.setGenre(add(meta.getGenre(), ", ", xpp.nextText()));
+
+                    }
+
+                    if ("dc:publisher".equals(xpp.getName()) || "dcns:publisher".equals(xpp.getName())) {
+                        meta.setPublisher(xpp.nextText());
+                    }
+
+                    if ("dc:identifier".equals(xpp.getName()) || "dcns:identifier".equals(xpp.getName())) {
+                        meta.setIsbn(add(meta.getIsbn(), ", ", xpp.nextText()));
+
+                    }
+
+                    if (meta.getLang() == null && ("dc:language".equals(xpp.getName()) || "dcns:language".equals(xpp.getName()))) {
+                        meta.setLang(xpp.nextText());
                     }
 
                     if ("meta".equals(xpp.getName())) {
@@ -126,8 +156,11 @@ public class CalirbeExtractor {
                     if ("reference".equals(xpp.getName()) && "cover".equals(xpp.getAttributeValue(null, "type"))) {
                         try {
                             String imgName = xpp.getAttributeValue(null, "href");
-                            FileInputStream fileStream = new FileInputStream(new File(rootFolder, imgName));
+                            File rootFolder = new File(path).getParentFile();
+                            final File img = new File(rootFolder, imgName);
+                            FileInputStream fileStream = new FileInputStream(img);
                             meta.coverImage = BaseExtractor.getEntryAsByte(fileStream);
+                            LOG.d("reference-img", img.getPath(), img.isFile());
                             fileStream.close();
                         } catch (Exception e) {
                             LOG.e(e);

@@ -247,6 +247,7 @@ public class BooksService extends IntentService {
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
+                TempHolder.listHash++;
 
                 AppProfile.init(this);
 
