@@ -61,13 +61,17 @@ android {
         }
     }
 
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            debuggable taskName.contains("Fdroid")
         }
         debug {
+            debuggable true
         }
 
 
@@ -78,6 +82,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 
     splits {
         abi {
@@ -310,6 +315,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -389,6 +395,8 @@ task copyApks(type: Copy) {
         //file.write versionNumber
     }
 }
+
+
 
 task incVersion() {
     doLast {
