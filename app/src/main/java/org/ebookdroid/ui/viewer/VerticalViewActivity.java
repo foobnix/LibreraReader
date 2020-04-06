@@ -104,7 +104,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
                 final boolean isTextFormat = ExtUtils.isTextFomat(bs.path);
-                AppSP.get().isCut = !isTextFormat;
+                AppSP.get().isCut = isTextFormat ? false : bs.sp; //important!!!
                 AppSP.get().isCrop = bs.cp;
                 AppSP.get().isDouble = false;
                 AppSP.get().isDoubleCoverAlone = false;
