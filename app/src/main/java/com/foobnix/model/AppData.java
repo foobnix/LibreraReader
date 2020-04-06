@@ -195,7 +195,7 @@ public class AppData {
 
     }
 
-    public synchronized List<FileMeta> getAllRecent() {
+    public  List<FileMeta> getAllRecent() {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
         Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
 
@@ -222,7 +222,7 @@ public class AppData {
         return res;
     }
 
-    public synchronized List<SimpleMeta> getAllExcluded() {
+    public List<SimpleMeta> getAllExcluded() {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
     }
 

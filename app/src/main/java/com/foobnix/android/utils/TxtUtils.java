@@ -1149,7 +1149,6 @@ public class TxtUtils {
         return txt == null || txt.trim().length() == 0;
     }
 
-` `
     public static boolean isNotEmpty(String txt) {
         return !isEmpty(txt);
     }
