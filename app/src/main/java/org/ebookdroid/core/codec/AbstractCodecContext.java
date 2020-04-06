@@ -93,7 +93,7 @@ public abstract class AbstractCodecContext implements CodecContext {
             return openDocumentInnerCanceled(fileNameOriginal, password);
         }
 
-        CacheZipUtils.cacheLock.lock();
+        CacheZipUtils.cacheLock2.lock();
         CacheZipUtils.createAllCacheDirs();
         try {
             String fileName = CacheZipUtils.extracIfNeed(fileNameOriginal, CacheDir.ZipApp).unZipPath;
@@ -110,7 +110,7 @@ public abstract class AbstractCodecContext implements CodecContext {
                 return null;
             }
         } finally {
-            CacheZipUtils.cacheLock.unlock();
+            CacheZipUtils.cacheLock2.unlock();
         }
 
     }

@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
@@ -102,20 +103,24 @@ public class RecentBooksWidget extends AppWidgetProvider {
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        for (int widgetId : appWidgetIds) {
-            RemoteViews remoteViews = null;
-            if (Build.VERSION.SDK_INT >= 16 && AppState.get().widgetType == AppState.WIDGET_GRID) {
-                remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_grid);
-                // remoteViews.setInt(R.id.gridView1, "setColumnWidth", 100);
-                updateGrid(remoteViews, appWidgetManager, widgetId);
+        try {
+            for (int widgetId : appWidgetIds) {
+                RemoteViews remoteViews = null;
+                if (Build.VERSION.SDK_INT >= 16 && AppState.get().widgetType == AppState.WIDGET_GRID) {
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_grid);
+                    // remoteViews.setInt(R.id.gridView1, "setColumnWidth", 100);
+                    updateGrid(remoteViews, appWidgetManager, widgetId);
 
 
-                appWidgetManager.updateAppWidget(widgetId, remoteViews);
-            } else {
-                remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_list);
-                updateList(remoteViews, appWidgetManager, widgetId);
+                    appWidgetManager.updateAppWidget(widgetId, remoteViews);
+                } else {
+                    remoteViews = new RemoteViews(context.getPackageName(), R.layout.recent_images_widget_list);
+                    updateList(remoteViews, appWidgetManager, widgetId);
+                }
+
             }
-
+        }catch (Exception e){
+            LOG.e(e);
         }
     }
 

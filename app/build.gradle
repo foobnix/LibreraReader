@@ -2,17 +2,21 @@ apply plugin: 'com.android.application'
 
 def taskName=getGradle().getStartParameter().getTaskRequests().toString();
 
+
+ext {
+    FDroidCodeNumber = 3704
+    FDroidVersionNumber = "8.3.36"
+}
+
 println "taskName: " + taskName
+
 ext {
     if(!taskName.contains("Fdroid")) {
         codeNumber = Integer.parseInt(appCodeNumber)
         versionNumber = appVersionNumberBase + "." + appVersionNumberIndex
-        db = Integer.parseInt(appDB)
-
     }else{
-        codeNumber = 3704
-        versionNumber = "8.3.33"
-        db = 8
+        codeNumber = FDroidCodeNumber
+        versionNumber = FDroidVersionNumber
     }
 
     println ""

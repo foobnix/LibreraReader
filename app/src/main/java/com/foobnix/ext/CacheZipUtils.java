@@ -34,6 +34,7 @@ import java.util.zip.ZipOutputStream;
 
 public class CacheZipUtils {
     public static final Lock cacheLock = new ReentrantLock();
+    public static final Lock cacheLock2 = new ReentrantLock();
     private static final int BUFFER_SIZE = 16 * 1024;
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
