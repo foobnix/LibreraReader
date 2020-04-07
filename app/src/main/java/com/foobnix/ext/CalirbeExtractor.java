@@ -118,12 +118,22 @@ public class CalirbeExtractor {
                         String attrName = xpp.getAttributeValue(null, "name");
                         String attrContent = xpp.getAttributeValue(null, "content");
 
-                        if ("calibre:series".equals(attrName)) {
-                            meta.setSequence(attrContent.replace(",", ""));
-                        }
+                        if(TxtUtils.isNotEmpty(attrContent)) {
+                            if ("calibre:series".equals(attrName)) {
+                                meta.setSequence(attrContent.replace(",", ""));
+                            }
 
-                        if ("calibre:series_index".equals(attrName)) {
-                            meta.setsIndex(Integer.parseInt(attrContent));
+                            if ("calibre:series_index".equals(attrName)) {
+                                try {
+                                    if (attrContent.contains(".")) {
+                                        meta.setsIndex((int) Float.parseFloat(attrContent));
+                                    } else {
+                                        meta.setsIndex(Integer.parseInt(attrContent));
+                                    }
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
+                            }
                         }
 
                         if ("calibre:user_metadata:#genre".equals(attrName)) {

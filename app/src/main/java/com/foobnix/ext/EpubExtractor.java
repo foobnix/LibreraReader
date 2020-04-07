@@ -484,7 +484,7 @@ public class EpubExtractor extends BaseExtractor {
             EbookMeta ebookMeta = new EbookMeta(title, author, series, allGenres.replaceAll(",$", ""));
             try {
                 if (number != null) {
-                    number = number.replace(".0", "");
+                    //number = number.replace(".0", "");
                     if (number.contains(".")) {
                         ebookMeta.setsIndex((int) Float.parseFloat(number));
                     } else {
