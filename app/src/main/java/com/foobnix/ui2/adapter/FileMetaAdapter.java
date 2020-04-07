@@ -45,7 +45,6 @@ import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppDB.SEARCH_IN;
 import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.AppRecycleAdapter;
-import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
@@ -221,9 +220,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             bindFileMetaView(holder, position);
 
             boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
-            if (needRefresh) {
-                FileMetaCore.reUpdateIfNeed(fileMeta);
-            }
+//            if (needRefresh) {
+//                FileMetaCore.reUpdateIfNeed(fileMeta);
+//            }
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
 
 

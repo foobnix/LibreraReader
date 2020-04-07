@@ -115,9 +115,9 @@ public class MuPdfDocument extends AbstractCodecDocument {
 
     private static int getPageCountWithException(final long handle, int w, int h, int size) {
         final int count = getPageCountSafe(handle, w, h, Dips.spToPx(size));
-        if (count == 0) {
-            throw new RuntimeException("Document is corrupted");
-        }
+//        if (count == 0) {
+//            throw new RuntimeException("Document is corrupted");
+//        }
         return count;
     }
 
