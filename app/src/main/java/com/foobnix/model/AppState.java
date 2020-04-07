@@ -125,7 +125,7 @@ public class AppState {
                     "'*[?!:;–|—|―]':'.' , " +//
                     "'it’s':'it is' , " +//
                     "'#bla':'bla disabled' , " +//
-                    "'*(L|l)ib.':'$1ibréra'}";//
+                    "'*(L|l)ibre.':'$1ibréra'}";//
     public static final String TTS_PUNCUATIONS = ".;:!?";
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
