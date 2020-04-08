@@ -119,7 +119,19 @@ public class CacheZipUtils {
         }
     }
 
+    static Pair<Boolean, String> cacheRes;
+    static String cacheFile;
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
+        if(file.equals(cacheFile)){
+            LOG.d("isSingleAndSupportEntry-cache", file);
+            return cacheRes;
+        }
+        final Pair<Boolean, String> res = isSingleAndSupportEntryInner(file);
+        cacheFile = file;
+        cacheRes = res;
+        return res;
+    }
+    public static Pair<Boolean, String> isSingleAndSupportEntryInner(String file) {
         try {
             LOG.d("isSingleAndSupportEntry 1", file);
             if(!CbzCbrExtractor.isZip(file)){
