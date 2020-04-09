@@ -73,7 +73,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            debuggable taskName.contains("Fdroid")
+            debuggable false
         }
         debug {
             debuggable true
