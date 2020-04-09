@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
@@ -36,7 +37,17 @@ import java.util.List;
 
 public class Views {
 
-    public static final Handler handler =  new Handler(Looper.getMainLooper());
+    public static boolean isDestroyedActivity(Activity a) {
+        if (a == null || a.isFinishing()) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT >= 17 && a.isDestroyed()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static final Handler handler = new Handler(Looper.getMainLooper());
 
     public static void visibleInBeta(View view) {
         view.setVisibility(BuildConfig.IS_BETA ? View.VISIBLE : View.GONE);
@@ -183,8 +194,9 @@ public class Views {
     public static TextView newText(Context c, String text) {
         TextView t = new TextView(c);
         t.setText(text);
-        return  t;
+        return t;
     }
+
     public static FrameLayout newFrameLayout(Context c, View view) {
         FrameLayout t = new FrameLayout(c);
         t.addView(view);

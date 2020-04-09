@@ -53,6 +53,9 @@ public class SearchCore {
     }
 
     public static void search(List<FileMeta> items, File root, List<String> exts) {
+        if (root == null || root.getPath() == null) {
+            return;
+        }
         if (root.getPath().equals("/")) {
             LOG.d("Skip search in root");
             return;

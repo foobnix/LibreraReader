@@ -139,9 +139,9 @@ public class CacheZipUtils {
             }
 
             net.lingala.zip4j.ZipFile zp = new net.lingala.zip4j.ZipFile(file);
-            if(!zp.isValidZipFile()){
-                return new Pair<Boolean, String>(false, "");
-            }
+//            if(!zp.isValidZipFile()){
+//                return new Pair<Boolean, String>(false, "");
+//            }
             List<FileHeader> fileHeaders = zp.getFileHeaders();
 
             int count = 0;

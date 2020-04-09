@@ -9,7 +9,6 @@ import net.lingala.zip4j.model.FileHeader;
 import net.lingala.zip4j.model.LocalFileHeader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -36,10 +35,11 @@ public class ZipArchiveInputStream extends InputStream {
 
 
             zp = new ZipFile(file);
-            if (!zp.isValidZipFile()) {
-                zis = new ZipInputStream(new FileInputStream(file));
-                return;
-            }
+
+//            if (!zp.isValidZipFile()) {
+//                zis = new ZipInputStream(new FileInputStream(file));
+//                return;
+//            }
 
 
             final List<FileHeader> fileHeaders = zp.getFileHeaders();
