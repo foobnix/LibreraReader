@@ -93,8 +93,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     private ResultResponse<ImageView> onGridOrList;
 
 
-
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
@@ -220,9 +218,13 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             bindFileMetaView(holder, position);
 
             boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
-//            if (needRefresh) {
-//                FileMetaCore.reUpdateIfNeed(fileMeta);
-//            }
+
+            if (needRefresh) {
+                //FileMetaCore.reUpdateIfNeed(fileMeta);
+                // TempHolder.listHash++;
+                //AppDB.get().getDao().detach(fileMeta);
+            }
+
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
 
 

@@ -247,7 +247,8 @@ public class BooksService extends IntentService {
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
-                TempHolder.listHash++;
+                //TempHolder.listHash++;
+                //AppDB.get().getDao().detachAll();
 
                 AppProfile.init(this);
 
@@ -357,6 +358,7 @@ public class BooksService extends IntentService {
                     LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
+
 
                 sendFinishMessage();
 

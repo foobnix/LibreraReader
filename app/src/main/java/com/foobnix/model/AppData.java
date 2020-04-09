@@ -9,6 +9,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -214,6 +215,10 @@ public class AppData {
             if (res.contains(meta)) {
                 continue;
             }
+            if(TxtUtils.isEmpty(meta.getTitle())){
+                FileMetaCore.reUpdateIfNeed(meta);
+            }
+
             meta.setIsRecentTime(s.time);
             res.add(meta);
         }
