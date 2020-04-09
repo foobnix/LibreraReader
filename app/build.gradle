@@ -381,7 +381,7 @@ task copyApks(type: Copy) {
     if (project.hasProperty('beta')) {
         println "My Task: [copy apks]"
 
-        delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
 
         android.applicationVariants.all { variant ->
             variant.outputs.all {
@@ -391,12 +391,12 @@ task copyApks(type: Copy) {
                         "build/outputs/apk/${flavor}/release/"
                 )
                 include "*.apk"
-                into file("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/")
+                into file("/home/dev/Dropbox/FREE_PDF_APK/testing/")
             }
         }
 
 
-        //File file = new File('/home/ivan-dev/Dropbox/FREE_PDF_APK/testing/version.txt')
+        //File file = new File('/home/dev/Dropbox/FREE_PDF_APK/testing/version.txt')
         //file.write versionNumber
     }
 }
