@@ -23,7 +23,6 @@ cd ../
 ./gradlew assembleProRelease
 ./gradlew assembleBetaRelease
 
-
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 

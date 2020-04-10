@@ -26,6 +26,7 @@ ext {
 }
 
 android {
+    buildToolsVersion '29.0.2'
     compileSdkVersion 29
     ndkVersion "21.0.6113669"
     defaultConfig {
@@ -71,7 +72,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             debuggable false
         }
@@ -81,7 +81,7 @@ android {
 
 
     }
-    buildToolsVersion '29.0.2'
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
