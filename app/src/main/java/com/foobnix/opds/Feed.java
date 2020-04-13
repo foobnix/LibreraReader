@@ -17,11 +17,17 @@ public class Feed {
 
     public boolean isNeedLoginPassword;
 
-    public Feed(List<Entry> entries) {
+    public String homeUrl;
+
+
+
+    public Feed(String homeUrl, List<Entry> entries) {
+        this.homeUrl = homeUrl;
         this.entries = entries;
     }
 
-    public Feed() {
+    public Feed(String homeUrl) {
+        this.homeUrl  = homeUrl;
 
     }
 

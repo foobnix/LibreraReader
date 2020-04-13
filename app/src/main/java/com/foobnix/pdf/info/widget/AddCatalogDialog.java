@@ -29,12 +29,16 @@ import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Feed;
 import com.foobnix.opds.Hrefs;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.LibreraApp;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AddCatalogDialog {
 
@@ -102,7 +106,7 @@ public class AddCatalogDialog {
                 TempHolder.get().login = l;
                 TempHolder.get().password = p;
                 sp.edit().putString(Uri.parse(url).getHost(), l + TxtUtils.TTS_PAUSE + p).commit();
-                LOG.d("showDialogLogin SAVE", Uri.parse(url).getHost(),url);
+                LOG.d("showDialogLogin SAVE", Uri.parse(url).getHost(), url);
 
                 infoDialog.dismiss();
                 onRefresh.run();
@@ -225,6 +229,17 @@ public class AddCatalogDialog {
                 asyncTask = new AsyncTask() {
                     @Override
                     protected Object doInBackground(Object... params) {
+                        List<String> suffixes = Arrays.asList("", "/opds", ":8080", ":8080/opds");
+                        for (String suffix : suffixes) {
+                            final String uri = TxtUtils.replaceLast(feedUrl, "/", "") + suffix;
+                            LOG.d("OPDS-uri", uri);
+                            Feed feed = com.foobnix.opds.OPDS.getFeed(uri, a);
+                            if (feed != null && !feed.entries.isEmpty()) {
+                                LOG.d("OPDS-uri-success", uri);
+                                a.runOnUiThread(() -> url.setText(uri));
+                                return feed;
+                            }
+                        }
                         return com.foobnix.opds.OPDS.getFeed(feedUrl, a);
                     }
 
@@ -233,7 +248,6 @@ public class AddCatalogDialog {
                         MyProgressBar.setVisibility(View.VISIBLE);
                         image.setVisibility(View.GONE);
                     }
-
 
 
                     @Override
@@ -267,10 +281,10 @@ public class AddCatalogDialog {
 
                             if (feed.icon != null) {
                                 image.setVisibility(View.VISIBLE);
-                                feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
+                                feed.icon = Hrefs.fixHref(feed.icon, feed.homeUrl);
                                 image.setTag(feed.icon);
-                                //ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
-                                Glide.with(LibreraApp.context).load(feed.icon).into(image);
+                                LOG.d("feed.icon",feed.icon);
+                                IMG.with(a).load(feed.icon).into(image);
                             } else {
                                 image.setTag("assets://opds/web.png");
                             }

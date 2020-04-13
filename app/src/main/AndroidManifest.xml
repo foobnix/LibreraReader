@@ -99,6 +99,8 @@
                 <data android:mimeType="application/x-rtf" />
                 <data android:mimeType="application/azw" />
                 <data android:mimeType="application/azw3" />
+                <data android:mimeType="application/x-mobi8-ebook" />
+                <data android:mimeType="application/x-kindle-application" />
                 <data android:mimeType="application/x-mimearchive" />
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
