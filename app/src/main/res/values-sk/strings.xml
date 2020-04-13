@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Prejdite do priečinka</string>
    <string name="you_should_enable_allow_battery">Mali by ste povoliť „batériu“> „povoliť aktivitu na pozadí“ na pozadí</string>
    <string name="use_calibre_metadata">Použiť kaliber metadata.opf</string>
+   <string name="no_title">Bez názvu</string>
 </resources>

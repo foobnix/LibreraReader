@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">به پوشه بروید</string>
    <string name="you_should_enable_allow_battery">شما باید \"باتری\"> \"فعالیت پس زمینه\" را فعال کنید تا در پس زمینه گوش کند</string>
    <string name="use_calibre_metadata">از metadata.opf کالیبر استفاده کنید</string>
+   <string name="no_title">بدون عنوان</string>
 </resources>

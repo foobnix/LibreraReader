@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Đi đến thư mục</string>
    <string name="you_should_enable_allow_battery">Bạn nên bật \"pin\"> \"cho phép hoạt động nền\" để nghe trong nền</string>
    <string name="use_calibre_metadata">Sử dụng siêu dữ liệu tầm cỡ.opf</string>
+   <string name="no_title">Không tiêu đề</string>
 </resources>

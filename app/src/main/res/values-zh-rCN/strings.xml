@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">转到文件夹</string>
    <string name="you_should_enable_allow_battery">您应该启用“电池”>“允许后台活动”以在后台收听</string>
    <string name="use_calibre_metadata">使用口径metadata.opf</string>
+   <string name="no_title">无题</string>
 </resources>

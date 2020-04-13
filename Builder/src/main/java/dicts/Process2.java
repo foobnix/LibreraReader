@@ -12,8 +12,8 @@ public class Process2 {
     public static void main(final String[] args) throws Exception {
 
         System.out.println("hello");
-        String file = "/home/ivan-dev/Downloads/replaces/db/odict/zalizniak.txt";
-        String outFile = "/home/ivan-dev/Downloads/replaces/db/odict/Librera_Словарь_Ударений_[odict.ru].txt";
+        String file = "/home/dev/Downloads/replaces/db/odict/zalizniak.txt";
+        String outFile = "/home/dev/Downloads/replaces/db/odict/Librera_Словарь_Ударений_[odict.ru].txt";
 
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file), "Windows-1251"));

@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Перейти до папки</string>
    <string name="you_should_enable_allow_battery">Ви повинні включити \"акумулятор\"> \"дозволити фоновій активності\" слухати у фоновому режимі</string>
    <string name="use_calibre_metadata">Використовувати калібрування метаданих.opf</string>
+   <string name="no_title">Без назви</string>
 </resources>

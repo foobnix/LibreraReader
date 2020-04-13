@@ -622,7 +622,11 @@ public class PrefFragment2 extends UIFragment {
         });
 
         final TextView tapPositionTop = (TextView) inflate.findViewById(R.id.tapPositionTop);
-        tapPositionTop.setText(AppState.get().tapPositionTop ? R.string.top : R.string.bottom);
+
+        String tabText = AppState.get().tapPositionTop ? getString(R.string.top) : getString(R.string.bottom);
+        tabText += AppState.get().tabWithNames ? "" : " - " + getString(R.string.no_title);
+        tapPositionTop.setText(tabText);
+
         TxtUtils.underlineTextView(tapPositionTop);
 
         tapPositionTop.setOnClickListener(v -> {
@@ -633,6 +637,7 @@ public class PrefFragment2 extends UIFragment {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     AppState.get().tapPositionTop = true;
+                    AppState.get().tabWithNames = true;
                     onTheme();
                     return false;
                 }
@@ -643,6 +648,29 @@ public class PrefFragment2 extends UIFragment {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     AppState.get().tapPositionTop = false;
+                    AppState.get().tabWithNames = true;
+                    onTheme();
+                    return false;
+                }
+            });
+
+            popup.getMenu().add(getString(R.string.top) + " - " + getString(R.string.no_title)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AppState.get().tapPositionTop = true;
+                    AppState.get().tabWithNames = false;
+                    onTheme();
+                    return false;
+                }
+            });
+
+            popup.getMenu().add(getString(R.string.bottom) + " - " + getString(R.string.no_title)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AppState.get().tapPositionTop = false;
+                    AppState.get().tabWithNames = false;
                     onTheme();
                     return false;
                 }

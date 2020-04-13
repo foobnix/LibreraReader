@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Vai alla cartella</string>
    <string name="you_should_enable_allow_battery">Dovresti abilitare \"batteria\"> \"consenti attività in background\" per ascoltare in background</string>
    <string name="use_calibre_metadata">Usa calibre metadata.opf</string>
+   <string name="no_title">Senza titolo</string>
 </resources>

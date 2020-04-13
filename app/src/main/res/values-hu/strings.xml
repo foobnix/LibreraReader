@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Menjen a mappába</string>
    <string name="you_should_enable_allow_battery">Engedélyeznie kell az \"akkumulátor\"> \"engedélyeznie kell a háttértevékenységet\" lehetőséget, hogy meghallgassa a háttérben</string>
    <string name="use_calibre_metadata">Használja a kaliberű metadata.opf fájlt</string>
+   <string name="no_title">Nincs cím</string>
 </resources>

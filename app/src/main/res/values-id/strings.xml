@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Buka folder</string>
    <string name="you_should_enable_allow_battery">Anda harus mengaktifkan \"baterai\"> \"izinkan aktivitas latar belakang\" untuk mendengarkan di latar belakang</string>
    <string name="use_calibre_metadata">Gunakan kaliber metadata.opf</string>
+   <string name="no_title">Tanpa judul</string>
 </resources>

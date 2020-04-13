@@ -316,6 +316,7 @@ public class AppState {
     // 25 - 25%
     // persent
     public boolean tapPositionTop = true;
+    public boolean tabWithNames = true;
     public long fontExtractTime = 0;
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
     public int nextScreenScrollMyValue = 15;

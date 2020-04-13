@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">轉到文件夾</string>
    <string name="you_should_enable_allow_battery">您應該啟用“電池”>“允許後台活動”以在後台收聽</string>
    <string name="use_calibre_metadata">使用口徑metadata.opf</string>
+   <string name="no_title">無題</string>
 </resources>

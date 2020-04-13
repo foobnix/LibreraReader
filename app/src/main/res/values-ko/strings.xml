@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">폴더로 이동</string>
    <string name="you_should_enable_allow_battery">\"배터리\"> \"배경 활동 허용\"을 활성화하여 백그라운드에서들을 수 있습니다.</string>
    <string name="use_calibre_metadata">구경 메타 데이터를 사용하십시오.</string>
+   <string name="no_title">제목 없음</string>
 </resources>

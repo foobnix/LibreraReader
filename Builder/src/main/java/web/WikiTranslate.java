@@ -21,7 +21,7 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
-    final static String HOME = "/home/ivan-dev/git/LibreraReader";
+    final static String HOME = "/home/dev/git/LibreraReader";
 
     public static void main(String[] args) throws Exception {
 

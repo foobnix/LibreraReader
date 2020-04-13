@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Gehe in den Ordner</string>
    <string name="you_should_enable_allow_battery">Sie sollten \"Batterie\"> \"Hintergrundaktivität zulassen\" aktivieren, um im Hintergrund zu hören</string>
    <string name="use_calibre_metadata">Verwenden Sie das Kaliber metadata.opf</string>
+   <string name="no_title">Kein Titel</string>
 </resources>

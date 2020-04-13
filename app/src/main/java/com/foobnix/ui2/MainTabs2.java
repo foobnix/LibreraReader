@@ -585,7 +585,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
-        if (!AppState.get().tapPositionTop) {
+        if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
             imageMenu.setVisibility(View.GONE);
             indicator.setDividerColors(Color.TRANSPARENT);
             indicator.setSelectedIndicatorColors(Color.TRANSPARENT);

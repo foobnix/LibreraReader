@@ -243,7 +243,15 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
+        if (AppState.get().tabWithNames) {
+            textView.setPadding(padding, padding, padding, padding);
+        } else {
+            if (myPOS == POS_HORIZONTAL) {
+                textView.setPadding((int) (padding * 1.6), padding, padding, padding);
+            } else {
+                textView.setPadding(padding, (int) (padding * 1.5), padding, 0);
+            }
+        }
 
         return textView;
     }
@@ -279,7 +287,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             if (tabTitleView != null) {
-                tabTitleView.setText(adapter.getPageTitle(i));
+                if (AppState.get().tabWithNames) {
+                    tabTitleView.setText(adapter.getPageTitle(i));
+                } else {
+                    tabTitleView.setText("");
+                }
                 // TintUtil.addTextView(tabTitleView);
 
                 Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
@@ -290,7 +302,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 }
 
+
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
+
 
                 if (AppState.get().appTheme == AppState.THEME_INK) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
@@ -303,7 +317,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setOnClickListener(tabClickListener);
 
 
-                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1));
 
             }
         }

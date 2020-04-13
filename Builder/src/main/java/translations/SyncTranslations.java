@@ -1,5 +1,8 @@
 package translations;
 
+import org.json.JSONException;
+import org.simpleframework.xml.core.Persister;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,9 +15,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-
-import org.json.JSONException;
-import org.simpleframework.xml.core.Persister;
 
 import translations.model.ResourcesModel;
 import translations.model.StringArray;
@@ -64,7 +64,7 @@ public class SyncTranslations {
         return asList;
     }
 
-    private static Config IVAN = new Config("ivan", "", "/home/ivan-dev/git/LibreraReader/app/src/main/res/");
+    private static Config IVAN = new Config("ivan", "", "/home/dev/git/LibreraReader/app/src/main/res/");
 
     // run as "SyncTranslations user_name"
     public static void main(final String[] args) throws Exception {
@@ -79,7 +79,7 @@ public class SyncTranslations {
 
         final String projectEN = project + "values/strings.xml";
 
-        final List<String> asList = getAllLangCodes("/home/ivan-dev/git/LibreraReader/app/src/main/res/");
+        final List<String> asList = getAllLangCodes("/home/dev/git/LibreraReader/app/src/main/res/");
 
         // final List<String> asList = Arrays.asList("ru");
 

@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Ga naar de map</string>
    <string name="you_should_enable_allow_battery">U moet \"batterij\"> \"achtergrondactiviteit toestaan\" inschakelen om op de achtergrond te luisteren</string>
    <string name="use_calibre_metadata">Gebruik calibre metadata.opf</string>
+   <string name="no_title">Geen titel</string>
 </resources>

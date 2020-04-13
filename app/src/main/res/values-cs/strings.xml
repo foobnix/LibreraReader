@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Přejděte do složky</string>
    <string name="you_should_enable_allow_battery">Měli byste povolit „baterii“> „povolit aktivitu na pozadí“ pro poslech na pozadí</string>
    <string name="use_calibre_metadata">Použijte ráže metadata.opf</string>
+   <string name="no_title">Bez názvu</string>
 </resources>

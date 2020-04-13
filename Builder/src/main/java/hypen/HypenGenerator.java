@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 public class HypenGenerator {
 
     public static void main(String[] args) throws IOException {
-        String path = "/home/ivan-dev/git/Hyphenator/patterns/";
+        String path = "/home/dev/git/Hyphenator/patterns/";
         StringBuilder out = new StringBuilder();
 
         for (String name : new File(path).list()) {
@@ -79,7 +79,7 @@ public class HypenGenerator {
 
         }
 
-        FileWriter fw = new FileWriter(new File("/home/ivan-dev/git/LirbiReader/Builder/src/hypen/out.txt"));
+        FileWriter fw = new FileWriter(new File("/home/dev/git/LirbiReader/Builder/src/hypen/out.txt"));
         fw.write(out.toString());
         fw.close();
         System.out.println("done");

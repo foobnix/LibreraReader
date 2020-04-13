@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">עבור לתיקיה</string>
    <string name="you_should_enable_allow_battery">עליך לאפשר ל\"סוללה \">\" לאפשר פעילות ברקע \"להאזין ברקע</string>
    <string name="use_calibre_metadata">השתמש ב metadata.opf קליבר</string>
+   <string name="no_title">ללא כותרת</string>
 </resources>

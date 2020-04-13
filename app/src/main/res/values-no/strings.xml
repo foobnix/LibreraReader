@@ -598,4 +598,5 @@
    <string name="go_to_the_folder">Gå til mappen</string>
    <string name="you_should_enable_allow_battery">Bør du aktivere \"batteri\"> \"la bakgrunnsaktivitet\" lytte i bakgrunnen</string>
    <string name="use_calibre_metadata">Bruk kaliber metadata.opf</string>
+   <string name="no_title">Uten tittel</string>
 </resources>
