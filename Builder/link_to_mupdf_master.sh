@@ -16,7 +16,8 @@ git fetch --all
 echo "=================="
 git log -n 20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 echo "=================="
-echo -e "\e[33m `git reset --hard 06aec98986c9b471a22762b3a04a9fb69c4bdcd0`"
+#reset
+#echo -e "\e[33m `git reset --hard 06aec98986c9b471a22762b3a04a9fb69c4bdcd0`"
 git log -n 1 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 echo -e "\e[39m=================="
@@ -33,7 +34,9 @@ MUPDF_JAVA=$MUPDF_ROOT/platform/java
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
 rm -rf  $MUPDF_JAVA/jni
-cp -rRp jni-master $MUPDF_JAVA/jni
+cp -rRp jni $MUPDF_JAVA/jni
+mv $MUPDF_JAVA/jni/Android-master.mk $MUPDF_JAVA/jni/Android.mk
+
 
 rm -r $LIBS
 mkdir $LIBS

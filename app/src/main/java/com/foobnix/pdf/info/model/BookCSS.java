@@ -561,6 +561,16 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+
+        if(true){
+            return "i{font-family: serif !important; " +
+                    "display:block !important;" +
+                    "font-weight:normal !important;" +
+                    "padding: 0 !important;" +
+                    "text-indent: 0 !important;" +
+                    "font-style: italic font-style: italic;" +
+                    "margin:0 !important;}";
+        }
         StringBuilder builder = new StringBuilder();
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
