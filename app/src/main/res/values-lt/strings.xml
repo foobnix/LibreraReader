@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">Eikite į aplanką</string>
    <string name="you_should_enable_allow_battery">Turėtumėte įjungti „baterija“> „leisti vykdyti foninę veiklą“, kad galėtumėte klausytis fone</string>
    <string name="use_calibre_metadata">Naudoti kalibro metadata.opf</string>
-   <string name="no_title">Be pavadinimo</string>
+   <string name="icons_only">Tik piktogramos</string>
 </resources>

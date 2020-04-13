@@ -624,7 +624,7 @@ public class PrefFragment2 extends UIFragment {
         final TextView tapPositionTop = (TextView) inflate.findViewById(R.id.tapPositionTop);
 
         String tabText = AppState.get().tapPositionTop ? getString(R.string.top) : getString(R.string.bottom);
-        tabText += AppState.get().tabWithNames ? "" : " - " + getString(R.string.no_title);
+        tabText += AppState.get().tabWithNames ? "" : " - " + getString(R.string.icons_only);
         tapPositionTop.setText(tabText);
 
         TxtUtils.underlineTextView(tapPositionTop);
@@ -654,7 +654,7 @@ public class PrefFragment2 extends UIFragment {
                 }
             });
 
-            popup.getMenu().add(getString(R.string.top) + " - " + getString(R.string.no_title)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            popup.getMenu().add(getString(R.string.top) + " - " + getString(R.string.icons_only)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
@@ -665,7 +665,7 @@ public class PrefFragment2 extends UIFragment {
                 }
             });
 
-            popup.getMenu().add(getString(R.string.bottom) + " - " + getString(R.string.no_title)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            popup.getMenu().add(getString(R.string.bottom) + " - " + getString(R.string.icons_only)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

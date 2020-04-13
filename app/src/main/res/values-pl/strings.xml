@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">Przejdź do folderu</string>
    <string name="you_should_enable_allow_battery">Należy włączyć opcję „bateria”> „zezwalaj na aktywność w tle”, aby słuchać w tle</string>
    <string name="use_calibre_metadata">Użyj kaliber metadata.opf</string>
-   <string name="no_title">Bez tytułu</string>
+   <string name="icons_only">Tylko ikony</string>
 </resources>

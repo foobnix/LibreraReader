@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">फ़ोल्डर पर जाएं</string>
    <string name="you_should_enable_allow_battery">आपको पृष्ठभूमि में सुनने के लिए \"बैटरी\"> \"पृष्ठभूमि गतिविधि की अनुमति दें\" को सक्षम करना चाहिए</string>
    <string name="use_calibre_metadata">कैलिबर मेटाडेटा का उपयोग करें</string>
-   <string name="no_title">कोई शीर्षक नहीं</string>
+   <string name="icons_only">केवल आइकन</string>
 </resources>

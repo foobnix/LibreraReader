@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">Aller dans le dossier</string>
    <string name="you_should_enable_allow_battery">Vous devez activer \"batterie\"> \"autoriser l\'activité en arrière-plan\" pour écouter en arrière-plan</string>
    <string name="use_calibre_metadata">Utiliser calibre metadata.opf</string>
-   <string name="no_title">Pas de titre</string>
+   <string name="icons_only">Icônes uniquement</string>
 </resources>

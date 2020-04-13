@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">フォルダに行きます</string>
    <string name="you_should_enable_allow_battery">バックグラウンドでリッスンするには、[バッテリー]> [バックグラウンドアクティビティを許可]を有効にする必要があります</string>
    <string name="use_calibre_metadata">口径のmetadata.opfを使用してください</string>
-   <string name="no_title">無題</string>
+   <string name="icons_only">アイコンのみ</string>
 </resources>

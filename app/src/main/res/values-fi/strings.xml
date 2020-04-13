@@ -598,5 +598,5 @@
    <string name="go_to_the_folder">Mene kansioon</string>
    <string name="you_should_enable_allow_battery">Sinun pitäisi ottaa \"akku\"> \"salli taustatoiminnot\" kuunnella taustalla</string>
    <string name="use_calibre_metadata">Käytä kaliiperi metadata.opf</string>
-   <string name="no_title">Ei otsikkoa</string>
+   <string name="icons_only">Vain kuvakkeet</string>
 </resources>
