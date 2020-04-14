@@ -4,8 +4,8 @@ def taskName=getGradle().getStartParameter().getTaskRequests().toString();
 
 
 ext {
-    FDroidCodeNumber = 3730
-    FDroidVersionNumber = "8.3.40"
+    FDroidCodeNumber = 3764
+    FDroidVersionNumber = "8.3.43"
 }
 
 println "taskName: " + taskName
@@ -99,7 +99,10 @@ android {
                 include "armeabi-v7a", "arm64-v8a"
             }
 
-            if(taskName.contains("Debug") || taskName.contains("Pro")){
+            if(taskName.contains("Debug") ||
+                    taskName.contains("ProRelease") ||
+                    taskName.contains("LibreraRelease") ||
+                    taskName.contains("Pdf_classicRelease")){
                 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
             }
             universalApk taskName.contains("Fdroid") || taskName.contains("Pro")
