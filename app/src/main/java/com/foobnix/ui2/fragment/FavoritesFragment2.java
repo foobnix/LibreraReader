@@ -232,7 +232,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
         all.addAll(AppData.get().getAllFavoriteFolders());
 
 
-        final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles();
+        final List<FileMeta> allFavoriteFiles = AppData.get().getAllFavoriteFiles(true);
 
         if (TxtUtils.isListNotEmpty(allFavoriteFiles)) {
             FileMeta empy = new FileMeta();

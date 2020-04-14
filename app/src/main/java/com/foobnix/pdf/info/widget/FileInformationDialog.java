@@ -84,15 +84,38 @@ public class FileInformationDialog {
     }
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction) {
+        showFileInfoDialog(a, file, onDeleteAction, true);
+    }
 
+    public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction, boolean firstTime) {
         ADS.hideAdsTemp(a);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(a);
-
         final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
-        LOG.d("FileMeta-State", fileMeta.getState());
 
-        FileMetaCore.reUpdateIfNeed(fileMeta);
+
+        LOG.d("FileMeta-State", fileMeta.getState(),fileMeta.getTitle());
+
+
+        if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
+
+            new AsyncProgressResultToastTask(a, new ResultResponse<Boolean>() {
+                @Override
+                public boolean onResultRecive(Boolean result) {
+                    showFileInfoDialog(a, file, onDeleteAction, false);
+                    return false;
+                }
+            }) {
+                @Override
+                protected Boolean doInBackground(Object... objects) {
+                    FileMetaCore.reUpdateIfNeed(fileMeta);
+                    return true;
+                }
+            }.execute();
+            return;
+
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
 
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);

@@ -390,7 +390,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
-            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
+            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
 
             final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta();
 
@@ -418,7 +418,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             TxtUtils.underline(holder.starredName, STARRED);
 
                             adapter.getItemsList().clear();
-                            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
+                            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
                             adapter.getItemsList().addAll(allStars);
                             adapter.notifyDataSetChanged();
 

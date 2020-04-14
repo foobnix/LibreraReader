@@ -2291,7 +2291,7 @@ public class DragingDialogs {
                 recyclerView.setAdapter(recentAdapter);
                 recentAdapter.tempValue2 = FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
 
-                List<FileMeta> all = AppData.get().getAllRecent();
+                List<FileMeta> all = AppData.get().getAllRecent(false);
                 FileMeta stars = new FileMeta();
                 stars.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_STARS);
                 all.add(0, stars);

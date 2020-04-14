@@ -131,7 +131,7 @@ public class AppData {
         return res;
     }
 
-    public List<FileMeta> getAllFavoriteFiles() {
+    public List<FileMeta> getAllFavoriteFiles(boolean updateProgress) {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -152,7 +152,9 @@ public class AppData {
                 AppDB.get().update(meta);
             }
         }
-        SharedBooks.updateProgress(res, false);
+        if(updateProgress) {
+            SharedBooks.updateProgress(res, false);
+        }
         try {
             Collections.sort(res, FileMetaComparators.BY_DATE);
         } catch (Exception e) {
@@ -196,7 +198,7 @@ public class AppData {
 
     }
 
-    public  List<FileMeta> getAllRecent() {
+    public  List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
         Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
 
@@ -215,7 +217,7 @@ public class AppData {
             if (res.contains(meta)) {
                 continue;
             }
-            if(TxtUtils.isEmpty(meta.getTitle())){
+            if(updateProgress && TxtUtils.isEmpty(meta.getTitle())){
                 FileMetaCore.reUpdateIfNeed(meta);
             }
 
@@ -223,7 +225,9 @@ public class AppData {
             res.add(meta);
         }
 
-        SharedBooks.updateProgress(res, false);
+        if(updateProgress) {
+            SharedBooks.updateProgress(res, false);
+        }
         return res;
     }
 

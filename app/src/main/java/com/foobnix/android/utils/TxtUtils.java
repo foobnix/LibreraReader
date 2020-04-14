@@ -125,6 +125,7 @@ public class TxtUtils {
         txt = Uri.decode(txt);
         return txt.replace(MyPath.INTERNAL_ROOT, "...");
     }
+
     public static String lastTwoPath(String txt) {
         if (TxtUtils.isEmpty(txt)) {
             return "[]";
@@ -326,6 +327,14 @@ public class TxtUtils {
     }
 
     public static String replaceHTMLforTTS(String pageHTML) {
+        try {
+            return replaceHTMLforTTSAll(pageHTML);
+        } catch (Throwable e) {
+            return pageHTML;
+        }
+    }
+
+    public static String replaceHTMLforTTSAll(String pageHTML) {
         if (pageHTML == null) {
             return "";
         }

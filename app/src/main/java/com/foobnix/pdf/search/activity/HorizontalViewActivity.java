@@ -83,7 +83,6 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
-import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -117,7 +116,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -1252,7 +1250,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     showHideInfoToolBar();
 
-                    testScreenshots();
+
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
                     isInitOrientation = AppState.get().orientation;
@@ -1501,39 +1499,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     }
 
-    public void testScreenshots() {
-
-        if (getIntent().hasExtra("id1")) {
-            DragingDialogs.gotoPageDialog(anchor, dc);
-
-        }
-        if (getIntent().hasExtra("id2")) {
-            DragingDialogs.showContent(anchor, dc);
-        }
-        if (getIntent().hasExtra("id3")) {
-            findViewById(R.id.bookPref).performClick();
-        }
-
-        if (getIntent().hasExtra("id4")) {
-            DragingDialogs.selectTextMenu(anchor, dc, true, onRefresh);
-        }
-
-        if (getIntent().hasExtra("id5")) {
-            DragingDialogs.textToSpeachDialog(anchor, dc);
-        }
-
-        if (getIntent().hasExtra("id6")) {
-            DragingDialogs.moreBookSettings(anchor, dc, null, null);
-        }
-        if (getIntent().hasExtra("id7")) {
-            FileInformationDialog.showFileInfoDialog(dc.getActivity(), new File(dc.getBookPath()), null);
-        }
-
-        if (false) {
-            AppState.get().isEditMode = getIntent().getBooleanExtra("isEditMode", false);
-            hideShow();
-        }
-    }
 
     public void showHideHistory() {
         linkHistory.setVisibility(!dc.getLinkHistory().isEmpty() ? View.VISIBLE : View.GONE);

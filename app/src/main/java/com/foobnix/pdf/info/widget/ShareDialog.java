@@ -450,7 +450,7 @@ public class ShareDialog {
                         String tags = TagData.getTags(file.getPath());
                         TagData.saveTags(to.getPath(), tags);
 
-                        boolean isRecent = AppData.contains(AppData.get().getAllRecent(), file.getPath());
+                        boolean isRecent = AppData.contains(AppData.get().getAllRecent(false), file.getPath());
                         LOG.d("isRecent", isRecent, file.getPath());
 
                         if (isRecent) {

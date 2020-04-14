@@ -148,9 +148,9 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private void updateList(final RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
         List<FileMeta> recent = null;
         if (AppState.get().isStarsInWidget) {
-            recent = AppData.get().getAllFavoriteFiles();
+            recent = AppData.get().getAllFavoriteFiles(false);
         } else {
-            recent = AppData.get().getAllRecent();
+            recent = AppData.get().getAllRecent(false);
         }
         AppDB.removeClouds(recent);
 

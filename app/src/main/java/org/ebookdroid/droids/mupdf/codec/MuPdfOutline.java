@@ -34,7 +34,7 @@ public class MuPdfOutline {
 
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
-             String title = getTitle(outline);
+             String title = getTitle(docHandle, outline);
             final String link = getLink(outline, docHandle);
             String linkUri = getLinkUri(outline, docHandle);
             LOG.d("linkUri", linkUri, title);
@@ -72,7 +72,7 @@ public class MuPdfOutline {
         }
     }
 
-    private static native String getTitle(long outlinehandle);
+    private static native String getTitle(long dochandle, long outlinehandle);
 
     private static native String getLink(long outlinehandle, long dochandle);
 

@@ -142,7 +142,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> allRecent = AppData.get().getAllRecent();
+        List<FileMeta> allRecent = AppData.get().getAllRecent(true);
         return allRecent;
     }
 

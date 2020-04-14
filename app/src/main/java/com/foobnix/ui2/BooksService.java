@@ -310,7 +310,7 @@ public class BooksService extends IntentService {
                 }
 
 
-                itemsMeta.addAll(AppData.get().getAllFavoriteFiles());
+                itemsMeta.addAll(AppData.get().getAllFavoriteFiles(false));
                 itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
 
 

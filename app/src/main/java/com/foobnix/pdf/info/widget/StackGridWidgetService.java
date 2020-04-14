@@ -54,9 +54,9 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onDataSetChanged() {
         if (AppState.get().isStarsInWidget) {
-            recent = AppData.get().getAllFavoriteFiles();
+            recent = AppData.get().getAllFavoriteFiles(false);
         } else {
-            recent = AppData.get().getAllRecent();
+            recent = AppData.get().getAllRecent(false);
         }
         AppDB.removeClouds(recent);
     }

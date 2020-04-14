@@ -20,7 +20,7 @@ import java.util.Map;
 public class SharedBooks {
 
 
-    public static synchronized void updateProgress(List<FileMeta> list, boolean updateTime) {
+    public static void updateProgress(List<FileMeta> list, boolean updateTime) {
 
         for (FileMeta meta : list) {
             try {
