@@ -1,28 +1,31 @@
 #!/usr/bin/env bash
 
 
-
-./link_to_mupdf_1.11.sh
+### 1.16.1
+./link_to_mupdf_1.16.1.sh
 
 cd ../
 
 ./gradlew clean incVersion
 
+./gradlew assembleFdroidRelease
+./gradlew assembleAlphaRelease
 
-./gradlew assembleBetaRelease
+
+### 1.11.1
+
+cd Builder
+./link_to_mupdf_1.11.sh
+
+cd ../
 ./gradlew assembleProRelease
-
-#./gradlew lintBetaRelease assembleBetaRelease assembleProRelease
-
+./gradlew assembleBetaRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
 
+
 cd Builder
 ./remove_all.sh
 ./install_all.sh
-./clear-cache.s
-
-#dropbox stop
-#sleep 10
-#dropbox start
+./clear-cache.sh

@@ -706,10 +706,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 	if (!outline)
 		return NULL;
 
-	char linkbuf[2048];
+	char linkbuf[4048];
 	int pageNo = outline->page;
 
-	snprintf(linkbuf, 2047, "#%d", pageNo + 1);
+	snprintf(linkbuf, 4047, "#%d", pageNo + 1);
 
 	return (*env)->NewStringUTF(env, linkbuf);
 }
