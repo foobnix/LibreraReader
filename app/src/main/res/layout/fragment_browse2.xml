@@ -85,6 +85,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
