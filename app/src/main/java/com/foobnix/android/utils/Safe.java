@@ -27,6 +27,10 @@ public class Safe {
 //        if (true) {
 //            return;
 //        }
+        LOG.d("Safe-isPaused", Glide.with(LibreraApp.context).isPaused());
+        if (Glide.with(LibreraApp.context).isPaused()) {
+            Glide.with(LibreraApp.context).resumeRequestsRecursive();
+        }
 
         Glide.with(LibreraApp.context)
                 .asBitmap().load(TXT_SAFE_RUN)

@@ -125,6 +125,7 @@ android {
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274"
             ]
+            println "======== hello!!!" + this
 
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -288,9 +289,19 @@ android {
     def abiCodes = ['armeabi-v7a': 0, 'arm64-v8a': 1, 'x86': 2, 'x86_64': 3]
 
     applicationVariants.all { variant ->
+
         variant.outputs.all { output ->
+
             def flavor = variant.productFlavors[0].name.capitalize()
             def abiName = getFilter("ABI")
+            if(abiName =="armeabi-v7a" || abiName == "x86"){
+                variant.getMergedFlavor().manifestPlaceholders += [appSafeMode       : "true"]
+                println abiName + ": appSafeMode true "
+            }else{
+                variant.getMergedFlavor().manifestPlaceholders += [appSafeMode       : "false"]
+                println abiName + ": appSafeMode false"
+            }
+
             if(abiName!=null) {
                 def code = abiCodes.get(abiName, 0) + variant.versionCode
                 abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")

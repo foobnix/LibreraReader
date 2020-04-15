@@ -72,7 +72,7 @@ public class FolderContext extends PdfContext {
             String path = meta.getPath();
 
             if (new File(path).isFile()) {
-                if (ExtUtils.isImagePath(path) || BookType.TIFF.is(meta.getPath())) {
+                if (ExtUtils.isImagePath(path) || BookType.TIFF.is(path)) {
                     return true;
                 }
             }

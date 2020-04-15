@@ -19,6 +19,7 @@
 
 
     <application android:requestLegacyExternalStorage="true"
+        android:vmSafeMode="${appSafeMode}"
         android:name="org.ebookdroid.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
