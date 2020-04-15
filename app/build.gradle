@@ -4,8 +4,8 @@ def taskName=getGradle().getStartParameter().getTaskRequests().toString();
 
 
 ext {
-    FDroidCodeNumber = 3764
-    FDroidVersionNumber = "8.3.43"
+    FDroidCodeNumber = 3772
+    FDroidVersionNumber = "8.3.45"
 }
 
 println "taskName: " + taskName
@@ -113,6 +113,7 @@ android {
 
     flavorDimensions "version"
     productFlavors {
+
         beta {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
@@ -123,10 +124,9 @@ android {
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274",
+                    appSafeMode   : "true"
             ]
-            println "======== hello!!!" + this
-
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "true"
@@ -142,7 +142,8 @@ android {
                     appGdriveKey  : "",
                     admobAppId    : "",
                     admobBannerId : "",
-                    admobFullId   : ""
+                    admobFullId   : "",
+                    appSafeMode   : "true"
             ]
             buildConfigField "boolean", "IS_BETA", "true"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -160,7 +161,8 @@ android {
                     appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8769894873",
                     admobBannerId : "ca-app-pub-8347903083053959/4166397275",
-                    admobFullId   : "ca-app-pub-8347903083053959/2769081274"
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -177,7 +179,8 @@ android {
                     appGdriveKey  : "961762082517-ej9mdc7bgp7jkd6hvbfimvda6vpi5p4t.apps.googleusercontent.com",
                     admobAppId    : "",
                     admobBannerId : "",
-                    admobFullId   : ""
+                    admobFullId   : "",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -193,7 +196,8 @@ android {
                     appGdriveKey  : "961762082517-5825mr1t8duo7tlnkdr6itersmlreejq.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8457312875",
                     admobBannerId : "ca-app-pub-8347903083053959/5364245672",
-                    admobFullId   : "ca-app-pub-8347903083053959/7763820878"
+                    admobFullId   : "ca-app-pub-8347903083053959/7763820878",
+                    appSafeMode   : "true"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -211,7 +215,8 @@ android {
                     appGdriveKey  : "961762082517-3ud6u3hmjlbbpqdsqtk9md55o5jgkg41.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5153060505",
                     admobBannerId : "ca-app-pub-8347903083053959/6159730856",
-                    admobFullId   : "ca-app-pub-8347903083053959/2346153515"
+                    admobFullId   : "ca-app-pub-8347903083053959/2346153515",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -227,7 +232,8 @@ android {
                     appGdriveKey  : "961762082517-eiun09s9u6vferhd9avnkjmgs7ob9tns.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~5943988213",
                     admobBannerId : "ca-app-pub-8347903083053959/6705625294",
-                    admobFullId   : "ca-app-pub-8347903083053959/1346267659"
+                    admobFullId   : "ca-app-pub-8347903083053959/1346267659",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -243,7 +249,8 @@ android {
                     appGdriveKey  : "961762082517-kaap4rki1p1vjdcd2jk5j8o8krckm24a.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~1533135764",
                     admobBannerId : "ca-app-pub-8347903083053959/2702801102",
-                    admobFullId   : "ca-app-pub-8347903083053959/4602986382"
+                    admobFullId   : "ca-app-pub-8347903083053959/4602986382",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -259,7 +266,8 @@ android {
                     appGdriveKey  : "961762082517-p6b2kqqimju6rlp314mu56lipvq2m68r.apps.googleusercontent.com",
                     admobAppId    : "ca-app-pub-8347903083053959~8118779310",
                     admobBannerId : "ca-app-pub-8347903083053959/1553370961",
-                    admobFullId   : "ca-app-pub-8347903083053959/6163356354"
+                    admobFullId   : "ca-app-pub-8347903083053959/6163356354",
+                    appSafeMode   : "false"
             ]
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
@@ -275,7 +283,8 @@ android {
                     appGdriveKey  : "",
                     admobAppId    : "",
                     admobBannerId : "",
-                    admobFullId   : ""
+                    admobFullId   : "",
+                    appSafeMode   : "true"
             ]
             versionNameSuffix '-fdroid'
             buildConfigField "boolean", "IS_BETA", "false"
@@ -294,13 +303,15 @@ android {
 
             def flavor = variant.productFlavors[0].name.capitalize()
             def abiName = getFilter("ABI")
-            if(abiName =="armeabi-v7a" || abiName == "x86"){
-                variant.getMergedFlavor().manifestPlaceholders += [appSafeMode       : "true"]
-                println abiName + ": appSafeMode true "
-            }else{
-                variant.getMergedFlavor().manifestPlaceholders += [appSafeMode       : "false"]
-                println abiName + ": appSafeMode false"
-            }
+//            if(abiName =="armeabi-v7a"){
+//                variant.mergedFlavor.manifestPlaceholders.appSafeMode =  "true";
+//                //variant.resValue "string", "[appSafeMode]", "true"
+//                println abiName + " : appSafeMode true "
+//            }else{
+//                variant.mergedFlavor.manifestPlaceholders.appSafeMode =  "true";
+//                //variant.resValue "string", "[appSafeMode]", "false"
+//                println abiName + " : appSafeMode false"
+//            }
 
             if(abiName!=null) {
                 def code = abiCodes.get(abiName, 0) + variant.versionCode

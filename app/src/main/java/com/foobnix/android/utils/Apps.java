@@ -49,6 +49,7 @@ public class Apps {
         return "";
     }
 
+
     public static String getVersionName(Context context) {
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
