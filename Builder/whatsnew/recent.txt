@@ -1,5 +1,5 @@
-* Doc format support
-* Docx format support on Anroid 8+ devices
-* Dark theme has been improved
-* Option to change Tabs position
-* Reading-mode presets
+* Finds all books on the device
+* Bookmarks and Dictionaries
+* Night and Day Theme
+* Automatic scrolling
+* Built-in File Manager
