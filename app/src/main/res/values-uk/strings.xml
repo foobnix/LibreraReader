@@ -589,14 +589,14 @@
    <string name="next_track">Наступний трек</string>
    <string name="previous_track">Попередній трек</string>
    <string name="copied_text">Скопійований текст</string>
-   <string name="reference_mode_like_in_calibre_viewer">Довідковий режим (як у переглядачі калібру)</string>
+   <string name="reference_mode_like_in_calibre_viewer">Довідковий режим (як у Calibre)</string>
    <string name="profile_root">Корінь профілю</string>
    <string name="create_folder">Створити папку</string>
-   <string name="show_hidden">Показати приховано</string>
+   <string name="show_hidden">Показати приховані</string>
    <string name="new_file">Новий файл</string>
    <string name="paste_or_type_text_in_here">Вставте або введіть текст сюди</string>
    <string name="go_to_the_folder">Перейти до папки</string>
-   <string name="you_should_enable_allow_battery">Ви повинні включити \"акумулятор\"> \"дозволити фоновій активності\" слухати у фоновому режимі</string>
-   <string name="use_calibre_metadata">Використовувати калібрування метаданих.opf</string>
+   <string name="you_should_enable_allow_battery">Включіть \"Акумулятор\"> \"Дозволити фоновій активності\"  щоб слухати у фоновому режимі</string>
+   <string name="use_calibre_metadata">Використовувати метаданні metadata.opf</string>
    <string name="icons_only">Тільки іконки</string>
 </resources>
