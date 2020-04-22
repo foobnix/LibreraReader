@@ -53,15 +53,15 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getDataPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
-        LOG.d("OpenerActivity DISPLAY_NAME", Cursors.getValue(this, MediaStore.MediaColumns.DISPLAY_NAME));
-        LOG.d("OpenerActivity DATA", Cursors.getValue(this, MediaStore.MediaColumns.DATA));
+        LOG.d("OpenerActivity DISPLAY_NAME", getCursorValue( MediaStore.MediaColumns.DISPLAY_NAME));
+        LOG.d("OpenerActivity DATA", getCursorValue( MediaStore.MediaColumns.DATA));
 
 
         String path = getDataPath();
         File file = new File(path);
 
         if (!file.isFile()) {
-            String dataPath = Cursors.getValue(this, MediaStore.MediaColumns.DATA);
+            String dataPath = getCursorValue( MediaStore.MediaColumns.DATA);
             if (dataPath != null) {
                 file = new File(dataPath);
             }
@@ -91,7 +91,7 @@ public class OpenerActivity extends Activity {
             try {
                 BookType bookType = BookType.getByMimeType(getIntent().getType());
 
-                String name1 = Cursors.getValue(this, MediaStore.MediaColumns.DISPLAY_NAME);
+                String name1 = getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME);
                 String name2 = getDataPath();
                 String name3 = bookType != null ? bookType.getExt() : null;
 
@@ -142,6 +142,15 @@ public class OpenerActivity extends Activity {
         //FileMeta meta = FileMetaCore.createMetaIfNeed(file.getPath(), false);
         ExtUtils.openFile(this, new FileMeta(file.getPath()));
         LOG.d("OpenerActivity", "open file", file.getPath());
+    }
+
+    public String getCursorValue(String id) {
+        try {
+            return Cursors.getValue(this, id);
+        } catch (Exception e) {
+            LOG.e(e);
+            return null;
+        }
     }
 
     @Override
