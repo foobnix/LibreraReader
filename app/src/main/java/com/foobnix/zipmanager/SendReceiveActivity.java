@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -28,7 +29,7 @@ public class SendReceiveActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ProgressDialog progressDialog = MyProgressDialog.show(this,  getString(R.string.please_wait));
+        final ProgressDialog progressDialog = MyProgressDialog.show(this, getString(R.string.please_wait));
         new Thread() {
             @Override
             public void run() {
@@ -72,7 +73,9 @@ public class SendReceiveActivity extends Activity {
         LOG.d("updateIntent()-getScheme", getIntent().getScheme());
 
         if (extras != null && getIntent().getData() == null) {
-            final Object text = extras.get(Intent.EXTRA_TEXT);
+            Object res = Build.VERSION.SDK_INT >= 23 ? extras.get(Intent.EXTRA_PROCESS_TEXT) : null;
+            final Object text = res != null ? res : extras.get(Intent.EXTRA_TEXT);
+
             LOG.d("updateIntent()-text", text);
             if (text instanceof Uri) {
                 getIntent().setData((Uri) text);

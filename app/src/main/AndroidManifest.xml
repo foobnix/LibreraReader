@@ -55,18 +55,24 @@
 
         <activity
             android:name="com.foobnix.zipmanager.SendReceiveActivity"
+            android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="*/*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
 
         <activity
             android:name="com.foobnix.OpenerActivity"
+            android:exported="true"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
@@ -285,24 +291,10 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT1" />
-
-                <category android:name="android.intent.category.DEFAULT1" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.SEARCH1" />
-
                 <category android:name="android.intent.category.DEFAULT1" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND1" />
 
-                <category android:name="android.intent.category.DEFAULT1" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
         </activity>
 
         <receiver
