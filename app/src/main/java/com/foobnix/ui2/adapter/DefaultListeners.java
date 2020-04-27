@@ -154,6 +154,11 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
+                    if(AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH ){
+                        ExtUtils.openWith(a, new File(result.getPath()));
+                        return  false;
+                    }
+
                     if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
                         Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 

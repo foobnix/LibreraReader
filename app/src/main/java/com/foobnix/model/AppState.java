@@ -175,6 +175,7 @@ public class AppState {
     public final static int READING_MODE_BOOK = 2;
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
+    public final static int READING_MODE_OPEN_WITH = 5;
     public final static List<String> appDictionariesKeysTest = Arrays.asList(//
             "pdf" //
             //

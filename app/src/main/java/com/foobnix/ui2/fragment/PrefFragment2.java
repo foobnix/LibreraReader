@@ -982,6 +982,16 @@ public class PrefFragment2 extends UIFragment {
                                                                     return false;
                                                                 }
                                                             });
+                                                            final MenuItem owith = popupMenu.getMenu().add(getString(R.string.open_with));
+                                                            owith.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                                                @Override
+                                                                public boolean onMenuItemClick(final MenuItem item) {
+                                                                    AppSP.get().readingMode = AppState.READING_MODE_OPEN_WITH;
+                                                                    checkOpenWithSpinner();
+                                                                    return false;
+                                                                }
+                                                            });
                                                             popupMenu.show();
 
                                                         }
@@ -2457,6 +2467,8 @@ public class PrefFragment2 extends UIFragment {
             modId = AppState.get().nameVerticalMode;
         } else if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
             modId = getString(R.string.tag_manager);
+        }else if (AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH) {
+            modId = getString(R.string.open_with);
         }
 
         selectedOpenMode.setText(TxtUtils.underline(modId));
