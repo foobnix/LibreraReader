@@ -290,7 +290,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
             }
 
-            if (AppDB.get().isStarFolder(fileMeta.getPath())) {
+            if (fileMeta.getIsStar()!=null && fileMeta.getIsStar()) {
                 holder.starIcon.setImageResource(R.drawable.star_1);
             } else {
                 holder.starIcon.setImageResource(R.drawable.star_2);

@@ -1132,7 +1132,7 @@ fz_get_css_match_display(fz_css_match *match)
 		if (!strcmp(value->data, "list-item"))
 			return DIS_LIST_ITEM;
 		if (!strcmp(value->data, "inline-block"))
-			return node = DIS_INLINE;//DIS_INLINE_BLOCK;
+			return DIS_INLINE;//DIS_INLINE_BLOCK;
 	}
 	return DIS_INLINE;
 }
