@@ -155,6 +155,8 @@ public class DefaultListeners {
 
                 } else {
                     if(AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH ){
+                        AppData.get().addRecent(new SimpleMeta(result.getPath()));
+                        EventBus.getDefault().post(new NotifyAllFragments());
                         ExtUtils.openWith(a, new File(result.getPath()));
                         return  false;
                     }
