@@ -589,14 +589,14 @@
    <string name="next_track">Další skladba</string>
    <string name="previous_track">Předchozí skladba</string>
    <string name="copied_text">Zkopírovaný text</string>
-   <string name="reference_mode_like_in_calibre_viewer">Referenční režim (jako v prohlížeči kalibru)</string>
+   <string name="reference_mode_like_in_calibre_viewer">Režim odkazu (jako v Prohlížeči e-knih Calibre)</string>
    <string name="profile_root">Kořen profilu</string>
    <string name="create_folder">Vytvořit složku</string>
    <string name="show_hidden">Zobrazit skryté</string>
    <string name="new_file">Nový soubor</string>
    <string name="paste_or_type_text_in_here">Sem vložte nebo zadejte text</string>
    <string name="go_to_the_folder">Přejděte do složky</string>
-   <string name="you_should_enable_allow_battery">Měli byste povolit „baterii“> „povolit aktivitu na pozadí“ pro poslech na pozadí</string>
-   <string name="use_calibre_metadata">Použijte ráže metadata.opf</string>
+   <string name="you_should_enable_allow_battery">Měli byste povolit \"baterii\" > \"povolit aktivitu na pozadí\" pro poslech na pozadí</string>
+   <string name="use_calibre_metadata">Použijte Calibre metadata.opf</string>
    <string name="icons_only">Pouze ikony</string>
 </resources>
