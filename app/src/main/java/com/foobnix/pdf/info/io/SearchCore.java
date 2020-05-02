@@ -147,6 +147,7 @@ public class SearchCore {
             if (it.isDirectory()) {
                 FileMetaCore.get().upadteBasicMeta(meta, it);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                meta.setIsStar(AppDB.get().isStarFolder(meta.getPath()));
             } else {
                 FileMeta load = AppDB.get().load(it.getPath());
                 if (load == null) {
