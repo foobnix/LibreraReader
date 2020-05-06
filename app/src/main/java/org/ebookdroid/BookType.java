@@ -36,8 +36,9 @@ public enum BookType {
     PDF(PdfContext.class, false, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
     TIFF(PdfContext.class, false, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
-    CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
-    CBR(CbrContext.class, false, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz","application/comicbook+zip")),
+    CBR(CbrContext.class, false, Arrays.asList("cbr"), Arrays.asList("application/x-cbr","application/comicbook+rar")),
+
     ODT(OdtContext.class, true, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
     FOLDER(FolderContext.class, false, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),

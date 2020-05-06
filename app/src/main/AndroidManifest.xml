@@ -101,7 +101,9 @@
                 <data android:mimeType="application/x-mobipocket-ebook" />
                 <data android:mimeType="application/x-palm-database" />
                 <data android:mimeType="application/x-cbz" />
+                <data android:mimeType="application/comicbook+zip" />
                 <data android:mimeType="application/x-cbr" />
+                <data android:mimeType="application/comicbook+rar" />
                 <data android:mimeType="application/rtf" />
                 <data android:mimeType="application/x-rtf" />
                 <data android:mimeType="application/azw" />

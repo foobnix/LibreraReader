@@ -4,11 +4,13 @@ def taskName=getGradle().getStartParameter().getTaskRequests().toString();
 
 
 ext {
-    FDroidCodeNumber = 3772
-    FDroidVersionNumber = "8.3.45"
+    FDroidCodeNumber = 3780
+    FDroidVersionNumber = "8.3.53"
 }
 
-println "taskName: " + taskName
+println " --------------------"
+println " taskName: " + taskName
+println " --------------------"
 
 ext {
     if(!taskName.contains("Fdroid")) {
@@ -95,7 +97,11 @@ android {
             reset()
             //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
 
-            if(!taskName.contains("Fdroid")) {
+            if(taskName.contains("Huawei") || taskName.contains("Beta") ||taskName.contains("Alpha")){
+                include "arm64-v8a"
+            }else if(taskName.contains("Fdroid") || project.hasProperty('beta')) {
+                //only universal
+            }else{
                 include "armeabi-v7a", "arm64-v8a"
             }
 
@@ -167,7 +173,23 @@ android {
             buildConfigField "boolean", "IS_BETA", "false"
             buildConfigField "boolean", "IS_FDROID", "false"
             buildConfigField "boolean", "LOG", "false"
-
+        }
+        huawei {
+            dimension "version"
+            applicationId "com.foobnix.pdf.reader"
+            manifestPlaceholders = [
+                    appName       : "Librera Reader",
+                    appIcon       : "@mipmap/icon_pdf_reader",
+                    appRoundIcon  : "@mipmap/icon_pdf_reader",
+                    appGdriveKey  : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
+                    admobAppId    : "ca-app-pub-8347903083053959~8769894873",
+                    admobBannerId : "ca-app-pub-8347903083053959/4166397275",
+                    admobFullId   : "ca-app-pub-8347903083053959/2769081274",
+                    appSafeMode   : "false"
+            ]
+            buildConfigField "boolean", "IS_BETA", "false"
+            buildConfigField "boolean", "IS_FDROID", "true"
+            buildConfigField "boolean", "LOG", "false"
         }
         pro {
             dimension "version"
@@ -292,6 +314,7 @@ android {
             buildConfigField "boolean", "LOG", "false"
         }
 
+
     }
 
 
@@ -390,13 +413,14 @@ dependencies {
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
 
-    betaImplementation 'com.google.firebase:firebase-ads:18.3.0'
-    libreraImplementation 'com.google.firebase:firebase-ads:18.3.0'
-    pdf_v2Implementation 'com.google.firebase:firebase-ads:18.3.0'
-    ebookaImplementation 'com.google.firebase:firebase-ads:18.3.0'
-    tts_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
-    pdf_classicImplementation 'com.google.firebase:firebase-ads:18.3.0'
-    epub_readerImplementation 'com.google.firebase:firebase-ads:18.3.0'
+    betaImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    libreraImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    pdf_v2Implementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    ebookaImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    tts_readerImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    pdf_classicImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    epub_readerImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    huaweiImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
 
 
 }
