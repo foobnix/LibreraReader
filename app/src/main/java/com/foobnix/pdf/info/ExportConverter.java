@@ -11,6 +11,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
+import com.foobnix.sys.ImageExtractor;
 
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -18,7 +19,9 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.model.enums.CompressionLevel;
 import net.lingala.zip4j.model.enums.CompressionMethod;
 
+import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.books.SharedBooks;
+import org.ebookdroid.core.codec.CodecDocument;
 import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
 
@@ -155,10 +158,24 @@ public class ExportConverter {
                 if (it.length > 5) {
                     bookmark.p = Float.parseFloat(it[5]);
                 } else {
-                    try {
-                        bookmark.p = (float) Integer.parseInt(it[2]) / cache.get(path);
-                    } catch (Exception e) {
-                        LOG.e(e);
+                    if (!cache.containsKey(path)) {
+                        if (new File(path).isFile() && BookType.PDF.is(path)) {
+                            final CodecDocument doc = ImageExtractor.singleCodecContext(path, "", 0, 0);
+                            int pageCount = doc.getPageCount();
+                            cache.put(path, pageCount);
+                            LOG.d("Page-counts update ", path, pageCount);
+                            doc.recycle();
+                        }else{
+                            LOG.d("Page-counts not found", path);
+                        }
+                    }
+                    if (cache.containsKey(path)) {
+                        try {
+                            bookmark.p = (float) Integer.parseInt(it[2]) / cache.get(path);
+                            LOG.d("Page-counts percent", path, bookmark.p);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                        }
                     }
                 }
             } catch (Exception e) {

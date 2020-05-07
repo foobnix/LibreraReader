@@ -30,3 +30,9 @@ cd Builder
 ./remove_all.sh
 ./install_all.sh
 ./clear-cache.sh
+
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
+
+rm /home/dev/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
+rm /home/dev/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
