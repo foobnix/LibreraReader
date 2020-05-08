@@ -601,7 +601,7 @@
    <string name="icons_only">Белгішелері ғана</string>
    <string name="migration">Көші-қон</string>
    <string name="please_backup">Ескерту! тасымалдауды бастамас бұрын сақтық көшірмесін жасаңыз (экспорт)</string>
-   <string name="replace">Ауыстыру</string>
-   <string name="replace_by">Ауыстыру</string>
    <string name="start_migration">Көшуді бастаңыз</string>
+   <string name="new_path">Жаңа жол</string>
+   <string name="old_path">Ескі жол</string>
 </resources>

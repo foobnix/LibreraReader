@@ -601,7 +601,7 @@
    <string name="icons_only">סמלים בלבד</string>
    <string name="migration">הגירה</string>
    <string name="please_backup">אזהרה! אנא גיבוי (ייצוא) לפני תחילת ההעברה</string>
-   <string name="replace">החלף</string>
-   <string name="replace_by">להחליף על ידי</string>
    <string name="start_migration">התחל הגירה</string>
+   <string name="new_path">דרך חדשה</string>
+   <string name="old_path">שביל ישן</string>
 </resources>

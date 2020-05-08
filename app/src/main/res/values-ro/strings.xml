@@ -601,7 +601,7 @@
    <string name="icons_only">Numai icoane</string>
    <string name="migration">Migrațiune</string>
    <string name="please_backup">Avertizare! vă rugăm să faceți backup (export) înainte de a începe migrația</string>
-   <string name="replace">A inlocui</string>
-   <string name="replace_by">Înlocuiți cu</string>
    <string name="start_migration">Începe migrația</string>
+   <string name="new_path">Cale nouă</string>
+   <string name="old_path">Poteca veche</string>
 </resources>

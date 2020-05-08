@@ -601,7 +601,7 @@
    <string name="icons_only">Hanya ikon</string>
    <string name="migration">Migrasi</string>
    <string name="please_backup">Peringatan! harap cadangkan (ekspor) sebelum memulai migrasi</string>
-   <string name="replace">Menggantikan</string>
-   <string name="replace_by">Ganti dengan</string>
    <string name="start_migration">Mulai migrasi</string>
+   <string name="new_path">Jalur baru</string>
+   <string name="old_path">Jalan lama</string>
 </resources>

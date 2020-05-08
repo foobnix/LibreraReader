@@ -601,7 +601,7 @@
    <string name="icons_only">Ikoner bare</string>
    <string name="migration">Migrasjon</string>
    <string name="please_backup">Advarsel! ta sikkerhetskopi (eksport) før du starter migreringen</string>
-   <string name="replace">Erstatte</string>
-   <string name="replace_by">Erstatte med</string>
    <string name="start_migration">Start migrasjon</string>
+   <string name="new_path">Ny bane</string>
+   <string name="old_path">Gammel sti</string>
 </resources>

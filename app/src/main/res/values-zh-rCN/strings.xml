@@ -601,7 +601,7 @@
    <string name="icons_only">仅图标</string>
    <string name="migration">移民</string>
    <string name="please_backup">警告！请在开始迁移之前备份（导出）</string>
-   <string name="replace">更换</string>
-   <string name="replace_by">替换为</string>
    <string name="start_migration">开始迁移</string>
+   <string name="new_path">新路</string>
+   <string name="old_path">旧路</string>
 </resources>

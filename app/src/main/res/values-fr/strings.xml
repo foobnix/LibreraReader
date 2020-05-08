@@ -601,7 +601,7 @@
    <string name="icons_only">Icônes uniquement</string>
    <string name="migration">Migration</string>
    <string name="please_backup">Attention! veuillez sauvegarder (exporter) avant de commencer la migration</string>
-   <string name="replace">Remplacer</string>
-   <string name="replace_by">Remplacer par</string>
    <string name="start_migration">Démarrer la migration</string>
+   <string name="new_path">Nouveau chemin</string>
+   <string name="old_path">Ancien chemin</string>
 </resources>

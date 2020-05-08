@@ -601,7 +601,7 @@
    <string name="icons_only">केवल आइकन</string>
    <string name="migration">प्रवास</string>
    <string name="please_backup">चेतावनी! माइग्रेशन शुरू करने से पहले बैकअप (निर्यात) करें</string>
-   <string name="replace">बदलने के</string>
-   <string name="replace_by">द्वारा हटाया गया</string>
    <string name="start_migration">माइग्रेशन प्रारंभ करें</string>
+   <string name="new_path">नया रास्ता</string>
+   <string name="old_path">पुराना रास्ता</string>
 </resources>

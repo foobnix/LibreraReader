@@ -601,7 +601,7 @@
    <string name="icons_only">Tik piktogramos</string>
    <string name="migration">Migracija</string>
    <string name="please_backup">Perspėjimas! prieš pradėdami perkėlimą, sukurkite atsarginę kopiją (eksportuokite)</string>
-   <string name="replace">Pakeisti</string>
-   <string name="replace_by">Pakeisti</string>
    <string name="start_migration">Pradėti migraciją</string>
+   <string name="new_path">Naujas kelias</string>
+   <string name="old_path">Senas kelias</string>
 </resources>

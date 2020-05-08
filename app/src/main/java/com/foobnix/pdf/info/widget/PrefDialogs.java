@@ -257,7 +257,7 @@ public class PrefDialogs {
         to.setText("/storage/XXXX-BBBB/");
         to.setSingleLine();
 
-        root.addView(UI.bText(a, a.getString(R.string.replace)));
+        root.addView(UI.bText(a, a.getString(R.string.old_path)));
 
 
         List<SimpleMeta> allRecent = AppData.get().getAllRecentSimple();
@@ -286,7 +286,7 @@ public class PrefDialogs {
 
         }
         root.addView(from);
-        root.addView(UI.bText(a, a.getString(R.string.replace_by)));
+        root.addView(UI.bText(a, a.getString(R.string.new_path)));
         List<String> allExternal = ExtUtils.getAllExternalStorages(a);
         allExternal.add(0, MyPath.INTERNAL_PREFIX);
         for (String s : allExternal) {

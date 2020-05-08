@@ -601,7 +601,7 @@
    <string name="icons_only">Alleen pictogrammen</string>
    <string name="migration">Migratie</string>
    <string name="please_backup">Waarschuwing! Maak een back-up (export) voordat u de migratie start</string>
-   <string name="replace">Vervangen</string>
-   <string name="replace_by">Vervangen door</string>
    <string name="start_migration">Start migratie</string>
+   <string name="new_path">Nieuw pad</string>
+   <string name="old_path">Oude pad</string>
 </resources>

@@ -601,7 +601,7 @@
    <string name="icons_only">Icons tu</string>
    <string name="migration">Uhamiaji</string>
    <string name="please_backup">Onyo! tafadhali chelezo (usafirishaji) kabla ya kuanza uhamiaji</string>
-   <string name="replace">Badala</string>
-   <string name="replace_by">Nafasi ya</string>
    <string name="start_migration">Anza uhamiaji</string>
+   <string name="new_path">Njia mpya</string>
+   <string name="old_path">Njia ya zamani</string>
 </resources>

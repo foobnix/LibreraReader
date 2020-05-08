@@ -601,7 +601,7 @@
    <string name="icons_only">アイコンのみ</string>
    <string name="migration">マイグレーション</string>
    <string name="please_backup">警告！移行を開始する前にバックアップ（エクスポート）してください</string>
-   <string name="replace">取り替える</string>
-   <string name="replace_by">に置き換える</string>
    <string name="start_migration">移行を開始</string>
+   <string name="new_path">新しい道</string>
+   <string name="old_path">古い道</string>
 </resources>

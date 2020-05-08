@@ -601,7 +601,7 @@
    <string name="icons_only">ไอคอนเท่านั้น</string>
    <string name="migration">การโยกย้าย</string>
    <string name="please_backup">คำเตือน! โปรดสำรองข้อมูล (ส่งออก) ก่อนเริ่มการโยกย้าย</string>
-   <string name="replace">แทนที่</string>
-   <string name="replace_by">แทนที่ด้วย</string>
    <string name="start_migration">เริ่มโยกย้าย</string>
+   <string name="new_path">เส้นทางใหม่</string>
+   <string name="old_path">เส้นทางเก่า</string>
 </resources>

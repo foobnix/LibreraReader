@@ -601,7 +601,7 @@
    <string name="icons_only">Tantum icones</string>
    <string name="migration">Migratum</string>
    <string name="please_backup">Pedem! placere tergum (export) ante incipiens intentius agentibus</string>
-   <string name="replace">Reponere</string>
-   <string name="replace_by">Per reponere</string>
    <string name="start_migration">Agentibus post satus</string>
+   <string name="new_path">Novum semita</string>
+   <string name="old_path">Vetus semita</string>
 </resources>

@@ -601,7 +601,7 @@
    <string name="icons_only">أيقونات فقط</string>
    <string name="migration">الهجرة</string>
    <string name="please_backup">تحذير! يرجى النسخ الاحتياطي (التصدير) قبل بدء الترحيل</string>
-   <string name="replace">يحل محل</string>
-   <string name="replace_by">استبدل ب</string>
    <string name="start_migration">بدء الترحيل</string>
+   <string name="new_path">مسار جديد</string>
+   <string name="old_path">طريق قديم</string>
 </resources>

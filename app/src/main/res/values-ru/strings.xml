@@ -601,7 +601,7 @@
    <string name="icons_only">Только иконки</string>
    <string name="migration">Миграция</string>
    <string name="please_backup">Предупреждение! пожалуйста, сделайте резервную копию (экспорт) перед началом миграции</string>
-   <string name="replace">Замещать</string>
-   <string name="replace_by">Заменить на</string>
    <string name="start_migration">Начать миграцию</string>
+   <string name="new_path">Новый путь</string>
+   <string name="old_path">Старый путь</string>
 </resources>
