@@ -1,11 +1,13 @@
 package com.foobnix.pdf.info.widget;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
@@ -27,13 +29,19 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.IO;
 import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.ResultResponse2;
+import com.foobnix.android.utils.TxtUtils;
+import com.foobnix.android.utils.UI;
+import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppState;
+import com.foobnix.model.MyPath;
+import com.foobnix.model.SimpleMeta;
 import com.foobnix.pdf.info.ExportConverter;
 import com.foobnix.pdf.info.ExportSettingsManager;
 import com.foobnix.pdf.info.ExtFilter;
@@ -43,16 +51,26 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.presentation.BrowserAdapter;
 import com.foobnix.pdf.info.presentation.PathAdapter;
+import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.search.activity.msg.UpdateAllFragments;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
+import com.foobnix.pdf.search.view.AsyncProgressTask;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.MainTabs2;
 
 import net.lingala.zip4j.exception.ZipException;
 
+import org.greenrobot.eventbus.EventBus;
+import org.librera.JSONArray;
+import org.librera.LinkedJSONObject;
+
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class PrefDialogs {
 
@@ -139,7 +157,7 @@ public class PrefDialogs {
                 String path = result.getPath();
                 LOG.d("TEST", "Remove " + path);
                 BookCSS.get().searchPathsJson = JsonDB.remove(BookCSS.get().searchPathsJson, path);
-                LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson );
+                LOG.d("TEST", "Remove " + BookCSS.get().searchPathsJson);
                 recentAdapter.setPaths(JsonDB.get(BookCSS.get().searchPathsJson));
                 onChanges.run();
                 return false;
@@ -216,6 +234,174 @@ public class PrefDialogs {
         return false;
     }
 
+    @SuppressLint("SetTextI18n")
+    public static void migrationDialog(final FragmentActivity a) {
+        LinearLayout root = new LinearLayout(a);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(Dips.DP_5, Dips.DP_5, Dips.DP_5, Dips.DP_5);
+
+
+        root.addView(UI.text(a, "-----------------------", Color.RED));
+        root.addView(UI.text(a, a.getString(R.string.please_backup), Color.RED));
+        root.addView(UI.text(a, "-----------------------", Color.RED));
+
+
+        final EditText from = new EditText(a);
+        from.setWidth(Dips.DP_150);
+        from.setText("/storage/XXXX-AAAA/");
+        from.setSingleLine();
+
+
+        final EditText to = new EditText(a);
+        to.setWidth(Dips.DP_150);
+        to.setText("/storage/XXXX-BBBB/");
+        to.setSingleLine();
+
+        root.addView(UI.bText(a, a.getString(R.string.replace)));
+
+
+        List<SimpleMeta> allRecent = AppData.get().getAllRecentSimple();
+        Set<String> allFrom = new HashSet<>();
+
+        for (SimpleMeta it : allRecent) {
+            String path = it.path;
+            int endIndex = path.indexOf("/", 15);
+            if (endIndex != -1) {
+                String rel = path.substring(0, endIndex);
+                allFrom.add(rel + "/");
+            }
+        }
+
+        for (String s : allFrom) {
+            if (TxtUtils.isNotEmpty(s)) {
+                TextView t = UI.uText(a, s);
+                t.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        from.setText(s);
+                    }
+                });
+                root.addView(t);
+            }
+
+        }
+        root.addView(from);
+        root.addView(UI.bText(a, a.getString(R.string.replace_by)));
+        List<String> allExternal = ExtUtils.getAllExternalStorages(a);
+        allExternal.add(0, MyPath.INTERNAL_PREFIX);
+        for (String s : allExternal) {
+            if (TxtUtils.isNotEmpty(s)) {
+                final String s1 = s + "/";
+                TextView t = UI.uText(a, s1);
+                t.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        to.setText(s1);
+                    }
+                });
+                root.addView(t);
+            }
+        }
+        root.addView(to);
+
+
+        TextView r = UI.button(a, a.getString(R.string.start_migration));
+        r.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String fromPath = from.getText().toString();
+                String toPath = to.getText().toString();
+
+                AsyncProgressTask<Boolean> task = new AsyncProgressTask<Boolean>() {
+                    @Override
+                    public Context getContext() {
+                        return a;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Boolean result) {
+                        super.onPostExecute(result);
+                        TempHolder.listHash++;
+                        EventBus.getDefault().post(new UpdateAllFragments());
+                        if (result) {
+                            Toast.makeText(a, R.string.success, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(a, R.string.fail, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
+                        try {
+                            final List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_RECENT_JSON);
+                            for (File file : allFiles) {
+                                JSONArray array = new JSONArray(IO.readString(file));
+                                boolean hasChanges = false;
+                                for (int i = 0; i < array.length(); i++) {
+                                    final LinkedJSONObject it = array.getJSONObject(i);
+                                    String path = it.getString(SimpleMeta.JSON_PATH);
+                                    if (path.startsWith(fromPath)) {
+                                        LOG.d("Migration-recent path-1", path);
+                                        path = path.replace(fromPath, toPath);
+                                        it.put(SimpleMeta.JSON_PATH, path);
+                                        hasChanges = true;
+                                        LOG.d("Migration-recent path-2", path);
+                                    }
+
+                                }
+                                if (hasChanges) {
+                                    IO.writeString(file, array.toString());
+                                    LOG.d("Migration-recent write", file);
+                                }
+                            }
+                        } catch (Exception e) {
+                            return false;
+                        }
+
+                        try {
+                            List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
+                            for (File file : allFiles) {
+                                LinkedJSONObject obj = IO.readJsonObject(file);
+                                final Iterator<String> keys = obj.keys();
+                                boolean hasChanges = false;
+                                while (keys.hasNext()) {
+                                    final String next = keys.next();
+                                    final LinkedJSONObject it = obj.getJSONObject(next);
+
+                                    String path = it.getString(SimpleMeta.JSON_PATH);
+                                    if (path.startsWith(fromPath)) {
+                                        LOG.d("Migration-BOOKMARK path-1", path);
+                                        path = path.replace(fromPath, toPath);
+                                        it.put(SimpleMeta.JSON_PATH, path);
+                                        hasChanges = true;
+                                        LOG.d("Migration-BOOKMARK path-2", path);
+                                    }
+                                }
+                                if (hasChanges) {
+                                    IO.writeString(file, obj.toString());
+                                    LOG.d("Migration-BOOKMARK write ", file);
+                                }
+
+                            }
+                        } catch (Exception e) {
+                            return false;
+                        }
+
+
+                        return true;
+                    }
+                };
+                task.execute();
+
+
+            }
+        });
+        root.addView(UI.text(a, ""));
+        root.addView(r);
+
+        AlertDialogs.showViewDialog(a, root);
+
+    }
 
     public static void exportDialog(final FragmentActivity activity) {
         String sampleName = ExportSettingsManager.getSampleJsonConfigName(activity, EXPORT_BACKUP_ZIP);

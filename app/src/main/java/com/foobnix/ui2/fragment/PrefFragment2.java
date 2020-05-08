@@ -1628,6 +1628,12 @@ public class PrefFragment2 extends UIFragment {
 
                         getActivity()));
 
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.migrationButton)).
+
+                setOnClickListener(v -> PrefDialogs.migrationDialog(
+
+                        getActivity()));
+
         // folders
 
         final TextView rootFolder = (TextView) inflate.findViewById(R.id.rootFolder);

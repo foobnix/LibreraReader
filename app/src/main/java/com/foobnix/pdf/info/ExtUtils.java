@@ -1748,8 +1748,20 @@ public class ExtUtils {
         return Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
     }
 
+    public static List<String> getAllExternalStorages(Context a) {
+        List<String> extFolders = new ArrayList<String>();
+
+        extFolders = ExtUtils.getExternalStorageDirectories(a);
+        String sdPath = ExtUtils.getSDPath();
+        if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
+            extFolders.add(sdPath);
+        }
+        return  extFolders;
+
+    }
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static List<String> getExternalStorageDirectories(Context c) {
+
+    private static List<String> getExternalStorageDirectories(Context c) {
         List<String> results = new ArrayList<String>();
         try {
 

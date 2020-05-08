@@ -198,6 +198,9 @@ public class AppData {
 
     }
 
+    public  List<SimpleMeta> getAllRecentSimple() {
+        return getAll(AppProfile.APP_RECENT_JSON);
+    }
     public  List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
         Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);

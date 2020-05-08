@@ -248,17 +248,12 @@ public class BookCSS {
 
         try {
             if (TxtUtils.isEmpty(instance.searchPathsJson)) {
-                List<String> extFolders = ExtUtils.getExternalStorageDirectories(c);
+                List<String> extFolders = ExtUtils.getAllExternalStorages(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
                     extFolders.add(Environment.getExternalStorageDirectory().getPath());
                 }
-                if (!extFolders.contains(ExtUtils.getSDPath())) {
-                    String sdPath = ExtUtils.getSDPath();
-                    if (sdPath != null) {
-                        extFolders.add(sdPath);
-                    }
-                }
+
                 instance.searchPathsJson = JsonDB.set(extFolders);
                 LOG.d("searchPaths-all", instance.searchPathsJson);
             }

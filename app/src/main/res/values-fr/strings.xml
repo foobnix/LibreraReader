@@ -599,4 +599,9 @@
    <string name="you_should_enable_allow_battery">Vous devez activer \"batterie\"> \"autoriser l\'activité en arrière-plan\" pour écouter en arrière-plan</string>
    <string name="use_calibre_metadata">Utiliser calibre metadata.opf</string>
    <string name="icons_only">Icônes uniquement</string>
+   <string name="migration">Migration</string>
+   <string name="please_backup">Attention! veuillez sauvegarder (exporter) avant de commencer la migration</string>
+   <string name="replace">Remplacer</string>
+   <string name="replace_by">Remplacer par</string>
+   <string name="start_migration">Démarrer la migration</string>
 </resources>

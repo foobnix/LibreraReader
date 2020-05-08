@@ -599,4 +599,9 @@
    <string name="you_should_enable_allow_battery">Debe habilitar \"batería\"> \"permitir actividad en segundo plano\" para escuchar en segundo plano</string>
    <string name="use_calibre_metadata">Use calibre metadata.opf</string>
    <string name="icons_only">Solo iconos</string>
+   <string name="migration">Migración</string>
+   <string name="please_backup">¡advertencia! haga una copia de seguridad (exportar) antes de comenzar la migración</string>
+   <string name="replace">Reemplazar</string>
+   <string name="replace_by">Sustituir por</string>
+   <string name="start_migration">Iniciar la migración</string>
 </resources>

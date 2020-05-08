@@ -599,4 +599,9 @@
    <string name="you_should_enable_allow_battery">Bør du aktivere \"batteri\"> \"la bakgrunnsaktivitet\" lytte i bakgrunnen</string>
    <string name="use_calibre_metadata">Bruk kaliber metadata.opf</string>
    <string name="icons_only">Ikoner bare</string>
+   <string name="migration">Migrasjon</string>
+   <string name="please_backup">Advarsel! ta sikkerhetskopi (eksport) før du starter migreringen</string>
+   <string name="replace">Erstatte</string>
+   <string name="replace_by">Erstatte med</string>
+   <string name="start_migration">Start migrasjon</string>
 </resources>

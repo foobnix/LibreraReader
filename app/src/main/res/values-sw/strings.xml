@@ -599,4 +599,9 @@
    <string name="you_should_enable_allow_battery">Unapaswa kuwezesha \"betri\"> \"ruhusu shughuli za mandharasi\" kusikiliza nyuma</string>
    <string name="use_calibre_metadata">Tumia metadata.opf ya caliber</string>
    <string name="icons_only">Icons tu</string>
+   <string name="migration">Uhamiaji</string>
+   <string name="please_backup">Onyo! tafadhali chelezo (usafirishaji) kabla ya kuanza uhamiaji</string>
+   <string name="replace">Badala</string>
+   <string name="replace_by">Nafasi ya</string>
+   <string name="start_migration">Anza uhamiaji</string>
 </resources>

@@ -302,13 +302,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                List<String> extFolders = new ArrayList<String>();
+                List<String> extFolders = ExtUtils.getAllExternalStorages(getActivity());
 
-                extFolders = ExtUtils.getExternalStorageDirectories(getActivity());
-                String sdPath = ExtUtils.getSDPath();
-                if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
-                    extFolders.add(sdPath);
-                }
+
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 

@@ -599,4 +599,9 @@
    <string name="you_should_enable_allow_battery">Turėtumėte įjungti „baterija“> „leisti vykdyti foninę veiklą“, kad galėtumėte klausytis fone</string>
    <string name="use_calibre_metadata">Naudoti kalibro metadata.opf</string>
    <string name="icons_only">Tik piktogramos</string>
+   <string name="migration">Migracija</string>
+   <string name="please_backup">Perspėjimas! prieš pradėdami perkėlimą, sukurkite atsarginę kopiją (eksportuokite)</string>
+   <string name="replace">Pakeisti</string>
+   <string name="replace_by">Pakeisti</string>
+   <string name="start_migration">Pradėti migraciją</string>
 </resources>

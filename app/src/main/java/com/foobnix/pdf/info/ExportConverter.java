@@ -159,7 +159,7 @@ public class ExportConverter {
                     bookmark.p = Float.parseFloat(it[5]);
                 } else {
                     if (!cache.containsKey(path)) {
-                        if (new File(path).isFile() && BookType.PDF.is(path)) {
+                        if (new File(path).isFile() && (BookType.PDF.is(path) || BookType.DJVU.is(path)) ) {
                             final CodecDocument doc = ImageExtractor.singleCodecContext(path, "", 0, 0);
                             int pageCount = doc.getPageCount();
                             cache.put(path, pageCount);
