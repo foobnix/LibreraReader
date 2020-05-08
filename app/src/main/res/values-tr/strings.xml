@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Calibre metadata.opf kullanın</string>
    <string name="icons_only">Sadece simgeler</string>
    <string name="migration">Göç</string>
-   <string name="please_backup">Uyarı! taşıma işlemine başlamadan önce lütfen yedekleyin (dışa aktarın)</string>
+   <string name="please_backup1">Taşımadan önce yedeklemenizi (dışa aktarmanızı) öneririz</string>
    <string name="start_migration">Taşımaya başla</string>
    <string name="new_path">Yeni yol</string>
    <string name="old_path">Eski yol</string>

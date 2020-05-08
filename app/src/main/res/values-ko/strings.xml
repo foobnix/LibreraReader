@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">구경 메타 데이터를 사용하십시오.</string>
    <string name="icons_only">아이콘 만</string>
    <string name="migration">이주</string>
-   <string name="please_backup">경고! 마이그레이션을 시작하기 전에 백업 (내보내기)하십시오</string>
+   <string name="please_backup1">마이그레이션하기 전에 백업 (내보내기)을 권장합니다</string>
    <string name="start_migration">마이그레이션 시작</string>
    <string name="new_path">새로운 길</string>
    <string name="old_path">오래된 길</string>

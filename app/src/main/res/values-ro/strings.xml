@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Folosiți metadate calibru.opf</string>
    <string name="icons_only">Numai icoane</string>
    <string name="migration">Migrațiune</string>
-   <string name="please_backup">Avertizare! vă rugăm să faceți backup (export) înainte de a începe migrația</string>
+   <string name="please_backup1">Vă recomandăm să faceți o copie de rezervă (export) înainte de migrare</string>
    <string name="start_migration">Începe migrația</string>
    <string name="new_path">Cale nouă</string>
    <string name="old_path">Poteca veche</string>

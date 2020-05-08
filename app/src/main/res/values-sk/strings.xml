@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Použiť kaliber metadata.opf</string>
    <string name="icons_only">Iba ikony</string>
    <string name="migration">Sťahovanie</string>
-   <string name="please_backup">Výstraha! pred začiatkom migrácie si zálohujte (exportujte)</string>
+   <string name="please_backup1">Pred migráciou vám odporúčame zálohovať (exportovať)</string>
    <string name="start_migration">Začať migráciu</string>
    <string name="new_path">Nová cesta</string>
    <string name="old_path">Stará cesta</string>

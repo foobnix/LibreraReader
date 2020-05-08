@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Použijte Calibre metadata.opf</string>
    <string name="icons_only">Pouze ikony</string>
    <string name="migration">Migrace</string>
-   <string name="please_backup">Varování! před zahájením migrace prosím zálohujte (exportujte)</string>
+   <string name="please_backup1">Doporučujeme před migrací zálohovat (exportovat)</string>
    <string name="start_migration">Zahájit migraci</string>
    <string name="new_path">Nová cesta</string>
    <string name="old_path">Stará cesta</string>

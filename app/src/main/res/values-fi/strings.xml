@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Käytä kaliiperi metadata.opf</string>
    <string name="icons_only">Vain kuvakkeet</string>
    <string name="migration">Muutto</string>
-   <string name="please_backup">Varoitus! varmuuskopioi (vie) ennen siirron aloittamista</string>
+   <string name="please_backup1">Suosittelemme varmuuskopiointia (vienti) ennen siirtymistä</string>
    <string name="start_migration">Aloita muutto</string>
    <string name="new_path">Uusi polku</string>
    <string name="old_path">Vanha polku</string>

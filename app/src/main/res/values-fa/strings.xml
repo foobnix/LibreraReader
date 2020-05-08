@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">از metadata.opf کالیبر استفاده کنید</string>
    <string name="icons_only">فقط آیکون ها</string>
    <string name="migration">مهاجرت</string>
-   <string name="please_backup">هشدار! لطفا از نسخه پشتیبان تهیه (صادرات) قبل از شروع مهاجرت استفاده کنید</string>
+   <string name="please_backup1">توصیه می کنیم قبل از مهاجرت از نسخه پشتیبان تهیه (صادرات) خودداری کنید</string>
    <string name="start_migration">مهاجرت را شروع کنید</string>
    <string name="new_path">مسیر جدید</string>
    <string name="old_path">مسیر قدیمی</string>

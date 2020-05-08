@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">口径のmetadata.opfを使用してください</string>
    <string name="icons_only">アイコンのみ</string>
    <string name="migration">マイグレーション</string>
-   <string name="please_backup">警告！移行を開始する前にバックアップ（エクスポート）してください</string>
+   <string name="please_backup1">移行する前にバックアップ（エクスポート）することをお勧めします</string>
    <string name="start_migration">移行を開始</string>
    <string name="new_path">新しい道</string>
    <string name="old_path">古い道</string>

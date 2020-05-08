@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Використовувати метаданні metadata.opf</string>
    <string name="icons_only">Тільки іконки</string>
    <string name="migration">Міграція</string>
-   <string name="please_backup">Увага! будь ласка, створіть резервну копію (експорт) перед початком міграції</string>
+   <string name="please_backup1">Радимо створити резервну копію (експорт) перед переміщенням</string>
    <string name="start_migration">Почати міграцію</string>
    <string name="new_path">Новий шлях</string>
    <string name="old_path">Старий шлях</string>

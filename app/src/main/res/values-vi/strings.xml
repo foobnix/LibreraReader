@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Sử dụng siêu dữ liệu tầm cỡ.opf</string>
    <string name="icons_only">Chỉ các biểu tượng</string>
    <string name="migration">Di cư</string>
-   <string name="please_backup">Cảnh báo! vui lòng sao lưu (xuất) trước khi bắt đầu di chuyển</string>
+   <string name="please_backup1">Chúng tôi khuyên bạn nên sao lưu (xuất) lên trước khi di chuyển</string>
    <string name="start_migration">Bắt đầu di chuyển</string>
    <string name="new_path">Con đường mới</string>
    <string name="old_path">Con đường cũ</string>

@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">ใช้ความสามารถ metadata.opf</string>
    <string name="icons_only">ไอคอนเท่านั้น</string>
    <string name="migration">การโยกย้าย</string>
-   <string name="please_backup">คำเตือน! โปรดสำรองข้อมูล (ส่งออก) ก่อนเริ่มการโยกย้าย</string>
+   <string name="please_backup1">เราขอแนะนำให้คุณสำรอง (ส่งออก) ก่อนทำการโอนย้าย</string>
    <string name="start_migration">เริ่มโยกย้าย</string>
    <string name="new_path">เส้นทางใหม่</string>
    <string name="old_path">เส้นทางเก่า</string>

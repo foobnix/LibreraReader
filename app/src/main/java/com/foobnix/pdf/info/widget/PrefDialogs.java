@@ -242,7 +242,7 @@ public class PrefDialogs {
 
 
         root.addView(UI.text(a, "-----------------------", Color.RED));
-        root.addView(UI.text(a, a.getString(R.string.please_backup), Color.RED));
+        root.addView(UI.text(a, a.getString(R.string.please_backup1), Color.RED));
         root.addView(UI.text(a, "-----------------------", Color.RED));
 
 

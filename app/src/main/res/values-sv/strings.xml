@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Använd kaliber metadata.opf</string>
    <string name="icons_only">Endast ikoner</string>
    <string name="migration">Migration</string>
-   <string name="please_backup">Varning! vänligen säkerhetskopiera (exportera) innan migreringen startar</string>
+   <string name="please_backup1">Vi rekommenderar att du säkerhetskopierar (exporterar) innan du migrerar</string>
    <string name="start_migration">Börja migrera</string>
    <string name="new_path">Ny väg</string>
    <string name="old_path">Gammal väg</string>

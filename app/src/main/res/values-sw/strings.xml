@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Tumia metadata.opf ya caliber</string>
    <string name="icons_only">Icons tu</string>
    <string name="migration">Uhamiaji</string>
-   <string name="please_backup">Onyo! tafadhali chelezo (usafirishaji) kabla ya kuanza uhamiaji</string>
+   <string name="please_backup1">Tunapendekeza urekebishe (usafirishe) juu kabla ya kuhamia</string>
    <string name="start_migration">Anza uhamiaji</string>
    <string name="new_path">Njia mpya</string>
    <string name="old_path">Njia ya zamani</string>

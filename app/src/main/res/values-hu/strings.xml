@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Használja a kaliberű metadata.opf fájlt</string>
    <string name="icons_only">Csak ikonok</string>
    <string name="migration">Elvándorlás</string>
-   <string name="please_backup">Figyelem! kérjük, készítsen biztonsági másolatot (exportáljon) az áttérés megkezdése előtt</string>
+   <string name="please_backup1">Azt javasoljuk, hogy készítsen biztonsági másolatot (exportáljon) a migráció előtt</string>
    <string name="start_migration">Indítsa el a migrációt</string>
    <string name="new_path">Új út</string>
    <string name="old_path">Régi út</string>
