@@ -305,7 +305,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 List<String> extFolders = ExtUtils.getAllExternalStorages(getActivity());
 
 
-
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
                 menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -338,7 +337,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                if(new File(BookCSS.get().downlodsPath).isDirectory()) {
+                if (new File(BookCSS.get().downlodsPath).isDirectory()) {
                     menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -949,8 +948,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
     }
-
+    int itemsCount;
     public void displayItems(List<FileMeta> items) {
+        itemsCount = items.size();
         if (searchAdapter == null) {
             return;
         }
@@ -972,7 +972,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
                 Collections.sort(items, FileMetaComparators.BR_BY_EXT);
-            }else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
                 Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
             }
             if (AppState.get().sortByReverse) {
@@ -1169,10 +1169,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 paths.addView(slash);
                 paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+
             }
 
             TextView stub = new TextView(getActivity());
-            stub.setText("    ");
+
+            stub.setText(" (" + itemsCount + ") ");
+            stub.setTextColor(getResources().getColor(R.color.white));
+            stub.setSingleLine();
             paths.addView(stub);
 
         }
