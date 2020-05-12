@@ -600,7 +600,7 @@
    <string name="use_calibre_metadata">Use Calibre metadata.opf</string>
    <string name="icons_only">Icons only</string>
    <string name="migration">Migrate</string>
-   <string name="please_backup1">We recommend you back up (export) up before migrating</string>
+   <string name="please_backup1">We recommend you back up (Export) before migrating</string>
    <string name="start_migration">Start migration</string>
    <string name="new_path">New path</string>
    <string name="old_path">Old path</string>
