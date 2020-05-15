@@ -540,6 +540,7 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+
         StringBuilder builder = new StringBuilder();
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
@@ -592,8 +593,16 @@ public class BookCSS {
         // FB2 END
 
         builder.append("p,div,span, body{");
-        builder.append(String.format("background-color:%s !important;", backgroundColor));
-        builder.append(String.format("color:%s !important;", textColor));
+
+        if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_MASTER) {
+            builder.append(String.format("background-color:%s;", backgroundColor));
+            builder.append(String.format("color:%s;", textColor));
+        } else {
+            builder.append(String.format("background-color:%s !important;", backgroundColor));
+            builder.append(String.format("color:%s !important;", textColor));
+        }
+
+
         builder.append(String.format("line-height:%s !important;", em(lineHeight)));
         builder.append("}");
 

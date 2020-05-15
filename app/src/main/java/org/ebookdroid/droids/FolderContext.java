@@ -33,12 +33,12 @@ public class FolderContext extends PdfContext {
         }
 
         File file;
-        if (AppsConfig.MUPDF_1_16 == LibreraApp.MUPDF_VERSION) {
-            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
-        } else {
+        if (AppsConfig.MUPDF_1_11 == LibreraApp.MUPDF_VERSION) {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
             file.mkdirs();
             file = new File(file, "book.ldir");
+        } else {
+            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
         }
 
         if (write) {

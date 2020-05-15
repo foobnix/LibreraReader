@@ -10,14 +10,19 @@ echo "MUPDF : master"
 echo "================== "
 git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-master
 cd mupdf-master
-git reset --hard origin/master
-git fetch --all
+
+#git reset --hard
+git reset --hard 5f35f10ba63d560e7ce3e336b339a81ead9fea53
+
+git submodule foreach --recursive git reset --hard
+git submodule update --init --recursive
+
+
 
 echo "=================="
 git log -n 20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 echo "=================="
 #reset
-#echo -e "\e[33m `git reset --hard 06aec98986c9b471a22762b3a04a9fb69c4bdcd0`"
 git log -n 1 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 echo -e "\e[39m=================="
@@ -45,6 +50,8 @@ ln -s $MUPDF_JAVA/libs/armeabi-v7a $LIBS
 ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
+
+cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
 
 cd $MUPDF_JAVA
 echo "=================="

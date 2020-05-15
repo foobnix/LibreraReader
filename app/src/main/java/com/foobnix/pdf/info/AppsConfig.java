@@ -19,6 +19,7 @@ public class AppsConfig {
     public static final boolean ADS_ON_PAGE = false;
     public static int MUPDF_1_11 = 111;
     public static int MUPDF_1_16 = 116;
+    public static int MUPDF_MASTER = 0;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
 
