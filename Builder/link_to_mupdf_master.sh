@@ -12,7 +12,7 @@ git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-master
 cd mupdf-master
 
 #git reset --hard
-git reset --hard 5f35f10ba63d560e7ce3e336b339a81ead9fea53
+git reset --hard 275835423a38a2739d4cfd2bde91380d492b6035
 
 git submodule foreach --recursive git reset --hard
 git submodule update --init --recursive
@@ -54,7 +54,10 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-cp -rp $SRC/css-apply.c   $DEST/html/css-apply.c
+cp -rp $SRC/css-apply.c    $DEST/html/css-apply.c
+cp -rp $SRC/epub-doc.c     $DEST/html/epub-doc.c
+cp -rp $SRC/html-layout.c  $DEST/html/html-layout.c
+cp -rp $SRC/html-parse.c   $DEST/html/html-parse.c
 
 cd $MUPDF_JAVA
 echo "=================="

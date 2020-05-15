@@ -3,8 +3,10 @@ package org.ebookdroid.droids.mupdf.codec;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.OutlineLink;
 
 import java.util.ArrayList;
@@ -38,6 +40,11 @@ public class MuPdfOutline {
             final String link = getLink(outline, docHandle);
             String linkUri = getLinkUri(outline, docHandle);
             LOG.d("linkUri", linkUri, title);
+
+            if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_MASTER) {
+                title = title + " | " + linkUri;
+            }
+
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);
 

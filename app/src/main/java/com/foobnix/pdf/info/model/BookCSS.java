@@ -594,12 +594,12 @@ public class BookCSS {
 
         builder.append("p,div,span, body{");
 
-        if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_MASTER) {
-            builder.append(String.format("background-color:%s;", backgroundColor));
-            builder.append(String.format("color:%s;", textColor));
-        } else {
+        if (AppState.get().isAccurateFontSize || !AppState.get().isDayNotInvert) {
             builder.append(String.format("background-color:%s !important;", backgroundColor));
             builder.append(String.format("color:%s !important;", textColor));
+        } else {
+            builder.append(String.format("background-color:%s;", backgroundColor));
+            builder.append(String.format("color:%s;", textColor));
         }
 
 

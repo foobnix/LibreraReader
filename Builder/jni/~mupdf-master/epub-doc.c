@@ -604,8 +604,8 @@ epub_parse_ncx_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base
 			{
 				*tailp = outline = fz_new_outline(ctx);
 				tailp = &(*tailp)->next;
-				outline->title = Memento_label(fz_strdup(ctx, text), "outline_title");
-				outline->uri = Memento_label(fz_strdup(ctx, path), "outline_uri");
+				outline->title = fz_strdup(ctx, text);
+				outline->uri = fz_strdup(ctx, path);
 				outline->page = -1;
 				outline->down = epub_parse_ncx_imp(ctx, doc, node, base_uri);
 				outline->is_open = 1;
@@ -649,6 +649,103 @@ epub_parse_ncx(fz_context *ctx, epub_document *doc, const char *path)
 		fz_rethrow(ctx);
 }
 
+static fz_outline *
+epub_parse_nav_imp(fz_context *ctx, epub_document *doc, fz_xml *node, char *base_uri)
+{
+	char path[2048];
+	fz_outline *outline, *head, **tailp;
+
+	head = NULL;
+	tailp = &head;
+
+
+	node =  fz_xml_find_down(fz_xml_find_down(node, "ol"),"li");
+
+
+	while (node)
+	{
+		fz_xml *tag = fz_xml_find_down(node, "a");
+		char *text = fz_xml_text(fz_xml_down(tag));
+		if(!text){
+			text = fz_xml_text(fz_xml_down(fz_xml_down(tag)));
+		}
+		char *content = fz_xml_att(tag, "href");
+		if (text && content)
+		{
+			fz_strlcpy(path, base_uri, sizeof path);
+			fz_strlcat(path, "/", sizeof path);
+			fz_strlcat(path, content, sizeof path);
+			fz_urldecode(path);
+			fz_cleanname(path);
+
+            fz_try(ctx)
+                        {
+
+
+			*tailp = outline = fz_new_outline(ctx);
+			tailp = &(*tailp)->next;
+			outline->title = fz_strdup(ctx, text);
+			outline->uri = fz_strdup(ctx, path);
+			outline->page = -1;
+			outline->down = epub_parse_nav_imp(ctx, doc, node, base_uri);
+			}
+            fz_catch(ctx)
+            {
+                fz_drop_outline(ctx, head);
+                fz_rethrow(ctx);
+            }
+		}
+		node = fz_xml_find_next(node, "li");
+	}
+
+	return head;
+}
+
+static void
+epub_parse_nav(fz_context *ctx, epub_document *doc, const char *path)
+{
+	fz_archive *zip = doc->zip;
+	fz_buffer *buf = NULL;
+	fz_xml_doc *ncx = NULL;
+	char base_uri[2048];
+
+    fz_var(buf);
+	fz_var(ncx);
+
+    fz_try(ctx)
+	{
+
+        fz_dirname(base_uri, path, sizeof base_uri);
+
+        buf = fz_read_archive_entry(ctx, zip, path);
+        ncx = fz_parse_xml(ctx, buf, 0, 0);
+
+        fz_xml *body = fz_xml_find_down(fz_xml_root(ncx), "body");
+        fz_xml *section = fz_xml_find_down(body, "section");
+        if(section){
+            body = section;
+        }
+        fz_xml *nav = fz_xml_find_down(body, "nav");
+
+        while (nav){
+            char *id = fz_xml_att(nav, "epub:type");
+            if(!strcmp(id, "toc")){
+                doc->outline = epub_parse_nav_imp(ctx, doc, nav, base_uri);
+                break;
+            }
+            nav = fz_xml_find_next(body,"nav");
+        }
+	}
+	fz_always(ctx)
+    {
+        fz_drop_buffer(ctx, buf);
+        fz_drop_xml(ctx, ncx);
+    }
+    fz_catch(ctx)
+        fz_rethrow(ctx);
+}
+
+
 static char *
 find_metadata(fz_context *ctx, fz_xml *metadata, char *key)
 {
@@ -674,10 +771,10 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 	epub_chapter **tailp;
 	int i;
 
-	if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
-		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
-	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
-		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/rights.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
+//	if (fz_has_archive_entry(ctx, zip, "META-INF/encryption.xml"))
+//		fz_throw(ctx, FZ_ERROR_GENERIC, "EPUB is locked by DRM");
 
 	fz_var(buf);
 	fz_var(container_xml);
@@ -716,17 +813,20 @@ epub_parse_header(fz_context *ctx, epub_document *doc)
 		metadata = fz_xml_find_down(package, "metadata");
 		if (metadata)
 		{
-			doc->dc_title = Memento_label(find_metadata(ctx, metadata, "title"), "epub_title");
-			doc->dc_creator = Memento_label(find_metadata(ctx, metadata, "creator"), "epub_creator");
+			doc->dc_title = find_metadata(ctx, metadata, "title");
+			doc->dc_creator = find_metadata(ctx, metadata, "creator");
 		}
 
 		manifest = fz_xml_find_down(package, "manifest");
 		spine = fz_xml_find_down(package, "spine");
 
 		if (path_from_idref(ncx, manifest, base_uri, fz_xml_att(spine, "toc"), sizeof ncx))
-		{
-			epub_parse_ncx(ctx, doc, ncx);
-		}
+        	{
+        		epub_parse_ncx(ctx, doc, ncx);
+        	}else if (path_from_idref(ncx, manifest, base_uri, "nav", sizeof ncx))
+        	{
+        		epub_parse_nav(ctx, doc, ncx);
+        	}
 
 		doc->spine = NULL;
 		tailp = &doc->spine;
