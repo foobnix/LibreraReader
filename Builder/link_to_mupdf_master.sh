@@ -38,6 +38,9 @@ MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
+SRC=jni/~mupdf-master
+DEST=$MUPDF_ROOT/source/
+
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni
 mv $MUPDF_JAVA/jni/Android-master.mk $MUPDF_JAVA/jni/Android.mk
@@ -51,7 +54,7 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
+cp -rp $SRC/css-apply.c   $DEST/html/css-apply.c
 
 cd $MUPDF_JAVA
 echo "=================="
