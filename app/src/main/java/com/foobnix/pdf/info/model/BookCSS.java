@@ -592,12 +592,14 @@ public class BookCSS {
 
         // FB2 END
 
-        builder.append("p,div,span, body{");
 
-        if (AppState.get().isAccurateFontSize || !AppState.get().isDayNotInvert) {
+
+        if (AppState.get().isAccurateFontSize || !AppState.get().isDayNotInvert || documentStyle == STYLES_ONLY_USER) {
+            builder.append("p,div,span, body {");
             builder.append(String.format("background-color:%s !important;", backgroundColor));
             builder.append(String.format("color:%s !important;", textColor));
         } else {
+            builder.append("body {");
             builder.append(String.format("background-color:%s;", backgroundColor));
             builder.append(String.format("color:%s;", textColor));
         }

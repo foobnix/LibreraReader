@@ -45,6 +45,9 @@ rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni
 mv $MUPDF_JAVA/jni/Android-master.mk $MUPDF_JAVA/jni/Android.mk
 
+#rm -rf ${BUILD_DIR}/../app/src/main/java/com/artifex
+#cp -rRp $MUPDF_JAVA/src/com/artifex ${BUILD_DIR}/../app/src/main/java/com
+
 
 rm -r $LIBS
 mkdir $LIBS
