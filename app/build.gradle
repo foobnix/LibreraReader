@@ -133,9 +133,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274",
                     appSafeMode   : "true"
             ]
-            buildConfigField "boolean", "IS_BETA", "true"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "true"
         }
 
         alpha {
@@ -151,10 +148,6 @@ android {
                     admobFullId   : "",
                     appSafeMode   : "true"
             ]
-            buildConfigField "boolean", "IS_BETA", "true"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "true"
-
         }
 
         librera {
@@ -170,9 +163,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
         }
         huawei {
             dimension "version"
@@ -187,9 +177,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/2769081274",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "true"
-            buildConfigField "boolean", "LOG", "false"
         }
         pro {
             dimension "version"
@@ -204,9 +191,6 @@ android {
                     admobFullId   : "",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "true"
         }
         pdf_classic {
             dimension "version"
@@ -221,11 +205,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/7763820878",
                     appSafeMode   : "true"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
-
-
         }
         ebooka {
             dimension "version"
@@ -240,9 +219,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/2346153515",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
         }
         pdf_v2 {
             dimension "version"
@@ -257,9 +233,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/1346267659",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
         }
         tts_reader {
             dimension "version"
@@ -274,9 +247,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/4602986382",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
         }
         epub_reader {
             dimension "version"
@@ -291,9 +261,6 @@ android {
                     admobFullId   : "ca-app-pub-8347903083053959/6163356354",
                     appSafeMode   : "false"
             ]
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "false"
-            buildConfigField "boolean", "LOG", "false"
         }
         fdroid {
             dimension "version"
@@ -309,12 +276,7 @@ android {
                     appSafeMode   : "true"
             ]
             versionNameSuffix '-fdroid'
-            buildConfigField "boolean", "IS_BETA", "false"
-            buildConfigField "boolean", "IS_FDROID", "true"
-            buildConfigField "boolean", "LOG", "false"
         }
-
-
     }
 
 

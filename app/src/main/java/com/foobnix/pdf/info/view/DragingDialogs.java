@@ -101,7 +101,6 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
@@ -4452,7 +4451,7 @@ public class DragingDialogs {
                 });
 
                 final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
-                downloadFonts.setVisibility(TxtUtils.visibleIf(!BuildConfig.IS_FDROID));
+                downloadFonts.setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
                 downloadFonts.setOnClickListener(new OnClickListener() {
 
                     @Override

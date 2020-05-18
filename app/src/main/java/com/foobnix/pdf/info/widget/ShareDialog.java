@@ -30,7 +30,6 @@ import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.DialogSpeedRead;
 import com.foobnix.pdf.info.ExtUtils;
@@ -314,7 +313,7 @@ public class ShareDialog {
             items.add(a.getString(R.string.add_to_playlist));
         }
 
-        final boolean isSyncronized = BuildConfig.IS_FDROID || Clouds.isLibreraSyncFile(file);
+        final boolean isSyncronized = AppsConfig.IS_FDROID || Clouds.isLibreraSyncFile(file);
         if (!isSyncronized) {
             items.add(a.getString(R.string.sync_book));
         }

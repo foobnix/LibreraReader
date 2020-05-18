@@ -312,7 +312,7 @@ public class PrefFragment2 extends UIFragment {
 
         section8 = inflate.findViewById(R.id.section8);
 
-        inflate.findViewById(R.id.sectionSync).setVisibility(BuildConfig.IS_FDROID ? View.GONE : View.VISIBLE);
+        inflate.findViewById(R.id.sectionSync).setVisibility(AppsConfig.IS_FDROID ? View.GONE : View.VISIBLE);
 
         section9 = inflate.findViewById(R.id.section9);
 
@@ -350,11 +350,11 @@ public class PrefFragment2 extends UIFragment {
             public void run() {
                 dragLinearLayout.removeAllViews();
                 for (UITab tab : UITab.getOrdered()) {
-                    if (BuildConfig.IS_FDROID && tab == UITab.CloudsFragment) {
+                    if (AppsConfig.IS_FDROID && tab == UITab.CloudsFragment) {
                         continue;
                     }
 
-                    if (BuildConfig.IS_FDROID && tab == UITab.OpdsFragment) {
+                    if (AppsConfig.IS_FDROID && tab == UITab.OpdsFragment) {
                         continue;
                     }
 
@@ -570,11 +570,11 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION + ")";
+            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION +"-"+ BuildConfig.FLAVOR + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
-            if (BuildConfig.IS_BETA) {
+            if (AppsConfig.IS_BETA) {
                 version += "\n MODEL: " + Build.MODEL;
                 version += "\n BRAND: " + Build.BRAND;
                 version += "\n PRODUCT: " + Build.PRODUCT;
@@ -2473,7 +2473,7 @@ public class PrefFragment2 extends UIFragment {
             modId = AppState.get().nameVerticalMode;
         } else if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER) {
             modId = getString(R.string.tag_manager);
-        }else if (AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH) {
+        } else if (AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH) {
             modId = getString(R.string.open_with);
         }
 

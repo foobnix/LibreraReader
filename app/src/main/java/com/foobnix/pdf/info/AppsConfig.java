@@ -23,6 +23,10 @@ public class AppsConfig {
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
 
+    public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
+    public static final boolean IS_BETA = BuildConfig.FLAVOR.equals("beta");
+    public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
+
 
     public static  boolean isPDF_DRAW_ENABLE(){
         return LibreraApp.MUPDF_VERSION  == MUPDF_1_11;

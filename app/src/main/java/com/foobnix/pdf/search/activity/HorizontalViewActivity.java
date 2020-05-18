@@ -58,8 +58,8 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.CopyAsyncTask;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.Android6;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
@@ -894,7 +894,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
                 }
-                if ((BuildConfig.IS_BETA || AppState.get().isExperimental) && !dc.isTextFormat()) {
+                if ((AppsConfig.IS_BETA || AppState.get().isExperimental) && !dc.isTextFormat()) {
                     p.getMenu().add("Smart Reflow").setIcon(R.drawable.glyphicons_108_text_resize).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -1132,7 +1132,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
-                if (BuildConfig.IS_BETA) {
+                if (AppsConfig.IS_BETA) {
                     long time = System.currentTimeMillis() - start;
                     float sec = (float) time / 1000;
                     modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
@@ -2147,7 +2147,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         prev = AppState.get().isEditMode;
 
-        if (BuildConfig.IS_BETA && animated) {
+        if (AppsConfig.IS_BETA && animated) {
             modeName.setText(R.string.mode_horizontally);
         }
 

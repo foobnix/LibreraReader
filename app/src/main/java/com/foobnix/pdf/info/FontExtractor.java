@@ -64,7 +64,7 @@ public class FontExtractor {
                             } else {
                                 LOG.d("extractFonts NO");
                             }
-                        } else if (BuildConfig.IS_FDROID) {
+                        } else if (AppsConfig.IS_FDROID) {
                             IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(FONT_LOCAL_ZIP));
                             copyFontsFromZip();
                             LOG.d("copy fonts for IS_FDROID");

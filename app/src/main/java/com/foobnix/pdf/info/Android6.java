@@ -62,7 +62,7 @@ public class Android6 {
                 ActivityCompat.requestPermissions(a, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WES);
             }
         } else {
-            if (checkWhatIsNew && !BuildConfig.IS_FDROID) {
+            if (checkWhatIsNew && !AppsConfig.IS_FDROID) {
                 AndroidWhatsNew.checkWhatsNew(a);
             }
             FontExtractor.extractFonts(a);

@@ -85,7 +85,7 @@ public class AndroidWhatsNew {
         url += "?utm_p=" + Apps.getPackageName(c);
         url += "&utm_v=" + Apps.getVersionName(c);
         url += "&utm_ln=" + appLang;
-        url += "&utm_beta=" + BuildConfig.IS_BETA;
+        url += "&utm_beta=" + AppsConfig.IS_BETA;
 
         url += "#" + shortVersion.replace(".", "");
 
@@ -96,7 +96,7 @@ public class AndroidWhatsNew {
 
     public static void show2(final Context c) {
 
-        if (BuildConfig.IS_FDROID ||  Build.VERSION.SDK_INT <= 22) {
+        if (AppsConfig.IS_FDROID ||  Build.VERSION.SDK_INT <= 22) {
             Urls.open(c, getLangUrl(c));
             return;
         }
@@ -238,7 +238,7 @@ public class AndroidWhatsNew {
     }
 
     public static void checkForNewBeta(final Activity c) {
-        if (!BuildConfig.IS_BETA) {
+        if (!AppsConfig.IS_BETA) {
             return;
         }
 

@@ -27,7 +27,7 @@ import android.widget.PopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
-import com.foobnix.pdf.info.BuildConfig;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
@@ -50,7 +50,7 @@ public class Views {
     public static final Handler handler = new Handler(Looper.getMainLooper());
 
     public static void visibleInBeta(View view) {
-        view.setVisibility(BuildConfig.IS_BETA ? View.VISIBLE : View.GONE);
+        view.setVisibility(AppsConfig.IS_BETA ? View.VISIBLE : View.GONE);
     }
 
     public static void visible(final View view, boolean visible) {
