@@ -107,7 +107,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 onRefresh.setActivated(true);
             } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 int count = intent.getIntExtra(Intent.EXTRA_INDEX, 0);
-                countBooks.setText("" + count);
+                if (count > 0) {
+                    countBooks.setText("" + count);
+                }
                 searchEditText.setHint(R.string.searching_please_wait_);
                 onRefresh.setActivated(false);
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
@@ -854,7 +856,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     private void sortByPopup(final View view) {
-
 
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);

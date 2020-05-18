@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -43,6 +44,7 @@ public class AppData {
 
         writeSimpleMeta(current, file);
         LOG.d("Objects-save-add", "SAVE Recent", s.getPath(), file.getPath(), s.time);
+        RecentUpates.updateAll();
     }
 
     public synchronized void removeIt(SimpleMeta s) {
@@ -69,6 +71,7 @@ public class AppData {
                 writeSimpleMeta(res, file);
             }
         }
+        RecentUpates.updateAll();
     }
 
     public void removeRecent(FileMeta meta) {
@@ -85,6 +88,7 @@ public class AppData {
         for (File file : allFiles) {
             writeSimpleMeta(new ArrayList<>(), file);
         }
+        RecentUpates.updateAll();
     }
 
 
@@ -118,6 +122,7 @@ public class AppData {
 
     public void clearRecents() {
         clearAll(AppProfile.APP_RECENT_JSON);
+
     }
 
 

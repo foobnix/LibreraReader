@@ -25,6 +25,7 @@ import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyProgressBar;
@@ -48,8 +49,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
@@ -62,7 +61,6 @@ public abstract class UIFragment<T> extends Fragment {
 
 
     View adFrame;
-    final static ExecutorService executorService = Executors.newCachedThreadPool();
 
 
     @Override
@@ -327,8 +325,7 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
         };
-        executorService.submit(target);
-        //new Thread(target).start();
+        AppsConfig.executorService.submit(target);
     }
 
     public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {

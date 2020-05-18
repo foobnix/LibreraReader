@@ -1784,7 +1784,7 @@ public class PrefFragment2 extends UIFragment {
                                                                 AppState.get().widgetType = AppState.WIDGET_LIST;
                                                                 widgetLayout.setText(R.string.list);
                                                                 TxtUtils.underlineTextView(widgetLayout);
-                                                                RecentUpates.updateAll(getActivity());
+                                                                RecentUpates.updateAll();
                                                                 return false;
                                                             }
                                                         });
@@ -1797,7 +1797,7 @@ public class PrefFragment2 extends UIFragment {
                                                                 AppState.get().widgetType = AppState.WIDGET_GRID;
                                                                 widgetLayout.setText(R.string.grid);
                                                                 TxtUtils.underlineTextView(widgetLayout);
-                                                                RecentUpates.updateAll(getActivity());
+                                                                RecentUpates.updateAll();
                                                                 return false;
                                                             }
                                                         });
@@ -1829,7 +1829,7 @@ public class PrefFragment2 extends UIFragment {
                                                                    widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
                                                                    TxtUtils.underlineTextView(widgetForRecent);
 
-                                                                   RecentUpates.updateAll(getActivity());
+                                                                   RecentUpates.updateAll();
                                                                    return false;
                                                                }
                                                            });
@@ -1843,7 +1843,7 @@ public class PrefFragment2 extends UIFragment {
                                                                    widgetForRecent.setText(AppState.get().isStarsInWidget ? R.string.starred : R.string.recent);
                                                                    TxtUtils.underlineTextView(widgetForRecent);
 
-                                                                   RecentUpates.updateAll(getActivity());
+                                                                   RecentUpates.updateAll();
                                                                    return false;
                                                                }
                                                            });
@@ -1874,7 +1874,7 @@ public class PrefFragment2 extends UIFragment {
                                                                         AppState.get().widgetItemsCount = k;
                                                                         widgetItemsCount.setText("" + k);
                                                                         TxtUtils.underlineTextView(widgetItemsCount);
-                                                                        RecentUpates.updateAll(getActivity());
+                                                                        RecentUpates.updateAll();
                                                                         return false;
                                                                     }
                                                                 });
@@ -2360,7 +2360,7 @@ public class PrefFragment2 extends UIFragment {
                                 @Override
                                 public void run() {
                                     AppProfile.saveCurrent(getActivity(), profile);
-                                    RecentUpates.updateAll(getActivity());
+                                    RecentUpates.updateAll();
                                     onTheme();
                                 }
                             });

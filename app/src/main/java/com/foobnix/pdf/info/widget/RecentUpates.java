@@ -29,6 +29,7 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSActivity;
 import com.foobnix.ui2.AppDB;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 
 import java.io.File;
@@ -37,7 +38,8 @@ import java.util.Arrays;
 public class RecentUpates {
 
     @TargetApi(25)
-    public static void updateAll(final Context c) {
+    public static void updateAll() {
+        Context c = LibreraApp.context;
         if (c == null) {
             return;
         }

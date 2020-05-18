@@ -100,8 +100,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ExtUtils {
 
@@ -118,7 +116,6 @@ public class ExtUtils {
     private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
     private static final String IMAGE_BEGIN = "<image-begin>";
     private static final String IMAGE_END = "<image-end>";
-    public static ExecutorService ES = Executors.newFixedThreadPool(4);
     public static Map<String, String> mimeCache = new HashMap<String, String>();
     public static List<String> seachExts = new ArrayList<String>();
     static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");

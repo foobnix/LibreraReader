@@ -25,7 +25,6 @@ import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.activity.msg.NotifyAllFragments;
 import com.foobnix.ui2.AppDB;
@@ -86,7 +85,6 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
                         AppData.get().clearFavorites();
 
                         populate();
-                        RecentUpates.updateAll(getActivity());
                     }
                 });
 

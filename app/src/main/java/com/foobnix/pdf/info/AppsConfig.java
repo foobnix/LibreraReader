@@ -12,6 +12,9 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.ebookdroid.LibreraApp;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class AppsConfig {
 
     public static final String PRO_LIBRERA_READER = "com.foobnix.pro.pdf.reader";
@@ -26,6 +29,9 @@ public class AppsConfig {
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
     public static final boolean IS_BETA = BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
+
+    public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
+
 
 
     public static  boolean isPDF_DRAW_ENABLE(){

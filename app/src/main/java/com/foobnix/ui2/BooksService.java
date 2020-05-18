@@ -142,6 +142,8 @@ public class BooksService extends IntentService {
         }
 
         try {
+            sendProggressMessage();
+
             if (isRunning) {
                 LOG.d(TAG, "BooksService", "Is-running");
                 return;
@@ -151,6 +153,7 @@ public class BooksService extends IntentService {
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
             //TESET
+
 
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
@@ -242,7 +245,6 @@ public class BooksService extends IntentService {
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
-                sendFinishMessage();
                 Clouds.get().syncronizeGet();
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
@@ -360,16 +362,18 @@ public class BooksService extends IntentService {
                 }
 
 
-                sendFinishMessage();
+
 
             } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
                 Clouds.get().syncronizeGet();
-                sendFinishMessage();
+
             }
 
 
         } finally {
+            sendFinishMessage();
             isRunning = false;
+
         }
         //stopSelf();
     }

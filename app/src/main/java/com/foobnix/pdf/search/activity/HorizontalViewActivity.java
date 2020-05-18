@@ -83,7 +83,6 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
@@ -1586,8 +1585,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (flippingHandler != null) {
             flippingHandler.removeCallbacksAndMessages(null);
         }
-
-        RecentUpates.updateAll(this);
 
     }
 

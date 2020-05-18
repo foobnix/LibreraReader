@@ -58,7 +58,6 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyProgressBar;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -699,8 +698,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 }
             });
 
-        } else {
-            RecentUpates.updateAll(this);
         }
 
         checkGoToPage(getIntent());
