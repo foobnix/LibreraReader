@@ -22,6 +22,8 @@ public class PageUrl {
     private boolean isDouble;
     private boolean doText;
 
+    public int hash;
+
     public boolean tempWithWatermakr = false;
 
     public PageUrl(final String path, final int page, final int width, final int number, final boolean invert, final boolean crop, final int rotate) {
@@ -32,7 +34,7 @@ public class PageUrl {
         this.invert = invert;
         this.crop = crop;
         this.rotate = rotate;
-        unic = Dips.screenWidth();
+        init();
     }
 
     public PageUrl(final String path, final int page, final int width, final int number, final boolean invert, final boolean crop, final int rotate, int heigth) {
@@ -44,11 +46,16 @@ public class PageUrl {
         this.crop = crop;
         this.rotate = rotate;
         this.height = heigth;
+        init();
+
+    }
+    public void init(){
         unic = Dips.screenWidth();
+        hash = MagicHelper.hash();
     }
 
     public PageUrl() {
-        unic = Dips.screenWidth();
+        init();
     }
 
     public static PageUrl buildSmall(String path, int page) {
@@ -109,6 +116,7 @@ public class PageUrl {
                 url.setHeight((int) (h * 0.7));
             }
         }
+
         return url;
 
     }
@@ -127,7 +135,7 @@ public class PageUrl {
             obj.put("height", height);
             obj.put("unic", unic);
             obj.put("cutp", cutp);
-            obj.put("m", MagicHelper.hash());
+            obj.put("hash", hash);
             obj.put("isDouble", isDouble);
             obj.put("doText", doText);
             return obj.toString();

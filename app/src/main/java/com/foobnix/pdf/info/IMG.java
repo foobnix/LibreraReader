@@ -122,6 +122,7 @@ public class IMG {
     public static void clearMemoryCache() {
         Glide.get(LibreraApp.context).clearMemory();
     }
+
     public static RequestManager with(Context a) {
         if (a instanceof HorizontalViewActivity) {
             return Glide.with((HorizontalViewActivity) a);
@@ -148,15 +149,16 @@ public class IMG {
         LOG.d("Glide-clear", image.getContext());
         try {
             with(image.getContext()).clear(image);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
+
     public static void clear(Context c, Target t) {
         LOG.d("Glide-clear", c);
         try {
             with(c).clear(t);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
@@ -216,7 +218,7 @@ public class IMG {
                 .listener(new RequestListener<Bitmap>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
-                        LOG.d("Bitmap-test-2","failed");
+                        LOG.d("Bitmap-test-2", "failed");
 
                         return false;
                     }
@@ -224,7 +226,7 @@ public class IMG {
                     @Override
                     public boolean onResourceReady(Bitmap bitmap, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
                         target.onResourceReady(bitmap, null);
-                       LOG.d("Bitmap-test-2",bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                        LOG.d("Bitmap-test-2", bitmap, bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
                         if (run != null) {
                             run.run();
@@ -244,6 +246,7 @@ public class IMG {
     public static String toUrl(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         pdfUrl.setUnic(0);
+        pdfUrl.hash = (""+AppState.get().isBookCoverEffect).hashCode();
         return pdfUrl.toString();
     }
 

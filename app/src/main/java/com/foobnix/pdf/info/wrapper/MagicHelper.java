@@ -20,9 +20,11 @@ import androidx.core.graphics.ColorUtils;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
+import com.foobnix.pdf.info.model.BookCSS;
 
 import org.ebookdroid.LibreraApp;
 
@@ -40,12 +42,9 @@ public class MagicHelper {
     public static int hash() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append(AppState.get().isUseBGImageDay);
-        builder.append(AppState.get().isUseBGImageNight);
-        builder.append(AppState.get().bgImageDayTransparency);
-        builder.append(AppState.get().bgImageNightTransparency);
-        builder.append(AppState.get().bgImageDayPath);
-        builder.append(AppState.get().bgImageNightPath);
+        builder.append(Objects.hashCode(AppState.get()));
+        builder.append(Objects.hashCode(BookCSS.get()));
+
         return builder.toString().hashCode();
 
     }
