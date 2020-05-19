@@ -340,7 +340,7 @@ public class BooksService extends IntentService {
                     }
                 }
 
-                SharedBooks.updateProgress(itemsMeta, true);
+                SharedBooks.updateProgress(itemsMeta, true,-1);
                 AppDB.get().updateAll(itemsMeta);
 
 

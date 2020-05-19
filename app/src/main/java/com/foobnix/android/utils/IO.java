@@ -101,6 +101,7 @@ public class IO {
             try {
                 if (!file.exists()) {
                     cacheString = "";
+                    cacheFile = file.getPath();
                     return "";
                 }
                 LOG.d("lib-IO", "read file", file);
@@ -122,6 +123,7 @@ public class IO {
             } catch (Exception e) {
                 LOG.e(e);
             }
+            cacheFile = file.getPath();
             cacheString = "";
             return "";
         }
