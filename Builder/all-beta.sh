@@ -20,7 +20,7 @@ cd Builder
 cd ../
 ./gradlew assembleProRelease
 ./gradlew assembleBetaRelease
-#./gradlew assembleHuaweiRelease
+./gradlew assembleHuaweiRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop

@@ -28,6 +28,7 @@ import java.util.Map;
 
 public class AppData {
 
+    public static final int LIMIT = 3;
     static AppData inst = new AppData();
 
     public static AppData get() {
@@ -158,7 +159,7 @@ public class AppData {
             }
         }
         if (updateProgress) {
-            SharedBooks.updateProgress(res, false, 10);
+            SharedBooks.updateProgress(res, false, LIMIT);
         }
         try {
             Collections.sort(res, FileMetaComparators.BY_DATE);
@@ -235,7 +236,7 @@ public class AppData {
         }
 
         if (updateProgress) {
-            SharedBooks.updateProgress(res, false, 10);
+            SharedBooks.updateProgress(res, false, LIMIT);
         }
         return res;
     }
