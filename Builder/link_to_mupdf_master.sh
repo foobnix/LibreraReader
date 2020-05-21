@@ -12,8 +12,7 @@ git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-master
 cd mupdf-master
 
 #git reset --hard
-git reset --hard 275835423a38a2739d4cfd2bde91380d492b6035
-
+git reset --hard 0fe78612104eb9c24e37e7c20f6487219eee1e74
 git submodule foreach --recursive git reset --hard
 git submodule update --init --recursive
 

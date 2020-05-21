@@ -325,92 +325,7 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/sectionSync"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-
-        <LinearLayout
-            android:id="@+id/section8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search_second"
-            android:gravity="center_vertical">
-
-
-            <ImageView
-                android:layout_width="@dimen/wh_button_small"
-                android:layout_height="@dimen/wh_button_small"
-                android:layout_weight="0"
-                android:padding="2dip"
-                android:src="@drawable/gdrive"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/syncHeader"
-                style="@style/textLinkWhite"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sync_google_drive" />
-
-
-            <TextView
-                android:id="@+id/signIn"
-                style="@style/textLinkWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:singleLine="true"
-                android:text="@string/sign_in" />
-
-
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/syncInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dip"
-            android:text="ivan@gmail.com" />
-
-        <TextView
-            android:id="@+id/syncInfo2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dip"
-            android:text="ivan@gmail.com" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
-
-
-            <CheckBox
-                android:id="@+id/isEnableSync"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/enable" />
-
-
-            <ImageView
-                android:id="@+id/isEnableSyncSettings"
-                android:layout_width="@dimen/wh_button"
-                android:layout_height="@dimen/wh_button"
-                android:layout_weight="0"
-                android:padding="8dip"
-                android:src="@drawable/glyphicons_137_cogwheel"
-                android:tint="@color/tint_gray" />
-        </LinearLayout>
-
-    </LinearLayout>
 
         <TextView
             android:id="@+id/section2"
@@ -1460,6 +1375,93 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="start"
                 android:text="[]" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/sectionSync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <LinearLayout
+                android:id="@+id/section8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_second"
+                android:gravity="center_vertical">
+
+
+                <ImageView
+                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_height="@dimen/wh_button_small"
+                    android:layout_weight="0"
+                    android:padding="2dip"
+                    android:src="@drawable/gdrive"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/syncHeader"
+                    style="@style/textLinkWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sync_google_drive" />
+
+
+                <TextView
+                    android:id="@+id/signIn"
+                    style="@style/textLinkWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:singleLine="true"
+                    android:text="@string/sign_in" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/syncInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="ivan@gmail.com" />
+
+            <TextView
+                android:id="@+id/syncInfo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dip"
+                android:text="ivan@gmail.com" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+
+                <CheckBox
+                    android:id="@+id/isEnableSync"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/enable" />
+
+
+                <ImageView
+                    android:id="@+id/isEnableSyncSettings"
+                    android:layout_width="@dimen/wh_button"
+                    android:layout_height="@dimen/wh_button"
+                    android:layout_weight="0"
+                    android:padding="8dip"
+                    android:src="@drawable/glyphicons_137_cogwheel"
+                    android:tint="@color/tint_gray" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <TextView

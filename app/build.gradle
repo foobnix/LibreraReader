@@ -28,9 +28,9 @@ ext {
 }
 
 android {
-    buildToolsVersion '29.0.2'
+    buildToolsVersion '29.0.3'
     compileSdkVersion 29
-    ndkVersion "21.0.6113669"
+    ndkVersion "21.1.6352462"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
@@ -392,8 +392,8 @@ task copyApks() {
     if (project.hasProperty('beta')) {
         println "My Task: [copy apks]"
 
-        delete fileTree("/home/dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
-        delete fileTree("/home/dev/Nextcloud/LibreraBeta").include("*.apk")
+        delete fileTree("/data/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/data/Nextcloud/LibreraBeta").include("*.apk")
 
         android.applicationVariants.all { variant ->
                 if("release" == variant.buildType.name) {
@@ -401,8 +401,8 @@ task copyApks() {
 
                     //println "====  " + variant.buildType.name + " " +  flavor
 
-                    ["/home/dev/Dropbox/FREE_PDF_APK/testing",
-                     "/home/dev/Nextcloud/LibreraBeta"].each { dest ->
+                    ["/data/Dropbox/FREE_PDF_APK/testing",
+                     "/data/Nextcloud/LibreraBeta"].each { dest ->
                         copy {
                             from file(
                                     "build/outputs/apk/${flavor}/release/"
@@ -416,7 +416,7 @@ task copyApks() {
         }
 
 
-        //File file = new File('/home/dev/Dropbox/FREE_PDF_APK/testing/version.txt')
+        //File file = new File('/data/Dropbox/FREE_PDF_APK/testing/version.txt')
         //file.write versionNumber
     }
 }

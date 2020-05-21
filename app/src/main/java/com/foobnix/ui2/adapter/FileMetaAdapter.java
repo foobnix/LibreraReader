@@ -162,7 +162,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //LOG.d("onViewRecycled");
-            IMG.clear(holder.image);
+           IMG.clear(holder.image);
         }
 
     }
