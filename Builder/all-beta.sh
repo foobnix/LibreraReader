@@ -20,7 +20,7 @@ cd Builder
 cd ../
 ./gradlew assembleProRelease
 ./gradlew assembleBetaRelease
-./gradlew assembleHuaweiRelease
+#./gradlew assembleHuaweiRelease
 
 ./gradlew copyApks -Pbeta
 ./gradlew -stop
@@ -28,11 +28,11 @@ cd ../
 
 cd Builder
 
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
-rm /home/dev/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
+rm /data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
+rm /data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
 
-rm /home/dev/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
-rm /home/dev/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
+rm /data/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
+rm /data/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
 
 
 ./remove_all.sh

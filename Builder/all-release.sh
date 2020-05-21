@@ -16,6 +16,7 @@ cd ../
 ./gradlew assembleLibreraRelease
 ./gradlew assemblePdf_classicRelease
 ./gradlew assembleEpub_readerRelease
+./gradlew assembleHuaweiRelease
 
 
 ### 1.16.1
