@@ -5,7 +5,7 @@ import translations.SyncTranslations;
 
 public class PrintLangCodes {
     public static void main(String[] args) {
-        final List<String> asList = SyncTranslations.getAllLangCodes("/home/dev/git/LirbiReader/EBookDroid/res");
+        final List<String> asList = SyncTranslations.getAllLangCodes("/data/git/LirbiReader/EBookDroid/res");
         Collections.sort(asList);
 
         for (final String lang : asList) {

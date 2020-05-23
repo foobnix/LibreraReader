@@ -56,7 +56,7 @@ public class Dao2Generator {
         dict.addStringProperty("key").primaryKey();
         dict.addStringProperty("value");
 
-        new DaoGenerator().generateAll(schema, "/home/dev/git/LibreraReader/app/src/main/java");
+        new DaoGenerator().generateAll(schema, "/data/git/LibreraReader/app/src/main/java");
 
 
 
