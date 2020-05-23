@@ -76,9 +76,9 @@
    <string name="screen_orientation">Screen orientation</string>
    <string name="open_in_the_dictionary">Open selection in dictionary</string>
    <string name="remember_dictionary">Choose Dictionary</string>
-   <string name="dictionary">Dictionary</string>
-   <string name="day">Day</string>
-   <string name="nigth">Night</string>
+   <string name="dictionary">Folcóir</string>
+   <string name="day">Lá</string>
+   <string name="nigth">Oíche</string>
    <string name="___READING___SETTINGS___SECTION___"></string>
    <string name="reading_settings">Reading Settings</string>
    <string name="folder_with_fonts">Fonts</string>
