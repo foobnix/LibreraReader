@@ -9,7 +9,9 @@ Al usar esta aplicación, usted acepta los términos de la [Política de privaci
 **Nuevas características y mejoras**
 
 * Nueva biblioteca de visualización de imágenes
-* Mejoras en la estabilidad
-* Posibilidad de agregar archivos de audio mp3 para libros
+* Mejora de estabilidad
+* Agregar archivos MP3 a libros
 * Ordenar por autor en la pestaña Carpeta
-* Muchas pequeñas correcciones
+
+**Correcciones**
+* Varias correcciones menores generales

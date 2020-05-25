@@ -340,7 +340,7 @@ public class PrefDialogs {
                                 for (int i = 0; i < array.length(); i++) {
                                     final LinkedJSONObject it = array.getJSONObject(i);
                                     String path = it.getString(SimpleMeta.JSON_PATH);
-                                    if (path.startsWith(fromPath)) {
+                                    if (path.contains(fromPath)) {
                                         LOG.d("Migration-recent path-1", path);
                                         path = path.replace(fromPath, toPath);
                                         it.put(SimpleMeta.JSON_PATH, path);

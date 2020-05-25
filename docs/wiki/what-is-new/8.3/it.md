@@ -9,7 +9,9 @@ Usando questa app accetti i termini della [Informativa sulla privacy](/wiki/Priv
 **Nuove funzionalità e miglioramenti**
 
 * Nuova libreria di visualizzazione immagini
-* Miglioramenti nella stabilità
-* Possibilità di aggiungere file audio mp3 per i libri
+* Miglioramento della stabilità
+* Aggiungi file MP3 ai libri
 * Ordina per autore nella scheda Cartella
-* Molte piccole correzioni
+
+**Correzioni**
+* Varie correzioni minori all-around

@@ -9,7 +9,9 @@ En utilisant cette application, vous acceptez les conditions de la [Politique de
 **Nouvelles fonctionnalités et améliorations**
 
 * Nouvelle bibliothèque d'affichage d'images
-* Améliorations de la stabilité
-* Possibilité d'ajouter un fichier audio mp3 pour les livres
+* Amélioration de la stabilité
+* Ajouter des fichiers MP3 aux livres
 * Trier par auteur dans l'onglet Dossier
-* De nombreuses petites corrections
+
+**Corrections**
+* Diverses corrections mineures générales

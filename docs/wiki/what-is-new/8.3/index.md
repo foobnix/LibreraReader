@@ -12,6 +12,7 @@ By using this app you agree to the terms of the [Privacy Policy](/wiki/PrivacyPo
 * Stability improvement
 * Add MP3 files to books
 * Sort by Author in Folder Tab
+* Migration
 
 **Fixes**
 * Various all-around minor fixes

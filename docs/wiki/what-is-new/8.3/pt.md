@@ -9,7 +9,9 @@ Ao usar este aplicativo, você concorda com os termos da [Política de privacida
 **Novos recursos e melhorias**
 
 * Nova biblioteca de exibição de imagens
-* Melhorias na estabilidade
-* Possibilidade de adicionar arquivos de áudio mp3 para livros
+* Melhoria da estabilidade
+* Adicione arquivos MP3 aos livros
 * Classificar por autor na guia Pasta
-* Muitas pequenas correções
+
+**Correções**
+* Várias pequenas correções gerais

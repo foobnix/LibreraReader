@@ -9,7 +9,9 @@ Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtl
 **Neue Funktionen und Verbesserungen**
 
 * Neue Bildanzeigebibliothek
-* Stabilitätsverbesserungen
-* Möglichkeit, MP3-Audiodateien für Bücher hinzuzufügen
+* Stabilitätsverbesserung
+* MP3-Dateien zu Büchern hinzufügen
 * Auf der Registerkarte &quot;Ordner&quot; nach Autor sortieren
-* Viele kleine Korrekturen
+
+**Korrekturen**
+* Verschiedene kleinere Korrekturen
