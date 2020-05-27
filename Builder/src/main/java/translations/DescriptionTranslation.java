@@ -8,8 +8,8 @@ import java.util.List;
 
 public class DescriptionTranslation {
 
-    private static final String TR_PATH = "/data/git/LibreraReader/Builder/Description/about/";
-    private static final String RECENT_PATH = "/data/git/LibreraReader/Builder/Description/recent/";
+    private static final String TR_PATH = "/home/data/git/LibreraReader/Builder/Description/about/";
+    private static final String RECENT_PATH = "/home/data/git/LibreraReader/Builder/Description/recent/";
 
     public static void main(String[] args) throws IOException {
         // final List<String> asList = Arrays.asList("ar", "de", "es", "fr",
@@ -19,8 +19,8 @@ public class DescriptionTranslation {
         boolean translateDescription = false;
         boolean translateRecent = true;
 
-        String aboutEN = new String(Files.readAllBytes(Paths.get("/data/git/LibreraReader/Builder/Description/about.txt")));
-        String recentEN = new String(Files.readAllBytes(Paths.get("/data/git/LibreraReader/Builder/Description/recent.txt")));
+        String aboutEN = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/Description/about.txt")));
+        String recentEN = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/Description/recent.txt")));
 
         for (String ex : asList) {
             String outAbout = TR_PATH + ex + ".txt";

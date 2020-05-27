@@ -12,12 +12,12 @@ import java.util.List;
 public class GenerateFAQ {
 
     public static void main(String[] args) throws Exception {
-        // updateIndex("/data/git/LirbiReader/docs/wiki/faq", "Frequently asked
+        // updateIndex("/home/data/git/LirbiReader/docs/wiki/faq", "Frequently asked
         // questions1", 1);
-        // updateIndex("/data/git/LirbiReader/docs/wiki/stories", "Stories",
+        // updateIndex("/home/data/git/LirbiReader/docs/wiki/stories", "Stories",
         // 1);
 
-        WikiTranslate.translate("/data/git/LirbiReader/docs/wiki/faq", "it");
+        WikiTranslate.translate("/home/data/git/LirbiReader/docs/wiki/faq", "it");
     }
 
     public static void updateIndex(final String in, String pageTitle) throws Exception {

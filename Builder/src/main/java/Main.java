@@ -26,7 +26,7 @@ public class Main {
 
     static GraphicsConfiguration gc;
 
-    static String img = "/data/IdeaProjects/SmartReflow/images/sample6.png";
+    static String img = "/home/data/IdeaProjects/SmartReflow/images/sample6.png";
 
     public static void main(String[] args) throws IOException {
         runIU(img);
@@ -113,7 +113,7 @@ public class Main {
         open1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File my = new File("/data/IdeaProjects/SmartReflow/src1");
+                File my = new File("/home/data/IdeaProjects/SmartReflow/src1");
                 if (!my.exists()) {
                     my = new File(System.getProperty("user.dir"));
 

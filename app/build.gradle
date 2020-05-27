@@ -392,8 +392,8 @@ task copyApks() {
     if (project.hasProperty('beta')) {
         println "My Task: [copy apks]"
 
-        delete fileTree("/data/Dropbox/FREE_PDF_APK/testing").include("*.apk")
-        delete fileTree("/data/Nextcloud/LibreraBeta").include("*.apk")
+        delete fileTree("/home/data/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/home/data/Nextcloud/LibreraBeta").include("*.apk")
 
         android.applicationVariants.all { variant ->
                 if("release" == variant.buildType.name) {
@@ -401,8 +401,8 @@ task copyApks() {
 
                     //println "====  " + variant.buildType.name + " " +  flavor
 
-                    ["/data/Dropbox/FREE_PDF_APK/testing",
-                     "/data/Nextcloud/LibreraBeta"].each { dest ->
+                    ["/home/data/Dropbox/FREE_PDF_APK/testing",
+                     "/home/data/Nextcloud/LibreraBeta"].each { dest ->
                         copy {
                             from file(
                                     "build/outputs/apk/${flavor}/release/"
@@ -416,7 +416,7 @@ task copyApks() {
         }
 
 
-        //File file = new File('/data/Dropbox/FREE_PDF_APK/testing/version.txt')
+        //File file = new File('/home/data/Dropbox/FREE_PDF_APK/testing/version.txt')
         //file.write versionNumber
     }
 }

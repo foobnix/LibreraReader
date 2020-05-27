@@ -19,7 +19,7 @@ public class WikiTranslate2 {
     public static void main(String[] args) throws Exception {
 
 
-        String root = "/data/git/LibreraReader/docs/wiki";
+        String root = "/home/data/git/LibreraReader/docs/wiki";
         syncPaths(root, "ru");
 
 

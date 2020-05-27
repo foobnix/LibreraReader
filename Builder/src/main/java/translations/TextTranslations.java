@@ -7,13 +7,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TextTranslations {
-    private static final String PATH = "/data/git/LibreraReader/Builder/Description/text/";
+    private static final String PATH = "/home/data/git/LibreraReader/Builder/Description/text/";
 
     public static void main(String[] args) throws IOException {
         final List<String> asList = Arrays.asList("ar", "de", "es", "fr", "it", "ja", "pt", "ru", "sk", "tr", "uk", "zh", "nl");
         // final List<String> asList = Arrays.asList("ru", "uk");
 
-        String textPath = new String(Files.readAllBytes(Paths.get("/data/git/LibreraReader/Builder/Description/text.txt")));
+        String textPath = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/Description/text.txt")));
 
         for (String ex : asList) {
             String outAbout = PATH + ex + ".txt";

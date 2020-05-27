@@ -28,10 +28,10 @@ public class ScreenshotsGenerator {
     public static void main(String[] args) throws Exception {
         System.out.println("Start banners");
 
-        String bg = "/data/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
-        String phone = "/data/Dropbox/Projects/Librera/Screenshots/6p.png";
-        String screenshot = "/data/Dropbox/Projects/Librera/Screenshots/Source/";
-        String out = "/data/Dropbox/Projects/Librera/Screenshots/gen/";
+        String bg = "/home/data/Dropbox/Projects/Librera/pdf-v2.0-screenshots/Projects/Чистые фоны/Монтажная область ";
+        String phone = "/home/data/Dropbox/Projects/Librera/Screenshots/6p.png";
+        String screenshot = "/home/data/Dropbox/Projects/Librera/Screenshots/Source/";
+        String out = "/home/data/Dropbox/Projects/Librera/Screenshots/gen/";
 
         for (File file : new File(out).listFiles()) {
             if (file.isFile()) {

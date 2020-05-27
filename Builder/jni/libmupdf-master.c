@@ -167,7 +167,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 		printf("Open start %s \n", filename);
 		__android_log_print(ANDROID_LOG_DEBUG, "EBookDroid", "Open");
 
-		doc->document = (fz_document*) fz_open_document(doc->ctx, filename);
+		doc->document = (fz_document*) fz_open_accelerated_document(doc->ctx, filename, NULL);
 
 		//fz_drop_context(doc->ctx);
 		//fz_set_user_css(doc->ctx,css);

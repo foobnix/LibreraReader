@@ -28,11 +28,11 @@ cd ../
 
 cd Builder
 
-rm /data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
-rm /data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
+rm /home/data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
+rm /home/data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
 
-rm /data/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
-rm /data/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
+rm /home/data/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
+rm /home/data/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
 
 
 ./remove_all.sh
