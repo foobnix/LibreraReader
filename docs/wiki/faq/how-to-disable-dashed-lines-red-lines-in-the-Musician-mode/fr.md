@@ -10,4 +10,5 @@ layout: main
 * Vous pouvez désactiver les lignes en pointillés
 * Vous pouvez désactiver les lignes rouges (qui indiquent la fin du document)
 
-![](1.png)
+
+![disable dashed lines](1.png)

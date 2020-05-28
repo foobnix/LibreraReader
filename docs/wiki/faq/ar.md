@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [التباين والسطوع في PDF (تأثير أبيض/أسود)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [كيفية تعطيل الخطوط المتقطعة ، الخطوط الحمراء في &quot;الوضع الموسيقي&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ar)
 * [النسخ الاحتياطي للبيانات وترحيلها](/wiki/faq/backup-import-export-migration/ar)
 * [إنشاء ملف TXT جديد للملاحظات والاقتباسات ، إلخ.](/wiki/faq/create-new-book-or-file-txt/ar)
@@ -32,7 +33,6 @@ layout: main
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/wiki/faq/bookmarks-extended-panel/ar)
 * [التحكم في السطوع وفلورايت تصفية](/wiki/faq/brightness-control-and-blue-light-filter/ar)
 * [فتح مجلد به صور ككتاب (الربط في كتاب)](/wiki/faq/open-folder-with-images-as-a-book/ar)
-* [تحسين التباين والسطوع في PDF (تأثير B/W)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [إضافة علامات مخصصة ومعالجتها](/wiki/faq/custom-tags/ar)
 * [ملاحظات في النص مقابل الحواشي السفلية](/wiki/faq/include-footnotes-directly-in-the-text/ar)
 * [كتاب مفتوح مع &quot;مدير العلامات&quot;](/wiki/faq/open-book-with-tag-manager/ar)

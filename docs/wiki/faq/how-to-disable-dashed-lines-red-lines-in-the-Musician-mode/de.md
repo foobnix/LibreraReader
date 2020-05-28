@@ -10,4 +10,5 @@ layout: main
 * Sie können gestrichelte Linien deaktivieren
 * Sie können rote Linien deaktivieren (die das Ende des Dokuments anzeigen).
 
-![](1.png)
+
+![disable dashed lines](1.png)

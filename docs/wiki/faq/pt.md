@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Contraste e brilho em PDF (efeito preto/branco)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Como desativar linhas tracejadas, linhas vermelhas no &quot;modo Músico&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/pt)
 * [Backup e migração de dados](/wiki/faq/backup-import-export-migration/pt)
 * [Criando um novo arquivo TXT para anotações, citações, etc.](/wiki/faq/create-new-book-or-file-txt/pt)
@@ -32,7 +33,6 @@ layout: main
 * [Trabalhando com favoritos no modo avançado (faixa de opções de favoritos)](/wiki/faq/bookmarks-extended-panel/pt)
 * [Controle de brilho e filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/pt)
 * [Abrindo uma pasta com imagens como livro (Encadernar em um livro)](/wiki/faq/open-folder-with-images-as-a-book/pt)
-* [Aprimoramento de contraste e brilho em PDF (efeito P/B)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Adicionando e manipulando tags personalizadas](/wiki/faq/custom-tags/pt)
 * [Notas no texto x notas de rodapé](/wiki/faq/include-footnotes-directly-in-the-text/pt)
 * [Abrir livro com &quot;Gerenciador de tags&quot;](/wiki/faq/open-book-with-tag-manager/pt)

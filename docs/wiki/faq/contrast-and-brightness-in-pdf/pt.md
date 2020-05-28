@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Aprimoramento de contraste e brilho em PDF (efeito P/B)
+# Contraste e brilho em PDF (efeito preto/branco)
 
 > A legibilidade do PDF no **Librera Reader** pode ser significativamente aprimorada com ajustes manuais nas configurações de brilho e contraste. Quando você alterna para o modo manual, seu documento será exibido em preto e branco e você verá os resultados dos seus ajustes em tempo real em segundo plano, atrás da janela **Contraste e brilho**.
 > Os ajustes imitam o efeito frequentemente usado nos leitores de tinta eletrônica.

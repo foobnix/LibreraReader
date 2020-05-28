@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Mejora de contraste y brillo en PDF (efecto B/N)
+# Contraste y brillo en PDF (efecto blanco/negro)
 
 > La legibilidad de PDF en **Librera Reader** se puede mejorar significativamente mediante ajustes manuales en la configuración de brillo y contraste. Cuando cambie al modo manual, su documento se mostrará en blanco y negro y verá los resultados de sus ajustes en tiempo real en segundo plano, detrás de la ventana **Contraste y Brillo**.
 > Los ajustes imitan el efecto de uso frecuente en los lectores de tinta electrónica.

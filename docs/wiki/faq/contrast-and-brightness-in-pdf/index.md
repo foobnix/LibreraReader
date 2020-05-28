@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Contrast and Brightness Enhancement in PDF  (B/W Effect)
+# Contrast and Brightness in PDF  (Black/White Effect)
 
 > PDF readability in **Librera Reader** can be improved significantly by manual adjustments to brightness and contrast settings. When you switch to manual mode, your document will be displayed in black-and-white and you will see the results of your adjustments in real time in the background, behind the **Contrast and Brightness** window.
 > The adjustments mimic the effect often used in E-Ink readers.

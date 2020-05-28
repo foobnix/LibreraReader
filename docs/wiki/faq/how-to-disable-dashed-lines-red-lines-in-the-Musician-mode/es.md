@@ -10,4 +10,5 @@ layout: main
 * Puede deshabilitar las líneas discontinuas
 * Puede deshabilitar las líneas rojas (que indican el final del documento)
 
-![](1.png)
+
+![disable dashed lines](1.png)

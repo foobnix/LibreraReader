@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Контраст и яркость в PDF (черно-белый эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
 * [Как отключить пунктирные линии, красные линии в «Режиме музыканта»](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ru)
 * [Резервное копирование данных и миграция](/wiki/faq/backup-import-export-migration/ru)
 * [Создание нового файла TXT для заметок, цитат и т. Д.](/wiki/faq/create-new-book-or-file-txt/ru)
@@ -32,7 +33,6 @@ layout: main
 * [Работа с закладками в расширенном режиме (лента закладок)](/wiki/faq/bookmarks-extended-panel/ru)
 * [Контроль яркости и фильтр Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/ru)
 * [Открытие папки с изображениями в виде книги (переплет в книге)](/wiki/faq/open-folder-with-images-as-a-book/ru)
-* [Повышение контрастности и яркости в PDF (ч/б эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
 * [Добавление и обработка пользовательских тегов](/wiki/faq/custom-tags/ru)
 * [Текстовые примечания против сносок](/wiki/faq/include-footnotes-directly-in-the-text/ru)
 * [Открыть книгу с помощью «Диспетчера тегов»](/wiki/faq/open-book-with-tag-manager/ru)

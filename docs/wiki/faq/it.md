@@ -4,6 +4,7 @@ layout: main
 
 # Domande frequenti
 
+* [Contrasto e luminosità in PDF (effetto bianco/nero)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Come disabilitare le linee tratteggiate, le linee rosse in &quot;Modalità musicista&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/it)
 * [Backup e migrazione dei dati](/wiki/faq/backup-import-export-migration/it)
 * [Creazione di un nuovo file TXT per note, preventivi, ecc.](/wiki/faq/create-new-book-or-file-txt/it)
@@ -32,7 +33,6 @@ layout: main
 * [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/wiki/faq/bookmarks-extended-panel/it)
 * [Controllo luminosità e filtro Bluelight](/wiki/faq/brightness-control-and-blue-light-filter/it)
 * [Apertura di una cartella con immagini come libro (Rilegatura in un libro)](/wiki/faq/open-folder-with-images-as-a-book/it)
-* [Miglioramento del contrasto e della luminosità in PDF (effetto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Aggiunta e gestione di tag personalizzati](/wiki/faq/custom-tags/it)
 * [Note nel testo e note a piè di pagina](/wiki/faq/include-footnotes-directly-in-the-text/it)
 * [Libro aperto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/it)

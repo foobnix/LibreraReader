@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Contrast and Brightness in PDF  (Black/White Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [How to disable dashed lines, red lines in the "Musician mode"](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode)
 * [Data backup and migration](/wiki/faq/backup-import-export-migration)
 * [Creating a New TXT File for Notes, Quotes, etc.](/wiki/faq/create-new-book-or-file-txt)
@@ -33,7 +34,6 @@ info: this file is generated automatically, please do not modify it
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/wiki/faq/bookmarks-extended-panel)
 * [Brightness Control and Bluelight Filter](/wiki/faq/brightness-control-and-blue-light-filter)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/wiki/faq/open-folder-with-images-as-a-book)
-* [Contrast and Brightness Enhancement in PDF  (B/W Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [Adding and Handling Custom Tags](/wiki/faq/custom-tags)
 * [In-Text Notes vs. Footnotes](/wiki/faq/include-footnotes-directly-in-the-text)
 * [Open book with "Tag Manager"](/wiki/faq/open-book-with-tag-manager)

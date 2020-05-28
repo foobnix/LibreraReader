@@ -10,4 +10,5 @@ layout: main
 * È possibile disabilitare le linee tratteggiate
 * Puoi disabilitare le linee rosse (che indicano la fine del documento)
 
-![](1.png)
+
+![disable dashed lines](1.png)

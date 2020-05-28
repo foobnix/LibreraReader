@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)
+# Kontrast und Helligkeit in PDF (Schwarz/Weiß-Effekt)
 
 > Die PDF-Lesbarkeit in **Librera Reader** kann durch manuelle Anpassung der Helligkeits- und Kontrasteinstellungen erheblich verbessert werden. Wenn Sie in den manuellen Modus wechseln, wird Ihr Dokument in Schwarzweiß angezeigt und Sie sehen die Ergebnisse Ihrer Anpassungen in Echtzeit im Hintergrund hinter dem Fenster **Kontrast und Helligkeit**.
 > Die Anpassungen ahmen den Effekt nach, der häufig in E-Ink-Lesegeräten verwendet wird.

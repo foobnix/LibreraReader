@@ -10,4 +10,5 @@ layout: main
 *您可以禁用虚线
 *您可以禁用红线(表示文档的结尾)
 
-![](1.png)
+
+![disable dashed lines](1.png)

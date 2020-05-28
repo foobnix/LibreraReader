@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Amélioration du contraste et de la luminosité dans les PDF (effet N/B)
+# Contraste et luminosité en PDF (effet noir/blanc)
 
 > La lisibilité des PDF dans **Librera Reader** peut être considérablement améliorée par des ajustements manuels des paramètres de luminosité et de contraste. Lorsque vous passez en mode manuel, votre document sera affiché en noir et blanc et vous verrez les résultats de vos ajustements en temps réel en arrière-plan, derrière la fenêtre **Contraste et luminosité**.
 > Les réglages reproduisent l’effet souvent utilisé dans les lecteurs E-Ink.

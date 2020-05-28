@@ -2,7 +2,7 @@
 layout: main
 ---
 
-# Miglioramento del contrasto e della luminosità in PDF (effetto B/N)
+# Contrasto e luminosità in PDF (effetto bianco/nero)
 
 > La leggibilità del PDF in **Librera Reader** può essere migliorata in modo significativo regolando manualmente le impostazioni di luminosità e contrasto. Quando passi alla modalità manuale, il documento verrà visualizzato in bianco e nero e vedrai i risultati delle tue regolazioni in tempo reale sullo sfondo, dietro la finestra **Contrasto e luminosità**.
 > Le regolazioni imitano l'effetto spesso utilizzato nei lettori E-Ink.

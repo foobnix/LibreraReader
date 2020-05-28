@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [PDF的对比度和亮度(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
 * [如何在“音乐人模式”中禁用虚线，红线](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/zh)
 * [数据备份和迁移](/wiki/faq/backup-import-export-migration/zh)
 * [为注释，引号等创建新的TXT文件](/wiki/faq/create-new-book-or-file-txt/zh)
@@ -32,7 +33,6 @@ layout: main
 * [在扩展模式下使用书签(书签功能区)](/wiki/faq/bookmarks-extended-panel/zh)
 * [亮度控制和蓝光滤镜](/wiki/faq/brightness-control-and-blue-light-filter/zh)
 * [打开带有图像作为书本的文件夹(书本装订)](/wiki/faq/open-folder-with-images-as-a-book/zh)
-* [PDF的对比度和亮度增强(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
 * [添加和处理自定义标签](/wiki/faq/custom-tags/zh)
 * [文字注释与脚注](/wiki/faq/include-footnotes-directly-in-the-text/zh)
 * [使用“标签管理器”打开书本](/wiki/faq/open-book-with-tag-manager/zh)

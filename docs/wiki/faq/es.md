@@ -4,6 +4,7 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Contraste y brillo en PDF (efecto blanco/negro)](/wiki/faq/contrast-and-brightness-in-pdf/es)
 * [Cómo deshabilitar líneas discontinuas, líneas rojas en el &quot;modo Músico&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/es)
 * [Copia de seguridad y migración de datos](/wiki/faq/backup-import-export-migration/es)
 * [Creación de un nuevo archivo TXT para notas, citas, etc.](/wiki/faq/create-new-book-or-file-txt/es)
@@ -32,7 +33,6 @@ layout: main
 * [Trabajar con marcadores en modo extendido (cinta de marcadores)](/wiki/faq/bookmarks-extended-panel/es)
 * [Control de brillo y filtro de luz azul](/wiki/faq/brightness-control-and-blue-light-filter/es)
 * [Abrir una carpeta con imágenes como un libro (Enlazar en un libro)](/wiki/faq/open-folder-with-images-as-a-book/es)
-* [Mejora de contraste y brillo en PDF (efecto B/N)](/wiki/faq/contrast-and-brightness-in-pdf/es)
 * [Agregar y manejar etiquetas personalizadas](/wiki/faq/custom-tags/es)
 * [Notas en el texto versus notas al pie](/wiki/faq/include-footnotes-directly-in-the-text/es)
 * [Libro abierto con &quot;Tag Manager&quot;](/wiki/faq/open-book-with-tag-manager/es)

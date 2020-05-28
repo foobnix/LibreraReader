@@ -10,4 +10,5 @@ layout: main
 * Você pode desativar as linhas tracejadas
 * Você pode desativar as linhas vermelhas (que indicam o final do documento)
 
-![](1.png)
+
+![disable dashed lines](1.png)

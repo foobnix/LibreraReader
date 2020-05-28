@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Kontrast und Helligkeit in PDF (Schwarz/Weiß-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
 * [Deaktivieren von gestrichelten Linien, rote Linien im &quot;Musikermodus&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/de)
 * [Datensicherung und Migration](/wiki/faq/backup-import-export-migration/de)
 * [Erstellen einer neuen TXT-Datei für Notizen, Zitate usw.](/wiki/faq/create-new-book-or-file-txt/de)
@@ -32,7 +33,6 @@ layout: main
 * [Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)](/wiki/faq/bookmarks-extended-panel/de)
 * [Helligkeitsregelung und Blaulichtfilter](/wiki/faq/brightness-control-and-blue-light-filter/de)
 * [Ordner mit Bildern als Buch öffnen (in einem Buch binden)](/wiki/faq/open-folder-with-images-as-a-book/de)
-* [Kontrast- und Helligkeitsverbesserung in PDF (S/W-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
 * [Hinzufügen und Behandeln von benutzerdefinierten Tags](/wiki/faq/custom-tags/de)
 * [Anmerkungen im Text vs. Fußnoten](/wiki/faq/include-footnotes-directly-in-the-text/de)
 * [Buch mit &quot;Tag Manager&quot; öffnen](/wiki/faq/open-book-with-tag-manager/de)
