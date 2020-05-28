@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Как отключить пунктирные линии, красные линии в «Режиме музыканта»](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ru)
 * [Резервное копирование данных и миграция](/wiki/faq/backup-import-export-migration/ru)
 * [Создание нового файла TXT для заметок, цитат и т. Д.](/wiki/faq/create-new-book-or-file-txt/ru)
 * [Режимы чтения: свиток, книга и музыка](/wiki/faq/reading-mode-vertical-book-musician/ru)

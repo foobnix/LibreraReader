@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [如何在“音乐人模式”中禁用虚线，红线](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/zh)
 * [数据备份和迁移](/wiki/faq/backup-import-export-migration/zh)
 * [为注释，引号等创建新的TXT文件](/wiki/faq/create-new-book-or-file-txt/zh)
 * [阅读模式：滚动，读书和音乐家的音乐](/wiki/faq/reading-mode-vertical-book-musician/zh)

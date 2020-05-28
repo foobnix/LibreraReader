@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [How to disable dashed lines, red lines in the "Musician mode"](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode)
 * [Data backup and migration](/wiki/faq/backup-import-export-migration)
 * [Creating a New TXT File for Notes, Quotes, etc.](/wiki/faq/create-new-book-or-file-txt)
 * [Reading Modes: Scroll, Book, and Musician's](/wiki/faq/reading-mode-vertical-book-musician)

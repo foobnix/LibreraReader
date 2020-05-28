@@ -4,6 +4,7 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Cómo deshabilitar líneas discontinuas, líneas rojas en el &quot;modo Músico&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/es)
 * [Copia de seguridad y migración de datos](/wiki/faq/backup-import-export-migration/es)
 * [Creación de un nuevo archivo TXT para notas, citas, etc.](/wiki/faq/create-new-book-or-file-txt/es)
 * [Modos de lectura: desplazamiento, libro y músico](/wiki/faq/reading-mode-vertical-book-musician/es)

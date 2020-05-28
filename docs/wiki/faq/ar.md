@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [كيفية تعطيل الخطوط المتقطعة ، الخطوط الحمراء في &quot;الوضع الموسيقي&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ar)
 * [النسخ الاحتياطي للبيانات وترحيلها](/wiki/faq/backup-import-export-migration/ar)
 * [إنشاء ملف TXT جديد للملاحظات والاقتباسات ، إلخ.](/wiki/faq/create-new-book-or-file-txt/ar)
 * [أوضاع القراءة: التمرير والكتاب والموسيقي](/wiki/faq/reading-mode-vertical-book-musician/ar)

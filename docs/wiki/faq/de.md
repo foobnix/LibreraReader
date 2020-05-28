@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Deaktivieren von gestrichelten Linien, rote Linien im &quot;Musikermodus&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/de)
 * [Datensicherung und Migration](/wiki/faq/backup-import-export-migration/de)
 * [Erstellen einer neuen TXT-Datei für Notizen, Zitate usw.](/wiki/faq/create-new-book-or-file-txt/de)
 * [Lesemodi: Blättern, Buch und Musiker](/wiki/faq/reading-mode-vertical-book-musician/de)

@@ -4,6 +4,7 @@ layout: main
 
 # Foire aux questions
 
+* [Comment désactiver les lignes pointillées, les lignes rouges en &quot;mode Musicien&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/fr)
 * [Sauvegarde et migration des données](/wiki/faq/backup-import-export-migration/fr)
 * [Création d'un nouveau fichier TXT pour notes, devis, etc.](/wiki/faq/create-new-book-or-file-txt/fr)
 * [Modes de lecture: défilement, livre et musicien](/wiki/faq/reading-mode-vertical-book-musician/fr)

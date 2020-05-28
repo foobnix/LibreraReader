@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Como desativar linhas tracejadas, linhas vermelhas no &quot;modo Músico&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/pt)
 * [Backup e migração de dados](/wiki/faq/backup-import-export-migration/pt)
 * [Criando um novo arquivo TXT para anotações, citações, etc.](/wiki/faq/create-new-book-or-file-txt/pt)
 * [Modos de leitura: pergaminho, livro e músico](/wiki/faq/reading-mode-vertical-book-musician/pt)

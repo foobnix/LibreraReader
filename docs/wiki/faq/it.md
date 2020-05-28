@@ -4,6 +4,7 @@ layout: main
 
 # Domande frequenti
 
+* [Come disabilitare le linee tratteggiate, le linee rosse in &quot;Modalità musicista&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/it)
 * [Backup e migrazione dei dati](/wiki/faq/backup-import-export-migration/it)
 * [Creazione di un nuovo file TXT per note, preventivi, ecc.](/wiki/faq/create-new-book-or-file-txt/it)
 * [Modalità di lettura: scorrimento, libro e musicista](/wiki/faq/reading-mode-vertical-book-musician/it)

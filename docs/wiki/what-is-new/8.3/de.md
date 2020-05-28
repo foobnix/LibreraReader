@@ -12,6 +12,7 @@ Durch die Nutzung dieser App stimmen Sie den Bestimmungen der [Datenschutzrichtl
 * Stabilitätsverbesserung
 * MP3-Dateien zu Büchern hinzufügen
 * Auf der Registerkarte &quot;Ordner&quot; nach Autor sortieren
+* Migration
 
 **Korrekturen**
 * Verschiedene kleinere Korrekturen

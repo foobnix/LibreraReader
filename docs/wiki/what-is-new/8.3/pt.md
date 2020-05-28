@@ -12,6 +12,7 @@ Ao usar este aplicativo, você concorda com os termos da [Política de privacida
 * Melhoria da estabilidade
 * Adicione arquivos MP3 aos livros
 * Classificar por autor na guia Pasta
+* Migração
 
 **Correções**
 * Várias pequenas correções gerais

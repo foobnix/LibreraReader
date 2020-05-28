@@ -12,6 +12,7 @@ En utilisant cette application, vous acceptez les conditions de la [Politique de
 * Amélioration de la stabilité
 * Ajouter des fichiers MP3 aux livres
 * Trier par auteur dans l'onglet Dossier
+* Migration
 
 **Corrections**
 * Diverses corrections mineures générales

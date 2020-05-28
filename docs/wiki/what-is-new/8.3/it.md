@@ -12,6 +12,7 @@ Usando questa app accetti i termini della [Informativa sulla privacy](/wiki/Priv
 * Miglioramento della stabilità
 * Aggiungi file MP3 ai libri
 * Ordina per autore nella scheda Cartella
+* migrazione
 
 **Correzioni**
 * Varie correzioni minori all-around

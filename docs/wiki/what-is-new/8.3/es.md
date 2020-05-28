@@ -12,6 +12,7 @@ Al usar esta aplicación, usted acepta los términos de la [Política de privaci
 * Mejora de estabilidad
 * Agregar archivos MP3 a libros
 * Ordenar por autor en la pestaña Carpeta
+* Migración
 
 **Correcciones**
 * Varias correcciones menores generales
