@@ -604,4 +604,5 @@
    <string name="start_migration">Začať migráciu</string>
    <string name="new_path">Nová cesta</string>
    <string name="old_path">Stará cesta</string>
+   <string name="show_book_annotation">Zobraziť anotáciu knihy</string>
 </resources>

@@ -604,4 +604,5 @@
    <string name="start_migration">Почати міграцію</string>
    <string name="new_path">Новий шлях</string>
    <string name="old_path">Старий шлях</string>
+   <string name="show_book_annotation">Показати анотацію до книги</string>
 </resources>

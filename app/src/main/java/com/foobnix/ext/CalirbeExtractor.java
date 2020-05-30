@@ -34,7 +34,7 @@ public class CalirbeExtractor {
         try {
 
             File metadata = getCalibreOPF(path);
-            if (!metadata.isFile()) {
+            if (metadata==null || !metadata.isFile()) {
                 return null;
             }
 
@@ -45,7 +45,7 @@ public class CalirbeExtractor {
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
-                    if ("dc:description".equals(xpp.getName())) {
+                    if ("dc:description".equals(xpp.getName()) || "dcns:description".equals(xpp.getName())) {
                         return Jsoup.clean(xpp.nextText(), Whitelist.simpleText());
                     }
                 }
@@ -68,7 +68,7 @@ public class CalirbeExtractor {
 
             File metadata = getCalibreOPF(path);
 
-            if (!metadata.isFile()) {
+            if (metadata ==null || !metadata.isFile()) {
                 return null;
             }
 

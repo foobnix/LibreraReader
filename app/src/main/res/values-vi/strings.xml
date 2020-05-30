@@ -604,4 +604,5 @@
    <string name="start_migration">Bắt đầu di chuyển</string>
    <string name="new_path">Con đường mới</string>
    <string name="old_path">Con đường cũ</string>
+   <string name="show_book_annotation">Chú thích sách</string>
 </resources>

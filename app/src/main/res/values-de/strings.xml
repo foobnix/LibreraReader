@@ -604,4 +604,5 @@
    <string name="start_migration">Starten Sie die Migration</string>
    <string name="new_path">Neuer Weg</string>
    <string name="old_path">Alter Weg</string>
+   <string name="show_book_annotation">Buchanmerkung anzeigen</string>
 </resources>

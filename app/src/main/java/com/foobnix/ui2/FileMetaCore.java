@@ -90,6 +90,8 @@ public class FileMetaCore {
                 FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
                 FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
+
+
                 if (isSearhcBook) {
                     fileMeta.setIsSearchBook(isSearhcBook);
                 }

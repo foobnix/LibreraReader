@@ -219,11 +219,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
 
-            if (needRefresh) {
+            //if (needRefresh) {
                 //FileMetaCore.reUpdateIfNeed(fileMeta);
                 // TempHolder.listHash++;
                 //AppDB.get().getDao().detach(fileMeta);
-            }
+            //}
 
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
 
@@ -636,7 +636,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (holder.path != null) {
-            holder.path.setText(fileMeta.getPathTxt());
+            if(AppState.get().isDisplayAnnotation){
+                holder.path.setText(fileMeta.getAnnotation());
+                holder.path.setSingleLine(false);
+                holder.path.setLines(4);
+            }else {
+                holder.path.setText(fileMeta.getPathTxt());
+                holder.path.setSingleLine();
+            }
         }
 
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
@@ -714,7 +721,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     return true;
                 }
             });
-        } else {
         }
         holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
 

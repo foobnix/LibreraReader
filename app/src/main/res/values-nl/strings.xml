@@ -604,4 +604,5 @@
    <string name="start_migration">Start migratie</string>
    <string name="new_path">Nieuw pad</string>
    <string name="old_path">Oude pad</string>
+   <string name="show_book_annotation">Boekannotatie weergeven</string>
 </resources>

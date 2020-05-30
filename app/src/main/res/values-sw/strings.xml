@@ -604,4 +604,5 @@
    <string name="start_migration">Anza uhamiaji</string>
    <string name="new_path">Njia mpya</string>
    <string name="old_path">Njia ya zamani</string>
+   <string name="show_book_annotation">Onyesha maelezo ya kitabu</string>
 </resources>

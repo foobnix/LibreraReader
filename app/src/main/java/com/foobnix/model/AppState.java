@@ -176,10 +176,7 @@ public class AppState {
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
     public final static int READING_MODE_OPEN_WITH = 5;
-    public final static List<String> appDictionariesKeysTest = Arrays.asList(//
-            "pdf" //
-            //
-    );
+
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
             "lingvo", //
@@ -201,8 +198,8 @@ public class AppState {
 
             //
     );
-    public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
-    public static Map<String, String> TTS_ENGINES = new LinkedHashMap<String, String>();
+    public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
+    public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
     // public static int COLOR_BLACK = Color.parseColor("#030303");
     public static int COLOR_BLACK = Color.BLACK;
@@ -586,9 +583,10 @@ public class AppState {
     public boolean isAppPassword;
     public boolean isLoaded = false;
     public boolean isUseCalibreOpf = true;
+    public boolean isDisplayAnnotation = false;
 
     public static Map<String, String> getDictionaries(String input) {
-        final Map<String, String> providers = new LinkedHashMap<String, String>();
+        final Map<String, String> providers = new LinkedHashMap<>();
         String ln = AppState.get().toLang;
         String from = AppState.get().fromLang;
         String text = Uri.encode(input);
@@ -630,7 +628,7 @@ public class AppState {
     }
 
     public static List<Integer> stringToKyes(final String list) {
-        final List<Integer> res = new ArrayList<Integer>();
+        final List<Integer> res = new ArrayList<>();
 
         for (final String value : list.split(",")) {
             if (value != null && !value.trim().equals("")) {

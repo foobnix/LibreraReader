@@ -22,6 +22,7 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
@@ -361,7 +362,7 @@ public class BooksService extends IntentService {
                     FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
-
+                updateBookAnnotations();
 
 
             } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
@@ -378,6 +379,25 @@ public class BooksService extends IntentService {
         //stopSelf();
     }
 
+    public void updateBookAnnotations() {
+
+        if (AppState.get().isDisplayAnnotation) {
+            sendBuildingLibrary();
+            LOG.d("updateBookAnnotations begin");
+            List<FileMeta> itemsMeta = AppDB.get().getAll();
+            for (FileMeta meta : itemsMeta) {
+                if (TxtUtils.isEmpty(meta.getAnnotation())) {
+                    String bookOverview = FileMetaCore.getBookOverview(meta.getPath());
+                    meta.setAnnotation(bookOverview);
+                }
+            }
+            AppDB.get().updateAll(itemsMeta);
+            sendFinishMessage();
+            LOG.d("updateBookAnnotations end");
+        }
+
+    }
+
     private void sendFinishMessage() {
         try {
             //AppDB.get().getDao().detachAll();
@@ -390,7 +410,7 @@ public class BooksService extends IntentService {
     }
 
     private void sendProggressMessage() {
-        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra(Intent.EXTRA_INDEX, itemsMeta.size());
+        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra("android.intent.extra.INDEX", itemsMeta.size());
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
     }
 

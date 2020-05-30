@@ -604,4 +604,5 @@
    <string name="start_migration">مهاجرت را شروع کنید</string>
    <string name="new_path">مسیر جدید</string>
    <string name="old_path">مسیر قدیمی</string>
+   <string name="show_book_annotation">نمایش حاشیه نویسی کتاب</string>
 </resources>

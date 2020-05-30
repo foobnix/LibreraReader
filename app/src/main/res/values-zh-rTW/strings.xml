@@ -604,4 +604,5 @@
    <string name="start_migration">開始遷移</string>
    <string name="new_path">新路</string>
    <string name="old_path">舊路</string>
+   <string name="show_book_annotation">顯示書注</string>
 </resources>

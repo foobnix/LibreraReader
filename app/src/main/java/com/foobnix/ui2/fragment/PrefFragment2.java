@@ -108,7 +108,7 @@ import java.util.Date;
 import java.util.List;
 
 public class PrefFragment2 extends UIFragment {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.preferences, R.drawable.glyphicons_281_settings);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.preferences, R.drawable.glyphicons_281_settings);
 
     private static final String WWW_SITE = "http://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
@@ -180,7 +180,7 @@ public class PrefFragment2 extends UIFragment {
         TintUtil.setBackgroundFillColor(section8, TintUtil.color);
         TintUtil.setBackgroundFillColor(section9, TintUtil.color);
 
-        if (profileLetter != null) {
+        if (profileLetter != null && getActivity() != null) {
             final String p = AppProfile.getCurrent(getActivity());
             profileLetter.setText(TxtUtils.getFirstLetter(p));
             profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
@@ -278,7 +278,7 @@ public class PrefFragment2 extends UIFragment {
         isEnableSync.setChecked(AppSP.get().isEnableSync);
         isEnableSync.setOnCheckedChangeListener((buttonView, isChecked) -> {
             AppSP.get().isEnableSync = isChecked;
-            if (isChecked) {
+            if (isChecked && getActivity() != null) {
                 if (GoogleSignIn.getLastSignedInAccount(getActivity()) == null) {
                     GFile.init(getActivity());
                 } else {
@@ -570,7 +570,7 @@ public class PrefFragment2 extends UIFragment {
 
         try {
             PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION +"-"+ BuildConfig.FLAVOR + ")";
+            String version = packageInfo.versionName + " (" + LibreraApp.MUPDF_VERSION + "-" + BuildConfig.FLAVOR + ")";
             if (Dips.isEInk()) {
                 version += " INK";
             }
@@ -830,8 +830,8 @@ public class PrefFragment2 extends UIFragment {
                                                              "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
                                                              "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
                                                              "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-                                                             "sw", "th", "tr", "uk", "vi","ga",  DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
-                                                     List<String> langs = new ArrayList<String>();
+                                                             "sw", "th", "tr", "uk", "vi", "ga", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+                                                     List<String> langs = new ArrayList<>();
                                                      for (String code : codes) {
                                                          langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
                                                      }
@@ -934,11 +934,6 @@ public class PrefFragment2 extends UIFragment {
                                                         @SuppressLint("NewApi")
                                                         @Override
                                                         public void onClick(View v) {
-
-                                                            if (Build.VERSION.SDK_INT <= 10) {
-                                                                Toast.makeText(selectedOpenMode.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-                                                                return;
-                                                            }
                                                             final PopupMenu popupMenu = new PopupMenu(selectedOpenMode.getContext(), selectedOpenMode);
 
                                                             final MenuItem advanced_mode = popupMenu.getMenu().add(AppState.get().nameVerticalMode);
@@ -1200,7 +1195,11 @@ public class PrefFragment2 extends UIFragment {
             }
         };
 
-        inflate.findViewById(R.id.moreLybraryettings).setOnClickListener(v -> {
+        TxtUtils.underlineTextView(inflate.findViewById(R.id.moreLybraryettings)).setOnClickListener(v -> {
+
+
+            final CheckBox isFirstSurname = new CheckBox(v.getContext());
+            isFirstSurname.setText(getString(R.string.in_the_author_s_name_first_the_surname));
 
             final CheckBox isSkipFolderWithNOMEDIA = new CheckBox(v.getContext());
             isSkipFolderWithNOMEDIA.setText(getString(R.string.ignore_folder_scan_if_nomedia_file_exists));
@@ -1215,23 +1214,33 @@ public class PrefFragment2 extends UIFragment {
             final CheckBox isUseCalibreOpf = new CheckBox(v.getContext());
             isUseCalibreOpf.setText(R.string.use_calibre_metadata);
 
+
+            final CheckBox isDisplayAnnotation = new CheckBox(v.getContext());
+            isDisplayAnnotation.setText(R.string.show_book_annotation);
+
             final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null,
+                    isFirstSurname,
                     isSkipFolderWithNOMEDIA,
                     isShowOnlyOriginalFileNames,
                     isAuthorTitleFromMetaPDF,
-                    isUseCalibreOpf);
+                    isUseCalibreOpf,
+                    isDisplayAnnotation);
 
+            isFirstSurname.setChecked(AppState.get().isFirstSurname);
             isSkipFolderWithNOMEDIA.setChecked(AppState.get().isSkipFolderWithNOMEDIA);
             isAuthorTitleFromMetaPDF.setChecked(AppState.get().isAuthorTitleFromMetaPDF);
             isShowOnlyOriginalFileNames.setChecked(AppState.get().isShowOnlyOriginalFileNames);
             isUseCalibreOpf.setChecked(AppState.get().isUseCalibreOpf);
+            isDisplayAnnotation.setChecked(AppState.get().isDisplayAnnotation);
 
 
             final OnCheckedChangeListener listener = (buttonView, isChecked) -> {
+                AppState.get().isFirstSurname = isFirstSurname.isChecked();
                 AppState.get().isSkipFolderWithNOMEDIA = isSkipFolderWithNOMEDIA.isChecked();
                 AppState.get().isAuthorTitleFromMetaPDF = isAuthorTitleFromMetaPDF.isChecked();
                 AppState.get().isShowOnlyOriginalFileNames = isShowOnlyOriginalFileNames.isChecked();
                 AppState.get().isUseCalibreOpf = isUseCalibreOpf.isChecked();
+                AppState.get().isDisplayAnnotation = isDisplayAnnotation.isChecked();
 
 
                 handler.removeCallbacksAndMessages(null);
@@ -1245,27 +1254,15 @@ public class PrefFragment2 extends UIFragment {
                 }, timeout);
             };
 
+            isFirstSurname.setOnCheckedChangeListener(listener);
             isAuthorTitleFromMetaPDF.setOnCheckedChangeListener(listener);
             isSkipFolderWithNOMEDIA.setOnCheckedChangeListener(listener);
             isShowOnlyOriginalFileNames.setOnCheckedChangeListener(listener);
             isUseCalibreOpf.setOnCheckedChangeListener(listener);
+            isDisplayAnnotation.setOnCheckedChangeListener(listener);
 
         });
 
-        final CheckBox isFirstSurname = (CheckBox) inflate.findViewById(R.id.isFirstSurname);
-        isFirstSurname.setChecked(AppState.get().isFirstSurname);
-        isFirstSurname.setOnCheckedChangeListener(new
-
-                                                          OnCheckedChangeListener() {
-
-                                                              @Override
-                                                              public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                           final boolean isChecked) {
-                                                                  AppState.get().isFirstSurname = isChecked;
-                                                                  handler.removeCallbacks(ask);
-                                                                  handler.postDelayed(ask, timeout);
-                                                              }
-                                                          });
 
         ////
         ((CheckBox) inflate.findViewById(R.id.supportPDF)).

@@ -30,7 +30,7 @@ ext {
 android {
     buildToolsVersion '29.0.3'
     compileSdkVersion 29
-    ndkVersion "21.1.6352462"
+    ndkVersion "21.2.6472646"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
@@ -334,36 +334,36 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
-    implementation 'com.github.axet:lame:1.0.5'
+    implementation 'com.github.axet:lame:1.0.6'
 
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation('org.greenrobot:greendao:3.2.2') {
         exclude group: 'org.greenrobot.greendao.rx'
     }
-    implementation 'org.greenrobot:greendao-api:3.2.2'
-    implementation 'org.jsoup:jsoup:1.12.1'
+    implementation 'org.greenrobot:greendao-api:3.3.0'
+    implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     implementation 'com.burgstaller:okhttp-digest:1.18'
-    implementation 'com.squareup.okio:okio-parent:1.17.4'
+    implementation 'com.squareup.okio:okio-parent:1.17.5'
 
-    implementation 'com.github.joniles:rtfparserkit:1.13.0'
-    implementation 'org.zwobble.mammoth:mammoth:1.4.0'
-    implementation 'javax.xml.stream:stax-api:1.0-2'
-    implementation 'net.lingala.zip4j:zip4j:2.5.1'
+    implementation 'com.github.joniles:rtfparserkit:1.15.0'
+    implementation 'org.zwobble.mammoth:mammoth:1.4.1'
+    implementation 'javax.xml.stream:stax-api:1.0'
+    implementation 'net.lingala.zip4j:zip4j:2.6.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 

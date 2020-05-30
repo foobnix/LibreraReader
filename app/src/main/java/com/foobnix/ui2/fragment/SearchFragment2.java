@@ -106,7 +106,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 searchEditText.setHint(R.string.search);
                 onRefresh.setActivated(true);
             } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                int count = intent.getIntExtra(Intent.EXTRA_INDEX, 0);
+                int count = intent.getIntExtra("android.intent.extra.INDEX", 0);
                 if (count > 0) {
                     countBooks.setText("" + count);
                 }

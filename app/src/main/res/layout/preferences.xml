@@ -259,9 +259,6 @@
                 android:textSize="11sp" />
 
 
-
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -283,7 +280,6 @@
                 android:orientation="horizontal">
 
 
-
                 <CheckBox
                     android:id="@+id/supportArch"
                     android:layout_width="wrap_content"
@@ -302,29 +298,30 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
+                android:gravity="center_vertical"
                 android:layout_height="wrap_content">
-
-
-                <CheckBox
-                    android:id="@+id/isFirstSurname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/in_the_author_s_name_first_the_surname" />
-
                 <ImageView
-                    android:id="@+id/moreLybraryettings"
+                    android:visibility="gone"
                     android:layout_width="@dimen/wh_button"
                     android:layout_height="@dimen/wh_button"
                     android:layout_weight="0"
                     android:padding="8dip"
                     android:src="@drawable/glyphicons_137_cogwheel"
                     android:tint="@color/tint_gray" />
+
+                <TextView
+                    android:id="@+id/moreLybraryettings"
+                    style="@style/textLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/library_settings" />
+
+
             </LinearLayout>
 
         </LinearLayout>
-
 
 
         <TextView
@@ -1378,11 +1375,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/sectionSync"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -1601,12 +1597,12 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/onTelegram"
             style="@style/textLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/telegram_channel" />
+            android:text="@string/telegram_channel"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/onRateIt"

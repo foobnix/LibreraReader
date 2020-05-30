@@ -604,4 +604,5 @@
    <string name="start_migration">Tús a chur le himirce</string>
    <string name="new_path">Cosán nua</string>
    <string name="old_path">Sean-chosán</string>
+   <string name="show_book_annotation">Anótáil leabhar seó</string>
 </resources>
