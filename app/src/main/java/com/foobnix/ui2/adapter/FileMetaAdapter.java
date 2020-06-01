@@ -639,7 +639,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             if(AppState.get().isDisplayAnnotation){
                 holder.path.setText(fileMeta.getAnnotation());
                 holder.path.setSingleLine(false);
-                holder.path.setLines(4);
+                holder.path.setLines(3);
             }else {
                 holder.path.setText(fileMeta.getPathTxt());
                 holder.path.setSingleLine();

@@ -604,5 +604,5 @@
    <string name="start_migration">Démarrer la migration</string>
    <string name="new_path">Nouveau chemin</string>
    <string name="old_path">Ancien chemin</string>
-   <string name="show_book_annotation">Afficher l\'annotation du livre</string>
+   <string name="show_book_description">Afficher la description du livre sur la carte</string>
 </resources>

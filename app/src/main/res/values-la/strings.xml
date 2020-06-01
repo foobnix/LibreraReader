@@ -604,5 +604,5 @@
    <string name="start_migration">Agentibus post satus</string>
    <string name="new_path">Novum semita</string>
    <string name="old_path">Vetus semita</string>
-   <string name="show_book_annotation">Ostende libro annotationem</string>
+   <string name="show_book_description">Descriptionem in libro ostendit card</string>
 </resources>

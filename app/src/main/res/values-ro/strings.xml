@@ -604,5 +604,5 @@
    <string name="start_migration">Începe migrația</string>
    <string name="new_path">Cale nouă</string>
    <string name="old_path">Poteca veche</string>
-   <string name="show_book_annotation">Arata adnotarea cartii</string>
+   <string name="show_book_description">Arată descrierea cărții în card</string>
 </resources>

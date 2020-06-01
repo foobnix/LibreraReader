@@ -604,5 +604,5 @@
    <string name="start_migration">माइग्रेशन प्रारंभ करें</string>
    <string name="new_path">नया रास्ता</string>
    <string name="old_path">पुराना रास्ता</string>
-   <string name="show_book_annotation">पुस्तक एनोटेशन दिखाएं</string>
+   <string name="show_book_description">कार्ड में पुस्तक विवरण दिखाएं</string>
 </resources>

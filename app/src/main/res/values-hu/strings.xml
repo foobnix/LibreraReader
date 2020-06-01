@@ -604,5 +604,5 @@
    <string name="start_migration">Indítsa el a migrációt</string>
    <string name="new_path">Új út</string>
    <string name="old_path">Régi út</string>
-   <string name="show_book_annotation">Mutasd a könyv kommentárját</string>
+   <string name="show_book_description">Könyv leírás megjelenítése a kártyán</string>
 </resources>

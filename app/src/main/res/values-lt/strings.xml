@@ -604,5 +604,5 @@
    <string name="start_migration">Pradėti migraciją</string>
    <string name="new_path">Naujas kelias</string>
    <string name="old_path">Senas kelias</string>
-   <string name="show_book_annotation">Parodyti knygos anotaciją</string>
+   <string name="show_book_description">Parodyti knygos aprašymą kortelėje</string>
 </resources>

@@ -604,5 +604,5 @@
    <string name="start_migration">Aloita muutto</string>
    <string name="new_path">Uusi polku</string>
    <string name="old_path">Vanha polku</string>
-   <string name="show_book_annotation">Näytä kirjan merkintä</string>
+   <string name="show_book_description">Näytä kirjan kuvaus kortissa</string>
 </resources>

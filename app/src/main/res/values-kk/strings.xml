@@ -604,5 +604,5 @@
    <string name="start_migration">Көшуді бастаңыз</string>
    <string name="new_path">Жаңа жол</string>
    <string name="old_path">Ескі жол</string>
-   <string name="show_book_annotation">Кітабының аннотациясын көрсету</string>
+   <string name="show_book_description">Карта сипаттамасын картадан көрсету</string>
 </resources>

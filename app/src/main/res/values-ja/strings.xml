@@ -604,5 +604,5 @@
    <string name="start_migration">移行を開始</string>
    <string name="new_path">新しい道</string>
    <string name="old_path">古い道</string>
-   <string name="show_book_annotation">本の注釈を表示</string>
+   <string name="show_book_description">カードに本の説明を表示</string>
 </resources>

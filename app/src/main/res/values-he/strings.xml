@@ -604,5 +604,5 @@
    <string name="start_migration">התחל הגירה</string>
    <string name="new_path">דרך חדשה</string>
    <string name="old_path">שביל ישן</string>
-   <string name="show_book_annotation">הצג ביאור על ספר</string>
+   <string name="show_book_description">הצגת תיאור הספר בכרטיס</string>
 </resources>

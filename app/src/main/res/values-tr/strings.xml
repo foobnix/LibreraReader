@@ -604,5 +604,5 @@
    <string name="start_migration">Taşımaya başla</string>
    <string name="new_path">Yeni yol</string>
    <string name="old_path">Eski yol</string>
-   <string name="show_book_annotation">Kitap ek açıklamasını göster</string>
+   <string name="show_book_description">Kartta kitap açıklamasını göster</string>
 </resources>

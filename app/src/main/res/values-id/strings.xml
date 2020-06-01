@@ -604,5 +604,5 @@
    <string name="start_migration">Mulai migrasi</string>
    <string name="new_path">Jalur baru</string>
    <string name="old_path">Jalan lama</string>
-   <string name="show_book_annotation">Tampilkan anotasi buku</string>
+   <string name="show_book_description">Tunjukkan deskripsi buku dalam kartu</string>
 </resources>

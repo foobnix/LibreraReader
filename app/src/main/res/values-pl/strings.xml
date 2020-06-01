@@ -604,5 +604,5 @@
    <string name="start_migration">Rozpocznij migrację</string>
    <string name="new_path">Nowa ścieżka</string>
    <string name="old_path">Stara ścieżka</string>
-   <string name="show_book_annotation">Pokaż adnotację książki</string>
+   <string name="show_book_description">Pokaż opis książki na karcie</string>
 </resources>

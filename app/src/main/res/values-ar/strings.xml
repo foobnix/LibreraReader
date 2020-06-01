@@ -604,5 +604,5 @@
    <string name="start_migration">بدء الترحيل</string>
    <string name="new_path">مسار جديد</string>
    <string name="old_path">طريق قديم</string>
-   <string name="show_book_annotation">عرض شرح الكتاب</string>
+   <string name="show_book_description">عرض وصف الكتاب في البطاقة</string>
 </resources>

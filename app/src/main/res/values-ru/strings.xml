@@ -604,5 +604,5 @@
    <string name="start_migration">Начать миграцию</string>
    <string name="new_path">Новый путь</string>
    <string name="old_path">Старый путь</string>
-   <string name="show_book_annotation">Показать аннотацию книги</string>
+   <string name="show_book_description">Показать описание книги на карточке</string>
 </resources>

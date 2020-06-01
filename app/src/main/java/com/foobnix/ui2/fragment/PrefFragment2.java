@@ -1216,7 +1216,7 @@ public class PrefFragment2 extends UIFragment {
 
 
             final CheckBox isDisplayAnnotation = new CheckBox(v.getContext());
-            isDisplayAnnotation.setText(R.string.show_book_annotation);
+            isDisplayAnnotation.setText(R.string.show_book_description);
 
             final AlertDialog d = AlertDialogs.showViewDialog(getActivity(), null,
                     isFirstSurname,

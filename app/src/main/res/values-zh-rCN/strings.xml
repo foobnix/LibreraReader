@@ -604,5 +604,5 @@
    <string name="start_migration">开始迁移</string>
    <string name="new_path">新路</string>
    <string name="old_path">旧路</string>
-   <string name="show_book_annotation">显示书注</string>
+   <string name="show_book_description">在卡片中显示图书说明</string>
 </resources>

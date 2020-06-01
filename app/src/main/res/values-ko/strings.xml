@@ -604,5 +604,5 @@
    <string name="start_migration">마이그레이션 시작</string>
    <string name="new_path">새로운 길</string>
    <string name="old_path">오래된 길</string>
-   <string name="show_book_annotation">책 주석 표시</string>
+   <string name="show_book_description">카드에 책 설명 표시</string>
 </resources>

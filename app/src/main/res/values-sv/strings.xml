@@ -604,5 +604,5 @@
    <string name="start_migration">Börja migrera</string>
    <string name="new_path">Ny väg</string>
    <string name="old_path">Gammal väg</string>
-   <string name="show_book_annotation">Visa bokanteckningar</string>
+   <string name="show_book_description">Visa bokbeskrivningen på kortet</string>
 </resources>

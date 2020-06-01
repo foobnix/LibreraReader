@@ -604,5 +604,5 @@
    <string name="start_migration">เริ่มโยกย้าย</string>
    <string name="new_path">เส้นทางใหม่</string>
    <string name="old_path">เส้นทางเก่า</string>
-   <string name="show_book_annotation">บันทึกย่อแสดงหนังสือ</string>
+   <string name="show_book_description">แสดงคำอธิบายหนังสือในการ์ด</string>
 </resources>

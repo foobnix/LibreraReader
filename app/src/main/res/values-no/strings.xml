@@ -604,5 +604,5 @@
    <string name="start_migration">Start migrasjon</string>
    <string name="new_path">Ny bane</string>
    <string name="old_path">Gammel sti</string>
-   <string name="show_book_annotation">Vis boknotat</string>
+   <string name="show_book_description">Vis bokbeskrivelsen i kort</string>
 </resources>
