@@ -129,6 +129,7 @@ public class DialogTranslateFromTo {
         langs.put("Yoruba", "yo");
         langs.put("Zulu", "zu");
         langs.put("Irish", "ga");
+        langs.put("Български", "bg");
     }
 
     public static String getLanuageByCode(String code) {
