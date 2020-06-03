@@ -13,9 +13,9 @@ cd mupdf-master
 
 #git reset --hard
 #git reset --hard 1fdc3e9bcdaf1a3746557178542f8ffdf988a377
-git submodule update --init --recursive --jobs 8
-git submodule foreach --recursive 'git reset --hard'
 
+git submodule foreach --recursive git reset --hard
+git pull --recurse-submodules
 
 
 echo "=================="
@@ -26,8 +26,8 @@ git log -n 1 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cg
 
 echo -e "\e[39m=================="
 
-make release
-make generate
+make -j4 release
+make -j4 generate
 
 cd ..
 
@@ -63,7 +63,7 @@ ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
 cd $MUPDF_JAVA
 echo "=================="
-ndk-build $1
+ndk-build -j4 $1
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
