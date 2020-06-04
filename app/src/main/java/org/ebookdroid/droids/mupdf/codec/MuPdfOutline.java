@@ -36,14 +36,10 @@ public class MuPdfOutline {
 
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
-             String title = getTitle(docHandle, outline);
+             String title = getTitle(docHandle,outline);
             final String link = getLink(outline, docHandle);
             String linkUri = getLinkUri(outline, docHandle);
             LOG.d("linkUri", linkUri, title);
-
-            if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_MASTER) {
-                title = title + " | " + linkUri;
-            }
 
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);

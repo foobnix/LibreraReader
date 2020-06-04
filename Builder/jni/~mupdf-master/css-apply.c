@@ -1336,10 +1336,27 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->margin[2] = number_from_property(match, "margin-bottom", 0, N_LENGTH);
 	style->margin[3] = number_from_property(match, "margin-left", 0, N_LENGTH);
 
+	if(style->margin[0].unit==N_SCALE && style->margin[0].value>2)style->margin[0].value=2;
+	if(style->margin[1].unit==N_SCALE && style->margin[1].value>2)style->margin[1].value=2;
+	if(style->margin[2].unit==N_SCALE && style->margin[2].value>2)style->margin[2].value=2;
+	if(style->margin[3].unit==N_SCALE && style->margin[3].value>2)style->margin[3].value=2;
+
+
+	if(style->margin[0].unit==N_SCALE && style->margin[0].value<-2)style->margin[0].value=-2;
+	if(style->margin[1].unit==N_SCALE && style->margin[1].value<-2)style->margin[1].value=-2;
+	if(style->margin[2].unit==N_SCALE && style->margin[2].value<-2)style->margin[2].value=-2;
+	if(style->margin[3].unit==N_SCALE && style->margin[3].value<-2)style->margin[3].value=-2;
+
+
 	style->padding[0] = number_from_property(match, "padding-top", 0, N_LENGTH);
 	style->padding[1] = number_from_property(match, "padding-right", 0, N_LENGTH);
 	style->padding[2] = number_from_property(match, "padding-bottom", 0, N_LENGTH);
 	style->padding[3] = number_from_property(match, "padding-left", 0, N_LENGTH);
+
+	style->padding[1].value = style->padding[1].value / 2;
+    style->padding[3].value = style->padding[3].value / 2;
+
+
 
 	style->color = color_from_property(match, "color", black);
 	style->background_color = color_from_property(match, "background-color", transparent);
@@ -1358,6 +1375,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 	style->border_width[1] = border_width_from_property(match, "border-right-width");
 	style->border_width[2] = border_width_from_property(match, "border-bottom-width");
 	style->border_width[3] = border_width_from_property(match, "border-left-width");
+
+
 
 	{
 		const char *font_weight = string_from_property(match, "font-weight", "normal");

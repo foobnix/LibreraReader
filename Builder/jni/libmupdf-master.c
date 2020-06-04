@@ -679,7 +679,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv *env,
 
 JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
-		jclass clazz, jlong outlinehandle) {
+		jclass clazz, jlong dochandle, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
 //	DEBUG("PdfOutline_getTitle(%p)",outline);
 	if (outline){
