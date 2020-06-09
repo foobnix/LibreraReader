@@ -93,7 +93,7 @@ public abstract class UIFragment<T> extends Fragment {
                 public void onFastScrollStop() {
                     IMG.resumeRequests(getContext());
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
-                        if(swipeRefreshLayout!=null) {
+                        if (swipeRefreshLayout != null) {
                             swipeRefreshLayout.setEnabled(true);
                         }
                     }
@@ -102,7 +102,7 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 public void onFastScrollStart() {
                     IMG.pauseRequests(getContext());
-                    if(swipeRefreshLayout!=null) {
+                    if (swipeRefreshLayout != null) {
                         swipeRefreshLayout.setEnabled(false);
                     }
 
@@ -207,7 +207,11 @@ public abstract class UIFragment<T> extends Fragment {
     public void onResume() {
         super.onResume();
         //Safe.clearAll();
-        Glide.with(LibreraApp.context).resumeRequests();
+        try {
+            Glide.with(LibreraApp.context).resumeRequests();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);

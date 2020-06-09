@@ -341,9 +341,6 @@ public class DjvuPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
-        if (!AppState.get().isAllowTextSelection) {
-            return new TextWord[0][0];
-        }
         try {
             List<PageTextBox> boxs = getPageText1();
             if (TxtUtils.isListEmpty(boxs)) {
