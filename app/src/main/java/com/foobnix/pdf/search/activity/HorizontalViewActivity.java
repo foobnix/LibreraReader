@@ -1217,9 +1217,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     bottomIndicators.setVisibility(View.VISIBLE);
                     onModeChange.setVisibility(View.VISIBLE);
 
-                    AppSP.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
-                    AppSP.get().lastMode = HorizontalViewActivity.class.getSimpleName();
-                    LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
                     PageImageState.get().isAutoFit = PageImageState.get().needAutoFit;
 
@@ -1662,6 +1659,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         if (ttsActive != null) {
             ttsActive.setVisibility(TxtUtils.visibleIf(TTSEngine.get().isTempPausing()));
         }
+        AppSP.get().lastClosedActivity = HorizontalViewActivity.class.getSimpleName();
+        LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
     }
 
@@ -2445,7 +2444,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     @Override
     public void onFinishActivity() {
-        AppSP.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

@@ -202,7 +202,6 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     public static void startActivity(Activity c, int tab) {
-        AppSP.get().lastClosedActivity = null;
         final Intent intent = new Intent(c, MainTabs2.class);
         intent.putExtra(MainTabs2.EXTRA_SHOW_TABS, true);
         intent.putExtra(MainTabs2.EXTRA_PAGE_NUMBER, tab);
@@ -620,7 +619,6 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        AppSP.get().lastClosedActivity = null;
                         pager.postDelayed(new Runnable() {
 
                             @Override
@@ -650,27 +648,22 @@ public class MainTabs2 extends AdsFragmentActivity {
         EventBus.getDefault().register(this);
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
-        LOG.d("EXTRA_SHOW_TABS", showTabs, AppSP.get().lastMode);
+        LOG.d("EXTRA_SHOW_TABS", showTabs, AppSP.get().lastClosedActivity);
         if (showTabs == false && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
                 return;
             }
-            AppSP.get().lastClosedActivity = null;
 
-            Safe.run(new Runnable() {
-
-                @Override
-                public void run() {
-                    boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastMode);
-                    Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
-                    intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
-                    intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                    startActivity(intent);
-                }
+            Safe.run(() -> {
+                boolean isEasyMode = HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity);
+                Intent intent = new Intent(MainTabs2.this, isEasyMode ? HorizontalViewActivity.class : VerticalViewActivity.class);
+                intent.putExtra(PasswordDialog.EXTRA_APP_PASSWORD, getIntent().getStringExtra(PasswordDialog.EXTRA_APP_PASSWORD));
+                intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
+                startActivity(intent);
             });
-        } else if (!AppState.get().isOpenLastBook) {
+        } else if (false && !AppState.get().isOpenLastBook) {//templorary disable this feature
             LOG.d("Open book lastA", AppSP.get().lastClosedActivity);
 
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
@@ -682,7 +675,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
                 @Override
                 public void run() {
-                    LOG.d("Open AppSP.get().lastBookPath", AppSP.get().lastBookPath);
+                    LOG.d("Open AppSP.get().lastBookPath", saveMode);
                     if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
                         Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
                         intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
@@ -769,7 +762,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
-        AppSP.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
@@ -790,6 +782,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         IMG.resumeRequests(this);
+        //AppSP.get().lastClosedActivity = MainTabs2.class.getSimpleName();
+        //LOG.d("lasta save", AppSP.get().lastClosedActivity);
+
     }
 
     public void updateCurrentFragment() {

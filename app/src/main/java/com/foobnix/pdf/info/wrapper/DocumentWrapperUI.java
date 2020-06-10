@@ -883,7 +883,6 @@ public class DocumentWrapperUI {
     public void closeAndRunList() {
         EventBus.getDefault().unregister(this);
 
-        AppSP.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }

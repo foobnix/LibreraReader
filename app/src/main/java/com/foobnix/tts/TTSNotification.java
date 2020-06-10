@@ -92,7 +92,7 @@ public class TTSNotification {
 
             FileMeta fileMeta = AppDB.get().getOrCreate(bookPath);
 
-            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastMode) ? HorizontalViewActivity.class : VerticalViewActivity.class);
+            Intent intent = new Intent(context, HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity) ? HorizontalViewActivity.class : VerticalViewActivity.class);
             intent.setAction(ACTION_TTS);
             intent.setData(Uri.fromFile(new File(bookPath)));
             if (page > 0) {

@@ -56,6 +56,7 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
 import java.io.ByteArrayInputStream;
@@ -339,6 +340,7 @@ public class ImageExtractor {
         }
 
     }
+
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
         int page = pageUrl.getPage();
         String path = pageUrl.getPath();
@@ -391,7 +393,7 @@ public class ImageExtractor {
             if (isNeedDisableMagicInPDFDjvu) {
                 bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
             } else {
-                bitmapRef = pageCodec.renderBitmap(width, height, rectF,false);
+                bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
             }
 
             bitmap = bitmapRef.getBitmap();
@@ -465,10 +467,14 @@ public class ImageExtractor {
             bitmap = bitmap1;
         }
 
+        LOG.d("pageUrl",pageUrl.isDoText(),pageCodec.isRecycled(),codeCache.isRecycled(),AppSP.get().lastClosedActivity);
         if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
+            LOG.d("pageUrl run",AppSP.get().lastClosedActivity);
             if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
-                PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
+                TextWord[][] text = pageCodec.getText();
+                PageImageState.get().pagesText.put(pageUrl.getPage(), text);
                 PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+                LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
             }
         }
 
@@ -500,7 +506,7 @@ public class ImageExtractor {
 
         bitmap.recycle();
         codecDocumentLocal.getPage(page).recycle();
-        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF,false).getBitmap();
+        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF, false).getBitmap();
         return new Pair<Bitmap, RectF>(result, rectF);
 
     }
@@ -622,7 +628,7 @@ public class ImageExtractor {
                 try {
                     MagicHelper.isNeedBC = false;
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
-                    return  bitmapToStreamRAW(generalCoverWithEffect(pageUrl, proccessCoverPage));
+                    return bitmapToStreamRAW(generalCoverWithEffect(pageUrl, proccessCoverPage));
                 } finally {
                     MagicHelper.isNeedBC = true;
                 }
