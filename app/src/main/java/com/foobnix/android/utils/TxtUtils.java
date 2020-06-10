@@ -23,6 +23,7 @@ import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.model.MyPath;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -535,7 +536,11 @@ public class TxtUtils {
 
     public static String replaceAll(String input, String regex, String replacement) {
         try {
-            return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
+            if (Build.VERSION.SDK_INT >= 26) {
+                return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
+            }else{
+                return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+            }
         } catch (Exception e) {
             LOG.e(e);
             return Pattern.compile(regex).matcher(input).replaceAll(replacement);
