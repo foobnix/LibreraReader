@@ -826,13 +826,8 @@ public class PrefFragment2 extends UIFragment {
 
                                                      final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                                                     final List<String> codes = Arrays.asList(//
-                                                             "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
-                                                             "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
-                                                             "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-                                                             "sw", "th", "tr", "uk", "vi", "ga","bg", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
-                                                     List<String> langs = new ArrayList<>();
-                                                     for (String code : codes) {
+                                                       List<String> langs = new ArrayList<>();
+                                                     for (String code : AppState.get().langCodes) {
                                                          langs.add(DialogTranslateFromTo.getLanuageByCode(code) + ":" + code);
                                                      }
                                                      Collections.sort(langs);
@@ -1181,6 +1176,7 @@ public class PrefFragment2 extends UIFragment {
 
             @Override
             public void run() {
+                LOG.d("timer ask");
                 if (getActivity() == null) {
                     return;
                 }

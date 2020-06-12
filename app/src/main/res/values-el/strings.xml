@@ -596,7 +596,7 @@
    <string name="new_file">Νέο αρχείο</string>
    <string name="paste_or_type_text_in_here">Επικολλήστε ή πληκτρολογήστε κείμενο εδώ</string>
    <string name="go_to_the_folder">Μεταβείτε στο φάκελο</string>
-   <string name="you_should_enable_allow_battery">Θα πρέπει να ενεργοποιήσετε την \"μπαταρία\"&gt; \"επιτρέψτε τη δραστηριότητα φόντου\" να ακούει στο παρασκήνιο</string>
+   <string name="you_should_enable_allow_battery">Θα πρέπει να ενεργοποιήσετε την \"μπαταρία\"> \"επιτρέψτε τη δραστηριότητα φόντου\" να ακούει στο παρασκήνιο</string>
    <string name="use_calibre_metadata">Χρησιμοποιήστε caliber metadata.opf</string>
    <string name="icons_only">Μόνο εικονίδια</string>
    <string name="migration">Μεταναστεύω</string>

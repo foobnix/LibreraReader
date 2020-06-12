@@ -47,6 +47,7 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
@@ -102,14 +103,17 @@ public abstract class DocumentController {
     private String title;
     private int timeout;
     private Runnable timerTask;
-    Runnable timer = new Runnable() {
+        Runnable timer = new Runnable() {
 
         @Override
         public void run() {
             try {
+                if(activity==null || activity.isDestroyed()){
+                    LOG.d("Timer-Task Destroyed");
+                    return;
+                }
                 timerTask.run();
                 handler.postDelayed(timer, timeout);
-                LOG.d("Timer-Task Run");
             } catch (Exception e) {
                 LOG.e(e);
             }

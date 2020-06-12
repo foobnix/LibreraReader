@@ -19,6 +19,7 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 
@@ -612,6 +613,13 @@ public class AppState {
         providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
         return providers;
     }
+
+    public static final List<String> langCodes = Arrays.asList(//
+            "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
+            "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
+            "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
+            "sw", "th", "tr", "uk", "vi", "ga","bg","ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+
 
     public static synchronized AppState get() {
         return instance;

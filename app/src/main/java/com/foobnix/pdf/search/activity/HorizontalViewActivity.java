@@ -190,7 +190,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
-
+            LOG.d("flippingRunnable");
             if (flippingTimer >= AppState.get().flippingInterval) {
                 flippingTimer = 0;
                 if (dc.getCurentPage() == dc.getPageCount() - 1) {
@@ -226,6 +226,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         @Override
         public void run() {
+            LOG.d("Update time and updateTimePower");
             try {
                 if (pagesTime != null) {
                     pagesTime.setText(UiSystemUtils.getSystemTime(HorizontalViewActivity.this));

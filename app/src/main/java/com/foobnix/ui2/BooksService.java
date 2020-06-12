@@ -64,6 +64,7 @@ public class BooksService extends IntentService {
 
         @Override
         public void run() {
+            LOG.d("timer2");
             sendBuildingLibrary();
             handler.postDelayed(timer2, 250);
         }
@@ -74,6 +75,7 @@ public class BooksService extends IntentService {
 
         @Override
         public void run() {
+            LOG.d("timer 2");
             sendProggressMessage();
             handler.postDelayed(timer, 250);
         }

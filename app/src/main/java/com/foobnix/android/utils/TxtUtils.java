@@ -340,6 +340,11 @@ public class TxtUtils {
             return "";
         }
         LOG.d("pageHTML [before]", pageHTML);
+        if (AppState.get().isAccurateFontSize) {
+            pageHTML = pageHTML.toLowerCase();
+            LOG.d("pageHTML [isAccurateFontSize]", pageHTML);
+
+        }
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
@@ -538,7 +543,7 @@ public class TxtUtils {
         try {
             if (Build.VERSION.SDK_INT >= 26) {
                 return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
-            }else{
+            } else {
                 return Pattern.compile(regex).matcher(input).replaceAll(replacement);
             }
         } catch (Exception e) {
