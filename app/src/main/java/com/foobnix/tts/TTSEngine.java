@@ -62,7 +62,6 @@ public class TTSEngine {
     HashMap<String, String> mapTemp = new HashMap<String, String>();
 
 
-
     OnInitListener listener = new OnInitListener() {
 
         @Override
@@ -343,8 +342,8 @@ public class TTSEngine {
         } else {
 
             if (fileText.length() > 3950) {
-                fileText = TxtUtils.substringSmart(fileText,3950) +" " + controller.getString(R.string.text_is_too_long);
-                LOG.d("Text-too-long",page);
+                fileText = TxtUtils.substringSmart(fileText, 3950) + " " + controller.getString(R.string.text_is_too_long);
+                LOG.d("Text-too-long", page);
             }
 
             ttsEngine.synthesizeToFile(fileText, map, wav);
@@ -476,7 +475,7 @@ public class TTSEngine {
 
     public void loadMP3(String ttsPlayMp3Path, final boolean play) {
         LOG.d("loadMP3-", ttsPlayMp3Path);
-        if(TxtUtils.isEmpty(ttsPlayMp3Path) || !new File(ttsPlayMp3Path).isFile()){
+        if (TxtUtils.isEmpty(ttsPlayMp3Path) || !new File(ttsPlayMp3Path).isFile()) {
             LOG.d("loadMP3-skip mp3");
             return;
         }
@@ -547,6 +546,9 @@ public class TTSEngine {
         if (isMp3()) {
             if (mp == null) {
                 loadMP3(BookCSS.get().mp3BookPathGet());
+            }
+            if (mp == null) {
+                return false;
             }
             if (mp.isPlaying()) {
                 mp.pause();

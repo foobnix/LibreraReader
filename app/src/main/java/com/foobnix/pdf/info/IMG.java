@@ -240,7 +240,11 @@ public class IMG {
 
     public static void getCoverPageWithEffectPos(ImageView img, String path, int width, int pos) {
         final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
-        Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+        try {
+            Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     public static String toUrl(final String path, final int page, final int width) {
