@@ -1278,13 +1278,9 @@ public class Dialogs {
         res.addAll(StringDB.asList(tag));
         res.addAll(AppDB.get().getAll(SEARCH_IN.TAGS));
 
-        Iterator<String> iterator = res.iterator();
-        while (iterator.hasNext()) {
-            if (TxtUtils.isEmpty(iterator.next().trim())) {
-                iterator.remove();
-            }
-        }
-        final List<String> tags = new ArrayList<String>(res);
+        res.removeIf(s -> TxtUtils.isEmpty(s.trim()));
+
+        final List<String> tags = new ArrayList<>(res);
         Collections.sort(tags);
         return tags;
     }

@@ -22,7 +22,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -59,15 +58,8 @@ public class AppData {
         final List<File> allFiles = AppProfile.getAllFiles(name);
         for (File file : allFiles) {
             List<SimpleMeta> res = getSimpleMeta(file);
-            boolean find = false;
-            final Iterator<SimpleMeta> iterator = res.iterator();
-            while (iterator.hasNext()) {
-                SimpleMeta it = iterator.next();
-                if (ExtUtils.getFileName(it.getPath()).equals(ExtUtils.getFileName(meta.getPath()))) {
-                    iterator.remove();
-                    find = true;
-                }
-            }
+            final boolean find = res.removeIf(it -> ExtUtils.getFileName(it.getPath())
+                    .equals(ExtUtils.getFileName(meta.getPath())));
             if (find) {
                 writeSimpleMeta(res, file);
             }

@@ -71,7 +71,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -631,12 +630,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             boolean byAuthor = txt.startsWith(SEARCH_IN.AUTHOR.getDotPrefix());
             if (!txt.contains("::") && (byGenre || byAuthor)) {
                 if (isSearchOnlyEmpy) {
-                    Iterator<FileMeta> iterator = searchBy.iterator();
-                    while (iterator.hasNext()) {
-                        if (TxtUtils.isNotEmpty(iterator.next().getSequence())) {
-                            iterator.remove();
-                        }
-                    }
+                    searchBy.removeIf(fileMeta -> TxtUtils.isNotEmpty(fileMeta.getSequence()));
                     return searchBy;
                 }
 

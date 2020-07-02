@@ -71,26 +71,10 @@ public class BookmarksData {
 
     public synchronized List<AppBookmark> getAll(Context c) {
         final List<AppBookmark> all = getAll();
-        final Iterator<AppBookmark> iterator = all.iterator();
-        String fast = c.getString(R.string.fast_bookmark);
-        while (iterator.hasNext()) {
-            final AppBookmark next = iterator.next();
-
-            if (AppState.get().isShowOnlyAvailabeBooks) {
-                if (!new File(next.getPath()).isFile()) {
-                    iterator.remove();
-                    continue;
-                }
-            }
-
-            if (!AppState.get().isShowFastBookmarks) {
-                if (fast.equals(next.text)) {
-                    iterator.remove();
-                }
-
-            }
-
-        }
+        final String fast = c.getString(R.string.fast_bookmark);
+        all.removeIf(bookmark ->
+                (AppState.get().isShowOnlyAvailabeBooks && !new File(bookmark.getPath()).isFile())
+                || (AppState.get().isShowFastBookmarks && fast.equals(bookmark.text)));
         return all;
     }
 

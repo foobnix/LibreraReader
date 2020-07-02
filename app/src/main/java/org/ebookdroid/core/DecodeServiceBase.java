@@ -448,14 +448,7 @@ public class DecodeServiceBase implements DecodeService {
     }
 
     private synchronized CodecPageHolder getPageHolder(final long taskId, final int pageIndex) {
-        for (final Iterator<Map.Entry<Integer, CodecPageHolder>> i = getPages().entrySet().iterator(); i.hasNext(); ) {
-            final Map.Entry<Integer, CodecPageHolder> entry = i.next();
-            final int index = entry.getKey();
-            final CodecPageHolder ref = entry.getValue();
-            if (ref.isInvalid(-1)) {
-                i.remove();
-            }
-        }
+        getPages().entrySet().removeIf(entry -> entry.getValue().isInvalid(-1));
 
         CodecPageHolder holder = getPages().get(pageIndex);
         if (holder == null) {

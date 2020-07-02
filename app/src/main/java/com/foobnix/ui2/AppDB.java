@@ -58,19 +58,10 @@ public class AppDB {
 
     public static List<FileMeta> removeNotExist(List<FileMeta> items) {
         if (items == null || items.isEmpty()) {
-            return new ArrayList<FileMeta>();
+            return new ArrayList<>();
         }
-        Iterator<FileMeta> iterator = items.iterator();
-        while (iterator.hasNext()) {
-            FileMeta next = iterator.next();
-            if (Clouds.isCloud(next.getPath())) {
-                continue;
-            }
-
-            if (!new File(next.getPath()).isFile()) {
-                iterator.remove();
-            }
-        }
+        items.removeIf(fileMeta ->
+                !Clouds.isCloud(fileMeta.getPath()) && !new File(fileMeta.getPath()).isFile());
         return items;
     }
 
