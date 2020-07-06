@@ -355,8 +355,8 @@ text-align: center;
 }
 h3{
     display: block;
-    font-size: 1em;
-    margin: 0;
-    padding-top: 1em;
+    font-size: 1.2em;
+    margin: 1em 0 0 0;
+    padding-top: 0;
     font-weight: 400;
 }

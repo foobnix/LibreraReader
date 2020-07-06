@@ -3,9 +3,9 @@ layout: main
 ---
 
 # ¿Qué hay de nuevo (actualizado)
-[http://beta.librera.mobi/font&gt;(http://beta.librera.mobi/)
 
 ### [8.3.78] Idioma de guión predeterminado para todos los libros
+
 <img class="i" src="8.3.78.png" />
 
 ### [8.3.77] Imagen especular para telepromter
@@ -22,4 +22,23 @@ layout: main
 
 
 ### [8.3.58] recuento de libros en carpeta
+
 <img class="i" src="8.3.58.jpg" />
+
+### [8.3.49] &quot;Abrir con&quot; acción predeterminada de libro abierto
+
+|||
+|-|-|
+|![](8.3.49a.jpg)|![](8.3.49b.jpg)|
+
+
+### [8.3.41] Pestañas &quot;Solo iconos&quot;
+
+||||
+|-|-|-|
+|![](8.3.41a.jpg)|![](8.3.41b.jpg)|![](8.3.41c.jpg)|
+
+
+### [8.2.37] Nuevo archivo, Nueva carpeta, Ir a las opciones de carpeta
+
+<img class="i" src="8.2.37.jpg" />

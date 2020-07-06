@@ -3,9 +3,9 @@ layout: main
 ---
 
 # What is new (Updated)
-[http://beta.librera.mobi/](http://beta.librera.mobi/)
 
 ### [8.3.78] Default hyphen language for all books
+
 <img class="i" src="8.3.78.png" />
 
 ### [8.3.77] Mirror image for telepromter
@@ -22,4 +22,23 @@ layout: main
 
 
 ### [8.3.58] books-in-folder count
+
 <img class="i" src="8.3.58.jpg" />
+
+### [8.3.49] "Open with" default open book action
+
+|||
+|-|-|
+|![](8.3.49a.jpg)|![](8.3.49b.jpg)|
+
+
+### [8.3.41] Tabs "Icons only"
+
+||||
+|-|-|-|
+|![](8.3.41a.jpg)|![](8.3.41b.jpg)|![](8.3.41c.jpg)|
+
+
+### [8.2.37] New file, New Folder, Go to the folder options
+
+<img class="i" src="8.2.37.jpg" />
