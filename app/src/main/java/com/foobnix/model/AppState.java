@@ -585,6 +585,9 @@ public class AppState {
     public boolean isLoaded = false;
     public boolean isUseCalibreOpf = true;
     public boolean isDisplayAnnotation = false;
+    public boolean isMirrorImage = false;
+    public boolean isDefaultHyphenLanguage = false;
+    public String defaultHyphenLanguageCode = "en";
 
     public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<>();

@@ -605,4 +605,6 @@
    <string name="new_path">Naujas kelias</string>
    <string name="old_path">Senas kelias</string>
    <string name="show_book_description">Parodyti knygos aprašymą kortelėje</string>
+   <string name="mirror_image_for_teleprompter">Veidrodinis vaizdas teleprompteriui</string>
+   <string name="defaults_">Nutylėjimą</string>
 </resources>

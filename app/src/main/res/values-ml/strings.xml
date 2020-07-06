@@ -605,4 +605,6 @@
    <string name="new_path">പുതിയ പാത</string>
    <string name="old_path">പഴയ പാത</string>
    <string name="show_book_description">കാർഡിൽ പുസ്തക വിവരണം കാണിക്കുക</string>
+   <string name="mirror_image_for_teleprompter">ടെലിപ്രോംപ്റ്ററിനായുള്ള മിറർ ചിത്രം</string>
+   <string name="defaults_">സ്ഥിരസ്ഥിതികൾ</string>
 </resources>

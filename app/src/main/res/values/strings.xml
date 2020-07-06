@@ -605,4 +605,6 @@
    <string name="new_path">New path</string>
    <string name="old_path">Old path</string>
    <string name="show_book_description">Show book description in card</string>
+   <string name="mirror_image_for_teleprompter">Mirror image for teleprompter</string>
+   <string name="defaults_">Defaults</string>
 </resources>

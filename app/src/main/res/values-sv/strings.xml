@@ -605,4 +605,6 @@
    <string name="new_path">Ny väg</string>
    <string name="old_path">Gammal väg</string>
    <string name="show_book_description">Visa bokbeskrivningen på kortet</string>
+   <string name="mirror_image_for_teleprompter">Spegelbild för teleprompter</string>
+   <string name="defaults_">Defaults</string>
 </resources>

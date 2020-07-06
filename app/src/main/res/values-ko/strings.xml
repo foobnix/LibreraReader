@@ -605,4 +605,6 @@
    <string name="new_path">새로운 길</string>
    <string name="old_path">오래된 길</string>
    <string name="show_book_description">카드에 책 설명 표시</string>
+   <string name="mirror_image_for_teleprompter">텔레 프롬프터 용 미러 이미지</string>
+   <string name="defaults_">기본값</string>
 </resources>

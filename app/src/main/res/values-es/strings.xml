@@ -605,4 +605,6 @@
    <string name="new_path">Nuevo camino</string>
    <string name="old_path">Camino viejo</string>
    <string name="show_book_description">Mostrar la descripción del libro en la tarjeta</string>
+   <string name="mirror_image_for_teleprompter">Imagen especular para teleprompter</string>
+   <string name="defaults_">Valores predeterminados</string>
 </resources>

@@ -605,4 +605,6 @@
    <string name="new_path">Cale nouă</string>
    <string name="old_path">Poteca veche</string>
    <string name="show_book_description">Arată descrierea cărții în card</string>
+   <string name="mirror_image_for_teleprompter">Imagine în oglindă pentru teleprompter</string>
+   <string name="defaults_">Implicite</string>
 </resources>

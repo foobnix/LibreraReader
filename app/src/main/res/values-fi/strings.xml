@@ -605,4 +605,6 @@
    <string name="new_path">Uusi polku</string>
    <string name="old_path">Vanha polku</string>
    <string name="show_book_description">Näytä kirjan kuvaus kortissa</string>
+   <string name="mirror_image_for_teleprompter">Peilikuva kaukosäätimelle</string>
+   <string name="defaults_">Oletukset</string>
 </resources>

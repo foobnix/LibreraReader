@@ -605,4 +605,6 @@
    <string name="new_path">דרך חדשה</string>
    <string name="old_path">שביל ישן</string>
    <string name="show_book_description">הצגת תיאור הספר בכרטיס</string>
+   <string name="mirror_image_for_teleprompter">תמונת מראה לטלפרומפטר</string>
+   <string name="defaults_">ברירות מחדל</string>
 </resources>

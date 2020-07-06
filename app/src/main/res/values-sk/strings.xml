@@ -605,4 +605,6 @@
    <string name="new_path">Nová cesta</string>
    <string name="old_path">Stará cesta</string>
    <string name="show_book_description">Zobraziť popis knihy na karte</string>
+   <string name="mirror_image_for_teleprompter">Zrkadlový obraz pre teleprompter</string>
+   <string name="defaults_">Predvolené</string>
 </resources>

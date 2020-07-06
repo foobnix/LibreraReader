@@ -605,4 +605,6 @@
    <string name="new_path">新路</string>
    <string name="old_path">旧路</string>
    <string name="show_book_description">在卡片中显示图书说明</string>
+   <string name="mirror_image_for_teleprompter">提词器的镜像</string>
+   <string name="defaults_">默认值</string>
 </resources>

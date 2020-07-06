@@ -143,6 +143,13 @@
                 android:layout_weight="0"
                 android:minWidth="50dip"
                 android:text="Russian" />
+
+            <CheckBox
+                android:id="@+id/isDefaultHyphenLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/defaults_" />
+
         </LinearLayout>
 
         <CheckBox

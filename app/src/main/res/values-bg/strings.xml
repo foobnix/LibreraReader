@@ -605,4 +605,6 @@
    <string name="new_path">Нов път</string>
    <string name="old_path">Стара пътека</string>
    <string name="show_book_description">Покажете описанието на книгата в картата</string>
+   <string name="mirror_image_for_teleprompter">Огледално изображение за teleprompter</string>
+   <string name="defaults_">По подразбиране</string>
 </resources>

@@ -3581,6 +3581,16 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox isMirrorImage = (CheckBox) inflate.findViewById(R.id.isMirrorImage);
+                isMirrorImage.setChecked(AppState.get().isMirrorImage);
+                isMirrorImage.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isMirrorImage = isChecked;
+                    }
+                });
+
                 CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
                 isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
@@ -4267,6 +4277,9 @@ public class DragingDialogs {
                                         load.setLang(code);
                                         SharedBooks.save(load1);
                                     }
+                                    if(AppState.get().isDefaultHyphenLanguage){
+                                        AppState.get().defaultHyphenLanguageCode = code;
+                                    }
 
                                     return false;
                                 }
@@ -4274,6 +4287,16 @@ public class DragingDialogs {
                         }
                         popupMenu.show();
 
+                    }
+                });
+
+                CheckBox isDefaultHyphenLanguage = (CheckBox) inflate.findViewById(R.id.isDefaultHyphenLanguage);
+                isDefaultHyphenLanguage.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isDefaultHyphenLanguage.setChecked(AppState.get().isDefaultHyphenLanguage);
+                isDefaultHyphenLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isDefaultHyphenLanguage = isChecked;
+                    if(isChecked){
+                        AppState.get().defaultHyphenLanguageCode= AppSP.get().hypenLang;
                     }
                 });
                 // - hypens

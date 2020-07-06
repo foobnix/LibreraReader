@@ -605,4 +605,6 @@
    <string name="new_path">เส้นทางใหม่</string>
    <string name="old_path">เส้นทางเก่า</string>
    <string name="show_book_description">แสดงคำอธิบายหนังสือในการ์ด</string>
+   <string name="mirror_image_for_teleprompter">ภาพสะท้อนในกระจกสำหรับ teleprompter</string>
+   <string name="defaults_">ค่าเริ่มต้น</string>
 </resources>

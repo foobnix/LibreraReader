@@ -605,4 +605,6 @@
    <string name="new_path">Жаңа жол</string>
    <string name="old_path">Ескі жол</string>
    <string name="show_book_description">Карта сипаттамасын картадан көрсету</string>
+   <string name="mirror_image_for_teleprompter">Телепрограмма үшін айна бейнесі</string>
+   <string name="defaults_">Әдепкі</string>
 </resources>

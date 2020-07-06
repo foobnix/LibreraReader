@@ -605,4 +605,6 @@
    <string name="new_path">Cosán nua</string>
    <string name="old_path">Sean-chosán</string>
    <string name="show_book_description">Taispeáin tuairisc leabhair i gcárta</string>
+   <string name="mirror_image_for_teleprompter">Íomhá scátháin le haghaidh teleprompter</string>
+   <string name="defaults_">Mainneachtainí</string>
 </resources>

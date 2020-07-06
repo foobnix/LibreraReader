@@ -605,4 +605,6 @@
    <string name="new_path">Yeni yol</string>
    <string name="old_path">Eski yol</string>
    <string name="show_book_description">Kartta kitap açıklamasını göster</string>
+   <string name="mirror_image_for_teleprompter">Teleprompter için ayna görüntüsü</string>
+   <string name="defaults_">Varsayılan</string>
 </resources>

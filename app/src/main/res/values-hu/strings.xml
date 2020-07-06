@@ -605,4 +605,6 @@
    <string name="new_path">Új út</string>
    <string name="old_path">Régi út</string>
    <string name="show_book_description">Könyv leírás megjelenítése a kártyán</string>
+   <string name="mirror_image_for_teleprompter">Tükörkép a teleprompterhez</string>
+   <string name="defaults_">Alapértelmezett</string>
 </resources>

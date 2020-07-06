@@ -605,4 +605,6 @@
    <string name="new_path">مسار جديد</string>
    <string name="old_path">طريق قديم</string>
    <string name="show_book_description">عرض وصف الكتاب في البطاقة</string>
+   <string name="mirror_image_for_teleprompter">صورة طبق الأصل عن الملقن</string>
+   <string name="defaults_">التخلف عن السداد</string>
 </resources>

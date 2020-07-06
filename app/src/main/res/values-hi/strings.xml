@@ -605,4 +605,6 @@
    <string name="new_path">नया रास्ता</string>
    <string name="old_path">पुराना रास्ता</string>
    <string name="show_book_description">कार्ड में पुस्तक विवरण दिखाएं</string>
+   <string name="mirror_image_for_teleprompter">टेलीप्रॉम्प्टर के लिए दर्पण छवि</string>
+   <string name="defaults_">चूक</string>
 </resources>

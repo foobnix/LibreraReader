@@ -605,4 +605,6 @@
    <string name="new_path">Novum semita</string>
    <string name="old_path">Vetus semita</string>
    <string name="show_book_description">Descriptionem in libro ostendit card</string>
+   <string name="mirror_image_for_teleprompter">Speculum imaginem et teleprompter</string>
+   <string name="defaults_">Defaltis</string>
 </resources>

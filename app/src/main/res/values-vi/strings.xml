@@ -605,4 +605,6 @@
    <string name="new_path">Con đường mới</string>
    <string name="old_path">Con đường cũ</string>
    <string name="show_book_description">Mô tả cuốn sách trong thẻ</string>
+   <string name="mirror_image_for_teleprompter">Hình ảnh phản chiếu cho teleprompter</string>
+   <string name="defaults_">Mặc định</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.hypen.HyphenPattern;
@@ -68,6 +69,8 @@ public class HypenPanelHelper {
 
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
+
+
                             AppSP.get().hypenLang = code;
                             AppSP.get().lastBookLang = code;
                             hypenLang.setText(titleLang);

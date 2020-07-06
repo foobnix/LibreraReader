@@ -605,4 +605,6 @@
    <string name="new_path">Novo rumo</string>
    <string name="old_path">Caminho antigo</string>
    <string name="show_book_description">Mostrar a descrição do livro no cartão</string>
+   <string name="mirror_image_for_teleprompter">Imagem em espelho para teleprompter</string>
+   <string name="defaults_">Padrões</string>
 </resources>

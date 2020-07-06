@@ -605,4 +605,6 @@
    <string name="new_path">Nowa ścieżka</string>
    <string name="old_path">Stara ścieżka</string>
    <string name="show_book_description">Pokaż opis książki na karcie</string>
+   <string name="mirror_image_for_teleprompter">Odbicie lustrzane dla telepromptera</string>
+   <string name="defaults_">Domyślne</string>
 </resources>

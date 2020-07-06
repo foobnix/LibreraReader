@@ -605,4 +605,6 @@
    <string name="new_path">Ny bane</string>
    <string name="old_path">Gammel sti</string>
    <string name="show_book_description">Vis bokbeskrivelsen i kort</string>
+   <string name="mirror_image_for_teleprompter">Speilbilde for teleprompter</string>
+   <string name="defaults_">Mislighold</string>
 </resources>

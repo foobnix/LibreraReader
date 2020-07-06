@@ -30,7 +30,7 @@ public class AppSP {
     public int readingMode = AppState.READING_MODE_BOOK;
     public long syncTime;
     public int syncTimeStatus;
-    public String hypenLang;
+    public String hypenLang = null;
     public boolean isCut = false;
     public boolean isDouble = false;
     public boolean isDoubleCoverAlone = false;

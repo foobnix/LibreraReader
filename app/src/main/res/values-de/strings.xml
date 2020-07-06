@@ -605,4 +605,6 @@
    <string name="new_path">Neuer Weg</string>
    <string name="old_path">Alter Weg</string>
    <string name="show_book_description">Buchbeschreibung in Karte anzeigen</string>
+   <string name="mirror_image_for_teleprompter">Spiegelbild für Teleprompter</string>
+   <string name="defaults_">Standardeinstellungen</string>
 </resources>

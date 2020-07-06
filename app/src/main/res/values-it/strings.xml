@@ -605,4 +605,6 @@
    <string name="new_path">Nuovo percorso</string>
    <string name="old_path">Vecchio percorso</string>
    <string name="show_book_description">Mostra la descrizione del libro nella scheda</string>
+   <string name="mirror_image_for_teleprompter">Immagine speculare per il teleprompter</string>
+   <string name="defaults_">Default</string>
 </resources>

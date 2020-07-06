@@ -605,4 +605,6 @@
    <string name="new_path">Jalur baru</string>
    <string name="old_path">Jalan lama</string>
    <string name="show_book_description">Tunjukkan deskripsi buku dalam kartu</string>
+   <string name="mirror_image_for_teleprompter">Gambar cermin untuk teleprompter</string>
+   <string name="defaults_">Default</string>
 </resources>

@@ -605,4 +605,6 @@
    <string name="new_path">Nieuw pad</string>
    <string name="old_path">Oude pad</string>
    <string name="show_book_description">Toon boekbeschrijving in kaart</string>
+   <string name="mirror_image_for_teleprompter">Spiegelbeeld voor teleprompter</string>
+   <string name="defaults_">Standaardwaarden</string>
 </resources>

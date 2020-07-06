@@ -605,4 +605,6 @@
    <string name="new_path">Новый путь</string>
    <string name="old_path">Старый путь</string>
    <string name="show_book_description">Показать описание книги на карточке</string>
+   <string name="mirror_image_for_teleprompter">Зеркальное отображение для телесуфлера</string>
+   <string name="defaults_">По умолчанию</string>
 </resources>

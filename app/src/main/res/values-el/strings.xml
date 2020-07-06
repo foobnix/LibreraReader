@@ -605,4 +605,6 @@
    <string name="new_path">Νέο μονοπάτι</string>
    <string name="old_path">Παλιό μονοπάτι</string>
    <string name="show_book_description">Εμφάνιση περιγραφής βιβλίου στην κάρτα</string>
+   <string name="mirror_image_for_teleprompter">Εικόνα καθρέφτη για teleprompter</string>
+   <string name="defaults_">Προεπιλογές</string>
 </resources>

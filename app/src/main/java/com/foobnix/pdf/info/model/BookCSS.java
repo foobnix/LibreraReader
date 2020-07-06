@@ -747,6 +747,12 @@ public class BookCSS {
 
     public void detectLang(String bookPath) {
 
+        if(AppState.get().isDefaultHyphenLanguage){
+            AppSP.get().hypenLang = AppState.get().defaultHyphenLanguageCode;
+            LOG.d("set defaultHyphenLanguageCode",AppSP.get().hypenLang);
+            return;
+        }
+
         FileMeta meta = AppDB.get().load(bookPath);
         if (meta == null) {
             meta = FileMetaCore.createMetaIfNeed(bookPath, false);

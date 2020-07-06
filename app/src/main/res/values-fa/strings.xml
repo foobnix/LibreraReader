@@ -605,4 +605,6 @@
    <string name="new_path">مسیر جدید</string>
    <string name="old_path">مسیر قدیمی</string>
    <string name="show_book_description">نمایش توضیحات کتاب در کارت</string>
+   <string name="mirror_image_for_teleprompter">تصویر آینه برای teleprompter</string>
+   <string name="defaults_">پیش فرض</string>
 </resources>
