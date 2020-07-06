@@ -198,12 +198,13 @@ public class WikiTranslate {
             line = line.replace("&gt;", ">");
         }
         line = line.replace("]]", "]");
-        line = line.replace("## #","##");
+        line = line.replace("## #","###");
 
 
         for (String key : reverse.keySet()) {
             line = line.replace(key, reverse.get(key));
         }
+        line = line.replace("## #","###");
         System.out.println(line);
         return line;
     }

@@ -2,10 +2,24 @@
 layout: main
 ---
 
-# O que há de novo no leitor de livros Librera
+# O que há de novo (atualizado)
+[http://beta.librera.mobi/}(http://beta.librera.mobi/)
 
-[t.me/LibreraBeta ](https://t.me/LibreraBeta) 
+### [8.3.78] Idioma de hífen padrão para todos os livros
+<img class="i" src="8.3.78.png" />
 
-[t.me/LibreraReader ](https://t.me/LibreraReader) 
+### [8.3.77] Imagem espelhada para o telepromter
 
-    
+||||
+|-|-|-|
+|![](8.3.77c.jpg)|![](8.3.77a.jpg)|![](8.3.77b.jpg)|
+
+### [8.3.70] Mostrar descrição do livro
+
+|||
+|-|-|
+|![](8.3.70a.jpg)|![](8.3.70b.jpg)|
+
+
+### [8.3.58] contagem de livros na pasta
+<img class="i" src="8.3.58.jpg" />

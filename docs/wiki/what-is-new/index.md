@@ -2,10 +2,24 @@
 layout: main
 ---
 
-# What is new in Librera book reader
+# What is new (Updated)
+[http://beta.librera.mobi/](http://beta.librera.mobi/)
 
-[t.me/LibreraBeta ](https://t.me/LibreraBeta) 
+### [8.3.78] Default hyphen language for all books
+<img class="i" src="8.3.78.png" />
 
-[t.me/LibreraReader ](https://t.me/LibreraReader) 
+### [8.3.77] Mirror image for telepromter
 
-    
+||||
+|-|-|-|
+|![](8.3.77c.jpg)|![](8.3.77a.jpg)|![](8.3.77b.jpg)|
+
+### [8.3.70] Show book description
+
+|||
+|-|-|
+|![](8.3.70a.jpg)|![](8.3.70b.jpg)|
+
+
+### [8.3.58] books-in-folder count
+<img class="i" src="8.3.58.jpg" />
