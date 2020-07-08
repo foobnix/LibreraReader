@@ -4,6 +4,7 @@ layout: main
 
 # Domande frequenti
 
+* [Modifica testo del segnalibro, numero di pagina, segnalibro mobile](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/it)
 * [Contrasto e luminosità in PDF (effetto bianco/nero)](/wiki/faq/contrast-and-brightness-in-pdf/it)
 * [Come disabilitare le linee tratteggiate, le linee rosse in &quot;Modalità musicista&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/it)
 * [Backup e migrazione dei dati](/wiki/faq/backup-import-export-migration/it)

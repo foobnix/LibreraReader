@@ -4,6 +4,7 @@ layout: main
 
 # Häufig gestellte Fragen
 
+* [Lesezeichentext, Seitenzahl, schwebendes Lesezeichen bearbeiten](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/de)
 * [Kontrast und Helligkeit in PDF (Schwarz/Weiß-Effekt)](/wiki/faq/contrast-and-brightness-in-pdf/de)
 * [Deaktivieren von gestrichelten Linien, rote Linien im &quot;Musikermodus&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/de)
 * [Datensicherung und Migration](/wiki/faq/backup-import-export-migration/de)

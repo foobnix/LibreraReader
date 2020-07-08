@@ -4,6 +4,7 @@ layout: main
 
 # Foire aux questions
 
+* [Modifier le texte du signet, le numéro de page, le signet flottant](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/fr)
 * [Contraste et luminosité en PDF (effet noir/blanc)](/wiki/faq/contrast-and-brightness-in-pdf/fr)
 * [Comment désactiver les lignes pointillées, les lignes rouges en &quot;mode Musicien&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/fr)
 * [Sauvegarde et migration des données](/wiki/faq/backup-import-export-migration/fr)

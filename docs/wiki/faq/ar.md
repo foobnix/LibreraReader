@@ -4,6 +4,7 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [تعديل نص الإشارة ، رقم الصفحة ، الإشارة المرجعية العائمة](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/ar)
 * [التباين والسطوع في PDF (تأثير أبيض/أسود)](/wiki/faq/contrast-and-brightness-in-pdf/ar)
 * [كيفية تعطيل الخطوط المتقطعة ، الخطوط الحمراء في &quot;الوضع الموسيقي&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ar)
 * [النسخ الاحتياطي للبيانات وترحيلها](/wiki/faq/backup-import-export-migration/ar)

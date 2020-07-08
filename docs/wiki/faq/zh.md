@@ -4,6 +4,7 @@ layout: main
 
 #常见问题
 
+* [编辑书签文本，页码，浮动书签](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/zh)
 * [PDF的对比度和亮度(黑白效果)](/wiki/faq/contrast-and-brightness-in-pdf/zh)
 * [如何在“音乐人模式”中禁用虚线，红线](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/zh)
 * [数据备份和迁移](/wiki/faq/backup-import-export-migration/zh)

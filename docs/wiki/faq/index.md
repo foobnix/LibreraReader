@@ -5,6 +5,7 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Edit bookmark text, page number, floating bookmark](/wiki/faq/edit-bookmark-page-and-floating-bookmarks)
 * [Contrast and Brightness in PDF  (Black/White Effect)](/wiki/faq/contrast-and-brightness-in-pdf)
 * [How to disable dashed lines, red lines in the "Musician mode"](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode)
 * [Data backup and migration](/wiki/faq/backup-import-export-migration)

@@ -4,6 +4,7 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Editar texto do marcador, número da página, marcador flutuante](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/pt)
 * [Contraste e brilho em PDF (efeito preto/branco)](/wiki/faq/contrast-and-brightness-in-pdf/pt)
 * [Como desativar linhas tracejadas, linhas vermelhas no &quot;modo Músico&quot;](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/pt)
 * [Backup e migração de dados](/wiki/faq/backup-import-export-migration/pt)

@@ -4,6 +4,7 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Изменить текст закладки, номер страницы, плавающая закладка](/wiki/faq/edit-bookmark-page-and-floating-bookmarks/ru)
 * [Контраст и яркость в PDF (черно-белый эффект)](/wiki/faq/contrast-and-brightness-in-pdf/ru)
 * [Как отключить пунктирные линии, красные линии в «Режиме музыканта»](/wiki/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/ru)
 * [Резервное копирование данных и миграция](/wiki/faq/backup-import-export-migration/ru)
