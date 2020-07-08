@@ -4,6 +4,10 @@ layout: main
 
 # What is new (Updated)
 
+### [8.3.80] Selecting the last word on the page with hyphen completely
+
+<img class="i" src="8.3.80.png" />
+
 ### [8.3.78] Default hyphen language for all books
 
 <img class="i" src="8.3.78.png" />
