@@ -26,7 +26,7 @@ echo "=================="
 git log -n 1 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 echo -e "\e[39m=================="
-
+#make clean
 make -j4 release
 make -j4 generate
 
@@ -57,11 +57,11 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-cp -rp $SRC/css-apply.c    $DEST/html/css-apply.c
-cp -rp $SRC/epub-doc.c     $DEST/html/epub-doc.c
-cp -rp $SRC/html-layout.c  $DEST/html/html-layout.c
-cp -rp $SRC/html-parse.c   $DEST/html/html-parse.c
-cp -rp $SRC/mucbz.c        $DEST/cbz/mucbz.c
+#cp -rp $SRC/css-apply.c    $DEST/html/css-apply.c
+#cp -rp $SRC/epub-doc.c     $DEST/html/epub-doc.c
+#cp -rp $SRC/html-layout.c  $DEST/html/html-layout.c
+#cp -rp $SRC/html-parse.c   $DEST/html/html-parse.c
+#cp -rp $SRC/mucbz.c        $DEST/cbz/mucbz.c
 
 
 cd $MUPDF_JAVA

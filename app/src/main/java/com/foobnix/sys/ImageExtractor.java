@@ -467,14 +467,16 @@ public class ImageExtractor {
             bitmap = bitmap1;
         }
 
-        LOG.d("pageUrl",pageUrl.isDoText(),pageCodec.isRecycled(),codeCache.isRecycled(),AppSP.get().lastClosedActivity);
-        if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
-            LOG.d("pageUrl run",AppSP.get().lastClosedActivity);
-            if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
-                TextWord[][] text = pageCodec.getText();
-                PageImageState.get().pagesText.put(pageUrl.getPage(), text);
-                PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
-                LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
+        if (page != 0) {//TEST!!!!
+            LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled(), AppSP.get().lastClosedActivity);
+            if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
+                LOG.d("pageUrl run", AppSP.get().lastClosedActivity);
+                if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+                    TextWord[][] text = pageCodec.getText();
+                    PageImageState.get().pagesText.put(pageUrl.getPage(), text);
+                    PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+                    LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
+                }
             }
         }
 

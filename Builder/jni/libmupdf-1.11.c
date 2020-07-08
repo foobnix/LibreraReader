@@ -1135,10 +1135,10 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_text(JNIEnv * env,
 	}
 	fz_catch(ctx)
 	{
-		jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
-		if (cls != NULL)
-			(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_text");
-		(*env)->DeleteLocalRef(env, cls);
+		//jclass cls = (*env)->FindClass(env, "java/lang/OutOfMemoryError");
+		//if (cls != NULL)
+	//		(*env)->ThrowNew(env, cls, "Out of memory in MuPDFCore_text");
+	//	(*env)->DeleteLocalRef(env, cls);
 
 		return NULL;
 	}
