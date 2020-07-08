@@ -995,7 +995,9 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            line = line.replace("<empty-line/>", "");
+            if(AppState.get().isAccurateFontSize || fixXML) {
+                line = line.replace("<empty-line/>", "");
+            }
 
             if (firstLine) {
                 List<String> encodings = Arrays.asList("utf-8", "windows-1251", "Windows-1251", "windows-1252", "Windows-1252");
