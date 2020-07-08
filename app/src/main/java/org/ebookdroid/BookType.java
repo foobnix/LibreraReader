@@ -145,7 +145,7 @@ public enum BookType {
     }
 
     public static boolean isTextFormat(String path) {
-        List<String> list = new ArrayList<String>();
+        path = path.toLowerCase();
 
         if(path.endsWith(".okular")){
             return false;

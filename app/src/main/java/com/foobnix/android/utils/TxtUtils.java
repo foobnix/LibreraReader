@@ -361,7 +361,7 @@ public class TxtUtils {
 
 
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
-        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
+        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", "\"");
         pageHTML = pageHTML.replace("[image]", "");
 
         LOG.d("pageHTML [2", pageHTML);
