@@ -142,6 +142,10 @@ public class PageImaveView extends View {
     }
 
     public TextWord[][] getPageText(int number) {
+        return getPageText(pageNumber, number);
+    }
+
+    public TextWord[][] getPageText(int pageNumber, int number) {
         try {
             if (AppSP.get().isDouble && number != 0) {
 
@@ -675,7 +679,29 @@ public class PageImaveView extends View {
             }
         }
 
-        String txt = TxtUtils.filterString(build.toString());
+
+        String txt = build.toString();
+        if (txt.endsWith("- ")) {
+            try {
+                if (firstNumber == 0) {
+                    TextWord[][] texts = getPageText(pageNumber + 1, 0);
+                    if (texts[0].length > 1) {
+                        txt += texts[0][1].w;
+                    } else {
+                        txt += texts[0][0].w;
+                    }
+                } else if (firstNumber == 1) {
+                    txt += getPageText(pageNumber, 2)[0][1].w;
+                } else {
+                    txt += getPageText(pageNumber + 1, 1)[0][1].w;
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+        txt = TxtUtils.filterString(txt);
+
+
         AppState.get().selectedText = txt;
         invalidate();
         return txt;

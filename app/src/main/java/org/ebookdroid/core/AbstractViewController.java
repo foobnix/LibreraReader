@@ -164,7 +164,7 @@ public abstract class AbstractViewController extends AbstractComponentController
 
             final AppBook bs = SettingsManager.getBookSettings();
             final Page page = bs.getCurrentPage(getBase().getDocumentModel().getPageCount()).getActualPage(model, bs);
-             int toPage = page != null ? page.index.viewIndex : 0;
+            int toPage = page != null ? page.index.viewIndex : 0;
 
             if (toPage > 0 && AppSP.get().isCut) {
                 toPage = toPage / 2;
@@ -501,7 +501,22 @@ public abstract class AbstractViewController extends AbstractComponentController
         }
         if (build.length() > 0) {
             redrawView();
-            String filterString = TxtUtils.filterString(build.toString());
+
+            String txt = build.toString();
+            try {
+                if (txt.endsWith("- ")) {
+                    TextWord[][] texts = model.getPageByDocIndex(firstVisiblePage + 1).texts;
+                    if (texts[0].length > 1) {
+                        txt += texts[0][1].w;
+                    } else {
+                        txt += texts[0][0].w;
+                    }
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+            String filterString = TxtUtils.filterString(txt);
             LOG.d("Add Word SELECT-TEXT", filterString);
             LOG.d("Add Word SELECT-TEXT-ACTION");
 
