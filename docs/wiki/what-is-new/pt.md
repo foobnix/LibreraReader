@@ -4,6 +4,10 @@ layout: main
 
 # O que há de novo (atualizado)
 
+### [8.3.80] Seleção de texto: a última palavra com hífen na página será selecionada como concluída
+
+<img class="i" src="8.3.80.png" />
+
 ### [8.3.78] Idioma de hífen padrão para todos os livros
 
 <img class="i" src="8.3.78.png" />

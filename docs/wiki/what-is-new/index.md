@@ -4,7 +4,7 @@ layout: main
 
 # What is new (Updated)
 
-### [8.3.80] Selecting the last word on the page with hyphen completely
+### [8.3.80] Text selection: hyphenated last word on page will be selected as complete
 
 <img class="i" src="8.3.80.png" />
 

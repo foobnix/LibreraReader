@@ -4,6 +4,10 @@ layout: main
 
 # Was ist neu (aktualisiert)
 
+### [8.3.80] Textauswahl: Das letzte Wort auf der Seite mit Bindestrich wird als vollständig ausgewählt
+
+<img class="i" src="8.3.80.png" />
+
 ### [8.3.78] Standard-Bindestrichsprache für alle Bücher
 
 <img class="i" src="8.3.78.png" />

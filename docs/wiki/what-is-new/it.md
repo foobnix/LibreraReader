@@ -4,6 +4,10 @@ layout: main
 
 # Novità (aggiornato)
 
+### [8.3.80] Selezione del testo: l'ultima parola sillabata sulla pagina verrà selezionata come completa
+
+<img class="i" src="8.3.80.png" />
+
 ### [8.3.78] Lingua trattino predefinita per tutti i libri
 
 <img class="i" src="8.3.78.png" />

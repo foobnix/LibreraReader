@@ -4,6 +4,10 @@ layout: main
 
 # Quoi de neuf (mis à jour)
 
+### [8.3.80] Sélection du texte: le dernier mot coupé dans la page sera sélectionné comme complet
+
+<img class="i" src="8.3.80.png" />
+
 ### [8.3.78] Langue de trait d'union par défaut pour tous les livres
 
 <img class="i" src="8.3.78.png" />
