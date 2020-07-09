@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] Nuovo file, Nuova cartella, Vai alle opzioni della cartella
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] Percorso di modifica &quot;Vai alla cartella&quot; (clic lungo)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Modalità di riferimento come In Calibre View
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Supporto di base per i file .md Markdown
+
+### [8.2.20] Invia pagina come testo/immagine dalla finestra di dialogo Vai a pagina.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Specifica i formati dei libri per le modalità di lettura (impostazioni predefinite modalità di lettura)
+
+<img class="i" src="8.2.19.jpg" />

@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] New file, New Folder, Go to the folder options
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] "Go to folder" edit path (long click)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Reference Mode like In Calibre View
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Basic support of .md Markdown files
+
+### [8.2.20] Send page as text/image from the Go to Page dialog.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Specify book formats for reading modes (reading-mode presets)
+
+<img class="i" src="8.2.19.jpg" />

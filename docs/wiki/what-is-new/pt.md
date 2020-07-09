@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] Novo arquivo, Nova Pasta, Vá para as opções de pasta
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] Caminho de edição &quot;Ir para a pasta&quot; (clique longo)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Modo de referência como na exibição de calibre
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Suporte básico aos arquivos .md Markdown
+
+### [8.2.20] Envie a página como texto/imagem na caixa de diálogo Ir para página.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Especifique os formatos dos livros para os modos de leitura (predefinições do modo de leitura)
+
+<img class="i" src="8.2.19.jpg" />

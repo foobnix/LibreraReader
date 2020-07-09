@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] Nuevo archivo, Nueva carpeta, Ir a las opciones de carpeta
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] Ruta de edición &quot;Ir a la carpeta&quot; (clic largo)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Modo de referencia como en la vista de calibre
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Soporte básico de archivos .md Markdown
+
+### [8.2.20] Enviar la página como texto/imagen desde el cuadro de diálogo Ir a la página.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Especifique formatos de libros para modos de lectura (preajustes de modo de lectura)
+
+<img class="i" src="8.2.19.jpg" />

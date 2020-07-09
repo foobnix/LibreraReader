@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] Neue Datei, Neuer Ordner, Gehen Sie zu den Ordneroptionen
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] Bearbeitungspfad &quot;Zum Ordner wechseln&quot; (langer Klick)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Referenzmodus wie in der Kaliberansicht
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Grundlegende Unterstützung von .md Markdown-Dateien
+
+### [8.2.20] Seite als Text/Bild aus dem Dialogfeld &quot;Gehe zu Seite&quot; senden.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Geben Sie Buchformate für Lesemodi an (Lesemodus-Voreinstellungen).
+
+<img class="i" src="8.2.19.jpg" />

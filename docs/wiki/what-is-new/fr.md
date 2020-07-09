@@ -46,3 +46,24 @@ layout: main
 ### [8.2.37] Nouveau fichier, nouveau dossier, accédez aux options du dossier
 
 <img class="i" src="8.2.37.jpg" />
+
+### [8.2.36] Chemin d'édition &quot;Aller au dossier&quot; (clic long)
+
+<img class="i" src="8.2.36.jpg" />
+
+
+### [8.2.22] Mode de référence comme dans la vue Calibre
+
+|||
+|-|-|
+|![](8.2.22a.jpg)|![](8.2.22b.jpg)|
+
+### [8.2.21] Prise en charge de base des fichiers Markdown .md
+
+### [8.2.20] Envoyer la page sous forme de texte/image à partir de la boîte de dialogue Aller à la page.
+
+<img class="i" src="8.2.20.jpg" />
+
+### [8.2.19] Spécifiez les formats de livre pour les modes de lecture (préréglages du mode de lecture)
+
+<img class="i" src="8.2.19.jpg" />
