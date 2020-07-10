@@ -27,6 +27,7 @@ public class Link {
     public String title;
     public String parentTitle;
     public String filePath;
+    public String author;
 
     {
         map.put("text/html", "web");

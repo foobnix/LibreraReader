@@ -565,7 +565,12 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     bookPath = createDocument.toString();
                                     outStream = getActivity().getContentResolver().openOutputStream(createDocument);
                                 } else {
-                                    File LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                    File LIRBI_DOWNLOAD_DIR;
+                                    if (TxtUtils.isNotEmpty(link.author)) {
+                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
+                                    } else {
+                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                    }
                                     if (!LIRBI_DOWNLOAD_DIR.exists()) {
                                         LIRBI_DOWNLOAD_DIR.mkdirs();
                                     }
@@ -779,7 +784,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public void populateDataInUI(List<Entry> entries) {
         if (isNeedLoginPassword) {
-            AddCatalogDialog.showDialogLogin(getActivity(),url, () -> populate());
+            AddCatalogDialog.showDialogLogin(getActivity(), url, () -> populate());
             return;
         }
 

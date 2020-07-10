@@ -153,6 +153,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         String imgLink = "";
         for (final Link link : entry.links) {
+            link.author = entry.author;
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
                 //ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
