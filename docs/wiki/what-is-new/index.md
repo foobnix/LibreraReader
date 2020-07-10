@@ -4,6 +4,8 @@ layout: main
 
 # What is new (Updated)
 
+### [8.3.84] OPDS download folder format "[Author name]/Book name"
+
 ### [8.3.80] Text selection: hyphenated last word on page will be selected as complete
 
 <img class="i" src="8.3.80.png" />
