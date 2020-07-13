@@ -607,4 +607,7 @@
    <string name="show_book_description">Näytä kirjan kuvaus kortissa</string>
    <string name="mirror_image_for_teleprompter">Peilikuva kaukosäätimelle</string>
    <string name="defaults_">Oletukset</string>
+   <string name="selected">Valittu</string>
+   <string name="close_dialog_and_apply_changes">Sulje valintaikkuna ja ota käyttöön muutokset</string>
+   <string name="book_is_open">Kirja on auki</string>
 </resources>

@@ -184,7 +184,9 @@ public class PrefFragment2 extends UIFragment {
             final String p = AppProfile.getCurrent(getActivity());
             profileLetter.setText(TxtUtils.getFirstLetter(p));
             profileLetter.setBackgroundDrawable(AppProfile.getProfileColorDrawable(getActivity(), TintUtil.color));
+            profileLetter.setContentDescription(p+" "+getString(R.string.profile));
         }
+
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TxtUtils.setInkTextView(inflate.getRootView());
@@ -719,6 +721,15 @@ public class PrefFragment2 extends UIFragment {
         // "https://www.dropbox.com/sh/8el7kon2sbx46w8/xm3qoHYT7n");
         // }
         // });
+
+        View closeMenu = inflate.findViewById(R.id.closeMenu);
+        closeMenu.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeLeftMenu();
+            }
+        });
+        closeMenu.setVisibility(TxtUtils.visibleIf(Apps.isAccessibilityServiceEnabled(getActivity())));
 
         inflate.findViewById(R.id.onKeyCode).
 
@@ -1986,6 +1997,7 @@ public class PrefFragment2 extends UIFragment {
             final int intColor = Color.parseColor(color);
             final View img = view.findViewById(R.id.itColor);
             img.setBackgroundColor(intColor);
+            img.setContentDescription(getString(R.string.color));
 
             colorsLine.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));
 
@@ -2329,6 +2341,10 @@ public class PrefFragment2 extends UIFragment {
                 getActivity(), p));
 
         onProfile.setText(p);
+
+        profileLetter.setContentDescription(p+" "+getString(R.string.profile));
+        onProfile.setContentDescription(p+" "+getString(R.string.profile));
+
         TxtUtils.underlineTextView(onProfile);
         onProfile.setOnClickListener(v ->
 

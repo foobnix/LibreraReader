@@ -607,4 +607,7 @@
    <string name="show_book_description">Toon boekbeschrijving in kaart</string>
    <string name="mirror_image_for_teleprompter">Spiegelbeeld voor teleprompter</string>
    <string name="defaults_">Standaardwaarden</string>
+   <string name="selected">Geselecteerd</string>
+   <string name="close_dialog_and_apply_changes">Dialoogvenster sluiten en wijzigingen toepassen</string>
+   <string name="book_is_open">Boek is open</string>
 </resources>

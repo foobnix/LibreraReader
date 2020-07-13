@@ -342,6 +342,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         });
 
         searchAdapter = new FileMetaAdapter();
+
         authorsAdapter = new AuthorsAdapter2();
 
         onGridlList = (ImageView) view.findViewById(R.id.onGridList);

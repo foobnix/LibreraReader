@@ -607,4 +607,7 @@
    <string name="show_book_description">Карта сипаттамасын картадан көрсету</string>
    <string name="mirror_image_for_teleprompter">Телепрограмма үшін айна бейнесі</string>
    <string name="defaults_">Әдепкі</string>
+   <string name="selected">Таңдалған</string>
+   <string name="close_dialog_and_apply_changes">Диалогты жабыңыз және өзгертулерді қолданыңыз</string>
+   <string name="book_is_open">Кітабы ашық</string>
 </resources>

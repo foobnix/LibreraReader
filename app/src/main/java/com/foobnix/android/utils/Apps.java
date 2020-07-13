@@ -1,21 +1,29 @@
 package com.foobnix.android.utils;
 
+import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
 import com.foobnix.pdf.info.R;
 
+import java.util.List;
+
+import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
@@ -162,7 +170,7 @@ public class Apps {
             } catch (Settings.SettingNotFoundException e) {
                 LOG.d(e);
             }
-        }else {
+        } else {
             isNight = screenBrightness < 0.15;
         }
         LOG.d("isNight result", isNight);
@@ -171,5 +179,40 @@ public class Apps {
 
     }
 
+    public static boolean isAccessibilityServiceEnabled(Context context) {
+        try {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            boolean isAccessibilityEnabled = am.isEnabled();
+            boolean isExploreByTouchEnabled = am.isTouchExplorationEnabled();
+            LOG.d("isAccessibilityServiceEnabled isAccessibilityEnabled", isAccessibilityEnabled);
+            LOG.d("isAccessibilityServiceEnabled isExploreByTouchEnabled", isExploreByTouchEnabled);
+            return isExploreByTouchEnabled;
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return false;
+    }
 
+    public static void accessibilityText(Context context, String text) {
+        try {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            boolean isAccessibilityEnabled = am.isEnabled();
+            LOG.d("isAccessibilityEnabled", isAccessibilityEnabled);
+            if (isAccessibilityEnabled) {
+                AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
+                accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
+
+                accessibilityEvent.getText().add(text);
+                if (am != null) {
+                    am.sendAccessibilityEvent(accessibilityEvent);
+                    LOG.d("sendAccessibilityEvent", text);
+                }
+
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+
+    }
 }

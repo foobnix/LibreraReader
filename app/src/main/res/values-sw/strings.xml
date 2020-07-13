@@ -607,4 +607,7 @@
    <string name="show_book_description">Onyesha maelezo ya kitabu katika kadi</string>
    <string name="mirror_image_for_teleprompter">Picha ya kioo kwa teleprompter</string>
    <string name="defaults_">Defaults</string>
+   <string name="selected">Kuchaguliwa</string>
+   <string name="close_dialog_and_apply_changes">Funga mazungumzo na ubadilishe mabadiliko</string>
+   <string name="book_is_open">Kitabu kiko wazi</string>
 </resources>

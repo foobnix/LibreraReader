@@ -607,4 +607,7 @@
    <string name="show_book_description">Mostrar a descrição do livro no cartão</string>
    <string name="mirror_image_for_teleprompter">Imagem em espelho para teleprompter</string>
    <string name="defaults_">Padrões</string>
+   <string name="selected">Selecionado</string>
+   <string name="close_dialog_and_apply_changes">Fechar caixa de diálogo e aplicar alterações</string>
+   <string name="book_is_open">Livro está aberto</string>
 </resources>

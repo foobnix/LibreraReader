@@ -607,4 +607,7 @@
    <string name="show_book_description">Zobrazit popis knihy na kartě</string>
    <string name="mirror_image_for_teleprompter">Zrcadlový obraz pro teleprompter</string>
    <string name="defaults_">Výchozí hodnoty</string>
+   <string name="selected">Vybraný</string>
+   <string name="close_dialog_and_apply_changes">Zavřete dialog a aplikujte změny</string>
+   <string name="book_is_open">Kniha je otevřená</string>
 </resources>

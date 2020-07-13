@@ -607,4 +607,7 @@
    <string name="show_book_description">Show book description</string>
    <string name="mirror_image_for_teleprompter">Mirror image for teleprompter</string>
    <string name="defaults_">Make default</string>
+   <string name="selected">Selected</string>
+   <string name="close_dialog_and_apply_changes">Close dialog and apply changes</string>
+   <string name="book_is_open">Book is open</string>
 </resources>

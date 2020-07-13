@@ -607,4 +607,7 @@
    <string name="show_book_description">Vis bokbeskrivelsen i kort</string>
    <string name="mirror_image_for_teleprompter">Speilbilde for teleprompter</string>
    <string name="defaults_">Mislighold</string>
+   <string name="selected">Valgt</string>
+   <string name="close_dialog_and_apply_changes">Lukk dialog og bruk endringer</string>
+   <string name="book_is_open">Boka er åpen</string>
 </resources>

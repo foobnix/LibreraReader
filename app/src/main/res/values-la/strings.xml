@@ -607,4 +607,7 @@
    <string name="show_book_description">Descriptionem in libro ostendit card</string>
    <string name="mirror_image_for_teleprompter">Speculum imaginem et teleprompter</string>
    <string name="defaults_">Defaltis</string>
+   <string name="selected">Lectus</string>
+   <string name="close_dialog_and_apply_changes">Prope mutationes dialogo et iuncturam adhibere</string>
+   <string name="book_is_open">Librum apertum est</string>
 </resources>

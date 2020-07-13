@@ -678,6 +678,11 @@ public class AppState {
             isZoomInOutWithLock = false;
         }
 
+        if(Apps.isAccessibilityServiceEnabled(a)) {
+            AppState.get().tabWithNames = false;
+            isScrollAnimation = false;
+        }
+
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }

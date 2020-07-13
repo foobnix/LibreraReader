@@ -607,4 +607,7 @@
    <string name="show_book_description">نمایش توضیحات کتاب در کارت</string>
    <string name="mirror_image_for_teleprompter">تصویر آینه برای teleprompter</string>
    <string name="defaults_">پیش فرض</string>
+   <string name="selected">انتخاب شد</string>
+   <string name="close_dialog_and_apply_changes">گفتگو را ببندید و تغییرات را اعمال کنید</string>
+   <string name="book_is_open">کتاب باز است</string>
 </resources>

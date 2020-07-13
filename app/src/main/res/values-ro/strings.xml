@@ -607,4 +607,7 @@
    <string name="show_book_description">Arată descrierea cărții în card</string>
    <string name="mirror_image_for_teleprompter">Imagine în oglindă pentru teleprompter</string>
    <string name="defaults_">Implicite</string>
+   <string name="selected">Selectat</string>
+   <string name="close_dialog_and_apply_changes">Închideți dialogul și aplicați modificările</string>
+   <string name="book_is_open">Cartea este deschisă</string>
 </resources>

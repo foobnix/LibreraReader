@@ -607,4 +607,7 @@
    <string name="show_book_description">Könyv leírás megjelenítése a kártyán</string>
    <string name="mirror_image_for_teleprompter">Tükörkép a teleprompterhez</string>
    <string name="defaults_">Alapértelmezett</string>
+   <string name="selected">Kiválasztott</string>
+   <string name="close_dialog_and_apply_changes">Bezárja a párbeszédpanelt és alkalmazza a módosításokat</string>
+   <string name="book_is_open">A könyv nyitva van</string>
 </resources>

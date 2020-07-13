@@ -607,4 +607,7 @@
    <string name="show_book_description">在卡片中顯示圖書說明</string>
    <string name="mirror_image_for_teleprompter">提詞器的鏡像</string>
    <string name="defaults_">默認值</string>
+   <string name="selected">已選</string>
+   <string name="close_dialog_and_apply_changes">關閉對話框並應用更改</string>
+   <string name="book_is_open">書是開著的</string>
 </resources>

@@ -607,4 +607,7 @@
    <string name="show_book_description">Kartta kitap açıklamasını göster</string>
    <string name="mirror_image_for_teleprompter">Teleprompter için ayna görüntüsü</string>
    <string name="defaults_">Varsayılan</string>
+   <string name="selected">Seçilmiş</string>
+   <string name="close_dialog_and_apply_changes">Iletişim kutusunu kapat ve değişiklikleri uygula</string>
+   <string name="book_is_open">Kitap açık</string>
 </resources>

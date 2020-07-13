@@ -607,4 +607,7 @@
    <string name="show_book_description">Tunjukkan deskripsi buku dalam kartu</string>
    <string name="mirror_image_for_teleprompter">Gambar cermin untuk teleprompter</string>
    <string name="defaults_">Default</string>
+   <string name="selected">Terpilih</string>
+   <string name="close_dialog_and_apply_changes">Tutup dialog dan terapkan perubahan</string>
+   <string name="book_is_open">Buku terbuka</string>
 </resources>

@@ -43,6 +43,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -1211,6 +1212,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     AlertDialog show = dialog.show();
 
                 } else {
+                    Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.book_is_open));
 
                     currentSeek.setVisibility(View.VISIBLE);
                     maxSeek.setVisibility(View.VISIBLE);

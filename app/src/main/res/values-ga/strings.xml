@@ -607,4 +607,7 @@
    <string name="show_book_description">Taispeáin tuairisc leabhair i gcárta</string>
    <string name="mirror_image_for_teleprompter">Íomhá scátháin le haghaidh teleprompter</string>
    <string name="defaults_">Mainneachtainí</string>
+   <string name="selected">Roghnaithe</string>
+   <string name="close_dialog_and_apply_changes">Dialóg a dhúnadh agus athruithe a chur i bhfeidhm</string>
+   <string name="book_is_open">Leabhar oscailte</string>
 </resources>

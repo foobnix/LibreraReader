@@ -607,4 +607,7 @@
    <string name="show_book_description">Показать описание книги на карточке</string>
    <string name="mirror_image_for_teleprompter">Зеркальное отображение для телесуфлера</string>
    <string name="defaults_">По умолчанию</string>
+   <string name="selected">Выбранный</string>
+   <string name="close_dialog_and_apply_changes">Закрыть диалог и применить изменения</string>
+   <string name="book_is_open">Книга открыта</string>
 </resources>

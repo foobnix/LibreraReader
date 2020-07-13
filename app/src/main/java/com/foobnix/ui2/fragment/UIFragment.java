@@ -110,6 +110,9 @@ public abstract class UIFragment<T> extends Fragment {
             });
         }
 
+        if(recyclerView!=null) {
+            recyclerView.setAccessibilityDelegate(new View.AccessibilityDelegate());
+        }
     }
 
     @Override

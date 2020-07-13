@@ -607,4 +607,7 @@
    <string name="show_book_description">Покажете описанието на книгата в картата</string>
    <string name="mirror_image_for_teleprompter">Огледално изображение за teleprompter</string>
    <string name="defaults_">По подразбиране</string>
+   <string name="selected">Подбран</string>
+   <string name="close_dialog_and_apply_changes">Затворете диалоговия прозорец и приложете промени</string>
+   <string name="book_is_open">Книгата е отворена</string>
 </resources>

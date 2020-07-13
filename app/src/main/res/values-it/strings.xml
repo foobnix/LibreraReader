@@ -607,4 +607,7 @@
    <string name="show_book_description">Mostra la descrizione del libro nella scheda</string>
    <string name="mirror_image_for_teleprompter">Immagine speculare per il teleprompter</string>
    <string name="defaults_">Default</string>
+   <string name="selected">Selezionato</string>
+   <string name="close_dialog_and_apply_changes">Chiudi la finestra di dialogo e applica le modifiche</string>
+   <string name="book_is_open">Il libro è aperto</string>
 </resources>

@@ -607,4 +607,7 @@
    <string name="show_book_description">카드에 책 설명 표시</string>
    <string name="mirror_image_for_teleprompter">텔레 프롬프터 용 미러 이미지</string>
    <string name="defaults_">기본값</string>
+   <string name="selected">선택된</string>
+   <string name="close_dialog_and_apply_changes">대화 상자를 닫고 변경 사항을 적용합니다</string>
+   <string name="book_is_open">책이 열려 있습니다</string>
 </resources>

@@ -607,4 +607,7 @@
    <string name="show_book_description">Visa bokbeskrivningen på kortet</string>
    <string name="mirror_image_for_teleprompter">Spegelbild för teleprompter</string>
    <string name="defaults_">Defaults</string>
+   <string name="selected">Vald</string>
+   <string name="close_dialog_and_apply_changes">Stäng dialogrutan och tillämpa ändringar</string>
+   <string name="book_is_open">Boken är öppen</string>
 </resources>

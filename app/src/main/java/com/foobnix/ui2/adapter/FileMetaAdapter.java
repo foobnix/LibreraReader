@@ -162,7 +162,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //LOG.d("onViewRecycled");
-           IMG.clear(holder.image);
+            IMG.clear(holder.image);
         }
 
     }
@@ -170,6 +170,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holderAll, final int position) {
         final FileMeta fileMeta = getItem(position);
+
 
         if (holderAll instanceof StarsTitleViewHolder) {
             final StarsTitleViewHolder holder = (StarsTitleViewHolder) holderAll;
@@ -210,6 +211,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
 
+            holder.parent.setContentDescription(fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
+
             if (!AppState.get().isShowImages && adapterType == ADAPTER_COVERS) {
                 adapterType = ADAPTER_GRID;
             }
@@ -220,9 +223,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
 
             //if (needRefresh) {
-                //FileMetaCore.reUpdateIfNeed(fileMeta);
-                // TempHolder.listHash++;
-                //AppDB.get().getDao().detach(fileMeta);
+            //FileMetaCore.reUpdateIfNeed(fileMeta);
+            // TempHolder.listHash++;
+            //AppDB.get().getDao().detach(fileMeta);
             //}
 
             IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
@@ -290,7 +293,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
             }
 
-            if (fileMeta.getIsStar()!=null && fileMeta.getIsStar()) {
+            if (fileMeta.getIsStar() != null && fileMeta.getIsStar()) {
                 holder.starIcon.setImageResource(R.drawable.star_1);
             } else {
                 holder.starIcon.setImageResource(R.drawable.star_2);
@@ -521,6 +524,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     }
 
     private FileMeta bindFileMetaView(final FileMetaViewHolder holder, final int position) {
+
+
         if (position >= items.size()) {
             return new FileMeta();
         }
@@ -636,11 +641,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (holder.path != null) {
-            if(AppState.get().isDisplayAnnotation){
+            if (AppState.get().isDisplayAnnotation) {
                 holder.path.setText(fileMeta.getAnnotation());
                 holder.path.setSingleLine(false);
                 holder.path.setLines(3);
-            }else {
+            } else {
                 holder.path.setText(fileMeta.getPathTxt());
                 holder.path.setSingleLine();
             }
@@ -1013,6 +1018,8 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             remove = view.findViewById(R.id.delete);
 
             parent = view;
+
+
         }
     }
 

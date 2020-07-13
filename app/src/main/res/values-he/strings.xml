@@ -607,4 +607,7 @@
    <string name="show_book_description">הצגת תיאור הספר בכרטיס</string>
    <string name="mirror_image_for_teleprompter">תמונת מראה לטלפרומפטר</string>
    <string name="defaults_">ברירות מחדל</string>
+   <string name="selected">נבחר</string>
+   <string name="close_dialog_and_apply_changes">סגור דו שיח והחל שינויים</string>
+   <string name="book_is_open">הספר פתוח</string>
 </resources>

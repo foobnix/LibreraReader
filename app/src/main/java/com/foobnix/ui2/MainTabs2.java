@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
 import com.cloudrail.si.CloudRail;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -122,6 +124,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
+            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString()+" "+getString(R.string.selected));
 
 
         }
@@ -427,6 +430,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -496,11 +500,17 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
+        if(Apps.isAccessibilityServiceEnabled(this)) {
+            imageMenu.setVisibility(View.VISIBLE);
+        }
+
         // ((BrigtnessDraw)
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         adapter = new TabsAdapter2(this, tabFragments);
         pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
+
 
         if (Android6.canWrite(this)) {
             pager.setAdapter(adapter);
@@ -598,6 +608,9 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
+        if(Apps.isAccessibilityServiceEnabled(this)) {
+            imageMenu.setVisibility(View.VISIBLE);
+        }
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
             TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
@@ -607,6 +620,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
         }
+
 
 
         Android6.checkPermissions(this, true);

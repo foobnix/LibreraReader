@@ -607,4 +607,7 @@
    <string name="show_book_description">Pokaż opis książki na karcie</string>
    <string name="mirror_image_for_teleprompter">Odbicie lustrzane dla telepromptera</string>
    <string name="defaults_">Domyślne</string>
+   <string name="selected">Wybrany</string>
+   <string name="close_dialog_and_apply_changes">Zamknij okno dialogowe i zastosuj zmiany</string>
+   <string name="book_is_open">Książka jest otwarta</string>
 </resources>

@@ -607,4 +607,7 @@
    <string name="show_book_description">कार्ड में पुस्तक विवरण दिखाएं</string>
    <string name="mirror_image_for_teleprompter">टेलीप्रॉम्प्टर के लिए दर्पण छवि</string>
    <string name="defaults_">चूक</string>
+   <string name="selected">चुन लिया</string>
+   <string name="close_dialog_and_apply_changes">संवाद बंद करें और परिवर्तन लागू करें</string>
+   <string name="book_is_open">किताब खुली है</string>
 </resources>

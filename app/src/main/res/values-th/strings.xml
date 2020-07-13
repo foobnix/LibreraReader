@@ -607,4 +607,7 @@
    <string name="show_book_description">แสดงคำอธิบายหนังสือในการ์ด</string>
    <string name="mirror_image_for_teleprompter">ภาพสะท้อนในกระจกสำหรับ teleprompter</string>
    <string name="defaults_">ค่าเริ่มต้น</string>
+   <string name="selected">เลือก</string>
+   <string name="close_dialog_and_apply_changes">ปิดกล่องโต้ตอบและใช้การเปลี่ยนแปลง</string>
+   <string name="book_is_open">หนังสือเปิดแล้ว</string>
 </resources>

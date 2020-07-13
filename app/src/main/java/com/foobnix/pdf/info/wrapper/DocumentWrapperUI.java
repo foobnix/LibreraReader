@@ -1984,6 +1984,7 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
+                    Apps.accessibilityText(a, a.getString(R.string.book_is_open));
                     progressDraw.updateDivs(list);
                     progressDraw.updatePageCount(dc.getPageCount() - 1);
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));

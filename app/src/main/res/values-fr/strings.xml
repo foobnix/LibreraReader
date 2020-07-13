@@ -607,4 +607,7 @@
    <string name="show_book_description">Afficher la description du livre sur la carte</string>
    <string name="mirror_image_for_teleprompter">Image miroir pour téléprompteur</string>
    <string name="defaults_">Par défaut</string>
+   <string name="selected">Choisi</string>
+   <string name="close_dialog_and_apply_changes">Fermer la boîte de dialogue et appliquer les modifications</string>
+   <string name="book_is_open">Le livre est ouvert</string>
 </resources>

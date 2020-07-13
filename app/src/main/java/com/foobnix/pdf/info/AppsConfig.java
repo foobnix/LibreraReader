@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.google.android.gms.common.ConnectionResult;
@@ -29,7 +30,7 @@ public class AppsConfig {
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
     public static final boolean IS_BETA = BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
-    public static  boolean IS_NO_ADS = false;
+    public static boolean IS_NO_ADS = false;
 
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -57,6 +58,9 @@ public class AppsConfig {
         if (Build.VERSION.SDK_INT <= 16 || Dips.isEInk()) {
             LOG.d("no-ads old device or eink");
             //no ads for old android and eink
+            return true;
+        }
+        if (Apps.isAccessibilityServiceEnabled(a)) {
             return true;
         }
 

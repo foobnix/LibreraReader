@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.model.OutlineLinkWrapper;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.DocumentWrapperUI;
 import com.foobnix.pdf.search.activity.HorizontalModeController;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.sys.VerticalModeController;
 import com.foobnix.tts.TTSEngine;
@@ -217,6 +218,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                         return false;
                     }
                 });
+
+
+
 
 
 

@@ -607,4 +607,7 @@
    <string name="show_book_description">カードに本の説明を表示</string>
    <string name="mirror_image_for_teleprompter">テレプロンプターの鏡像</string>
    <string name="defaults_">デフォルト</string>
+   <string name="selected">選択した</string>
+   <string name="close_dialog_and_apply_changes">ダイアログを閉じて変更を適用する</string>
+   <string name="book_is_open">本は開いています</string>
 </resources>
