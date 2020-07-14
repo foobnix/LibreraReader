@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.NotificationTarget;
@@ -74,7 +75,7 @@ public class TTSNotification {
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         NotificationChannel channel = new NotificationChannel(DEFAULT, Apps.getApplicationName(context), NotificationManager.IMPORTANCE_DEFAULT);
         channel.setImportance(NotificationManager.IMPORTANCE_LOW);
         notificationManager.createNotificationChannel(channel);
@@ -86,7 +87,7 @@ public class TTSNotification {
         page1 = page;
         pageCount = maxPages;
         try {
-            NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = ContextCompat.getSystemService(context, NotificationManager.class);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, DEFAULT);
 
@@ -216,7 +217,7 @@ public class TTSNotification {
     public static void hideNotification() {
         try {
             LOG.d("Notification hideNotification");
-            NotificationManager nm = (NotificationManager) LibreraApp.context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = ContextCompat.getSystemService(LibreraApp.context, NotificationManager.class);
             nm.cancel(NOT_ID);
         } catch (Exception e) {
             LOG.e(e);

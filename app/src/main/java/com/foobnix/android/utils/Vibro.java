@@ -1,10 +1,11 @@
 package com.foobnix.android.utils;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+
+import androidx.core.content.ContextCompat;
 
 import com.foobnix.model.AppState;
 
@@ -19,10 +20,11 @@ public class Vibro {
     @TargetApi(26)
     public static void vibrate(long time) {
         if (AppState.get().isVibration) {
+            final Vibrator vibrator = ContextCompat.getSystemService(LibreraApp.context, Vibrator.class);
             if (Build.VERSION.SDK_INT >= 26) {
-                ((Vibrator) LibreraApp.context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
+                vibrator.vibrate(VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE));
             } else {
-                ((Vibrator) LibreraApp.context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(time);
+                vibrator.vibrate(time);
             }
         }
         LOG.d("Vibro", "vibrate", time);

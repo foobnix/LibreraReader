@@ -1,14 +1,11 @@
 package com.foobnix.android.utils;
 
-import android.accessibilityservice.AccessibilityService;
-import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ServiceInfo;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,11 +17,10 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.foobnix.pdf.info.R;
 
-import java.util.List;
-
-import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
@@ -139,23 +135,17 @@ public class Apps {
     }
 
     public static boolean isWifiEnabled(Context c) {
-        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = ContextCompat.getSystemService(c, ConnectivityManager.class);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-        return false;
+        return wifiNetwork != null && wifiNetwork.isConnected();
     }
 
     public static boolean isIntetConnected(Context c) {
-        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = ContextCompat.getSystemService(c, ConnectivityManager.class);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-        return false;
+        return wifiNetwork != null && wifiNetwork.isConnected();
     }
 
     public static boolean isNight(Activity a) {
@@ -191,7 +181,7 @@ public class Apps {
 
     public static boolean isAccessibilityServiceEnabled(Context context) {
         try {
-            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            AccessibilityManager am = ContextCompat.getSystemService(context, AccessibilityManager.class);
             return am.isEnabled();
         } catch (Exception e) {
             LOG.e(e);
@@ -219,23 +209,18 @@ public class Apps {
 
     public static void accessibilityText(Context context, String text) {
         try {
-            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            AccessibilityManager am = ContextCompat.getSystemService(context, AccessibilityManager.class);
             boolean isAccessibilityEnabled = am.isEnabled();
             if (isAccessibilityEnabled) {
                 AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
                 accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
 
                 accessibilityEvent.getText().add(text.trim());
-                if (am != null) {
-                    am.sendAccessibilityEvent(accessibilityEvent);
-                    LOG.d("sendAccessibilityEvent", text);
-                }
-
+                am.sendAccessibilityEvent(accessibilityEvent);
+                LOG.d("sendAccessibilityEvent", text);
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-
-
     }
 }
