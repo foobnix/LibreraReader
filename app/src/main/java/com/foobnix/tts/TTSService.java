@@ -26,6 +26,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.view.KeyEvent;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.media.session.MediaButtonReceiver;
 
 import com.foobnix.android.utils.Apps;
@@ -81,13 +82,12 @@ public class TTSService extends Service {
         startMyForeground();
         //
 
-        PowerManager myPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
+        PowerManager myPowerManager = ContextCompat.getSystemService(this, PowerManager.class);
         wakeLock = myPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Librera:TTSServiceLock");
 
         AppProfile.init(getApplicationContext());
 
-        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
+        mAudioManager = ContextCompat.getSystemService(this, AudioManager.class);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mAudioManager.requestAudioFocus((AudioFocusRequest) audioFocusRequest);

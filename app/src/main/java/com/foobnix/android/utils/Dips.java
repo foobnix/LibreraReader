@@ -14,6 +14,8 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.Locale;
 
 public class Dips {
@@ -53,7 +55,7 @@ public class Dips {
 
     public static void init(Context context) {
         Dips.context = context;
-        wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm = ContextCompat.getSystemService(context, WindowManager.class);
     }
 
     public static int spToPx(final int dp) {

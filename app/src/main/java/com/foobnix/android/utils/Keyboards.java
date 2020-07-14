@@ -1,13 +1,14 @@
 package com.foobnix.android.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.core.content.ContextCompat;
 
 import com.foobnix.model.AppState;
 import com.foobnix.ui2.MainTabs2;
@@ -24,7 +25,7 @@ public class Keyboards {
         if (context == null) {
             return;
         }
-        InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = ContextCompat.getSystemService(context, InputMethodManager.class);
         View currentFocus = context.getCurrentFocus();
         if (currentFocus != null) {
             inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -35,7 +36,8 @@ public class Keyboards {
         if (currentFocus == null) {
             return;
         }
-        InputMethodManager inputManager = (InputMethodManager) currentFocus.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = ContextCompat.getSystemService(currentFocus.getContext(),
+                InputMethodManager.class);
         // inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         inputManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
 

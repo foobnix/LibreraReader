@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +30,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech.OnInitListener;
-import android.text.ClipboardManager;
 import android.text.Html;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -69,6 +69,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -525,8 +526,8 @@ public class DragingDialogs {
 
                 textBGwarning.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= 28) {
-                    ActivityManager activityManager = (ActivityManager)
-                            controller.getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+                    ActivityManager activityManager = ContextCompat.getSystemService(controller.getActivity(),
+                            ActivityManager.class);
                     if (activityManager.isBackgroundRestricted()) {
 
                         textBGwarning.setVisibility(View.VISIBLE);
@@ -787,7 +788,7 @@ public class DragingDialogs {
                     }
                 });
 
-                final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
+                final AudioManager audioManager = ContextCompat.getSystemService(activity, AudioManager.class);
 
                 final CustomSeek seekVolume = (CustomSeek) view.findViewById(R.id.seekVolume);
                 seekVolume.init(0, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
@@ -1654,15 +1655,10 @@ public class DragingDialogs {
                         controller.clearSelectedText();
                         Context c = anchor.getContext();
                         String trim = editText.getText().toString().trim();
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                            ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                            clipboard.setText(trim);
-                        } else {
-                            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipboardManager clipboard = ContextCompat.getSystemService(c, ClipboardManager.class);
 
-                            ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
-                            clipboard.setPrimaryClip(clip);
-                        }
+                        ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
+                        clipboard.setPrimaryClip(clip);
                         Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
@@ -1999,15 +1995,9 @@ public class DragingDialogs {
                             return true;
                         });
                         menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
-
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                                ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                clipboard.setText(dc.getTextForPage(position));
-                            } else {
-                                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
-                                clipboard.setPrimaryClip(clip);
-                            }
+                            ClipboardManager clipboard = ContextCompat.getSystemService(dc.getActivity(), ClipboardManager.class);
+                            ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
+                            clipboard.setPrimaryClip(clip);
                             Toast.makeText(dc.getActivity(), R.string.copy_text, Toast.LENGTH_SHORT).show();
                             return true;
                         });

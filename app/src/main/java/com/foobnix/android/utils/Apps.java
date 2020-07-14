@@ -17,10 +17,11 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 
-import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
@@ -135,23 +136,10 @@ public class Apps {
     }
 
     public static boolean isWifiEnabled(Context c) {
-        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = ContextCompat.getSystemService(c, ConnectivityManager.class);
         NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isIntetConnected(Context c) {
-        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-        return false;
+        return wifiNetwork != null && wifiNetwork.isConnected();
     }
 
     public static boolean isNight(Activity a) {
@@ -192,7 +180,6 @@ public class Apps {
         }
     }
 
-
     public static void accessibilityText(Context context, String... ids) {
         StringBuilder builder = new StringBuilder();
         for (String id : ids) {
@@ -213,24 +200,19 @@ public class Apps {
 
     public static void accessibilityText(Context context, String text) {
         try {
-            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
-            boolean isAccessibilityEnabled = am.isEnabled() && am.isTouchExplorationEnabled();
+            AccessibilityManager am = ContextCompat.getSystemService(context, AccessibilityManager.class);
+            boolean isAccessibilityEnabled = am.isEnabled();
             if (isAccessibilityEnabled) {
                 AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
                 accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
 
-
                 accessibilityEvent.getText().add(text.trim());
-                if (am != null) {
-                    am.sendAccessibilityEvent(accessibilityEvent);
-                    LOG.d("accessibilityText", text);
-                }
+                am.sendAccessibilityEvent(accessibilityEvent);
+                LOG.d("accessibilityText", text);
 
             }
         } catch (Exception e) {
             LOG.e(e);
         }
-
-
     }
 }
