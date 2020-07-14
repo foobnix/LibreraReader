@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -33,12 +32,7 @@ public class GenerateFAQ {
 
         File list = new File(in);
         List<File> files = Arrays.asList(list.listFiles());
-        Collections.sort(files, new Comparator<File>() {
-            @Override
-            public int compare(File file, File t1) {
-                return Long.compare(t1.lastModified(), file.lastModified());
-            }
-        });
+        files.sort(Comparator.comparingLong(File::lastModified).reversed());
 
         for (File file : files) {
             if (file.isDirectory()) {

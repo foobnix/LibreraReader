@@ -102,13 +102,7 @@ public class CbzCbrExtractor {
                 Archive archive = new Archive(new File(path));
 
                 List<FileHeader> fileHeaders = archive.getFileHeaders();
-                Collections.sort(fileHeaders, new Comparator<FileHeader>() {
-
-                    @Override
-                    public int compare(FileHeader o1, FileHeader o2) {
-                        return o1.getFileNameString().compareTo(o2.getFileNameString());
-                    }
-                });
+                Collections.sort(fileHeaders, Comparator.comparing(FileHeader::getFileNameString));
 
                 FileHeader fileHeader = fileHeaders.get(0);
 

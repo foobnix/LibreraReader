@@ -77,7 +77,7 @@ public class CacheZipUtils {
             return;
         }
 
-        Collections.sort(asList, new FilerByDate());
+        Collections.sort(asList, Comparator.comparingLong(File::lastModified));
 
         for (int i = cacheSize; i < asList.size(); i++) {
             File file = asList.get(i);
@@ -392,13 +392,6 @@ public class CacheZipUtils {
             return new File(parent, type);
         }
 
-    }
-
-    public static class FilerByDate implements Comparator<File> {
-        @Override
-        public int compare(final File lhs, final File rhs) {
-            return new Long(lhs.lastModified()).compareTo(new Long(rhs.lastModified()));
-        }
     }
 
     public static class UnZipRes {

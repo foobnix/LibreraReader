@@ -40,13 +40,7 @@ public class DatabaseUpgradeHelper extends DaoMaster.OpenHelper {
         migrations.add(new MigrationV7());
         migrations.add(new MigrationV8());
 
-        Comparator<Migration> migrationComparator = new Comparator<Migration>() {
-            @Override
-            public int compare(Migration m1, Migration m2) {
-                return m1.getVersion().compareTo(m2.getVersion());
-            }
-        };
-        Collections.sort(migrations, migrationComparator);
+        Collections.sort(migrations, Comparator.comparingInt(Migration::getVersion));
 
         return migrations;
     }
