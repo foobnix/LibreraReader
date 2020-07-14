@@ -101,6 +101,11 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -238,13 +243,14 @@ public class PrefFragment2 extends UIFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSync(MessageSync msg) {
         if (AppSP.get().syncTime > 0) {
-
-            final Date date = new Date(AppSP.get().syncTime);
+            final LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(AppSP.get().syncTime),
+                    ZoneId.systemDefault());
             String format = "";
-            if (DateUtils.isToday(AppSP.get().syncTime)) {
-                format = getString(R.string.today) + " " + DateFormat.getTimeInstance().format(date);
+            if (localDateTime.toLocalDate().equals(LocalDate.now())) {
+                format = getString(R.string.today) + " " +
+                        DateTimeFormatter.ISO_LOCAL_TIME.format(localDateTime.toLocalTime());
             } else {
-                format = DateFormat.getDateTimeInstance().format(date);
+                format = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(localDateTime);
             }
 
             String status = AppSP.get().syncTimeStatus == MessageSync.STATE_SUCCESS ? getString(R.string.success) : getString(R.string.fail);
