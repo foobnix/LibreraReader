@@ -211,7 +211,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
 
-            holder.parent.setContentDescription(fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
+            holder.parent.setContentDescription(holder.getString(R.string.book)+ " " +fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
 
             if (!AppState.get().isShowImages && adapterType == ADAPTER_COVERS) {
                 adapterType = ADAPTER_GRID;
@@ -271,6 +271,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof DirectoryViewHolder) {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
+            holder.parent.setContentDescription(holder.getString(R.string.folder) + " " + fileMeta.getTitle());
 
             holder.play.setVisibility(View.GONE);
             holder.title.setText(fileMeta.getPathTxt());
@@ -522,6 +523,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
     }
+
 
     private FileMeta bindFileMetaView(final FileMetaViewHolder holder, final int position) {
 

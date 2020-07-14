@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Mirror image for teleprompter</string>
    <string name="defaults_">Make default</string>
    <string name="selected">Selected</string>
+   <string name="tab_selected">Tab selected</string>
+   <string name="folder_selected">Folder selected</string>
    <string name="close_dialog_and_apply_changes">Close dialog and apply changes</string>
    <string name="book_is_open">Book is open</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Dialog is open</string>
+   <string name="m_current_page">Current page</string>
+   <string name="m_total_pages">Total pages</string>
+   <string name="close_menu">Close menu</string>
+   <string name="go_to_page">Go to page</string>
 </resources>

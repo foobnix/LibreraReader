@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">टेलीप्रॉम्प्टर के लिए दर्पण छवि</string>
    <string name="defaults_">चूक</string>
    <string name="selected">चुन लिया</string>
+   <string name="tab_selected">टैब चुना गया</string>
+   <string name="folder_selected">फ़ोल्डर चयनित</string>
    <string name="close_dialog_and_apply_changes">संवाद बंद करें और परिवर्तन लागू करें</string>
    <string name="book_is_open">किताब खुली है</string>
+   <string name="tab">टैब</string>
+   <string name="dialog_is_open">संवाद खुला है</string>
+   <string name="m_current_page">वर्तमान पृष्ठ</string>
+   <string name="m_total_pages">कुल पृष्ठ</string>
+   <string name="close_menu">बंद मेनू</string>
+   <string name="go_to_page">पृष्ठ पर जाओ</string>
 </resources>

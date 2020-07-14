@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Spiegelbild für Teleprompter</string>
    <string name="defaults_">Standardeinstellungen</string>
    <string name="selected">Ausgewählt</string>
+   <string name="tab_selected">Registerkarte ausgewählt</string>
+   <string name="folder_selected">Ordner ausgewählt</string>
    <string name="close_dialog_and_apply_changes">Schließen Sie den Dialog und übernehmen Sie die Änderungen</string>
    <string name="book_is_open">Buch ist offen</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Dialog ist geöffnet</string>
+   <string name="m_current_page">Aktuelle Seite</string>
+   <string name="m_total_pages">Alle Seiten</string>
+   <string name="close_menu">Menü schließen</string>
+   <string name="go_to_page">Gehe zur Seite</string>
 </resources>

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Огледално изображение за teleprompter</string>
    <string name="defaults_">По подразбиране</string>
    <string name="selected">Подбран</string>
+   <string name="tab_selected">Избран раздел</string>
+   <string name="folder_selected">Избрана папка</string>
    <string name="close_dialog_and_apply_changes">Затворете диалоговия прозорец и приложете промени</string>
    <string name="book_is_open">Книгата е отворена</string>
+   <string name="tab">Раздел</string>
+   <string name="dialog_is_open">Диалоговият прозорец е отворен</string>
+   <string name="m_current_page">Текуща страница</string>
+   <string name="m_total_pages">Общо страници</string>
+   <string name="close_menu">Затвори менюто</string>
+   <string name="go_to_page">Отиди на страница</string>
 </resources>

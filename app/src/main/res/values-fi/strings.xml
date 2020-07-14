@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Peilikuva kaukosäätimelle</string>
    <string name="defaults_">Oletukset</string>
    <string name="selected">Valittu</string>
+   <string name="tab_selected">Välilehti valittu</string>
+   <string name="folder_selected">Kansio valittu</string>
    <string name="close_dialog_and_apply_changes">Sulje valintaikkuna ja ota käyttöön muutokset</string>
    <string name="book_is_open">Kirja on auki</string>
+   <string name="tab">Kieleke</string>
+   <string name="dialog_is_open">Valintaikkuna on auki</string>
+   <string name="m_current_page">Tämänhetkinen sivu</string>
+   <string name="m_total_pages">Yhteensä sivuja</string>
+   <string name="close_menu">Sulje valikko</string>
+   <string name="go_to_page">Mene sivulle</string>
 </resources>

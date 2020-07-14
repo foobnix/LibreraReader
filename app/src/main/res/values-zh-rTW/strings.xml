@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">提詞器的鏡像</string>
    <string name="defaults_">默認值</string>
    <string name="selected">已選</string>
+   <string name="tab_selected">標籤已選擇</string>
+   <string name="folder_selected">選定的文件夾</string>
    <string name="close_dialog_and_apply_changes">關閉對話框並應用更改</string>
    <string name="book_is_open">書是開著的</string>
+   <string name="tab">標籤</string>
+   <string name="dialog_is_open">對話框打開</string>
+   <string name="m_current_page">當前頁面</string>
+   <string name="m_total_pages">總頁數</string>
+   <string name="close_menu">關閉菜單</string>
+   <string name="go_to_page">轉到頁面</string>
 </resources>

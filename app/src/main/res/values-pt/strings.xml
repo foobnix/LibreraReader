@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Imagem em espelho para teleprompter</string>
    <string name="defaults_">Padrões</string>
    <string name="selected">Selecionado</string>
+   <string name="tab_selected">Guia selecionado</string>
+   <string name="folder_selected">Pasta selecionada</string>
    <string name="close_dialog_and_apply_changes">Fechar caixa de diálogo e aplicar alterações</string>
    <string name="book_is_open">Livro está aberto</string>
+   <string name="tab">Aba</string>
+   <string name="dialog_is_open">Diálogo está aberto</string>
+   <string name="m_current_page">Pagina atual</string>
+   <string name="m_total_pages">Total de páginas</string>
+   <string name="close_menu">Fechar menu</string>
+   <string name="go_to_page">Vá para página</string>
 </resources>

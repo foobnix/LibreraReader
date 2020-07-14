@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">ടെലിപ്രോംപ്റ്ററിനായുള്ള മിറർ ചിത്രം</string>
    <string name="defaults_">സ്ഥിരസ്ഥിതികൾ</string>
    <string name="selected">തിരഞ്ഞെടുത്തു</string>
+   <string name="tab_selected">ടാബ് തിരഞ്ഞെടുത്തു</string>
+   <string name="folder_selected">ഫോൾഡർ തിരഞ്ഞെടുത്തു</string>
    <string name="close_dialog_and_apply_changes">ഡയലോഗ് അടച്ച് മാറ്റങ്ങൾ പ്രയോഗിക്കുക</string>
    <string name="book_is_open">പുസ്തകം തുറന്നു</string>
+   <string name="tab">ടാബ്</string>
+   <string name="dialog_is_open">ഡയലോഗ് തുറന്നു</string>
+   <string name="m_current_page">നിലവിലെ പേജ്</string>
+   <string name="m_total_pages">മൊത്തം പേജുകൾ</string>
+   <string name="close_menu">മെനു അടയ്‌ക്കുക</string>
+   <string name="go_to_page">പേജിലേക്ക് പോകുക</string>
 </resources>

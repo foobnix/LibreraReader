@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Εικόνα καθρέφτη για teleprompter</string>
    <string name="defaults_">Προεπιλογές</string>
    <string name="selected">Επιλεγμένο</string>
+   <string name="tab_selected">Επιλεγμένη καρτέλα</string>
+   <string name="folder_selected">Επιλεγμένος φάκελος</string>
    <string name="close_dialog_and_apply_changes">Κλείσιμο διαλόγου και εφαρμογή αλλαγών</string>
    <string name="book_is_open">Το βιβλίο είναι ανοιχτό</string>
+   <string name="tab">Αυτί</string>
+   <string name="dialog_is_open">Ο διάλογος είναι ανοιχτός</string>
+   <string name="m_current_page">Τρέχουσα σελίδα</string>
+   <string name="m_total_pages">Συνολικές σελίδες</string>
+   <string name="close_menu">Κλείσιμο μενού</string>
+   <string name="go_to_page">Πήγαινε στην σελίδα</string>
 </resources>

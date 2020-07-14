@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Hình ảnh phản chiếu cho teleprompter</string>
    <string name="defaults_">Mặc định</string>
    <string name="selected">Đã chọn</string>
+   <string name="tab_selected">Tab được chọn</string>
+   <string name="folder_selected">Thư mục được chọn</string>
    <string name="close_dialog_and_apply_changes">Đóng hộp thoại và áp dụng thay đổi</string>
    <string name="book_is_open">Cuốn sách đang mở</string>
+   <string name="tab">Chuyển hướng</string>
+   <string name="dialog_is_open">Hộp thoại đang mở</string>
+   <string name="m_current_page">Trang hiện tại</string>
+   <string name="m_total_pages">Tổng số trang</string>
+   <string name="close_menu">Đóng menu</string>
+   <string name="go_to_page">Đi đến trang</string>
 </resources>

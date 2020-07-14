@@ -14,11 +14,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
@@ -118,6 +120,8 @@ public abstract class DragingPopup {
     }
 
     public DragingPopup(String title, final FrameLayout anchor, int width, int heigth) {
+        Apps.accessibilityText(anchor.getContext(), anchor.getContext().getString(R.string.dialog_is_open), title);
+
         this.anchor = anchor;
         if (Dips.isXLargeScreen()) {
             width = (int) (width * 1.5);
@@ -143,13 +147,17 @@ public abstract class DragingPopup {
         TextView titleView = (TextView) popupView.findViewById(R.id.dialogTitle);
         titleView.setText(title);
 
-        popupView.findViewById(R.id.closePopup).setOnClickListener(new View.OnClickListener() {
+        View closePopup = popupView.findViewById(R.id.closePopup);
+        Apps.accessibilityButtonSize(closePopup);
+        closePopup.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 closeDialog();
             }
         });
+
+
         rootWidth = ((View) anchor.getParent()).getWidth();
 
         postAction();
@@ -222,6 +230,7 @@ public abstract class DragingPopup {
     }
 
     public DragingPopup show(String tag, boolean always, boolean update) {
+
         postAction();
         if (tag != null) {
             if (!always) {

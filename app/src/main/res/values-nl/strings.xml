@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Spiegelbeeld voor teleprompter</string>
    <string name="defaults_">Standaardwaarden</string>
    <string name="selected">Geselecteerd</string>
+   <string name="tab_selected">Tabblad geselecteerd</string>
+   <string name="folder_selected">Map geselecteerd</string>
    <string name="close_dialog_and_apply_changes">Dialoogvenster sluiten en wijzigingen toepassen</string>
    <string name="book_is_open">Boek is open</string>
+   <string name="tab">Tabblad</string>
+   <string name="dialog_is_open">Dialoogvenster is open</string>
+   <string name="m_current_page">Huidige pagina</string>
+   <string name="m_total_pages">Totaal pagina\'s</string>
+   <string name="close_menu">Menu sluiten</string>
+   <string name="go_to_page">Ga naar pagina</string>
 </resources>

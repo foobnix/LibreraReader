@@ -15,6 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
@@ -179,30 +180,52 @@ public class Apps {
 
     }
 
+    public static void accessibilityButtonSize(View view) {
+        if (Apps.isAccessibilityServiceEnabled(view.getContext())) {
+            view.getLayoutParams().width = Dips.DP_50;
+            view.getLayoutParams().height = Dips.DP_50;
+            view.setLayoutParams(view.getLayoutParams());
+        }
+
+    }
+
     public static boolean isAccessibilityServiceEnabled(Context context) {
         try {
             AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
-            boolean isAccessibilityEnabled = am.isEnabled();
-            boolean isExploreByTouchEnabled = am.isTouchExplorationEnabled();
-            LOG.d("isAccessibilityServiceEnabled isAccessibilityEnabled", isAccessibilityEnabled);
-            LOG.d("isAccessibilityServiceEnabled isExploreByTouchEnabled", isExploreByTouchEnabled);
-            return isExploreByTouchEnabled;
+            return am.isEnabled();
         } catch (Exception e) {
             LOG.e(e);
         }
         return false;
     }
 
+    public static void accessibilityText(Context context, String... ids) {
+        StringBuilder builder = new StringBuilder();
+        for (String id : ids) {
+            builder.append(id);
+            builder.append(" ");
+        }
+        accessibilityText(context, builder.toString());
+    }
+
+    public static void accessibilityText(Context context, int... ids) {
+        StringBuilder builder = new StringBuilder();
+        for (int id : ids) {
+            builder.append(context.getString(id));
+            builder.append(" ");
+        }
+        accessibilityText(context, builder.toString());
+    }
+
     public static void accessibilityText(Context context, String text) {
         try {
             AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
             boolean isAccessibilityEnabled = am.isEnabled();
-            LOG.d("isAccessibilityEnabled", isAccessibilityEnabled);
             if (isAccessibilityEnabled) {
                 AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
                 accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
 
-                accessibilityEvent.getText().add(text);
+                accessibilityEvent.getText().add(text.trim());
                 if (am != null) {
                     am.sendAccessibilityEvent(accessibilityEvent);
                     LOG.d("sendAccessibilityEvent", text);

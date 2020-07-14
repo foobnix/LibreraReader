@@ -621,7 +621,7 @@ public class AppState {
             "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
             "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
             "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-            "sw", "th", "tr", "uk", "vi", "ga","bg","ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
 
 
     public static synchronized AppState get() {
@@ -678,15 +678,17 @@ public class AppState {
             isZoomInOutWithLock = false;
         }
 
-        if(Apps.isAccessibilityServiceEnabled(a)) {
+        if (Apps.isAccessibilityServiceEnabled(a)) {
             AppState.get().tabWithNames = false;
             isScrollAnimation = false;
+            AppSP.get().isFirstTimeVertical = false;
+            AppSP.get().isFirstTimeHorizontal = false;
+
         }
 
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }
-
 
 
     }
@@ -703,17 +705,17 @@ public class AppState {
                 AppState.get().isShowPanelBookNameBookMode = false;
             }
 
-            try{
-                if(TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)){
-                    LinkedJSONObject o1 =  new LinkedJSONObject(AppState.get().lineTTSReplacements);
-                    LinkedJSONObject o3 =  new LinkedJSONObject(AppState.get().lineTTSReplacements3);
+            try {
+                if (TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)) {
+                    LinkedJSONObject o1 = new LinkedJSONObject(AppState.get().lineTTSReplacements);
+                    LinkedJSONObject o3 = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
                     Iterator<String> keys = o1.keys();
-                    while(keys.hasNext()){
+                    while (keys.hasNext()) {
                         String key = keys.next();
-                        if(!key.startsWith("[")){
+                        if (!key.startsWith("[")) {
                             String value = o1.getString(key);
                             o3.put(key, value);
-                            LOG.d("migration", key,value);
+                            LOG.d("migration", key, value);
                         }
 
                     }
@@ -721,7 +723,7 @@ public class AppState {
                     AppState.get().lineTTSReplacements = "";
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 LOG.e(e);
             }
 

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Gambar cermin untuk teleprompter</string>
    <string name="defaults_">Default</string>
    <string name="selected">Terpilih</string>
+   <string name="tab_selected">Tab dipilih</string>
+   <string name="folder_selected">Folder dipilih</string>
    <string name="close_dialog_and_apply_changes">Tutup dialog dan terapkan perubahan</string>
    <string name="book_is_open">Buku terbuka</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Dialog terbuka</string>
+   <string name="m_current_page">Halaman saat ini</string>
+   <string name="m_total_pages">Total halaman</string>
+   <string name="close_menu">Menu tutup</string>
+   <string name="go_to_page">Buka halaman</string>
 </resources>

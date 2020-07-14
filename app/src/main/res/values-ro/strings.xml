@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Imagine în oglindă pentru teleprompter</string>
    <string name="defaults_">Implicite</string>
    <string name="selected">Selectat</string>
+   <string name="tab_selected">Fila selectată</string>
+   <string name="folder_selected">Folder selectat</string>
    <string name="close_dialog_and_apply_changes">Închideți dialogul și aplicați modificările</string>
    <string name="book_is_open">Cartea este deschisă</string>
+   <string name="tab">Fila</string>
+   <string name="dialog_is_open">Dialogul este deschis</string>
+   <string name="m_current_page">Pagina curenta</string>
+   <string name="m_total_pages">Pagini totale</string>
+   <string name="close_menu">Închide meniul</string>
+   <string name="go_to_page">Mergi la pagina</string>
 </resources>

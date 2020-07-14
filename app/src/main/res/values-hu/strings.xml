@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Tükörkép a teleprompterhez</string>
    <string name="defaults_">Alapértelmezett</string>
    <string name="selected">Kiválasztott</string>
+   <string name="tab_selected">Fül kiválasztva</string>
+   <string name="folder_selected">Mappa kiválasztva</string>
    <string name="close_dialog_and_apply_changes">Bezárja a párbeszédpanelt és alkalmazza a módosításokat</string>
    <string name="book_is_open">A könyv nyitva van</string>
+   <string name="tab">Lap</string>
+   <string name="dialog_is_open">Párbeszédpanel nyitva van</string>
+   <string name="m_current_page">Aktuális oldal</string>
+   <string name="m_total_pages">Összes oldal</string>
+   <string name="close_menu">Menü bezárása</string>
+   <string name="go_to_page">Menj az oldalra</string>
 </resources>

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">تصویر آینه برای teleprompter</string>
    <string name="defaults_">پیش فرض</string>
    <string name="selected">انتخاب شد</string>
+   <string name="tab_selected">برگه انتخاب شد</string>
+   <string name="folder_selected">پوشه انتخاب شد</string>
    <string name="close_dialog_and_apply_changes">گفتگو را ببندید و تغییرات را اعمال کنید</string>
    <string name="book_is_open">کتاب باز است</string>
+   <string name="tab">برگه</string>
+   <string name="dialog_is_open">گفتگو باز است</string>
+   <string name="m_current_page">صفحه فعلی</string>
+   <string name="m_total_pages">صفحات کل</string>
+   <string name="close_menu">منوی بستن</string>
+   <string name="go_to_page">رفتن به صفحه</string>
 </resources>

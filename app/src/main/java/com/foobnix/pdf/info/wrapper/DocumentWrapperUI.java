@@ -64,6 +64,7 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -363,6 +364,7 @@ public class DocumentWrapperUI {
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
             dc.onGoToPage(progress + 1);
+            Apps.accessibilityText(a, a.getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
             //updateUI();
         }
     };
@@ -767,7 +769,7 @@ public class DocumentWrapperUI {
             closeDialogs();
             AppState.get().isEditMode = false;
             hideShow();
-            if(TTSEngine.get().isTempPausing()){
+            if (TTSEngine.get().isTempPausing()) {
                 TTSService.playPause(dc.getActivity(), dc);
             } else {
                 onAutoScrollClick();
@@ -903,6 +905,9 @@ public class DocumentWrapperUI {
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
         pagesCountIndicator.setText(info.chText);
+
+        currentSeek.setContentDescription(dc.getString(R.string.m_current_page) + " " + info.textMax);
+        maxSeek.setContentDescription(dc.getString(R.string.m_total_pages) + " " + info.textPage);
     }
 
     public void updateUI() {
@@ -1125,6 +1130,7 @@ public class DocumentWrapperUI {
         adFrame = a.findViewById(R.id.adFrame);
 
         seekBar = (SeekBar) a.findViewById(R.id.seekBar);
+        seekBar.setAccessibilityDelegate(new View.AccessibilityDelegate());
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
@@ -1302,6 +1308,8 @@ public class DocumentWrapperUI {
 
 
         onCloseBook = a.findViewById(R.id.close);
+        Apps.accessibilityButtonSize(onCloseBook);
+
         onCloseBook.setOnClickListener(onClose);
         onCloseBook.setOnLongClickListener(onCloseLongClick);
         onCloseBook.setVisibility(View.INVISIBLE);
@@ -1338,6 +1346,8 @@ public class DocumentWrapperUI {
 
             @Override
             public void run() {
+                AppState.get().isEditMode = true;
+                hideShow();
                 DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
@@ -1984,7 +1994,8 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
-                    Apps.accessibilityText(a, a.getString(R.string.book_is_open));
+                    Apps.accessibilityText(a, a.getString(R.string.book_is_open), a.getString(R.string.m_current_page), " " + dc.getCurentPageFirst1());
+
                     progressDraw.updateDivs(list);
                     progressDraw.updatePageCount(dc.getPageCount() - 1);
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));

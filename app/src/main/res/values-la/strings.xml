@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Speculum imaginem et teleprompter</string>
    <string name="defaults_">Defaltis</string>
    <string name="selected">Lectus</string>
+   <string name="tab_selected">Electus tab</string>
+   <string name="folder_selected">Folder electus</string>
    <string name="close_dialog_and_apply_changes">Prope mutationes dialogo et iuncturam adhibere</string>
    <string name="book_is_open">Librum apertum est</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Est alternis sermonibus aperta</string>
+   <string name="m_current_page">Pagina</string>
+   <string name="m_total_pages">Summa pages</string>
+   <string name="close_menu">Claudere</string>
+   <string name="go_to_page">Ad page</string>
 </resources>

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Дзеркальне зображення для телепромптера</string>
    <string name="defaults_">За замовчуванням</string>
    <string name="selected">Вибрано</string>
+   <string name="tab_selected">Вибрана вкладка</string>
+   <string name="folder_selected">Вибрана папка</string>
    <string name="close_dialog_and_apply_changes">Закрити діалогове вікно та застосувати зміни</string>
    <string name="book_is_open">Книга відкрита</string>
+   <string name="tab">Вкладка</string>
+   <string name="dialog_is_open">Діалогове вікно відкрите</string>
+   <string name="m_current_page">Поточна сторінка</string>
+   <string name="m_total_pages">Загальна кількість сторінок</string>
+   <string name="close_menu">Закрити меню</string>
+   <string name="go_to_page">Перейти на сторінку</string>
 </resources>

@@ -19,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
@@ -83,6 +84,7 @@ public class TTSControlsView extends FrameLayout {
 
         final ImageView ttsStop = (ImageView) view.findViewById(R.id.ttsStop);
         ttsPlayPause = (ImageView) view.findViewById(R.id.ttsPlay);
+
 
         final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
@@ -157,6 +159,7 @@ public class TTSControlsView extends FrameLayout {
                 }
             }
         });
+
         ttsPlayPause.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
@@ -243,6 +246,13 @@ public class TTSControlsView extends FrameLayout {
 
             }
         });
+        Apps.accessibilityButtonSize(ttsPlayPause);
+        Apps.accessibilityButtonSize(ttsNext);
+        Apps.accessibilityButtonSize(ttsPrev);
+        Apps.accessibilityButtonSize(ttsNextTrack);
+        Apps.accessibilityButtonSize(ttsPrevTrack);
+        Apps.accessibilityButtonSize(ttsDialog);
+        Apps.accessibilityButtonSize(ttsStop);
 
     }
 

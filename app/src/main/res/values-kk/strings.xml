@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Телепрограмма үшін айна бейнесі</string>
    <string name="defaults_">Әдепкі</string>
    <string name="selected">Таңдалған</string>
+   <string name="tab_selected">Қойынды таңдалды</string>
+   <string name="folder_selected">Папка таңдалды</string>
    <string name="close_dialog_and_apply_changes">Диалогты жабыңыз және өзгертулерді қолданыңыз</string>
    <string name="book_is_open">Кітабы ашық</string>
+   <string name="tab">Қойындысы</string>
+   <string name="dialog_is_open">Диалог ашық</string>
+   <string name="m_current_page">Ағымдағы бет</string>
+   <string name="m_total_pages">Жалпы беттер</string>
+   <string name="close_menu">Мәзірді жабыңыз</string>
+   <string name="go_to_page">Бетке өту</string>
 </resources>

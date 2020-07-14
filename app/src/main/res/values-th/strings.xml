@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">ภาพสะท้อนในกระจกสำหรับ teleprompter</string>
    <string name="defaults_">ค่าเริ่มต้น</string>
    <string name="selected">เลือก</string>
+   <string name="tab_selected">เลือกแท็บแล้ว</string>
+   <string name="folder_selected">เลือกโฟลเดอร์แล้ว</string>
    <string name="close_dialog_and_apply_changes">ปิดกล่องโต้ตอบและใช้การเปลี่ยนแปลง</string>
    <string name="book_is_open">หนังสือเปิดแล้ว</string>
+   <string name="tab">แถบ</string>
+   <string name="dialog_is_open">กล่องโต้ตอบเปิดอยู่</string>
+   <string name="m_current_page">หน้าปัจจุบัน</string>
+   <string name="m_total_pages">จำนวนหน้าทั้งหมด</string>
+   <string name="close_menu">ปิดเมนู</string>
+   <string name="go_to_page">ไปที่หน้า</string>
 </resources>

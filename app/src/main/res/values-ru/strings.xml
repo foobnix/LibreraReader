@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Зеркальное отображение для телесуфлера</string>
    <string name="defaults_">По умолчанию</string>
    <string name="selected">Выбранный</string>
+   <string name="tab_selected">Вкладка выбрана</string>
+   <string name="folder_selected">Папка выбрана</string>
    <string name="close_dialog_and_apply_changes">Закрыть диалог и применить изменения</string>
    <string name="book_is_open">Книга открыта</string>
+   <string name="tab">Табуляция</string>
+   <string name="dialog_is_open">Диалог открыт</string>
+   <string name="m_current_page">Текущая страница</string>
+   <string name="m_total_pages">Всего страниц</string>
+   <string name="close_menu">Закрыть меню</string>
+   <string name="go_to_page">Перейти на страницу</string>
 </resources>

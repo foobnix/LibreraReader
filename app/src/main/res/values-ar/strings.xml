@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">صورة طبق الأصل عن الملقن</string>
    <string name="defaults_">التخلف عن السداد</string>
    <string name="selected">المحدد</string>
+   <string name="tab_selected">تم تحديد علامة التبويب</string>
+   <string name="folder_selected">تم تحديد المجلد</string>
    <string name="close_dialog_and_apply_changes">إغلاق الحوار وتطبيق التغييرات</string>
    <string name="book_is_open">الكتاب مفتوح</string>
+   <string name="tab">التبويب</string>
+   <string name="dialog_is_open">الحوار مفتوح</string>
+   <string name="m_current_page">الصفحه الحاليه</string>
+   <string name="m_total_pages">إجمالي الصفحات</string>
+   <string name="close_menu">إغلاق القائمة</string>
+   <string name="go_to_page">انتقل إلى صفحة</string>
 </resources>

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Picha ya kioo kwa teleprompter</string>
    <string name="defaults_">Defaults</string>
    <string name="selected">Kuchaguliwa</string>
+   <string name="tab_selected">Tabo iliyochaguliwa</string>
+   <string name="folder_selected">Folda iliyochaguliwa</string>
    <string name="close_dialog_and_apply_changes">Funga mazungumzo na ubadilishe mabadiliko</string>
    <string name="book_is_open">Kitabu kiko wazi</string>
+   <string name="tab">Tabo</string>
+   <string name="dialog_is_open">Mazungumzo yamefunguliwa</string>
+   <string name="m_current_page">Ukurasa wa sasa</string>
+   <string name="m_total_pages">Kurasa jumla</string>
+   <string name="close_menu">Menyu ya karibu</string>
+   <string name="go_to_page">Nenda kwenye ukurasa</string>
 </resources>

@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Zrcadlový obraz pro teleprompter</string>
    <string name="defaults_">Výchozí hodnoty</string>
    <string name="selected">Vybraný</string>
+   <string name="tab_selected">Vybraná karta</string>
+   <string name="folder_selected">Vybraná složka</string>
    <string name="close_dialog_and_apply_changes">Zavřete dialog a aplikujte změny</string>
    <string name="book_is_open">Kniha je otevřená</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Je otevřeno dialogové okno</string>
+   <string name="m_current_page">Aktuální stránka</string>
+   <string name="m_total_pages">Celkem stránek</string>
+   <string name="close_menu">Zavřete nabídku</string>
+   <string name="go_to_page">Jdi na stránku</string>
 </resources>

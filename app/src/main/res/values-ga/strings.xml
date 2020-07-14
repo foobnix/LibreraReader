@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Íomhá scátháin le haghaidh teleprompter</string>
    <string name="defaults_">Mainneachtainí</string>
    <string name="selected">Roghnaithe</string>
+   <string name="tab_selected">Cluaisín roghnaithe</string>
+   <string name="folder_selected">Fillteán roghnaithe</string>
    <string name="close_dialog_and_apply_changes">Dialóg a dhúnadh agus athruithe a chur i bhfeidhm</string>
    <string name="book_is_open">Leabhar oscailte</string>
+   <string name="tab">Cluaisín</string>
+   <string name="dialog_is_open">Tá an dialóg oscailte</string>
+   <string name="m_current_page">An leathanach seo</string>
+   <string name="m_total_pages">Leathanaigh iomlána</string>
+   <string name="close_menu">Dún roghchlár</string>
+   <string name="go_to_page">Téigh go leathanach</string>
 </resources>

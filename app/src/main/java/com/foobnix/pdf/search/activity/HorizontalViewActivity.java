@@ -323,6 +323,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 AppState.get().isEditMode = false;
                 hideShow();
             }
+            if (fromUser) {
+                //Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
+
+            }
         }
     };
     long keyTimeout = 0;
@@ -352,6 +356,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             progressDraw.updateProgress(pos);
 
             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+
+            if(!TTSEngine.get().isPlaying()) {
+                Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
+            }
+
+
+
 
         }
 
@@ -449,6 +460,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         findViewById(R.id.showHypenLangPanel).setVisibility(View.GONE);
 
         viewPager = (VerticalViewPager) findViewById(R.id.pager2);
+        viewPager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
         parentParent = findViewById(R.id.parentParent);
         pannelBookTitle = findViewById(R.id.pannelBookTitle);
@@ -1013,6 +1025,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         });
 
         onClose = findViewById(R.id.bookClose);
+        Apps.accessibilityButtonSize(onClose);
         onClose.setVisibility(View.INVISIBLE);
 
         onClose.setOnClickListener(new View.OnClickListener() {
@@ -1212,7 +1225,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     AlertDialog show = dialog.show();
 
                 } else {
-                    Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.book_is_open));
 
                     currentSeek.setVisibility(View.VISIBLE);
                     maxSeek.setVisibility(View.VISIBLE);
@@ -1241,14 +1253,19 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     loadUI();
 
                     // AppState.get().isEditMode = false; //remember last
+                    if (Apps.isAccessibilityServiceEnabled(HorizontalViewActivity.this)) {
+                        AppState.get().isEditMode = true;
+                    }
                     int pageFromUri = dc.getCurentPage();
                     updateUI(pageFromUri);
                     hideShow();
 
+                    Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.book_is_open), getString(R.string.m_current_page), " " + dc.getCurentPageFirst1());
+
+
                     EventBus.getDefault().post(new MessageAutoFit(pageFromUri));
                     seekBar.setOnSeekBarChangeListener(onSeek);
                     showHideInfoToolBar();
-
 
 
                     isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
@@ -1271,6 +1288,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                         @Override
                         public void run() {
+                            AppState.get().isEditMode = true;
+                            hideShow();
                             DragingDialogs.textToSpeachDialog(anchor, dc);
                         }
                     });
@@ -1858,6 +1877,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
         pagesCountIndicator.setText(info.chText);
+
+        currentSeek.setContentDescription(dc.getString(R.string.m_current_page) + " " + info.textMax);
+        maxSeek.setContentDescription(dc.getString(R.string.m_total_pages) + " " + info.textPage);
 
         seekBar.setProgress(page);
         if (dc != null) {

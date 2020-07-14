@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Spegelbild för teleprompter</string>
    <string name="defaults_">Defaults</string>
    <string name="selected">Vald</string>
+   <string name="tab_selected">Fliken vald</string>
+   <string name="folder_selected">Mapp vald</string>
    <string name="close_dialog_and_apply_changes">Stäng dialogrutan och tillämpa ändringar</string>
    <string name="book_is_open">Boken är öppen</string>
+   <string name="tab">Flik</string>
+   <string name="dialog_is_open">Dialogrutan är öppen</string>
+   <string name="m_current_page">Nuvarande sida</string>
+   <string name="m_total_pages">Totala sidor</string>
+   <string name="close_menu">Stäng menyn</string>
+   <string name="go_to_page">Gå till sidan</string>
 </resources>

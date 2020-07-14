@@ -146,6 +146,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         view = new PdfSurfaceView(getController());
 
+
         frameLayout.addView(view.getView());
 
         getController().afterCreate(this);

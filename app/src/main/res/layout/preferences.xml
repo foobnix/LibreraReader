@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:layout_weight="0"
-            android:text="Close menu" />
+            android:text="@string/close_menu" />
 
 
         <LinearLayout

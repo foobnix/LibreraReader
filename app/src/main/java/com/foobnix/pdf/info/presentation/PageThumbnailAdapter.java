@@ -74,11 +74,14 @@ public class PageThumbnailAdapter extends BaseAdapter {
         IMG.with(c).asBitmap().diskCacheStrategy(DiskCacheStrategy.NONE).load(url).into(img);
 
         TextView txt = (TextView) view.findViewById(R.id.text1);
-        txt.setText(TxtUtils.deltaPage((position + 1)));
+        String text = TxtUtils.deltaPage((position + 1));
+        txt.setText(text);
 
 
         txt.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
+
+        view.setContentDescription(c.getString(R.string.page)+ " "+text);
 
         return view;
     }

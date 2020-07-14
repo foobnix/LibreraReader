@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Speilbilde for teleprompter</string>
    <string name="defaults_">Mislighold</string>
    <string name="selected">Valgt</string>
+   <string name="tab_selected">Fanen valgt</string>
+   <string name="folder_selected">Mappen valgt</string>
    <string name="close_dialog_and_apply_changes">Lukk dialog og bruk endringer</string>
    <string name="book_is_open">Boka er åpen</string>
+   <string name="tab">Tab</string>
+   <string name="dialog_is_open">Dialogboksen er åpen</string>
+   <string name="m_current_page">Nåværende side</string>
+   <string name="m_total_pages">Totalt antall sider</string>
+   <string name="close_menu">Lukke meny</string>
+   <string name="go_to_page">Gå til side</string>
 </resources>

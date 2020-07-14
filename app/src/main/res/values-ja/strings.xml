@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">テレプロンプターの鏡像</string>
    <string name="defaults_">デフォルト</string>
    <string name="selected">選択した</string>
+   <string name="tab_selected">選択されたタブ</string>
+   <string name="folder_selected">選択したフォルダ</string>
    <string name="close_dialog_and_apply_changes">ダイアログを閉じて変更を適用する</string>
    <string name="book_is_open">本は開いています</string>
+   <string name="tab">タブ</string>
+   <string name="dialog_is_open">ダイアログが開いています</string>
+   <string name="m_current_page">現在のページ</string>
+   <string name="m_total_pages">全ページ</string>
+   <string name="close_menu">メニューを閉じる</string>
+   <string name="go_to_page">ページに移動</string>
 </resources>

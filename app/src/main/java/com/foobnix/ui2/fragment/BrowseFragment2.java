@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -884,6 +885,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             LOG.d("rememberPos go", displayPath, pos);
         }
 
+
     }
 
     public boolean onBackAction() {
@@ -948,7 +950,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
     }
+
     int itemsCount;
+
     public void displayItems(List<FileMeta> items) {
         itemsCount = items.size();
         if (searchAdapter == null) {
@@ -1178,6 +1182,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             stub.setTextColor(getResources().getColor(R.color.white));
             stub.setSingleLine();
             paths.addView(stub);
+
+            Apps.accessibilityText(getActivity(), split[split.length - 1], getString(R.string.folder_selected), "" + itemsCount);
 
         }
 

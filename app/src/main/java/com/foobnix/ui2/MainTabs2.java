@@ -124,7 +124,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
-            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString()+" "+getString(R.string.selected));
+            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString()+" "+getString(R.string.tab_selected));
 
 
         }

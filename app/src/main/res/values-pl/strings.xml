@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Odbicie lustrzane dla telepromptera</string>
    <string name="defaults_">Domyślne</string>
    <string name="selected">Wybrany</string>
+   <string name="tab_selected">Wybrana karta</string>
+   <string name="folder_selected">Wybrany folder</string>
    <string name="close_dialog_and_apply_changes">Zamknij okno dialogowe i zastosuj zmiany</string>
    <string name="book_is_open">Książka jest otwarta</string>
+   <string name="tab">Patka</string>
+   <string name="dialog_is_open">Okno dialogowe jest otwarte</string>
+   <string name="m_current_page">Bieżąca strona</string>
+   <string name="m_total_pages">Wszystkie strony</string>
+   <string name="close_menu">Zamknij menu</string>
+   <string name="go_to_page">Idź do strony</string>
 </resources>

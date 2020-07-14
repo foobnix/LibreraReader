@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">텔레 프롬프터 용 미러 이미지</string>
    <string name="defaults_">기본값</string>
    <string name="selected">선택된</string>
+   <string name="tab_selected">선택된 탭</string>
+   <string name="folder_selected">선택된 폴더</string>
    <string name="close_dialog_and_apply_changes">대화 상자를 닫고 변경 사항을 적용합니다</string>
    <string name="book_is_open">책이 열려 있습니다</string>
+   <string name="tab">탭</string>
+   <string name="dialog_is_open">대화 상자가 열립니다</string>
+   <string name="m_current_page">현재 페이지</string>
+   <string name="m_total_pages">총 페이지</string>
+   <string name="close_menu">메뉴 닫기</string>
+   <string name="go_to_page">페이지로 이동</string>
 </resources>

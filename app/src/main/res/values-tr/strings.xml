@@ -608,6 +608,14 @@
    <string name="mirror_image_for_teleprompter">Teleprompter için ayna görüntüsü</string>
    <string name="defaults_">Varsayılan</string>
    <string name="selected">Seçilmiş</string>
+   <string name="tab_selected">Sekme seçildi</string>
+   <string name="folder_selected">Klasör seçildi</string>
    <string name="close_dialog_and_apply_changes">Iletişim kutusunu kapat ve değişiklikleri uygula</string>
    <string name="book_is_open">Kitap açık</string>
+   <string name="tab">Çıkıntı</string>
+   <string name="dialog_is_open">Iletişim kutusu açık</string>
+   <string name="m_current_page">Geçerli sayfa</string>
+   <string name="m_total_pages">Toplam sayfalar</string>
+   <string name="close_menu">Menüyü kapat</string>
+   <string name="go_to_page">Sayfaya git</string>
 </resources>
