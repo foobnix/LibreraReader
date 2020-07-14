@@ -15,6 +15,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -52,9 +53,8 @@ public class IMG {
 
         IMG.context = context;
 
-        bookBGWithMark = context.getResources().getDrawable(R.drawable.bookeffect2);
-        bookBGNoMark = context.getResources().getDrawable(R.drawable.bookeffect1);
-
+        bookBGWithMark = ContextCompat.getDrawable(context, R.drawable.bookeffect2);
+        bookBGNoMark = ContextCompat.getDrawable(context, R.drawable.bookeffect1);
     }
 
     public static int getImageSize() {

@@ -1481,13 +1481,13 @@ public class DragingDialogs {
                     public void onClick(View v) {
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
 
-                        Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
+                        Drawable highlight = ContextCompat.getDrawable(controller.getActivity(), R.drawable.glyphicons_607_te_background);
                         highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_te_underline);
+                        Drawable underline = ContextCompat.getDrawable(controller.getActivity(), R.drawable.glyphicons_104_te_underline);
                         underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_te_strike);
+                        Drawable strikeout = ContextCompat.getDrawable(controller.getActivity(), R.drawable.glyphicons_105_te_strike);
                         strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
                         menu.getMenu().add(R.string.highlight_of_text).setIcon(highlight).setOnMenuItemClickListener(new OnMenuItemClickListener() {

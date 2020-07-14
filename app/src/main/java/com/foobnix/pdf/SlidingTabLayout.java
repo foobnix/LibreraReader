@@ -15,13 +15,13 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -298,7 +298,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabTitleView.setContentDescription(pageTitle + " " + getContext().getString(R.string.tab));
                 // TintUtil.addTextView(tabTitleView);
 
-                Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
+                Drawable drawable = ContextCompat.getDrawable(getContext(), adapter.getIconResId(i));
 
                 if (myPOS == POS_VERTICAL) {
                     tabTitleView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
