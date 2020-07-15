@@ -291,15 +291,7 @@ public class TTSService extends Service {
         AppSP.get().lastBookTitle = title;
         AppSP.get().lastBookPage = page;
 
-
-        Intent intent = playBookIntent(page, path, anchor);
-
-        if (Build.VERSION.SDK_INT >= 26) {
-            LibreraApp.context.startForegroundService(intent);
-        } else {
-            LibreraApp.context.startService(intent);
-        }
-
+        ContextCompat.startForegroundService(LibreraApp.context, playBookIntent(page, path, anchor));
     }
 
     private static Intent playBookIntent(int page, String path, String anchor) {
