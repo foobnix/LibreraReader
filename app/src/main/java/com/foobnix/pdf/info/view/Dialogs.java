@@ -29,6 +29,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.buzzingandroid.ui.HSVColorPickerDialog;
@@ -648,7 +649,7 @@ public class Dialogs {
         View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
         view.setBackgroundColor(Color.TRANSPARENT);
         final ImageView img = (ImageView) view.findViewById(R.id.itColor);
-        img.setColorFilter(a.getResources().getColor(R.color.tint_gray));
+        img.setColorFilter(ContextCompat.getColor(a, R.color.tint_gray));
         img.setImageResource(R.drawable.glyphicons_433_plus);
         img.setBackgroundColor(AppState.get().uiTextColorUser);
         colorsLine1.addView(view, new LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30)));

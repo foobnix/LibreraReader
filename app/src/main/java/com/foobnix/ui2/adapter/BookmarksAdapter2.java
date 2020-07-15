@@ -1,5 +1,6 @@
 package com.foobnix.ui2.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.android.utils.ResultResponse;
@@ -63,7 +65,8 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             }
         });
         holder.remove.setImageResource(withPageNumber ? R.drawable.glyphicons_208_remove_2 : R.drawable.glyphicons_basic_578_share);
-        TintUtil.setTintImageNoAlpha(holder.remove, holder.remove.getResources().getColor(R.color.lt_grey_dima));
+        final Context holderContext = holder.remove.getContext();
+        TintUtil.setTintImageNoAlpha(holder.remove, ContextCompat.getColor(holderContext, R.color.lt_grey_dima));
 
         if (withTitle) {
             //holder.title.setVisibility(View.VISIBLE);

@@ -288,7 +288,7 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     } else {
                         t.setVisibility(View.GONE);
                     }
-                    t.setTextColor(context.getResources().getColor(R.color.tint_blue));
+                    t.setTextColor(ContextCompat.getColor(context, R.color.tint_blue));
 
                     if (AppState.get().isUiTextColor) {
                         TintUtil.setUITextColor(t, AppState.get().uiTextColor);

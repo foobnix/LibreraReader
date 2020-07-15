@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
@@ -590,7 +591,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         indicator.setViewPager(pager);
 
-        indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
+        indicator.setDividerColors(ContextCompat.getColor(this, R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
