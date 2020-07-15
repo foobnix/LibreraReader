@@ -618,4 +618,11 @@
    <string name="m_total_pages">Summa pages</string>
    <string name="close_menu">Claudere</string>
    <string name="go_to_page">Ad page</string>
+   <string name="update_library">Bibliotheca update</string>
+   <string name="ascending">Ascendentes</string>
+   <string name="descending">Descendens vas</string>
+   <string name="remove">Remove</string>
+   <string name="add_to_favorites">Add to favorites Image</string>
+   <string name="remove_from_favorites">Removere e Favorites</string>
+   <string name="book_menu">Liber menu</string>
 </resources>

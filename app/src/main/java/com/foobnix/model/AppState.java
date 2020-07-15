@@ -19,6 +19,7 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -680,6 +681,7 @@ public class AppState {
 
         if (Apps.isAccessibilityServiceEnabled(a)) {
             AppState.get().tabWithNames = false;
+            BookCSS.get().appFontScale = 1.3f;
             isScrollAnimation = false;
             AppSP.get().isFirstTimeVertical = false;
             AppSP.get().isFirstTimeHorizontal = false;

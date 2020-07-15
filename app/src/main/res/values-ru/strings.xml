@@ -618,4 +618,11 @@
    <string name="m_total_pages">Всего страниц</string>
    <string name="close_menu">Закрыть меню</string>
    <string name="go_to_page">Перейти на страницу</string>
+   <string name="update_library">Обновить библиотеку</string>
+   <string name="ascending">По возрастанию</string>
+   <string name="descending">По убыванию</string>
+   <string name="remove">Удалять</string>
+   <string name="add_to_favorites">Добавить в избранное</string>
+   <string name="remove_from_favorites">Удалить из Избранного</string>
+   <string name="book_menu">Книжное меню</string>
 </resources>

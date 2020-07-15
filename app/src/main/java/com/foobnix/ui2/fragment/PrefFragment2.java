@@ -2020,6 +2020,7 @@ public class PrefFragment2 extends UIFragment {
 
         View view = inflater.inflate(R.layout.item_color, (ViewGroup) inflate, false);
         view.setBackgroundColor(Color.TRANSPARENT);
+        view.setContentDescription(getString(R.string.color));
         final ImageView img = (ImageView) view.findViewById(R.id.itColor);
         img.setColorFilter(
 
@@ -2578,6 +2579,7 @@ public class PrefFragment2 extends UIFragment {
     }
 
     public void onTheme() {
+        Apps.accessibilityText(getActivity(),R.string.apply);
         IMG.clearMemoryCache();
         AppProfile.save(getActivity());
         AppProfile.clear();

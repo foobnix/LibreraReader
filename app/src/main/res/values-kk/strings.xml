@@ -618,4 +618,11 @@
    <string name="m_total_pages">Жалпы беттер</string>
    <string name="close_menu">Мәзірді жабыңыз</string>
    <string name="go_to_page">Бетке өту</string>
+   <string name="update_library">Кітапхананы жаңарту</string>
+   <string name="ascending">Көтерілуде</string>
+   <string name="descending">Кему</string>
+   <string name="remove">Алып тастаңыз</string>
+   <string name="add_to_favorites">Таңдаулыларға қосу</string>
+   <string name="remove_from_favorites">Таңдаулылардан алып тастаңыз</string>
+   <string name="book_menu">Кітап мәзірі</string>
 </resources>

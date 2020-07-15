@@ -126,6 +126,7 @@
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="2dip"
+                    android:contentDescription="@string/add_to_favorites"
                     android:src="@drawable/star_2"
                     android:tint="@color/tint_gray" />
 
@@ -137,6 +138,7 @@
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="6dip"
+                    android:contentDescription="@string/book_menu"
                     android:src="@drawable/glyphicons_518_option_vertical"
                     android:tint="@color/tint_gray" />
             </LinearLayout>

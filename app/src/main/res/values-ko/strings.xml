@@ -618,4 +618,11 @@
    <string name="m_total_pages">총 페이지</string>
    <string name="close_menu">메뉴 닫기</string>
    <string name="go_to_page">페이지로 이동</string>
+   <string name="update_library">라이브러리 업데이트</string>
+   <string name="ascending">오름차순</string>
+   <string name="descending">내림차순</string>
+   <string name="remove">없애다</string>
+   <string name="add_to_favorites">즐겨 찾기에 추가</string>
+   <string name="remove_from_favorites">즐겨 찾기에서 삭제하기</string>
+   <string name="book_menu">책 메뉴</string>
 </resources>

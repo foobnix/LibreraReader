@@ -618,4 +618,11 @@
    <string name="m_total_pages">മൊത്തം പേജുകൾ</string>
    <string name="close_menu">മെനു അടയ്‌ക്കുക</string>
    <string name="go_to_page">പേജിലേക്ക് പോകുക</string>
+   <string name="update_library">ലൈബ്രറി അപ്‌ഡേറ്റുചെയ്യുക</string>
+   <string name="ascending">ആരോഹണം</string>
+   <string name="descending">അവരോഹണം</string>
+   <string name="remove">നീക്കംചെയ്യുക</string>
+   <string name="add_to_favorites">ഇഷ്ടപെട്ടവയിലേക്ക് ചേര്ക്കുക</string>
+   <string name="remove_from_favorites">പ്രിയങ്കരങ്ങളിൽ നിന്ന് നീക്കംചെയ്യുക</string>
+   <string name="book_menu">പുസ്തക മെനു</string>
 </resources>

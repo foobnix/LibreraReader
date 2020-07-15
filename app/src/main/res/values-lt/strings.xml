@@ -618,4 +618,11 @@
    <string name="m_total_pages">Viso puslapių</string>
    <string name="close_menu">Uždaryti meniu</string>
    <string name="go_to_page">Eiti į puslapį</string>
+   <string name="update_library">Atnaujinti biblioteką</string>
+   <string name="ascending">Kylant</string>
+   <string name="descending">Besileidžianti</string>
+   <string name="remove">Pašalinti</string>
+   <string name="add_to_favorites">Įtraukti į adresyną</string>
+   <string name="remove_from_favorites">Pašalinti iš parankinių</string>
+   <string name="book_menu">Knygos meniu</string>
 </resources>

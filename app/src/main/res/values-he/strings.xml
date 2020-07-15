@@ -618,4 +618,11 @@
    <string name="m_total_pages">סך העמודים</string>
    <string name="close_menu">סגור תפריט</string>
    <string name="go_to_page">לך לעמוד</string>
+   <string name="update_library">עדכון ספרייה</string>
+   <string name="ascending">עולה</string>
+   <string name="descending">יורד</string>
+   <string name="remove">לְהַסִיר</string>
+   <string name="add_to_favorites">הוסף למועדפים</string>
+   <string name="remove_from_favorites">הסר מהמועדפים</string>
+   <string name="book_menu">תפריט ספרים</string>
 </resources>

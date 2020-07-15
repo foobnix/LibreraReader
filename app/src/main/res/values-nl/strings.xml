@@ -618,4 +618,11 @@
    <string name="m_total_pages">Totaal pagina\'s</string>
    <string name="close_menu">Menu sluiten</string>
    <string name="go_to_page">Ga naar pagina</string>
+   <string name="update_library">Bibliotheek bijwerken</string>
+   <string name="ascending">Oplopend</string>
+   <string name="descending">Aflopend</string>
+   <string name="remove">Verwijderen</string>
+   <string name="add_to_favorites">Toevoegen aan favorieten</string>
+   <string name="remove_from_favorites">Verwijder van favorieten</string>
+   <string name="book_menu">Boek menu</string>
 </resources>

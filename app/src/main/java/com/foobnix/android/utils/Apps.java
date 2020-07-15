@@ -180,13 +180,20 @@ public class Apps {
 
     }
 
-    public static void accessibilityButtonSize(View view) {
-        if (Apps.isAccessibilityServiceEnabled(view.getContext())) {
-            view.getLayoutParams().width = Dips.DP_50;
-            view.getLayoutParams().height = Dips.DP_50;
-            view.setLayoutParams(view.getLayoutParams());
+    public static void accessibilityButtonSize(View... views) {
+        try {
+            if (Apps.isAccessibilityServiceEnabled(views[0].getContext())) {
+                for (View view : views) {
+                    if (view != null) {
+                        view.getLayoutParams().width = Dips.DP_45;
+                        view.getLayoutParams().height = Dips.DP_45;
+                        view.setLayoutParams(view.getLayoutParams());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
-
     }
 
     public static boolean isAccessibilityServiceEnabled(Context context) {

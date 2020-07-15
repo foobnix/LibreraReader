@@ -618,4 +618,11 @@
    <string name="m_total_pages">Kurasa jumla</string>
    <string name="close_menu">Menyu ya karibu</string>
    <string name="go_to_page">Nenda kwenye ukurasa</string>
+   <string name="update_library">Sasisha maktaba</string>
+   <string name="ascending">Kupaa</string>
+   <string name="descending">Kushuka</string>
+   <string name="remove">Ondoa</string>
+   <string name="add_to_favorites">Ongeza kwenye vipendwa</string>
+   <string name="remove_from_favorites">Ondoa kutoka kwa upendelea</string>
+   <string name="book_menu">Menyu ya kitabu</string>
 </resources>

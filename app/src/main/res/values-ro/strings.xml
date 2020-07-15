@@ -618,4 +618,11 @@
    <string name="m_total_pages">Pagini totale</string>
    <string name="close_menu">Închide meniul</string>
    <string name="go_to_page">Mergi la pagina</string>
+   <string name="update_library">Biblioteca de actualizare</string>
+   <string name="ascending">Ascendent</string>
+   <string name="descending">Descendentă</string>
+   <string name="remove">Elimina</string>
+   <string name="add_to_favorites">Adauga la favorite</string>
+   <string name="remove_from_favorites">Eliminați din favorite</string>
+   <string name="book_menu">Meniu de carte</string>
 </resources>

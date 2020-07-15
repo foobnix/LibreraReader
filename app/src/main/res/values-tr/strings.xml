@@ -618,4 +618,11 @@
    <string name="m_total_pages">Toplam sayfalar</string>
    <string name="close_menu">Menüyü kapat</string>
    <string name="go_to_page">Sayfaya git</string>
+   <string name="update_library">Kütüphaneyi güncelle</string>
+   <string name="ascending">Yükselen</string>
+   <string name="descending">Azalan</string>
+   <string name="remove">Kaldırmak</string>
+   <string name="add_to_favorites">Favorilere ekle</string>
+   <string name="remove_from_favorites">Favorilerden çıkar</string>
+   <string name="book_menu">Kitap menüsü</string>
 </resources>

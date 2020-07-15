@@ -618,4 +618,11 @@
    <string name="m_total_pages">Yhteensä sivuja</string>
    <string name="close_menu">Sulje valikko</string>
    <string name="go_to_page">Mene sivulle</string>
+   <string name="update_library">Päivitä kirjasto</string>
+   <string name="ascending">Nouseva</string>
+   <string name="descending">Laskevasti</string>
+   <string name="remove">Poista</string>
+   <string name="add_to_favorites">Lisää suosikkeihin</string>
+   <string name="remove_from_favorites">Poista suosikeista</string>
+   <string name="book_menu">Kirjavalikko</string>
 </resources>

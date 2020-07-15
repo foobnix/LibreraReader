@@ -23,7 +23,7 @@
             android:focusableInTouchMode="true" >
 
             <AutoCompleteTextView
-                android:contentDescription="@string/cd_search_books_in_the_library"
+                android:contentDescription="@string/filter"
                 android:id="@+id/filterLine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -121,7 +121,7 @@
                 android:background="@color/tint_divider" />
 
             <ImageView
-                android:contentDescription="@string/cd_update_search_search_for_new_books_on_sd_card"
+                android:contentDescription="@string/update_library"
                 android:id="@+id/onRefresh"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
@@ -135,7 +135,7 @@
                 android:background="@color/tint_divider" />
 
             <ImageView
-                android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+                android:contentDescription="@string/menu"
                 android:id="@+id/onGridList"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"

@@ -618,4 +618,11 @@
    <string name="m_total_pages">Leathanaigh iomlána</string>
    <string name="close_menu">Dún roghchlár</string>
    <string name="go_to_page">Téigh go leathanach</string>
+   <string name="update_library">Leabharlann nuashonraithe</string>
+   <string name="ascending">Ag dul suas</string>
+   <string name="descending">Ag teacht anuas</string>
+   <string name="remove">Bain</string>
+   <string name="add_to_favorites">Cuir le Favorites</string>
+   <string name="remove_from_favorites">Bain as Favorites</string>
+   <string name="book_menu">Roghchlár leabhar</string>
 </resources>

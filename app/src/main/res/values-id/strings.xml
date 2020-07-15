@@ -618,4 +618,11 @@
    <string name="m_total_pages">Total halaman</string>
    <string name="close_menu">Menu tutup</string>
    <string name="go_to_page">Buka halaman</string>
+   <string name="update_library">Perbarui perpustakaan</string>
+   <string name="ascending">Naik</string>
+   <string name="descending">Menurun</string>
+   <string name="remove">Menghapus</string>
+   <string name="add_to_favorites">Tambahkan ke Favorit</string>
+   <string name="remove_from_favorites">Hapus dari favorit</string>
+   <string name="book_menu">Menu buku</string>
 </resources>

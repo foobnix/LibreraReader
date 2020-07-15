@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -124,7 +125,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             TempHolder.get().currentTab = pos;
 
             LOG.d("onPageSelected", uiFragment);
-            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString()+" "+getString(R.string.tab_selected));
+            Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
 
 
         }
@@ -412,6 +413,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         setContentView(R.layout.main_tabs);
 
+
         imageMenu = (ImageView) findViewById(R.id.imageMenu1);
         imageMenuParent = findViewById(R.id.imageParent1);
         imageMenuParent.setBackgroundColor(TintUtil.color);
@@ -500,7 +502,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
-        if(Apps.isAccessibilityServiceEnabled(this)) {
+        if (Apps.isAccessibilityServiceEnabled(this)) {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
@@ -608,7 +610,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
-        if(Apps.isAccessibilityServiceEnabled(this)) {
+        if (Apps.isAccessibilityServiceEnabled(this)) {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
@@ -620,7 +622,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
 
         }
-
 
 
         Android6.checkPermissions(this, true);
@@ -649,8 +650,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         try {
-            LOG.d("checkForNewBeta");
-            if (AppState.get().isShowWhatIsNewDialog) {
+
+            if (AppState.get().isShowWhatIsNewDialog && !Apps.isAccessibilityServiceEnabled(this)) {
+                LOG.d("checkForNewBeta");
                 AndroidWhatsNew.checkForNewBeta(this);
             }
         } catch (Exception e) {
@@ -754,7 +756,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppProfile.save(this);
         IMG.pauseRequests(this);
 
-        if(Dips.isEInk()) {
+        if (Dips.isEInk()) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
@@ -766,9 +768,9 @@ public class MainTabs2 extends AdsFragmentActivity {
         AppsConfig.isCloudsEnable = UITab.isShowCloudsPreferences();
 
         LOG.d(TAG, "onResume");
-        if(Dips.isEInk()) {
+        if (Dips.isEInk()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }else{
+        } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear");
@@ -836,7 +838,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         // TODO Auto-generated method stub
         return super.onKeyUp(keyCode, event);
     }
-
 
 
     @Override

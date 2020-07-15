@@ -618,4 +618,11 @@
    <string name="m_total_pages">Összes oldal</string>
    <string name="close_menu">Menü bezárása</string>
    <string name="go_to_page">Menj az oldalra</string>
+   <string name="update_library">Frissítsd a könyvtárat</string>
+   <string name="ascending">Emelkedő</string>
+   <string name="descending">Csökkenő</string>
+   <string name="remove">Eltávolítás</string>
+   <string name="add_to_favorites">Add hozzá a kedvencekhez</string>
+   <string name="remove_from_favorites">Eltávolítás a kedvencekből</string>
+   <string name="book_menu">Könyv menü</string>
 </resources>

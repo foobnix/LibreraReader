@@ -31,12 +31,14 @@ import android.widget.Toast;
 
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -301,6 +303,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
 
+
         LOG.d("Context-SF-getContext", getContext());
         LOG.d("Context-SF-getApplicationContext", getActivity().getApplicationContext());
         LOG.d("Context-SF-getBaseContext", getActivity().getBaseContext());
@@ -322,6 +325,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
@@ -408,7 +412,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             public void onClick(View v) {
                 AppState.get().isSortAsc = !AppState.get().isSortAsc;
                 searchAndOrderAsync();
-
             }
         });
         sortOrder.setOnLongClickListener(new OnLongClickListener() {
@@ -596,8 +599,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void searchAndOrderAsync() {
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
+
         sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+
+        String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
+        sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
+        sortOrder.setContentDescription(order);
         populate();
+
+        Apps.accessibilityText(getActivity(), "" + sortBy.getContentDescription());
     }
 
     @Subscribe

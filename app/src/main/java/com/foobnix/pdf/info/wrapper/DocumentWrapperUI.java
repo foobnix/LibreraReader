@@ -1761,6 +1761,10 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
+        if(Apps.isAccessibilityServiceEnabled(a)){
+            AppState.get().isEditMode = true;
+        }
+
         if (AppState.get().isEditMode) {
             DocumentController.turnOnButtons(a);
             show();

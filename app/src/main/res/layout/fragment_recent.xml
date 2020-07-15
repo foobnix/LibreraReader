@@ -40,7 +40,7 @@
             android:background="@color/tint_divider" />
 
         <ImageView
-            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:contentDescription="@string/menu"
             android:id="@+id/onListGrid"
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"

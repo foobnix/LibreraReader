@@ -618,4 +618,11 @@
    <string name="m_total_pages">全ページ</string>
    <string name="close_menu">メニューを閉じる</string>
    <string name="go_to_page">ページに移動</string>
+   <string name="update_library">ライブラリを更新する</string>
+   <string name="ascending">上昇</string>
+   <string name="descending">下降</string>
+   <string name="remove">削除する</string>
+   <string name="add_to_favorites">お気に入りに追加</string>
+   <string name="remove_from_favorites">お気に入りから削除</string>
+   <string name="book_menu">ブックメニュー</string>
 </resources>

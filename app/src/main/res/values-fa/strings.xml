@@ -618,4 +618,11 @@
    <string name="m_total_pages">صفحات کل</string>
    <string name="close_menu">منوی بستن</string>
    <string name="go_to_page">رفتن به صفحه</string>
+   <string name="update_library">به روزرسانی کتابخانه</string>
+   <string name="ascending">صعودی</string>
+   <string name="descending">نزولی</string>
+   <string name="remove">برداشتن</string>
+   <string name="add_to_favorites">افزودن به علاقه مندی ها</string>
+   <string name="remove_from_favorites">از علاقه مندی ها حذف شود</string>
+   <string name="book_menu">منوی کتاب</string>
 </resources>

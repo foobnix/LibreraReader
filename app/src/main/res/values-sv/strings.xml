@@ -618,4 +618,11 @@
    <string name="m_total_pages">Totala sidor</string>
    <string name="close_menu">Stäng menyn</string>
    <string name="go_to_page">Gå till sidan</string>
+   <string name="update_library">Uppdatera biblioteket</string>
+   <string name="ascending">Stigande</string>
+   <string name="descending">Nedåtgående</string>
+   <string name="remove">Avlägsna</string>
+   <string name="add_to_favorites">Lägg till i favoriter</string>
+   <string name="remove_from_favorites">Ta bort från favoriter</string>
+   <string name="book_menu">Bokmeny</string>
 </resources>

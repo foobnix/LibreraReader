@@ -197,6 +197,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
                 sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
 
+
                 populate();
 
             }
@@ -235,6 +236,10 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
         sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+
+        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
+        onSort.setContentDescription(getString(R.string.cd_sort_results));
+
 
         onAction = view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);

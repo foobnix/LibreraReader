@@ -618,4 +618,11 @@
    <string name="m_total_pages">总页数</string>
    <string name="close_menu">关闭菜单</string>
    <string name="go_to_page">转到页面</string>
+   <string name="update_library">更新库</string>
+   <string name="ascending">上升</string>
+   <string name="descending">降序</string>
+   <string name="remove">去掉</string>
+   <string name="add_to_favorites">添加到收藏夹</string>
+   <string name="remove_from_favorites">从收藏夹中删除</string>
+   <string name="book_menu">书籍菜单</string>
 </resources>

@@ -618,4 +618,11 @@
    <string name="m_total_pages">Загальна кількість сторінок</string>
    <string name="close_menu">Закрити меню</string>
    <string name="go_to_page">Перейти на сторінку</string>
+   <string name="update_library">Оновити бібліотеку</string>
+   <string name="ascending">Висхідний</string>
+   <string name="descending">Низхідний</string>
+   <string name="remove">Видалити</string>
+   <string name="add_to_favorites">Додати в обране</string>
+   <string name="remove_from_favorites">Видалити з обраного</string>
+   <string name="book_menu">Меню книги</string>
 </resources>

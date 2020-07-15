@@ -618,4 +618,11 @@
    <string name="m_total_pages">Pagine totali</string>
    <string name="close_menu">Menu chiuso</string>
    <string name="go_to_page">Vai alla pagina</string>
+   <string name="update_library">Aggiorna libreria</string>
+   <string name="ascending">Ascendente</string>
+   <string name="descending">Discendente</string>
+   <string name="remove">Rimuovere</string>
+   <string name="add_to_favorites">Aggiungi ai preferiti</string>
+   <string name="remove_from_favorites">Rimuovere dai preferiti</string>
+   <string name="book_menu">Menu del libro</string>
 </resources>

@@ -618,4 +618,11 @@
    <string name="m_total_pages">Celkom stránok</string>
    <string name="close_menu">Zatvorte menu</string>
    <string name="go_to_page">Chod na stranu</string>
+   <string name="update_library">Aktualizovať knižnicu</string>
+   <string name="ascending">Stúpajúca</string>
+   <string name="descending">Zostupne</string>
+   <string name="remove">Remove</string>
+   <string name="add_to_favorites">Pridať k obľúbeným</string>
+   <string name="remove_from_favorites">Odstrániť z obľúbených</string>
+   <string name="book_menu">Kniha</string>
 </resources>

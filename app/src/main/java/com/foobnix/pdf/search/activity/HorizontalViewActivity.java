@@ -24,6 +24,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -357,11 +358,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
 
-            if(!TTSEngine.get().isPlaying()) {
+            if (!TTSEngine.get().isPlaying()) {
                 Apps.accessibilityText(HorizontalViewActivity.this, getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
             }
-
-
 
 
         }
@@ -2160,6 +2159,14 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void hideShow(boolean animated) {
+        if (Apps.isAccessibilityServiceEnabled(this)) {
+            animated = false;
+            AppState.get().isEditMode = true;
+            ttsFixPosition();
+        }
+
+
+
         updateBannnerTop();
         showPagesHelper();
 
@@ -2178,6 +2185,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             adFrame.setVisibility(AppState.get().isEditMode ? View.VISIBLE : View.GONE);
 
             DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
+            ttsFixPosition();
             return;
         }
 
@@ -2228,6 +2236,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     Keyboards.invalidateEink(parentParent);
 
+                    ttsFixPosition();
+
                 }
             });
 
@@ -2258,6 +2268,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
                     Keyboards.invalidateEink(parentParent);
 
+                    ttsFixPosition();
                 }
 
             });
@@ -2268,6 +2279,16 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             DocumentController.chooseFullScreen(this, AppState.get().fullScreenMode);
             pagerAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void ttsFixPosition() {
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ttsActive.getLayoutParams();
+        if (AppState.get().isEditMode) {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, 0);
+        } else {
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        }
+        ttsActive.setLayoutParams(layoutParams);
     }
 
     @Override

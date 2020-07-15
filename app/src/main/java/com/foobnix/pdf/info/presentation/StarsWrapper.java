@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.dao2.FileMeta;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 
 public class StarsWrapper {
@@ -23,6 +24,7 @@ public class StarsWrapper {
         layoutParams.width = Dips.dpToPx(20);
         layoutParams.height = Dips.dpToPx(20);
         starIcon.setLayoutParams(layoutParams);
+
         starIcon.setOnClickListener(new OnClickListener() {
 
             @Override

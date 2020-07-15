@@ -618,4 +618,11 @@
    <string name="m_total_pages">Totalt antall sider</string>
    <string name="close_menu">Lukke meny</string>
    <string name="go_to_page">Gå til side</string>
+   <string name="update_library">Oppdater bibliotek</string>
+   <string name="ascending">Stigende</string>
+   <string name="descending">Synkende</string>
+   <string name="remove">Ta vekk</string>
+   <string name="add_to_favorites">Legg til i favoritter</string>
+   <string name="remove_from_favorites">Fjern fra favoritter</string>
+   <string name="book_menu">Bokmeny</string>
 </resources>
