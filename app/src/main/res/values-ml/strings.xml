@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">പ്രിയങ്കരങ്ങളിൽ നിന്ന് നീക്കംചെയ്യുക</string>
    <string name="book_menu">പുസ്തക മെനു</string>
    <string name="accessibility">പ്രവേശനക്ഷമത</string>
+   <string name="welcome_accessibility">സ്വാഗതം, ഇടത് അപ്ലിക്കേഷൻ മെനുവിൽ നിങ്ങൾക്ക് പ്രവേശനക്ഷമത ഒപ്റ്റിമൈസേഷൻ പ്രാപ്തമാക്കാൻ കഴിയും</string>
 </resources>

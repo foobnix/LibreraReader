@@ -18,13 +18,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -167,6 +165,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             finish();
         }
     };
+    boolean once = true;
     private SlidingTabLayout indicator;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
@@ -710,6 +709,12 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         checkGoToPage(getIntent());
 
+        if (!AppState.get().isEnableAccessibility && once) {
+            once = false;
+            handler.postDelayed(() -> {
+                Apps.accessibilityText(MainTabs2.this, getString(R.string.welcome_accessibility));
+            }, 5000);
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

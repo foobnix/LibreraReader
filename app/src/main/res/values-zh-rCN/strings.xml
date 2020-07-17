@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">从收藏夹中删除</string>
    <string name="book_menu">书籍菜单</string>
    <string name="accessibility">可及性</string>
+   <string name="welcome_accessibility">欢迎，您可以在左侧的应用菜单中启用辅助功能优化</string>
 </resources>

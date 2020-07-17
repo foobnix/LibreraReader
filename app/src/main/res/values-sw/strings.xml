@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">Ondoa kutoka kwa upendelea</string>
    <string name="book_menu">Menyu ya kitabu</string>
    <string name="accessibility">Upatikanaji</string>
+   <string name="welcome_accessibility">Karibu, unaweza kuwezesha ufikiaji katika menyu ya programu ya kushoto</string>
 </resources>

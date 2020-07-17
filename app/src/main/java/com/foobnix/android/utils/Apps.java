@@ -219,10 +219,11 @@ public class Apps {
                 AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
                 accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
 
+
                 accessibilityEvent.getText().add(text.trim());
                 if (am != null) {
                     am.sendAccessibilityEvent(accessibilityEvent);
-                    LOG.d("sendAccessibilityEvent", text);
+                    LOG.d("accessibilityText", text);
                 }
 
             }

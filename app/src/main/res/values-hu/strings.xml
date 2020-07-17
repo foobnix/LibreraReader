@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">Eltávolítás a kedvencekből</string>
    <string name="book_menu">Könyv menü</string>
    <string name="accessibility">Megközelíthetőség</string>
+   <string name="welcome_accessibility">Üdvözlet, engedélyezheti az akadálymentesség optimalizálását a bal oldali alkalmazásmenüben</string>
 </resources>

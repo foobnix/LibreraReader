@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">Remove from favorites</string>
    <string name="book_menu">Book menu</string>
    <string name="accessibility">Accessibility</string>
+   <string name="welcome_accessibility">Welcome, you can enable Accessibility optimization in the left app menu</string>
 </resources>

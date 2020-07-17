@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">إزالة من المفضلة</string>
    <string name="book_menu">قائمة الكتاب</string>
    <string name="accessibility">إمكانية الوصول</string>
+   <string name="welcome_accessibility">مرحبًا ، يمكنك تمكين تحسين إمكانية الوصول في قائمة التطبيق اليسرى</string>
 </resources>

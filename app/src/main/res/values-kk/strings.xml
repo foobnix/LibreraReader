@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">Таңдаулылардан алып тастаңыз</string>
    <string name="book_menu">Кітап мәзірі</string>
    <string name="accessibility">Қол жетімділік</string>
+   <string name="welcome_accessibility">Қош келдіңіз, сол жақ мәзірде қол жетімділікті оңтайландыруға болады</string>
 </resources>

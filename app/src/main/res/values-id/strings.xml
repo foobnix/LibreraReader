@@ -626,4 +626,5 @@
    <string name="remove_from_favorites">Hapus dari favorit</string>
    <string name="book_menu">Menu buku</string>
    <string name="accessibility">Aksesibilitas</string>
+   <string name="welcome_accessibility">Selamat datang, Anda dapat mengaktifkan pengoptimalan aksesibilitas di menu aplikasi kiri</string>
 </resources>
