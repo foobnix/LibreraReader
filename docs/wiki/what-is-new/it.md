@@ -4,6 +4,10 @@ layout: main
 
 # Novità (aggiornato)
 
+### [8.3.90] Ottimizzazione dell'accessibilità
+
+### [8.3.84] Formato cartella download OPDS &quot;[Nome autore]/Nome libro&quot;
+
 ### [8.3.80] Selezione del testo: l'ultima parola sillabata sulla pagina verrà selezionata come completa
 
 <img class="i" src="8.3.80.png" />

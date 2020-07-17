@@ -4,6 +4,10 @@ layout: main
 
 # Quoi de neuf (mis à jour)
 
+### [8.3.90] Optimisation de l'accessibilité
+
+### [8.3.84] Format du dossier de téléchargement OPDS &quot;[Nom de l'auteur]/Nom du livre&quot;
+
 ### [8.3.80] Sélection du texte: le dernier mot coupé dans la page sera sélectionné comme complet
 
 <img class="i" src="8.3.80.png" />

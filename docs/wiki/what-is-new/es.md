@@ -4,6 +4,10 @@ layout: main
 
 # ¿Qué hay de nuevo (actualizado)
 
+### [8.3.90] Optimización de accesibilidad
+
+### [8.3.84] Formato de carpeta de descarga OPDS &quot;[Nombre del autor]/Nombre del libro&quot;
+
 ### [8.3.80] Selección de texto: la última palabra con guión en la página se seleccionará como completa
 
 <img class="i" src="8.3.80.png" />

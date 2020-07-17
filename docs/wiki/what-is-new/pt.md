@@ -4,6 +4,10 @@ layout: main
 
 # O que há de novo (atualizado)
 
+### [8.3.90] Otimização de acessibilidade
+
+### [8.3.84] Formato da pasta de download OPDS &quot;[Nome do autor]/Nome do livro&quot;
+
 ### [8.3.80] Seleção de texto: a última palavra com hífen na página será selecionada como concluída
 
 <img class="i" src="8.3.80.png" />

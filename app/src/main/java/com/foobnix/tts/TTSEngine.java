@@ -400,6 +400,9 @@ public class TTSEngine {
     }
 
     public boolean isTempPausing() {
+        if (AppState.get().isEnableAccessibility) {
+            return true;
+        }
         return mp != null || ttsEngine != null;
     }
 

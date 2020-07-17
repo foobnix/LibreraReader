@@ -4,6 +4,10 @@ layout: main
 
 # Was ist neu (aktualisiert)
 
+### [8.3.90] Optimierung der Barrierefreiheit
+
+### [8.3.84] OPDS-Download-Ordnerformat &quot;[Autorenname]/Buchname&quot;
+
 ### [8.3.80] Textauswahl: Das letzte Wort auf der Seite mit Bindestrich wird als vollständig ausgewählt
 
 <img class="i" src="8.3.80.png" />
