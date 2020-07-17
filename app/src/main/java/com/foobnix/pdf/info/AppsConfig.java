@@ -8,6 +8,7 @@ import android.os.Build;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.model.AppState;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -60,7 +61,7 @@ public class AppsConfig {
             //no ads for old android and eink
             return true;
         }
-        if (Apps.isAccessibilityServiceEnabled(a)) {
+        if (AppState.get().isEnableAccessibility) {
             return true;
         }
 

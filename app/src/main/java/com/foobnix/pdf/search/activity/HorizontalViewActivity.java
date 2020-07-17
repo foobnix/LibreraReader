@@ -1252,7 +1252,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     loadUI();
 
                     // AppState.get().isEditMode = false; //remember last
-                    if (Apps.isAccessibilityServiceEnabled(HorizontalViewActivity.this)) {
+                    if (AppState.get().isEnableAccessibility) {
                         AppState.get().isEditMode = true;
                     }
                     int pageFromUri = dc.getCurentPage();
@@ -2159,7 +2159,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     }
 
     public void hideShow(boolean animated) {
-        if (Apps.isAccessibilityServiceEnabled(this)) {
+        if (AppState.get().isEnableAccessibility) {
             animated = false;
             AppState.get().isEditMode = true;
             ttsFixPosition();

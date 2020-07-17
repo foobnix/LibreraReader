@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Lisää suosikkeihin</string>
    <string name="remove_from_favorites">Poista suosikeista</string>
    <string name="book_menu">Kirjavalikko</string>
+   <string name="accessibility">Saavutettavuus</string>
 </resources>

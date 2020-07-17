@@ -370,6 +370,8 @@ public class AppState {
 
     public boolean isReferenceMode = false;
 
+    public boolean isEnableAccessibility = false;
+
 
     @IgnoreHashCode
     @Deprecated
@@ -679,14 +681,6 @@ public class AppState {
             isZoomInOutWithLock = false;
         }
 
-        if (Apps.isAccessibilityServiceEnabled(a)) {
-            AppState.get().tabWithNames = false;
-            BookCSS.get().appFontScale = 1.3f;
-            isScrollAnimation = false;
-            AppSP.get().isFirstTimeVertical = false;
-            AppSP.get().isFirstTimeHorizontal = false;
-
-        }
 
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;

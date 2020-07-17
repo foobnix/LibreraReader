@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Přidat k oblíbeným</string>
    <string name="remove_from_favorites">Odstranit z oblíbených</string>
    <string name="book_menu">Nabídka knihy</string>
+   <string name="accessibility">Přístupnost</string>
 </resources>

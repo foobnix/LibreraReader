@@ -625,4 +625,5 @@
    <string name="add_to_favorites">ഇഷ്ടപെട്ടവയിലേക്ക് ചേര്ക്കുക</string>
    <string name="remove_from_favorites">പ്രിയങ്കരങ്ങളിൽ നിന്ന് നീക്കംചെയ്യുക</string>
    <string name="book_menu">പുസ്തക മെനു</string>
+   <string name="accessibility">പ്രവേശനക്ഷമത</string>
 </resources>

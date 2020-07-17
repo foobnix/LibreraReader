@@ -86,7 +86,7 @@ public class MyPopupMenu {
         final ListPopupWindow p1 = new ListPopupWindow(c);
 
 
-        if(Apps.isAccessibilityServiceEnabled(c)) {
+        if (AppState.get().isEnableAccessibility) {
             getMenu(0).add(R.string.close).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

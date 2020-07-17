@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Thêm vào mục yêu thích</string>
    <string name="remove_from_favorites">Loại bỏ khỏi mục ưa thích</string>
    <string name="book_menu">Thực đơn sách</string>
+   <string name="accessibility">Khả năng tiếp cận</string>
 </resources>

@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Lägg till i favoriter</string>
    <string name="remove_from_favorites">Ta bort från favoriter</string>
    <string name="book_menu">Bokmeny</string>
+   <string name="accessibility">Tillgänglighet</string>
 </resources>

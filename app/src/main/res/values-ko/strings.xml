@@ -625,4 +625,5 @@
    <string name="add_to_favorites">즐겨 찾기에 추가</string>
    <string name="remove_from_favorites">즐겨 찾기에서 삭제하기</string>
    <string name="book_menu">책 메뉴</string>
+   <string name="accessibility">접근성</string>
 </resources>

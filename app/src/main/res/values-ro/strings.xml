@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Adauga la favorite</string>
    <string name="remove_from_favorites">Eliminați din favorite</string>
    <string name="book_menu">Meniu de carte</string>
+   <string name="accessibility">Accesibilitate</string>
 </resources>

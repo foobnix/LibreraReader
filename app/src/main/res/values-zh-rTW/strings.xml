@@ -625,4 +625,5 @@
    <string name="add_to_favorites">添加到收藏夾</string>
    <string name="remove_from_favorites">從收藏夾中刪除</string>
    <string name="book_menu">書菜單</string>
+   <string name="accessibility">可及性</string>
 </resources>

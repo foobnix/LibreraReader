@@ -1761,7 +1761,7 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
-        if(Apps.isAccessibilityServiceEnabled(a)){
+        if (AppState.get().isEnableAccessibility) {
             AppState.get().isEditMode = true;
         }
 

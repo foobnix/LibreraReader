@@ -625,4 +625,5 @@
    <string name="add_to_favorites">اضافة الى المفضلة</string>
    <string name="remove_from_favorites">إزالة من المفضلة</string>
    <string name="book_menu">قائمة الكتاب</string>
+   <string name="accessibility">إمكانية الوصول</string>
 </resources>

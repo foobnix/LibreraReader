@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Įtraukti į adresyną</string>
    <string name="remove_from_favorites">Pašalinti iš parankinių</string>
    <string name="book_menu">Knygos meniu</string>
+   <string name="accessibility">Prieinamumas</string>
 </resources>

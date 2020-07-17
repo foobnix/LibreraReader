@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Favorilere ekle</string>
    <string name="remove_from_favorites">Favorilerden çıkar</string>
    <string name="book_menu">Kitap menüsü</string>
+   <string name="accessibility">Ulaşılabilirlik</string>
 </resources>

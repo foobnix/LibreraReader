@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Προσθήκη στα αγαπημένα</string>
    <string name="remove_from_favorites">Κατάργηση από τα αγαπημένα</string>
    <string name="book_menu">Μενού βιβλίων</string>
+   <string name="accessibility">Προσιτότητα</string>
 </resources>

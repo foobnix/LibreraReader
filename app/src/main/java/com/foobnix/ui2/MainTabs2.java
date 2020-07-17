@@ -502,7 +502,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
-        if (Apps.isAccessibilityServiceEnabled(this)) {
+        if (AppState.get().isEnableAccessibility) {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
@@ -610,7 +610,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 });
             }
         }
-        if (Apps.isAccessibilityServiceEnabled(this)) {
+        if (AppState.get().isEnableAccessibility) {
             imageMenu.setVisibility(View.VISIBLE);
         }
 
@@ -650,8 +650,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
 
         try {
-
-            if (AppState.get().isShowWhatIsNewDialog && !Apps.isAccessibilityServiceEnabled(this)) {
+            if (AppState.get().isShowWhatIsNewDialog && !AppState.get().isEnableAccessibility) {
                 LOG.d("checkForNewBeta");
                 AndroidWhatsNew.checkForNewBeta(this);
             }

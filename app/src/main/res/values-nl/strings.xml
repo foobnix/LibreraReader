@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Toevoegen aan favorieten</string>
    <string name="remove_from_favorites">Verwijder van favorieten</string>
    <string name="book_menu">Boek menu</string>
+   <string name="accessibility">Toegankelijkheid</string>
 </resources>

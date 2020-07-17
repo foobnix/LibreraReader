@@ -625,4 +625,5 @@
    <string name="add_to_favorites">Добавить в избранное</string>
    <string name="remove_from_favorites">Удалить из Избранного</string>
    <string name="book_menu">Книжное меню</string>
+   <string name="accessibility">Доступность</string>
 </resources>
