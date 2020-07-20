@@ -57,7 +57,7 @@
         <com.foobnix.pdf.info.view.MyProgressBar
                     android:saveEnabled="false"
             
-            android:id="@+id/MyProgressBarOPDS"
+            android:id="@+id/myProgressBarOPDS"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />

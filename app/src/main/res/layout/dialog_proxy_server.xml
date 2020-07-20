@@ -111,7 +111,7 @@
                 android:text="@string/folder_for_downloaded_books" />
 
             <TextView
-                android:id="@+id/downlodsPath"
+                android:id="@+id/downloadsPath"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
