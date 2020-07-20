@@ -3615,8 +3615,8 @@ public class DragingDialogs {
                             AppState.get().colorDayText = AppState.COLOR_BLACK;
                             AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                            AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                            AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                            AppState.get().colorNightText = AppState.COLOR_WHITE;
+                            AppState.get().colorNightBg = AppState.COLOR_BLACK;
                         }
                     }
                 });
@@ -5001,11 +5001,11 @@ public class DragingDialogs {
 
                 // orientation end
 
-                BrightnessHelper.showBlueLigthDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
+                BrightnessHelper.showBlueLightDialogAndBrightness(controller.getActivity(), inflate, onRefresh);
                 // brightness end
                 // dicts
 
-                final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);
+                final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionary);
                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
                 selectedDictionaly.setOnClickListener(new OnClickListener() {
 
@@ -5071,13 +5071,13 @@ public class DragingDialogs {
                 });
 
                 final ImageView onNigthColorImage = (ImageView) inflate.findViewById(R.id.onNigthColorImage);
-                final TextView textNigthColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onNigthColor));
+                final TextView textNigthColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onNightColor));
                 textNigthColor.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         boolean isSolid = !AppState.get().isUseBGImageNight;
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, isSolid, new ColorsDialogResult() {
+                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNightText, AppState.get().colorNightBg, false, isSolid, new ColorsDialogResult() {
 
                             @Override
                             public void onChooseColor(int colorText, int colorBg) {
@@ -5085,8 +5085,8 @@ public class DragingDialogs {
                                 textNigthColor.setBackgroundColor(colorBg);
                                 TintUtil.setTintImageWithAlpha(onNigthColorImage, colorText);
 
-                                AppState.get().colorNigthText = colorText;
-                                AppState.get().colorNigthBg = colorBg;
+                                AppState.get().colorNightText = colorText;
+                                AppState.get().colorNightBg = colorBg;
 
                                 if (AppState.get().isUseBGImageNight) {
                                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
@@ -5100,10 +5100,10 @@ public class DragingDialogs {
                 final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
 
                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNightText);
 
-                textNigthColor.setTextColor(AppState.get().colorNigthText);
-                textNigthColor.setBackgroundColor(AppState.get().colorNigthBg);
+                textNigthColor.setTextColor(AppState.get().colorNightText);
+                textNigthColor.setBackgroundColor(AppState.get().colorNightBg);
                 textDayColor.setTextColor(AppState.get().colorDayText);
                 textDayColor.setBackgroundColor(AppState.get().colorDayBg);
 
@@ -5169,17 +5169,17 @@ public class DragingDialogs {
 
                                     } else {
                                         if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                            AppState.get().colorNigthText = text;
+                                            AppState.get().colorNightText = text;
                                             textNigthColor.setTextColor(text);
                                         }
 
-                                        AppState.get().colorNigthBg = bg;
+                                        AppState.get().colorNightBg = bg;
                                         textNigthColor.setBackgroundColor(bg);
                                         AppState.get().isUseBGImageNight = false;
                                     }
 
                                     TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNightText);
                                 }
 
                             });
@@ -5227,13 +5227,13 @@ public class DragingDialogs {
 
                                 @Override
                                 public void onClick(View v) {
-                                    AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                                    AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                    AppState.get().colorNightText = AppState.COLOR_WHITE;
+                                    AppState.get().colorNightBg = AppState.COLOR_BLACK;
 
                                     textNigthColor.setTextColor(Color.WHITE);
                                     textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
                                     AppState.get().isUseBGImageNight = true;
-                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNightText);
 
                                 }
                             });
@@ -5271,14 +5271,14 @@ public class DragingDialogs {
                                 textDayColor.setTextColor(AppState.COLOR_BLACK);
                                 textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
 
-                                AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                                AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                AppState.get().colorNightText = AppState.COLOR_WHITE;
+                                AppState.get().colorNightBg = AppState.COLOR_BLACK;
 
                                 textNigthColor.setTextColor(AppState.COLOR_WHITE);
                                 textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
 
                                 TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-                                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNightText);
 
                                 AppState.get().statusBarColorDay = Color.parseColor(AppState.TEXT_COLOR_DAY);
                                 AppState.get().statusBarColorNight = Color.parseColor(AppState.TEXT_COLOR_NIGHT);

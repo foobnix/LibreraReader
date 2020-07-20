@@ -179,7 +179,7 @@ public class BrightnessHelper {
 
     }
 
-    public static void showBlueLigthDialogAndBrightness(final Activity a, View inflate, final Runnable onRefresh) {
+    public static void showBlueLightDialogAndBrightness(final Activity a, View inflate, final Runnable onRefresh) {
         final CheckBox isEnableBlueFilter = (CheckBox) inflate.findViewById(R.id.isEnableBlueFilter);
         isEnableBlueFilter.setVisibility(Dips.isEInk() ? View.GONE : View.VISIBLE);
         isEnableBlueFilter.setOnCheckedChangeListener(new OnCheckedChangeListener() {

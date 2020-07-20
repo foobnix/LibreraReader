@@ -155,8 +155,8 @@ public class MagicHelper {
                         AppState.get().colorDayText != AppState.COLOR_BLACK); //
 
         boolean isNigth = !AppState.get().isDayNotInvert && //
-                (AppState.get().colorNigthBg != AppState.COLOR_BLACK || //
-                        AppState.get().colorNigthText != AppState.COLOR_WHITE); //
+                (AppState.get().colorNightBg != AppState.COLOR_BLACK || //
+                        AppState.get().colorNightText != AppState.COLOR_WHITE); //
 
         return isDay || isNigth;
     }
@@ -359,7 +359,7 @@ public class MagicHelper {
     }
 
     public static int getTextColor() {
-        return AppState.get().isDayNotInvert ? AppState.get().colorDayText : AppState.get().colorNigthText;
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayText : AppState.get().colorNightText;
     }
 
     public static int getBgColor() {
@@ -370,7 +370,7 @@ public class MagicHelper {
             // return Color.parseColor("#52493A");
         }
 
-        return AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNigthBg;
+        return AppState.get().isDayNotInvert ? AppState.get().colorDayBg : AppState.get().colorNightBg;
     }
 
     public static float[] getHSV(int color) {

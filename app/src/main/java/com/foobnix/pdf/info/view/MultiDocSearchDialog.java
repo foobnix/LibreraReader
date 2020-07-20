@@ -51,7 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MultyDocSearchDialog {
+public class MultiDocSearchDialog {
 
     private static TextView infoView1;
 

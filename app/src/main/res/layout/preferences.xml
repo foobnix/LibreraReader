@@ -332,7 +332,7 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/moreLybraryettings"
+                    android:id="@+id/moreLibrarySettings"
                     style="@style/textLink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -777,7 +777,7 @@
                 android:text="@string/open_in_the_dictionary" />
 
             <TextView
-                android:id="@+id/selectedDictionaly"
+                android:id="@+id/selectedDictionary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -846,7 +846,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/onNigthColor"
+                    android:id="@+id/onNightColor"
                     android:layout_width="90dip"
                     android:layout_height="24dip"
                     android:layout_marginLeft="5dip"
@@ -1023,7 +1023,7 @@
                 android:text="@string/column_count" />
 
             <TextView
-                android:id="@+id/columsCount"
+                android:id="@+id/columnsCount"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1033,7 +1033,7 @@
                 android:textAllCaps="true" />
 
             <TextView
-                android:id="@+id/columsDefaul"
+                android:id="@+id/columnsDefault"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1081,7 +1081,7 @@
             android:text="@string/tabs_position" />
 
         <CheckBox
-            android:id="@+id/isshowPrefAsMenu"
+            android:id="@+id/isShowPrefAsMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/show_preferences_tab_in_the_left_menu" />
@@ -1103,7 +1103,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tabsDefaul"
+                android:id="@+id/tabsDefault"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -502,7 +502,7 @@
                 android:text="@string/open_in_the_dictionary" />
 
             <TextView
-                android:id="@+id/selectedDictionaly"
+                android:id="@+id/selectedDictionary"
                 style="@style/textLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -596,7 +596,7 @@
                     android:background="@drawable/bg_border_ltgray" >
 
                     <TextView
-                        android:id="@+id/onNigthColor"
+                        android:id="@+id/onNightColor"
                         android:layout_width="90dip"
                         android:layout_height="@dimen/wh_button"
                         android:background="#000000"

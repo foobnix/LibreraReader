@@ -1533,7 +1533,7 @@ public class DocumentWrapperUI {
         TintUtil.setTintImageWithAlpha(clockIcon, TintUtil.getStatusBarColor()).setAlpha(200);
         TintUtil.setTintImageWithAlpha(batteryIcon, TintUtil.getStatusBarColor()).setAlpha(200);
 
-        int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNigthBg, 0.05f);
+        int titleColor = AppState.get().isDayNotInvert ? MagicHelper.otherColor(AppState.get().colorDayBg, -0.05f) : MagicHelper.otherColor(AppState.get().colorNightBg, 0.05f);
         titleBar.setBackgroundColor(titleColor);
 
         int progressColor = AppState.get().isDayNotInvert ? AppState.get().statusBarColorDay : MagicHelper.otherColor(AppState.get().statusBarColorNight, +0.2f);
