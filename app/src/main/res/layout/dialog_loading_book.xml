@@ -7,7 +7,7 @@
     android:padding="5dip" >
 
     <com.foobnix.pdf.info.view.MyProgressBar
-        android:id="@+id/MyProgressBarLoading"
+        android:id="@+id/myProgressBarLoading"
         android:saveEnabled="false"
         android:layout_weight="0"
         android:layout_width="wrap_content"
