@@ -16,17 +16,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.drawerlayout.widget.DrawerLayout.DrawerListener;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener;
 
@@ -55,10 +51,10 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.MainTabsBinding;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
 import com.foobnix.pdf.info.view.Dialogs;
-import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -103,15 +99,10 @@ public class MainTabs2 extends AdsFragmentActivity {
     public static String EXTRA_SEACH_TEXT = "EXTRA_SEACH_TEXT";
     public static String EXTRA_NOTIFY_REFRESH = "EXTRA_NOTIFY_REFRESH";
     public boolean isEink = false;
-    ViewPager pager;
+    private MainTabsBinding binding;
     List<UIFragment> tabFragments;
     TabsAdapter2 adapter;
-    ImageView imageMenu;
-    View imageMenuParent, overlay;
-    TextView toastBrightnessText;
     Handler handler;
-    MyProgressBar fab;
-    SwipeRefreshLayout swipeRefreshLayout;
     boolean isMyKey = false;
     OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
         UIFragment uiFragment = null;
@@ -124,8 +115,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             LOG.d("onPageSelected", uiFragment);
             Apps.accessibilityText(MainTabs2.this, adapter.getPageTitle(pos).toString() + " " + getString(R.string.tab_selected));
-
-
         }
 
         @Override
@@ -136,45 +125,35 @@ public class MainTabs2 extends AdsFragmentActivity {
         @Override
         public void onPageScrollStateChanged(int state) {
             if (isPullToRefreshEnable()) {
-                swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+                binding.swipeRefreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
             }
             LOG.d("onPageSelected onPageScrollStateChanged", state);
             if (state == ViewPager.SCROLL_STATE_IDLE) {
                 check();
             }
-
         }
 
         public void check() {
             if (isPullToRefreshEnable()) {
-                if (uiFragment instanceof PrefFragment2) {
-                    swipeRefreshLayout.setEnabled(false);
-                } else {
-                    swipeRefreshLayout.setEnabled(true);
-                }
+                binding.swipeRefreshLayout.setEnabled(!(uiFragment instanceof PrefFragment2));
             }
         }
     };
-    Runnable closeActivityRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-//            TTSNotification.hideNotification();
-//            TTSEngine.get().shutdown();
-//            adsPause();
-            finish();
-        }
+    Runnable closeActivityRunnable = () -> {
+//      TTSNotification.hideNotification();
+//      TTSEngine.get().shutdown();
+//      adsPause();
+        finish();
     };
     boolean once = true;
     private SlidingTabLayout indicator;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
             if (pos != -1) {
                 if (pos >= 0) {
-                    pager.setCurrentItem(pos);
+                    binding.pager.setCurrentItem(pos);
                 }
 
                 if (intent.getBooleanExtra(EXTRA_NOTIFY_REFRESH, false)) {
@@ -183,19 +162,17 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             } else {
                 if (AppState.get().appTheme == AppState.THEME_INK) {
-                    TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+                    TintUtil.setTintImageNoAlpha(binding.imageMenu1, TintUtil.color);
                     indicator.setSelectedIndicatorColors(TintUtil.color);
                     indicator.setDividerColors(TintUtil.color);
-                    indicator.updateIcons(pager.getCurrentItem());
+                    indicator.updateIcons(binding.pager.getCurrentItem());
                 } else {
                     indicator.setBackgroundColor(TintUtil.color);
-                    imageMenuParent.setBackgroundColor(TintUtil.color);
+                    binding.imageParent1.setBackgroundColor(TintUtil.color);
                 }
             }
         }
-
     };
-    private DrawerLayout drawerLayout;
 
     public static boolean isPullToRefreshEnable(Context a, View swipeRefreshLayout) {
         if (a == null || swipeRefreshLayout == null) {
@@ -212,7 +189,6 @@ public class MainTabs2 extends AdsFragmentActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         c.startActivity(intent);
         c.overridePendingTransition(0, 0);
-
     }
 
     public static void closeApp(Context c) {
@@ -238,12 +214,9 @@ public class MainTabs2 extends AdsFragmentActivity {
                     .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(intent1);
-
         }
 
-
         checkGoToPage(intent);
-
     }
 
     @Override
@@ -266,7 +239,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
             LOG.d("REQUEST_CODE_ADD_RESOURCE", pathSAF, BookCSS.get().pathSAF);
 
-            UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
+            UIFragment uiFragment = tabFragments.get(binding.pager.getCurrentItem());
             if (uiFragment instanceof BrowseFragment2) {
                 BrowseFragment2 fr = (BrowseFragment2) uiFragment;
                 fr.displayAnyPath(pathSAF);
@@ -279,30 +252,24 @@ public class MainTabs2 extends AdsFragmentActivity {
                         EventBus.getDefault().post(new GDriveSycnEvent());
                         GFile.runSyncService(MainTabs2.this);
 
-                        swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
+                        binding.swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
 
                         AppSP.get().save();
-
                     })
                     .addOnFailureListener(exception ->
                             {
                                 LOG.e(exception);
                                 Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
                                 AppSP.get().isEnableSync = false;
-                                swipeRefreshLayout.setEnabled(false);
+                                binding.swipeRefreshLayout.setEnabled(false);
                                 AppSP.get().save();
-
                             }
                     );
-
-
         }
-
-
     }
 
     public boolean isPullToRefreshEnable() {
-        return isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout);
+        return isPullToRefreshEnable(MainTabs2.this, binding.swipeRefreshLayout);
     }
 
     @Override
@@ -313,7 +280,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         if (Android6.canWrite(this)) {
             BrightnessHelper.applyBrigtness(this);
-            BrightnessHelper.updateOverlay(overlay);
+            BrightnessHelper.updateOverlay(binding.overlay);
         }
         GFile.runSyncService(this);
     }
@@ -325,7 +292,6 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         if (AppState.get().appTheme == AppState.THEME_LIGHT || AppState.get().appTheme == AppState.THEME_INK) {
             setTheme(R.style.StyledIndicatorsWhite);
         } else {
@@ -355,15 +321,12 @@ public class MainTabs2 extends AdsFragmentActivity {
             LOG.d("Restore from backup");
             File oldConfig = new File(AppProfile.SYNC_FOLDER_ROOT, Build.MODEL.replace(" ", "_") + "-backup-v8.0.json");
             if (!oldConfig.exists()) {
-                new AsyncProgressResultToastTask(this, new ResultResponse<Boolean>() {
-                    @Override
-                    public boolean onResultRecive(Boolean result) {
-                        if (MainTabs2.this != null) {
-                            MainTabs2.this.finish();
-                            MainTabs2.this.startActivity(getIntent());
-                        }
-                        return false;
+                new AsyncProgressResultToastTask(this, result -> {
+                    if (MainTabs2.this != null) {
+                        MainTabs2.this.finish();
+                        MainTabs2.this.startActivity(getIntent());
                     }
+                    return false;
                 }) {
                     @Override
                     protected Boolean doInBackground(Object... objects) {
@@ -391,7 +354,6 @@ public class MainTabs2 extends AdsFragmentActivity {
             }
         }
 
-
         if (PasswordDialog.isNeedPasswordDialog(this)) {
             return;
         }
@@ -410,47 +372,29 @@ public class MainTabs2 extends AdsFragmentActivity {
         TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
 
-        setContentView(R.layout.main_tabs);
+        binding = MainTabsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
+        binding.imageParent1.setBackgroundColor(TintUtil.color);
 
-        imageMenu = (ImageView) findViewById(R.id.imageMenu1);
-        imageMenuParent = findViewById(R.id.imageParent1);
-        imageMenuParent.setBackgroundColor(TintUtil.color);
+        binding.fab.setVisibility(View.GONE);
+        binding.fab.setOnClickListener(v -> Dialogs.showSyncLOGDialog(MainTabs2.this));
+        binding.fab.setBackgroundResource(R.drawable.bg_circular);
+        TintUtil.setDrawableTint(binding.fab.getBackground().getCurrent(), TintUtil.color);
 
-        fab = findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialogs.showSyncLOGDialog(MainTabs2.this);
-            }
-        });
-        fab.setBackgroundResource(R.drawable.bg_circular);
-        TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
+        binding.swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
 
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
-
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-                GFile.runSyncService(MainTabs2.this, true);
-            }
+        binding.swipeRefreshLayout.setOnRefreshListener(() -> {
+            binding.swipeRefreshLayout.setRefreshing(false);
+            GFile.runSyncService(MainTabs2.this, true);
         });
 
+        binding.toastBrightnessText.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(binding.toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
 
-        overlay = findViewById(R.id.overlay);
-
-        toastBrightnessText = (TextView) findViewById(R.id.toastBrightnessText);
-        toastBrightnessText.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(toastBrightnessText.getCompoundDrawables()[0], Color.WHITE);
-
-        tabFragments = new ArrayList<UIFragment>();
+        tabFragments = new ArrayList<>();
 
         try {
-
             for (UITab tab : UITab.getOrdered()) {
                 if (tab.isVisible()) {
                     tabFragments.add(tab.getClazz().newInstance());
@@ -480,148 +424,120 @@ public class MainTabs2 extends AdsFragmentActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.left_drawer, new PrefFragment2()).commit();
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        imageMenu.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(GravityCompat.START))
-                    drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
-                else
-                    drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
-
-            }
+        binding.imageMenu1.setOnClickListener(v -> {
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START))
+                binding.drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+            else
+                binding.drawerLayout.openDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
         });
 
         if (UITab.isShowPreferences()) {
-            imageMenu.setVisibility(View.GONE);
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.imageMenu1.setVisibility(View.GONE);
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else {
-            imageMenu.setVisibility(View.VISIBLE);
+            binding.imageMenu1.setVisibility(View.VISIBLE);
         }
 
         if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
+            binding.imageMenu1.setVisibility(View.VISIBLE);
         }
 
         // ((BrigtnessDraw)
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
 
         adapter = new TabsAdapter2(this, tabFragments);
-        pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
-
+        binding.pager.setAccessibilityDelegate(new View.AccessibilityDelegate());
 
         if (Android6.canWrite(this)) {
-            pager.setAdapter(adapter);
+            binding.pager.setAdapter(adapter);
         }
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
-            pager.setBackgroundColor(Color.BLACK);
+            binding.pager.setBackgroundColor(Color.BLACK);
         }
 
-        pager.setOffscreenPageLimit(10);
-        pager.addOnPageChangeListener(onPageChangeListener);
+        binding.pager.setOffscreenPageLimit(10);
+        binding.pager.addOnPageChangeListener(onPageChangeListener);
 
-        drawerLayout.addDrawerListener(new DrawerListener() {
-
+        binding.drawerLayout.addDrawerListener(new DrawerListener() {
             @Override
             public void onDrawerStateChanged(int arg0) {
                 LOG.d("drawerLayout-onDrawerStateChanged", arg0);
-
             }
 
             @Override
             public void onDrawerSlide(View arg0, float arg1) {
                 LOG.d("drawerLayout-onDrawerSlide");
                 if (AppSP.get().isEnableSync) {
-                    swipeRefreshLayout.setEnabled(false);
+                    binding.swipeRefreshLayout.setEnabled(false);
                 }
-
             }
 
             @Override
             public void onDrawerOpened(View arg0) {
                 LOG.d("drawerLayout-onDrawerOpened");
                 if (AppSP.get().isEnableSync) {
-                    swipeRefreshLayout.setEnabled(false);
+                    binding.swipeRefreshLayout.setEnabled(false);
                 }
-
             }
 
             @Override
             public void onDrawerClosed(View arg0) {
                 LOG.d("drawerLayout-onDrawerClosed");
                 try {
-                    tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+                    tabFragments.get(binding.pager.getCurrentItem()).onSelectFragment();
 
-                    if (isPullToRefreshEnable(MainTabs2.this, swipeRefreshLayout)) {
-                        swipeRefreshLayout.setEnabled(true);
-                        swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
-
+                    if (isPullToRefreshEnable(MainTabs2.this, binding.swipeRefreshLayout)) {
+                        binding.swipeRefreshLayout.setEnabled(true);
+                        binding.swipeRefreshLayout.setColorSchemeColors(TintUtil.color);
                     }
-                    TintUtil.setDrawableTint(fab.getBackground().getCurrent(), TintUtil.color);
-
-
+                    TintUtil.setDrawableTint(binding.fab.getBackground().getCurrent(), TintUtil.color);
                 } catch (Exception e) {
                     LOG.e(e);
                 }
-
             }
         });
 
         if (AppState.get().tapPositionTop) {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs1);
+            indicator = binding.slidingTabs1;
         } else {
-            indicator = (SlidingTabLayout) findViewById(R.id.slidingTabs2);
+            indicator = binding.slidingTabs2;
         }
-        indicator.addSwipeRefreshLayout(swipeRefreshLayout);
+        indicator.addSwipeRefreshLayout(binding.swipeRefreshLayout);
         indicator.setVisibility(View.VISIBLE);
         indicator.init();
 
-        indicator.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                LOG.d("OnFocusChangeListener", hasFocus);
-            }
-        });
+        indicator.setOnFocusChangeListener((v, hasFocus) -> LOG.d("OnFocusChangeListener", hasFocus));
 
-
-        indicator.setViewPager(pager);
+        indicator.setViewPager(binding.pager);
 
         indicator.setDividerColors(getResources().getColor(R.color.tint_divider));
         indicator.setSelectedIndicatorColors(Color.WHITE);
         indicator.setBackgroundColor(TintUtil.color);
 
         if (!AppState.get().tapPositionTop || !AppState.get().tabWithNames) {
-            imageMenu.setVisibility(View.GONE);
+            binding.imageMenu1.setVisibility(View.GONE);
             indicator.setDividerColors(Color.TRANSPARENT);
             indicator.setSelectedIndicatorColors(Color.TRANSPARENT);
             for (int i = 0; i < indicator.getmTabStrip().getChildCount(); i++) {
                 View child = indicator.getmTabStrip().getChildAt(i);
-                child.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        imageMenu.performClick();
-                        return true;
-                    }
+                child.setOnLongClickListener(v -> {
+                    binding.imageMenu1.performClick();
+                    return true;
                 });
             }
         }
         if (AppState.get().isEnableAccessibility) {
-            imageMenu.setVisibility(View.VISIBLE);
+            binding.imageMenu1.setVisibility(View.VISIBLE);
         }
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
-            TintUtil.setTintImageNoAlpha(imageMenu, TintUtil.color);
+            TintUtil.setTintImageNoAlpha(binding.imageMenu1, TintUtil.color);
             indicator.setSelectedIndicatorColors(TintUtil.color);
             indicator.setDividerColors(TintUtil.color);
             indicator.setBackgroundColor(Color.TRANSPARENT);
-            imageMenuParent.setBackgroundColor(Color.TRANSPARENT);
-
+            binding.imageParent1.setBackgroundColor(Color.TRANSPARENT);
         }
-
 
         Android6.checkPermissions(this, true);
         // Analytics.onStart(this);
@@ -633,19 +549,11 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        pager.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                ((SearchFragment2) tabFragments.get(0)).searchAndOrderExteral(text);
-                            }
-                        }, 250);
+                        binding.pager.postDelayed(() -> ((SearchFragment2) tabFragments.get(0)).searchAndOrderExteral(text), 250);
                         break;
                     }
                 }
-
             }
-
         }
 
         try {
@@ -663,7 +571,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         boolean showTabs = getIntent().getBooleanExtra(EXTRA_SHOW_TABS, false);
         LOG.d("EXTRA_SHOW_TABS", showTabs, AppSP.get().lastClosedActivity);
-        if (showTabs == false && AppState.get().isOpenLastBook) {
+        if (!showTabs && AppState.get().isOpenLastBook) {
             LOG.d("Open lastBookPath", AppSP.get().lastBookPath);
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
                 LOG.d("Open Last book not found");
@@ -677,7 +585,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
                 startActivity(intent);
             });
-        } else if (false && !AppState.get().isOpenLastBook) {//templorary disable this feature
+        } else if (false) {//templorary disable this feature
             LOG.d("Open book lastA", AppSP.get().lastClosedActivity);
 
             if (AppSP.get().lastBookPath == null || !new File(AppSP.get().lastBookPath).isFile()) {
@@ -685,26 +593,20 @@ public class MainTabs2 extends AdsFragmentActivity {
                 return;
             }
             final String saveMode = AppSP.get().lastClosedActivity;
-            Safe.run(new Runnable() {
-
-                @Override
-                public void run() {
-                    LOG.d("Open AppSP.get().lastBookPath", saveMode);
-                    if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
-                        Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                        startActivity(intent);
-                        LOG.d("Start lastA", saveMode);
-                    } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
-                        Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
-                        intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
-                        startActivity(intent);
-                        LOG.d("Start lastA", saveMode);
-                    }
-
+            Safe.run(() -> {
+                LOG.d("Open AppSP.get().lastBookPath", saveMode);
+                if (HorizontalViewActivity.class.getSimpleName().equals(saveMode)) {
+                    Intent intent = new Intent(MainTabs2.this, HorizontalViewActivity.class);
+                    intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
+                    startActivity(intent);
+                    LOG.d("Start lastA", saveMode);
+                } else if (VerticalViewActivity.class.getSimpleName().equals(saveMode)) {
+                    Intent intent = new Intent(MainTabs2.this, VerticalViewActivity.class);
+                    intent.setData(Uri.fromFile(new File(AppSP.get().lastBookPath)));
+                    startActivity(intent);
+                    LOG.d("Start lastA", saveMode);
                 }
             });
-
         }
 
         checkGoToPage(getIntent());
@@ -723,17 +625,16 @@ public class MainTabs2 extends AdsFragmentActivity {
         try {
             if (msg.state == MessageSync.STATE_VISIBLE) {
                 if (BookCSS.get().isSyncAnimation) {
-                    fab.setVisibility(View.VISIBLE);
+                    binding.fab.setVisibility(View.VISIBLE);
                 }
-                swipeRefreshLayout.setRefreshing(false);
+                binding.swipeRefreshLayout.setRefreshing(false);
             } else if (msg.state == MessageSync.STATE_FAILE) {
-                fab.setVisibility(View.GONE);
-                swipeRefreshLayout.setRefreshing(false);
+                binding.fab.setVisibility(View.GONE);
+                binding.swipeRefreshLayout.setRefreshing(false);
                 //Toast.makeText(this, getString(R.string.sync_error), Toast.LENGTH_LONG).show();
             } else {
-                fab.setVisibility(View.GONE);
-                swipeRefreshLayout.setRefreshing(false);
-
+                binding.fab.setVisibility(View.GONE);
+                binding.swipeRefreshLayout.setRefreshing(false);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -742,13 +643,13 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Subscribe
     public void onMessegeBrightness(MessegeBrightness msg) {
-        BrightnessHelper.onMessegeBrightness(handler, msg, toastBrightnessText, overlay);
+        BrightnessHelper.onMessegeBrightness(handler, msg, binding.toastBrightnessText, binding.overlay);
     }
 
     public void checkGoToPage(Intent intent) {
         int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
         if (pos != -1) {
-            pager.setCurrentItem(pos);
+            binding.pager.setCurrentItem(pos);
         }
     }
 
@@ -783,17 +684,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         DocumentController.chooseFullScreen(this, AppState.get().fullScreenMainMode);
         TintUtil.updateAll();
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(UIFragment.INTENT_TINT_CHANGE));
-        if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
-        }
+        binding.swipeRefreshLayout.setEnabled(isPullToRefreshEnable());
 
         try {
-            if (pager != null) {
-                final UIFragment uiFragment = tabFragments.get(pager.getCurrentItem());
-                uiFragment.onSelectFragment();
-            }
-
-
+            final UIFragment uiFragment = tabFragments.get(binding.pager.getCurrentItem());
+            uiFragment.onSelectFragment();
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -804,11 +699,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         IMG.resumeRequests(this);
         //AppSP.get().lastClosedActivity = MainTabs2.class.getSimpleName();
         //LOG.d("lasta save", AppSP.get().lastClosedActivity);
-
     }
 
     public void updateCurrentFragment() {
-        tabFragments.get(pager.getCurrentItem()).onSelectFragment();
+        tabFragments.get(binding.pager.getCurrentItem()).onSelectFragment();
     }
 
     @Override
@@ -822,7 +716,7 @@ public class MainTabs2 extends AdsFragmentActivity {
             keyCode = event.getScanCode();
         }
         isMyKey = false;
-        if (tabFragments.get(pager.getCurrentItem()).onKeyDown(keyCode)) {
+        if (tabFragments.get(binding.pager.getCurrentItem()).onKeyDown(keyCode)) {
             isMyKey = true;
             return true;
         }
@@ -856,18 +750,15 @@ public class MainTabs2 extends AdsFragmentActivity {
         GFile.runSyncService(this);
 
         LOG.d(TAG, "onDestroy");
-        if (pager != null) {
-            try {
-                pager.setAdapter(null);
-            } catch (Exception e) {
-                LOG.e(e);
-            }
+        try {
+            binding.pager.setAdapter(null);
+        } catch (Exception e) {
+            LOG.e(e);
         }
         // Analytics.onStop(this);
         CacheDir.ZipApp.removeCacheContent();
         // ImageExtractor.clearErrors();
         // ImageExtractor.clearCodeDocument();
-
 
         EventBus.getDefault().unregister(this);
         IMG.clearMemoryCache();
@@ -883,14 +774,11 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         LOG.d("ContextWrapper ConfigChanged", language, fontScale);
 
-        if (pager != null) {
-            int currentItem = pager.getCurrentItem();
-            //pager.setAdapter(adapter); //WHY???
-            pager.setCurrentItem(currentItem);
-            IMG.clearMemoryCache();
-        }
+        int currentItem = binding.pager.getCurrentItem();
+        //pager.setAdapter(adapter); //WHY???
+        binding.pager.setCurrentItem(currentItem);
+        IMG.clearMemoryCache();
         activateAds();
-
     }
 
     @Override
@@ -914,14 +802,13 @@ public class MainTabs2 extends AdsFragmentActivity {
 
     @Override
     public void onBackPressed() {
-
-        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START, AppState.get().appTheme != AppState.THEME_INK);
             return;
         }
 
         if (tabFragments != null) {
-            if (!tabFragments.isEmpty() && tabFragments.get(pager.getCurrentItem()).isBackPressed()) {
+            if (!tabFragments.isEmpty() && tabFragments.get(binding.pager.getCurrentItem()).isBackPressed()) {
                 return;
             }
 
