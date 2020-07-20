@@ -64,7 +64,6 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -1322,7 +1321,7 @@ public class DocumentWrapperUI {
         // ((View)
         // a.findViewById(R.id.onScreenMode)).setOnClickListener(onScreenMode);
 
-        nextTypeBootom = (TextView) a.findViewById(R.id.nextTypeBootom);
+        nextTypeBootom = (TextView) a.findViewById(R.id.nextTypeBottom);
 
         nextTypeBootom.setOnClickListener(onNextType);
 
@@ -1355,7 +1354,7 @@ public class DocumentWrapperUI {
         batteryIcon = (ImageView) a.findViewById(R.id.batteryIcon);
         clockIcon = (ImageView) a.findViewById(R.id.clockIcon);
 
-        textToSpeach = (ImageView) a.findViewById(R.id.textToSpeach);
+        textToSpeach = (ImageView) a.findViewById(R.id.textToSpeech);
         textToSpeach.setOnClickListener(onTextToSpeach);
         textToSpeach.setOnLongClickListener(v -> {
             AlertDialogs.showTTSDebug(dc);
@@ -1466,7 +1465,7 @@ public class DocumentWrapperUI {
         TintUtil.setBackgroundFillColorBottomRight(lirbiLogo, ColorUtils.setAlphaComponent(TintUtil.color, AppState.get().transparencyUI));
         tintSpeed();
 
-        pageshelper = (LinearLayout) a.findViewById(R.id.pageshelper);
+        pageshelper = (LinearLayout) a.findViewById(R.id.pagesHelper);
         musicButtonPanel = a.findViewById(R.id.musicButtonPanel);
         musicButtonPanel.setVisibility(View.GONE);
 

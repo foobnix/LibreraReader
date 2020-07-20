@@ -27,7 +27,7 @@
             android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/pageshelper"
+                android:id="@+id/pagesHelper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"></LinearLayout>
@@ -73,7 +73,7 @@
 
 
     <TextView
-        android:id="@+id/pannelBookTitle"
+        android:id="@+id/panelBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
@@ -351,7 +351,9 @@
         android:layout_alignParentBottom="true"
         android:background="#96aa39">
 
-        <include layout="@layout/document_footer" />
+        <include
+            android:id="@+id/footer"
+            layout="@layout/document_footer" />
     </FrameLayout>
 
 

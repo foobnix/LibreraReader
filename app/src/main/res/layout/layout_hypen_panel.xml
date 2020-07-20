@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="4dip"
     android:gravity="center_vertical"
-    tools:showIn="@layout/activity_horiziontal_view">
+    tools:showIn="@layout/activity_horizontal_view">
 
     <TextView
         android:id="@+id/hypenLangLabel"

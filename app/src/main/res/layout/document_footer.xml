@@ -132,7 +132,7 @@
                 android:visibility="visible" />
 
             <Button
-                android:id="@+id/nextTypeBootom"
+                android:id="@+id/nextTypeBottom"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button_small"
                 android:layout_marginLeft="4dip"
@@ -219,7 +219,7 @@
                 android:src="@drawable/glyphicons_37_file_play" />
 
             <ImageView
-                android:id="@+id/textToSpeach"
+                android:id="@+id/textToSpeech"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
