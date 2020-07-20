@@ -104,7 +104,7 @@
             android:background="@color/lt_grey_alpha" />
 
         <TextView
-            android:id="@+id/textBGwarning"
+            android:id="@+id/text_bg_warning"
             android:layout_width="match_parent"
             android:textColor="@color/tint_red"
             android:text="@string/you_should_enable_allow_battery"
@@ -187,7 +187,7 @@
             android:text="@string/read_by_sentences" />
 
         <EditText
-            android:id="@+id/ttsSentecesDivs"
+            android:id="@+id/ttsSentencesDivs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dip" />
@@ -198,7 +198,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
-                android:id="@+id/isEnalbeTTSReplacements"
+                android:id="@+id/isEnableTTSReplacements"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enable" />

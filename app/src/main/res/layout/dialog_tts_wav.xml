@@ -45,7 +45,7 @@
             android:orientation="horizontal">
 
             <com.foobnix.pdf.info.view.MyProgressBar
-                android:id="@+id/MyProgressBarTTS"
+                android:id="@+id/myProgressBarTTS"
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
