@@ -2,16 +2,11 @@ package com.foobnix.ui2.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -22,6 +17,7 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentRecentBinding;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -33,10 +29,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RecentFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.recent, R.drawable.glyphicons_72_book);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.recent, R.drawable.glyphicons_72_book);
+    private FragmentRecentBinding binding;
     FileMetaAdapter recentAdapter;
-    ImageView onListGrid;
-    View panelRecent;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -44,36 +39,17 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recent, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentRecentBinding.inflate(inflater, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        panelRecent = view.findViewById(R.id.panelRecent);
+        recyclerView = binding.recyclerView;
 
-        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        onListGrid.setOnClickListener(new OnClickListener() {
+        binding.onListGrid.setOnClickListener(v -> popupMenu());
 
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
-
-        TxtUtils.underlineTextView((TextView) view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        clearAllRecent.run();
-
-                    }
-                });
-
-            }
-        });
+        TxtUtils.underlineTextView(binding.clearAllRecent).setOnClickListener(v ->
+                AlertDialogs.showDialog(getActivity(),
+                        getString(R.string.do_you_want_to_clear_everything_),
+                        getString(R.string.ok), () -> clearAllRecent.run()));
 
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
@@ -85,63 +61,48 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
 
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
 
-        return view;
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
     }
 
-    ResultResponse<FileMeta> onDeleteRecentClick = new ResultResponse<FileMeta>() {
+    ResultResponse<FileMeta> onDeleteRecentClick = result -> {
+        result.setIsRecent(false);
+        AppDB.get().update(result);
 
-        @Override
-        public boolean onResultRecive(FileMeta result) {
-            result.setIsRecent(false);
-            AppDB.get().update(result);
-
-            if(result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())){
-                new File(result.getPath()).delete();
-                LOG.d("Delete cache recent file", result.getPath());
-            }
-
-
-
-            AppData.get().removeRecent(result);
-
-            populate();
-
-
-
-            return false;
+        if(result.getPath().startsWith(CacheZipUtils.CACHE_RECENT.getPath())){
+            new File(result.getPath()).delete();
+            LOG.d("Delete cache recent file", result.getPath());
         }
-    };
 
-    Runnable clearAllRecent = new Runnable() {
+        AppData.get().removeRecent(result);
 
-        @Override
-        public void run() {
-            AppDB.get().clearAllRecent();
+        populate();
 
-
-            CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
-
-            AppData.get().clearRecents();
-
-            populate();
-        }
-    };
-
-    public boolean onBackAction() {
         return false;
-    }
+    };
+
+    Runnable clearAllRecent = () -> {
+        AppDB.get().clearAllRecent();
+        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
+        AppData.get().clearRecents();
+        populate();
+    };
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> allRecent = AppData.get().getAllRecent(true);
-        return allRecent;
+        return AppData.get().getAllRecent(true);
     }
 
     @Override
@@ -155,11 +116,11 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     public void onGridList() {
         LOG.d("onGridList");
-        onGridList(AppState.get().recentMode, onListGrid, recentAdapter, null);
+        onGridList(AppState.get().recentMode, binding.onListGrid, recentAdapter, null);
     }
 
-    private void popupMenu(final ImageView onGridList) {
-        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+    private void popupMenu() {
+        MyPopupMenu p = new MyPopupMenu(getActivity(), binding.onListGrid);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
@@ -168,15 +129,11 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().recentMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    onGridList();
-                    return false;
-                }
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().recentMode = actions.get(index);
+                binding.onListGrid.setImageResource(icons.get(index));
+                onGridList();
+                return false;
             });
         }
 
@@ -193,5 +150,4 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
     }
-
 }
