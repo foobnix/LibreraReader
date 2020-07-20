@@ -6,15 +6,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +26,7 @@ import com.foobnix.pdf.info.BookmarksData;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentBookmarks2Binding;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -41,14 +39,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class BookmarksFragment2 extends UIFragment<AppBookmark> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.bookmarks, R.drawable.glyphicons_73_bookmark);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.bookmarks, R.drawable.glyphicons_73_bookmark);
     private static final String BOOK_PREFIX = "@book";
 
     BookmarksAdapter2 bookmarksAdapter;
-    View bookmarksSearchContainer, bookmarksClearFilter, topPanel;
-    TextView exportBookmarks, importBookmarks, allBookmarks;
-    EditText bookmarksEditSearch;
-    ImageView onListGrid, search;
+    private FragmentBookmarks2Binding binding;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -56,29 +51,20 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bookmarks2, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentBookmarks2Binding.inflate(inflater, container, false);
+        recyclerView = binding.recyclerView;
 
-        topPanel = view.findViewById(R.id.topPanel);
-        bookmarksSearchContainer = view.findViewById(R.id.bookmarksSearchContainer);
-        bookmarksClearFilter = view.findViewById(R.id.bookmarksClearFilter);
-        bookmarksEditSearch = (EditText) view.findViewById(R.id.bookmarksEditSearch);
-        bookmarksEditSearch.addTextChangedListener(filterTextWatcher);
+        binding.bookmarksEditSearch.addTextChangedListener(filterTextWatcher);
 
-        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        exportBookmarks = (TextView) view.findViewById(R.id.exportBookmarks);
-        importBookmarks = (TextView) view.findViewById(R.id.importBookmarks);
-        search = view.findViewById(R.id.search);
-        allBookmarks = (TextView) view.findViewById(R.id.allBookmarks);
-        TxtUtils.underlineTextView(allBookmarks).setOnClickListener(onCleanSearch);
+        TxtUtils.underlineTextView(binding.allBookmarks).setOnClickListener(onCleanSearch);
 
-        TxtUtils.underlineTextView(exportBookmarks).setOnClickListener(exportBookmarksClickListener);
-        TxtUtils.underlineTextView(importBookmarks).setOnClickListener(importBookmarksClickListener);
-        search.setOnClickListener(searchBookmarks);
-        bookmarksSearchContainer.setVisibility(View.GONE);
+        TxtUtils.underlineTextView(binding.exportBookmarks).setOnClickListener(exportBookmarksClickListener);
+        TxtUtils.underlineTextView(binding.importBookmarks).setOnClickListener(importBookmarksClickListener);
+        binding.search.setOnClickListener(searchBookmarks);
+        binding.bookmarksSearchContainer.setVisibility(View.GONE);
 
-        bookmarksClearFilter.setOnClickListener(onCleanSearch);
+        binding.bookmarksClearFilter.setOnClickListener(onCleanSearch);
 
         bookmarksAdapter = new BookmarksAdapter2();
 
@@ -88,30 +74,19 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         bookmarksAdapter.setOnDeleteClickListener(onDeleteResponse);
 
         bookmarksAdapter.setOnItemClickListener(onItemClickListener);
-        bookmarksAdapter.setOnItemLongClickListener(new ResultResponse<AppBookmark>() {
-
-            @Override
-            public boolean onResultRecive(AppBookmark result) {
-                FileInformationDialog.showFileInfoDialog(getActivity(), new File(result.getPath()), null);
-                return true;
-            }
+        bookmarksAdapter.setOnItemLongClickListener(result -> {
+            FileInformationDialog.showFileInfoDialog(getActivity(), new File(result.getPath()), null);
+            return true;
         });
 
-        onListGrid.setOnClickListener(new OnClickListener() {
+        binding.onListGrid.setOnClickListener(v -> popupMenu());
 
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
-
-        view.findViewById(R.id.onSettings).setOnClickListener(v -> {
+        binding.onSettings.setOnClickListener(v -> {
             MyPopupMenu menu = new MyPopupMenu(v);
             menu.getMenu().addCheckbox(getString(R.string.show_quick_bookmarks), AppState.get().isShowFastBookmarks, (a, is) -> {
                 AppState.get().isShowFastBookmarks = is;
                 populate();
                 LOG.d("show--show_quick_bookmarks");
-
             });
             menu.getMenu().addCheckbox(getString(R.string.show_only_available_books), AppState.get().isShowOnlyAvailabeBooks, (a, is) -> {
                 AppState.get().isShowOnlyAvailabeBooks = is;
@@ -122,19 +97,22 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             menu.getMenu(R.drawable.glyphicons_basic_578_share, R.string.share,
                     () -> ExtUtils.sendAllBookmarksTo(getActivity()));
 
-
             menu.show();
-
         });
 
         populate();
         onTintChanged();
-        return view;
+        return binding.getRoot();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
-    private void popupMenu(final ImageView onGridList) {
-        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+    private void popupMenu() {
+        MyPopupMenu p = new MyPopupMenu(getActivity(), binding.onListGrid);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.bookmark_by_date, R.string.bookmark_by_book);
@@ -143,17 +121,13 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().bookmarksMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    bookmarksEditSearch.setText("");
-                    bookmarksSearchContainer.setVisibility(View.GONE);
-                    populate();
-                    return false;
-                }
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().bookmarksMode = actions.get(index);
+                binding.onListGrid.setImageResource(icons.get(index));
+                binding.bookmarksEditSearch.setText("");
+                binding.bookmarksSearchContainer.setVisibility(View.GONE);
+                populate();
+                return false;
             });
         }
         p.show();
@@ -161,8 +135,8 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(topPanel, TintUtil.color);
-        TintUtil.setStrokeColor(bookmarksEditSearch, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.topPanel, TintUtil.color);
+        TintUtil.setStrokeColor(binding.bookmarksEditSearch, TintUtil.color);
     }
 
     private final TextWatcher filterTextWatcher = new TextWatcher() {
@@ -181,60 +155,38 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
             handler.postDelayed(timer, 500);
         }
     };
-    Runnable timer = new Runnable() {
-
-        @Override
-        public void run() {
-            populate();
-        }
-    };
+    Runnable timer = this::populate;
 
     OnClickListener exportBookmarksClickListener = new OnClickListener() {
-
         @Override
         public void onClick(View v) {
-            final PopupMenu popupMenu = new PopupMenu(getActivity(), exportBookmarks);
+            final PopupMenu popupMenu = new PopupMenu(getActivity(), binding.exportBookmarks);
 
             final MenuItem toEmail = popupMenu.getMenu().add(R.string.email);
-            toEmail.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(final MenuItem item) {
-                    ExtUtils.exportAllBookmarksToGmail(getActivity());
-                    return false;
-                }
+            toEmail.setOnMenuItemClickListener(item -> {
+                ExtUtils.exportAllBookmarksToGmail(getActivity());
+                return false;
             });
 
             final MenuItem toFile = popupMenu.getMenu().add(R.string.file);
-            toFile.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(final MenuItem item) {
-                    ExtUtils.exportAllBookmarksToFile(getActivity());
-                    return false;
-                }
+            toFile.setOnMenuItemClickListener(item -> {
+                ExtUtils.exportAllBookmarksToFile(getActivity());
+                return false;
             });
 
             final MenuItem toJson = popupMenu.getMenu().add("JSON");
-            toJson.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(final MenuItem item) {
-
-                    ExtUtils.exportAllBookmarksToJson(getActivity(), null);
-                    return false;
-                }
+            toJson.setOnMenuItemClickListener(item -> {
+                ExtUtils.exportAllBookmarksToJson(getActivity(), null);
+                return false;
             });
             popupMenu.show();
-
         }
     };
 
     OnClickListener onCleanSearch = new OnClickListener() {
-
         @Override
         public void onClick(View v) {
-            bookmarksEditSearch.setText("");
+            binding.bookmarksEditSearch.setText("");
             populate();
         }
     };
@@ -243,27 +195,15 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         @Override
         public void onClick(View v) {
-            final PopupMenu popupMenu = new PopupMenu(importBookmarks.getContext(), importBookmarks);
+            final PopupMenu popupMenu = new PopupMenu(binding.importBookmarks.getContext(), binding.importBookmarks);
 
             final MenuItem toJson = popupMenu.getMenu().add("JSON");
-            toJson.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            toJson.setOnMenuItemClickListener(item -> {
+                ExtUtils.importAllBookmarksFromJson(getActivity(), BookmarksFragment2.this::populate);
 
-                @Override
-                public boolean onMenuItemClick(final MenuItem item) {
-
-                    ExtUtils.importAllBookmarksFromJson(getActivity(), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            populate();
-                        }
-                    });
-
-                    return false;
-                }
+                return false;
             });
             popupMenu.show();
-
         }
     };
 
@@ -271,55 +211,41 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
 
         @Override
         public void onClick(View v) {
-            boolean isVisible = bookmarksSearchContainer.getVisibility() == View.VISIBLE;
+            boolean isVisible = binding.bookmarksSearchContainer.getVisibility() == View.VISIBLE;
             if (isVisible) {
-                bookmarksSearchContainer.setVisibility(View.GONE);
-                Keyboards.close(bookmarksEditSearch);
+                binding.bookmarksSearchContainer.setVisibility(View.GONE);
+                Keyboards.close(binding.bookmarksEditSearch);
             } else {
-                bookmarksSearchContainer.setVisibility(View.VISIBLE);
+                binding.bookmarksSearchContainer.setVisibility(View.VISIBLE);
             }
-            if (TxtUtils.isNotEmpty(bookmarksEditSearch.getText().toString())) {
-                bookmarksEditSearch.setText("");
+            if (TxtUtils.isNotEmpty(binding.bookmarksEditSearch.getText().toString())) {
+                binding.bookmarksEditSearch.setText("");
                 // filterByText();
             }
-
         }
     };
 
     @Override
     public boolean isBackPressed() {
-        if (bookmarksEditSearch != null && TxtUtils.isNotEmpty(bookmarksEditSearch.getText().toString())) {
-            bookmarksEditSearch.setText("");
+        if (TxtUtils.isNotEmpty(binding.bookmarksEditSearch.getText().toString())) {
+            binding.bookmarksEditSearch.setText("");
             populate();
             return true;
         }
         return false;
     }
 
-    ResultResponse<AppBookmark> onTitleClickListener = new ResultResponse<AppBookmark>() {
-
-        @Override
-        public boolean onResultRecive(AppBookmark result) {
-            // bookmarksSearchContainer.setVisibility(View.VISIBLE);
-            bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getPath());
-            populate();
-            return false;
-        }
-    };
-
     ResultResponse<AppBookmark> onItemClickListener = new ResultResponse<AppBookmark>() {
-
         @Override
         public boolean onResultRecive(AppBookmark result) {
-            String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
+            String text = binding.bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
             if (TxtUtils.isNotEmpty(text) || AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
                 if (ExtUtils.doifFileExists(getContext(), result.getPath())) {
                     final File file = new File(result.getPath());
                     ExtUtils.showDocumentWithoutDialog2(getActivity(), Uri.fromFile(file), result.getPercent(), null);
-
                 }
             } else {
-                bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getPath());
+                binding.bookmarksEditSearch.setText(BOOK_PREFIX + " " + result.getPath());
                 populate();
             }
             return false;
@@ -344,13 +270,13 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
     public List<AppBookmark> prepareDataInBackground() {
         handler.removeCallbacks(timer);
 
-        String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
+        String text = binding.bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
         if (TxtUtils.isEmpty(text)) {
-            List<AppBookmark> bookmarks = BookmarksData.get().getAll(getActivity());
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll(requireActivity());
 
             if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_BOOK) {
-                List<AppBookmark> filtered = new ArrayList<AppBookmark>();
-                List<String> unic = new ArrayList<String>();
+                List<AppBookmark> filtered = new ArrayList<>();
+                List<String> unic = new ArrayList<>();
                 for (AppBookmark bookmark : bookmarks) {
                     if (!unic.contains(bookmark.getPath())) {
                         unic.add(bookmark.getPath());
@@ -362,8 +288,8 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
                 return bookmarks;
             }
         } else {
-            List<AppBookmark> filtered = new ArrayList<AppBookmark>();
-            List<AppBookmark> bookmarks = BookmarksData.get().getAll(getActivity());
+            List<AppBookmark> filtered = new ArrayList<>();
+            List<AppBookmark> bookmarks = BookmarksData.get().getAll(requireActivity());
 
             if (text.startsWith(BOOK_PREFIX)) {
                 text = text.replace(BOOK_PREFIX, "").trim();
@@ -388,20 +314,20 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
     }
 
     public boolean isPrefixText() {
-        String text = bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
+        String text = binding.bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim();
         return text.startsWith(BOOK_PREFIX);
     }
 
     @Override
     public void populateDataInUI(List<AppBookmark> items) {
         if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_DATE) {
-            onListGrid.setImageResource(R.drawable.glyphicons_114_justify);
+            binding.onListGrid.setImageResource(R.drawable.glyphicons_114_justify);
             bookmarksAdapter.withPageNumber = true;
         } else if (AppState.get().bookmarksMode == AppState.BOOKMARK_MODE_BY_BOOK) {
             bookmarksAdapter.withPageNumber = false;
-            onListGrid.setImageResource(R.drawable.glyphicons_157_1_show_thumbnails);
+            binding.onListGrid.setImageResource(R.drawable.glyphicons_157_1_show_thumbnails);
         }
-        if (TxtUtils.isNotEmpty(bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim())) {
+        if (TxtUtils.isNotEmpty(binding.bookmarksEditSearch.getText().toString().toLowerCase(Locale.US).trim())) {
             bookmarksAdapter.withPageNumber = true;
         }
 
@@ -412,11 +338,10 @@ public class BookmarksFragment2 extends UIFragment<AppBookmark> {
         bookmarksAdapter.notifyDataSetChanged();
 
         if (isPrefixText()) {
-            allBookmarks.setVisibility(View.VISIBLE);
+            binding.allBookmarks.setVisibility(View.VISIBLE);
         } else {
-            allBookmarks.setVisibility(View.GONE);
+            binding.allBookmarks.setVisibility(View.GONE);
         }
-
     }
 
     @Override
