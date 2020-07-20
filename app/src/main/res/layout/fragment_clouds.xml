@@ -126,7 +126,7 @@
             android:visibility="gone" />
 
         <com.foobnix.pdf.info.view.MyProgressBar
-            android:id="@+id/MyProgressBarClouds"
+            android:id="@+id/myProgressBarClouds"
                     android:saveEnabled="false"
             
             android:layout_width="@dimen/wh_button"

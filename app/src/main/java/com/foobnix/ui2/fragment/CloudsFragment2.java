@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -24,6 +20,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentCloudsBinding;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
@@ -46,16 +43,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class CloudsFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.clouds, R.drawable.glyphicons_2_cloud);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.clouds, R.drawable.glyphicons_2_cloud);
     FileMetaAdapter metaAdapter;
-    ImageView onListGrid;
-    View panelRecent;
-    private ImageView imageDropbox;
-    private ImageView imageGDrive;
-    private ImageView imageOneDrive;
-    private ImageView onRefresh;
-    private ImageView isShowCloudsLine;
-    private View cloudsLayout;
+    private FragmentCloudsBinding binding;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -63,20 +53,12 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_clouds, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentCloudsBinding.inflate(inflater, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        panelRecent = view.findViewById(R.id.panelRecent);
+        recyclerView = binding.recyclerView;
 
-        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        onListGrid.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
+        binding.onListGrid.setOnClickListener(v -> popupMenu());
 
         metaAdapter = new FileMetaAdapter();
         metaAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
@@ -86,154 +68,114 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
 
-        myProgressBar = view.findViewById(R.id.MyProgressBarClouds);
+        myProgressBar = binding.myProgressBarClouds;
         myProgressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(myProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
-        onRefresh = view.findViewById(R.id.onRefreshDropbox);
-        onRefresh.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                myProgressBar.setVisibility(View.VISIBLE);
-                BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
-
-            }
+        binding.onRefreshDropbox.setOnClickListener(v -> {
+            myProgressBar.setVisibility(View.VISIBLE);
+            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
         });
-        cloudsLayout = view.findViewById(R.id.cloudsLayout);
-        isShowCloudsLine = view.findViewById(R.id.isShowCloudsLine);
-        isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
-        cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
-        isShowCloudsLine.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
-                isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
-                cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
-            }
+        binding.isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+        binding.cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
+        binding.isShowCloudsLine.setOnClickListener(v -> {
+            AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
+            binding.isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+            binding.cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
         });
 
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
 
-        imageDropbox = view.findViewById(R.id.imageDropbox);
-        imageGDrive = view.findViewById(R.id.imageGDrive);
-        imageOneDrive = view.findViewById(R.id.imageOneDrive);
+        binding.dropbox.setOnClickListener(v -> {
+            final boolean isDropbox = Clouds.get().isDropbox();
+            Clouds.get().loginToDropbox(getActivity(), () -> {
+                if (isDropbox) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
 
-        View dropbox = view.findViewById(R.id.dropbox);
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
+                } else {
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                    BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
 
-
-        dropbox.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                final boolean isDropbox = Clouds.get().isDropbox();
-                Clouds.get().loginToDropbox(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (isDropbox) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
-                        } else {
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
-
-                            myProgressBar.setVisibility(View.VISIBLE);
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                    myProgressBar.setVisibility(View.VISIBLE);
+                }
+                updateImages();
+            });
         });
 
-        final View gdrive = view.findViewById(R.id.gdrive);
-        gdrive.setOnClickListener(new OnClickListener() {
+        binding.oneDrive.setOnClickListener(v -> {
+            final boolean isDrive = Clouds.get().isGoogleDrive();
+            Clouds.get().loginToGoogleDrive(getActivity(), () -> {
+                if (getActivity() == null) {
+                    return;
+                }
+                if (isDrive) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
-            @Override
-            public void onClick(final View v) {
-                final boolean isDrive = Clouds.get().isGoogleDrive();
-                Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
 
-                    @Override
-                    public void run() {
-                        if (getActivity() == null) {
-                            return;
-                        }
-                        if (isDrive) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
-
-                        } else {
-                            myProgressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                } else {
+                    myProgressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                }
+                updateImages();
+            });
         });
 
-        final View onedrive = view.findViewById(R.id.oneDrive);
-        onedrive.setOnClickListener(new OnClickListener() {
+        binding.oneDrive.setOnClickListener(v -> {
+            final boolean isDrive = Clouds.get().isOneDrive();
 
-            @Override
-            public void onClick(final View v) {
-                final boolean isDrive = Clouds.get().isOneDrive();
+            Clouds.get().loginToOneDrive(getActivity(), () -> {
+                if (isDrive) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
 
-                Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (isDrive) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
-
-                        } else {
-                            myProgressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
+                } else {
+                    myProgressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                }
+                updateImages();
+            });
         });
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
-            dropbox.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
-            gdrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
-            onedrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+            binding.dropbox.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+            binding.gdrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
+            binding.oneDrive.setBackgroundResource(R.drawable.bg_border_ltgray_oled);
         }
 
-        return view;
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     public void updateImages() {
         if (Clouds.get().isDropbox()) {
-            TintUtil.setNoTintImage(imageDropbox);
+            TintUtil.setNoTintImage(binding.imageDropbox);
         } else {
-            TintUtil.setTintImageNoAlpha(imageDropbox, Color.LTGRAY);
+            TintUtil.setTintImageNoAlpha(binding.imageDropbox, Color.LTGRAY);
         }
 
         if (Clouds.get().isGoogleDrive()) {
-            TintUtil.setNoTintImage(imageGDrive);
+            TintUtil.setNoTintImage(binding.imageGDrive);
         } else {
-            TintUtil.setTintImageNoAlpha(imageGDrive, Color.LTGRAY);
+            TintUtil.setTintImageNoAlpha(binding.imageGDrive, Color.LTGRAY);
         }
 
         if (Clouds.get().isOneDrive()) {
-            TintUtil.setNoTintImage(imageOneDrive);
+            TintUtil.setNoTintImage(binding.imageOneDrive);
         } else {
-            TintUtil.setTintImageNoAlpha(imageOneDrive, Color.LTGRAY);
+            TintUtil.setTintImageNoAlpha(binding.imageOneDrive, Color.LTGRAY);
         }
     }
 
@@ -251,21 +193,16 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
     }
 
-    public boolean onBackAction() {
-        return false;
-    }
-
-    public static List<FileMeta> getCloudFiles(String path, String prefix) {
-
-        List<FileMeta> res = new ArrayList<FileMeta>();
+    public static List<FileMeta> getCloudFiles(String path) {
+        List<FileMeta> res = new ArrayList<>();
 
         File root = new File(path);
         File[] listFiles = root.listFiles();
         if (listFiles == null) {
-            return new ArrayList<FileMeta>();
+            return new ArrayList<>();
         }
 
         for (File file : listFiles) {
@@ -281,29 +218,28 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         Collections.reverse(res);
 
         return res;
-
     }
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> res = new ArrayList<FileMeta>();
+        List<FileMeta> res = new ArrayList<>();
 
         if (Clouds.get().isDropbox()) {
-            String title = getActivity().getString(R.string.dropbox) + " (" + Clouds.get().dropboxSpace + ")";
+            String title = getString(R.string.dropbox) + " (" + Clouds.get().dropboxSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(BookCSS.get().syncDropboxPath, Clouds.PREFIX_CLOUD_DROPBOX + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
+            res.addAll(getCloudFiles(BookCSS.get().syncDropboxPath));
         }
 
         if (Clouds.get().isGoogleDrive()) {
-            String title = getActivity().getString(R.string.google_drive) + " (" + Clouds.get().googleSpace + ")";
+            String title = getString(R.string.google_drive) + " (" + Clouds.get().googleSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(BookCSS.get().syncGdrivePath, Clouds.PREFIX_CLOUD_GDRIVE + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
+            res.addAll(getCloudFiles(BookCSS.get().syncGdrivePath));
         }
 
         if (Clouds.get().isOneDrive()) {
-            String title = getActivity().getString(R.string.one_drive) + " (" + Clouds.get().oneDriveSpace + ")";
+            String title = getString(R.string.one_drive) + " (" + Clouds.get().oneDriveSpace + ")";
             res.add(metaTitle(title));
-            res.addAll(getCloudFiles(BookCSS.get().syncOneDrivePath, Clouds.PREFIX_CLOUD_ONEDRIVE + Clouds.LIBRERA_SYNC_ONLINE_FOLDER));
+            res.addAll(getCloudFiles(BookCSS.get().syncOneDrivePath));
         }
 
         LOG.d("prepareDataInBackground");
@@ -330,11 +266,11 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
     public void onGridList() {
         LOG.d("onGridList");
-        onGridList(AppState.get().cloudMode, onListGrid, metaAdapter, null);
+        onGridList(AppState.get().cloudMode, binding.onListGrid, metaAdapter, null);
     }
 
-    private void popupMenu(final ImageView onGridList) {
-        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+    private void popupMenu() {
+        MyPopupMenu p = new MyPopupMenu(getActivity(), binding.onListGrid);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
@@ -343,15 +279,11 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().cloudMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    onGridList();
-                    return false;
-                }
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().cloudMode = actions.get(index);
+                binding.onListGrid.setImageResource(icons.get(index));
+                onGridList();
+                return false;
             });
         }
 
@@ -368,5 +300,4 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
     }
-
 }
