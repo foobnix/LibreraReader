@@ -30,7 +30,6 @@ import com.cloudrail.si.CloudRail;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
@@ -549,7 +548,7 @@ public class MainTabs2 extends AdsFragmentActivity {
                 for (String extra : extras) {
                     final String text = getIntent().getStringExtra(extra);
                     if (TxtUtils.isNotEmpty(text)) {
-                        binding.pager.postDelayed(() -> ((SearchFragment2) tabFragments.get(0)).searchAndOrderExteral(text), 250);
+                        binding.pager.postDelayed(() -> ((SearchFragment2) tabFragments.get(0)).searchAndOrderExternal(text), 250);
                         break;
                     }
                 }

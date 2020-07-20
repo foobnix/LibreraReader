@@ -3,8 +3,6 @@ package com.foobnix.ui2.fragment;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -14,21 +12,17 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Pair;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -50,6 +44,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentSearch2Binding;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -79,83 +74,69 @@ import java.util.Set;
 import java.util.Stack;
 
 public class SearchFragment2 extends UIFragment<FileMeta> {
-
     public static final String EMPTY_ID = "\u00A0";
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.library, R.drawable.glyphicons_2_book_open);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.library, R.drawable.glyphicons_2_book_open);
     private static final String CMD_KEYCODE = "@@keycode_config";
     private static final String CMD_EDIT_AUTO_COMPLETE = "@@edit_autocomple";
     private static final String CMD_MARGIN = "@@keycode_margin";
     public static int NONE = -1;
-    final Set<String> autocomplitions = new HashSet<String>();
+    final Set<String> autocomplitions = new HashSet<>();
     public int prevLibModeFileMeta = AppState.MODE_GRID;
     public int prevLibModeAuthors = NONE;
     public int rememberPos = 0;
     FileMetaAdapter searchAdapter;
     AuthorsAdapter2 authorsAdapter;
-    TextView countBooks, sortBy;
+    private FragmentSearch2Binding binding;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage, cleanFilter;
-    View onRefresh, secondTopPanel;
-    AutoCompleteTextView searchEditText;
     int countTitles = 0;
     Runnable hideKeyboard = new Runnable() {
-
         @Override
         public void run() {
-            Keyboards.close(searchEditText);
+            Keyboards.close(binding.filterLine);
             Keyboards.hideNavigation(getActivity());
         }
     };
     Runnable saveAutoComplete = new Runnable() {
-
         @Override
         public void run() {
-            String txt = searchEditText.getText().toString().trim();
+            String txt = binding.filterLine.getText().toString().trim();
             if (TxtUtils.isNotEmpty(txt) && !txt.startsWith("@@") && !StringDB.contains(AppState.get().myAutoCompleteDb, txt)) {
                 if (!searchAdapter.getItemsList().isEmpty()) {
                     StringDB.add(AppState.get().myAutoCompleteDb, txt, (db) -> AppState.get().myAutoCompleteDb = db);
                     autocomplitions.add(txt);
                     updateFilterListAdapter();
-                    myAutoCompleteImage.setVisibility(View.VISIBLE);
+                    binding.myAutoCompleteImage.setVisibility(View.VISIBLE);
                 }
-
             }
-
         }
     };
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
             if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 searchAndOrderAsync();
-                searchEditText.setHint(R.string.search);
-                onRefresh.setActivated(true);
+                binding.filterLine.setHint(R.string.search);
+                binding.onRefresh.setActivated(true);
             } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 int count = intent.getIntExtra("android.intent.extra.INDEX", 0);
                 if (count > 0) {
-                    countBooks.setText("" + count);
+                    binding.countBooks.setText("" + count);
                 }
-                searchEditText.setHint(R.string.searching_please_wait_);
-                onRefresh.setActivated(false);
+                binding.filterLine.setHint(R.string.searching_please_wait_);
+                binding.onRefresh.setActivated(false);
             } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                onRefresh.setActivated(false);
-                searchEditText.setHint(R.string.extracting_information_from_books);
+                binding.onRefresh.setActivated(false);
+                binding.filterLine.setHint(R.string.extracting_information_from_books);
             }
         }
 
     };
-    Runnable sortAndSeach = new Runnable() {
-
-        @Override
-        public void run() {
-            recyclerView.scrollToPosition(0);
-            searchAndOrderAsync();
-        }
+    Runnable sortAndSearch = () -> {
+        recyclerView.scrollToPosition(0);
+        searchAndOrderAsync();
     };
     private final TextWatcher filterTextWatcher = new TextWatcher() {
-
         @Override
         public void afterTextChanged(final Editable s) {
         }
@@ -172,53 +153,41 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                             AppState.get().libraryMode == AppState.MODE_LIST_COMPACT || //
                             AppState.get().libraryMode == AppState.MODE_COVERS//
             ) {
-                handler.removeCallbacks(sortAndSeach);
+                handler.removeCallbacks(sortAndSearch);
                 handler.removeCallbacks(hideKeyboard);
                 if (s.toString().trim().length() == 0) {
-                    handler.postDelayed(sortAndSeach, 250);
+                    handler.postDelayed(sortAndSearch, 250);
                     handler.postDelayed(hideKeyboard, 2000);
                 } else {
-                    handler.postDelayed(sortAndSeach, 1000);
+                    handler.postDelayed(sortAndSearch, 1000);
                 }
             }
-            myAutoCompleteImage.setVisibility(View.GONE);
+            binding.myAutoCompleteImage.setVisibility(View.GONE);
             handler.removeCallbacks(saveAutoComplete);
 
             if (StringDB.contains(AppState.get().myAutoCompleteDb, s.toString().trim())) {
-                myAutoCompleteImage.setVisibility(View.VISIBLE);
+                binding.myAutoCompleteImage.setVisibility(View.VISIBLE);
             } else {
                 handler.postDelayed(saveAutoComplete, 10000);
             }
-
         }
-
     };
     private String NO_SERIES = ":no-series";
-    private Stack<String> prevText = new Stack<String>();
-    private ImageView onGridlList;
-    ResultResponse<String> onAuthorSeriesClick = new ResultResponse<String>() {
-
-        @Override
-        public boolean onResultRecive(String result) {
-            rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
-            onMetaInfoClick(SEARCH_IN.getByMode(AppState.get().libraryMode), result);
-            return false;
-        }
+    private final Stack<String> prevText = new Stack<>();
+    ResultResponse<String> onAuthorSeriesClick = result -> {
+        rememberPos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+        onMetaInfoClick(SEARCH_IN.getByMode(AppState.get().libraryMode), result);
+        return false;
     };
-    ResultResponse<String> onAuthorClick = new ResultResponse<String>() {
-
-        @Override
-        public boolean onResultRecive(String result) {
-            onMetaInfoClick(SEARCH_IN.AUTHOR, result);
-            return false;
-        }
+    ResultResponse<String> onAuthorClick = result -> {
+        onMetaInfoClick(SEARCH_IN.AUTHOR, result);
+        return false;
     };
     ResultResponse<String> onSeriesClick = new ResultResponse<String>() {
-
         @Override
         public boolean onResultRecive(String result) {
             if (result.contains(NO_SERIES)) {
-                onMetaInfoClick(SEARCH_IN.getByPrefix(searchEditText.getText().toString()), result);
+                onMetaInfoClick(SEARCH_IN.getByPrefix(binding.filterLine.getText().toString()), result);
             } else {
                 onMetaInfoClick(SEARCH_IN.SERIES, result);
             }
@@ -233,37 +202,34 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.secondTopPanel, TintUtil.color);
 
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
 
-        TintUtil.setUITextColor(countBooks, colorTheme);
+        TintUtil.setUITextColor(binding.countBooks, colorTheme);
 
-        TintUtil.setTintImageNoAlpha(cleanFilter, colorTheme);
-        TintUtil.setTintImageNoAlpha(myAutoCompleteImage, colorTheme);
+        TintUtil.setTintImageNoAlpha(binding.cleanFilter, colorTheme);
+        TintUtil.setTintImageNoAlpha(binding.myAutoCompleteImage, colorTheme);
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
-            searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
+            binding.filterLine.setBackgroundResource(R.drawable.bg_search_edit_night);
         } else {
-            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
+            binding.filterLine.setBackgroundResource(R.drawable.bg_search_edit);
         }
-        TintUtil.setStrokeColor(searchEditText, colorTheme);
-        TintUtil.setUITextColor(searchEditText, colorTheme);
+        TintUtil.setStrokeColor(binding.filterLine, colorTheme);
+        TintUtil.setUITextColor(binding.filterLine, colorTheme);
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
-            searchEditText.setBackgroundResource(R.drawable.bg_search_edit);
-            TintUtil.setStrokeColor(searchEditText, Color.BLACK);
-            TintUtil.setUITextColor(searchEditText, Color.BLACK);
-            countBooks.setTextColor(Color.BLACK);
-
+            binding.filterLine.setBackgroundResource(R.drawable.bg_search_edit);
+            TintUtil.setStrokeColor(binding.filterLine, Color.BLACK);
+            TintUtil.setUITextColor(binding.filterLine, Color.BLACK);
+            binding.countBooks.setTextColor(Color.BLACK);
         }
-
-
     }
 
     public void onGridList() {
-        onGridList(AppState.get().libraryMode, onGridlList, searchAdapter, authorsAdapter);
+        onGridList(AppState.get().libraryMode, binding.onGridList, searchAdapter, authorsAdapter);
     }
 
     public void initAutocomplition() {
@@ -287,21 +253,19 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void updateFilterListAdapter() {
         try {
-            ArrayList<String> list = new ArrayList<String>(autocomplitions);
+            ArrayList<String> list = new ArrayList<>(autocomplitions);
             Collections.sort(list);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, list);
-            searchEditText.setAdapter(adapter);
-            searchEditText.setThreshold(1);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, list);
+            binding.filterLine.setAdapter(adapter);
+            binding.filterLine.setThreshold(1);
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search2, container, false);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentSearch2Binding.inflate(inflater, container, false);
 
         LOG.d("Context-SF-getContext", getContext());
         LOG.d("Context-SF-getApplicationContext", getActivity().getApplicationContext());
@@ -314,125 +278,70 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         handler = new Handler();
 
-        secondTopPanel = view.findViewById(R.id.secondTopPanel);
-        countBooks = (TextView) view.findViewById(R.id.countBooks);
-        onRefresh = view.findViewById(R.id.onRefresh);
-        onRefresh.setActivated(true);
-        cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
-        sortBy = (TextView) view.findViewById(R.id.sortBy);
-        sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
-        myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
-        searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-
+        binding.onRefresh.setActivated(true);
+        recyclerView = binding.recyclerView;
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
-            searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
+            binding.filterLine.setBackgroundResource(R.drawable.bg_search_edit_night);
         }
 
-        myAutoCompleteImage.setVisibility(View.GONE);
+        binding.myAutoCompleteImage.setVisibility(View.GONE);
 
-
-        searchEditText.addTextChangedListener(filterTextWatcher);
-        searchEditText.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-        EditTextHelper.enableKeyboardSearch(searchEditText, new Runnable() {
-
-            @Override
-            public void run() {
-                Keyboards.close(searchEditText);
-                Keyboards.hideNavigation(getActivity());
-            }
+        binding.filterLine.addTextChangedListener(filterTextWatcher);
+        binding.filterLine.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        EditTextHelper.enableKeyboardSearch(binding.filterLine, () -> {
+            Keyboards.close(binding.filterLine);
+            Keyboards.hideNavigation(getActivity());
         });
 
         searchAdapter = new FileMetaAdapter();
 
         authorsAdapter = new AuthorsAdapter2();
 
-        onGridlList = (ImageView) view.findViewById(R.id.onGridList);
-        onGridlList.setOnClickListener(new OnClickListener() {
+        binding.onGridList.setOnClickListener(v -> popupMenu());
 
-            @Override
-            public void onClick(View v) {
-                popupMenu(onGridlList);
+        binding.onRefresh.setOnClickListener(v -> {
+            if (true) {
+                // test();
+                // return;
             }
-        });
 
-        onRefresh.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (true) {
-                    // test();
-                    // return;
-                }
-
-                if (!onRefresh.isActivated()) {
-                    Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                PrefDialogs.chooseFolderDialog(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        //BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
-                    }
-                }, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        recyclerView.scrollToPosition(0);
-                        seachAll();
-                    }
-                });
+            if (!binding.onRefresh.isActivated()) {
+                Toast.makeText(getActivity(), R.string.extracting_information_from_books, Toast.LENGTH_LONG).show();
+                return;
             }
-        });
-
-        cleanFilter.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                searchEditText.setText("");
+            PrefDialogs.chooseFolderDialog(getActivity(), () -> {
+                //BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
+            }, () -> {
                 recyclerView.scrollToPosition(0);
-                searchAndOrderAsync();
-            }
+                searchAll();
+            });
         });
 
-        sortBy.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                sortByPopup(v);
-            }
+        binding.cleanFilter.setOnClickListener(v -> {
+            binding.filterLine.setText("");
+            recyclerView.scrollToPosition(0);
+            searchAndOrderAsync();
         });
 
-        sortOrder.setOnClickListener(new OnClickListener() {
+        binding.sortBy.setOnClickListener(this::sortByPopup);
 
-            @Override
-            public void onClick(View v) {
-                AppState.get().isSortAsc = !AppState.get().isSortAsc;
-                searchAndOrderAsync();
-            }
+        binding.sortOrder.setOnClickListener(v -> {
+            AppState.get().isSortAsc = !AppState.get().isSortAsc;
+            searchAndOrderAsync();
         });
-        sortOrder.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
+        binding.sortOrder.setOnLongClickListener(v -> {
+            AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            return true;
         });
 
-        sortBy.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
+        binding.sortBy.setOnLongClickListener(v -> {
+            AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            return true;
         });
-        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+        binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
 
         bindAdapter(searchAdapter);
 
@@ -445,7 +354,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         if (AppDB.get().getCount() == 0) {
             //detect crash here! not start second time!!!
-            seachAll();
+            searchAll();
         } else {
             checkForDeleteBooks();
             searchAndOrderAsync();
@@ -456,31 +365,29 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         recyclerView.addOnScrollListener(new OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
 
-        myAutoCompleteImage.setOnClickListener(new OnClickListener() {
+        binding.myAutoCompleteImage.setOnClickListener(v -> showAutoCompleteDialog());
 
-            @Override
-            public void onClick(View v) {
-                showAutoCompleteDialog();
-            }
-        });
+        return binding.getRoot();
+    }
 
-        return view;
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     public void showAutoCompleteDialog() {
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.search_history_and_autocomplete);
 
         final ListView list = new ListView(getActivity());
 
-        final List<String> items = new ArrayList<String>(StringDB.asList(AppState.get().myAutoCompleteDb));
+        final List<String> items = new ArrayList<>(StringDB.asList(AppState.get().myAutoCompleteDb));
         Collections.sort(items);
         BaseItemLayoutAdapter<String> adapter = new BaseItemLayoutAdapter<String>(getActivity(), R.layout.path_item, items) {
             @Override
@@ -490,26 +397,17 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                 text.setText(item);
 
-                delete.setOnClickListener(new OnClickListener() {
+                delete.setOnClickListener(v -> {
+                    autocomplitions.remove(item);
+                    items.remove(item);
 
-                    @Override
-                    public void onClick(View v) {
-                        autocomplitions.remove(item);
-                        items.remove(item);
-
-                        StringDB.delete(AppState.get().myAutoCompleteDb, item, (db) -> AppState.get().myAutoCompleteDb = db);
-                        notifyDataSetChanged();
-                    }
+                    StringDB.delete(AppState.get().myAutoCompleteDb, item, (db) -> AppState.get().myAutoCompleteDb = db);
+                    notifyDataSetChanged();
                 });
-                layout.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        searchEditText.setText(item);
-                        searchAndOrderAsync();
-                    }
+                layout.setOnClickListener(v -> {
+                    binding.filterLine.setText(item);
+                    searchAndOrderAsync();
                 });
-
             }
         };
 
@@ -517,38 +415,25 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         builder.setView(list);
 
-        builder.setPositiveButton(R.string.close, new AlertDialog.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
+        builder.setPositiveButton(R.string.close, (dialog, which) -> { });
 
         AlertDialog create = builder.create();
-        create.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                Keyboards.hideNavigation(getActivity());
-            }
-        });
+        create.setOnDismissListener(dialog -> Keyboards.hideNavigation(getActivity()));
         create.show();
 
         Keyboards.close(getActivity());
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
-
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(broadcastReceiver, new IntentFilter(BooksService.INTENT_NAME));
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(broadcastReceiver);
     }
 
     private void onMetaInfoClick(SEARCH_IN mode, String result) {
@@ -556,13 +441,13 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             result = "," + result + ",";
         }
 
-        searchEditText.setText(mode.getDotPrefix() + " " + result);
+        binding.filterLine.setText(mode.getDotPrefix() + " " + result);
         AppState.get().libraryMode = prevLibModeFileMeta;
         onGridList();
         searchAndOrderAsync();
     }
 
-    private void seachAll() {
+    private void searchAll() {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
@@ -584,45 +469,38 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void onTextRecive(String txt) {
-        searchAndOrderExteral(txt);
+        searchAndOrderExternal(txt);
     }
 
-    public void searchAndOrderExteral(String text) {
-        if (searchEditText != null) {
-            searchEditText.setText(text);
-            searchAndOrderSync(null);
-        }
-
+    public void searchAndOrderExternal(String text) {
+        binding.filterLine.setText(text);
+        searchAndOrderSync(null);
     }
 
     public void searchAndOrderAsync() {
-        searchEditText.setHint(R.string.msg_loading);
-        sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
+        binding.filterLine.setHint(R.string.msg_loading);
+        binding.sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
 
-        sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+        binding.sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
 
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
-        sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
-        sortOrder.setContentDescription(order);
+        binding.sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + binding.sortBy.getText());
+        binding.sortOrder.setContentDescription(order);
         populate();
 
-        Apps.accessibilityText(getActivity(), "" + sortBy.getContentDescription());
-
-
+        Apps.accessibilityText(getActivity(), "" + binding.sortBy.getContentDescription());
     }
 
     @Subscribe
     public void onShowTag(OpenTagMessage msg) {
-        searchAndOrderExteral("@tags " + msg.getTagName());
-
+        searchAndOrderExternal("@tags " + msg.getTagName());
     }
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        String txt = searchEditText.getText().toString().trim();
+        String txt = binding.filterLine.getText().toString().trim();
         countTitles = 0;
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
-
             if (!prevText.contains(txt)) {
                 prevText.push(txt);
             }
@@ -630,18 +508,18 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 prevText.clear();
             }
 
-            boolean isSearchOnlyEmpy = txt.contains(NO_SERIES);
-            if (isSearchOnlyEmpy) {
+            boolean isSearchOnlyEmpty = txt.contains(NO_SERIES);
+            if (isSearchOnlyEmpty) {
                 txt = txt.replace(NO_SERIES, "");
             }
 
             List<FileMeta> searchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
 
-            List<String> result = new ArrayList<String>();
+            List<String> result = new ArrayList<>();
             boolean byGenre = txt.startsWith(SEARCH_IN.GENRE.getDotPrefix());
             boolean byAuthor = txt.startsWith(SEARCH_IN.AUTHOR.getDotPrefix());
             if (!txt.contains("::") && (byGenre || byAuthor)) {
-                if (isSearchOnlyEmpy) {
+                if (isSearchOnlyEmpty) {
                     Iterator<FileMeta> iterator = searchBy.iterator();
                     while (iterator.hasNext()) {
                         if (TxtUtils.isNotEmpty(iterator.next().getSequence())) {
@@ -730,47 +608,42 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderSync(items);
     }
 
-    public void toastState(String command, boolean state) {
-        Toast.makeText(getContext(), command + " [" + (state ? "ON" : "OFF") + "]", Toast.LENGTH_LONG).show();
-    }
-
     public void searchAndOrderSync(List<FileMeta> loadingResults) {
-        handler.removeCallbacks(sortAndSeach);
+        handler.removeCallbacks(sortAndSearch);
 
-        String txt = searchEditText.getText().toString().trim();
-        searchEditText.setHint(R.string.search);
+        String txt = binding.filterLine.getText().toString().trim();
+        binding.filterLine.setHint(R.string.search);
 
         if (CMD_KEYCODE.equals(txt)) {
             new KeyCodeDialog(getActivity(), null);
-            searchEditText.setText("");
+            binding.filterLine.setText("");
         }
         if (CMD_MARGIN.equals(txt)) {
             SwipeRefreshLayout layout = getActivity().findViewById(R.id.swipeRefreshLayout);
             final FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) layout.getLayoutParams();
             layoutParams.rightMargin = Dips.screenWidth() / 4;
             layout.setLayoutParams(layoutParams);
-            searchEditText.setText("");
+            binding.filterLine.setText("");
         }
 
-
         if (CMD_EDIT_AUTO_COMPLETE.equals(txt)) {
-            searchEditText.setText("");
+            binding.filterLine.setText("");
             showAutoCompleteDialog();
         }
 
         if (TxtUtils.isEmpty(txt)) {
-            cleanFilter.setVisibility(View.GONE);
+            binding.cleanFilter.setVisibility(View.GONE);
         } else {
-            cleanFilter.setVisibility(View.VISIBLE);
+            binding.cleanFilter.setVisibility(View.VISIBLE);
         }
 
         if (Arrays.asList(AppState.MODE_GRID, AppState.MODE_COVERS, AppState.MODE_LIST, AppState.MODE_LIST_COMPACT).contains(AppState.get().libraryMode)) {
             prevLibModeFileMeta = AppState.get().libraryMode;
-            searchEditText.setEnabled(true);
-            sortBy.setEnabled(true);
-            sortOrder.setEnabled(true);
+            binding.filterLine.setEnabled(true);
+            binding.sortBy.setEnabled(true);
+            binding.sortOrder.setEnabled(true);
             if (AppState.get().isVisibleSorting) {
-                sortOrder.setVisibility(View.VISIBLE);
+                binding.sortOrder.setVisibility(View.VISIBLE);
             }
 
             searchAdapter.clearItems();
@@ -779,59 +652,50 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             } else {
                 List<FileMeta> allSearchBy = AppDB.get().searchBy(txt, SORT_BY.getByID(AppState.get().sortBy), AppState.get().isSortAsc);
                 searchAdapter.getItemsList().addAll(allSearchBy);
-
             }
             searchAdapter.notifyDataSetChanged();
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    searchAdapter.notifyDataSetChanged();
-
-                }
-            }, 1000);
+            handler.postDelayed(() -> searchAdapter.notifyDataSetChanged(), 1000);
 
             // recyclerView.scrollToPosition(0);
-
         } else {
             prevLibModeAuthors = AppState.get().libraryMode;
-            searchEditText.setEnabled(false);
-            sortBy.setEnabled(false);
-            sortBy.setText("");
-            sortOrder.setEnabled(false);
-            sortOrder.setVisibility(View.INVISIBLE);
+            binding.filterLine.setEnabled(false);
+            binding.sortBy.setEnabled(false);
+            binding.sortBy.setText("");
+            binding.sortOrder.setEnabled(false);
+            binding.sortOrder.setVisibility(View.INVISIBLE);
 
             String empty = "";
             if (AppState.get().libraryMode == AppState.MODE_AUTHORS) {
-                searchEditText.setHint(R.string.author);
+                binding.filterLine.setHint(R.string.author);
                 empty = EMPTY_ID + getString(R.string.no_author);
             } else if (AppState.get().libraryMode == AppState.MODE_SERIES) {
-                searchEditText.setHint(R.string.serie);
+                binding.filterLine.setHint(R.string.serie);
                 empty = EMPTY_ID + getString(R.string.no_serie);
             } else if (AppState.get().libraryMode == AppState.MODE_GENRE) {
-                searchEditText.setHint(R.string.genre);
+                binding.filterLine.setHint(R.string.genre);
                 empty = EMPTY_ID + getString(R.string.no_genre);
             } else if (AppState.get().libraryMode == AppState.MODE_KEYWORDS) {
-                searchEditText.setHint(R.string.keywords);
+                binding.filterLine.setHint(R.string.keywords);
                 empty = EMPTY_ID + getString(R.string.no_keywords);
             } else if (AppState.get().libraryMode == AppState.MODE_USER_TAGS) {
-                searchEditText.setHint(R.string.my_tags);
-                empty = EMPTY_ID + getActivity().getString(R.string.no_tag);
+                binding.filterLine.setHint(R.string.my_tags);
+                empty = EMPTY_ID + getString(R.string.no_tag);
             } else if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
-                searchEditText.setHint(R.string.language);
-                empty = EMPTY_ID + getActivity().getString(R.string.no_language);
+                binding.filterLine.setHint(R.string.language);
+                empty = EMPTY_ID + getString(R.string.no_language);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLICATION_DATE) {
-                searchEditText.setHint(R.string.publication_date);
-                empty = EMPTY_ID + getActivity().getString(R.string.empy);
+                binding.filterLine.setHint(R.string.publication_date);
+                empty = EMPTY_ID + getString(R.string.empy);
             } else if (AppState.get().libraryMode == AppState.MODE_PUBLISHER) {
-                searchEditText.setHint(R.string.publisher);
-                empty = EMPTY_ID + getActivity().getString(R.string.empy);
+                binding.filterLine.setHint(R.string.publisher);
+                empty = EMPTY_ID + getString(R.string.empy);
             }
 
             authorsAdapter.clearItems();
             List<String> list = AppDB.get().getAll(SEARCH_IN.getByMode(AppState.get().libraryMode));
             if (AppState.get().libraryMode == AppState.MODE_LANGUAGES) {
-                List<String> res = new ArrayList<String>();
+                List<String> res = new ArrayList<>();
                 String prev = null;
                 for (String ln : list) {
                     if (TxtUtils.isEmpty(ln)) {
@@ -860,38 +724,25 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             authorsAdapter.notifyDataSetChanged();
 
             recyclerView.scrollToPosition(rememberPos);
-
         }
 
         showBookCount();
-
-
     }
 
     private void sortByPopup(final View view) {
-
-
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
-            popup.getMenu().add(sortBy.getResName()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().sortBy = sortBy.getIndex();
-                    searchAndOrderAsync();
-                    return false;
-                }
+            popup.getMenu().add(sortBy.getResName()).setOnMenuItemClickListener(item -> {
+                AppState.get().sortBy = sortBy.getIndex();
+                searchAndOrderAsync();
+                return false;
             });
         }
         popup.show();
     }
 
-    public void popupMenuTest() {
-        popupMenu(onGridlList);
-    }
-
-    private void popupMenu(final ImageView onGridList) {
-        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+    private void popupMenu() {
+        MyPopupMenu p = new MyPopupMenu(getActivity(), binding.onGridList);
         PopupHelper.addPROIcon(p, getActivity());
         List<Integer> names = Arrays.asList(R.string.list, //
                 R.string.compact, //
@@ -934,31 +785,25 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().libraryMode = actions.get(index);
+                binding.onGridList.setImageResource(icons.get(index));
 
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().libraryMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-
-                    if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
-                        searchEditText.setText("");
-                    }
-
-                    onGridList();
-                    searchAndOrderAsync();
-                    return false;
+                if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
+                    binding.filterLine.setText("");
                 }
+
+                onGridList();
+                searchAndOrderAsync();
+                return false;
             });
         }
 
         p.show();
-        return;
-
     }
 
     public void showBookCount() {
-        countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
+        binding.countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
     }
 
     @Override
@@ -967,7 +812,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             return false;
         }
         if (recyclerView.getAdapter() instanceof FileMetaAdapter) {
-            String searchText = searchEditText.getText().toString();
+            String searchText = binding.filterLine.getText().toString();
             if (TxtUtils.isEmpty(searchText)) {
                 return false;
             }
@@ -979,42 +824,38 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                     String pop = prevText.pop();
                     LOG.d("pop", pop);
                     if (TxtUtils.isNotEmpty(pop)) {
-                        searchEditText.setText(pop);
+                        binding.filterLine.setText(pop);
                         searchAndOrderAsync();
                         return true;
                     }
-
                 } catch (EmptyStackException e) {
                     LOG.e(e);
                 }
             }
 
-            searchEditText.setText("");
+            binding.filterLine.setText("");
             if (prevLibModeAuthors == NONE) {
                 prevLibModeAuthors = prevLibModeFileMeta;
             }
             AppState.get().libraryMode = prevLibModeAuthors;
-            onGridList();
-            searchAndOrderAsync();
-            return true;
 
         } else {
             AppState.get().libraryMode = prevLibModeFileMeta;
-            onGridList();
-            searchAndOrderAsync();
-            return true;
         }
+        onGridList();
+        searchAndOrderAsync();
+        return true;
     }
 
     @Override
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
         if (!BooksService.isRunning) {
-            onRefresh.setActivated(!BooksService.isRunning);
-            searchEditText.setHint(R.string.search);
+            binding.onRefresh.setActivated(!BooksService.isRunning);
+            binding.filterLine.setHint(R.string.search);
         }
     }
 
@@ -1024,11 +865,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAndOrderAsync();
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         LOG.d("SearchFragment2 onDestroy");
-
     }
 }
