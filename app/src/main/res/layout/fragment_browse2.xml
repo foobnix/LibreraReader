@@ -57,7 +57,7 @@
         </HorizontalScrollView>
 
         <com.foobnix.pdf.info.view.MyProgressBar
-            android:id="@+id/MyProgressBarBrowse"
+            android:id="@+id/myProgressBarBrowse"
                     android:saveEnabled="false"
             
             android:layout_width="@dimen/wh_button"
@@ -172,7 +172,7 @@
         android:padding="@dimen/dv" >
 
         <ImageView
-            android:id="@+id/openAsbookImage"
+            android:id="@+id/openAsBookImage"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_margin="4dip"

@@ -54,7 +54,7 @@ public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
 
     Handler handler;
-    protected volatile MyProgressBar MyProgressBar;
+    protected volatile MyProgressBar myProgressBar;
     protected RecyclerView recyclerView;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
@@ -267,7 +267,7 @@ public abstract class UIFragment<T> extends Fragment {
     }
 
     public boolean isInProgress() {
-        return MyProgressBar != null && MyProgressBar.getVisibility() == View.VISIBLE;
+        return myProgressBar != null && myProgressBar.getVisibility() == View.VISIBLE;
     }
 
     AsyncTask<Object, Object, List<T>> execute;
@@ -289,12 +289,12 @@ public abstract class UIFragment<T> extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (MyProgressBar != null) {
+                    if (myProgressBar != null) {
                         handler.postDelayed(new Runnable() {
 
                             @Override
                             public void run() {
-                                MyProgressBar.setVisibility(View.VISIBLE);
+                                myProgressBar.setVisibility(View.VISIBLE);
                             }
                         }, 100);
                     }
@@ -318,9 +318,9 @@ public abstract class UIFragment<T> extends Fragment {
                 @Override
                 public void run() {
                     if (isAdded()) {
-                        if (MyProgressBar != null) {
+                        if (myProgressBar != null) {
                             handler.removeCallbacksAndMessages(null);
-                            MyProgressBar.setVisibility(View.GONE);
+                            myProgressBar.setVisibility(View.GONE);
                         }
                         try {
                             populateDataInUI(result);

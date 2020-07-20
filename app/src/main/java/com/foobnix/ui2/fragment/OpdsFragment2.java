@@ -156,9 +156,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         pathContainer = view.findViewById(R.id.pathContainer);
         view1 = view.findViewById(R.id.view1);
         view2 = view.findViewById(R.id.view2);
-        MyProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarOPDS);
-        MyProgressBar.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
+        myProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarOPDS);
+        myProgressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(myProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         onPlus.setOnClickListener(new OnClickListener() {
 
@@ -626,14 +626,14 @@ public class OpdsFragment2 extends UIFragment<Entry> {
 
                         @Override
                         protected void onPreExecute() {
-                            MyProgressBar.setVisibility(View.VISIBLE);
+                            myProgressBar.setVisibility(View.VISIBLE);
                         }
 
                         ;
 
                         @Override
                         protected void onPostExecute(Object result) {
-                            MyProgressBar.setVisibility(View.GONE);
+                            myProgressBar.setVisibility(View.GONE);
                             if ((Boolean) result == false) {
                                 Toast.makeText(getContext(), R.string.loading_error, Toast.LENGTH_LONG).show();
                                 // Urls.openWevView(getActivity(), link.href, null);

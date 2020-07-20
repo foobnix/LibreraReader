@@ -17,28 +17,21 @@ import android.provider.DocumentsContract.Document;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
-import com.foobnix.StringResponse;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
@@ -56,12 +49,12 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentBrowse2Binding;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.pdf.search.view.AsyncProgressResultToastTask;
@@ -72,7 +65,6 @@ import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
@@ -88,7 +80,7 @@ import java.util.Map;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BrowseFragment2 extends UIFragment<FileMeta> {
 
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.folders, R.drawable.glyphicons_145_folder_open);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.folders, R.drawable.glyphicons_145_folder_open);
     public static final String EXTRA_INIT_PATH = "EXTRA_PATH";
     public static final String EXTRA_TYPE = "EXTRA_TYPE";
     public static final String EXTRA_TEXT = "EXTRA_TEXT";
@@ -100,42 +92,33 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public static int TYPE_CREATE_FILE = 3;
     public CloudStorage cloudStorage;
     FileMetaAdapter searchAdapter;
-    HorizontalScrollView scroller;
-    Map<String, Integer> rememberPos = new HashMap<String, Integer>();
+    Map<String, Integer> rememberPos = new HashMap<>();
     String displayPath;
     boolean isRestorePos = false;
-    private LinearLayout paths;
-    private TextView stub;
-    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
-    private EditText editPath;
-    private View pathContainer, onClose, onAction, openAsBook;
+    private FragmentBrowse2Binding binding;
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
     private ResultResponse<String> onPositiveAction;
     OnClickListener onSelectAction = new OnClickListener() {
-
         @Override
         public void onClick(View v) {
             if (fragmentType == TYPE_SELECT_FOLDER) {
-
                 if (ExtUtils.isExteralSD(BookCSS.get().dirLastPath) || new File(BookCSS.get().dirLastPath).canRead()) {
                     onPositiveAction.onResultRecive(BookCSS.get().dirLastPath);
                 } else {
                     Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                 }
             } else if (fragmentType == TYPE_SELECT_FILE) {
-                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + editPath.getText());
+                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + binding.editPath.getText());
             } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
-                onPositiveAction.onResultRecive(editPath.getText().toString());
+                onPositiveAction.onResultRecive(binding.editPath.getText().toString());
             } else if (fragmentType == TYPE_CREATE_FILE) {
-                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + editPath.getText());
+                onPositiveAction.onResultRecive(BookCSS.get().dirLastPath + "/" + binding.editPath.getText());
             }
-
         }
     };
     private ResultResponse<String> onCloseAction;
     OnClickListener onCloseButtonActoin = new OnClickListener() {
-
         @Override
         public void onClick(View v) {
             if (onCloseAction != null) {
@@ -143,7 +126,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
     };
-    private ImageView openAsbookImage;
 
     public BrowseFragment2() {
         super();
@@ -162,141 +144,93 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
-        TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
-        TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
-
+        TintUtil.setBackgroundFillColor(binding.pathContainer, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.onClose, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.onAction, TintUtil.color);
+        TintUtil.setTintImageWithAlpha(binding.openAsBookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_browse2, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentBrowse2Binding.inflate(inflater, container, false);
 
         Bundle arguments = getArguments();
 
-        pathContainer = view.findViewById(R.id.pathContainer);
-        View onCloseActionPaner = view.findViewById(R.id.onCloseActionPaner);
-        onClose = view.findViewById(R.id.onClose);
-        openAsBook = view.findViewById(R.id.openAsBook);
-        openAsbookImage = (ImageView) view.findViewById(R.id.openAsbookImage);
-        TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+        TintUtil.setTintImageWithAlpha(binding.openAsBookImage,
+                getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
-        starIcon = (ImageView) view.findViewById(R.id.starIcon);
-        starIconDir = (ImageView) view.findViewById(R.id.starIconDir);
-        onSort = (ImageView) view.findViewById(R.id.onSort);
-        sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+        binding.sortOrder.setOnClickListener(v -> {
+            AppState.get().sortByReverse = !AppState.get().sortByReverse;
+            binding.onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+            binding.sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
 
-
-        sortOrder.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppState.get().sortByReverse = !AppState.get().sortByReverse;
-                onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
-                sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
-
-
-                populate();
-
-            }
+            populate();
         });
 
-        sortOrder.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
+        binding.sortOrder.setOnLongClickListener(v -> {
+            AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            return true;
         });
 
-        onSort.setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
-                sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
-                return true;
-            }
+        binding.onSort.setOnLongClickListener(v -> {
+            AppState.get().isVisibleSorting = !AppState.get().isVisibleSorting;
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            return true;
         });
-        sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+        binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
 
-        openAsBook.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
-                ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
-            }
+        binding.openAsBook.setOnClickListener(v -> {
+            File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
+            ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
         });
-        openAsBook.setVisibility(View.GONE);
+        binding.openAsBook.setVisibility(View.GONE);
 
-        onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
-        sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+        binding.onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
+        binding.sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
 
-        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
-        onSort.setContentDescription(getString(R.string.cd_sort_results));
-
-
-        onAction = view.findViewById(R.id.onAction);
-        editPath = (EditText) view.findViewById(R.id.editPath);
+        binding.sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
+        binding.onSort.setContentDescription(getString(R.string.cd_sort_results));
 
         fragmentType = TYPE_DEFAULT;
         if (arguments != null) {
             fragmentType = arguments.getInt(EXTRA_TYPE, TYPE_DEFAULT);
             fragmentText = arguments.getString(EXTRA_TEXT);
-            editPath.setText(fragmentText);
+            binding.editPath.setText(fragmentText);
         }
 
-        onClose.setOnClickListener(onCloseButtonActoin);
-        onAction.setOnClickListener(onSelectAction);
-
-        createFolder = view.findViewById(R.id.createFolder);
+        binding.onClose.setOnClickListener(onCloseButtonActoin);
+        binding.onAction.setOnClickListener(onSelectAction);
 
         if (TYPE_DEFAULT == fragmentType) {
-            editPath.setVisibility(View.GONE);
-            onCloseActionPaner.setVisibility(View.GONE);
+            binding.editPath.setVisibility(View.GONE);
+            binding.onCloseActionPaner.setVisibility(View.GONE);
         }
         if (TYPE_SELECT_FOLDER == fragmentType) {
-            editPath.setVisibility(View.VISIBLE);
-            editPath.setEnabled(false);
-            onCloseActionPaner.setVisibility(View.VISIBLE);
-
+            binding.editPath.setVisibility(View.VISIBLE);
+            binding.editPath.setEnabled(false);
+            binding.onCloseActionPaner.setVisibility(View.VISIBLE);
         }
         if (TYPE_SELECT_FILE == fragmentType) {
-            editPath.setVisibility(View.VISIBLE);
-            editPath.setEnabled(false);
-            onCloseActionPaner.setVisibility(View.VISIBLE);
+            binding.editPath.setVisibility(View.VISIBLE);
+            binding.editPath.setEnabled(false);
+            binding.onCloseActionPaner.setVisibility(View.VISIBLE);
         }
         if (TYPE_CREATE_FILE == fragmentType) {
-            editPath.setVisibility(View.VISIBLE);
-            editPath.setEnabled(true);
-            onCloseActionPaner.setVisibility(View.VISIBLE);
+            binding.editPath.setVisibility(View.VISIBLE);
+            binding.editPath.setEnabled(true);
+            binding.onCloseActionPaner.setVisibility(View.VISIBLE);
         }
         if (TYPE_SELECT_FILE_OR_FOLDER == fragmentType) {
-            editPath.setVisibility(View.VISIBLE);
-            editPath.setEnabled(false);
-            onCloseActionPaner.setVisibility(View.VISIBLE);
+            binding.editPath.setVisibility(View.VISIBLE);
+            binding.editPath.setEnabled(false);
+            binding.onCloseActionPaner.setVisibility(View.VISIBLE);
         }
 
-        View onBack = view.findViewById(R.id.onBack);
-        recyclerView = (FastScrollRecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = binding.recyclerView;
 
-
-        paths = (LinearLayout) view.findViewById(R.id.paths);
-        scroller = (HorizontalScrollView) view.findViewById(R.id.scroller);
-        final View onHome = view.findViewById(R.id.onHome);
-        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        onListGrid.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
+        binding.onListGrid.setOnClickListener(v -> popupMenu());
 
         searchAdapter = new FileMetaAdapter();
         bindAdapter(searchAdapter);
@@ -304,343 +238,217 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         onGridList();
 
-        onHome.setOnClickListener(new OnClickListener() {
+        binding.onHome.setOnClickListener(v -> {
+            List<String> extFolders = ExtUtils.getAllExternalStorages(getActivity());
 
-            @Override
-            public void onClick(View v) {
-                List<String> extFolders = ExtUtils.getAllExternalStorages(getActivity());
+            MyPopupMenu menu = new MyPopupMenu(getActivity(), binding.onHome);
 
+            menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(item -> {
+                displayAnyPath(Environment.getExternalStorageDirectory().getPath());
+                return false;
+            }).setIcon(R.drawable.glyphicons_146_folder_sd1);
 
-                MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
+            for (final String info : extFolders) {
+                String name;
 
-                menu.getMenu().add(R.string.internal_storage).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (ExtUtils.isExteralSD(info)) {
+                    name = ExtUtils.getExtSDDisplayName(getContext(), info);
+                } else {
+                    name = new File(info).getName();
+                }
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(Environment.getExternalStorageDirectory().getPath());
-                        return false;
-                    }
+                menu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                    displayAnyPath(info);
+                    return false;
                 }).setIcon(R.drawable.glyphicons_146_folder_sd1);
+            }
 
-                for (final String info : extFolders) {
+            if (new File(BookCSS.get().downlodsPath).isDirectory()) {
+                menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(item -> {
+                    displayAnyPath(BookCSS.get().downlodsPath);
+                    return false;
+                }).setIcon(R.drawable.glyphicons_591_folder_heart);
+            }
 
-                    String name;
+            menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(item -> {
+                displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
+                return false;
+            }).setIcon(R.drawable.glyphicons_sync);
 
-                    if (ExtUtils.isExteralSD(info)) {
-                        name = ExtUtils.getExtSDDisplayName(getContext(), info);
-                    } else {
-                        name = new File(info).getName();
+            // resources
+            if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
+                List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
+
+                for (final String saf : safs) {
+                    LOG.d("saf", saf);
+                    if (TxtUtils.isEmpty(saf)) {
+                        continue;
                     }
-
-                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            displayAnyPath(info);
-                            return false;
-                        }
-                    }).setIcon(R.drawable.glyphicons_146_folder_sd1);
-
-                }
-
-                if (new File(BookCSS.get().downlodsPath).isDirectory()) {
-                    menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            displayAnyPath(BookCSS.get().downlodsPath);
-                            return false;
-                        }
-                    }).setIcon(R.drawable.glyphicons_591_folder_heart);
-                }
-
-
-                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
+                    String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
+                    menu.getMenu().add(fileName).setOnMenuItemClickListener(item -> {
+                        displayAnyPath(saf);
                         return false;
-                    }
-                }).setIcon(R.drawable.glyphicons_sync);
-
-                // resources
-
-                if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
-                    List<String> safs = StringDB.asList(BookCSS.get().pathSAF);
-
-                    for (final String saf : safs) {
-                        LOG.d("saf", saf);
-                        if (TxtUtils.isEmpty(saf)) {
-                            continue;
-                        }
-                        String fileName = DocumentsContract.getTreeDocumentId(Uri.parse(saf));
-                        menu.getMenu().add(fileName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                displayAnyPath(saf);
-                                return false;
-                            }
-                        }).setOnMenuItemLongClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                StringDB.delete(BookCSS.get().pathSAF, saf, (String db) -> BookCSS.get().pathSAF = db);
-                                return false;
-                            }
-                        }).setIcon(R.drawable.glyphicons_146_folder_plus);
-
-
-                    }
-
+                    }).setOnMenuItemLongClickListener(item -> {
+                        StringDB.delete(BookCSS.get().pathSAF, saf, (String db) -> BookCSS.get().pathSAF = db);
+                        return false;
+                    }).setIcon(R.drawable.glyphicons_146_folder_plus);
                 }
-
-                // stars
-                List<FileMeta> starFolders = AppData.get().getAllFavoriteFolders();
-                List<String> names = new ArrayList<String>();
-                for (FileMeta f : starFolders) {
-                    names.add(f.getPath());
-                }
-
-                Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
-
-                for (final String info : names) {
-
-                    String name;
-
-                    if (ExtUtils.isExteralSD(info)) {
-                        name = ExtUtils.getExtSDDisplayName(getContext(), info);
-                    } else {
-                        name = new File(info).getName();
-                    }
-
-                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            displayAnyPath(info);
-                            return false;
-                        }
-                    }).setIcon(R.drawable.glyphicons_591_folder_star);
-
-                }
-
-                if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
-                    menu.getMenu().add(R.string.add_resource).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-
-                            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_READ_URI_PERMISSION//
-                                    | Intent.FLAG_GRANT_WRITE_URI_PERMISSION//
-                            );
-
-                            getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
-                            return true;
-                        }
-                    }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
-
-                }
-
-                if (AppsConfig.isCloudsEnable) {
-
-                    menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-
-                            Clouds.get().loginToDropbox(getActivity(), new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/");
-                                }
-                            });
-
-                            return true;
-                        }
-                    }).setIcon(R.drawable.dropbox);
-
-                    menu.getMenu().add(R.string.google_drive).active(Clouds.get().isGoogleDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/");
-                                }
-                            });
-
-                            return true;
-                        }
-                    }).setIcon(R.drawable.gdrive);
-
-                    menu.getMenu().add(R.string.one_drive).active(Clouds.get().isOneDrive()).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/");
-                                }
-                            });
-
-                            return true;
-                        }
-                    }).setIcon(R.drawable.onedrive);
-                }
-
-                menu.show();
-
             }
-        });
-        onBack.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                onBackAction();
+            // stars
+            List<FileMeta> starFolders = AppData.get().getAllFavoriteFolders();
+            List<String> names = new ArrayList<>();
+            for (FileMeta f : starFolders) {
+                names.add(f.getPath());
             }
-        });
 
+            Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
 
-        searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
-
-            @Override
-            public boolean onResultRecive(FileMeta result) {
-                if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-                    int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
-                    rememberPos.put(displayPath, pos);
-                    LOG.d("rememberPos LinearLayoutManager", displayPath, pos);
-                } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
-                    int pos = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
-                    rememberPos.put(displayPath, pos);
-                    LOG.d("rememberPos StaggeredGridLayoutManager", displayPath, pos);
-                }
-
-                if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
-                    displayAnyPath(result.getPath());
-                    if (fragmentType == TYPE_SELECT_FOLDER) {
-                        editPath.setText(fragmentText);
-                    }
+            for (final String info : names) {
+                String name;
+                if (ExtUtils.isExteralSD(info)) {
+                    name = ExtUtils.getExtSDDisplayName(getContext(), info);
                 } else {
-                    if (fragmentType == TYPE_DEFAULT) {
-                        DefaultListeners.getOnItemClickListener(getActivity()).onResultRecive(result);
-                    } else if (fragmentType == TYPE_SELECT_FILE) {
-                        editPath.setText(ExtUtils.getFileName(result.getPath()));
-                    } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
-                        editPath.setText(result.getPath());
-                    }
-
+                    name = new File(info).getName();
                 }
-                return false;
+
+                menu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                    displayAnyPath(info);
+                    return false;
+                }).setIcon(R.drawable.glyphicons_591_folder_star);
             }
+
+            if (Build.VERSION.SDK_INT >= 21 && getActivity() instanceof MainTabs2) {
+                menu.getMenu().add(R.string.add_resource).setOnMenuItemClickListener(item -> {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+
+                    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION//
+                            | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION//
+                            | Intent.FLAG_GRANT_READ_URI_PERMISSION//
+                            | Intent.FLAG_GRANT_WRITE_URI_PERMISSION//
+                    );
+
+                    getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
+                    return true;
+                }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
+            }
+
+            if (AppsConfig.isCloudsEnable) {
+                menu.getMenu().add(R.string.dropbox).active(Clouds.get().isDropbox()).setOnMenuItemClickListener(item -> {
+                    Clouds.get().loginToDropbox(getActivity(), () -> displayAnyPath(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
+
+                    return true;
+                }).setIcon(R.drawable.dropbox);
+
+                menu.getMenu().add(R.string.google_drive).active(Clouds.get().isGoogleDrive()).setOnMenuItemClickListener(item -> {
+                    Clouds.get().loginToGoogleDrive(getActivity(), () -> displayAnyPath(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
+
+                    return true;
+                }).setIcon(R.drawable.gdrive);
+
+                menu.getMenu().add(R.string.one_drive).active(Clouds.get().isOneDrive()).setOnMenuItemClickListener(item -> {
+                    Clouds.get().loginToOneDrive(getActivity(), () -> displayAnyPath(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
+
+                    return true;
+                }).setIcon(R.drawable.onedrive);
+            }
+            menu.show();
+        });
+        binding.onBack.setOnClickListener(v -> onBackAction());
+
+        searchAdapter.setOnItemClickListener(result -> {
+            if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+                int pos = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                rememberPos.put(displayPath, pos);
+                LOG.d("rememberPos LinearLayoutManager", displayPath, pos);
+            } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                int pos = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
+                rememberPos.put(displayPath, pos);
+                LOG.d("rememberPos StaggeredGridLayoutManager", displayPath, pos);
+            }
+
+            if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
+                displayAnyPath(result.getPath());
+                if (fragmentType == TYPE_SELECT_FOLDER) {
+                    binding.editPath.setText(fragmentText);
+                }
+            } else {
+                if (fragmentType == TYPE_DEFAULT) {
+                    DefaultListeners.getOnItemClickListener(getActivity()).onResultRecive(result);
+                } else if (fragmentType == TYPE_SELECT_FILE) {
+                    binding.editPath.setText(ExtUtils.getFileName(result.getPath()));
+                } else if (fragmentType == TYPE_SELECT_FILE_OR_FOLDER) {
+                    binding.editPath.setText(result.getPath());
+                }
+            }
+            return false;
         });
 
-        searchAdapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
-            @Override
-            public boolean onResultRecive(FileMeta result) {
-                if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
-                    // displayAnyPath(result.getPath());
-                    if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
-                        ShareDialog.dirLongPress(getActivity(), result.getPath(), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                resetFragment();
-                            }
-                        });
-                    } else {
-                        deleteFolderPopup(getActivity(), result.getPath());
-                    }
+        searchAdapter.setOnItemLongClickListener(result -> {
+            if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPLAY_TYPE_DIRECTORY) {
+                // displayAnyPath(result.getPath());
+                if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                    ShareDialog.dirLongPress(requireActivity(), result.getPath(), this::resetFragment);
                 } else {
-                    DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter).onResultRecive(result);
+                    deleteFolderPopup(getActivity(), result.getPath());
                 }
-                return false;
+            } else {
+                DefaultListeners.getOnItemLongClickListener(getActivity(), searchAdapter).onResultRecive(result);
             }
+            return false;
         });
 
-        onSort.setOnClickListener(new OnClickListener() {
+        binding.onSort.setOnClickListener(v -> {
+            List<String> names = Arrays.asList(//
+                    getString(R.string.by_file_name), //
+                    getString(R.string.by_date), //
+                    getString(R.string.by_size), //
+                    getString(R.string.by_title), //
+                    getString(R.string.by_author), //
+                    getString(R.string.by_number_in_serie), //
+                    getString(R.string.by_number_of_pages), //
+                    getString(R.string.by_extension) //
+            );//
 
-            @Override
-            public void onClick(View v) {
+            final List<Integer> ids = Arrays.asList(//
+                    AppState.BR_SORT_BY_PATH, //
+                    AppState.BR_SORT_BY_DATE, //
+                    AppState.BR_SORT_BY_SIZE, //
+                    AppState.BR_SORT_BY_TITLE, //
+                    AppState.BR_SORT_BY_AUTHOR, //
+                    AppState.BR_SORT_BY_NUMBER, //
+                    AppState.BR_SORT_BY_PAGES, //
+                    AppState.BR_SORT_BY_EXT//
+            );//
 
-                List<String> names = Arrays.asList(//
-                        getActivity().getString(R.string.by_file_name), //
-                        getActivity().getString(R.string.by_date), //
-                        getActivity().getString(R.string.by_size), //
-                        getActivity().getString(R.string.by_title), //
-                        getActivity().getString(R.string.by_author), //
-                        getActivity().getString(R.string.by_number_in_serie), //
-                        getActivity().getString(R.string.by_number_of_pages), //
-                        getActivity().getString(R.string.by_extension) //
-                );//
-
-                final List<Integer> ids = Arrays.asList(//
-                        AppState.BR_SORT_BY_PATH, //
-                        AppState.BR_SORT_BY_DATE, //
-                        AppState.BR_SORT_BY_SIZE, //
-                        AppState.BR_SORT_BY_TITLE, //
-                        AppState.BR_SORT_BY_AUTHOR, //
-                        AppState.BR_SORT_BY_NUMBER, //
-                        AppState.BR_SORT_BY_PAGES, //
-                        AppState.BR_SORT_BY_EXT//
-                );//
-
-                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
-                for (int i = 0; i < names.size(); i++) {
-                    String name = names.get(i);
-                    final int j = i;
-                    menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            AppState.get().sortByBrowse = ids.get(j);
-                            populate();
-                            return false;
-                        }
-                    });
-                }
-                menu.show();
+            MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
+            for (int i = 0; i < names.size(); i++) {
+                String name = names.get(i);
+                final int j = i;
+                menu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                    AppState.get().sortByBrowse = ids.get(j);
+                    populate();
+                    return false;
+                });
             }
+            menu.show();
         });
 
         displayAnyPath(getInitPath());
         onTintChanged();
 
-        MyProgressBar = (MyProgressBar) view.findViewById(R.id.MyProgressBarBrowse);
-        MyProgressBar.setVisibility(View.GONE);
-        TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
+        myProgressBar = binding.myProgressBarBrowse;
+        myProgressBar.setVisibility(View.GONE);
+        TintUtil.setDrawableTint(myProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
-        final View bankSpace = view.findViewById(R.id.bankSpace);
-
-        bankSpace.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
-                    ShareDialog.dirLongPress(getActivity(), displayPath, new Runnable() {
-
-                        @Override
-                        public void run() {
-                            resetFragment();
-                        }
-                    });
-                }
+        binding.bankSpace.setOnClickListener(v -> {
+            if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                ShareDialog.dirLongPress(requireActivity(), displayPath, this::resetFragment);
             }
         });
 
-
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
-            view.findViewById(R.id.openAsBookBg).setBackgroundColor(Color.BLACK);
-
+            binding.openAsBookBg.setBackgroundColor(Color.BLACK);
 
             if (fragmentType == TYPE_DEFAULT) {
                 searchAdapter.tempValue2 = FileMetaAdapter.TEMP2_NONE;
@@ -649,72 +457,53 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         }
 
-        createFolder.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.createFolder.setOnClickListener(v -> {
+            MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
 
-                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
+            menu.getMenu().add(R.string.new_file).setOnMenuItemClickListener(item -> {
+                AlertDialogs.editFileTxt(getActivity(), null, new File(displayPath), string -> {
+                    //ExtUtils.openFile(getActivity(), new FileMeta(string));
+                    resetFragment();
+                    return false;
+                });
+                return false;
+            });
+            menu.getMenu().add(R.string.create_folder).setOnMenuItemClickListener(item -> {
+                AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), string -> {
+                    AppState.get().isDisplayAllFilesInFolder = true;
+                    File folder = new File(displayPath, string);
+                    LOG.d("create_folder", folder);
+                    if (!folder.mkdirs()) {
+                        Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
 
-                menu.getMenu().add(R.string.new_file).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AlertDialogs.editFileTxt(getActivity(), null, new File(displayPath), new StringResponse() {
-                            @Override
-                            public boolean onResultRecive(String string) {
-                                //ExtUtils.openFile(getActivity(), new FileMeta(string));
-                                resetFragment();
-                                return false;
-                            }
-                        });
                         return false;
                     }
+                    Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
+                    populate();
+                    return true;
                 });
-                menu.getMenu().add(R.string.create_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), new StringResponse() {
+                return false;
+            });
 
-                            @Override
-                            public boolean onResultRecive(String string) {
-                                AppState.get().isDisplayAllFilesInFolder = true;
-                                File folder = new File(displayPath, string);
-                                LOG.d("create_folder", folder);
-                                if (!folder.mkdirs()) {
-                                    Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
+            menu.getMenu().add(R.string.go_to_the_folder).setOnMenuItemClickListener(item -> {
+                String displayPath1 = BrowseFragment2.this.displayPath;
 
-                                    return false;
-                                }
-                                Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
-                                populate();
-                                return true;
-                            }
-                        });
-                        return false;
-                    }
+                Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath1, path1 -> {
+                    displayAnyPath(path1);
+                    return false;
                 });
-
-                menu.getMenu().add(R.string.go_to_the_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        String displayPath1 = BrowseFragment2.this.displayPath;
-
-                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath1, new ResultResponse<String>() {
-                            @Override
-                            public boolean onResultRecive(String path1) {
-                                displayAnyPath(path1);
-                                return false;
-                            }
-                        });
-                        return false;
-                    }
-                });
-                menu.show();
-
-
-            }
+                return false;
+            });
+            menu.show();
         });
 
-        return view;
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
@@ -755,7 +544,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 LOG.d("Open clound path", cloudPath);
                 List<CloudMetaData> items = cloudStorage.getChildren(cloudPath);
 
-                List<FileMeta> result = new ArrayList<FileMeta>();
+                List<FileMeta> result = new ArrayList<>();
 
                 for (CloudMetaData cl : items) {
                     String path = cl.getPath();
@@ -790,18 +579,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
 
             if (ExtUtils.isExteralSD(getInitPath())) {
-
-                List<FileMeta> items = new ArrayList<FileMeta>();
+                List<FileMeta> items = new ArrayList<>();
 
                 Uri uri = Uri.parse(displayPath);
 
                 ContentResolver contentResolver = getActivity().getContentResolver();
-                Uri childrenUri = null;
-
-                childrenUri = ExtUtils.getChildUri(getContext(), uri);
+                Uri childrenUri = ExtUtils.getChildUri(getContext(), uri);
 
                 if (childrenUri != null) {
-
                     LOG.d("newNode uri >> ", uri);
                     LOG.d("newNode childrenUri >> ", childrenUri);
 
@@ -823,7 +608,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             String COLUMN_LAST_MODIFIED = childCursor.getString(3);
                             String COLUMN_MIME_TYPE = childCursor.getString(4);
                             String COLUMN_SIZE = childCursor.getString(5);
-                            String COLUMN_SUMMARY = childCursor.getString(6);
 
                             LOG.d("found- child 2=", COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID, COLUMN_ICON);
 
@@ -889,8 +673,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             recyclerView.getLayoutManager().scrollToPosition(pos);
             LOG.d("rememberPos go", displayPath, pos);
         }
-
-
     }
 
     public boolean onBackAction() {
@@ -988,7 +770,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 Collections.reverse(items);
             }
             Collections.sort(items, FileMetaComparators.DIRS);
-
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -1007,24 +788,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         searchAdapter.getItemsList().addAll(items);
         recyclerView.setAdapter(searchAdapter);
 
-        scroller.postDelayed(new Runnable() {
+        binding.scroller.postDelayed(() -> binding.scroller.fullScroll(HorizontalScrollView.FOCUS_RIGHT), 100);
 
-            @Override
-            public void run() {
-                scroller.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-
-        }, 100);
-
-        openAsBook.setVisibility(TxtUtils.visibleIf(FolderContext.isFolderWithImage(items)));
-
+        binding.openAsBook.setVisibility(TxtUtils.visibleIf(FolderContext.isFolderWithImage(items)));
     }
 
     public void showPathHeader() {
-        paths.removeAllViews();
+        binding.paths.removeAllViews();
 
         if (TYPE_SELECT_FILE_OR_FOLDER == fragmentType) {
-            editPath.setText(displayPath);
+            binding.editPath.setText(displayPath);
         }
 
         if (ExtUtils.isExteralSD(displayPath)) {
@@ -1033,9 +806,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             TextView slash = new TextView(getActivity());
             slash.setText(id);
             slash.setTextColor(getResources().getColor(R.color.white));
-            paths.addView(slash);
+            binding.paths.addView(slash);
         } else {
-
             final String prefix = Clouds.getPrefix(displayPath);
             final String path = Clouds.getPath(displayPath);
             final String name = Clouds.getPrefixName(displayPath);
@@ -1049,25 +821,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 nameView.setText(name + ":");
             }
             nameView.setTextColor(getResources().getColor(R.color.white));
-            nameView.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    displayAnyPath(prefix + "/");
-                }
-            });
-            paths.addView(nameView);
+            nameView.setOnClickListener(v -> displayAnyPath(prefix + "/"));
+            binding.paths.addView(nameView);
 
             if (split.length == 0 && Clouds.isCloud(displayPath)) {
                 TextView logout = new TextView(getActivity());
-                logout.setText(TxtUtils.underline(getActivity().getString(R.string.logout)));
+                logout.setText(TxtUtils.underline(getString(R.string.logout)));
                 logout.setTextColor(getResources().getColor(R.color.white));
                 logout.setOnClickListener(new OnClickListener() {
-
                     @Override
                     public void onClick(View v) {
                         new AsyncProgressTask<Boolean>() {
-
                             @Override
                             public Context getContext() {
                                 return getActivity();
@@ -1092,7 +856,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         }.execute();
                     }
                 });
-                paths.addView(logout);
+                binding.paths.addView(logout);
             }
 
             for (int i = 0; i < split.length; i++) {
@@ -1120,65 +884,45 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                     item.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
                 }
 
-                item.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        StringBuilder builder = new StringBuilder();
-                        for (int j = 0; j <= index; j++) {
-                            builder.append("/");
-                            builder.append(split[j]);
-                        }
-                        String itemPath = builder.toString();
-                        itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
-                        String pathFull = prefix + itemPath;
-                        pathFull = pathFull.replace("://", ":/");
-                        displayAnyPath(pathFull);
-                        isRestorePos = true;
+                item.setOnClickListener(v -> {
+                    StringBuilder builder = new StringBuilder();
+                    for (int j = 0; j <= index; j++) {
+                        builder.append("/");
+                        builder.append(split[j]);
                     }
+                    String itemPath = builder.toString();
+                    itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
+                    String pathFull = prefix + itemPath;
+                    pathFull = pathFull.replace("://", ":/");
+                    displayAnyPath(pathFull);
+                    isRestorePos = true;
                 });
-                item.setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        StringBuilder builder = new StringBuilder();
-                        for (int j = 0; j <= index; j++) {
-                            builder.append("/");
-                            builder.append(split[j]);
-                        }
-                        String itemPath = builder.toString();
-                        itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
-                        String pathFull = prefix + itemPath;
-                        pathFull = pathFull.replace("://", ":/");
-
-                        if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
-                            ShareDialog.dirLongPress(getActivity(), pathFull, new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    resetFragment();
-                                }
-                            });
-                            return true;
-                        } else {
-                            //deleteFolderPopup(getActivity(), pathFull);
-                            Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
-                                @Override
-                                public boolean onResultRecive(String path1) {
-                                    displayAnyPath(path1);
-                                    return false;
-                                }
-                            });
-                        }
-
-
-                        return false;
+                item.setOnLongClickListener(v -> {
+                    StringBuilder builder = new StringBuilder();
+                    for (int j = 0; j <= index; j++) {
+                        builder.append("/");
+                        builder.append(split[j]);
                     }
+                    String itemPath = builder.toString();
+                    itemPath = TxtUtils.replaceFirst(itemPath, "//", "/");
+                    String pathFull = prefix + itemPath;
+                    pathFull = pathFull.replace("://", ":/");
+
+                    if (TxtUtils.isNotEmpty(TempHolder.get().copyFromPath)) {
+                        ShareDialog.dirLongPress(requireActivity(), pathFull, this::resetFragment);
+                        return true;
+                    } else {
+                        //deleteFolderPopup(getActivity(), pathFull);
+                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, path1 -> {
+                            displayAnyPath(path1);
+                            return false;
+                        });
+                    }
+                    return false;
                 });
 
-                paths.addView(slash);
-                paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
-
+                binding.paths.addView(slash);
+                binding.paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
             }
 
             TextView stub = new TextView(getActivity());
@@ -1186,145 +930,112 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             stub.setText(" (" + itemsCount + ") ");
             stub.setTextColor(getResources().getColor(R.color.white));
             stub.setSingleLine();
-            paths.addView(stub);
+            binding.paths.addView(stub);
 
             Apps.accessibilityText(getActivity(), split[split.length - 1], getString(R.string.folder_selected), "" + itemsCount);
-
         }
 
         if (AppDB.get().isStarFolder(displayPath)) {
-            starIcon.setImageResource(R.drawable.star_1);
+            binding.starIcon.setImageResource(R.drawable.star_1);
         } else {
-            starIcon.setImageResource(R.drawable.star_2);
+            binding.starIcon.setImageResource(R.drawable.star_2);
         }
-        TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+        TintUtil.setTintImageWithAlpha(binding.starIcon, Color.WHITE);
 
-        starIcon.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                FileMeta fileMeta = AppDB.get().getOrCreate(displayPath);
-                fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
-                fileMeta.setPathTxt(ExtUtils.getFileName(displayPath));
-                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
-                if (AppDB.get().isStarFolder(displayPath)) {
-                    starIcon.setImageResource(R.drawable.star_1);
-                } else {
-                    starIcon.setImageResource(R.drawable.star_2);
-                }
+        binding.starIcon.setOnClickListener(v -> {
+            FileMeta fileMeta = AppDB.get().getOrCreate(displayPath);
+            fileMeta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+            fileMeta.setPathTxt(ExtUtils.getFileName(displayPath));
+            DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
+            if (AppDB.get().isStarFolder(displayPath)) {
+                binding.starIcon.setImageResource(R.drawable.star_1);
+            } else {
+                binding.starIcon.setImageResource(R.drawable.star_2);
             }
         });
 
         final String ldir = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, false).toString();
         if (AppDB.get().isStarFolder(ldir)) {
-            starIconDir.setImageResource(R.drawable.star_1);
+            binding.starIconDir.setImageResource(R.drawable.star_1);
         } else {
-            starIconDir.setImageResource(R.drawable.star_2);
+            binding.starIconDir.setImageResource(R.drawable.star_2);
         }
-        TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+        TintUtil.setTintImageWithAlpha(binding.starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
-        starIconDir.setOnClickListener(new OnClickListener() {
+        binding.starIconDir.setOnClickListener(v -> {
+            File genarateXMLBook = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
 
-            @Override
-            public void onClick(View v) {
-                File genarateXMLBook = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
-
-                FileMeta fileMeta = AppDB.get().getOrCreate(genarateXMLBook.getPath());
-                FileMetaCore.createMetaIfNeed(genarateXMLBook.getPath(), false);
-                DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
-                if (AppDB.get().isStarFolder(ldir)) {
-                    starIconDir.setImageResource(R.drawable.star_1);
-                } else {
-                    starIconDir.setImageResource(R.drawable.star_2);
-                }
-                TintUtil.setTintImageWithAlpha(starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
+            FileMeta fileMeta = AppDB.get().getOrCreate(genarateXMLBook.getPath());
+            FileMetaCore.createMetaIfNeed(genarateXMLBook.getPath(), false);
+            DefaultListeners.getOnStarClick(getActivity()).onResultRecive(fileMeta, null);
+            if (AppDB.get().isStarFolder(ldir)) {
+                binding.starIconDir.setImageResource(R.drawable.star_1);
+            } else {
+                binding.starIconDir.setImageResource(R.drawable.star_2);
             }
+            TintUtil.setTintImageWithAlpha(binding.starIconDir, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
         });
-
     }
 
     private void deleteFolderPopup(Activity a, String path) {
-
-        AlertDialogs.showOkDialog(a, getString(R.string.delete_the_directory_all_the_files_in_the_directory_), new Runnable() {
-            @Override
-            public void run() {
-                if (Clouds.isLibreraSyncRootFolder(path)) {
-
-
-                    new AsyncProgressResultToastTask(a) {
-
-                        @Override
-                        protected Boolean doInBackground(Object... objects) {
-                            try {
-                                GFile.deleteRemoteFile(new File(path));
-                                a.runOnUiThread(() -> {
-                                    final boolean result = ExtUtils.deleteRecursive(new File(path));
-                                    AlertDialogs.showResultToasts(a, result);
-                                    resetFragment();
-                                });
-                                //GFile.runSyncService(a);
-                            } catch (Exception e) {
-                                LOG.e(e);
-                                return false;
-                            }
-                            return true;
+        AlertDialogs.showOkDialog(a, getString(R.string.delete_the_directory_all_the_files_in_the_directory_), () -> {
+            if (Clouds.isLibreraSyncRootFolder(path)) {
+                new AsyncProgressResultToastTask(a) {
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
+                        try {
+                            GFile.deleteRemoteFile(new File(path));
+                            a.runOnUiThread(() -> {
+                                final boolean result = ExtUtils.deleteRecursive(new File(path));
+                                AlertDialogs.showResultToasts(a, result);
+                                resetFragment();
+                            });
+                            //GFile.runSyncService(a);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                            return false;
                         }
+                        return true;
+                    }
+                }.execute();
 
-                    }.execute();
-
-                } else {
-                    final boolean result = ExtUtils.deleteRecursive(new File(path));
-                    AlertDialogs.showResultToasts(a, result);
-                    resetFragment();
-                }
-
-
+            } else {
+                final boolean result = ExtUtils.deleteRecursive(new File(path));
+                AlertDialogs.showResultToasts(a, result);
+                resetFragment();
             }
         });
-
-
     }
 
     public void onGridList() {
-        onGridList(AppState.get().broseMode, onListGrid, searchAdapter, null);
-
+        onGridList(AppState.get().broseMode, binding.onListGrid, searchAdapter, null);
     }
 
-    private void popupMenu(final ImageView onGridList) {
-        MyPopupMenu p = new MyPopupMenu(getActivity(), onGridList);
+    private void popupMenu() {
+        MyPopupMenu p = new MyPopupMenu(getActivity(), binding.onListGrid);
         PopupHelper.addPROIcon(p, getActivity());
 
         List<Integer> names = Arrays.asList(R.string.list, R.string.compact, R.string.grid, R.string.cover);
         final List<Integer> icons = Arrays.asList(R.drawable.glyphicons_114_justify, R.drawable.glyphicons_114_justify_compact, R.drawable.glyphicons_156_show_big_thumbnails, R.drawable.glyphicons_157_show_thumbnails);
         final List<Integer> actions = Arrays.asList(AppState.MODE_LIST, AppState.MODE_LIST_COMPACT, AppState.MODE_GRID, AppState.MODE_COVERS);
 
+        p.getMenu().addCheckbox(getString(R.string.show_hidden), AppState.get().isDisplayAllFilesInFolder, (buttonView, isChecked) -> {
+            AppState.get().isDisplayAllFilesInFolder = isChecked;
 
-        p.getMenu().addCheckbox(getString(R.string.show_hidden), AppState.get().isDisplayAllFilesInFolder, new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppState.get().isDisplayAllFilesInFolder = isChecked;
-
-                populate();
-            }
+            populate();
         });
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().broseMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    onGridList();
-                    return false;
-                }
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().broseMode = actions.get(index);
+                binding.onListGrid.setImageResource(icons.get(index));
+                onGridList();
+                return false;
             });
         }
 
-
         p.show();
-
     }
 
     @Override
@@ -1344,9 +1055,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     public void notifyFragment() {
         if (searchAdapter != null) {
             searchAdapter.notifyDataSetChanged();
-            sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
+            binding.sortOrder.setVisibility(TxtUtils.visibleIf(AppState.get().isVisibleSorting));
         }
-
     }
 
     @Override
@@ -1354,5 +1064,4 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onGridList();
         populate();
     }
-
 }
