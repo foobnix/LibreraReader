@@ -2,18 +2,14 @@ package com.foobnix.ui2.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
@@ -21,6 +17,7 @@ import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Playlists;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
+import com.foobnix.pdf.info.databinding.FragmentStarredBinding;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
@@ -38,12 +35,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FavoritesFragment2 extends UIFragment<FileMeta> {
-    public static final Pair<Integer, Integer> PAIR = new Pair<Integer, Integer>(R.string.starred, R.drawable.glyphicons_50_star);
+    public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.starred, R.drawable.glyphicons_50_star);
 
     FileMetaAdapter recentAdapter;
-    ImageView onListGrid;
-    View panelRecent;
-    String syncronizedBooksTitle;
+    private FragmentStarredBinding binding;
+    String synchronizedBooksTitle;
 
     @Override
     public Pair<Integer, Integer> getNameAndIconRes() {
@@ -51,103 +47,67 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_starred, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentStarredBinding.inflate(inflater, container, false);
 
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        panelRecent = view.findViewById(R.id.panelRecent);
+        recyclerView = binding.recyclerView;
 
         recentAdapter = new FileMetaAdapter();
         recentAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
         bindAdapter(recentAdapter);
         bindAuthorsSeriesAdapter(recentAdapter);
 
-        syncronizedBooksTitle = getString(R.string.synchronized_books);
+        synchronizedBooksTitle = getString(R.string.synchronized_books);
 
-
-        TxtUtils.underlineTextView(view.findViewById(R.id.clearAllRecent)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showDialog(getActivity(), getString(R.string.do_you_want_to_clear_everything_), getString(R.string.ok), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        for (FileMeta f : AppDB.get().getStarsFilesDeprecated()) {
-                            f.setIsStar(false);
-                            AppDB.get().update(f);
-                        }
-                        for (FileMeta f : AppDB.get().getStarsFoldersDeprecated()) {
-                            f.setIsStar(false);
-                            AppDB.get().update(f);
-                        }
-                        AppData.get().clearFavorites();
-
-                        populate();
+        TxtUtils.underlineTextView(binding.clearAllRecent).setOnClickListener(v -> AlertDialogs.showDialog(getActivity(),
+                getString(R.string.do_you_want_to_clear_everything_),
+                getString(R.string.ok), () -> {
+                    for (FileMeta f : AppDB.get().getStarsFilesDeprecated()) {
+                        f.setIsStar(false);
+                        AppDB.get().update(f);
                     }
-                });
-
-            }
-        });
-
-        onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        onListGrid.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
-
-        TxtUtils.underlineTextView(view.findViewById(R.id.onPlaylists)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                DialogsPlaylist.showPlaylistsDialog(v.getContext(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        resetFragment();
-                        EventBus.getDefault().post(new NotifyAllFragments());
+                    for (FileMeta f : AppDB.get().getStarsFoldersDeprecated()) {
+                        f.setIsStar(false);
+                        AppDB.get().update(f);
                     }
-                }, null);
+                    AppData.get().clearFavorites();
 
-            }
-        });
-        TxtUtils.underlineTextView(view.findViewById(R.id.onTags)).setOnClickListener(new OnClickListener() {
+                    populate();
+                }));
 
-            @Override
-            public void onClick(View v) {
-                Dialogs.showTagsDialog((FragmentActivity) v.getContext(), null, false, new Runnable() {
+        binding.onListGrid.setOnClickListener(v -> popupMenu(binding.onListGrid));
 
-                    @Override
-                    public void run() {
-                        resetFragment();
-                        EventBus.getDefault().post(new NotifyAllFragments());
-                    }
-                });
+        TxtUtils.underlineTextView(binding.onPlaylists)
+                .setOnClickListener(v -> DialogsPlaylist.showPlaylistsDialog(v.getContext(), () -> {
+                    resetFragment();
+                    EventBus.getDefault().post(new NotifyAllFragments());
+                }, null));
+        TxtUtils.underlineTextView(binding.onTags)
+                .setOnClickListener(v -> Dialogs.showTagsDialog((FragmentActivity) v.getContext(), null, false,
+                        () -> {
+                            resetFragment();
+                            EventBus.getDefault().post(new NotifyAllFragments());
+                        }));
 
-            }
-        });
 
-
-        recentAdapter.setOnGridOrList(new ResultResponse<ImageView>() {
-
-            @Override
-            public boolean onResultRecive(ImageView result) {
-                popupMenu(result);
-                return false;
-            }
+        recentAdapter.setOnGridOrList(result -> {
+            popupMenu(result);
+            return false;
         });
 
         onGridList();
 
         populate();
 
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
 
-        return view;
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     private void popupMenu(final ImageView image) {
@@ -169,38 +129,27 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().starsMode = actions.get(index);
+                image.setImageResource(icons.get(index));
 
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().starsMode = actions.get(index);
-                    image.setImageResource(icons.get(index));
+                onGridList();
 
-                    onGridList();
-
-                    return false;
-                }
+                return false;
             });
         }
 
         p.show();
-
     }
 
     @Override
     public void onTintChanged() {
-        TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
-
-    }
-
-    public boolean onBackAction() {
-        return false;
+        TintUtil.setBackgroundFillColor(binding.panelRecent, TintUtil.color);
     }
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-
-        List<FileMeta> all = new ArrayList<FileMeta>();
+        List<FileMeta> all = new ArrayList<>();
 
         List<String> tags = AppDB.get().getAll(SEARCH_IN.TAGS);
         if (TxtUtils.isListNotEmpty(tags)) {
@@ -245,7 +194,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
 
             FileMeta empy = new FileMeta();
             empy.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_TITLE_DIVIDER);
-            empy.setTitle(syncronizedBooksTitle);
+            empy.setTitle(synchronizedBooksTitle);
             all.add(empy);
 
 
@@ -263,8 +212,7 @@ public class FavoritesFragment2 extends UIFragment<FileMeta> {
     }
 
     public void onGridList() {
-        onGridList(AppState.get().starsMode, onListGrid, recentAdapter, null);
-
+        onGridList(AppState.get().starsMode, binding.onListGrid, recentAdapter, null);
     }
 
     @Override
