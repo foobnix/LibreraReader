@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Cuir le Favorites</string>
    <string name="remove_from_favorites">Bain as Favorites</string>
    <string name="book_menu">Roghchlár leabhar</string>
-   <string name="accessibility">Inrochtaineacht</string>
+   <string name="accessibility_mode">Modh inrochtaineachta</string>
    <string name="welcome_accessibility">Fáilte, is féidir leat barrfheabhsú inrochtaineachta a chumasú i roghchlár an aip chlé</string>
 </resources>

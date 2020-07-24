@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Adicionar aos favoritos</string>
    <string name="remove_from_favorites">Remover dos favoritos</string>
    <string name="book_menu">Menu do livro</string>
-   <string name="accessibility">Acessibilidade</string>
+   <string name="accessibility_mode">Modo de acessibilidade</string>
    <string name="welcome_accessibility">Bem-vindo, você pode ativar a otimização da acessibilidade no menu esquerdo do aplicativo</string>
 </resources>

@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Adauga la favorite</string>
    <string name="remove_from_favorites">Eliminați din favorite</string>
    <string name="book_menu">Meniu de carte</string>
-   <string name="accessibility">Accesibilitate</string>
+   <string name="accessibility_mode">Modul de accesibilitate</string>
    <string name="welcome_accessibility">Bine ați venit, puteți activa optimizarea accesibilității în meniul aplicației din stânga</string>
 </resources>

@@ -104,13 +104,7 @@
 
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/isEnableAccessibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:text="@string/accessibility" />
+
 
         <LinearLayout
             android:id="@+id/section1"
@@ -809,6 +803,14 @@
             android:layout_weight="1"
             android:maxLines="2"
             android:text="@string/show_the_dialog_what_is_new_for_updates" />
+
+        <CheckBox
+            android:id="@+id/isEnableAccessibility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            android:text="@string/accessibility_mode" />
 
 
         <LinearLayout

@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Таңдаулыларға қосу</string>
    <string name="remove_from_favorites">Таңдаулылардан алып тастаңыз</string>
    <string name="book_menu">Кітап мәзірі</string>
-   <string name="accessibility">Қол жетімділік</string>
+   <string name="accessibility_mode">Қол жетімділік режимі</string>
    <string name="welcome_accessibility">Қош келдіңіз, сол жақ мәзірде қол жетімділікті оңтайландыруға болады</string>
 </resources>

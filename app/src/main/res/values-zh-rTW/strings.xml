@@ -625,6 +625,6 @@
    <string name="add_to_favorites">添加到收藏夾</string>
    <string name="remove_from_favorites">從收藏夾中刪除</string>
    <string name="book_menu">書菜單</string>
-   <string name="accessibility">可及性</string>
+   <string name="accessibility_mode">輔助功能模式</string>
    <string name="welcome_accessibility">歡迎，您可以在左側的應用菜單中啟用輔助功能優化</string>
 </resources>

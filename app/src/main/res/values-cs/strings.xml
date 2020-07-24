@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Přidat k oblíbeným</string>
    <string name="remove_from_favorites">Odstranit z oblíbených</string>
    <string name="book_menu">Nabídka knihy</string>
-   <string name="accessibility">Přístupnost</string>
+   <string name="accessibility_mode">Režim usnadnění</string>
    <string name="welcome_accessibility">Vítejte, můžete povolit optimalizaci usnadnění přístupu v nabídce vlevo</string>
 </resources>

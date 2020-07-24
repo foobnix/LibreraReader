@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Legg til i favoritter</string>
    <string name="remove_from_favorites">Fjern fra favoritter</string>
    <string name="book_menu">Bokmeny</string>
-   <string name="accessibility">Tilgjengelighet</string>
+   <string name="accessibility_mode">Tilgjengelighetsmodus</string>
    <string name="welcome_accessibility">Velkommen, du kan aktivere tilgjengelighetsoptimalisering i venstre appmeny</string>
 </resources>

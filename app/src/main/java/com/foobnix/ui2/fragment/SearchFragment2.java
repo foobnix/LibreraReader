@@ -8,6 +8,7 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -596,6 +597,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void searchAndOrderAsync() {
+        if (Apps.isDestroyed(getActivity())) {
+            return;
+        }
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
 
@@ -604,6 +608,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
         sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
         sortOrder.setContentDescription(order);
+
         populate();
 
         Apps.accessibilityText(getActivity(), "" + sortBy.getContentDescription());

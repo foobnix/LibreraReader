@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Zu den Favoriten hinzufügen</string>
    <string name="remove_from_favorites">Von Favoriten entfernen</string>
    <string name="book_menu">Buchmenü</string>
-   <string name="accessibility">Barrierefreiheit</string>
+   <string name="accessibility_mode">Eingabehilfenmodus</string>
    <string name="welcome_accessibility">Willkommen, Sie können die Optimierung der Barrierefreiheit im linken App-Menü aktivieren</string>
 </resources>

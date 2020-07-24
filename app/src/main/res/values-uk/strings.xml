@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Додати в обране</string>
    <string name="remove_from_favorites">Видалити з обраного</string>
    <string name="book_menu">Меню книги</string>
-   <string name="accessibility">Доступність</string>
+   <string name="accessibility_mode">Режим доступності</string>
    <string name="welcome_accessibility">Ласкаво просимо, ви можете включити оптимізацію доступності в лівому меню додатка</string>
 </resources>

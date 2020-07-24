@@ -625,6 +625,6 @@
    <string name="add_to_favorites">पसंदीदा में जोड़े</string>
    <string name="remove_from_favorites">पसंदीदा से निकालें</string>
    <string name="book_menu">पुस्तक मेनू</string>
-   <string name="accessibility">पहुँच</string>
+   <string name="accessibility_mode">पहुँच मोड</string>
    <string name="welcome_accessibility">आपका स्वागत है, आप बाएं एप्लिकेशन मेनू में पहुंच अनुकूलन को सक्षम कर सकते हैं</string>
 </resources>

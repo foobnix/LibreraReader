@@ -625,6 +625,6 @@
    <string name="add_to_favorites">הוסף למועדפים</string>
    <string name="remove_from_favorites">הסר מהמועדפים</string>
    <string name="book_menu">תפריט ספרים</string>
-   <string name="accessibility">נְגִישׁוּת</string>
+   <string name="accessibility_mode">מצב נגישות</string>
    <string name="welcome_accessibility">ברוך הבא, באפשרותך לאפשר אופטימיזציה לנגישות בתפריט היישום השמאלי</string>
 </resources>

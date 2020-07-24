@@ -855,6 +855,10 @@ public class MainTabs2 extends AdsFragmentActivity {
         GFile.timeout = 0;
         GFile.runSyncService(this);
 
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+
         LOG.d(TAG, "onDestroy");
         if (pager != null) {
             try {

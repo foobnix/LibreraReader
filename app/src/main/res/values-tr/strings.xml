@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Favorilere ekle</string>
    <string name="remove_from_favorites">Favorilerden çıkar</string>
    <string name="book_menu">Kitap menüsü</string>
-   <string name="accessibility">Ulaşılabilirlik</string>
+   <string name="accessibility_mode">Erişilebilirlik modu</string>
    <string name="welcome_accessibility">Hoş geldiniz, sol uygulama menüsünde erişilebilirlik optimizasyonunu etkinleştirebilirsiniz</string>
 </resources>

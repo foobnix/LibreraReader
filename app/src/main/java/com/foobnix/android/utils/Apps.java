@@ -233,4 +233,8 @@ public class Apps {
 
 
     }
+
+    public static boolean isDestroyed(Activity a) {
+        return a == null || (Build.VERSION.SDK_INT >= 17 && a.isDestroyed());
+    }
 }

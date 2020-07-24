@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -52,27 +53,34 @@ import java.util.List;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
-
-    Handler handler;
     protected volatile MyProgressBar MyProgressBar;
     protected RecyclerView recyclerView;
+    Handler handler;
+    View adFrame;
+    SwipeRefreshLayout swipeRefreshLayout;
+    int listHash = 0;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String txt = intent.getStringExtra(MainTabs2.EXTRA_SEACH_TEXT);
+            if (TxtUtils.isNotEmpty(txt)) {
+                onTextRecive(txt);
+            } else {
+                onTintChanged();
+            }
+        }
+    };
+    AsyncTask<Object, Object, List<T>> execute;
+    volatile boolean inProgress = false;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
-
-
-    View adFrame;
-
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         handler = new Handler();
-
-
     }
-
-    SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -110,7 +118,7 @@ public abstract class UIFragment<T> extends Fragment {
             });
         }
 
-        if(recyclerView!=null) {
+        if (recyclerView != null) {
             recyclerView.setAccessibilityDelegate(new View.AccessibilityDelegate());
         }
     }
@@ -128,8 +136,6 @@ public abstract class UIFragment<T> extends Fragment {
     public abstract void notifyFragment();
 
     public abstract void resetFragment();
-
-    int listHash = 0;
 
     public final void onSelectFragment() {
         if (getActivity() == null) {
@@ -183,7 +189,6 @@ public abstract class UIFragment<T> extends Fragment {
     public List<T> prepareDataInBackground() {
         return null;
     }
-
 
     public void populateDataInUI(List<T> items) {
 
@@ -249,19 +254,6 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String txt = intent.getStringExtra(MainTabs2.EXTRA_SEACH_TEXT);
-            if (TxtUtils.isNotEmpty(txt)) {
-                onTextRecive(txt);
-            } else {
-                onTintChanged();
-            }
-        }
-    };
-
     public void onTextRecive(String txt) {
 
     }
@@ -269,10 +261,6 @@ public abstract class UIFragment<T> extends Fragment {
     public boolean isInProgress() {
         return MyProgressBar != null && MyProgressBar.getVisibility() == View.VISIBLE;
     }
-
-    AsyncTask<Object, Object, List<T>> execute;
-
-    volatile boolean inProgress = false;
 
     public void populate() {
         if (inProgress) {
@@ -310,7 +298,7 @@ public abstract class UIFragment<T> extends Fragment {
                 inProgress = false;
 
             }
-            if (getActivity() == null) {
+            if (isDetached() || Apps.isDestroyed(getActivity())) {
                 return;
             }
 

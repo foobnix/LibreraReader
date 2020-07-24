@@ -625,6 +625,6 @@
    <string name="add_to_favorites">افزودن به علاقه مندی ها</string>
    <string name="remove_from_favorites">از علاقه مندی ها حذف شود</string>
    <string name="book_menu">منوی کتاب</string>
-   <string name="accessibility">دسترسی</string>
+   <string name="accessibility_mode">حالت دستیابی</string>
    <string name="welcome_accessibility">خوش آمدید ، می توانید بهینه سازی دسترسی را در فهرست برنامه سمت چپ فعال کنید</string>
 </resources>

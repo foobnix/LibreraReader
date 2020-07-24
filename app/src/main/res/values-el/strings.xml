@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Προσθήκη στα αγαπημένα</string>
    <string name="remove_from_favorites">Κατάργηση από τα αγαπημένα</string>
    <string name="book_menu">Μενού βιβλίων</string>
-   <string name="accessibility">Προσιτότητα</string>
+   <string name="accessibility_mode">Λειτουργία προσβασιμότητας</string>
    <string name="welcome_accessibility">Καλώς ορίσατε, μπορείτε να ενεργοποιήσετε τη βελτιστοποίηση προσβασιμότητας στο αριστερό μενού εφαρμογών</string>
 </resources>

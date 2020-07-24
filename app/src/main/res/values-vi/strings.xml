@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Thêm vào mục yêu thích</string>
    <string name="remove_from_favorites">Loại bỏ khỏi mục ưa thích</string>
    <string name="book_menu">Thực đơn sách</string>
-   <string name="accessibility">Khả năng tiếp cận</string>
+   <string name="accessibility_mode">Chế độ trợ năng</string>
    <string name="welcome_accessibility">Chào mừng bạn, bạn có thể kích hoạt tối ưu hóa khả năng truy cập trong menu ứng dụng bên trái</string>
 </resources>

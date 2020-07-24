@@ -625,6 +625,6 @@
    <string name="add_to_favorites">Добави към любими</string>
    <string name="remove_from_favorites">Премахнете от любимите</string>
    <string name="book_menu">Меню за книги</string>
-   <string name="accessibility">Достъпност</string>
+   <string name="accessibility_mode">Режим на достъпност</string>
    <string name="welcome_accessibility">Добре дошли, можете да активирате оптимизиране на достъпността в менюто отляво на приложението</string>
 </resources>
