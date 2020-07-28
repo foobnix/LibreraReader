@@ -6,6 +6,7 @@ import android.os.Environment;
 import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
@@ -40,6 +41,8 @@ public class CacheZipUtils {
     public static File CACHE_WEB;
     public static File CACHE_RECENT;
     public static File ATTACHMENTS_CACHE_DIR;
+    static Pair<Boolean, String> cacheRes;
+    static String cacheFile;
 
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
@@ -119,10 +122,8 @@ public class CacheZipUtils {
         }
     }
 
-    static Pair<Boolean, String> cacheRes;
-    static String cacheFile;
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
-        if(file.equals(cacheFile)){
+        if (file.equals(cacheFile)) {
             LOG.d("isSingleAndSupportEntry-cache", file);
             return cacheRes;
         }
@@ -131,10 +132,11 @@ public class CacheZipUtils {
         cacheRes = res;
         return res;
     }
+
     public static Pair<Boolean, String> isSingleAndSupportEntryInner(String file) {
         try {
             LOG.d("isSingleAndSupportEntry 1", file);
-            if(!CbzCbrExtractor.isZip(file)){
+            if (!CbzCbrExtractor.isZip(file)) {
                 return new Pair<Boolean, String>(false, "");
             }
 
@@ -151,14 +153,22 @@ public class CacheZipUtils {
                 if (h.isDirectory()) {
                     continue;
                 }
-                if (isOkular && h.getFileName().endsWith(".xml")) {
+                String ends = h.getFileName();
+                if (isOkular && ends.endsWith(".xml")) {
                     continue;
                 }
+                if (ends.endsWith(".opf") || ExtUtils.isImagePath(ends)) {
+                    continue;
+                }
+
                 count++;
                 last = h;
+                LOG.d("isSingleAndSupportEntryInner finds",ends);
             }
             if (count == 1 && last != null) {
                 String name = last.getFileName();
+                LOG.d("isSingleAndSupportEntryInner name",name);
+
                 return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
             }
             return new Pair<Boolean, String>(false, "");
@@ -218,10 +228,12 @@ public class CacheZipUtils {
                     if (salt != -1) {
                         name = salt + name;
                     }
-                    File file = new File(folder.getDir(), name);
+                    File file = new File(TxtUtils.fixFilePath(folder.getDir().getPath()), TxtUtils.fixFileName(name));
+                    file.getParentFile().mkdirs();
+
                     BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
-                    IOUtils.copyClose(zipInputStream, fileOutputStream);
                     LOG.d("Unpack archive", file.getPath());
+                    IOUtils.copyClose(zipInputStream, fileOutputStream);
                     return new UnZipRes(path, file.getPath(), nextEntry.getName());
                 }
             }
@@ -389,7 +401,8 @@ public class CacheZipUtils {
         }
 
         public File getDir() {
-            return new File(parent, type);
+            File file = new File(parent, type);
+            return file;
         }
 
     }

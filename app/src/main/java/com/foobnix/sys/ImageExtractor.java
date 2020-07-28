@@ -276,6 +276,8 @@ public class ImageExtractor {
         }
 
         pageUrl.setPath(unZipPath);
+        LOG.d("proccessCoverPage unZipPath", unZipPath);
+
 
         Bitmap cover = null;
 
