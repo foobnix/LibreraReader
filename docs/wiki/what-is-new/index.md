@@ -4,6 +4,12 @@ layout: main
 
 # What is new (Updated)
 
+### [8.3.94] Bind a GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Accessibility optimization
 
 ### [8.3.84] OPDS download folder format "[Author name]/Book name"

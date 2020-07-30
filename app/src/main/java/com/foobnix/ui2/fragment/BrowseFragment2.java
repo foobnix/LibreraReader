@@ -76,6 +76,7 @@ import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.MdContext;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -104,6 +105,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     Map<String, Integer> rememberPos = new HashMap<String, Integer>();
     String displayPath;
     boolean isRestorePos = false;
+    int itemsCount;
     private LinearLayout paths;
     private TextView stub;
     private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
@@ -228,8 +230,13 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
-                ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
+                File file = new File(displayPath, MdContext.SUMMARY_MD);
+                if (file.isFile()) {
+                    ExtUtils.openFile(getActivity(), new FileMeta(file.getPath()));
+                } else {
+                    File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
+                    ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
+                }
             }
         });
         openAsBook.setVisibility(View.GONE);
@@ -956,8 +963,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         }
     }
 
-    int itemsCount;
-
     public void displayItems(List<FileMeta> items) {
         itemsCount = items.size();
         if (searchAdapter == null) {
@@ -1016,7 +1021,13 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         }, 100);
 
-        openAsBook.setVisibility(TxtUtils.visibleIf(FolderContext.isFolderWithImage(items)));
+        if (new File(displayPath, MdContext.SUMMARY_MD).isFile()) {
+            openAsBook.setVisibility(View.VISIBLE);
+        } else if (FolderContext.isFolderWithImage(items)) {
+            openAsBook.setVisibility(View.VISIBLE);
+        } else {
+            openAsBook.setVisibility(View.GONE);
+        }
 
     }
 

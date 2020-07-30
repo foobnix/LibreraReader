@@ -81,6 +81,7 @@ public class FolderContext extends PdfContext {
 
     }
 
+
     public static int getPageCount(String unZipPath) {
         try {
             final FileInputStream inputStream = new FileInputStream(unZipPath);

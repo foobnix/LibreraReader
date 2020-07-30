@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -39,6 +40,7 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
@@ -56,6 +58,7 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.MdContext;
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
@@ -310,6 +313,9 @@ public class ImageExtractor {
         } else if (ExtUtils.isFontFile(unZipPath)) {
             cover = BaseExtractor.getBookCoverWithTitle("font", "", true);
             pageUrl.tempWithWatermakr = true;
+        } else if (unZipPath.endsWith(MdContext.SUMMARY_MD)) {
+            cover = BitmapFactory.decodeResource(LibreraApp.context.getResources(), R.drawable.gitbook);
+            LOG.d("SUMMARY_MD",unZipPath);
         }
 
         if (cover == null) {

@@ -29,6 +29,7 @@ import java.util.zip.ZipOutputStream;
 public class MdContext extends PdfContext {
 
     public static final String OUT_FB2_XML = "md.html";
+    public static final String SUMMARY_MD = "SUMMARY.md";
     public static String ALL = "(.+)";
     static String regTEXT = "([\\w\\s/ \\ -.#:&;]+)";
 
@@ -67,7 +68,7 @@ public class MdContext extends PdfContext {
     public static FooterNote extractMd(String inputPath, final String outputDir) throws IOException {
 
         LOG.d("extractMd", inputPath, outputDir);
-        if (inputPath.endsWith("SUMMARY.md")) {
+        if (inputPath.endsWith(SUMMARY_MD)) {
             LOG.d("extractMd SUMMARY.md");
             File file = new File(outputDir, "md.epub");
             try {
@@ -79,7 +80,7 @@ public class MdContext extends PdfContext {
 
 
                 File root = new File(inputPath).getParentFile();
-                BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(new File(root.getPath(), "SUMMARY.md"))));
+                BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(new File(root.getPath(), SUMMARY_MD))));
 
                 String l;
                 List<OutlineLink> titles = new ArrayList<>();
