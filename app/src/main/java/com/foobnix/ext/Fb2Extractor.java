@@ -190,8 +190,7 @@ public class Fb2Extractor extends BaseExtractor {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<svg"));
-                }else
-                if (line.contains("<math")) {
+                } else if (line.contains("<math")) {
                     svgNumbver++;
                     findSVG = true;
                     svg = line.substring(line.indexOf("<math"));
@@ -377,6 +376,34 @@ public class Fb2Extractor extends BaseExtractor {
             String titleTxt = link.getTitle();
             if (TxtUtils.isNotEmpty(titleTxt)) {
                 String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
+                if (link.contentSrc != null) {
+                    createNavPoint = createNavPoint.replace("fb2.fb2", link.contentSrc);
+                } else {
+                    createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
+                }
+                navs.append(createNavPoint);
+            }
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutlineMd(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String createNavPoint = createNavPoint(link.getLevel(), link.getLevel() + DIVIDER + link.getTitle(), link.contentSrc);
+            navs.append(createNavPoint);
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutline2(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String titleTxt = link.getTitle();
+            if (TxtUtils.isNotEmpty(titleTxt)) {
+                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
                 createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
                 navs.append(createNavPoint);
             }
@@ -480,10 +507,27 @@ public class Fb2Extractor extends BaseExtractor {
                 "</navPoint>"; //
     }
 
+    public static String createNavPoint(int id, String text, String url) {
+        return "\n\n<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
+                "<navLabel>\n" + //
+                "<text>" + TxtUtils.escapeHtml(text) + "</text>\n" + //
+                "</navLabel>\n" + //
+                "<content src=\"" + url + "\"/>\n" + //
+                "</navPoint>"; //
+    }
+
     public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws
             IOException {
         zos.putNextEntry(new ZipEntry(name));
         zipCopy(stream, zos);
+    }
+
+    public static void writeToZipDir(ZipOutputStream zos, String name) throws
+            IOException {
+        if (!name.endsWith("/")) {
+            name = name + "/";
+        }
+        zos.putNextEntry(new ZipEntry(name));
     }
 
     public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
@@ -995,7 +1039,7 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            if(AppState.get().isAccurateFontSize || fixXML) {
+            if (AppState.get().isAccurateFontSize || fixXML) {
                 line = line.replace("<empty-line/>", "");
             }
 
