@@ -36,6 +36,7 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_PATH)/scripts/freetype \
 	$(MUPDF_PATH)/scripts/libjpeg \
 	$(MUPDF_PATH)/thirdparty/freetype/include \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src \
 	$(MUPDF_PATH)/thirdparty/harfbuzz/src \
 	$(MUPDF_PATH)/thirdparty/jbig2dec \
 	$(MUPDF_PATH)/thirdparty/libjpeg \
@@ -88,6 +89,7 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_PATH)/scripts/freetype \
 	$(MUPDF_PATH)/scripts/libjpeg \
 	$(MUPDF_PATH)/thirdparty/freetype/include \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/include \
 	$(MUPDF_PATH)/thirdparty/harfbuzz/src \
 	$(MUPDF_PATH)/thirdparty/jbig2dec \
 	$(MUPDF_PATH)/thirdparty/libjpeg \
@@ -142,6 +144,19 @@ LOCAL_SRC_FILES += \
 	$(MUPDF_PATH)/thirdparty/freetype/src/smooth/smooth.c \
 	$(MUPDF_PATH)/thirdparty/freetype/src/truetype/truetype.c \
 	$(MUPDF_PATH)/thirdparty/freetype/src/type1/type1.c \
+
+LOCAL_SRC_FILES += \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/attribute.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/char_ref.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/error.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/parser.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/string_buffer.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/string_piece.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/tag.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/tokenizer.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/utf8.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/util.c \
+	$(MUPDF_PATH)/thirdparty/gumbo-parser/src/vector.c \
 
 LOCAL_SRC_FILES += \
 	$(MUPDF_PATH)/thirdparty/harfbuzz/src/hb-aat-layout.cc \
