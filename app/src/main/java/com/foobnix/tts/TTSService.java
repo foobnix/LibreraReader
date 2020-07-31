@@ -216,6 +216,10 @@ public class TTSService extends Service {
         @Override
         public void onAudioFocusChange(int focusChange) {
             LOG.d("onAudioFocusChange", focusChange);
+            if(AppState.get().isEnableAccessibility){
+                return;
+            }
+
             if (!AppState.get().stopReadingOnCall) {
                 return;
             }

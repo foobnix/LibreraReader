@@ -154,7 +154,7 @@ public class AddCatalogDialog {
         image.setVisibility(View.GONE);
 
         builder.setView(dialog);
-        builder.setTitle(R.string.add_catalog);
+        builder.setTitle(a.getString(R.string.add_catalog)+" (OPDS, Calibre)");
 
         builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
