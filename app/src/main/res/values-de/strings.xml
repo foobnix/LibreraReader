@@ -627,4 +627,5 @@
    <string name="book_menu">Buchmenü</string>
    <string name="accessibility_mode">Eingabehilfenmodus</string>
    <string name="welcome_accessibility">Willkommen, Sie können die Optimierung der Barrierefreiheit im linken App-Menü aktivieren</string>
+   <string name="context_menu_integration_text_selecting">Integration in das Kontextmenü (Textauswahl)</string>
 </resources>

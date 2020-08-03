@@ -627,4 +627,5 @@
    <string name="book_menu">Меню за книги</string>
    <string name="accessibility_mode">Режим на достъпност</string>
    <string name="welcome_accessibility">Добре дошли, можете да активирате оптимизиране на достъпността в менюто отляво на приложението</string>
+   <string name="context_menu_integration_text_selecting">Интеграция с контекстно меню (избор на текст)</string>
 </resources>

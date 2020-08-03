@@ -627,4 +627,5 @@
    <string name="book_menu">เมนูหนังสือ</string>
    <string name="accessibility_mode">โหมดการเข้าถึง</string>
    <string name="welcome_accessibility">ยินดีต้อนรับคุณสามารถเปิดใช้งานการเพิ่มประสิทธิภาพการเข้าถึงในเมนูแอพด้านซ้าย</string>
+   <string name="context_menu_integration_text_selecting">บูรณาการกับเมนูบริบท (การเลือกข้อความ)</string>
 </resources>

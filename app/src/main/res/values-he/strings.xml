@@ -627,4 +627,5 @@
    <string name="book_menu">תפריט ספרים</string>
    <string name="accessibility_mode">מצב נגישות</string>
    <string name="welcome_accessibility">ברוך הבא, באפשרותך לאפשר אופטימיזציה לנגישות בתפריט היישום השמאלי</string>
+   <string name="context_menu_integration_text_selecting">שילוב עם תפריט הקשר (בחירת טקסט)</string>
 </resources>

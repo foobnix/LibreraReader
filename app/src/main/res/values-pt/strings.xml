@@ -627,4 +627,5 @@
    <string name="book_menu">Menu do livro</string>
    <string name="accessibility_mode">Modo de acessibilidade</string>
    <string name="welcome_accessibility">Bem-vindo, você pode ativar a otimização da acessibilidade no menu esquerdo do aplicativo</string>
+   <string name="context_menu_integration_text_selecting">Integração com menu de contexto (seleção de texto)</string>
 </resources>

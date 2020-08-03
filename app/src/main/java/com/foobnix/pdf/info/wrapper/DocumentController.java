@@ -2,8 +2,10 @@ package com.foobnix.pdf.info.wrapper;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
@@ -24,7 +26,6 @@ import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
@@ -47,7 +48,6 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
 
-import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.core.codec.Annotation;
@@ -103,12 +103,12 @@ public abstract class DocumentController {
     private String title;
     private int timeout;
     private Runnable timerTask;
-        Runnable timer = new Runnable() {
+    Runnable timer = new Runnable() {
 
         @Override
         public void run() {
             try {
-                if(activity==null || activity.isDestroyed()){
+                if (activity == null || activity.isDestroyed()) {
                     LOG.d("Timer-Task Destroyed");
                     return;
                 }
@@ -304,6 +304,19 @@ public abstract class DocumentController {
         } catch (Exception e) {
             LOG.e(e);
         }
+    }
+
+    public static void doContextMenu(Activity a) {
+        PackageManager pm = a.getApplicationContext().getPackageManager();
+        ComponentName compName = new ComponentName(a.getPackageName(), "com.foobnix.zipmanager.SendReceiveActivityAlias");
+        if (AppState.get().isMenuIntegration) {
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            LOG.d("COMPONENT_ENABLED_STATE_ENABLED");
+        } else {
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            LOG.d("COMPONENT_ENABLED_STATE_DISABLED");
+        }
+
     }
 
     public boolean isPasswordProtected() {

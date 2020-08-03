@@ -60,11 +60,11 @@ ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 echo "=================="
 echo "COPY: " $SRC " > " $DEST
 
-cp -rp $SRC/css-apply.c    $DEST/html/css-apply.c
-cp -rp $SRC/epub-doc.c     $DEST/html/epub-doc.c
-cp -rp $SRC/html-layout.c  $DEST/html/html-layout.c
-cp -rp $SRC/html-parse.c   $DEST/html/html-parse.c
-cp -rp $SRC/mucbz.c        $DEST/cbz/mucbz.c
+#cp -rp $SRC/css-apply.c    $DEST/html/css-apply.c
+#cp -rp $SRC/epub-doc.c     $DEST/html/epub-doc.c
+#cp -rp $SRC/html-layout.c  $DEST/html/html-layout.c
+#cp -rp $SRC/html-parse.c   $DEST/html/html-parse.c
+#cp -rp $SRC/mucbz.c        $DEST/cbz/mucbz.c
 
 
 cd $MUPDF_JAVA

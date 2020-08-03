@@ -627,4 +627,5 @@
    <string name="book_menu">Nabídka knihy</string>
    <string name="accessibility_mode">Režim usnadnění</string>
    <string name="welcome_accessibility">Vítejte, můžete povolit optimalizaci usnadnění přístupu v nabídce vlevo</string>
+   <string name="context_menu_integration_text_selecting">Integrace s kontextovým menu (výběr textu)</string>
 </resources>

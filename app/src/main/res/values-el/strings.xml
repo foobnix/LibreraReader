@@ -627,4 +627,5 @@
    <string name="book_menu">Μενού βιβλίων</string>
    <string name="accessibility_mode">Λειτουργία προσβασιμότητας</string>
    <string name="welcome_accessibility">Καλώς ορίσατε, μπορείτε να ενεργοποιήσετε τη βελτιστοποίηση προσβασιμότητας στο αριστερό μενού εφαρμογών</string>
+   <string name="context_menu_integration_text_selecting">Ενοποίηση με μενού περιβάλλοντος (επιλογή κειμένου)</string>
 </resources>

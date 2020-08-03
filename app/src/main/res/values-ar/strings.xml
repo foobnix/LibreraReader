@@ -627,4 +627,5 @@
    <string name="book_menu">قائمة الكتاب</string>
    <string name="accessibility_mode">وضع الوصول</string>
    <string name="welcome_accessibility">مرحبًا ، يمكنك تمكين تحسين إمكانية الوصول في قائمة التطبيق اليسرى</string>
+   <string name="context_menu_integration_text_selecting">التكامل مع قائمة السياق (اختيار النص)</string>
 </resources>

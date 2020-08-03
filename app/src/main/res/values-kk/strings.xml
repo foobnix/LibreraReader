@@ -627,4 +627,5 @@
    <string name="book_menu">Кітап мәзірі</string>
    <string name="accessibility_mode">Қол жетімділік режимі</string>
    <string name="welcome_accessibility">Қош келдіңіз, сол жақ мәзірде қол жетімділікті оңтайландыруға болады</string>
+   <string name="context_menu_integration_text_selecting">Мәтінмәндік мәзірмен біріктіру (мәтінді таңдау)</string>
 </resources>

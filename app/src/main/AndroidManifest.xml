@@ -6,27 +6,28 @@
     android:versionCode="941"
     android:versionName="7.12.87">
 
-   <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
+    <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"  />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
 
-    <application android:requestLegacyExternalStorage="true"
-        android:vmSafeMode="${appSafeMode}"
+    <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
         android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="${appRoundIcon}"
         android:theme="@style/StyledIndicatorsWhite"
         android:usesCleartextTraffic="true"
+        android:vmSafeMode="${appSafeMode}"
         tools:replace="label, icon, roundIcon">
 
         <meta-data
@@ -62,18 +63,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="*/*" />
             </intent-filter>
+        </activity>
 
+        <activity-alias
+            android:name="com.foobnix.zipmanager.SendReceiveActivityAlias"
+            android:exported="true"
+            android:targetActivity="com.foobnix.zipmanager.SendReceiveActivity">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <activity
             android:name="com.foobnix.OpenerActivity"
-            android:exported="true"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
 

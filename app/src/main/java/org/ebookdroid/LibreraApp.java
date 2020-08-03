@@ -1,6 +1,8 @@
 package org.ebookdroid;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 
@@ -26,9 +28,8 @@ import java.io.StringWriter;
 
 public class LibreraApp extends MultiDexApplication {
 
-    public static Context context;
     public final static int MUPDF_VERSION;
-
+    public static Context context;
 
     static {
         System.loadLibrary("mypdf");
@@ -109,6 +110,7 @@ public class LibreraApp extends MultiDexApplication {
                 }
             });
         }
+
 
 
     }

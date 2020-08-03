@@ -627,4 +627,5 @@
    <string name="book_menu">Kirjavalikko</string>
    <string name="accessibility_mode">Esteettömyystila</string>
    <string name="welcome_accessibility">Tervetuloa, voit ottaa käyttöön pääsyn optimoinnin vasemmassa sovellusvalikossa</string>
+   <string name="context_menu_integration_text_selecting">Integrointi kontekstivalikkoon (tekstin valinta)</string>
 </resources>

@@ -19,7 +19,6 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -200,6 +199,11 @@ public class AppState {
 
             //
     );
+    public static final List<String> langCodes = Arrays.asList(//
+            "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
+            "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
+            "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
+            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
@@ -346,14 +350,10 @@ public class AppState {
     public boolean isEnableBC = false;
     @IgnoreHashCode
     public boolean stopReadingOnCall = true;
-
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
-
     @IgnoreHashCode
     public int appBrightnessNight = AUTO_BRIGTNESS;
-
-
     public volatile int fastReadSpeed = 200;
     public volatile int fastReadFontSize = 32;
     public volatile int fastManyWords = 2;
@@ -367,21 +367,13 @@ public class AppState {
     public boolean ttsTunnOnLastWord = false;
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
-
     public boolean isReferenceMode = false;
-
     public boolean isEnableAccessibility = false;
-
-
     @IgnoreHashCode
     @Deprecated
     public String lineTTSReplacements;
-
-
     @IgnoreHashCode
     public String lineTTSReplacements3 = TTS_REPLACEMENTS;
-
-
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
     @IgnoreHashCode
@@ -556,17 +548,12 @@ public class AppState {
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     @IgnoreHashCode
     public int blueLightAlpha = 30;
-
     @IgnoreHashCode
     public int blueLightAlphaNight = 30;
-
     @IgnoreHashCode
     public boolean isEnableBlueFilter = false;
-
     @IgnoreHashCode
     public boolean isEnableBlueFilterNight = false;
-
-
     public boolean proxyEnable = false;
     public String proxyServer = "";
     public int proxyPort = 0;
@@ -591,6 +578,7 @@ public class AppState {
     public boolean isMirrorImage = false;
     public boolean isDefaultHyphenLanguage = false;
     public String defaultHyphenLanguageCode = "en";
+    public boolean isMenuIntegration = false;
 
     public static Map<String, String> getDictionaries(String input) {
         final Map<String, String> providers = new LinkedHashMap<>();
@@ -619,13 +607,6 @@ public class AppState {
         providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
         return providers;
     }
-
-    public static final List<String> langCodes = Arrays.asList(//
-            "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
-            "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
-            "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
-
 
     public static synchronized AppState get() {
         return instance;

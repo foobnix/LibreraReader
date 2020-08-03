@@ -409,6 +409,7 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         TintUtil.setStatusBarColor(this);
         DocumentController.doRotation(this);
+        DocumentController.doContextMenu(this);
 
         setContentView(R.layout.main_tabs);
 

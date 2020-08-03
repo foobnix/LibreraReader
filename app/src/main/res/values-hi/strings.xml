@@ -627,4 +627,5 @@
    <string name="book_menu">पुस्तक मेनू</string>
    <string name="accessibility_mode">पहुँच मोड</string>
    <string name="welcome_accessibility">आपका स्वागत है, आप बाएं एप्लिकेशन मेनू में पहुंच अनुकूलन को सक्षम कर सकते हैं</string>
+   <string name="context_menu_integration_text_selecting">संदर्भ मेनू के साथ एकीकरण (पाठ चयन)</string>
 </resources>

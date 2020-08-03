@@ -627,4 +627,5 @@
    <string name="book_menu">Meniu de carte</string>
    <string name="accessibility_mode">Modul de accesibilitate</string>
    <string name="welcome_accessibility">Bine ați venit, puteți activa optimizarea accesibilității în meniul aplicației din stânga</string>
+   <string name="context_menu_integration_text_selecting">Integrare cu meniul contextual (selectarea textului)</string>
 </resources>

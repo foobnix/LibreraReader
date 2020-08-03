@@ -431,6 +431,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
 
         DocumentController.doRotation(this);
+        DocumentController.doContextMenu(this);
+
         clickUtils = new ClickUtils();
 
         super.onCreate(savedInstanceState);

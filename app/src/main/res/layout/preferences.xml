@@ -812,6 +812,14 @@
             android:layout_weight="0"
             android:text="@string/accessibility_mode" />
 
+        <CheckBox
+            android:id="@+id/isMenuIntegration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="0"
+            android:text="@string/context_menu_integration_text_selecting" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1564,16 +1564,26 @@ public class PrefFragment2 extends UIFragment {
         // What is new
         CheckBox showWhatIsNew = inflate.findViewById(R.id.isShowWhatIsNewDialog);
         showWhatIsNew.setChecked(AppState.get().isShowWhatIsNewDialog);
-        showWhatIsNew.setOnCheckedChangeListener(new
+        showWhatIsNew.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-                                                         OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView,
+                                         final boolean isChecked) {
+                AppState.get().isShowWhatIsNewDialog = isChecked;
+            }
+        });
 
-                                                             @Override
-                                                             public void onCheckedChanged(final CompoundButton buttonView,
-                                                                                          final boolean isChecked) {
-                                                                 AppState.get().isShowWhatIsNewDialog = isChecked;
-                                                             }
-                                                         });
+        CheckBox isMenuIntegration = inflate.findViewById(R.id.isMenuIntegration);
+        isMenuIntegration.setChecked(AppState.get().isMenuIntegration);
+        isMenuIntegration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(final CompoundButton buttonView,
+                                         final boolean isChecked) {
+                AppState.get().isMenuIntegration = isChecked;
+                DocumentController.doContextMenu(getActivity());
+            }
+        });
 
         final TextView whatIsNew = inflate.findViewById(R.id.whatIsNew);
         whatIsNew.setText(

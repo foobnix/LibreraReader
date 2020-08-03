@@ -627,4 +627,5 @@
    <string name="book_menu">书籍菜单</string>
    <string name="accessibility_mode">辅助功能模式</string>
    <string name="welcome_accessibility">欢迎，您可以在左侧的应用菜单中启用辅助功能优化</string>
+   <string name="context_menu_integration_text_selecting">与上下文菜单集成（文本选择）</string>
 </resources>

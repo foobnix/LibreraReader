@@ -627,4 +627,5 @@
    <string name="book_menu">Knygos meniu</string>
    <string name="accessibility_mode">Prieinamumo režimas</string>
    <string name="welcome_accessibility">Sveiki, kairiajame programos meniu galite įjungti pritaikymą neįgaliesiems</string>
+   <string name="context_menu_integration_text_selecting">Integracija su kontekstiniu meniu (teksto pasirinkimas)</string>
 </resources>

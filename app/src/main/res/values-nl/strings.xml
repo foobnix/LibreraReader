@@ -627,4 +627,5 @@
    <string name="book_menu">Boek menu</string>
    <string name="accessibility_mode">Toegankelijkheidsmodus</string>
    <string name="welcome_accessibility">Welkom, u kunt optimalisatie van toegankelijkheid inschakelen in het linker app-menu</string>
+   <string name="context_menu_integration_text_selecting">Integratie met contextmenu (tekstselectie)</string>
 </resources>
