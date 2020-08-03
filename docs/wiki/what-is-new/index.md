@@ -4,6 +4,12 @@ layout: main
 
 # What is new (Updated)
 
+### [8.3.97] enable disable context menu integration (text selection)
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
 ### [8.3.94] Bind a GitBook
 
 |||

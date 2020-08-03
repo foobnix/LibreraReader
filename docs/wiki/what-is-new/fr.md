@@ -4,6 +4,18 @@ layout: main
 
 # Quoi de neuf (mis à jour)
 
+### [8.3.97] activer désactiver l'intégration du menu contextuel (sélection de texte)
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
+### [8.3.94] Lier un GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Optimisation de l'accessibilité
 
 ### [8.3.84] Format du dossier de téléchargement OPDS &quot;[Nom de l'auteur]/Nom du livre&quot;

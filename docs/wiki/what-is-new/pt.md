@@ -4,6 +4,18 @@ layout: main
 
 # O que há de novo (atualizado)
 
+### [8.3.97] permite desativar a integração do menu de contexto (seleção de texto)
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
+### [8.3.94] Vincule um GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Otimização de acessibilidade
 
 ### [8.3.84] Formato da pasta de download OPDS &quot;[Nome do autor]/Nome do livro&quot;

@@ -4,6 +4,18 @@ layout: main
 
 # Was ist neu (aktualisiert)
 
+### [8.3.97] Deaktivieren Sie die Kontextmenü-Integration (Textauswahl).
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
+### [8.3.94] Binden Sie ein GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Optimierung der Barrierefreiheit
 
 ### [8.3.84] OPDS-Download-Ordnerformat &quot;[Autorenname]/Buchname&quot;

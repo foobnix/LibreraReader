@@ -4,6 +4,18 @@ layout: main
 
 # ¿Qué hay de nuevo (actualizado)
 
+### [8.3.97] habilitar deshabilitar la integración del menú contextual (selección de texto)
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
+### [8.3.94] Vincula un GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Optimización de accesibilidad
 
 ### [8.3.84] Formato de carpeta de descarga OPDS &quot;[Nombre del autor]/Nombre del libro&quot;

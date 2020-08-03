@@ -4,6 +4,18 @@ layout: main
 
 # Novità (aggiornato)
 
+### [8.3.97] abilita disabilita integrazione menu contestuale (selezione testo)
+
+|||
+|-|-|
+|![](8.3.97a.png)|![](8.3.97b.png)|
+
+### [8.3.94] Associa un GitBook
+
+|||
+|-|-|
+|![](8.3.94a.png)|![](8.3.94b.png)|
+
 ### [8.3.90] Ottimizzazione dell'accessibilità
 
 ### [8.3.84] Formato cartella download OPDS &quot;[Nome autore]/Nome libro&quot;
