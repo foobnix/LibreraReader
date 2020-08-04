@@ -627,5 +627,5 @@
    <string name="book_menu">書菜單</string>
    <string name="accessibility_mode">輔助功能模式</string>
    <string name="welcome_accessibility">歡迎，您可以在左側的應用菜單中啟用輔助功能優化</string>
-   <string name="context_menu_integration_text_selecting">與上下文菜單集成（文本選擇）</string>
+   <string name="integration_in_the_context_menu">集成在上下文菜單中</string>
 </resources>

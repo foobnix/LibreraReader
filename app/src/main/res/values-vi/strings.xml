@@ -627,5 +627,5 @@
    <string name="book_menu">Thực đơn sách</string>
    <string name="accessibility_mode">Chế độ trợ năng</string>
    <string name="welcome_accessibility">Chào mừng bạn, bạn có thể kích hoạt tối ưu hóa khả năng truy cập trong menu ứng dụng bên trái</string>
-   <string name="context_menu_integration_text_selecting">Tích hợp với menu ngữ cảnh (lựa chọn văn bản)</string>
+   <string name="integration_in_the_context_menu">Tích hợp trong menu ngữ cảnh</string>
 </resources>

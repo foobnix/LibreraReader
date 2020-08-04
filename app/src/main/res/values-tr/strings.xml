@@ -627,5 +627,5 @@
    <string name="book_menu">Kitap menüsü</string>
    <string name="accessibility_mode">Erişilebilirlik modu</string>
    <string name="welcome_accessibility">Hoş geldiniz, sol uygulama menüsünde erişilebilirlik optimizasyonunu etkinleştirebilirsiniz</string>
-   <string name="context_menu_integration_text_selecting">Içerik menüsü ile entegrasyon (metin seçimi)</string>
+   <string name="integration_in_the_context_menu">Içerik menüsüne entegrasyon</string>
 </resources>

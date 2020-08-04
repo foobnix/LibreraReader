@@ -627,5 +627,5 @@
    <string name="book_menu">Roghchlár leabhar</string>
    <string name="accessibility_mode">Modh inrochtaineachta</string>
    <string name="welcome_accessibility">Fáilte, is féidir leat barrfheabhsú inrochtaineachta a chumasú i roghchlár an aip chlé</string>
-   <string name="context_menu_integration_text_selecting">Comhtháthú le roghchlár comhthéacs (roghnú téacs)</string>
+   <string name="integration_in_the_context_menu">Comhtháthú sa roghchlár comhthéacs</string>
 </resources>

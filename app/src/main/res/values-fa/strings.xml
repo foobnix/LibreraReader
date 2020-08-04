@@ -627,5 +627,5 @@
    <string name="book_menu">منوی کتاب</string>
    <string name="accessibility_mode">حالت دستیابی</string>
    <string name="welcome_accessibility">خوش آمدید ، می توانید بهینه سازی دسترسی را در فهرست برنامه سمت چپ فعال کنید</string>
-   <string name="context_menu_integration_text_selecting">ادغام با فهرست زمینه (انتخاب متن)</string>
+   <string name="integration_in_the_context_menu">ادغام در فهرست زمینه</string>
 </resources>

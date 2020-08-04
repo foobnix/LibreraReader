@@ -627,5 +627,5 @@
    <string name="book_menu">Menu buku</string>
    <string name="accessibility_mode">Mode aksesibilitas</string>
    <string name="welcome_accessibility">Selamat datang, Anda dapat mengaktifkan pengoptimalan aksesibilitas di menu aplikasi kiri</string>
-   <string name="context_menu_integration_text_selecting">Integrasi dengan menu konteks (pemilihan teks)</string>
+   <string name="integration_in_the_context_menu">Integrasi dalam menu konteks</string>
 </resources>

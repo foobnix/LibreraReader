@@ -627,5 +627,5 @@
    <string name="book_menu">책 메뉴</string>
    <string name="accessibility_mode">접근성 모드</string>
    <string name="welcome_accessibility">왼쪽 앱 메뉴에서 접근성 최적화를 활성화 할 수 있습니다.</string>
-   <string name="context_menu_integration_text_selecting">상황에 맞는 메뉴와 통합 (텍스트 선택)</string>
+   <string name="integration_in_the_context_menu">상황에 맞는 메뉴에 통합</string>
 </resources>

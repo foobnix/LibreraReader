@@ -627,5 +627,5 @@
    <string name="book_menu">Könyv menü</string>
    <string name="accessibility_mode">Akadálymentesség mód</string>
    <string name="welcome_accessibility">Üdvözlet, engedélyezheti az akadálymentesség optimalizálását a bal oldali alkalmazásmenüben</string>
-   <string name="context_menu_integration_text_selecting">Integráció a helyi menüvel (szövegválasztás)</string>
+   <string name="integration_in_the_context_menu">Integráció a helyi menübe</string>
 </resources>
