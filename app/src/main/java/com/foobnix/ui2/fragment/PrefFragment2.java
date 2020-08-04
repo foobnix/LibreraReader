@@ -1574,6 +1574,7 @@ public class PrefFragment2 extends UIFragment {
         });
 
         CheckBox isMenuIntegration = inflate.findViewById(R.id.isMenuIntegration);
+        isMenuIntegration.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 23));
         isMenuIntegration.setChecked(AppState.get().isMenuIntegration);
         isMenuIntegration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
