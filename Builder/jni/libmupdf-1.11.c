@@ -456,7 +456,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jclass clazz,
 	//fz_context* ctx = fz_clone_context(doc->ctx);
 	fz_context* ctx = doc->ctx;
 	if (!ctx || doc->ctx == NULL) {
-		mupdf_throw_exception(env, "Context cloning failed");
+		//mupdf_throw_exception(env, "Context cloning failed");
 		return (jlong) (long) NULL;
 	}
 
@@ -464,7 +464,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_open(JNIEnv *env, jclass clazz,
 	DEBUG("MuPdfPage_open(%p, %d): page=%p", doc, pageno, page);
 
 	if (!page) {
-		mupdf_throw_exception(env, "Out of Memory");
+		//mupdf_throw_exception(env, "Out of Memory");
 		return (jlong) (long) NULL;
 	}
 
@@ -683,9 +683,11 @@ JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 		jclass clazz, jlong dochandle, jlong outlinehandle) {
 
-	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-
+    	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
         fz_outline *outline = (fz_outline*) (long) outlinehandle;
+        if(!doc || !outline || doc->ctx == NULL){
+                        return NULL;
+         }
         if (outline){
             char st[4048];
             fz_try(doc->ctx)
@@ -694,6 +696,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
                 return NULL;
             return (*env)->NewStringUTF(env, st);
         }
+
 
     	return NULL;
 }
@@ -705,8 +708,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLink(JNIEnv *env,
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 
 // DEBUG("PdfOutline_getLink(%p)",outline);
-	if (!outline)
-		return NULL;
+	if(!doc || !outline || doc->ctx == NULL){
+                   return NULL;
+     }
 
 	char linkbuf[4048];
 	int pageNo = outline->page;
