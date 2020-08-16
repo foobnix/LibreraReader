@@ -611,9 +611,9 @@
    <string name="tab_selected">Tab selected</string>
    <string name="folder_selected">Folder selected</string>
    <string name="close_dialog_and_apply_changes">Close dialog and apply changes</string>
-   <string name="book_is_open">Book is open</string>
+   <string name="book_is_open">A book is open</string>
    <string name="tab">Tab</string>
-   <string name="dialog_is_open">Dialog is open</string>
+   <string name="dialog_is_open">A dialog is open</string>
    <string name="m_current_page">Current page</string>
    <string name="m_total_pages">Total pages</string>
    <string name="close_menu">Close menu</string>
@@ -622,10 +622,10 @@
    <string name="ascending">Ascending</string>
    <string name="descending">Descending</string>
    <string name="remove">Remove</string>
-   <string name="add_to_favorites">Add to favorites</string>
-   <string name="remove_from_favorites">Remove from favorites</string>
+   <string name="add_to_favorites">Add to Favorites</string>
+   <string name="remove_from_favorites">Remove from Favorites</string>
    <string name="book_menu">Book menu</string>
-   <string name="accessibility_mode">Accessibility mode</string>
-   <string name="welcome_accessibility">Welcome, you can enable Accessibility optimization in the left app menu</string>
-   <string name="integration_in_the_context_menu">Integration in the context menu</string>
+   <string name="accessibility_mode">Enable Accessibility Mode</string>
+   <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in the app\'s Preferences</string>
+   <string name="integration_in_the_context_menu">Integrate in global context menu</string>
 </resources>
