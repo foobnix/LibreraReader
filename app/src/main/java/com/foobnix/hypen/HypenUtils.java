@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class HypenUtils {
 
-    private static final String SHY = "&shy;";
+    public static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {

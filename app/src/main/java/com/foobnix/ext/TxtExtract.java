@@ -67,6 +67,8 @@ public class TxtExtract {
 
 
 
+
+
             if (AppState.get().isPreText) {
 
                 outLn = retab(line, 8);
@@ -103,6 +105,8 @@ public class TxtExtract {
             }
 
             // LOG.d("LINE", outLn);
+            outLn = Fb2Extractor.accurateLine(outLn);
+
             writer.println(outLn);
         }
         if (AppState.get().isLineBreaksText) {

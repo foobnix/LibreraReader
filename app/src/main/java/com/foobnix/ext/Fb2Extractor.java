@@ -126,6 +126,7 @@ public class Fb2Extractor extends BaseExtractor {
             line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
             line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
+            line = line.replace("_", "_" + HypenUtils.SHY);
         }
         return line;
     }
