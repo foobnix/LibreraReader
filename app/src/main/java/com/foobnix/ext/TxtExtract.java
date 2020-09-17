@@ -104,8 +104,9 @@ public class TxtExtract {
                 outLn = outLn.replace(",",",<br/>");
             }
 
-            // LOG.d("LINE", outLn);
+
             outLn = Fb2Extractor.accurateLine(outLn);
+            LOG.d("LINE", outLn);
 
             writer.println(outLn);
         }
