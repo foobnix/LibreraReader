@@ -11,7 +11,7 @@ include $(TOP_LOCAL_PATH)/jpeg-turbo/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
 include $(TOP_LOCAL_PATH)/antiword/Android.mk
 
-include $(TOP_LOCAL_PATH)/MuPDF-1.17.0.mk
+include $(TOP_LOCAL_PATH)/MuPDF-1.18.0.mk
 
 include $(CLEAR_VARS)
 
@@ -34,7 +34,7 @@ LOCAL_SRC_FILES := \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
 	jni_concurrent-1.17.0.c \
-	libmupdf-1.17.0.c
+	libmupdf-1.18.0.c
 
 
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_core mupdf_thirdparty 

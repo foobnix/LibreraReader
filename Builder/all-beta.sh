@@ -3,7 +3,7 @@
 
 ### 1.16.1
 #./link_to_mupdf_1.16.1.sh
-./link_to_mupdf_master.sh
+./link_to_mupdf_1.18.0.sh
 
 cd ../
 
