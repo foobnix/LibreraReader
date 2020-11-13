@@ -87,3 +87,10 @@ In **Librera** we have introduced special replacements (commands) that will allo
 |![](4.png)|![](5.png)|
 
 > **Please test your changes a few times to make sure everything is working as it should!**
+
+## Read abbreviation as it is
+
+Sometimes the abbreviation TTS is read incorrectly, we can help it read as it is.
+```
+"*(\w). (\p{javaLowerCase})" "$1 $2"
+```
