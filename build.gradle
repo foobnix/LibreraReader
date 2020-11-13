@@ -7,10 +7,10 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.0'
 
         //F-DROID REMOVE THIS LINE
-        classpath 'com.google.gms:google-services:4.2.0'
+        //classpath 'com.google.gms:google-services:4.2.0'
     }
 }
 
