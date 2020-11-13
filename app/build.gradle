@@ -30,7 +30,7 @@ ext {
 android {
     buildToolsVersion '29.0.3'
     compileSdkVersion 29
-    ndkVersion "21.2.6472646"
+    ndkVersion "21.3.6528147"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
@@ -448,7 +448,7 @@ task incVersion() {
 
 if (!taskName.contains("Fdroid")){
 
-    apply plugin: 'com.google.gms.google-services'
+    //apply plugin: 'com.google.gms.google-services'
 
     dependencies {
         implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
