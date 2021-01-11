@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="left"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text="@string/catalogs"
             android:textColor="@color/white" />
 

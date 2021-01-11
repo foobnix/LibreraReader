@@ -74,6 +74,8 @@
             android:layout_height="@dimen/wh_button"
             android:layout_marginLeft="4dip"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:gravity="center_vertical"
             android:text="@string/bookmarks"
             android:textColor="@color/white"
@@ -94,7 +96,7 @@
             android:singleLine="true"
             android:text="@string/import_bookmarks"
             android:textSize="14sp"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
 
         <View
