@@ -128,8 +128,10 @@ public class HtmlExtractor {
 
             String string = null;
             if (accurate) {
-
-                string = Jsoup.clean(html.toString(), Whitelist.basic());
+                Whitelist whitelist = Whitelist.basic()
+                        .addAttributes("ol", "reversed", "start", "type")
+                        .addAttributes("li", "value");
+                string = Jsoup.clean(html.toString(), whitelist);
             } else {
                 string = html.toString();
             }
