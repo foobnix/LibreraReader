@@ -758,6 +758,7 @@ public class Fb2Extractor extends BaseExtractor {
             String number = "";
             String keywords = "";
             boolean titleInfo = false;
+            boolean authorInfo = false;
             boolean publishInfo = false;
             String year = "";
             String publisher = "";
@@ -770,6 +771,9 @@ public class Fb2Extractor extends BaseExtractor {
 
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = true;
+                    }
+                    if (xpp.getName().equals("author")) {
+                        authorInfo = true;
                     }
 
                     if (xpp.getName().equals("publish-info")) {
@@ -793,9 +797,9 @@ public class Fb2Extractor extends BaseExtractor {
                             bookTitle = xpp.nextText();
                         } else if (xpp.getName().equals("lang")) {
                             lang = xpp.nextText();
-                        } else if (firstName == null && xpp.getName().equals("first-name")) {
+                        } else if (authorInfo && firstName == null && xpp.getName().equals("first-name")) {
                             firstName = xpp.nextText();
-                        } else if (lastName == null && xpp.getName().equals("last-name")) {
+                        } else if (authorInfo && lastName == null && xpp.getName().equals("last-name")) {
                             lastName = xpp.nextText();
                         } else if (xpp.getName().equals("genre")) {
                             genre = xpp.nextText() + "," + genre;
@@ -827,6 +831,9 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = false;
+                    }
+                    if (xpp.getName().equals("author")) {
+                        authorInfo = false;
                     }
 
                     if (xpp.getName().equals("publish-info")) {
