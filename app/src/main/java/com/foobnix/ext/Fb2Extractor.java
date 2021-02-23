@@ -816,7 +816,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
-                    if (titleInfo && xpp.getName().equals("author") && firstName != null && lastName != null) {
+                    if (titleInfo && firstName != null && lastName != null) {
                         firstName = TxtUtils.trim(firstName);
                         lastName = TxtUtils.trim(lastName);
 
