@@ -104,7 +104,7 @@
    <string name="direction_of_reading_rtl_">Reading direction</string>
    <string name="left_to_rigth">LTR</string>
    <string name="right_to_left">RTL</string>
-   <string name="right_page_then_left_page_rtl_">Force right page</string>
+   <string name="right_page_then_left_page_rtl_">Force right-hand page</string>
    <string name="rotate_page">Rotate angle</string>
    <string name="rotate_default">Default</string>
    <string name="tap_zone_size">Tap zones (edges)</string>
@@ -626,6 +626,6 @@
    <string name="remove_from_favorites">Remove from Favorites</string>
    <string name="book_menu">Book menu</string>
    <string name="accessibility_mode">Enable Accessibility Mode</string>
-   <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in the app\'s Preferences</string>
+   <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in Preferences</string>
    <string name="integration_in_the_context_menu">Integrate in global context menu</string>
 </resources>
