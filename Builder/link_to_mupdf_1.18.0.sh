@@ -7,8 +7,9 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $BUILD_DIR
 
 VERSION=1.18.0
+VERSION_TAG=1.18.1-so-3.11.4
 
-MUPDF_ROOT=${BUILD_DIR}/mupdf-$VERSION
+MUPDF_ROOT=${BUILD_DIR}/mupdf-$VERSION_TAG
 MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
