@@ -398,6 +398,7 @@ task copyApks() {
         println "My Task: [copy apks]"
 
         delete fileTree("/home/data/Dropbox/FREE_PDF_APK/testing").include("*.apk")
+        delete fileTree("/home/ivan-dev/Dropbox/FREE_PDF_APK/testing").include("*.apk")
         delete fileTree("/home/data/Nextcloud/LibreraBeta").include("*.apk")
 
         android.applicationVariants.all { variant ->
@@ -407,6 +408,7 @@ task copyApks() {
                     //println "====  " + variant.buildType.name + " " +  flavor
 
                     ["/home/data/Dropbox/FREE_PDF_APK/testing",
+                     "/home/ivan-dev/Dropbox/FREE_PDF_APK/testing",
                      "/home/data/Nextcloud/LibreraBeta"].each { dest ->
                         copy {
                             from file(
