@@ -63,6 +63,12 @@ public class RecentUpates {
 
                 FileMeta recentLast = AppDB.get().getRecentLastNoFolder();
                 if (recentLast != null && TxtUtils.isNotEmpty(recentLast.getTitle())) {
+                    File bookFile = new File(recentLast.getPath());
+                    if (!bookFile.isFile()) {
+                        LOG.d("Book not found", bookFile.getPath());
+                        return;
+                    }
+
                     ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
                     String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
                     //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
@@ -77,7 +83,8 @@ public class RecentUpates {
                                 lastBookIntent = new Intent(c, HorizontalViewActivity.class);
                             }
                             lastBookIntent.setAction(Intent.ACTION_VIEW);
-                            lastBookIntent.setData(Uri.fromFile(new File(recentLast.getPath())));
+
+                            lastBookIntent.setData(Uri.fromFile(bookFile));
 
                             ShortcutInfo shortcut = new ShortcutInfo.Builder(c, "last")//
                                     .setShortLabel(recentLast.getTitle())//
@@ -87,7 +94,7 @@ public class RecentUpates {
                                     .build();//
 
                             Intent tTSIntent = new Intent(c, TTSActivity.class);
-                            tTSIntent.setData(Uri.fromFile(new File(recentLast.getPath())));
+                            tTSIntent.setData(Uri.fromFile(bookFile));
                             tTSIntent.setAction(Intent.ACTION_VIEW);
 
                             ShortcutInfo tts = new ShortcutInfo.Builder(c, "tts")//
