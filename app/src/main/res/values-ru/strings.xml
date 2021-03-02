@@ -131,7 +131,7 @@
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">Менять скорость автопрокрутки текста клавишами регулировки громкости</string>
    <string name="enable_brightness_adjustment_on_the_left_of_the_screen">Регулировать яркость подсветки свайпом у левой кромки экрана</string>
    <string name="scroll_speed">Прокр. текста колес. мыши</string>
-   <string name="page_quality">Качество прорисовки страниц</string>
+   <string name="page_quality">Кач-во прорисовки стр-ц</string>
    <string name="pages_in_memory">Страниц в опер. памяти</string>
    <string name="screen_turn_off_after_inactivity_minutes_">Время перед гашением экрана (в минутах)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
@@ -565,8 +565,8 @@
    <string name="add_dictionary">Добавить словарь</string>
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>
-   <string name="with_cutout">С вырезом</string>
-   <string name="screen">Полноэкраность</string>
+   <string name="with_cutout">Дисплей с вырезом</string>
+   <string name="screen">Полноэкр. вид</string>
    <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
    <string name="enable_experimental_features">Включить экспериментальные функции</string>
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
@@ -590,7 +590,7 @@
    <string name="previous_track">Предыдущий трек</string>
    <string name="copied_text">Скопированный текст</string>
    <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе Calibre)</string>
-   <string name="profile_root">Корень профиля</string>
+   <string name="profile_root">Корневая папка</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показывать скрытое</string>
    <string name="new_file">Создать файл</string>
