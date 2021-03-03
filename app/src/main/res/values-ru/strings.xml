@@ -16,7 +16,7 @@
    <string name="system_language">Системный</string>
    <string name="system">Системное значение</string>
    <string name="small">Мелкий</string>
-   <string name="normal">Обычный</string>
+   <string name="normal">Обычный вид</string>
    <string name="large">Крупный</string>
    <string name="theme">Тема</string>
    <string name="light">Cветлая</string>
@@ -565,8 +565,8 @@
    <string name="add_dictionary">Добавить словарь</string>
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>
-   <string name="with_cutout">С вырезом</string>
-   <string name="screen">Полноэкраность</string>
+   <string name="with_cutout">Дисплей с вырезом</string>
+   <string name="screen">Полноэкранность</string>
    <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
    <string name="enable_experimental_features">Включить экспериментальные функции</string>
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
@@ -590,7 +590,7 @@
    <string name="previous_track">Предыдущий трек</string>
    <string name="copied_text">Скопированный текст</string>
    <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе Calibre)</string>
-   <string name="profile_root">Корень профиля</string>
+   <string name="profile_root">Корневая папка</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показывать скрытое</string>
    <string name="new_file">Создать файл</string>
