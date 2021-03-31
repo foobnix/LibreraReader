@@ -14,9 +14,9 @@
    <string name="landscape_180">Альбомная (180°)</string>
    <string name="portrait_180">Портретная (180°)</string>
    <string name="system_language">Системный</string>
-   <string name="system">Системное значение</string>
+   <string name="system">Как в системе</string>
    <string name="small">Мелкий</string>
-   <string name="normal">Обычный</string>
+   <string name="normal">Обычный вид</string>
    <string name="large">Крупный</string>
    <string name="theme">Тема</string>
    <string name="light">Cветлая</string>
@@ -492,7 +492,7 @@
    <string name="slider_scale">Шкала бегунка</string>
    <string name="chapter_format">Прогресс чтения</string>
    <string name="play_a_music_file">Выбрать и проиграть музык. файл</string>
-   <string name="rate_us">Поставить оценку</string>
+   <string name="rate_us">Оценить</string>
    <string name="reset">Сброс</string>
    <string name="status_bar_location">Расположение строки состояния</string>
    <string name="add_to_bookmark">Добавить в закладки</string>
@@ -565,8 +565,8 @@
    <string name="add_dictionary">Добавить словарь</string>
    <string name="add_rule">Добавить правило</string>
    <string name="emphasis">Ударение(-я)</string>
-   <string name="with_cutout">С вырезом</string>
-   <string name="screen">Полноэкраность</string>
+   <string name="with_cutout">Дисплей с вырезом</string>
+   <string name="screen">Полноэкранность</string>
    <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
    <string name="enable_experimental_features">Включить экспериментальные функции</string>
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>
@@ -580,7 +580,7 @@
    <string name="pull_to_start_sync">Запускать синхронизицию свайпом сверху-вниз</string>
    <string name="show_book_title">Видеть название книги в строке состояния</string>
    <string name="delete_reading_progress">Удалить прогресс чтения</string>
-   <string name="ignore_folder_scan_if_nomedia_file_exists">Не сканировать папки, если в них находится файл .nomedia</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">Не сканировать папки, если в них находится файл ".nomedia"</string>
    <string name="record_in_mp3_format">Сохранить в формате .mp3</string>
    <string name="speak_into_file_wav">Создание TTS-начитки (.mp3, .wav)</string>
    <string name="text_is_too_long">Текст слишком длинный</string>
@@ -590,7 +590,7 @@
    <string name="previous_track">Предыдущий трек</string>
    <string name="copied_text">Скопированный текст</string>
    <string name="reference_mode_like_in_calibre_viewer">Эталонный режим (как в программе Calibre)</string>
-   <string name="profile_root">Корень профиля</string>
+   <string name="profile_root">Корневая папка</string>
    <string name="create_folder">Создать папку</string>
    <string name="show_hidden">Показывать скрытое</string>
    <string name="new_file">Создать файл</string>
@@ -627,5 +627,5 @@
    <string name="book_menu">Книжное меню</string>
    <string name="accessibility_mode">Режим для слабовидящих</string>
    <string name="welcome_accessibility">Добро пожаловать. Если у вас трудности со зрением, вы можете включить соответствующий режим для слабовидящих в боковом меню приложения</string>
-   <string name="integration_in_the_context_menu">Интеграция в контекстное меню</string>
+   <string name="integration_in_the_context_menu">Интегрировать в контекстное меню</string>
 </resources>
