@@ -101,7 +101,7 @@ public class AndroidWhatsNew {
     public static void show2(final Context c) {
 
         if (AppsConfig.IS_FDROID || Build.VERSION.SDK_INT <= 22) {
-            Urls.open(c, getLangUrl(c));
+
             return;
         }
 
@@ -161,7 +161,8 @@ public class AndroidWhatsNew {
 
     }
 
-    private static void show1(final Context c) {
+    @Deprecated
+    private static void s(final Context c) {
         if (true) {
             show2(c);
             return;

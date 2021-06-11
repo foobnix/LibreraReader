@@ -157,6 +157,8 @@
 
         <com.foobnix.pdf.info.view.ProgressDraw
             android:id="@+id/progressDraw"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress" />
     </LinearLayout>
