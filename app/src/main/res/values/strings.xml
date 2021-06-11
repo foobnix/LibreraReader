@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Enable Accessibility Mode</string>
    <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in Preferences</string>
    <string name="integration_in_the_context_menu">Integrate in global context menu</string>
+   <string name="the_application_requires_permission_for_storage_access">The application requires permission for storage access</string>
 </resources>

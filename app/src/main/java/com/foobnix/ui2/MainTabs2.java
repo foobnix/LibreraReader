@@ -250,8 +250,13 @@ public class MainTabs2 extends AdsFragmentActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        LOG.d("REQUEST_CODE_ADD_RESOURCE", requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_OK) {
+        if (Android6.isNeedToGrantAccess(this, requestCode)) {
+            Toast.makeText(this, R.string.the_application_requires_permission_for_storage_access, Toast.LENGTH_SHORT).show();
+            Android6.checkPermissions(this, false);
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT < 30 && resultCode != Activity.RESULT_OK) {
             Toast.makeText(this, R.string.fail, Toast.LENGTH_SHORT).show();
             return;
         }

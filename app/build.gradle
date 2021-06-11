@@ -29,12 +29,12 @@ ext {
 
 android {
     buildToolsVersion '30.0.2'
-    compileSdkVersion 29
+    compileSdkVersion 30
     //ndkVersion "21.3.6528147"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -408,6 +408,8 @@ task copyApks() {
                     //println "====  " + variant.buildType.name + " " +  flavor
 
                     ["/home/data/Dropbox/FREE_PDF_APK/testing",
+
+
                      "/home/ivan-dev/Dropbox/FREE_PDF_APK/testing",
                      "/home/data/Nextcloud/LibreraBeta"].each { dest ->
                         copy {
