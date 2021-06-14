@@ -167,7 +167,8 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfDocument_open(JNIEnv *env,
 		printf("Open start %s \n", filename);
 		__android_log_print(ANDROID_LOG_DEBUG, "EBookDroid", "Open");
 
-		doc->document = (fz_document*) fz_open_document(doc->ctx, filename);
+		doc->document = (fz_document*) fz_open_accelerated_document(doc->ctx, filename,NULL);
+
 
 		//fz_drop_context(doc->ctx);
 		//fz_set_user_css(doc->ctx,css);
@@ -654,10 +655,13 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_open(JNIEnv *env,
 		fz_context *ctx = doc->ctx;
 		//doc->outline = fz_load_outline(ctx, doc->document);
 
+		//fz_count_chapters(ctx, doc->document);
+
 		fz_try(ctx)
 			doc->outline = fz_load_outline(ctx, doc->document);
 		fz_catch(ctx)
 			doc->outline = NULL;
+
 
 	}
 //    DEBUG("PdfOutline.open(): return handle = %p", doc->outline);
@@ -668,7 +672,7 @@ JNIEXPORT void JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_free(JNIEnv *env,
 		jclass clazz, jlong dochandle) {
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
-//    DEBUG("PdfOutline_free(%p)", doc);
+
 	if (doc) {
 		if (doc->outline)
 			fz_drop_outline(doc->ctx, doc->outline);
@@ -681,14 +685,9 @@ JNIEXPORT jstring JNICALL
 Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getTitle(JNIEnv *env,
 		jclass clazz, jlong outlinehandle) {
 	fz_outline *outline = (fz_outline*) (long) outlinehandle;
-//	DEBUG("PdfOutline_getTitle(%p)",outline);
-	if (outline){
-		//return (*env)->NewStringUTF(env, outline->title);
-		//return (*env)->GetStringUTFChars(env, outline->title, NULL);
 
-		char st[2048];
-		snprintf(st, 2047, "%s", outline->title);
-		return (*env)->NewStringUTF(env, st);
+	if (outline && outline->title){
+		return (*env)->NewStringUTF(env, outline->title);
 	}
 
 	return NULL;
@@ -719,10 +718,12 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfOutline_getLinkUri(JNIEnv *env,
 	renderdocument_t *doc = (renderdocument_t*) (long) dochandle;
 
 // DEBUG("PdfOutline_getLink(%p)",outline);
-	if (!outline)
-		return NULL;
+	if (outline && outline->uri){
+	    return (*env)->NewStringUTF(env, outline->uri);
+	}else{
+	    return NULL;
+	}
 
-	return (*env)->NewStringUTF(env, outline->uri);
 }
 
 JNIEXPORT jint JNICALL
@@ -1084,9 +1085,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 
 			pdf_set_annot_border(ctx, annot, width);
 			pdf_set_annot_color(ctx, annot, 3, color);
-			pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
+			//pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
 
-			pdf_update_page(ctx, (pdf_page *)page->page);
+			//pdf_update_page(ctx, (pdf_page *)page->page);
 
 
 		//page->pageList = fz_new_display_list(ctx);

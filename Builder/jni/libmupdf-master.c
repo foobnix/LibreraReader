@@ -377,7 +377,7 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfLinks_getPageLinkTargetPage(
 	fz_link *link = (fz_link*) (long) linkhandle;
 	renderdocument_t *doc = (renderdocument_t *)(long)handle;
 
-	int pageNum =   fz_page_number_from_location(doc->ctx,doc->document,fz_resolve_link(doc->ctx, link->doc, link->uri, NULL, NULL));
+	int pageNum =   fz_page_number_from_location(doc->ctx,doc->document,fz_resolve_link(doc->ctx, doc, link->uri, NULL, NULL));
     return pageNum;
 }
 
@@ -1084,9 +1084,9 @@ Java_org_ebookdroid_droids_mupdf_codec_MuPdfPage_addInkAnnotationInternal(JNIEnv
 
 			pdf_set_annot_border(ctx, annot, width);
 			pdf_set_annot_color(ctx, annot, 3, color);
-			pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
+			//pdf_set_annot_ink_list(ctx, annot, n, counts, pts);
 
-			pdf_update_page(ctx, (pdf_page *)page->page);
+			//pdf_update_page(ctx, (pdf_page *)page->page);
 
 
 		//page->pageList = fz_new_display_list(ctx);

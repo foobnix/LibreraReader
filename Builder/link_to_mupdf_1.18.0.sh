@@ -8,16 +8,13 @@ cd $BUILD_DIR
 
 VERSION_TAG=1.18.1-so-3.11.4
 
-
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
-MUPDF_JAVA=$MUPDF_ROOT/platform/java
+MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 
 SRC=jni/~mupdf-$VERSION_TAG
 DEST=$MUPDF_ROOT/source/
 SRC_FILES=$SRC/src_files
-
 LIBS=$BUILD_DIR/../app/src/main/jniLibs
-
 
 
 echo "MUPDF :" $VERSION_TAG
@@ -28,7 +25,7 @@ git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG 
 cd mupdf-$VERSION_TAG
 
 git reset --hard
-
+#git clean -f -d
 
 echo "=================="
 #make clean
@@ -37,6 +34,8 @@ make generate
 echo "=================="
 
 cd ..
+
+mkdir -p $MUPDF_JAVA/jni
 
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni
@@ -50,8 +49,6 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-
-cp -rp $DEST/html/css-apply.c  $SRC_FILES
 
 mkdir -p $SRC_FILES
 cp -rp $MUPDF_ROOT/platform/java/Android.mk  $SRC_FILES
@@ -68,7 +65,7 @@ cp -rp $DEST/svg/svg-doc.c  $SRC_FILES
 cp -rp $DEST/fitz/xml.c  $SRC_FILES
 cp -rp $DEST/pdf/pdf-colorspace.c  $SRC_FILES
 
-cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
+#cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
 #cp -rp $SRC/epub-doc.c          $DEST/html/epub-doc.c
 #cp -rp $SRC/html-doc.c          $DEST/html/html-doc.c
 #cp -rp $SRC/html-layout.c       $DEST/html/html-layout.c

@@ -177,7 +177,9 @@ public class CacheZipUtils {
         }
     }
 
-    public static Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
+
+    @Deprecated
+      Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
         String name = "";
         try {
 
