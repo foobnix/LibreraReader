@@ -1,8 +1,6 @@
 package org.ebookdroid;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 
@@ -70,6 +68,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build", "Build.DEVICE", Build.DEVICE);
         LOG.d("Build", "Build.BRAND", Build.BRAND);
         LOG.d("Build", "Build.MODEL", Build.MODEL);
+        LOG.d("Build", "Build.VERSION.SDK_INT", Build.VERSION.SDK_INT);
 
         LOG.d("Build", "Build.screenWidth", Dips.screenWidthDP(), Dips.screenWidth());
 

@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Mode d\'accessibilité</string>
    <string name="welcome_accessibility">Bienvenue, vous pouvez activer l\'optimisation de l\'accessibilité dans le menu de gauche de l\'application</string>
    <string name="integration_in_the_context_menu">Intégration dans le menu contextuel</string>
+   <string name="the_application_needs_storage_permission">L\'application a besoin d\'une autorisation pour accéder au stockage pour trouver tous les livres</string>
 </resources>

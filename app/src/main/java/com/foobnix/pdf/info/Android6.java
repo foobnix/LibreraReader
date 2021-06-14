@@ -22,10 +22,12 @@ public class Android6 {
     public static final int MY_PERMISSIONS_REQUEST_WES = 1;
     public static final int MY_PERMISSIONS_REQUEST_FINGER_PRINT = 2;
 
+    public static final int ANDROID_12_INT =  30;
+
 
     public static boolean canWrite(Context c) {
 
-        if (Build.VERSION.SDK_INT >= 30 && Environment.isExternalStorageManager()) {
+        if (Build.VERSION.SDK_INT >= ANDROID_12_INT && Environment.isExternalStorageManager()) {
             return true;
         }
 
@@ -36,8 +38,8 @@ public class Android6 {
     }
 
     public static void checkPermissions(final Activity a, boolean checkWhatIsNew) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            LOG.d("Environment.isExternalStorageManager()", Environment.isExternalStorageManager());
+        if (Build.VERSION.SDK_INT >= ANDROID_12_INT) {
+            LOG.d("Environment.isExternalStorageManager()", Environment.isExternalStorageManager(), Build.VERSION.SDK_INT);
 
             if (!Environment.isExternalStorageManager()) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
@@ -94,7 +96,7 @@ public class Android6 {
     public static boolean isNeedToGrantAccess(Activity a, int requestCode) {
         LOG.d("onActivityResult", requestCode);
         if (requestCode == MY_PERMISSIONS_REQUEST_WES) {
-            if (Build.VERSION.SDK_INT >= 30) {
+            if (Build.VERSION.SDK_INT >= ANDROID_12_INT) {
                 if (Environment.isExternalStorageManager()) {
                     a.finish();
                     a.getIntent().setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

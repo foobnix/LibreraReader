@@ -628,4 +628,5 @@
    <string name="accessibility_mode">पहुँच मोड</string>
    <string name="welcome_accessibility">आपका स्वागत है, आप बाएं एप्लिकेशन मेनू में पहुंच अनुकूलन को सक्षम कर सकते हैं</string>
    <string name="integration_in_the_context_menu">संदर्भ मेनू में एकीकरण</string>
+   <string name="the_application_needs_storage_permission">एप्लिकेशन को सभी पुस्तकों को खोजने के लिए संग्रहण तक पहुंचने की अनुमति चाहिए</string>
 </resources>

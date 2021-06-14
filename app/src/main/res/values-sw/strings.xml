@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Hali ya upatikanaji</string>
    <string name="welcome_accessibility">Karibu, unaweza kuwezesha ufikiaji katika menyu ya programu ya kushoto</string>
    <string name="integration_in_the_context_menu">Ujumuishaji katika menyu ya muktadha</string>
+   <string name="the_application_needs_storage_permission">Programu inahitaji ruhusa ya kufikia hifadhi ili kupata vitabu vyote</string>
 </resources>

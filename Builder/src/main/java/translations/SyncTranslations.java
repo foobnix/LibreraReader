@@ -64,7 +64,8 @@ public class SyncTranslations {
         return asList;
     }
 
-    private static Config IVAN = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");
+    private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");
+    private static Config IVAN = new Config("ivan", "", "/home/ivan-dev/git/LibreraReader/app/src/main/res/");
 
     // run as "SyncTranslations user_name"
     public static void main(final String[] args) throws Exception {
@@ -79,7 +80,7 @@ public class SyncTranslations {
 
         final String projectEN = project + "values/strings.xml";
 
-        final List<String> asList = getAllLangCodes("/home/data/git/LibreraReader/app/src/main/res/");
+        final List<String> asList = getAllLangCodes(project);
 
         // final List<String> asList = Arrays.asList("ru");
 

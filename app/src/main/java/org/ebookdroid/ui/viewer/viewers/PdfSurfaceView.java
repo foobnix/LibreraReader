@@ -50,6 +50,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         this.base = baseActivity;
         this.scroller = new Scroller(getContext());
         getHolder().addCallback(this);
+
     }
 
     @Override

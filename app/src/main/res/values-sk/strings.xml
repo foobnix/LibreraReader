@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Režim prístupnosti</string>
    <string name="welcome_accessibility">Vitajte, môžete povoliť optimalizáciu prístupu v ponuke aplikácií vľavo</string>
    <string name="integration_in_the_context_menu">Integrácia v kontextovom menu</string>
+   <string name="the_application_needs_storage_permission">Aplikácia potrebuje povolenie na prístup do úložiska, aby mohla nájsť všetky knihy</string>
 </resources>

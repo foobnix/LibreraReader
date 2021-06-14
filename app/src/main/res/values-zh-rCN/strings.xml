@@ -628,4 +628,5 @@
    <string name="accessibility_mode">辅助功能模式</string>
    <string name="welcome_accessibility">欢迎，您可以在左侧的应用菜单中启用辅助功能优化</string>
    <string name="integration_in_the_context_menu">集成在上下文菜单中</string>
+   <string name="the_application_needs_storage_permission">应用程序需要访问存储的权限才能找到所有书籍</string>
 </resources>

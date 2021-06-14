@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Tillgänglighetsläge</string>
    <string name="welcome_accessibility">Välkommen, du kan aktivera tillgänglighetsoptimering i den vänstra appmenyn</string>
    <string name="integration_in_the_context_menu">Integration i snabbmenyn</string>
+   <string name="the_application_needs_storage_permission">Applikationen behöver tillstånd för att komma åt lagringsutrymmet för att hitta alla böcker</string>
 </resources>

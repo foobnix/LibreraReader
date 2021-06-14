@@ -598,7 +598,7 @@
    <string name="go_to_the_folder">Перейти к папке</string>
    <string name="you_should_enable_allow_battery">Чтобы слушать аудио в фоне, в разделе "Аккумулятор" нужно разрешить приложению работать в соответствующем режиме</string>
    <string name="use_calibre_metadata">Использовать metadata.opf из Calibre</string>
-   <string name="icons_only">только иконки</string>
+   <string name="icons_only">Только иконки</string>
    <string name="migration">Перенос данных</string>
    <string name="please_backup1">Перед переносом данных лучше выполнить резервное копирование (экспорт) настроек приложения</string>
    <string name="start_migration">Начать перенос данных</string>
@@ -628,4 +628,5 @@
    <string name="accessibility_mode">Режим для слабовидящих</string>
    <string name="welcome_accessibility">Добро пожаловать. Если у вас трудности со зрением, вы можете включить соответствующий режим для слабовидящих в боковом меню приложения</string>
    <string name="integration_in_the_context_menu">Интегрировать в контекстное меню</string>
+   <string name="the_application_needs_storage_permission">Приложению требуется разрешение на доступ к хранилищу, чтобы найти все книги</string>
 </resources>
