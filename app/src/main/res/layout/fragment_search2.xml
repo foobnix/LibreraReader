@@ -5,15 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+
+
     <LinearLayout
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dip"
+        android:layout_marginLeft="0dip"
         android:layout_marginRight="4dip"
         android:layout_marginTop="4dip"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
+
+        <ImageView
+            android:contentDescription="@string/menu"
+            android:id="@+id/menu2"
+            android:padding="9dip"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:layout_margin="0dip"
+            android:tint="@color/foobnix_light_blue"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:src="@drawable/glyphicons_517_menu_hamburger" />
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -56,7 +72,7 @@
                 android:textColor="@color/tint_gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
-            
+
             <ImageView
                 android:layout_marginRight="-8dip"
                 android:id="@+id/myAutoCompleteImage"

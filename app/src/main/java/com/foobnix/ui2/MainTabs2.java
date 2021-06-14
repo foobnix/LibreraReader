@@ -45,7 +45,6 @@ import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.SlidingTabLayout;
 import com.foobnix.pdf.info.Android6;
-import com.foobnix.pdf.info.AndroidWhatsNew;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExportConverter;
@@ -510,6 +509,7 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (AppState.get().isEnableAccessibility) {
             imageMenu.setVisibility(View.VISIBLE);
         }
+        imageMenu.setVisibility(View.GONE);
 
         // ((BrigtnessDraw)
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
@@ -654,14 +654,14 @@ public class MainTabs2 extends AdsFragmentActivity {
 
         }
 
-        try {
-            if (AppState.get().isShowWhatIsNewDialog && !AppState.get().isEnableAccessibility) {
-                LOG.d("checkForNewBeta");
-                AndroidWhatsNew.checkForNewBeta(this);
-            }
-        } catch (Exception e) {
-            LOG.e(e);
-        }
+//        try {
+//            if (AppState.get().isShowWhatIsNewDialog && !AppState.get().isEnableAccessibility) {
+//                LOG.d("checkForNewBeta");
+//                AndroidWhatsNew.checkForNewBeta(this);
+//            }
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
         if (Android6.canWrite(this)) {
             FontExtractor.extractFonts(this);
         }

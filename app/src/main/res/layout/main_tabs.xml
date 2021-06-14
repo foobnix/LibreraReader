@@ -37,6 +37,7 @@
                             android:id="@+id/imageMenu1"
 
                             android:layout_width="40dip"
+                            android:visibility="gone"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dip"
                             android:background="?android:attr/selectableItemBackground"
@@ -53,7 +54,7 @@
                             android:layout_weight="0"
                             android:background="#3949ab"
                             android:elevation="2dip"
-                            android:visibility="gone"></com.foobnix.pdf.SlidingTabLayout>
+                            android:visibility="gone"/>
 
 
                     </LinearLayout>

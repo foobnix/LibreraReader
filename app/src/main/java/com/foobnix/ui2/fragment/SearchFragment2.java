@@ -8,7 +8,6 @@ import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -95,7 +94,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     AuthorsAdapter2 authorsAdapter;
     TextView countBooks, sortBy;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage, cleanFilter;
+    ImageView sortOrder, myAutoCompleteImage, cleanFilter, menu2;
     View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
     int countTitles = 0;
@@ -235,6 +234,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
+        TintUtil.setTintImageNoAlpha(menu2, TintUtil.color);
 
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
@@ -322,6 +322,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+        menu2 = (ImageView) view.findViewById(R.id.menu2);
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -467,6 +468,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 showAutoCompleteDialog();
+            }
+        });
+
+        menu2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view.getRootView().findViewById(R.id.imageMenu1)!=null) {
+                    view.getRootView().findViewById(R.id.imageMenu1).performClick();
+                }
             }
         });
 
