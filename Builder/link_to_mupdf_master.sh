@@ -8,9 +8,8 @@ cd $BUILD_DIR
 
 echo "MUPDF : master"
 echo "================== "
-git clone --recursive --jobs 8 git://git.ghostscript.com/mupdf.git mupdf-master
+git clone --recursive git://git.ghostscript.com/mupdf.git mupdf-master
 cd mupdf-master
-
 
 git reset --hard
 git clean -f -d
