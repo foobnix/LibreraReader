@@ -106,7 +106,7 @@ public class AppProfile {
         SYNC_FOLDER_ROOT = new File(AppSP.get().rootPath);
         SYNC_FOLDER_BOOKS = new File(SYNC_FOLDER_ROOT, "Books");
         SYNC_FOLDER_DICT = new File(SYNC_FOLDER_ROOT, "dict");
-        FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip");
+        FONT_LOCAL_ZIP = new File(SYNC_FOLDER_ROOT, "fonts.zip.pack");
         syncFontFolder = new File(SYNC_FOLDER_ROOT, "Fonts");
         syncDownloadFolder = new File(SYNC_FOLDER_ROOT, "Downloads");
 

@@ -35,7 +35,6 @@ public class FontExtractor {
     public static String FONT_HTTP_ZIP1 = "https://raw.github.com/foobnix/LirbiReader/master/Builder/fonts/fonts.zip";
     public static String FONT_HTTP_ZIP2 = "https://www.dropbox.com/s/c8v7d05vskmjt28/fonts.zip?raw=1";
 
-    public static File FONT_LOCAL_ZIP = new File(AppProfile.SYNC_FOLDER_ROOT, "fonts.zip");
 
     final static Object lock = new Object();
 
@@ -50,7 +49,7 @@ public class FontExtractor {
                 try {
                     synchronized (lock) {
                         if (hasZipFonts()) {
-                            long lastModified = FONT_LOCAL_ZIP.lastModified();
+                            long lastModified = AppProfile.FONT_LOCAL_ZIP.lastModified();
 
                             File fontDir = new File(BookCSS.get().fontFolder);
                             File index = new File(fontDir, "index");
@@ -65,7 +64,7 @@ public class FontExtractor {
                                 LOG.d("extractFonts NO");
                             }
                         } else if (AppsConfig.IS_FDROID) {
-                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(FONT_LOCAL_ZIP));
+                            IOUtils.copyClose(c.getAssets().open("fonts.zip"), new FileOutputStream(AppProfile.FONT_LOCAL_ZIP));
                             copyFontsFromZip();
                             LOG.d("copy fonts for IS_FDROID");
                         }
@@ -115,8 +114,8 @@ public class FontExtractor {
             File fontDir = new File(BookCSS.get().fontFolder);
             fontDir.mkdirs();
 
-            FONT_LOCAL_ZIP.getParentFile().mkdirs();
-            CacheZipUtils.extractArchive(FONT_LOCAL_ZIP, fontDir);
+            AppProfile.FONT_LOCAL_ZIP.getParentFile().mkdirs();
+            CacheZipUtils.extractArchive(AppProfile.FONT_LOCAL_ZIP, fontDir);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -125,7 +124,7 @@ public class FontExtractor {
 
     public static boolean hasZipFonts() {
         try {
-            return FONT_LOCAL_ZIP.isFile() && FONT_LOCAL_ZIP.length() > 5 * 1024 * 1024;
+            return AppProfile.FONT_LOCAL_ZIP.isFile() && AppProfile.FONT_LOCAL_ZIP.length() > 5 * 1024 * 1024;
         } catch (Exception e) {
             return false;
         }
@@ -172,8 +171,8 @@ public class FontExtractor {
 
                     private void downloadFontFile(String url) throws IOException, FileNotFoundException {
                         LOG.d("Download from", url);
-                        LOG.d("Download to  ", FONT_LOCAL_ZIP);
-                        FONT_LOCAL_ZIP.delete();
+                        LOG.d("Download to  ", AppProfile.FONT_LOCAL_ZIP);
+                        AppProfile.FONT_LOCAL_ZIP.delete();
 
                         okhttp3.Request request = new okhttp3.Request.Builder()//
                                 .cacheControl(new CacheControl.Builder().noCache().build()).url(url)//
@@ -184,7 +183,7 @@ public class FontExtractor {
                                 .execute();
 
                         BufferedSource source = response.body().source();
-                        FileOutputStream out = new FileOutputStream(FONT_LOCAL_ZIP);
+                        FileOutputStream out = new FileOutputStream(AppProfile.FONT_LOCAL_ZIP);
                         BufferedSink sink = Okio.buffer(Okio.sink(out));
                         sink.writeAll(response.body().source());
                         sink.close();
