@@ -234,7 +234,7 @@ public class FileInformationDialog {
 
                 RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
                 recyclerView.setVisibility(View.VISIBLE);
-                recyclerView.setHasFixedSize(true);
+                //recyclerView.setHasFixedSize(true);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView.setLayoutManager(linearLayoutManager);

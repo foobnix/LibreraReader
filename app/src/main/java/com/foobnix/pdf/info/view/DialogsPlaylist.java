@@ -232,7 +232,7 @@ public class DialogsPlaylist {
         builder.setTitle(Playlists.formatPlaylistName(file));
 
         RecyclerView recyclerView = new RecyclerView(a);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -318,7 +318,7 @@ public class DialogsPlaylist {
     public static void dispalyPlaylist(final Activity a, final DocumentController dc) {
         final RecyclerView playlistRecycleView = (RecyclerView) a.findViewById(R.id.playlistRecycleView);
 
-        playlistRecycleView.setHasFixedSize(true);
+        //playlistRecycleView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         playlistRecycleView.setLayoutManager(linearLayoutManager);
