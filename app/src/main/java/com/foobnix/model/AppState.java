@@ -523,7 +523,7 @@ public class AppState {
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
     public long installationDate = System.currentTimeMillis();
     @IgnoreHashCode
-    public boolean isShowLongBackDialog = false;
+    public boolean isShowLongBackDialog = true;
     @IgnoreHashCode
     public boolean isZoomInOutWithVolueKeys = false;
     @IgnoreHashCode

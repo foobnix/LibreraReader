@@ -157,7 +157,7 @@ public class CacheZipUtils {
                 if (isOkular && ends.endsWith(".xml")) {
                     continue;
                 }
-                if (ends.endsWith(".opf") || ExtUtils.isImagePath(ends)) {
+                if (ends.endsWith(".opf") || ExtUtils.isImagePath(ends) || ends.endsWith(".fbd")) {
                     continue;
                 }
 
