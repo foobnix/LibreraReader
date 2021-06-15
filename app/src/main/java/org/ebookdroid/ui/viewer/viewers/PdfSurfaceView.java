@@ -34,9 +34,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     protected boolean layoutLocked;
 
 
-    // protected final FullScreenCallback fullScreenCallback;
-
-    // private int sleepTime = 1000 * 5;
 
     public PdfSurfaceView(final IActivityController baseActivity) {
         super(baseActivity.getContext());
@@ -46,13 +43,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasWindowFocus) {
-        super.onWindowFocusChanged(hasWindowFocus);
-        if (hasWindowFocus) {
-            // requestFocus();
-        }
-    }
+
 
     /**
      * {@inheritDoc}
@@ -113,10 +104,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         final int x = (int) ((getScrollX() + halfWidth) * ratio - halfWidth);
         final int y = (int) ((getScrollY() + halfHeight) * ratio - halfHeight);
 
-        // if (LCTX.isDebugEnabled()) {
-        // LCTX.d("invalidateScroll(" + newZoom + ", " + oldZoom + "): " + x +
-        // ", " + y);
-        // }
+
         scrollTo(x, y);
     }
 
@@ -281,6 +269,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
      */
     @Override
     public void onDestroy() {
+        drawThread.quit();
     }
 
     /**
@@ -321,6 +310,8 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
         redrawView(new ViewState(base.getDocumentController()));
     }
+
+
 
     @Override
     public final void redrawView(final ViewState viewState) {
