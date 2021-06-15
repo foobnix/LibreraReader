@@ -94,7 +94,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         DocumentController.doContextMenu(this);
 
 
-
         FileMetaCore.checkOrCreateMetaInfo(this);
 
         if (getIntent().getData() != null) {
@@ -142,13 +141,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
 
 
-
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 
 
         view = new PdfSurfaceView(getController());
-
 
 
         frameLayout.addView(view.getView());
@@ -200,20 +197,20 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (handler != null) {
             handler.removeCallbacks(closeRunnable);
         }
-        if(AppState.get().inactivityTime!=-1) {
+        if (AppState.get().inactivityTime != -1) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","add",AppState.get().inactivityTime);
+            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
         }
-        if(view!=null) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (view != null) {
                     view.redrawView();
                 }
-            },50);
+            }
+        }, 50);
 
-
-        }
 
     }
 
@@ -221,7 +218,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data,DocumentController.EXTRA_PERCENT));
+            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data, DocumentController.EXTRA_PERCENT));
             getController().getDocumentController().goToPage(page);
         }
     }
@@ -421,6 +418,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
         return super.onKeyUp(keyCode, event);
     }
+
     long keyTimeout = 0;
 
     @Override

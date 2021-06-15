@@ -196,6 +196,7 @@ public class EventDraw implements IEvent {
     protected void drawPageBackground(final Page page) {
         if (canvas == null) {
             LOG.d("canvas is null");
+            return;
         }
 
         fixedPageBounds.set(pageBounds);

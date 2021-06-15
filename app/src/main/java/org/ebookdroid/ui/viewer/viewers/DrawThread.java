@@ -32,14 +32,20 @@ public class DrawThread extends HandlerThread {
         mReceiver = new Handler(getLooper(), new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
+
                 if (viewState != null) {
                     Canvas canvas = holder.lockCanvas();
+
                     try {
                         EventPool.newEventDraw(viewState, canvas, null).process();
                     } catch (Exception e) {
                         LOG.e(e);
+                    } finally {
+                        if(canvas!=null) {
+                            holder.unlockCanvasAndPost(canvas);
+                        }
                     }
-                    holder.unlockCanvasAndPost(canvas);
+
                 }
                 return false;
             }

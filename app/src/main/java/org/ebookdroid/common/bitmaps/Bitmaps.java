@@ -205,7 +205,7 @@ public class Bitmaps {
     public boolean draw(final Canvas canvas, final PagePaint paint, final PointF vb, final RectF tr, final RectF cr) {
         lock.readLock().lock();
         try {
-            if (this.bitmaps == null) {
+            if (this.bitmaps == null || canvas == null) {
                 return false;
             }
 
