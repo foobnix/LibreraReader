@@ -305,7 +305,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         }
 
         long delta = System.currentTimeMillis() - t;
-        long value = AppSP.get().isLocked ? 40 : 60;
+        long value = AppSP.get().isLocked ? 20 : 30;
 
         if (delta > value) {
             t = System.currentTimeMillis();

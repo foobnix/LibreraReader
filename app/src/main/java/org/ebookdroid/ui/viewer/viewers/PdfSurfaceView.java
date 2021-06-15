@@ -19,11 +19,7 @@ import org.ebookdroid.ui.viewer.IActivityController;
 import org.ebookdroid.ui.viewer.IView;
 import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MathUtils;
-import org.emdev.utils.concurrent.Flag;
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 public final class PdfSurfaceView extends android.view.SurfaceView implements IView, SurfaceHolder.Callback {
 
@@ -37,9 +33,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     protected boolean layoutLocked;
 
-    protected final AtomicReference<Rect> layout = new AtomicReference<Rect>();
-
-    protected final Flag layoutFlag = new Flag();
 
     // protected final FullScreenCallback fullScreenCallback;
 
@@ -245,13 +238,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
      */
     @Override
     public void changeLayoutLock(final boolean lock) {
-        post(new Runnable() {
 
-            @Override
-            public void run() {
-                layoutLocked = lock;
-            }
-        });
     }
 
     /**
@@ -272,13 +259,9 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     @Override
     protected final void onLayout(final boolean layoutChanged, final int left, final int top, final int right, final int bottom) {
         super.onLayout(layoutChanged, left, top, right, bottom);
+        base.getDocumentController().onLayoutChanged(layoutChanged);
 
-        final Rect oldLayout = layout.getAndSet(new Rect(left, top, right, bottom));
-        base.getDocumentController().onLayoutChanged(layoutChanged, layoutLocked, oldLayout, layout.get());
 
-        if (oldLayout == null) {
-            layoutFlag.set();
-        }
     }
 
     /**
@@ -288,9 +271,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
      */
     @Override
     public final void waitForInitialization() {
-        while (!layoutFlag.get()) {
-            layoutFlag.waitFor(TimeUnit.SECONDS, 1);
-        }
+
     }
 
     /**
@@ -300,7 +281,6 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
      */
     @Override
     public void onDestroy() {
-        layoutFlag.set();
     }
 
     /**
@@ -358,7 +338,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     @Override
     public final void surfaceCreated(final SurfaceHolder holder) {
-        drawThread = new DrawThread(getHolder());
+        drawThread = new DrawThread(holder);
         drawThread.setPriority(CoreSettings.getInstance().drawThreadPriority);
         drawThread.start();
     }
@@ -370,7 +350,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     @Override
     public final void surfaceDestroyed(final SurfaceHolder holder) {
-        drawThread.finish();
+        drawThread.quit();
     }
 
     /**

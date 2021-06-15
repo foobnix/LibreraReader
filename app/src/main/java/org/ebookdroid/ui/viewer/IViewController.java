@@ -62,7 +62,7 @@ public interface IViewController extends ZoomListener {
         INIT, LAYOUT, PAGE_ALIGN, PAGE_LOADED;
     }
 
-    boolean onLayoutChanged(boolean layoutChanged, boolean layoutLocked, Rect oldLaout, Rect newLayout);
+    boolean onLayoutChanged(boolean layoutChanged);
 
     Rect getScrollLimits();
 

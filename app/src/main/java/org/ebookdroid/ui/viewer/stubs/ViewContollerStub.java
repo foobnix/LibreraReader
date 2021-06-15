@@ -105,8 +105,7 @@ public class ViewContollerStub implements IViewController {
     }
 
     @Override
-    public boolean onLayoutChanged(final boolean layoutChanged, final boolean layoutLocked, final Rect oldLaout,
-            final Rect newLayout) {
+    public boolean onLayoutChanged(final boolean layoutChanged) {
         return false;
     }
 

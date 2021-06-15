@@ -264,8 +264,8 @@ public abstract class AbstractViewController extends AbstractComponentController
      * boolean, android.graphics.Rect, android.graphics.Rect)
      */
     @Override
-    public boolean onLayoutChanged(final boolean layoutChanged, final boolean layoutLocked, final Rect oldLaout, final Rect newLayout) {
-        if (layoutChanged && !layoutLocked) {
+    public boolean onLayoutChanged(final boolean layoutChanged) {
+        if (layoutChanged) {
             if (isShown) {
                 EventPool.newEventReset(this, InvalidateSizeReason.LAYOUT, true).process();
                 return true;

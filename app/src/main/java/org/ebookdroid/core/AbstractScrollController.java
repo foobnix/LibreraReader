@@ -1,6 +1,5 @@
 package org.ebookdroid.core;
 
-import android.graphics.Rect;
 import android.graphics.RectF;
 
 import com.foobnix.android.utils.LOG;
@@ -76,15 +75,14 @@ public abstract class AbstractScrollController extends AbstractViewController {
      *      android.graphics.Rect)
      */
     @Override
-    public final boolean onLayoutChanged(final boolean layoutChanged, final boolean layoutLocked, final Rect oldLaout,
-            final Rect newLayout) {
+    public final boolean onLayoutChanged(final boolean layoutChanged) {
         LOG.d("onLayoutChanged");
         final AppBook bs = SettingsManager.getBookSettings();
         final int page = model != null ? model.getCurrentViewPageIndex() : -1;
         final float offsetX = bs != null ? bs.x : 0;
         final float offsetY = bs != null ? bs.y : 0;
 
-        if (super.onLayoutChanged(layoutChanged, layoutLocked, oldLaout, newLayout)) {
+        if (super.onLayoutChanged(layoutChanged)) {
             if (isShown && layoutChanged && page != -1) {
                 goToPage(page, offsetX, offsetY);
             }
