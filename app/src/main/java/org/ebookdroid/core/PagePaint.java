@@ -23,8 +23,12 @@ public enum PagePaint {
     public final Paint strokePaint = new Paint();
 
     private PagePaint(final int textColor, final int fillColor, final int bgFillPaint) {
+
         bitmapPaint = new Paint();
-        // bitmapPaint.setFilterBitmap(false);
+
+        bitmapPaint.setFilterBitmap(false);
+        bitmapPaint.setAntiAlias(false);
+        bitmapPaint.setDither(false);
 
         textPaint.setColor(textColor);
         textPaint.setAntiAlias(true);

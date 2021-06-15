@@ -106,9 +106,6 @@ public class EventDraw implements IEvent {
 
         if (MagicHelper.isNeedBookBackgroundImage()) {
 
-            if (MagicHelper.isNeedBookBackgroundImage()) {
-                // viewState.paint.bitmapPaint.setAlpha(MagicHelper.getTransparencyInt());
-            }
 
             Bitmap bgBitmap = MagicHelper.getBackgroundImage();
             Matrix m = new Matrix();
@@ -118,8 +115,12 @@ public class EventDraw implements IEvent {
             m.postTranslate(fixedPageBounds.left, fixedPageBounds.top);
 
             Paint p = new Paint();
+            p.setFilterBitmap(false);
+            p.setAntiAlias(false);
+            p.setDither(false);
+
             p.setAlpha(255 - MagicHelper.getTransparencyInt());
-            canvas.drawBitmap(MagicHelper.getBackgroundImage(), m, p);
+            canvas.drawBitmap(bgBitmap, m, p);
         }
         if (AppState.get().isOLED && !AppState.get().isDayNotInvert/* && !TempHolder.get().isTextFormat */) {
             canvas.drawRect(fixedPageBounds.left - Dips.DP_1, fixedPageBounds.top - Dips.DP_1, fixedPageBounds.right + Dips.DP_1, fixedPageBounds.bottom + Dips.DP_1, rect);

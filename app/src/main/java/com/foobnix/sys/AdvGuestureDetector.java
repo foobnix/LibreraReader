@@ -307,7 +307,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         long delta = System.currentTimeMillis() - t;
         long value = AppSP.get().isLocked ? 20 : 30;
 
-        if (delta > value) {
+        //if (delta > value) {
             t = System.currentTimeMillis();
             if (isNoLock() || (e2.getPointerCount() == 2 && !(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN) && AppState.get().isZoomInOutWithLock)) {
                 avc.getView().scrollBy(d1, d2);
@@ -317,7 +317,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
             d1 = d2 = 0;
             LOG.d("onScroll yes", avc.getView().getScrollY(), avc.getView().getHeight(), avc.getScrollLimits().bottom);
 
-        }
+       //}
 
 
         return true;
@@ -392,7 +392,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
         final float factor = (float) Math.sqrt(newDistance / oldDistance);
         factor1 *= factor;
         long delta = System.currentTimeMillis() - time;
-        if (delta > 50) {
+        if (delta > 25) {
             time = System.currentTimeMillis();
             avc.base.getZoomModel().scaleZoom(factor1);
             factor1 = 1;

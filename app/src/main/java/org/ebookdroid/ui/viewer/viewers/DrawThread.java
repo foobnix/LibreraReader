@@ -49,7 +49,7 @@ public class DrawThread extends HandlerThread {
 
     public void draw(ViewState viewState) {
         this.viewState = viewState;
-        mReceiver.sendEmptyMessage(0);
+        mReceiver.sendEmptyMessage(1);
     }
 
 
