@@ -33,15 +33,14 @@ public class DrawThread extends HandlerThread {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
 
-                if (viewState != null) {
+                if (viewState != null && holder != null) {
                     Canvas canvas = holder.lockCanvas();
-
                     try {
                         EventPool.newEventDraw(viewState, canvas, null).process();
                     } catch (Exception e) {
                         LOG.e(e);
                     } finally {
-                        if(canvas!=null) {
+                        if (canvas != null) {
                             holder.unlockCanvasAndPost(canvas);
                         }
                     }
@@ -55,7 +54,9 @@ public class DrawThread extends HandlerThread {
 
     public void draw(ViewState viewState) {
         this.viewState = viewState;
-        mReceiver.sendEmptyMessage(1);
+        if (mReceiver != null) {
+            mReceiver.sendEmptyMessage(1);
+        }
     }
 
 
