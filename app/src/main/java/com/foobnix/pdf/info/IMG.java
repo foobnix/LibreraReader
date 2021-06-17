@@ -1,5 +1,6 @@
 package com.foobnix.pdf.info;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
@@ -146,9 +148,12 @@ public class IMG {
     }
 
     public static void clear(ImageView image) {
-        LOG.d("Glide-clear", image.getContext());
         try {
-            with(image.getContext()).clear(image);
+            LOG.d("Glide-clear",  image.getContext());
+            Activity activity = ((Activity) image.getContext());
+            if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
+                with(image.getContext()).clear(image);
+            }
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -242,7 +247,7 @@ public class IMG {
         final String url = IMG.toUrlPos(path, ImageExtractor.COVER_PAGE, width, pos);
         try {
             Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
@@ -250,7 +255,7 @@ public class IMG {
     public static String toUrl(final String path, final int page, final int width) {
         PageUrl pdfUrl = new PageUrl(path, page, width, 0, false, false, 0);
         pdfUrl.setUnic(0);
-        pdfUrl.hash = (""+AppState.get().isBookCoverEffect).hashCode();
+        pdfUrl.hash = ("" + AppState.get().isBookCoverEffect).hashCode();
         return pdfUrl.toString();
     }
 
