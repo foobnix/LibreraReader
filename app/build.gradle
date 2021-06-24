@@ -347,8 +347,8 @@ dependencies {
 
     implementation 'com.github.axet:lame:1.0.6'
 
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation('org.greenrobot:greendao:3.2.2') {
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation('org.greenrobot:greendao:3.3.0') {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
@@ -356,13 +356,13 @@ dependencies {
     implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
-    implementation 'com.burgstaller:okhttp-digest:1.18'
+    implementation 'io.github.rburgst:okhttp-digest:1.21'
     implementation 'com.squareup.okio:okio-parent:1.17.5'
 
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.4.2'
     implementation 'javax.xml.stream:stax-api:1.0'
-    implementation 'net.lingala.zip4j:zip4j:2.7.0'
+    implementation 'net.lingala.zip4j:zip4j:2.8.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
