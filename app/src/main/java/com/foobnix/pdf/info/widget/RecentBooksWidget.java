@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.dao2.FileMeta;
@@ -189,28 +190,38 @@ public class RecentBooksWidget extends AppWidgetProvider {
 //                remoteViews.addView(R.id.linearLayout, v);
 
 
-                Glide.with(LibreraApp.context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+                Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
 
 
                     @Override
                     public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                        RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
-                        v.setImageViewBitmap(R.id.imageView1, resource);
+                        try {
+                            RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
+                            v.setImageViewBitmap(R.id.imageView1, resource);
 
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
-                        intent.setClassName(context, HorizontalViewActivity.class.getName());
-                        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-                        v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
+                            intent.setClassName(context, HorizontalViewActivity.class.getName());
+                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                            v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
-                        remoteViews.addView(R.id.linearLayout, v);
+                            remoteViews.addView(R.id.linearLayout, v);
 
-                        //for (int widgetId : appWidgetIds) {
-                        if(appWidgetManager!=null) {
-                            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                            //for (int widgetId : appWidgetIds) {
+                            if (appWidgetManager != null) {
+                                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                            }
+                            //}
+
+                        }catch (Exception e){
+                            LOG.e(e);
                         }
-                        //}
+                    }
+
+                    @Override
+                    public void onLoadCleared(Drawable placeholder) {
 
                     }
+
                 });
             }
         }

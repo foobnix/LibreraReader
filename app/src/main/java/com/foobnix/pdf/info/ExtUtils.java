@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -43,7 +44,7 @@ import androidx.core.os.EnvironmentCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
@@ -1190,7 +1191,7 @@ public class ExtUtils {
         }
         // Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
 
-        Glide.with(LibreraApp.context).asBitmap().load(pageUrl).into(new SimpleTarget<Bitmap>() {
+        Glide.with(LibreraApp.context).asBitmap().load(pageUrl).into(new CustomTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap imageBitmap, @Nullable Transition<? super Bitmap> transition) {
                 try {
@@ -1222,7 +1223,15 @@ public class ExtUtils {
                     Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                     LOG.e(e);
                 }
+
             }
+
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+            }
+
+
         });
 
 
@@ -1753,9 +1762,10 @@ public class ExtUtils {
         if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
             extFolders.add(sdPath);
         }
-        return  extFolders;
+        return extFolders;
 
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 
     private static List<String> getExternalStorageDirectories(Context c) {

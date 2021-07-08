@@ -204,14 +204,16 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
         }
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (view != null) {
-                    view.redrawView();
+        if (handler != null) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (view != null) {
+                        view.redrawView();
+                    }
                 }
-            }
-        }, 50);
+            }, 50);
+        }
 
 
     }

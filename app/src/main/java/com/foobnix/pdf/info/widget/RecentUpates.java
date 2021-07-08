@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
@@ -14,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -73,7 +74,7 @@ public class RecentUpates {
                     String url = IMG.toUrl(recentLast.getPath(), ImageExtractor.COVER_PAGE, IMG.getImageSize());
                     //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
 
-                    Glide.with(c).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
+                    Glide.with(c).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
 
@@ -106,6 +107,13 @@ public class RecentUpates {
 
                             shortcutManager.setDynamicShortcuts(Arrays.asList(tts, shortcut));
                         }
+
+                        @Override
+                        public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                        }
+
+
                     });
 
 

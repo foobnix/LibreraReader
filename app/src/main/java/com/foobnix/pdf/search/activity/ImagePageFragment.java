@@ -2,6 +2,7 @@ package com.foobnix.pdf.search.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,7 @@ import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.pdf.info.IMG;
@@ -42,7 +43,7 @@ public class ImagePageFragment extends Fragment {
     long lifeTime = 0;
     int loadImageId;
     boolean fistTime = true;
-    SimpleTarget<Bitmap> target = null;
+    CustomTarget<Bitmap> target = null;
     Future<?> submit;
     private PageImaveView image;
     private TextView text;
@@ -171,7 +172,7 @@ public class ImagePageFragment extends Fragment {
         if (image != null && image.getWidth() == 0) {
             return;
         }
-        target = new SimpleTarget<Bitmap>() {
+        target = new CustomTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                 text.setVisibility(View.GONE);
@@ -179,6 +180,12 @@ public class ImagePageFragment extends Fragment {
                     image.addBitmap(resource);
                 }
             }
+
+            @Override
+            public void onLoadCleared(Drawable placeholder) {
+
+            }
+
         };
         LOG.d("Glide-load-into", getActivity());
         IMG.with(getActivity())
