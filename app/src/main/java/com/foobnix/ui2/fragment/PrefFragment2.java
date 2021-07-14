@@ -878,8 +878,12 @@ public class PrefFragment2 extends UIFragment {
 
                                                      for (int i = 0; i < langs.size(); i++) {
                                                          String[] all = langs.get(i).split(":");
-                                                         final String name = all[0];
+                                                         String name = all[0];
                                                          final String code = all[1];
+
+                                                         if(BuildConfig.DEBUG){
+                                                             name += " [" + code+"]";
+                                                         }
                                                          popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                                                              @Override

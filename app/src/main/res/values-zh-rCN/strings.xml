@@ -625,6 +625,7 @@
    <string name="add_to_favorites">添加到收藏夹</string>
    <string name="remove_from_favorites">从收藏夹中移除</string>
    <string name="book_menu">书籍菜单</string>
+   <string name="accessibility_mode">启用无障碍模式</string>
    <string name="welcome_accessibility">欢迎，您可以在左侧的应用菜单中启用无障碍辅助功能优化</string>
    <string name="integration_in_the_context_menu">集成到全局上下文菜单</string>
    <string name="the_application_needs_storage_permission">应用需要访问存储权限以发现所有书籍</string>

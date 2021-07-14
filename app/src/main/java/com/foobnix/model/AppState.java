@@ -203,7 +203,7 @@ public class AppState {
             "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
             "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
             "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
-            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", "ta", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
