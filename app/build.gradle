@@ -4,8 +4,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString();
 
 
 ext {
-    FDroidCodeNumber = 4085
-    FDroidVersionNumber = "8.3.135"
+    FDroidCodeNumber = 4140
+    FDroidVersionNumber = "8.3.140"
 }
 
 println " --------------------"
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 29//30
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
