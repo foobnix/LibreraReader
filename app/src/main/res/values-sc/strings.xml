@@ -360,7 +360,7 @@
    <string name="add_bookmark">Sinnalibru nou</string>
    <string name="column_count">Colunnas</string>
    <string name="cd_export">Esporta</string>
-   <string name="links_color_night">Colore de su ligàmene (note)</string>
+   <string name="links_color_night">Colore de sos ligàmenes (note)</string>
    <string name="close_menu">Serra su menù</string>
    <string name="speed1">Lestresa</string>
    <string name="email">Posta eletrònica</string>
@@ -544,7 +544,7 @@
    <string name="db_auto_alignemnt">Adata sa pàgina</string>
    <string name="reference_mode_like_in_calibre_viewer">Modalidade de riferimentu (a tipu Calibre)</string>
    <string name="descending">In achirrada</string>
-   <string name="links_color_day">Colore de su ligàmene (die)</string>
+   <string name="links_color_day">Colore de sos ligàmenes (die)</string>
    <string name="one_page">Pàgina sìngula</string>
    <string name="show_the_book_close_dialog">Cunfirma sa serradura de su libru incarchende In segus</string>
    <string name="show_progress_of_reading">Abìlita sa barra de progressu</string>
