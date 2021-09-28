@@ -29,12 +29,12 @@ ext {
 
 android {
     buildToolsVersion '30.0.2'
-    compileSdkVersion 30
+    compileSdkVersion 31
     //ndkVersion "21.3.6528147"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 29//30
+        targetSdkVersion 30//30
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

@@ -22,7 +22,7 @@ public class Android6 {
     public static final int MY_PERMISSIONS_REQUEST_WES = 1;
     public static final int MY_PERMISSIONS_REQUEST_FINGER_PRINT = 2;
 
-    public static final int ANDROID_12_INT =  31;//30
+    public static final int ANDROID_12_INT =  30;//30
 
 
     public static boolean canWrite(Context c) {

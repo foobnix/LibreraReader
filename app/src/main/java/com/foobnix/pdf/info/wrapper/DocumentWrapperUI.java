@@ -64,7 +64,6 @@ import com.foobnix.pdf.info.view.ProgressDraw;
 import com.foobnix.pdf.info.view.UnderlineImageView;
 import com.foobnix.pdf.info.widget.DraggbleTouchListener;
 import com.foobnix.pdf.info.widget.ShareDialog;
-import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 import com.foobnix.pdf.search.activity.msg.MessegeBrightness;
 import com.foobnix.pdf.search.view.CloseAppDialog;
@@ -79,6 +78,7 @@ import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
+import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -96,6 +96,13 @@ public class DocumentWrapperUI {
     final DocumentController dc;
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
+
+    private PdfSurfaceView surfaceView;
+
+    public void setSurfaceView(PdfSurfaceView surfaceView) {
+        this.surfaceView = surfaceView;
+    }
+
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
 
         @Override
@@ -1772,7 +1779,20 @@ public class DocumentWrapperUI {
             DocumentController.turnOffButtons(a);
 
             hide();
+
         }
+
+        //
+        if (Build.VERSION.SDK_INT >= 31 && surfaceView != null) {
+            if (AppState.get().isEditMode) {
+                surfaceView.setZOrderOnTop(false);
+
+            } else {
+                surfaceView.setZOrderOnTop(true);
+            }
+        }
+
+
         initToolBarPlusMinus();
 
         if (AppState.get().isAutoScroll) {

@@ -153,6 +153,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         frameLayout.addView(view.getView());
 
         getController().afterCreate(this);
+        getController().getWrapperControlls().setSurfaceView((PdfSurfaceView)view);
 
         // ADS.activate(this, adView);
 
