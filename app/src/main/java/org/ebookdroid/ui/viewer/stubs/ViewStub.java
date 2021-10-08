@@ -66,20 +66,8 @@ public class ViewStub implements IView {
         return new RectF(0, 0, 0, 0);
     }
 
-    @Override
-    public void changeLayoutLock(final boolean lock) {
-    }
 
-    @Override
-    public boolean isLayoutLocked() {
-        return false;
-    }
-
-    @Override
-    public void waitForInitialization() {
-    }
-
-    @Override
+        @Override
     public void onDestroy() {
     }
 
@@ -125,8 +113,6 @@ public class ViewStub implements IView {
         return new PointF(0, 0);
     }
 
-    @Override
-    public void checkFullScreenMode() {
-    }
+
 
 }

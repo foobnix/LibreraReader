@@ -29,7 +29,7 @@ public class Page {
     public final CodecPageInfo cpi;
 
     final IActivityController base;
-    final PageTree nodes;
+    public final PageTree nodes;
 
     RectF bounds;
     int aspectRatio;

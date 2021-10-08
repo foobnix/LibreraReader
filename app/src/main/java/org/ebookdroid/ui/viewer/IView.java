@@ -34,12 +34,6 @@ public interface IView {
 
     RectF getViewRect();
 
-    void changeLayoutLock(final boolean lock);
-
-    boolean isLayoutLocked();
-
-    void waitForInitialization();
-
     void onDestroy();
 
     float getScrollScaleRatio();
@@ -60,5 +54,4 @@ public interface IView {
 
     PointF getBase(RectF viewRect);
 
-    void checkFullScreenMode();
 }

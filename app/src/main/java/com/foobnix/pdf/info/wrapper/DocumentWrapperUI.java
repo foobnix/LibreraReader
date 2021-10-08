@@ -78,7 +78,6 @@ import com.foobnix.ui2.MainTabs2;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
-import org.ebookdroid.ui.viewer.viewers.PdfSurfaceView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -97,11 +96,7 @@ public class DocumentWrapperUI {
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
 
-    private PdfSurfaceView surfaceView;
 
-    public void setSurfaceView(PdfSurfaceView surfaceView) {
-        this.surfaceView = surfaceView;
-    }
 
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
 
@@ -1780,16 +1775,6 @@ public class DocumentWrapperUI {
 
             hide();
 
-        }
-
-        //
-        if (Build.VERSION.SDK_INT >= 31 && surfaceView != null) {
-            if (AppState.get().isEditMode) {
-                surfaceView.setZOrderOnTop(false);
-
-            } else {
-                surfaceView.setZOrderOnTop(true);
-            }
         }
 
 

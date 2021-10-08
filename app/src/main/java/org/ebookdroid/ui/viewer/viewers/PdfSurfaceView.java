@@ -1,18 +1,18 @@
 package org.ebookdroid.ui.viewer.viewers;
 
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.Scroller;
 
 import com.foobnix.pdf.search.activity.msg.MessagePageXY;
 
-import org.ebookdroid.common.settings.CoreSettings;
 import org.ebookdroid.common.settings.types.PageAlign;
-import org.ebookdroid.core.DecodeService;
+import org.ebookdroid.core.EventPool;
 import org.ebookdroid.core.Page;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.ui.viewer.IActivityController;
@@ -21,7 +21,8 @@ import org.ebookdroid.ui.viewer.IViewController;
 import org.emdev.utils.MathUtils;
 import org.greenrobot.eventbus.EventBus;
 
-public final class PdfSurfaceView extends android.view.SurfaceView implements IView, SurfaceHolder.Callback {
+public final class PdfSurfaceView extends android.view.View implements IView{
+
 
     protected final IActivityController base;
 
@@ -29,25 +30,16 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     protected PageAlign align;
 
-    protected DrawThread drawThread;
-
-    protected boolean layoutLocked;
-
-
-
     public PdfSurfaceView(final IActivityController baseActivity) {
         super(baseActivity.getContext());
         this.base = baseActivity;
         this.scroller = new Scroller(getContext());
-        getHolder().addCallback(this);
-
     }
-
 
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getView()
      */
     @Override
@@ -57,7 +49,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getBase()
      */
     @Override
@@ -67,7 +59,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getScroller()
      */
     @Override
@@ -77,7 +69,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#invalidateScroll()
      */
     @Override
@@ -90,7 +82,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#invalidateScroll(float, float)
      */
     @Override
@@ -110,7 +102,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#startPageScroll(int, int)
      */
     @Override
@@ -121,9 +113,9 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#startFling(float, float,
-     *      android.graphics.Rect)
+     * android.graphics.Rect)
      */
     @Override
     public void startFling(final float vX, final float vY, final Rect limits) {
@@ -132,7 +124,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#continueScroll()
      */
     @Override
@@ -144,7 +136,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#forceFinishScroll()
      */
     @Override
@@ -156,24 +148,22 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.View#onScrollChanged(int, int, int, int)
      */
     @Override
     protected final void onScrollChanged(final int curX, final int curY, final int oldX, final int oldY) {
         super.onScrollChanged(curX, curY, oldX, oldY);
-
         base.getDocumentController().onScrollChanged(curX - oldX, curY - oldY);
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see android.view.View#onTouchEvent(android.view.MotionEvent)
      */
     @Override
     public boolean onTouchEvent(final MotionEvent ev) {
-        checkFullScreenMode();
 
         if (base.getDocumentController().onTouchEvent(ev)) {
             return true;
@@ -181,14 +171,10 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         return super.onTouchEvent(ev);
     }
 
-    @Override
-    public void checkFullScreenMode() {
-        // fullScreenCallback.checkFullScreenMode();
-    }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#scrollTo(int, int)
      */
     @Override
@@ -211,7 +197,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getViewRect()
      */
     @Override
@@ -219,62 +205,34 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
         return new RectF(getScrollX(), getScrollY(), getScrollX() + getWidth(), getScrollY() + getHeight());
     }
 
-    /**
-     * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IView#changeLayoutLock(boolean)
-     */
-    @Override
-    public void changeLayoutLock(final boolean lock) {
 
-    }
+
 
     /**
      * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IView#isLayoutLocked()
-     */
-    @Override
-    public boolean isLayoutLocked() {
-        return layoutLocked;
-    }
-
-    /**
-     * {@inheritDoc}
-     * 
+     *
      * @see android.view.View#onLayout(boolean, int, int, int, int)
      */
     @Override
     protected final void onLayout(final boolean layoutChanged, final int left, final int top, final int right, final int bottom) {
         super.onLayout(layoutChanged, left, top, right, bottom);
         base.getDocumentController().onLayoutChanged(layoutChanged);
-
-
     }
+
 
     /**
      * {@inheritDoc}
-     * 
-     * @see org.ebookdroid.ui.viewer.IView#waitForInitialization()
-     */
-    @Override
-    public final void waitForInitialization() {
-
-    }
-
-    /**
-     * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#onDestroy()
      */
     @Override
     public void onDestroy() {
-        drawThread.quit();
+
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getScrollScaleRatio()
      */
     @Override
@@ -290,7 +248,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#stopScroller()
      */
     @Override
@@ -302,7 +260,7 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#redrawView()
      */
     @Override
@@ -312,41 +270,43 @@ public final class PdfSurfaceView extends android.view.SurfaceView implements IV
     }
 
 
+    ViewState viewState;
 
     @Override
     public final void redrawView(final ViewState viewState) {
+        this.viewState = viewState;
         if (viewState != null) {
-            if (drawThread != null) {
-                drawThread.draw(viewState);
+            if (base.getDecodeService() != null) {
+                base.getDecodeService().updateViewState(viewState);
             }
-            final DecodeService ds = base.getDecodeService();
-            if (ds != null) {
-                ds.updateViewState(viewState);
-            }
+            postInvalidate();
         }
 
     }
 
     @Override
-    public final void surfaceCreated(final SurfaceHolder holder) {
-        drawThread = new DrawThread(holder);
-        drawThread.setPriority(CoreSettings.getInstance().drawThreadPriority);
-        drawThread.start();
+    protected void onDraw(Canvas canvas) {
+        if(viewState!=null) {
+
+            Matrix matrix = canvas.getMatrix();
+            matrix.reset();
+            canvas.setMatrix(matrix);
+
+            int save = canvas.save();
+            EventPool.newEventDraw(viewState, canvas, null).process();
+            canvas.restoreToCount(save);
+        }
+
+
+        super.onDraw(canvas);
+
     }
 
-    @Override
-    public final void surfaceChanged(final SurfaceHolder holder, final int format, final int width, final int height) {
-        redrawView();
-    }
 
-    @Override
-    public final void surfaceDestroyed(final SurfaceHolder holder) {
-        drawThread.quit();
-    }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @see org.ebookdroid.ui.viewer.IView#getBase(android.graphics.RectF)
      */
     @Override

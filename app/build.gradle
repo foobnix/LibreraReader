@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 30//30
+        targetSdkVersion 31//30
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -332,6 +332,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.3.0'

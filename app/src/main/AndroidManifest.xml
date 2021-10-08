@@ -240,13 +240,15 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="androidx.media.session.MediaButtonReceiver">
+        <receiver android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
         <activity
+            android:exported="true"
             android:name="com.foobnix.tts.TTSActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:launchMode="singleTask">
@@ -257,6 +259,7 @@
 
 
         <activity
+            android:exported="true"
             android:name="com.foobnix.ui2.CloudrailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
@@ -272,15 +275,9 @@
         </activity>
 
 
+
         <activity
-            android:name="com.foobnix.sys.TestActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN1" />
-                <category android:name="android.intent.category.LAUNCHER1" />
-            </intent-filter>
-        </activity>
-        <activity
+            android:exported="true"
             android:name="test.SvgActivity"
             android:launchMode="singleTop">
             <intent-filter>
