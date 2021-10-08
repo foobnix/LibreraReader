@@ -4,8 +4,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString();
 
 
 ext {
-    FDroidCodeNumber = 4140
-    FDroidVersionNumber = "8.3.140"
+    FDroidCodeNumber = 4145
+    FDroidVersionNumber = "8.3.145"
 }
 
 println " --------------------"
@@ -28,13 +28,13 @@ ext {
 }
 
 android {
-    buildToolsVersion '30.0.2'
+    buildToolsVersion '31.0.0'
     compileSdkVersion 31
     //ndkVersion "21.3.6528147"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
         minSdkVersion 14
-        targetSdkVersion 31//30
+        targetSdkVersion 31
         versionCode codeNumber
         versionName versionNumber
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -456,7 +456,7 @@ task incVersion() {
 
 if (!taskName.contains("Fdroid")) {
 
-    //apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.gms.google-services'
 
     dependencies {
         implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
