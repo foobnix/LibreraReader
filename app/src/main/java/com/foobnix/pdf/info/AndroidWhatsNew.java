@@ -28,7 +28,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import static android.os.Build.VERSION.SDK_INT;
@@ -100,8 +102,8 @@ public class AndroidWhatsNew {
 
     public static void show2(final Context c) {
 
-        if (AppsConfig.IS_FDROID || Build.VERSION.SDK_INT <= 22) {
-
+        if (true || AppsConfig.IS_FDROID || Build.VERSION.SDK_INT <= 22) {
+            Urls.open(c, getLangUrl(c));
             return;
         }
 
@@ -114,7 +116,10 @@ public class AndroidWhatsNew {
         wv.getSettings().setJavaScriptEnabled(true);
 
 
-        wv.loadUrl(getLangUrl(c));
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Set-Cookie", "SameSite=None; Secure");
+
+        wv.loadUrl(getLangUrl(c),headers);
 
         wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {
