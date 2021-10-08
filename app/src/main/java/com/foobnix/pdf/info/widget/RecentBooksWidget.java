@@ -64,7 +64,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
             Intent nintent = new Intent(Intent.ACTION_VIEW, (Uri) intent.getParcelableExtra("uri"));
             nintent.setClassName(context, className);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, nintent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE);
             try {
                 pendingIntent.send();
             } catch (CanceledException e) {
@@ -142,7 +142,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
         Intent toastIntent = new Intent(context, RecentBooksWidget.class);
         toastIntent.setAction(ACTION_MY);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-        PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent, PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setPendingIntentTemplate(R.id.gridView1, toastPendingIntent);
     }
 
@@ -167,7 +167,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
             v.setImageViewResource(R.id.imageView1, R.drawable.books_widget);
 
             Intent intent = new Intent(context, MainTabs2.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
             v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
             remoteViews.addView(R.id.linearLayout, v);
@@ -201,7 +201,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
                             intent.setClassName(context, HorizontalViewActivity.class.getName());
-                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
                             v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
                             remoteViews.addView(R.id.linearLayout, v);

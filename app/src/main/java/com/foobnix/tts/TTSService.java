@@ -140,7 +140,7 @@ public class TTSService extends Service {
 
     public static void playPause(Context context, DocumentController controller) {
         if (TTSEngine.get().isPlaying()) {
-            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
             try {
                 next.send();
             } catch (CanceledException e) {
@@ -206,8 +206,11 @@ public class TTSService extends Service {
 
         //mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
+        Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        PendingIntent penginIntent = PendingIntent.getActivity(getApplicationContext(), 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag");
+
+        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag",null,penginIntent);
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override
@@ -259,9 +262,9 @@ public class TTSService extends Service {
 
         });
 
-        Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         mediaButtonIntent.setClass(this, MediaButtonReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
         //setSessionToken(mMediaSessionCompat.getSessionToken());
@@ -335,7 +338,7 @@ public class TTSService extends Service {
     }
 
     private void startServiceWithNotification() {
-        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_IMMUTABLE );
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                 .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
                 .setContentTitle(Apps.getApplicationName(this)) //

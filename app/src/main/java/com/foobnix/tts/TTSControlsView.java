@@ -112,7 +112,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
@@ -125,7 +125,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
@@ -139,7 +139,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
