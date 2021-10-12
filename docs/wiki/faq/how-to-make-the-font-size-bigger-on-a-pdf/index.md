@@ -13,3 +13,6 @@ To improve readability of your PDF document (too small character size), you can 
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+|![](4.png)|![](5.png)|![](6.png)|
+
+
