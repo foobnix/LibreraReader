@@ -202,7 +202,7 @@ public class AppState {
     public static final List<String> langCodes = Arrays.asList(//
             "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
             "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
-            "nl", "no", "pl", "pt", "ro", "ru", "sk", "sv", //
+            "nl", "no", "pl", "pt", "ro", "ru", "sc", "sk", "sv", //
             "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", "ta", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
     public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
     public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
