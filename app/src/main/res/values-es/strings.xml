@@ -61,7 +61,7 @@
    <string name="web">Página Web</string>
    <string name="beta_version">Versión beta</string>
    <string name="archive">Archivo</string>
-   <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y clasifíquenos en Google Play; es muy importante para nosotros</string>
+   <string name="rate_pdf_reader1">Por favor, escriba sus comentarios y califíquenos en Google Play; es muy importante para nosotros</string>
    <string name="___PREFERENCES___SECTION___"></string>
    <string name="formatted_text">Texto formateado (pseudo gráficos)</string>
    <string name="continuous_text">Texto continuo (sin salto de línea)</string>
@@ -94,8 +94,8 @@
    <string name="automatic_hyphenation">Activar separación (-)</string>
    <string name="empty_line">Espacio entre estrofas</string>
    <string name="margin_width">Márgenes</string>
-   <string name="top">Principio</string>
-   <string name="bottom">Final</string>
+   <string name="top">Arriba</string>
+   <string name="bottom">Abajo</string>
    <string name="links_color_day">Color de enlaces (día)</string>
    <string name="links_color_night">Color de enlaces (noche)</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
@@ -213,7 +213,7 @@
    <string name="my_favorites_links">Mis enlaces favoritos</string>
    <string name="what_is_the_opds_online_catalog_">¿Qué es el catálogo en línea de OPDS?</string>
    <string name="___DIALOGS___SECTION___"></string>
-   <string name="ok">Okay</string>
+   <string name="ok">Ok</string>
    <string name="yes">Sí</string>
    <string name="no">No</string>
    <string name="apply">Aplicar</string>
@@ -247,10 +247,10 @@
    <string name="mode_vertical">Modo \"Desplazarse\"</string>
    <string name="mode_horizontally">Modo \"Libro\"</string>
    <string name="mode_musician">Modo \"Músico\"</string>
-   <string name="save">Guradar</string>
+   <string name="save">Guardar</string>
    <string name="remember_choice">Recordar elección</string>
    <string name="edit">Editar</string>
-   <string name="make_text_reflow">Reflujo de texto</string>
+   <string name="make_text_reflow">Ajustar texto PDF</string>
    <string name="open_with">Abrir con</string>
    <string name="send_file">Enviar archivo</string>
    <string name="delete">Borrar</string>
@@ -272,7 +272,7 @@
    <string name="list">Lista</string>
    <string name="compact">Compacto</string>
    <string name="grid">Cuadrícula</string>
-   <string name="cover">Cubrir</string>
+   <string name="cover">Portada</string>
    <string name="author">Autor</string>
    <string name="genre">Género</string>
    <string name="serie">Serie</string>
