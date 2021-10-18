@@ -228,7 +228,7 @@
    <string name="___NOTIFICATION___SECTION___"></string>
    <string name="fail">Error</string>
    <string name="success">Success</string>
-   <string name="please_wait">Please wait...</string>
+   <string name="please_wait">Please wait …</string>
    <string name="incorrect_value">Incorrect value</string>
    <string name="this_directory_is_already_in_the_list">This catalog is already listed</string>
    <string name="you_neet_to_apply_the_new_settings">Please apply your new settings</string>
@@ -285,7 +285,7 @@
    <string name="contrast_and_brightness">Contrast and Brightness</string>
    <string name="contrast">Contrast</string>
    <string name="make_text_bold">Emphasize all</string>
-   <string name="searching_please_wait_">Searching...</string>
+   <string name="searching_please_wait_">Searching …</string>
    <string name="msg_no_text_found">Text not found</string>
    <string name="annotations_draw">Annotations and Drawings</string>
    <string name="go_to_page_dialog">Go to Page</string>
@@ -336,13 +336,13 @@
    <string name="text_page">Page</string>
    <string name="page">Page</string>
    <string name="___INDEFINITE___SECTION___"></string>
-   <string name="choose_">Choose...</string>
+   <string name="choose_">Choose …</string>
    <string name="crop_white_borders">Crop White Space</string>
    <string name="full_screen">Fullscreen</string>
    <string name="go">Go</string>
    <string name="invert_colors">Invert colors</string>
    <string name="keys">Buttons</string>
-   <string name="msg_loading">Loading... Please wait</string>
+   <string name="msg_loading">Loading … Please wait.</string>
    <string name="msg_unexpected_error">Unexpected error has occurred</string>
    <string name="msg_wrong_password">Invalid password</string>
    <string name="msg_password_required">Enter password</string>
@@ -356,7 +356,7 @@
    <string name="split_pages_in_two">Split page</string>
    <string name="save_changes">Save changes?</string>
    <string name="rename">Rename</string>
-   <string name="saving_">Saving...</string>
+   <string name="saving_">Saving …</string>
    <string name="customize_font_background_colors">Allow changing font and background colors</string>
    <string name="customize_background_color">Customize background color</string>
    <string name="clear_all_recent">Clear all recent documents?</string>
@@ -532,7 +532,7 @@
    <string name="move">Move</string>
    <string name="tag_manager">Tag manager</string>
    <string name="the_file_already_exists_">File already exists!</string>
-   <string name="please_wait_books_are_being_processed_">Please wait, Library is being updated...</string>
+   <string name="please_wait_books_are_being_processed_">Updating library … Please wait.</string>
    <string name="system_brightness">System</string>
    <string name="opening_books_in_the_specified_mode">Enable reading-mode presets</string>
    <string name="dark_oled">Dark OLED</string>
