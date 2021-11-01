@@ -98,7 +98,7 @@ public class AppState {
 
             // "http://opds.litres.ru,Litres,Библиотека электронных
             // книг,assets://opds/litres.ico;" + //
-            "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
+            //"https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
             "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //

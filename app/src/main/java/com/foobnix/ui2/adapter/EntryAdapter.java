@@ -184,6 +184,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     public void onClick(View v) {
                         if (TxtUtils.isNotEmpty(search.toString())) {
                             String encode = Urls.encode(search.getText().toString());
+                            encode = encode.replace(" ","+");
+
                             String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
                             Link l = new Link(replace);
                             onLinkClickListener.onResultRecive(l);
