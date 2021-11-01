@@ -175,8 +175,8 @@ public class ExtUtils {
         mimeCache.put(".rar", "application/x-rar-compressed");
 
         mimeCache.put(".cbr", "application/x-cbr");
-        mimeCache.put(".cbt", "application/x-cbr");
-        mimeCache.put(".cb7", "application/x-cbr");
+        mimeCache.put(".cbt", "application/x-cbt");
+        mimeCache.put(".cb7", "application/x-cb7");
 
         mimeCache.put(".mp3", "audio/mpeg");
         mimeCache.put(".mp4", "audio/mp4");
