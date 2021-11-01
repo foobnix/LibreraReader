@@ -7,7 +7,6 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.DisplayMetrics;
 
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
@@ -433,7 +432,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
-        if (pageNumber == 1) {
+        if (pageNumber == 1 && !AppsConfig.IS_FDROID) {
             LOG.d("skip text for 1 page");
             return new TextWord[0][0];
         }
