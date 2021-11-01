@@ -48,6 +48,7 @@ public class Link {
         map.put("application/x-sony-bbeb", "lrf");
         map.put("application/x-mobipocket-ebook", "mobi");
         map.put("application/x-mobi8-ebook", "azw3");
+        map.put("application/vnd.amazon.mobi8-ebook", "azw3");
         map.put("text/x-markdown", "md");
     }
 
