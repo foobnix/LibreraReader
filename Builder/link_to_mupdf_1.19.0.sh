@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG=1.18.1-so-3.11.4
+VERSION_TAG=1.19.0
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
@@ -28,7 +28,11 @@ git reset --hard
 #git clean -f -d
 
 echo "=================="
-#make clean
+
+if [ "$1" == "clean" ]; then
+  make clean
+fi
+
 make release
 make generate
 echo "=================="
@@ -76,7 +80,13 @@ cp -rp $DEST/pdf/pdf-colorspace.c  $SRC_FILES
 #cp -rp $SRC/pdf-colorspace.c    $DEST/pdf/pdf-colorspace.c
 
 cd $MUPDF_JAVA
-ndk-build $1
+
+if [ "$1" == "clean" ]; then
+ndk-build clean
+fi
+
+ndk-build
+
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS

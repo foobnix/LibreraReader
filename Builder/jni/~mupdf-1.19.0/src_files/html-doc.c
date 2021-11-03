@@ -1,3 +1,25 @@
+// Copyright (C) 2004-2021 Artifex Software, Inc.
+//
+// This file is part of MuPDF.
+//
+// MuPDF is free software: you can redistribute it and/or modify it under the
+// terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// MuPDF is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with MuPDF. If not, see <https://www.gnu.org/licenses/agpl-3.0.en.html>
+//
+// Alternative licensing terms are available from the licensor.
+// For commercial licensing, see <https://www.artifex.com/> or contact
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
+
 #include "mupdf/fitz.h"
 #include "html-imp.h"
 
@@ -114,7 +136,7 @@ htdoc_load_links(fz_context *ctx, fz_page *page_)
 {
 	html_page *page = (html_page*)page_;
 	html_document *doc = page->doc;
-	return fz_load_html_links(ctx, doc->html, page->number, "", doc);
+	return fz_load_html_links(ctx, doc->html, page->number, "");
 }
 
 static fz_bookmark
@@ -135,7 +157,7 @@ static fz_page *
 htdoc_load_page(fz_context *ctx, fz_document *doc_, int chapter, int number)
 {
 	html_document *doc = (html_document*)doc_;
-	html_page *page = fz_new_derived_page(ctx, html_page);
+	html_page *page = fz_new_derived_page(ctx, html_page, doc_);
 	page->super.bound_page = htdoc_bound_page;
 	page->super.run_page_contents = htdoc_run_page;
 	page->super.load_links = htdoc_load_links;
@@ -170,7 +192,7 @@ htdoc_lookup_metadata(fz_context *ctx, fz_document *doc_, const char *key, char 
 	if (!strcmp(key, FZ_META_FORMAT))
 		return (int)fz_strlcpy(buf, "HTML5", size);
 	if (!strcmp(key, FZ_META_INFO_TITLE) && doc->html->title)
-		return (int)fz_strlcpy(buf, doc->html->title, size);
+		return 1 + (int)fz_strlcpy(buf, doc->html->title, size);
 	return -1;
 }
 
@@ -181,7 +203,7 @@ xhtdoc_lookup_metadata(fz_context *ctx, fz_document *doc_, const char *key, char
 	if (!strcmp(key, FZ_META_FORMAT))
 		return (int)fz_strlcpy(buf, "XHTML", size);
 	if (!strcmp(key, FZ_META_INFO_TITLE) && doc->html->title)
-		return (int)fz_strlcpy(buf, doc->html->title, size);
+		return 1 + (int)fz_strlcpy(buf, doc->html->title, size);
 	return -1;
 }
 

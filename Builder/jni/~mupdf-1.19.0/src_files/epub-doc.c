@@ -1,3 +1,25 @@
+// Copyright (C) 2004-2021 Artifex Software, Inc.
+//
+// This file is part of MuPDF.
+//
+// MuPDF is free software: you can redistribute it and/or modify it under the
+// terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// MuPDF is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with MuPDF. If not, see <https://www.gnu.org/licenses/agpl-3.0.en.html>
+//
+// Alternative licensing terms are available from the licensor.
+// For commercial licensing, see <https://www.artifex.com/> or contact
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
+
 #include "mupdf/fitz.h"
 #include "html-imp.h"
 
@@ -58,7 +80,6 @@ struct epub_chapter
 struct epub_page
 {
 	fz_page super;
-	epub_document *doc;
 	epub_chapter *ch;
 	int number;
 	fz_html *html;
@@ -344,7 +365,6 @@ static void
 epub_drop_page(fz_context *ctx, fz_page *page_)
 {
 	epub_page *page = (epub_page *)page_;
-	fz_drop_document(ctx, &page->doc->super);
 	fz_drop_html(ctx, page->html);
 }
 
@@ -418,10 +438,11 @@ epub_get_laid_out_html(fz_context *ctx, epub_document *doc, epub_chapter *ch)
 static fz_rect
 epub_bound_page(fz_context *ctx, fz_page *page_)
 {
+	epub_document *doc = (epub_document*)page_->doc;
 	epub_page *page = (epub_page*)page_;
 	epub_chapter *ch = page->ch;
 	fz_rect bbox;
-	fz_html *html = epub_get_laid_out_html(ctx, page->doc, ch);
+	fz_html *html = epub_get_laid_out_html(ctx, doc, ch);
 
 	bbox.x0 = 0;
 	bbox.y0 = 0;
@@ -443,10 +464,9 @@ static fz_link *
 epub_load_links(fz_context *ctx, fz_page *page_)
 {
 	epub_page *page = (epub_page*)page_;
-	epub_document *doc = page->doc;
 	epub_chapter *ch = page->ch;
 
-	return fz_load_html_links(ctx, page->html, page->number, ch->path, doc);
+	return fz_load_html_links(ctx, page->html, page->number, ch->path);
 }
 
 static fz_bookmark
@@ -498,12 +518,11 @@ epub_load_page(fz_context *ctx, fz_document *doc_, int chapter, int number)
 	{
 		if (i == chapter)
 		{
-			epub_page *page = fz_new_derived_page(ctx, epub_page);
+			epub_page *page = fz_new_derived_page(ctx, epub_page, doc_);
 			page->super.bound_page = epub_bound_page;
 			page->super.run_page_contents = epub_run_page;
 			page->super.load_links = epub_load_links;
 			page->super.drop_page = epub_drop_page;
-			page->doc = (epub_document *)fz_keep_document(ctx, doc_);
 			page->ch = ch;
 			page->number = number;
 			page->html = epub_get_laid_out_html(ctx, doc, ch);

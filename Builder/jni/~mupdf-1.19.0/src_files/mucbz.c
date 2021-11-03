@@ -1,3 +1,25 @@
+// Copyright (C) 2004-2021 Artifex Software, Inc.
+//
+// This file is part of MuPDF.
+//
+// MuPDF is free software: you can redistribute it and/or modify it under the
+// terms of the GNU Affero General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
+//
+// MuPDF is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+// details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with MuPDF. If not, see <https://www.gnu.org/licenses/agpl-3.0.en.html>
+//
+// Alternative licensing terms are available from the licensor.
+// For commercial licensing, see <https://www.artifex.com/> or contact
+// Artifex Software, Inc., 1305 Grant Avenue - Suite 200, Novato,
+// CA 94945, U.S.A., +1(415)492-9861, for further information.
+
 #include "mupdf/fitz.h"
 
 #include <string.h>
@@ -142,11 +164,20 @@ cbz_bound_page(fz_context *ctx, fz_page *page_)
 	fz_image *image = page->image;
 	int xres, yres;
 	fz_rect bbox;
+	uint8_t orientation = fz_image_orientation(ctx, page->image);
 
 	fz_image_resolution(image, &xres, &yres);
 	bbox.x0 = bbox.y0 = 0;
-	bbox.x1 = image->w * DPI / xres;
-	bbox.y1 = image->h * DPI / yres;
+	if (orientation == 0 || (orientation & 1) == 1)
+	{
+		bbox.x1 = image->w * DPI / xres;
+		bbox.y1 = image->h * DPI / yres;
+	}
+	else
+	{
+		bbox.y1 = image->w * DPI / xres;
+		bbox.x1 = image->h * DPI / yres;
+	}
 	return bbox;
 }
 
@@ -154,16 +185,26 @@ static void
 cbz_run_page(fz_context *ctx, fz_page *page_, fz_device *dev, fz_matrix ctm, fz_cookie *cookie)
 {
 	cbz_page *page = (cbz_page*)page_;
-	fz_matrix local_ctm;
 	fz_image *image = page->image;
 	int xres, yres;
 	float w, h;
+	uint8_t orientation = fz_image_orientation(ctx, page->image);
+	fz_matrix immat = fz_image_orientation_matrix(ctx, page->image);
 
 	fz_image_resolution(image, &xres, &yres);
-	w = image->w * DPI / xres;
-	h = image->h * DPI / yres;
-	local_ctm = fz_pre_scale(ctm, w, h);
-	fz_fill_image(ctx, dev, image, local_ctm, 1, fz_default_color_params);
+	if (orientation == 0 || (orientation & 1) == 1)
+	{
+		w = image->w * DPI / xres;
+		h = image->h * DPI / yres;
+	}
+	else
+	{
+		h = image->w * DPI / xres;
+		w = image->h * DPI / yres;
+	}
+	immat = fz_post_scale(immat, w, h);
+	ctm = fz_concat(immat, ctm);
+	fz_fill_image(ctx, dev, image, ctm, 1, fz_default_color_params);
 }
 
 static void
@@ -192,7 +233,7 @@ cbz_load_page(fz_context *ctx, fz_document *doc_, int chapter, int number)
 
 	fz_try(ctx)
 	{
-		page = fz_new_derived_page(ctx, cbz_page);
+		page = fz_new_derived_page(ctx, cbz_page, doc_);
 		page->super.bound_page = cbz_bound_page;
 		page->super.run_page_contents = cbz_run_page;
 		page->super.drop_page = cbz_drop_page;
