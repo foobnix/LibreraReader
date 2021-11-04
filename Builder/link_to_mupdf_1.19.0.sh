@@ -81,7 +81,7 @@ cp -rp $DEST/pdf/pdf-colorspace.c  $SRC_FILES
 
 cd $MUPDF_JAVA
 
-if [ "$1" == "clean" ]; then
+if [ "$1" == "clean2" ]; then
 ndk-build clean
 fi
 
