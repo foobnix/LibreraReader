@@ -18,7 +18,7 @@ static const char *html_default_css =
 "b{font-weight:bold}"
 "bdo{direction:rtl;unicode-bidi:bidi-override}"
 "blockquote{display:block;margin:1em 40px}"
-"body{display:block;margin:1em}"
+"body{display:inline !important;margin:1em}"
 "cite{font-style:italic}"
 "code{font-family:monospace}"
 "dd{display:block;margin:0 0 0 40px}"
@@ -83,7 +83,8 @@ static const char *fb2_default_css =
 #else
 "description{display:none}"
 #endif
-"body,section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
+"body{display:inline !important}"
+"section,title,subtitle,p,cite,epigraph,text-author,date,poem,stanza,v,empty-line{display:block}"
 "image{display:block}"
 "p>image{display:inline}"
 
@@ -695,7 +696,6 @@ generate_boxes(fz_context *ctx, fz_xml *node, fz_html_box *top,
 
 				}
 			}
-
 			else if (display != DIS_NONE)
 			{
 				const char *dir, *lang, *id, *href;
