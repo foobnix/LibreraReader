@@ -1,7 +1,5 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
-<a href="https://liberapay.com/Librera/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
-
 # Librera Reader
 
 Librera Reader is an e-book reader for Android devices; 
