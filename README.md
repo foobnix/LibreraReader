@@ -1,8 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/foobnix/LirbiReader/master/logo.jpg)
 
-<script src="https://liberapay.com/Librera/widgets/button.js"></script>
-<noscript><a href="https://liberapay.com/Librera/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
-
+<a href="https://liberapay.com/Librera/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
 
 # Librera Reader
 
