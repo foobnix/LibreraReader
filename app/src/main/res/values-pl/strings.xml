@@ -30,7 +30,7 @@
    <string name="opening_the_last_book_when_the_application_starts">Otwieraj ostatnią książkę przy uruchomianiu aplikacji</string>
    <string name="show_application_close_dialog_every_time">Potwierdzaj każde zamknięcie aplikacji</string>
    <string name="display_all_file_types_in_folders">Wyświetlaj wszystkie typy plików w folderach</string>
-   <string name="show_the_dialog_what_is_new_for_updates">Pokaż okno dialogowe Co nowego? po aktualizacji</string>
+   <string name="show_the_dialog_what_is_new_for_updates">Pokaż nowości po aktualizacji</string>
    <string name="what_is_new_in">Co nowego w</string>
    <string name="full_list_of_changes_with_images_web_pdf_">Pobierz pełną listę zmian (plik PDF)</string>
    <string name="search_for_text_in_documents">Wyszukiwanie w wielu dokumentach</string>
