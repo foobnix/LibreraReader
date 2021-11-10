@@ -51,7 +51,7 @@
    <string name="import_or_export_application_settings_to_json_file">Backup</string>
    <string name="import_">Import</string>
    <string name="export_">Export</string>
-   <string name="automatic_export_backup">Auto-export (back up) current session on exit</string>
+   <string name="automatic_export_backup">Auto-export current session on exit (back up)</string>
    <string name="product">Product</string>
    <string name="version">Version</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
