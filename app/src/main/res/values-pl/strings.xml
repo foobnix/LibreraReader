@@ -51,7 +51,7 @@
    <string name="import_or_export_application_settings_to_json_file">Importuj lub eksportuj wszystkie ustawienia</string>
    <string name="import_">Importuj</string>
    <string name="export_">Eksportuj</string>
-   <string name="automatic_export_backup">Automatyczny eksport (kopia zapasowa) bieżącej sesji przy wyjściu</string>
+   <string name="automatic_export_backup">Automatyczny eksport bieżącej sesji przy wyjściu (tworzenie kopii zapasowej)</string>
    <string name="product">Produkt</string>
    <string name="version">Wersja</string>
    <string name="licence_gnu_gpl_v3_0">Licencja: GNU GPL v3.0</string>
