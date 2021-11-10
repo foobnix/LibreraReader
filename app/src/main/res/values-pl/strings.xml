@@ -1,18 +1,18 @@
 <resources>
    <string name="___LIBRARY___SETTINGS___SECTION___"></string>
    <string name="library_settings">Ustawienia biblioteki</string>
-   <string name="scan_device_for_new_books">Skanuj w poszukiwaniu nowych książek</string>
+   <string name="scan_device_for_new_books">Katalogi do skanowania</string>
    <string name="add_folder">Dodaj katalog</string>
    <string name="archives">Archiwa</string>
    <string name="other">Inny</string>
-   <string name="you_need_to_update_the_library">Musisz zaktualizować bibliotekę</string>
-   <string name="in_the_author_s_name_first_the_surname">Najpierw nazwisko, potem imię autorów</string>
+   <string name="you_need_to_update_the_library">Należy zaktualizować bibliotekę</string>
+   <string name="in_the_author_s_name_first_the_surname">Najpierw nazwisko autora</string>
    <string name="orientation">Orientacja</string>
    <string name="automatic">Automatycznie</string>
    <string name="landscape">Pozioma</string>
    <string name="portrait">Pionowa</string>
-   <string name="landscape_180">Odwrócona pozioma</string>
-   <string name="portrait_180">Odwrócona pionowa</string>
+   <string name="landscape_180">Odwrócenie poziome</string>
+   <string name="portrait_180">Odwrócenie pionowe</string>
    <string name="system_language">Język systemu</string>
    <string name="system">System</string>
    <string name="small">Mała</string>
