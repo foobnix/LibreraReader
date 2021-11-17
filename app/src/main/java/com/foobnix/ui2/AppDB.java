@@ -374,12 +374,16 @@ public class AppDB {
     }
 
     public void updateAll(List<FileMeta> list) {
-        if (fileMetaDao != null) {
-            long time = System.currentTimeMillis();
-            LOG.d("udpdate all begin");
-            fileMetaDao.updateInTx(list);
-            long end = System.currentTimeMillis() - time;
-            LOG.d("update all end", end / 1000, list.size());
+        try {
+            if (fileMetaDao != null) {
+                long time = System.currentTimeMillis();
+                LOG.d("udpdate all begin");
+                fileMetaDao.updateInTx(list);
+                long end = System.currentTimeMillis() - time;
+                LOG.d("update all end", end / 1000, list.size());
+            }
+        }catch (Exception e){
+            LOG.e(e);
         }
     }
 

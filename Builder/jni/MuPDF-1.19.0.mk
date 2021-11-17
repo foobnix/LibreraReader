@@ -22,7 +22,6 @@
 LOCAL_PATH := $(call my-dir)
 MUPDF_PATH := $(realpath $(LOCAL_PATH)/../../..)
 
-
 ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
 HAVE_NEON := yes
 endif
@@ -40,18 +39,19 @@ include $(MUPDF_PATH)/Makelists
 
 include $(CLEAR_VARS)
 
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE := mupdf_core
 
 LOCAL_C_INCLUDES := $(MUPDF_PATH)/include
 
-LOCAL_CFLAGS += -ffunction-sections -fdata-sections
-LOCAL_CFLAGS += -D_FILE_OFFSET_BITS=32
-LOCAL_CFLAGS += -DNOTO_SMALL
-LOCAL_CFLAGS += -DAA_BITS=8
+LOCAL_CFLAGS := \
+	-ffunction-sections -fdata-sections \
+	-D_FILE_OFFSET_BITS=32 \
+	-DNOTO_SMALL \
+	-DAA_BITS=8 \
+	-DOPJ_STATIC -DOPJ_HAVE_INTTYPES_H -DOPJ_HAVE_STDINT_H \
+	-DHAVE_LCMS2MT \
+
+LOCAL_CFLAGS += -fPIC
 
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(FREETYPE_CFLAGS)))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(GUMBO_CFLAGS)))
@@ -108,11 +108,6 @@ include $(BUILD_STATIC_LIBRARY)
 # --- Build local static libraries for thirdparty libraries ---
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_freetype
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(FREETYPE_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(FREETYPE_CFLAGS) $(FREETYPE_BUILD_CFLAGS)))
@@ -121,11 +116,6 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_gumbo
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(GUMBO_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(GUMBO_CFLAGS) $(GUMBO_BUILD_CFLAGS)))
@@ -134,11 +124,6 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_jbig2dec
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(JBIG2DEC_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(JBIG2DEC_CFLAGS) $(JBIG2DEC_BUILD_CFLAGS)))
@@ -147,11 +132,6 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_harfbuzz
 LOCAL_CPP_EXTENSION := .cc
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(HARFBUZZ_SRC))
@@ -161,11 +141,6 @@ LOCAL_CPPFLAGS += $(MUPDF_EXTRA_CPPFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_lcms2
 LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(LCMS2_SRC))
@@ -174,11 +149,6 @@ LOCAL_CFLAGS += $(filter-out -I%,$(LCMS2_CFLAGS) $(LCMS2_BUILD_CFLAGS))
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_libjpeg
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(LIBJPEG_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(LIBJPEG_CFLAGS) $(LIBJPEG_BUILD_CFLAGS)))
@@ -187,11 +157,6 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_mujs
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(MUJS_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(MUJS_CFLAGS) $(MUJS_BUILD_CFLAGS)))
@@ -200,11 +165,6 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_openjpeg
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(OPENJPEG_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(OPENJPEG_CFLAGS) $(OPENJPEG_BUILD_CFLAGS)))
@@ -216,11 +176,6 @@ ifdef USE_TESSERACT
 # --- Build local static libraries for tesseract and leptonica ---
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_tesseract
 LOCAL_C_INCLUDES := $(MUPDF_PATH)/include
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(TESSERACT_SRC))
@@ -233,11 +188,6 @@ LOCAL_CPP_FEATURES := exceptions
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_leptonica
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(LEPTONICA_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(LEPTONICA_CFLAGS) $(LEPTONICA_BUILD_CFLAGS)))
@@ -249,11 +199,6 @@ include $(BUILD_STATIC_LIBRARY)
 endif  #  USE_TESSERACT
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 LOCAL_MODULE += mupdf_thirdparty_extract
 LOCAL_SRC_FILES += $(patsubst %,$(MUPDF_PATH)/%,$(EXTRACT_SRC))
 LOCAL_C_INCLUDES += $(patsubst -I%,$(MUPDF_PATH)/%,$(filter -I%,$(EXTRACT_CFLAGS) $(EXTRACT_BUILD_CFLAGS)))
@@ -264,10 +209,6 @@ include $(BUILD_STATIC_LIBRARY)
 # --- Build the final JNI shared library ---
 
 include $(CLEAR_VARS)
-
-LOCAL_CFLAGS    := $(APP_CFLAGS)
-LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
-LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 LOCAL_MODULE := mupdf_java
 

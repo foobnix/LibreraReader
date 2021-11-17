@@ -22,12 +22,9 @@ public class Safe {
     static int counter;
 
     public static void run(final Runnable action) {
-//        if (action != null) {
-//            action.run();
-//        }
-//        if (true) {
-//            return;
-//        }
+        if(LibreraApp.context == null ){
+            return;
+        }
         LOG.d("Safe-isPaused", Glide.with(LibreraApp.context).isPaused());
         if (Glide.with(LibreraApp.context).isPaused()) {
             Glide.with(LibreraApp.context).resumeRequestsRecursive();

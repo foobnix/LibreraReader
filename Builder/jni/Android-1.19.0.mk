@@ -38,8 +38,6 @@ LOCAL_SRC_FILES := \
     libmupdf-1.19.0.c
 
 
-
-
 LOCAL_STATIC_LIBRARIES := djvu hqx mupdf_java
 LOCAL_LDLIBS := -lm -llog -ljnigraphics
 
