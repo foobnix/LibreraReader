@@ -94,8 +94,8 @@
    <string name="automatic_hyphenation">自动断字</string>
    <string name="empty_line">标题间距</string>
    <string name="margin_width">页边距</string>
-   <string name="top">上边距</string>
-   <string name="bottom">下边距</string>
+   <string name="top">靠上</string>
+   <string name="bottom">靠下</string>
    <string name="links_color_day">链接颜色（白天）</string>
    <string name="links_color_night">链接颜色（夜晚）</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
@@ -471,7 +471,7 @@
    <string name="logout">登出</string>
    <string name="cloud_not_connected">云未连接</string>
    <string name="cloud_sync_folder">云同步文件夹</string>
-   <string name="clouds">云盘</string>
+   <string name="clouds">网盘</string>
    <string name="librera_cloud">Librera 云</string>
    <string name="hide_search_bar">隐藏搜索栏</string>
    <string name="show_search_bar">显示搜索栏</string>
@@ -507,7 +507,7 @@
    <string name="allow_minimum_brightness">允许最小亮度</string>
    <string name="select">选择</string>
    <string name="create_playlist">创建播单</string>
-   <string name="upload_to_cloud">存入云盘</string>
+   <string name="upload_to_cloud">存入网盘</string>
    <string name="add_to_playlist">加入播单</string>
    <string name="create_tag">创建标签</string>
    <string name="add_tags">添加标签</string>
@@ -535,7 +535,7 @@
    <string name="please_wait_books_are_being_processed_">请稍候，正在处理书籍</string>
    <string name="system_brightness">系统</string>
    <string name="opening_books_in_the_specified_mode">指定模式打开书籍</string>
-   <string name="dark_oled">黑暗 OLED</string>
+   <string name="dark_oled">OLED全黑</string>
    <string name="profile">配置文件</string>
    <string name="new_profile">新建配置文件</string>
    <string name="main">主要</string>
@@ -599,7 +599,7 @@
    <string name="you_should_enable_allow_battery">您应该启用“电池” > “允许后台活动”以在后台收听</string>
    <string name="use_calibre_metadata">使用 Calibre metadata.opf</string>
    <string name="icons_only">仅图标</string>
-   <string name="migration">移民</string>
+   <string name="migration">迁移</string>
    <string name="please_backup1">我们建议您在迁移之前备份（导出）</string>
    <string name="start_migration">开始迁移</string>
    <string name="new_path">新路径</string>
