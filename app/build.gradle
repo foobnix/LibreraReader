@@ -452,6 +452,7 @@ task incVersion() {
         println "My Task: [incVersion]"
     }
 
+
 }
 
 if (!taskName.contains("Fdroid")) {

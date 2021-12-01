@@ -230,8 +230,10 @@ public class MdContext extends PdfContext {
         if (line.startsWith(" + ")) line = "<small>" + line + "</small><br/>";
 
         if (line.startsWith("    ")) line = "<blockquote>" + line + "</blockquote>";
-        if (line.startsWith("&gt; ")) line = "<blockquote>" + line + "</blockquote>";
+        if (line.startsWith("&gt; ")) line = "<i><small>" + line + "</small></i>"; //>
         if (line.startsWith("&gt;&gt; ")) line = "<blockquote>" + line + "</blockquote>";
+        if(line.equals("---")) line = "<hr/>";
+
         return line;
     }
 
