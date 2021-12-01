@@ -32,7 +32,7 @@
    <string name="display_all_file_types_in_folders">Display all file types</string>
    <string name="show_the_dialog_what_is_new_for_updates">Show What\'s New after updates</string>
    <string name="what_is_new_in">What is new in</string>
-   <string name="full_list_of_changes_with_images_web_pdf_">Download a full list of changes (PDF file)</string>
+   <string name="full_list_of_changes_with_images_web_pdf_">Download a full list of changes (PDF file).</string>
    <string name="search_for_text_in_documents">Search for Text</string>
    <string name="search_in_the_subfolders">Include subfolders</string>
    <string name="stop">Stop</string>
@@ -51,7 +51,7 @@
    <string name="import_or_export_application_settings_to_json_file">Backup</string>
    <string name="import_">Import</string>
    <string name="export_">Export</string>
-   <string name="automatic_export_backup">Auto-export (back up) current session on exit</string>
+   <string name="automatic_export_backup">Auto-export current session on exit (back up)</string>
    <string name="product">Product</string>
    <string name="version">Version</string>
    <string name="licence_gnu_gpl_v3_0">License: GNU GPL v3.0</string>
@@ -71,8 +71,8 @@
    <string name="italic_font">Italic</string>
    <string name="bold_italic_font">Bold Italic</string>
    <string name="font_for_headers">Headings</string>
-   <string name="enable_volume_keys">Navigate with volume keys</string>
-   <string name="reverse_keys">Reverse keys</string>
+   <string name="enable_volume_keys">Navigate with volume buttons</string>
+   <string name="reverse_keys">Reverse buttons</string>
    <string name="screen_orientation">Screen orientation</string>
    <string name="open_in_the_dictionary">Open selection in dictionary</string>
    <string name="remember_dictionary">Choose Dictionary</string>
@@ -96,8 +96,8 @@
    <string name="margin_width">Page margins</string>
    <string name="top">Top</string>
    <string name="bottom">Bottom</string>
-   <string name="links_color_day">Links color, day</string>
-   <string name="links_color_night">Links color, night</string>
+   <string name="links_color_day">Links color (day)</string>
+   <string name="links_color_night">Links color (night)</string>
    <string name="___ADVANCED___SETTINGS___SECTION___"></string>
    <string name="advanced_settings">Advanced Settings</string>
    <string name="direction_of_scrolling">Scroll direction</string>
@@ -133,7 +133,7 @@
    <string name="scroll_speed">Mouse wheel sensitivity</string>
    <string name="page_quality">Page quality</string>
    <string name="pages_in_memory">Pages in memory</string>
-   <string name="screen_turn_off_after_inactivity_minutes_">Turn off screen after (min)</string>
+   <string name="screen_turn_off_after_inactivity_minutes_">Turn off screen after (min.)</string>
    <string name="___STATUS___BAR___SETTINGS___SECTION___"></string>
    <string name="status_bar">Status Bar</string>
    <string name="show_status_bar">Show status bar</string>
@@ -203,7 +203,7 @@
    <string name="add_catalog">New Catalog</string>
    <string name="name">Name</string>
    <string name="description">Description</string>
-   <string name="add_as_a_web_site">Add as a WEB site</string>
+   <string name="add_as_a_web_site">Add as a Web site</string>
    <string name="more">More</string>
    <string name="download">Download</string>
    <string name="do_you_want_to_delete_">Delete this entry?</string>
@@ -303,11 +303,11 @@
    <string name="of_screen">Screen</string>
    <string name="custom_value">Custom</string>
    <string name="automatic_page_flipping">Auto-Scroll</string>
-   <string name="interval_sec_">Speed (sec)</string>
+   <string name="interval_sec_">Speed (sec.)</string>
    <string name="show_bottom_panel">Show timer (status bar)</string>
    <string name="to_stop">Stop</string>
    <string name="to_read">Start</string>
-   <string name="to_paly_pause">Play / Pause</string>
+   <string name="to_paly_pause">Play/Pause</string>
    <string name="text_to_speech">TTS Settings</string>
    <string name="speed1">Speed</string>
    <string name="pitch1">Pitch</string>
@@ -346,7 +346,7 @@
    <string name="msg_unexpected_error">Unexpected error has occurred</string>
    <string name="msg_wrong_password">Invalid password</string>
    <string name="msg_password_required">Enter password</string>
-   <string name="no_results_found_">Nothing has been found :(</string>
+   <string name="no_results_found_">Nothing has been found:(</string>
    <string name="off">Off</string>
    <string name="on">On</string>
    <string name="open_in_browser">Open in browser</string>
@@ -382,7 +382,7 @@
    <string name="banner_slogan_PDF_READER">The most comfortable reader for PDF and DjVu documents</string>
    <string name="books">Books</string>
    <string name="reading_out_loud">TTS Reading</string>
-   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ad-free): a Leading ePUB and PDF Reader</string>
+   <string name="librera_pro_no_ads_leading_book_reader_and_pdf">Librera PRO (ad-free): A Leading ePUB and PDF Reader</string>
    <string name="custom_text">Title</string>
    <string name="cd_search_books_in_the_library">Search books in Library</string>
    <string name="cd_clear_search_reasult">Clear search results</string>
@@ -433,7 +433,7 @@
    <string name="show_battery_percentage">Show battery percentage</string>
    <string name="show_current_time">Show clock</string>
    <string name="telegram_channel">Telegram channel</string>
-   <string name="zoom_in_out_using_the_volume_keys">Zoom in/out with volume keys</string>
+   <string name="zoom_in_out_using_the_volume_keys">Zoom in/out with volume buttons</string>
    <string name="tag">Tag</string>
    <string name="no_tag">No tags</string>
    <string name="add_tag">New Tag</string>
@@ -448,7 +448,7 @@
    <string name="allow_text_highlight">Enable text selection</string>
    <string name="text_highlight_mode_is_enable">Text selection is enabled</string>
    <string name="text_highlight_mode_is_disable">Text selection is disabled</string>
-   <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email this report so we can fix the bug ASAP.</string>
+   <string name="application_error_please_send_this_report_by_emial">Something went wrong! Kindly email the report so we can fix the bug ASAP.</string>
    <string name="pause_reading_if_the_incoming_call_or_other_sounds">Pause on incoming calls, messages, etc.</string>
    <string name="add_resource">New storage</string>
    <string name="do_you_want_to_download_more_book_fonts_10mb_">Download additional fonts (10MB)?</string>
@@ -459,7 +459,7 @@
    <string name="crop_borders_symmetrically">Mirrored crop</string>
    <string name="displaying_the_author_and_title_of_the_pdf_book_from_the_meta_tags">Extract authors\' names and book titles from meta-data (PDF)</string>
    <string name="meta_tags">Meta tags</string>
-   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO: install to remove ads</string>
+   <string name="librera_pro_program_for_reading_books_without_advertising_installing_it_removes_advertising_in_this_application">Librera PRO: Install to remove ads</string>
    <string name="annotation">Annotation</string>
    <string name="book">Book</string>
    <string name="information">File Info</string>
@@ -543,7 +543,7 @@
    <string name="sync_error">Syncing error</string>
    <string name="sign_in">Sign In</string>
    <string name="sign_out">Sign Out</string>
-   <string name="wifi_sync_only">Sync over WiFi only</string>
+   <string name="wifi_sync_only">Sync over Wi-Fi only</string>
    <string name="sync_google_drive">Sync (Google Drive)</string>
    <string name="single_tap_to_select_text">Single-tap selection</string>
    <string name="sync_book">Sync</string>
@@ -596,7 +596,7 @@
    <string name="new_file">New File</string>
    <string name="paste_or_type_text_in_here">Paste or type text in here</string>
    <string name="go_to_the_folder">Go to Folder</string>
-   <string name="you_should_enable_allow_battery">You should enable \"Battery\" > \"Allow background activity\" to listen in the background</string>
+   <string name="you_should_enable_allow_battery">You should enable \"Battery\" > \"Allow background activity\" to listen in the background.</string>
    <string name="use_calibre_metadata">Use Calibre metadata.opf</string>
    <string name="icons_only">Icons only</string>
    <string name="migration">Migrate</string>
@@ -626,7 +626,7 @@
    <string name="remove_from_favorites">Remove from Favorites</string>
    <string name="book_menu">Book menu</string>
    <string name="accessibility_mode">Enable Accessibility Mode</string>
-   <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in Preferences</string>
+   <string name="welcome_accessibility">Welcome! You can enable Accessibility Mode in Preferences.</string>
    <string name="integration_in_the_context_menu">Integrate in global context menu</string>
    <string name="the_application_needs_storage_permission">The application needs permission to access the storage to find all books</string>
 </resources>
