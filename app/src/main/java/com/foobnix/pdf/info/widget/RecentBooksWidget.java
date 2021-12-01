@@ -49,21 +49,20 @@ public class RecentBooksWidget extends AppWidgetProvider {
     private static final String ACTION_MY = "my";
     private Context context;
 
+
     @SuppressLint("NewApi")
     @Override
     public void onReceive(Context context, Intent intent) {
         this.context = context;
         AppProfile.init(context);
 
+        LOG.d("RecentBooksWidget", intent, intent.getData(), intent.getExtras());
         if (intent.getAction().equals(ACTION_MY)) {
 
-            String className = VerticalViewActivity.class.getName();
-            if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
-                className = HorizontalViewActivity.class.getName();
-            }
+            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class : VerticalViewActivity.class;
 
             Intent nintent = new Intent(Intent.ACTION_VIEW, (Uri) intent.getParcelableExtra("uri"));
-            nintent.setClassName(context, className);
+            nintent.setClassName(context, clazz.getName());
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, nintent, PendingIntent.FLAG_IMMUTABLE);
             try {
                 pendingIntent.send();
@@ -83,23 +82,6 @@ public class RecentBooksWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
     }
 
-    private void easyMode(Context context, FileMeta meta, String id, boolean isEditMode) {
-        Intent intent2 = new Intent(context, HorizontalViewActivity.class);
-        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent2.setData(Uri.fromFile(new File(meta.getPath())));
-        intent2.putExtra(id, true);
-        intent2.putExtra("isEditMode", isEditMode);
-        context.startActivity(intent2);
-    }
-
-    private void advMode(Context context, FileMeta meta, String id, boolean isEditMode) {
-        Intent intent2 = new Intent(context, VerticalViewActivity.class);
-        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent2.setData(Uri.fromFile(new File(meta.getPath())));
-        intent2.putExtra(id, true);
-        intent2.putExtra("isEditMode", isEditMode);
-        context.startActivity(intent2);
-    }
 
     @Override
     public synchronized void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -120,7 +102,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
     }
@@ -136,13 +118,11 @@ public class RecentBooksWidget extends AppWidgetProvider {
     @SuppressLint("NewApi")
     private void updateGrid(RemoteViews remoteViews, AppWidgetManager appWidgetManager, int appWidgetId) {
         Intent intent = new Intent(context, StackGridWidgetService.class);
-        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         remoteViews.setRemoteAdapter(R.id.gridView1, intent);
 
         Intent toastIntent = new Intent(context, RecentBooksWidget.class);
         toastIntent.setAction(ACTION_MY);
-        intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
-        PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent, PendingIntent.FLAG_MUTABLE);
         remoteViews.setPendingIntentTemplate(R.id.gridView1, toastPendingIntent);
     }
 
@@ -179,17 +159,6 @@ public class RecentBooksWidget extends AppWidgetProvider {
 
                 RemoteViews v = new RemoteViews(context.getPackageName(), R.layout.widget_list_image);
                 String url = IMG.toUrl(fileMeta.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-                //Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-                // v.setImageViewBitmap(R.id.imageView1, image);
-
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
-//                intent.setClassName(context, className);
-//                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-//                v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
-//
-//                remoteViews.addView(R.id.linearLayout, v);
-
-
                 Glide.with(LibreraApp.context).asBitmap().load(url).into(new CustomTarget<Bitmap>() {
 
 
@@ -200,7 +169,11 @@ public class RecentBooksWidget extends AppWidgetProvider {
                             v.setImageViewBitmap(R.id.imageView1, resource);
 
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(new File(fileMeta.getPath())));
-                            intent.setClassName(context, HorizontalViewActivity.class.getName());
+
+                            Class clazz = AppSP.get().readingMode == AppState.READING_MODE_BOOK ? HorizontalViewActivity.class: VerticalViewActivity.class;
+
+                            intent.setClassName(context, clazz.getName());
+
                             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
                             v.setOnClickPendingIntent(R.id.imageView1, pendingIntent);
 
@@ -212,7 +185,7 @@ public class RecentBooksWidget extends AppWidgetProvider {
                             }
                             //}
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             LOG.e(e);
                         }
                     }

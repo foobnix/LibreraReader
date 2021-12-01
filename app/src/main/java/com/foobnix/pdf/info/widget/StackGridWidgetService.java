@@ -94,7 +94,6 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
 
         Bundle extras = new Bundle();
-        extras.putInt("pos", position);
         extras.putParcelable("uri", Uri.fromFile(new File(uri.getPath())));
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
