@@ -567,6 +567,7 @@
    <string name="emphasis">Nacisk</string>
    <string name="with_cutout">Z wycięciem</string>
    <string name="screen">Ekran</string>
+   <string name="normal_screen">Normalny</string>
    <string name="please_enter_more_characters_to_search">Potrzebujesz dłuższego ciągu wyszukiwania!</string>
    <string name="enable_experimental_features">Włącz funkcje eksperymentalne</string>
    <string name="display_original_file_names_without_metadata">Wyświetl oryginalne nazwy plików (bez metadanych)</string>
