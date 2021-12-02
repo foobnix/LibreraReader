@@ -411,7 +411,7 @@
    <string name="you_can_search_only_one_word">Możesz wyszukiwać tylko jedno słowo</string>
    <string name="passwords_do_not_match">Hasła nie pasują do siebie</string>
    <string name="set_an_application_password">Ustaw hasło aplikacji</string>
-   <string name="request_a_password_when_the_application_starts">Żądaj hasła podczas uruchamiania aplikacji</string>
+   <string name="request_a_password_when_the_application_starts">Pytaj o hasło przy starcie</string>
    <string name="incorrect_password">Niepoprawne hasło</string>
    <string name="repeat_password">Powtórz hasło</string>
    <string name="internal_storage">Pamięć wewnętrzna</string>
