@@ -27,7 +27,7 @@
    <string name="layout">Układ</string>
    <string name="number_of_books">Liczba książek</string>
    <string name="remember_reading_mode">Zapamiętaj tryb czytania</string>
-   <string name="opening_the_last_book_when_the_application_starts">Otwieraj ostatnią książkę przy uruchomianiu aplikacji</string>
+   <string name="opening_the_last_book_when_the_application_starts">Załaduj ostatnią książkę przy starcie</string>
    <string name="show_application_close_dialog_every_time">Potwierdzaj każde zamknięcie aplikacji</string>
    <string name="display_all_file_types_in_folders">Wyświetlaj wszystkie typy plików w katalogach</string>
    <string name="show_the_dialog_what_is_new_for_updates">Pokaż nowości po aktualizacjach</string>
@@ -46,7 +46,7 @@
    <string name="borders_and_shadow_around_the_book_cover">Ramki i cień wokół każdej pozycji</string>
    <string name="tabs_position">Położenie kart</string>
    <string name="show_preferences_tab_in_the_left_menu">Pokaż kartę preferencji w menu po lewej stronie</string>
-   <string name="visible">Widoczny</string>
+   <string name="visible">Widoczne</string>
    <string name="application_user_guide_">Instrukcja obsługi</string>
    <string name="import_or_export_application_settings_to_json_file">Importuj lub eksportuj wszystkie ustawienia</string>
    <string name="import_">Importuj</string>
