@@ -234,7 +234,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     @Override
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
-        TintUtil.setTintImageNoAlpha(menu2, TintUtil.color);
+
+        int color = (AppState.get().appTheme == AppState.THEME_DARK_OLED ||
+                        AppState.get().appTheme == AppState.THEME_DARK)
+                        ? Color.WHITE : TintUtil.color;
+        TintUtil.setTintImageNoAlpha(menu2, color);
 
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
@@ -474,7 +478,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         menu2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(view.getRootView().findViewById(R.id.imageMenu1)!=null) {
+                if (view.getRootView().findViewById(R.id.imageMenu1) != null) {
                     view.getRootView().findViewById(R.id.imageMenu1).performClick();
                 }
             }
