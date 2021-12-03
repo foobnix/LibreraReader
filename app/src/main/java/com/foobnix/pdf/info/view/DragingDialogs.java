@@ -3582,6 +3582,17 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox alwaysTwoPages = (CheckBox) inflate.findViewById(R.id.alwaysTwoPages);
+                alwaysTwoPages.setVisibility(TxtUtils.visibleIf(AppSP.get().readingMode == AppState.READING_MODE_BOOK));
+                alwaysTwoPages.setChecked(AppState.get().alwaysTwoPages);
+                alwaysTwoPages.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().alwaysTwoPages = isChecked;
+                    }
+                });
+
                 CheckBox isMirrorImage = (CheckBox) inflate.findViewById(R.id.isMirrorImage);
                 isMirrorImage.setChecked(AppState.get().isMirrorImage);
                 isMirrorImage.setOnCheckedChangeListener(new OnCheckedChangeListener() {

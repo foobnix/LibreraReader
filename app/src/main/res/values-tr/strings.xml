@@ -629,4 +629,5 @@
    <string name="welcome_accessibility">Hoş geldiniz! Erişilebilirlik Kipini, Seçeneklerden açabilirsiniz.</string>
    <string name="integration_in_the_context_menu">Küresel içerik menüsünde bütünleş</string>
    <string name="the_application_needs_storage_permission">Uygulamanın tüm kitapları bulmak için depoya erişme iznine ihtiyacı var</string>
+   <string name="always_open_in_2_pages_mode">Her zaman 2 sayfa modunda aç</string>
 </resources>

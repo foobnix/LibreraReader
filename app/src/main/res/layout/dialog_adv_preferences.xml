@@ -278,6 +278,13 @@
         </LinearLayout>
 
         <CheckBox
+            android:id="@+id/alwaysTwoPages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/always_open_in_2_pages_mode" />
+
+
+        <CheckBox
             android:id="@+id/isMirrorImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

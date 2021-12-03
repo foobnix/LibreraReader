@@ -22,7 +22,6 @@ import translations.model.StringModel;
 
 /**
  * @author Ivan Ivanenko
- * 
  */
 public class SyncTranslations {
 
@@ -254,8 +253,9 @@ public class SyncTranslations {
                 text = text.toLowerCase(Locale.US);
 
                 lang = lang.replace("zh-r", "zh-");
-
-                text = GoogleTranslation.translate(text, lang);
+                if (!lang.equals("sc")) {//skip Sardinian
+                    text = GoogleTranslation.translate(text, lang);
+                }
                 text = normilizeText(text);
             } catch (JSONException | IOException e) {
                 System.out.println("Can't translate " + text);

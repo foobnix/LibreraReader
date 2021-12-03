@@ -629,4 +629,5 @@
    <string name="welcome_accessibility">Καλώς ορίσατε, μπορείτε να ενεργοποιήσετε τη βελτιστοποίηση προσβασιμότητας στο αριστερό μενού εφαρμογών</string>
    <string name="integration_in_the_context_menu">Ενσωμάτωση στο μενού περιβάλλοντος</string>
    <string name="the_application_needs_storage_permission">Η εφαρμογή χρειάζεται άδεια για πρόσβαση στον χώρο αποθήκευσης για να βρει όλα τα βιβλία</string>
+   <string name="always_open_in_2_pages_mode">Πάντα ανοιχτό σε λειτουργία 2 σελίδων</string>
 </resources>

@@ -629,4 +629,5 @@
    <string name="welcome_accessibility">Добро пожаловать. Если у вас трудности со зрением, вы можете включить соответствующий режим для слабовидящих в боковом меню приложения</string>
    <string name="integration_in_the_context_menu">Интегрировать в контекстное меню</string>
    <string name="the_application_needs_storage_permission">Приложению требуется разрешение на доступ к хранилищу, чтобы найти все книги</string>
+   <string name="always_open_in_2_pages_mode">Всегда открывать в режиме 2 страниц</string>
 </resources>

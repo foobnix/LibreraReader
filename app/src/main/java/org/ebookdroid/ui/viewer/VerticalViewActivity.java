@@ -114,6 +114,9 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                     AppSP.get().isCrop = true;
                 }
             }
+
+
+
             BookCSS.get().detectLang(path);
         }
 

@@ -629,4 +629,5 @@
    <string name="welcome_accessibility">欢迎，您可以在左侧的应用菜单中启用无障碍辅助功能优化</string>
    <string name="integration_in_the_context_menu">集成到全局上下文菜单</string>
    <string name="the_application_needs_storage_permission">应用需要访问存储权限以发现所有书籍</string>
+   <string name="always_open_in_2_pages_mode">始终以 2 页模式打开</string>
 </resources>

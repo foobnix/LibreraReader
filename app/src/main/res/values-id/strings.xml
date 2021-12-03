@@ -629,4 +629,5 @@
    <string name="welcome_accessibility">Selamat datang, Anda dapat mengaktifkan pengoptimalan aksesibilitas di menu aplikasi kiri</string>
    <string name="integration_in_the_context_menu">Integrasi dalam menu konteks</string>
    <string name="the_application_needs_storage_permission">Aplikasi memerlukan izin untuk mengakses penyimpanan untuk menemukan semua buku</string>
+   <string name="always_open_in_2_pages_mode">Selalu buka dalam mode 2 halaman</string>
 </resources>

@@ -99,6 +99,12 @@ public abstract class HorizontalModeController extends DocumentController {
                 AppSP.get().isCrop = true;
             }
         }
+        if(AppState.get().alwaysTwoPages){
+            AppSP.get().isDouble = true;
+            AppSP.get().isCut = false;
+            AppSP.get().isDoubleCoverAlone = false;
+            AppSP.get().isSmartReflow = false;
+        }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
         BookCSS.get().detectLang(bookPath);
