@@ -567,6 +567,7 @@
    <string name="emphasis">强调</string>
    <string name="with_cutout">与剪切块</string>
    <string name="screen">屏幕</string>
+   <string name="normal_screen">正常</string>
    <string name="please_enter_more_characters_to_search">请输入更多字符以进行搜索。</string>
    <string name="enable_experimental_features">启用实验功能</string>
    <string name="display_original_file_names_without_metadata">显示原始文件名（无元数据）</string>

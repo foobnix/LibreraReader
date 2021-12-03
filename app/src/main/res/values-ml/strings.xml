@@ -567,6 +567,7 @@
    <string name="emphasis">മാനുവൽ സ്ട്രെസ് മാർക്ക് (കൾ)</string>
    <string name="with_cutout">ശ്രദ്ധേയമാണ്</string>
    <string name="screen">സ്ക്രീൻ</string>
+   <string name="normal_screen">സാധാരണ</string>
    <string name="please_enter_more_characters_to_search">ദൈർഘ്യമേറിയ തിരയൽ സ്ട്രിംഗ് ആവശ്യമാണ്!</string>
    <string name="enable_experimental_features">പരീക്ഷണാത്മക സവിശേഷതകൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
    <string name="display_original_file_names_without_metadata">മെറ്റാഡാറ്റ അവഗണിക്കുക (ഫയൽനാമങ്ങൾ മാത്രം പ്രദർശിപ്പിക്കുക)</string>

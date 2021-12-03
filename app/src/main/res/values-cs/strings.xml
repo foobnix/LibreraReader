@@ -567,6 +567,7 @@
    <string name="emphasis">Manuální značka (značky) přízvuku</string>
    <string name="with_cutout">Zaznamenat</string>
    <string name="screen">Obrazovka</string>
+   <string name="normal_screen">Normální</string>
    <string name="please_enter_more_characters_to_search">Potřebujete delší vyhledávací řetězec!</string>
    <string name="enable_experimental_features">Povolit experimentální funkce</string>
    <string name="display_original_file_names_without_metadata">Ignorovat metadata (zobrazit pouze názvy souborů)</string>

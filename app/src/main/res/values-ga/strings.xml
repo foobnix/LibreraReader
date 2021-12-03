@@ -567,6 +567,7 @@
    <string name="emphasis">Marc (anna) struis láimhe</string>
    <string name="with_cutout">Notched</string>
    <string name="screen">Scáileán</string>
+   <string name="normal_screen">Gnáth</string>
    <string name="please_enter_more_characters_to_search">Sreang cuardaigh níos faide de dhíth!</string>
    <string name="enable_experimental_features">Gnéithe turgnamhacha a chumasú</string>
    <string name="display_original_file_names_without_metadata">Neamhaird a dhéanamh ar mheiteashonraí (ainmneacha comhaid a thaispeáint amháin)</string>

@@ -567,6 +567,7 @@
    <string name="emphasis">Ръчен знак (и) за стрес</string>
    <string name="with_cutout">Назъбена</string>
    <string name="screen">Екран</string>
+   <string name="normal_screen">Нормален</string>
    <string name="please_enter_more_characters_to_search">Имам нужда от по-дълъг низ за търсене!</string>
    <string name="enable_experimental_features">Активирайте експерименталните функции</string>
    <string name="display_original_file_names_without_metadata">Игнорирайте метаданните (само показвате имена на файлове)</string>

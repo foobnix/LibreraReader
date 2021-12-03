@@ -567,6 +567,7 @@
    <string name="emphasis">Énfasis</string>
    <string name="with_cutout">Recorte</string>
    <string name="screen">Pantalla</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Introduzca más caracteres para buscar.</string>
    <string name="enable_experimental_features">Habilitar características experimentales</string>
    <string name="display_original_file_names_without_metadata">Mostrar nombres de archivos originales (sin metadatos)</string>

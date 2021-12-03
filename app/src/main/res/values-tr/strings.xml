@@ -567,6 +567,7 @@
    <string name="emphasis">Vurgu</string>
    <string name="with_cutout">Çentikli</string>
    <string name="screen">Ekran</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Lütfen aramak için daha fazla karakter girin.</string>
    <string name="enable_experimental_features">Deneysel özellikleri etkinleştir</string>
    <string name="display_original_file_names_without_metadata">Orijinal dosya adlarını göster (meta veri olmadan)</string>

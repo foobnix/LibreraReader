@@ -567,6 +567,7 @@
    <string name="emphasis">Наголос</string>
    <string name="with_cutout">З вирізом</string>
    <string name="screen">Екран</string>
+   <string name="normal_screen">Звичайний</string>
    <string name="please_enter_more_characters_to_search">Введіть більше символів для пошуку.</string>
    <string name="enable_experimental_features">Увімкнути експериментальні функції</string>
    <string name="display_original_file_names_without_metadata">Показувати назви оригінальних файлів (без метаданих)</string>

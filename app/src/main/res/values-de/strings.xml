@@ -567,6 +567,7 @@
    <string name="emphasis">Stressmarke (n)</string>
    <string name="with_cutout">Mit ausschnitt</string>
    <string name="screen">Bildschirm</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Bitte geben Sie weitere Zeichen ein, um zu suchen.</string>
    <string name="enable_experimental_features">Experimentelle Funktionen aktivieren</string>
    <string name="display_original_file_names_without_metadata">Originaldateinamen anzeigen (ohne Metadaten)</string>

@@ -567,6 +567,7 @@
    <string name="emphasis">Ударение(-я)</string>
    <string name="with_cutout">Дисплей с вырезом</string>
    <string name="screen">Полноэкранность</string>
+   <string name="normal_screen">Обычный вид</string>
    <string name="please_enter_more_characters_to_search">Чтобы найти что-нибудь, нужно ввести больше символов</string>
    <string name="enable_experimental_features">Включить экспериментальные функции</string>
    <string name="display_original_file_names_without_metadata">Отображать оригинальные имена файлов (без обращения к метаданным)</string>

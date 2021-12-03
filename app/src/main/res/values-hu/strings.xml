@@ -567,6 +567,7 @@
    <string name="emphasis">Hangsúly</string>
    <string name="with_cutout">Kivágással</string>
    <string name="screen">Képernyő</string>
+   <string name="normal_screen">Normál</string>
    <string name="please_enter_more_characters_to_search">Írjon be további karaktereket a kereséshez.</string>
    <string name="enable_experimental_features">Engedélyezze a kísérleti funkciókat</string>
    <string name="display_original_file_names_without_metadata">Az eredeti fájlnevek megjelenítése (metaadatok nélkül)</string>

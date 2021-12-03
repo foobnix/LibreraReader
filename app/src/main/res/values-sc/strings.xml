@@ -567,6 +567,7 @@
    <string name="emphasis">Sinnos de ènfasi manuales</string>
    <string name="with_cutout">Mutzinadu</string>
    <string name="screen">Ischermu</string>
+   <string name="normal_screen">Normale</string>
    <string name="please_enter_more_characters_to_search">Serbit un\'istringa de chirca prus longa!</string>
    <string name="enable_experimental_features">Abìlita sas funtzionalidades isperimentales</string>
    <string name="display_original_file_names_without_metadata">Ignora sos metadatos (ammustra sos nùmenes de sos documentos ebbia)</string>

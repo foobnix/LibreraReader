@@ -567,6 +567,7 @@
    <string name="emphasis">Nadruk</string>
    <string name="with_cutout">Met uitsparing</string>
    <string name="screen">Scherm</string>
+   <string name="normal_screen">Normaal</string>
    <string name="please_enter_more_characters_to_search">Voer alstublieft meer tekens in om te zoeken.</string>
    <string name="enable_experimental_features">Schakel experimentele functies in</string>
    <string name="display_original_file_names_without_metadata">Originele bestandsnamen weergeven (zonder metagegevens)</string>

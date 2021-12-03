@@ -567,6 +567,7 @@
    <string name="emphasis">Ênfase</string>
    <string name="with_cutout">Com recorte</string>
    <string name="screen">Tela</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Por favor, insira mais caracteres para pesquisar.</string>
    <string name="enable_experimental_features">Habilitar recursos experimentais</string>
    <string name="display_original_file_names_without_metadata">Exibir nomes de arquivos originais (sem metadados)</string>
