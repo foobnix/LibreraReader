@@ -234,7 +234,7 @@ public abstract class DocumentController {
             case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
                 return a.getString(R.string.with_cutout);
             case AppState.FULL_SCREEN_NORMAL:
-                return a.getString(R.string.normal_screen);
+                return a.getString(R.string.normal);
             case AppState.FULL_SCREEN_FULLSCREEN:
                 return a.getString(R.string.full_screen);
         }
