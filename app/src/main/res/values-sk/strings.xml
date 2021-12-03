@@ -567,6 +567,7 @@
    <string name="emphasis">Dôraz</string>
    <string name="with_cutout">S výrezom</string>
    <string name="screen">Plátno</string>
+   <string name="normal_screen">Normálne</string>
    <string name="please_enter_more_characters_to_search">Zadajte viac znakov na vyhľadávanie.</string>
    <string name="enable_experimental_features">Povoliť experimentálne funkcie</string>
    <string name="display_original_file_names_without_metadata">Zobraziť pôvodné názvy súborov (bez metadát)</string>

@@ -567,6 +567,7 @@
    <string name="emphasis">تاکید</string>
    <string name="with_cutout">با برش</string>
    <string name="screen">صفحه نمایش</string>
+   <string name="normal_screen">طبیعی</string>
    <string name="please_enter_more_characters_to_search">لطفا کاراکترهای بیشتری را برای جستجو وارد کنید</string>
    <string name="enable_experimental_features">ویژگی های تجربی را فعال کنید</string>
    <string name="display_original_file_names_without_metadata">نمایش نام فایل اصلی (بدون ابرداده)</string>

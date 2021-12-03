@@ -567,6 +567,7 @@
    <string name="emphasis">கையேடு அழுத்த குறி (கள்)</string>
    <string name="with_cutout">குறிப்பிடத்தக்க</string>
    <string name="screen">திரை</string>
+   <string name="normal_screen">இயல்பானது</string>
    <string name="please_enter_more_characters_to_search">நீண்ட தேடல் சரம் தேவை!</string>
    <string name="enable_experimental_features">சோதனை அம்சங்களை இயக்கு</string>
    <string name="display_original_file_names_without_metadata">மெட்டாடேட்டாவை புறக்கணிக்கவும் (கோப்பு பெயர்களை மட்டும் காண்பி)</string>

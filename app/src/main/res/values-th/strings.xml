@@ -567,6 +567,7 @@
    <string name="emphasis">ความสำคัญ</string>
    <string name="with_cutout">ด้วยการตัด</string>
    <string name="screen">จอภาพ</string>
+   <string name="normal_screen">ปกติ</string>
    <string name="please_enter_more_characters_to_search">โปรดป้อนอักขระเพิ่มเติมเพื่อค้นหา</string>
    <string name="enable_experimental_features">เปิดใช้งานคุณลักษณะทดลอง</string>
    <string name="display_original_file_names_without_metadata">แสดงชื่อไฟล์ต้นฉบับ (โดยไม่มีข้อมูลเมตา)</string>

@@ -567,6 +567,7 @@
    <string name="emphasis">تشديد</string>
    <string name="with_cutout">مع انقطاع</string>
    <string name="screen">شاشة</string>
+   <string name="normal_screen">عادي</string>
    <string name="please_enter_more_characters_to_search">يرجى إدخال المزيد من الشخصيات للبحث.</string>
    <string name="enable_experimental_features">تمكين الميزات التجريبية</string>
    <string name="display_original_file_names_without_metadata">عرض أسماء الملفات الأصلية (بدون بيانات التعريف)</string>

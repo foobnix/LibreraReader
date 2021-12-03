@@ -566,7 +566,8 @@
    <string name="add_rule">Lisää sääntö</string>
    <string name="emphasis">Painotus</string>
    <string name="with_cutout">Leikkauksella</string>
-   <string name="screen">Kuvaruutu</string>
+   <string name="screen">Normaali</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Kirjoita lisää merkkejä hakuun.</string>
    <string name="enable_experimental_features">Ota käyttöön kokeelliset ominaisuudet</string>
    <string name="display_original_file_names_without_metadata">Näytä alkuperäiset tiedostonimet (ilman metatietoja)</string>

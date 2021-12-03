@@ -567,6 +567,7 @@
    <string name="emphasis">Vektlegging</string>
    <string name="with_cutout">Med utskjæring</string>
    <string name="screen">Skjerm</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Vennligst skriv inn flere tegn for å søke.</string>
    <string name="enable_experimental_features">Aktiver eksperimentelle funksjoner</string>
    <string name="display_original_file_names_without_metadata">Vis originale filnavn (uten metadata)</string>

@@ -567,6 +567,7 @@
    <string name="emphasis">Χειροκίνητα σημάδια στρες</string>
    <string name="with_cutout">Οδοντωτός</string>
    <string name="screen">Οθόνη</string>
+   <string name="normal_screen">Κανονικός</string>
    <string name="please_enter_more_characters_to_search">Χρειάζεστε μια μεγαλύτερη συμβολοσειρά αναζήτησης!</string>
    <string name="enable_experimental_features">Ενεργοποίηση πειραματικών χαρακτηριστικών</string>
    <string name="display_original_file_names_without_metadata">Αγνοήστε τα μεταδεδομένα (μόνο τα ονόματα αρχείων εμφάνισης)</string>

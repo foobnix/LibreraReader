@@ -567,6 +567,7 @@
    <string name="emphasis">Emphasis</string>
    <string name="with_cutout">Cum cutout</string>
    <string name="screen">Screen</string>
+   <string name="normal_screen">Cotidianus</string>
    <string name="please_enter_more_characters_to_search">Mores inquirere placet introeamus.</string>
    <string name="enable_experimental_features">Enable features experimentalem</string>
    <string name="display_original_file_names_without_metadata">Display original file nomina (sine metadata)</string>

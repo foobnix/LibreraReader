@@ -567,6 +567,7 @@
    <string name="emphasis">דגש</string>
    <string name="with_cutout">עם ניתוק</string>
    <string name="screen">מסך</string>
+   <string name="normal_screen">נוֹרמָלִי</string>
    <string name="please_enter_more_characters_to_search">אנא הזן תווים נוספים לחיפוש.</string>
    <string name="enable_experimental_features">לאפשר תכונות ניסיוניות</string>
    <string name="display_original_file_names_without_metadata">להציג שמות קבצים מקוריים (ללא מטה-נתונים)</string>

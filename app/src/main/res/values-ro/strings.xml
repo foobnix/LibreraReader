@@ -567,6 +567,7 @@
    <string name="emphasis">Accent</string>
    <string name="with_cutout">Cu decupaj</string>
    <string name="screen">Ecran</string>
+   <string name="normal_screen">Normal</string>
    <string name="please_enter_more_characters_to_search">Introduceți mai multe caractere pentru a căuta.</string>
    <string name="enable_experimental_features">Permiteți caracteristicile experimentale</string>
    <string name="display_original_file_names_without_metadata">Afișați nume de fișier originale (fără metadate)</string>
