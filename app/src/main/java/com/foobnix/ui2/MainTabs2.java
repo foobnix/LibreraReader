@@ -752,9 +752,13 @@ public class MainTabs2 extends AdsFragmentActivity {
     }
 
     public void checkGoToPage(Intent intent) {
-        int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
-        if (pos != -1) {
-            pager.setCurrentItem(pos);
+        try {
+            int pos = intent.getIntExtra(EXTRA_PAGE_NUMBER, -1);
+            if (pos != -1) {
+                pager.setCurrentItem(pos);
+            }
+        }catch (Exception e){
+            LOG.e(e);
         }
     }
 
