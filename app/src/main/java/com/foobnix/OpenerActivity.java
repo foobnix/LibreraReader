@@ -53,15 +53,14 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Path", getDataPath());
         LOG.d("OpenerActivity Scheme", getIntent().getScheme());
         LOG.d("OpenerActivity Mime", getIntent().getType());
-        LOG.d("OpenerActivity DISPLAY_NAME", getCursorValue( MediaStore.MediaColumns.DISPLAY_NAME));
-        LOG.d("OpenerActivity DATA", getCursorValue( MediaStore.MediaColumns.DATA));
-
+        LOG.d("OpenerActivity DISPLAY_NAME", getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME));
+        LOG.d("OpenerActivity DATA", getCursorValue(MediaStore.MediaColumns.DATA));
 
         String path = getDataPath();
         File file = new File(path);
 
         if (!file.isFile()) {
-            String dataPath = getCursorValue( MediaStore.MediaColumns.DATA);
+            String dataPath = getCursorValue(MediaStore.MediaColumns.DATA);
             if (dataPath != null) {
                 file = new File(dataPath);
             }
@@ -71,7 +70,7 @@ public class OpenerActivity extends Activity {
         if (!file.isFile()) {
             try {
                 file = new File(Environment.getExternalStorageDirectory(), path.substring(path.indexOf("/", 1)));
-                LOG.d("OpenerActivity 2", file.getPath());
+                LOG.d("OpenerActivity 2", file.canRead(), file.getPath());
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -85,7 +84,7 @@ public class OpenerActivity extends Activity {
             }
         }
 
-        if (!file.isFile()) {
+        if (!file.isFile() || !file.canRead()) {
 
 
             try {
