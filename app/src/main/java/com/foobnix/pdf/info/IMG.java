@@ -122,7 +122,9 @@ public class IMG {
     }
 
     public static void clearMemoryCache() {
-        Glide.get(LibreraApp.context).clearMemory();
+        if(LibreraApp.context!=null) {
+            Glide.get(LibreraApp.context).clearMemory();
+        }
     }
 
     public static RequestManager with(Context a) {
