@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-APK=/home/data/Dropbox/FREE_PDF_APK/testing
+APK=/home/dev/Dropbox/FREE_PDF_APK/testing
 
 for DEVICE in $(adb devices | grep  -E -i '[abcdf0-9]' | tr -s "\t " " " | cut -d " " -f 1)
 do

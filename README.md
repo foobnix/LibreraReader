@@ -27,7 +27,7 @@ Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 ## Required build libs
 
 ~~~~
-mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config
+mesa-common-dev libxcursor-dev libxrandr-dev libxinerama-dev libglu1-mesa-dev libxi-dev pkg-config libgl-dev
 ~~~~
 
 You also need the Android NDK in version 20+
