@@ -122,7 +122,7 @@ public class IMG {
     }
 
     public static void clearMemoryCache() {
-        if(LibreraApp.context!=null) {
+        if (LibreraApp.context != null) {
             Glide.get(LibreraApp.context).clearMemory();
         }
     }
@@ -151,7 +151,7 @@ public class IMG {
 
     public static void clear(ImageView image) {
         try {
-            LOG.d("Glide-clear",  image.getContext());
+            LOG.d("Glide-clear", image.getContext());
             Activity activity = ((Activity) image.getContext());
             if (Build.VERSION.SDK_INT < 17 || !activity.isDestroyed()) {
                 with(image.getContext()).clear(image);
@@ -172,16 +172,20 @@ public class IMG {
     }
 
     public static void clearDiscCache() {
-        try {
-            new Thread() {
-                @Override
-                public void run() {
-                    Glide.get(LibreraApp.context).clearDiskCache();
+
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if (LibreraApp.context != null) {
+                        Glide.get(LibreraApp.context).clearDiskCache();
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
                 }
-            }.start();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
+            }
+        }.start();
+
     }
 
     public static void clearCache(String path) {
