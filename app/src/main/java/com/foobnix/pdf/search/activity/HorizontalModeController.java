@@ -544,7 +544,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
         if (outline == null) {
             outline = new ArrayList<OutlineLinkWrapper>();
-            new Thread() {
+            new Thread("@T getOutlineH") {
                 @Override
                 public void run() {
 

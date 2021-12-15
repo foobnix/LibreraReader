@@ -63,7 +63,8 @@ public class VerticalModeController extends DocumentController {
 
     private static final double ZOOM_VALUE = 0.05;
     Handler handler;
-    Thread t = new Thread();
+    Thread t = new Thread("@T AutoScroll");
+
     long begin = 0;
     float currentZoom, currentX, currentY, pageN;
     boolean isLocked;
@@ -508,7 +509,7 @@ public class VerticalModeController extends DocumentController {
                 }
 
             }
-        });
+        },"@T AutoScroll 2");
         t.setPriority(Thread.NORM_PRIORITY);
         t.start();
     }

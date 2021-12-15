@@ -173,7 +173,7 @@ public class IMG {
 
     public static void clearDiscCache() {
 
-        new Thread() {
+        new Thread("@T clearDiscCache") {
             @Override
             public void run() {
                 try {
@@ -214,8 +214,12 @@ public class IMG {
     }
 
     public static void getCoverPage(ImageView img, String path, int width) {
-        final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
-        Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+        try {
+            final String url = IMG.toUrl(path, ImageExtractor.COVER_PAGE, width);
+            Glide.with(LibreraApp.context).asBitmap().load(url).into(img);
+        }catch (Exception e){
+            LOG.e(e);
+        }
     }
 
     public static void getCoverPageWithEffect(ImageView img, String path, int width, Runnable run) {

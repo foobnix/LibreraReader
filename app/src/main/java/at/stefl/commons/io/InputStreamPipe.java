@@ -10,7 +10,7 @@ public class InputStreamPipe {
     private final InputStream in;
     private final OutputStream out;
     
-    private Thread pipeThread = new Thread() {
+    private Thread pipeThread = new Thread("@T InputStreamPipe") {
         
         @Override
         public void run() {

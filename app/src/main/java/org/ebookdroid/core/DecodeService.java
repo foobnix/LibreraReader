@@ -84,4 +84,7 @@ public interface DecodeService {
 
     CodecDocument getCodecDocument();
 
+    void shutdown() ;
+    void restore() ;
+
 }

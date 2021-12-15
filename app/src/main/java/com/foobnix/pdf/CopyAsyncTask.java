@@ -192,7 +192,7 @@ public abstract class CopyAsyncTask<Params, Progress, Result> {
 
         @Override
 		public Thread newThread(Runnable r) {
-            Thread thread = new Thread(r, "AsyncTask #" + mCount.getAndIncrement());
+            Thread thread = new Thread(r, "@T CopyAsyncTask #" + mCount.getAndIncrement());
             thread.setPriority(Thread.NORM_PRIORITY);
             return thread;
         }

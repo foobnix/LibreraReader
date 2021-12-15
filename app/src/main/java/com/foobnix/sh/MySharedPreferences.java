@@ -222,7 +222,7 @@ public class MySharedPreferences implements SharedPreferences {
                     LOG.d("MySharedPreferences", "write");
                     write(file, object.toString());
                 }
-            }).start();
+            },"@T MySharedPreferences commit").start();
 
             return false;
         }

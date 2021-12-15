@@ -257,6 +257,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onStart() {
         super.onStart();
         // Analytics.onStart(this);
+        try {
+            getController().getDocumentModel().decodeService.restore();
+        }catch (Exception e){
+            LOG.e(e);
+        }
+
         if (needToRestore) {
             AppState.get().isAutoScroll = true;
             getController().getListener().onAutoScroll();
@@ -266,6 +272,11 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void onStop() {
+        try {
+            getController().getDocumentModel().decodeService.shutdown();
+        }catch (Exception e){
+            LOG.e(e);
+        }
         super.onStop();
     }
 

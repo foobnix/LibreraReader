@@ -64,7 +64,7 @@ public class MobiContext extends PdfContext {
             LOG.d("Load notes from file", jsonFile);
         } else {
 
-            new Thread() {
+            new Thread("@T mobi set footernotes") {
                 @Override
                 public void run() {
                     Map<String, String> notes = null;

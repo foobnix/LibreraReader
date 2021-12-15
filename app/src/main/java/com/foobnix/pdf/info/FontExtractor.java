@@ -42,7 +42,7 @@ public class FontExtractor {
         if (c == null) {
             return;
         }
-        new Thread() {
+        new Thread("@T extractFonts") {
             @Override
             public void run() {
                 // extractInside(c, "fonts", BookCSS.FONTS_DIR);

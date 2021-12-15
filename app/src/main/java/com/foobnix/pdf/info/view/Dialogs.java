@@ -509,7 +509,7 @@ public class Dialogs {
 
                 }
             }
-        }).start();
+        },"@T showSyncLOGDialog").start();
 
 
         result.setText(GFile.debugOut);

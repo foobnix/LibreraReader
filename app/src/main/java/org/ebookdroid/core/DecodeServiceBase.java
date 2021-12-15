@@ -56,7 +56,7 @@ public class DecodeServiceBase implements DecodeService {
 
     final CodecContext codecContext;
 
-    final ExecutorRunnable executor = new ExecutorRunnable();
+    ExecutorRunnable executor = new ExecutorRunnable();
 
     final AtomicBoolean isRecycled = new AtomicBoolean();
 
@@ -208,7 +208,7 @@ public class DecodeServiceBase implements DecodeService {
 
     @Override
     public void searchText(final String text, final Page[] pages, final ResultResponse<Integer> response, final Runnable finish) {
-        Thread t = new Thread() {
+        Thread t = new Thread("@T searchText") {
             @Override
             public void run() {
                 PageSearcher pageSearcher = new PageSearcher();
@@ -333,7 +333,7 @@ public class DecodeServiceBase implements DecodeService {
             }
 
 
-            if (codecDocument.getBookType()== BookType.PDF && task.node.page.annotations == null) {
+            if (codecDocument.getBookType() == BookType.PDF && task.node.page.annotations == null) {
                 task.node.page.annotations = vuPage.getAnnotations();
             }
 
@@ -484,7 +484,7 @@ public class DecodeServiceBase implements DecodeService {
     public void getOutline(final ResultResponse<List<OutlineLink>> response) {
         if (true) {
 
-            new Thread() {
+            new Thread("@T getOutlineV") {
                 @Override
                 public void run() {
                     if (codecDocument == null) {
@@ -529,16 +529,16 @@ public class DecodeServiceBase implements DecodeService {
         return pagesInMemory == 0 ? 1 : Math.max(minSize, pagesInMemory);
     }
 
-    class ExecutorRunnable implements Runnable {
+    final Map<PageTreeNode, DecodeTask> decodingTasks = new IdentityHashMap<PageTreeNode, DecodeTask>();
+    final List<Task> tasks = new ArrayList<Task>();
 
-        final Map<PageTreeNode, DecodeTask> decodingTasks = new IdentityHashMap<PageTreeNode, DecodeTask>();
 
-        final List<Task> tasks = new ArrayList<Task>();
+    class ExecutorRunnable implements Runnable, org.ebookdroid.core.ExecutorRunnable {
+
         final AtomicBoolean run = new AtomicBoolean(true);
-        final ReentrantLock lock = new ReentrantLock();
 
         ExecutorRunnable() {
-            Thread t = new Thread(this);
+            Thread t = new Thread(this, "@T Decoding");
             t.setPriority(CoreSettings.getInstance().decodingThreadPriority);
             t.start();
         }
@@ -553,7 +553,7 @@ public class DecodeServiceBase implements DecodeService {
                         r.run();
                     }
                 }
-
+                LOG.d("Executor stopped");
             } catch (final Throwable th) {
                 th.printStackTrace();
             } finally {
@@ -597,7 +597,7 @@ public class DecodeServiceBase implements DecodeService {
             }
             synchronized (run) {
                 try {
-                    run.wait(60000);
+                    run.wait(1000);
                 } catch (final InterruptedException ex) {
                     Thread.interrupted();
                 }
@@ -713,7 +713,8 @@ public class DecodeServiceBase implements DecodeService {
             }
         }
 
-        void shutdown() {
+
+        public void shutdown() {
             Safe.run(new Runnable() {
 
                 @Override
@@ -971,5 +972,34 @@ public class DecodeServiceBase implements DecodeService {
     public CodecDocument getCodecDocument() {
         return codecDocument;
     }
+
+    @Override
+    public void shutdown() {
+        try {
+            executor.run.set(false);
+            synchronized (executor.run) {
+                executor.run.notifyAll();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    @Override
+    public void restore() {
+        try {
+            if (executor.run.get()) {
+                return;
+            }
+            executor = null;
+            executor = new ExecutorRunnable();
+            synchronized (executor.run) {
+                executor.run.notifyAll();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
 
 }

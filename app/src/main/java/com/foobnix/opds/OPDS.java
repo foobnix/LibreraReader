@@ -74,7 +74,7 @@ public class OPDS {
                 }
                 client = builder.build();
             }
-        }).start();
+        },"@T buildProxy").start();
 
     }
 

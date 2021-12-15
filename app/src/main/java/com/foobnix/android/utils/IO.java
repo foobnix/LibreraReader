@@ -35,7 +35,7 @@ public class IO {
     }
 
     public static void writeObj(File file, Object o) {
-        new Thread(() -> writeObjAsync(file, o)).start();
+        new Thread(() -> writeObjAsync(file, o),"@T writeObj").start();
     }
 
     public static void writeObjAsync(File file, Object o) {

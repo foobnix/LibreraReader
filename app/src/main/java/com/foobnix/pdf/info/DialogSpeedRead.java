@@ -266,7 +266,7 @@ public class DialogSpeedRead {
                 onReset.setVisibility(View.VISIBLE);
                 TempHolder.isActiveSpeedRead.set(!TempHolder.isActiveSpeedRead.get());
                 if (TempHolder.isActiveSpeedRead.get()) {
-                    new Thread(task).start();
+                    new Thread(task,"@T isActiveSpeedRead").start();
 
                     onNext.setVisibility(View.GONE);
                     onPrev.setVisibility(View.GONE);

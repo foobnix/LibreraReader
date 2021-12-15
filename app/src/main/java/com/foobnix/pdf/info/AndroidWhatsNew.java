@@ -259,7 +259,7 @@ public class AndroidWhatsNew {
 
 
         LOG.d("checkForNewBeta");
-        new Thread() {
+        new Thread("@T checkForNewBeta") {
             @Override
             public void run() {
 

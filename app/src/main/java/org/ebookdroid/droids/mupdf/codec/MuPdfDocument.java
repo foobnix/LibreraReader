@@ -257,7 +257,7 @@ public class MuPdfDocument extends AbstractCodecDocument {
             final AtomicBoolean ready = new AtomicBoolean(false);
             final StringBuilder info = new StringBuilder();
 
-            new Thread() {
+            new Thread("@T extract meta") {
                 @Override
                 public void run() {
 
