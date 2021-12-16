@@ -2,7 +2,9 @@
 layout: main
 ---
 
-# What is new (Updated)
+# What is new
+
+<a href="https://t.me/s/LibreraReader">Updates: https://t.me/s/LibreraReader></a>
 
 ### [8.3.97] enable disable context menu integration (text selection)
 
