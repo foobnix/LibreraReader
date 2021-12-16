@@ -318,7 +318,9 @@ android {
     }
 
 
-    sourceSets { fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] } }
+    sourceSets {
+        fdroid { assets.srcDirs = ['src/fdroid/assets', 'src/fdroid/assets/'] }
+    }
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -328,7 +330,6 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 }
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -350,29 +351,23 @@ dependencies {
 
     implementation 'com.github.axet:lame:1.0.6'
 
-    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
     implementation('org.greenrobot:greendao:3.3.0') {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'org.jsoup:jsoup:1.14.3'
 
-    //implementation 'com.github.albfernandez:juniversalchardet:2.1.0'
+    implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
-    implementation 'com.ibm.icu:icu4j:4.8.2'
-
-
-
-
-
-    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.6'
     implementation 'io.github.rburgst:okhttp-digest:1.21'
     implementation 'com.squareup.okio:okio-parent:1.17.5'
 
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.4.2'
     implementation 'javax.xml.stream:stax-api:1.0'
-    implementation 'net.lingala.zip4j:zip4j:2.9.0'
+    implementation 'net.lingala.zip4j:zip4j:2.9.1'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 

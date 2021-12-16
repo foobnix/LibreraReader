@@ -1,0 +1,97 @@
+.Dd April 18, 2016
+.Dt mobimeta 1 URM
+.Os Unix
+.Sh NAME
+.Nm mobimeta
+.Nd Utility for modifying metadata of MOBI format ebook files.
+.Sh SYNOPSIS
+.Nm
+.Op Fl a Ar meta=value Ns Op Ar ,meta=value,...
+.Op Fl d Ar meta Ns Op Ar ,meta,...
+.Op Fl s Ar meta=value Ns Op Ar ,meta=value,...
+.if !'@ENCRYPTION_OPT@'yes' .ig
+.Op Fl p Ar pid
+.Op Fl P Ar serial
+..
+.Ar filein
+.Op Ar fileout
+.Sh DESCRIPTION
+The program handles .prc, .mobi, .azw; .azw3, .azw4, some .pdb documents. Written as a test case for
+.Nm libmobi
+library.
+.Pp
+Invoked without arguments prints document metadata and exits. If
+.Ar fileout
+is specified, modified document will be saved with this name, otherwise original input
+.Ar filein
+will be modified.
+.Pp
+A list of flags and their descriptions:
+.Bl -tag -width -indent
+.It Fl a Ar meta=value Ns Op Ar ,meta=value,...
+add (append) metadata
+.It Fl d Ar meta Ns Op Ar ,meta,...
+delete metadata
+.It Fl s Ar meta=value Ns Op Ar ,meta=value,...
+set (replace) metadata
+.It Ar meta
+for a list of valid named meta keys try
+.Nm mobimeta Bro Fl a | Fl d | Fl s Brc
+.Ar \&? .
+If meta is an integer it will be treated as a numeric EXTH record key (expert usage).
+.It Ar value
+new value that will be set for a given meta key
+.if !'@ENCRYPTION_OPT@'yes' .ig
+.It Fl p Ar pid
+set pid for decryption
+.It Fl P Ar serial
+set device serial number for decryption
+..
+.It Fl v
+show version and exit
+.El
+.Pp
+.Sh EXAMPLES
+The following command will set new title, new author and will delete all publisher metadata (if any).
+.Pp
+.Bd -filled -offset indent
+.Nm mobimeta
+.Fl s
+title="My title",author="My name"
+.Fl d
+publisher example.mobi
+.Ed
+.Pp
+The following command appends EXTH record identified by its numeric key 204 with numeric value 201.
+.Pp
+.Bd -filled -offset indent
+.Nm mobimeta
+.Fl a
+204=201 example.mobi
+.Ed
+.Pp
+The following command will list valid meta named keys.
+.Pp
+.Bd -filled -offset indent
+.Nm mobimeta
+.Fl a
+?
+.Ed
+.Sh RETURN VALUES
+The
+.Nm mobimeta
+utility returns 0 on success, 1 on error.
+.Sh COPYRIGHT
+Copyright (C) 2014-2016 Bartek Fabiszewski.
+.Pp
+Released under LGPL version 3 or any later (same as libmobi).
+.Sh WEB SITE
+Visit http://www.fabiszewski.net for details.
+.Sh DIAGNOSTICS
+For diagnostics
+.Nm libmobi
+must be configured with
+.Op Fl Fl enable-debug
+option.
+.Sh SEE ALSO
+.Xr mobitool 1

@@ -71,6 +71,6 @@ LOCAL_SRC_FILES :=  \
 	src/miniexp.cpp
 
 LOCAL_STATIC_LIBRARIES := jpeg-turbo
-LOCAL_LDLIBS := -llog
+#LOCAL_LDLIBS := -llog
 
 include $(BUILD_STATIC_LIBRARY)

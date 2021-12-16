@@ -35,7 +35,7 @@ public class TxtExtract {
 
         boolean isJSON = inputPath.endsWith(".json");
 
-        String encoding = ExtUtils.determineTxtEncodingTika(new FileInputStream(inputPath));
+        String encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
         PrintWriter writer = new PrintWriter(file);
