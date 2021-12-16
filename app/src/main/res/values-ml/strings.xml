@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">സന്ദർഭ മെനുവിലെ സംയോജനം</string>
    <string name="the_application_needs_storage_permission">എല്ലാ പുസ്തകങ്ങളും കണ്ടെത്തുന്നതിന് സംഭരണത്തിലേക്ക് പ്രവേശിക്കാൻ അപ്ലിക്കേഷന് അനുമതി ആവശ്യമാണ്</string>
    <string name="always_open_in_2_pages_mode">എപ്പോഴും 2 പേജ് മോഡിൽ തുറക്കുക</string>
+   <string name="character_encoding">പ്രതീക എൻകോഡിംഗ്</string>
 </resources>

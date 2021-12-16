@@ -64,7 +64,7 @@ public class SyncTranslations {
     }
 
     private static Config IVAN_2 = new Config("ivan", "", "/home/data/git/LibreraReader/app/src/main/res/");
-    private static Config IVAN = new Config("ivan", "", "/home/ivan-dev/git/LibreraReader/app/src/main/res/");
+    private static Config IVAN = new Config("ivan", "", "/home/dev/git/LibreraReader/app/src/main/res/");
 
     // run as "SyncTranslations user_name"
     public static void main(final String[] args) throws Exception {

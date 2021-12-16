@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">บูรณาการในเมนูบริบท</string>
    <string name="the_application_needs_storage_permission">แอปพลิเคชันต้องได้รับอนุญาตในการเข้าถึงที่เก็บข้อมูลเพื่อค้นหาหนังสือทั้งหมด</string>
    <string name="always_open_in_2_pages_mode">เปิดในโหมด 2 หน้าเสมอ</string>
+   <string name="character_encoding">การเข้ารหัสอักขระ</string>
 </resources>

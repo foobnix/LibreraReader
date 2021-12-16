@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">Comhtháthú sa roghchlár comhthéacs</string>
    <string name="the_application_needs_storage_permission">Teastaíonn cead ón bhfeidhmchlár chun an stór a rochtain chun na leabhair go léir a fháil</string>
    <string name="always_open_in_2_pages_mode">Oscail i gcónaí i mód 2 leathanach</string>
+   <string name="character_encoding">Ionchódú carachtar</string>
 </resources>

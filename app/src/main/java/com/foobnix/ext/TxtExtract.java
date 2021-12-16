@@ -35,7 +35,14 @@ public class TxtExtract {
 
         boolean isJSON = inputPath.endsWith(".json");
 
-        String encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
+        String encoding = "UTF-8";
+        if(AppState.get().isCharacterEncoding){
+            encoding = AppState.get().characterEncoding;
+        }else{
+            encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
+        }
+
+
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
         PrintWriter writer = new PrintWriter(file);

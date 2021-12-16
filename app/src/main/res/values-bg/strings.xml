@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">Интеграция в контекстното меню</string>
    <string name="the_application_needs_storage_permission">Приложението се нуждае от разрешение за достъп до хранилището, за да намери всички книги</string>
    <string name="always_open_in_2_pages_mode">Винаги отворен в режим 2 страници</string>
+   <string name="character_encoding">Кодиране на знаци</string>
 </resources>

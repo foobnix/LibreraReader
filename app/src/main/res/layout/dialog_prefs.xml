@@ -255,6 +255,29 @@
             android:layout_height="wrap_content"
             android:text="@string/continuous_text"
             android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/isCharacterEncoding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/character_encoding" />
+
+            <TextView
+                android:id="@+id/characterEncoding"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="0"
+                android:minWidth="50dip"
+                android:text="UTF-8" />
+
+        </LinearLayout>
         
 
         <LinearLayout

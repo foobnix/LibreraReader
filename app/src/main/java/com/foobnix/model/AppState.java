@@ -25,6 +25,7 @@ import com.foobnix.ui2.AppDB;
 
 import org.librera.LinkedJSONObject;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,6 +34,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.xml.stream.events.Characters;
 
 public class AppState {
 
@@ -304,6 +307,10 @@ public class AppState {
     //public boolean isFullScreenMain = false;
     public boolean isAccurateFontSize = false;
     public boolean isShowFooterNotesInText = false;
+
+    public boolean isCharacterEncoding = false;
+    public String characterEncoding = "UTF-8";
+
     @IgnoreHashCode
     public boolean isEditMode = true;
     public int fullScreenMode = FULL_SCREEN_NORMAL;

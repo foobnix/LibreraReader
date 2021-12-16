@@ -150,6 +150,7 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -157,6 +158,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class DragingDialogs {
 
@@ -3645,6 +3647,10 @@ public class DragingDialogs {
                     }
                 });
 
+
+
+
+
                 CheckBox isIgnoreAnnotatations = (CheckBox) inflate.findViewById(R.id.isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setChecked(AppState.get().isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -4311,6 +4317,10 @@ public class DragingDialogs {
                         AppState.get().defaultHyphenLanguageCode= AppSP.get().hypenLang;
                     }
                 });
+
+
+
+
                 // - hypens
                 //
                 CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
@@ -4841,9 +4851,56 @@ public class DragingDialogs {
                     }
                 });
 
-                isLineBreaksText.setVisibility(BookType.TXT.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                isLineBreaksText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
                 //
+
+                //charsets
+
+                CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
+                isCharacterEncoding.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
+                isCharacterEncoding.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isCharacterEncoding = isChecked;
+                    }
+                });
+
+                final TextView characterEncoding = (TextView) inflate.findViewById(R.id.characterEncoding);
+                characterEncoding.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                characterEncoding.setText(AppState.get().characterEncoding);
+                TxtUtils.underlineTextView(characterEncoding);
+
+                characterEncoding.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                        List<String> keys = new ArrayList<>(Charset.availableCharsets().keySet());
+                        keys.add(0,"UTF-8");
+
+                        for (final String name : keys) {
+                            if(name.startsWith("IBM") ||name.startsWith("x-")){
+                                continue;
+                            }
+                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().characterEncoding = name;
+                                    characterEncoding.setText(AppState.get().characterEncoding);
+                                    TxtUtils.underlineTextView(characterEncoding);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
 
                 TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);

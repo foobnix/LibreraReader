@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">상황에 맞는 메뉴에 통합</string>
    <string name="the_application_needs_storage_permission">모든 도서를 찾으려면 애플리케이션에 저장소 액세스 권한이 필요합니다.</string>
    <string name="always_open_in_2_pages_mode">항상 2페이지 모드로 열기</string>
+   <string name="character_encoding">문자 인코딩</string>
 </resources>

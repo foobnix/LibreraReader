@@ -631,4 +631,5 @@
    <string name="integration_in_the_context_menu">コンテキストメニューの統合</string>
    <string name="the_application_needs_storage_permission">アプリケーションは、すべての本を見つけるためにストレージにアクセスする権限が必要です</string>
    <string name="always_open_in_2_pages_mode">常に2ページモードで開く</string>
+   <string name="character_encoding">文字コード</string>
 </resources>

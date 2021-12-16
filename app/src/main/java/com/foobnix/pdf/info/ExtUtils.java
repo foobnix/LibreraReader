@@ -1916,7 +1916,7 @@ public class ExtUtils {
             LOG.e(e);
         }
 
-        return encoding == null ? "UTF-8" : encoding;
+        return encoding == null ? AppState.get().characterEncoding : encoding;
     }
 
 
