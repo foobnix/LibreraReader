@@ -23,6 +23,8 @@ LOCAL_C_INCLUDES := \
 	$(MUPDF_ROOT)/source/fitz \
 	$(MUPDF_ROOT)/source/pdf \
 	$(TOP_LOCAL_PATH)/djvu/include \
+	$(TOP_LOCAL_PATH)/libmobi-0.9/src \
+    $(TOP_LOCAL_PATH)/libmobi-0.9/tools \
     $(TOP_LOCAL_PATH)/hqx \
     $(TOP_LOCAL_PATH)/java \
 	$(TOP_LOCAL_PATH)

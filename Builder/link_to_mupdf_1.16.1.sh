@@ -53,6 +53,9 @@ cp -rp $SRC/xml.c               $DEST/fitz/xml.c
 cp -rp $SRC/pdf-colorspace.c    $DEST/pdf/pdf-colorspace.c
 
 cd $MUPDF_JAVA
+
+whereis ndk-build
+echo "================== "
 ndk-build $1
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA

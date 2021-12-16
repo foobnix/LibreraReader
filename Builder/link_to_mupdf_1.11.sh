@@ -46,7 +46,7 @@ cp -rp jni/~mupdf-1.11/structured-text.h $MUPDF_ROOT/include/mupdf/fitz/structur
 
 
 cd $MUPDF_JAVA
-echo "================== "
+
 whereis ndk-build
 echo "================== "
 ndk-build $1
