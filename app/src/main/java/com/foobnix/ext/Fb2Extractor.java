@@ -139,8 +139,8 @@ public class Fb2Extractor extends BaseExtractor {
 
         HypenUtils.resetTokenizer();
 
-//        boolean isValidXML = false;
-//        boolean isValidXMLChecked = false;
+        boolean isValidXML = false;
+        boolean isValidXMLChecked = false;
 
         String svg = "";
         boolean findSVG = false;
@@ -153,14 +153,18 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-//            if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
-//                isValidXMLChecked = true;
-//                isValidXML = line.contains("<");
-//                LOG.d("isValidXML", isValidXML, line);
-//                if (!isValidXML) {
-//                    writer.print("<html><body>");
-//                }
-//            }
+            if (!isValidXMLChecked && TxtUtils.isNotEmpty(line)) {
+                isValidXMLChecked = true;
+                isValidXML = line.contains("<");
+                LOG.d("isValidXML", isValidXML, line);
+                if (!isValidXML) {
+                    writer.print("<html><body>");
+                }
+            }
+            if (!isValidXML && TxtUtils.isEmpty(line)) {
+                writer.println("<p></p>");
+                continue;
+            }
 
 
             if (AppState.get().isShowFooterNotesInText) {
@@ -252,21 +256,21 @@ public class Fb2Extractor extends BaseExtractor {
             }
 
 
-//            if (!isValidXML) {
-//                writer.println("<p>");
-//            }
+            if (!isValidXML) {
+                writer.println("<p>");
+            }
             writer.println(line);
 
-//            if (!isValidXML) {
-//                writer.println("</p>");
-//            }
+            if (!isValidXML) {
+                writer.println("</p>");
+            }
 
             // LOG.d("gen-ou", line);
 
         }
-//        if (!isValidXML) {
-//            writer.print("</body></html>");
-//        }
+        if (!isValidXML) {
+            writer.print("</body></html>");
+        }
 
         writer.close();
     }
