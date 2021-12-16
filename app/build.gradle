@@ -356,7 +356,14 @@ dependencies {
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
     implementation 'org.jsoup:jsoup:1.13.1'
-    implementation 'com.googlecode.juniversalchardet:juniversalchardet:1.0.3'
+
+    //implementation 'com.github.albfernandez:juniversalchardet:2.1.0'
+
+    implementation 'com.ibm.icu:icu4j:4.8.2'
+
+
+
+
 
     implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     implementation 'io.github.rburgst:okhttp-digest:1.21'

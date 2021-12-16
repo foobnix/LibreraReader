@@ -72,6 +72,7 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
+import com.ibm.icu.text.CharsetDetector;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
@@ -79,7 +80,6 @@ import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
-import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -89,6 +89,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.CharsetDecoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1880,60 +1881,84 @@ public class ExtUtils {
             LOG.e(e);
         }
 
-        String encdogin = determineEncodingAuto(fis2);
+        String encdogin = determineTxtEncodingTika(fis2);
         LOG.d("determineHtmlEncoding auto", encdogin);
 
         return encdogin;
 
     }
 
-    private static String determineEncodingAuto(InputStream fis) {
+//    private static String determineEncodingAuto(InputStream fis) {
+//        String encoding = null;
+//        try {
+//            UniversalDetector detector = new UniversalDetector(null);
+//
+//            int nread;
+//            byte[] buf = new byte[1024];
+//            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+//                detector.handleData(buf, 0, nread);
+//            }
+//            detector.dataEnd();
+//
+//            encoding = detector.getDetectedCharset();
+//            detector.reset();
+//            fis.close();
+//
+//            LOG.d("File Encoding", encoding);
+//
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
+//        return encoding == null ? "UTF-8" : encoding;
+//    }
+//
+//    public static String determineTxtEncoding(InputStream fis) {
+//        String encoding = null;
+//        try {
+//            UniversalDetector detector = new UniversalDetector(null);
+//
+//            int nread;
+//            byte[] buf = new byte[4096];
+//            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+//                detector.handleData(buf, 0, nread);
+//            }
+//            detector.dataEnd();
+//
+//            encoding = detector.getDetectedCharset();
+//            detector.reset();
+//            fis.close();
+//            //encoding = "cp1250";
+//            LOG.d("File Encoding", encoding);
+//
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
+//        return encoding == null ? "UTF-8" : encoding;
+//    }
+
+
+
+    public static String determineTxtEncodingTika(InputStream fis) {
         String encoding = null;
         try {
-            UniversalDetector detector = new UniversalDetector(null);
+            CharsetDetector charsetDetector = new CharsetDetector();
 
-            int nread;
-            byte[] buf = new byte[1024];
-            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-                detector.handleData(buf, 0, nread);
-            }
-            detector.dataEnd();
 
-            encoding = detector.getDetectedCharset();
-            detector.reset();
-            fis.close();
+            byte[] buf = new byte[4096];
+            fis.read(buf);
+            charsetDetector.setText(buf);
 
-            LOG.d("File Encoding", encoding);
+            encoding = charsetDetector.detect().getName();
+            LOG.d("File Encoding ICU", encoding);
+
 
         } catch (Exception e) {
             LOG.e(e);
         }
         return encoding == null ? "UTF-8" : encoding;
+
     }
 
-    public static String determineTxtEncoding(InputStream fis) {
-        String encoding = null;
-        try {
-            UniversalDetector detector = new UniversalDetector(null);
-
-            int nread;
-            byte[] buf = new byte[2024];
-            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-                detector.handleData(buf, 0, nread);
-            }
-            detector.dataEnd();
-
-            encoding = detector.getDetectedCharset();
-            detector.reset();
-            fis.close();
-
-            LOG.d("File Encoding", encoding);
-
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return encoding == null ? "UTF-8" : encoding;
-    }
 
     public static boolean deleteRecursive(File fileOrDirectory) {
         try {
