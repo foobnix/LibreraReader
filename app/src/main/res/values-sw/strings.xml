@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Ujumuishaji katika menyu ya muktadha</string>
    <string name="the_application_needs_storage_permission">Programu inahitaji ruhusa ya kufikia hifadhi ili kupata vitabu vyote</string>
    <string name="always_open_in_2_pages_mode">Fungua kila wakati katika hali ya kurasa 2</string>
-   <string name="character_encoding">Usimbaji wa herufi</string>
+   <string name="text_encoding">Usimbaji wa maandishi</string>
 </resources>

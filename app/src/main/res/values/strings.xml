@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Integrate in global context menu</string>
    <string name="the_application_needs_storage_permission">The application needs permission to access the storage to find all books</string>
    <string name="always_open_in_2_pages_mode">Open in 2-page mode</string>
-   <string name="character_encoding">Character encoding</string>
+   <string name="text_encoding">Text encoding</string>
 </resources>

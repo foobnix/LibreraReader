@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Integrare în meniul contextual</string>
    <string name="the_application_needs_storage_permission">Aplicația are nevoie de permisiune pentru a accesa spațiul de stocare pentru a găsi toate cărțile</string>
    <string name="always_open_in_2_pages_mode">Întotdeauna deschis în modul 2 pagini</string>
-   <string name="character_encoding">Codificarea caracterelor</string>
+   <string name="text_encoding">Codificarea textului</string>
 </resources>

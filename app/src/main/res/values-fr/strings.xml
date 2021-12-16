@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Intégration dans le menu contextuel</string>
    <string name="the_application_needs_storage_permission">L\'application a besoin d\'une autorisation pour accéder au stockage pour trouver tous les livres</string>
    <string name="always_open_in_2_pages_mode">Toujours ouvert en mode 2 pages</string>
-   <string name="character_encoding">Encodage de caractère</string>
+   <string name="text_encoding">Encodage de texte</string>
 </resources>

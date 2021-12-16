@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">集成在上下文菜單中</string>
    <string name="the_application_needs_storage_permission">應用程序需要訪問存儲的權限才能找到所有書籍</string>
    <string name="always_open_in_2_pages_mode">始終以 2 頁模式打開</string>
-   <string name="character_encoding">字符編碼</string>
+   <string name="text_encoding">文字編碼</string>
 </resources>

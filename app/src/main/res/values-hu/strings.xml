@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Integráció a helyi menübe</string>
    <string name="the_application_needs_storage_permission">Az alkalmazásnak engedélyre van szüksége a tároló eléréséhez az összes könyv megkereséséhez</string>
    <string name="always_open_in_2_pages_mode">Mindig 2 oldalas módban nyílik meg</string>
-   <string name="character_encoding">Karakterkódolás</string>
+   <string name="text_encoding">Szöveges kódolás</string>
 </resources>

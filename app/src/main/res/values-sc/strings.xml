@@ -631,5 +631,5 @@
    <string name="integration_in_the_context_menu">Ìntegra in su menù de cuntestu globale</string>
    <string name="the_application_needs_storage_permission">S\'aplicatzione tenet bisòngiu de su petmissu pro atzèdere a sa memòria pro agatare totu sos libros</string>
    <string name="always_open_in_2_pages_mode">Always open in 2 pages mode</string>
-   <string name="character_encoding">Character encoding</string>
+   <string name="text_encoding">Text encoding</string>
 </resources>

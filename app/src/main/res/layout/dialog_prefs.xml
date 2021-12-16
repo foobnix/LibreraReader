@@ -265,7 +265,7 @@
                 android:id="@+id/isCharacterEncoding"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/character_encoding" />
+                android:text="@string/text_encoding" />
 
             <TextView
                 android:id="@+id/characterEncoding"
