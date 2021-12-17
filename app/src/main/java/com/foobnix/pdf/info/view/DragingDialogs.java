@@ -4839,9 +4839,12 @@ public class DragingDialogs {
                     }
                 });
 
-                isPreText.setVisibility(BookType.TXT.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                boolean isTxtOrZip = BookType.TXT.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
+                isPreText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
                 CheckBox isLineBreaksText = (CheckBox) inflate.findViewById(R.id.isLineBreaksText);
+                ((View)isLineBreaksText.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+
                 isLineBreaksText.setChecked(AppState.get().isLineBreaksText);
                 isLineBreaksText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -4858,7 +4861,7 @@ public class DragingDialogs {
                 //charsets
 
                 CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
-                isCharacterEncoding.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                ((View)isCharacterEncoding.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
                 isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
                 isCharacterEncoding.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
