@@ -1,4 +1,4 @@
-* [Über App](/wiki/about/de)
-* [FAQ](/wiki/faq/de)
-* [Was ist neu](/wiki/what-is-new/de)
-* [Herunterladen](/wiki/download/de)
+* [Über App](/de)
+* [FAQ](/faq/de)
+* [Was ist neu](/what-is-new/de)
+* [Herunterladen](/download/de)

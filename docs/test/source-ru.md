@@ -6,7 +6,7 @@ version: 1
 # Librera
 
 > Полное руководство для программы Librera в одном файле.
-  Также читайте [FAQ](/wiki/faq) для большей информации
+  Также читайте [FAQ](/faq) для большей информации
  
 <<Table of content generatnor>>
 
