@@ -30,6 +30,7 @@ public class AppsConfig {
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
     public static final boolean IS_BETA = BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
+    public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
     public static boolean IS_NO_ADS = false;
 
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);

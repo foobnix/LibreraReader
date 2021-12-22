@@ -2,6 +2,9 @@ package org.ebookdroid.core;
 
 import android.text.TextUtils;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
+
 import org.ebookdroid.droids.mupdf.codec.TextWord;
 
 import java.util.LinkedList;
@@ -18,13 +21,17 @@ public class PageSearcher {
     }
 
     public void setTextForSearch(String textForSearch) {
-        this.textForSearch = textForSearch.toLowerCase(Locale.US).replaceAll("\\W", "");
+        this.textForSearch = textForSearch.toLowerCase(Locale.US);//.replaceAll("\\W", " ");
     }
 
     private String getTextRow() {
         StringBuffer stringBuffer = new StringBuffer();
         for (WordData word : words) {
+            if(TxtUtils.isEmpty(word.wordText)){
+                continue;
+            }
             stringBuffer.append(word.wordText);
+            stringBuffer.append(" ");
         }
         return stringBuffer.toString();
     }

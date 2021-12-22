@@ -299,7 +299,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public List<PageLink> getPageLinks() {
-        if (pageNumber == 1) {
+
+
+       if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
             LOG.d("skip links for 1 page");
             return new ArrayList<PageLink>();
         }
@@ -432,7 +434,9 @@ public class MuPdfPage extends AbstractCodecPage {
 
     @Override
     public TextWord[][] getText() {
-        if (pageNumber == 1 && !AppsConfig.IS_FDROID) {
+
+        //SKIP TEM
+        if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
             LOG.d("skip text for 1 page");
             return new TextWord[0][0];
         }
