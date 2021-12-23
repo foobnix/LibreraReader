@@ -1,60 +1,56 @@
 package com.foobnix.android.utils;
 
 import android.graphics.Bitmap;
-import android.view.View;
+import android.graphics.drawable.Drawable;
 
-import com.foobnix.pdf.info.IMG;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+
+import org.ebookdroid.LibreraApp;
 
 import java.util.Random;
 
 public class Safe {
 
     public static final String TXT_SAFE_RUN = "file://SAFE_RUN-";
-
     static Random r = new Random();
-
+    static int counter;
 
     public static void run(final Runnable action) {
-
-        final int taskCount = ImageLoader.getInstance().getTaskCount();
-        if (taskCount == 0) {
-            LOG.d(TXT_SAFE_RUN, "run direct");
-            action.run();
+        if(LibreraApp.context == null ){
             return;
         }
+        LOG.d("Safe-isPaused", Glide.with(LibreraApp.context).isPaused());
+        if (Glide.with(LibreraApp.context).isPaused()) {
+            Glide.with(LibreraApp.context).resumeRequestsRecursive();
+        }
 
-        LOG.d(TXT_SAFE_RUN, "run background : tasks "+taskCount);
+        Glide.with(LibreraApp.context)
+                .asBitmap().load(TXT_SAFE_RUN)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        if (action != null) {
+                            action.run();
+                        }
+                    }
 
-        ImageLoader.getInstance().clearAllTasks();
-        LOG.d(TXT_SAFE_RUN, "clearAllTasks");
-        ImageLoader.getInstance().loadImage(TXT_SAFE_RUN, IMG.noneOptions, new SimpleImageLoadingListener() {
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                LOG.d(TXT_SAFE_RUN, "end", imageUri, "action", action);
-                if (action != null) {
-                    ImageLoader.getInstance().clearAllTasks();
-                    action.run();
-                }
-            }
+                    @Override
+                    public void onLoadCleared(@Nullable  Drawable placeholder) {
 
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-                super.onLoadingCancelled(imageUri, view);
-                LOG.d(TXT_SAFE_RUN, "onLoadingCancelled", imageUri, "action", action);
-                if (action != null) {
-                    action.run();
-                }
-            }
+                    }
 
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                super.onLoadingFailed(imageUri, view, failReason);
-                LOG.d(TXT_SAFE_RUN, "onLoadingFailed", imageUri, "action", action);
-            }
-        });
+                });
+
 
     }
+
+
 }

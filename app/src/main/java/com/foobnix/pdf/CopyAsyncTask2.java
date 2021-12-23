@@ -28,7 +28,7 @@ public abstract class CopyAsyncTask2 {
         this.a = a;
     }
 
-    Thread t = new Thread() {
+    Thread t = new Thread("@T CopyAsyncTask2") {
         @Override
         public void run() {
             a.runOnUiThread(new Runnable() {

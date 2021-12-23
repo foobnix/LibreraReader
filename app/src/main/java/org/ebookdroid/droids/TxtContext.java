@@ -20,7 +20,7 @@ public class TxtContext extends PdfContext {
             FooterNote extract = TxtExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath());
             fileName = extract.path;
             notes = extract.notes;
-            LOG.d("new file name", fileName);
+            LOG.d("new-file name", fileName);
         } catch (Exception e) {
             LOG.e(e);
         }

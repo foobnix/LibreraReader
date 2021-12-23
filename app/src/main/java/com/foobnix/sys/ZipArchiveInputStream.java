@@ -1,16 +1,14 @@
 package com.foobnix.sys;
 
 import com.foobnix.android.utils.LOG;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.mobi.parser.IOUtils;
 
-import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
-import net.lingala.zip4j.io.ZipInputStream;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import net.lingala.zip4j.model.FileHeader;
+import net.lingala.zip4j.model.LocalFileHeader;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -22,19 +20,29 @@ import static com.foobnix.pdf.info.FileMetaComparators.naturalOrderComparator;
 
 public class ZipArchiveInputStream extends InputStream {
 
+    public boolean isValid;
+    // public static final Lock lock = new ReentrantLock();
+    ZipInputStream zis;
     private Iterator<FileHeader> iterator;
     private FileHeader current;
     private ZipFile zp;
     private ZipInputStream inputStream;
     private File tempFile;
 
-    // public static final Lock lock = new ReentrantLock();
-
     public ZipArchiveInputStream(String file) {
         // CacheZipUtils.cacheLock.lock();
         try {
+
+
             zp = new ZipFile(file);
-            final List fileHeaders = zp.getFileHeaders();
+
+//            if (!zp.isValidZipFile()) {
+//                zis = new ZipInputStream(new FileInputStream(file));
+//                return;
+//            }
+
+
+            final List<FileHeader> fileHeaders = zp.getFileHeaders();
 
             Collections.sort(fileHeaders, new Comparator<FileHeader>() {
                 @Override
@@ -51,32 +59,8 @@ public class ZipArchiveInputStream extends InputStream {
             iterator = fileHeaders.iterator();
             LOG.d("ZipArchiveInputStream", file);
 
-        } catch (ZipException e) {
-            LOG.e(e, file);
-        }
-    }
-
-    public ZipArchiveInputStream(InputStream is) {
-        // CacheZipUtils.cacheLock.lock();
-        try {
-            if (tempFile != null) {
-                tempFile.delete();
-            }
-            tempFile = new File(CacheDir.ZipApp.getDir(), "temp.zip");
-
-            LOG.d("zip-tempFile", tempFile.getPath());
-
-            LOG.d("ZipArchiveInputStream", "InputStream", "zip-tempFile", tempFile.getPath());
-
-            IOUtils.copyClose(is, new FileOutputStream(tempFile));
-
-
-            zp = new ZipFile(tempFile);
-            iterator = zp.getFileHeaders().iterator();
-
-
         } catch (Exception e) {
-            LOG.e(e);
+            LOG.e(e, file);
         }
     }
 
@@ -97,9 +81,18 @@ public class ZipArchiveInputStream extends InputStream {
     }
 
     private void closeStream() {
+        if (zis != null) {
+            try {
+                zis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            zis = null;
+
+        }
         if (inputStream != null) {
             try {
-                inputStream.close(true);
+                inputStream.close();
                 inputStream = null;
             } catch (Exception e) {
                 LOG.e(e);
@@ -108,6 +101,16 @@ public class ZipArchiveInputStream extends InputStream {
     }
 
     public ArchiveEntry getNextEntry() {
+        if (zis != null) {
+            try {
+                final LocalFileHeader nextEntry = zis.getNextEntry();
+                return nextEntry != null ? new ArchiveEntry(nextEntry) : null;
+
+            } catch (IOException e) {
+                return null;
+            }
+        }
+
         if (iterator == null || !iterator.hasNext()) {
             return null;
         }
@@ -117,6 +120,9 @@ public class ZipArchiveInputStream extends InputStream {
     }
 
     private void openStream() throws IOException {
+        if (zis != null) {
+            return;
+        }
 
         if (inputStream == null) {
             LOG.d("openStream", zp);
@@ -130,18 +136,27 @@ public class ZipArchiveInputStream extends InputStream {
 
     @Override
     public int read() throws IOException {
+        if (zis != null) {
+            return zis.read();
+        }
         openStream();
         return inputStream.read();
     }
 
     @Override
     public int read(byte[] b) throws IOException {
+        if (zis != null) {
+            return zis.read(b);
+        }
         openStream();
         return inputStream.read(b);
     }
 
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
+        if (zis != null) {
+            return zis.read(b, off, len);
+        }
         openStream();
         return inputStream.read(b, off, len);
     }

@@ -1428,6 +1428,9 @@ public class LinkedJSONObject {
      * @return A string which is the value.
      */
     public String optString(String key) {
+        if(key==null){
+            return "";
+        }
         return this.optString(key, "");
     }
 
@@ -1791,7 +1794,7 @@ public class LinkedJSONObject {
      */
     public LinkedJSONObject put(String key, Object value) throws org.librera.JSONException {
         if (key == null) {
-            throw new NullPointerException("Null key.");
+            return this;
         }
         if (value != null) {
             testValidity(value);

@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.foobnix.android.utils.Apps;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
@@ -21,6 +22,7 @@ import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
+import com.foobnix.model.AppState;
 import com.foobnix.model.SimpleMeta;
 import com.foobnix.model.TagData;
 import com.foobnix.pdf.info.Clouds;
@@ -62,6 +64,7 @@ public class BooksService extends IntentService {
 
         @Override
         public void run() {
+            LOG.d("timer2");
             sendBuildingLibrary();
             handler.postDelayed(timer2, 250);
         }
@@ -72,6 +75,7 @@ public class BooksService extends IntentService {
 
         @Override
         public void run() {
+            LOG.d("timer 2");
             sendProggressMessage();
             handler.postDelayed(timer, 250);
         }
@@ -141,6 +145,8 @@ public class BooksService extends IntentService {
         }
 
         try {
+            sendProggressMessage();
+
             if (isRunning) {
                 LOG.d(TAG, "BooksService", "Is-running");
                 return;
@@ -150,6 +156,7 @@ public class BooksService extends IntentService {
             LOG.d(TAG, "BooksService", "Action", intent.getAction());
 
             //TESET
+
 
 
             if (ACTION_RUN_SYNCRONICATION.equals(intent.getAction())) {
@@ -211,8 +218,12 @@ public class BooksService extends IntentService {
                 }
 
                 List<FileMeta> localMeta = new LinkedList<FileMeta>();
+                if(JsonDB.isEmpty(BookCSS.get().searchPathsJson)){
+                    sendFinishMessage();
+                    return;
+                }
 
-                for (final String path : BookCSS.get().searchPaths.split(",")) {
+                for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
@@ -225,7 +236,7 @@ public class BooksService extends IntentService {
 
                 for (FileMeta meta : localMeta) {
                     if (!all.contains(meta)) {
-                        FileMetaCore.createMetaIfNeed(meta.getPath(), true);
+                        FileMetaCore.createMetaIfNeedSafe(meta.getPath(), true);
                         LOG.d("BooksService add book", meta.getPath());
                     }
                 }
@@ -233,21 +244,30 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
-                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
-                sendFinishMessage();
                 Clouds.get().syncronizeGet();
 
             } else if (ACTION_SEARCH_ALL.equals(intent.getAction())) {
                 LOG.d(ACTION_SEARCH_ALL);
+                //TempHolder.listHash++;
+                //AppDB.get().getDao().detachAll();
 
                 AppProfile.init(this);
 
-                IMG.clearDiscCache();
-                IMG.clearMemoryCache();
                 ImageExtractor.clearErrors();
+                IMG.clearDiscCache();
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        IMG.clearMemoryCache();
+                    }
+                });
+
+
 
 
                 AppDB.get().deleteAllData();
@@ -256,11 +276,11 @@ public class BooksService extends IntentService {
                 handler.post(timer);
 
 
-                for (final String path : BookCSS.get().searchPaths.split(",")) {
+                for (final String path : JsonDB.get(BookCSS.get().searchPathsJson)) {
                     if (path != null && path.trim().length() > 0) {
                         final File root = new File(path);
                         if (root.isDirectory()) {
-                            LOG.d("Searcin in " + root.getPath());
+                            LOG.d("Search in: " + root.getPath());
                             SearchCore.search(itemsMeta, root, ExtUtils.seachExts);
                         }
                     }
@@ -295,7 +315,7 @@ public class BooksService extends IntentService {
                 }
 
 
-                itemsMeta.addAll(AppData.get().getAllFavoriteFiles());
+                itemsMeta.addAll(AppData.get().getAllFavoriteFiles(false));
                 itemsMeta.addAll(AppData.get().getAllFavoriteFolders());
 
 
@@ -315,12 +335,15 @@ public class BooksService extends IntentService {
                 AppDB.get().updateAll(itemsMeta);
                 sendFinishMessage();
 
+
                 for (FileMeta meta : itemsMeta) {
-                    EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
-                    FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    if(FileMetaCore.isSafeToExtactBook(meta.getPath())) {
+                        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(meta.getPath(), CacheDir.ZipService, true);
+                        FileMetaCore.get().udpateFullMeta(meta, ebookMeta);
+                    }
                 }
 
-                SharedBooks.updateProgress(itemsMeta, true);
+                SharedBooks.updateProgress(itemsMeta, true,-1);
                 AppDB.get().updateAll(itemsMeta);
 
 
@@ -337,22 +360,44 @@ public class BooksService extends IntentService {
 
                 List<FileMeta> allNone = AppDB.get().getAllByState(FileMetaCore.STATE_NONE);
                 for (FileMeta m : allNone) {
-                    LOG.d("BooksService-createMetaIfNeed-service", m.getTitle(),m.getPath(), m.getTitle());
-                    FileMetaCore.createMetaIfNeed(m.getPath(), false);
+                    LOG.d("BooksService-createMetaIfNeedSafe-service", m.getTitle(),m.getPath(), m.getTitle());
+                    FileMetaCore.createMetaIfNeedSafe(m.getPath(), false);
                 }
 
-                sendFinishMessage();
+                updateBookAnnotations();
+
 
             } else if (ACTION_SYNC_DROPBOX.equals(intent.getAction())) {
                 Clouds.get().syncronizeGet();
-                sendFinishMessage();
+
             }
 
 
         } finally {
+            sendFinishMessage();
             isRunning = false;
+
         }
         //stopSelf();
+    }
+
+    public void updateBookAnnotations() {
+
+        if (AppState.get().isDisplayAnnotation) {
+            sendBuildingLibrary();
+            LOG.d("updateBookAnnotations begin");
+            List<FileMeta> itemsMeta = AppDB.get().getAll();
+            for (FileMeta meta : itemsMeta) {
+                if (TxtUtils.isEmpty(meta.getAnnotation())) {
+                    String bookOverview = FileMetaCore.getBookOverview(meta.getPath());
+                    meta.setAnnotation(bookOverview);
+                }
+            }
+            AppDB.get().updateAll(itemsMeta);
+            sendFinishMessage();
+            LOG.d("updateBookAnnotations end");
+        }
+
     }
 
     private void sendFinishMessage() {
@@ -367,7 +412,7 @@ public class BooksService extends IntentService {
     }
 
     private void sendProggressMessage() {
-        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra(Intent.EXTRA_INDEX, itemsMeta.size());
+        Intent itent = new Intent(INTENT_NAME).putExtra(Intent.EXTRA_TEXT, RESULT_SEARCH_COUNT).putExtra("android.intent.extra.INDEX", itemsMeta.size());
         LocalBroadcastManager.getInstance(this).sendBroadcast(itent);
     }
 

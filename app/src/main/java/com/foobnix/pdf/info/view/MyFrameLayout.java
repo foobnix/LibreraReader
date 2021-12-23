@@ -13,10 +13,14 @@ public class MyFrameLayout extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (onEventDetected != null) {
-            onEventDetected.run();
+        try {
+            if (onEventDetected != null) {
+                onEventDetected.run();
+            }
+            return super.dispatchTouchEvent(ev);
+        } catch (Exception e) {
+            return false;
         }
-        return super.dispatchTouchEvent(ev);
     }
 
     public void setOnEventDetected(Runnable onEventDetected) {

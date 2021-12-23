@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager.LayoutParams;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -28,7 +29,6 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.opds.Entry;
 import com.foobnix.opds.Link;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -36,7 +36,6 @@ import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.ScaledImageView;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
 import com.foobnix.ui2.AppRecycleAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHolder> {
 
@@ -154,9 +153,11 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
 
         String imgLink = "";
         for (final Link link : entry.links) {
+            link.author = entry.author;
             if (link.TYPE_LOGO.equals(link.type) || link.isThumbnail()) {
                 holder.image.setVisibility(View.VISIBLE);
-                ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
+                //ImageLoader.getInstance().displayImage(link.href, holder.image, IMG.displayOPDSOptions);
+                Glide.with(context).load(link.href).into(holder.image);
 
             } else if (link.isSearchLink()) {
                 LinearLayout l = new LinearLayout(context);
@@ -183,6 +184,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                     public void onClick(View v) {
                         if (TxtUtils.isNotEmpty(search.toString())) {
                             String encode = Urls.encode(search.getText().toString());
+                            encode = encode.replace(" ","+");
+
                             String replace = link.href.replace("{searchterms}", encode).replace("{searchTerms}", encode);
                             Link l = new Link(replace);
                             onLinkClickListener.onResultRecive(l);
@@ -213,7 +216,8 @@ public class EntryAdapter extends AppRecycleAdapter<Entry, RecyclerView.ViewHold
                 if (!link.href.equals(imgLink) && AppState.get().opdsLargeCovers) {
                     ScaledImageView img = new ScaledImageView(holder.parent.getContext());
                     img.setPadding(PD, PD, PD, PD);
-                    ImageLoader.getInstance().displayImage(link.href, img, IMG.displayCacheMemoryDisc);
+                    //ImageLoader.getInstance().displayImage(link.href, img, IMG.displayCacheMemoryDisc);
+                    Glide.with(context).load(link.href).into(img);
 
                     holder.links.addView(img, new LinearLayout.LayoutParams(Dips.screenWidth() / 2, LayoutParams.WRAP_CONTENT));
                     imgLink = link.href;

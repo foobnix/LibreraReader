@@ -67,6 +67,20 @@
             android:textSize="14sp"
             android:visibility="gone" />
 
+
+        <TextView
+            android:id="@+id/favoritesName"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wh_button"
+            android:layout_marginLeft="4dip"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:text="@string/bookmarks"
+            android:textColor="@color/white"
+            android:textStyle="normal" />
+
         <TextView
             android:id="@+id/importBookmarks"
             style="@style/textLinkWhite"
@@ -82,7 +96,7 @@
             android:singleLine="true"
             android:text="@string/import_bookmarks"
             android:textSize="14sp"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
 
         <View
@@ -96,7 +110,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:contentDescription="@string/cd_back_to_all_catalogs"
+            android:contentDescription="@string/settings"
             android:src="@drawable/glyphicons_137_cogwheel" />
 
         <View
@@ -109,7 +123,7 @@
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
-            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:contentDescription="@string/search"
             android:src="@drawable/glyphicons_28_search" />
 
 
@@ -123,7 +137,7 @@
             style="@style/buttonWhite"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
-            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:contentDescription="@string/menu"
             android:src="@drawable/glyphicons_114_justify" />
     </LinearLayout>
 

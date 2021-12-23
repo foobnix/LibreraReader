@@ -29,7 +29,7 @@ public class TTSTracks {
 
         for (int i = 0; i < listFiles.size(); i++) {
             File file = listFiles.get(i);
-            if (file.getPath().equals(BookCSS.get().mp3BookPath)) {
+            if (file.getPath().equals(BookCSS.get().mp3BookPathGet())) {
                 return listFiles.size() > i + 1 ? listFiles.get(i + 1).getPath() : null;
             }
         }
@@ -45,7 +45,7 @@ public class TTSTracks {
 
         for (int i = 0; i < listFiles.size(); i++) {
             File file = listFiles.get(i);
-            if (file.getPath().equals(BookCSS.get().mp3BookPath)) {
+            if (file.getPath().equals(BookCSS.get().mp3BookPathGet())) {
                 return i > 0 ? listFiles.get(i - 1).getPath() : null;
             }
         }
@@ -54,15 +54,15 @@ public class TTSTracks {
     }
 
     public static String getCurrentTrackName() {
-        return ExtUtils.getFileName(BookCSS.get().mp3BookPath);
+        return ExtUtils.getFileName(BookCSS.get().mp3BookPathGet());
     }
 
     public static List<File> getAllMp3InFolder() {
-        if (TxtUtils.isEmpty(BookCSS.get().mp3BookPath)) {
+        if (TxtUtils.isEmpty(BookCSS.get().mp3BookPathGet())) {
             return Collections.emptyList();
 
         }
-        File file = new File(BookCSS.get().mp3BookPath);
+        File file = new File(BookCSS.get().mp3BookPathGet());
         File root = file.getParentFile();
         if (!file.isFile() || !root.isDirectory()) {
             return Collections.emptyList();

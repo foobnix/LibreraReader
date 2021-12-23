@@ -53,7 +53,7 @@ public class EpubContext extends PdfContext {
             muPdfDocument.setFootNotes(notes);
         }
 
-        new Thread() {
+        new Thread("@T openDocument") {
             @Override
             public void run() {
                 try {

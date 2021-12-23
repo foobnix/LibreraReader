@@ -78,6 +78,7 @@
             <ImageView
                 android:id="@+id/closePopup"
                 style="@style/buttonWhiteClose"
+                android:contentDescription="@string/close_dialog_and_apply_changes"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"

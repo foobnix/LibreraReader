@@ -59,24 +59,24 @@ public class AppBook implements CurrentPageListener {
     public void setLock(Boolean lock) {
         if (lock == null) {
             this.lk = LOCK_NONE;
+        } else {
+            this.lk = lock ? LOCK_YES : LOCK_NOT;
         }
-        this.lk = lock ? LOCK_YES : LOCK_NOT;
-
     }
 
     public boolean getLock(boolean isTextFormat) {
         if (lk == LOCK_NONE) {
-            return isTextFormat ? true : false;
+            return isTextFormat;
         }
-        return lk == LOCK_YES ? true : false;
+        return lk == LOCK_YES;
     }
 
 
     public void currentPageChanged(int page, int pages) {
-        if (pages <= 0 || pages <= 0) {
-            if (LOG.isEnable) {
-                //throw new RuntimeException("Error!!! " + page + " : " + pages);
-            }
+        if (page <= 0 || pages <= 0) {
+            //if (LOG.isEnable) {
+            //    throw new RuntimeException("Error!!! " + page + " : " + pages);
+            //}
             LOG.d("currentPageChanged ERROR!!!", page + " : " + pages);
             return;
         }

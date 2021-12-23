@@ -2,9 +2,10 @@ package com.foobnix.pdf.info.wrapper;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
+import android.content.pm.PackageManager;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Build;
@@ -25,7 +26,6 @@ import com.foobnix.android.utils.MyMath;
 import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.android.utils.TxtUtils;
-import com.foobnix.android.utils.Vibro;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
 import com.foobnix.model.AppBookmark;
@@ -47,7 +47,6 @@ import com.foobnix.sys.ImageExtractor;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.tts.TTSEngine;
 import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -86,29 +85,239 @@ public abstract class DocumentController {
             R.string.landscape_180, //
             R.string.portrait_180////
     );
+    protected final Activity activity;
+    private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
+    public Handler handler = new Handler(Looper.getMainLooper());
+    public Handler handler2 = new Handler(Looper.getMainLooper());
+    public long readTimeStart;
+    public volatile AppBookmark floatingBookmark;
+    protected volatile List<OutlineLinkWrapper> outline;
+    Runnable saveCurrentPageRunnable = new Runnable() {
+        @Override
+        public void run() {
+            saveCurrentPageAsync();
+        }
+    };
+    private DocumentWrapperUI ui;
+    private File currentBook;
+    private String title;
+    private int timeout;
+    private Runnable timerTask;
+    Runnable timer = new Runnable() {
+
+        @Override
+        public void run() {
+            try {
+                if (activity == null || activity.isDestroyed()) {
+                    LOG.d("Timer-Task Destroyed");
+                    return;
+                }
+                timerTask.run();
+                handler.postDelayed(timer, timeout);
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+    };
+    private FrameLayout anchor;
+
+    public DocumentController(final Activity activity) {
+        this.activity = activity;
+        readTimeStart = System.currentTimeMillis();
+        TTSEngine.get().mp3Destroy();
+    }
 
     public static int getRotationText() {
         return orientationTexts.get(orientationIds.indexOf(AppState.get().orientation));
     }
 
-    protected final Activity activity;
-    private DocumentWrapperUI ui;
+    public static boolean isEinkOrMode(Context c) {
+        return Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK;
 
-    public Handler handler = new Handler(Looper.getMainLooper());
-    public Handler handler2 = new Handler(Looper.getMainLooper());
-
-    public long readTimeStart;
-
-    public volatile AppBookmark floatingBookmark;
-
-    public DocumentController(final Activity activity) {
-        this.activity = activity;
-        readTimeStart = System.currentTimeMillis();
     }
 
+    public static void turnOffButtons(final Activity a) {
+        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
+    }
 
-    private File currentBook;
-    private String title;
+    public static void turnOnButtons(final Activity a) {
+        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
+    }
+
+    public static void runFullScreen(final Activity a) {
+        try {
+            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+            }
+
+            Keyboards.hideNavigation(a);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void runFullScreenCutOut(final Activity a) {
+        try {
+
+            setNavBarTintColor(a);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+
+
+            }
+
+
+            Keyboards.hideNavigation(a);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void setNavBarTintColor(Activity a) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            a.getWindow().setNavigationBarColor(TintUtil.color);
+        }
+    }
+
+    public static void runNormalScreen(final Activity a) {
+        try {
+            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            final View decorView = a.getWindow().getDecorView();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
+
+            setNavBarTintColor(a);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
+                a.getWindow().setAttributes(a.getWindow().getAttributes());
+            }
+
+
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void chooseFullScreen(final Activity a, final int mode) {
+        if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
+            runFullScreen(a);
+        } else if (mode == AppState.FULL_SCREEN_NORMAL) {
+            runNormalScreen(a);
+        } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
+            runFullScreenCutOut(a);
+        }
+
+    }
+
+    public static String getFullScreenName(final Activity a, final int mode) {
+        switch (mode) {
+            case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
+                return a.getString(R.string.with_cutout);
+            case AppState.FULL_SCREEN_NORMAL:
+                return a.getString(R.string.normal_screen);
+            case AppState.FULL_SCREEN_FULLSCREEN:
+                return a.getString(R.string.full_screen);
+        }
+        return "-";
+    }
+
+    public static int getFullScreenIcon(final Activity a, final int mode) {
+        switch (mode) {
+            case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
+                return R.drawable.glyphicons_487_fit_frame_to_image;
+            case AppState.FULL_SCREEN_NORMAL:
+                return R.drawable.glyphicons_488_fit_image_to_frame;
+            case AppState.FULL_SCREEN_FULLSCREEN:
+                return R.drawable.glyphicons_487_fit_frame_to_image;
+        }
+        return R.drawable.glyphicons_488_fit_image_to_frame;
+    }
+
+    public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
+            List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
+
+            MyPopupMenu popup = new MyPopupMenu(a, v);
+            for (int id : ids)
+
+                if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
+                    // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
+                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
+                        response.onResultRecive(id);
+                        return false;
+                    });
+                    //}
+                } else {
+                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
+                        response.onResultRecive(id);
+                        return false;
+                    });
+
+                }
+            popup.show();
+        } else {
+            if (currentMode == AppState.FULL_SCREEN_NORMAL) {
+                response.onResultRecive(AppState.FULL_SCREEN_FULLSCREEN);
+            } else {
+                response.onResultRecive(AppState.FULL_SCREEN_NORMAL);
+            }
+        }
+    }
+
+    private static void applyTheme(final Activity a) {
+        if (AppState.get().appTheme == AppState.THEME_LIGHT) {
+            a.setTheme(R.style.StyledIndicatorsWhite);
+        } else {
+            a.setTheme(R.style.StyledIndicatorsBlack);
+        }
+    }
+
+    public static void doRotation(final Activity a) {
+        try {
+            // LOG.d("isSystemAutoRotation isSystemAutoRotation",
+            // Dips.isSystemAutoRotation(a));
+            // LOG.d("isSystemAutoRotation geUserRotation", Dips.geUserRotation(a));
+            a.setRequestedOrientation(AppState.get().orientation);
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
+
+    public static void doContextMenu(Activity a) {
+        PackageManager pm = a.getApplicationContext().getPackageManager();
+        ComponentName compName = new ComponentName(a.getPackageName(), "com.foobnix.zipmanager.SendReceiveActivityAlias");
+        if (AppState.get().isMenuIntegration) {
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+            LOG.d("COMPONENT_ENABLED_STATE_ENABLED");
+        } else {
+            pm.setComponentEnabledSetting(compName, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+            LOG.d("COMPONENT_ENABLED_STATE_DISABLED");
+        }
+
+    }
 
     public boolean isPasswordProtected() {
         try {
@@ -117,23 +326,6 @@ public abstract class DocumentController {
             return false;
         }
     }
-
-    Runnable timer = new Runnable() {
-
-        @Override
-        public void run() {
-            try {
-                timerTask.run();
-                handler.postDelayed(timer, timeout);
-                LOG.d("Timer-Task Run");
-            } catch (Exception e) {
-                LOG.e(e);
-            }
-        }
-    };
-
-    private int timeout;
-    private Runnable timerTask;
 
     public synchronized void runTimer(int timeout, Runnable run) {
         this.timeout = timeout;
@@ -149,8 +341,6 @@ public abstract class DocumentController {
             handler.removeCallbacks(timer);
         }
     }
-
-    private final LinkedList<Integer> linkHistory = new LinkedList<Integer>();
 
     public abstract void onGoToPage(int page);
 
@@ -179,7 +369,6 @@ public abstract class DocumentController {
     public abstract void onCloseActivityAdnShowInterstial();
 
     public abstract void onCloseActivityFinal(Runnable run);
-
 
     public abstract void onNightMode();
 
@@ -228,7 +417,6 @@ public abstract class DocumentController {
     public float getPercentage() {
         return MyMath.percent(getCurentPageFirst1(), getPageCount());
     }
-
 
     public MyADSProvider getAdsProvider() {
         return null;
@@ -288,14 +476,6 @@ public abstract class DocumentController {
         }
     }
 
-
-    Runnable saveCurrentPageRunnable = new Runnable() {
-        @Override
-        public void run() {
-            saveCurrentPageAsync();
-        }
-    };
-
     public void saveCurrentPageAsync() {
         if (TempHolder.get().loadingCancelled) {
             LOG.d("Loading cancelled");
@@ -322,12 +502,6 @@ public abstract class DocumentController {
 
     }
 
-    public void onChangeTextSelection() {
-        Vibro.vibrate();
-        AppState.get().isAllowTextSelection = !AppState.get().isAllowTextSelection;
-        String txt = AppState.get().isAllowTextSelection ? getString(R.string.text_highlight_mode_is_enable) : getString(R.string.text_highlight_mode_is_disable);
-        Toast.makeText(getActivity(), txt, Toast.LENGTH_LONG).show();
-    }
 
     public boolean isBookMode() {
         return AppSP.get().readingMode == AppState.READING_MODE_BOOK;
@@ -355,11 +529,6 @@ public abstract class DocumentController {
         }
     }
 
-    public Bitmap getBookImage() {
-        String url = IMG.toUrl(getCurrentBook().getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        return ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-    }
-
     public FileMeta getBookFileMeta() {
         return AppDB.get().getOrCreate(getCurrentBook().getPath());
     }
@@ -382,9 +551,6 @@ public abstract class DocumentController {
         }, false);
     }
 
-    protected volatile List<OutlineLinkWrapper> outline;
-    private FrameLayout anchor;
-
     public void initAnchor(FrameLayout anchor) {
         this.anchor = anchor;
     }
@@ -395,11 +561,6 @@ public abstract class DocumentController {
 
     public String getCurrentChapter() {
         return OutlineHelper.getCurrentChapterAsString(this);
-    }
-
-    public static boolean isEinkOrMode(Context c) {
-        return Dips.isEInk() || AppState.get().appTheme == AppState.THEME_INK;
-
     }
 
     public boolean isTextFormat() {
@@ -413,22 +574,24 @@ public abstract class DocumentController {
         }
     }
 
-
     public boolean isVisibleDialog() {
         return anchor != null && anchor.getVisibility() == View.VISIBLE;
     }
 
     public boolean closeDialogs() {
+
         if (anchor == null) {
-            LOG.d("closeDialogs","anchor false");
+            LOG.d("closeDialogs", "anchor false");
             return false;
         }
+
+
         boolean isVisible = anchor.getVisibility() == View.VISIBLE;
-        LOG.d("closeDialogs","isVisible",isVisible);
+        LOG.d("closeDialogs", "isVisible", isVisible);
         if (isVisible) {
             try {
                 activity.findViewById(R.id.closePopup).performClick();
-                LOG.d("closeDialogs","performClick");
+                LOG.d("closeDialogs", "performClick");
             } catch (Exception e) {
                 LOG.e(e);
             }
@@ -473,168 +636,6 @@ public abstract class DocumentController {
         }
     }
 
-    public static void turnOffButtons(final Activity a) {
-        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_OFF;
-    }
-
-    public static void turnOnButtons(final Activity a) {
-        a.getWindow().getAttributes().buttonBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
-    }
-
-    public static void runFullScreen(final Activity a) {
-        try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-            }
-
-            Keyboards.hideNavigation(a);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static void runFullScreenCutOut(final Activity a) {
-        try {
-
-            setNavBarTintColor(a);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-
-
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-
-
-            }
-
-
-
-            Keyboards.hideNavigation(a);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static void setNavBarTintColor(Activity a) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            a.getWindow().setNavigationBarColor(TintUtil.color);
-        }
-    }
-
-    public static void runNormalScreen(final Activity a) {
-        try {
-            a.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-            a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-            final View decorView = a.getWindow().getDecorView();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            }
-
-            setNavBarTintColor(a);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                a.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                a.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT;
-                a.getWindow().setAttributes(a.getWindow().getAttributes());
-            }
-
-
-
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-    }
-
-    public static void chooseFullScreen(final Activity a, final int mode) {
-        if (mode == AppState.FULL_SCREEN_FULLSCREEN) {
-            runFullScreen(a);
-        } else if (mode == AppState.FULL_SCREEN_NORMAL) {
-            runNormalScreen(a);
-        } else if (mode == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT) {
-            runFullScreenCutOut(a);
-        }
-
-    }
-
-    public static String getFullScreenName(final Activity a, final int mode) {
-        switch (mode) {
-            case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
-                return a.getString(R.string.with_cutout);
-            case AppState.FULL_SCREEN_NORMAL:
-                return a.getString(R.string.normal);
-            case AppState.FULL_SCREEN_FULLSCREEN:
-                return a.getString(R.string.full_screen);
-        }
-        return "-";
-    }
-
-    public static int getFullScreenIcon(final Activity a, final int mode) {
-        switch (mode) {
-            case AppState.FULL_SCREEN_FULLSCREEN_CUTOUT:
-                return R.drawable.glyphicons_487_fit_frame_to_image;
-            case AppState.FULL_SCREEN_NORMAL:
-                return R.drawable.glyphicons_488_fit_image_to_frame;
-            case AppState.FULL_SCREEN_FULLSCREEN:
-                return R.drawable.glyphicons_487_fit_frame_to_image;
-        }
-        return R.drawable.glyphicons_488_fit_image_to_frame;
-    }
-
-    public static void showFullScreenPopup(Activity a, View v, IntegerResponse response, int currentMode) {
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-            List<Integer> ids = Arrays.asList(AppState.FULL_SCREEN_FULLSCREEN_CUTOUT, AppState.FULL_SCREEN_FULLSCREEN, AppState.FULL_SCREEN_NORMAL);
-
-            MyPopupMenu popup = new MyPopupMenu(a, v);
-            for (int id : ids)
-
-                if (id == AppState.FULL_SCREEN_FULLSCREEN_CUTOUT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    LOG.d("getDisplayCutout", a.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout());
-                    // if (getActivity().getWindow().getDecorView().getRootWindowInsets().getDisplayCutout() != null) {
-                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
-                        response.onResultRecive(id);
-                        return false;
-                    });
-                    //}
-                } else {
-                    popup.getMenu().add(DocumentController.getFullScreenName(a, id)).setOnMenuItemClickListener(item -> {
-                        response.onResultRecive(id);
-                        return false;
-                    });
-
-                }
-            popup.show();
-        } else {
-            if (currentMode == AppState.FULL_SCREEN_NORMAL) {
-                response.onResultRecive(AppState.FULL_SCREEN_FULLSCREEN);
-            } else {
-                response.onResultRecive(AppState.FULL_SCREEN_NORMAL);
-            }
-        }
-    }
-
-
-    private static void applyTheme(final Activity a) {
-        if (AppState.get().appTheme == AppState.THEME_LIGHT) {
-            a.setTheme(R.style.StyledIndicatorsWhite);
-        } else {
-            a.setTheme(R.style.StyledIndicatorsBlack);
-        }
-    }
-
     public void restartActivity() {
         IMG.clearMemoryCache();
         saveAppState();
@@ -653,17 +654,6 @@ public abstract class DocumentController {
 
     public void saveAppState() {
         AppProfile.save(activity);
-    }
-
-    public static void doRotation(final Activity a) {
-        try {
-            // LOG.d("isSystemAutoRotation isSystemAutoRotation",
-            // Dips.isSystemAutoRotation(a));
-            // LOG.d("isSystemAutoRotation geUserRotation", Dips.geUserRotation(a));
-            a.setRequestedOrientation(AppState.get().orientation);
-        } catch (Exception e) {
-            LOG.e(e);
-        }
     }
 
     public void onLeftPress() {

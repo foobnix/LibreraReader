@@ -27,6 +27,7 @@ public class Link {
     public String title;
     public String parentTitle;
     public String filePath;
+    public String author;
 
     {
         map.put("text/html", "web");
@@ -46,6 +47,9 @@ public class Link {
         map.put("application/fb-ebook+zip", "fb2.zip");
         map.put("application/x-sony-bbeb", "lrf");
         map.put("application/x-mobipocket-ebook", "mobi");
+        map.put("application/x-mobi8-ebook", "azw3");
+        map.put("application/vnd.amazon.mobi8-ebook", "azw3");
+        map.put("text/x-markdown", "md");
     }
 
     public Link(String href) {

@@ -1,6 +1,5 @@
 package com.foobnix.ui2.adapter;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,29 +25,13 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.adapter.BookmarksAdapter2.BookmarksViewHolder;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksViewHolder> {
 
 
-    public class BookmarksViewHolder extends RecyclerView.ViewHolder {
-        public TextView page, text, title;
-        public ImageView remove;
-        public CardView parent;
-        public ImageView image, cloudImage;
-
-        public BookmarksViewHolder(View view) {
-            super(view);
-            page = (TextView) view.findViewById(R.id.page);
-            title = (TextView) view.findViewById(R.id.title);
-            text = (TextView) view.findViewById(R.id.text);
-            image = (ImageView) view.findViewById(R.id.image);
-            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
-            remove = view.findViewById(R.id.remove);
-            parent = (CardView) view;
-        }
-    }
-
+    public boolean withTitle = true;
+    public boolean withPageNumber = true;
+    private ResultResponse<AppBookmark> onDeleteClickListener;
 
     @Override
     public BookmarksViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -64,7 +47,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         FileMeta m = AppDB.get().load(MyPath.toAbsolute(item.path));
 
         if (m != null && m.getPages() != null && m.getPages() > 0) {
-            holder.page.setText(""+Math.round(item.getPercent() * m.getPages()));
+            holder.page.setText("" + Math.round(item.getPercent() * m.getPages()));
         }
 
 
@@ -99,13 +82,7 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
             //holder.remove.setVisibility(View.GONE);
         }
 
-        IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position, new SimpleImageLoadingListener() {
-
-            @Override
-            public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
-
-            }
-        });
+        IMG.getCoverPageWithEffectPos(holder.image, item.getPath(), IMG.getImageSize(), position);
 
         Clouds.showHideCloudImage(holder.cloudImage, item.getPath());
 
@@ -125,11 +102,22 @@ public class BookmarksAdapter2 extends AppRecycleAdapter<AppBookmark, BookmarksV
         this.onDeleteClickListener = onDeleteClickListener;
     }
 
+    public class BookmarksViewHolder extends RecyclerView.ViewHolder {
+        public TextView page, text, title;
+        public ImageView remove;
+        public CardView parent;
+        public ImageView image, cloudImage;
 
-    private ResultResponse<AppBookmark> onDeleteClickListener;
-
-
-    public boolean withTitle = true;
-    public boolean withPageNumber = true;
+        public BookmarksViewHolder(View view) {
+            super(view);
+            page = (TextView) view.findViewById(R.id.page);
+            title = (TextView) view.findViewById(R.id.title);
+            text = (TextView) view.findViewById(R.id.text);
+            image = (ImageView) view.findViewById(R.id.image);
+            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
+            remove = view.findViewById(R.id.remove);
+            parent = (CardView) view;
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.foobnix.pdf.info;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
 import com.foobnix.model.SimpleMeta;
@@ -134,8 +135,22 @@ public class FileMetaComparators {
         @Override
         public int compare(FileMeta o1, FileMeta o2) {
             try {
-                String t2 = o1.getTitle() == null ? "" : o1.getTitle();
-                String t3 = o2.getTitle() == null ? "" : o2.getTitle();
+                String t2 = TxtUtils.nullToEmpty(o1.getTitle());
+                String t3 = TxtUtils.nullToEmpty(o2.getTitle());
+                return String.CASE_INSENSITIVE_ORDER.compare(t2, t3);
+            } catch (Exception e) {
+                LOG.e(e);
+                return 0;
+            }
+        }
+    };
+    public static Comparator<FileMeta> BR_BY_AUTHOR = new Comparator<FileMeta>() {
+
+        @Override
+        public int compare(FileMeta o1, FileMeta o2) {
+            try {
+                String t2 = TxtUtils.nullToEmpty(o1.getAuthor());
+                String t3 = TxtUtils.nullToEmpty(o2.getAuthor());
                 return String.CASE_INSENSITIVE_ORDER.compare(t2, t3);
             } catch (Exception e) {
                 LOG.e(e);

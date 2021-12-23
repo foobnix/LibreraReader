@@ -95,13 +95,14 @@ public class BookmarksData {
     }
 
 
-    private List<AppBookmark> getAll() {
+    public List<AppBookmark> getAll() {
 
         List<AppBookmark> all = new ArrayList<>();
 
         try {
 
-            for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
+            List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
+            for (File file : allFiles) {
                 LinkedJSONObject obj = IO.readJsonObject(file);
 
 
@@ -140,7 +141,8 @@ public class BookmarksData {
         List<AppBookmark> all = new ArrayList<>();
 
 
-        for (File file : AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON)) {
+        List<File> allFiles = AppProfile.getAllFiles(AppProfile.APP_BOOKMARKS_JSON);
+        for (File file : allFiles) {
             LinkedJSONObject obj = IO.readJsonObject(file);
             try {
                 final Iterator<String> keys = obj.keys();

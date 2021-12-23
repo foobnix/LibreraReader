@@ -19,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
@@ -37,28 +38,43 @@ import java.io.File;
 
 public class TTSControlsView extends FrameLayout {
 
+    Handler handler;
     private ImageView ttsPlayPause;
     private DocumentController controller;
-
-    public void setDC(DocumentController dc) {
-        controller = dc;
-    }
-
     private ImageView ttsDialog;
+    private View layoutMp3;
+    private SeekBar seekMp3;
+    private TextView seekCurrent;
+    private TextView seekMax;
+    private TextView trackName;
+    private ImageView ttsPrevTrack;
+    private ImageView ttsNextTrack;
+    private int colorTint;
+    Runnable update = new Runnable() {
 
-    Handler handler;
+        @Override
+        public void run() {
+            if (TTSEngine.get().isMp3()) {
+                initMp3();
+                if (TTSEngine.get().mp != null) {
+                    seekCurrent.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getCurrentPosition()));
+                    seekMax.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getDuration()));
 
-    public void addOnDialogRunnable(final Runnable run) {
-        ttsDialog.setVisibility(View.VISIBLE);
-        ttsDialog.setOnClickListener(new OnClickListener() {
+                    seekMp3.setMax(TTSEngine.get().mp.getDuration());
+                    seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
 
-            @Override
-            public void onClick(View v) {
-                run.run();
+                    udateButtons();
+                }
+
+            } else {
+                layoutMp3.setVisibility(View.GONE);
+                trackName.setVisibility(View.GONE);
             }
-        });
-    }
 
+            LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
+            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_175_pause : R.drawable.glyphicons_174_play);
+        }
+    };
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public TTSControlsView(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -68,6 +84,7 @@ public class TTSControlsView extends FrameLayout {
 
         final ImageView ttsStop = (ImageView) view.findViewById(R.id.ttsStop);
         ttsPlayPause = (ImageView) view.findViewById(R.id.ttsPlay);
+
 
         final ImageView ttsNext = (ImageView) view.findViewById(R.id.ttsNext);
         final ImageView ttsPrev = (ImageView) view.findViewById(R.id.ttsPrev);
@@ -95,7 +112,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_NEXT, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
@@ -108,7 +125,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PREV, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
@@ -122,7 +139,7 @@ public class TTSControlsView extends FrameLayout {
 
             @Override
             public void onClick(View v) {
-                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
                 try {
                     next.send();
                 } catch (CanceledException e) {
@@ -142,6 +159,7 @@ public class TTSControlsView extends FrameLayout {
                 }
             }
         });
+
         ttsPlayPause.setOnLongClickListener(new OnLongClickListener() {
 
             @Override
@@ -176,7 +194,7 @@ public class TTSControlsView extends FrameLayout {
             public void onClick(View v) {
                 String track = TTSTracks.getPrevTrack();
                 if (track != null) {
-                    BookCSS.get().mp3BookPath = track;
+                    BookCSS.get().mp3BookPath(track);
                     TTSEngine.get().loadMP3(track, true);
                     udateButtons();
                 }
@@ -189,7 +207,7 @@ public class TTSControlsView extends FrameLayout {
             public void onClick(View v) {
                 String track = TTSTracks.getNextTrack();
                 if (track != null) {
-                    BookCSS.get().mp3BookPath = track;
+                    BookCSS.get().mp3BookPath(track);
                     TTSEngine.get().loadMP3(track, true);
                     udateButtons();
                 }
@@ -215,7 +233,7 @@ public class TTSControlsView extends FrameLayout {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             TTSEngine.get().stop();
-                            BookCSS.get().mp3BookPath = file.getPath();
+                            BookCSS.get().mp3BookPath(file.getPath());
                             TTSEngine.get().loadMP3(file.getPath(), true);
                             udateButtons();
                             return false;
@@ -228,7 +246,29 @@ public class TTSControlsView extends FrameLayout {
 
             }
         });
+        Apps.accessibilityButtonSize(ttsPlayPause);
+        Apps.accessibilityButtonSize(ttsNext);
+        Apps.accessibilityButtonSize(ttsPrev);
+        Apps.accessibilityButtonSize(ttsNextTrack);
+        Apps.accessibilityButtonSize(ttsPrevTrack);
+        Apps.accessibilityButtonSize(ttsDialog);
+        Apps.accessibilityButtonSize(ttsStop);
 
+    }
+
+    public void setDC(DocumentController dc) {
+        controller = dc;
+    }
+
+    public void addOnDialogRunnable(final Runnable run) {
+        ttsDialog.setVisibility(View.VISIBLE);
+        ttsDialog.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                run.run();
+            }
+        });
     }
 
     public void initMp3() {
@@ -290,44 +330,14 @@ public class TTSControlsView extends FrameLayout {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onTTSStatus(TtsStatus status) {
         if (ttsPlayPause != null) {
-            update.run();
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(update, 200);
         }
     }
+    public void reset(){
+        TTSEngine.get().loadMP3(BookCSS.get().mp3BookPathGet());
+        update.run();
 
-    Runnable update = new Runnable() {
-
-        @Override
-        public void run() {
-            if (TTSEngine.get().isMp3()) {
-                initMp3();
-                if (TTSEngine.get().mp != null) {
-                    seekCurrent.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getCurrentPosition()));
-                    seekMax.setText(TxtUtils.getMp3TimeString(TTSEngine.get().mp.getDuration()));
-
-                    seekMp3.setMax(TTSEngine.get().mp.getDuration());
-                    seekMp3.setProgress(TTSEngine.get().mp.getCurrentPosition());
-
-                    udateButtons();
-                }
-
-            } else {
-                layoutMp3.setVisibility(View.GONE);
-                trackName.setVisibility(View.GONE);
-            }
-
-            LOG.d("TtsStatus-isPlaying", TTSEngine.get().isPlaying());
-            ttsPlayPause.setImageResource(TTSEngine.get().isPlaying() ? R.drawable.glyphicons_175_pause : R.drawable.glyphicons_174_play);
-        }
-    };
-    private View layoutMp3;
-    private SeekBar seekMp3;
-    private TextView seekCurrent;
-    private TextView seekMax;
-    private TextView trackName;
-    private ImageView ttsPrevTrack;
-    private ImageView ttsNextTrack;
-    private int colorTint;
+    }
 
 }

@@ -6,6 +6,7 @@ import android.os.Environment;
 import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
@@ -34,11 +35,14 @@ import java.util.zip.ZipOutputStream;
 
 public class CacheZipUtils {
     public static final Lock cacheLock = new ReentrantLock();
+    public static final Lock cacheLock2 = new ReentrantLock();
     private static final int BUFFER_SIZE = 16 * 1024;
     public static File CACHE_BOOK_DIR;
     public static File CACHE_WEB;
     public static File CACHE_RECENT;
     public static File ATTACHMENTS_CACHE_DIR;
+    static Pair<Boolean, String> cacheRes;
+    static String cacheFile;
 
     public static void init(Context c) {
         File externalCacheDir = c.getExternalCacheDir();
@@ -119,20 +123,52 @@ public class CacheZipUtils {
     }
 
     public static Pair<Boolean, String> isSingleAndSupportEntry(String file) {
+        if (file.equals(cacheFile)) {
+            LOG.d("isSingleAndSupportEntry-cache", file);
+            return cacheRes;
+        }
+        final Pair<Boolean, String> res = isSingleAndSupportEntryInner(file);
+        cacheFile = file;
+        cacheRes = res;
+        return res;
+    }
+
+    public static Pair<Boolean, String> isSingleAndSupportEntryInner(String file) {
         try {
-            net.lingala.zip4j.core.ZipFile zp = new net.lingala.zip4j.core.ZipFile(file);
+            LOG.d("isSingleAndSupportEntry 1", file);
+            if (!CbzCbrExtractor.isZip(file)) {
+                return new Pair<Boolean, String>(false, "");
+            }
+
+            net.lingala.zip4j.ZipFile zp = new net.lingala.zip4j.ZipFile(file);
+//            if(!zp.isValidZipFile()){
+//                return new Pair<Boolean, String>(false, "");
+//            }
             List<FileHeader> fileHeaders = zp.getFileHeaders();
+
             int count = 0;
             FileHeader last = null;
+            boolean isOkular = BookType.OKULAR.is(file);
             for (FileHeader h : fileHeaders) {
                 if (h.isDirectory()) {
                     continue;
                 }
+                String ends = h.getFileName();
+                if (isOkular && ends.endsWith(".xml")) {
+                    continue;
+                }
+                if (ends.endsWith(".opf") || ExtUtils.isImagePath(ends) || ends.endsWith(".fbd")) {
+                    continue;
+                }
+
                 count++;
                 last = h;
+                LOG.d("isSingleAndSupportEntryInner finds",ends);
             }
             if (count == 1 && last != null) {
                 String name = last.getFileName();
+                LOG.d("isSingleAndSupportEntryInner name",name);
+
                 return new Pair<Boolean, String>(BookType.isSupportedExtByPath(name), name);
             }
             return new Pair<Boolean, String>(false, "");
@@ -141,7 +177,9 @@ public class CacheZipUtils {
         }
     }
 
-    public static Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
+
+    @Deprecated
+      Pair<Boolean, String> isSingleAndSupportEntry(ZipArchiveInputStream zipInputStream) {
         String name = "";
         try {
 
@@ -173,7 +211,7 @@ public class CacheZipUtils {
     }
 
     public static UnZipRes extracIfNeed(String path, CacheDir folder, long salt) {
-        if (!path.endsWith(".zip")) {
+        if (!ExtUtils.isZip(path)) {
             return new UnZipRes(path, path, null);
         }
 
@@ -192,10 +230,12 @@ public class CacheZipUtils {
                     if (salt != -1) {
                         name = salt + name;
                     }
-                    File file = new File(folder.getDir(), name);
+                    File file = new File(TxtUtils.fixFilePath(folder.getDir().getPath()), TxtUtils.fixFileName(name));
+                    file.getParentFile().mkdirs();
+
                     BufferedOutputStream fileOutputStream = new BufferedOutputStream(new FileOutputStream(file));
-                    IOUtils.copyClose(zipInputStream, fileOutputStream);
                     LOG.d("Unpack archive", file.getPath());
+                    IOUtils.copyClose(zipInputStream, fileOutputStream);
                     return new UnZipRes(path, file.getPath(), nextEntry.getName());
                 }
             }
@@ -363,7 +403,8 @@ public class CacheZipUtils {
         }
 
         public File getDir() {
-            return new File(parent, type);
+            File file = new File(parent, type);
+            return file;
         }
 
     }

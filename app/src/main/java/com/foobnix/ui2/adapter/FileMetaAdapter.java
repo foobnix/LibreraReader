@@ -1,7 +1,6 @@
 package com.foobnix.ui2.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,6 +17,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
@@ -48,8 +48,6 @@ import com.foobnix.ui2.AppRecycleAdapter;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.AuthorsAdapter2.AuthorViewHolder;
 import com.foobnix.ui2.fast.FastScroller;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.io.File;
 import java.util.Collections;
@@ -63,168 +61,37 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     public static final int DISPALY_TYPE_LAYOUT_STARS = 4;
     public static final int DISPLAY_TYPE_PLAYLIST = 11;
     public static final int DISPLAY_TYPE_NONE = -1;
-
     public static final int DISPALY_TYPE_LAYOUT_TITLE_FOLDERS = 5;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_BOOKS = 6;
     public static final int DISPALY_TYPE_SERIES = 7;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_NONE = 8;
     public static final int DISPALY_TYPE_LAYOUT_TAG = 9;
     public static final int DISPALY_TYPE_LAYOUT_TITLE_DIVIDER = 10;
-
     public static final int ADAPTER_LIST = 0;
     public static final int ADAPTER_GRID = 1;
     public static final int ADAPTER_COVERS = 3;
     public static final int ADAPTER_LIST_COMPACT = 4;
-
-    private int adapterType = ADAPTER_LIST;
-
     public static final int TEMP_VALUE_NONE = 0;
     public static final int TEMP_VALUE_FOLDER_PATH = 1;
     public static final int TEMP_VALUE_STAR_GRID_ITEM = 2;
     public static final int TEMP_VALUE_SERIES = 3;
-
-    public int tempValue = TEMP_VALUE_NONE;
-
-
     public static final int TEMP2_NONE = 0;
     public static final int TEMP2_RECENT_FROM_BOOK = 1;
+    public Fragment fragment;
+    public int tempValue = TEMP_VALUE_NONE;
     public int tempValue2 = TEMP2_NONE;
 
-    public class ContextViewHolder extends RecyclerView.ViewHolder {
-        public View parent;
-        final Context c;
+    private int adapterType = ADAPTER_LIST;
+    private ResultResponse<FileMeta> onMenuClickListener;
+    private ResultResponse<FileMeta> onDeleteClickListener;
+    private ResultResponse<String> onAuthorClickListener;
+    private ResultResponse<String> onSeriesClickListener;
+    private ResultResponse<String> onTagClickListner;
+    private ResultResponse2<FileMeta, FileMetaAdapter> onStarClickListener;
+    private Runnable clearAllStarredFolders;
+    private Runnable clearAllStarredBooks;
+    private ResultResponse<ImageView> onGridOrList;
 
-        public ContextViewHolder(View itemView) {
-            super(itemView);
-            parent = itemView;
-            c = itemView.getContext();
-        }
-
-        public String getString(int resId) {
-            return c.getString(resId);
-        }
-
-    }
-
-    public class FileMetaViewHolder extends ContextViewHolder {
-        public TextView title, author, path, browserExt, size, date, series, idPercentText;
-        public LinearLayout tags;
-        public ImageView image, star, signIcon, menu, cloudImage;
-        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
-
-        public FileMetaViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.title1);
-            author = (TextView) view.findViewById(R.id.title2);
-            authorParent = view.findViewById(R.id.title2Parent);
-            path = (TextView) view.findViewById(R.id.browserPath);
-            tags = (LinearLayout) view.findViewById(R.id.browserTags);
-            size = (TextView) view.findViewById(R.id.browserSize);
-            browserExt = (TextView) view.findViewById(R.id.browserExt);
-            date = (TextView) view.findViewById(R.id.browseDate);
-            series = (TextView) view.findViewById(R.id.series);
-            idPercentText = (TextView) view.findViewById(R.id.idPercentText);
-
-            image = (ImageView) view.findViewById(R.id.browserItemIcon);
-            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
-            star = (ImageView) view.findViewById(R.id.starIcon);
-            //signIcon = (ImageView) view.findViewById(R.id.signIcon);
-            idProgressColor = view.findViewById(R.id.idProgressColor);
-            idProgressBg = view.findViewById(R.id.idProgressBg);
-            infoLayout = view.findViewById(R.id.infoLayout);
-            imageParent = view.findViewById(R.id.imageParent);
-
-            progresLayout = view.findViewById(R.id.progresLayout);
-            layoutBootom = view.findViewById(R.id.layoutBootom);
-
-            menu = (ImageView) view.findViewById(R.id.itemMenu);
-            remove = view.findViewById(R.id.delete);
-
-            parent = view;
-        }
-    }
-
-    public class DirectoryViewHolder extends ContextViewHolder {
-        public TextView title, path, play, count;
-        public ImageView image, starIcon, imageCloud;
-        public View parent;
-
-        public DirectoryViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.text1);
-            count = (TextView) view.findViewById(R.id.count);
-            play = (TextView) view.findViewById(R.id.play);
-            path = (TextView) view.findViewById(R.id.text2);
-            image = (ImageView) view.findViewById(R.id.image1);
-            starIcon = (ImageView) view.findViewById(R.id.starIcon);
-            imageCloud = (ImageView) view.findViewById(R.id.imageCloud);
-            parent = view;
-        }
-    }
-
-    public class TagViewHolder extends ContextViewHolder {
-        public TextView title;
-        public ImageView image;
-        public View parent;
-
-        public TagViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.text1);
-            image = (ImageView) view.findViewById(R.id.image1);
-            parent = view;
-        }
-    }
-
-    public class NameDividerViewHolder extends ContextViewHolder {
-        public TextView title;
-        public ImageView image;
-        public View parent;
-
-        public NameDividerViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.text1);
-            image = (ImageView) view.findViewById(R.id.image1);
-            parent = view;
-        }
-    }
-
-    public class StarsLayoutViewHolder extends ContextViewHolder {
-        public RecyclerView recyclerView;
-        public TextView clearAllRecent, clearAllStars, starredName, recentName;
-        public View panelStars, panelRecent;
-        public ImageView starredNameIcon;
-
-        public StarsLayoutViewHolder(View view) {
-            super(view);
-            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewStars);
-            starredName = (TextView) view.findViewById(R.id.starredName);
-            starredNameIcon = (ImageView) view.findViewById(R.id.starredNameIcon);
-            recentName = (TextView) view.findViewById(R.id.recentName);
-            panelStars = view.findViewById(R.id.panelStars);
-            panelRecent = view.findViewById(R.id.panelRecent);
-        }
-    }
-
-    public class StarsTitleViewHolder extends ContextViewHolder {
-        public TextView clearAllFolders, clearAllBooks;
-        public View parent;
-        public ImageView onGridList;
-
-        public StarsTitleViewHolder(View view) {
-            super(view);
-            clearAllFolders = (TextView) view.findViewById(R.id.clearAllFolders);
-            clearAllBooks = (TextView) view.findViewById(R.id.clearAllBooks);
-            onGridList = (ImageView) view.findViewById(R.id.onGridList);
-            parent = view.findViewById(R.id.parent);
-        }
-    }
-
-    public class NoneHolder extends ContextViewHolder {
-
-        public NoneHolder(View view) {
-            super(view);
-        }
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -292,15 +159,18 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         super.onViewRecycled(holderAll);
         if (holderAll instanceof FileMetaViewHolder) {
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
-            ImageLoader.getInstance().cancelDisplayTask(holder.image);
+            //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //ImageLoader.getInstance().cancelDisplayTask(holder.image);
             //LOG.d("onViewRecycled");
+            IMG.clear(holder.image);
         }
+
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holderAll, final int position) {
         final FileMeta fileMeta = getItem(position);
+
 
         if (holderAll instanceof StarsTitleViewHolder) {
             final StarsTitleViewHolder holder = (StarsTitleViewHolder) holderAll;
@@ -341,35 +211,39 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
             final FileMetaViewHolder holder = (FileMetaViewHolder) holderAll;
 
+            holder.parent.setContentDescription(holder.getString(R.string.book)+ " " +fileMeta.getAuthor() + " " + fileMeta.getTitle() + " " + fileMeta.getExt());
+
             if (!AppState.get().isShowImages && adapterType == ADAPTER_COVERS) {
                 adapterType = ADAPTER_GRID;
             }
 
+            LOG.d("bindFileMetaView-1", items.get(position).getTitle());
             bindFileMetaView(holder, position);
 
-            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new SimpleImageLoadingListener() {
+            boolean needRefresh = TxtUtils.isEmpty(fileMeta.getPathTxt());
+
+            //if (needRefresh) {
+            //FileMetaCore.reUpdateIfNeed(fileMeta);
+            // TempHolder.listHash++;
+            //AppDB.get().getDao().detach(fileMeta);
+            //}
+
+            IMG.getCoverPageWithEffect(holder.image, fileMeta.getPath(), IMG.getImageSize(), new Runnable() {
+
 
                 @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-                    super.onLoadingCancelled(imageUri, view);
-                }
+                public void run() {
 
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                    super.onLoadingStarted(imageUri, view);
-                }
-
-                @Override
-                public void onLoadingComplete(String arg0, View arg1, Bitmap arg2) {
-                    if (position <= items.size() - 1) {
+                    if (position <= items.size() - 1 && needRefresh) {
                         FileMeta it = AppDB.get().load(fileMeta.getPath());
+
                         if (it != null) {
                             items.set(position, it);
                             bindFileMetaView(holder, position);
                         }
                     }
-                }
 
+                }
             });
 
             holder.imageParent.setVisibility(AppState.get().isShowImages ? View.VISIBLE : View.GONE);
@@ -397,6 +271,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof DirectoryViewHolder) {
             final DirectoryViewHolder holder = (DirectoryViewHolder) holderAll;
+            holder.parent.setContentDescription(holder.getString(R.string.folder) + " " + fileMeta.getTitle());
 
             holder.play.setVisibility(View.GONE);
             holder.title.setText(fileMeta.getPathTxt());
@@ -419,16 +294,16 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.TRANSPARENT);
             }
 
-            if (AppDB.get().isStarFolder(fileMeta.getPath())) {
+            if (fileMeta.getIsStar() != null && fileMeta.getIsStar()) {
                 holder.starIcon.setImageResource(R.drawable.star_1);
             } else {
                 holder.starIcon.setImageResource(R.drawable.star_2);
             }
 
-            if(new File(fileMeta.getPath(),"Fonts").isDirectory()){
+            if (new File(fileMeta.getPath(), "Fonts").isDirectory()) {
                 holder.image.setImageDrawable(Apps.getApplicationImage(holder.image.getContext()));
                 TintUtil.setNoTintImage(holder.image);
-            }else{
+            } else {
                 holder.image.setImageResource(R.drawable.glyphicons_441_folder_closed);
                 TintUtil.setTintImageWithAlpha(holder.image, holder.image.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
             }
@@ -519,7 +394,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             TintUtil.setBackgroundFillColor(holder.panelRecent, TintUtil.color);
             TintUtil.setBackgroundFillColor(holder.panelStars, TintUtil.color);
 
-            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
+            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
 
             final List<FileMeta> playlists = Playlists.getAllPlaylistsMeta();
 
@@ -547,7 +422,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                             TxtUtils.underline(holder.starredName, STARRED);
 
                             adapter.getItemsList().clear();
-                            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles();
+                            List<FileMeta> allStars = AppData.get().getAllFavoriteFiles(false);
                             adapter.getItemsList().addAll(allStars);
                             adapter.notifyDataSetChanged();
 
@@ -634,7 +509,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         } else if (holderAll instanceof AuthorViewHolder) {
             AuthorViewHolder aHolder = (AuthorViewHolder) holderAll;
-            final String sequence = fileMeta.getSequence().replace(",","");
+            final String sequence = fileMeta.getSequence().replace(",", "");
             aHolder.onBindViewHolder(aHolder, sequence);
             aHolder.parent.setOnClickListener(new OnClickListener() {
 
@@ -649,7 +524,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
     }
 
+
     private FileMeta bindFileMetaView(final FileMetaViewHolder holder, final int position) {
+
+
         if (position >= items.size()) {
             return new FileMeta();
         }
@@ -678,9 +556,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         }
 
         if (holder.series != null && onSeriesClickListener != null) {
-             String sequence = fileMeta.getSequence();
-            if(TxtUtils.isNotEmpty(sequence)){
-                sequence = sequence.replace(",","");
+            String sequence = fileMeta.getSequence();
+            if (TxtUtils.isNotEmpty(sequence)) {
+                sequence = sequence.replace(",", "");
                 holder.series.setVisibility(View.VISIBLE);
                 holder.series.setText(sequence);
                 holder.series.setOnClickListener(new OnClickListener() {
@@ -688,11 +566,11 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     @Override
                     public void onClick(View v) {
                         if (onSeriesClickListener != null) {
-                            onSeriesClickListener.onResultRecive(fileMeta.getSequence().replace(",",""));
+                            onSeriesClickListener.onResultRecive(fileMeta.getSequence().replace(",", ""));
                         }
                     }
                 });
-            }else{
+            } else {
                 holder.series.setText("");
                 holder.series.setVisibility(View.GONE);
             }
@@ -765,7 +643,14 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (holder.path != null) {
-            holder.path.setText(fileMeta.getPathTxt());
+            if (AppState.get().isDisplayAnnotation) {
+                holder.path.setText(fileMeta.getAnnotation());
+                holder.path.setSingleLine(false);
+                holder.path.setLines(3);
+            } else {
+                holder.path.setText(fileMeta.getPathTxt());
+                holder.path.setSingleLine();
+            }
         }
 
         holder.browserExt.setText(fileMeta.getChild() != null ? fileMeta.getChild() : fileMeta.getExt());
@@ -821,6 +706,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         TintUtil.setTintImageWithAlpha(holder.star, holder.parent.getContext() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
         if (onStarClickListener != null) {
+            holder.star.setContentDescription(holder.c.getString(fileMeta.getIsStar()!=null && fileMeta.getIsStar() ? R.string.remove_from_favorites : R.string.add_to_favorites));
             holder.star.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -843,7 +729,6 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     return true;
                 }
             });
-        } else {
         }
         holder.star.setVisibility(ExtUtils.isExteralSD(fileMeta.getPath()) ? View.GONE : View.VISIBLE);
 
@@ -1013,7 +898,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             }
         }
         if (AppState.get().isShowOnlyOriginalFileNames) {
-            if(holder.path!=null) {
+            if (holder.path != null) {
                 holder.path.setVisibility(View.INVISIBLE);
             }
             holder.author.setVisibility(View.GONE);
@@ -1024,9 +909,10 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
 
         TxtUtils.setInkTextView(holder.title, holder.author, holder.path, holder.browserExt, holder.size, holder.date, holder.series, holder.idPercentText);
 
+        Apps.accessibilityButtonSize(holder.star,holder.menu);
+
         return fileMeta;
     }
-
 
     @Override
     public String getSectionText(int position) {
@@ -1086,14 +972,142 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
         this.onTagClickListner = onTagClickListner;
     }
 
-    private ResultResponse<FileMeta> onMenuClickListener;
-    private ResultResponse<FileMeta> onDeleteClickListener;
-    private ResultResponse<String> onAuthorClickListener;
-    private ResultResponse<String> onSeriesClickListener;
-    private ResultResponse<String> onTagClickListner;
-    private ResultResponse2<FileMeta, FileMetaAdapter> onStarClickListener;
-    private Runnable clearAllStarredFolders;
-    private Runnable clearAllStarredBooks;
-    private ResultResponse<ImageView> onGridOrList;
+    public class ContextViewHolder extends RecyclerView.ViewHolder {
+        final Context c;
+        public View parent;
+
+        public ContextViewHolder(View itemView) {
+            super(itemView);
+            parent = itemView;
+            c = itemView.getContext();
+        }
+
+        public String getString(int resId) {
+            return c.getString(resId);
+        }
+
+    }
+
+    public class FileMetaViewHolder extends ContextViewHolder {
+        public TextView title, author, path, browserExt, size, date, series, idPercentText;
+        public LinearLayout tags;
+        public ImageView image, star, signIcon, menu, cloudImage;
+        public View authorParent, progresLayout, parent, remove, layoutBootom, infoLayout, idProgressColor, idProgressBg, imageParent;
+
+        public FileMetaViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.title1);
+            author = (TextView) view.findViewById(R.id.title2);
+            authorParent = view.findViewById(R.id.title2Parent);
+            path = (TextView) view.findViewById(R.id.browserPath);
+            tags = (LinearLayout) view.findViewById(R.id.browserTags);
+            size = (TextView) view.findViewById(R.id.browserSize);
+            browserExt = (TextView) view.findViewById(R.id.browserExt);
+            date = (TextView) view.findViewById(R.id.browseDate);
+            series = (TextView) view.findViewById(R.id.series);
+            idPercentText = (TextView) view.findViewById(R.id.idPercentText);
+
+            image = (ImageView) view.findViewById(R.id.browserItemIcon);
+            cloudImage = (ImageView) view.findViewById(R.id.cloudImage);
+            star = (ImageView) view.findViewById(R.id.starIcon);
+            //signIcon = (ImageView) view.findViewById(R.id.signIcon);
+            idProgressColor = view.findViewById(R.id.idProgressColor);
+            idProgressBg = view.findViewById(R.id.idProgressBg);
+            infoLayout = view.findViewById(R.id.infoLayout);
+            imageParent = view.findViewById(R.id.imageParent);
+
+            progresLayout = view.findViewById(R.id.progresLayout);
+            layoutBootom = view.findViewById(R.id.layoutBootom);
+
+            menu = (ImageView) view.findViewById(R.id.itemMenu);
+            remove = view.findViewById(R.id.delete);
+
+            parent = view;
+
+
+        }
+    }
+
+    public class DirectoryViewHolder extends ContextViewHolder {
+        public TextView title, path, play, count;
+        public ImageView image, starIcon, imageCloud;
+        public View parent;
+
+        public DirectoryViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.text1);
+            count = (TextView) view.findViewById(R.id.count);
+            play = (TextView) view.findViewById(R.id.play);
+            path = (TextView) view.findViewById(R.id.text2);
+            image = (ImageView) view.findViewById(R.id.image1);
+            starIcon = (ImageView) view.findViewById(R.id.starIcon);
+            imageCloud = (ImageView) view.findViewById(R.id.imageCloud);
+            parent = view;
+        }
+    }
+
+    public class TagViewHolder extends ContextViewHolder {
+        public TextView title;
+        public ImageView image;
+        public View parent;
+
+        public TagViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.text1);
+            image = (ImageView) view.findViewById(R.id.image1);
+            parent = view;
+        }
+    }
+
+    public class NameDividerViewHolder extends ContextViewHolder {
+        public TextView title;
+        public ImageView image;
+        public View parent;
+
+        public NameDividerViewHolder(View view) {
+            super(view);
+            title = (TextView) view.findViewById(R.id.text1);
+            image = (ImageView) view.findViewById(R.id.image1);
+            parent = view;
+        }
+    }
+
+    public class StarsLayoutViewHolder extends ContextViewHolder {
+        public RecyclerView recyclerView;
+        public TextView clearAllRecent, clearAllStars, starredName, recentName;
+        public View panelStars, panelRecent;
+        public ImageView starredNameIcon;
+
+        public StarsLayoutViewHolder(View view) {
+            super(view);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewStars);
+            starredName = (TextView) view.findViewById(R.id.starredName);
+            starredNameIcon = (ImageView) view.findViewById(R.id.starredNameIcon);
+            recentName = (TextView) view.findViewById(R.id.recentName);
+            panelStars = view.findViewById(R.id.panelStars);
+            panelRecent = view.findViewById(R.id.panelRecent);
+        }
+    }
+
+    public class StarsTitleViewHolder extends ContextViewHolder {
+        public TextView clearAllFolders, clearAllBooks;
+        public View parent;
+        public ImageView onGridList;
+
+        public StarsTitleViewHolder(View view) {
+            super(view);
+            clearAllFolders = (TextView) view.findViewById(R.id.clearAllFolders);
+            clearAllBooks = (TextView) view.findViewById(R.id.clearAllBooks);
+            onGridList = (ImageView) view.findViewById(R.id.onGridList);
+            parent = view.findViewById(R.id.parent);
+        }
+    }
+
+    public class NoneHolder extends ContextViewHolder {
+
+        public NoneHolder(View view) {
+            super(view);
+        }
+    }
 
 }

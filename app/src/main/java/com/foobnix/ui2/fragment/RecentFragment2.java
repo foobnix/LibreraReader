@@ -24,7 +24,6 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.AlertDialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.PopupHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
@@ -110,7 +109,6 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
 
 
-            RecentUpates.updateAll(getActivity());
             AppData.get().removeRecent(result);
 
             populate();
@@ -127,7 +125,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
         public void run() {
             AppDB.get().clearAllRecent();
 
-            RecentUpates.updateAll(getActivity());
+
             CacheZipUtils.removeFiles(CacheZipUtils.CACHE_RECENT.listFiles());
 
             AppData.get().clearRecents();
@@ -142,7 +140,7 @@ public class RecentFragment2 extends UIFragment<FileMeta> {
 
     @Override
     public List<FileMeta> prepareDataInBackground() {
-        List<FileMeta> allRecent = AppData.get().getAllRecent();
+        List<FileMeta> allRecent = AppData.get().getAllRecent(true);
         return allRecent;
     }
 

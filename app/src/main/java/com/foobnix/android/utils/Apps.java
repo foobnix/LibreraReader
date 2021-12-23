@@ -12,10 +12,15 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
+import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
 
+import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
 public class Apps {
@@ -48,6 +53,7 @@ public class Apps {
         }
         return "";
     }
+
 
     public static String getVersionName(Context context) {
         try {
@@ -161,7 +167,7 @@ public class Apps {
             } catch (Settings.SettingNotFoundException e) {
                 LOG.d(e);
             }
-        }else {
+        } else {
             isNight = screenBrightness < 0.15;
         }
         LOG.d("isNight result", isNight);
@@ -170,5 +176,65 @@ public class Apps {
 
     }
 
+    public static void accessibilityButtonSize(View... views) {
+        try {
+            if (AppState.get().isEnableAccessibility) {
+                for (View view : views) {
+                    if (view != null) {
+                        view.getLayoutParams().width = Dips.DP_45;
+                        view.getLayoutParams().height = Dips.DP_45;
+                        view.setLayoutParams(view.getLayoutParams());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+    }
 
+
+    public static void accessibilityText(Context context, String... ids) {
+        StringBuilder builder = new StringBuilder();
+        for (String id : ids) {
+            builder.append(id);
+            builder.append(" ");
+        }
+        accessibilityText(context, builder.toString());
+    }
+
+    public static void accessibilityText(Context context, int... ids) {
+        StringBuilder builder = new StringBuilder();
+        for (int id : ids) {
+            builder.append(context.getString(id));
+            builder.append(" ");
+        }
+        accessibilityText(context, builder.toString());
+    }
+
+    public static void accessibilityText(Context context, String text) {
+        try {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            boolean isAccessibilityEnabled = am.isEnabled() && am.isTouchExplorationEnabled();
+            if (isAccessibilityEnabled) {
+                AccessibilityEvent accessibilityEvent = AccessibilityEvent.obtain();
+                accessibilityEvent.setEventType(AccessibilityEvent.TYPE_ANNOUNCEMENT);
+
+
+                accessibilityEvent.getText().add(text.trim());
+                if (am != null) {
+                    am.sendAccessibilityEvent(accessibilityEvent);
+                    LOG.d("accessibilityText", text);
+                }
+
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+
+
+    }
+
+    public static boolean isDestroyed(Activity a) {
+        return a == null || (Build.VERSION.SDK_INT >= 17 && a.isDestroyed());
+    }
 }

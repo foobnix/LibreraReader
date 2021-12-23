@@ -43,7 +43,7 @@ public class PasswordDialog {
         }
 
         if (PasswordState.get().isFingerPrintPassword) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && !BuildConfig.IS_FDROID) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && !AppsConfig.IS_FDROID) {
                 BiometricPrompt.Builder promptInfo = new BiometricPrompt.Builder(a);
                 promptInfo.setTitle(Apps.getApplicationName(a));
                 //promptInfo.setSubtitle("Subtitle goes here");
@@ -141,7 +141,7 @@ public class PasswordDialog {
 
         });
         isFingerPrintPassword.setChecked(PasswordState.get().isFingerPrintPassword);
-        isFingerPrintPassword.setVisibility(TxtUtils.visibleIf(isSetPassord && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && !BuildConfig.IS_FDROID));
+        isFingerPrintPassword.setVisibility(TxtUtils.visibleIf(isSetPassord && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P && !AppsConfig.IS_FDROID));
 
 
         if (isSetPassord) {

@@ -157,7 +157,7 @@ public class EventDispatcher {
                         m_base.runOnUiThread(task);
                         break;
                     case SeparatedThread:
-                        new Thread(task).start();
+                        new Thread(task,"@T event invoke").start();
                         break;
                     case Direct:
                     default:

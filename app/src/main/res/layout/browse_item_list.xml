@@ -196,6 +196,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginBottom="-1dip"
                     android:layout_weight="0"
+                    android:contentDescription="@string/remove"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="6dip"
                     android:src="@drawable/glyphicons_208_remove_2"
@@ -204,7 +205,7 @@
 
                 <ImageView
                     android:id="@+id/cloudImage"
-                    android:layout_width="@dimen/wh_button_small"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/wh_button_small"
                     android:layout_weight="0"
                     android:padding="3dip"
@@ -217,6 +218,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="0dip"
                     android:layout_weight="0"
+
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="2dip"
                     android:src="@drawable/star_2"
@@ -230,6 +232,7 @@
                     android:layout_weight="0"
                     android:background="?android:attr/selectableItemBackground"
                     android:padding="5dip"
+                    android:contentDescription="@string/book_menu"
                     android:singleLine="true"
                     android:src="@drawable/glyphicons_518_option_vertical"
                     android:tint="@color/tint_gray"

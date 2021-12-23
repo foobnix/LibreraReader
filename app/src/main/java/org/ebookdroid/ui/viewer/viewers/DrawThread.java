@@ -1,121 +1,68 @@
 package org.ebookdroid.ui.viewer.viewers;
 
 import android.graphics.Canvas;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.view.SurfaceHolder;
+
+import androidx.annotation.NonNull;
 
 import com.foobnix.android.utils.LOG;
 
 import org.ebookdroid.core.EventPool;
 import org.ebookdroid.core.ViewState;
-import org.emdev.utils.concurrent.Flag;
 
-import java.util.ArrayList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
-
-public class DrawThread extends Thread {
-
-    private final SurfaceHolder surfaceHolder;
-
-    private final BlockingQueue<ViewState> queue = new ArrayBlockingQueue<ViewState>(16, true);
-
-    private final Flag stop = new Flag();
-
-    private final ArrayList<ViewState> list = new ArrayList<ViewState>();
+public class DrawThread extends HandlerThread {
 
 
-    public DrawThread(final SurfaceHolder surfaceHolder) {
-        this.surfaceHolder = surfaceHolder;
-    }
+    SurfaceHolder holder;
+    Handler mReceiver;
 
-    public void finish() {
-        stop.set();
-        try {
-            this.join();
-        } catch (final InterruptedException e) {
-            LOG.e(e);
-        }
+    ViewState viewState;
+
+    public DrawThread(SurfaceHolder holder) {
+        super("DrawThread");
+        this.holder = holder;
     }
 
     @Override
-    public void run() {
-        while (!stop.get()) {
-            draw();
-        }
-    }
+    protected void onLooperPrepared() {
+        super.onLooperPrepared();
+        mReceiver = new Handler(getLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
 
-    protected void draw() {
-        final ViewState viewState = takeTask(1000, TimeUnit.MILLISECONDS, false);
-        if (viewState == null) {
-            return;
-        }
-        Canvas canvas = null;
-        try {
-            canvas = surfaceHolder.lockCanvas(null);
-            EventPool.newEventDraw(viewState, canvas, null).process();
-        } catch (final Throwable th) {
-            LOG.e(th);
-        } finally {
-            if (canvas != null) {
-                try {
-                    surfaceHolder.unlockCanvasAndPost(canvas);
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
-
-            }
-        }
-    }
-
-    public ViewState takeTask(final long timeout, final TimeUnit unit, final boolean useLastState) {
-        ViewState task = null;
-        try {
-            task = queue.poll(timeout, unit);
-            if (task != null && useLastState) {
-                final ArrayList<ViewState> list = new ArrayList<ViewState>();
-                // Workaround for possible ConcurrentModificationException
-                while (true) {
-                    list.clear();
+                if (viewState != null && holder != null) {
+                    Canvas canvas = holder.lockCanvas();
                     try {
-                        if (queue.drainTo(list) > 0) {
-                            task = list.get(list.size() - 1);
+                        EventPool.newEventDraw(viewState, canvas, null).process();
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    } finally {
+                        if (canvas != null) {
+                            holder.unlockCanvasAndPost(canvas);
                         }
-                        break;
-                    } catch (Throwable ex) {
-                        // Go to next attempt
-                        ex.printStackTrace();
-                        LOG.e(ex);
                     }
+
                 }
+                return false;
             }
-        } catch (final InterruptedException e) {
-            Thread.interrupted();
-        } catch (Throwable ex) {
-            // Go to next attempt
-            ex.printStackTrace();
-            LOG.e(ex);
-        }
-        return task;
+
+        });
     }
 
-
-
-
-
-    public void draw(final ViewState viewState) {
-        if (viewState != null) {
-            // Workaround for possible ConcurrentModificationException
-            while (true) {
-                try {
-                    queue.offer(viewState);
-                    break;
-                } catch (Throwable ex) {
-                    // Go to next attempt
-                    ex.printStackTrace();
-                    LOG.e(ex);
-                }
-            }
+    public void draw(ViewState viewState) {
+        this.viewState = viewState;
+        if (mReceiver != null) {
+            mReceiver.sendEmptyMessage(1);
         }
     }
+
+
 }
+
+
+
+
+

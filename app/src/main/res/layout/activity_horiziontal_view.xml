@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <com.foobnix.pdf.search.view.VerticalViewPager
-        android:id="@+id/pager"
+        android:id="@+id/pager2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="false" />
@@ -157,6 +157,8 @@
 
         <com.foobnix.pdf.info.view.ProgressDraw
             android:id="@+id/progressDraw"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress" />
     </LinearLayout>
@@ -339,9 +341,10 @@
         android:id="@+id/ttsActive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomBar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dip" />
+        android:layout_marginBottom="5dip" />
 
     <FrameLayout
         android:id="@+id/bottomBar"

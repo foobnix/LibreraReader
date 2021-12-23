@@ -5,15 +5,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+
+
     <LinearLayout
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dip"
+        android:layout_marginLeft="0dip"
         android:layout_marginRight="4dip"
         android:layout_marginTop="4dip"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
+
+        <ImageView
+            android:contentDescription="@string/menu"
+            android:id="@+id/menu2"
+            android:padding="9dip"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:layout_margin="0dip"
+            android:tint="@color/foobnix_light_blue"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:src="@drawable/glyphicons_517_menu_hamburger" />
+
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +39,7 @@
             android:focusableInTouchMode="true" >
 
             <AutoCompleteTextView
-                android:contentDescription="@string/cd_search_books_in_the_library"
+                android:contentDescription="@string/filter"
                 android:id="@+id/filterLine"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,7 +72,7 @@
                 android:textColor="@color/tint_gray"
                 android:textSize="14sp"
                 android:textStyle="bold" />
-            
+
             <ImageView
                 android:layout_marginRight="-8dip"
                 android:id="@+id/myAutoCompleteImage"
@@ -121,7 +137,7 @@
                 android:background="@color/tint_divider" />
 
             <ImageView
-                android:contentDescription="@string/cd_update_search_search_for_new_books_on_sd_card"
+                android:contentDescription="@string/update_library"
                 android:id="@+id/onRefresh"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"
@@ -135,7 +151,7 @@
                 android:background="@color/tint_divider" />
 
             <ImageView
-                android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+                android:contentDescription="@string/menu"
                 android:id="@+id/onGridList"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"

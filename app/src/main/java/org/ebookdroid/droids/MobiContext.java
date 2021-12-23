@@ -42,8 +42,10 @@ public class MobiContext extends PdfContext {
         } else {
             try {
                 int outName = BookCSS.get().isAutoHypens ? "temp".hashCode() : originalHashCode;
+
                 FooterNote extract = MobiExtract.extract(fileName, CacheZipUtils.CACHE_BOOK_DIR.getPath(), outName + "");
                 fileNameEpub = extract.path;
+                LOG.d("Context", "MobiContext outName", outName, extract.path);
                 if (BookCSS.get().isAutoHypens) {
 
                     EpubExtractor.proccessHypens(fileNameEpub, cacheFile.getPath(), null);
@@ -64,7 +66,7 @@ public class MobiContext extends PdfContext {
             LOG.d("Load notes from file", jsonFile);
         } else {
 
-            new Thread() {
+            new Thread("@T mobi set footernotes") {
                 @Override
                 public void run() {
                     Map<String, String> notes = null;

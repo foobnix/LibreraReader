@@ -8,7 +8,9 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FileMetaComparators;
 import com.foobnix.pdf.info.io.SearchCore;
+import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.ui2.AppDB;
+import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
 import org.ebookdroid.common.settings.books.SharedBooks;
@@ -26,6 +28,7 @@ import java.util.Map;
 
 public class AppData {
 
+    public static final int LIMIT = 3;
     static AppData inst = new AppData();
 
     public static AppData get() {
@@ -42,6 +45,7 @@ public class AppData {
 
         writeSimpleMeta(current, file);
         LOG.d("Objects-save-add", "SAVE Recent", s.getPath(), file.getPath(), s.time);
+        RecentUpates.updateAll();
     }
 
     public synchronized void removeIt(SimpleMeta s) {
@@ -68,6 +72,7 @@ public class AppData {
                 writeSimpleMeta(res, file);
             }
         }
+        RecentUpates.updateAll();
     }
 
     public void removeRecent(FileMeta meta) {
@@ -84,6 +89,7 @@ public class AppData {
         for (File file : allFiles) {
             writeSimpleMeta(new ArrayList<>(), file);
         }
+        RecentUpates.updateAll();
     }
 
 
@@ -117,6 +123,7 @@ public class AppData {
 
     public void clearRecents() {
         clearAll(AppProfile.APP_RECENT_JSON);
+
     }
 
 
@@ -130,7 +137,7 @@ public class AppData {
         return res;
     }
 
-    public List<FileMeta> getAllFavoriteFiles() {
+    public List<FileMeta> getAllFavoriteFiles(boolean updateProgress) {
         List<SimpleMeta> favorites = getAll(AppProfile.APP_FAVORITE_JSON);
 
         List<FileMeta> res = new ArrayList<>();
@@ -151,7 +158,9 @@ public class AppData {
                 AppDB.get().update(meta);
             }
         }
-        SharedBooks.updateProgress(res, false);
+        if (updateProgress) {
+            SharedBooks.updateProgress(res, false, LIMIT);
+        }
         try {
             Collections.sort(res, FileMetaComparators.BY_DATE);
         } catch (Exception e) {
@@ -195,7 +204,11 @@ public class AppData {
 
     }
 
-    public synchronized List<FileMeta> getAllRecent() {
+    public List<SimpleMeta> getAllRecentSimple() {
+        return getAll(AppProfile.APP_RECENT_JSON);
+    }
+
+    public List<FileMeta> getAllRecent(boolean updateProgress) {
         List<SimpleMeta> recent = getAll(AppProfile.APP_RECENT_JSON);
         Collections.sort(recent, FileMetaComparators.SIMPLE_META_BY_TIME);
 
@@ -214,15 +227,21 @@ public class AppData {
             if (res.contains(meta)) {
                 continue;
             }
+            if (updateProgress && TxtUtils.isEmpty(meta.getTitle())) {
+                FileMetaCore.reUpdateIfNeed(meta);
+            }
+
             meta.setIsRecentTime(s.time);
             res.add(meta);
         }
 
-        SharedBooks.updateProgress(res, false);
+        if (updateProgress) {
+            SharedBooks.updateProgress(res, false, LIMIT);
+        }
         return res;
     }
 
-    public synchronized List<SimpleMeta> getAllExcluded() {
+    public List<SimpleMeta> getAllExcluded() {
         return getAll(AppProfile.APP_EXCLUDE_JSON);
     }
 

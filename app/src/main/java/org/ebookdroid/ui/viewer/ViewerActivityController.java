@@ -34,7 +34,6 @@ import com.foobnix.tts.TTSNotification;
 import com.foobnix.ui2.FileMetaCore;
 
 import org.ebookdroid.BookType;
-import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.listeners.IBookSettingsChangeListener;
 import org.ebookdroid.common.settings.types.DocumentViewMode;
@@ -223,6 +222,9 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
 
 
 
+
+
+
             }
         }));
     }
@@ -348,10 +350,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
             String file = a.getIntent().getData().getPath();
 
             AppSP.get().lastBookPath = file;
-            AppSP.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
-            AppSP.get().lastMode = VerticalViewActivity.class.getSimpleName();
 
-            LOG.d("lasta save", AppSP.get().lastClosedActivity);
 
             LOG.d("createWrapper", file);
             if (ExtUtils.isTextFomat(file)) {
@@ -375,6 +374,8 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         if (wrapperControlls != null) {
             wrapperControlls.onResume();
         }
+        AppSP.get().lastClosedActivity = VerticalViewActivity.class.getSimpleName();
+        LOG.d("lasta save", AppSP.get().lastClosedActivity);
     }
 
     public void onConfigChanged() {
@@ -508,7 +509,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 getManagedComponent().finish();
 
                 System.gc();
-                BitmapManager.clear("finish");
+                //BitmapManager.clear("finish");
 
                 if (action != null) {
                     action.run();
@@ -523,7 +524,7 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
         getManagedComponent().finish();
 
         System.gc();
-        BitmapManager.clear("finish");
+        //BitmapManager.clear("finish");
 
         LOG.d("ViewerActivityController closeActivity1");
     }
@@ -601,7 +602,6 @@ public class ViewerActivityController extends ActionController<VerticalViewActiv
                 m_fileName = getActivity().getIntent().getData().getPath();
 
 
-                getView().waitForInitialization();
                 documentModel.open(m_fileName, m_password);
                 getDocumentController().init(this);
                 return null;

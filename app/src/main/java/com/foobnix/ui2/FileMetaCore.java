@@ -19,18 +19,20 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.ext.PdfExtract;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 public class FileMetaCore {
 
@@ -67,6 +69,13 @@ public class FileMetaCore {
         }
     }
 
+    public static void createMetaIfNeedSafe(String path, final boolean isSearhcBook) {
+        if (isSafeToExtactBook(path)) {
+            createMetaIfNeed(path, isSearhcBook);
+        }
+
+    }
+
     public static FileMeta createMetaIfNeed(String path, final boolean isSearhcBook) {
 
 
@@ -74,18 +83,24 @@ public class FileMetaCore {
 
         LOG.d("BooksService-createMetaIfNeed", path, fileMeta.getState());
 
-        if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
+        try {
+            if (FileMetaCore.STATE_FULL != fileMeta.getState()) {
+                EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, true);
 
-            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
-            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+                FileMetaCore.get().upadteBasicMeta(fileMeta, new File(path));
+                FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
 
-            if (isSearhcBook) {
-                fileMeta.setIsSearchBook(isSearhcBook);
+
+
+                if (isSearhcBook) {
+                    fileMeta.setIsSearchBook(isSearhcBook);
+                }
+
+                AppDB.get().update(fileMeta);
+                LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
             }
-
-            AppDB.get().update(fileMeta);
-            LOG.d("BooksService checkOrCreateMetaInfo", "UPDATE", path);
+        }catch (Exception e){
+            LOG.e(e);
         }
         return fileMeta;
 
@@ -144,6 +159,28 @@ public class FileMetaCore {
         return input;
     }
 
+    public static void reUpdateIfNeed(FileMeta fileMeta) {
+        if (fileMeta.getState() != null && fileMeta.getState() != FileMetaCore.STATE_FULL) {
+            LOG.d("reupdateIfNeed", fileMeta.getPath(), fileMeta.getState());
+            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileMeta.getPath(), CacheDir.ZipApp, true);
+            FileMetaCore.get().upadteBasicMeta(fileMeta, new File(fileMeta.getPath()));
+            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
+            AppDB.get().updateOrSave(fileMeta);
+        }
+    }
+
+    public static boolean isSafeToExtactBook(String path) {
+        if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)
+                || VerticalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+
+            if (BookType.PDF.is(path) || BookType.TIFF.is(path)) {
+                LOG.d("createMetaIfNeedSafe-skip", path);
+                return false;
+            }
+        }
+        return true;
+    }
+
     public EbookMeta getEbookMeta(String path, CacheDir folder, boolean extract) {
 
 
@@ -153,7 +190,7 @@ public class FileMetaCore {
 
         EbookMeta ebookMeta = EbookMeta.Empty();
         try {
-            if (path.toLowerCase(Locale.US).endsWith(".zip")) {
+            if (ExtUtils.isZip(path)) {
                 CacheZipUtils.cacheLock.lock();
                 try {
                     UnZipRes res = CacheZipUtils.extracIfNeed(path, folder);
@@ -193,9 +230,9 @@ public class FileMetaCore {
             fileNameOriginal = TxtUtils.encode1251(fileNameOriginal);
             fileName = TxtUtils.encode1251(fileNameOriginal);
         }
-        if (CalirbeExtractor.isCalibre(unZipPath)) {
+        if (AppState.get().isUseCalibreOpf && CalirbeExtractor.isCalibre(unZipPath)) {
             ebookMeta = CalirbeExtractor.getBookMetaInformation(unZipPath);
-            LOG.d("isCalibre find", unZipPath);
+            LOG.d("isCalibre find", unZipPath, ebookMeta.coverImage);
         } else if (BookType.EPUB.is(unZipPath) || BookType.ODT.is(unZipPath)) {
             ebookMeta = EpubExtractor.get().getBookMetaInformation(unZipPath);
         } else if (BookType.FB2.is(unZipPath)) {
@@ -266,7 +303,7 @@ public class FileMetaCore {
             ebookMeta.setTitle(ebookMeta.getTitle() + " [" + ebookMeta.getsIndex() + "]");
         }
 
-        if (path.endsWith(".zip") && !unZipPath.endsWith("fb2")) {
+        if (ExtUtils.isZip(path) && !unZipPath.endsWith("fb2")) {
             ebookMeta.setTitle("{" + fileNameOriginal + "} " + ebookMeta.getTitle());
         }
 

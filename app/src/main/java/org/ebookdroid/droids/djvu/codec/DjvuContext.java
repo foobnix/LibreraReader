@@ -20,6 +20,7 @@ public class DjvuContext extends AbstractCodecContext {
 
     }
 
+
     private static native long create();
 
     private static native void free(long contextHandle);

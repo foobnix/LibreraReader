@@ -23,7 +23,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:contentDescription="@string/cd_return_to_the_parent_folder"
+            android:contentDescription="@string/back"
             android:src="@drawable/glyphicons_225_chevron_left" />
 
         <View
@@ -64,7 +64,29 @@
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0" />
 
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
         <ImageView
+            android:id="@+id/createFolder"
+            android:layout_width="@dimen/wh_button"
+            android:layout_height="@dimen/wh_button"
+            android:layout_weight="0"
+            android:contentDescription="@string/create_folder"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="10dip"
+            android:src="@drawable/glyphicons_433_plus"
+            android:tint="@color/tint_white" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@color/tint_divider" />
+
+        <ImageView
+            android:visibility="gone"
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
@@ -111,7 +133,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:contentDescription="@string/cd_back_to_sd_card"
+            android:contentDescription="@string/favorites"
             android:padding="6dip"
             android:src="@drawable/glyphicons_146_folder_sd1" />
 
@@ -126,7 +148,7 @@
             android:layout_width="@dimen/wh_button"
             android:layout_height="@dimen/wh_button"
             android:layout_weight="0"
-            android:contentDescription="@string/cd_show_results_as_a_list_or_grid"
+            android:contentDescription="@string/menu"
             android:src="@drawable/glyphicons_114_justify" />
     </LinearLayout>
 
@@ -180,6 +202,8 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+
+
         <ImageView
             android:id="@+id/starIconDir"
             android:layout_width="@dimen/wh_button"
@@ -206,20 +230,12 @@
             android:layout_height="match_parent"
             android:padding="4dip" >
         </com.foobnix.ui2.fast.FastScrollRecyclerView>
+
+
         
     </FrameLayout>
 
-    <Button
-        android:id="@+id/createFolder"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:padding="10dip"
-        android:drawablePadding="10dip"
-        style="@style/textLinkWhite"
-        android:background="@drawable/bg_search_second_clickable"
-        android:text="@string/create_folder"
-        />
+
 
     <EditText
         android:id="@+id/editPath"

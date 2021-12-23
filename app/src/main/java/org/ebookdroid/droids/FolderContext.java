@@ -8,6 +8,7 @@ import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 import org.ebookdroid.droids.mupdf.codec.PdfContext;
@@ -32,12 +33,12 @@ public class FolderContext extends PdfContext {
         }
 
         File file;
-        if (AppsConfig.MUPDF_1_16 == AppsConfig.MUPDF_VERSION) {
-            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
-        } else {
+        if (AppsConfig.MUPDF_1_11 == LibreraApp.MUPDF_VERSION) {
             file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName());
             file.mkdirs();
             file = new File(file, "book.ldir");
+        } else {
+            file = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, new File(base).getName() + "." + LXML);
         }
 
         if (write) {
@@ -71,7 +72,7 @@ public class FolderContext extends PdfContext {
             String path = meta.getPath();
 
             if (new File(path).isFile()) {
-                if (ExtUtils.isImagePath(path) || BookType.TIFF.is(meta.getPath())) {
+                if (ExtUtils.isImagePath(path) || BookType.TIFF.is(path)) {
                     return true;
                 }
             }
@@ -79,6 +80,7 @@ public class FolderContext extends PdfContext {
         return false;
 
     }
+
 
     public static int getPageCount(String unZipPath) {
         try {

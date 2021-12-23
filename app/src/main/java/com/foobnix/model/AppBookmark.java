@@ -29,7 +29,7 @@ public class AppBookmark implements MyPath.RelativePath {
 
     public int getPage(int pages) {
         LOG.d("MyMath getPage",p, pages);
-        return Math.round(p * pages);
+        return Math.max(1,Math.round(p * pages));
     }
 
     public String getText() {

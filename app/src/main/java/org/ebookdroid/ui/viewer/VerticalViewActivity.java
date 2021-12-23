@@ -32,7 +32,6 @@ import com.foobnix.pdf.info.PasswordDialog;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.BrightnessHelper;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.search.view.CloseAppDialog;
 import com.foobnix.sys.TempHolder;
@@ -92,6 +91,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     public void onCreate(final Bundle savedInstanceState) {
         intetrstialTimeoutSec = ADS.FULL_SCREEN_TIMEOUT_SEC;
         DocumentController.doRotation(this);
+        DocumentController.doContextMenu(this);
 
 
         FileMetaCore.checkOrCreateMetaInfo(this);
@@ -103,17 +103,20 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bs != null) {
                 // AppState.get().l = bs.l;
                 AppState.get().autoScrollSpeed = bs.s;
-                final boolean isTextFomat = ExtUtils.isTextFomat(bs.path);
-                AppSP.get().isCut = isTextFomat ? false : bs.sp;
+                final boolean isTextFormat = ExtUtils.isTextFomat(bs.path);
+                AppSP.get().isCut = isTextFormat ? false : bs.sp; //important!!!
                 AppSP.get().isCrop = bs.cp;
                 AppSP.get().isDouble = false;
                 AppSP.get().isDoubleCoverAlone = false;
-                AppSP.get().isLocked = bs.getLock(isTextFomat);
+                AppSP.get().isLocked = bs.getLock(isTextFormat);
                 TempHolder.get().pageDelta = bs.d;
-                if (AppState.get().isCropPDF && !isTextFomat) {
+                if (AppState.get().isCropPDF && !isTextFormat) {
                     AppSP.get().isCrop = true;
                 }
             }
+
+
+
             BookCSS.get().detectLang(path);
         }
 
@@ -141,13 +144,18 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
 
 
-
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 
+
         view = new PdfSurfaceView(getController());
 
+
+
+
+
         frameLayout.addView(view.getView());
+
 
         getController().afterCreate(this);
 
@@ -163,7 +171,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
                     @Override
                     public void run() {
-                        isInitPosistion = Dips.screenHeight() > Dips.screenWidth();
+                        isInitPosition = Dips.screenHeight() > Dips.screenWidth();
                         isInitOrientation = AppState.get().orientation;
                     }
                 }, 1000);
@@ -174,13 +182,14 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     }
 
+
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(MyContextWrapper.wrap(context));
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         Android6.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
     }
 
@@ -196,10 +205,22 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (handler != null) {
             handler.removeCallbacks(closeRunnable);
         }
-        if(AppState.get().inactivityTime!=-1) {
+        if (AppState.get().inactivityTime != -1) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON","add",AppState.get().inactivityTime);
+            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
         }
+
+        if (handler != null) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (view != null) {
+                        view.redrawView();
+                    }
+                }
+            }, 50);
+        }
+
 
     }
 
@@ -207,7 +228,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data,DocumentController.EXTRA_PERCENT));
+            int page = Math.round(getController().getDocumentModel().getPageCount() * Intents.getFloatAndClear(data, DocumentController.EXTRA_PERCENT));
             getController().getDocumentController().goToPage(page);
         }
     }
@@ -236,6 +257,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     protected void onStart() {
         super.onStart();
         // Analytics.onStart(this);
+        try {
+            getController().getDocumentModel().decodeService.restore();
+        }catch (Exception e){
+            LOG.e(e);
+        }
+
         if (needToRestore) {
             AppState.get().isAutoScroll = true;
             getController().getListener().onAutoScroll();
@@ -245,9 +272,12 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
     @Override
     protected void onStop() {
+        try {
+            getController().getDocumentModel().decodeService.shutdown();
+        }catch (Exception e){
+            LOG.e(e);
+        }
         super.onStop();
-        // Analytics.onStop(this);
-        RecentUpates.updateAll(this);
     }
 
     Runnable closeRunnable = new Runnable() {
@@ -269,31 +299,31 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         super.onDestroy();
     }
 
-    Dialog rotatoinDialog;
-    Boolean isInitPosistion;
+    Dialog rotationDialog;
+    Boolean isInitPosition;
     int isInitOrientation;
 
     @Override
     public void onConfigurationChanged(final Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         TempHolder.isActiveSpeedRead.set(false);
-        if (isInitPosistion == null) {
+        if (isInitPosition == null) {
             return;
         }
 
-        final boolean currentPosistion = Dips.screenHeight() > Dips.screenWidth();
+        final boolean currentPosition = Dips.screenHeight() > Dips.screenWidth();
 
         if (ExtUtils.isTextFomat(getIntent()) && isInitOrientation == AppState.get().orientation) {
 
-            if (rotatoinDialog != null) {
+            if (rotationDialog != null) {
                 try {
-                    rotatoinDialog.dismiss();
+                    rotationDialog.dismiss();
                 } catch (Exception e) {
                     LOG.e(e);
                 }
             }
 
-            if (isInitPosistion != currentPosistion) {
+            if (isInitPosition != currentPosition) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setCancelable(false);
                 dialog.setMessage(R.string.apply_a_new_screen_orientation_);
@@ -301,22 +331,22 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        doConifChange();
-                        isInitPosistion = currentPosistion;
+                        doConfigChange();
+                        isInitPosition = currentPosition;
                     }
                 });
-                rotatoinDialog = dialog.show();
-                rotatoinDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
+                rotationDialog = dialog.show();
+                rotationDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);
 
             }
         } else {
-            doConifChange();
+            doConfigChange();
         }
 
         isInitOrientation = AppState.get().orientation;
     }
 
-    public void doConifChange() {
+    public void doConfigChange() {
         try {
             if (!getController().getDocumentController().isInitialized()) {
                 LOG.d("Skip onConfigurationChanged");
@@ -389,7 +419,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         if (AppState.get().isShowLongBackDialog) {
             CloseAppDialog.showOnLongClickDialog(getController().getActivity(), null, getController().getListener());
         } else {
-            // showInterstial();
+            //showInterstial();
             getController().getListener().onCloseActivityAdnShowInterstial();
         }
 
@@ -409,6 +439,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
         }
         return super.onKeyUp(keyCode, event);
     }
+
     long keyTimeout = 0;
 
     @Override

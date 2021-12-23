@@ -90,6 +90,7 @@
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"
+                android:contentDescription="@string/day"
                 android:src="@drawable/glyphicons_232_sun" />
 
             <com.foobnix.pdf.info.view.UnderlineImageView

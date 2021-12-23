@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.sys.ImageExtractor;
 
 import java.io.ByteArrayInputStream;
@@ -53,7 +52,7 @@ public class SampleServer extends NanoHTTPD {
 
             String path = queryParameterString.replace("img=", "");
 
-            Bitmap bitmap = IMG.loadCoverPageWithEffect(path, IMG.getImageSize());
+            Bitmap bitmap = null;//IMG.loadCoverPageWithEffect(path, IMG.getImageSize());
 
             ByteArrayInputStream bitmapToStream = ImageExtractor.bitmapToStream(bitmap);
 

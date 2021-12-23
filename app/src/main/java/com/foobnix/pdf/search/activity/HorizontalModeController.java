@@ -74,6 +74,7 @@ public abstract class HorizontalModeController extends DocumentController {
         PageImageState.get().cleanSelectedWords();
         PageImageState.get().pagesText.clear();
 
+        AppSP.get().isSmartReflow = false;
 
         if (isTextFormat) {
             AppSP.get().isCrop = false;
@@ -97,6 +98,12 @@ public abstract class HorizontalModeController extends DocumentController {
             if (AppState.get().isCropPDF && !isTextFormat) {
                 AppSP.get().isCrop = true;
             }
+        }
+        if(AppState.get().alwaysTwoPages){
+            AppSP.get().isDouble = true;
+            AppSP.get().isCut = false;
+            AppSP.get().isDoubleCoverAlone = false;
+            AppSP.get().isSmartReflow = false;
         }
 
         FileMetaCore.checkOrCreateMetaInfo(activity);
@@ -301,7 +308,7 @@ public abstract class HorizontalModeController extends DocumentController {
                 String pageHTML = codecPage.getPageHTML();
                 codecPage.recycle();
                 pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
-                pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, "");
+                pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, " ");
                 pageHTML = pageHTML.replace(TxtUtils.NON_BREAKE_SPACE, " ");
                 return pageHTML;
 
@@ -537,7 +544,7 @@ public abstract class HorizontalModeController extends DocumentController {
         }
         if (outline == null) {
             outline = new ArrayList<OutlineLinkWrapper>();
-            new Thread() {
+            new Thread("@T getOutlineH") {
                 @Override
                 public void run() {
 

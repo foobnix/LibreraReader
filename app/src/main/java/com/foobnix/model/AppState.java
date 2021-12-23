@@ -19,11 +19,13 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 
 import org.librera.LinkedJSONObject;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,6 +34,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.xml.stream.events.Characters;
 
 public class AppState {
 
@@ -51,7 +55,7 @@ public class AppState {
     public static final String PNG = "PNG";
     public static final String JPG = "JPG";
     public static final String[] LIBRE_EXT = ".odp, .pptx, .ppt".split(", ");
-    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .md, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
+    public static final String[] OTHER_BOOK_EXT = ".abw, .docm, .lwp, .n, .rst, .sdw, .tex, .wpd, .wps, .zabw, .cbc, .chm, .lit, .lrf, .oeb, .pml, .rb, .snb, .tcr, .txtz, .azw1, .tpz".split(", ");
     public static final String[] OTHER_ARCH_EXT = ".img, .rar, .7z, .arj, .bz2, .bzip2, .tbz2, .tbz, .txz, .cab, .gz, .gzip, .tgz, .iso, .lzh, .lha, .lzma, .tar, .xar, .z, .taz, .xz, .dmg".split(", ");
     public static final String PREF_SCROLL_MODE = "pdf, djvu";
     public static final String PREF_BOOK_MODE = "epub, mobi, fb2, azw, azw3";
@@ -97,7 +101,7 @@ public class AppState {
 
             // "http://opds.litres.ru,Litres,Библиотека электронных
             // книг,assets://opds/litres.ico;" + //
-            "https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
+            //"https://books.fbreader.org/opds,FBReader,My personal catalogue,assets://opds/fbreader.png;" + //
             // "https://www.gitbook.com/api/opds/catalog.atom,GitBook,Public books are
             // always free.,assets://opds/gitbook.png;" + //
             "http://www.feedbooks.com/publicdomain/catalog.atom,Feedbooks,Free ebooks,assets://opds/feedbooks.ico;" + //
@@ -122,10 +126,10 @@ public class AppState {
     public static final String TTS_REPLACEMENTS =
 
             "{'*[()\"«»*”“/\\\\[\\\\]]':' ' , " +//
-                    "'*[?!:;–|—|―]':'.' , " +//
+                    "'*[?!:;–|—|―]':'. ' , " +//
                     "'it’s':'it is' , " +//
                     "'#bla':'bla disabled' , " +//
-                    "'*(L|l)ib.':'$1ibréra'}";//
+                    "'*(L|l)ibre.':'$1ibréra'}";//
     public static final String TTS_PUNCUATIONS = ".;:!?";
     public final static String DEFAULTS_TABS_ORDER = "0#1,1#1,2#1,3#1,4#1,5#1,6#0,7#0";
     final public static List<Integer> WIDGET_SIZE = Arrays.asList(0, 70, 100, 150, 200, 250);
@@ -161,6 +165,7 @@ public class AppState {
     public final static int BR_SORT_BY_NUMBER = 4;// not possible
     public final static int BR_SORT_BY_PAGES = 5;// not possible
     public final static int BR_SORT_BY_EXT = 6;// not possible
+    public final static int BR_SORT_BY_AUTHOR = 7;// not possible
     public final static int NEXT_SCREEN_SCROLL_BY_PAGES = 0;
     public final static int OUTLINE_HEADERS_AND_SUBHEADERES = 0;
     public final static int OUTLINE_ONLY_HEADERS = 1;
@@ -174,10 +179,8 @@ public class AppState {
     public final static int READING_MODE_BOOK = 2;
     public final static int READING_MODE_MUSICIAN = 3;
     public final static int READING_MODE_TAG_MANAGER = 4;
-    public final static List<String> appDictionariesKeysTest = Arrays.asList(//
-            "pdf" //
-            //
-    );
+    public final static int READING_MODE_OPEN_WITH = 5;
+
     public final static List<String> appDictionariesKeys = Arrays.asList(//
             "search", //
             "lingvo", //
@@ -199,8 +202,13 @@ public class AppState {
 
             //
     );
-    public static Map<String, String[]> CONVERTERS = new LinkedHashMap<String, String[]>();
-    public static Map<String, String> TTS_ENGINES = new LinkedHashMap<String, String>();
+    public static final List<String> langCodes = Arrays.asList(//
+            "en", "ar", "cs", "de", "es", "fa", "fi", "fr", "he", //
+            "hi", "hu", "id", "it", "ja", "ko", "la", "lt", //
+            "nl", "no", "pl", "pt", "ro", "ru", "sc", "sk", "sv", //
+            "sw", "th", "tr", "uk", "vi", "ga", "bg", "ml", "ta", DialogTranslateFromTo.CHINESE_SIMPLE, DialogTranslateFromTo.CHINESE_TRADITIOANAL);
+    public static Map<String, String[]> CONVERTERS = new LinkedHashMap<>();
+    public static Map<String, String> TTS_ENGINES = new LinkedHashMap<>();
     public static int COLOR_WHITE = Color.WHITE;
     // public static int COLOR_BLACK = Color.parseColor("#030303");
     public static int COLOR_BLACK = Color.BLACK;
@@ -299,6 +307,10 @@ public class AppState {
     //public boolean isFullScreenMain = false;
     public boolean isAccurateFontSize = false;
     public boolean isShowFooterNotesInText = false;
+
+    public boolean isCharacterEncoding = false;
+    public String characterEncoding = "UTF-8";
+
     @IgnoreHashCode
     public boolean isEditMode = true;
     public int fullScreenMode = FULL_SCREEN_NORMAL;
@@ -315,6 +327,7 @@ public class AppState {
     // 25 - 25%
     // persent
     public boolean tapPositionTop = true;
+    public boolean tabWithNames = true;
     public long fontExtractTime = 0;
     public int nextScreenScrollBy = NEXT_SCREEN_SCROLL_BY_PAGES;// 0 by
     public int nextScreenScrollMyValue = 15;
@@ -344,14 +357,10 @@ public class AppState {
     public boolean isEnableBC = false;
     @IgnoreHashCode
     public boolean stopReadingOnCall = true;
-
     @IgnoreHashCode
     public int appBrightness = AUTO_BRIGTNESS;
-
     @IgnoreHashCode
     public int appBrightnessNight = AUTO_BRIGTNESS;
-
-
     public volatile int fastReadSpeed = 200;
     public volatile int fastReadFontSize = 32;
     public volatile int fastManyWords = 2;
@@ -365,19 +374,13 @@ public class AppState {
     public boolean ttsTunnOnLastWord = false;
     @IgnoreHashCode
     public boolean isEnalbeTTSReplacements = true;
-
     public boolean isReferenceMode = false;
-
-
+    public boolean isEnableAccessibility = false;
     @IgnoreHashCode
     @Deprecated
     public String lineTTSReplacements;
-
-
     @IgnoreHashCode
     public String lineTTSReplacements3 = TTS_REPLACEMENTS;
-
-
     public List<Integer> nextKeys = NEXT_KEYS;
     public List<Integer> prevKeys = PREV_KEYS;
     @IgnoreHashCode
@@ -502,7 +505,7 @@ public class AppState {
     public boolean isCutRTL = Urls.isRtl();
     // perofrmance
     public int pagesInMemory = 3;
-    public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? 1.4f : 1.2f;
+    public float pageQuality = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? 1.6f : 1.4f;
     public int rotate = 0;
     public int rotateViewPager = 0;
     @IgnoreHashCode
@@ -527,7 +530,7 @@ public class AppState {
     public boolean selectingByLetters = Arrays.asList("ja", "zh", "ko", "vi").contains(Urls.getLangCode());
     public long installationDate = System.currentTimeMillis();
     @IgnoreHashCode
-    public boolean isShowLongBackDialog = false;
+    public boolean isShowLongBackDialog = true;
     @IgnoreHashCode
     public boolean isZoomInOutWithVolueKeys = false;
     @IgnoreHashCode
@@ -552,17 +555,12 @@ public class AppState {
     public int blueLightColor = BLUE_FILTER_DEFAULT_COLOR;
     @IgnoreHashCode
     public int blueLightAlpha = 30;
-
     @IgnoreHashCode
     public int blueLightAlphaNight = 30;
-
     @IgnoreHashCode
     public boolean isEnableBlueFilter = false;
-
     @IgnoreHashCode
     public boolean isEnableBlueFilterNight = false;
-
-
     public boolean proxyEnable = false;
     public String proxyServer = "";
     public int proxyPort = 0;
@@ -582,9 +580,16 @@ public class AppState {
     public boolean isSelectTexByTouch = false;
     public boolean isAppPassword;
     public boolean isLoaded = false;
+    public boolean isUseCalibreOpf = true;
+    public boolean isDisplayAnnotation = false;
+    public boolean isMirrorImage = false;
+    public boolean alwaysTwoPages = false;
+    public boolean isDefaultHyphenLanguage = false;
+    public String defaultHyphenLanguageCode = "en";
+    public boolean isMenuIntegration = false;
 
     public static Map<String, String> getDictionaries(String input) {
-        final Map<String, String> providers = new LinkedHashMap<String, String>();
+        final Map<String, String> providers = new LinkedHashMap<>();
         String ln = AppState.get().toLang;
         String from = AppState.get().fromLang;
         String text = Uri.encode(input);
@@ -626,7 +631,7 @@ public class AppState {
     }
 
     public static List<Integer> stringToKyes(final String list) {
-        final List<Integer> res = new ArrayList<Integer>();
+        final List<Integer> res = new ArrayList<>();
 
         for (final String value : list.split(",")) {
             if (value != null && !value.trim().equals("")) {
@@ -665,10 +670,10 @@ public class AppState {
             isZoomInOutWithLock = false;
         }
 
+
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }
-
 
 
     }
@@ -685,17 +690,17 @@ public class AppState {
                 AppState.get().isShowPanelBookNameBookMode = false;
             }
 
-            try{
-                if(TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)){
-                    LinkedJSONObject o1 =  new LinkedJSONObject(AppState.get().lineTTSReplacements);
-                    LinkedJSONObject o3 =  new LinkedJSONObject(AppState.get().lineTTSReplacements3);
+            try {
+                if (TxtUtils.isNotEmpty(AppState.get().lineTTSReplacements)) {
+                    LinkedJSONObject o1 = new LinkedJSONObject(AppState.get().lineTTSReplacements);
+                    LinkedJSONObject o3 = new LinkedJSONObject(AppState.get().lineTTSReplacements3);
                     Iterator<String> keys = o1.keys();
-                    while(keys.hasNext()){
+                    while (keys.hasNext()) {
                         String key = keys.next();
-                        if(!key.startsWith("[")){
+                        if (!key.startsWith("[")) {
                             String value = o1.getString(key);
                             o3.put(key, value);
-                            LOG.d("migration", key,value);
+                            LOG.d("migration", key, value);
                         }
 
                     }
@@ -703,7 +708,7 @@ public class AppState {
                     AppState.get().lineTTSReplacements = "";
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 LOG.e(e);
             }
 

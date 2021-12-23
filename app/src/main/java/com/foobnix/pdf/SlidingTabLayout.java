@@ -21,8 +21,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.ui2.MainTabs2;
 import com.foobnix.ui2.adapter.TabsAdapter2;
@@ -243,7 +245,15 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
 
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
+        if (AppState.get().tabWithNames) {
+            textView.setPadding(padding, padding, padding, padding);
+        } else {
+            if (myPOS == POS_HORIZONTAL) {
+                textView.setPadding((int) (padding * 1.6), padding, padding, padding);
+            } else {
+                textView.setPadding(padding, (int) (padding * 1.5), padding, 0);
+            }
+        }
 
         return textView;
     }
@@ -279,7 +289,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             if (tabTitleView != null) {
-                tabTitleView.setText(adapter.getPageTitle(i));
+                CharSequence pageTitle = adapter.getPageTitle(i);
+                if (AppState.get().tabWithNames) {
+                    tabTitleView.setText(pageTitle);
+                } else {
+                    tabTitleView.setText("");
+                }
+                tabTitleView.setContentDescription(pageTitle + " " + getContext().getString(R.string.tab));
                 // TintUtil.addTextView(tabTitleView);
 
                 Drawable drawable = getContext().getResources().getDrawable(adapter.getIconResId(i));
@@ -290,7 +306,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     tabTitleView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
                 }
 
+
                 tabTitleView.setCompoundDrawablePadding(Dips.dpToPx(5));
+
 
                 if (AppState.get().appTheme == AppState.THEME_INK) {
                     // TintUtil.setDrawableTint(drawable, Color.BLACK);
@@ -303,7 +321,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 tabView.setOnClickListener(tabClickListener);
 
 
-                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+                getmTabStrip().addView(tabView, new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1));
 
             }
         }

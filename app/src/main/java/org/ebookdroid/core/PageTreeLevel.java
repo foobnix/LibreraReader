@@ -4,7 +4,7 @@ import org.ebookdroid.core.models.ZoomModel;
 
 public class PageTreeLevel {
 
-    public static final int ZOOM_THRESHOLD = 2;
+    public static final int ZOOM_THRESHOLD = 3;
 
     public static final PageTreeLevel ROOT;
     public static final PageTreeLevel[] LEVELS;
@@ -22,6 +22,7 @@ public class PageTreeLevel {
             end = l.end;
         }
         NODES = end;
+        //NODES = 1;
     }
 
     public final int level;

@@ -33,10 +33,16 @@ public class TxtExtract {
     public static FooterNote extract(String inputPath, String outputDir) throws IOException {
         File file = new File(outputDir, AppState.get().isPreText + OUT_FB2_XML);
 
-
         boolean isJSON = inputPath.endsWith(".json");
 
-        String encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
+        String encoding = "UTF-8";
+        if(AppState.get().isCharacterEncoding){
+            encoding = AppState.get().characterEncoding;
+        }else{
+            encoding = ExtUtils.determineTxtEncoding(new FileInputStream(inputPath));
+        }
+
+
 
         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
         PrintWriter writer = new PrintWriter(file);
@@ -65,6 +71,8 @@ public class TxtExtract {
 
         while ((line = input.readLine()) != null) {
             String outLn = null;
+
+
 
 
 
@@ -103,7 +111,10 @@ public class TxtExtract {
                 outLn = outLn.replace(",",",<br/>");
             }
 
-            // LOG.d("LINE", outLn);
+
+            outLn = Fb2Extractor.accurateLine(outLn);
+            LOG.d("LINE", outLn);
+
             writer.println(outLn);
         }
         if (AppState.get().isLineBreaksText) {

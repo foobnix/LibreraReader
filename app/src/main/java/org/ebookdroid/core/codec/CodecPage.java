@@ -17,7 +17,7 @@ public interface CodecPage {
 
 	int getHeight();
 
-	BitmapRef renderBitmap(int width, int height, RectF pageSliceBounds);
+	BitmapRef renderBitmap(int width, int height, RectF pageSliceBounds, boolean cache);
 
     BitmapRef renderBitmapSimple(int width, int height, RectF pageSliceBounds);
 

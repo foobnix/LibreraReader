@@ -61,11 +61,15 @@ import java.util.concurrent.TimeUnit;
 
 public class VerticalModeController extends DocumentController {
 
-    private ViewerActivityController ctr;
-
     private static final double ZOOM_VALUE = 0.05;
-
     Handler handler;
+    Thread t = new Thread("@T AutoScroll");
+
+    long begin = 0;
+    float currentZoom, currentX, currentY, pageN;
+    boolean isLocked;
+    List<OutlineLinkWrapper> outline;
+    private ViewerActivityController ctr;
 
     public VerticalModeController(final Activity activity, final ViewerActivityController ctr) {
         super(activity);
@@ -74,7 +78,6 @@ public class VerticalModeController extends DocumentController {
         handler = new Handler();
         TempHolder.get().loadingCancelled = false;
     }
-
 
     @Override
     public void recyclePage(int pageNumber) {
@@ -104,7 +107,6 @@ public class VerticalModeController extends DocumentController {
         // return super.getPercentage();
     }
 
-
     @Override
     public void onScrollYPercent(float value) {
         if (true) {
@@ -122,7 +124,6 @@ public class VerticalModeController extends DocumentController {
     public int getBookHeight() {
         return ctr.getView().getHeight();
     }
-
 
     @Override
     public void cleanImageMatrix() {
@@ -386,7 +387,7 @@ public class VerticalModeController extends DocumentController {
 
         pageHTML = TxtUtils.replaceHTMLforTTS(pageHTML);
 
-        pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, "");
+        pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, " ");
         pageHTML = pageHTML.replace(TxtUtils.NON_BREAKE_SPACE, " ");
 
         return pageHTML;
@@ -399,7 +400,6 @@ public class VerticalModeController extends DocumentController {
         pageHTML = pageHTML.replace(TxtUtils.TTS_PAUSE, TxtUtils.TTS_PAUSE_VIEW);
         return pageHTML;
     }
-
 
     @Override
     public List<PageLink> getLinksForPage(int page) {
@@ -446,10 +446,6 @@ public class VerticalModeController extends DocumentController {
 
         }
     }
-
-    Thread t = new Thread();
-
-    long begin = 0;
 
     @Override
     public void onAutoScroll() {
@@ -513,7 +509,7 @@ public class VerticalModeController extends DocumentController {
                 }
 
             }
-        });
+        },"@T AutoScroll 2");
         t.setPriority(Thread.NORM_PRIORITY);
         t.start();
     }
@@ -563,9 +559,6 @@ public class VerticalModeController extends DocumentController {
         commit();
 
     }
-
-    float currentZoom, currentX, currentY, pageN;
-    boolean isLocked;
 
     @Override
     public void onZoomInOut(int x, int y) {
@@ -710,7 +703,7 @@ public class VerticalModeController extends DocumentController {
                         }
 
                     }
-                    final ProgressDialog progress = MyProgressDialog.show(getActivity(),  getActivity().getString(R.string.saving_));
+                    final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
                     progress.setCancelable(false);
                     progress.show();
                     ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
@@ -801,12 +794,20 @@ public class VerticalModeController extends DocumentController {
 
     @Override
     public int getCurentPage() {
-        return ctr.getDocumentModel().getCurrentViewPageIndex() + 1;
+        try {
+            return ctr.getDocumentModel().getCurrentViewPageIndex() + 1;
+        } catch (Exception e) {
+            return 1;
+        }
     }
 
     @Override
     public int getPageCount() {
-        return ctr.getDocumentModel().getPageCount();
+        try {
+            return ctr.getDocumentModel().getPageCount();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     @Override
@@ -867,8 +868,6 @@ public class VerticalModeController extends DocumentController {
             }
         });
     }
-
-    List<OutlineLinkWrapper> outline;
 
     @Override
     public synchronized void getOutline(final ResultResponse<List<OutlineLinkWrapper>> resultWrapper, boolean forseRealod) {

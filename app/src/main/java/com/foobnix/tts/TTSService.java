@@ -62,18 +62,127 @@ public class TTSService extends Service {
     private static final String TAG = "TTSService";
 
     public static String ACTION_PLAY_CURRENT_PAGE = "ACTION_PLAY_CURRENT_PAGE";
+    private final BroadcastReceiver blueToothReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            LOG.d("blueToothReceiver", intent);
+            TTSEngine.get().stop();
+            TTSNotification.showLast();
+        }
+    };
+    int width;
+    int height;
+    AudioManager mAudioManager;
+    MediaSessionCompat mMediaSessionCompat;
+    boolean isActivated;
+    boolean isPlaying;
+    Object audioFocusRequest;
+    volatile boolean isStartForeground = false;
+    CodecDocument cache;
+    String path;
+    int wh;
+    int emptyPageCount = 0;
+    final OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
+
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            LOG.d("onAudioFocusChange", focusChange);
+            if (AppState.get().isEnableAccessibility) {
+                return;
+            }
+
+            if (!AppState.get().stopReadingOnCall) {
+                return;
+            }
+            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                LOG.d("Ingore Duck");
+                return;
+            }
+
+            if (focusChange < 0) {
+                isPlaying = TTSEngine.get().isPlaying();
+                LOG.d("onAudioFocusChange", "Is playing", isPlaying);
+                TTSEngine.get().stop();
+                TTSNotification.showLast();
+            } else {
+                if (isPlaying) {
+                    playPage("", AppSP.get().lastBookPage, null);
+                }
+            }
+            EventBus.getDefault().post(new TtsStatus());
+        }
+    };
     private WakeLock wakeLock;
+
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+                    .setAudioAttributes(
+                            new AudioAttributes.Builder()
+                                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                    .setLegacyStreamType(AudioManager.STREAM_MUSIC)
+                                    .build())
+                    .setAcceptsDelayedFocusGain(true)
+                    .setWillPauseWhenDucked(false)
+                    .setOnAudioFocusChangeListener(listener)
+                    .build();
+        }
+    }
 
     public TTSService() {
         LOG.d(TAG, "Create constructor");
     }
 
-    int width;
-    int height;
+    public static void playLastBook() {
+        playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
+    }
 
-    AudioManager mAudioManager;
-    MediaSessionCompat mMediaSessionCompat;
-    boolean isActivated;
+    public static void playPause(Context context, DocumentController controller) {
+        if (TTSEngine.get().isPlaying()) {
+            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_IMMUTABLE);
+            try {
+                next.send();
+            } catch (CanceledException e) {
+                LOG.d(e);
+            }
+        } else {
+            if (controller != null) {
+                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+            }
+        }
+    }
+
+    @TargetApi(26)
+    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
+        LOG.d(TAG, "playBookPage", page, path, width, height);
+        TTSEngine.get().stop();
+
+        AppSP.get().lastBookWidth = width;
+        AppSP.get().lastBookHeight = height;
+        AppSP.get().lastFontSize = fontSize;
+        AppSP.get().lastBookTitle = title;
+        AppSP.get().lastBookPage = page;
+
+
+        Intent intent = playBookIntent(page, path, anchor);
+
+        if (Build.VERSION.SDK_INT >= 26) {
+            LibreraApp.context.startForegroundService(intent);
+        } else {
+            LibreraApp.context.startService(intent);
+        }
+
+    }
+
+    private static Intent playBookIntent(int page, String path, String anchor) {
+        Intent intent = new Intent(LibreraApp.context, TTSService.class);
+        intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
+        intent.putExtra(EXTRA_INT, page);
+        intent.putExtra(EXTRA_PATH, path);
+        intent.putExtra(EXTRA_ANCHOR, anchor);
+        return intent;
+    }
 
     @Override
     public void onCreate() {
@@ -97,8 +206,11 @@ public class TTSService extends Service {
 
         //mAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
+        Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        PendingIntent penginIntent = PendingIntent.getActivity(getApplicationContext(), 0, mediaButtonIntent, PendingIntent.FLAG_IMMUTABLE);
 
-        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag");
+
+        mMediaSessionCompat = new MediaSessionCompat(getApplicationContext(), "Tag",null,penginIntent);
         mMediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSessionCompat.setCallback(new MediaSessionCompat.Callback() {
             @Override
@@ -150,9 +262,9 @@ public class TTSService extends Service {
 
         });
 
-        Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
+        Intent intent = new Intent(Intent.ACTION_MEDIA_BUTTON);
         mediaButtonIntent.setClass(this, MediaButtonReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, mediaButtonIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         mMediaSessionCompat.setMediaButtonReceiver(pendingIntent);
 
         //setSessionToken(mMediaSessionCompat.getSessionToken());
@@ -199,119 +311,10 @@ public class TTSService extends Service {
 
     }
 
-
-    private final BroadcastReceiver blueToothReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            LOG.d("blueToothReceiver", intent);
-            TTSEngine.get().stop();
-            TTSNotification.showLast();
-        }
-    };
-
-
-    boolean isPlaying;
-    final OnAudioFocusChangeListener listener = new OnAudioFocusChangeListener() {
-
-        @Override
-        public void onAudioFocusChange(int focusChange) {
-            LOG.d("onAudioFocusChange", focusChange);
-            if (!AppState.get().stopReadingOnCall) {
-                return;
-            }
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                LOG.d("Ingore Duck");
-                return;
-            }
-
-            if (focusChange < 0) {
-                isPlaying = TTSEngine.get().isPlaying();
-                LOG.d("onAudioFocusChange", "Is playing", isPlaying);
-                TTSEngine.get().stop();
-                TTSNotification.showLast();
-            } else {
-                if (isPlaying) {
-                    playPage("", AppSP.get().lastBookPage, null);
-                }
-            }
-            EventBus.getDefault().post(new TtsStatus());
-        }
-    };
-
-    Object audioFocusRequest;
-
-    {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
-                    .setAudioAttributes(
-                            new AudioAttributes.Builder()
-                                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                                    .setLegacyStreamType(AudioManager.STREAM_MUSIC)
-                                    .build())
-                    .setAcceptsDelayedFocusGain(true)
-                    .setWillPauseWhenDucked(false)
-                    .setOnAudioFocusChangeListener(listener)
-                    .build();
-        }
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
-
-    public static void playLastBook() {
-        playBookPage(AppSP.get().lastBookPage, AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, AppSP.get().lastFontSize, AppSP.get().lastBookTitle);
-    }
-
-    public static void playPause(Context context, DocumentController controller) {
-        if (TTSEngine.get().isPlaying()) {
-            PendingIntent next = PendingIntent.getService(context, 0, new Intent(TTSNotification.TTS_PAUSE, null, context, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
-            try {
-                next.send();
-            } catch (CanceledException e) {
-                LOG.d(e);
-            }
-        } else {
-            if (controller != null) {
-                TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
-            }
-        }
-    }
-
-    @TargetApi(26)
-    public static void playBookPage(int page, String path, String anchor, int width, int height, int fontSize, String title) {
-        LOG.d(TAG, "playBookPage", page, path, width, height);
-        TTSEngine.get().stop();
-
-        AppSP.get().lastBookWidth = width;
-        AppSP.get().lastBookHeight = height;
-        AppSP.get().lastFontSize = fontSize;
-        AppSP.get().lastBookTitle = title;
-        AppSP.get().lastBookPage = page;
-
-
-        Intent intent = playBookIntent(page, path, anchor);
-
-        if (Build.VERSION.SDK_INT >= 26) {
-            LibreraApp.context.startForegroundService(intent);
-        } else {
-            LibreraApp.context.startService(intent);
-        }
-
-    }
-
-    private static Intent playBookIntent(int page, String path, String anchor) {
-        Intent intent = new Intent(LibreraApp.context, TTSService.class);
-        intent.setAction(TTSService.ACTION_PLAY_CURRENT_PAGE);
-        intent.putExtra(EXTRA_INT, page);
-        intent.putExtra(EXTRA_PATH, path);
-        intent.putExtra(EXTRA_ANCHOR, anchor);
-        return intent;
-    }
-
-    volatile boolean isStartForeground = false;
 
     public void startMyForeground() {
         if (!isStartForeground) {
@@ -335,7 +338,7 @@ public class TTSService extends Service {
     }
 
     private void startServiceWithNotification() {
-        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent stopDestroy = PendingIntent.getService(this, 0, new Intent(TTSNotification.TTS_STOP_DESTROY, null, this, TTSService.class), PendingIntent.FLAG_IMMUTABLE );
         Notification notification = new NotificationCompat.Builder(this, TTSNotification.DEFAULT) //
                 .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
                 .setContentTitle(Apps.getApplicationName(this)) //
@@ -368,7 +371,7 @@ public class TTSService extends Service {
 
         if (TTSNotification.TTS_STOP_DESTROY.equals(intent.getAction())) {
             TTSEngine.get().mp3Destroy();
-            BookCSS.get().mp3BookPath = null;
+            BookCSS.get().mp3BookPath(null);
             AppState.get().mp3seek = 0;
             TTSEngine.get().stop();
 
@@ -485,10 +488,6 @@ public class TTSService extends Service {
         return START_STICKY;
     }
 
-    CodecDocument cache;
-    String path;
-    int wh;
-
     public CodecDocument getDC() {
         try {
             if (AppSP.get().lastBookPath != null && AppSP.get().lastBookPath.equals(path) && cache != null && wh == AppSP.get().lastBookWidth + AppSP.get().lastBookHeight) {
@@ -501,6 +500,10 @@ public class TTSService extends Service {
             }
             path = AppSP.get().lastBookPath;
             cache = ImageExtractor.singleCodecContext(AppSP.get().lastBookPath, "", AppSP.get().lastBookWidth, AppSP.get().lastBookHeight);
+            if (cache == null) {
+                TTSNotification.hideNotification();
+                return null;
+            }
             cache.getPageCount(AppSP.get().lastBookWidth, AppSP.get().lastBookHeight, BookCSS.get().fontSizeSp);
             wh = AppSP.get().lastBookWidth + AppSP.get().lastBookHeight;
             LOG.d(TAG, "CodecDocument new", AppSP.get().lastBookPath, AppSP.get().lastBookWidth, AppSP.get().lastBookHeight);
@@ -510,8 +513,6 @@ public class TTSService extends Service {
             return null;
         }
     }
-
-    int emptyPageCount = 0;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     private void playPage(String preText, int pageNumber, String anchor) {
@@ -524,6 +525,7 @@ public class TTSService extends Service {
             CodecDocument dc = getDC();
             if (dc == null) {
                 LOG.d(TAG, "CodecDocument", "is NULL");
+                TTSNotification.hideNotification();
                 return;
             }
 
@@ -697,7 +699,7 @@ public class TTSService extends Service {
 
                 SharedBooks.save(load, false);
                 AppProfile.save(this);
-            }).start();
+            },"@T TTS Save").start();
 
         }
     }

@@ -15,7 +15,6 @@ public class AppSP {
     private static AppSP instance = new AppSP();
     public String lastBookPath;
     public String lastClosedActivity;
-    public String lastMode;
     public int lastBookPage = 0;
     public int lastBookPageCount = 0;
     public int tempBookPage = 0;
@@ -31,16 +30,17 @@ public class AppSP {
     public int readingMode = AppState.READING_MODE_BOOK;
     public long syncTime;
     public int syncTimeStatus;
-    public String hypenLang;
+    public String hypenLang = null;
     public boolean isCut = false;
     public boolean isDouble = false;
     public boolean isDoubleCoverAlone = false;
     public boolean isCrop = false;
     public boolean isCropSymetry = false;
+    public boolean isSmartReflow = false;
     public boolean isEnableSync;
     public String syncRootID;
 
-    public String currentProfile = BuildConfig.IS_BETA ? "BETA" : "Librera";
+    public String currentProfile = BuildConfig.DEBUG ? "BETA" : "Librera";
     public String rootPath = new File(Environment.getExternalStorageDirectory(), "Librera").toString();
 
     transient SharedPreferences sp;

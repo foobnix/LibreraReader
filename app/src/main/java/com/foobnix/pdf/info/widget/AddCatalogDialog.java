@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.AsyncTasks;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -33,7 +34,11 @@ import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.sys.TempHolder;
-import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.LibreraApp;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AddCatalogDialog {
 
@@ -101,7 +106,7 @@ public class AddCatalogDialog {
                 TempHolder.get().login = l;
                 TempHolder.get().password = p;
                 sp.edit().putString(Uri.parse(url).getHost(), l + TxtUtils.TTS_PAUSE + p).commit();
-                LOG.d("showDialogLogin SAVE", Uri.parse(url).getHost(),url);
+                LOG.d("showDialogLogin SAVE", Uri.parse(url).getHost(), url);
 
                 infoDialog.dismiss();
                 onRefresh.run();
@@ -137,7 +142,8 @@ public class AddCatalogDialog {
             url.setText(line[0]);
             name.setText(line[1]);
             description.setText(line[2]);
-            ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
+            //ImageLoader.getInstance().displayImage(line[3], image, IMG.displayCacheMemoryDisc);
+            Glide.with(LibreraApp.context).load(line[3]).into(image);
 
             if (e.logo != null) {
                 image.setTag(e.logo);
@@ -148,7 +154,7 @@ public class AddCatalogDialog {
         image.setVisibility(View.GONE);
 
         builder.setView(dialog);
-        builder.setTitle(R.string.add_catalog);
+        builder.setTitle(a.getString(R.string.add_catalog)+" (OPDS, Calibre)");
 
         builder.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
@@ -223,6 +229,17 @@ public class AddCatalogDialog {
                 asyncTask = new AsyncTask() {
                     @Override
                     protected Object doInBackground(Object... params) {
+                        List<String> suffixes = Arrays.asList("", "/opds", ":8080", ":8080/opds");
+                        for (String suffix : suffixes) {
+                            final String uri = TxtUtils.replaceLast(feedUrl, "/", "") + suffix;
+                            LOG.d("OPDS-uri", uri);
+                            Feed feed = com.foobnix.opds.OPDS.getFeed(uri, a);
+                            if (feed != null && !feed.entries.isEmpty()) {
+                                LOG.d("OPDS-uri-success", uri);
+                                a.runOnUiThread(() -> url.setText(uri));
+                                return feed;
+                            }
+                        }
                         return com.foobnix.opds.OPDS.getFeed(feedUrl, a);
                     }
 
@@ -231,7 +248,6 @@ public class AddCatalogDialog {
                         MyProgressBar.setVisibility(View.VISIBLE);
                         image.setVisibility(View.GONE);
                     }
-
 
 
                     @Override
@@ -265,9 +281,10 @@ public class AddCatalogDialog {
 
                             if (feed.icon != null) {
                                 image.setVisibility(View.VISIBLE);
-                                feed.icon = Hrefs.fixHref(feed.icon, feedUrl);
+                                feed.icon = Hrefs.fixHref(feed.icon, feed.homeUrl);
                                 image.setTag(feed.icon);
-                                ImageLoader.getInstance().displayImage(feed.icon, image, IMG.displayCacheMemoryDisc);
+                                LOG.d("feed.icon",feed.icon);
+                                IMG.with(a).load(feed.icon).into(image);
                             } else {
                                 image.setTag("assets://opds/web.png");
                             }

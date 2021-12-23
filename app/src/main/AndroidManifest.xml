@@ -6,26 +6,34 @@
     android:versionCode="941"
     android:versionName="7.12.87">
 
-   <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
+    <uses-sdk tools:overrideLibrary="com.google.firebase.iid" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"  />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
 
-    <application android:requestLegacyExternalStorage="true"
+    <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
+
+
+    <application
         android:name="org.ebookdroid.LibreraApp"
         android:icon="${appIcon}"
         android:label="${appName}"
         android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="${appRoundIcon}"
         android:theme="@style/StyledIndicatorsWhite"
         android:usesCleartextTraffic="true"
+        android:vmSafeMode="${appSafeMode}"
         tools:replace="label, icon, roundIcon">
 
         <meta-data
@@ -54,19 +62,30 @@
 
         <activity
             android:name="com.foobnix.zipmanager.SendReceiveActivity"
+            android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
 
+        <activity-alias
+            android:name="com.foobnix.zipmanager.SendReceiveActivityAlias"
+            android:exported="true"
+            android:targetActivity="com.foobnix.zipmanager.SendReceiveActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity-alias>
+
         <activity
             android:name="com.foobnix.OpenerActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan">
 
@@ -94,11 +113,15 @@
                 <data android:mimeType="application/x-mobipocket-ebook" />
                 <data android:mimeType="application/x-palm-database" />
                 <data android:mimeType="application/x-cbz" />
+                <data android:mimeType="application/comicbook+zip" />
                 <data android:mimeType="application/x-cbr" />
+                <data android:mimeType="application/comicbook+rar" />
                 <data android:mimeType="application/rtf" />
                 <data android:mimeType="application/x-rtf" />
                 <data android:mimeType="application/azw" />
                 <data android:mimeType="application/azw3" />
+                <data android:mimeType="application/x-mobi8-ebook" />
+                <data android:mimeType="application/x-kindle-application" />
                 <data android:mimeType="application/x-mimearchive" />
                 <data android:mimeType="application/vnd.oasis.opendocument.text" />
                 <data android:mimeType="application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
@@ -218,13 +241,15 @@
             </intent-filter>
         </service>
 
-        <receiver android:name="androidx.media.session.MediaButtonReceiver">
+        <receiver android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
         <activity
+            android:exported="true"
             android:name="com.foobnix.tts.TTSActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:launchMode="singleTask">
@@ -235,6 +260,7 @@
 
 
         <activity
+            android:exported="true"
             android:name="com.foobnix.ui2.CloudrailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
@@ -250,15 +276,9 @@
         </activity>
 
 
+
         <activity
-            android:name="com.foobnix.sys.TestActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN1" />
-                <category android:name="android.intent.category.LAUNCHER1" />
-            </intent-filter>
-        </activity>
-        <activity
+            android:exported="true"
             android:name="test.SvgActivity"
             android:launchMode="singleTop">
             <intent-filter>
@@ -282,24 +302,10 @@
                 <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.PROCESS_TEXT1" />
-
-                <category android:name="android.intent.category.DEFAULT1" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.SEARCH1" />
-
                 <category android:name="android.intent.category.DEFAULT1" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.SEND1" />
 
-                <category android:name="android.intent.category.DEFAULT1" />
-
-                <data android:mimeType="text/plain" />
-            </intent-filter>
         </activity>
 
         <receiver
@@ -309,10 +315,6 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE_TEST" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/recent_images_provider_3x1" />

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
@@ -18,10 +19,12 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.ui2.AppDB;
-import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.ebookdroid.LibreraApp;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class StackGridWidgetService extends RemoteViewsService {
@@ -51,9 +54,9 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onDataSetChanged() {
         if (AppState.get().isStarsInWidget) {
-            recent = AppData.get().getAllFavoriteFiles();
+            recent = AppData.get().getAllFavoriteFiles(false);
         } else {
-            recent = AppData.get().getAllRecent();
+            recent = AppData.get().getAllRecent(false);
         }
         AppDB.removeClouds(recent);
     }
@@ -79,12 +82,18 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         FileMeta uri = recent.get(position);
 
         String url = IMG.toUrl(uri.getPath(), ImageExtractor.COVER_PAGE_WITH_EFFECT, IMG.getImageSize());
-        Bitmap image = ImageLoader.getInstance().loadImageSync(url, IMG.displayCacheMemoryDisc);
-        v.setImageViewBitmap(R.id.imageView1, image);
-        // v.setContentDescription(R.id.imageView1, new File(uri.getPath()).getName());
+
+        try {
+            Bitmap image = Glide.with(LibreraApp.context).asBitmap().load(url).submit().get();
+            v.setImageViewBitmap(R.id.imageView1, image);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         Bundle extras = new Bundle();
-        extras.putInt("pos", position);
         extras.putParcelable("uri", Uri.fromFile(new File(uri.getPath())));
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);

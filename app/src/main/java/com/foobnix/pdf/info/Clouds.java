@@ -502,7 +502,7 @@ public class Clouds {
     }
 
     public void loginToDropbox(final Activity a, final Runnable success) {
-        new Thread() {
+        new Thread("@T loginToDropbox") {
             @Override
             public void run() {
                 try {
@@ -547,7 +547,8 @@ public class Clouds {
     }
 
     public void loginToOneDrive(final Activity a, final Runnable success) {
-        new Thread() {
+        new Thread("@T loginToOneDrive") {
+
             @Override
             public void run() {
                 try {
@@ -588,7 +589,7 @@ public class Clouds {
     }
 
     public void loginToGoogleDrive(final Activity a, final Runnable success) {
-        new Thread() {
+        new Thread("@T loginToGoogleDrive") {
             @Override
             public void run() {
                 try {

@@ -46,7 +46,6 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.ADS;
 import com.foobnix.pdf.info.ExtUtils;
-import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.Urls;
@@ -566,7 +565,12 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     bookPath = createDocument.toString();
                                     outStream = getActivity().getContentResolver().openOutputStream(createDocument);
                                 } else {
-                                    File LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                    File LIRBI_DOWNLOAD_DIR;
+                                    if (TxtUtils.isNotEmpty(link.author)) {
+                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath, TxtUtils.fixFileName(link.author));
+                                    } else {
+                                        LIRBI_DOWNLOAD_DIR = new File(BookCSS.get().downlodsPath);
+                                    }
                                     if (!LIRBI_DOWNLOAD_DIR.exists()) {
                                         LIRBI_DOWNLOAD_DIR.mkdirs();
                                     }
@@ -640,7 +644,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                                     FileMeta meta = AppDB.get().getOrCreate(bookPath);
                                     meta.setIsSearchBook(true);
                                     AppDB.get().updateOrSave(meta);
-                                    IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
+                                    //IMG.loadCoverPageWithEffect(meta.getPath(), IMG.getImageSize());
                                 }
                                 TempHolder.listHash++;
 
@@ -780,7 +784,7 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     @Override
     public void populateDataInUI(List<Entry> entries) {
         if (isNeedLoginPassword) {
-            AddCatalogDialog.showDialogLogin(getActivity(),url, () -> populate());
+            AddCatalogDialog.showDialogLogin(getActivity(), url, () -> populate());
             return;
         }
 

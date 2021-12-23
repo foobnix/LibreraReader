@@ -40,7 +40,7 @@ public class CoreSettings {
         /* =============== Performance settings =============== */
 
         pagesInMemory = 2;
-        decodingThreadPriority = Thread.NORM_PRIORITY; // 7
+        decodingThreadPriority = Thread.MAX_PRIORITY; // 7
         drawThreadPriority = Thread.NORM_PRIORITY; // 6
 
         bitmapSize = Dips.screenMinWH() < 800 ? 8 : 9;// 6-64,7-128,8-256,9-512,10-1024

@@ -18,22 +18,22 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.tts.TTSNotification;
 import com.google.android.gms.ads.MobileAds;
 
-import org.ebookdroid.common.bitmaps.BitmapManager;
+import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
 
-
-
 public class LibreraApp extends MultiDexApplication {
 
+    public final static int MUPDF_VERSION;
     public static Context context;
 
     static {
         System.loadLibrary("mypdf");
         System.loadLibrary("mobi");
         System.loadLibrary("antiword");
+        MUPDF_VERSION = MuPdfDocument.getMupdfVersion();
     }
 
     @Override
@@ -41,16 +41,20 @@ public class LibreraApp extends MultiDexApplication {
         super.onCreate();
 
 
-
         context = getApplicationContext();
         Dips.init(this);
 
-        if (!AppsConfig.checkIsProInstalled(this)) {
-            MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+        try {
+            if (!AppsConfig.checkIsProInstalled(this)) {
+                MobileAds.initialize(this, Apps.getMetaData(this, "com.google.android.gms.ads.APPLICATION_ID"));
+            }
+        } catch (Exception e) {
+            AppsConfig.IS_NO_ADS = true;
+            LOG.e(e);
         }
 
 
-        LOG.isEnable = BuildConfig.LOG || BuildConfig.IS_BETA;
+        LOG.isEnable = BuildConfig.DEBUG || AppsConfig.IS_LOG || AppsConfig.IS_BETA;
 
         TTSNotification.initChannels(this);
 
@@ -64,6 +68,7 @@ public class LibreraApp extends MultiDexApplication {
         LOG.d("Build", "Build.DEVICE", Build.DEVICE);
         LOG.d("Build", "Build.BRAND", Build.BRAND);
         LOG.d("Build", "Build.MODEL", Build.MODEL);
+        LOG.d("Build", "Build.VERSION.SDK_INT", Build.VERSION.SDK_INT);
 
         LOG.d("Build", "Build.screenWidth", Dips.screenWidthDP(), Dips.screenWidth());
 
@@ -106,6 +111,7 @@ public class LibreraApp extends MultiDexApplication {
         }
 
 
+
     }
 
     @Override
@@ -113,7 +119,6 @@ public class LibreraApp extends MultiDexApplication {
         super.onLowMemory();
         LOG.d("AppState save onLowMemory");
         IMG.clearMemoryCache();
-        BitmapManager.clear("on Low Memory: ");
         TintUtil.clean();
     }
 

@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -57,12 +58,16 @@ public class MyPopupMenu {
         this.c = c;
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+
+
     }
 
     public MyPopupMenu(View anchor) {
         this.c = anchor.getContext();
         this.anchor = anchor;
         isTabsActivity = c instanceof MainTabs2;
+
+
     }
 
     public void show() {
@@ -79,6 +84,18 @@ public class MyPopupMenu {
         }
 
         final ListPopupWindow p1 = new ListPopupWindow(c);
+
+
+        if (AppState.get().isEnableAccessibility) {
+            getMenu(0).add(R.string.close).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    p1.dismiss();
+                    return true;
+                }
+            });
+        }
+
 
         BaseItemLayoutAdapter<Menu> a = new BaseItemLayoutAdapter<Menu>(c, R.layout.item_dict_line, list) {
             @Override
@@ -276,6 +293,11 @@ public class MyPopupMenu {
     public Menu getMenu() {
         Menu m = new Menu();
         list.add(m);
+        return m;
+    }
+    public Menu getMenu(int pos) {
+        Menu m = new Menu();
+        list.add(pos, m);
         return m;
     }
 

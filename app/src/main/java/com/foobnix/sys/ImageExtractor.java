@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -24,6 +25,7 @@ import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Safe;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils.CacheDir;
+import com.foobnix.ext.CalirbeExtractor;
 import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.EbookMeta;
 import com.foobnix.ext.EpubExtractor;
@@ -38,15 +40,16 @@ import com.foobnix.pdf.info.Clouds;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.PageUrl;
+import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
+import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.pdf.search.activity.PageImageState;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.common.bitmaps.RawBitmap;
 import org.ebookdroid.core.codec.CodecContext;
@@ -55,6 +58,8 @@ import org.ebookdroid.core.codec.CodecPage;
 import org.ebookdroid.core.codec.CodecPageInfo;
 import org.ebookdroid.core.crop.PageCropper;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.MdContext;
+import org.ebookdroid.droids.mupdf.codec.TextWord;
 import org.ebookdroid.droids.mupdf.codec.exceptions.MuPdfPasswordException;
 
 import java.io.ByteArrayInputStream;
@@ -64,9 +69,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
+import mobi.librera.smartreflow.AndroidPlatformImage;
+import mobi.librera.smartreflow.SmartReflow1;
 import okhttp3.Request;
 
-public class ImageExtractor implements ImageDownloader {
+public class ImageExtractor {
 
     public static final int COVER_PAGE_WITH_EFFECT = -3;
     public static final int COVER_PAGE_NO_EFFECT = -2;
@@ -78,12 +85,10 @@ public class ImageExtractor implements ImageDownloader {
     static int pageCount = 0;
     static int whCache;
     private static ImageExtractor instance;
-    private final BaseImageDownloader baseImage;
     private final Context c;
 
     private ImageExtractor(final Context c) {
         this.c = c;
-        baseImage = new BaseImageDownloader(c);
     }
 
     public static synchronized ImageExtractor getInstance(final Context c) {
@@ -220,6 +225,10 @@ public class ImageExtractor implements ImageDownloader {
 
     }
 
+    public static Bitmap messageFileBitmap(String msg, String name) {
+        return BaseExtractor.getBookCoverWithTitle(msg, name, true);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public Bitmap coverPDFNative(PageUrl pageUrl) {
         try {
@@ -258,7 +267,7 @@ public class ImageExtractor implements ImageDownloader {
 
         LOG.d("proccessCoverPage fileMeta", fileMeta, pageUrl);
 
-        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, fileMeta.getState() != FileMetaCore.STATE_FULL);
+        EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(path, CacheDir.ZipApp, CalirbeExtractor.isCalibre(fileMeta.getPath()) || fileMeta.getState() != FileMetaCore.STATE_FULL);
         String unZipPath = ebookMeta.getUnzipPath();
 
         if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
@@ -270,11 +279,14 @@ public class ImageExtractor implements ImageDownloader {
         }
 
         pageUrl.setPath(unZipPath);
+        LOG.d("proccessCoverPage unZipPath", unZipPath);
+
 
         Bitmap cover = null;
 
         if (ebookMeta.coverImage != null) {
             cover = BaseExtractor.arrayToBitmap(ebookMeta.coverImage, pageUrl.getWidth());
+            LOG.d("Calibre-image", pageUrl);
         } else if (BookType.EPUB.is(unZipPath)) {
             cover = BaseExtractor.arrayToBitmap(EpubExtractor.get().getBookCover(unZipPath), pageUrl.getWidth());
         } else if (ExtUtils.isLibreFile(unZipPath) || BookType.ODT.is(unZipPath) || (unZipPath != null && unZipPath.endsWith(".docx"))) {
@@ -301,6 +313,9 @@ public class ImageExtractor implements ImageDownloader {
         } else if (ExtUtils.isFontFile(unZipPath)) {
             cover = BaseExtractor.getBookCoverWithTitle("font", "", true);
             pageUrl.tempWithWatermakr = true;
+        } else if (unZipPath.endsWith(MdContext.SUMMARY_MD)) {
+            cover = BitmapFactory.decodeResource(LibreraApp.context.getResources(), R.drawable.gitbook);
+            LOG.d("SUMMARY_MD",unZipPath);
         }
 
         if (cover == null) {
@@ -313,32 +328,25 @@ public class ImageExtractor implements ImageDownloader {
         return cover;
     }
 
-    public InputStream generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {
-        try {
-            LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            Bitmap res;
-            if (AppState.get().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
-                res = MagicHelper.scaleCenterCrop(cover, pageUrl.getHeight(), pageUrl.getWidth(), !pageUrl.tempWithWatermakr);
-                res.compress(CompressFormat.PNG, 90, out);
-            } else {
-                res = cover;
-                res.compress(CompressFormat.JPEG, 90, out);
-            }
 
-            byte[] byteArray = out.toByteArray();
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArray);
-            res.recycle();
-            res = null;
-
-            out.close();
-            out = null;
-            byteArray = null;
-            return byteArrayInputStream;
-        } catch (Exception e) {
-            LOG.e(e);
-            return null;
+    public Bitmap generalCoverWithEffect(PageUrl pageUrl, Bitmap cover) {
+        LOG.d("generalCoverWithEffect", pageUrl.getWidth(), cover.getWidth(), " --- ", pageUrl.getHeight(), cover.getHeight());
+        Bitmap res;
+        if (AppState.get().isBookCoverEffect || pageUrl.getPage() == COVER_PAGE_WITH_EFFECT) {
+            res = MagicHelper.scaleCenterCrop(cover, pageUrl.getHeight(), pageUrl.getWidth(), !pageUrl.tempWithWatermakr);
+        } else {
+            res = cover;
         }
+        return res;
+    }
+
+    public Bitmap proccessOtherPage(String pageUrl) {
+        try {
+            return proccessOtherPage(PageUrl.fromString(pageUrl));
+        } catch (Exception e) {
+            return BaseExtractor.getBookCoverWithTitle("error", "", true);
+        }
+
     }
 
     public Bitmap proccessOtherPage(PageUrl pageUrl) {
@@ -375,6 +383,9 @@ public class ImageExtractor implements ImageDownloader {
 
         RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) pageInfo.height / pageInfo.width;
+        final float kScreen = (float) pageUrl.getHeight() / pageUrl.getWidth();
+        //final float kScreen = Dips.screenHeight()/Dips.screenWidth();
+
         int width = pageUrl.getWidth();
         int height = (int) (width * k);
 
@@ -390,7 +401,7 @@ public class ImageExtractor implements ImageDownloader {
             if (isNeedDisableMagicInPDFDjvu) {
                 bitmapRef = pageCodec.renderBitmapSimple(width, height, rectF);
             } else {
-                bitmapRef = pageCodec.renderBitmap(width, height, rectF);
+                bitmapRef = pageCodec.renderBitmap(width, height, rectF, false);
             }
 
             bitmap = bitmapRef.getBitmap();
@@ -409,7 +420,7 @@ public class ImageExtractor implements ImageDownloader {
         } else if (pageUrl.getNumber() == 1) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(0, 0, right, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * right), height, rectF, false);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
@@ -419,13 +430,33 @@ public class ImageExtractor implements ImageDownloader {
         } else if (pageUrl.getNumber() == 2) {
             float right = (float) pageUrl.getCutp() / 100;
             rectF = new RectF(right, 0, 1f, 1f);
-            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF);
+            bitmapRef = pageCodec.renderBitmap((int) (width * (1 - right)), height, rectF, false);
             bitmap = bitmapRef.getBitmap();
 
             if (pageUrl.isCrop()) {
                 bitmap = cropBitmap(bitmap, bitmap);
             }
         }
+
+        if (AppSP.get().isSmartReflow) {
+            try {
+                final AndroidPlatformImage input = new AndroidPlatformImage(bitmap);
+
+                SmartReflow1 sm = new SmartReflow1();
+                sm.process(input);
+
+                final int rWidth = (int) (bitmap.getWidth() * 0.6);
+                final int rHeight = (int) (rWidth * kScreen);
+                LOG.d("SmartReflow", rWidth, rHeight, k, kScreen);
+                final AndroidPlatformImage output = new AndroidPlatformImage(rWidth, rHeight);
+                sm.reflow(output);
+                bitmap.recycle();
+                bitmap = output.getImage();
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+        }
+
 
         if (pageUrl.isInvert()) {
             final RawBitmap bmp = new RawBitmap(bitmap, new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight()));
@@ -434,6 +465,8 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bmp.toBitmap().getBitmap();
 
         }
+
+
         if (pageUrl.getRotate() > 0) {
             final Matrix matrix = new Matrix();
             matrix.postRotate(pageUrl.getRotate());
@@ -442,10 +475,17 @@ public class ImageExtractor implements ImageDownloader {
             bitmap = bitmap1;
         }
 
-        if (pageUrl.isDoText() && !pageCodec.isRecycled()) {
-            PageImageState.get().pagesText.put(pageUrl.getPage(), pageCodec.getText());
-            PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+        LOG.d("pageUrl", pageUrl.isDoText(), pageCodec.isRecycled(), codeCache.isRecycled(), AppSP.get().lastClosedActivity);
+        if (pageUrl.isDoText() && !pageCodec.isRecycled() && !codeCache.isRecycled()) {
+            LOG.d("pageUrl run", AppSP.get().lastClosedActivity);
+            if (HorizontalViewActivity.class.getSimpleName().equals(AppSP.get().lastClosedActivity)) {
+                TextWord[][] text = pageCodec.getText();
+                PageImageState.get().pagesText.put(pageUrl.getPage(), text);
+                PageImageState.get().pagesLinks.put(pageUrl.getPage(), pageCodec.getPageLinks());
+                LOG.d("pageUrl Load-page-text", text != null ? text.length : 0);
+            }
         }
+
 
         if (!pageCodec.isRecycled()) {
             pageCodec.recycle();
@@ -457,6 +497,7 @@ public class ImageExtractor implements ImageDownloader {
         if (!isNeedDisableMagicInPDFDjvu && MagicHelper.isNeedBookBackgroundImage()) {
             bitmap = MagicHelper.updateWithBackground(bitmap);
         }
+
 
         return bitmap;
     }
@@ -474,33 +515,45 @@ public class ImageExtractor implements ImageDownloader {
 
         bitmap.recycle();
         codecDocumentLocal.getPage(page).recycle();
-        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF).getBitmap();
+        Bitmap result = codecDocumentLocal.getPage(page).renderBitmap((int) nWidth, (int) nHeiht, rectF, false).getBitmap();
         return new Pair<Bitmap, RectF>(result, rectF);
 
     }
 
-    @Override
-    public InputStream getStream(final String imageUri, final Object extra) throws
+    public InputStream getStream(String imageUri, final Object extra) throws
             IOException {
+        if (imageUri == null) {
+            imageUri = "";
+        }
+        final String hash = "" + imageUri.hashCode();
         try {
-            return getStreamInner(imageUri);
+            final InputStream streamInner;
+            try {
+                if (sp.contains(hash)) {
+                    LOG.d("Error-crash", imageUri, hash);
+                    return messageFile("#crash", "");
+                }
+
+                sp.edit().putBoolean(hash, true).commit();
+                streamInner = getStreamInner(imageUri, hash);
+            } finally {
+                sp.edit().remove(hash).commit();
+            }
+            return streamInner;
         } finally {
+
         }
     }
 
-    public InputStream getStreamInner(final String imageUri) throws IOException {
+    public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
-            // try {
-            // Thread.sleep(1500);
-            // } catch (InterruptedException e) {
-            // e.printStackTrace();
-            // }
-            return baseImage.getStream("assets://opds/web.png", null);
+            return LibreraApp.context.getResources().getAssets().open("opds/web.png");
+
         }
-        if (imageUri.startsWith("https")) {
+        if (imageUri.startsWith("http")) {
 
             Request request = new Request.Builder()//
                     .header("User-Agent", OPDS.USER_AGENT).url(imageUri)//
@@ -520,35 +573,33 @@ public class ImageExtractor implements ImageDownloader {
             LOG.d("Load image data ", uri);
             return new ByteArrayInputStream(Base64.decode(uri, Base64.DEFAULT));
         }
-        if (!imageUri.startsWith("{")) {
-            return baseImage.getStream(imageUri, null);
-        }
-
-        if (sp.contains("" + imageUri.hashCode())) {
-            LOG.d("Error FILE", imageUri);
-            return messageFile("#crash", "");
+        if (imageUri.startsWith("assets:")) {
+            return LibreraApp.context.getResources().getAssets().open(imageUri.replace("assets://", ""));
         }
 
         final PageUrl pageUrl = PageUrl.fromString(imageUri);
         String path = pageUrl.getPath();
 
-        if (ExtUtils.isExteralSD(path)) {
-            if (ExtUtils.isImagePath(path)) {
-                return c.getContentResolver().openInputStream(Uri.parse(path));
-            }
-            String display = ExtUtils.getFileName(Uri.decode(path));
-            return messageFile("", display);
-        }
+        try {
 
-        if (path.startsWith(Clouds.PREFIX_CLOUD)) {
-            if (!Clouds.isCacheFileExist(path)) {
-                String display = ExtUtils.getFileName(path);
+
+            if (ExtUtils.isExteralSD(path)) {
+                if (ExtUtils.isImagePath(path)) {
+                    return c.getContentResolver().openInputStream(Uri.parse(path));
+                }
+                String display = ExtUtils.getFileName(Uri.decode(path));
                 return messageFile("", display);
             }
-        }
 
-        // File file = new File(path);
-        try {
+            if (path.startsWith(Clouds.PREFIX_CLOUD)) {
+                if (!Clouds.isCacheFileExist(path)) {
+                    String display = ExtUtils.getFileName(path);
+                    return messageFile("", display);
+                }
+            }
+
+            // File file = new File(path);
+
 
             if (ExtUtils.isImagePath(path)) {
                 FileMeta fileMeta = AppDB.get().getOrCreate(path);
@@ -575,7 +626,6 @@ public class ImageExtractor implements ImageDownloader {
             // return messageFile("#no file", "");
             // }
 
-            sp.edit().putBoolean("" + imageUri.hashCode(), true).commit();
 
             int page = pageUrl.getPage();
 
@@ -587,13 +637,13 @@ public class ImageExtractor implements ImageDownloader {
                 try {
                     MagicHelper.isNeedBC = false;
                     Bitmap proccessCoverPage = proccessCoverPage(pageUrl);
-                    return generalCoverWithEffect(pageUrl, proccessCoverPage);
+                    return bitmapToStreamRAW(generalCoverWithEffect(pageUrl, proccessCoverPage));
                 } finally {
                     MagicHelper.isNeedBC = true;
                 }
             } else if (page == COVER_PAGE_NO_EFFECT) {
-                ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
-                return bitmapToStream;
+                //ByteArrayInputStream bitmapToStream = bitmapToStream(proccessCoverPage(pageUrl));
+                return bitmapToStreamRAW(proccessCoverPage(pageUrl));
             } else {
                 if (pageUrl.isDouble()) {
                     LOG.d("isDouble", pageUrl.getHeight(), pageUrl.getWidth());
@@ -644,7 +694,7 @@ public class ImageExtractor implements ImageDownloader {
             IMG.clearMemoryCache();
             return messageFile("#error", "");
         } finally {
-            sp.edit().remove("" + imageUri.hashCode()).commit();
+
         }
     }
 
@@ -661,5 +711,6 @@ public class ImageExtractor implements ImageDownloader {
     private InputStream messageFile(String msg, String name) {
         return bitmapToStream(BaseExtractor.getBookCoverWithTitle(msg, name, true));
     }
+
 
 }

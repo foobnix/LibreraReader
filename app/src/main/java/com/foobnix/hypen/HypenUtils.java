@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class HypenUtils {
 
-    private static final String SHY = "&shy;";
+    public static final String SHY = "&shy;";
     private static DefaultHyphenator instance = new DefaultHyphenator(HyphenPattern.error);
 
     public static void applyLanguage(String lang) {
@@ -51,6 +51,7 @@ public class HypenUtils {
         if (input == null || input.length() == 0) {
             return "";
         }
+        //LOG.d("applyHypnesNewMy-input",input);
 
         final StringBuilder res = new StringBuilder();
 
@@ -80,6 +81,7 @@ public class HypenUtils {
         });
 
         String out = res.toString();
+        //LOG.d("applyHypnesNewMy-out",out);
 
         return out;
     }
@@ -203,6 +205,10 @@ public class HypenUtils {
                 ignore = true;
             }
             if (ch == ';') {
+                ignore = false;
+            }
+
+            if (ch == '_') {
                 ignore = false;
             }
 

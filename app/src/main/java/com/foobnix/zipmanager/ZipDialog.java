@@ -16,6 +16,7 @@ import androidx.core.util.Pair;
 
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.Views;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
@@ -33,6 +34,9 @@ public class ZipDialog {
     static AlertDialog create;
 
     public static void show(Activity a, File file, final Runnable onDismiss) {
+        if(Views.isDestroyedActivity(a)){
+            return;
+        }
 
         Pair<Boolean, String> res = CacheZipUtils.isSingleAndSupportEntry(file.getPath());
         if (res.first) {
@@ -67,6 +71,10 @@ public class ZipDialog {
             }));
         } catch (Exception e) {
             LOG.e(e);
+        }
+
+        if(Views.isDestroyedActivity(a)){
+            return;
         }
 
         create = dialog.create();

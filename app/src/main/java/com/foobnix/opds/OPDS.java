@@ -74,7 +74,7 @@ public class OPDS {
                 }
                 client = builder.build();
             }
-        }).start();
+        },"@T buildProxy").start();
 
     }
 
@@ -268,11 +268,11 @@ public class OPDS {
 
             if (res.equals(CODE_401) || res.equals("400")) {
                 authCache.clear();
-                Feed feed = new Feed();
+                Feed feed = new Feed(url);
                 feed.isNeedLoginPassword = true;
                 return feed;
             }
-            return getFeedByXml(res);
+            return getFeedByXml(url, res);
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -280,7 +280,7 @@ public class OPDS {
 
     }
 
-    public static Feed getFeedByXml(String xmlString) throws Exception {
+    public static Feed getFeedByXml(String url, String xmlString) throws Exception {
         LOG.d("getFeedByXml", xmlString);
 
         XmlPullParser xpp = XmlParser.buildPullParser();
@@ -288,7 +288,7 @@ public class OPDS {
 
         int eventType = xpp.getEventType();
 
-        Feed feed = new Feed();
+        Feed feed = new Feed(url);
 
         Entry entry = null;
 

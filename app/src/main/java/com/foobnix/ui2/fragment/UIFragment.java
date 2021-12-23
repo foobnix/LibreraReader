@@ -20,10 +20,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.wrapper.DocumentController;
@@ -38,41 +42,45 @@ import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 import com.foobnix.ui2.fast.FastScrollRecyclerView;
 import com.foobnix.ui2.fast.FastScrollStateChangeListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public abstract class UIFragment<T> extends Fragment {
     public static String INTENT_TINT_CHANGE = "INTENT_TINT_CHANGE";
-
-    Handler handler;
     protected volatile MyProgressBar MyProgressBar;
     protected RecyclerView recyclerView;
+    Handler handler;
+    View adFrame;
+    SwipeRefreshLayout swipeRefreshLayout;
+    int listHash = 0;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String txt = intent.getStringExtra(MainTabs2.EXTRA_SEACH_TEXT);
+            if (TxtUtils.isNotEmpty(txt)) {
+                onTextRecive(txt);
+            } else {
+                onTintChanged();
+            }
+        }
+    };
+    AsyncTask<Object, Object, List<T>> execute;
+    volatile boolean inProgress = false;
 
     public abstract Pair<Integer, Integer> getNameAndIconRes();
-
-
-    View adFrame;
-    final static ExecutorService executorService = Executors.newCachedThreadPool();
-
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         handler = new Handler();
-
-
     }
-
-    SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -91,10 +99,9 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStop() {
-                    ImageLoader.getInstance().resume();
-                    LOG.d("ImageLoader resume");
+                    IMG.resumeRequests(getContext());
                     if (MainTabs2.isPullToRefreshEnable(getActivity(), swipeRefreshLayout)) {
-                        if(swipeRefreshLayout!=null) {
+                        if (swipeRefreshLayout != null) {
                             swipeRefreshLayout.setEnabled(true);
                         }
                     }
@@ -102,9 +109,8 @@ public abstract class UIFragment<T> extends Fragment {
 
                 @Override
                 public void onFastScrollStart() {
-                    LOG.d("ImageLoader pause");
-                    ImageLoader.getInstance().pause();
-                    if(swipeRefreshLayout!=null) {
+                    IMG.pauseRequests(getContext());
+                    if (swipeRefreshLayout != null) {
                         swipeRefreshLayout.setEnabled(false);
                     }
 
@@ -112,6 +118,9 @@ public abstract class UIFragment<T> extends Fragment {
             });
         }
 
+        if (recyclerView != null) {
+            recyclerView.setAccessibilityDelegate(new View.AccessibilityDelegate());
+        }
     }
 
     @Override
@@ -127,8 +136,6 @@ public abstract class UIFragment<T> extends Fragment {
     public abstract void notifyFragment();
 
     public abstract void resetFragment();
-
-    int listHash = 0;
 
     public final void onSelectFragment() {
         if (getActivity() == null) {
@@ -183,7 +190,6 @@ public abstract class UIFragment<T> extends Fragment {
         return null;
     }
 
-
     public void populateDataInUI(List<T> items) {
 
     }
@@ -208,10 +214,16 @@ public abstract class UIFragment<T> extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ImageLoader.getInstance().resume();
+        //Safe.clearAll();
+        try {
+            Glide.with(LibreraApp.context).resumeRequests();
+        } catch (Exception e) {
+            LOG.e(e);
+        }
         notifyFragment();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter(INTENT_TINT_CHANGE));
         EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -242,19 +254,6 @@ public abstract class UIFragment<T> extends Fragment {
         }
     }
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String txt = intent.getStringExtra(MainTabs2.EXTRA_SEACH_TEXT);
-            if (TxtUtils.isNotEmpty(txt)) {
-                onTextRecive(txt);
-            } else {
-                onTintChanged();
-            }
-        }
-    };
-
     public void onTextRecive(String txt) {
 
     }
@@ -262,10 +261,6 @@ public abstract class UIFragment<T> extends Fragment {
     public boolean isInProgress() {
         return MyProgressBar != null && MyProgressBar.getVisibility() == View.VISIBLE;
     }
-
-    AsyncTask<Object, Object, List<T>> execute;
-
-    volatile boolean inProgress = false;
 
     public void populate() {
         if (inProgress) {
@@ -303,7 +298,7 @@ public abstract class UIFragment<T> extends Fragment {
                 inProgress = false;
 
             }
-            if (getActivity() == null) {
+            if (isDetached() || Apps.isDestroyed(getActivity())) {
                 return;
             }
 
@@ -325,8 +320,7 @@ public abstract class UIFragment<T> extends Fragment {
                 }
             });
         };
-        executorService.submit(target);
-        //new Thread(target).start();
+        AppsConfig.executorService.submit(target);
     }
 
     public void onGridList(int mode, ImageView onGridlList, final FileMetaAdapter searchAdapter, AuthorsAdapter2 authorsAdapter) {

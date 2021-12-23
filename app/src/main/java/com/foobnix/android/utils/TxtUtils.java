@@ -22,6 +22,8 @@ import androidx.core.util.Pair;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.model.MyPath;
+import com.foobnix.pdf.info.Android6;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.sys.TempHolder;
@@ -115,6 +117,14 @@ public class TxtUtils {
             return line;
         }
         return line.substring(indexOf + 1);
+    }
+
+    public static String smallPathFormat(String txt) {
+        if (TxtUtils.isEmpty(txt)) {
+            return "[]";
+        }
+        txt = Uri.decode(txt);
+        return txt.replace(MyPath.INTERNAL_ROOT, "...");
     }
 
     public static String lastTwoPath(String txt) {
@@ -318,10 +328,23 @@ public class TxtUtils {
     }
 
     public static String replaceHTMLforTTS(String pageHTML) {
+        try {
+            return replaceHTMLforTTSAll(pageHTML);
+        } catch (Throwable e) {
+            return pageHTML;
+        }
+    }
+
+    public static String replaceHTMLforTTSAll(String pageHTML) {
         if (pageHTML == null) {
             return "";
         }
         LOG.d("pageHTML [before]", pageHTML);
+        if (AppState.get().isAccurateFontSize) {
+            pageHTML = pageHTML.toLowerCase();
+            LOG.d("pageHTML [isAccurateFontSize]", pageHTML);
+
+        }
 
         pageHTML = pageHTML.replace("<pause>", TTS_PAUSE);
         pageHTML = pageHTML.replace("<b><end-line><i>", TTS_PAUSE).replace("<i><end-line><b>", TTS_PAUSE);
@@ -338,7 +361,7 @@ public class TxtUtils {
 
 
         pageHTML = pageHTML.replace("<p>", " ").replace("</p>", " ");
-        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", " ");
+        pageHTML = pageHTML.replace("&nbsp;", " ").replace("&lt;", " ").replace("&gt;", "").replace("&amp;", " ").replace("&quot;", "\"");
         pageHTML = pageHTML.replace("[image]", "");
 
         LOG.d("pageHTML [2", pageHTML);
@@ -518,7 +541,11 @@ public class TxtUtils {
 
     public static String replaceAll(String input, String regex, String replacement) {
         try {
-            return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
+            if (Build.VERSION.SDK_INT >= 26) {
+                return Pattern.compile(regex, Pattern.UNICODE_CASE).matcher(input).replaceAll(replacement);
+            } else {
+                return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+            }
         } catch (Exception e) {
             LOG.e(e);
             return Pattern.compile(regex).matcher(input).replaceAll(replacement);

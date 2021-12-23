@@ -85,7 +85,8 @@ public class HtmlExtractor {
 
                             LOG.d("MathMl", "begin");
 
-                        } else if (line.contains("</math>")) {
+                        }
+                        if (line.contains("</math>")) {
 
                             svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
 
@@ -127,8 +128,10 @@ public class HtmlExtractor {
 
             String string = null;
             if (accurate) {
-
-                string = Jsoup.clean(html.toString(), Whitelist.basic());
+                Whitelist whitelist = Whitelist.basic()
+                        .addAttributes("ol", "reversed", "start", "type")
+                        .addAttributes("li", "value");
+                string = Jsoup.clean(html.toString(), whitelist);
             } else {
                 string = html.toString();
             }
@@ -164,10 +167,14 @@ public class HtmlExtractor {
     public static FooterNote extractMht(String inputPath, final String outputDir) throws IOException {
         // File file = new File(new File(inputPath).getParent(), OUT_FB2_XML);
         File file = new File(outputDir, OUT_FB2_XML);
+        file.delete();
 
         try {
 
             String encoding = ExtUtils.determineHtmlEncoding(new FileInputStream(inputPath), new FileInputStream(inputPath));
+            if(encoding!=null && encoding.contains("utf-8")){
+                encoding = "utf-8";
+            }
 
             LOG.d("HtmlExtractor encoding: ", encoding, "");
             BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath), encoding));
@@ -180,6 +187,8 @@ public class HtmlExtractor {
                 HypenUtils.applyLanguage(AppSP.get().hypenLang);
             }
             while ((line = input.readLine()) != null) {
+
+                line = line.replace("=3D","");
 
                 if (line.contains("<ht") || line.contains("<HT")) {
                     isFlag = true;

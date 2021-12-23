@@ -1,9 +1,18 @@
-apply plugin: 'java-library'
+plugins {
+    id 'java-library'
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    runtime fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    runtimeOnly fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    //implementation project(':smartreflow')
 }
 
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}

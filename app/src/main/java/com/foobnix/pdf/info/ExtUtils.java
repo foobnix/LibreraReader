@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -34,11 +36,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.os.EnvironmentCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
@@ -50,6 +57,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.android.utils.Views;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.ext.CacheZipUtils;
+import com.foobnix.ext.CbzCbrExtractor;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppProfile;
@@ -64,7 +72,7 @@ import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
-import com.nostra13.universalimageloader.core.ImageLoader;
+
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
@@ -82,6 +90,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,28 +104,39 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ExtUtils {
 
-    private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
-    private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
     public static final String REFLOW_EPUB = "-reflow.epub";
     public static final String REFLOW_HTML = "-reflow.html";
-    private static final String IMAGE_BEGIN = "<image-begin>";
-    private static final String IMAGE_END = "<image-end>";
-
-    public static ExecutorService ES = Executors.newFixedThreadPool(4);
-
     public final static List<String> otherExts = Arrays.asList(AppState.OTHER_BOOK_EXT);
     public final static List<String> lirbeExt = Arrays.asList(AppState.LIBRE_EXT);
-    public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg", ".gif");
+    public final static List<String> imageExts = Arrays.asList(".png", ".jpg", ".jpeg", ".gif", ".webp");
     public final static List<String> imageMimes = Arrays.asList("image/png", "image/jpg", "image/jpeg", "image/gif");
     public final static List<String> archiveExts = Arrays.asList(AppState.OTHER_ARCH_EXT);
     public final static List<String> browseExts = BookType.getAllSupportedExtensions();
-    public static Map<String, String> mimeCache = new HashMap<String, String>();
     public final static List<String> AUDIO = Arrays.asList(".mp3", ".mp4", ".wav", ".ogg", ".m4a", ".flac");
+    private static final String IMAGE_PNG_BASE64 = "data:image/png;base64,";
+    private static final String IMAGE_JPEG_BASE64 = "data:image/jpeg;base64,";
+    private static final String IMAGE_BEGIN = "<image-begin>";
+    private static final String IMAGE_END = "<image-end>";
+    public static Map<String, String> mimeCache = new HashMap<String, String>();
+    public static List<String> seachExts = new ArrayList<String>();
+    static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
+    private static java.text.DateFormat dateFormat;
+    private static java.text.DateFormat timeFormat;
+    private static Context context;
+    private static FileFilter filter = new FileFilter() {
+        @Override
+        public boolean accept(final File pathname) {
+            for (final String s : browseExts) {
+                if (pathname.getName().endsWith(s)) {
+                    return true;
+                }
+            }
+            return pathname.isDirectory();
+        }
+    };
 
     static {
         browseExts.addAll(otherExts);
@@ -157,8 +178,8 @@ public class ExtUtils {
         mimeCache.put(".rar", "application/x-rar-compressed");
 
         mimeCache.put(".cbr", "application/x-cbr");
-        mimeCache.put(".cbt", "application/x-cbr");
-        mimeCache.put(".cb7", "application/x-cbr");
+        mimeCache.put(".cbt", "application/x-cbt");
+        mimeCache.put(".cb7", "application/x-cb7");
 
         mimeCache.put(".mp3", "audio/mpeg");
         mimeCache.put(".mp4", "audio/mp4");
@@ -179,17 +200,18 @@ public class ExtUtils {
         mimeCache.put(".mp4", "video/mp4");
         mimeCache.put(".webm", "video/webm");
     }
-    public static String getExtByMimeType(String mime){
-        if(TxtUtils.isEmpty(mime)){
-            return  mime;
+
+    public static String getExtByMimeType(String mime) {
+        if (TxtUtils.isEmpty(mime)) {
+            return mime;
         }
-        for(String key:mimeCache.keySet()){
-            if(mime.equals(mimeCache.get(key))){
-                return  key.replace(".","");
+        for (String key : mimeCache.keySet()) {
+            if (mime.equals(mimeCache.get(key))) {
+                return key.replace(".", "");
             }
         }
         String ext = MimeTypeMap.getSingleton().getExtensionFromMimeType(mime);
-        return  ext;
+        return ext;
     }
 
     public static void updateSearchExts() {
@@ -239,6 +261,7 @@ public class ExtUtils {
             result.add(".txt");
             result.add(".html");
             result.add(".xhtml");
+            result.add(".md");
             if (!AppState.get().supportZIP) {
                 result.add(".txt.zip");
             }
@@ -255,6 +278,7 @@ public class ExtUtils {
         }
         if (AppState.get().supportZIP) {
             result.add(".zip");
+            result.add(".okular");
         }
         if (AppState.get().supportArch) {
             result.addAll(archiveExts);
@@ -272,12 +296,10 @@ public class ExtUtils {
 
         for (String ext : result) {
             seachExts.add(ext);
-            // seachExts.add(ext.toUpperCase(Locale.US));
+            seachExts.add(ext.toUpperCase());
         }
 
     }
-
-    static List<String> video = Arrays.asList(".webm", ".m3u8", ".ts", ".flv", ".mp4", ".3gp", ".mov", ".avi", ".wmv", ".mp4", ".m4v");
 
     public static void openFile(Activity a, FileMeta meta) {
         File file = new File(meta.getPath());
@@ -305,6 +327,7 @@ public class ExtUtils {
         if (ExtUtils.doifFileExists(a, file)) {
 
             if (ExtUtils.isZip(file)) {
+
                 LOG.d("openFile isExteralSD zip");
                 if (CacheZipUtils.isSingleAndSupportEntry(file.getPath()).first) {
                     ExtUtils.showDocumentWithoutDialog2(a, file);
@@ -549,11 +572,6 @@ public class ExtUtils {
         return false;
     }
 
-    public static List<String> seachExts = new ArrayList<String>();
-
-    private static java.text.DateFormat dateFormat;
-    private static java.text.DateFormat timeFormat;
-
     public static void init(Context c) {
         context = c;
 
@@ -619,8 +637,6 @@ public class ExtUtils {
         return filter;
     }
 
-    private static Context context;
-
     public static boolean doifFileExists(Context c, File file) {
         if (Clouds.isCloud(file.getPath())) {
             return true;
@@ -666,7 +682,8 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return path.toLowerCase(Locale.US).endsWith(".zip");
+        boolean isExt = BookType.ZIP.is(path.toLowerCase()) || BookType.OKULAR.is(path.toLowerCase());
+        return isExt && CbzCbrExtractor.isZip(path);
     }
 
     public static synchronized boolean isNoMetaFomat(String path) {
@@ -709,18 +726,6 @@ public class ExtUtils {
         return new DecimalFormat("#,##0").format(size / Math.pow(1024, digitGroups)) + "" + units[digitGroups];
     }
 
-    private static FileFilter filter = new FileFilter() {
-        @Override
-        public boolean accept(final File pathname) {
-            for (final String s : browseExts) {
-                if (pathname.getName().endsWith(s)) {
-                    return true;
-                }
-            }
-            return pathname.isDirectory();
-        }
-    };
-
     public static boolean isNotValidFile(final File file) {
         return !isValidFile(file);
     }
@@ -748,8 +753,6 @@ public class ExtUtils {
         if (c == null) {
             return false;
         }
-
-        ImageLoader.getInstance().clearAllTasks();
 
 
         if (AppState.get().isPrefFormatMode) {
@@ -929,6 +932,14 @@ public class ExtUtils {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isRememberMode = isChecked;
+            }
+        });
+
+        IMG.pauseRequests(c);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                IMG.resumeRequests(c);
             }
         });
 
@@ -1172,42 +1183,61 @@ public class ExtUtils {
     }
 
     public static void sharePage(final Activity a, final File file, int page, String pageUrl) {
-        try {
-            if (AppState.get().fileToDelete != null) {
-                new File(AppState.get().fileToDelete).delete();
-            }
 
-            if (TxtUtils.isEmpty(pageUrl)) {
-                pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
-            }
 
-            Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
-
-            String title = file.getName() + "." + (page + 1) + ".jpg";
-
-            File oFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, title);
-            oFile.getParentFile().mkdirs();
-            String pathofBmp = oFile.getPath();
-
-            FileOutputStream out = new FileOutputStream(oFile);
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.close();
-
-            AppState.get().fileToDelete = pathofBmp;
-            AppProfile.save(a);
-
-            Intent shareIntent = new Intent();
-            shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
-            shareIntent.setType("image/jpeg");
-            a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
-
-        } catch (Exception e) {
-            Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
-            LOG.e(e);
+        if (AppState.get().fileToDelete != null) {
+            new File(AppState.get().fileToDelete).delete();
         }
+
+        if (TxtUtils.isEmpty(pageUrl)) {
+            pageUrl = IMG.toUrlWithContext(file.getPath(), page, (int) (Dips.screenWidth() * 1.5));
+        }
+        // Bitmap imageBitmap = ImageLoader.getInstance().loadImageSync(pageUrl, IMG.ExportOptions);
+
+        Glide.with(LibreraApp.context).asBitmap().load(pageUrl).into(new CustomTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(@NonNull Bitmap imageBitmap, @Nullable Transition<? super Bitmap> transition) {
+                try {
+
+
+                    String title = file.getName() + "." + (page + 1) + ".jpg";
+
+                    File oFile = new File(CacheZipUtils.ATTACHMENTS_CACHE_DIR, title);
+                    oFile.getParentFile().mkdirs();
+                    String pathofBmp = oFile.getPath();
+
+                    FileOutputStream out = new FileOutputStream(oFile);
+                    imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    out.close();
+
+                    AppState.get().fileToDelete = pathofBmp;
+                    AppProfile.save(a);
+
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, getUriProvider(a, oFile));
+                    shareIntent.setType("image/jpeg");
+                    a.startActivity(Intent.createChooser(shareIntent, a.getString(R.string.send_snapshot_of_the_page)));
+
+
+                } catch (Exception e) {
+                    Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    LOG.e(e);
+                }
+
+            }
+
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+            }
+
+
+        });
+
+
     }
 
     public static void sendBookmarksTo(final Activity a, final File file) {
@@ -1727,8 +1757,21 @@ public class ExtUtils {
         return Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
     }
 
+    public static List<String> getAllExternalStorages(Context a) {
+        List<String> extFolders = new ArrayList<String>();
+
+        extFolders = ExtUtils.getExternalStorageDirectories(a);
+        String sdPath = ExtUtils.getSDPath();
+        if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
+            extFolders.add(sdPath);
+        }
+        return extFolders;
+
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public static List<String> getExternalStorageDirectories(Context c) {
+
+    private static List<String> getExternalStorageDirectories(Context c) {
         List<String> results = new ArrayList<String>();
         try {
 
@@ -1737,6 +1780,9 @@ public class ExtUtils {
                 File[] externalDirs = ContextCompat.getExternalFilesDirs(c, null);
 
                 for (File file : externalDirs) {
+                    if (file == null) {
+                        continue;
+                    }
                     LOG.d("getExternalFilesDirs", file.getPath());
                     String path = file.getPath().split("/Android")[0];
 
@@ -1837,44 +1883,25 @@ public class ExtUtils {
             LOG.e(e);
         }
 
-        String encdogin = determineEncodingAuto(fis2);
+        String encdogin = determineTxtEncoding(fis2);
         LOG.d("determineHtmlEncoding auto", encdogin);
 
         return encdogin;
 
     }
 
-    private static String determineEncodingAuto(InputStream fis) {
-        String encoding = null;
-        try {
-            UniversalDetector detector = new UniversalDetector(null);
-
-            int nread;
-            byte[] buf = new byte[1024];
-            while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-                detector.handleData(buf, 0, nread);
-            }
-            detector.dataEnd();
-
-            encoding = detector.getDetectedCharset();
-            detector.reset();
-            fis.close();
-
-            LOG.d("File Encoding", encoding);
-
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return encoding == null ? "UTF-8" : encoding;
-    }
-
     public static String determineTxtEncoding(InputStream fis) {
         String encoding = null;
         try {
+
+            InputStreamReader r = new InputStreamReader(fis);
+
+
             UniversalDetector detector = new UniversalDetector(null);
 
+
             int nread;
-            byte[] buf = new byte[2024];
+            byte[] buf = new byte[4096];
             while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
                 detector.handleData(buf, 0, nread);
             }
@@ -1883,14 +1910,40 @@ public class ExtUtils {
             encoding = detector.getDetectedCharset();
             detector.reset();
             fis.close();
-
             LOG.d("File Encoding", encoding);
 
         } catch (Exception e) {
             LOG.e(e);
         }
-        return encoding == null ? "UTF-8" : encoding;
+
+        return encoding == null ? AppState.get().characterEncoding : encoding;
     }
+
+
+
+
+//
+//    public static String determineTxtEncodingTika(InputStream fis) {
+//        String encoding = null;
+//        try {
+//            CharsetDetector charsetDetector = new CharsetDetector();
+//
+//
+//            byte[] buf = new byte[4096];
+//            fis.read(buf);
+//            charsetDetector.setText(buf);
+//
+//            encoding = charsetDetector.detect().getName();
+//            LOG.d("File Encoding ICU", encoding);
+//
+//
+//        } catch (Exception e) {
+//            LOG.e(e);
+//        }
+//        return encoding == null ? "UTF-8" : encoding;
+//
+//    }
+
 
     public static boolean deleteRecursive(File fileOrDirectory) {
         try {

@@ -29,8 +29,7 @@ public class CbzCbrExtractor {
             FileInputStream is = new FileInputStream(path);
             is.read(buffer);
             is.close();
-            String archType = new String(buffer);
-            if ("pk".equalsIgnoreCase(archType)) {
+            if (buffer[0] == 'P' && buffer[1] == 'K') {
                 return true;
             }
         } catch (Exception e) {
@@ -47,7 +46,7 @@ public class CbzCbrExtractor {
                 ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
 
                 while (zipInputStream.getNextEntry() != null) {
-                        count++;
+                    count++;
                 }
                 zipInputStream.close();
 

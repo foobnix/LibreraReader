@@ -2,7 +2,7 @@ n1=$1
 n2=$2
 if [ -z "$1" ]
 then
-n1="/home/ivan-dev/Pictures"
+n1="/home/dev/Pictures"
 n2="Screenshot"-`date +%Y-%m-%d-%H-%M-%S`  
 fi
 
@@ -14,7 +14,7 @@ adb shell screencap -p /sdcard/screen.png
 adb pull /sdcard/screen.png "$n1/$n2.png"
 adb shell rm /sdcard/screen.png
 
-convert -quality 85 -resize 500 "$n1/$n2.png" "$n1/$n2.png"
+#convert -quality 85 -resize 800 "$n1/$n2.png" "$n1/$n2.png"
 cp "$n1/$n2.png" "$n1/$n2.png"
 cd $n1
 #mogrify -quality 85 -resize 500 *.png

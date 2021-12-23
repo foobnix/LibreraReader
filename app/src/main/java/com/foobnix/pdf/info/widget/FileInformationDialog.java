@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
@@ -26,8 +27,6 @@ import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
-import com.foobnix.ext.CacheZipUtils.CacheDir;
-import com.foobnix.ext.EbookMeta;
 import com.foobnix.model.AppBookmark;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppState;
@@ -50,9 +49,9 @@ import com.foobnix.ui2.AppDB.SORT_BY;
 import com.foobnix.ui2.FileMetaCore;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
 import org.greenrobot.eventbus.EventBus;
 
@@ -85,20 +84,39 @@ public class FileInformationDialog {
     }
 
     public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction) {
+        showFileInfoDialog(a, file, onDeleteAction, true);
+    }
 
+    public static void showFileInfoDialog(final Activity a, final File file, final Runnable onDeleteAction, boolean firstTime) {
         ADS.hideAdsTemp(a);
+
+        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
+
+
+        LOG.d("FileMeta-State", fileMeta.getState(),fileMeta.getTitle());
+
+
+        if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
+
+            new AsyncProgressResultToastTask(a, new ResultResponse<Boolean>() {
+                @Override
+                public boolean onResultRecive(Boolean result) {
+                    showFileInfoDialog(a, file, onDeleteAction, false);
+                    return false;
+                }
+            }) {
+                @Override
+                protected Boolean doInBackground(Object... objects) {
+                    FileMetaCore.reUpdateIfNeed(fileMeta);
+                    return true;
+                }
+            }.execute();
+            return;
+
+        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
 
-        final FileMeta fileMeta = AppDB.get().getOrCreate(file.getPath());
-        LOG.d("FileMeta-State", fileMeta.getState());
-
-        if (fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(file.getPath(), CacheDir.ZipApp, true);
-            FileMetaCore.get().upadteBasicMeta(fileMeta, file);
-            FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
-            AppDB.get().updateOrSave(fileMeta);
-        }
 
         final View dialog = LayoutInflater.from(a).inflate(R.layout.dialog_file_info, null, false);
 
@@ -203,7 +221,7 @@ public class FileInformationDialog {
 
         String sequence = fileMeta.getSequence();
         if (TxtUtils.isNotEmpty(sequence)) {
-            sequence = sequence.replace(",","");
+            sequence = sequence.replace(",", "");
             final TextView metaSeries = (TextView) dialog.findViewById(R.id.metaSeries);
 
             if (fileMeta.getSIndex() != null && fileMeta.getSIndex() > 0) {
@@ -216,7 +234,7 @@ public class FileInformationDialog {
 
                 RecyclerView recyclerView = dialog.findViewById(R.id.recycleViewSeries);
                 recyclerView.setVisibility(View.VISIBLE);
-                recyclerView.setHasFixedSize(true);
+                //recyclerView.setHasFixedSize(true);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(a);
                 linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView.setLayoutManager(linearLayoutManager);
@@ -445,7 +463,7 @@ public class FileInformationDialog {
                 } else {
                     starIcon.setImageResource(R.drawable.star_1);
                 }
-                TintUtil.setTintImageNoAlpha(starIcon,TintUtil.getColorInDayNighth());
+                TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
             }
         });
@@ -456,10 +474,9 @@ public class FileInformationDialog {
             starIcon.setImageResource(R.drawable.star_1);
         }
 
-        TintUtil.setTintImageNoAlpha(starIcon,TintUtil.getColorInDayNighth());
+        TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
 
         TintUtil.setBackgroundFillColor(openFile, TintUtil.color);
-
 
 
         // builder.setTitle(R.string.file_info);
@@ -510,7 +527,9 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(IMG.toUrl(path, -2, Dips.screenWidth()), imageView, IMG.ExportOptions);
+        final String url = IMG.toUrl(path, -2, Dips.screenWidth());
+
+        Glide.with(LibreraApp.context).asBitmap().load(url).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);
@@ -536,7 +555,7 @@ public class FileInformationDialog {
 
             }
         });
-        ImageLoader.getInstance().displayImage(path, imageView, IMG.displayCacheMemoryDisc);
+        Glide.with(LibreraApp.context).asBitmap().load(path).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
         builder.addContentView(imageView, params);

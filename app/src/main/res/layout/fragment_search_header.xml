@@ -119,6 +119,7 @@
                 android:id="@+id/onGridList"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
+                android:contentDescription="@string/menu"
                 android:layout_weight="0"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"

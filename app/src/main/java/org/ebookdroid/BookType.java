@@ -36,8 +36,9 @@ public enum BookType {
     PDF(PdfContext.class, false, Arrays.asList("pdf", "xps"), Arrays.asList("application/pdf","application/oxps","application/vnd.ms-xpsdocument")),
     TIFF(PdfContext.class, false, Arrays.asList("tiff", "tif"), Arrays.asList("image/tiff")),
 
-    CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz")),
-    CBR(CbrContext.class, false, Arrays.asList("cbr"), Arrays.asList("application/x-cbr")),
+    CBZ(PdfContext.class, false, Arrays.asList("cbz"), Arrays.asList("application/x-cbz","application/comicbook+zip")),
+    CBR(CbrContext.class, false, Arrays.asList("cbr"), Arrays.asList("application/x-cbr","application/comicbook+rar")),
+
     ODT(OdtContext.class, true, Arrays.asList("odt"), Arrays.asList("application/vnd.oasis.opendocument.text")),
 
     FOLDER(FolderContext.class, false, Arrays.asList(FolderContext.LXML), Arrays.asList("application/lxml")),
@@ -48,15 +49,15 @@ public enum BookType {
     FB2(Fb2Context.class, true, Arrays.asList("fb2"),
             Arrays.asList("application/fb2", "application/x-fictionbook", "application/x-fictionbook+xml", "application/x-fb2", "application/fb2+zip", "application/fb2.zip", "application/x-zip-compressed-fb2")),
 
-    MOBI(MobiContext.class, true, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database")),
+    MOBI(MobiContext.class, true, Arrays.asList("mobi", "azw", "azw3", "azw4", "pdb", "prc"), Arrays.asList("application/x-mobipocket-ebook", "application/x-palm-database","application/x-mobi8-ebook","application/x-kindle-application","application/vnd.amazon.mobi8-ebook")),
 
     TXT(TxtContext.class, true, Arrays.asList("txt", "playlist","log"), Arrays.asList("text/plain","text/x-log")),
 
     JSON(TxtContext.class, true, Arrays.asList("json"), Arrays.asList("application/json")),
 
-    HTML(HtmlContext.class, true, Arrays.asList("html", "htm", "xhtml", "xhtm", "mht", "mhtml", "xml"), Arrays.asList("text/html", "text/xml")),
+    HTML(HtmlContext.class, true, Arrays.asList("html", "htm", "xhtml", "xhtm", "xml"), Arrays.asList("text/html", "text/xml")),
 
-    MHT(MhtContext.class, true, Arrays.asList("mht", "mhtml"), Arrays.asList("message/rfc822")),
+    MHT(MhtContext.class, true, Arrays.asList("mht", "mhtml","shtml"), Arrays.asList("message/rfc822")),
 
     DOCX(DocxContext.class, true, Arrays.asList(AppsConfig.isDOCXSupported ? "docx" : "xxx"), Arrays.asList("application/vnd.openxmlformats-officedocument.wordprocessingml.document")),
 
@@ -68,7 +69,9 @@ public enum BookType {
 
     DJVU(DjvuContext.class, false, Arrays.asList("djvu"), Arrays.asList("image/vnd.djvu", "image/djvu", "image/x-djvu")),
 
-    ZIP(ZipContext.class, true, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
+    ZIP(ZipContext.class, true, Arrays.asList("zip"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed")),
+
+    OKULAR(ZipContext.class, false, Arrays.asList("okular"), Arrays.asList("application/zip", "application/x-compressed", "application/x-compressed-zip", "application/x-zip-compressed"));
 
     private final static Map<String, BookType> extensionToActivity;
 
@@ -142,7 +145,11 @@ public enum BookType {
     }
 
     public static boolean isTextFormat(String path) {
-        List<String> list = new ArrayList<String>();
+        path = path.toLowerCase();
+
+        if(path.endsWith(".okular")){
+            return false;
+        }
 
         for (final BookType a : values()) {
             if (!a.isTextFormat) {

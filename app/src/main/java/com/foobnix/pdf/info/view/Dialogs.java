@@ -191,7 +191,7 @@ public class Dialogs {
                 root.setViewDraggable(h, move);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             LOG.e(e);
         }
 
@@ -268,7 +268,7 @@ public class Dialogs {
                             } else if (TxtUtils.isNotEmpty(from)) {
                                 res.put(from, to);
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             LOG.e(e);
                         }
 
@@ -384,7 +384,6 @@ public class Dialogs {
         add.setEllipsize(TextUtils.TruncateAt.END);
         export.setEllipsize(TextUtils.TruncateAt.END);
         importFile.setEllipsize(TextUtils.TruncateAt.END);
-
 
 
         line.addView(add);
@@ -510,7 +509,7 @@ public class Dialogs {
 
                 }
             }
-        }).start();
+        },"@T showSyncLOGDialog").start();
 
 
         result.setText(GFile.debugOut);
@@ -755,7 +754,17 @@ public class Dialogs {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+
+
         AlertDialog create = builder.show();
+
+        create.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(input);
+
+            }
+        });
 
         create.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(new OnClickListener() {
 
@@ -774,6 +783,45 @@ public class Dialogs {
             }
         });
 
+    }
+
+    public static void showEditDialog2(final Activity c, String title, String init,
+                                       final ResultResponse<String> onresult) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle(title);
+        final EditText input = new EditText(c);
+        input.setSingleLine();
+
+        if (init != null) {
+            if (!init.endsWith("/")) {
+                init += "/";
+            }
+            input.setText(init);
+            input.setSelection(init.length());
+        }
+        builder.setView(input);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onresult.onResultRecive(input.getText().toString());
+            }
+        });
+
+
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setOnDismissListener(new OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Keyboards.close(input);
+                Keyboards.hideNavigation(c);
+            }
+        });
+        alertDialog.show();
     }
 
     public static void showDeltaPage(final FrameLayout anchor,

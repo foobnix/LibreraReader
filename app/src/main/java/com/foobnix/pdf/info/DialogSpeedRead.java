@@ -165,6 +165,7 @@ public class DialogSpeedRead {
                     });
 
                     String textForPage = dc.getTextForPage(currentPage - 1);
+                    LOG.d("textForPage",textForPage);
                     if (TxtUtils.isEmpty(textForPage)) {
                         counter++;
                     }
@@ -173,7 +174,7 @@ public class DialogSpeedRead {
                         break;
                     }
 
-                    List<String> tempList = Arrays.asList(textForPage.split(" "));
+                    List<String> tempList = Arrays.asList(textForPage.split("\\s"));
                     List<String> res = new ArrayList<String>();
                     for (String item : tempList) {
                         //currentWord = 0;
@@ -265,7 +266,7 @@ public class DialogSpeedRead {
                 onReset.setVisibility(View.VISIBLE);
                 TempHolder.isActiveSpeedRead.set(!TempHolder.isActiveSpeedRead.get());
                 if (TempHolder.isActiveSpeedRead.get()) {
-                    new Thread(task).start();
+                    new Thread(task,"@T isActiveSpeedRead").start();
 
                     onNext.setVisibility(View.GONE);
                     onPrev.setVisibility(View.GONE);

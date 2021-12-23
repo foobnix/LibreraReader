@@ -75,9 +75,9 @@ import com.foobnix.tts.TTSService;
 import com.foobnix.tts.TtsStatus;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.MainTabs2;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -95,6 +95,9 @@ public class DocumentWrapperUI {
     final DocumentController dc;
     final Handler handler = new Handler();
     final Handler handlerTimer = new Handler();
+
+
+
     public View.OnClickListener onLockUnlock = new View.OnClickListener() {
 
         @Override
@@ -130,7 +133,8 @@ public class DocumentWrapperUI {
 
         @Override
         public void onClick(final View arg0) {
-            ImageLoader.getInstance().clearAllTasks();
+            //ImageLoader.getInstance().clearAllTasks();
+            //Glide.with(LibreraApp.context).
             closeDialogs();
             closeAndRunList();
         }
@@ -362,6 +366,7 @@ public class DocumentWrapperUI {
         @Override
         public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) {
             dc.onGoToPage(progress + 1);
+            Apps.accessibilityText(a, a.getString(R.string.m_current_page) + " " + dc.getCurentPageFirst1());
             //updateUI();
         }
     };
@@ -766,7 +771,7 @@ public class DocumentWrapperUI {
             closeDialogs();
             AppState.get().isEditMode = false;
             hideShow();
-            if(TTSEngine.get().isTempPausing()){
+            if (TTSEngine.get().isTempPausing()) {
                 TTSService.playPause(dc.getActivity(), dc);
             } else {
                 onAutoScrollClick();
@@ -882,7 +887,6 @@ public class DocumentWrapperUI {
     public void closeAndRunList() {
         EventBus.getDefault().unregister(this);
 
-        AppSP.get().lastClosedActivity = null;
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
@@ -903,6 +907,9 @@ public class DocumentWrapperUI {
         maxSeek.setText(info.textPage);
         currentSeek.setText(info.textMax);
         pagesCountIndicator.setText(info.chText);
+
+        currentSeek.setContentDescription(dc.getString(R.string.m_current_page) + " " + info.textMax);
+        maxSeek.setContentDescription(dc.getString(R.string.m_total_pages) + " " + info.textPage);
     }
 
     public void updateUI() {
@@ -1125,6 +1132,7 @@ public class DocumentWrapperUI {
         adFrame = a.findViewById(R.id.adFrame);
 
         seekBar = (SeekBar) a.findViewById(R.id.seekBar);
+        seekBar.setAccessibilityDelegate(new View.AccessibilityDelegate());
         speedSeekBar = (SeekBar) a.findViewById(R.id.seekBarSpeed);
         seekSpeedLayot = a.findViewById(R.id.seekSpeedLayot);
         anchor = (FrameLayout) a.findViewById(R.id.anchor);
@@ -1302,6 +1310,8 @@ public class DocumentWrapperUI {
 
 
         onCloseBook = a.findViewById(R.id.close);
+        Apps.accessibilityButtonSize(onCloseBook);
+
         onCloseBook.setOnClickListener(onClose);
         onCloseBook.setOnLongClickListener(onCloseLongClick);
         onCloseBook.setVisibility(View.INVISIBLE);
@@ -1338,6 +1348,8 @@ public class DocumentWrapperUI {
 
             @Override
             public void run() {
+                AppState.get().isEditMode = true;
+                hideShow();
                 DragingDialogs.textToSpeachDialog(anchor, dc);
             }
         });
@@ -1751,6 +1763,10 @@ public class DocumentWrapperUI {
     }
 
     public void hideShow() {
+        if (AppState.get().isEnableAccessibility) {
+            AppState.get().isEditMode = true;
+        }
+
         if (AppState.get().isEditMode) {
             DocumentController.turnOnButtons(a);
             show();
@@ -1758,7 +1774,10 @@ public class DocumentWrapperUI {
             DocumentController.turnOffButtons(a);
 
             hide();
+
         }
+
+
         initToolBarPlusMinus();
 
         if (AppState.get().isAutoScroll) {
@@ -1936,7 +1955,7 @@ public class DocumentWrapperUI {
             if (dc != null && passwordProtected) {
                 editTop2.setVisibility(View.GONE);
             } else {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     editTop2.setVisibility(View.VISIBLE);
                 } else {
                     editTop2.setVisibility(View.VISIBLE);
@@ -1984,6 +2003,8 @@ public class DocumentWrapperUI {
 
                 @Override
                 public void run() {
+                    Apps.accessibilityText(a, a.getString(R.string.book_is_open), a.getString(R.string.m_current_page), " " + dc.getCurentPageFirst1());
+
                     progressDraw.updateDivs(list);
                     progressDraw.updatePageCount(dc.getPageCount() - 1);
                     titleBar.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));

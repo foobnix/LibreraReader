@@ -129,6 +129,7 @@ public class AppDB {
             QueryBuilder.LOG_SQL = true;
             QueryBuilder.LOG_VALUES = true;
         }
+
     }
 
     public void openDictDB(Context c, String path) {
@@ -168,9 +169,11 @@ public class AppDB {
     // }
 
     public void deleteAllData() {
-        if (fileMetaDao != null) {
-            fileMetaDao.deleteAll();
+        if (fileMetaDao == null) {
+            return;
         }
+        fileMetaDao.deleteAll();
+
     }
 
     public List<FileMeta> deleteAllSafe() {
@@ -331,6 +334,9 @@ public class AppDB {
     }
 
     public void update(FileMeta meta) {
+        if (fileMetaDao == null) {
+            return;
+        }
         try {
             fileMetaDao.update(meta);
         } catch (Exception e) {
@@ -339,6 +345,9 @@ public class AppDB {
     }
 
     public void refresh(FileMeta meta) {
+        if (fileMetaDao == null) {
+            return;
+        }
         try {
             fileMetaDao.refresh(meta);
         } catch (Exception e) {
@@ -349,6 +358,7 @@ public class AppDB {
     public void clearSession() {
         try {
             daoSession.clear();
+            currentDB = null;
         } catch (Exception e) {
             LOG.e(e);
         }
@@ -366,6 +376,10 @@ public class AppDB {
     }
 
     public void saveAll(List<FileMeta> list) {
+        if (fileMetaDao == null) {
+            return;
+        }
+
         long time = System.currentTimeMillis();
         LOG.d("Save all begin");
         fileMetaDao.insertOrReplaceInTx(list, true);
@@ -374,12 +388,20 @@ public class AppDB {
     }
 
     public void updateAll(List<FileMeta> list) {
-        if (fileMetaDao != null) {
-            long time = System.currentTimeMillis();
-            LOG.d("udpdate all begin");
-            fileMetaDao.updateInTx(list);
-            long end = System.currentTimeMillis() - time;
-            LOG.d("update all end", end / 1000, list.size());
+        if (fileMetaDao == null) {
+            return;
+        }
+
+        try {
+            if (fileMetaDao != null) {
+                long time = System.currentTimeMillis();
+                LOG.d("udpdate all begin");
+                fileMetaDao.updateInTx(list);
+                long end = System.currentTimeMillis() - time;
+                LOG.d("update all end", end / 1000, list.size());
+            }
+        } catch (Exception e) {
+            LOG.e(e);
         }
     }
 
@@ -432,6 +454,9 @@ public class AppDB {
     }
 
     public void clearAllRecent() {
+        if (fileMetaDao == null) {
+            return;
+        }
         List<FileMeta> recent = getRecentDeprecated();
         for (FileMeta meta : recent) {
             meta.setIsRecent(false);
@@ -441,6 +466,9 @@ public class AppDB {
     }
 
     public void clearAllFavorites() {
+        if (fileMetaDao == null) {
+            return;
+        }
         List<FileMeta> recent = getRecentDeprecated();
         for (FileMeta meta : recent) {
             meta.setIsStar(false);
@@ -450,6 +478,9 @@ public class AppDB {
     }
 
     public void clearAllStars() {
+        if (fileMetaDao == null) {
+            return;
+        }
         List<FileMeta> stars = fileMetaDao.queryBuilder().where(FileMetaDao.Properties.IsStar.eq(1)).list();
         for (FileMeta meta : stars) {
             meta.setIsStar(false);

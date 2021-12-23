@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 #. ~/.profile
 
+# get the location of this script, we will checkout mupdf into the same directory
+BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+cd $BUILD_DIR
+
 VERSION=1.16.1
 
-MUPDF_ROOT=/home/ivan-dev/git/LibreraReader/Builder/mupdf-$VERSION
+MUPDF_ROOT=${BUILD_DIR}/mupdf-$VERSION
 MUPDF_JAVA=$MUPDF_ROOT/platform/java
 
-LIBS=/home/ivan-dev/git/LibreraReader/app/src/main/jniLibs
+LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
-SRC=jni-$VERSION/~mupdf
+SRC=jni/~mupdf-$VERSION
 DEST=$MUPDF_ROOT/source/
 
 echo "MUPDF :" $VERSION
@@ -26,7 +31,8 @@ echo "=================="
 cd ..
 
 rm -rf  $MUPDF_JAVA/jni
-cp -rRp jni-$VERSION $MUPDF_JAVA/jni
+cp -rRp jni $MUPDF_JAVA/jni
+mv $MUPDF_JAVA/jni/Android-$VERSION.mk $MUPDF_JAVA/jni/Android.mk
 
 rm -r $LIBS
 mkdir $LIBS
@@ -47,6 +53,9 @@ cp -rp $SRC/xml.c               $DEST/fitz/xml.c
 cp -rp $SRC/pdf-colorspace.c    $DEST/pdf/pdf-colorspace.c
 
 cd $MUPDF_JAVA
+
+whereis ndk-build
+echo "================== "
 ndk-build $1
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA

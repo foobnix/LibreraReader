@@ -67,7 +67,7 @@ public class Fb2Context extends PdfContext {
         if (notes != null) {
             muPdfDocument.setFootNotes(notes);
         } else {
-            new Thread() {
+            new Thread("@T fb2 set footnotes") {
                 @Override
                 public void run() {
                     muPdfDocument.setFootNotes(getNotes(fileName));

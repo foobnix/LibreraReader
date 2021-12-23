@@ -129,7 +129,7 @@ public class PageTreeNode implements DecodeService.DecodeCallback {
             page.base.getActivity().runOnUiThread(r);
         } catch (final OutOfMemoryError ex) {
             ex.printStackTrace();
-            BitmapManager.clear("PageTreeNode OutOfMemoryError: ");
+            //BitmapManager.clear("PageTreeNode OutOfMemoryError: ");
             page.base.getActivity().runOnUiThread(new Runnable() {
 
                 @Override

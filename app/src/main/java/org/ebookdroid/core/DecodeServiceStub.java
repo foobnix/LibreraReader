@@ -21,6 +21,15 @@ import java.util.Map;
 
 public class DecodeServiceStub implements DecodeService {
 
+	@Override
+	public void shutdown() {
+	}
+
+	@Override
+	public void restore() {
+
+	}
+
 	private static final CodecPageInfo DEFAULT = new CodecPageInfo(0, 0);
 
 	@Override

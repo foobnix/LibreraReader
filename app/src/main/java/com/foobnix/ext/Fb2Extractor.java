@@ -126,6 +126,7 @@ public class Fb2Extractor extends BaseExtractor {
             line = line.replace(TxtUtils.NON_BREAKE_SPACE, " ");
             line = line.replace(">" + TxtUtils.LONG_DASH1 + " ", ">" + TxtUtils.LONG_DASH1 + TxtUtils.NON_BREAKE_SPACE);
             line = line.replace(">" + TxtUtils.LONG_DASH2 + " ", ">" + TxtUtils.LONG_DASH2 + TxtUtils.NON_BREAKE_SPACE);
+            //line = line.replace("_", "_" + HypenUtils.SHY); //break image paths
         }
         return line;
     }
@@ -159,6 +160,10 @@ public class Fb2Extractor extends BaseExtractor {
                 if (!isValidXML) {
                     writer.print("<html><body>");
                 }
+            }
+            if (!isValidXML && TxtUtils.isEmpty(line)) {
+                writer.println("<p></p>");
+                continue;
             }
 
 
@@ -222,7 +227,8 @@ public class Fb2Extractor extends BaseExtractor {
 
                     findSVG = false;
                     svg = "";
-                } else if (line.contains("</math>")) {
+                }
+                if (line.contains("</math>")) {
 
                     svg += line.substring(0, line.indexOf("</math>") + "</math>".length());
 
@@ -237,7 +243,8 @@ public class Fb2Extractor extends BaseExtractor {
 
                     findSVG = false;
                     svg = "";
-                } else if (findSVG) {
+                }
+                if (findSVG) {
                     svg += line;
                 }
 
@@ -374,6 +381,34 @@ public class Fb2Extractor extends BaseExtractor {
             String titleTxt = link.getTitle();
             if (TxtUtils.isNotEmpty(titleTxt)) {
                 String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
+                if (link.contentSrc != null) {
+                    createNavPoint = createNavPoint.replace("fb2.fb2", link.contentSrc);
+                } else {
+                    createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
+                }
+                navs.append(createNavPoint);
+            }
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutlineMd(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String createNavPoint = createNavPoint(link.getLevel(), link.getLevel() + DIVIDER + link.getTitle(), link.contentSrc);
+            navs.append(createNavPoint);
+        }
+        return NCX.replace("%nav%", navs.toString());
+    }
+
+    public static String genetateNCXbyOutline2(List<OutlineLink> titles) {
+        StringBuilder navs = new StringBuilder();
+        for (int i = 0; i < titles.size(); i++) {
+            OutlineLink link = titles.get(i);
+            String titleTxt = link.getTitle();
+            if (TxtUtils.isNotEmpty(titleTxt)) {
+                String createNavPoint = createNavPoint(OutlineLinkWrapper.getPageNumber(link.getLink()), link.getLevel() + DIVIDER + titleTxt);
                 createNavPoint = createNavPoint.replace("fb2.fb2", "temp-reflow.html");
                 navs.append(createNavPoint);
             }
@@ -477,10 +512,27 @@ public class Fb2Extractor extends BaseExtractor {
                 "</navPoint>"; //
     }
 
+    public static String createNavPoint(int id, String text, String url) {
+        return "\n\n<navPoint id=\"toc-" + id + "\" playOrder=\"" + id + "\">\n" + //
+                "<navLabel>\n" + //
+                "<text>" + TxtUtils.escapeHtml(text) + "</text>\n" + //
+                "</navLabel>\n" + //
+                "<content src=\"" + url + "\"/>\n" + //
+                "</navPoint>"; //
+    }
+
     public static void writeToZip(ZipOutputStream zos, String name, InputStream stream) throws
             IOException {
         zos.putNextEntry(new ZipEntry(name));
         zipCopy(stream, zos);
+    }
+
+    public static void writeToZipDir(ZipOutputStream zos, String name) throws
+            IOException {
+        if (!name.endsWith("/")) {
+            name = name + "/";
+        }
+        zos.putNextEntry(new ZipEntry(name));
     }
 
     public static void writeToZipNoClose(ZipOutputStream zos, String name, InputStream stream) throws
@@ -710,6 +762,7 @@ public class Fb2Extractor extends BaseExtractor {
             String number = "";
             String keywords = "";
             boolean titleInfo = false;
+            boolean authorInfo = false;
             boolean publishInfo = false;
             String year = "";
             String publisher = "";
@@ -722,6 +775,9 @@ public class Fb2Extractor extends BaseExtractor {
 
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = true;
+                    }
+                    if (xpp.getName().equals("author")) {
+                        authorInfo = true;
                     }
 
                     if (xpp.getName().equals("publish-info")) {
@@ -745,9 +801,9 @@ public class Fb2Extractor extends BaseExtractor {
                             bookTitle = xpp.nextText();
                         } else if (xpp.getName().equals("lang")) {
                             lang = xpp.nextText();
-                        } else if (firstName == null && xpp.getName().equals("first-name")) {
+                        } else if (authorInfo && firstName == null && xpp.getName().equals("first-name")) {
                             firstName = xpp.nextText();
-                        } else if (lastName == null && xpp.getName().equals("last-name")) {
+                        } else if (authorInfo && lastName == null && xpp.getName().equals("last-name")) {
                             lastName = xpp.nextText();
                         } else if (xpp.getName().equals("genre")) {
                             genre = xpp.nextText() + "," + genre;
@@ -764,7 +820,7 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                 }
                 if (eventType == XmlPullParser.END_TAG) {
-                    if (titleInfo && xpp.getName().equals("author") && firstName != null && lastName != null) {
+                    if (titleInfo && firstName != null && lastName != null) {
                         firstName = TxtUtils.trim(firstName);
                         lastName = TxtUtils.trim(lastName);
 
@@ -779,6 +835,9 @@ public class Fb2Extractor extends BaseExtractor {
                     }
                     if (xpp.getName().equals("title-info")) {
                         titleInfo = false;
+                    }
+                    if (xpp.getName().equals("author")) {
+                        authorInfo = false;
                     }
 
                     if (xpp.getName().equals("publish-info")) {
@@ -992,7 +1051,9 @@ public class Fb2Extractor extends BaseExtractor {
             if (TempHolder.get().loadingCancelled) {
                 break;
             }
-            line = line.replace("<empty-line/>", "");
+            if (AppState.get().isAccurateFontSize || fixXML) {
+                line = line.replace("<empty-line/>", "");
+            }
 
             if (firstLine) {
                 List<String> encodings = Arrays.asList("utf-8", "windows-1251", "Windows-1251", "windows-1252", "Windows-1252");

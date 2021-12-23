@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
@@ -46,9 +47,9 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
-import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.EditTextHelper;
 import com.foobnix.pdf.info.view.KeyCodeDialog;
 import com.foobnix.pdf.info.view.MyPopupMenu;
@@ -63,6 +64,7 @@ import com.foobnix.ui2.BooksService;
 import com.foobnix.ui2.adapter.AuthorsAdapter2;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
 
+import org.ebookdroid.LibreraApp;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -92,39 +94,10 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     AuthorsAdapter2 authorsAdapter;
     TextView countBooks, sortBy;
     Handler handler;
-    ImageView sortOrder, myAutoCompleteImage, cleanFilter;
+    ImageView sortOrder, myAutoCompleteImage, cleanFilter, menu2;
     View onRefresh, secondTopPanel;
     AutoCompleteTextView searchEditText;
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                searchAndOrderAsync();
-                searchEditText.setHint(R.string.search);
-                onRefresh.setActivated(true);
-            } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                int count = intent.getIntExtra(Intent.EXTRA_INDEX, 0);
-                countBooks.setText("" + count);
-                searchEditText.setHint(R.string.searching_please_wait_);
-                onRefresh.setActivated(false);
-            } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
-                onRefresh.setActivated(false);
-                searchEditText.setHint(R.string.extracting_information_from_books);
-            }
-        }
-
-    };
     int countTitles = 0;
-    Runnable sortAndSeach = new Runnable() {
-
-        @Override
-        public void run() {
-            recyclerView.scrollToPosition(0);
-            searchAndOrderAsync();
-        }
-    };
     Runnable hideKeyboard = new Runnable() {
 
         @Override
@@ -148,6 +121,37 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             }
 
+        }
+    };
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (BooksService.RESULT_SEARCH_FINISH.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                searchAndOrderAsync();
+                searchEditText.setHint(R.string.search);
+                onRefresh.setActivated(true);
+            } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                int count = intent.getIntExtra("android.intent.extra.INDEX", 0);
+                if (count > 0) {
+                    countBooks.setText("" + count);
+                }
+                searchEditText.setHint(R.string.searching_please_wait_);
+                onRefresh.setActivated(false);
+            } else if (BooksService.RESULT_BUILD_LIBRARY.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
+                onRefresh.setActivated(false);
+                searchEditText.setHint(R.string.extracting_information_from_books);
+            }
+        }
+
+    };
+    Runnable sortAndSeach = new Runnable() {
+
+        @Override
+        public void run() {
+            recyclerView.scrollToPosition(0);
+            searchAndOrderAsync();
         }
     };
     private final TextWatcher filterTextWatcher = new TextWatcher() {
@@ -231,6 +235,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public void onTintChanged() {
         TintUtil.setBackgroundFillColor(secondTopPanel, TintUtil.color);
 
+        int color = (AppState.get().appTheme == AppState.THEME_DARK_OLED ||
+                        AppState.get().appTheme == AppState.THEME_DARK)
+                        ? Color.WHITE : TintUtil.color;
+        TintUtil.setTintImageNoAlpha(menu2, color);
+
         int colorTheme = TintUtil.getColorInDayNighth();
         colorTheme = ColorUtils.setAlphaComponent(colorTheme, 230);
 
@@ -298,6 +307,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search2, container, false);
 
+
+        LOG.d("Context-SF-getContext", getContext());
+        LOG.d("Context-SF-getApplicationContext", getActivity().getApplicationContext());
+        LOG.d("Context-SF-getBaseContext", getActivity().getBaseContext());
+        LOG.d("Context-SF-LibreraApp.context", LibreraApp.context);
+
         LOG.d("SearchFragment2 onCreateView");
 
         NO_SERIES = " (" + getString(R.string.without_series) + ")";
@@ -311,9 +326,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         cleanFilter = (ImageView) view.findViewById(R.id.cleanFilter);
         sortBy = (TextView) view.findViewById(R.id.sortBy);
         sortOrder = (ImageView) view.findViewById(R.id.sortOrder);
+        menu2 = (ImageView) view.findViewById(R.id.menu2);
         myAutoCompleteImage = (ImageView) view.findViewById(R.id.myAutoCompleteImage);
         searchEditText = (AutoCompleteTextView) view.findViewById(R.id.filterLine);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED || (AppState.get().appTheme == AppState.THEME_DARK && TintUtil.color == Color.BLACK)) {
             searchEditText.setBackgroundResource(R.drawable.bg_search_edit_night);
@@ -334,6 +351,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         });
 
         searchAdapter = new FileMetaAdapter();
+
         authorsAdapter = new AuthorsAdapter2();
 
         onGridlList = (ImageView) view.findViewById(R.id.onGridList);
@@ -362,7 +380,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
                     @Override
                     public void run() {
-                        BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
+                        //BookCSS.get().searchPaths = BookCSS.get().searchPaths.replace("//", "/");
                     }
                 }, new Runnable() {
 
@@ -399,7 +417,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             public void onClick(View v) {
                 AppState.get().isSortAsc = !AppState.get().isSortAsc;
                 searchAndOrderAsync();
-
             }
         });
         sortOrder.setOnLongClickListener(new OnLongClickListener() {
@@ -455,6 +472,15 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
                 showAutoCompleteDialog();
+            }
+        });
+
+        menu2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (view.getRootView().findViewById(R.id.imageMenu1) != null) {
+                    view.getRootView().findViewById(R.id.imageMenu1).performClick();
+                }
             }
         });
 
@@ -555,6 +581,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         try {
             searchAdapter.clearItems();
             searchAdapter.notifyDataSetChanged();
+            IMG.clearMemoryCache();
+            IMG.clearDiscCache();
             BooksService.startForeground(getActivity(), BooksService.ACTION_SEARCH_ALL);
         } catch (Exception e) {
             LOG.e(e);
@@ -583,10 +611,23 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void searchAndOrderAsync() {
+        if (Apps.isDestroyed(getActivity())) {
+            return;
+        }
         searchEditText.setHint(R.string.msg_loading);
         sortBy.setText(AppDB.SORT_BY.getByID(AppState.get().sortBy).getResName());
+
         sortOrder.setImageResource(AppState.get().isSortAsc ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+
+        String order = getString(AppState.get().isSortAsc ? R.string.ascending : R.string.descending);
+        sortBy.setContentDescription(getString(R.string.cd_sort_results) + " " + sortBy.getText());
+        sortOrder.setContentDescription(order);
+
         populate();
+
+        Apps.accessibilityText(getActivity(), "" + sortBy.getContentDescription());
+
+
     }
 
     @Subscribe
@@ -843,9 +884,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         showBookCount();
 
+
     }
 
     private void sortByPopup(final View view) {
+
 
         MyPopupMenu popup = new MyPopupMenu(getActivity(), view);
         for (final SORT_BY sortBy : SORT_BY.values()) {
@@ -999,6 +1042,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         onGridList();
         searchAndOrderAsync();
     }
+
 
     @Override
     public void onDestroy() {

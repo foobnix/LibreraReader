@@ -6,10 +6,10 @@ import android.os.Environment;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IO;
+import com.foobnix.android.utils.JsonDB;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Objects;
 import com.foobnix.android.utils.Objects.IgnoreHashCode;
-import com.foobnix.android.utils.Strings;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppBook;
@@ -22,8 +22,10 @@ import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.FileMetaCore;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.settings.books.SharedBooks;
 import org.ebookdroid.droids.DocContext;
+import org.librera.LinkedJSONObject;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -50,17 +52,17 @@ public class BookCSS {
     public static final String COURIER = "Courier";
     public static final String DEFAULT_FONT = "Times New Roman";
     public static final String LINKCOLOR_DAYS = "#001BA5, #9F0600" + "," + LINK_COLOR_UNIVERSAL;
-    public static final String LINKCOLOR_NIGTHS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
+    public static final String LINKCOLOR_NIGHTS = "#7494B2, #B99D83" + "," + LINK_COLOR_UNIVERSAL;
     private static final Object TAG = "BookCSS";
-    public static String DEFAULT_FOLDER = new File(AppProfile.SYNC_FOLDER_ROOT, "Fonts").getPath();
     public static int STYLES_DOC_AND_USER = 0;
     public static int STYLES_ONLY_DOC = 1;
     public static int STYLES_ONLY_USER = 2;
     public static List<String> fontExts = Arrays.asList(".ttf", ".otf");
     private static BookCSS instance = new BookCSS();
-    public String searchPaths;
+    public String searchPathsJson;
+
     public String cachePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/Cache").getPath();
-    public String downlodsPath = new File(AppProfile.SYNC_FOLDER_ROOT, "Downloads").getPath();
+    public String downlodsPath;
 
     ///
     public String ttsSpeakPath = new File(AppProfile.DOWNLOADS_DIR, "Librera/TTS").getPath();
@@ -70,10 +72,10 @@ public class BookCSS {
     public String syncGdrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_GOOGLEDRIVE).getPath();
     public String syncOneDrivePath = new File(AppProfile.DOWNLOADS_DIR, "Librera/" + LIBRERA_CLOUD_ONEDRIVE).getPath();
     public String dictPath;
-    public String fontFolder = DEFAULT_FOLDER;
+    public String fontFolder;
     public volatile int fontSizeSp = Dips.isXLargeScreen() ? 32 : 24;
     public float appFontScale = 1.0f;
-    public String mp3BookPath;
+    public String mp3BookPathJson;
     public String dirLastPath;
     public String pathSAF = "";
     public boolean isSyncWifiOnly;
@@ -110,7 +112,10 @@ public class BookCSS {
     @IgnoreHashCode
     public String linkColorDays = LINKCOLOR_DAYS;
     @IgnoreHashCode
-    public String linkColorNigths = LINKCOLOR_NIGTHS;
+    public String linkColorNigths = LINKCOLOR_NIGHTS;
+
+    private String lastBookPathCache = "";
+    private String trackPathCache;
 
     public static String filterFontName(String fontName) {
         if (!fontName.contains(".")) {
@@ -153,6 +158,30 @@ public class BookCSS {
         }
     }
 
+    public void mp3BookPath(String track) {
+        final LinkedJSONObject obj = (mp3BookPathJson == null) ? new LinkedJSONObject() : new LinkedJSONObject(mp3BookPathJson);
+        obj.put(AppSP.get().lastBookPath, track);
+
+        LOG.d("mp3BookPath-set", AppSP.get().lastBookPath, track);
+        mp3BookPathJson = obj.toString();
+
+        trackPathCache = track;
+        lastBookPathCache = AppSP.get().lastBookPath;
+    }
+
+    public String mp3BookPathGet() {
+        if (lastBookPathCache != null && lastBookPathCache.equals(AppSP.get().lastBookPath)) {
+            return trackPathCache;
+        }
+        final LinkedJSONObject obj = (mp3BookPathJson == null) ? new LinkedJSONObject() : new LinkedJSONObject(mp3BookPathJson);
+        final String track = obj.optString(AppSP.get().lastBookPath);
+        LOG.d("mp3BookPath-get", AppSP.get().lastBookPath, track);
+        trackPathCache = track;
+        lastBookPathCache = AppSP.get().lastBookPath;
+
+        return track;
+    }
+
     public boolean isTextFormat() {
         try {
             return ExtUtils.isTextFomat(AppSP.get().lastBookPath);
@@ -177,7 +206,8 @@ public class BookCSS {
         textIndent = 10;
         fontWeight = 400;
 
-        fontFolder = DEFAULT_FOLDER;
+        fontFolder = AppProfile.syncFontFolder.getPath();
+        downlodsPath = AppProfile.syncDownloadFolder.getPath();
         displayFontName = DEFAULT_FONT;
         normalFont = DEFAULT_FONT;
         boldFont = DEFAULT_FONT;
@@ -194,7 +224,7 @@ public class BookCSS {
         linkColorNight = LINK_COLOR_UNIVERSAL;
 
         linkColorDays = LINKCOLOR_DAYS;
-        linkColorNigths = LINKCOLOR_NIGTHS;
+        linkColorNigths = LINKCOLOR_NIGHTS;
 
         customCSS2 = //
                 "code,pre,pre>* {white-space: pre-line;}\n" + //
@@ -215,22 +245,17 @@ public class BookCSS {
 
         IO.readObj(AppProfile.syncCSS, instance);
 
+
         try {
-            if (TxtUtils.isEmpty(instance.searchPaths)) {
-                List<String> extFolders = ExtUtils.getExternalStorageDirectories(c);
+            if (TxtUtils.isEmpty(instance.searchPathsJson)) {
+                List<String> extFolders = ExtUtils.getAllExternalStorages(c);
 
                 if (!extFolders.contains(Environment.getExternalStorageDirectory().getPath())) {
                     extFolders.add(Environment.getExternalStorageDirectory().getPath());
                 }
-                if (!extFolders.contains(ExtUtils.getSDPath())) {
-                    String sdPath = ExtUtils.getSDPath();
-                    if (sdPath != null) {
-                        extFolders.add(sdPath);
-                    }
-                }
-                instance.searchPaths = TxtUtils.joinList(",", extFolders);
-                //searchPaths = Environment.getExternalStorageDirectory().getPath();
-                LOG.d("searchPaths-all", searchPaths, instance.searchPaths);
+
+                instance.searchPathsJson = JsonDB.set(extFolders);
+                LOG.d("searchPaths-all", instance.searchPathsJson);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -262,14 +287,6 @@ public class BookCSS {
 
     }
 
-    public void checkBeforeExport(Context c) {
-        if (fontFolder != null && fontFolder.equals(DEFAULT_FOLDER)) {
-            fontFolder = null;
-            fontFolder = DEFAULT_FOLDER;
-            AppProfile.save(c);
-        }
-
-    }
 
     public void allFonts(String fontName) {
         normalFont = fontName;
@@ -346,9 +363,8 @@ public class BookCSS {
 
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFromFolder(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
-            all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
-        }
+        all.addAll(getAllFontsFromFolder(new File("/system/fonts").getPath()));
+
 
         return all;
     }
@@ -366,9 +382,8 @@ public class BookCSS {
 
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "fonts").getPath()));
         all.addAll(getAllFontsFiltered(new File(Environment.getExternalStorageDirectory(), "Fonts").getPath()));
-        if (Strings.equals(fontFolder, DEFAULT_FOLDER)) {
-            all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
-        }
+        all.addAll(getAllFontsFiltered(new File("/system/fonts").getPath(), true));
+
 
         return all;
     }
@@ -525,6 +540,7 @@ public class BookCSS {
     }
 
     public String toCssString(String path) {
+
         StringBuilder builder = new StringBuilder();
 
         String backgroundColor = MagicHelper.colorToString(MagicHelper.getBgColor());
@@ -576,9 +592,16 @@ public class BookCSS {
 
         // FB2 END
 
-        builder.append("p,div,span, body{");
-        builder.append(String.format("background-color:%s !important;", backgroundColor));
-        builder.append(String.format("color:%s !important;", textColor));
+
+        builder.append("body,p,div,span {");
+        if (AppState.get().isAccurateFontSize || !AppState.get().isDayNotInvert || documentStyle == STYLES_ONLY_USER) {
+            builder.append(String.format("background-color:%s !important;", backgroundColor));
+            builder.append(String.format("color:%s !important;", textColor));
+        } else {
+            builder.append(String.format("background-color:%s;", backgroundColor));
+            builder.append(String.format("color:%s;", textColor));
+        }
+
         builder.append(String.format("line-height:%s !important;", em(lineHeight)));
         builder.append("}");
 
@@ -679,7 +702,7 @@ public class BookCSS {
             if (isFontFileName(normalFont)) {
                 builder.append("font-family: my !important;");
             } else {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("font-family:" + normalFont + " !important;");
                 }
             }
@@ -691,10 +714,10 @@ public class BookCSS {
             }
             builder.append("}");
 
-            builder.append(String.format("p{text-indent:%s;}", em(textIndent)));
+            builder.append(String.format("p,span{text-indent:%s;}", em(textIndent)));
 
             if (!isFontFileName(boldFont)) {
-                if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
+                if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
                     builder.append("b{font-family:" + boldFont + ";font-weight: bold;}");
                 }
             }
@@ -721,11 +744,17 @@ public class BookCSS {
 
     public void detectLang(String bookPath) {
 
+        if (AppState.get().isDefaultHyphenLanguage) {
+            AppSP.get().hypenLang = AppState.get().defaultHyphenLanguageCode;
+            LOG.d("set defaultHyphenLanguageCode", AppSP.get().hypenLang);
+            return;
+        }
+
         FileMeta meta = AppDB.get().load(bookPath);
         if (meta == null) {
             meta = FileMetaCore.createMetaIfNeed(bookPath, false);
         }
-        AppSP.get().hypenLang = meta != null ? meta.getLang() : null;
+        AppSP.get().hypenLang = meta.getLang();
         LOG.d("detectLang", bookPath, AppSP.get().hypenLang);
 
         if (TxtUtils.isEmpty(AppSP.get().hypenLang)) {

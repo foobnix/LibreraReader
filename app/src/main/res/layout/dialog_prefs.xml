@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:myseek="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -256,6 +255,29 @@
             android:layout_height="wrap_content"
             android:text="@string/continuous_text"
             android:visibility="gone" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/isCharacterEncoding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_encoding" />
+
+            <TextView
+                android:id="@+id/characterEncoding"
+                style="@style/textLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="0"
+                android:minWidth="50dip"
+                android:text="UTF-8" />
+
+        </LinearLayout>
         
 
         <LinearLayout
@@ -339,7 +361,7 @@
                 android:layout_weight="0"
                 android:padding="8dip"
                 android:src="@drawable/glyphicons_182_download_alt"
-                android:tint="@color/tint_gray" />
+                android:tint="@color/tint_red" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"

@@ -17,6 +17,7 @@ import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.sys.TempHolder;
 
+import org.ebookdroid.LibreraApp;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.BitmapRef;
 import org.ebookdroid.core.codec.AbstractCodecPage;
@@ -39,12 +40,14 @@ public class MuPdfPage extends AbstractCodecPage {
     final int actualWidth;
     final int actualHeight;
     private final long docHandle;
+    MuPdfDocument muPdfDocument;
     private volatile long pageHandle;
     private int pageNumber;
 
-    private MuPdfPage(final long pageHandle, final long docHandle, int pageNumber) {
+    private MuPdfPage(final long pageHandle, final MuPdfDocument muPdfDocument, int pageNumber) {
         this.pageHandle = pageHandle;
-        this.docHandle = docHandle;
+        this.muPdfDocument = muPdfDocument;
+        this.docHandle = muPdfDocument.getDocumentHandle();
         this.pageNumber = pageNumber;
 
         this.pageBounds = getBounds();
@@ -52,11 +55,11 @@ public class MuPdfPage extends AbstractCodecPage {
         this.actualHeight = (int) pageBounds.height();
     }
 
-    static MuPdfPage createPage(final long dochandle, final int pageno) {
+    static MuPdfPage createPage(final MuPdfDocument dochandle, final int pageno) {
         TempHolder.lock.lock();
         try {
             LOG.d("MUPDF! +create page", dochandle, pageno);
-            final long open = open(dochandle, pageno);
+            final long open = open(dochandle.getDocumentHandle(), pageno);
             return new MuPdfPage(open, dochandle, pageno);
         } finally {
             TempHolder.lock.unlock();
@@ -70,6 +73,12 @@ public class MuPdfPage extends AbstractCodecPage {
     private static native void free(long dochandle, long handle);
 
     private static native long open(long dochandle, int pageno);
+
+    private static void renderPageSafe(MuPdfDocument dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b) {
+        if (dochandle != null && dochandle.getDocumentHandle() != 0 && !dochandle.isRecycled()) {
+            renderPage(dochandle.getDocumentHandle(), pagehandle, viewboxarray, matrixarray, bufferarray, r, g, b);
+        }
+    }
 
     private static native void renderPage(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, int[] bufferarray, int r, int g, int b);
 
@@ -93,9 +102,9 @@ public class MuPdfPage extends AbstractCodecPage {
     }
 
     @Override
-    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds) {
+    public BitmapRef renderBitmap(final int width, final int height, final RectF pageSliceBounds, boolean cache) {
         final float[] matrixArray = calculateFz(width, height, pageSliceBounds);
-        return render(new Rect(0, 0, width, height), matrixArray);
+        return render(new Rect(0, 0, width, height), matrixArray, cache);
     }
 
     @Override
@@ -114,7 +123,7 @@ public class MuPdfPage extends AbstractCodecPage {
         final RectF rectF = new RectF(0, 0, 1f, 1f);
         final float k = (float) originH / originW;
         LOG.d("TEST", "Render" + " w" + getWidth() + " H " + getHeight() + " " + k + " " + width * k);
-        final BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF);
+        final BitmapRef renderBitmap = renderBitmap(width, (int) (width * k), rectF, false);
         return renderBitmap.getBitmap();
     }
 
@@ -152,7 +161,7 @@ public class MuPdfPage extends AbstractCodecPage {
     public void recycle() {
         try {
             TempHolder.lock.lock();
-            if (pageHandle != 0 && docHandle != 0) {
+            if (pageHandle != 0 && muPdfDocument != null && muPdfDocument.getDocumentHandle() != 0 && !muPdfDocument.isRecycled()) {
                 LOG.d("MUPDF! -recycle page", docHandle, pageNumber);
                 free(docHandle, pageHandle);
             }
@@ -200,7 +209,7 @@ public class MuPdfPage extends AbstractCodecPage {
 
             final int[] bufferarray = new int[width * height];
 
-            renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+            renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
 
             final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
@@ -210,7 +219,7 @@ public class MuPdfPage extends AbstractCodecPage {
         }
     }
 
-    public BitmapRef render(final Rect viewbox, final float[] ctm) {
+    public BitmapRef render(final Rect viewbox, final float[] ctm, boolean cache) {
         TempHolder.lock.lock();
         try {
 
@@ -234,7 +243,7 @@ public class MuPdfPage extends AbstractCodecPage {
                 int r = Color.red(color);
                 int g = Color.green(color);
                 int b = Color.blue(color);
-                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
+                renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, r, g, b);
 
                 if (AppState.get().isReplaceWhite && MagicHelper.isNeedMagicSimple()) {
                     MagicHelper.udpateColorsMagicSimple(bufferarray);
@@ -243,7 +252,7 @@ public class MuPdfPage extends AbstractCodecPage {
             } else if (MagicHelper.isNeedMagic()) {
 
                 if (AppState.get().isCustomizeBgAndColors) {
-                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+                    renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
                     MagicHelper.udpateColorsMagic(bufferarray);
                 } else {
                     int color = MagicHelper.getBgColor();
@@ -253,29 +262,50 @@ public class MuPdfPage extends AbstractCodecPage {
                     int r = Color.red(color);
                     int g = Color.green(color);
                     int b = Color.blue(color);
-                    renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, r, g, b);
+                    renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, r, g, b);
 
                 }
             } else {
-                renderPage(docHandle, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
+                renderPageSafe(muPdfDocument, pageHandle, mRect, ctm, bufferarray, -1, -1, -1);
             }
 
             if (MagicHelper.isNeedBC) {
                 MagicHelper.applyQuickContrastAndBrightness(bufferarray, width, height);
             }
 
-            final BitmapRef b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+
+            BitmapRef b;
+            if (false) {
+                b = BitmapManager.getBitmap("PDF page", width, height, Config.RGB_565);
+            } else {
+                b = new BitmapRef(Bitmap.createBitmap(width, height, Config.RGB_565), 0l);
+            }
             b.getBitmap().setPixels(bufferarray, 0, width, 0, 0, width, height);
+            if (AppState.get().isMirrorImage) {
+                Matrix m = new Matrix();
+                m.preScale(-1, 1);
+                Bitmap dst = Bitmap.createBitmap(b.getBitmap(), 0, 0, width, height, m, false);
+                b.getBitmap().recycle();
+                b.setBitmap(dst);
+            }
+
             return b;
         } finally {
             TempHolder.lock.unlock();
         }
     }
 
-    //private static native boolean renderPageBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
+    //private static native boolean renderPageSafeBitmap(long dochandle, long pagehandle, int[] viewboxarray, float[] matrixarray, Bitmap bitmap);
 
     @Override
     public List<PageLink> getPageLinks() {
+
+
+       if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
+            LOG.d("skip links for 1 page");
+            return new ArrayList<PageLink>();
+        }
+
         TempHolder.lock.lock();
         try {
             return MuPdfLinks.getPageLinks(docHandle, pageHandle, pageBounds);
@@ -405,11 +435,17 @@ public class MuPdfPage extends AbstractCodecPage {
     @Override
     public TextWord[][] getText() {
 
+        //SKIP TEM
+        if (!AppsConfig.IS_ENABLE_1_PAGE_SEARCH && pageNumber == 1) {
+            LOG.d("skip text for 1 page");
+            return new TextWord[0][0];
+        }
 
-        if (AppsConfig.MUPDF_VERSION == AppsConfig.MUPDF_1_16) {
-            return getText_116();
-        } else {
+
+        if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
             return getText_111();
+        } else {
+            return getText_116();
         }
 
     }

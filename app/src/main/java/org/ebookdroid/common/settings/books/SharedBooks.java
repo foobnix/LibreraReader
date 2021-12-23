@@ -13,6 +13,7 @@ import com.foobnix.ui2.AppDB;
 import org.librera.LinkedJSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,16 @@ import java.util.Map;
 public class SharedBooks {
 
 
-    public static synchronized void updateProgress(List<FileMeta> list, boolean updateTime) {
+    public static void updateProgress(List<FileMeta> list1, boolean updateTime, int limit) {
+        List<FileMeta> list;
+        if (limit != -1 && list1.size() > limit) {
+            list = new ArrayList<>(list1.subList(0, limit));
+        } else {
+            list = list1;
+        }
 
+
+        long a = System.currentTimeMillis();
         for (FileMeta meta : list) {
             try {
                 AppBook book = SharedBooks.load(meta.getPath());
@@ -34,6 +43,8 @@ public class SharedBooks {
             }
         }
         AppDB.get().updateAll(list);
+        long b = System.currentTimeMillis() - a;
+        LOG.d("updateProgress-time:", list.size(), b / 1000.0);
     }
 
     public static Map<String, AppBook> cache = new HashMap<>();
@@ -126,9 +137,10 @@ public class SharedBooks {
             LOG.d("Can't save AppBook");
             return;
         }
-        final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
 
         try {
+            final LinkedJSONObject obj = IO.readJsonObject(AppProfile.syncProgress);
+
             if (bs.p > 1) {
                 bs.p = 0;
             }

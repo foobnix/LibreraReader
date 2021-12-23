@@ -1,4 +1,0 @@
-mobi //https://github.com/bfabiszewski/libmobi
-djvu 
-
-etc

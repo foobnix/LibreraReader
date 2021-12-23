@@ -3,6 +3,7 @@ package com.foobnix.pdf.info.view;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
@@ -72,6 +74,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemAdapter;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.Dips;
@@ -96,8 +99,8 @@ import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.BookmarksData;
-import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.DictsHelper;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.FontExtractor;
@@ -139,7 +142,6 @@ import com.foobnix.tts.TTSTracks;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.ui2.adapter.DefaultListeners;
 import com.foobnix.ui2.adapter.FileMetaAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.common.settings.CoreSettings;
@@ -148,6 +150,7 @@ import org.ebookdroid.common.settings.books.SharedBooks;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -155,6 +158,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class DragingDialogs {
 
@@ -519,6 +523,35 @@ public class DragingDialogs {
                 final Activity activity = controller.getActivity();
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
 
+                final TextView textBGwarning = (TextView) view.findViewById(R.id.textBGwarning);
+
+                textBGwarning.setVisibility(View.GONE);
+                if (Build.VERSION.SDK_INT >= 28) {
+                    ActivityManager activityManager = (ActivityManager)
+                            controller.getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+                    if (activityManager.isBackgroundRestricted()) {
+
+                        textBGwarning.setVisibility(View.VISIBLE);
+                        TxtUtils.underlineTextView(textBGwarning);
+                        textBGwarning.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                            Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    controller.getActivity().startActivity(intent);
+                                    closeDialog();
+                                } catch (Exception e) {
+                                    Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                    LOG.e(e);
+                                }
+                            }
+                        });
+                    }
+                }
+
+
                 final TextView ttsPage = (TextView) view.findViewById(R.id.ttsPage);
 
                 final TextView textEngine = (TextView) view.findViewById(R.id.ttsEngine);
@@ -556,6 +589,7 @@ public class DragingDialogs {
 
                 final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
                 tts.setDC(controller);
+
 
                 TextView ttsSkeakToFile = (TextView) view.findViewById(R.id.ttsSkeakToFile);
 
@@ -909,7 +943,7 @@ public class DragingDialogs {
                                 }
                                 if (ExtUtils.isAudioContent(result1)) {
 
-                                    BookCSS.get().mp3BookPath = result1;
+                                    BookCSS.get().mp3BookPath(result1);
                                     AppState.get().mp3seek = 0;
 
                                     tts.udateButtons();
@@ -976,8 +1010,8 @@ public class DragingDialogs {
                         });
 
                         delete.setOnClickListener(v1 -> {
-                            if(TempHolder.isRecordTTS){
-                                Toast.makeText(controller.getActivity(),R.string.please_wait,Toast.LENGTH_SHORT).show();
+                            if (TempHolder.isRecordTTS) {
+                                Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
                                 return;
                             }
 
@@ -1355,7 +1389,9 @@ public class DragingDialogs {
         });
     }
 
-    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, final boolean withAnnotation, final Runnable reloadUI) {
+    public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
+
+        final boolean withAnnotation = AppsConfig.isPDF_DRAW_ENABLE() ? withAnnotation1 : false;
 
         // try {
         // int number = Integer.parseInt(AppState.get().selectedText);
@@ -1573,8 +1609,21 @@ public class DragingDialogs {
                         text = text.replace(TxtUtils.TTS_PAUSE, "");
 
                         TTSEngine.get().speek(text);
+                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
                     }
                 });
+                view.findViewById(R.id.readTTS).setOnLongClickListener(new OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        TTSEngine.get().stop();
+                        String text = editText.getText().toString().trim();
+                        TTSEngine.get().speek(text);
+                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+
+
                 view.findViewById(R.id.readTTSNext).setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -1616,7 +1665,7 @@ public class DragingDialogs {
                             ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
                             clipboard.setPrimaryClip(clip);
                         }
-                        Toast.makeText(c, c.getString(R.string.copied_text)+": "+trim, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
                         closeDialog();
                     }
                 });
@@ -1908,6 +1957,7 @@ public class DragingDialogs {
                 grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
 
 
+
                 final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), dc.getPageCount(), dc.getCurentPageFirst1() - 1) {
@@ -1918,6 +1968,7 @@ public class DragingDialogs {
 
                         ;
                     });
+
                 }
 
                 grid.setOnItemClickListener(new OnItemClickListener() {
@@ -1974,7 +2025,12 @@ public class DragingDialogs {
 
                     @Override
                     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+                        if (scrollState == OnScrollListener.SCROLL_STATE_FLING) {
+                            IMG.pauseRequests(grid.getContext());
+                        } else {
+                            IMG.resumeRequests(grid.getContext());
+                        }
+                        LOG.d("onScrollStateChanged", scrollState);
                     }
 
                     @Override
@@ -2237,7 +2293,7 @@ public class DragingDialogs {
                 recyclerView.setAdapter(recentAdapter);
                 recentAdapter.tempValue2 = FileMetaAdapter.TEMP2_RECENT_FROM_BOOK;
 
-                List<FileMeta> all = AppData.get().getAllRecent();
+                List<FileMeta> all = AppData.get().getAllRecent(false);
                 FileMeta stars = new FileMeta();
                 stars.setCusType(FileMetaAdapter.DISPALY_TYPE_LAYOUT_STARS);
                 all.add(0, stars);
@@ -2448,7 +2504,7 @@ public class DragingDialogs {
                                                 LOG.d("Try to open path", aPath);
                                                 if (ExtUtils.isAudioContent(aPath.getPath())) {
                                                     TTSEngine.get().mp3Destroy();
-                                                    BookCSS.get().mp3BookPath = aPath.getPath();
+                                                    BookCSS.get().mp3BookPath(aPath.getPath());
                                                     AppState.get().mp3seek = 0;
                                                     TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                                                 } else {
@@ -3528,6 +3584,27 @@ public class DragingDialogs {
                     }
                 });
 
+                CheckBox alwaysTwoPages = (CheckBox) inflate.findViewById(R.id.alwaysTwoPages);
+                alwaysTwoPages.setVisibility(TxtUtils.visibleIf(AppSP.get().readingMode == AppState.READING_MODE_BOOK));
+                alwaysTwoPages.setChecked(AppState.get().alwaysTwoPages);
+                alwaysTwoPages.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().alwaysTwoPages = isChecked;
+                    }
+                });
+
+                CheckBox isMirrorImage = (CheckBox) inflate.findViewById(R.id.isMirrorImage);
+                isMirrorImage.setChecked(AppState.get().isMirrorImage);
+                isMirrorImage.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isMirrorImage = isChecked;
+                    }
+                });
+
                 CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
                 isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
@@ -3569,6 +3646,10 @@ public class DragingDialogs {
 
                     }
                 });
+
+
+
+
 
                 CheckBox isIgnoreAnnotatations = (CheckBox) inflate.findViewById(R.id.isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setChecked(AppState.get().isIgnoreAnnotatations);
@@ -4214,6 +4295,9 @@ public class DragingDialogs {
                                         load.setLang(code);
                                         SharedBooks.save(load1);
                                     }
+                                    if(AppState.get().isDefaultHyphenLanguage){
+                                        AppState.get().defaultHyphenLanguageCode = code;
+                                    }
 
                                     return false;
                                 }
@@ -4223,6 +4307,20 @@ public class DragingDialogs {
 
                     }
                 });
+
+                CheckBox isDefaultHyphenLanguage = (CheckBox) inflate.findViewById(R.id.isDefaultHyphenLanguage);
+                isDefaultHyphenLanguage.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isDefaultHyphenLanguage.setChecked(AppState.get().isDefaultHyphenLanguage);
+                isDefaultHyphenLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isDefaultHyphenLanguage = isChecked;
+                    if(isChecked){
+                        AppState.get().defaultHyphenLanguageCode= AppSP.get().hypenLang;
+                    }
+                });
+
+
+
+
                 // - hypens
                 //
                 CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
@@ -4398,7 +4496,7 @@ public class DragingDialogs {
                 });
 
                 final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
-                downloadFonts.setVisibility(TxtUtils.visibleIf(!BuildConfig.IS_FDROID));
+                downloadFonts.setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
                 downloadFonts.setOnClickListener(new OnClickListener() {
 
                     @Override
@@ -4741,9 +4839,12 @@ public class DragingDialogs {
                     }
                 });
 
-                isPreText.setVisibility(BookType.TXT.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                boolean isTxtOrZip = BookType.TXT.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
+                isPreText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
                 CheckBox isLineBreaksText = (CheckBox) inflate.findViewById(R.id.isLineBreaksText);
+                ((View)isLineBreaksText.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+
                 isLineBreaksText.setChecked(AppState.get().isLineBreaksText);
                 isLineBreaksText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -4753,9 +4854,56 @@ public class DragingDialogs {
                     }
                 });
 
-                isLineBreaksText.setVisibility(BookType.TXT.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
+                isLineBreaksText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
                 //
+
+                //charsets
+
+                CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
+                ((View)isCharacterEncoding.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+                isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
+                isCharacterEncoding.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                        AppState.get().isCharacterEncoding = isChecked;
+                    }
+                });
+
+                final TextView characterEncoding = (TextView) inflate.findViewById(R.id.characterEncoding);
+                characterEncoding.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                characterEncoding.setText(AppState.get().characterEncoding);
+                TxtUtils.underlineTextView(characterEncoding);
+
+                characterEncoding.setOnClickListener(new OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+
+                        List<String> keys = new ArrayList<>(Charset.availableCharsets().keySet());
+                        keys.add(0,"UTF-8");
+
+                        for (final String name : keys) {
+                            if(name.startsWith("IBM") ||name.startsWith("x-")){
+                                continue;
+                            }
+                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+                                @Override
+                                public boolean onMenuItemClick(MenuItem item) {
+                                    AppState.get().characterEncoding = name;
+                                    characterEncoding.setText(AppState.get().characterEncoding);
+                                    TxtUtils.underlineTextView(characterEncoding);
+                                    return false;
+                                }
+                            });
+                        }
+                        popupMenu.show();
+
+                    }
+                });
 
                 TextView moreSettings = (TextView) inflate.findViewById(R.id.moreSettings);
                 moreSettings.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
@@ -4981,8 +5129,9 @@ public class DragingDialogs {
                                 AppState.get().colorDayText = colorText;
                                 AppState.get().colorDayBg = colorBg;
 
-                                ImageLoader.getInstance().clearDiskCache();
-                                ImageLoader.getInstance().clearMemoryCache();
+
+                                IMG.clearMemoryCache();
+                                IMG.clearDiscCache();
 
                                 if (AppState.get().isUseBGImageDay) {
                                     textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));

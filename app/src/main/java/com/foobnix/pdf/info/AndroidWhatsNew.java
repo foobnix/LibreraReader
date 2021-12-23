@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
@@ -20,13 +21,16 @@ import com.foobnix.opds.OPDS;
 import com.foobnix.pdf.info.view.AlertDialogs;
 
 import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import static android.os.Build.VERSION.SDK_INT;
@@ -36,12 +40,14 @@ public class AndroidWhatsNew {
     public static final String DETAIL_URL_RU = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
-    private static final String WIKI_URL = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki/what-is-new/%s/";
+    private static final String WIKI_URL = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki/what-is-new/";
+    public static final String DOWNLOAD_LINK = "https://emma.cloud.tabdigital.eu/s/E8froWd87JC6cM5";
 
     public static String getLangUrl(Context c) {
-        String versionName = Apps.getVersionName(c);
-        String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
-        String url = String.format(WIKI_URL, shortVersion);
+        //String versionName = Apps.getVersionName(c);
+        //String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
+        // String url = String.format(WIKI_URL, shortVersion);
+        String url = WIKI_URL;
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
         String appLang = AppState.get().appLang;
@@ -58,7 +64,8 @@ public class AndroidWhatsNew {
         // url += "&utm_ln=" + appLang;
         // url += "&utm_beta=" + AppsConfig.IS_BETA;
 
-        url += "#" + shortVersion.replace(".", "");
+        //
+        // url += "#" + shortVersion.replace(".", "");
 
         LOG.d("getLangUrl", url);
         return url;
@@ -84,7 +91,7 @@ public class AndroidWhatsNew {
         url += "?utm_p=" + Apps.getPackageName(c);
         url += "&utm_v=" + Apps.getVersionName(c);
         url += "&utm_ln=" + appLang;
-        url += "&utm_beta=" + BuildConfig.IS_BETA;
+        url += "&utm_beta=" + AppsConfig.IS_BETA;
 
         url += "#" + shortVersion.replace(".", "");
 
@@ -95,10 +102,12 @@ public class AndroidWhatsNew {
 
     public static void show2(final Context c) {
 
-        if (BuildConfig.IS_FDROID) {
+        if (true || AppsConfig.IS_FDROID || Build.VERSION.SDK_INT <= 22) {
             Urls.open(c, getLangUrl(c));
             return;
         }
+
+        ADS.hideAdsTemp((Activity) c);
 
         View inflate = LayoutInflater.from(c).inflate(R.layout.whatsnew2, null, false);
 
@@ -107,7 +116,10 @@ public class AndroidWhatsNew {
         wv.getSettings().setJavaScriptEnabled(true);
 
 
-        wv.loadUrl(getLangUrl(c));
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Set-Cookie", "SameSite=None; Secure");
+
+        wv.loadUrl(getLangUrl(c),headers);
 
         wv.setFocusable(true);
         wv.setWebViewClient(new WebViewClient() {
@@ -154,7 +166,8 @@ public class AndroidWhatsNew {
 
     }
 
-    private static void show1(final Context c) {
+    @Deprecated
+    private static void s(final Context c) {
         if (true) {
             show2(c);
             return;
@@ -237,31 +250,35 @@ public class AndroidWhatsNew {
     }
 
     public static void checkForNewBeta(final Activity c) {
-        if (!BuildConfig.IS_BETA) {
+        if (!AppsConfig.IS_BETA) {
             return;
         }
 
 
-        final String url = "https://t.me/s/LibreraBeta";
+        final String url = "https://t.me/s/LibreraReader";
 
 
         LOG.d("checkForNewBeta");
-        new Thread() {
+        new Thread("@T checkForNewBeta") {
             @Override
             public void run() {
 
                 try {
                     final String resultHTTP = OPDS.getHttpResponseNoException(url);
-                    String result = Jsoup.parse(resultHTTP).select("div[class=tgme_widget_message_document_title]").last().text();
+                    Elements select = Jsoup.parse(resultHTTP).select("div[class=tgme_widget_message_text js-message_text]");
+                    LOG.d("checkForNewBeta result 0", select.size());
+                    String result = select.last().text();
                     LOG.d("checkForNewBeta result 2", result);
-                    if (!result.contains(".apk")) {
-                        return;
+
+                    if (result.startsWith("[")) {
+                        int i = result.indexOf("]");
+                        if (i == -1) {
+                            return;
+                        }
+                        result = result.substring(1, i);
+
                     }
 
-                    result = result.replace("Librera Beta-","");
-                    result = result.replace("Librera Alpha-","");
-                    result = result.replace("-arm64.apk","");
-                    result = result.replace("-arm.apk","");
 
                     final String resultFinal = result;
                     LOG.d("checkForNewBeta result 3", result);
@@ -280,11 +297,11 @@ public class AndroidWhatsNew {
                                 return;
                             }
 
-                            AlertDialogs.showDialog(c, c.getString(R.string.new_beta_version_available) + "\n" + resultFinal, c.getString(R.string.download), new Runnable() {
+                            AlertDialogs.showDialog(c,   c.getString(R.string.new_beta_version_available) + " [" + resultFinal+"]\nhttp://beta.librera.mobi", c.getString(R.string.download), new Runnable() {
 
                                 @Override
                                 public void run() {
-                                    Urls.open(c, "https://t.me/LibreraBeta/");
+                                    Urls.open(c, DOWNLOAD_LINK);
                                 }
                             });
                         } catch (Exception e) {

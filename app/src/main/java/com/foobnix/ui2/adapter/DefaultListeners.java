@@ -28,7 +28,6 @@ import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.DialogsPlaylist;
 import com.foobnix.pdf.info.view.Downloader;
 import com.foobnix.pdf.info.widget.FileInformationDialog;
-import com.foobnix.pdf.info.widget.RecentUpates;
 import com.foobnix.pdf.info.widget.ShareDialog;
 import com.foobnix.pdf.info.wrapper.DocumentController;
 import com.foobnix.pdf.info.wrapper.UITab;
@@ -154,6 +153,13 @@ public class DefaultListeners {
                     EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
 
                 } else {
+                    if(AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH ){
+                        AppData.get().addRecent(new SimpleMeta(result.getPath()));
+                        EventBus.getDefault().post(new NotifyAllFragments());
+                        ExtUtils.openWith(a, new File(result.getPath()));
+                        return  false;
+                    }
+
                     if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
                         Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
 
@@ -483,7 +489,6 @@ public class DefaultListeners {
                 }
                 TempHolder.listHash++;
 
-                RecentUpates.updateAll(a);
                 return false;
             }
         };

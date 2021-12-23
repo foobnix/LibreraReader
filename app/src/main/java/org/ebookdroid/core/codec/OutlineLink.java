@@ -9,6 +9,7 @@ public class OutlineLink implements CharSequence {
     private final String link;
     public long docHandle;
     public String linkUri;
+    public String contentSrc;
 
     public OutlineLink(final String title, final String link, final int level, long docHandle, String linkUri) {
         this.title = title;

@@ -3,6 +3,8 @@ package com.foobnix.hypen;
 import java.util.HashMap;
 import java.util.Map;
 
+//https://github.com/mnater/Hyphenator/tree/master/patterns
+//https://github.com/mfietz/JHyphenator/blob/master/src/main/java/de/mfietz/jhyphenator/HyphenationPattern.java
 public enum HyphenPattern {
 
     error("error", 0, 0, new HashMap<Integer, String>() {

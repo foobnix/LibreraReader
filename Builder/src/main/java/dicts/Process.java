@@ -16,7 +16,7 @@ public class Process {
 
         System.out.println("hello");
 
-        final String DB = "/home/ivan-dev/Downloads/replaces/db/sample.db";
+        final String DB = "/home/data/Downloads/replaces/db/sample.db";
         File file = new File(DB);
         file.delete();
 
@@ -29,8 +29,8 @@ public class Process {
             statement.executeUpdate("drop table if exists DICT_META");
             statement.executeUpdate("create table DICT_META (key string, value string, PRIMARY KEY(`key`))");
 
-            //String in = "/home/ivan-dev/Downloads/replaces/db/in.txt";
-            String in = "/home/ivan-dev/Downloads/replaces/db/polnaya_akceptuirovannaya_paradigma.dict";
+            //String in = "/home/data/Downloads/replaces/db/in.txt";
+            String in = "/home/data/Downloads/replaces/db/polnaya_akceptuirovannaya_paradigma.dict";
             String res = new String(Files.readAllBytes(Paths.get(in)), StandardCharsets.UTF_8);
 
             String slit[] = res.split(",");

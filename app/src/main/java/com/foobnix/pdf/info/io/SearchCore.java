@@ -40,11 +40,19 @@ public class SearchCore {
     public static boolean findOnce2 = false;
 
     public static void searchSimple(List<FileMeta> items, File root, List<String> exts) {
+
+        if (root ==null || exts == null) {
+            return;
+        }
+
         File[] listFiles = root.listFiles();
 
         if (listFiles == null) {
             return;
         }
+
+        exts = new ArrayList<>(exts);
+
         for (File file : listFiles) {
             if (file.isFile() && endWith(file.getName(), exts)) {
                 items.add(new FileMeta(file.getPath()));
@@ -53,15 +61,21 @@ public class SearchCore {
     }
 
     public static void search(List<FileMeta> items, File root, List<String> exts) {
+
+        if (root == null || root.getPath() == null || exts == null) {
+            return;
+        }
         if (root.getPath().equals("/")) {
             LOG.d("Skip search in root");
             return;
         }
         findOnce = false;
+        exts = new ArrayList<>(exts);
         search(root, exts, items);
     }
 
-    private static void search(File root, List<String> exts, List<FileMeta> items) {
+    private static void search(File root, final List<String> exts, List<FileMeta> items) {
+
         if (root.isFile() && endWith(root.getName(), exts)) {
             final FileMeta e = new FileMeta(root.getPath());
             e.setTitle(root.getName());
@@ -144,6 +158,7 @@ public class SearchCore {
             if (it.isDirectory()) {
                 FileMetaCore.get().upadteBasicMeta(meta, it);
                 meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_DIRECTORY);
+                meta.setIsStar(AppDB.get().isStarFolder(meta.getPath()));
             } else {
                 FileMeta load = AppDB.get().load(it.getPath());
                 if (load == null) {

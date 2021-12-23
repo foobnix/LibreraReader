@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.cloudrail.si.interfaces.CloudStorage;
 import com.cloudrail.si.types.CloudMetaData;
 import com.foobnix.StringResponse;
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.ResultResponse;
@@ -58,6 +59,7 @@ import com.foobnix.pdf.info.TintUtil;
 import com.foobnix.pdf.info.io.SearchCore;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.view.AlertDialogs;
+import com.foobnix.pdf.info.view.Dialogs;
 import com.foobnix.pdf.info.view.MyPopupMenu;
 import com.foobnix.pdf.info.view.MyProgressBar;
 import com.foobnix.pdf.info.widget.ShareDialog;
@@ -74,6 +76,7 @@ import com.foobnix.ui2.fast.FastScrollRecyclerView;
 
 import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
+import org.ebookdroid.droids.MdContext;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -102,11 +105,12 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     Map<String, Integer> rememberPos = new HashMap<String, Integer>();
     String displayPath;
     boolean isRestorePos = false;
+    int itemsCount;
     private LinearLayout paths;
     private TextView stub;
-    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder;
+    private ImageView onListGrid, starIcon, onSort, starIconDir, sortOrder, createFolder;
     private EditText editPath;
-    private View pathContainer, onClose, onAction, openAsBook, createFolder;
+    private View pathContainer, onClose, onAction, openAsBook;
     private int fragmentType = TYPE_DEFAULT;
     private String fragmentText = "";
     private ResultResponse<String> onPositiveAction;
@@ -163,7 +167,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         TintUtil.setBackgroundFillColor(pathContainer, TintUtil.color);
         TintUtil.setBackgroundFillColor(onClose, TintUtil.color);
         TintUtil.setBackgroundFillColor(onAction, TintUtil.color);
-        TintUtil.setBackgroundFillColor(createFolder, TintUtil.color);
         TintUtil.setTintImageWithAlpha(openAsbookImage, getActivity() instanceof MainTabs2 ? TintUtil.getColorInDayNighth() : TintUtil.getColorInDayNighthBook());
 
     }
@@ -196,6 +199,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
                 sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
 
+
                 populate();
 
             }
@@ -226,14 +230,23 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
-                ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
+                File file = new File(displayPath, MdContext.SUMMARY_MD);
+                if (file.isFile()) {
+                    ExtUtils.openFile(getActivity(), new FileMeta(file.getPath()));
+                } else {
+                    File lxml = FolderContext.genarateXML(searchAdapter.getItemsList(), displayPath, true);
+                    ExtUtils.showDocumentWithoutDialog2(getActivity(), lxml);
+                }
             }
         });
         openAsBook.setVisibility(View.GONE);
 
         onSort.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_410_sort_by_attributes_alt : R.drawable.glyphicons_409_sort_by_attributes);
         sortOrder.setImageResource(AppState.get().sortByReverse ? R.drawable.glyphicons_601_chevron_up : R.drawable.glyphicons_602_chevron_down);
+
+        sortOrder.setContentDescription(getString(R.string.ascending) + " " + getString(R.string.descending));
+        onSort.setContentDescription(getString(R.string.cd_sort_results));
+
 
         onAction = view.findViewById(R.id.onAction);
         editPath = (EditText) view.findViewById(R.id.editPath);
@@ -249,7 +262,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
         onAction.setOnClickListener(onSelectAction);
 
         createFolder = view.findViewById(R.id.createFolder);
-        createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
 
         if (TYPE_DEFAULT == fragmentType) {
             editPath.setVisibility(View.GONE);
@@ -259,7 +271,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             editPath.setVisibility(View.VISIBLE);
             editPath.setEnabled(false);
             onCloseActionPaner.setVisibility(View.VISIBLE);
-            createFolder.setVisibility(View.VISIBLE);
+
         }
         if (TYPE_SELECT_FILE == fragmentType) {
             editPath.setVisibility(View.VISIBLE);
@@ -303,13 +315,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
             @Override
             public void onClick(View v) {
-                List<String> extFolders = new ArrayList<String>();
+                List<String> extFolders = ExtUtils.getAllExternalStorages(getActivity());
 
-                extFolders = ExtUtils.getExternalStorageDirectories(getActivity());
-                String sdPath = ExtUtils.getSDPath();
-                if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
-                    extFolders.add(sdPath);
-                }
 
                 MyPopupMenu menu = new MyPopupMenu(getActivity(), onHome);
 
@@ -343,14 +350,16 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 }
 
-                menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                if (new File(BookCSS.get().downlodsPath).isDirectory()) {
+                    menu.getMenu().add(R.string.downloads).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(BookCSS.get().downlodsPath);
-                        return false;
-                    }
-                }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            displayAnyPath(BookCSS.get().downlodsPath);
+                            return false;
+                        }
+                    }).setIcon(R.drawable.glyphicons_591_folder_heart);
+                }
 
 
                 menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
@@ -508,6 +517,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             }
         });
 
+
         searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
 
             @Override
@@ -574,6 +584,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         getActivity().getString(R.string.by_date), //
                         getActivity().getString(R.string.by_size), //
                         getActivity().getString(R.string.by_title), //
+                        getActivity().getString(R.string.by_author), //
                         getActivity().getString(R.string.by_number_in_serie), //
                         getActivity().getString(R.string.by_number_of_pages), //
                         getActivity().getString(R.string.by_extension) //
@@ -584,6 +595,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                         AppState.BR_SORT_BY_DATE, //
                         AppState.BR_SORT_BY_SIZE, //
                         AppState.BR_SORT_BY_TITLE, //
+                        AppState.BR_SORT_BY_AUTHOR, //
                         AppState.BR_SORT_BY_NUMBER, //
                         AppState.BR_SORT_BY_PAGES, //
                         AppState.BR_SORT_BY_EXT//
@@ -648,22 +660,64 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onClick(View v) {
 
-                AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), new StringResponse() {
+                MyPopupMenu menu = new MyPopupMenu(getActivity(), v);
 
+                menu.getMenu().add(R.string.new_file).setOnMenuItemClickListener(new OnMenuItemClickListener() {
                     @Override
-                    public boolean onResultRecive(String string) {
-                        File folder = new File(displayPath, string);
-                        LOG.d("create_folder",folder);
-                        if (!folder.mkdirs()) {
-                            Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
-
-                            return false;
-                        }
-                        Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
-                        populate();
-                        return true;
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AlertDialogs.editFileTxt(getActivity(), null, new File(displayPath), new StringResponse() {
+                            @Override
+                            public boolean onResultRecive(String string) {
+                                //ExtUtils.openFile(getActivity(), new FileMeta(string));
+                                resetFragment();
+                                return false;
+                            }
+                        });
+                        return false;
                     }
                 });
+                menu.getMenu().add(R.string.create_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        AlertDialogs.showEditDialog(getActivity(), getString(R.string.create_folder), getString(R.string.name), new StringResponse() {
+
+                            @Override
+                            public boolean onResultRecive(String string) {
+                                AppState.get().isDisplayAllFilesInFolder = true;
+                                File folder = new File(displayPath, string);
+                                LOG.d("create_folder", folder);
+                                if (!folder.mkdirs()) {
+                                    Toast.makeText(getContext(), R.string.fail, Toast.LENGTH_SHORT).show();
+
+                                    return false;
+                                }
+                                Toast.makeText(getContext(), R.string.success, Toast.LENGTH_SHORT).show();
+                                populate();
+                                return true;
+                            }
+                        });
+                        return false;
+                    }
+                });
+
+                menu.getMenu().add(R.string.go_to_the_folder).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        String displayPath1 = BrowseFragment2.this.displayPath;
+
+                        Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), displayPath1, new ResultResponse<String>() {
+                            @Override
+                            public boolean onResultRecive(String path1) {
+                                displayAnyPath(path1);
+                                return false;
+                            }
+                        });
+                        return false;
+                    }
+                });
+                menu.show();
+
+
             }
         });
 
@@ -824,7 +878,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 return items;
 
             } else {
-                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, createFolder.getVisibility()==View.VISIBLE || AppState.get().isDisplayAllFilesInFolder);
+                return SearchCore.getFilesAndDirs(displayPath, fragmentType == TYPE_DEFAULT, AppState.get().isDisplayAllFilesInFolder);
             }
         } catch (Exception e) {
             LOG.e(e);
@@ -842,6 +896,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             recyclerView.getLayoutManager().scrollToPosition(pos);
             LOG.d("rememberPos go", displayPath, pos);
         }
+
 
     }
 
@@ -885,6 +940,9 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     public void displayAnyPath(String path) {
+        if (TxtUtils.isEmpty(path)) {
+            path = "/";
+        }
         LOG.d("Display-path", path);
         isRestorePos = false;
         displayPath = path;
@@ -906,6 +964,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
     }
 
     public void displayItems(List<FileMeta> items) {
+        itemsCount = items.size();
         if (searchAdapter == null) {
             return;
         }
@@ -927,6 +986,8 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 Collections.sort(items, FileMetaComparators.BR_BY_TITLE);
             } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_EXT) {
                 Collections.sort(items, FileMetaComparators.BR_BY_EXT);
+            } else if (AppState.get().sortByBrowse == AppState.BR_SORT_BY_AUTHOR) {
+                Collections.sort(items, FileMetaComparators.BR_BY_AUTHOR);
             }
             if (AppState.get().sortByReverse) {
                 Collections.reverse(items);
@@ -960,7 +1021,13 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
         }, 100);
 
-        openAsBook.setVisibility(TxtUtils.visibleIf(FolderContext.isFolderWithImage(items)));
+        if (new File(displayPath, MdContext.SUMMARY_MD).isFile()) {
+            openAsBook.setVisibility(View.VISIBLE);
+        } else if (FolderContext.isFolderWithImage(items)) {
+            openAsBook.setVisibility(View.VISIBLE);
+        } else {
+            openAsBook.setVisibility(View.GONE);
+        }
 
     }
 
@@ -1105,7 +1172,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             });
                             return true;
                         } else {
-                            deleteFolderPopup(getActivity(), pathFull);
+                            //deleteFolderPopup(getActivity(), pathFull);
+                            Dialogs.showEditDialog2(getActivity(), getString(R.string.go_to_the_folder), pathFull, new ResultResponse<String>() {
+                                @Override
+                                public boolean onResultRecive(String path1) {
+                                    displayAnyPath(path1);
+                                    return false;
+                                }
+                            });
                         }
 
 
@@ -1115,11 +1189,17 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
 
                 paths.addView(slash);
                 paths.addView(item, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+
             }
 
             TextView stub = new TextView(getActivity());
-            stub.setText("    ");
+
+            stub.setText(" (" + itemsCount + ") ");
+            stub.setTextColor(getResources().getColor(R.color.white));
+            stub.setSingleLine();
             paths.addView(stub);
+
+            Apps.accessibilityText(getActivity(), split[split.length - 1], getString(R.string.folder_selected), "" + itemsCount);
 
         }
 
@@ -1234,7 +1314,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppState.get().isDisplayAllFilesInFolder = isChecked;
-                createFolder.setVisibility(TxtUtils.visibleIf(AppState.get().isDisplayAllFilesInFolder));
+
                 populate();
             }
         });
@@ -1252,7 +1332,6 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
             });
         }
-
 
 
         p.show();

@@ -3,6 +3,7 @@ package org.ebookdroid.droids.mupdf.codec;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.sys.TempHolder;
 
 import org.ebookdroid.core.codec.OutlineLink;
@@ -34,10 +35,20 @@ public class MuPdfOutline {
 
     private void ttOutline(final List<OutlineLink> ls, long outline, final int level) {
         while (outline != -1) {
-             String title = getTitle(outline);
-            final String link = getLink(outline, docHandle);
+            String title = getTitle(docHandle, outline);
             String linkUri = getLinkUri(outline, docHandle);
-            LOG.d("linkUri", linkUri, title);
+
+
+            final String link = getLink(outline, docHandle);
+
+            LOG.d("linkUri", linkUri, title, link);
+
+            if (BuildConfig.DEBUG && linkUri != null) {
+                title = title + "[" + linkUri + "]";
+
+
+            }
+
             if (title != null) {
                 final OutlineLink outlineLink = new OutlineLink(title, link, level, docHandle, linkUri);
 
@@ -72,7 +83,7 @@ public class MuPdfOutline {
         }
     }
 
-    private static native String getTitle(long outlinehandle);
+    private static native String getTitle(long dochandle, long outlinehandle);
 
     private static native String getLink(long outlinehandle, long dochandle);
 
