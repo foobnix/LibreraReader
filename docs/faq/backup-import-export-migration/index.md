@@ -2,15 +2,15 @@
 layout: main
 ---
 
-# Data backup and migration
+# Data Backup and Migration
 
-> Data backup need if you need to transfer books to new device or to new folder or new sd card
+> Data backup is needed if you intend to transfer books to a new device, new folder, or sd card
 
-# Export (backup)
+# Export (Backup)
 
-Press export button to save all application settings in .zip file
+Press the Export button to save all application settings to a .zip file
 
-Export saves:
+Thus you will save:
 
 * Application settings
 * Bookmarks
@@ -18,30 +18,31 @@ Export saves:
 * User Tags
  
 # Import
-Press import to restore backup from .zip file
-Start the migration if necessary
+
+Press the Import button to restore your backup from a .zip file
+Or you can initiate migration
 
 # Migration
 
-Migration do only replaces file paths in app config files.
+Migration will only replace the file paths in the App's config-files.
 
-Full book path is stored in settings, for example if your books were placed in folder
+The full path is stored in Settings. For example, if the path to your book (example.pdf) is as follows:
 
 /storage/Books/example.pdf
 
-and then you move book to the folder **MyBooks**
+and you want to move it to the **MyBooks** folder,
 
-You need to set new books location in app configuration
+you need to change the location in the App's configuration file to:
 
 /storage/MyBooks/example.pdf
 
-You should run "Migration" and replace:
+Run "Migration", and replace:
 
 Old path: **/Books/**  
 New path: **/MyBooks/**
 
 
-If you place books on **external SD Card** it's easy to fix paths for new place
+If you're moving your book to an **external SD Card**, you can  do it easily by replacing the destination:
 Migration: /storage/AAAA-AAAA/Books  to /storage/BBBB-BBBB/Books
 
 old path: **/storage/AAAA-AAAA/** 
