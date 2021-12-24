@@ -18,4 +18,5 @@ adb shell rm /sdcard/screen.png
 cp "$n1/$n2.png" "$n1/$n2.png"
 cd $n1
 #mogrify -quality 85 -resize 500 *.png
+gimp -n "$n1/$n2.png"
 
