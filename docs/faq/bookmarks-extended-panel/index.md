@@ -4,8 +4,8 @@ layout: main
 
 # Working with Bookmarks in Extended Mode (Bookmarks Ribbon)
 
-> You can make **Librera** display your bookmarks on screen at all times while reading a book. They will be shown across the top of the screen in a so-called _Bookmarks Ribbon_. This extended bookmark mode should come in handy when you need to add new bookmarks or switch between them in an instant. 
-> We expect this cool feature be in high demand with musicians, while running the app in _Musician's_ mode. So, it comes with the Ribbon enabled in this mode by default.
+> You can make **Librera** display your bookmarks on screen at all times while reading a book. They will be shown across the top of the screen in a so-called _Bookmarks Ribbon_. This extended bookmark mode should come in handy when you need to add new bookmarks or switch between them in a flash. 
+> We expect this cool feature be in high demand with musicians, while running the app in _Musician's Mode_. So, it comes with the Ribbon enabled in this mode by default.
 
 To enable it in the other modes:
 
@@ -44,6 +44,7 @@ Your new bookmark will appear in the _Bookmarks_ window, and at the same time yo
 > Note: A long-press on a bookmark in the Ribbon will open an edit window.
 * Save your editing results by tapping **SAVE**
 * Or you can delete the bookmark by tapping **DELETE**
+
 The Ribbon will become a full-blown ribbon across your screen when you have many bookmarks. You can navigate through them by finger swipes.
 
 ||||
