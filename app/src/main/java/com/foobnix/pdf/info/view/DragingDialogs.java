@@ -4843,8 +4843,6 @@ public class DragingDialogs {
                 isPreText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
                 CheckBox isLineBreaksText = (CheckBox) inflate.findViewById(R.id.isLineBreaksText);
-                ((View)isLineBreaksText.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
-
                 isLineBreaksText.setChecked(AppState.get().isLineBreaksText);
                 isLineBreaksText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -4854,7 +4852,7 @@ public class DragingDialogs {
                     }
                 });
 
-                isLineBreaksText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
+                isLineBreaksText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
                 //
 
