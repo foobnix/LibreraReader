@@ -109,9 +109,9 @@ import java.util.List;
 public class PrefFragment2 extends UIFragment {
     public static final Pair<Integer, Integer> PAIR = new Pair<>(R.string.preferences, R.drawable.glyphicons_281_settings);
 
-    private static final String WWW_SITE = "http://librera.mobi";
+    private static final String WWW_SITE = "https://librera.mobi";
     private static final String WWW_BETA_SITE = "http://beta.librera.mobi";
-    private static final String WWW_WIKI_SITE = "http://wiki.librera.mobi/faq";
+    private static final String WWW_WIKI_SITE = "https://librera.mobi/faq";
     View section1, section2, section3, section4, section5, section6, section7, section8, section9, overlay;
     TextView singIn, syncInfo, syncInfo2, syncHeader;
     CheckBox isEnableSync;
