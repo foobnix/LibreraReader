@@ -34,7 +34,7 @@ In addition to the above markings:
 * A _Close_ gesture will open the _Save changes?_ window
 * You can save your changed file by tapping _YES_
 * You can save changes to a new instance (renamed file). Tap _RENAME_
-* Edit filename in the bottom of the next window, and tap _SELECT_
+* Edit filename at the bottom of the _Choose_ window, and tap _SELECT_
 
 |||
 |-|-|
