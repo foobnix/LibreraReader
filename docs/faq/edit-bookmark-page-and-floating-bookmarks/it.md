@@ -2,18 +2,20 @@
 layout: main
 ---
 
-# Modifica testo del segnalibro, numero di pagina, segnalibro mobile
+# Modifica dei segnalibri _normali_ e _fluttuanti_
 
-> Librera supporta due tipi di segnalibri: segnalibro normale e segnalibro mobile.
+> **Librera** supporta due tipi di segnalibri: _normal_ e _floating_. L'utente può modificare il testo e il numero di pagina
 
-**Il segnalibro** normale fa sempre riferimento allo stesso numero di pagina
+I segnalibri**normali** fanno sempre riferimento agli stessi numeri di pagina in un libro
 
-**Il segnalibro** mobile fa riferimento al numero di pagina dinamica
+**I segnalibri mobili** si riferiscono a pagine _dinamiche_
 
-È possibile modificare il testo dei segnalibri, digitare (premere a lungo)
+> È possibile modificare i segnalibri, ovvero cambiarne il testo e lo stile. Per accedere alla modalità di modifica, tieni premuto a lungo su un segnalibro nella finestra **Segnalibri**.
 
-Se è necessario modificare il numero di pagina per il segnalibro normale, è possibile impostarlo come &quot;mobile&quot; fare riferimento al nuovo posto e quindi impostarlo come &quot;normale&quot;
-
+Se devi modificare il numero di pagina per un segnalibro **normale**:
+- convertirlo in un segnalibro _floating_
+- indirizzalo verso una nuova destinazione
+- riconvertilo in _normal_
 
 
 |1|2|3|

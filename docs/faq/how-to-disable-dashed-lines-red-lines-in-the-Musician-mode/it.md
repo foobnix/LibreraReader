@@ -2,13 +2,22 @@
 layout: main
 ---
 
-# Come disabilitare le linee tratteggiate, le linee rosse in &quot;Modalità musicista&quot;
+# Modalità musicista: attivazione e disattivazione dei contrassegni sullo schermo
 
-* Apri il libro
-* Fai clic sull'icona delle impostazioni
-* Apri la sezione della barra di stato
-* È possibile disabilitare le linee tratteggiate
-* Puoi disabilitare le linee rosse (che indicano la fine del documento)
+> Gli indicatori sullo schermo in modalità Musicista hanno lo scopo di aiutarti a leggere e navigare nella pagina a scorrimento mentre lavori in questa modalità
+
+Gli indicatori mostrano:
+
+- le zone rubinetto con linee tratteggiate
+- la fine di un documento con strisce rosse
+- separatori di pagina
+
+Per attivarli/disattivarli:
+
+*Apri un documento in modalità Musicista
+*Tocca l'icona **Impostazioni**
+*Vai alla sezione _Barra di stato_ (toccala!)
+*Seleziona/deseleziona le caselle corrispondenti
 
 
 ![disable dashed lines](1.png)

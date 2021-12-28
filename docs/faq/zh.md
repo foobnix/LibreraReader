@@ -4,45 +4,45 @@ layout: main
 
 #常见问题
 
-* [编辑书签文本，页码，浮动书签](/faq/edit-bookmark-page-and-floating-bookmarks/zh)
-* [PDF的对比度和亮度(黑白效果)](/faq/contrast-and-brightness-in-pdf/zh)
-* [如何在“音乐人模式”中禁用虚线，红线](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/zh)
-* [数据备份和迁移](/faq/backup-import-export-migration/zh)
-* [为注释，引号等创建新的TXT文件](/faq/create-new-book-or-file-txt/zh)
-* [阅读模式：滚动，读书和音乐家的音乐](/faq/reading-mode-vertical-book-musician/zh)
-* [设置状态栏](/faq/how-to-set-up-a-status-bar/zh)
-* [**学习外语的图书馆**](/faq/librera-for-study-foreign-languages/zh)
-* [TTS替换](/faq/tts-replacements/zh)
-* [自定义页面背景](/faq/how-to-set-page-background-image/zh)
-* [使用OPDS目录](/faq/working-with-opds-online-catalogs/zh)
-* [页面查看/布局选项](/faq/how-to-set-up-reading-mode/zh)
-* [口径样式参考模式](/faq/reference-mode-calibre/zh)
-* [与_Librera_一起使用文本语音转换引擎](/faq/installation-and-configuration-of-tts/zh)
-* [如何在_Librera_中选择文本](/faq/how-to-set-text-selection/zh)
-* [重新分页文档以匹配书的页码](/faq/relative-page-numbers/zh)
-* [跨多个设备同步您的阅读设置](/faq/setting-up-synchronization/zh)
-* [更新您的图书馆](/faq/update-the-library/zh)
-* [使用_Librera_的小部件](/faq/how-to-configure-the-widget/zh)
-* [如何从外部SD卡删除书籍](/faq/how-to-delete-file-from-external-sd-card/zh)
-* [设置指纹或密码保护](/faq/setting-up-fingerprint-or-password-protection/zh)
-* [如何添加新的常见问题解答主题](/faq/how-to-add-new-faq-section/zh)
-* [主题库用户界面](/faq/customize-theme-colors-links/zh)
-* [增加PDF文档的字体大小](/faq/how-to-make-the-font-size-bigger-on-a-pdf/zh)
-* [如何还原默认设置/清除缓存](/faq/how-to-restore-default-settings-clear-cache/zh)
-* [使用RTL语言阅读](/faq/rtl-or-ltr-text-direction/zh)
-* [配置字体和样式](/faq/customize-text-fonts-and-styles/zh)
-* [在扩展模式下使用书签(书签功能区)](/faq/bookmarks-extended-panel/zh)
-* [亮度控制和蓝光滤镜](/faq/brightness-control-and-blue-light-filter/zh)
-* [打开带有图像作为书本的文件夹(书本装订)](/faq/open-folder-with-images-as-a-book/zh)
-* [添加和处理自定义标签](/faq/custom-tags/zh)
-* [文字注释与脚注](/faq/include-footnotes-directly-in-the-text/zh)
-* [使用“标签管理器”打开书本](/faq/open-book-with-tag-manager/zh)
-* [导航_Library_标签](/faq/main-app/zh)
-* [按最新阅读顺序分类图书馆](/faq/sort-library-by-last-read-date/zh)
-* [将PDF转换为EPUB](/faq/convert-pdf-to-epub/zh)
-* [使用字典和翻译器](/faq/dictionaries-translate-text-online-and-offline/zh)
-* [使用_Librera_的个人资料](/faq/working-with-profiles/zh)
-* [自定义您的图书馆外观](/faq/how-to-configure-the-library-view/zh)
-* [RSVP快速阅读](/faq/rsvp-speed-reading-rapid-serial-visual-presentation/zh)
-* [使用TTS功能读取其他应用程序的共享内容](/faq/how-to-transfer-text-from-browser/zh)
-* [自定义CSS编码](/faq/customize-book-css-styles/zh)
+*[在扩展模式下使用书签(书签功能区)]{5}
+*[数据备份和迁移]{5}
+*[编辑 _Normal_ 和 _Floating_ 书签]{5}
+*[音乐家模式：切换屏幕标记]{5}
+*[如何添加新的常见问题主题]{5}
+*[使用 _Librera_ 的个人资料]{5}
+*[使用 OPDS 目录]{5}
+*[更新您的库]{5}
+*[TTS 替换]{5}
+*[跨多个设备同步您的阅读设置]{5}
+*[按最新阅读对您的图书馆进行排序]{5}
+*[阅读 RTL 语言]{5}
+*[设置指纹或密码保护]{5}
+*[回复速读]{5}
+*[Calibre 风格参考模式]{5}
+*[重新分页您的文档以匹配书的页码]{5}
+*[阅读模式：滚动、书籍和音乐家的]{5}
+*[使用“标签管理器”打开图书]{5}
+*[打开带有图像的文件夹(装订成书)]{5}
+*[浏览 _Library_ 标签]{5}
+*[**Librera** 用于学习外语]{5}
+*[将文本转语音引擎与 _Librera_ 结合使用]{5}
+*[文本注释与脚注]{5}
+*[使用 TTS 功能从其他应用读取共享]{5}
+*[设置状态栏]{5}
+*[页面查看/布局选项]{5}
+*[如何在 _Librera_ 中选择文本]{5}
+*[自定义页面背景]{5}
+*[增加 PDF 文档中的字体大小]{5}
+*[如何恢复默认设置/清除缓存]{5}
+*[自定义库的外观和感觉]{5}
+*[如何从外部 SD 卡中删除图书]{5}
+*[使用 _Librera_ 的小工具]{5}
+*[使用词典和翻译器]{5}
+*[主题化 Librera 的用户界面]{5}
+*[配置字体和样式]{5}
+*[自定义 CSS 编码]{5}
+*[添加和处理自定义标记]{5}
+*[将 PDF 转换为 EPUB]{5}
+*[为注释、报价等创建新的 TXT 文件]{5}
+*[PDF 中的对比度和亮度(黑白效果)]{5}
+*[亮度控制和蓝光过滤器]{5}

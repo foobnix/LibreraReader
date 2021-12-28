@@ -2,18 +2,20 @@
 layout: main
 ---
 
-# Editar texto de marcador, número de página, marcador flotante
+# Edición de marcadores _Normal_ y _Floating_
 
-> Librera admite dos tipos de marcadores: marcador normal y marcador flotante.
+> **Librera** admite dos tipos de marcadores: _normal_ y _floating_. El usuario puede cambiar su texto y número de página.
 
-El marcador** Normal** siempre se refiere al mismo número de página
+Los marcadores** normales** siempre hacen referencia a los mismos números de página en un libro.
 
-El marcador** flotante** se refiere al número de página dinámica
+Los marcadores** flotantes** se refieren a páginas _dinámicas_.
 
-Puede editar el texto de los marcadores, escriba (mantenga presionado)
+> Puede editar marcadores, es decir, cambiar su texto y estilo. Para ingresar al modo de edición, simplemente mantenga presionado un marcador en la ventana **Marcadores**.
 
-Si necesita cambiar el número de página para el marcador normal, puede configurarlo como &quot;flotante&quot;, consulte el nuevo lugar y luego configurarlo como &quot;normal&quot;
-
+Si necesita cambiar el número de página por un marcador **normal**:
+- convertirlo en un marcador _floating_
+- apúntelo a un nuevo destino
+- conviértalo de nuevo a _normal_
 
 
 |1|2|3|

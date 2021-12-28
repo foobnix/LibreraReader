@@ -2,15 +2,15 @@
 layout: main
 ---
 
-# Datensicherung und Migration
+# Datensicherung und -migration
 
-> Datensicherung erforderlich, wenn Sie Bücher auf ein neues Gerät oder in einen neuen Ordner oder eine neue SD-Karte übertragen müssen
+> Datensicherung ist erforderlich, wenn Sie Bücher auf ein neues Gerät, einen neuen Ordner oder eine SD-Karte übertragen möchten
 
 # Exportieren (Backup)
 
-Drücken Sie die Export-Taste, um alle Anwendungseinstellungen in der ZIP-Datei zu speichern
+Tippen Sie auf _Exportieren_, um alle Anwendungseinstellungen in einer ZIP-Datei zu speichern. Wählen Sie den Ordner aus, in dem Sie Ihre ZIP-Datei speichern möchten, und benennen Sie die Datei bei Bedarf um.
 
-Export speichert:
+So sparen Sie:
 
 * Anwendungseinstellungen
 * Lesezeichen
@@ -18,37 +18,36 @@ Export speichert:
 * Benutzer-Tags
  
 # Importieren
-Klicken Sie auf Importieren, um die Sicherung aus der ZIP-Datei wiederherzustellen
-Starten Sie gegebenenfalls die Migration
 
-# Migration
+Tippen Sie auf _Importieren_ und suchen Sie die ZIP-Datei mit Ihren Sicherungsdaten. Tippen Sie auf die Datei und dann auf _SELECT_
 
-Die Migration ersetzt nur Dateipfade in App-Konfigurationsdateien.
+# Migrieren
 
-Der vollständige Buchpfad wird in den Einstellungen gespeichert, z. B. wenn Ihre Bücher in einem Ordner abgelegt wurden
+Die Migration ersetzt nur die Dateipfade in den Konfigurationsdateien der App.
+
+Der vollständige Pfad wird in den Einstellungen gespeichert. Wenn der Pfad zu Ihrem Buch (example.pdf) beispielsweise wie folgt lautet:
 
 /storage/Books/example.pdf
 
-und dann verschieben Sie das Buch in den Ordner **MyBooks**
-
-Sie müssen den Speicherort für neue Bücher in der App-Konfiguration festlegen
+und Sie es in den Ordner **MyBooks** verschieben möchten, müssen Sie den Speicherort in der Konfigurationsdatei der App wie folgt ändern:
 
 /storage/MyBooks/example.pdf
 
-Sie sollten &quot;Migration&quot; ausführen und ersetzen:
+Führen Sie _Migrate_ aus und ersetzen Sie:
 
 Alter Pfad: **/ Books /**
 Neuer Pfad: **/ MyBooks /**
 
+Tippen Sie auf _MIGRATION STARTEN_
 
-Wenn Sie Bücher auf eine **externe SD-Karte** legen, können Sie leicht Pfade für einen neuen Ort festlegen
-Migration:/storage/AAAA-AAAA/Bücher nach/storage/BBBB-BBBB/Books
+Wenn Sie Ihr Buch auf eine **externe SD-Karte**verschieben, können Sie dies ganz einfach tun, indem Sie das Ziel ersetzen:
 
-alter Pfad: **/ storage/AAAA-AAAA /**
-neuer Pfad: **/ storage/BBBB-BBBB /**
+_Migrieren_: /Speicher/AAAA-AAAA/Bücher nach /Speicher/BBBB-BBBB/Bücher:
 
- 
- 
+Alter Pfad: **/storage/AAAA-AAAA/**
+Neuer Pfad: **/storage/BBBB-BBBB/**
+
+> **Erinnerung**: Vergessen Sie nicht, zuerst _Export_ durchzuführen, um ein Backup zu erstellen.
 
 |1|2|3|
 |-|-|-|

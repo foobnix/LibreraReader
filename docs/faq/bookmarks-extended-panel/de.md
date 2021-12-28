@@ -4,8 +4,8 @@ layout: main
 
 # Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichenleiste)
 
-> Sie können festlegen, dass **Librera** Ihre Lesezeichen jederzeit auf dem Bildschirm anzeigt, während Sie ein Buch lesen. Sie werden oben auf dem Bildschirm in einem sogenannten Lesezeichen-Menüband angezeigt. Dieser erweiterte Lesezeichenmodus sollte nützlich sein, wenn Sie neue Lesezeichen hinzufügen oder sofort zwischen ihnen wechseln müssen.
-> Wir erwarten, dass diese coole Funktion bei Musikern sehr gefragt ist, während die App im _Musician's_ -Modus ausgeführt wird. In diesem Modus ist die Multifunktionsleiste standardmäßig aktiviert.
+> Sie können **Librera** Ihre Lesezeichen jederzeit auf dem Bildschirm anzeigen lassen, während Sie ein Buch lesen. Sie werden am oberen Bildschirmrand in einem sogenannten _Bookmarks Ribbon_ angezeigt. Dieser erweiterte Lesezeichenmodus sollte sich als praktisch erweisen, wenn Sie neue Lesezeichen hinzufügen oder blitzschnell zwischen ihnen wechseln müssen.
+> Wir erwarten, dass dieses coole Feature bei Musikern sehr gefragt ist, während die App im _Musiker-Modus_ ausgeführt wird. Daher ist die Multifunktionsleiste standardmäßig in diesem Modus aktiviert.
 
 So aktivieren Sie es in den anderen Modi:
 
@@ -44,6 +44,7 @@ Ihr neues Lesezeichen wird im Fenster &quot;Lesezeichen&quot; angezeigt, und gle
 > Hinweis: Durch langes Drücken auf ein Lesezeichen in der Multifunktionsleiste wird ein Bearbeitungsfenster geöffnet.
 * Speichern Sie Ihre Bearbeitungsergebnisse, indem Sie auf **SPEICHERN** tippen.
 * Sie können das Lesezeichen auch löschen, indem Sie auf **LÖSCHEN** tippen.
+
 Die Multifunktionsleiste wird zu einer vollständigen Multifunktionsleiste auf Ihrem Bildschirm, wenn Sie viele Lesezeichen haben. Sie können durch Wischen mit dem Finger durch sie navigieren.
 
 ||||

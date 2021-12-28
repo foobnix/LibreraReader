@@ -4,45 +4,45 @@ layout: main
 
 # Domande frequenti
 
-* [Modifica testo del segnalibro, numero di pagina, segnalibro mobile](/faq/edit-bookmark-page-and-floating-bookmarks/it)
-* [Contrasto e luminosità in PDF (effetto bianco/nero)](/faq/contrast-and-brightness-in-pdf/it)
-* [Come disabilitare le linee tratteggiate, le linee rosse in &quot;Modalità musicista&quot;](/faq/how-to-disable-dashed-lines-red-lines-in-the-Musician-mode/it)
-* [Backup e migrazione dei dati](/faq/backup-import-export-migration/it)
-* [Creazione di un nuovo file TXT per note, preventivi, ecc.](/faq/create-new-book-or-file-txt/it)
-* [Modalità di lettura: scorrimento, libro e musicista](/faq/reading-mode-vertical-book-musician/it)
-* [Impostazione della barra di stato](/faq/how-to-set-up-a-status-bar/it)
-* [**Librera** per l'apprendimento delle lingue straniere](/faq/librera-for-study-foreign-languages/it)
-* [Sostituzioni TTS](/faq/tts-replacements/it)
-* [Personalizzazione dello sfondo della pagina](/faq/how-to-set-page-background-image/it)
-* [Lavorare con i cataloghi OPDS](/faq/working-with-opds-online-catalogs/it)
-* [Opzioni di visualizzazione/layout della pagina](/faq/how-to-set-up-reading-mode/it)
-* [Modalità di riferimento in stile calibro](/faq/reference-mode-calibre/it)
-* [Uso di un motore di sintesi vocale con _Librera _](/faq/installation-and-configuration-of-tts/it)
-* [Come selezionare il testo in _Librera _](/faq/how-to-set-text-selection/it)
-* [Nuova paginazione del documento per abbinare i numeri di pagina del libro](/faq/relative-page-numbers/it)
-* [Sincronizzazione della configurazione della lettura su più dispositivi](/faq/setting-up-synchronization/it)
-* [Aggiornamento della libreria](/faq/update-the-library/it)
-* [Uso del widget di _Librera_](/faq/how-to-configure-the-widget/it)
-* [Come eliminare un libro da una scheda SD esterna](/faq/how-to-delete-file-from-external-sd-card/it)
-* [Impostazione della protezione delle impronte digitali o della password](/faq/setting-up-fingerprint-or-password-protection/it)
-* [Come aggiungere un nuovo argomento FAQ](/faq/how-to-add-new-faq-section/it)
-* [UI di Theming Librera](/faq/customize-theme-colors-links/it)
-* [Aumento della dimensione del carattere nei documenti PDF](/faq/how-to-make-the-font-size-bigger-on-a-pdf/it)
-* [Come ripristinare le impostazioni predefinite/Cancella cache](/faq/how-to-restore-default-settings-clear-cache/it)
-* [Lettura in lingue RTL](/faq/rtl-or-ltr-text-direction/it)
-* [Configurazione di caratteri e stili](/faq/customize-text-fonts-and-styles/it)
-* [Utilizzo dei segnalibri in modalità estesa (barra multifunzione dei segnalibri)](/faq/bookmarks-extended-panel/it)
-* [Controllo luminosità e filtro Bluelight](/faq/brightness-control-and-blue-light-filter/it)
-* [Apertura di una cartella con immagini come libro (Rilegatura in un libro)](/faq/open-folder-with-images-as-a-book/it)
-* [Aggiunta e gestione di tag personalizzati](/faq/custom-tags/it)
-* [Note nel testo e note a piè di pagina](/faq/include-footnotes-directly-in-the-text/it)
-* [Libro aperto con &quot;Tag Manager&quot;](/faq/open-book-with-tag-manager/it)
-* [Navigazione nella scheda _Library_](/faq/main-app/it)
-* [Ordinamento della libreria in base alle ultime letture](/faq/sort-library-by-last-read-date/it)
-* [Conversione di PDF in EPUB](/faq/convert-pdf-to-epub/it)
-* [Uso di dizionari e traduttori](/faq/dictionaries-translate-text-online-and-offline/it)
-* [Lavorare con i profili di _Librera_](/faq/working-with-profiles/it)
-* [Personalizzazione dell'aspetto e della sensibilità della tua libreria](/faq/how-to-configure-the-library-view/it)
-* [Lettura velocità RSVP](/faq/rsvp-speed-reading-rapid-serial-visual-presentation/it)
-* [Uso della funzionalità TTS per la lettura di condivisioni da altre app](/faq/how-to-transfer-text-from-browser/it)
-* [Codifica CSS personalizzata](/faq/customize-book-css-styles/it)
+*[Lavorare con i segnalibri in modalità estesa (nastro dei segnalibri)]{5}
+*[Backup e migrazione dei dati]{5}
+*[Modifica dei segnalibri _normali_ e _fluttuanti_]{5}
+*[Modalità del musicista: attivazione/disattivazione dei contrassegni sullo schermo]{5}
+*[Come aggiungere un nuovo argomento delle domande frequenti]{5}
+*[Lavorare con i profili di _Librera_]{5}
+*[Lavorare con i cataloghi OPDS]{5}
+*[Aggiornamento della tua libreria]{5}
+*[Sostituzioni TTS]{5}
+*[Sincronizzazione della configurazione di lettura su più dispositivi]{5}
+*[Ordinamento della libreria in base alle ultime letture]{5}
+*[Lettura in lingue RTL]{5}
+*[Impostazione della protezione tramite impronte digitali o password]{5}
+*[Lettura rapida RSVP]{5}
+*[Modalità di riferimento stile calibro]{5}
+*[Reimpaginazione del documento in modo che corrisponda ai numeri di pagina del libro]{5}
+*[Modalità di lettura: Scorrimento, Libro e Musicista]{5}
+*[Apri libro con &quot;Tag Manager&quot;]{5}
+*[Apertura di una cartella con immagini come un libro (rilegatura in un libro)]{5}
+*[Navigazione nella scheda _Libreria_]{5}
+*[**Librera** per l'apprendimento delle lingue straniere]{5}
+*[Utilizzo di un motore di sintesi vocale con _Librera_]{5}
+*[Note nel testo e note a piè di pagina]{5}
+*[Utilizzo della funzionalità TTS per leggere le condivisioni da altre app]{5}
+*[Impostazione della barra di stato]{5}
+*[Opzioni di visualizzazione/disposizione della pagina]{5}
+*[Come selezionare il testo in _Librera_]{5}
+*[Personalizzazione dello sfondo della pagina]{5}
+*[Aumento della dimensione del carattere nei documenti PDF]{5}
+*[Come ripristinare le impostazioni predefinite/Cancella cache]{5}
+*[Personalizzazione dell'aspetto della tua libreria]{5}
+*[Come eliminare un libro da una scheda SD esterna]{5}
+*[Utilizzo del widget di _Librera_]{5}
+*[Utilizzo di dizionari e traduttori]{5}
+*[IU di Theming Librera]{5}
+*[Configurazione di caratteri e stili]{5}
+*[Codifica CSS personalizzata]{5}
+*[Aggiunta e gestione di tag personalizzati]{5}
+*[Conversione di PDF in EPUB]{5}
+*[Creazione di un nuovo file TXT per note, citazioni, ecc.]{5}
+*[Contrasto e luminosità in PDF (effetto bianco/nero)]{5}
+*[Controllo luminosità e filtro luce blu]{5}

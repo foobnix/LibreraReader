@@ -2,18 +2,20 @@
 layout: main
 ---
 
-# Editar texto do marcador, número da página, marcador flutuante
+# Editando marcadores _Normal_ e _Floating_
 
-> O Librera suporta dois tipos de favoritos: favorito normal e flutuante.
+> **Librera** suporta dois tipos de marcadores: _normal_ e _floating_. O usuário tem permissão para alterar o texto e o número da página
 
-O marcador** normal** sempre se refere ao mesmo número de página
+Marcadores** normais** sempre se referem aos mesmos números de página em um livro
 
-O marcador** flutuante** refere-se ao número da página dinâmica
+Marcadores** flutuantes** referem-se a páginas _dinâmicas_
 
-Você pode editar o texto dos favoritos e digitar (pressione e segure)
+> Você pode editar os favoritos, ou seja, alterar seu texto e estilo. Para entrar no modo de edição, basta manter pressionado um marcador na janela **Marcadores**.
 
-Se você precisar alterar o número da página para um marcador normal, defina-o como &quot;flutuante&quot;, consulte o novo local e defina-o como &quot;normal&quot;
-
+Se você precisar alterar o número da página de um favorito **normal**:
+- convertê-lo em um marcador _flutuante_
+- apontar para um novo destino
+- convertê-lo de volta para _normal_
 
 
 |1|2|3|

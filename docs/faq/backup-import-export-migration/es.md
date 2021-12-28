@@ -2,15 +2,15 @@
 layout: main
 ---
 
-# Copia de seguridad de datos y migración
+# Copia de seguridad y migración de datos
 
-> Se necesita una copia de seguridad de datos si necesita transferir libros a un nuevo dispositivo oa una nueva carpeta o nueva tarjeta SD
+> Se necesita una copia de seguridad de los datos si tiene la intención de transferir libros a un nuevo dispositivo, nueva carpeta o tarjeta SD
 
 # Exportar (copia de seguridad)
 
-Presione el botón de exportación para guardar todas las configuraciones de la aplicación en el archivo .zip
+Toque _Exportar_ para guardar todas las configuraciones de la aplicación en un archivo .zip. Elija la carpeta para guardar su archivo .zip y cambie el nombre del archivo, si lo desea.
 
-Exportación guarda:
+Así ahorrarás:
 
 * Configuración de la aplicación
 * Marcadores
@@ -18,37 +18,36 @@ Exportación guarda:
 * Etiquetas de usuario
  
 # Importar
-Presione importar para restaurar la copia de seguridad del archivo .zip
-Comience la migración si es necesario
 
-# Migración
+Toque _Importar_ y busque el archivo .zip con sus datos de respaldo. Toque el archivo y luego toque _SELECT_
 
-La migración solo reemplaza las rutas de los archivos en los archivos de configuración de la aplicación.
+# Migrar
 
-La ruta completa del libro se almacena en la configuración, por ejemplo, si sus libros se colocaron en una carpeta
+La migración solo reemplazará las rutas de archivo en los archivos de configuración de la aplicación.
+
+La ruta completa se almacena en Configuración. Por ejemplo, si la ruta a su libro (example.pdf) es la siguiente:
 
 /storage/Books/example.pdf
 
-y luego mueve el libro a la carpeta **MyBooks**
-
-Debes establecer la ubicación de los nuevos libros en la configuración de la aplicación
+y desea moverlo a la carpeta **MyBooks**, debe cambiar la ubicación en el archivo de configuración de la aplicación a:
 
 /storage/MyBooks/example.pdf
 
-Debe ejecutar &quot;Migración&quot; y reemplazar:
+Ejecute _Migrate_ y reemplace:
 
 Camino antiguo: **/ Libros /**
 Nueva ruta: **/ MyBooks /**
 
+Toca _ INICIAR MIGRACIÓN_
 
-Si coloca libros en **tarjeta SD externa**, es fácil arreglar rutas para un nuevo lugar
-Migración:/almacenamiento/AAAA-AAAA/Libros a/almacenamiento/BBBB-BBBB/Libros
+Si está moviendo su libro a una **tarjeta SD externa**, puede hacerlo fácilmente reemplazando el destino:
 
-ruta anterior: **/ almacenamiento/AAAA-AAAA /**
-nueva ruta: **/ almacenamiento/BBBB-BBBB /**
+_Migrate_:/storage/AAAA-AAAA/Books to/storage/BBBB-BBBB/Libros:
 
- 
- 
+Ruta anterior: **/ storage/AAAA-AAAA /**
+Nueva ruta: **/ storage/BBBB-BBBB /**
+
+> **Recordatorio**: no olvide hacer _Export_ primero para tener una copia de seguridad.
 
 |1|2|3|
 |-|-|-|

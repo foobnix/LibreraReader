@@ -4,8 +4,8 @@ layout: main
 
 # Utilizzo dei segnalibri in modalità estesa (barra dei segnalibri)
 
-> Puoi fare in modo che **Librera** mostri i tuoi segnalibri sullo schermo in qualsiasi momento durante la lettura di un libro. Verranno mostrati nella parte superiore dello schermo in un cosiddetto _Bookmarks Ribbon_. Questa modalità di segnalibro estesa dovrebbe tornare utile quando è necessario aggiungere nuovi segnalibri o passare da uno all'altro in un istante.
-> Ci aspettiamo che questa fantastica funzionalità sia molto richiesta dai musicisti, mentre si esegue l'app in modalità _Musician's_. Quindi, viene fornito con la barra multifunzione abilitata in questa modalità per impostazione predefinita.
+> Puoi fare in modo che **Librera** visualizzi i tuoi segnalibri sullo schermo in ogni momento durante la lettura di un libro. Verranno mostrati nella parte superiore dello schermo in una cosiddetta _nastro dei segnalibri_. Questa modalità di segnalibri estesa dovrebbe tornare utile quando è necessario aggiungere nuovi segnalibri o passare da uno all'altro in un lampo.
+> Ci aspettiamo che questa fantastica funzionalità sia molto richiesta dai musicisti, durante l'esecuzione dell'app in _Modalità musicista_. Quindi, viene fornito con la barra multifunzione abilitata in questa modalità per impostazione predefinita.
 
 Per abilitarlo nelle altre modalità:
 
@@ -44,6 +44,7 @@ Il tuo nuovo segnalibro apparirà nella finestra _Bookmarks_ e allo stesso tempo
 > Nota: una pressione prolungata su un segnalibro nella barra multifunzione apre una finestra di modifica.
 * Salva i risultati della modifica toccando **SALVA**
 * Oppure puoi eliminare il segnalibro toccando **ELIMINA**
+
 Il nastro diventerà un nastro in piena regola sullo schermo quando hai molti segnalibri. Puoi spostarti attraverso di loro con le dita.
 
 ||||

@@ -4,13 +4,13 @@ layout: main
 
 # Backup e migrazione dei dati
 
-> È necessario il backup dei dati se è necessario trasferire libri su un nuovo dispositivo o su una nuova cartella o nuova scheda SD
+> Il backup dei dati è necessario se si intende trasferire i libri su un nuovo dispositivo, una nuova cartella o una scheda SD
 
-# Esporta (backup)
+# Esporta (Backup)
 
-Premere il pulsante Esporta per salvare tutte le impostazioni dell'applicazione nel file .zip
+Tocca _Esporta_ per salvare tutte le impostazioni dell'applicazione in un file .zip. Scegli la cartella in cui salvare il file .zip e rinomina il file, se lo desideri.
 
-Esporta salva:
+Così risparmierai:
 
 * Impostazioni dell'applicazione
 * Segnalibri
@@ -18,37 +18,36 @@ Esporta salva:
 * Tag utente
  
 # Importa
-Premi import per ripristinare il backup dal file .zip
-Avvia la migrazione se necessario
+
+Tocca _Importa_ e trova il file .zip con i tuoi dati di backup. Tocca il file, quindi tocca _SELECT_
 
 # Migrazione
 
-La migrazione sostituisce solo i percorsi dei file nei file di configurazione dell'app.
+La migrazione sostituirà solo i percorsi dei file nei file di configurazione dell'app.
 
-Il percorso completo del libro è memorizzato nelle impostazioni, ad esempio se i tuoi libri sono stati inseriti nella cartella
+Il percorso completo è memorizzato in Impostazioni. Ad esempio, se il percorso del tuo libro (esempio.pdf) è il seguente:
 
 /storage/Books/example.pdf
 
-e poi sposti il libro nella cartella **MyBooks**
-
-Devi impostare la posizione dei nuovi libri nella configurazione dell'app
+e vuoi spostarlo nella cartella **MyBooks**, devi cambiare la posizione nel file di configurazione dell'app in:
 
 /storage/MyBooks/example.pdf
 
-È necessario eseguire &quot;Migrazione&quot; e sostituire:
+Esegui _Migrazione_ e sostituisci:
 
 Vecchio percorso: **/ Libri /**
 Nuovo percorso: **/ MyBooks /**
 
+Tocca _AVVIA MIGRAZIONE_
 
-Se inserisci libri su **scheda SD esterna** è facile correggere i percorsi per nuovi luoghi
-Migrazione:/storage/AAAA-AAAA/Books to/storage/BBBB-BBBB/Books
+Se stai spostando il tuo libro su una **scheda SD esterna**, puoi farlo facilmente sostituendo la destinazione:
 
-vecchio percorso: **/ storage/AAAA-AAAA /**
-nuovo percorso: **/ storage/BBBB-BBBB /**
+_Migrazione_: /storage/AAAA-AAAA/Libri in /storage/BBBB-BBBB/Libri:
 
- 
- 
+Vecchio percorso: **/storage/AAAA-AAAA/**
+Nuovo percorso: **/storage/BBBB-BBBB/**
+
+> **Promemoria**: non dimenticare di eseguire prima _Esporta_ per avere un backup.
 
 |1|2|3|
 |-|-|-|

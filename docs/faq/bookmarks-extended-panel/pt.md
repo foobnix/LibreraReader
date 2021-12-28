@@ -4,8 +4,8 @@ layout: main
 
 # Trabalhando com favoritos no modo avançado (faixa de opções Favoritos)
 
-> Você pode fazer com que **Librera** exiba seus favoritos na tela o tempo todo enquanto lê um livro. Eles serão mostrados na parte superior da tela na chamada _Bookmarks Ribbon_. Esse modo de marcador estendido deve ser útil quando você precisar adicionar novos marcadores ou alternar entre eles em um instante.
-> Esperamos que esse recurso interessante seja muito procurado por músicos, enquanto o aplicativo é executado no modo _Músico_. Portanto, ele vem com a faixa de opções ativada neste modo por padrão.
+> Você pode fazer com que o **Librera** exiba seus favoritos na tela o tempo todo enquanto lê um livro. Eles serão mostrados na parte superior da tela em uma chamada _Faixa de favoritos_. Este modo de marcador estendido deve ser útil quando você precisar adicionar novos marcadores ou alternar entre eles em um piscar de olhos.
+> Esperamos que este ótimo recurso esteja em alta demanda com os músicos, enquanto o aplicativo é executado no _Modo de Músico_. Portanto, ele vem com a Faixa de Opções habilitada neste modo por padrão.
 
 Para habilitá-lo nos outros modos:
 
@@ -44,6 +44,7 @@ Seu novo favorito aparecerá na janela _Bookmarks_ e, ao mesmo tempo, você o ve
 > Nota: Uma pressão prolongada em um marcador na faixa de opções abrirá uma janela de edição.
 * Salve seus resultados de edição tocando em **SALVAR**
 * Ou você pode excluir o marcador tocando em **DELETE**
+
 A faixa de opções se tornará uma faixa completa na tela quando você tiver muitos marcadores. Você pode navegar por eles passando os dedos.
 
 ||||

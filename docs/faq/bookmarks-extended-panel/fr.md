@@ -4,8 +4,8 @@ layout: main
 
 # Utilisation des signets en mode étendu (Ruban Signets)
 
-> Vous pouvez faire en sorte que **Librera** affiche vos favoris à tout moment lors de la lecture d'un livre. Ils seront affichés en haut de l’écran dans un soi-disant _Bookmarks Ribbon_. Ce mode de signet étendu devrait être pratique lorsque vous devez ajouter de nouveaux signets ou basculer entre eux en un instant.
-> Nous nous attendons à ce que cette fonctionnalité intéressante soit très demandée par les musiciens, tout en exécutant l'application en mode _Musician's_. Ainsi, le ruban est activé dans ce mode par défaut.
+> Vous pouvez faire en sorte que **Librera** affiche vos signets à l'écran à tout moment lorsque vous lisez un livre. Ils seront affichés en haut de l'écran dans un _ruban de signets_. Ce mode de signet étendu devrait s'avérer utile lorsque vous devez ajouter de nouveaux signets ou basculer entre eux en un clin d'œil.
+> Nous nous attendons à ce que cette fonctionnalité intéressante soit très demandée par les musiciens, lors de l'exécution de l'application en _Mode Musicien_. Ainsi, il est livré avec le ruban activé dans ce mode par défaut.
 
 Pour l'activer dans les autres modes:
 
@@ -44,6 +44,7 @@ Votre nouveau signet apparaîtra dans la fenêtre _Bookmarks_ et en même temps,
 > Remarque: un appui long sur un signet dans le ruban ouvre une fenêtre d'édition.
 * Enregistrez vos résultats de modification en appuyant sur **ENREGISTRER**.
 * Vous pouvez également supprimer le favori en appuyant sur **SUPPRIMER**.
+
 Le ruban deviendra un ruban à part entière sur votre écran lorsque vous avez de nombreux signets. Vous pouvez les parcourir en glissant votre doigt.
 
 ||||

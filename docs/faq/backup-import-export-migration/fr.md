@@ -4,13 +4,13 @@ layout: main
 
 # Sauvegarde et migration des données
 
-> Besoin de sauvegarde de données si vous devez transférer des livres vers un nouvel appareil ou vers un nouveau dossier ou une nouvelle carte SD
+> Une sauvegarde des données est nécessaire si vous avez l'intention de transférer des livres vers un nouvel appareil, un nouveau dossier ou une carte SD
 
-# Exporter (sauvegarde)
+# Exporter (Sauvegarder)
 
-Appuyez sur le bouton d'exportation pour enregistrer tous les paramètres de l'application dans un fichier .zip
+Appuyez sur _Exporter_ pour enregistrer tous les paramètres de l'application dans un fichier .zip. Choisissez le dossier dans lequel enregistrer votre fichier .zip et renommez le fichier, si vous le souhaitez.
 
-L'exportation enregistre:
+Ainsi vous économiserez :
 
 * Paramètres d'application
 * Signets
@@ -18,37 +18,36 @@ L'exportation enregistre:
 * Tags utilisateur
  
 # Importer
-Appuyez sur importer pour restaurer la sauvegarde à partir du fichier .zip
-Lancez la migration si nécessaire
 
-# Migration
+Appuyez sur _Importer_ et recherchez le fichier .zip contenant vos données de sauvegarde. Appuyez sur le fichier, puis appuyez sur _SELECT_
 
-La migration ne remplace que les chemins d'accès aux fichiers dans les fichiers de configuration des applications.
+# Migrer
 
-Le chemin complet du livre est stocké dans les paramètres, par exemple si vos livres ont été placés dans un dossier
+La migration ne remplacera que les chemins de fichiers dans les fichiers de configuration de l'application.
+
+Le chemin complet est stocké dans Paramètres. Par exemple, si le chemin d'accès à votre livre (exemple.pdf) est le suivant :
 
 /storage/Books/example.pdf
 
-puis vous déplacez le livre vers le dossier **MyBooks**
-
-Vous devez définir un nouvel emplacement pour les livres dans la configuration de l'application
+et que vous souhaitez le déplacer vers le dossier **MyBooks**, vous devez modifier l'emplacement dans le fichier de configuration de l'application pour :
 
 /storage/MyBooks/example.pdf
 
-Vous devez exécuter &quot;Migration&quot; et remplacer:
+Exécutez _Migrate_ et remplacez :
 
 Ancien chemin: **/ Livres /**
 Nouveau chemin: **/ MyBooks /**
 
+Appuyez sur _START MIGRATION_
 
-Si vous placez des livres sur une **carte SD externe**, il est facile de fixer des chemins pour un nouvel emplacement
-Migration:/stockage/AAAA-AAAA/Livres vers/stockage/BBBB-BBBB/Livres
+Si vous déplacez votre livre vers une **carte SD externe**, vous pouvez le faire facilement en remplaçant la destination :
 
-ancien chemin: **/ stockage/AAAA-AAAA /**
-nouveau chemin: **/ stockage/BBBB-BBBB /**
+_Migrer_ : /stockage/AAAA-AAAA/Livres vers /stockage/BBBB-BBBB/Livres :
 
- 
- 
+Ancien chemin : **/storage/AAAA-AAAA/**
+Nouveau chemin : **/stockage/BBBB-BBBB/**
+
+> **Rappel** : N'oubliez pas de faire d'abord _Exporter_ pour avoir une sauvegarde.
 
 |1|2|3|
 |-|-|-|

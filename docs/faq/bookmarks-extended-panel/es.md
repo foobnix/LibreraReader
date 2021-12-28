@@ -4,8 +4,8 @@ layout: main
 
 # Trabajar con marcadores en modo extendido (cinta de marcadores)
 
-> Puede hacer que **Librera** muestre sus marcadores en la pantalla en todo momento mientras lee un libro. Se mostrarán en la parte superior de la pantalla en una llamada _Cinta de Marcadores_. Este modo de marcador extendido debería ser útil cuando necesite agregar nuevos marcadores o cambiar entre ellos en un instante.
-> Esperamos que esta característica genial tenga una gran demanda con los músicos, mientras ejecuta la aplicación en modo _Músico_. Por lo tanto, viene con la cinta de opciones habilitada en este modo de forma predeterminada.
+> Puede hacer que la **Librera** muestre sus marcadores en la pantalla en todo momento mientras lee un libro. Se mostrarán en la parte superior de la pantalla en la denominada _ Cinta de marcadores_. Este modo de marcador extendido debería ser útil cuando necesite agregar nuevos marcadores o cambiar entre ellos en un instante.
+> Esperamos que esta característica interesante tenga una gran demanda entre los músicos, mientras se ejecuta la aplicación en _Musician's Mode_. Por lo tanto, viene con la cinta habilitada en este modo de forma predeterminada.
 
 Para habilitarlo en los otros modos:
 
@@ -44,6 +44,7 @@ Su nuevo marcador aparecerá en la ventana _Marcadores_ y, al mismo tiempo, lo v
 > Nota: Una pulsación larga en un marcador en la cinta de opciones abrirá una ventana de edición.
 * Guarde sus resultados de edición tocando **GUARDAR**
 * O puede eliminar el marcador tocando **ELIMINAR**
+
 La cinta se convertirá en una cinta en toda su pantalla cuando tenga muchos marcadores. Puede navegar a través de ellos deslizando el dedo.
 
 ||||

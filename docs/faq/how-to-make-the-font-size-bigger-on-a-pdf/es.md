@@ -13,3 +13,6 @@ Para mejorar la legibilidad de su documento PDF (tamaño de caracteres demasiado
 |1|2|3|
 |-|-|-|
 |![](1.png)|![](2.png)|![](3.png)|
+|![](4.png)|![](5.png)|![](6.png)|
+
+

@@ -17,7 +17,7 @@ public class GenerateFAQ {
         // updateIndex("/home/data/git/LirbiReader/docs/wiki/stories", "Stories",
         // 1);
 
-        WikiTranslate.translate("/home/data/git/LirbiReader/docs/wiki/faq", "it");
+        //WikiTranslate.translate("/home/dev/git/LirbiReader/docs/wiki/faq", "it");
     }
 
     public static void updateIndex(final String in, String pageTitle) throws Exception {
@@ -45,7 +45,7 @@ public class GenerateFAQ {
                 File child = new File(file, "index.md");
                 String title = getTitle(child).trim();
 
-                String line = String.format("* [%s](/wiki/%s/%s)", title, outFile.getParentFile().getName(), file.getName());
+                String line = String.format("* [%s](/%s/%s)", title, outFile.getParentFile().getName(), file.getName());
                 System.out.println(line);
                 out.println(line);
             }

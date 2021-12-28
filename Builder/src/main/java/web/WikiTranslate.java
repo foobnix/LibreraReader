@@ -21,19 +21,23 @@ import translations.GoogleTranslation;
 public class WikiTranslate {
 
     static JSONObject cache;
-    final static String HOME = "/home/data/git/LibreraReader";
+    final static String HOME = "/home/dev/git/LibreraReader";
 
     public static void main(String[] args) throws Exception {
 
-        GenerateFAQ.updateIndex(HOME + "/docs/wiki/faq", "Frequently Asked Questions");
+        GenerateFAQ.updateIndex(HOME + "/docs/faq", "Frequently Asked Questions");
 
         List<String> paths = Arrays.asList(
-                HOME + "/docs/wiki/faq",
-                HOME + "/docs/wiki/download",
-                HOME + "/docs/wiki/what-is-new"
+                HOME + "/docs/faq"
+                //HOME + "/docs/download",
+                //HOME + "/docs/what-is-new"
         );
 
-        File file = new File(HOME + "/Builder/cache.json");
+        File file = new File("/home/dev/Dropbox/Dev/cache.json");
+        if(!file.isFile()){
+            throw new Exception("file cache.json not found");
+        }
+
         cache = new JSONObject(readString(file));
 
         try {
@@ -98,11 +102,11 @@ public class WikiTranslate {
     }
 
     public static String traslateMD(String in, String ln) throws IOException {
-        if (in.startsWith("[<](/wiki/)")) {
-            return "[<](/wiki/" + ln + ")";
+        if (in.startsWith("[<](/)")) {
+            return "[<](/" + ln + ")";
         }
-        if (in.startsWith("[<](/wiki/faq)")) {
-            return "[<](/wiki/faq/" + ln + ")";
+        if (in.startsWith("[<](/faq)")) {
+            return "[<](/faq/" + ln + ")";
         }
         if (in.equals("```") || in.equals("---")) {
             return in;

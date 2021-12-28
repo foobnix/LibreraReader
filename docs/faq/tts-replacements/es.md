@@ -87,3 +87,10 @@ En **Librera** hemos introducido reemplazos especiales (comandos) que le permiti
 |![](4.png)|![](5.png)|
 
 > **¡Pruebe sus cambios varias veces para asegurarse de que todo funcione como debería!**
+
+## Leer la abreviatura tal como está
+
+A veces, la abreviatura TTS se lee incorrectamente, podemos ayudar a que se lea como está.
+```
+"*(\w). (\p{javaLowerCase})" "$1 $2"
+```

@@ -87,3 +87,10 @@ In **Librera** haben wir spezielle Ersetzungen (Befehle) eingeführt, mit denen 
 |![](4.png)|![](5.png)|
 
 > **Testen Sie Ihre Änderungen einige Male, um sicherzustellen, dass alles ordnungsgemäß funktioniert.**
+
+## Abkürzung so lesen wie sie ist
+
+Manchmal wird die Abkürzung TTS falsch gelesen, wir können ihr helfen, sie so zu lesen, wie sie ist.
+```
+"*(\w). (\p{javaLowerCase})" "$1 $2"
+```
