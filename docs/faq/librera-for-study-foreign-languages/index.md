@@ -2,9 +2,9 @@
 layout: main
 ---
 
-# **Librera** for Learning Foreign Languages
+# Using *Librera* for Learning Foreign Languages
 
-> **Librera** is an excellent tool for those who learn a foreign language... or just happen to read a book in another language.
+> *Librera Reader* is an excellent tool for those who learn a foreign language... or just happen to read a book in another tongue.
 
 Just use your finger (any finger) to highlight/select text
 * Translate easily and promptly a selected word, passage or even page
