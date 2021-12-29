@@ -51,6 +51,7 @@ Isso cria uma predefinição de ferramenta com a qual você pode indicar prontam
 > Você pode invocar a paleta:
 - Tocando em uma marcação
 - Tocar no ícone _Edit_ no menu inferior
+
 > Toque em _Eraser_ (a lixeira) e, em seguida, toque nas marcações que você está prestes a remover.
 
 |||

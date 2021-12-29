@@ -51,6 +51,7 @@ Questo crea uno strumento preimpostato con il quale puoi indicare prontamente le
 > Puoi richiamare la tavolozza:
 - Toccando un segno
 - Toccando l'icona _Modifica_ nel menu in basso
+
 > Tocca _Eraser_ (il cestino dei rifiuti), quindi tocca i segni che stai per rimuovere.
 
 |||

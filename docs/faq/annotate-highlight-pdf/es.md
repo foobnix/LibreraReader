@@ -51,6 +51,7 @@ Esto crea una herramienta preestablecida con la que puede indicar rápidamente l
 > Puede invocar la paleta mediante:
 - Tocando una marca
 - Tocando el icono _Editar_ en el menú inferior
+
 > Toque _Eraser_ (el cubo de basura), y luego toque las marcas que está a punto de eliminar.
 
 |||

@@ -51,6 +51,7 @@ Cela crée un outil prédéfini avec lequel vous pouvez rapidement indiquer les 
 > Vous pouvez invoquer la palette en :
 - Taper un marquage
 - Appuyez sur l'icône _Modifier_ dans le menu du bas
+
 > Appuyez sur _Eraser_ (la poubelle), puis appuyez sur les marques que vous êtes sur le point de supprimer.
 
 |||

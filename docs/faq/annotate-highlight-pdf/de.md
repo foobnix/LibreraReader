@@ -51,6 +51,7 @@ Dadurch entsteht ein Werkzeug-Preset, mit dem Sie zeitnah die Wörter und Wortfo
 > Sie können die Palette aufrufen, indem Sie:
 - Auf eine Markierung tippen
 - Tippen Sie im unteren Menü auf das Symbol _Bearbeiten_
+
 > Tippen Sie auf _Radiergummi_ (der Abfallbehälter) und dann auf die Markierungen, die Sie entfernen möchten.
 
 |||
