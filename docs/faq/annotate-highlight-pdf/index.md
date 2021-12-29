@@ -51,6 +51,7 @@ This creates a tool preset with which you can promptly indicate the words and wo
 > You can invoke the palette by:
 - Tapping a marking
 - Tapping the _Edit_ icon on the bottom menu
+
 > Tap _Eraser_ (the Waste Bin), and then tap on the markings you're about to remove.
 
 |||
