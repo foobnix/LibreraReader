@@ -4,6 +4,8 @@ layout: main
 
 # Часто задаваемые вопросы
 
+* [Аннотирование и рисование в файлах PDF](/faq/annotate-highlight-pdf/ru)
+* [Использование * Librera * для изучения иностранных языков](/faq/librera-for-study-foreign-languages/ru)
 * [Работа с закладками в расширенном режиме (лента закладок)](/faq/bookmarks-extended-panel/ru)
 * [Резервное копирование и перенос данных](/faq/backup-import-export-migration/ru)
 * [Редактирование закладок _Normal_ и _Floating_](/faq/edit-bookmark-page-and-floating-bookmarks/ru)
@@ -24,7 +26,6 @@ layout: main
 * [Открыть книгу с помощью &quot;Диспетчера тегов&quot;](/faq/open-book-with-tag-manager/ru)
 * [Открытие папки с изображениями как книги (переплет в книге)](/faq/open-folder-with-images-as-a-book/ru)
 * [Навигация по вкладке _Library_](/faq/main-app/ru)
-* [**Librera** для изучения иностранных языков](/faq/librera-for-study-foreign-languages/ru)
 * [Использование механизма преобразования текста в речь с _Librera _](/faq/installation-and-configuration-of-tts/ru)
 * [Текстовые примечания против сносок](/faq/include-footnotes-directly-in-the-text/ru)
 * [Использование возможности TTS для чтения общих ресурсов из других приложений](/faq/how-to-transfer-text-from-browser/ru)

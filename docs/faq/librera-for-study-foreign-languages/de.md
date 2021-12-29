@@ -2,9 +2,9 @@
 layout: main
 ---
 
-# **Librera** zum Erlernen von Fremdsprachen
+# Verwenden von *Librera*zum Erlernen von Fremdsprachen
 
-> **Librera** ist ein hervorragendes Tool für diejenigen, die eine Fremdsprache lernen ... oder zufällig ein Buch in einer anderen Sprache lesen.
+> *Librera Reader*ist ein ausgezeichnetes Werkzeug für diejenigen, die eine Fremdsprache lernen... oder einfach nur ein Buch in einer anderen Sprache lesen.
 
 Verwenden Sie einfach Ihren Finger (einen beliebigen Finger), um Text hervorzuheben/auszuwählen
 * Übersetzen Sie einfach und schnell ein ausgewähltes Wort, eine Passage oder sogar eine Seite

@@ -4,6 +4,8 @@ layout: main
 
 # Foire aux questions
 
+*[Annoter et dessiner dans des fichiers PDF]{5}
+*[Utiliser *Librera*pour apprendre les langues étrangères]{5}
 *[Travailler avec les signets en mode étendu (ruban des signets)]{5}
 *[Sauvegarde et migration des données]{5}
 *[Modification des signets _normaux_ et _flottants_]{5}
@@ -24,7 +26,6 @@ layout: main
 *[Ouvrir le livre avec &quot;Tag Manager&quot;]{5}
 *[Ouvrir un dossier avec des images sous forme de livre (lier dans un livre)]{5}
 *[Naviguer dans l'onglet _Bibliothèque_]{5}
-*[**Librera** pour l'apprentissage des langues étrangères]{5}
 *[Utiliser un moteur de synthèse vocale avec _Librera_]{5}
 *[Notes dans le texte et notes de bas de page]{5}
 *[Utilisation de la capacité TTS pour lire les partages à partir d'autres applications]{5}

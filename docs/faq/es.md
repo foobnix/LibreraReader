@@ -4,6 +4,8 @@ layout: main
 
 # Preguntas frecuentes
 
+* [Anotar y dibujar en archivos PDF](/faq/annotate-highlight-pdf/es)
+* [Uso de * Librera * para aprender idiomas extranjeros](/faq/librera-for-study-foreign-languages/es)
 * [Trabajo con marcadores en modo extendido (cinta de marcadores)](/faq/bookmarks-extended-panel/es)
 * [Copia de seguridad y migración de datos](/faq/backup-import-export-migration/es)
 * [Editando _Normal_ y _Floating_ Bookmarks](/faq/edit-bookmark-page-and-floating-bookmarks/es)
@@ -24,7 +26,6 @@ layout: main
 * [Libro abierto con &quot;Tag Manager&quot;](/faq/open-book-with-tag-manager/es)
 * [Abrir una carpeta con imágenes como un libro (encuadernar en un libro)](/faq/open-folder-with-images-as-a-book/es)
 * [Navegación por la pestaña _Bibrary_](/faq/main-app/es)
-* [**Librería** para aprender idiomas extranjeros](/faq/librera-for-study-foreign-languages/es)
 * [Uso de un motor de conversión de texto a voz con _Librera _](/faq/installation-and-configuration-of-tts/es)
 * [Notas en el texto frente a notas a pie de página](/faq/include-footnotes-directly-in-the-text/es)
 * [Uso de la capacidad TTS para leer recursos compartidos de otras aplicaciones](/faq/how-to-transfer-text-from-browser/es)

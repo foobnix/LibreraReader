@@ -4,6 +4,8 @@ layout: main
 
 # Domande frequenti
 
+*[Annotare e disegnare nei file PDF]{5}
+*[Utilizzo di *Librera*per l'apprendimento delle lingue straniere]{5}
 *[Lavorare con i segnalibri in modalità estesa (nastro dei segnalibri)]{5}
 *[Backup e migrazione dei dati]{5}
 *[Modifica dei segnalibri _normali_ e _fluttuanti_]{5}
@@ -24,7 +26,6 @@ layout: main
 *[Apri libro con &quot;Tag Manager&quot;]{5}
 *[Apertura di una cartella con immagini come un libro (rilegatura in un libro)]{5}
 *[Navigazione nella scheda _Libreria_]{5}
-*[**Librera** per l'apprendimento delle lingue straniere]{5}
 *[Utilizzo di un motore di sintesi vocale con _Librera_]{5}
 *[Note nel testo e note a piè di pagina]{5}
 *[Utilizzo della funzionalità TTS per leggere le condivisioni da altre app]{5}

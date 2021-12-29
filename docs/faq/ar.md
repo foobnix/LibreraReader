@@ -4,6 +4,8 @@ layout: main
 
 # الأسئلة المتداولة
 
+* [التعليقات التوضيحية والرسم في ملفات PDF](/faq/annotate-highlight-pdf/ar)
+* [استخدام * Librera * لتعلم لغات أجنبية](/faq/librera-for-study-foreign-languages/ar)
 * [العمل مع الإشارات المرجعية في الوضع الموسع (شريط الإشارات المرجعية)](/faq/bookmarks-extended-panel/ar)
 * [النسخ الاحتياطي للبيانات وترحيلها](/faq/backup-import-export-migration/ar)
 * [تعديل الإشارات المرجعية _Normal_ و _Floating_](/faq/edit-bookmark-page-and-floating-bookmarks/ar)
@@ -24,7 +26,6 @@ layout: main
 * [فتح الكتاب باستخدام &quot;إدارة العلامات&quot;](/faq/open-book-with-tag-manager/ar)
 * [فتح مجلد بالصور ككتاب (تجليد في كتاب)](/faq/open-folder-with-images-as-a-book/ar)
 * [التنقل في علامة التبويب _Library_](/faq/main-app/ar)
-* [**مكتبة** لتعلم اللغات الأجنبية](/faq/librera-for-study-foreign-languages/ar)
 * [استخدام محرك تحويل النص إلى كلام مع _Librera _](/faq/installation-and-configuration-of-tts/ar)
 * [الملاحظات في النص مقابل الحواشي السفلية](/faq/include-footnotes-directly-in-the-text/ar)
 * [استخدام إمكانية تحويل النص إلى كلام لقراءة المشاركات من تطبيقات أخرى](/faq/how-to-transfer-text-from-browser/ar)

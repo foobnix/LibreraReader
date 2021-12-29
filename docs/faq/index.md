@@ -5,6 +5,8 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Annotating and Drawing in PDF Files](/faq/annotate-highlight-pdf)
+* [Using *Librera* for Learning Foreign Languages](/faq/librera-for-study-foreign-languages)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/faq/bookmarks-extended-panel)
 * [Data Backup and Migration](/faq/backup-import-export-migration)
 * [Editing _Normal_ and _Floating_ Bookmarks](/faq/edit-bookmark-page-and-floating-bookmarks)
@@ -25,7 +27,6 @@ info: this file is generated automatically, please do not modify it
 * [Open book with "Tag Manager"](/faq/open-book-with-tag-manager)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/faq/open-folder-with-images-as-a-book)
 * [Navigating the _Library_ Tab](/faq/main-app)
-* [**Librera** for Learning Foreign Languages](/faq/librera-for-study-foreign-languages)
 * [Using a Text-to-Speech Engine with _Librera_](/faq/installation-and-configuration-of-tts)
 * [In-Text Notes vs. Footnotes](/faq/include-footnotes-directly-in-the-text)
 * [Using TTS Capability for Reading Shares from Other Apps](/faq/how-to-transfer-text-from-browser)

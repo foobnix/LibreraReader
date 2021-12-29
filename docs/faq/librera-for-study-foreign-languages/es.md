@@ -2,9 +2,9 @@
 layout: main
 ---
 
-# **Librera** para aprender idiomas extranjeros
+# Uso de * Librera * para aprender idiomas extranjeros
 
-> **Librera** es una herramienta excelente para aquellos que aprenden un idioma extranjero ... o simplemente leen un libro en otro idioma.
+> * Librera Reader * es una excelente herramienta para aquellos que aprenden un idioma extranjero ... o simplemente leen un libro en otro idioma.
 
 Simplemente use su dedo (cualquier dedo) para resaltar/seleccionar texto
 * Traduce fácil y rápidamente una palabra, pasaje o incluso página seleccionados

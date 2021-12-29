@@ -2,9 +2,9 @@
 layout: main
 ---
 
-# **Librera** pour l'apprentissage des langues étrangères
+# Utiliser *Librera* pour l'apprentissage des langues étrangères
 
-> **Librera** est un excellent outil pour ceux qui apprennent une langue étrangère ... ou se contentent de lire un livre dans une autre langue.
+> *Librera Reader*est un excellent outil pour ceux qui apprennent une langue étrangère... ou qui viennent de lire un livre dans une autre langue.
 
 Utilisez simplement votre doigt (n'importe quel doigt) pour mettre en surbrillance/sélectionner du texte
 * Traduisez facilement et rapidement un mot, un passage ou une page sélectionné

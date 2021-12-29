@@ -4,6 +4,8 @@ layout: main
 
 # Häufig gestellte Fragen
 
+*[Annotieren und Zeichnen in PDF-Dateien]{5}
+*[Verwenden von *Librera*zum Erlernen von Fremdsprachen]{5}
 *[Arbeiten mit Lesezeichen im erweiterten Modus (Lesezeichen-Menüband)]{5}
 *[Datensicherung und -migration]{5}
 *[Bearbeiten von _Normal_ und _Floating_ Lesezeichen]{5}
@@ -24,7 +26,6 @@ layout: main
 *[Buch mit &quot;Tag Manager&quot; öffnen]{5}
 *[Öffnen eines Ordners mit Bildern als Buch (In einem Buch binden)]{5}
 *[Navigieren in der Registerkarte _Library_]{5}
-*[**Librera** zum Erlernen von Fremdsprachen]{5}
 *[Verwenden einer Text-to-Speech-Engine mit _Librera_]{5}
 *[In-Text-Notizen vs. Fußnoten]{5}
 *[Verwenden der TTS-Funktion zum Lesen von Anteilen aus anderen Apps]{5}

@@ -2,9 +2,9 @@
 layout: main
 ---
 
-# **Librera** per l'apprendimento delle lingue straniere
+# Utilizzo di *Librera*per l'apprendimento delle lingue straniere
 
-> **Librera** è uno strumento eccellente per coloro che imparano una lingua straniera ... o semplicemente leggono un libro in un'altra lingua.
+> *Librera Reader*è uno strumento eccellente per coloro che imparano una lingua straniera... o semplicemente leggono un libro in un'altra lingua.
 
 Basta usare il dito (qualsiasi dito) per evidenziare/selezionare il testo
 * Traduci facilmente e prontamente una parola, un passaggio o una pagina selezionati
