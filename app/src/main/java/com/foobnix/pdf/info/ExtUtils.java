@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Base64;
@@ -1765,6 +1767,7 @@ public class ExtUtils {
         if (TxtUtils.isNotEmpty(sdPath) && !extFolders.contains(sdPath)) {
             extFolders.add(sdPath);
         }
+
         return extFolders;
 
     }

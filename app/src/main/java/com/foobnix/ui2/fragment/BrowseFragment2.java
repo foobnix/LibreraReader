@@ -362,14 +362,14 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                 }
 
 
-                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
-                        return false;
-                    }
-                }).setIcon(R.drawable.glyphicons_sync);
+//                menu.getMenu().add(R.string.sync).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+//
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        displayAnyPath(AppProfile.SYNC_FOLDER_ROOT.getPath());
+//                        return false;
+//                    }
+//                }).setIcon(R.drawable.glyphicons_sync);
 
                 // resources
 
@@ -396,7 +396,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                                 StringDB.delete(BookCSS.get().pathSAF, saf, (String db) -> BookCSS.get().pathSAF = db);
                                 return false;
                             }
-                        }).setIcon(R.drawable.glyphicons_146_folder_plus);
+                        }).setIcon(R.drawable.glyphicons_146_folder_sd1);
 
 
                     }
@@ -449,7 +449,7 @@ public class BrowseFragment2 extends UIFragment<FileMeta> {
                             getActivity().startActivityForResult(intent, MainTabs2.REQUEST_CODE_ADD_RESOURCE);
                             return true;
                         }
-                    }).setIcon(R.drawable.glyphicons_146_add_folder_plus);
+                    }).setIcon(R.drawable.glyphicons_145_folder_open);
 
                 }
 
