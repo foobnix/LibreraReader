@@ -47,6 +47,8 @@ import com.foobnix.android.utils.StringDB;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.TintUtil;
@@ -132,6 +134,12 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 searchAndOrderAsync();
                 searchEditText.setHint(R.string.search);
                 onRefresh.setActivated(true);
+
+                if(AppsConfig.IS_LOG){
+                    searchEditText.setHint(Apps.getApplicationName(getContext()));
+                }
+
+
             } else if (BooksService.RESULT_SEARCH_COUNT.equals(intent.getStringExtra(Intent.EXTRA_TEXT))) {
                 int count = intent.getIntExtra("android.intent.extra.INDEX", 0);
                 if (count > 0) {
@@ -759,6 +767,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         String txt = searchEditText.getText().toString().trim();
         searchEditText.setHint(R.string.search);
 
+        if(AppsConfig.IS_LOG){
+            searchEditText.setHint(Apps.getApplicationName(getContext()));
+        }
+
+
         if (CMD_KEYCODE.equals(txt)) {
             new KeyCodeDialog(getActivity(), null);
             searchEditText.setText("");
@@ -1034,6 +1047,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         if (!BooksService.isRunning) {
             onRefresh.setActivated(!BooksService.isRunning);
             searchEditText.setHint(R.string.search);
+
+            if(AppsConfig.IS_LOG){
+                searchEditText.setHint(Apps.getApplicationName(getContext()));
+            }
+
         }
     }
 

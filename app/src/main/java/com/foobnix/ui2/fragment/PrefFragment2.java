@@ -575,7 +575,7 @@ public class PrefFragment2 extends UIFragment {
             if (Dips.isEInk()) {
                 version += " INK";
             }
-            if (AppsConfig.IS_BETA) {
+            if (AppsConfig.IS_LOG) {
                 version += "\n MODEL: " + Build.MODEL;
                 version += "\n BRAND: " + Build.BRAND;
                 version += "\n PRODUCT: " + Build.PRODUCT;

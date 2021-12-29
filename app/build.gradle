@@ -94,23 +94,8 @@ android {
         abi {
             enable true
             reset()
-            //include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-
-            if (taskName.contains("Huawei") || taskName.contains("Beta") || taskName.contains("Alpha")) {
-                include "arm64-v8a"
-            } else if (taskName.contains("Fdroid") || project.hasProperty('beta')) {
-                //only universal
-            } else {
-                include "armeabi-v7a", "arm64-v8a"
-            }
-
-            if (taskName.contains("Debug") ||
-                    taskName.contains("ProRelease") ||
-                    taskName.contains("LibreraRelease") ||
-                    taskName.contains("Pdf_classicRelease")) {
-                include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
-            }
-            universalApk taskName.contains("Fdroid") || taskName.contains("Pro")
+            include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+            universalApk true
         }
 
     }
@@ -123,7 +108,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Beta Librera",
+                    appName      : "Beta 111",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -138,7 +123,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "Alpha Librera",
+                    appName      : "Alpha 119",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",

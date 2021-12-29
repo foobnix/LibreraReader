@@ -91,7 +91,7 @@ public class AndroidWhatsNew {
         url += "?utm_p=" + Apps.getPackageName(c);
         url += "&utm_v=" + Apps.getVersionName(c);
         url += "&utm_ln=" + appLang;
-        url += "&utm_beta=" + AppsConfig.IS_BETA;
+        url += "&utm_beta=" + AppsConfig.IS_LOG;
 
         url += "#" + shortVersion.replace(".", "");
 
@@ -250,7 +250,7 @@ public class AndroidWhatsNew {
     }
 
     public static void checkForNewBeta(final Activity c) {
-        if (!AppsConfig.IS_BETA) {
+        if (!AppsConfig.IS_LOG) {
             return;
         }
 

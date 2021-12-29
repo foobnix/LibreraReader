@@ -908,7 +908,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                         }
                     });
                 }
-                if ((AppsConfig.IS_BETA || AppState.get().isExperimental) && !dc.isTextFormat()) {
+                if ((AppsConfig.IS_LOG || AppState.get().isExperimental) && !dc.isTextFormat()) {
                     p.getMenu().add("Smart Reflow").setIcon(R.drawable.glyphicons_108_text_resize).setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
                         @Override
@@ -1147,7 +1147,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
             @Override
             protected void onPostExecute(Object result) {
-                if (AppsConfig.IS_BETA) {
+                if (AppsConfig.IS_LOG) {
                     long time = System.currentTimeMillis() - start;
                     float sec = (float) time / 1000;
                     modeName.setText(modeName.getText() + " (" + String.format("%.1f", sec) + " sec" + ")");
@@ -2177,7 +2177,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         prev = AppState.get().isEditMode;
 
-        if (AppsConfig.IS_BETA && animated) {
+        if (AppsConfig.IS_LOG && animated) {
             modeName.setText(R.string.mode_horizontally);
         }
 

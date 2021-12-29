@@ -9,7 +9,7 @@ cd ../
 
 ./gradlew clean incVersion
 
-./gradlew assembleFdroidRelease
+#./gradlew assembleFdroidRelease
 ./gradlew assembleAlphaRelease
 #./gradlew assembleLibreraRelease
 
@@ -20,7 +20,7 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-./gradlew assembleProRelease
+#./gradlew assembleProRelease
 ./gradlew assembleBetaRelease
 #./gradlew assembleLibreraRelease
 #./gradlew assembleHuaweiRelease
@@ -31,11 +31,9 @@ cd ../
 
 cd Builder
 
-rm /home/data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-arm*
-rm /home/data/Dropbox/FREE_PDF_APK/testing/Librera\ Pro-*-x*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-arm*
+rm /home/dev/Dropbox/FREE_PDF_APK/testing/*-x86*
 
-rm /home/data/Nextcloud/LibreraBeta/Librera\ Pro-*-arm*
-rm /home/data/Nextcloud/LibreraBeta/Librera\ Pro-*-x*
 
 
 ./remove_all.sh

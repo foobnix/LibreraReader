@@ -22,16 +22,13 @@ public class AppsConfig {
     public static final String LIBRERA_READER = "com.foobnix.pdf.reader";
     public static final boolean ADS_ON_PAGE = false;
     public static int MUPDF_1_11 = 111;
-    public static int MUPDF_1_16 = 116;
-    public static int MUPDF_MASTER = 0;
     public static boolean isDOCXSupported = Build.VERSION.SDK_INT >= 26;
     public static boolean isCloudsEnable = false;
 
     public static final boolean IS_FDROID = BuildConfig.FLAVOR.equals("fdroid") || BuildConfig.FLAVOR.equals("huawei");
-    public static final boolean IS_BETA = BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_LOG = BuildConfig.FLAVOR.equals("alpha") || BuildConfig.FLAVOR.equals("beta");
     public static final boolean IS_ENABLE_1_PAGE_SEARCH = true;
-    public static boolean IS_NO_ADS = false;
+    public static boolean IS_NO_ADS =  false;
 
     public final static ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -41,7 +38,7 @@ public class AppsConfig {
     }
 
     public static boolean checkIsProInstalled(final Context a) {
-        if (IS_NO_ADS) {
+        if (IS_NO_ADS || IS_LOG) {
             LOG.d("no-ads error");
 
             return true;
