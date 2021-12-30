@@ -70,13 +70,11 @@ cp -rp $DEST/fitz/xml.c  $SRC_FILES
 cp -rp $DEST/pdf/pdf-colorspace.c  $SRC_FILES
 
 cp -rp $SRC/html-layout.c       $DEST/html/html-layout.c
-#cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
 cp -rp $SRC/epub-doc.c          $DEST/html/epub-doc.c
 cp -rp $SRC/html-parse.c        $DEST/html/html-parse.c
 
 #cp -rp $SRC/html-doc.c          $DEST/html/html-doc.c
-
-
+#cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
 #cp -rp $SRC/mucbz.c             $DEST/cbz/mucbz.c
 #cp -rp $SRC/svg-doc.c           $DEST/svg/svg-doc.c
 #cp -rp $SRC/xml.c               $DEST/fitz/xml.c

@@ -20,7 +20,7 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-#./gradlew assembleProRelease
+./gradlew assembleProRelease
 ./gradlew assembleBetaRelease
 #./gradlew assembleLibreraRelease
 #./gradlew assembleHuaweiRelease
