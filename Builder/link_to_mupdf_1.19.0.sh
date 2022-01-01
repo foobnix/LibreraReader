@@ -13,7 +13,7 @@ MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 
 SRC=jni/~mupdf-$VERSION_TAG
 DEST=$MUPDF_ROOT/source/
-SRC_FILES=$SRC/src_files
+SRC_FILES=$SRC/src_files/
 LIBS=$BUILD_DIR/../app/src/main/jniLibs
 
 
@@ -53,31 +53,22 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
+rm -rfv $SRC_FILES
+mkdir $SRC_FILES
 
-mkdir -p $SRC_FILES
-cp -rp $MUPDF_ROOT/platform/java/Android.mk  $SRC_FILES
-cp -rp $MUPDF_ROOT/platform/java/mupdf_native.c  $SRC_FILES
-cp -rp $MUPDF_ROOT/platform/java/mupdf_native.h  $SRC_FILES
+cp -rpv $DEST/html/css-apply.c $SRC_FILES
+cp -rpv $DEST/html/epub-doc.c $SRC_FILES
+cp -rpv $DEST/html/html-layout.c $SRC_FILES
+cp -rpv $DEST/html/html-parse.c $SRC_FILES
+cp -rpv $DEST/cbz/mucbz.c $SRC_FILES
 
-cp -rp $DEST/html/css-apply.c  $SRC_FILES
-cp -rp $DEST/html/epub-doc.c  $SRC_FILES
-cp -rp $DEST/html/html-doc.c  $SRC_FILES
-cp -rp $DEST/html/html-layout.c  $SRC_FILES
-cp -rp $DEST/html/html-parse.c  $SRC_FILES
-cp -rp $DEST/cbz/mucbz.c  $SRC_FILES
-cp -rp $DEST/svg/svg-doc.c  $SRC_FILES
-cp -rp $DEST/fitz/xml.c  $SRC_FILES
-cp -rp $DEST/pdf/pdf-colorspace.c  $SRC_FILES
 
-cp -rp $SRC/html-layout.c       $DEST/html/html-layout.c
-cp -rp $SRC/epub-doc.c          $DEST/html/epub-doc.c
-cp -rp $SRC/html-parse.c        $DEST/html/html-parse.c
-cp -rp $SRC/css-apply.c         $DEST/html/css-apply.c
-cp -rp $SRC/mucbz.c             $DEST/cbz/mucbz.c
+cp -rpv $SRC/html-layout.c       $DEST/html/html-layout.c
+cp -rpv $SRC/epub-doc.c          $DEST/html/epub-doc.c
+cp -rpv $SRC/html-parse.c        $DEST/html/html-parse.c
+cp -rpv $SRC/css-apply.c         $DEST/html/css-apply.c
+cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
 
-#cp -rp $SRC/svg-doc.c           $DEST/svg/svg-doc.c
-#cp -rp $SRC/xml.c               $DEST/fitz/xml.c
-#cp -rp $SRC/pdf-colorspace.c    $DEST/pdf/pdf-colorspace.c
 
 cd $MUPDF_JAVA
 

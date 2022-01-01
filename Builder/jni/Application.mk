@@ -10,3 +10,5 @@ APP_CFLAGS := -O2
 APP_CPPFLAGS := -O2
 
 APP_STL := c++_static
+
+

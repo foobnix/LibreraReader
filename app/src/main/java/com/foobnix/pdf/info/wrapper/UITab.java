@@ -103,6 +103,11 @@ public enum UITab {
             return AppState.get().tabsOrder7.contains(UITab.RecentFragment.index + "#1");
         }
     }
+    public static boolean isShowLibrary() {
+        synchronized (AppState.get().tabsOrder7) {
+            return AppState.get().tabsOrder7.contains(UITab.SearchFragment.index + "#1");
+        }
+    }
 
     public static boolean isShowPreferences() {
         synchronized (AppState.get().tabsOrder7) {

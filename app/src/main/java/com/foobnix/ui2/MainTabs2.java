@@ -461,7 +461,11 @@ public class MainTabs2 extends AdsFragmentActivity {
         if (AppState.get().isEnableAccessibility) {
             imageMenu.setVisibility(View.VISIBLE);
         }
-        imageMenu.setVisibility(View.GONE);
+
+
+        if(UITab.isShowLibrary()) {
+            imageMenu.setVisibility(View.GONE);
+        }
 
         // ((BrigtnessDraw)
         // findViewById(R.id.brigtnessProgressView)).setActivity(this);
