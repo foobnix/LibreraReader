@@ -546,7 +546,7 @@
    <string name="wifi_sync_only">Synchronizuj tylko przez Wi-Fi</string>
    <string name="sync_google_drive">Synchronizuj (Dysk Google)</string>
    <string name="single_tap_to_select_text">Jednym dotknięciem wybierz tekst</string>
-   <string name="sync_book">Zsynchronizować książkę</string>
+   <string name="sync_book">Synchronizuj książkę</string>
    <string name="sync">Synchronizacja</string>
    <string name="synchronized_folder">Zsynchronizowany katalog</string>
    <string name="today">Dzisiaj</string>
