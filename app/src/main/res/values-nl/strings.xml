@@ -481,8 +481,8 @@
    <string name="normalize_font_size">Lettergrootte normaliseren</string>
    <string name="display_chapters_on_the_progress_line">Toon hoofdstukken op de voortgangsbalk</string>
    <string name="display_sub_chapters_on_the_progress_line">Subhoofdstukken op de voortgangsbalk</string>
-   <string name="enable_vertical_gesture">Pagina's omslaan met verticaal vegen</string>
-   <string name="enable_horizontal_gesture">Pagina's omslaan met horizontale vegen</string>
+   <string name="enable_vertical_gesture">Pagina\'s omslaan met verticaal vegen</string>
+   <string name="enable_horizontal_gesture">Pagina\'s omslaan met horizontale vegen</string>
    <string name="pause_duration">Pauzeerduur</string>
    <string name="voice">Stem</string>
    <string name="capital_letter">Hoofdletter</string>

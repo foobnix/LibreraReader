@@ -1,7 +1,9 @@
 package com.foobnix.sys;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -545,12 +547,14 @@ public class ImageExtractor {
         }
     }
 
+    @SuppressLint("ResourceType")
     public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
-            return LibreraApp.context.getResources().getAssets().open("opds/web.png");
+            //return LibreraApp.context.getResources().getAssets().open("opds/web.png");
+            return Resources.getSystem().openRawResource(R.drawable.web);
 
         }
         if (imageUri.startsWith("http")) {
