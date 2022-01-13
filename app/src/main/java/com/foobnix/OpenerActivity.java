@@ -2,6 +2,7 @@ package com.foobnix;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,7 +43,22 @@ public class OpenerActivity extends Activity {
             return;
         }
 
-        if (getIntent() == null || getIntent().getData() == null) {
+
+        if (getIntent() == null) {
+            Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            try {
+                if (getIntent().getData() == null && getIntent().getClipData() != null) {
+                    getIntent().setData(getIntent().getClipData().getItemAt(0).getUri());
+                }
+            } catch (Exception e) {
+                LOG.e(e);
+            }
+
+        }
+        if (getIntent().getData() == null) {
             Toast.makeText(this, R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -55,6 +71,7 @@ public class OpenerActivity extends Activity {
         LOG.d("OpenerActivity Mime", getIntent().getType());
         LOG.d("OpenerActivity DISPLAY_NAME", getCursorValue(MediaStore.MediaColumns.DISPLAY_NAME));
         LOG.d("OpenerActivity DATA", getCursorValue(MediaStore.MediaColumns.DATA));
+
 
         String path = getDataPath();
         File file = new File(path);
