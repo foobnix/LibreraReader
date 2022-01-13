@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Base64;
 import android.util.Pair;
+import android.util.TypedValue;
 
 import androidx.annotation.RequiresApi;
 
@@ -547,14 +548,13 @@ public class ImageExtractor {
         }
     }
 
-    @SuppressLint("ResourceType")
     public InputStream getStreamInner(final String imageUri, String hash) throws IOException {
         LOG.d("TEST", "url: " + imageUri);
 
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
             //return LibreraApp.context.getResources().getAssets().open("opds/web.png");
-            return Resources.getSystem().openRawResource(R.drawable.web);
+            return messageFile("safe run","stub");
 
         }
         if (imageUri.startsWith("http")) {
