@@ -24,7 +24,8 @@ Application Fonts (**fonts.zip** download to internal sd card, to [Downloads] fo
 
 [Beta .apk (latest build)](http://beta.librera.mobi)
 
-[Donate: Patreon](https://www.patreon.com/librera)
+[Please support Librera on Patreon](https://www.patreon.com/librera)
+
 
 ## Required build libs
 

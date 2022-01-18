@@ -1,5 +1,6 @@
 package com.foobnix.ext;
 
+import android.text.TextUtils;
 import android.util.Base64;
 
 import com.BaseExtractor;
@@ -97,9 +98,18 @@ public class Fb2Extractor extends BaseExtractor {
             writeToZip(zos, "mimetype", "application/epub+zip");
             writeToZip(zos, "META-INF/container.xml", container_xml);
 
+
+
             String meta = content_opf.replace("fb2.fb2", "temp" + ExtUtils.REFLOW_HTML);
-            meta = meta.replace("%title%", title);
-            meta = meta.replace("%creator%", author);
+
+            if(author!=null) {
+                author = TextUtils.htmlEncode(author);
+                meta = meta.replace("%creator%", author);
+            }
+            if(title!=null) {
+                title = TextUtils.htmlEncode(title);
+                meta = meta.replace("%title%", title);
+            }
 
             writeToZip(zos, "OEBPS/content.opf", meta);
             if (TxtUtils.isListNotEmpty(outline)) {
