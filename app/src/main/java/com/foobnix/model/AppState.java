@@ -613,6 +613,7 @@ public class AppState {
         providers.put("Treccani.it", String.format("http://www.treccani.it/vocabolario/ricerca/%s", text));
         providers.put("Deepl.com", String.format("https://www.deepl.com/translator#%s/%s/%s", from, ln, text));
         providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
+        providers.put("Ukrlit.org", String.format("http://ukrlit.org/slovnyk/%s", text));
         return providers;
     }
 
