@@ -614,6 +614,7 @@ public class AppState {
         providers.put("Deepl.com", String.format("https://www.deepl.com/translator#%s/%s/%s", from, ln, text));
         providers.put("Vocabulary.com", String.format("https://www.vocabulary.com/dictionary/%s", text));
         providers.put("Ukrlit.org", String.format("http://ukrlit.org/slovnyk/%s", text));
+        providers.put("Slovnyk.ua", String.format("https://slovnyk.ua/index.php?swrd=%s", text));
         return providers;
     }
 
