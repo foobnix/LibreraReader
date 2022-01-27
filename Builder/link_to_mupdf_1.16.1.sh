@@ -9,7 +9,9 @@ cd $BUILD_DIR
 VERSION=1.16.1
 
 MUPDF_ROOT=${BUILD_DIR}/mupdf-$VERSION
-MUPDF_JAVA=$MUPDF_ROOT/platform/java
+
+MUPDF_JAVA=$MUPDF_ROOT/platform/librera
+mkdir -p $MUPDF_JAVA/jni
 
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
@@ -23,7 +25,9 @@ cd mupdf-$VERSION
 
 
 echo "=================="
-#make clean
+if [ "$1" == "clean" ]; then
+  make clean
+fi
 make release
 make generate
 echo "=================="
@@ -54,9 +58,16 @@ cp -rp $SRC/pdf-colorspace.c    $DEST/pdf/pdf-colorspace.c
 
 cd $MUPDF_JAVA
 
+
 whereis ndk-build
 echo "================== "
-ndk-build $1
+
+if [ "$1" == "clean_ndk" ]; then
+ndk-build clean
+fi
+
+ndk-build
+
 echo "=================="
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS

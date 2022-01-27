@@ -9,7 +9,9 @@ cd $BUILD_DIR
 VERSION_TAG=1.19.0
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG
+
 MUPDF_JAVA=$MUPDF_ROOT/platform/librera
+mkdir -p $MUPDF_JAVA/jni
 
 SRC=jni/~mupdf-$VERSION_TAG
 DEST=$MUPDF_ROOT/source/
@@ -39,7 +41,7 @@ echo "=================="
 
 cd ..
 
-mkdir -p $MUPDF_JAVA/jni
+
 
 rm -rf  $MUPDF_JAVA/jni
 cp -rRp jni $MUPDF_JAVA/jni
@@ -72,7 +74,7 @@ cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
 
 cd $MUPDF_JAVA
 
-if [ "$1" == "clean2" ]; then
+if [ "$1" == "clean_ndk" ]; then
 ndk-build clean
 fi
 

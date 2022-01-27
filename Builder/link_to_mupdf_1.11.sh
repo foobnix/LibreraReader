@@ -12,13 +12,18 @@ echo "================== "
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.11 mupdf-1.11
 cd mupdf-1.11
 echo "================== "
+if [ "$1" == "clean" ]; then
+  make clean
+fi
 make
 echo "================== "
 cd ..
 
 MUPDF_ROOT=${BUILD_DIR}/mupdf-1.11
 
-MUPDF_JAVA=$MUPDF_ROOT/platform/java
+MUPDF_JAVA=$MUPDF_ROOT/platform/librera
+
+mkdir -p $MUPDF_JAVA/jni
 
 LIBS=${BUILD_DIR}/../app/src/main/jniLibs
 
@@ -49,7 +54,12 @@ cd $MUPDF_JAVA
 
 whereis ndk-build
 echo "================== "
-ndk-build $1
+
+if [ "$1" == "clean_ndk" ]; then
+ndk-build clean
+fi
+
+ndk-build
 echo "================== "
 echo "MUPDF:" $MUPDF_JAVA
 echo "LIBS:"  $LIBS
