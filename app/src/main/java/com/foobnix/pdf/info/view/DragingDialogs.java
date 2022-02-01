@@ -4859,7 +4859,8 @@ public class DragingDialogs {
                 //charsets
 
                 CheckBox isCharacterEncoding = (CheckBox) inflate.findViewById(R.id.isCharacterEncoding);
-                ((View)isCharacterEncoding.getParent()).setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
+
+                ((View)isCharacterEncoding.getParent()).setVisibility(isTxtOrZip || controller.getCurrentBook().getPath().endsWith(".pdb") ? View.VISIBLE : View.GONE);
                 isCharacterEncoding.setChecked(AppState.get().isCharacterEncoding);
                 isCharacterEncoding.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

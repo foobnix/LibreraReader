@@ -11,6 +11,7 @@ import net.lingala.zip4j.model.LocalFileHeader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -36,6 +37,8 @@ public class ZipArchiveInputStream extends InputStream {
 
             zp = new ZipFile(file);
 
+
+
 //            if (!zp.isValidZipFile()) {
 //                zis = new ZipInputStream(new FileInputStream(file));
 //                return;
@@ -43,6 +46,7 @@ public class ZipArchiveInputStream extends InputStream {
 
 
             final List<FileHeader> fileHeaders = zp.getFileHeaders();
+
 
             Collections.sort(fileHeaders, new Comparator<FileHeader>() {
                 @Override

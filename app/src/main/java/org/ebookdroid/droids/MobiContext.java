@@ -6,6 +6,8 @@ import com.foobnix.ext.EpubExtractor;
 import com.foobnix.ext.FooterNote;
 import com.foobnix.ext.MobiExtract;
 import com.foobnix.model.AppSP;
+import com.foobnix.pdf.info.AppsConfig;
+import com.foobnix.pdf.info.BuildConfig;
 import com.foobnix.pdf.info.JsonHelper;
 import com.foobnix.pdf.info.model.BookCSS;
 
@@ -35,7 +37,7 @@ public class MobiContext extends PdfContext {
 
         LOG.d("Context", "MobiContext", fileName);
 
-        if (cacheFile.isFile()) {
+        if (!BuildConfig.DEBUG && cacheFile.isFile()) {
             fileNameEpub = cacheFile.getPath();
             LOG.d("Context", "MobiContext cache", fileNameEpub);
 

@@ -10,6 +10,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.hypen.HypenUtils;
 import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
+import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.model.OutlineLinkWrapper;
@@ -30,6 +31,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -143,6 +145,7 @@ public class Fb2Extractor extends BaseExtractor {
 
     public static void generateHyphenFileEpub(InputStreamReader inputStream, Map<String, String> notes, OutputStream out, String name, Map<String, String> svgs, int number) throws Exception {
         BufferedReader input = new BufferedReader(inputStream);
+
 
         PrintWriter writer = new PrintWriter(out);
         String line;
@@ -268,6 +271,9 @@ public class Fb2Extractor extends BaseExtractor {
 
             if (!isValidXML) {
                 writer.println("<p>");
+            }
+            if (!isValidXML && AppState.get().isCharacterEncoding) {
+               line = new String(line.getBytes("windows-1252"), AppState.get().characterEncoding);
             }
             writer.println(line);
 
