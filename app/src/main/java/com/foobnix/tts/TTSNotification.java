@@ -172,10 +172,10 @@ public class TTSNotification {
             }
 
             remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1+ " ","\n").trim());
-            remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+            //remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
-            remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+            //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
 
             builder.setContentIntent(contentIntent) //
                     .setSmallIcon(R.drawable.glyphicons_185_volume_up1) //
