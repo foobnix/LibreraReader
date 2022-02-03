@@ -252,7 +252,8 @@ public class DialogsPlaylist {
             }
 
             @Override
-            public void onItemClick(String result) {
+            public void onItemClick(String result) { // invoked from playlist dialog
+                Playlists.updatePlaylistAndCurrentItem(file, result);
                 Playlists.updatePlaylist(file, res);
                 EventBus.getDefault().post(new UpdateAllFragments());
 
@@ -296,7 +297,8 @@ public class DialogsPlaylist {
             }
         });
         if (res.size() > 0 && refresh == null) {
-            builder.setPositiveButton(R.string.play, new AlertDialog.OnClickListener() {
+            int displayText = Playlists.getPlaylist(file).hasCurrentItem() ? R.string.resume_playlist : R.string.play;
+            builder.setPositiveButton(displayText, new AlertDialog.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -336,17 +338,17 @@ public class DialogsPlaylist {
         playlistRecycleView.setVisibility(View.GONE);
         playListParent.setVisibility(View.GONE);
 
-        final String palylistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
+        final String playlistPath = a.getIntent().getStringExtra(DocumentController.EXTRA_PLAYLIST);
 
-        if (TxtUtils.isNotEmpty(palylistPath)) {
-            playListName.setText(Playlists.formatPlaylistName(palylistPath));
+        if (TxtUtils.isNotEmpty(playlistPath)) {
+            playListName.setText(Playlists.formatPlaylistName(playlistPath));
             playListName.setVisibility(View.VISIBLE);
             playListParent.setVisibility(View.VISIBLE);
             playListNameEdit.setVisibility(View.VISIBLE);
             playlistRecycleView.setVisibility(View.VISIBLE);
         }
 
-        final List<String> res = Playlists.getPlaylistItems(palylistPath);
+        final List<String> res = Playlists.getPlaylistItems(playlistPath);
 
         final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
 
@@ -359,15 +361,16 @@ public class DialogsPlaylist {
             }
 
             @Override
-            public void onItemClick(final String s) {
-                LOG.d("onItemClick", s);
-                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(s)) {
+            public void onItemClick(final String itemPath) {
+                LOG.d("onItemClick", itemPath);
+                if (dc != null && dc.getCurrentBook() != null && !dc.getCurrentBook().getPath().equals(itemPath)) {
 
                     dc.onCloseActivityFinal(new Runnable() {
 
                         @Override
                         public void run() {
-                            ExtUtils.showDocumentWithoutDialog(a, new File(s), palylistPath);
+                            Playlists.updatePlaylistAndCurrentItem(playlistPath, itemPath);
+                            ExtUtils.showDocumentWithoutDialog(a, new File(itemPath), playlistPath);
                         }
                     });
                 }
@@ -390,11 +393,11 @@ public class DialogsPlaylist {
 
             @Override
             public void onClick(View v) {
-                showPlayList(a, palylistPath, new Runnable() {
+                showPlayList(a, playlistPath, new Runnable() {
                     @Override
                     public void run() {
                         adapter.getItems().clear();
-                        adapter.getItems().addAll(Playlists.getPlaylistItems(palylistPath));
+                        adapter.getItems().addAll(Playlists.getPlaylistItems(playlistPath));
                         adapter.notifyDataSetChanged();
 
                     }

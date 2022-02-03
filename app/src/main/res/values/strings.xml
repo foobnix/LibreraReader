@@ -632,4 +632,5 @@
    <string name="the_application_needs_storage_permission">The application needs permission to access the storage to find all books</string>
    <string name="always_open_in_2_pages_mode">Open in 2-page mode</string>
    <string name="text_encoding">Text encoding</string>
+   <string name="resume_playlist">Resume</string>
 </resources>

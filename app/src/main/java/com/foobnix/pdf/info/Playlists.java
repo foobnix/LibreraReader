@@ -18,41 +18,48 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Playlists {
     final public static String L_PLAYLIST = ".playlist";
+    final private static Map<String, Playlist> playlists = new HashMap<>();
 
-    public static void createPlayList(String name) {
-        LOG.d("Playlists", "createPlayList", name);
-        if (TxtUtils.isEmpty(name)) {
+    public static void createPlayList(String playlistName) {
+        LOG.d("Playlists", "createPlayList", playlistName);
+
+        if (playlists.containsKey(playlistName) || TxtUtils.isEmpty(playlistName)) {
             return;
         }
 
         File root = AppProfile.syncPlaylist;
         root.mkdirs();
 
-        File child = new File(root, name + L_PLAYLIST);
+        File child = new File(root, playlistName + L_PLAYLIST);
         if (!child.exists()) {
             try {
                 child.createNewFile();
+                playlists.put(child.getName(), new Playlist(child.getName()));
             } catch (IOException e) {
                 LOG.e(e);
             }
         }
     }
 
-    public static void deletePlaylist(String name) {
-        LOG.d("Playlists", "deletePlaylist", name);
-        if (TxtUtils.isEmpty(name)) {
+    public static void deletePlaylist(String playlistName) {
+        LOG.d("Playlists", "deletePlaylist", playlistName);
+        if (TxtUtils.isEmpty(playlistName)) {
             return;
         }
-        File child = new File(AppProfile.syncPlaylist, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
+        File child = new File(AppProfile.syncPlaylist, playlistName.endsWith(L_PLAYLIST) ? playlistName : playlistName + L_PLAYLIST);
         child.delete();
+        playlists.remove(child.getName());
     }
 
-    public static void addMetaToPlaylist(String name, File file) {
-        File child = new File(AppProfile.syncPlaylist, name.endsWith(L_PLAYLIST) ? name : name + L_PLAYLIST);
+    public static void addMetaToPlaylist(String playlistName, File file) {
+        File child = new File(AppProfile.syncPlaylist, playlistName.endsWith(L_PLAYLIST) ? playlistName : playlistName + L_PLAYLIST);
 
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child, true)));
@@ -64,47 +71,24 @@ public class Playlists {
 
     }
 
-    public static void updatePlaylist(String name, List<String> items) {
-        File child = getFile(name);
-        LOG.d("Playlists", "updatePlaylist", child);
-
-        try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(child)));
-            for (String path : items) {
-                out.println(MyPath.toRelative(path));
-            }
-            out.close();
-        } catch (IOException e) {
-            LOG.e(e);
-        }
-
+    public static void updatePlaylistAndCurrentItem(String playlistName, String current) {
+        File playlistFile = getFile(playlistName);
+        Objects.requireNonNull(playlists.get(playlistFile.getName())).updateCurrentFile(current);;
     }
 
-    public static List<String> getPlaylistItems(String name) {
-        List<String> res = new ArrayList<String>();
-        try {
-            if (TxtUtils.isEmpty(name)) {
-                return res;
-            }
+    public static void updatePlaylist(String playlistName, List<String> items) {
+        File playlist = getFile(playlistName);
+        Objects.requireNonNull(playlists.get(playlist.getName())).update(items);
+    }
 
-            File child = getFile(name);
+    public static List<String> getPlaylistItems(String playlistName) {
+        File playlist = getFile(playlistName);
+        return Objects.requireNonNull(playlists.get(playlist.getName())).getItems();
+    }
 
-            BufferedReader reader = new BufferedReader(new FileReader(child));
-
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                if (TxtUtils.isNotEmpty(line)) {
-                    line = MyPath.toAbsolute(line);
-                    res.add(line.replace(L_PLAYLIST, ""));
-                }
-            }
-            reader.close();
-        } catch (Exception e) {
-            LOG.e(e);
-        }
-        return res;
-
+    public static Playlist getPlaylist(String playlistName) {
+        File playlist = getFile(playlistName);
+        return playlists.get(playlist.getName());
     }
 
     public static File getFile(String name) {
@@ -117,13 +101,9 @@ public class Playlists {
         return child;
     }
 
-    public static String getFirstItem(String path) {
-        try {
-            return getPlaylistItems(path).get(0);
-        } catch (Exception e) {
-            LOG.e(e);
-            return path;
-        }
+    public static String getFirstItem(String playlistName) {
+        File playlist = getFile(playlistName);
+        return Objects.requireNonNull(playlists.get(playlist.getName())).getFirstItem();
     }
 
     public static String formatPlaylistName(String name) {
@@ -135,6 +115,7 @@ public class Playlists {
         List<FileMeta> res = new ArrayList<FileMeta>();
 
         for (String s : getAllPlaylists()) {
+            playlists.put(s, new Playlist(s));
             FileMeta meta = new FileMeta(getFile(s).getPath());
             meta.setPathTxt(formatPlaylistName(s));
             meta.setCusType(FileMetaAdapter.DISPLAY_TYPE_PLAYLIST);
