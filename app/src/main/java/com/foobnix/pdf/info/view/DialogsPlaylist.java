@@ -298,6 +298,17 @@ public class DialogsPlaylist {
         });
         if (res.size() > 0 && refresh == null) {
             int displayText = Playlists.getPlaylist(file).hasCurrentItem() ? R.string.resume_playlist : R.string.play;
+            if (Playlists.getPlaylist(file).hasCurrentItem()) {
+                builder.setNeutralButton(R.string.resume_playlist, (dialogInterface, i) -> {
+                    LOG.d("play-click", file);
+                    update.run();
+
+                    FileMeta f = new FileMeta(Playlists.getFile(file).getPath());
+                    LOG.d("play-click meta", f.getPath());
+
+                    ExtUtils.openFile((Activity) a, f);
+                });
+            }
             builder.setPositiveButton(displayText, new AlertDialog.OnClickListener() {
 
                 @Override

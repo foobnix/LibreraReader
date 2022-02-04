@@ -71,10 +71,10 @@ public class Playlist {
                 }
             }
             reader.close();
+            this.setPaths(res);
         } catch (Exception e) {
             LOG.e(e);
         }
-        this.setPaths(res);
         return res;
     }
 
