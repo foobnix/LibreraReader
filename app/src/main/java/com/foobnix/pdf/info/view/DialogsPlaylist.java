@@ -252,7 +252,7 @@ public class DialogsPlaylist {
             }
 
             @Override
-            public void onItemClick(String result) { // invoked from playlist dialog
+            public void onItemClick(String result) {
                 Playlists.updatePlaylistAndCurrentItem(file, result);
                 Playlists.updatePlaylist(file, res);
                 EventBus.getDefault().post(new UpdateAllFragments());

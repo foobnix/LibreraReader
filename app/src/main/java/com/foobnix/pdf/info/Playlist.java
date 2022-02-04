@@ -103,7 +103,7 @@ public class Playlist {
 
     public String getFirstItem() {
         try {
-            return getItems().get(this.currentPathIndex); // invoked when you clicked play
+            return getItems().get(this.currentPathIndex);
         } catch (Exception e) {
             LOG.e(e);
             return this.name;
