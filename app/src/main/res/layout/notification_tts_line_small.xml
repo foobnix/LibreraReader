@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="64dip"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="2dip">
+    android:padding="0dip">
 
     <ImageView
         android:id="@+id/ttsIcon"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
         android:adjustViewBounds="true"
@@ -16,23 +16,30 @@
         android:cropToPadding="true"
         android:src="@mipmap/icon_pdf_pro" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_gravity="center_vertical"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/bookInfo"
+
+        <include
+            layout="@layout/tts_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/bookInfo"
+            style="@style/TextAppearance.Compat.Notification.Line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="4dip"
             android:lines="1"
             android:text="Book Title"
-             />
-
-        <include layout="@layout/tts_line"  />
-    </LinearLayout>
+            android:visibility="visible" />
+    </RelativeLayout>
 
 </LinearLayout>
