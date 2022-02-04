@@ -274,6 +274,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             holder.parent.setContentDescription(holder.getString(R.string.folder) + " " + fileMeta.getTitle());
 
             holder.play.setVisibility(View.GONE);
+            holder.resume.setVisibility(View.GONE);
             holder.title.setText(fileMeta.getPathTxt());
             holder.path.setText(fileMeta.getPath());
 
@@ -333,14 +334,17 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 }
             }
 
+            TextView viewAction = holder.play;
             if (fileMeta.getCusType() == DISPLAY_TYPE_PLAYLIST) {
                 holder.image.setImageResource(R.drawable.glyphicons_160_playlist);
                 holder.starIcon.setVisibility(View.GONE);
                 holder.path.setVisibility(View.GONE);
-                holder.play.setVisibility(View.VISIBLE);
+                viewAction = !Playlists.getPlaylist(fileMeta.getPath()).hasCurrentItem()
+                        ? holder.play : holder.resume;
+                viewAction.setVisibility(View.VISIBLE);
                 holder.count.setVisibility(View.VISIBLE);
 
-                holder.play.setText(holder.play.getText().toString().toUpperCase(Locale.US));
+                viewAction.setText(viewAction.getText().toString().toUpperCase(Locale.US));
                 int i1 = fileMeta.getPathTxt().indexOf("(");
                 int i2 = fileMeta.getPathTxt().indexOf(")");
 
@@ -352,9 +356,9 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     holder.count.setVisibility(View.GONE);
                 }
 
-                TxtUtils.underlineTextView(holder.play);
+                TxtUtils.underlineTextView(viewAction);
 
-                holder.play.setOnClickListener(new OnClickListener() {
+                viewAction.setOnClickListener(new OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
@@ -362,7 +366,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                     }
                 });
                 if (TEMP_VALUE_STAR_GRID_ITEM == tempValue || new File(fileMeta.getPath()).length() == 0) {
-                    holder.play.setVisibility(View.GONE);
+                    viewAction.setVisibility(View.GONE);
                 }
             }
 
@@ -370,7 +374,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
                 holder.parent.setBackgroundColor(Color.BLACK);
             }
 
-            TxtUtils.setInkTextView(holder.title, holder.path, holder.play, holder.count);
+            TxtUtils.setInkTextView(holder.title, holder.path, viewAction, holder.count);
 
         } else if (holderAll instanceof StarsLayoutViewHolder) {
             final StarsLayoutViewHolder holder = (StarsLayoutViewHolder) holderAll;
@@ -1029,7 +1033,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
     }
 
     public class DirectoryViewHolder extends ContextViewHolder {
-        public TextView title, path, play, count;
+        public TextView title, path, play, resume, count;
         public ImageView image, starIcon, imageCloud;
         public View parent;
 
@@ -1038,6 +1042,7 @@ public class FileMetaAdapter extends AppRecycleAdapter<FileMeta, RecyclerView.Vi
             title = (TextView) view.findViewById(R.id.text1);
             count = (TextView) view.findViewById(R.id.count);
             play = (TextView) view.findViewById(R.id.play);
+            resume = (TextView) view.findViewById(R.id.resume);
             path = (TextView) view.findViewById(R.id.text2);
             image = (ImageView) view.findViewById(R.id.image1);
             starIcon = (ImageView) view.findViewById(R.id.starIcon);

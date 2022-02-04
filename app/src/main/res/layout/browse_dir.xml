@@ -98,6 +98,14 @@
             android:layout_marginRight="10dip"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/resume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resume_playlist"
+            android:layout_marginRight="10dip"
+            android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/starIcon"
             android:layout_width="@dimen/wh_button"
