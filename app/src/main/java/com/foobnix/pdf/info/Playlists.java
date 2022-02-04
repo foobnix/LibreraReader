@@ -30,7 +30,8 @@ public class Playlists {
     public static void createPlayList(String playlistName) {
         LOG.d("Playlists", "createPlayList", playlistName);
 
-        if (playlists.containsKey(playlistName) || TxtUtils.isEmpty(playlistName)) {
+        String fileName = playlistName + L_PLAYLIST;
+        if (playlists.containsKey(fileName) || TxtUtils.isEmpty(playlistName)) {
             return;
         }
 

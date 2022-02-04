@@ -63,7 +63,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemVi
 
             @Override
             public void onClick(View v) {
-                mDragStartListener.onItemClick(item); // invoked on click from inside reader
+                mDragStartListener.onItemClick(item);
             }
         });
 
