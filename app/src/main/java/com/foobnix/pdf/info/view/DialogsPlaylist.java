@@ -47,6 +47,7 @@ import com.jmedeisis.draglinearlayout.DragLinearLayout;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DialogsPlaylist {
@@ -297,7 +298,6 @@ public class DialogsPlaylist {
             }
         });
         if (res.size() > 0 && refresh == null) {
-            int displayText = Playlists.getPlaylist(file).hasCurrentItem() ? R.string.resume_playlist : R.string.play;
             if (Playlists.getPlaylist(file).hasCurrentItem()) {
                 builder.setNeutralButton(R.string.resume_playlist, (dialogInterface, i) -> {
                     LOG.d("play-click", file);
@@ -309,7 +309,7 @@ public class DialogsPlaylist {
                     ExtUtils.openFile((Activity) a, f);
                 });
             }
-            builder.setPositiveButton(displayText, new AlertDialog.OnClickListener() {
+            builder.setPositiveButton(R.string.play, new AlertDialog.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -359,7 +359,7 @@ public class DialogsPlaylist {
             playlistRecycleView.setVisibility(View.VISIBLE);
         }
 
-        final List<String> res = Playlists.getPlaylistItems(playlistPath);
+        final List<String> res = playlistPath == null ? new ArrayList<>() : Playlists.getPlaylistItems(playlistPath);
 
         final PlaylistAdapter adapter = new PlaylistAdapter(a, res, new OnStartDragListener() {
 
