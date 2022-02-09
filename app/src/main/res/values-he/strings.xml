@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">היישום זקוק להרשאה כדי לגשת לאחסון כדי למצוא את כל הספרים</string>
    <string name="always_open_in_2_pages_mode">תמיד פתוח במצב 2 עמודים</string>
    <string name="text_encoding">קידוד טקסט</string>
+   <string name="minus">מִינוּס</string>
+   <string name="plus">ועוד</string>
+   <string name="drag_element">גרור אלמנט</string>
 </resources>

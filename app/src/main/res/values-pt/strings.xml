@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">O aplicativo precisa de permissão para acessar o armazenamento para encontrar todos os livros</string>
    <string name="always_open_in_2_pages_mode">Sempre aberto no modo de 2 páginas</string>
    <string name="text_encoding">Codificação de texto</string>
+   <string name="minus">Menos</string>
+   <string name="plus">Mais</string>
+   <string name="drag_element">Elemento de arrastar</string>
 </resources>

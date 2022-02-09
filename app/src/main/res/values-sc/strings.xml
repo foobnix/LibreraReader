@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">S\'aplicatzione tenet bisòngiu de su petmissu pro atzèdere a sa memòria pro agatare totu sos libros</string>
    <string name="always_open_in_2_pages_mode">Always open in 2 pages mode</string>
    <string name="text_encoding">Text encoding</string>
+   <string name="minus">Minus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Drag element</string>
 </resources>

@@ -233,7 +233,7 @@
    <string name="this_directory_is_already_in_the_list">Ця директорія вже є у списку</string>
    <string name="you_neet_to_apply_the_new_settings">Вам потрібно застосувати нові налаштування</string>
    <string name="block_page_movement_horizontally">Блокувати зсування сторінки</string>
-   <string name="there_are_no_email_applications_installed_">Додаток для роботи з E-mail не встановлено</string>
+   <string name="there_are_no_email_applications_installed_">Застосунок для роботи з E-mail не встановлено</string>
    <string name="file_not_found">Файл не знайдено</string>
    <string name="you_need_grant_permission">Вам необхідно надати доступ до зовнішнього накопичувача для цього додатка</string>
    <string name="remind_msg">Настав час зробити перерву і дати очам трохи відпочити.</string>
@@ -280,7 +280,7 @@
    <string name="enter_password">Введіть пароль</string>
    <string name="page_position">Переміщення сторінки</string>
    <string name="open_web_page">Відкрити вебсторінку</string>
-   <string name="hide_app">Приховати додаток</string>
+   <string name="hide_app">Приховати застосунок</string>
    <string name="go_to_the_library">Вийти в бібліотеку</string>
    <string name="contrast_and_brightness">Контрастність та яскравість</string>
    <string name="contrast">Контрастність</string>
@@ -374,9 +374,9 @@
    <string name="transparency">Прозорість</string>
    <string name="write_feedback">Написати відгук</string>
    <string name="clear_all_marked">Очистити всі позначені</string>
-   <string name="application_cannot_open_the_book">Додаток не може відкрити файл</string>
+   <string name="application_cannot_open_the_book">Застосунок не може відкрити файл</string>
    <string name="musician">Музикант</string>
-   <string name="banner_slogan_LIRBI_READER">Надійний і професійний додаток для читання електронних книжок</string>
+   <string name="banner_slogan_LIRBI_READER">Надійний і професійний застосунок для читання електронних книжок</string>
    <string name="banner_slogan_PRO_LIRBI_READER_1">Платна версія найкращої програми для читання електронних книжок</string>
    <string name="banner_slogan_EPUB_READER">Найзручніший рідер для читання електронних книжок</string>
    <string name="banner_slogan_PDF_READER">Найзручніший "PDF Reader" для читання електронних документів</string>
@@ -386,7 +386,7 @@
    <string name="custom_text">Користувацький текст</string>
    <string name="cd_search_books_in_the_library">Пошук книжок у бібліотеці</string>
    <string name="cd_clear_search_reasult">Очистити результати пошуку</string>
-   <string name="cd_sort_results">Сортувати результат</string>
+   <string name="cd_sort_results">Сортувати</string>
    <string name="cd_sort_order">Порядок сортування</string>
    <string name="cd_update_search_search_for_new_books_on_sd_card">Оновити пошук, пошук нових книжок на SD-карті</string>
    <string name="cd_show_results_as_a_list_or_grid">Показати результати списком або сіткою</string>
@@ -422,7 +422,7 @@
    <string name="number">Номер</string>
    <string name="percent">Відсоток</string>
    <string name="awards">Нагороди</string>
-   <string name="close_book_and_application">Закрити книгу та додаток</string>
+   <string name="close_book_and_application">Закрити книгу та застосунок</string>
    <string name="percent_and_number">Відсоток і кількість</string>
    <string name="current_page">Поточна сторінка</string>
    <string name="backup_folder">Резервна копія</string>
@@ -500,8 +500,8 @@
    <string name="minimum_line_length">Мінімальна довжина лінії (CPL)</string>
    <string name="ask_rate_us1">Якщо вам подобається ця програма, будь ласка, оцініть та перегляньте нас у Google Play. Дякуємо!</string>
    <string name="message">Повідомлення</string>
-   <string name="exit_application">Завершити додаток</string>
-   <string name="exit_application_question">Завершити додаток?</string>
+   <string name="exit_application">Завершити застосунок</string>
+   <string name="exit_application_question">Завершити застосунок?</string>
    <string name="open_folder_as_a_book">Відкрити теку як книгу</string>
    <string name="read_out_loud_with_tts">Читати гучно з TTS</string>
    <string name="allow_minimum_brightness">Дозволити мінімальну яскравість</string>
@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">Додатку потрібен дозвіл на доступ до сховища, щоб знайти всі книги</string>
    <string name="always_open_in_2_pages_mode">Завжди відкривається в режимі 2 сторінки</string>
    <string name="text_encoding">Кодування тексту</string>
+   <string name="minus">Мінус</string>
+   <string name="plus">Плюс</string>
+   <string name="drag_element">Елемент перетягування</string>
 </resources>

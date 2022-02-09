@@ -991,6 +991,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
     public void showBookCount() {
         countBooks.setText("" + (recyclerView.getAdapter().getItemCount() - countTitles));
+        countBooks.setContentDescription(getString(R.string.number_of_books)+" " + countBooks.getText());
     }
 
     @Override

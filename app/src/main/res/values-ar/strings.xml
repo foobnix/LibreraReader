@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">يحتاج التطبيق إلى إذن للوصول إلى التخزين للعثور على جميع الكتب</string>
    <string name="always_open_in_2_pages_mode">افتح دائمًا في وضع صفحتين</string>
    <string name="text_encoding">ترميز النص</string>
+   <string name="minus">ناقص</string>
+   <string name="plus">زائد</string>
+   <string name="drag_element">عنصر السحب</string>
 </resources>

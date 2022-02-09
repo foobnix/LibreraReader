@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">Uygulamanın tüm kitapları bulmak için depoya erişme iznine ihtiyacı var</string>
    <string name="always_open_in_2_pages_mode">Her zaman 2 sayfa modunda aç</string>
    <string name="text_encoding">Metin kodlaması</string>
+   <string name="minus">Eksi</string>
+   <string name="plus">Artı</string>
+   <string name="drag_element">Sürükleme elemanı</string>
 </resources>

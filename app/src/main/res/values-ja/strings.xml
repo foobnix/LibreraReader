@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">アプリケーションは、すべての本を見つけるためにストレージにアクセスする権限が必要です</string>
    <string name="always_open_in_2_pages_mode">常に2ページモードで開く</string>
    <string name="text_encoding">テキストエンコーディング</string>
+   <string name="minus">マイナス</string>
+   <string name="plus">プラス</string>
+   <string name="drag_element">要素をドラッグ</string>
 </resources>

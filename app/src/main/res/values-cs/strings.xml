@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">Aplikace potřebuje povolení k přístupu do úložiště, aby našla všechny knihy</string>
    <string name="always_open_in_2_pages_mode">Vždy otevřít v režimu 2 stránek</string>
    <string name="text_encoding">Kódování textu</string>
+   <string name="minus">Mínus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Táhnout prvek</string>
 </resources>

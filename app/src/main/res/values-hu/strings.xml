@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">Az alkalmazásnak engedélyre van szüksége a tároló eléréséhez az összes könyv megkereséséhez</string>
    <string name="always_open_in_2_pages_mode">Mindig 2 oldalas módban nyílik meg</string>
    <string name="text_encoding">Szöveges kódolás</string>
+   <string name="minus">Mínusz</string>
+   <string name="plus">Plusz</string>
+   <string name="drag_element">Drag elem</string>
 </resources>

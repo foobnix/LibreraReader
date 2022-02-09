@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">모든 도서를 찾으려면 애플리케이션에 저장소 액세스 권한이 필요합니다.</string>
    <string name="always_open_in_2_pages_mode">항상 2페이지 모드로 열기</string>
    <string name="text_encoding">텍스트 인코딩</string>
+   <string name="minus">마이너스</string>
+   <string name="plus">...을 더한</string>
+   <string name="drag_element">드래그 요소</string>
 </resources>

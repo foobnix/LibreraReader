@@ -711,6 +711,7 @@
 
             <ImageView
                 android:id="@+id/moreModeSettings"
+                android:contentDescription="@string/settings"
                 android:layout_width="@dimen/wh_button"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"

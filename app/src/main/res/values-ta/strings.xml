@@ -632,4 +632,7 @@
    <string name="the_application_needs_storage_permission">எல்லா புத்தகங்களையும் கண்டுபிடிக்க சேமிப்பகத்தை அணுக பயன்பாட்டிற்கு அனுமதி தேவை</string>
    <string name="always_open_in_2_pages_mode">எப்போதும் 2 பக்கங்கள் பயன்முறையில் திறக்கவும்</string>
    <string name="text_encoding">உரை குறியாக்கம்</string>
+   <string name="minus">கழித்தல்</string>
+   <string name="plus">கூடுதலாக</string>
+   <string name="drag_element">இழுவை உறுப்பு</string>
 </resources>
