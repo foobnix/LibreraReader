@@ -748,12 +748,7 @@ public class PrefFragment2 extends UIFragment {
             AppState.get().isEnableAccessibility = isChecked;
 
             if (isChecked) {
-                AppState.get().tabWithNames = false;
-                AppState.get().tapPositionTop = true;
-                BookCSS.get().appFontScale = 1.3f;
-                AppState.get().isScrollAnimation = false;
-                AppSP.get().isFirstTimeVertical = false;
-                AppSP.get().isFirstTimeHorizontal = false;
+                AppState.get().accessibilityDefaults();
             } else {
                 BookCSS.get().appFontScale = 1.0f;
             }
