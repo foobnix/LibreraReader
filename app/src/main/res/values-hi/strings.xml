@@ -635,4 +635,6 @@
    <string name="minus">ऋण</string>
    <string name="plus">प्लस</string>
    <string name="drag_element">ड्रैग एलिमेंट</string>
+   <string name="cd_application_menu">आवेदन मेनू</string>
+   <string name="cd_view_menu">मेनू देखें</string>
 </resources>

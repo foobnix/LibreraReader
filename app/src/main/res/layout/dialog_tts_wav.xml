@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
             android:minWidth="80dip"
+            android:contentDescription="@string/delete"
             android:text="@string/delete" />
 
     </LinearLayout>

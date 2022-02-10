@@ -635,4 +635,6 @@
    <string name="minus">Minus</string>
    <string name="plus">Plus</string>
    <string name="drag_element">Drag elementum</string>
+   <string name="cd_application_menu">Applicationem menu</string>
+   <string name="cd_view_menu">View menu</string>
 </resources>

@@ -16,6 +16,8 @@ import com.foobnix.pdf.info.view.MyPopupMenu;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 public class PopupHelper {
 
@@ -23,25 +25,45 @@ public class PopupHelper {
         if (gridList == null) {
             return;
         }
+        int stringId = R.string.list;
         if (libraryMode == AppState.MODE_LIST) {
             gridList.setImageResource(R.drawable.glyphicons_114_justify);
+            stringId = R.string.list;
         } else if (libraryMode == AppState.MODE_LIST_COMPACT) {
             gridList.setImageResource(R.drawable.glyphicons_114_justify_compact);
+            stringId = R.string.compact;
         } else if (libraryMode == AppState.MODE_GRID) {
             gridList.setImageResource(R.drawable.glyphicons_156_show_big_thumbnails);
+            stringId = R.string.grid;
         } else if (libraryMode == AppState.MODE_COVERS) {
             gridList.setImageResource(R.drawable.glyphicons_157_show_thumbnails);
+            stringId = R.string.cover;
         } else if (libraryMode == AppState.MODE_AUTHORS) {
             gridList.setImageResource(R.drawable.glyphicons_4_user);
+            stringId = R.string.author;
         } else if (libraryMode == AppState.MODE_SERIES) {
             gridList.setImageResource(R.drawable.glyphicons_710_list_numbered);
+            stringId = R.string.serie;
         } else if (libraryMode == AppState.MODE_GENRE) {
             gridList.setImageResource(R.drawable.glyphicons_66_tag);
+            stringId = R.string.keywords;
         } else if (libraryMode == AppState.MODE_USER_TAGS) {
-            gridList.setImageResource(R.drawable.glyphicons_66_tag);
+            gridList.setImageResource(R.drawable.glyphicons_67_tags);
+            stringId = R.string.my_tags;
         } else if (libraryMode == AppState.MODE_KEYWORDS) {
-            gridList.setImageResource(R.drawable.glyphicons_66_tag);
+            gridList.setImageResource(R.drawable.glyphicons_67_keywords);
+            stringId = R.string.keywords;
+        } else if (libraryMode == AppState.MODE_PUBLISHER) {
+            gridList.setImageResource(R.drawable.glyphicons_4_thumbs_up);
+            stringId = R.string.publisher;
+        }else if (libraryMode == AppState.MODE_PUBLICATION_DATE) {
+            gridList.setImageResource(R.drawable.glyphicons_2_book_open);
+            stringId = R.string.publication_date;
         }
+
+        gridList.setContentDescription(gridList.getContext().getString(R.string.cd_view_menu)+" "+gridList.getContext().getString(stringId));
+
+
     }
 
     public static void addPROIcon(final PopupMenu menu, final Context c) {

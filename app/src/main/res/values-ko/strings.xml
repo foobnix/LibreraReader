@@ -635,4 +635,6 @@
    <string name="minus">마이너스</string>
    <string name="plus">...을 더한</string>
    <string name="drag_element">드래그 요소</string>
+   <string name="cd_application_menu">신청 메뉴</string>
+   <string name="cd_view_menu">메뉴보기</string>
 </resources>

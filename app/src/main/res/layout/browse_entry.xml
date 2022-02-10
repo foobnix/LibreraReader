@@ -113,6 +113,7 @@
             android:layout_weight="0"
             android:background="?android:attr/selectableItemBackground"
             android:padding="6dip"
+            android:contentDescription="@string/remove"
             android:src="@drawable/glyphicons_208_remove_2"
             android:tint="@color/lt_grey_dima" />
     </LinearLayout>

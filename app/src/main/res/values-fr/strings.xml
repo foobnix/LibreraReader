@@ -635,4 +635,6 @@
    <string name="minus">Moins</string>
    <string name="plus">Plus</string>
    <string name="drag_element">Élément de glissement</string>
+   <string name="cd_application_menu">Menu des applications</string>
+   <string name="cd_view_menu">Afficher le menu</string>
 </resources>

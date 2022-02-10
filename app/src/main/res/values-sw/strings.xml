@@ -635,4 +635,6 @@
    <string name="minus">Kuondoa</string>
    <string name="plus">Pamoja</string>
    <string name="drag_element">Buruta kipengele</string>
+   <string name="cd_application_menu">Menyu ya programu</string>
+   <string name="cd_view_menu">Tazama menyu</string>
 </resources>

@@ -635,4 +635,6 @@
    <string name="minus">منهای</string>
    <string name="plus">به علاوه</string>
    <string name="drag_element">عنصر را بکشید</string>
+   <string name="cd_application_menu">منوی برنامه</string>
+   <string name="cd_view_menu">مشاهده منو</string>
 </resources>

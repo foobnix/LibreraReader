@@ -635,4 +635,6 @@
    <string name="minus">Miinus</string>
    <string name="plus">Plus</string>
    <string name="drag_element">Vedä elementtiä</string>
+   <string name="cd_application_menu">Sovellusvalikko</string>
+   <string name="cd_view_menu">Näytä valikko</string>
 </resources>

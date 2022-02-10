@@ -635,4 +635,6 @@
    <string name="minus">מִינוּס</string>
    <string name="plus">ועוד</string>
    <string name="drag_element">גרור אלמנט</string>
+   <string name="cd_application_menu">תפריט יישומים</string>
+   <string name="cd_view_menu">הצג תפריט</string>
 </resources>

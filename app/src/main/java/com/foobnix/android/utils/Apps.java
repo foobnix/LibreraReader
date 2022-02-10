@@ -230,9 +230,17 @@ public class Apps {
         } catch (Exception e) {
             LOG.e(e);
         }
-
-
     }
+    public static boolean isAccessibilityEnable(Context context){
+        try {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            return am.isEnabled() && am.isTouchExplorationEnabled();
+        }catch (Exception e){
+            LOG.e(e);
+        }
+        return false;
+    }
+
 
     public static boolean isDestroyed(Activity a) {
         return a == null || (Build.VERSION.SDK_INT >= 17 && a.isDestroyed());

@@ -635,4 +635,6 @@
    <string name="minus">マイナス</string>
    <string name="plus">プラス</string>
    <string name="drag_element">要素をドラッグ</string>
+   <string name="cd_application_menu">アプリケーションメニュー</string>
+   <string name="cd_view_menu">メニューを表示</string>
 </resources>

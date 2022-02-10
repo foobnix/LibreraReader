@@ -635,4 +635,6 @@
    <string name="minus">减</string>
    <string name="plus">加</string>
    <string name="drag_element">拖动元素</string>
+   <string name="cd_application_menu">应用程序菜单</string>
+   <string name="cd_view_menu">查看菜单</string>
 </resources>

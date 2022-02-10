@@ -635,4 +635,6 @@
    <string name="minus">கழித்தல்</string>
    <string name="plus">கூடுதலாக</string>
    <string name="drag_element">இழுவை உறுப்பு</string>
+   <string name="cd_application_menu">பயன்பாட்டு மெனு</string>
+   <string name="cd_view_menu">பார்வை மெனு</string>
 </resources>

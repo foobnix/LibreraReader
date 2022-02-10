@@ -18,7 +18,7 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:contentDescription="@string/menu"
+            android:contentDescription="@string/cd_application_menu"
             android:id="@+id/menu2"
             android:padding="9dip"
             android:adjustViewBounds="true"
@@ -156,7 +156,7 @@
                 android:background="@color/tint_divider" />
 
             <ImageView
-                android:contentDescription="@string/menu"
+                android:contentDescription="@string/cd_view_menu"
                 android:id="@+id/onGridList"
                 style="@style/buttonWhite"
                 android:layout_width="@dimen/wh_button"

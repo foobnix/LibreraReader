@@ -635,4 +635,6 @@
    <string name="minus">Eksi</string>
    <string name="plus">Artı</string>
    <string name="drag_element">Sürükleme elemanı</string>
+   <string name="cd_application_menu">Uygulama menüsü</string>
+   <string name="cd_view_menu">Menüyü görüntüle</string>
 </resources>

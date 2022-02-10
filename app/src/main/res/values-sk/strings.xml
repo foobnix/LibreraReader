@@ -635,4 +635,6 @@
    <string name="minus">Mínus</string>
    <string name="plus">Plus</string>
    <string name="drag_element">Ťahať prvok</string>
+   <string name="cd_application_menu">Menu aplikácie</string>
+   <string name="cd_view_menu">Zobraziť menu</string>
 </resources>

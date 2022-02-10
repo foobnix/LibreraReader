@@ -635,4 +635,6 @@
    <string name="minus">Μείον</string>
    <string name="plus">Συν</string>
    <string name="drag_element">Σύρετε το στοιχείο</string>
+   <string name="cd_application_menu">Μενού εφαρμογής</string>
+   <string name="cd_view_menu">Προβολή μενού</string>
 </resources>

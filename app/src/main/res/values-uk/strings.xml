@@ -505,7 +505,7 @@
    <string name="open_folder_as_a_book">Відкрити теку як книгу</string>
    <string name="read_out_loud_with_tts">Читати гучно з TTS</string>
    <string name="allow_minimum_brightness">Дозволити мінімальну яскравість</string>
-   <string name="select">Виберіть</string>
+   <string name="select">Обрати</string>
    <string name="create_playlist">Створити список</string>
    <string name="upload_to_cloud">Завантажити в хмару</string>
    <string name="add_to_playlist">Додати до плейлиста</string>
@@ -635,4 +635,6 @@
    <string name="minus">Мінус</string>
    <string name="plus">Плюс</string>
    <string name="drag_element">Елемент перетягування</string>
+   <string name="cd_application_menu">Меню програми</string>
+   <string name="cd_view_menu">Меню перегляду</string>
 </resources>
