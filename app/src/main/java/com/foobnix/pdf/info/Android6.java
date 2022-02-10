@@ -39,7 +39,7 @@ public class Android6 {
     }
 
     public static void checkPermissions(final Activity a, boolean checkWhatIsNew) {
-        if (Build.VERSION.SDK_INT >= ANDROID_12_INT) {
+        if (Build.VERSION.SDK_INT >= 30) {
             LOG.d("Environment.isExternalStorageManager()", Environment.isExternalStorageManager(), Build.VERSION.SDK_INT);
 
             if (!Environment.isExternalStorageManager()) {
