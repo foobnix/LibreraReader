@@ -11,6 +11,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
+import org.ebookdroid.LibreraApp;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -66,15 +68,9 @@ public class MyADSProvider {
                             LOG.e(e);
                         }
 
-                        mInterstitialAd = new InterstitialAd(a);
-                        mInterstitialAd.setAdUnitId(Apps.getMetaData(a, "librera.ADMOB_FULLSCREEN_ID"));
-                        mInterstitialAd.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdClosed() {
-                                finish.run();
-                            }
-                        });
-                        mInterstitialAd.loadAd(ADS.getAdRequest(a));
+                        mInterstitialAd = new InterstitialAd(LibreraApp.context);
+                        mInterstitialAd.setAdUnitId(Apps.getMetaData(LibreraApp.context, "librera.ADMOB_FULLSCREEN_ID"));
+                        mInterstitialAd.loadAd(ADS.getAdRequest(LibreraApp.context));
                     } catch (Exception e) {
                         LOG.e(e);
                     }
