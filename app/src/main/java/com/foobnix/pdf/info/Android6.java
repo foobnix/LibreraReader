@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -22,7 +23,7 @@ public class Android6 {
     public static final int MY_PERMISSIONS_REQUEST_WES = 1;
     public static final int MY_PERMISSIONS_REQUEST_FINGER_PRINT = 2;
 
-    public static final int ANDROID_12_INT =  30;//30
+    public static final int ANDROID_12_INT = 30;//30
 
 
     public static boolean canWrite(Context c) {
@@ -45,8 +46,18 @@ public class Android6 {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 Uri uri = Uri.fromParts("package", a.getPackageName(), null);
                 intent.setData(uri);
-                a.startActivityForResult(intent, MY_PERMISSIONS_REQUEST_WES);
-
+                try {
+                    a.startActivityForResult(intent, MY_PERMISSIONS_REQUEST_WES);
+                } catch (Exception e) {
+                    Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    try {
+                        Intent intent2 = new Intent();
+                        intent2.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                        a.startActivityForResult(intent2,MY_PERMISSIONS_REQUEST_WES);
+                    } catch (Exception e2) {
+                        Toast.makeText(a, R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
+                    }
+                }
             } else {
                 FontExtractor.extractFonts(a);
             }
