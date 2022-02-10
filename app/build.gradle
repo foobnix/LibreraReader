@@ -376,6 +376,7 @@ dependencies {
     huaweiImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
 
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'androidx.work:work-runtime:2.7.1'
 
 
     //implementation 'com.google.guava:guava:27.0.1-android'
