@@ -2,6 +2,11 @@
 
 # Librera Reader
 
+# !!!
+
+The development and support of Librera is frozen for an unpredictable time, there is a big war in my country.
+[Russian invasion of Ukraine(https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine)
+
 Librera Reader is an e-book reader for Android devices; 
 it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, AZW, AZW3, HTML, CBZ, CBR, DOC, DOCX, and OPDS Catalogs
 
