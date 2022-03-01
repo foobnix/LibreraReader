@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Die Anwendung benötigt die Berechtigung, auf den Speicher zuzugreifen, um alle Bücher zu finden</string>
    <string name="always_open_in_2_pages_mode">Immer im 2-Seiten-Modus öffnen</string>
    <string name="text_encoding">Textentschlüsselung</string>
+   <string name="minus">Minus-</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Drag-Element</string>
+   <string name="cd_application_menu">Anwendungsmenü</string>
+   <string name="cd_view_menu">Ansicht-Menü</string>
 </resources>

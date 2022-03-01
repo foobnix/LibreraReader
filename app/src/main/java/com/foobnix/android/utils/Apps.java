@@ -23,6 +23,8 @@ import com.foobnix.pdf.info.R;
 import static android.content.Context.ACCESSIBILITY_SERVICE;
 import static android.provider.Settings.System.SCREEN_BRIGHTNESS;
 
+import androidx.core.content.ContextCompat;
+
 public class Apps {
 
     public static int ANDROID_VERSION = Build.VERSION.SDK_INT;
@@ -230,9 +232,17 @@ public class Apps {
         } catch (Exception e) {
             LOG.e(e);
         }
-
-
     }
+    public static boolean isAccessibilityEnable(Context context){
+        try {
+            AccessibilityManager am = (AccessibilityManager) context.getSystemService(ACCESSIBILITY_SERVICE);
+            return am.isEnabled() && am.isTouchExplorationEnabled();
+        }catch (Exception e){
+            LOG.e(e);
+        }
+        return false;
+    }
+
 
     public static boolean isDestroyed(Activity a) {
         return a == null || (Build.VERSION.SDK_INT >= 17 && a.isDestroyed());

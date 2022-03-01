@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Sovellus tarvitsee luvan käyttää tallennustilaa kaikkien kirjojen löytämiseen</string>
    <string name="always_open_in_2_pages_mode">Aina auki 2 sivun tilassa</string>
    <string name="text_encoding">Tekstin koodaus</string>
+   <string name="minus">Miinus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Vedä elementtiä</string>
+   <string name="cd_application_menu">Sovellusvalikko</string>
+   <string name="cd_view_menu">Näytä valikko</string>
 </resources>

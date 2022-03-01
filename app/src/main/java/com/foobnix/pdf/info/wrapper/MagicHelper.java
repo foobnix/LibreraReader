@@ -398,7 +398,7 @@ public class MagicHelper {
         int r1 = Color.red(color);
         int g1 = Color.green(color);
         int b1 = Color.blue(color);
-        int k = 20;
+        int k = 5;
         int res = Color.rgb(r1 > 128 ? r1 - k : r1 + k, g1 > 128 ? g1 - k : g1 + k, b1 > 128 ? b1 - k : b1 + k);
         colorCacheInput = color;
         colorCache = res;

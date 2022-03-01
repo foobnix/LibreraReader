@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Aplikasi memerlukan izin untuk mengakses penyimpanan untuk menemukan semua buku</string>
    <string name="always_open_in_2_pages_mode">Selalu buka dalam mode 2 halaman</string>
    <string name="text_encoding">Pengkodean teks</string>
+   <string name="minus">Minus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Elemen tarik</string>
+   <string name="cd_application_menu">Menu aplikasi</string>
+   <string name="cd_view_menu">Lihat menu</string>
 </resources>

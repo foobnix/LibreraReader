@@ -22,7 +22,7 @@ public class MobiParserIS {
     public int recordsCount;
     List<Integer> recordsOffset = new ArrayList<Integer>();
     public int mobiType;
-    public String encoding;
+    private String encoding;
     public String fullName;
     public String locale;
     public InputStream raw, raw1;
@@ -181,7 +181,10 @@ public class MobiParserIS {
         int encryption = asInt(raw, mobiOffset + 12, 2);
 
         mobiType = asInt(raw, mobiOffset + 24, 4);
-        encoding = asInt(raw, mobiOffset + 28, 4) == 1252 ? "cp1251" : "UTF-8";
+        encoding = asInt(raw, mobiOffset + 28, 4) == 1252 ? "windows-1252" : "UTF-8";
+
+
+
 
         int fullNameOffset = asInt(raw, mobiOffset + 84, 4);
         int fullNameLen = asInt(raw, mobiOffset + 88, 4);
@@ -211,33 +214,33 @@ public class MobiParserIS {
 
     byte[] INDX = "INDX".getBytes();
 
-    public static String byteArrayToString(byte[] buffer, String encoding) {
-        int len = buffer.length;
-        int zeroIndex = -1;
-        for (int i = 0; i < len; i++) {
-            byte b = buffer[i];
-            if (b == 0) {
-                zeroIndex = i;
-                break;
-            }
-        }
-
-        if (encoding != null) {
-            try {
-                if (zeroIndex == -1)
-                    return new String(buffer, encoding);
-                else
-                    return new String(buffer, 0, zeroIndex, encoding);
-            } catch (java.io.UnsupportedEncodingException e) {
-                // let it fall through and use the default encoding
-            }
-        }
-
-        if (zeroIndex == -1)
-            return new String(buffer);
-        else
-            return new String(buffer, 0, zeroIndex);
-    }
+//    public static String byteArrayToString(byte[] buffer, String encoding) {
+//        int len = buffer.length;
+//        int zeroIndex = -1;
+//        for (int i = 0; i < len; i++) {
+//            byte b = buffer[i];
+//            if (b == 0) {
+//                zeroIndex = i;
+//                break;
+//            }
+//        }
+//
+//        if (encoding != null) {
+//            try {
+//                if (zeroIndex == -1)
+//                    return new String(buffer, encoding);
+//                else
+//                    return new String(buffer, 0, zeroIndex, encoding);
+//            } catch (java.io.UnsupportedEncodingException e) {
+//                // let it fall through and use the default encoding
+//            }
+//        }
+//
+//        if (zeroIndex == -1)
+//            return new String(buffer);
+//        else
+//            return new String(buffer, 0, zeroIndex);
+//    }
 
     public String getTitle() {
         return fullName;

@@ -633,9 +633,6 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         populate();
 
-        Apps.accessibilityText(getActivity(), "" + sortBy.getContentDescription());
-
-
     }
 
     @Subscribe
@@ -893,6 +890,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
             recyclerView.scrollToPosition(rememberPos);
 
+
+
         }
 
         showBookCount();
@@ -972,6 +971,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
                 public boolean onMenuItemClick(MenuItem item) {
                     AppState.get().libraryMode = actions.get(index);
                     onGridList.setImageResource(icons.get(index));
+                    onGridList.setContentDescription(getString(R.string.cd_view_menu)+" "+getString(names.get(index)));
+
 
                     if (Arrays.asList(AppState.MODE_PUBLICATION_DATE, AppState.MODE_PUBLISHER, AppState.MODE_AUTHORS, AppState.MODE_SERIES, AppState.MODE_GENRE, AppState.MODE_USER_TAGS, AppState.MODE_KEYWORDS, AppState.MODE_LANGUAGES).contains(AppState.get().libraryMode)) {
                         searchEditText.setText("");

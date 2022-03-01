@@ -632,4 +632,10 @@
    <string name="the_application_needs_storage_permission">The application needs permission to access the storage to find all books</string>
    <string name="always_open_in_2_pages_mode">Open in 2-page mode</string>
    <string name="text_encoding">Text encoding</string>
+   <string name="minus">Minus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Drag element</string>
+   <string name="cd_application_menu">Application menu</string>
+   <string name="cd_view_menu">View menu</string>
+    <string name="cd_download_more_fonts">Download more fonts</string>
 </resources>

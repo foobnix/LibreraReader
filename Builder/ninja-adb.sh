@@ -5,8 +5,8 @@ do
   echo "--------------------------------------------------------"
   TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
   MODEL=$(adb -s ${DEVICE} shell getprop ro.product.model)
-  echo "DEVICE: ${DEVICE} ${MODEL}"
-  echo "CPU: ${TYPE}"
-  
+  A_V=$(adb -s ${DEVICE} shell getprop ro.build.version.release )
+  echo "DEVICE:[${DEVICE} ${MODEL}] CPU:[${TYPE}] ANDROID:[${A_V}]"
+
   adb -s ${DEVICE} "$@"
 done

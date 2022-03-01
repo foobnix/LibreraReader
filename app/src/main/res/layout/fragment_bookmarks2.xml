@@ -166,6 +166,7 @@
         <ImageView
             android:id="@+id/bookmarksClearFilter"
             android:layout_width="@dimen/wh_button_small"
+            android:contentDescription="@string/clear_all"
             android:layout_height="@dimen/wh_button_small"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

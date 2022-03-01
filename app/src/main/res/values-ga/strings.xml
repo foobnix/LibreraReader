@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Teastaíonn cead ón bhfeidhmchlár chun an stór a rochtain chun na leabhair go léir a fháil</string>
    <string name="always_open_in_2_pages_mode">Oscail i gcónaí i mód 2 leathanach</string>
    <string name="text_encoding">Ionchódú téacs</string>
+   <string name="minus">Lúide</string>
+   <string name="plus">Móide</string>
+   <string name="drag_element">Eilimint tarraing</string>
+   <string name="cd_application_menu">Roghchlár iarratais</string>
+   <string name="cd_view_menu">Roghchlár amharc</string>
 </resources>

@@ -37,6 +37,8 @@ public class MobiExtract {
                 String publisher = parse.getPublisher();
                 String ibsn = parse.getIsbn();
 
+
+
                 if (TxtUtils.isEmpty(title)) {
                     title = file.getName();
                 }
@@ -51,6 +53,7 @@ public class MobiExtract {
                 ebookMeta.setYear(year);
                 ebookMeta.setPublisher(publisher);
                 ebookMeta.setIsbn(ibsn);
+
                 // ebookMeta.setPagesCount(parse.getBookSize() / 1024);
 
                 return ebookMeta;

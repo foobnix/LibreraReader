@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Applikationen behöver tillstånd för att komma åt lagringsutrymmet för att hitta alla böcker</string>
    <string name="always_open_in_2_pages_mode">Alltid öppet i 2-sidorsläge</string>
    <string name="text_encoding">Textkodning</string>
+   <string name="minus">Minus-</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Dra element</string>
+   <string name="cd_application_menu">Applikationsmeny</string>
+   <string name="cd_view_menu">Visa menyn</string>
 </resources>

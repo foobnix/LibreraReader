@@ -42,10 +42,12 @@
         android:layout_height="35dip"
         android:layout_weight="0"
         android:padding="10dip"
+        android:contentDescription="@string/minus"
         android:src="@drawable/glyphicons_434_minus"
         android:tint="@color/tint_gray" />
 
     <ImageView
+        android:contentDescription="@string/plus"
         android:id="@+id/plus"
         android:layout_width="35dip"
         android:layout_height="35dip"

@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">แอปพลิเคชันต้องได้รับอนุญาตในการเข้าถึงที่เก็บข้อมูลเพื่อค้นหาหนังสือทั้งหมด</string>
    <string name="always_open_in_2_pages_mode">เปิดในโหมด 2 หน้าเสมอ</string>
    <string name="text_encoding">การเข้ารหัสข้อความ</string>
+   <string name="minus">ลบ</string>
+   <string name="plus">บวก</string>
+   <string name="drag_element">องค์ประกอบลาก</string>
+   <string name="cd_application_menu">เมนูแอพพลิเคชั่น</string>
+   <string name="cd_view_menu">ดูเมนู</string>
 </resources>

@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Aplikácia potrebuje povolenie na prístup do úložiska, aby mohla nájsť všetky knihy</string>
    <string name="always_open_in_2_pages_mode">Vždy otvárať v režime 2 stránok</string>
    <string name="text_encoding">Kódovanie textu</string>
+   <string name="minus">Mínus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Ťahať prvok</string>
+   <string name="cd_application_menu">Menu aplikácie</string>
+   <string name="cd_view_menu">Zobraziť menu</string>
 </resources>

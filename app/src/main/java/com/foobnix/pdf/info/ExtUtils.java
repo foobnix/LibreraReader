@@ -1897,8 +1897,6 @@ public class ExtUtils {
         String encoding = null;
         try {
 
-            InputStreamReader r = new InputStreamReader(fis);
-
 
             UniversalDetector detector = new UniversalDetector(null);
 

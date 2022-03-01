@@ -130,7 +130,7 @@ public abstract class AdsFragmentActivity extends FragmentActivity {
         TTSEngine.get().shutdown();
         adsPause();
         if (myAds.showInterstial()) {
-            // ok
+            onFinish.run();
         } else {
             onFinish.run();
         }

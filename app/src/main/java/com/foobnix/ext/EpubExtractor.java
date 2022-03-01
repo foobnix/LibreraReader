@@ -77,6 +77,7 @@ public class EpubExtractor extends BaseExtractor {
         LOG.d("proccessHypens2", input, output);
 
         ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(input);
+
         ArchiveEntry nextEntry = null;
 
         ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(new File(output)));

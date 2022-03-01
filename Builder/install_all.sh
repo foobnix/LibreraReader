@@ -11,21 +11,23 @@ do
 	  echo "----------------------------------"
 	  TYPE=$(adb -s ${DEVICE} shell getprop ro.product.cpu.abi)
 	  MODEL=$(adb -s ${DEVICE} shell getprop ro.product.model)
-	  echo "DEVICE: ${DEVICE}-[${MODEL}]"
-	  echo "CPU: ${TYPE}"
+	  A_V=$(adb -s ${DEVICE} shell getprop ro.build.version.release )
+	  echo "--------------------------------------------------------"
+	  echo "DEVICE:[${DEVICE}-${MODEL}] CPU:[${TYPE}] ANDROID:[${A_V}]"
+	  echo "--------------------------------------------------------"
 
 
 	if [[ $TYPE == *"arm64"* ]]; then
-		echo "TYPE: arm64"
+		#echo "TYPE:[arm64]"
 	    FILES=$APK/*arm64.apk
 	elif [[ $TYPE == *"armeabi"* ]]; then
-		echo "TYPE: arm"
+		#echo "TYPE:[arm]"
 	    FILES=$APK/*arm.**
 	else 
-		echo "TYPE: x86"
+		#echo "TYPE:[x86]"
 	    FILES=$APK/*x86*.apk
 	fi
-	echo ""
+
 
   for f in $FILES
 	do
@@ -34,12 +36,12 @@ do
 		adb -s ${DEVICE} install "$f"
 	done
 
-    FILES=$APK/*uni*.apk
-    for f in $FILES
-	do
-		echo "Installing universal: $f"
-		adb -s ${DEVICE} install "$f"
-	done
+ #   FILES=$APK/*uni*.apk
+ #   for f in $FILES
+#	do
+#		echo "Installing universal: $f"
+#		adb -s ${DEVICE} install "$f"
+#	done
 
 done
 

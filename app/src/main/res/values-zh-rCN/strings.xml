@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">应用需要访问存储权限以发现所有书籍</string>
    <string name="always_open_in_2_pages_mode">始终以 2 页模式打开</string>
    <string name="text_encoding">文字编码</string>
+   <string name="minus">减</string>
+   <string name="plus">加</string>
+   <string name="drag_element">拖动元素</string>
+   <string name="cd_application_menu">应用程序菜单</string>
+   <string name="cd_view_menu">查看菜单</string>
 </resources>

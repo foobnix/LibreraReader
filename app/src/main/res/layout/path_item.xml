@@ -19,6 +19,7 @@
 
     <ImageView
         android:id="@+id/delete"
+        android:contentDescription="@string/remove"
         android:layout_width="@dimen/wh_button_small"
         android:layout_height="@dimen/wh_button_small"
         android:layout_weight="0"

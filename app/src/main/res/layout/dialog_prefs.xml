@@ -360,12 +360,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_weight="0"
                 android:padding="8dip"
+                android:contentDescription="@string/cd_download_more_fonts"
                 android:src="@drawable/glyphicons_182_download_alt"
                 android:tint="@color/tint_red" />
 
             <ImageView
                 android:id="@+id/moreFontSettings"
                 android:layout_width="@dimen/wh_button"
+                android:contentDescription="@string/settings"
                 android:layout_height="@dimen/wh_button"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="4dip"

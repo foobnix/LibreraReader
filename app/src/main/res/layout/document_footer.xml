@@ -125,6 +125,7 @@
             <com.foobnix.pdf.search.view.HeightImageView
                 android:id="@+id/onModeChange"
                 style="@style/buttonWhite"
+                android:contentDescription="@string/one_page"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/wh_button"
                 android:layout_weight="0"

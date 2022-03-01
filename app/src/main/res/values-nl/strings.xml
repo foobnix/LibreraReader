@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">De applicatie heeft toestemming nodig om toegang te krijgen tot de opslag om alle boeken te vinden</string>
    <string name="always_open_in_2_pages_mode">Altijd openen in 2-pagina\'s modus</string>
    <string name="text_encoding">Tekstcodering</string>
+   <string name="minus">Minus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Sleep element</string>
+   <string name="cd_application_menu">Toepassingsmenu</string>
+   <string name="cd_view_menu">Bekijk menu</string>
 </resources>

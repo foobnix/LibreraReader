@@ -154,7 +154,7 @@ public class ADS {
         return "";
     }
 
-    public static AdRequest getAdRequest(Activity a) {
+    public static AdRequest getAdRequest(Context a) {
         if (BuildConfig.DEBUG) {
             String myID = ADS.getByTestID(a);
             return new AdRequest.Builder()//

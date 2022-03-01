@@ -632,4 +632,9 @@
    <string name="the_application_needs_storage_permission">Aplicația are nevoie de permisiune pentru a accesa spațiul de stocare pentru a găsi toate cărțile</string>
    <string name="always_open_in_2_pages_mode">Întotdeauna deschis în modul 2 pagini</string>
    <string name="text_encoding">Codificarea textului</string>
+   <string name="minus">Minus</string>
+   <string name="plus">Plus</string>
+   <string name="drag_element">Element de tragere</string>
+   <string name="cd_application_menu">Meniul aplicației</string>
+   <string name="cd_view_menu">Vizualiza meniul</string>
 </resources>

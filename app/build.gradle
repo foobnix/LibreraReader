@@ -4,8 +4,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 4334
-    FDroidVersionNumber = "8.4.44"
+    FDroidCodeNumber = 4370
+    FDroidVersionNumber = "8.4.52"
 }
 
 println " --------------------"
@@ -33,7 +33,7 @@ android {
     //ndkVersion "21.4.7075529"
     defaultConfig {
         applicationId "com.foobnix.pdf.reader"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 31
         versionCode codeNumber
         versionName versionNumber
@@ -120,6 +120,7 @@ android {
         }
 
         alpha {
+            minSdkVersion 14
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
@@ -163,6 +164,7 @@ android {
             ]
         }
         pro {
+            minSdkVersion 14
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -247,6 +249,7 @@ android {
             ]
         }
         fdroid {
+            minSdkVersion 14
             dimension "version"
             applicationId "com.foobnix.pro.pdf.reader"
             manifestPlaceholders = [
@@ -353,8 +356,8 @@ dependencies {
     implementation 'org.zwobble.mammoth:mammoth:1.4.2'
     implementation 'javax.xml.stream:stax-api:1.0'
     implementation 'net.lingala.zip4j:zip4j:2.9.1'
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
 
 
     alphaImplementation project(':pro')
@@ -362,15 +365,19 @@ dependencies {
     fdroidImplementation project(':pro')
     implementation project(':smartreflow')
 
-    libreraImplementation 'com.google.firebase:firebase-ads:18.3.0'
 
-    betaImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    pdf_v2Implementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    ebookaImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    tts_readerImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    pdf_classicImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    epub_readerImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
-    huaweiImplementation 'com.google.firebase:firebase-ads-lite:18.3.0'
+    libreraImplementation 'com.google.firebase:firebase-ads:19.8.0'
+    betaImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    pdf_v2Implementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    ebookaImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    tts_readerImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    pdf_classicImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    epub_readerImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+    huaweiImplementation 'com.google.firebase:firebase-ads-lite:19.8.0'
+
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'androidx.work:work-runtime:2.7.1'
+
 
     //implementation 'com.google.guava:guava:27.0.1-android'
 

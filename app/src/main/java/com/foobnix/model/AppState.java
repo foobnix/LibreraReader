@@ -19,6 +19,7 @@ import com.foobnix.opds.SamlibOPDS;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.info.Urls;
+import com.foobnix.pdf.info.model.BookCSS;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.wrapper.MagicHelper;
 import com.foobnix.ui2.AppDB;
@@ -671,13 +672,24 @@ public class AppState {
             brigtnessImage = -50;
             isZoomInOutWithLock = false;
         }
+        if(Apps.isAccessibilityEnable(a)){
+            accessibilityDefaults();
+
+        }
 
 
         if (!AppsConfig.LIBRERA_READER.equals(Apps.getPackageName(a)) && !AppsConfig.PRO_LIBRERA_READER.equals(Apps.getPackageName(a))) {
             isShowWhatIsNewDialog = false;
         }
-
-
+    }
+    public void accessibilityDefaults(){
+        AppState.get().isEnableAccessibility=true;
+        AppState.get().tabWithNames = false;
+        AppState.get().tapPositionTop = true;
+        BookCSS.get().appFontScale = 1.1f;
+        AppState.get().isScrollAnimation = false;
+        AppSP.get().isFirstTimeVertical = false;
+        AppSP.get().isFirstTimeHorizontal = false;
     }
 
     public boolean loadInit(final Context a) {

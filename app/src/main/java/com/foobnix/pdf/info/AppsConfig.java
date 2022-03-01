@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.model.AppState;
@@ -59,6 +60,9 @@ public class AppsConfig {
             return true;
         }
         if (AppState.get().isEnableAccessibility) {
+            return true;
+        }
+        if(Apps.isAccessibilityEnable(a)){
             return true;
         }
 
