@@ -57,25 +57,20 @@ public class OPDS {
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.2997." + random + " Safari/537.36";
 
     public static void buildProxy() {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                if (AppState.get().proxyEnable && TxtUtils.isNotEmpty(AppState.get().proxyServer) && AppState.get().proxyPort != 0) {
-                    Type http = AppState.PROXY_SOCKS.equals(AppState.get().proxyType) ? Type.SOCKS : Type.HTTP;
-                    LOG.d("Proxy: Server", http.name(), AppState.get().proxyServer, AppState.get().proxyPort);
-                    builder.proxy(new Proxy(http, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
-                    if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
-                        LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
-                        builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
-                    }
-                } else {
-                    builder.proxy(null);
+        new Thread(() -> {
+            if (AppState.get().proxyEnable && TxtUtils.isNotEmpty(AppState.get().proxyServer) && AppState.get().proxyPort != 0) {
+                Type http = AppState.PROXY_SOCKS.equals(AppState.get().proxyType) ? Type.SOCKS : Type.HTTP;
+                LOG.d("Proxy: Server", http.name(), AppState.get().proxyServer, AppState.get().proxyPort);
+                builder.proxy(new Proxy(http, new InetSocketAddress(AppState.get().proxyServer, AppState.get().proxyPort)));
+                if (TxtUtils.isNotEmpty(AppState.get().proxyUser)) {
+                    LOG.d("Proxy: User", AppState.get().proxyUser, AppState.get().proxyPassword);
+                    builder.proxyAuthenticator(new BasicAuthenticator(new Credentials(AppState.get().proxyUser, AppState.get().proxyPassword)));
                 }
-                client = builder.build();
+            } else {
+                builder.proxy(null);
             }
+            client = builder.build();
         },"@T buildProxy").start();
-
     }
 
     public static String getHttpResponseNoException(String url) {

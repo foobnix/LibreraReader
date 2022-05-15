@@ -251,18 +251,13 @@ public class VerticalModeController extends DocumentController {
             ctr.getDocumentController().getView().scrollBy(0, 1 * nextScreenScrollBy * getScrollValue() / 100);
         }
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int after = ctr.getDocumentController().getView().getScrollY();
-                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-                    ctr.getDocumentController().getView().stopScroller();
-                    ctr.getDocumentController().goToPage(0);
-                }
+        handler.postDelayed(() -> {
+            int after = ctr.getDocumentController().getView().getScrollY();
+            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                ctr.getDocumentController().getView().stopScroller();
+                ctr.getDocumentController().goToPage(0);
             }
         }, 100);
-
-
     }
 
     @Override
@@ -276,31 +271,23 @@ public class VerticalModeController extends DocumentController {
             ctr.getDocumentController().getView().scrollBy(0, -1 * nextScreenScrollBy * getScrollValue() / 100);
         }
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int after = ctr.getDocumentController().getView().getScrollY();
-                LOG.d(" before == after", before, after);
-                if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
-                    ctr.getDocumentController().getView().stopScroller();
-                    ctr.getDocumentController().goToPage(getPageCount() - 1);
-                }
+        handler.postDelayed(() -> {
+            int after = ctr.getDocumentController().getView().getScrollY();
+            LOG.d(" before == after", before, after);
+            if (AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN && before == after) {
+                ctr.getDocumentController().getView().stopScroller();
+                ctr.getDocumentController().goToPage(getPageCount() - 1);
             }
         }, 100);
     }
 
     @Override
     public void deleteAnnotation(long pageHanderl, final int page, final int index) {
-        ctr.getDecodeService().deleteAnnotation(pageHanderl, page - 1, index, new ResultResponse<List<Annotation>>() {
-
-            @Override
-            public boolean onResultRecive(List<Annotation> arg0) {
-                ctr.getDocumentModel().getPageObject(page - 1).annotations = arg0;
-                ctr.getDocumentController().toggleRenderingEffects();
-                return false;
-            }
+        ctr.getDecodeService().deleteAnnotation(pageHanderl, page - 1, index, arg0 -> {
+            ctr.getDocumentModel().getPageObject(page - 1).annotations = arg0;
+            ctr.getDocumentController().toggleRenderingEffects();
+            return false;
         });
-
     }
 
     @Override
@@ -368,17 +355,11 @@ public class VerticalModeController extends DocumentController {
         float width = AppState.get().editLineWidth * 3;
         float alpha = AppState.get().editAlphaColor;
 
-        ctr.getDecodeService().addAnnotation(result, color, width, alpha, new ResultResponse<Pair<Integer, List<Annotation>>>() {
-
-            @Override
-            public boolean onResultRecive(Pair<Integer, List<Annotation>> p) {
-                ctr.getDocumentModel().getPageObject(p.first).annotations = p.second;
-                ctr.getDocumentController().toggleRenderingEffects();
-                return false;
-            }
-
+        ctr.getDecodeService().addAnnotation(result, color, width, alpha, p -> {
+            ctr.getDocumentModel().getPageObject(p.first).annotations = p.second;
+            ctr.getDocumentController().toggleRenderingEffects();
+            return false;
         });
-
     }
 
     @Override
@@ -429,21 +410,15 @@ public class VerticalModeController extends DocumentController {
                 quadPoints.add(new PointF(rect.right, rect.bottom));
                 quadPoints.add(new PointF(rect.right, rect.top));
                 quadPoints.add(new PointF(rect.left, rect.top));
-
             }
 
-            PointF[] array = quadPoints.toArray(new PointF[quadPoints.size()]);
-            ctr.getDecodeService().underlineText(i, array, color, type, new ResultResponse<List<Annotation>>() {
-
-                @Override
-                public boolean onResultRecive(List<Annotation> arg0) {
-                    page.annotations = arg0;
-                    page.selectedText = new ArrayList<TextWord>();
-                    ctr.getDocumentController().toggleRenderingEffects();
-                    return false;
-                }
+            PointF[] array = quadPoints.toArray(new PointF[0]);
+            ctr.getDecodeService().underlineText(i, array, color, type, arg0 -> {
+                page.annotations = arg0;
+                page.selectedText = new ArrayList<TextWord>();
+                ctr.getDocumentController().toggleRenderingEffects();
+                return false;
             });
-
         }
     }
 
@@ -453,61 +428,56 @@ public class VerticalModeController extends DocumentController {
             return;
         }
         begin = System.currentTimeMillis();
-        t = new Thread(new Runnable() {
+        t = new Thread(() -> {
+            while (AppState.get().isAutoScroll) {
+                boolean repeat = false;
 
-            @Override
-            public void run() {
-                while (AppState.get().isAutoScroll) {
-                    boolean repeat = false;
+                long l = System.currentTimeMillis() - begin;
+                if (!AppState.get().isLoopAutoplay && l > TimeUnit.HOURS.toMillis(1)) {
+                    break;
+                }
 
-                    long l = System.currentTimeMillis() - begin;
-                    if (!AppState.get().isLoopAutoplay && l > TimeUnit.HOURS.toMillis(1)) {
-                        break;
-                    }
-
-                    if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
-                        repeat = true;
-                        try {
-                            Thread.sleep(3000);
-                            LOG.d("Sleep 3000");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    auto();
-
-                    if (repeat) {
-                        try {
-                            Thread.sleep(3000);
-                            LOG.d("Sleep 3000");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
+                if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
+                    repeat = true;
                     try {
-                        float x = AppState.get().autoScrollSpeed;
+                        Thread.sleep(3000);
+                        LOG.d("Sleep 3000");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                auto();
 
-                        if (x <= 50) {
-                            x = x * 2;
-                        } else {
-                            final int x1 = 51;
-                            final int y1 = 101;
-
-                            final int x2 = 149;
-                            final int y2 = 149;
-                            // x = (x - y1) * (x2 - x1) / (y2 - y1) + x1;
-                            x = (x - x1) * (y2 - y1) / (x2 - x1) + y1;
-
-                        }
-                        LOG.d("TEST", "Speed after" + x);
-
-                        Thread.sleep(Math.max(AppState.MAX_SPEED - (int) x + 5, 5));
-                    } catch (final InterruptedException e) {
+                if (repeat) {
+                    try {
+                        Thread.sleep(3000);
+                        LOG.d("Sleep 3000");
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
 
+                try {
+                    float x = AppState.get().autoScrollSpeed;
+
+                    if (x <= 50) {
+                        x = x * 2;
+                    } else {
+                        final int x1 = 51;
+                        final int y1 = 101;
+
+                        final int x2 = 149;
+                        final int y2 = 149;
+                        // x = (x - y1) * (x2 - x1) / (y2 - y1) + x1;
+                        x = (x - x1) * (y2 - y1) / (x2 - x1) + y1;
+
+                    }
+                    LOG.d("TEST", "Speed after" + x);
+
+                    Thread.sleep(Math.max(AppState.MAX_SPEED - (int) x + 5, 5));
+                } catch (final InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         },"@T AutoScroll 2");
         t.setPriority(Thread.NORM_PRIORITY);
@@ -515,17 +485,12 @@ public class VerticalModeController extends DocumentController {
     }
 
     public void auto() {
-        activity.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-
-                if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
-                    LOG.d("onScrollY 01");
-                    onScrollY(0);
-                } else {
-                    ctr.getDocumentController().getView().scrollBy(0, 1);
-                }
+        activity.runOnUiThread(() -> {
+            if (AppState.get().isLoopAutoplay && ctr.getDocumentController().getScrollLimits().bottom == ctr.getDocumentController().getView().getScrollY()) {
+                LOG.d("onScrollY 01");
+                onScrollY(0);
+            } else {
+                ctr.getDocumentController().getView().scrollBy(0, 1);
             }
         });
     }
@@ -632,13 +597,7 @@ public class VerticalModeController extends DocumentController {
     }
 
     public void commit() {
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                ctr.getZoomModel().commit();
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> ctr.getZoomModel().commit(), 2000);
     }
 
     public void copy(File src, File dst) throws IOException {
@@ -658,14 +617,8 @@ public class VerticalModeController extends DocumentController {
     @Override
     public void saveAnnotationsToFile() {
         if (AppState.get().isSaveAnnotatationsAutomatically) {
-
             String path = getCurrentBook().getAbsolutePath();
-            ctr.getDecodeService().saveAnnotations(path, new Runnable() {
-
-                @Override
-                public void run() {
-                }
-            });
+            ctr.getDecodeService().saveAnnotations(path, () -> {});
         }
     }
 
@@ -688,65 +641,40 @@ public class VerticalModeController extends DocumentController {
             builder.setTitle(R.string.save_changes);
 
             builder.setMessage(getCurrentBook().getAbsolutePath());
-            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
-                        LOG.d("Save TO new file", path.toString());
-                        File newBook = new File(path.toString());
-                        newBook.delete();
-                        try {
-                            copy(getCurrentBook(), newBook);
-
-                        } catch (IOException e) {
-                            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
+            builder.setPositiveButton(R.string.yes, (dialog, id) -> {
+                if (!path.toString().equals(getCurrentBook().getAbsolutePath())) {
+                    LOG.d("Save TO new file", path.toString());
+                    File newBook = new File(path.toString());
+                    newBook.delete();
+                    try {
+                        copy(getCurrentBook(), newBook);
+                    } catch (IOException e) {
+                        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                    final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
-                    progress.setCancelable(false);
-                    progress.show();
-                    ctr.getDecodeService().saveAnnotations(path.toString(), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            LOG.d("saveAnnotations return 1");
-                            progress.dismiss();
-                            LOG.d("saveAnnotations return 2");
-                            ctr.closeActivity(null);
-                        }
-                    });
                 }
-
-                ;
-            });
-            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss();
+                final ProgressDialog progress = MyProgressDialog.show(getActivity(), getActivity().getString(R.string.saving_));
+                progress.setCancelable(false);
+                progress.show();
+                ctr.getDecodeService().saveAnnotations(path.toString(), () -> {
+                    LOG.d("saveAnnotations return 1");
+                    progress.dismiss();
+                    LOG.d("saveAnnotations return 2");
                     ctr.closeActivity(null);
-                }
+                });
             });
-            builder.setNeutralButton(R.string.rename, new OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    PrefDialogs.selectFileDialog(activity, Arrays.asList(".pdf"), getCurrentBook(), new ResultResponse<String>() {
-
-                        @Override
-                        public boolean onResultRecive(String result) {
-
-                            path.setLength(0);
-                            path.append(result);
-
-                            builder.setMessage(result);
-                            builder.show();
-                            return false;
-                        }
-                    });
-
-                }
+            builder.setNegativeButton(R.string.no, (dialog, id) -> {
+                dialog.dismiss();
+                ctr.closeActivity(null);
             });
+            builder.setNeutralButton(R.string.rename, (dialog, which) -> PrefDialogs.selectFileDialog(activity,
+                    Collections.singletonList(".pdf"), getCurrentBook(), result -> {
+                        path.setLength(0);
+                        path.append(result);
+
+                        builder.setMessage(result);
+                        builder.show();
+                        return false;
+                    }));
             builder.show();
 
         } else {
@@ -760,19 +688,9 @@ public class VerticalModeController extends DocumentController {
             return;
         }
 
-        if (true) {
-            AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
-            saveSettings();
-            restartActivity();
-            return;
-        }
-        if (ExtUtils.isTextFomat(getCurrentBook().getPath())) {
-            saveSettings();
-            restartActivity();
-        } else {
-            ctr.toggleNightMode();
-        }
-
+        AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
+        saveSettings();
+        restartActivity();
     }
 
     @Override
@@ -825,47 +743,34 @@ public class VerticalModeController extends DocumentController {
 
         builder.setView(number);
         builder.setTitle(R.string.go_to_page_dialog);
-        final DialogInterface.OnClickListener onOkListener = new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
-                int page = 1;
-                try {
-                    page = Integer.valueOf(number.getText().toString());
-                } catch (final NumberFormatException e) {
-                    number.setText("1");
-                }
-                if (page >= 0 && page <= getPageCount()) {
-                    onGoToPage(page);
-                    dialog.dismiss();
-                }
+        final DialogInterface.OnClickListener onOkListener = (dialog, id) -> {
+            int page = 1;
+            try {
+                page = Integer.parseInt(number.getText().toString());
+            } catch (final NumberFormatException e) {
+                number.setText("1");
+            }
+            if (page >= 0 && page <= getPageCount()) {
+                onGoToPage(page);
+                dialog.dismiss();
             }
         };
         builder.setPositiveButton(R.string.go, onOkListener);
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
-                dialog.dismiss();
-            }
-        });
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
         final AlertDialog dialog = builder.show();
 
-        number.setOnKeyListener(new OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_DPAD_CENTER:
-                        case KeyEvent.KEYCODE_ENTER:
-                            onOkListener.onClick(dialog, 0);
-                            return true;
-                        default:
-                            break;
-                    }
+        number.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_DPAD_CENTER:
+                    case KeyEvent.KEYCODE_ENTER:
+                        onOkListener.onClick(dialog, 0);
+                        return true;
+                    default:
+                        break;
                 }
-                return false;
             }
+            return false;
         });
     }
 
@@ -875,38 +780,32 @@ public class VerticalModeController extends DocumentController {
             resultWrapper.onResultRecive(outline);
             return;
         }
-        ctr.getDocumentModel().decodeService.getOutline(new ResultResponse<List<OutlineLink>>() {
-
-            @Override
-            public boolean onResultRecive(List<OutlineLink> outlineLinks) {
-                outline = new ArrayList<OutlineLinkWrapper>();
-                if (outlineLinks == null) {
-                    return resultWrapper.onResultRecive(null);
-                }
-
-                for (OutlineLink ol : outlineLinks) {
-                    if (TempHolder.get().loadingCancelled) {
-                        return false;
-                    }
-
-                    try {
-                        if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
-
-                            if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
-                            } else {
-                                int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
-                                outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
-                            }
-
-                        }
-                    } catch (Exception e) {
-                        LOG.e(e);
-                    }
-                }
-                resultWrapper.onResultRecive(outline);
-                return true;
+        ctr.getDocumentModel().decodeService.getOutline(outlineLinks -> {
+            outline = new ArrayList<>();
+            if (outlineLinks == null) {
+                return resultWrapper.onResultRecive(null);
             }
+
+            for (OutlineLink ol : outlineLinks) {
+                if (TempHolder.get().loadingCancelled) {
+                    return false;
+                }
+
+                try {
+                    if (!ctr.getDocumentModel().decodeService.getCodecDocument().isRecycled() && TxtUtils.isNotEmpty(ol.getTitle())) {
+                        if (ol.getLink() != null && ol.getLink().startsWith("#") && !ol.getLink().startsWith("#0")) {
+                            outline.add(new OutlineLinkWrapper(ol.getTitle(), ol.getLink(), ol.getLevel(), ol.docHandle, ol.linkUri));
+                        } else {
+                            int page = MuPdfLinks.getLinkPageWrapper(ol.docHandle, ol.linkUri) + 1;
+                            outline.add(new OutlineLinkWrapper(ol.getTitle(), "#" + page, ol.getLevel(), ol.docHandle, ol.linkUri));
+                        }
+                    }
+                } catch (Exception e) {
+                    LOG.e(e);
+                }
+            }
+            resultWrapper.onResultRecive(outline);
+            return true;
         });
     }
 

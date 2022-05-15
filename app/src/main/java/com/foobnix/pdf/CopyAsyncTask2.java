@@ -31,22 +31,9 @@ public abstract class CopyAsyncTask2 {
     Thread t = new Thread("@T CopyAsyncTask2") {
         @Override
         public void run() {
-            a.runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    onPreExecute();
-                }
-            });
+            a.runOnUiThread(() -> onPreExecute());
             final Object result = doInBackground();
-            a.runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    onPostExecute(result);
-                }
-            });
-
+            a.runOnUiThread(() -> onPostExecute(result));
         };
     };
 

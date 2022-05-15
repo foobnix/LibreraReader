@@ -149,25 +149,13 @@ public abstract class DragingPopup {
 
         View closePopup = popupView.findViewById(R.id.closePopup);
         Apps.accessibilityButtonSize(closePopup);
-        closePopup.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                closeDialog();
-            }
-        });
+        closePopup.setOnClickListener(v -> closeDialog());
 
 
         rootWidth = ((View) anchor.getParent()).getWidth();
 
         postAction();
-        popupContent.setOnEventDetected(new Runnable() {
-
-            @Override
-            public void run() {
-                postAction();
-            }
-        });
+        popupContent.setOnEventDetected(this::postAction);
     }
 
     public void postAction() {
@@ -175,14 +163,6 @@ public abstract class DragingPopup {
         // anchor.getHandler().removeCallbacksAndMessages(null);
         // anchor.getHandler().postDelayed(closeRunnable, 3000);
     }
-
-    Runnable closeRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            closeDialog();
-        }
-    };
 
     public void initState() {
         String tag = getTAG() + Dips.screenWidth();
@@ -256,14 +236,9 @@ public abstract class DragingPopup {
         if (titleAction != null) {
             popupView.findViewById(R.id.onTitleAction).setVisibility(View.VISIBLE);
             popupView.findViewById(R.id.onTitleAction1).setVisibility(View.VISIBLE);
-            popupView.findViewById(R.id.onTitleAction).setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    if (titleRunnable != null) {
-                        titleRunnable.run();
-                    }
-
+            popupView.findViewById(R.id.onTitleAction).setOnClickListener(v -> {
+                if (titleRunnable != null) {
+                    titleRunnable.run();
                 }
             });
         } else {
@@ -281,14 +256,9 @@ public abstract class DragingPopup {
             onIconAction.setImageResource(titlePopupIcon);
         } else {
             onIconAction.setVisibility(View.VISIBLE);
-            onIconAction.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    titlePopupMenu.setAnchor(v);
-                    titlePopupMenu.show();
-
-                }
+            onIconAction.setOnClickListener(v -> {
+                titlePopupMenu.setAnchor(v);
+                titlePopupMenu.show();
             });
         }
 
@@ -296,35 +266,19 @@ public abstract class DragingPopup {
         anchor.removeAllViews();
         anchor.addView(popupView);
         final DraggbleTouchListener draggbleTouchListener = new DraggbleTouchListener(anchor, this);
-        draggbleTouchListener.setOnMoveFinish(new Runnable() {
+        draggbleTouchListener.setOnMoveFinish(this::saveLayout);
+        draggbleTouchListener.setOnEventDetected(this::postAction);
 
+        final GestureDetector gestureDetector = new GestureDetector(topHeaderLayout.getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public void run() {
-                saveLayout();
+            public boolean onDoubleTap(MotionEvent e) {
+                closeDialog();
+                return super.onDoubleTap(e);
             }
         });
-        draggbleTouchListener.setOnEventDetected(new Runnable() {
-
-            @Override
-            public void run() {
-                postAction();
-            }
-        });
-        topHeaderLayout.setOnTouchListener(new OnTouchListener() {
-
-            private GestureDetector gestureDetector = new GestureDetector(topHeaderLayout.getContext(), new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onDoubleTap(MotionEvent e) {
-                    closeDialog();
-                    return super.onDoubleTap(e);
-                }
-            });
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                gestureDetector.onTouchEvent(event);
-                return draggbleTouchListener.onTouch(v, event);
-            }
+        topHeaderLayout.setOnTouchListener((v, event) -> {
+            gestureDetector.onTouchEvent(event);
+            return draggbleTouchListener.onTouch(v, event);
         });
         initState();
 

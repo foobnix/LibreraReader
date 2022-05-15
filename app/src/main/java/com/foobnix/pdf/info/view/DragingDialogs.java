@@ -1,7 +1,6 @@
 package com.foobnix.pdf.info.view;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -11,8 +10,6 @@ import android.app.SearchManager;
 import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -28,7 +25,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.speech.tts.TextToSpeech.OnInitListener;
 import android.text.ClipboardManager;
 import android.text.Html;
 import android.text.format.DateFormat;
@@ -39,16 +35,12 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -66,7 +58,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
@@ -119,7 +110,6 @@ import com.foobnix.pdf.info.presentation.OutlineAdapter;
 import com.foobnix.pdf.info.presentation.PageThumbnailAdapter;
 import com.foobnix.pdf.info.widget.ChooserDialogFragment;
 import com.foobnix.pdf.info.widget.ColorsDialog;
-import com.foobnix.pdf.info.widget.ColorsDialog.ColorsDialogResult;
 import com.foobnix.pdf.info.widget.DialogTranslateFromTo;
 import com.foobnix.pdf.info.widget.FontDialog;
 import com.foobnix.pdf.info.widget.TapZoneDialog;
@@ -182,16 +172,8 @@ public class DragingDialogs {
                 return view;
             }
         };
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-
-
-            }
-        });
+        dialog.setOnCloseListener(() -> {});
         dialog.show("Sample");
-
     }
 
     public static void customCropDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onCropChange) {
@@ -213,150 +195,93 @@ public class DragingDialogs {
 
                 int max = 30;
                 marginTop.init(0, max, AppState.get().cropTop, "%");
-                marginTop.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().cropTop = result;
-                        onCropChange.run();
-                        if (AppSP.get().isCropSymetry) {
-                            marginBottom.reset(result);
-                        }
-                        return false;
+                marginTop.setOnSeekChanged(result -> {
+                    AppState.get().cropTop = result;
+                    onCropChange.run();
+                    if (AppSP.get().isCropSymetry) {
+                        marginBottom.reset(result);
                     }
+                    return false;
                 });
 
                 marginBottom.init(0, max, AppState.get().cropBottom, "%");
-                marginBottom.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().cropBottom = result;
-                        onCropChange.run();
-                        if (AppSP.get().isCropSymetry) {
-                            marginTop.reset(result);
-                        }
-                        return false;
+                marginBottom.setOnSeekChanged(result -> {
+                    AppState.get().cropBottom = result;
+                    onCropChange.run();
+                    if (AppSP.get().isCropSymetry) {
+                        marginTop.reset(result);
                     }
+                    return false;
                 });
 
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
                 final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
 
                 marginLeft.init(0, max, AppState.get().cropLeft, "%");
-                marginLeft.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().cropLeft = result;
-                        onCropChange.run();
-                        if (AppSP.get().isCropSymetry) {
-                            marginRight.reset(result);
-                        }
-                        return false;
+                marginLeft.setOnSeekChanged(result -> {
+                    AppState.get().cropLeft = result;
+                    onCropChange.run();
+                    if (AppSP.get().isCropSymetry) {
+                        marginRight.reset(result);
                     }
+                    return false;
                 });
 
                 marginRight.init(0, max, AppState.get().cropRigth, "%");
-                marginRight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        AppState.get().cropRigth = result;
-                        onCropChange.run();
-                        if (AppSP.get().isCropSymetry) {
-                            marginLeft.reset(result);
-                        }
-                        return false;
+                marginRight.setOnSeekChanged(result -> {
+                    AppState.get().cropRigth = result;
+                    onCropChange.run();
+                    if (AppSP.get().isCropSymetry) {
+                        marginLeft.reset(result);
                     }
+                    return false;
                 });
 
                 CheckBox isCropSymetry = (CheckBox) inflate.findViewById(R.id.isCropSymetry);
                 isCropSymetry.setChecked(AppSP.get().isCropSymetry);
-                isCropSymetry.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppSP.get().isCropSymetry = isChecked;
-                        if (isChecked) {
-                            marginBottom.reset(marginTop.getCurrentValue());
-                            marginRight.reset(marginLeft.getCurrentValue());
-                        }
+                isCropSymetry.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppSP.get().isCropSymetry = isChecked;
+                    if (isChecked) {
+                        marginBottom.reset(marginTop.getCurrentValue());
+                        marginRight.reset(marginLeft.getCurrentValue());
                     }
                 });
 
                 final CheckBox isEnableCrop = (CheckBox) inflate.findViewById(R.id.isEnableCrop);
                 isEnableCrop.setChecked(AppSP.get().isCrop);
-                isEnableCrop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isEnableCrop) {
-                        AppSP.get().isCrop = isEnableCrop;
-                        onCropChange.run();
-                    }
+                isEnableCrop.setOnCheckedChangeListener((buttonView, isEnableCrop1) -> {
+                    AppSP.get().isCrop = isEnableCrop1;
+                    onCropChange.run();
                 });
 
-                final IntegerResponse updateCrop = new IntegerResponse() {
+                final IntegerResponse updateCrop = result -> {
+                    marginTop.reset(result);
+                    marginBottom.reset(result);
+                    marginLeft.reset(result);
+                    marginRight.reset(result);
 
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        marginTop.reset(result);
-                        marginBottom.reset(result);
-                        marginLeft.reset(result);
-                        marginRight.reset(result);
+                    AppState.get().cropTop = result;
+                    AppState.get().cropBottom = result;
+                    AppState.get().cropLeft = result;
+                    AppState.get().cropRigth = result;
 
-                        AppState.get().cropTop = result;
-                        AppState.get().cropBottom = result;
-                        AppState.get().cropLeft = result;
-                        AppState.get().cropRigth = result;
+                    AppSP.get().isCrop = true;
+                    isEnableCrop.setChecked(true);
+                    onCropChange.run();
 
-                        AppSP.get().isCrop = true;
-                        isEnableCrop.setChecked(true);
-                        onCropChange.run();
-
-                        return false;
-                    }
+                    return false;
                 };
 
-                inflate.findViewById(R.id.cropAuto).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        updateCrop.onResultRecive(0);
-                    }
-                });
-                inflate.findViewById(R.id.v5).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        updateCrop.onResultRecive(5);
-                    }
-                });
-                inflate.findViewById(R.id.v10).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        updateCrop.onResultRecive(10);
-                    }
-                });
-                inflate.findViewById(R.id.v15).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        updateCrop.onResultRecive(15);
-
-                    }
-                });
+                inflate.findViewById(R.id.cropAuto).setOnClickListener(v -> updateCrop.onResultRecive(0));
+                inflate.findViewById(R.id.v5).setOnClickListener(v -> updateCrop.onResultRecive(5));
+                inflate.findViewById(R.id.v10).setOnClickListener(v -> updateCrop.onResultRecive(10));
+                inflate.findViewById(R.id.v15).setOnClickListener(v -> updateCrop.onResultRecive(15));
 
                 return inflate;
             }
         };
-        dialog.setOnCloseListener(new Runnable() {
+        dialog.setOnCloseListener(() -> {
 
-            @Override
-            public void run() {
-
-            }
         });
         dialog.show("Sample");
 
@@ -424,19 +349,15 @@ public class DragingDialogs {
                     TintUtil.setTintImageWithAlpha(onCrop, Color.WHITE);
                 }
 
-                onCrop.setOnClickListener(new OnClickListener() {
+                onCrop.setOnClickListener(v -> {
+                    AppSP.get().isCrop = !AppSP.get().isCrop;
+                    SettingsManager.getBookSettings().updateFromAppState();
+                    updateUIRefresh.run();
 
-                    @Override
-                    public void onClick(View v) {
-                        AppSP.get().isCrop = !AppSP.get().isCrop;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        updateUIRefresh.run();
-
-                        if (AppSP.get().isCrop) {
-                            TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
-                        } else {
-                            TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
-                        }
+                    if (AppSP.get().isCrop) {
+                        TintUtil.setTintImageWithAlpha(onCrop, TintUtil.COLOR_ORANGE);
+                    } else {
+                        TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
                     }
                 });
 
@@ -446,31 +367,26 @@ public class DragingDialogs {
                     TintUtil.setTintImageWithAlpha(onCrop, AppState.get().isDayNotInvert ? TintUtil.color : Color.WHITE);
                 }
 
-                OnClickListener listner = new OnClickListener() {
+                OnClickListener listner = v -> {
+                    int id = v.getId();
+                    int aciton = -1;
 
-                    @Override
-                    public void onClick(View v) {
-                        int id = v.getId();
-                        int aciton = -1;
-
-                        if (id == R.id.onUp) {
-                            aciton = MovePageAction.UP;
-                        } else if (id == R.id.onDown) {
-                            aciton = MovePageAction.DOWN;
-                        } else if (id == R.id.onLeft) {
-                            aciton = MovePageAction.LEFT;
-                        } else if (id == R.id.onRight) {
-                            aciton = MovePageAction.RIGHT;
-                        } else if (id == R.id.onPlus) {
-                            aciton = MovePageAction.ZOOM_PLUS;
-                        } else if (id == R.id.onMinus) {
-                            aciton = MovePageAction.ZOOM_MINUS;
-                        } else if (id == R.id.onCenter) {
-                            aciton = MovePageAction.CENTER;
-                        }
-                        EventBus.getDefault().post(new MovePageAction(aciton, controller.getCurentPage()));
-
+                    if (id == R.id.onUp) {
+                        aciton = MovePageAction.UP;
+                    } else if (id == R.id.onDown) {
+                        aciton = MovePageAction.DOWN;
+                    } else if (id == R.id.onLeft) {
+                        aciton = MovePageAction.LEFT;
+                    } else if (id == R.id.onRight) {
+                        aciton = MovePageAction.RIGHT;
+                    } else if (id == R.id.onPlus) {
+                        aciton = MovePageAction.ZOOM_PLUS;
+                    } else if (id == R.id.onMinus) {
+                        aciton = MovePageAction.ZOOM_MINUS;
+                    } else if (id == R.id.onCenter) {
+                        aciton = MovePageAction.CENTER;
                     }
+                    EventBus.getDefault().post(new MovePageAction(aciton, controller.getCurentPage()));
                 };
 
                 onUp.setOnClickListener(listner);
@@ -484,17 +400,8 @@ public class DragingDialogs {
                 return view;
             }
         };
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-
-
-            }
-
-        });
+        dialog.setOnCloseListener(() -> {});
         dialog.show("MovePage");
-
     }
 
     public static void textToSpeachDialog(final FrameLayout anchor, final DocumentController controller) {
@@ -515,11 +422,9 @@ public class DragingDialogs {
         }
 
         DragingPopup dialog = new DragingPopup(R.string.text_to_speech, anchor, 300, 480) {
-
             @Override
             @SuppressLint("NewApi")
             public View getContentView(LayoutInflater inflater) {
-
                 final Activity activity = controller.getActivity();
                 final View view = inflater.inflate(R.layout.dialog_tts, null, false);
 
@@ -533,19 +438,16 @@ public class DragingDialogs {
 
                         textBGwarning.setVisibility(View.VISIBLE);
                         TxtUtils.underlineTextView(textBGwarning);
-                        textBGwarning.setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                try {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                            Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    controller.getActivity().startActivity(intent);
-                                    closeDialog();
-                                } catch (Exception e) {
-                                    Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
-                                    LOG.e(e);
-                                }
+                        textBGwarning.setOnClickListener(v -> {
+                            try {
+                                Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                        Uri.fromParts("package", Apps.getPackageName(controller.getActivity()), null));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                controller.getActivity().startActivity(intent);
+                                closeDialog();
+                            } catch (Exception e) {
+                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_SHORT).show();
+                                LOG.e(e);
                             }
                         });
                     }
@@ -561,30 +463,21 @@ public class DragingDialogs {
                 final TextView timerStart = (TextView) view.findViewById(R.id.timerStart);
                 final TextView ttsPlayMusicFile = (TextView) view.findViewById(R.id.ttsPlayMusicFile);
 
-                view.findViewById(R.id.onHelp).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        MyPopupMenu menu = new MyPopupMenu(v);
-                        for (final String key : AppState.get().TTS_ENGINES.keySet()) {
-                            menu.getMenu().add(key).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    String value = AppState.get().TTS_ENGINES.get(key);
-                                    String play = value.replace("https://play.google.com/store/apps/details?", "market://details?");
-                                    try {
-                                        Urls.open(v.getContext(), play);
-                                    } catch (Exception e) {
-                                        Urls.open(v.getContext(), value);
-                                    }
-                                    return false;
-                                }
-                            });
-                        }
-                        menu.show();
-
+                view.findViewById(R.id.onHelp).setOnClickListener(v -> {
+                    MyPopupMenu menu = new MyPopupMenu(v);
+                    for (final String key : AppState.get().TTS_ENGINES.keySet()) {
+                        menu.getMenu().add(key).setOnMenuItemClickListener(item -> {
+                            String value = AppState.get().TTS_ENGINES.get(key);
+                            String play = value.replace("https://play.google.com/store/apps/details?", "market://details?");
+                            try {
+                                Urls.open(v.getContext(), play);
+                            } catch (Exception e) {
+                                Urls.open(v.getContext(), value);
+                            }
+                            return false;
+                        });
                     }
+                    menu.show();
                 });
 
                 final TTSControlsView tts = (TTSControlsView) view.findViewById(R.id.ttsActive);
@@ -604,114 +497,79 @@ public class DragingDialogs {
                 }
                 TxtUtils.underlineTextView(ttsPauseDuration);
 
-                ttsPauseDuration.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 500; i += (i <= 100 ? 10 : 25)) {
-                            final int j = i;
-                            popupMenu.getMenu().add(i + " ms").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    TTSEngine.get().stop();
-                                    AppState.get().ttsPauseDuration = j;
-                                    ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
-                                    TxtUtils.underlineTextView(ttsPauseDuration);
-                                    return false;
-                                }
-                            });
-                        }
-
-                        for (int i = 1; i <= 10; i += 1) {
-                            final int j = i;
-                            popupMenu.getMenu().add(i + " sec").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    TTSEngine.get().stop();
-                                    AppState.get().ttsPauseDuration = j * 1000;
-                                    ttsPauseDuration.setText("" + j + " sec");
-                                    TxtUtils.underlineTextView(ttsPauseDuration);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
+                ttsPauseDuration.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (int i = 0; i <= 500; i += (i <= 100 ? 10 : 25)) {
+                        final int j = i;
+                        popupMenu.getMenu().add(i + " ms").setOnMenuItemClickListener(item -> {
+                            TTSEngine.get().stop();
+                            AppState.get().ttsPauseDuration = j;
+                            ttsPauseDuration.setText("" + AppState.get().ttsPauseDuration + " ms");
+                            TxtUtils.underlineTextView(ttsPauseDuration);
+                            return false;
+                        });
                     }
+
+                    for (int i = 1; i <= 10; i += 1) {
+                        final int j = i;
+                        popupMenu.getMenu().add(i + " sec").setOnMenuItemClickListener(item -> {
+                            TTSEngine.get().stop();
+                            AppState.get().ttsPauseDuration = j * 1000;
+                            ttsPauseDuration.setText("" + j + " sec");
+                            TxtUtils.underlineTextView(ttsPauseDuration);
+                            return false;
+                        });
+                    }
+                    popupMenu.show();
+
                 });
 
                 ttsLang.setVisibility(TxtUtils.visibleIf(Build.VERSION.SDK_INT >= 21));
 
                 timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
-                timerTime.setOnClickListener(new OnClickListener() {
+                timerTime.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        int[] items = {1, 15, 30, 45, 60, 90, 120, 240, 360};
-                        for (final int i : items) {
-                            popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().ttsTimer = i;
-                                    timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
-                                    TxtUtils.underlineTextView(timerTime);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
+                    int[] items = {1, 15, 30, 45, 60, 90, 120, 240, 360};
+                    for (final int i : items) {
+                        popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(item -> {
+                            AppState.get().ttsTimer = i;
+                            timerTime.setText(AppState.get().ttsTimer + " " + controller.getString(R.string.minutes).toLowerCase(Locale.US));
+                            TxtUtils.underlineTextView(timerTime);
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
 
-                timerStart.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (TempHolder.get().timerFinishTime == 0) {
-                            TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
-                        } else {
-                            TempHolder.get().timerFinishTime = 0;
-                        }
-
-                        timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
-                        ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
-                        ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
-
-                        TxtUtils.underlineTextView(timerStart);
-
+                timerStart.setOnClickListener(v -> {
+                    if (TempHolder.get().timerFinishTime == 0) {
+                        TempHolder.get().timerFinishTime = System.currentTimeMillis() + AppState.get().ttsTimer * 60 * 1000;
+                    } else {
+                        TempHolder.get().timerFinishTime = 0;
                     }
+
+                    timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
+                    ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
+                    ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
+
+                    TxtUtils.underlineTextView(timerStart);
                 });
 
                 ttsPage.setText(TempHolder.get().timerFinishTime == 0 ? "" : controller.getString(R.string.reading_will_be_stopped) + " " + DateFormat.getTimeFormat(activity).format(TempHolder.get().timerFinishTime));
                 timerStart.setText(TempHolder.get().timerFinishTime == 0 ? R.string.start : R.string.cancel);
                 ttsPage.setVisibility(TxtUtils.visibleIf(TempHolder.get().timerFinishTime > 0));
 
-                TTSEngine.get().getTTS(new OnInitListener() {
-
-                    @Override
-                    public void onInit(int status) {
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.bold(ttsLang);
-
-                    }
+                TTSEngine.get().getTTS(status -> {
+                    textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                    ttsLang.setText(TTSEngine.get().getCurrentLang());
+                    TxtUtils.bold(ttsLang);
                 });
 
-                controller.runTimer(1000, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                        ttsLang.setText(TTSEngine.get().getCurrentLang());
-                        TxtUtils.bold(ttsLang);
-
-                    }
+                controller.runTimer(1000, () -> {
+                    textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                    ttsLang.setText(TTSEngine.get().getCurrentLang());
+                    TxtUtils.bold(ttsLang);
                 });
 
                 textEngine.setText(TTSEngine.get().getCurrentEngineName());
@@ -722,55 +580,43 @@ public class DragingDialogs {
                 textEngine.setOnClickListener((v) -> ttsSettings.performClick());
                 ttsLang.setOnClickListener((v) -> ttsSettings.performClick());
 
-                TxtUtils.underlineTextView(ttsSettings).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(ttsSettings).setOnClickListener(v -> {
+                    try {
+                        TTSEngine.get().stop();
+                        TTSEngine.get().stopDestroy();
 
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            TTSEngine.get().stop();
-                            TTSEngine.get().stopDestroy();
-
-                            Intent intent = new Intent();
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            if (Build.VERSION.SDK_INT >= 14) {
-                                intent.setAction("com.android.settings.TTS_SETTINGS");
-                            } else {
-                                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TextToSpeechSettings"));
-                            }
-                            activity.startActivity(intent);
-                        } catch (Exception e) {
-                            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
-                            LOG.e(e);
+                        Intent intent = new Intent();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (Build.VERSION.SDK_INT >= 14) {
+                            intent.setAction("com.android.settings.TTS_SETTINGS");
+                        } else {
+                            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                            intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.TextToSpeechSettings"));
                         }
+                        activity.startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                        LOG.e(e);
                     }
                 });
 
                 final CustomSeek seekBarSpeed = (CustomSeek) view.findViewById(R.id.seekBarSpeed);
                 seekBarSpeed.init(0, 600, (int) (AppState.get().ttsSpeed * 100));
                 seekBarSpeed.setStep(10);
-                seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        TTSEngine.get().stop();
-                        AppState.get().ttsSpeed = (float) result / 100;
-                        LOG.d("TTS-ttsSpeed 2", AppState.get().ttsSpeed);
-                        return false;
-                    }
+                seekBarSpeed.setOnSeekChanged(result -> {
+                    TTSEngine.get().stop();
+                    AppState.get().ttsSpeed = (float) result / 100;
+                    LOG.d("TTS-ttsSpeed 2", AppState.get().ttsSpeed);
+                    return false;
                 });
 
                 final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
                 List<Float> values = Arrays.asList(0.25f, 0.5f, 0.75f, 1f, 1.25f, 1.5f, 1.75f, 2f, 3f, 4f, 5f, 6f);
                 for (final float i : values) {
-                    menu.getMenu().add(String.format("%s x", i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            seekBarSpeed.reset((int) (i * 100));
-                            seekBarSpeed.sendProgressChanged();
-                            return false;
-                        }
+                    menu.getMenu().add(String.format("%s x", i)).setOnMenuItemClickListener(item -> {
+                        seekBarSpeed.reset((int) (i * 100));
+                        seekBarSpeed.sendProgressChanged();
+                        return false;
                     });
                 }
 
@@ -779,74 +625,46 @@ public class DragingDialogs {
 
                 final CustomSeek seekBarPitch = (CustomSeek) view.findViewById(R.id.seekBarPitch);
                 seekBarPitch.init(0, 200, (int) (AppState.get().ttsPitch * 100));
-                seekBarPitch.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        TTSEngine.get().stop();
-                        AppState.get().ttsPitch = (float) result / 100;
-                        return false;
-                    }
+                seekBarPitch.setOnSeekChanged(result -> {
+                    TTSEngine.get().stop();
+                    AppState.get().ttsPitch = (float) result / 100;
+                    return false;
                 });
 
                 final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 
                 final CustomSeek seekVolume = (CustomSeek) view.findViewById(R.id.seekVolume);
                 seekVolume.init(0, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
-                seekVolume.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, result, 0);
-                        return false;
-                    }
+                seekVolume.setOnSeekChanged(result -> {
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, result, 0);
+                    return false;
                 });
 
                 final EditText ttsSentecesDivs = (EditText) view.findViewById(R.id.ttsSentecesDivs);
 
+                TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults))
+                        .setOnClickListener(v -> AlertDialogs.showOkDialog(controller.getActivity(),
+                                controller.getString(R.string.restore_defaults_full), () -> {
+                    seekBarPitch.reset(100);
+                    seekBarSpeed.reset(100);
+                    seekVolume.reset(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2);
 
-                TxtUtils.underlineTextView(view.findViewById(R.id.restore_defaults)).setOnClickListener(new OnClickListener() {
+                    AppState.get().ttsPitch = (float) 1.0;
+                    AppState.get().ttsSpeed = (float) 1.0;
 
-                    @Override
-                    public void onClick(View v) {
+                    TTSEngine.get().shutdown();
+                    TTSEngine.get().getTTS();
 
-                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                    textEngine.setText(TTSEngine.get().getCurrentEngineName());
+                    ttsLang.setText(TTSEngine.get().getCurrentLang());
 
-                            @Override
-                            public void run() {
-                                seekBarPitch.reset(100);
-                                seekBarSpeed.reset(100);
-                                seekVolume.reset(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 2);
-
-                                AppState.get().ttsPitch = (float) 1.0;
-                                AppState.get().ttsSpeed = (float) 1.0;
-
-                                TTSEngine.get().shutdown();
-                                TTSEngine.get().getTTS();
-
-                                textEngine.setText(TTSEngine.get().getCurrentEngineName());
-                                ttsLang.setText(TTSEngine.get().getCurrentLang());
-                                // TxtUtils.underlineTextView(textEngine);
-
-
-                                AppState.get().ttsSentecesDivs = AppState.TTS_PUNCUATIONS;
-                                ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
-                            }
-                        });
-
-                    }
-                });
-                //
+                    AppState.get().ttsSentecesDivs = AppState.TTS_PUNCUATIONS;
+                    ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
+                }));
 
                 CheckBox stopReadingOnCall = (CheckBox) view.findViewById(R.id.stopReadingOnCall);
                 stopReadingOnCall.setChecked(AppState.get().stopReadingOnCall);
-                stopReadingOnCall.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().stopReadingOnCall = isChecked;
-                    }
-                });
+                stopReadingOnCall.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().stopReadingOnCall = isChecked);
 
                 // read by sentences
                 ttsSentecesDivs.setText(AppState.get().ttsSentecesDivs);
@@ -863,262 +681,184 @@ public class DragingDialogs {
 
                 CheckBox ttsReadBySentences = (CheckBox) view.findViewById(R.id.ttsReadBySentences);
                 ttsReadBySentences.setChecked(AppState.get().ttsReadBySentences);
-                ttsReadBySentences.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().ttsReadBySentences = isChecked;
-                        ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
-                        TTSEngine.get().stop();
-                    }
+                ttsReadBySentences.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().ttsReadBySentences = isChecked;
+                    ttsSentecesDivs.setEnabled(AppState.get().ttsReadBySentences);
+                    TTSEngine.get().stop();
                 });
 
 
                 CheckBox isEnalbeTTSReplacements = (CheckBox) view.findViewById(R.id.isEnalbeTTSReplacements);
                 isEnalbeTTSReplacements.setChecked(AppState.get().isEnalbeTTSReplacements);
-                isEnalbeTTSReplacements.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isEnalbeTTSReplacements = isChecked;
-                        TTSEngine.get().stop();
-                    }
+                isEnalbeTTSReplacements.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isEnalbeTTSReplacements = isChecked;
+                    TTSEngine.get().stop();
                 });
 
-                TxtUtils.underlineTextView(view.findViewById(R.id.replaces)).setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TTSEngine.get().stop();
-                        Dialogs.replaceTTSDialog(activity);
-                    }
+                TxtUtils.underlineTextView(view.findViewById(R.id.replaces)).setOnClickListener(v -> {
+                    TTSEngine.get().stop();
+                    Dialogs.replaceTTSDialog(activity);
                 });
 
-                TxtUtils.underlineTextView(view.findViewById(R.id.showDebug)).setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialogs.showTTSDebug(controller);
-
-                    }
-                });
+                TxtUtils.underlineTextView(view.findViewById(R.id.showDebug)).setOnClickListener(v -> AlertDialogs.showTTSDebug(controller));
 
                 CheckBox isFastBookmarkByTTS = (CheckBox) view.findViewById(R.id.isFastBookmarkByTTS);
                 isFastBookmarkByTTS.setChecked(AppState.get().isFastBookmarkByTTS);
-                isFastBookmarkByTTS.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isFastBookmarkByTTS = isChecked;
-                    }
-                });
+                isFastBookmarkByTTS.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isFastBookmarkByTTS = isChecked);
 
                 CheckBox ttsTunnOnLastWord = (CheckBox) view.findViewById(R.id.ttsTunnOnLastWord);
                 ttsTunnOnLastWord.setChecked(AppState.get().ttsTunnOnLastWord);
-                ttsTunnOnLastWord.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().ttsTunnOnLastWord = isChecked;
-                        TTSEngine.get().stop();
-                    }
+                ttsTunnOnLastWord.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().ttsTunnOnLastWord = isChecked;
+                    TTSEngine.get().stop();
                 });
 
                 // TTS Play music File
-                ttsPlayMusicFile.setOnClickListener(new OnClickListener() {
+                ttsPlayMusicFile.setOnClickListener(v -> ChooserDialogFragment
+                        .chooseFileorFolder((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file))
+                        .setOnSelectListener(new ResultResponse2<String, Dialog>() {
 
                     @Override
-                    public void onClick(View v) {
-
-                        ChooserDialogFragment.chooseFileorFolder((FragmentActivity) controller.getActivity(), controller.getString(R.string.open_file)).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-
-                            @Override
-                            public boolean onResultRecive(String result1, Dialog result2) {
-                                LOG.d("onResultRecive", result1);
-                                if (new File(result1).isDirectory()) {
-                                    LOG.d("onResultRecive Directory", result1);
-                                    String firstMp3Infoder = TTSTracks.getFirstMp3Infoder(result1);
-                                    if (firstMp3Infoder != null) {
-                                        result1 = firstMp3Infoder;
-                                    }
-                                    LOG.d("onResultRecive firstMp3Infoder", result1);
-                                }
-                                if (ExtUtils.isAudioContent(result1)) {
-
-                                    BookCSS.get().mp3BookPath(result1);
-                                    AppState.get().mp3seek = 0;
-
-                                    tts.udateButtons();
-
-                                    TTSEngine.get().mp3Destroy();
-                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
-                                } else {
-                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                                }
-                                result2.dismiss();
-                                return false;
+                    public boolean onResultRecive(String result1, Dialog result2) {
+                        LOG.d("onResultRecive", result1);
+                        if (new File(result1).isDirectory()) {
+                            LOG.d("onResultRecive Directory", result1);
+                            String firstMp3Infoder = TTSTracks.getFirstMp3Infoder(result1);
+                            if (firstMp3Infoder != null) {
+                                result1 = firstMp3Infoder;
                             }
-                        });
+                            LOG.d("onResultRecive firstMp3Infoder", result1);
+                        }
+                        if (ExtUtils.isAudioContent(result1)) {
 
+                            BookCSS.get().mp3BookPath(result1);
+                            AppState.get().mp3seek = 0;
+
+                            tts.udateButtons();
+
+                            TTSEngine.get().mp3Destroy();
+                            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                        } else {
+                            Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        }
+                        result2.dismiss();
+                        return false;
                     }
-                });
+                }));
                 TxtUtils.underlineTextView(ttsPlayMusicFile);
 
-                ttsSkeakToFile.setOnClickListener(new OnClickListener() {
+                ttsSkeakToFile.setOnClickListener(v -> {
+                    AlertDialog.Builder dialog14 = new AlertDialog.Builder(controller.getActivity());
+                    dialog14.setTitle(R.string.speak_into_file_wav);
 
-                    @Override
-                    public void onClick(View v) {
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(controller.getActivity());
-                        dialog.setTitle(R.string.speak_into_file_wav);
-
-                        View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
-                        final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
-                        final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
-                        final MyProgressBar MyProgressBar1 = (MyProgressBar) inflate.findViewById(R.id.MyProgressBarTTS);
-                        final Button start = (Button) inflate.findViewById(R.id.start);
-                        final Button stop = (Button) inflate.findViewById(R.id.stop);
-                        final Button delete = (Button) inflate.findViewById(R.id.delete);
-                        final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
-                        isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
-                        isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isConvertToMp3 = isChecked);
+                    View inflate = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_tts_wav, null, false);
+                    final TextView ttsSpeakPath = (TextView) inflate.findViewById(R.id.ttsSpeakPath);
+                    final TextView progressText = (TextView) inflate.findViewById(R.id.progressText);
+                    final MyProgressBar MyProgressBar1 = (MyProgressBar) inflate.findViewById(R.id.MyProgressBarTTS);
+                    final Button start = (Button) inflate.findViewById(R.id.start);
+                    final Button stop = (Button) inflate.findViewById(R.id.stop);
+                    final Button delete = (Button) inflate.findViewById(R.id.delete);
+                    final CheckBox isConvertToMp3 = inflate.findViewById(R.id.isConvertToMp3);
+                    isConvertToMp3.setChecked(AppState.get().isConvertToMp3);
+                    isConvertToMp3.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isConvertToMp3 = isChecked);
 
 
-                        final EditText from = (EditText) inflate.findViewById(R.id.from);
-                        final EditText to = (EditText) inflate.findViewById(R.id.to);
+                    final EditText from = (EditText) inflate.findViewById(R.id.from);
+                    final EditText to = (EditText) inflate.findViewById(R.id.to);
 
-                        from.setText("" + 1);
-                        to.setText("" + controller.getPageCount());
+                    from.setText("" + 1);
+                    to.setText("" + controller.getPageCount());
 
-                        MyProgressBar1.setVisibility(View.GONE);
-                        progressText.setText("");
+                    MyProgressBar1.setVisibility(View.GONE);
+                    progressText.setText("");
 
-                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
-                        ttsSpeakPath.setOnClickListener(new OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-
-                                ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), BookCSS.get().ttsSpeakPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                                    @Override
-                                    public boolean onResultRecive(String nPath, Dialog dialog) {
-                                        BookCSS.get().ttsSpeakPath = nPath;
-                                        ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
-                                        dialog.dismiss();
-                                        return false;
-                                    }
-                                });
-
-                            }
-                        });
-
-                        delete.setOnClickListener(v1 -> {
-                            if (TempHolder.isRecordTTS) {
-                                Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
-                            boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName().endsWith(TTSEngine.WAV) || pathname.getName().endsWith(TTSEngine.MP3)));
-                            if (res) {
-                                Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(controller.getActivity(), R.string.fail, Toast.LENGTH_LONG).show();
-                            }
-
-                        });
-
-
-                        final ResultResponse<String> info = new ResultResponse<String>() {
-                            @Override
-                            public boolean onResultRecive(final String result) {
-                                controller.getActivity().runOnUiThread(new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        progressText.setText(result);
-                                        if (result.equals(controller.getString(R.string.success))) {
-                                            MyProgressBar1.setVisibility(View.GONE);
-                                        }
-
-                                    }
-                                });
+                    ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                    ttsSpeakPath.setOnClickListener(v14 -> ChooserDialogFragment
+                            .chooseFolder((FragmentActivity) controller.getActivity(), BookCSS.get().ttsSpeakPath)
+                            .setOnSelectListener((nPath, dialog13) -> {
+                                BookCSS.get().ttsSpeakPath = nPath;
+                                ttsSpeakPath.setText(Html.fromHtml("<u>" + BookCSS.get().ttsSpeakPath + "/<b>" + controller.getCurrentBook().getName() + "</b></u>"));
+                                dialog13.dismiss();
                                 return false;
-                            }
-                        };
+                            }));
 
-                        stop.setOnClickListener(new OnClickListener() {
+                    delete.setOnClickListener(v1 -> {
+                        if (TempHolder.isRecordTTS) {
+                            Toast.makeText(controller.getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                            @Override
-                            public void onClick(View v) {
-                                TempHolder.isRecordTTS = false;
+                        File dirFolder = new File(BookCSS.get().ttsSpeakPath, "TTS_" + controller.getCurrentBook().getName());
+                        boolean res = CacheZipUtils.removeFiles(dirFolder.listFiles(pathname -> pathname.getName().endsWith(TTSEngine.WAV) || pathname.getName().endsWith(TTSEngine.MP3)));
+                        if (res) {
+                            Toast.makeText(controller.getActivity(), R.string.success, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(controller.getActivity(), R.string.fail, Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    final ResultResponse<String> info = result -> {
+                        controller.getActivity().runOnUiThread(() -> {
+                            progressText.setText(result);
+                            if (result.equals(controller.getString(R.string.success))) {
                                 MyProgressBar1.setVisibility(View.GONE);
                             }
                         });
+                        return false;
+                    };
 
-                        start.setOnClickListener(new OnClickListener() {
+                    stop.setOnClickListener(v13 -> {
+                        TempHolder.isRecordTTS = false;
+                        MyProgressBar1.setVisibility(View.GONE);
+                    });
 
-                            @Override
-                            public void onClick(View v) {
-
-                                boolean hasErorrs = false;
-                                try {
-                                    TempHolder.isRecordFrom = Integer.parseInt(from.getText().toString());
-                                    if (TempHolder.isRecordFrom <= 0) {
-                                        hasErorrs = true;
-                                    }
-                                } catch (Exception e) {
-                                    hasErorrs = true;
-                                    from.requestFocus();
-                                }
-
-
-                                try {
-                                    TempHolder.isRecordTo = Integer.parseInt(to.getText().toString());
-
-                                    if (TempHolder.isRecordTo > controller.getPageCount()) {
-                                        hasErorrs = true;
-                                        to.requestFocus();
-                                    }
-
-                                    if (TempHolder.isRecordFrom > TempHolder.isRecordTo) {
-                                        hasErorrs = true;
-                                        from.requestFocus();
-                                    }
-                                } catch (Exception e) {
-                                    hasErorrs = true;
-                                    to.requestFocus();
-                                }
-
-                                if (hasErorrs) {
-                                    Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                                }
-
-                                if (!hasErorrs && !TempHolder.isRecordTTS) {
-                                    TempHolder.isRecordTTS = true;
-                                    MyProgressBar1.setVisibility(View.VISIBLE);
-                                    TTSEngine.get().speakToFile(controller, info, TempHolder.isRecordFrom, TempHolder.isRecordTo);
-                                }
+                    start.setOnClickListener(v12 -> {
+                        boolean hasErorrs = false;
+                        try {
+                            TempHolder.isRecordFrom = Integer.parseInt(from.getText().toString());
+                            if (TempHolder.isRecordFrom <= 0) {
+                                hasErorrs = true;
                             }
-                        });
+                        } catch (Exception e) {
+                            hasErorrs = true;
+                            from.requestFocus();
+                        }
 
-                        dialog.setView(inflate);
+                        try {
+                            TempHolder.isRecordTo = Integer.parseInt(to.getText().toString());
 
-                        dialog.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                TempHolder.isRecordTTS = false;
+                            if (TempHolder.isRecordTo > controller.getPageCount()) {
+                                hasErorrs = true;
+                                to.requestFocus();
                             }
-                        });
-                        AlertDialog create = dialog.create();
-                        create.setOnDismissListener(new OnDismissListener() {
 
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                TempHolder.isRecordTTS = false;
+                            if (TempHolder.isRecordFrom > TempHolder.isRecordTo) {
+                                hasErorrs = true;
+                                from.requestFocus();
                             }
-                        });
+                        } catch (Exception e) {
+                            hasErorrs = true;
+                            to.requestFocus();
+                        }
 
-                        create.show();
-                    }
+                        if (hasErorrs) {
+                            Toast.makeText(controller.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (!hasErorrs && !TempHolder.isRecordTTS) {
+                            TempHolder.isRecordTTS = true;
+                            MyProgressBar1.setVisibility(View.VISIBLE);
+                            TTSEngine.get().speakToFile(controller, info, TempHolder.isRecordFrom, TempHolder.isRecordTo);
+                        }
+                    });
+
+                    dialog14.setView(inflate);
+
+                    dialog14.setNegativeButton(R.string.close, (dialog12, which) -> TempHolder.isRecordTTS = false);
+                    AlertDialog create = dialog14.create();
+                    create.setOnDismissListener(dialog1 -> TempHolder.isRecordTTS = false);
+
+                    create.show();
                 });
 
                 TxtUtils.underlineTextView(timerStart);
@@ -1128,16 +868,8 @@ public class DragingDialogs {
                 return view;
             }
         };
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                controller.stopTimer();
-
-            }
-        });
+        dialog.setOnCloseListener(controller::stopTimer);
         dialog.show("TTS", false, true);
-
     }
 
     public static void searchMenu(final FrameLayout anchor, final DocumentController controller, final String text) {
@@ -1159,7 +891,6 @@ public class DragingDialogs {
                 gridView.setColumnWidth(Dips.dpToPx(80));
 
                 final BaseItemLayoutAdapter<Integer> adapter = new BaseItemLayoutAdapter<Integer>(anchor.getContext(), android.R.layout.simple_spinner_dropdown_item) {
-
                     @Override
                     public void populateView(View inflate, int arg1, Integer page) {
                         final TextView text = Views.text(inflate, android.R.id.text1, TxtUtils.deltaPage(page + 1, 0));
@@ -1171,56 +902,30 @@ public class DragingDialogs {
                     public long getItemId(int position) {
                         return getItem(position) + 1;
                     }
-
                 };
 
                 gridView.setAdapter(adapter);
-                gridView.setOnItemClickListener(new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        controller.onGoToPage((int) id);
-
-                    }
-                });
+                gridView.setOnItemClickListener((parent, view1, position, id) -> controller.onGoToPage((int) id));
 
                 ImageView onClear = (ImageView) view.findViewById(R.id.imageClear);
-                onClear.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        boolean isRun = TempHolder.isSeaching;
-                        TempHolder.isSeaching = false;
-                        if (!isRun) {
-                            searchEdit.setText("");
-                            controller.clearSelectedText();
-                            searchingMsg.setVisibility(View.GONE);
-                            adapter.getItems().clear();
-                            adapter.notifyDataSetChanged();
-                        }
-
+                onClear.setOnClickListener(v -> {
+                    boolean isRun = TempHolder.isSeaching;
+                    TempHolder.isSeaching = false;
+                    if (!isRun) {
+                        searchEdit.setText("");
+                        controller.clearSelectedText();
+                        searchingMsg.setVisibility(View.GONE);
+                        adapter.getItems().clear();
+                        adapter.notifyDataSetChanged();
                     }
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
                 TintUtil.setTintBg(onSearch);
 
-                EditTextHelper.enableKeyboardSearch(searchEdit, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        onSearch.performClick();
-                    }
-                });
+                EditTextHelper.enableKeyboardSearch(searchEdit, onSearch::performClick);
                 if (TxtUtils.isNotEmpty(text)) {
-                    onSearch.postDelayed(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            onSearch.performClick();
-                        }
-                    }, 250);
-
+                    onSearch.postDelayed(onSearch::performClick, 250);
                 }
 
                 final String searchingString = anchor.getContext().getString(R.string.searching_please_wait_);
@@ -1266,54 +971,39 @@ public class DragingDialogs {
                     ;
                 };
 
-                onSearch.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (TempHolder.isSeaching) {
-                            TempHolder.isSeaching = false;
-                            return;
-                        }
-                        String searchString = searchEdit.getText().toString().trim();
-                        if (searchString.length() < 2) {
-                            Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        TempHolder.isSeaching = true;
-
-                        searchingMsg.setText(R.string.searching_please_wait_);
-                        searchingMsg.setVisibility(View.VISIBLE);
-
-                        MyProgressBar.setVisibility(View.VISIBLE);
-                        gridView.setVisibility(View.GONE);
-                        adapter.getItems().clear();
-                        adapter.notifyDataSetChanged();
-
-                        Keyboards.close(searchEdit);
-                        hMessage.removeCallbacksAndMessages(null);
-                        controller.doSearch(searchString, new ResultResponse<Integer>() {
-                            @Override
-                            public boolean onResultRecive(final Integer pageNumber) {
-                                hMessage.sendEmptyMessage(pageNumber);
-                                return false;
-                            }
-                        });
+                onSearch.setOnClickListener(v -> {
+                    if (TempHolder.isSeaching) {
+                        TempHolder.isSeaching = false;
+                        return;
                     }
+                    String searchString = searchEdit.getText().toString().trim();
+                    if (searchString.length() < 2) {
+                        Toast.makeText(controller.getActivity(), R.string.please_enter_more_characters_to_search, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    TempHolder.isSeaching = true;
+
+                    searchingMsg.setText(R.string.searching_please_wait_);
+                    searchingMsg.setVisibility(View.VISIBLE);
+
+                    MyProgressBar.setVisibility(View.VISIBLE);
+                    gridView.setVisibility(View.GONE);
+                    adapter.getItems().clear();
+                    adapter.notifyDataSetChanged();
+
+                    Keyboards.close(searchEdit);
+                    hMessage.removeCallbacksAndMessages(null);
+                    controller.doSearch(searchString, pageNumber -> {
+                        hMessage.sendEmptyMessage(pageNumber);
+                        return false;
+                    });
                 });
 
                 return view;
             }
         };
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                TempHolder.isSeaching = false;
-
-            }
-        });
+        dialog.setOnCloseListener(() -> TempHolder.isSeaching = false);
         dialog.show("searchMenu");
-
     }
 
     @SuppressLint("NewApi")
@@ -1344,34 +1034,25 @@ public class DragingDialogs {
                     goBack.setVisibility(View.GONE);
                 }
 
-                final Integer offsetY = Integer.valueOf((int) controller.getOffsetY());
+                final int offsetY = (int) controller.getOffsetY();
 
-                goTo.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-
-                        if (!controller.getLinkHistory().contains(offsetY)) {
-                            controller.getLinkHistory().add(offsetY);
-                        }
-                        controller.onGoToPage(page);
-                        if (updateLinks != null) {
-                            updateLinks.run();
-                        }
+                goTo.setOnClickListener(v -> {
+                    if (!controller.getLinkHistory().contains(offsetY)) {
+                        controller.getLinkHistory().add(offsetY);
+                    }
+                    controller.onGoToPage(page);
+                    if (updateLinks != null) {
+                        updateLinks.run();
                     }
                 });
 
-                goBack.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.onGoToPage(currentPage);
-                        if (controller.getLinkHistory().contains(offsetY)) {
-                            controller.getLinkHistory().remove(offsetY);
-                        }
-                        if (updateLinks != null) {
-                            updateLinks.run();
-                        }
+                goBack.setOnClickListener(v -> {
+                    controller.onGoToPage(currentPage);
+                    if (controller.getLinkHistory().contains(offsetY)) {
+                        controller.getLinkHistory().remove(offsetY);
+                    }
+                    if (updateLinks != null) {
+                        updateLinks.run();
                     }
                 });
 
@@ -1380,13 +1061,7 @@ public class DragingDialogs {
 
                 return inflate;
             }
-        }.show("footNotes", true).setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                controller.clearSelectedText();
-            }
-        });
+        }.show("footNotes", true).setOnCloseListener(controller::clearSelectedText);
     }
 
     public static DragingPopup selectTextMenu(final FrameLayout anchor, final DocumentController controller, boolean withAnnotation1, final Runnable reloadUI) {
@@ -1417,112 +1092,81 @@ public class DragingDialogs {
 
                 final LinearLayout customsLayout = (LinearLayout) view.findViewById(R.id.customsLayout);
 
-                final Runnable updateConfigRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                        customsLayout.removeAllViews();
-                        for (final String line : AppState.get().customConfigColors.split(",")) {
-                            if (TxtUtils.isEmpty(line)) {
-                                continue;
-                            }
-                            final ImageView image = new ImageView(controller.getActivity());
-                            if (line.startsWith("H")) {
-                                image.setImageResource(R.drawable.glyphicons_607_te_background);
-                            } else if (line.startsWith("U")) {
-                                image.setImageResource(R.drawable.glyphicons_104_te_underline);
-                            } else if (line.startsWith("S")) {
-                                image.setImageResource(R.drawable.glyphicons_105_te_strike);
-                            }
-                            String color = line.substring(1);
-                            final int colorInt = Color.parseColor(color);
-                            TintUtil.setTintImageWithAlpha(image, colorInt);
-
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(35), Dips.dpToPx(35));
-                            int pd = Dips.dpToPx(5);
-                            params.leftMargin = pd;
-                            image.setPadding(pd, pd, pd, pd);
-                            customsLayout.addView(image, params);
-
-                            image.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    if (line.startsWith("H")) {
-                                        controller.underlineText(colorInt, 2.0f, AnnotationType.HIGHLIGHT);
-                                    } else if (line.startsWith("U")) {
-                                        controller.underlineText(colorInt, 2.0f, AnnotationType.UNDERLINE);
-                                    } else if (line.startsWith("S")) {
-                                        controller.underlineText(colorInt, 2.0f, AnnotationType.STRIKEOUT);
-                                    }
-
-                                    closeDialog();
-                                    controller.saveAnnotationsToFile();
-
-                                }
-                            });
-                            image.setOnLongClickListener(new OnLongClickListener() {
-
-                                @Override
-                                public boolean onLongClick(View v) {
-                                    AppState.get().customConfigColors = AppState.get().customConfigColors.replace(line, "");
-                                    customsLayout.removeView(image);
-                                    return true;
-                                }
-                            });
+                final Runnable updateConfigRunnable = () -> {
+                    customsLayout.removeAllViews();
+                    for (final String line : AppState.get().customConfigColors.split(",")) {
+                        if (TxtUtils.isEmpty(line)) {
+                            continue;
                         }
+                        final ImageView image = new ImageView(controller.getActivity());
+                        if (line.startsWith("H")) {
+                            image.setImageResource(R.drawable.glyphicons_607_te_background);
+                        } else if (line.startsWith("U")) {
+                            image.setImageResource(R.drawable.glyphicons_104_te_underline);
+                        } else if (line.startsWith("S")) {
+                            image.setImageResource(R.drawable.glyphicons_105_te_strike);
+                        }
+                        String color = line.substring(1);
+                        final int colorInt = Color.parseColor(color);
+                        TintUtil.setTintImageWithAlpha(image, colorInt);
+
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(35), Dips.dpToPx(35));
+                        int pd = Dips.dpToPx(5);
+                        params.leftMargin = pd;
+                        image.setPadding(pd, pd, pd, pd);
+                        customsLayout.addView(image, params);
+
+                        image.setOnClickListener(v -> {
+                            if (line.startsWith("H")) {
+                                controller.underlineText(colorInt, 2.0f, AnnotationType.HIGHLIGHT);
+                            } else if (line.startsWith("U")) {
+                                controller.underlineText(colorInt, 2.0f, AnnotationType.UNDERLINE);
+                            } else if (line.startsWith("S")) {
+                                controller.underlineText(colorInt, 2.0f, AnnotationType.STRIKEOUT);
+                            }
+
+                            closeDialog();
+                            controller.saveAnnotationsToFile();
+                        });
+                        image.setOnLongClickListener(v -> {
+                            AppState.get().customConfigColors = AppState.get().customConfigColors.replace(line, "");
+                            customsLayout.removeView(image);
+                            return true;
+                        });
                     }
                 };
                 updateConfigRunnable.run();
 
-                onAddCustom.setOnClickListener(new OnClickListener() {
+                onAddCustom.setOnClickListener(v -> {
+                    PopupMenu menu = new PopupMenu(v.getContext(), v);
 
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
+                    Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
+                    highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable highlight = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_607_te_background);
-                        highlight.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                    Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_te_underline);
+                    underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable underline = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_104_te_underline);
-                        underline.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                    Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_te_strike);
+                    strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
 
-                        Drawable strikeout = controller.getActivity().getResources().getDrawable(R.drawable.glyphicons_105_te_strike);
-                        strikeout.setColorFilter(Color.parseColor(AppState.get().annotationTextColor), Mode.SRC_ATOP);
+                    menu.getMenu().add(R.string.highlight_of_text).setIcon(highlight).setOnMenuItemClickListener(item -> {
+                        AppState.get().customConfigColors += "H" + AppState.get().annotationTextColor + ",";
+                        updateConfigRunnable.run();
+                        return false;
+                    });
+                    menu.getMenu().add(R.string.underline_of_text).setIcon(underline).setOnMenuItemClickListener(item -> {
+                        AppState.get().customConfigColors += "U" + AppState.get().annotationTextColor + ",";
+                        updateConfigRunnable.run();
+                        return false;
+                    });
+                    menu.getMenu().add(R.string.strikethrough_of_text).setIcon(strikeout).setOnMenuItemClickListener(item -> {
+                        AppState.get().customConfigColors += "S" + AppState.get().annotationTextColor + ",";
+                        updateConfigRunnable.run();
+                        return false;
+                    });
+                    menu.show();
 
-                        menu.getMenu().add(R.string.highlight_of_text).setIcon(highlight).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "H" + AppState.get().annotationTextColor + ",";
-                                updateConfigRunnable.run();
-                                return false;
-                            }
-                        });
-                        menu.getMenu().add(R.string.underline_of_text).setIcon(underline).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "U" + AppState.get().annotationTextColor + ",";
-                                updateConfigRunnable.run();
-                                return false;
-                            }
-                        });
-                        menu.getMenu().add(R.string.strikethrough_of_text).setIcon(strikeout).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().customConfigColors += "S" + AppState.get().annotationTextColor + ",";
-                                updateConfigRunnable.run();
-                                return false;
-                            }
-                        });
-                        menu.show();
-
-                        PopupHelper.initIcons(menu, Color.parseColor(AppState.get().annotationTextColor));
-
-                    }
+                    PopupHelper.initIcons(menu, Color.parseColor(AppState.get().annotationTextColor));
                 });
 
                 underLine.setColorFilter(Color.parseColor(AppState.get().annotationTextColor));
@@ -1539,19 +1183,12 @@ public class DragingDialogs {
 
                     linearLayoutColor.addView(inflate);
 
-                    inflate.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            // Views.unselectChilds(linearLayoutColor);
-                            // v.setSelected(true);
-                            AppState.get().annotationTextColor = colorName;
-                            underLine.setColorFilter(Color.parseColor(colorName));
-                            strike.setColorFilter(Color.parseColor(colorName));
-                            selection.setColorFilter(Color.parseColor(colorName));
-                        }
+                    inflate.setOnClickListener(v -> {
+                        AppState.get().annotationTextColor = colorName;
+                        underLine.setColorFilter(Color.parseColor(colorName));
+                        strike.setColorFilter(Color.parseColor(colorName));
+                        selection.setColorFilter(Color.parseColor(colorName));
                     });
-
                 }
 
                 final EditText editText = (EditText) view.findViewById(R.id.editText);
@@ -1561,138 +1198,94 @@ public class DragingDialogs {
                 editText.setText(selectedText);
 
                 final View onTranslate = view.findViewById(R.id.onTranslate);
-                onTranslate.setOnClickListener(new OnClickListener() {
+                onTranslate.setOnClickListener(v -> {
+                    anchor.removeAllViews();
 
-                    @Override
-                    public void onClick(View v) {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                        anchor.removeAllViews();
+                    final Map<String, String> providers = AppState.getDictionaries(editText.getText().toString().trim());
 
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        final Map<String, String> providers = AppState.getDictionaries(editText.getText().toString().trim());
-
-                        for (final String name : providers.keySet()) {
-
-                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    Urls.open(anchor.getContext(), providers.get(name).trim());
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
+                    for (final String name : providers.keySet()) {
+                        popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                            Urls.open(anchor.getContext(), providers.get(name).trim());
+                            return false;
+                        });
                     }
+
+                    popupMenu.show();
                 });
 
-                view.findViewById(R.id.onAddToBookmark).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.clearSelectedText();
-                        closeDialog();
-                        ListBoxHelper.showAddDialog(controller, null, null, editText.getText().toString().trim(), null);
-                    }
+                view.findViewById(R.id.onAddToBookmark).setOnClickListener(v -> {
+                    controller.clearSelectedText();
+                    closeDialog();
+                    ListBoxHelper.showAddDialog(controller, null, null, editText.getText().toString().trim(), null);
                 });
 
-                view.findViewById(R.id.readTTS).setOnClickListener(new OnClickListener() {
+                view.findViewById(R.id.readTTS).setOnClickListener(v -> {
+                    TTSEngine.get().stop();
 
-                    @Override
-                    public void onClick(View v) {
-                        TTSEngine.get().stop();
+                    String text = editText.getText().toString().trim();
+                    text = TxtUtils.replaceHTMLforTTS(text);
+                    text = text.replace(TxtUtils.TTS_PAUSE, "");
 
-                        String text = editText.getText().toString().trim();
-                        text = TxtUtils.replaceHTMLforTTS(text);
-                        text = text.replace(TxtUtils.TTS_PAUSE, "");
-
-                        TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
-                    }
+                    TTSEngine.get().speek(text);
+                    Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
                 });
-                view.findViewById(R.id.readTTS).setOnLongClickListener(new OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        TTSEngine.get().stop();
-                        String text = editText.getText().toString().trim();
-                        TTSEngine.get().speek(text);
-                        Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
+                view.findViewById(R.id.readTTS).setOnLongClickListener(v -> {
+                    TTSEngine.get().stop();
+                    String text = editText.getText().toString().trim();
+                    TTSEngine.get().speek(text);
+                    Toast.makeText(controller.getActivity(), text, Toast.LENGTH_SHORT).show();
+                    return true;
                 });
 
 
-                view.findViewById(R.id.readTTSNext).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        TTSEngine.get().stop();
-                        AppSP.get().lastBookParagraph = 0;
-                        TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
-                    }
+                view.findViewById(R.id.readTTSNext).setOnClickListener(v -> {
+                    TTSEngine.get().stop();
+                    AppSP.get().lastBookParagraph = 0;
+                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), editText.getText().toString().trim(), controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
                 });
 
-                view.findViewById(R.id.onShare).setOnClickListener(new OnClickListener() {
+                view.findViewById(R.id.onShare).setOnClickListener(v -> {
+                    controller.clearSelectedText();
+                    closeDialog();
+                    final Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    String txt = "\"" + editText.getText().toString().trim() + "\" (" + controller.getBookFileMetaName() + ")";
+                    intent.putExtra(Intent.EXTRA_TEXT, txt);
+                    controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
 
-                    @Override
-                    public void onClick(View v) {
-                        controller.clearSelectedText();
-                        closeDialog();
-                        final Intent intent = new Intent(Intent.ACTION_SEND);
-                        intent.setType("text/plain");
-                        String txt = "\"" + editText.getText().toString().trim() + "\" (" + controller.getBookFileMetaName() + ")";
-                        intent.putExtra(Intent.EXTRA_TEXT, txt);
-                        controller.getActivity().startActivity(Intent.createChooser(intent, controller.getString(R.string.share)));
-
-                    }
                 });
 
-                view.findViewById(R.id.onCopy).setOnClickListener(new OnClickListener() {
+                view.findViewById(R.id.onCopy).setOnClickListener(v -> {
+                    controller.clearSelectedText();
+                    Context c = anchor.getContext();
+                    String trim = editText.getText().toString().trim();
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                        ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                        clipboard.setText(trim);
+                    } else {
+                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
 
-                    @Override
-                    public void onClick(View v) {
-                        controller.clearSelectedText();
-                        Context c = anchor.getContext();
-                        String trim = editText.getText().toString().trim();
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                            ClipboardManager clipboard = (ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                            clipboard.setText(trim);
-                        } else {
-                            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-
-                            ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
-                            clipboard.setPrimaryClip(clip);
-                        }
-                        Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
-                        closeDialog();
+                        ClipData clip = ClipData.newPlainText(c.getString(R.string.copied_text), trim);
+                        clipboard.setPrimaryClip(clip);
                     }
+                    Toast.makeText(c, c.getString(R.string.copied_text) + ": " + trim, Toast.LENGTH_SHORT).show();
+                    closeDialog();
                 });
 
-                view.findViewById(R.id.onGoogle).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.clearSelectedText();
-                        closeDialog();
-                        Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + editText.getText().toString().trim());
-                    }
+                view.findViewById(R.id.onGoogle).setOnClickListener(v -> {
+                    controller.clearSelectedText();
+                    closeDialog();
+                    Urls.open(anchor.getContext(), "http://www.google.com/search?q=" + editText.getText().toString().trim());
                 });
 
                 View onBookSearch = view.findViewById(R.id.onBookSearch);
-                // onBookSearch.setText(controller.getString(R.string.search_in_the_book)
-                // + " \"" + AppState.get().selectedText + "\"");
                 if (onBookSearch != null) {
-
                     onBookSearch.setVisibility(selectedText != null && selectedText.contains(" ") ? View.GONE : View.VISIBLE);
-                    onBookSearch.setOnClickListener(new OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            controller.clearSelectedText();
-                            searchMenu(anchor, controller, selectedText);
-                        }
+                    onBookSearch.setOnClickListener(v -> {
+                        controller.clearSelectedText();
+                        searchMenu(anchor, controller, selectedText);
                     });
                 }
 
@@ -1721,8 +1314,7 @@ public class DragingDialogs {
                 final List<ResolveInfo> sendList = pm.queryIntentActivities(intentSend, 0);
                 final List<ResolveInfo> customList = pm.queryIntentActivities(intentCustom, 0);
 
-                final List<ResolveInfo> all = new ArrayList<ResolveInfo>();
-                all.addAll(customList);
+                final List<ResolveInfo> all = new ArrayList<>(customList);
 
                 if (Build.VERSION.SDK_INT >= 23) {
                     all.addAll(proccessTextList);
@@ -1753,72 +1345,68 @@ public class DragingDialogs {
                                 image.setLayoutParams(layoutParams);
                                 Drawable icon = anchor.getContext().getPackageManager().getApplicationIcon(app.activityInfo.packageName);
                                 image.setImageDrawable(icon);
-                                image.setOnClickListener(new OnClickListener() {
+                                image.setOnClickListener(v -> {
+                                    String selecteText = editText.getText().toString().trim();
+                                    closeDialog();
+                                    final ActivityInfo activity = app.activityInfo;
+                                    final ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
 
-                                    @Override
-                                    public void onClick(View v) {
-                                        String selecteText = editText.getText().toString().trim();
-                                        closeDialog();
-                                        final ActivityInfo activity = app.activityInfo;
-                                        final ComponentName name = new ComponentName(activity.applicationInfo.packageName, activity.name);
+                                    if (customList.contains(app)) {
+                                        LOG.d("dict-intent", "customList");
 
-                                        if (customList.contains(app)) {
-                                            LOG.d("dict-intent", "customList");
+                                        intentCustom.addCategory(Intent.CATEGORY_LAUNCHER);
+                                        intentCustom.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                        intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                        intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        intentCustom.setComponent(name);
 
-                                            intentCustom.addCategory(Intent.CATEGORY_LAUNCHER);
-                                            intentCustom.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                            intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                                            intentCustom.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                            intentCustom.setComponent(name);
+                                        intentCustom.putExtra("EXTRA_QUERY", selecteText);
+                                        DictsHelper.updateExtraGoldenDict(intentCustom);
 
-                                            intentCustom.putExtra("EXTRA_QUERY", selecteText);
-                                            DictsHelper.updateExtraGoldenDict(intentCustom);
+                                        LOG.d("intentCustom", intentCustom, intentCustom.getExtras());
 
-                                            LOG.d("intentCustom", intentCustom, intentCustom.getExtras());
+                                        controller.getActivity().startActivity(intentCustom);
+                                        // controller.getActivity().overridePendingTransition(0, 0);
 
-                                            controller.getActivity().startActivity(intentCustom);
-                                            // controller.getActivity().overridePendingTransition(0, 0);
+                                    } else if (proccessTextList.contains(app)) {
+                                        LOG.d("dict-intent", "proccessTextList");
 
-                                        } else if (proccessTextList.contains(app)) {
-                                            LOG.d("dict-intent", "proccessTextList");
+                                        intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
+                                        intentProccessText.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                        intentProccessText.setComponent(name);
 
-                                            intentProccessText.addCategory(Intent.CATEGORY_LAUNCHER);
-                                            intentProccessText.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                            intentProccessText.setComponent(name);
+                                        intentProccessText.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                        intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT, selecteText);
+                                        intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
 
-                                            intentProccessText.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                            intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT, selecteText);
-                                            intentProccessText.putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, selecteText);
+                                        controller.getActivity().startActivity(intentProccessText);
+                                        LOG.d("dict-intent", intentProccessText);
+                                    } else if (searchList.contains(app)) {
+                                        LOG.d("dict-intent", "searchList");
+                                        intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
+                                        intentSearch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                        intentSearch.setComponent(name);
 
-                                            controller.getActivity().startActivity(intentProccessText);
-                                            LOG.d("dict-intent", intentProccessText);
-                                        } else if (searchList.contains(app)) {
-                                            LOG.d("dict-intent", "searchList");
-                                            intentSearch.addCategory(Intent.CATEGORY_LAUNCHER);
-                                            intentSearch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                            intentSearch.setComponent(name);
+                                        intentSearch.putExtra(SearchManager.QUERY, selecteText);
+                                        intentSearch.putExtra(Intent.EXTRA_TEXT, selecteText);
 
-                                            intentSearch.putExtra(SearchManager.QUERY, selecteText);
-                                            intentSearch.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                        controller.getActivity().startActivity(intentSearch);
+                                        LOG.d("dict-intent", intentSearch);
+                                    } else if (sendList.contains(app)) {
+                                        LOG.d("dict-intent", "sendList");
+                                        intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
+                                        intentSend.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                                        intentSend.setComponent(name);
 
-                                            controller.getActivity().startActivity(intentSearch);
-                                            LOG.d("dict-intent", intentSearch);
-                                        } else if (sendList.contains(app)) {
-                                            LOG.d("dict-intent", "sendList");
-                                            intentSend.addCategory(Intent.CATEGORY_LAUNCHER);
-                                            intentSend.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                                            intentSend.setComponent(name);
-
-                                            intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
-                                            controller.getActivity().startActivity(intentSend);
-                                            LOG.d("dict-intent", intentSend);
-                                        }
-                                        sp.edit().putString("last", app.activityInfo.name).commit();
-
-
-                                        controller.clearSelectedText();
-
+                                        intentSend.putExtra(Intent.EXTRA_TEXT, selecteText);
+                                        controller.getActivity().startActivity(intentSend);
+                                        LOG.d("dict-intent", intentSend);
                                     }
+                                    sp.edit().putString("last", app.activityInfo.name).commit();
+
+
+                                    controller.clearSelectedText();
+
                                 });
                                 if (app.activityInfo.name.equals(lastID) || lastID.equals("" + DictsHelper.getHash(app.activityInfo))) {
                                     dictLayout.addView(image, 0);
@@ -1840,21 +1428,10 @@ public class DragingDialogs {
 
                 TintUtil.setTintImageWithAlpha(image, Color.LTGRAY);
 
-                image.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        DialogTranslateFromTo.show(controller.getActivity(), true, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
-                                selectTextMenu(anchor, controller, withAnnotation, reloadUI);
-                            }
-                        }, true);
-
-                    }
-                });
+                image.setOnClickListener(v -> DialogTranslateFromTo.show(controller.getActivity(), true, () -> {
+                    sp.edit().putString("last", "" + AppState.get().rememberDictHash2).commit();
+                    selectTextMenu(anchor, controller, withAnnotation, reloadUI);
+                }, true));
 
                 FrameLayout fr = new FrameLayout(controller.getActivity());
                 image.setPadding(Dips.DP_10, Dips.DP_10, Dips.DP_10, Dips.DP_10);
@@ -1862,32 +1439,20 @@ public class DragingDialogs {
 
                 dictLayout.addView(fr);
 
-                view.findViewById(R.id.onUnderline).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
+                view.findViewById(R.id.onUnderline).setOnClickListener(v -> {
+                    controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.UNDERLINE);
+                    closeDialog();
+                    controller.saveAnnotationsToFile();
                 });
-                view.findViewById(R.id.onStrike).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
+                view.findViewById(R.id.onStrike).setOnClickListener(v -> {
+                    controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.STRIKEOUT);
+                    closeDialog();
+                    controller.saveAnnotationsToFile();
                 });
-                view.findViewById(R.id.onSelection).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
-                        closeDialog();
-                        controller.saveAnnotationsToFile();
-                    }
+                view.findViewById(R.id.onSelection).setOnClickListener(v -> {
+                    controller.underlineText(Color.parseColor(AppState.get().annotationTextColor), 2.0f, AnnotationType.HIGHLIGHT);
+                    closeDialog();
+                    controller.saveAnnotationsToFile();
                 });
 
                 if (!BookType.PDF.is(controller.getCurrentBook().getPath()) || !withAnnotation || controller.getActivity() instanceof HorizontalViewActivity || controller.isPasswordProtected()) {
@@ -1901,15 +1466,7 @@ public class DragingDialogs {
 
                 return view;
             }
-
-        }.show("text", true).setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                AppState.get().selectedText = null;
-            }
-        });
-
+        }.show("text", true).setOnCloseListener(() -> AppState.get().selectedText = null);
     }
 
     public static DragingPopup gotoPageDialog(final FrameLayout anchor, final DocumentController dc) {
@@ -1956,8 +1513,6 @@ public class DragingDialogs {
                 grid.setColumnWidth(dpToPx);
                 grid.setFastScrollEnabled(AppState.get().isShowFastScroll);
 
-
-
                 final File currentBook = dc.getCurrentBook();
                 if (ExtUtils.isValidFile(currentBook)) {
                     grid.setAdapter(new PageThumbnailAdapter(anchor.getContext(), dc.getPageCount(), dc.getCurentPageFirst1() - 1) {
@@ -1965,58 +1520,45 @@ public class DragingDialogs {
                         public PageUrl getPageUrl(int page) {
                             return PageUrl.buildSmall(currentBook.getPath(), page);
                         }
-
-                        ;
                     });
-
                 }
 
-                grid.setOnItemClickListener(new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        dc.onGoToPage(position + 1);
-                        ((PageThumbnailAdapter) grid.getAdapter()).setCurrentPage(position);
-                        ((PageThumbnailAdapter) grid.getAdapter()).notifyDataSetChanged();
-                    }
-
+                grid.setOnItemClickListener((parent, view12, position, id) -> {
+                    dc.onGoToPage(position + 1);
+                    ((PageThumbnailAdapter) grid.getAdapter()).setCurrentPage(position);
+                    ((PageThumbnailAdapter) grid.getAdapter()).notifyDataSetChanged();
                 });
-                grid.setOnItemLongClickListener(new OnItemLongClickListener() {
+                grid.setOnItemLongClickListener((parent, view1, position, id) -> {
+                    Vibro.vibrate();
 
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        Vibro.vibrate();
-
-
-                        MyPopupMenu menu = new MyPopupMenu(view);
-                        menu.getMenu().add(R.string.share_as_text).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
-                            final Intent intent = new Intent(Intent.ACTION_SEND);
-                            intent.setType("text/plain");
-                            intent.putExtra(Intent.EXTRA_TEXT, dc.getTextForPage(position));
-                            dc.getActivity().startActivity(Intent.createChooser(intent, dc.getActivity().getString(R.string.share)));
-                            return true;
-                        });
-                        menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_1_picture).setOnMenuItemClickListener((it) -> {
-                            ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
-                            return true;
-                        });
-                        menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
-
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-                                ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                clipboard.setText(dc.getTextForPage(position));
-                            } else {
-                                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
-                                clipboard.setPrimaryClip(clip);
-                            }
-                            Toast.makeText(dc.getActivity(), R.string.copy_text, Toast.LENGTH_SHORT).show();
-                            return true;
-                        });
-                        menu.show();
-
+                    MyPopupMenu menu = new MyPopupMenu(view1);
+                    menu.getMenu().add(R.string.share_as_text).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                        final Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_TEXT, dc.getTextForPage(position));
+                        dc.getActivity().startActivity(Intent.createChooser(intent, dc.getActivity().getString(R.string.share)));
                         return true;
-                    }
+                    });
+                    menu.getMenu().add(R.string.share_as_image).setIcon(R.drawable.glyphicons_1_picture).setOnMenuItemClickListener((it) -> {
+                        ExtUtils.sharePage(dc.getActivity(), dc.getCurrentBook(), position, dc.getPageUrl(position).toString());
+                        return true;
+                    });
+                    menu.getMenu().add(R.string.copy_text).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+                            ClipboardManager clipboard = (ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            clipboard.setText(dc.getTextForPage(position));
+                        } else {
+                            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) dc.getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                            ClipData clip = ClipData.newPlainText(dc.getString(R.string.copy_text), dc.getTextForPage(position));
+                            clipboard.setPrimaryClip(clip);
+                        }
+                        Toast.makeText(dc.getActivity(), R.string.copy_text, Toast.LENGTH_SHORT).show();
+                        return true;
+                    });
+                    menu.show();
+
+                    return true;
                 });
 
                 grid.setSelection(dc.getCurentPage() - 1);
@@ -2036,83 +1578,61 @@ public class DragingDialogs {
                     @Override
                     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                         LOG.d("onScroll", firstVisibleItem, Math.abs(firstVisibleItem - dc.getCurentPage()));
-                        if (firstVisibleItem < 3 || Math.abs(firstVisibleItem - dc.getCurentPage()) < 20) {
-                            // searchLayout.setVisibility(View.VISIBLE);
-                        } else {
-                            // searchLayout.setVisibility(View.GONE);
-                        }
                     }
                 });
 
                 final View onSearch = view.findViewById(R.id.onSearch);
                 TintUtil.setTintBg(onSearch);
 
-                number.setOnKeyListener(new OnKeyListener() {
-
-                    @Override
-                    public boolean onKey(View v, int keyCode, KeyEvent event) {
-                        if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                            onSearch.performClick();
-                            return true;
-                        }
-                        return false;
+                number.setOnKeyListener((v, keyCode, event) -> {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        onSearch.performClick();
+                        return true;
                     }
+                    return false;
                 });
 
-                onSearch.setOnClickListener(new OnClickListener() {
+                onSearch.setOnClickListener(v -> {
+                    int page = 1;
+                    try {
+                        String txt = number.getText().toString();
 
-                    @Override
-                    public void onClick(View v) {
-                        int page = 1;
-                        try {
-                            String txt = number.getText().toString();
-
-                            if (txt.contains("%") || txt.contains(".") || txt.contains(",")) {
-                                txt = txt.replace("%", "").replace(",", ".");
-                                float parseFloat = Float.parseFloat(txt);
-                                if (parseFloat > 100) {
-                                    Toast.makeText(dc.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                                }
-                                page = (int) (dc.getPageCount() * parseFloat) / 100;
-                                page = page + 1;
-                            } else {
-                                page = Integer.valueOf(txt);
+                        if (txt.contains("%") || txt.contains(".") || txt.contains(",")) {
+                            txt = txt.replace("%", "").replace(",", ".");
+                            float parseFloat = Float.parseFloat(txt);
+                            if (parseFloat > 100) {
+                                Toast.makeText(dc.getActivity(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
                             }
-
-                        } catch (Exception e) {
-                            LOG.e(e);
-                            number.setText("1");
+                            page = (int) (dc.getPageCount() * parseFloat) / 100;
+                            page = page + 1;
+                        } else {
+                            page = Integer.parseInt(txt);
                         }
 
-                        if (page >= 0 && page <= dc.getPageCount()) {
-                            dc.onGoToPage(page);
-                            grid.setSelection(page - 1);
-                            Keyboards.close(number);
-                        }
+                    } catch (Exception e) {
+                        LOG.e(e);
+                        number.setText("1");
+                    }
+
+                    if (page >= 0 && page <= dc.getPageCount()) {
+                        dc.onGoToPage(page);
+                        grid.setSelection(page - 1);
+                        Keyboards.close(number);
                     }
                 });
 
-                number.setOnEditorActionListener(new OnEditorActionListener() {
-
-                    @Override
-                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                        if (actionId == EditorInfo.IME_ACTION_DONE) {
-                            onSearch.performClick();
-                            return true;
-                        }
-                        return false;
+                number.setOnEditorActionListener((v, actionId, event) -> {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        onSearch.performClick();
+                        return true;
                     }
+                    return false;
                 });
 
                 return view;
             }
 
-        }.show("gotoPageDialog", false, true).setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-            }
-
+        }.show("gotoPageDialog", false, true).setOnCloseListener(() -> {
         });
         return popup;
 
@@ -2122,24 +1642,18 @@ public class DragingDialogs {
         if (controller == null) {
             return;
         }
-        drawView.setOnFinishDraw(new Runnable() {
-
-            @Override
-            public void run() {
-                String annotationDrawColor = AppState.get().annotationDrawColor;
-                if (TxtUtils.isEmpty(annotationDrawColor)) {
-                    annotationDrawColor = AppState.get().COLORS.get(0);
-                }
-
-                controller.saveChanges(drawView.getPoints(), Color.parseColor(annotationDrawColor));
-                drawView.clear();
-                controller.saveAnnotationsToFile();
+        drawView.setOnFinishDraw(() -> {
+            String annotationDrawColor = AppState.get().annotationDrawColor;
+            if (TxtUtils.isEmpty(annotationDrawColor)) {
+                annotationDrawColor = AppState.get().COLORS.get(0);
             }
 
+            controller.saveChanges(drawView.getPoints(), Color.parseColor(annotationDrawColor));
+            drawView.clear();
+            controller.saveAnnotationsToFile();
         });
 
         new DragingPopup(R.string.annotations_draw, anchor, 250, 150) {
-
             @Override
             public void closeDialog() {
                 super.closeDialog();
@@ -2148,8 +1662,6 @@ public class DragingDialogs {
                 drawView.setVisibility(View.GONE);
                 drawView.clear();
             }
-
-            ;
 
             @Override
             public View getContentView(final LayoutInflater inflater) {
@@ -2248,27 +1760,22 @@ public class DragingDialogs {
                     }
                 };
                 grid.setAdapter(adapter);
-                grid.setOnItemClickListener(new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        AppState.get().editWith = AppState.EDIT_PEN;
-                        if (view.getTag().equals(AppState.get().annotationDrawColor)) {
-                            AppState.get().annotationDrawColor = "";
+                grid.setOnItemClickListener((parent, view, position, id) -> {
+                    AppState.get().editWith = AppState.EDIT_PEN;
+                    if (view.getTag().equals(AppState.get().annotationDrawColor)) {
+                        AppState.get().annotationDrawColor = "";
+                        drawView.setVisibility(View.GONE);
+                    } else {
+                        AppState.get().annotationDrawColor = (String) view.getTag();
+                        int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().annotationDrawColor);
+                        drawView.setColor(acolor, AppState.get().editLineWidth);
+                        drawView.setVisibility(View.VISIBLE);
+                        if (position == 0) {
                             drawView.setVisibility(View.GONE);
-                        } else {
-                            AppState.get().annotationDrawColor = (String) view.getTag();
-                            int acolor = IMG.alphaColor(AppState.get().editAlphaColor, AppState.get().annotationDrawColor);
-                            drawView.setColor(acolor, AppState.get().editLineWidth);
-                            drawView.setVisibility(View.VISIBLE);
-                            if (position == 0) {
-                                drawView.setVisibility(View.GONE);
-                                AppState.get().editWith = AppState.EDIT_DELETE;
-                            }
+                            AppState.get().editWith = AppState.EDIT_DELETE;
                         }
-                        adapter.notifyDataSetChanged();
                     }
-
+                    adapter.notifyDataSetChanged();
                 });
 
                 return a;
@@ -2282,7 +1789,6 @@ public class DragingDialogs {
         }
 
         new DragingPopup(R.string.recent_favorites_tags, anchor, PREF_WIDTH, PREF_HEIGHT) {
-
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 RecyclerView recyclerView = new RecyclerView(controller.getActivity());
@@ -2302,13 +1808,7 @@ public class DragingDialogs {
                 recentAdapter.getItemsList().addAll(all);
                 recentAdapter.notifyDataSetChanged();
 
-                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter, controller, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        closeDialog();
-                    }
-                });
+                DefaultListeners.bindAdapter(controller.getActivity(), recentAdapter, controller, this::closeDialog);
 
                 return recyclerView;
             }
@@ -2327,54 +1827,10 @@ public class DragingDialogs {
         if (controller == null) {
             return;
         }
-        final List<AppBookmark> objects = new ArrayList<AppBookmark>();
+        final List<AppBookmark> objects = new ArrayList<>();
         final BookmarksAdapter bookmarksAdapter = new BookmarksAdapter(anchor.getContext(), objects, true, controller, onRefeshUI);
 
-        final View.OnClickListener onAddBookmark = new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                ListBoxHelper.showAddDialog(controller, objects, bookmarksAdapter, "", onRefeshUI);
-
-            }
-        };
-
-        final OnItemClickListener onItem = new OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-
-
-                final AppBookmark appBookmark = objects.get(position);
-                if (appBookmark.isF) {
-                    controller.floatingBookmark = appBookmark;
-                } else {
-                    controller.floatingBookmark = null;
-                }
-
-                LOG.d("onItem", appBookmark);
-
-                int page = appBookmark.getPage(controller.getPageCount());
-
-                controller.onGoToPage(page);
-
-                onRefeshUI.run();
-
-
-            }
-        };
-
-        final OnItemLongClickListener onBooksLong = new OnItemLongClickListener() {
-
-            @Override
-            public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-                ListBoxHelper.showEditDeleteDialog(objects.get(position), controller, bookmarksAdapter, objects, onRefeshUI);
-                return true;
-            }
-
-        };
-
         new DragingPopup(R.string.bookmarks, anchor, 300, 400) {
-
             @Override
             public View getContentView(final LayoutInflater inflater) {
                 View a = inflater.inflate(R.layout.dialog_bookmarks, null, false);
@@ -2382,21 +1838,34 @@ public class DragingDialogs {
                 contentList.setDivider(new ColorDrawable(Color.TRANSPARENT));
                 contentList.setVerticalScrollBarEnabled(false);
                 contentList.setAdapter(bookmarksAdapter);
-                contentList.setOnItemClickListener(onItem);
-                contentList.setOnItemLongClickListener(onBooksLong);
-                a.findViewById(R.id.addBookmarkNormal).setOnClickListener(onAddBookmark);
-
-                final View.OnClickListener onQuickBookmark = new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        TTSEngine.fastTTSBookmakr(controller);
-                        closeDialog();
-                        onRefeshUI.run();
+                contentList.setOnItemClickListener((parent, view, position, id) -> {
+                    final AppBookmark appBookmark = objects.get(position);
+                    if (appBookmark.isF) {
+                        controller.floatingBookmark = appBookmark;
+                    } else {
+                        controller.floatingBookmark = null;
                     }
-                };
 
-                a.findViewById(R.id.addPageBookmarkQuick).setOnClickListener(onQuickBookmark);
+                    LOG.d("onItem", appBookmark);
+
+                    int page = appBookmark.getPage(controller.getPageCount());
+
+                    controller.onGoToPage(page);
+
+                    onRefeshUI.run();
+                });
+                contentList.setOnItemLongClickListener((parent, view, position, id) -> {
+                    ListBoxHelper.showEditDeleteDialog(objects.get(position), controller, bookmarksAdapter, objects, onRefeshUI);
+                    return true;
+                });
+                a.findViewById(R.id.addBookmarkNormal).setOnClickListener(v ->
+                        ListBoxHelper.showAddDialog(controller, objects, bookmarksAdapter, "", onRefeshUI));
+
+                a.findViewById(R.id.addPageBookmarkQuick).setOnClickListener(v -> {
+                    TTSEngine.fastTTSBookmakr(controller);
+                    closeDialog();
+                    onRefeshUI.run();
+                });
 
                 objects.clear();
 
@@ -2418,37 +1887,6 @@ public class DragingDialogs {
     }
 
     public static DragingPopup showContent(final FrameLayout anchor, final DocumentController controller) {
-
-
-        final OnItemClickListener onClickContent = new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-                final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
-                // if (true) {
-                // int linkPage = MuPdfLinks.getLinkPageWrapper(link.docHandle, link.linkUri) +
-                // 1;
-                // LOG.d("targetUrl page", linkPage, link.linkUri);
-                // controller.onGoToPage(linkPage);
-                //
-                // return;
-                // }
-
-                if (link.targetPage != -1) {
-                    int pageCount = controller.getPageCount();
-                    if (link.targetPage < 1 || link.targetPage > pageCount) {
-                        Toast.makeText(anchor.getContext(), "no", Toast.LENGTH_SHORT).show();
-                    } else {
-                        controller.onGoToPage(link.targetPage);
-                        // ((ListView) parent).requestFocusFromTouch();
-                        // ((ListView) parent).setSelection(position);
-
-                    }
-                    return;
-                }
-
-            }
-        };
         DragingPopup dragingPopup = new DragingPopup(anchor.getContext().getString(R.string.content_of_book), anchor, 300, 400) {
 
             @Override
@@ -2476,55 +1914,42 @@ public class DragingDialogs {
                         t.setPadding(Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2), Dips.dpToPx(2));
                         t.setBackgroundResource(R.drawable.bg_clickable);
                         attachemnts.addView(t);
-                        t.setOnClickListener(new OnClickListener() {
+                        t.setOnClickListener(v -> new AsyncTask<Void, Void, File>() {
+                            ProgressDialog dialog;
 
                             @Override
-                            public void onClick(View v) {
+                            protected void onPreExecute() {
+                                dialog = MyProgressDialog.show(controller.getActivity(), controller.getString(R.string.msg_loading));
+                            }
 
-                                new AsyncTask<Void, Void, File>() {
-                                    ProgressDialog dialog;
+                            @Override
+                            protected File doInBackground(Void... params) {
+                                return EpubExtractor.extractAttachment(controller.getCurrentBook(), nameFull);
+                            }
 
-                                    @Override
-                                    protected void onPreExecute() {
-                                        dialog = MyProgressDialog.show(controller.getActivity(), controller.getString(R.string.msg_loading));
-                                    }
-
-                                    ;
-
-                                    @Override
-                                    protected File doInBackground(Void... params) {
-                                        return EpubExtractor.extractAttachment(controller.getCurrentBook(), nameFull);
-                                    }
-
-                                    @Override
-                                    protected void onPostExecute(File aPath) {
-                                        try {
-                                            dialog.dismiss();
-                                            if (aPath != null && aPath.isFile()) {
-                                                LOG.d("Try to open path", aPath);
-                                                if (ExtUtils.isAudioContent(aPath.getPath())) {
-                                                    TTSEngine.get().mp3Destroy();
-                                                    BookCSS.get().mp3BookPath(aPath.getPath());
-                                                    AppState.get().mp3seek = 0;
-                                                    TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
-                                                } else {
-                                                    ExtUtils.openWith(anchor.getContext(), aPath);
-                                                }
-
-                                            } else {
-                                                Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
-                                            }
-                                        } catch (Exception e) {
-                                            LOG.e(e);
+                            @Override
+                            protected void onPostExecute(File aPath) {
+                                try {
+                                    dialog.dismiss();
+                                    if (aPath != null && aPath.isFile()) {
+                                        LOG.d("Try to open path", aPath);
+                                        if (ExtUtils.isAudioContent(aPath.getPath())) {
+                                            TTSEngine.get().mp3Destroy();
+                                            BookCSS.get().mp3BookPath(aPath.getPath());
+                                            AppState.get().mp3seek = 0;
+                                            TTSService.playBookPage(controller.getCurentPageFirst1() - 1, controller.getCurrentBook().getPath(), "", controller.getBookWidth(), controller.getBookHeight(), BookCSS.get().fontSizeSp, controller.getTitle());
+                                        } else {
+                                            ExtUtils.openWith(anchor.getContext(), aPath);
                                         }
 
+                                    } else {
+                                        Toast.makeText(controller.getActivity(), R.string.msg_unexpected_error, Toast.LENGTH_LONG).show();
                                     }
-
-                                    ;
-                                }.execute();
-
+                                } catch (Exception e) {
+                                    LOG.e(e);
+                                }
                             }
-                        });
+                        }.execute());
                     }
                 } else {
                     view.findViewById(R.id.mediaAttachmentsScroll).setVisibility(View.GONE);
@@ -2534,33 +1959,28 @@ public class DragingDialogs {
                 contentList.setSelector(android.R.color.transparent);
                 contentList.setVerticalScrollBarEnabled(false);
 
-                final Runnable showOutline = new Runnable() {
+                final Runnable showOutline = () -> controller.getOutline(outline -> {
+                    contentList.post(() -> {
+                        if (outline != null && outline.size() > 0) {
+                            contentList.clearChoices();
+                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentChapter(controller);
+                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber, controller.getPageCount());
+                            contentList.setAdapter(adapter);
+                            contentList.setOnItemClickListener((parent, view, position, id) -> {
+                                final OutlineLinkWrapper link = (OutlineLinkWrapper) parent.getItemAtPosition(position);
 
-                    @Override
-                    public void run() {
-                        controller.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-                            @Override
-                            public boolean onResultRecive(final List<OutlineLinkWrapper> outline) {
-                                contentList.post(new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        if (outline != null && outline.size() > 0) {
-                                            contentList.clearChoices();
-                                            OutlineLinkWrapper currentByPageNumber = OutlineHelper.getCurrentChapter(controller);
-                                            final OutlineAdapter adapter = new OutlineAdapter(controller.getActivity(), outline, currentByPageNumber, controller.getPageCount());
-                                            contentList.setAdapter(adapter);
-                                            contentList.setOnItemClickListener(onClickContent);
-                                            contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
-                                        }
+                                if (link.targetPage != -1) {
+                                    int pageCount = controller.getPageCount();
+                                    if (link.targetPage < 1 || link.targetPage > pageCount) {
+                                        Toast.makeText(anchor.getContext(), "no", Toast.LENGTH_SHORT).show();
                                     }
-                                });
-                                return false;
-                            }
-                        }, true);
-
-                    }
-                };
+                                }
+                            });
+                            contentList.setSelection(adapter.getItemPosition(currentByPageNumber) - 3);
+                        }
+                    });
+                    return false;
+                }, true);
                 contentList.postDelayed(showOutline, 50);
 
                 if (false && BookType.FB2.is(controller.getCurrentBook().getPath())) {
@@ -2573,16 +1993,13 @@ public class DragingDialogs {
 
                     for (int i = 0; i < names.size(); i++) {
                         final int index = i;
-                        titlePopupMenu.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().outlineMode = actions.get(index);
-                                setTitlePopupIcon(icons.get(index));
-                                showOutline.run();
-                                return false;
-                            }
-                        });
+                        titlePopupMenu.getMenu().add(names.get(i)).setIcon(icons.get(i))
+                                .setOnMenuItemClickListener(item -> {
+                                    AppState.get().outlineMode = actions.get(index);
+                                    setTitlePopupIcon(icons.get(index));
+                                    showOutline.run();
+                                    return false;
+                                });
                     }
                 }
 
@@ -2626,26 +2043,17 @@ public class DragingDialogs {
                 seek = (SeekBar) view.findViewById(R.id.seekBar);
                 seek.setMax(100);
 
-                view.findViewById(R.id.imagePlus).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (AppState.get().cutP < 80) {
-                            AppState.get().cutP += 1;
-                        }
-                        updateUI.run();
-
+                view.findViewById(R.id.imagePlus).setOnClickListener(v -> {
+                    if (AppState.get().cutP < 80) {
+                        AppState.get().cutP += 1;
                     }
+                    updateUI.run();
                 });
-                view.findViewById(R.id.imageMinus).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        if (AppState.get().cutP > 20) {
-                            AppState.get().cutP -= 1;
-                        }
-                        updateUI.run();
+                view.findViewById(R.id.imageMinus).setOnClickListener(v -> {
+                    if (AppState.get().cutP > 20) {
+                        AppState.get().cutP -= 1;
                     }
+                    updateUI.run();
                 });
                 seek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -2673,40 +2081,31 @@ public class DragingDialogs {
                 });
 
                 Button buttonCancel = (Button) view.findViewById(R.id.buttonCancel);
-                buttonCancel.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        PageImageState.get().isShowCuttingLine = false;
-                        AppSP.get().isCut = false;
-                        AppBook bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
-                        boolean wasSplit = bookSettings.sp;
-                        bookSettings.sp = false;
-                        onRefreshDoc.run();
-                        closeDialog();
-                        if (wasSplit) {
-                            controller.onGoToPage(controller.getCurentPage() / 2 + 1);
-                        }
+                buttonCancel.setOnClickListener(v -> {
+                    PageImageState.get().isShowCuttingLine = false;
+                    AppSP.get().isCut = false;
+                    AppBook bookSettings = SettingsManager.getBookSettings(controller.getCurrentBook().getPath());
+                    boolean wasSplit = bookSettings.sp;
+                    bookSettings.sp = false;
+                    onRefreshDoc.run();
+                    closeDialog();
+                    if (wasSplit) {
+                        controller.onGoToPage(controller.getCurentPage() / 2 + 1);
                     }
                 });
 
                 Button buttonApply = (Button) view.findViewById(R.id.buttonApply);
 
-                buttonApply.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        PageImageState.get().isShowCuttingLine = false;
-                        AppSP.get().isCut = true;
-                        AppSP.get().isCrop = false;
-                        boolean init = SettingsManager.getBookSettings().sp;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        onRefreshDoc.run();
-                        closeDialog();
-                        if (!init) {
-                            controller.onGoToPage(controller.getCurentPage() * 2 + 1);
-                        }
-
+                buttonApply.setOnClickListener(v -> {
+                    PageImageState.get().isShowCuttingLine = false;
+                    AppSP.get().isCut = true;
+                    AppSP.get().isCrop = false;
+                    boolean init = SettingsManager.getBookSettings().sp;
+                    SettingsManager.getBookSettings().updateFromAppState();
+                    onRefreshDoc.run();
+                    closeDialog();
+                    if (!init) {
+                        controller.onGoToPage(controller.getCurentPage() * 2 + 1);
                     }
                 });
 
@@ -2714,15 +2113,10 @@ public class DragingDialogs {
 
                 return view;
             }
-        }.show("cutDialog").setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                PageImageState.get().isShowCuttingLine = false;
-                EventBus.getDefault().post(new InvalidateMessage());
-            }
+        }.show("cutDialog").setOnCloseListener(() -> {
+            PageImageState.get().isShowCuttingLine = false;
+            EventBus.getDefault().post(new InvalidateMessage());
         });
-
     }
 
     public static void pageFlippingDialog(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh) {
@@ -2739,78 +2133,38 @@ public class DragingDialogs {
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
-                isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isScrollAnimation = isChecked;
-                    }
-                });
+                isScrollAnimation.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isScrollAnimation = isChecked);
 
                 CheckBox isLoopAutoplay = (CheckBox) inflate.findViewById(R.id.isLoopAutoplay);
                 isLoopAutoplay.setChecked(AppState.get().isLoopAutoplay);
-                isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isLoopAutoplay = isChecked;
-                    }
-                });
+                isLoopAutoplay.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isLoopAutoplay = isChecked);
 
                 CheckBox isShowToolBar = (CheckBox) inflate.findViewById(R.id.isShowToolBar);
                 isShowToolBar.setChecked(AppState.get().isShowToolBar);
-                isShowToolBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowToolBar = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowToolBar.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowToolBar = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
                 final CustomSeek flippingInterval = (CustomSeek) inflate.findViewById(R.id.flippingInterval);
                 flippingInterval.init(1, 240, AppState.get().flippingInterval);
-                flippingInterval.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        flippingInterval.setValueText("" + result);
-                        AppState.get().flippingInterval = result;
-                        return false;
-                    }
+                flippingInterval.setOnSeekChanged(result -> {
+                    flippingInterval.setValueText("" + result);
+                    AppState.get().flippingInterval = result;
+                    return false;
                 });
                 flippingInterval.setValueText("" + AppState.get().flippingInterval);
 
-                inflate.findViewById(R.id.flippingStart).setOnClickListener(new OnClickListener() {
+                inflate.findViewById(R.id.flippingStart).setOnClickListener(v -> EventBus.getDefault().post(new FlippingStart()));
 
-                    @Override
-                    public void onClick(View v) {
-                        EventBus.getDefault().post(new FlippingStart());
-                    }
-                });
-
-                inflate.findViewById(R.id.flippingStop).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        EventBus.getDefault().post(new FlippingStop());
-
-                    }
-                });
+                inflate.findViewById(R.id.flippingStop).setOnClickListener(v -> EventBus.getDefault().post(new FlippingStop()));
 
                 return inflate;
             }
-        }.show("pageFlippingDialog").setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-
-            }
-
+        }.show("pageFlippingDialog").setOnCloseListener(() -> {
         });
-
     }
 
     public static DragingPopup statusBarSettings(final FrameLayout anchor, final DocumentController controller, final Runnable onRefresh, final Runnable updateUIRefresh) {
@@ -2820,13 +2174,7 @@ public class DragingDialogs {
             @Override
             public void beforeCreate() {
                 titleAction = controller.getString(R.string.preferences);
-                titleRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        preferences(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                };
+                titleRunnable = () -> preferences(anchor, controller, onRefresh, updateUIRefresh);
             }
 
             @Override
@@ -2838,79 +2186,60 @@ public class DragingDialogs {
                 final CheckBox isShowSubChaptersOnProgress = (CheckBox) inflate.findViewById(R.id.isShowSubChaptersOnProgress);
 
                 isShowReadingProgress.setChecked(AppState.get().isShowReadingProgress);
-                isShowReadingProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowReadingProgress.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowReadingProgress = isChecked;
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    isShowChaptersOnProgress.setChecked(isChecked);
+                    isShowChaptersOnProgress.setEnabled(isChecked);
 
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowReadingProgress = isChecked;
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        isShowChaptersOnProgress.setChecked(isChecked);
-                        isShowChaptersOnProgress.setEnabled(isChecked);
-
-                        isShowSubChaptersOnProgress.setEnabled(isChecked);
-                        if (!isChecked) {
-                            isShowSubChaptersOnProgress.setChecked(isChecked);
-                        }
+                    isShowSubChaptersOnProgress.setEnabled(isChecked);
+                    if (!isChecked) {
+                        isShowSubChaptersOnProgress.setChecked(isChecked);
                     }
                 });
 
                 isShowChaptersOnProgress.setChecked(AppState.get().isShowChaptersOnProgress);
                 isShowChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
-                isShowChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowChaptersOnProgress = isChecked;
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        if (isChecked) {
-                            isShowReadingProgress.setChecked(true);
-                        } else {
-                            AppState.get().isShowSubChaptersOnProgress = false;
-                            isShowSubChaptersOnProgress.setChecked(false);
-
-                        }
-
+                isShowChaptersOnProgress.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowChaptersOnProgress = isChecked;
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    if (isChecked) {
+                        isShowReadingProgress.setChecked(true);
+                    } else {
+                        AppState.get().isShowSubChaptersOnProgress = false;
+                        isShowSubChaptersOnProgress.setChecked(false);
                     }
                 });
 
                 isShowSubChaptersOnProgress.setChecked(AppState.get().isShowSubChaptersOnProgress);
                 isShowSubChaptersOnProgress.setEnabled(AppState.get().isShowReadingProgress);
-                isShowSubChaptersOnProgress.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowSubChaptersOnProgress.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowSubChaptersOnProgress = isChecked;
 
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowSubChaptersOnProgress = isChecked;
-
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        if (isChecked) {
-                            AppState.get().isShowChaptersOnProgress = true;
-                            isShowChaptersOnProgress.setChecked(true);
-                            isShowReadingProgress.setChecked(true);
-                        }
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    if (isChecked) {
+                        AppState.get().isShowChaptersOnProgress = true;
+                        isShowChaptersOnProgress.setChecked(true);
+                        isShowReadingProgress.setChecked(true);
                     }
                 });
 
                 final EditText musicText = (EditText) inflate.findViewById(R.id.musicText);
                 musicText.setText(AppState.get().musicText);
                 ((View) musicText.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_MUSICIAN ? View.VISIBLE : View.GONE);
-                inflate.findViewById(R.id.musicTextOk).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AppState.get().musicText = musicText.getText().toString();
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-
+                inflate.findViewById(R.id.musicTextOk).setOnClickListener(v -> {
+                    AppState.get().musicText = musicText.getText().toString();
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
                 ///
@@ -2953,66 +2282,44 @@ public class DragingDialogs {
 
                 CheckBox isRewindEnable = (CheckBox) inflate.findViewById(R.id.isRewindEnable);
                 isRewindEnable.setChecked(AppState.get().isRewindEnable);
-                isRewindEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isRewindEnable = isChecked;
-                    }
-                });
+                isRewindEnable.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isRewindEnable = isChecked);
                 // isShowBookmarsPanel
                 CheckBox isShowBookmarsPanelInMusicMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInMusicMode);
 
                 isShowBookmarsPanelInMusicMode.setChecked(AppState.get().isShowBookmarsPanelInMusicMode);
-                isShowBookmarsPanelInMusicMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowBookmarsPanelInMusicMode = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowBookmarsPanelInMusicMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowBookmarsPanelInMusicMode = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
                 CheckBox isShowBookmarsPanelInScrollMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInScrollMode);
 
                 isShowBookmarsPanelInScrollMode.setChecked(AppState.get().isShowBookmarsPanelInScrollMode);
-                isShowBookmarsPanelInScrollMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowBookmarsPanelInScrollMode = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowBookmarsPanelInScrollMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowBookmarsPanelInScrollMode = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
                 CheckBox isShowBookmarsPanelInBookMode = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelInBookMode);
 
                 isShowBookmarsPanelInBookMode.setChecked(AppState.get().isShowBookmarsPanelInBookMode);
-                isShowBookmarsPanelInBookMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowBookmarsPanelInBookMode = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowBookmarsPanelInBookMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowBookmarsPanelInBookMode = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
                 CheckBox isShowBookmarsPanelText = (CheckBox) inflate.findViewById(R.id.isShowBookmarsPanelText);
                 isShowBookmarsPanelText.setChecked(AppState.get().isShowBookmarsPanelText);
-                isShowBookmarsPanelText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowBookmarsPanelText = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowBookmarsPanelText.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowBookmarsPanelText = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
@@ -3020,15 +2327,11 @@ public class DragingDialogs {
 
                 final CheckBox isShowSatusBar = (CheckBox) inflate.findViewById(R.id.isShowSatusBar);
                 isShowSatusBar.setChecked(AppState.get().isShowToolBar);
-                isShowSatusBar.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowToolBar = isChecked;
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                isShowSatusBar.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowToolBar = isChecked;
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
@@ -3039,52 +2342,40 @@ public class DragingDialogs {
                 }
 
                 isShowPanelBookName.setChecked(controller.isBookMode() ? AppState.get().isShowPanelBookNameBookMode : AppState.get().isShowPanelBookNameScrollMode);
-                isShowPanelBookName.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isShowPanelBookName.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (controller.isBookMode()) {
+                        AppState.get().isShowPanelBookNameBookMode = isChecked;
+                    } else {
+                        AppState.get().isShowPanelBookNameScrollMode = isChecked;
 
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (controller.isBookMode()) {
-                            AppState.get().isShowPanelBookNameBookMode = isChecked;
-                        } else {
-                            AppState.get().isShowPanelBookNameScrollMode = isChecked;
-
-                        }
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
+                    }
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
 
                 final CheckBox isShowTime = (CheckBox) inflate.findViewById(R.id.isShowTime);
                 isShowTime.setChecked(AppState.get().isShowTime);
-                isShowTime.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowTime = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        if (isChecked) {
-                            isShowSatusBar.setChecked(true);
-                        }
+                isShowTime.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowTime = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    if (isChecked) {
+                        isShowSatusBar.setChecked(true);
                     }
                 });
 
                 final CheckBox isShowBattery = (CheckBox) inflate.findViewById(R.id.isShowBattery);
                 isShowBattery.setChecked(AppState.get().isShowBattery);
-                isShowBattery.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isShowBattery = isChecked;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        if (isChecked) {
-                            isShowSatusBar.setChecked(true);
-                        }
+                isShowBattery.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isShowBattery = isChecked;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    if (isChecked) {
+                        isShowSatusBar.setChecked(true);
                     }
                 });
                 // position
@@ -3109,40 +2400,31 @@ public class DragingDialogs {
 
                     statusBarPositionParent.setVisibility(TxtUtils.visibleIf(controller.getActivity() instanceof HorizontalViewActivity));
 
-                    statusBarPosition.setOnClickListener(new OnClickListener() {
+                    statusBarPosition.setOnClickListener(v -> {
+                        final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                        for (int i = 0; i < modeStrings.size(); i++) {
+                            final int j = i;
+                            popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(item -> {
+                                AppState.get().statusBarPosition = modeIds.get(j);
+                                statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
+                                TxtUtils.underlineTextView(statusBarPosition);
 
-                        @Override
-                        public void onClick(View v) {
-                            final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
-                            for (int i = 0; i < modeStrings.size(); i++) {
-                                final int j = i;
-                                popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                                if (item.getTitle().equals(controller.getString(R.string.top))) {
+                                    AppState.get().isShowPanelBookNameBookMode = false;
+                                    isShowPanelBookName.setChecked(false);
+                                    isShowPanelBookName.setEnabled(false);
+                                } else {
+                                    isShowPanelBookName.setEnabled(true);
+                                }
 
-                                    @Override
-                                    public boolean onMenuItemClick(MenuItem item) {
-                                        AppState.get().statusBarPosition = modeIds.get(j);
-                                        statusBarPosition.setText(modeStrings.get(modeIds.indexOf(AppState.get().statusBarPosition)));
-                                        TxtUtils.underlineTextView(statusBarPosition);
-
-                                        if (item.getTitle().equals(controller.getString(R.string.top))) {
-                                            AppState.get().isShowPanelBookNameBookMode = false;
-                                            isShowPanelBookName.setChecked(false);
-                                            isShowPanelBookName.setEnabled(false);
-                                        } else {
-                                            isShowPanelBookName.setEnabled(true);
-
-                                        }
-
-                                        if (onRefresh != null) {
-                                            onRefresh.run();
-                                        }
-                                        return false;
-                                    }
-                                });
-                            }
-
-                            popupMenu.show();
+                                if (onRefresh != null) {
+                                    onRefresh.run();
+                                }
+                                return false;
+                            });
                         }
+
+                        popupMenu.show();
                     });
                 }
 
@@ -3162,30 +2444,22 @@ public class DragingDialogs {
                 pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
                 TxtUtils.underlineTextView(pageNumberFormat);
 
-                pageNumberFormat.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
-                        for (int i = 0; i < modeStrings.size(); i++) {
-                            final int j = i;
-                            popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().pageNumberFormat = modeIds.get(j);
-                                    pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
-                                    TxtUtils.underlineTextView(pageNumberFormat);
-                                    if (onRefresh != null) {
-                                        onRefresh.run();
-                                    }
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
+                pageNumberFormat.setOnClickListener(v -> {
+                    final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                    for (int i = 0; i < modeStrings.size(); i++) {
+                        final int j = i;
+                        popupMenu.getMenu().add(modeStrings.get(i)).setOnMenuItemClickListener(item -> {
+                            AppState.get().pageNumberFormat = modeIds.get(j);
+                            pageNumberFormat.setText(modeStrings.get(modeIds.indexOf(AppState.get().pageNumberFormat)));
+                            TxtUtils.underlineTextView(pageNumberFormat);
+                            if (onRefresh != null) {
+                                onRefresh.run();
+                            }
+                            return false;
+                        });
                     }
+
+                    popupMenu.show();
                 });
 
                 // Chpater format
@@ -3194,30 +2468,22 @@ public class DragingDialogs {
                 chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
                 TxtUtils.underlineTextView(chapterFormat);
 
-                chapterFormat.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
-                        for (int i = 0; i < OutlineHelper.CHAPTER_STRINGS.size(); i++) {
-                            final int j = i;
-                            popupMenu.getMenu().add(OutlineHelper.CHAPTER_STRINGS.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().chapterFormat = OutlineHelper.CHAPTER_FORMATS.get(j);
-                                    chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
-                                    TxtUtils.underlineTextView(chapterFormat);
-                                    if (onRefresh != null) {
-                                        onRefresh.run();
-                                    }
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
+                chapterFormat.setOnClickListener(v -> {
+                    final MyPopupMenu popupMenu = new MyPopupMenu(v.getContext(), v);
+                    for (int i = 0; i < OutlineHelper.CHAPTER_STRINGS.size(); i++) {
+                        final int j = i;
+                        popupMenu.getMenu().add(OutlineHelper.CHAPTER_STRINGS.get(i)).setOnMenuItemClickListener(item -> {
+                            AppState.get().chapterFormat = OutlineHelper.CHAPTER_FORMATS.get(j);
+                            chapterFormat.setText(OutlineHelper.CHAPTER_STRINGS.get(OutlineHelper.CHAPTER_FORMATS.indexOf(AppState.get().chapterFormat)));
+                            TxtUtils.underlineTextView(chapterFormat);
+                            if (onRefresh != null) {
+                                onRefresh.run();
+                            }
+                            return false;
+                        });
                     }
+
+                    popupMenu.show();
                 });
 
                 /// asd
@@ -3226,39 +2492,31 @@ public class DragingDialogs {
                 statusBarTextSize.setTitleTextWidth(Dips.dpToPx(100));
 
                 statusBarTextSize.init(5, 30, controller.isBookMode() ? AppState.get().statusBarTextSizeEasy : AppState.get().statusBarTextSizeAdv);
-                statusBarTextSize.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        isShowSatusBar.setChecked(true);
-                        if (controller.isBookMode()) {
-                            AppState.get().statusBarTextSizeEasy = result;
-                        } else {
-                            AppState.get().statusBarTextSizeAdv = result;
-                        }
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        return false;
+                statusBarTextSize.setOnSeekChanged(result -> {
+                    isShowSatusBar.setChecked(true);
+                    if (controller.isBookMode()) {
+                        AppState.get().statusBarTextSizeEasy = result;
+                    } else {
+                        AppState.get().statusBarTextSizeAdv = result;
                     }
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
+                    }
+                    return false;
                 });
 
                 final CustomSeek progressLineHeight = (CustomSeek) inflate.findViewById(R.id.progressLineHeight);
                 progressLineHeight.setTitleTextWidth(Dips.dpToPx(100));
                 progressLineHeight.init(0, 10, AppState.get().progressLineHeight);
-                progressLineHeight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        isShowReadingProgress.setChecked(true);
-                        AppState.get().progressLineHeight = result;
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        return false;
+                progressLineHeight.setOnSeekChanged(result -> {
+                    isShowReadingProgress.setChecked(true);
+                    AppState.get().progressLineHeight = result;
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
+                    return false;
                 });
 
                 final CustomColorView statusBarColorDay = (CustomColorView) inflate.findViewById(R.id.statusBarColorDay);
@@ -3279,56 +2537,37 @@ public class DragingDialogs {
                     }
                 });
 
-                statusBarColorDay.setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, new ResultResponse<String>() {
-
-                            @Override
-                            public boolean onResultRecive(String result) {
-                                AppState.get().statusBarColorDays = result;
-                                statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays, AppState.get().tintColor));
-                                return true;
-                            }
-                        });
+                statusBarColorDay.setOnLongClickListener(v -> {
+                    Dialogs.showEditDialog(v.getContext(), statusBarColorDay.getTextString(), AppState.get().statusBarColorDays, result -> {
+                        AppState.get().statusBarColorDays = result;
+                        statusBarColorDay.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorDays, AppState.get().tintColor));
                         return true;
-                    }
+                    });
+                    return true;
                 });
 
                 final CustomColorView statusBarColorNight = (CustomColorView) inflate.findViewById(R.id.statusBarColorNight);
                 statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights, AppState.get().tintColor));
                 statusBarColorNight.init(AppState.get().statusBarColorNight);
-                statusBarColorNight.setOnColorChanged(new StringResponse() {
-
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        isShowSatusBar.setChecked(true);
-                        AppState.get().statusBarColorNight = Color.parseColor(string);
-                        AppState.get().isEditMode = false;
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-                        Keyboards.hideNavigation(controller.getActivity());
-                        return false;
+                statusBarColorNight.setOnColorChanged(string -> {
+                    isShowSatusBar.setChecked(true);
+                    AppState.get().statusBarColorNight = Color.parseColor(string);
+                    AppState.get().isEditMode = false;
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
+                    Keyboards.hideNavigation(controller.getActivity());
+                    return false;
                 });
 
-                statusBarColorNight.setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), statusBarColorNight.getTextString(), AppState.get().statusBarColorNights, new ResultResponse<String>() {
-
-                            @Override
-                            public boolean onResultRecive(String result) {
+                statusBarColorNight.setOnLongClickListener(v -> {
+                    Dialogs.showEditDialog(v.getContext(), statusBarColorNight.getTextString(),
+                            AppState.get().statusBarColorNights, result -> {
                                 AppState.get().statusBarColorNights = result;
                                 statusBarColorNight.withDefaultColors(StringDB.converToColor(AppState.get().statusBarColorNights, AppState.get().tintColor));
                                 return true;
-                            }
-                        });
-                        return true;
-                    }
+                            });
+                    return true;
                 });
 
                 statusBarColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
@@ -3353,22 +2592,13 @@ public class DragingDialogs {
             @Override
             public void beforeCreate() {
                 titleAction = controller.getString(R.string.preferences);
-                titleRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (initHash != Objects.appHash()) {
-                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    closeDialog();
-                                }
-                            });
-
-                        } else {
-                            preferences(anchor, controller, onRefresh, updateUIRefresh);
-                        }
+                titleRunnable = () -> {
+                    if (initHash != Objects.appHash()) {
+                        AlertDialogs.showDialog(controller.getActivity(),
+                                controller.getString(R.string.you_neet_to_apply_the_new_settings),
+                                controller.getString(R.string.apply), this::closeDialog);
+                    } else {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 };
             }
@@ -3382,73 +2612,36 @@ public class DragingDialogs {
                 // isLoopAutoplay.setVisibility(AppSP.get().readingMode ==
                 // AppState.READEING_MODE_BOOK ?
                 // View.GONE : View.VISIBLE);
-                isLoopAutoplay.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isLoopAutoplay = isChecked;
-                    }
-                });
+                isLoopAutoplay.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isLoopAutoplay = isChecked);
 
                 CheckBox isScrollSpeedByVolumeKeys = (CheckBox) inflate.findViewById(R.id.isScrollSpeedByVolumeKeys);
                 isScrollSpeedByVolumeKeys.setChecked(AppState.get().isScrollSpeedByVolumeKeys);
                 isScrollSpeedByVolumeKeys.setVisibility(View.GONE);
-                isScrollSpeedByVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isScrollSpeedByVolumeKeys = isChecked;
-                    }
-                });
+                isScrollSpeedByVolumeKeys.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isScrollSpeedByVolumeKeys = isChecked);
 
                 CheckBox isBrighrnessEnable = (CheckBox) inflate.findViewById(R.id.isBrighrnessEnable);
                 isBrighrnessEnable.setChecked(AppState.get().isBrighrnessEnable);
-                isBrighrnessEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isBrighrnessEnable = isChecked;
-                    }
-                });
+                isBrighrnessEnable.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isBrighrnessEnable = isChecked);
 
                 CheckBox isAllowMinBrigthness = (CheckBox) inflate.findViewById(R.id.isAllowMinBrigthness);
                 isAllowMinBrigthness.setChecked(AppState.get().isAllowMinBrigthness);
-                isAllowMinBrigthness.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isAllowMinBrigthness = isChecked;
-                        BrightnessHelper.applyBrigtness(controller.getActivity());
-                    }
+                isAllowMinBrigthness.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isAllowMinBrigthness = isChecked;
+                    BrightnessHelper.applyBrigtness(controller.getActivity());
                 });
-
 
                 CheckBox isShowLongBackDialog = (CheckBox) inflate.findViewById(R.id.isShowLongBackDialog);
                 isShowLongBackDialog.setChecked(AppState.get().isShowLongBackDialog);
-                isShowLongBackDialog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowLongBackDialog = isChecked;
-                    }
-                });
+                isShowLongBackDialog.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isShowLongBackDialog = isChecked);
 
                 CheckBox highlightByLetters = (CheckBox) inflate.findViewById(R.id.highlightByLetters);
                 highlightByLetters.setChecked(AppState.get().selectingByLetters);
-                highlightByLetters.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().selectingByLetters = isChecked;
-                    }
-                });
-
+                highlightByLetters.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().selectingByLetters = isChecked);
 
                 CheckBox isSelectTexByTouch = (CheckBox) inflate.findViewById(R.id.isSelectTexByTouch);
                 isSelectTexByTouch.setChecked(AppState.get().isSelectTexByTouch);
                 isSelectTexByTouch.setVisibility(TxtUtils.visibleIf(controller.isBookMode()));
                 isSelectTexByTouch.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSelectTexByTouch = isChecked);
-
 
                 CheckBox isAllowTextSelection = (CheckBox) inflate.findViewById(R.id.isAllowTextSelection);
                 isAllowTextSelection.setChecked(AppState.get().isAllowTextSelection);
@@ -3467,7 +2660,6 @@ public class DragingDialogs {
                 });
                 highlightByLetters.setEnabled(AppState.get().isAllowTextSelection);
                 isSelectTexByTouch.setEnabled(AppState.get().isAllowTextSelection);
-
 
                 CheckBox isZoomInOutWithVolueKeys = (CheckBox) inflate.findViewById(R.id.isZoomInOutWithVolueKeys);
                 isZoomInOutWithVolueKeys.setChecked(AppState.get().isZoomInOutWithVolueKeys);
@@ -3488,101 +2680,51 @@ public class DragingDialogs {
                 CheckBox isScrollAnimation = (CheckBox) inflate.findViewById(R.id.isScrollAnimation);
                 isScrollAnimation.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isScrollAnimation.setChecked(AppState.get().isScrollAnimation);
-                isScrollAnimation.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isScrollAnimation = isChecked;
-                    }
-                });
+                isScrollAnimation.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isScrollAnimation = isChecked);
 
                 CheckBox isDisableSwipe = (CheckBox) inflate.findViewById(R.id.isEnableVerticalSwipe);
                 isDisableSwipe.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isDisableSwipe.setChecked(AppState.get().isEnableVerticalSwipe);
-                isDisableSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isEnableVerticalSwipe = isChecked;
-                    }
-                });
+                isDisableSwipe.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isEnableVerticalSwipe = isChecked);
 
                 final ImageView isSwipeGestureReverse = (ImageView) inflate.findViewById(R.id.isSwipeGestureReverse);
                 isSwipeGestureReverse.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
-                isSwipeGestureReverse.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
-                        isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
-                    }
+                isSwipeGestureReverse.setOnClickListener(v -> {
+                    AppState.get().isSwipeGestureReverse = !AppState.get().isSwipeGestureReverse;
+                    isSwipeGestureReverse.setImageResource(AppState.get().isSwipeGestureReverse ? R.drawable.glyphicons_214_arrow_up : R.drawable.glyphicons_21_arrow_down);
                 });
 
                 CheckBox isEnableHorizontalSwipe = (CheckBox) inflate.findViewById(R.id.isEnableHorizontalSwipe);
                 isEnableHorizontalSwipe.setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 isEnableHorizontalSwipe.setChecked(AppState.get().isEnableHorizontalSwipe);
-                isEnableHorizontalSwipe.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isEnableHorizontalSwipe = isChecked;
-                    }
-                });
+                isEnableHorizontalSwipe.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isEnableHorizontalSwipe = isChecked);
 
                 CheckBox isVibration = (CheckBox) inflate.findViewById(R.id.isVibration);
                 isVibration.setChecked(AppState.get().isVibration);
-                isVibration.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isVibration = isChecked;
-                    }
-                });
+                isVibration.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isVibration = isChecked);
                 CheckBox isExperimental = (CheckBox) inflate.findViewById(R.id.isExperimental);
                 isExperimental.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
                 isExperimental.setText(isExperimental.getText() + " (SVG, MathML)");
                 isExperimental.setChecked(AppState.get().isExperimental);
-                isExperimental.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isExperimental = isChecked;
-                    }
-                });
+                isExperimental.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isExperimental = isChecked);
 
                 CheckBox isReferenceMode = (CheckBox) inflate.findViewById(R.id.isReferenceMode);
                 isReferenceMode.setVisibility(TxtUtils.visibleIf(BookType.EPUB.is(controller.getCurrentBook().getPath())));
                 isReferenceMode.setChecked(AppState.get().isReferenceMode);
-                isReferenceMode.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isReferenceMode = isChecked;
-                        BookCSS.get().isAutoHypens = true;
-                    }
+                isReferenceMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isReferenceMode = isChecked;
+                    BookCSS.get().isAutoHypens = true;
                 });
 
                 CheckBox isOLED = (CheckBox) inflate.findViewById(R.id.isOLED);
                 isOLED.setChecked(AppState.get().isOLED);
-                isOLED.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isOLED = isChecked;
-                    }
-                });
+                isOLED.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isOLED = isChecked);
 
                 CheckBox isLockPDF = (CheckBox) inflate.findViewById(R.id.isLockPDF);
                 isLockPDF.setChecked(AppState.get().isLockPDF);
                 isLockPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
-                isLockPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isLockPDF = isChecked;
-                    }
-                });
+                isLockPDF.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isLockPDF = isChecked);
 
                 CheckBox alwaysTwoPages = (CheckBox) inflate.findViewById(R.id.alwaysTwoPages);
                 alwaysTwoPages.setVisibility(TxtUtils.visibleIf(AppSP.get().readingMode == AppState.READING_MODE_BOOK));
@@ -3597,55 +2739,31 @@ public class DragingDialogs {
 
                 CheckBox isMirrorImage = (CheckBox) inflate.findViewById(R.id.isMirrorImage);
                 isMirrorImage.setChecked(AppState.get().isMirrorImage);
-                isMirrorImage.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isMirrorImage = isChecked;
-                    }
-                });
+                isMirrorImage.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isMirrorImage = isChecked);
 
                 CheckBox isCropPDF = (CheckBox) inflate.findViewById(R.id.isCropPDF);
                 isCropPDF.setChecked(AppState.get().isCropPDF);
                 isCropPDF.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
-                isCropPDF.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isCropPDF = isChecked;
-                    }
-                });
+                isCropPDF.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isCropPDF = isChecked);
 
                 CheckBox isCustomizeBgAndColors = (CheckBox) inflate.findViewById(R.id.isCustomizeBgAndColors);
                 isCustomizeBgAndColors.setVisibility(controller.isTextFormat() ? View.GONE : View.VISIBLE);
                 isCustomizeBgAndColors.setChecked(AppState.get().isCustomizeBgAndColors);
-                isCustomizeBgAndColors.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isCustomizeBgAndColors.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isCustomizeBgAndColors = isChecked;
+                    if (!isChecked) {
+                        AppState.get().colorDayText = AppState.COLOR_BLACK;
+                        AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isCustomizeBgAndColors = isChecked;
-                        if (!isChecked) {
-                            AppState.get().colorDayText = AppState.COLOR_BLACK;
-                            AppState.get().colorDayBg = AppState.COLOR_WHITE;
-
-                            AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                            AppState.get().colorNigthBg = AppState.COLOR_BLACK;
-                        }
+                        AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                        AppState.get().colorNigthBg = AppState.COLOR_BLACK;
                     }
                 });
                 final CheckBox isReplaceWhite = (CheckBox) inflate.findViewById(R.id.isReplaceWhite);
                 isReplaceWhite.setChecked(AppState.get().isReplaceWhite);
                 isReplaceWhite.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
 
-                isReplaceWhite.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isReplaceWhite = isChecked;
-
-
-                    }
-                });
+                isReplaceWhite.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isReplaceWhite = isChecked);
 
 
 
@@ -3653,67 +2771,37 @@ public class DragingDialogs {
 
                 CheckBox isIgnoreAnnotatations = (CheckBox) inflate.findViewById(R.id.isIgnoreAnnotatations);
                 isIgnoreAnnotatations.setChecked(AppState.get().isIgnoreAnnotatations);
-                isIgnoreAnnotatations.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isIgnoreAnnotatations = isChecked;
-
-                    }
-                });
+                isIgnoreAnnotatations.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isIgnoreAnnotatations = isChecked);
 
                 isIgnoreAnnotatations.setVisibility(!(AppSP.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 CheckBox isSaveAnnotatationsAutomatically = (CheckBox) inflate.findViewById(R.id.isSaveAnnotatationsAutomatically);
                 isSaveAnnotatationsAutomatically.setChecked(AppState.get().isSaveAnnotatationsAutomatically);
-                isSaveAnnotatationsAutomatically.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isSaveAnnotatationsAutomatically = isChecked;
-
-                    }
-                });
+                isSaveAnnotatationsAutomatically.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isSaveAnnotatationsAutomatically = isChecked);
 
                 isSaveAnnotatationsAutomatically.setVisibility(!(AppSP.get().readingMode == AppState.READING_MODE_BOOK) && BookType.PDF.is(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
 
                 CheckBox isCutRTL = (CheckBox) inflate.findViewById(R.id.isCutRTL);
                 isCutRTL.setChecked(AppState.get().isCutRTL);
-                isCutRTL.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isCutRTL = isChecked;
-                    }
-                });
+                isCutRTL.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isCutRTL = isChecked);
 
                 final TextView pageQuality = (TextView) inflate.findViewById(R.id.pageQuality);
                 ((ViewGroup) pageQuality.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK && !ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
                 pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
                 TxtUtils.underlineTextView(pageQuality);
-                pageQuality.setOnClickListener(new OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (float i = 0.5f; i < 2.1f; i += 0.1f) {
-                            final float quality = i;
-                            popupMenu.getMenu().add((int) (i * 100) + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().pageQuality = quality;
-                                    pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
-                                    TxtUtils.underlineTextView(pageQuality);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
+                pageQuality.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (float i = 0.5f; i < 2.1f; i += 0.1f) {
+                        final float quality = i;
+                        popupMenu.getMenu().add((int) (i * 100) + "%").setOnMenuItemClickListener(item -> {
+                            AppState.get().pageQuality = quality;
+                            pageQuality.setText((int) (AppState.get().pageQuality * 100) + "%");
+                            TxtUtils.underlineTextView(pageQuality);
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
 
                 final TextView pagesInMemory = (TextView) inflate.findViewById(R.id.pagesInMemory);
@@ -3721,65 +2809,42 @@ public class DragingDialogs {
 
                 pagesInMemory.setText("" + AppState.get().pagesInMemory);
                 TxtUtils.underlineTextView(pagesInMemory);
-                pagesInMemory.setOnClickListener(new OnClickListener() {
+                pagesInMemory.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    popupMenu.getMenu().add("" + 1).setOnMenuItemClickListener(item -> {
+                        AppState.get().pagesInMemory = 1;
+                        pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                        TxtUtils.underlineTextView(pagesInMemory);
+                        return false;
+                    });
 
-                        popupMenu.getMenu().add("" + 1).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                    popupMenu.getMenu().add("" + 3).setOnMenuItemClickListener(item -> {
+                        AppState.get().pagesInMemory = 3;
+                        pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                        TxtUtils.underlineTextView(pagesInMemory);
+                        return false;
+                    });
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 1;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
+                    popupMenu.getMenu().add("" + 5).setOnMenuItemClickListener(item -> {
+                        AppState.get().pagesInMemory = 5;
+                        pagesInMemory.setText("" + AppState.get().pagesInMemory);
+                        TxtUtils.underlineTextView(pagesInMemory);
+                        return false;
+                    });
 
-                        popupMenu.getMenu().add("" + 3).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 3;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
-
-                        popupMenu.getMenu().add("" + 5).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().pagesInMemory = 5;
-                                pagesInMemory.setText("" + AppState.get().pagesInMemory);
-                                TxtUtils.underlineTextView(pagesInMemory);
-                                return false;
-                            }
-                        });
-
-                        popupMenu.show();
-
-                    }
+                    popupMenu.show();
                 });
 
                 ///
                 final TextView inactivityTime = (TextView) inflate.findViewById(R.id.inactivityTime);
                 inactivityTime.setText(AppState.get().inactivityTime == -1 ? controller.getString(R.string.system) : "" + AppState.get().inactivityTime);
                 TxtUtils.underlineTextView(inactivityTime);
-                inactivityTime.setOnClickListener(new OnClickListener() {
+                inactivityTime.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-
-                        popupMenu.getMenu().add("" + controller.getString(R.string.system)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
+                    popupMenu.getMenu().add("" + controller.getString(R.string.system))
+                            .setOnMenuItemClickListener(item -> {
                                 AppState.get().inactivityTime = -1;
                                 controller.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                                 inactivityTime.setText(R.string.system);
@@ -3787,30 +2852,23 @@ public class DragingDialogs {
                                 LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "clear", AppState.get().inactivityTime);
 
                                 return false;
-                            }
-                        });
-
-                        List<Integer> times = Arrays.asList(1, 2, 3, 4, 5, 10, 20, 30, 60);
-                        for (int i : times) {
-                            final int number = i;
-                            popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    controller.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-                                    AppState.get().inactivityTime = number;
-                                    inactivityTime.setText("" + AppState.get().inactivityTime);
-                                    TxtUtils.underlineTextView(inactivityTime);
-                                    LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
-
-                                    return false;
-                                }
                             });
-                        }
-                        popupMenu.show();
 
+                    List<Integer> times = Arrays.asList(1, 2, 3, 4, 5, 10, 20, 30, 60);
+                    for (int i : times) {
+                        final int number = i;
+                        popupMenu.getMenu().add("" + i).setOnMenuItemClickListener(item -> {
+                            controller.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+                            AppState.get().inactivityTime = number;
+                            inactivityTime.setText("" + AppState.get().inactivityTime);
+                            TxtUtils.underlineTextView(inactivityTime);
+                            LOG.d("FLAG clearFlags", "FLAG_KEEP_SCREEN_ON", "add", AppState.get().inactivityTime);
+
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
 
                 ///
@@ -3820,46 +2878,26 @@ public class DragingDialogs {
 
                 rotate.setText("" + AppState.get().rotate + "°");
                 TxtUtils.underlineTextView(rotate);
-                rotate.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        MenuBuilderM.addRotateMenu(rotate, null, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                rotate.setText("" + AppState.get().rotate + "°");
-                                TxtUtils.underlineTextView(rotate);
-                            }
-                        }).show();
-                    }
-                });
+                rotate.setOnClickListener(v -> MenuBuilderM.addRotateMenu(rotate, null, () -> {
+                    rotate.setText("" + AppState.get().rotate + "°");
+                    TxtUtils.underlineTextView(rotate);
+                }).show());
 
                 final TextView tapzoneSize = (TextView) inflate.findViewById(R.id.tapzoneSize);
                 tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
                 TxtUtils.underlineTextView(tapzoneSize);
-                tapzoneSize.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i <= 45f; i += 5) {
-                            final int number = i;
-                            popupMenu.getMenu().add("" + i + "%").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().tapzoneSize = number;
-                                    tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
-                                    TxtUtils.underlineTextView(tapzoneSize);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
+                tapzoneSize.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (int i = 0; i <= 45f; i += 5) {
+                        final int number = i;
+                        popupMenu.getMenu().add("" + i + "%").setOnMenuItemClickListener(item -> {
+                            AppState.get().tapzoneSize = number;
+                            tapzoneSize.setText("" + AppState.get().tapzoneSize + "%");
+                            TxtUtils.underlineTextView(tapzoneSize);
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
 
                 // double tap
@@ -3892,64 +2930,40 @@ public class DragingDialogs {
                 doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
                 TxtUtils.underlineTextView(doubleClickAction1);
 
-                doubleClickAction1.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
-                        for (int i = 0; i < doubleTapNames.size(); i++) {
-                            final int j = i;
-                            final String fontName = doubleTapNames.get(i);
-                            popup.getMenu().add(fontName).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().doubleClickAction1 = doubleTapIDS.get(j);
-                                    doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
-                                    TxtUtils.underlineTextView(doubleClickAction1);
-                                    return false;
-                                }
-                            });
-                        }
-                        popup.show();
-
+                doubleClickAction1.setOnClickListener(v -> {
+                    MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
+                    for (int i = 0; i < doubleTapNames.size(); i++) {
+                        final int j = i;
+                        final String fontName = doubleTapNames.get(i);
+                        popup.getMenu().add(fontName).setOnMenuItemClickListener(item -> {
+                            AppState.get().doubleClickAction1 = doubleTapIDS.get(j);
+                            doubleClickAction1.setText(doubleTapNames.get(doubleTapIDS.indexOf(AppState.get().doubleClickAction1)));
+                            TxtUtils.underlineTextView(doubleClickAction1);
+                            return false;
+                        });
                     }
+                    popup.show();
                 });
 
                 final TextView tapzoneCustomize = (TextView) inflate.findViewById(R.id.tapzoneCustomize);
                 TxtUtils.underlineTextView(tapzoneCustomize);
-                tapzoneCustomize.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View arg0) {
-                        TapZoneDialog.show(controller.getActivity());
-                    }
-                });
+                tapzoneCustomize.setOnClickListener(arg0 -> TapZoneDialog.show(controller.getActivity()));
 
                 final TextView allocatedMemorySize = (TextView) inflate.findViewById(R.id.allocatedMemorySize);
                 allocatedMemorySize.setText("" + AppState.get().allocatedMemorySize + "Mb");
                 TxtUtils.underlineTextView(allocatedMemorySize);
-                allocatedMemorySize.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 16; i <= 512 && i < MemoryUtils.MAX_MEMORY_SIZE; i += i) {
-                            final int number = i;
-                            popupMenu.getMenu().add("" + i + "Mb").setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().allocatedMemorySize = number;
-                                    allocatedMemorySize.setText("" + AppState.get().allocatedMemorySize + "Mb");
-                                    TxtUtils.underlineTextView(allocatedMemorySize);
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
+                allocatedMemorySize.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (int i = 16; i <= 512 && i < MemoryUtils.MAX_MEMORY_SIZE; i += i) {
+                        final int number = i;
+                        popupMenu.getMenu().add("" + i + "Mb").setOnMenuItemClickListener(item -> {
+                            AppState.get().allocatedMemorySize = number;
+                            allocatedMemorySize.setText("" + AppState.get().allocatedMemorySize + "Mb");
+                            TxtUtils.underlineTextView(allocatedMemorySize);
+                            return false;
+                        });
                     }
+                    popupMenu.show();
                 });
 
                 // remind rest time
@@ -3961,41 +2975,28 @@ public class DragingDialogs {
                     remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
                 }
                 TxtUtils.underlineTextView(remindRestTime);
-                remindRestTime.setOnClickListener(new OnClickListener() {
+                remindRestTime.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
 
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    popupMenu.getMenu().add(R.string.never).setOnMenuItemClickListener(item -> {
+                        AppState.get().remindRestTime = -1;
+                        remindRestTime.setText(R.string.never);
+                        TxtUtils.underlineTextView(remindRestTime);
+                        return false;
+                    });
 
-                        popupMenu.getMenu().add(R.string.never).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().remindRestTime = -1;
-                                remindRestTime.setText(R.string.never);
-                                TxtUtils.underlineTextView(remindRestTime);
-                                return false;
-                            }
+                    for (int i = 10; i <= 240; i += 10) {
+                        final int j = i;
+                        popupMenu.getMenu().add(i + " " + minutesString).setOnMenuItemClickListener(item -> {
+                            AppState.get().remindRestTime = j;
+                            remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
+                            TxtUtils.underlineTextView(remindRestTime);
+                            return false;
                         });
-
-                        for (int i = 10; i <= 240; i += 10) {
-                            final int j = i;
-                            popupMenu.getMenu().add(i + " " + minutesString).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().remindRestTime = j;
-                                    remindRestTime.setText(AppState.get().remindRestTime + " " + minutesString);
-                                    TxtUtils.underlineTextView(remindRestTime);
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
-
                     }
+
+                    popupMenu.show();
+
                 });
 
                 // rotate
@@ -4004,35 +3005,21 @@ public class DragingDialogs {
                 ((ViewGroup) rotateViewPager.getParent()).setVisibility(AppSP.get().readingMode == AppState.READING_MODE_BOOK ? View.VISIBLE : View.GONE);
                 rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
                 TxtUtils.underlineTextView(rotateViewPager);
-                rotateViewPager.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        popupMenu.getMenu().add(R.string.horizontal).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().rotateViewPager = 0;
-                                rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
-                                TxtUtils.underlineTextView(rotateViewPager);
-                                return false;
-                            }
-                        });
-                        popupMenu.getMenu().add(R.string.vertical).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().rotateViewPager = 90;
-                                rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
-                                TxtUtils.underlineTextView(rotateViewPager);
-                                return false;
-                            }
-                        });
-                        popupMenu.show();
-
-                    }
+                rotateViewPager.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    popupMenu.getMenu().add(R.string.horizontal).setOnMenuItemClickListener(item -> {
+                        AppState.get().rotateViewPager = 0;
+                        rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
+                        TxtUtils.underlineTextView(rotateViewPager);
+                        return false;
+                    });
+                    popupMenu.getMenu().add(R.string.vertical).setOnMenuItemClickListener(item -> {
+                        AppState.get().rotateViewPager = 90;
+                        rotateViewPager.setText(AppState.get().rotateViewPager == 0 ? R.string.horizontal : R.string.vertical);
+                        TxtUtils.underlineTextView(rotateViewPager);
+                        return false;
+                    });
+                    popupMenu.show();
                 });
                 // rtl
                 final TextView rtlText = (TextView) inflate.findViewById(R.id.rtlText);
@@ -4043,73 +3030,52 @@ public class DragingDialogs {
                     rtlText.setText(R.string.left_to_rigth);
                 }
                 TxtUtils.underlineTextView(rtlText);
-                rtlText.setOnClickListener(new OnClickListener() {
+                rtlText.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    popupMenu.getMenu().add(R.string.left_to_rigth).setOnMenuItemClickListener(item -> {
+                        AppState.get().isRTL = false;
+                        rtlText.setText(R.string.left_to_rigth);
+                        TxtUtils.underlineTextView(rtlText);
 
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        popupMenu.getMenu().add(R.string.left_to_rigth).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                        AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
+                        AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
+                        AppState.get().tapZoneLeft = AppState.TAP_PREV_PAGE;
+                        AppState.get().tapZoneRight = AppState.TAP_NEXT_PAGE;
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().isRTL = false;
-                                rtlText.setText(R.string.left_to_rigth);
-                                TxtUtils.underlineTextView(rtlText);
+                        return false;
+                    });
+                    popupMenu.getMenu().add(R.string.right_to_left).setOnMenuItemClickListener(item -> {
+                        AppState.get().isRTL = true;
+                        rtlText.setText(R.string.right_to_left);
+                        TxtUtils.underlineTextView(rtlText);
 
-                                AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
-                                AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
-                                AppState.get().tapZoneLeft = AppState.TAP_PREV_PAGE;
-                                AppState.get().tapZoneRight = AppState.TAP_NEXT_PAGE;
+                        AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
+                        AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
+                        AppState.get().tapZoneLeft = AppState.TAP_NEXT_PAGE;
+                        AppState.get().tapZoneRight = AppState.TAP_PREV_PAGE;
 
-                                return false;
-                            }
-                        });
-                        popupMenu.getMenu().add(R.string.right_to_left).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().isRTL = true;
-                                rtlText.setText(R.string.right_to_left);
-                                TxtUtils.underlineTextView(rtlText);
-
-                                AppState.get().tapZoneTop = AppState.TAP_PREV_PAGE;
-                                AppState.get().tapZoneBottom = AppState.TAP_NEXT_PAGE;
-                                AppState.get().tapZoneLeft = AppState.TAP_NEXT_PAGE;
-                                AppState.get().tapZoneRight = AppState.TAP_PREV_PAGE;
-
-                                return false;
-                            }
-                        });
-                        popupMenu.show();
-                    }
+                        return false;
+                    });
+                    popupMenu.show();
                 });
 
                 // BETA
 
                 final CustomSeek decodingThreadPriority = (CustomSeek) inflate.findViewById(R.id.decodingThreadPriority);
                 decodingThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().decodingThreadPriority);
-                decodingThreadPriority.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        CoreSettings.get().decodingThreadPriority = result;
-                        AppState.get().helpHash++;
-                        return false;
-                    }
+                decodingThreadPriority.setOnSeekChanged(result -> {
+                    CoreSettings.get().decodingThreadPriority = result;
+                    AppState.get().helpHash++;
+                    return false;
                 });
                 Views.visibleInBeta(decodingThreadPriority);
 
                 final CustomSeek drawThreadPriority = (CustomSeek) inflate.findViewById(R.id.drawThreadPriority);
                 drawThreadPriority.init(Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, CoreSettings.get().drawThreadPriority);
-                drawThreadPriority.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        CoreSettings.get().drawThreadPriority = result;
-                        AppState.get().helpHash++;
-                        return false;
-                    }
+                drawThreadPriority.setOnSeekChanged(result -> {
+                    CoreSettings.get().drawThreadPriority = result;
+                    AppState.get().helpHash++;
+                    return false;
                 });
                 Views.visibleInBeta(drawThreadPriority);
 
@@ -4117,16 +3083,12 @@ public class DragingDialogs {
             }
         };
         dialog.show(DragingPopup.PREF + "_performanceSettings");
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                if (initHash != Objects.appHash()) {
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                    controller.restartActivity();
+        dialog.setOnCloseListener(() -> {
+            if (initHash != Objects.appHash()) {
+                if (onRefresh != null) {
+                    onRefresh.run();
                 }
+                controller.restartActivity();
             }
         });
         return dialog;
@@ -4142,22 +3104,12 @@ public class DragingDialogs {
             @Override
             public void beforeCreate() {
                 titleAction = controller.getString(R.string.preferences);
-                titleRunnable = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (initHash != Objects.appHash()) {
-                            AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings), controller.getString(R.string.apply), new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    closeDialog();
-                                }
-                            });
-
-                        } else {
-                            preferences(anchor, controller, onRefresh, updateUIRefresh);
-                        }
+                titleRunnable = () -> {
+                    if (initHash != Objects.appHash()) {
+                        AlertDialogs.showDialog(controller.getActivity(), controller.getString(R.string.you_neet_to_apply_the_new_settings),
+                                controller.getString(R.string.apply), this::closeDialog);
+                    } else {
+                        preferences(anchor, controller, onRefresh, updateUIRefresh);
                     }
                 };
             }
@@ -4168,14 +3120,10 @@ public class DragingDialogs {
 
                 final CustomSeek fontWeight = (CustomSeek) inflate.findViewById(R.id.fontWeight);
                 fontWeight.init(1, 9, BookCSS.get().fontWeight / 100);
-                fontWeight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        fontWeight.setValueText("" + (result * 100));
-                        BookCSS.get().fontWeight = result * 100;
-                        return false;
-                    }
+                fontWeight.setOnSeekChanged(result -> {
+                    fontWeight.setValueText("" + (result * 100));
+                    BookCSS.get().fontWeight = result * 100;
+                    return false;
                 });
                 fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
@@ -4192,32 +3140,22 @@ public class DragingDialogs {
 
                 inflate.findViewById(R.id.documentStyleLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
-                docStyle.setOnClickListener(new OnClickListener() {
+                docStyle.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (int i = 0; i < docStyles.size(); i++) {
+                        String type = docStyles.get(i);
+                        final int j = i;
 
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i < docStyles.size(); i++) {
-                            String type = docStyles.get(i);
-                            final int j = i;
+                        popupMenu.getMenu().add(type).setOnMenuItemClickListener(item -> {
+                            BookCSS.get().documentStyle = j;
+                            docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
+                            TxtUtils.underlineTextView(docStyle);
 
-                            popupMenu.getMenu().add(type).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().documentStyle = j;
-                                    docStyle.setText(docStyles.get(BookCSS.get().documentStyle));
-                                    TxtUtils.underlineTextView(docStyle);
-
-                                    return false;
-                                }
-                            });
-                        }
-
-                        popupMenu.show();
-
+                            return false;
+                        });
                     }
+
+                    popupMenu.show();
                 });
 
                 // end styles
@@ -4229,13 +3167,7 @@ public class DragingDialogs {
                 isAutoHypens.setVisibility(isSupportHypens ? View.VISIBLE : View.GONE);
 
                 isAutoHypens.setChecked(BookCSS.get().isAutoHypens);
-                isAutoHypens.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        BookCSS.get().isAutoHypens = isChecked;
-                    }
-                });
+                isAutoHypens.setOnCheckedChangeListener((buttonView, isChecked) -> BookCSS.get().isAutoHypens = isChecked);
 
                 final TextView hypenLangLabel = (TextView) inflate.findViewById(R.id.hypenLangLabel);
 
@@ -4256,56 +3188,43 @@ public class DragingDialogs {
 
                 TxtUtils.underlineTextView(hypenLang);
 
-                hypenLang.setOnClickListener(new OnClickListener() {
+                hypenLang.setOnClickListener(v -> {
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    HyphenPattern[] values = HyphenPattern.values();
+                    List<String> all = new ArrayList<>();
 
-                    @Override
-                    public void onClick(View v) {
-
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-
-                        HyphenPattern[] values = HyphenPattern.values();
-
-                        List<String> all = new ArrayList<String>();
-
-                        for (HyphenPattern p : values) {
-                            String e = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
-                            all.add(e);
-
-                        }
-                        Collections.sort(all);
-
-                        for (final String langFull : all) {
-                            String[] split = langFull.split(":");
-                            final String titleLang = split[0];
-                            final String code = split[1];
-                            popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppSP.get().hypenLang = code;
-                                    hypenLang.setText(titleLang);
-                                    TxtUtils.underlineTextView(hypenLang);
-                                    FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());
-                                    if (load != null) {
-                                        load.setLang(code);
-                                        AppDB.get().update(load);
-                                    }
-                                    final AppBook load1 = SharedBooks.load(load.getPath());
-                                    if (load1 != null) {
-                                        load.setLang(code);
-                                        SharedBooks.save(load1);
-                                    }
-                                    if(AppState.get().isDefaultHyphenLanguage){
-                                        AppState.get().defaultHyphenLanguageCode = code;
-                                    }
-
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
+                    for (HyphenPattern p : values) {
+                        String e = DialogTranslateFromTo.getLanuageByCode(p.lang) + ":" + p.lang;
+                        all.add(e);
                     }
+                    Collections.sort(all);
+
+                    for (final String langFull : all) {
+                        String[] split = langFull.split(":");
+                        final String titleLang = split[0];
+                        final String code = split[1];
+                        popupMenu.getMenu().add(titleLang).setOnMenuItemClickListener(item -> {
+                            AppSP.get().hypenLang = code;
+                            hypenLang.setText(titleLang);
+                            TxtUtils.underlineTextView(hypenLang);
+                            FileMeta load = AppDB.get().load(controller.getCurrentBook().getPath());
+                            if (load != null) {
+                                load.setLang(code);
+                                AppDB.get().update(load);
+                            }
+                            final AppBook load1 = SharedBooks.load(load.getPath());
+                            if (load1 != null) {
+                                load.setLang(code);
+                                SharedBooks.save(load1);
+                            }
+                            if (AppState.get().isDefaultHyphenLanguage) {
+                                AppState.get().defaultHyphenLanguageCode = code;
+                            }
+
+                            return false;
+                        });
+                    }
+                    popupMenu.show();
                 });
 
                 CheckBox isDefaultHyphenLanguage = (CheckBox) inflate.findViewById(R.id.isDefaultHyphenLanguage);
@@ -4313,8 +3232,8 @@ public class DragingDialogs {
                 isDefaultHyphenLanguage.setChecked(AppState.get().isDefaultHyphenLanguage);
                 isDefaultHyphenLanguage.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     AppState.get().isDefaultHyphenLanguage = isChecked;
-                    if(isChecked){
-                        AppState.get().defaultHyphenLanguageCode= AppSP.get().hypenLang;
+                    if (isChecked) {
+                        AppState.get().defaultHyphenLanguageCode = AppSP.get().hypenLang;
                     }
                 });
 
@@ -4326,84 +3245,51 @@ public class DragingDialogs {
                 CheckBox isAccurateFontSize = (CheckBox) inflate.findViewById(R.id.isAccurateFontSize);
                 isAccurateFontSize.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 isAccurateFontSize.setChecked(AppState.get().isAccurateFontSize);
-                isAccurateFontSize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isAccurateFontSize = isChecked;
-                    }
-                });
+                isAccurateFontSize.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isAccurateFontSize = isChecked);
 
                 CheckBox isShowFooterNotesInText = (CheckBox) inflate.findViewById(R.id.isShowFooterNotesInText);
                 isShowFooterNotesInText.setVisibility(controller.isTextFormat() ? View.VISIBLE : View.GONE);
                 isShowFooterNotesInText.setChecked(AppState.get().isShowFooterNotesInText);
-                isShowFooterNotesInText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isShowFooterNotesInText = isChecked;
-                    }
-                });
+                isShowFooterNotesInText.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isShowFooterNotesInText = isChecked);
 
                 View customCSS = inflate.findViewById(R.id.customCSS);
                 // TxtUtils.underlineTextView(customCSS);
-                customCSS.setOnClickListener(new OnClickListener() {
+                customCSS.setOnClickListener(v -> {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setTitle(R.string.custom_css);
+                    final EditText edit = new EditText(v.getContext());
+                    edit.setMinWidth(Dips.dpToPx(1000));
+                    edit.setLines(8);
+                    edit.setGravity(Gravity.TOP);
+                    edit.setText(BookCSS.get().customCSS2);
+                    builder.setView(edit);
 
-                    @Override
-                    public void onClick(final View v) {
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                        builder.setTitle(R.string.custom_css);
-                        final EditText edit = new EditText(v.getContext());
-                        edit.setMinWidth(Dips.dpToPx(1000));
-                        edit.setLines(8);
-                        edit.setGravity(Gravity.TOP);
-                        edit.setText(BookCSS.get().customCSS2);
-                        builder.setView(edit);
-
-                        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(final DialogInterface dialog, final int id) {
-                                BookCSS.get().customCSS2 = edit.getText().toString();
-                                AppProfile.save(v.getContext());
-                            }
-                        });
-                        builder.show();
-
-                    }
+                    builder.setPositiveButton(R.string.save, (dialog1, id) -> {
+                        BookCSS.get().customCSS2 = edit.getText().toString();
+                        AppProfile.save(v.getContext());
+                    });
+                    builder.show();
                 });
 
                 final CustomSeek lineHeight = (CustomSeek) inflate.findViewById(R.id.lineHeight);
                 lineHeight.init(0, 30, BookCSS.get().lineHeight);
-                lineHeight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().lineHeight = result;
-                        return false;
-                    }
+                lineHeight.setOnSeekChanged(result -> {
+                    BookCSS.get().lineHeight = result;
+                    return false;
                 });
 
                 final CustomSeek paragraphHeight = (CustomSeek) inflate.findViewById(R.id.paragraphHeight);
                 paragraphHeight.init(0, 20, BookCSS.get().paragraphHeight);
-                paragraphHeight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().paragraphHeight = result;
-                        return false;
-                    }
+                paragraphHeight.setOnSeekChanged(result -> {
+                    BookCSS.get().paragraphHeight = result;
+                    return false;
                 });
 
                 final CustomSeek fontParagraph = (CustomSeek) inflate.findViewById(R.id.fontParagraph);
                 fontParagraph.init(0, 30, BookCSS.get().textIndent);
-                fontParagraph.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().textIndent = result;
-                        return false;
-                    }
+                fontParagraph.setOnSeekChanged(result -> {
+                    BookCSS.get().textIndent = result;
+                    return false;
                 });
 
                 final CustomSeek emptyLine = (CustomSeek) inflate.findViewById(R.id.emptyLine);
@@ -4429,81 +3315,51 @@ public class DragingDialogs {
                 final CustomSeek marginTop = (CustomSeek) inflate.findViewById(R.id.marginTop);
                 int maxMargin = Dips.isLargeOrXLargeScreen() ? 200 : 30;
                 marginTop.init(0, maxMargin, BookCSS.get().marginTop);
-                marginTop.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().marginTop = result;
-                        return false;
-                    }
+                marginTop.setOnSeekChanged(result -> {
+                    BookCSS.get().marginTop = result;
+                    return false;
                 });
 
                 final CustomSeek marginBottom = (CustomSeek) inflate.findViewById(R.id.marginBottom);
                 marginBottom.init(0, maxMargin, BookCSS.get().marginBottom);
-                marginBottom.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().marginBottom = result;
-                        return false;
-                    }
+                marginBottom.setOnSeekChanged(result -> {
+                    BookCSS.get().marginBottom = result;
+                    return false;
                 });
 
                 final CustomSeek marginLeft = (CustomSeek) inflate.findViewById(R.id.marginLeft);
                 marginLeft.init(0, maxMargin, BookCSS.get().marginLeft);
-                marginLeft.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().marginLeft = result;
-                        return false;
-                    }
+                marginLeft.setOnSeekChanged(result -> {
+                    BookCSS.get().marginLeft = result;
+                    return false;
                 });
 
                 final CustomSeek marginRight = (CustomSeek) inflate.findViewById(R.id.marginRight);
                 marginRight.init(0, maxMargin, BookCSS.get().marginRight);
-                marginRight.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().marginRight = result;
-                        return false;
-                    }
+                marginRight.setOnSeekChanged(result -> {
+                    BookCSS.get().marginRight = result;
+                    return false;
                 });
 
                 // font folder
                 LOG.d("fontFolder2-2", BookCSS.get().fontFolder);
                 final TextView fontsFolder = (TextView) inflate.findViewById(R.id.fontsFolder);
                 TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
-                fontsFolder.setOnClickListener(new OnClickListener() {
-
+                fontsFolder.setOnClickListener(v -> ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), BookCSS.get().fontFolder).setOnSelectListener(new ResultResponse2<String, Dialog>() {
                     @Override
-                    public void onClick(View v) {
-                        ChooserDialogFragment.chooseFolder((FragmentActivity) controller.getActivity(), BookCSS.get().fontFolder).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                            @Override
-                            public boolean onResultRecive(String nPath, Dialog dialog) {
-                                File result = new File(nPath);
-                                BookCSS.get().fontFolder = result.getPath();
-                                TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
-                                AppProfile.save(controller.getActivity());
-                                dialog.dismiss();
-                                return false;
-                            }
-                        });
-
+                    public boolean onResultRecive(String nPath, Dialog dialog12) {
+                        File result = new File(nPath);
+                        BookCSS.get().fontFolder = result.getPath();
+                        TxtUtils.underline(fontsFolder, TxtUtils.lastTwoPath(BookCSS.get().fontFolder));
+                        AppProfile.save(controller.getActivity());
+                        dialog12.dismiss();
+                        return false;
                     }
-
-                });
+                }));
 
                 final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
                 downloadFonts.setVisibility(TxtUtils.visibleIf(!AppsConfig.IS_FDROID));
-                downloadFonts.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, fontsFolder);
-                    }
-                });
+                downloadFonts.setOnClickListener(v -> FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, fontsFolder));
 
                 /// aling
 
@@ -4516,36 +3372,27 @@ public class DragingDialogs {
                 // align
                 final TextView textAlign = (TextView) inflate.findViewById(R.id.textAlign);
                 textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
-                textAlign.setOnClickListener(new OnClickListener() {
-
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
-                    public void onClick(View v) {
-                        if (Build.VERSION.SDK_INT <= 10) {
-                            BookCSS.get().textAlign += 1;
-                            if (BookCSS.get().textAlign == 4) {
-                                BookCSS.get().textAlign = 0;
-                            }
-                            textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
-                            return;
+                textAlign.setOnClickListener(v -> {
+                    if (Build.VERSION.SDK_INT <= 10) {
+                        BookCSS.get().textAlign += 1;
+                        if (BookCSS.get().textAlign == 4) {
+                            BookCSS.get().textAlign = 0;
                         }
-
-                        final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-                        for (final int key : alignConst.keySet()) {
-                            String name = alignConst.get(key);
-                            popupMenu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().textAlign = key;
-                                    textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
-                                    return false;
-                                }
-                            });
-                        }
-                        popupMenu.show();
-
+                        textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                        return;
                     }
+
+                    final PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+                    for (final int key : alignConst.keySet()) {
+                        String name = alignConst.get(key);
+                        popupMenu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                            BookCSS.get().textAlign = key;
+                            textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                            return false;
+                        });
+                    }
+                    popupMenu.show();
+
                 });
 
                 // link color
@@ -4553,116 +3400,77 @@ public class DragingDialogs {
 
                 linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
                 linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                linkColorDay.setOnColorChanged(new StringResponse() {
-
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        BookCSS.get().linkColorDay = string;
-                        return false;
-                    }
+                linkColorDay.setOnColorChanged(string -> {
+                    BookCSS.get().linkColorDay = string;
+                    return false;
                 });
-                linkColorDay.setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorDay.getTextString(), BookCSS.get().linkColorDays, new ResultResponse<String>() {
-
-                            @Override
-                            public boolean onResultRecive(String result) {
-                                BookCSS.get().linkColorDays = result;
-                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
-                                return true;
-                            }
-                        });
+                linkColorDay.setOnLongClickListener(v -> {
+                    Dialogs.showEditDialog(v.getContext(), linkColorDay.getTextString(), BookCSS.get().linkColorDays, result -> {
+                        BookCSS.get().linkColorDays = result;
+                        linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
                         return true;
-                    }
+                    });
+                    return true;
                 });
                 linkColorDay.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
                 final CustomColorView linkColorNight = (CustomColorView) inflate.findViewById(R.id.linkColorNight);
                 linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
                 linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
-                linkColorNight.setOnColorChanged(new StringResponse() {
-
-                    @Override
-                    public boolean onResultRecive(String string) {
-                        BookCSS.get().linkColorNight = string;
-                        return false;
-                    }
+                linkColorNight.setOnColorChanged(string -> {
+                    BookCSS.get().linkColorNight = string;
+                    return false;
                 });
 
-                linkColorNight.setOnLongClickListener(new OnLongClickListener() {
-
-                    @Override
-                    public boolean onLongClick(View v) {
-                        Dialogs.showEditDialog(v.getContext(), linkColorNight.getTextString(), BookCSS.get().linkColorNigths, new ResultResponse<String>() {
-
-                            @Override
-                            public boolean onResultRecive(String result) {
-                                BookCSS.get().linkColorNigths = result;
-                                linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
-                                return true;
-                            }
-                        });
+                linkColorNight.setOnLongClickListener(v -> {
+                    Dialogs.showEditDialog(v.getContext(), linkColorNight.getTextString(), BookCSS.get().linkColorNigths, result -> {
+                        BookCSS.get().linkColorNigths = result;
+                        linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
                         return true;
-                    }
+                    });
+                    return true;
                 });
                 linkColorNight.getText1().getLayoutParams().width = Dips.dpToPx(150);
 
-                TxtUtils.underlineTextView(inflate.findViewById(R.id.onResetStyles)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(inflate.findViewById(R.id.onResetStyles))
+                        .setOnClickListener(v -> AlertDialogs.showOkDialog(controller.getActivity(),
+                                controller.getString(R.string.restore_defaults_full), () -> {
+                                    BookCSS.get().resetToDefault(controller.getActivity());
 
-                    @Override
-                    public void onClick(View v) {
+                                    fontsFolder.setText(TxtUtils.underline(TxtUtils.lastTwoPath(BookCSS.get().fontFolder)));
+                                    textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
 
-                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                                    fontWeight.reset(BookCSS.get().fontWeight / 100);
+                                    fontWeight.setValueText("" + BookCSS.get().fontWeight);
 
-                            @Override
-                            public void run() {
-                                BookCSS.get().resetToDefault(controller.getActivity());
+                                    lineHeight.reset(BookCSS.get().lineHeight);
+                                    paragraphHeight.reset(BookCSS.get().paragraphHeight);
 
-                                fontsFolder.setText(TxtUtils.underline(TxtUtils.lastTwoPath(BookCSS.get().fontFolder)));
-                                textAlign.setText(TxtUtils.underline(alignConst.get(BookCSS.get().textAlign)));
+                                    fontParagraph.reset(BookCSS.get().textIndent);
+                                    //
+                                    marginTop.reset(BookCSS.get().marginTop);
+                                    marginBottom.reset(BookCSS.get().marginBottom);
+                                    marginLeft.reset(BookCSS.get().marginLeft);
+                                    marginRight.reset(BookCSS.get().marginRight);
 
-                                fontWeight.reset(BookCSS.get().fontWeight / 100);
-                                fontWeight.setValueText("" + BookCSS.get().fontWeight);
+                                    emptyLine.reset(BookCSS.get().emptyLine);
 
-                                lineHeight.reset(BookCSS.get().lineHeight);
-                                paragraphHeight.reset(BookCSS.get().paragraphHeight);
-
-                                fontParagraph.reset(BookCSS.get().textIndent);
-                                //
-                                marginTop.reset(BookCSS.get().marginTop);
-                                marginBottom.reset(BookCSS.get().marginBottom);
-                                marginLeft.reset(BookCSS.get().marginLeft);
-                                marginRight.reset(BookCSS.get().marginRight);
-
-                                emptyLine.reset(BookCSS.get().emptyLine);
-
-                                linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
-                                linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
-                                linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
-                                linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
-
-                            }
-                        });
-
-                    }
-                });
+                                    linkColorDay.init(Color.parseColor(BookCSS.get().linkColorDay));
+                                    linkColorNight.init(Color.parseColor(BookCSS.get().linkColorNight));
+                                    linkColorDay.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorDays));
+                                    linkColorNight.withDefaultColors(StringDB.converToColor(BookCSS.get().linkColorNigths));
+                                }));
 
                 return inflate;
             }
         };
         dialog.show(DragingPopup.PREF + "_moreBookSettings");
-        dialog.setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                if (initHash != Objects.appHash()) {
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                    controller.restartActivity();
+        dialog.setOnCloseListener(() -> {
+            if (initHash != Objects.appHash()) {
+                if (onRefresh != null) {
+                    onRefresh.run();
                 }
+                controller.restartActivity();
             }
         });
         return dialog;
@@ -4704,90 +3512,58 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.allBGConfig).setVisibility(Dips.isEInk() ? View.GONE : View.VISIBLE);
 
                 View onRecent = inflate.findViewById(R.id.onRecent);
-                onRecent.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        closeDialog();
-                        DragingDialogs.recentBooks(anchor, controller);
-                    }
+                onRecent.setOnClickListener(v -> {
+                    closeDialog();
+                    DragingDialogs.recentBooks(anchor, controller);
                 });
                 final View onRotate = inflate.findViewById(R.id.onRotate);
-                onRotate.setOnClickListener(new OnClickListener() {
-
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void onClick(View v) {
-                        if (Build.VERSION.SDK_INT <= 10) {
-                            Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        // closeDialog();
-                        MenuBuilderM.addRotateMenu(onRotate, null, updateUIRefresh).show();
+                onRotate.setOnClickListener(v -> {
+                    if (Build.VERSION.SDK_INT <= 10) {
+                        Toast.makeText(anchor.getContext(), R.string.this_function_will_works_in_modern_android, Toast.LENGTH_SHORT).show();
+                        return;
                     }
+                    // closeDialog();
+                    MenuBuilderM.addRotateMenu(onRotate, null, updateUIRefresh).show();
                 });
 
-                inflate.findViewById(R.id.onPageFlip).setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        closeDialog();
-                        DragingDialogs.pageFlippingDialog(anchor, controller, onRefresh);
-
-                    }
+                inflate.findViewById(R.id.onPageFlip).setOnClickListener(v -> {
+                    closeDialog();
+                    DragingDialogs.pageFlippingDialog(anchor, controller, onRefresh);
                 });
 
                 ImageView brightness = (ImageView) inflate.findViewById(R.id.onBrightness);
-                brightness.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
-                        controller.restartActivity();
-                    }
+                brightness.setOnClickListener(v -> {
+                    AppState.get().isDayNotInvert = !AppState.get().isDayNotInvert;
+                    controller.restartActivity();
                 });
                 brightness.setImageResource(!AppState.get().isDayNotInvert ? R.drawable.glyphicons_232_sun : R.drawable.glyphicons_2_moon);
 
                 final ImageView isCrop = (ImageView) inflate.findViewById(R.id.onCrop);
                 // isCrop.setVisibility(controller.isTextFormat() ||
                 // AppSP.get().isCut ? View.GONE : View.VISIBLE);
-                isCrop.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        AppSP.get().isCrop = !AppSP.get().isCrop;
-                        SettingsManager.getBookSettings().updateFromAppState();
-                        TintUtil.setTintImageWithAlpha(isCrop, !AppSP.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
-                        updateUIRefresh.run();
-                    }
+                isCrop.setOnClickListener(v -> {
+                    AppSP.get().isCrop = !AppSP.get().isCrop;
+                    SettingsManager.getBookSettings().updateFromAppState();
+                    TintUtil.setTintImageWithAlpha(isCrop, !AppSP.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                    updateUIRefresh.run();
                 });
                 TintUtil.setTintImageWithAlpha(isCrop, !AppSP.get().isCrop ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 final ImageView bookCut = (ImageView) inflate.findViewById(R.id.bookCut);
                 // bookCut.setVisibility(controller.isTextFormat() ? View.GONE :
                 // View.VISIBLE);
-                bookCut.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        closeDialog();
-                        DragingDialogs.sliceDialog(anchor, controller, updateUIRefresh, new ResultResponse<Integer>() {
-
-                            @Override
-                            public boolean onResultRecive(Integer result) {
-                                TintUtil.setTintImageWithAlpha(bookCut, !AppSP.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
-                                SettingsManager.getBookSettings().updateFromAppState();
-                                EventBus.getDefault().post(new InvalidateMessage());
-                                return false;
-                            }
-                        });
-                    }
+                bookCut.setOnClickListener(v -> {
+                    closeDialog();
+                    DragingDialogs.sliceDialog(anchor, controller, updateUIRefresh, result -> {
+                        TintUtil.setTintImageWithAlpha(bookCut, !AppSP.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
+                        SettingsManager.getBookSettings().updateFromAppState();
+                        EventBus.getDefault().post(new InvalidateMessage());
+                        return false;
+                    });
                 });
                 TintUtil.setTintImageWithAlpha(bookCut, !AppSP.get().isCut ? TintUtil.COLOR_TINT_GRAY : Color.LTGRAY);
 
                 inflate.findViewById(R.id.onFullScreen).setOnClickListener(v -> {
-
-
                     DocumentController.showFullScreenPopup(controller.getActivity(), v, id -> {
                         AppState.get().fullScreenMode = id;
                         DocumentController.chooseFullScreen(controller.getActivity(), AppState.get().fullScreenMode);
@@ -4799,30 +3575,19 @@ public class DragingDialogs {
                         }
                         return true;
                     }, AppState.get().fullScreenMode);
-
-
                 });
                 View tts = inflate.findViewById(R.id.onTTS);
-                tts.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        closeDialog();
-                        DragingDialogs.textToSpeachDialog(anchor, controller);
-                    }
+                tts.setOnClickListener(v -> {
+                    closeDialog();
+                    DragingDialogs.textToSpeachDialog(anchor, controller);
                 });
 
                 final ImageView pin = (ImageView) inflate.findViewById(R.id.onPin);
-                pin.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        AppState.get().isShowToolBar = !AppState.get().isShowToolBar;
-                        pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_336_pushpin : R.drawable.glyphicons_200_ban);
-                        if (onRefresh != null) {
-                            onRefresh.run();
-                        }
-
+                pin.setOnClickListener(v -> {
+                    AppState.get().isShowToolBar = !AppState.get().isShowToolBar;
+                    pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_336_pushpin : R.drawable.glyphicons_200_ban);
+                    if (onRefresh != null) {
+                        onRefresh.run();
                     }
                 });
                 pin.setImageResource(AppState.get().isShowToolBar ? R.drawable.glyphicons_336_pushpin : R.drawable.glyphicons_200_ban);
@@ -4831,26 +3596,14 @@ public class DragingDialogs {
 
                 CheckBox isPreText = (CheckBox) inflate.findViewById(R.id.isPreText);
                 isPreText.setChecked(AppState.get().isPreText);
-                isPreText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isPreText = isChecked;
-                    }
-                });
+                isPreText.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isPreText = isChecked);
 
                 boolean isTxtOrZip = BookType.TXT.is(controller.getCurrentBook().getPath()) || BookType.ZIP.is(controller.getCurrentBook().getPath());
                 isPreText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
                 CheckBox isLineBreaksText = (CheckBox) inflate.findViewById(R.id.isLineBreaksText);
                 isLineBreaksText.setChecked(AppState.get().isLineBreaksText);
-                isLineBreaksText.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isLineBreaksText = isChecked;
-                    }
-                });
+                isLineBreaksText.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isLineBreaksText = isChecked);
 
                 isLineBreaksText.setVisibility(isTxtOrZip ? View.VISIBLE : View.GONE);
 
@@ -4912,41 +3665,19 @@ public class DragingDialogs {
                 // inflate.findViewById(R.id.moreSettingsImage);
                 // moreSettingsImage.setVisibility(controller.isTextFormat() ?
                 // View.VISIBLE : View.GONE);
-                TxtUtils.underlineTextView(moreSettings).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        moreBookSettings(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
+                TxtUtils.underlineTextView(moreSettings).setOnClickListener(v -> moreBookSettings(anchor, controller, onRefresh, updateUIRefresh));
 
                 TextView performanceSettings = TxtUtils.underlineTextView(inflate.findViewById(R.id.performanceSettigns));
-                performanceSettings.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        performanceSettings(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
+                performanceSettings.setOnClickListener(v -> performanceSettings(anchor, controller, onRefresh, updateUIRefresh));
 
                 TextView statusBarSettings = TxtUtils.underlineTextView(inflate.findViewById(R.id.statusBarSettings));
-                statusBarSettings.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        statusBarSettings(anchor, controller, onRefresh, updateUIRefresh);
-                    }
-                });
+                statusBarSettings.setOnClickListener(v -> statusBarSettings(anchor, controller, onRefresh, updateUIRefresh));
 
                 final CustomSeek fontSizeSp = (CustomSeek) inflate.findViewById(R.id.fontSizeSp);
                 fontSizeSp.init(10, 70, BookCSS.get().fontSizeSp);
-                fontSizeSp.setOnSeekChanged(new IntegerResponse() {
-
-                    @Override
-                    public boolean onResultRecive(int result) {
-                        BookCSS.get().fontSizeSp = result;
-                        return false;
-                    }
+                fontSizeSp.setOnSeekChanged(result -> {
+                    BookCSS.get().fontSizeSp = result;
+                    return false;
                 });
                 fontSizeSp.setValueText("" + BookCSS.get().fontSizeSp);
 
@@ -4954,89 +3685,47 @@ public class DragingDialogs {
                 inflate.findViewById(R.id.fontNameSelectionLayout).setVisibility(ExtUtils.isTextFomat(controller.getCurrentBook().getPath()) ? View.VISIBLE : View.GONE);
 
                 final TextView textFontName = (TextView) inflate.findViewById(R.id.textFontName);
-                textFontName.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final List<FontPack> fontPacks = BookCSS.get().getAllFontsPacks();
-                        MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
-                        for (final FontPack pack : fontPacks) {
-                            LOG.d("pack.normalFont", pack.normalFont);
-                            popup.getMenu().add(pack.dispalyName, pack.normalFont).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    BookCSS.get().resetAll(pack);
-                                    TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
-                                    return false;
-                                }
-                            });
-                        }
-                        popup.show();
+                textFontName.setOnClickListener(v -> {
+                    final List<FontPack> fontPacks = BookCSS.get().getAllFontsPacks();
+                    MyPopupMenu popup = new MyPopupMenu(controller.getActivity(), v);
+                    for (final FontPack pack : fontPacks) {
+                        LOG.d("pack.normalFont", pack.normalFont);
+                        popup.getMenu().add(pack.dispalyName, pack.normalFont).setOnMenuItemClickListener(item -> {
+                            BookCSS.get().resetAll(pack);
+                            TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
+                            return false;
+                        });
                     }
+                    popup.show();
                 });
 
                 TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
 
                 final View moreFontSettings = inflate.findViewById(R.id.moreFontSettings);
-                moreFontSettings.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        FontDialog.show(controller.getActivity(), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                TxtUtils.underline(textFontName, BookCSS.get().displayFontName);
-                            }
-                        }, controller);
-                    }
-                });
+                moreFontSettings.setOnClickListener(v -> FontDialog.show(controller.getActivity(),
+                        () -> TxtUtils.underline(textFontName, BookCSS.get().displayFontName), controller));
 
                 final View downloadFonts = inflate.findViewById(R.id.downloadFonts);
                 downloadFonts.setVisibility(FontExtractor.hasZipFonts() ? View.GONE : View.VISIBLE);
-                downloadFonts.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, textFontName);
-                    }
-                });
+                downloadFonts.setOnClickListener(v -> FontExtractor.showDownloadFontsDialog(controller.getActivity(), downloadFonts, textFontName));
 
                 // crop
                 CheckBox isCropBorders = (CheckBox) inflate.findViewById(R.id.isCropBorders);
                 isCropBorders.setChecked(controller.isCropCurrentBook());
-                isCropBorders.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        controller.onCrop();
-
-                    }
-                });
+                isCropBorders.setOnCheckedChangeListener((buttonView, isChecked) -> controller.onCrop());
 
                 // volume
                 final CheckBox isReverseKyes = (CheckBox) inflate.findViewById(R.id.isReverseKyes);
                 isReverseKyes.setChecked(AppState.get().isReverseKeys);
-                isReverseKyes.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                isReverseKyes.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isReverseKeys = isChecked);
 
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isReverseKeys = isChecked;
-                    }
-                });
-
-                isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys ? true : false);
+                isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys);
 
                 CheckBox isUseVolumeKeys = (CheckBox) inflate.findViewById(R.id.isUseVolumeKeys);
                 isUseVolumeKeys.setChecked(AppState.get().isUseVolumeKeys);
-                isUseVolumeKeys.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().isUseVolumeKeys = isChecked;
-                        isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys ? true : false);
-                    }
+                isUseVolumeKeys.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    AppState.get().isUseVolumeKeys = isChecked;
+                    isReverseKyes.setEnabled(AppState.get().isUseVolumeKeys);
                 });
 
                 // orientation begin
@@ -5045,28 +3734,20 @@ public class DragingDialogs {
                 screenOrientation.setText(DocumentController.getRotationText());
                 TxtUtils.underlineTextView(screenOrientation);
 
-                screenOrientation.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
-                            final int j = i;
-                            final int name = DocumentController.orientationTexts.get(i);
-                            menu.getMenu().add(name).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                                @Override
-                                public boolean onMenuItemClick(MenuItem item) {
-                                    AppState.get().orientation = DocumentController.orientationIds.get(j);
-                                    screenOrientation.setText(DocumentController.orientationTexts.get(j));
-                                    TxtUtils.underlineTextView(screenOrientation);
-                                    DocumentController.doRotation(controller.getActivity());
-                                    return false;
-                                }
-                            });
-                        }
-                        menu.show();
+                screenOrientation.setOnClickListener(v -> {
+                    PopupMenu menu = new PopupMenu(v.getContext(), v);
+                    for (int i = 0; i < DocumentController.orientationIds.size(); i++) {
+                        final int j = i;
+                        final int name = DocumentController.orientationTexts.get(i);
+                        menu.getMenu().add(name).setOnMenuItemClickListener(item -> {
+                            AppState.get().orientation = DocumentController.orientationIds.get(j);
+                            screenOrientation.setText(DocumentController.orientationTexts.get(j));
+                            TxtUtils.underlineTextView(screenOrientation);
+                            DocumentController.doRotation(controller.getActivity());
+                            return false;
+                        });
                     }
+                    menu.show();
                 });
 
                 // orientation end
@@ -5077,28 +3758,12 @@ public class DragingDialogs {
 
                 final TextView selectedDictionaly = (TextView) inflate.findViewById(R.id.selectedDictionaly);
                 selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
-                selectedDictionaly.setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        DialogTranslateFromTo.show(controller.getActivity(), false, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline());
-                            }
-                        }, false);
-                    }
-                });
+                selectedDictionaly.setOnClickListener(v -> DialogTranslateFromTo.show(controller.getActivity(), false,
+                        () -> selectedDictionaly.setText(DialogTranslateFromTo.getSelectedDictionaryUnderline()), false));
 
                 ((CheckBox) inflate.findViewById(R.id.isRememberDictionary)).setChecked(AppState.get().isRememberDictionary);
-                ((CheckBox) inflate.findViewById(R.id.isRememberDictionary)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                        AppState.get().isRememberDictionary = isChecked;
-                    }
-                });
+                ((CheckBox) inflate.findViewById(R.id.isRememberDictionary))
+                        .setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().isRememberDictionary = isChecked);
 
                 // Colors
 
@@ -5111,60 +3776,46 @@ public class DragingDialogs {
 
                 final ImageView onDayColorImage = (ImageView) inflate.findViewById(R.id.onDayColorImage);
                 final TextView textDayColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onDayColor));
-                textDayColor.setOnClickListener(new OnClickListener() {
+                textDayColor.setOnClickListener(v -> {
+                    boolean isSolid = !AppState.get().isUseBGImageDay;
 
-                    @Override
-                    public void onClick(View v) {
-                        boolean isSolid = !AppState.get().isUseBGImageDay;
+                    new ColorsDialog((FragmentActivity) controller.getActivity(), true,
+                            AppState.get().colorDayText, AppState.get().colorDayBg, false,
+                            isSolid, (colorText, colorBg) -> {
+                        textDayColor.setTextColor(colorText);
+                        textDayColor.setBackgroundColor(colorBg);
+                        TintUtil.setTintImageWithAlpha(onDayColorImage, colorText);
 
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), true, AppState.get().colorDayText, AppState.get().colorDayBg, false, isSolid, new ColorsDialogResult() {
+                        AppState.get().colorDayText = colorText;
+                        AppState.get().colorDayBg = colorBg;
 
-                            @Override
-                            public void onChooseColor(int colorText, int colorBg) {
-                                textDayColor.setTextColor(colorText);
-                                textDayColor.setBackgroundColor(colorBg);
-                                TintUtil.setTintImageWithAlpha(onDayColorImage, colorText);
+                        IMG.clearMemoryCache();
+                        IMG.clearDiscCache();
 
-                                AppState.get().colorDayText = colorText;
-                                AppState.get().colorDayBg = colorBg;
-
-
-                                IMG.clearMemoryCache();
-                                IMG.clearDiscCache();
-
-                                if (AppState.get().isUseBGImageDay) {
-                                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
-                                }
-                            }
-                        });
-                    }
+                        if (AppState.get().isUseBGImageDay) {
+                            textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(true));
+                        }
+                    });
                 });
 
                 final ImageView onNigthColorImage = (ImageView) inflate.findViewById(R.id.onNigthColorImage);
                 final TextView textNigthColor = TxtUtils.underlineTextView(inflate.findViewById(R.id.onNigthColor));
-                textNigthColor.setOnClickListener(new OnClickListener() {
+                textNigthColor.setOnClickListener(v -> {
+                    boolean isSolid = !AppState.get().isUseBGImageNight;
+                    new ColorsDialog((FragmentActivity) controller.getActivity(), false,
+                            AppState.get().colorNigthText, AppState.get().colorNigthBg, false,
+                            isSolid, (colorText, colorBg) -> {
+                        textNigthColor.setTextColor(colorText);
+                        textNigthColor.setBackgroundColor(colorBg);
+                        TintUtil.setTintImageWithAlpha(onNigthColorImage, colorText);
 
-                    @Override
-                    public void onClick(View v) {
-                        boolean isSolid = !AppState.get().isUseBGImageNight;
-                        new ColorsDialog((FragmentActivity) controller.getActivity(), false, AppState.get().colorNigthText, AppState.get().colorNigthBg, false, isSolid, new ColorsDialogResult() {
+                        AppState.get().colorNigthText = colorText;
+                        AppState.get().colorNigthBg = colorBg;
 
-                            @Override
-                            public void onChooseColor(int colorText, int colorBg) {
-                                textNigthColor.setTextColor(colorText);
-                                textNigthColor.setBackgroundColor(colorBg);
-                                TintUtil.setTintImageWithAlpha(onNigthColorImage, colorText);
-
-                                AppState.get().colorNigthText = colorText;
-                                AppState.get().colorNigthBg = colorBg;
-
-                                if (AppState.get().isUseBGImageNight) {
-                                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
-                                }
-
-                            }
-                        });
-                    }
+                        if (AppState.get().isUseBGImageNight) {
+                            textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(true));
+                        }
+                    });
                 });
 
                 final LinearLayout lc = (LinearLayout) inflate.findViewById(R.id.preColors);
@@ -5192,306 +3843,242 @@ public class DragingDialogs {
                 // View.GONE);
 
                 final int padding = Dips.dpToPx(3);
-                final Runnable colorsLine = new Runnable() {
+                final Runnable colorsLine = () -> {
+                    lc.removeAllViews();
 
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
+                    for (String line : AppState.get().readColors.split(";")) {
+                        if (TxtUtils.isEmpty(line)) {
+                            continue;
+                        }
+                        String[] split = line.split(",");
+                        LOG.d("Split colors", split[0], split[1], split[2]);
+                        String name = split[0];
+                        final int bg = Color.parseColor(split[1]);
+                        final int text = Color.parseColor(split[2]);
+                        final boolean isDay = split[3].equals("0");
 
-                        lc.removeAllViews();
+                        BorderTextView t1 = new BorderTextView(controller.getActivity());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                        params.setMargins(padding, padding, padding, padding);
+                        t1.setLayoutParams(params);
+                        t1.setGravity(Gravity.CENTER);
+                        t1.setBackgroundColor(bg);
+                        if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                            t1.setText(name);
+                            t1.setTextColor(text);
+                            t1.setTypeface(null, Typeface.BOLD);
+                        }
 
-                        for (String line : AppState.get().readColors.split(";")) {
-                            if (TxtUtils.isEmpty(line)) {
-                                continue;
+                        t1.setOnClickListener(v -> {
+                            if (isDay) {
+                                if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                                    AppState.get().colorDayText = text;
+                                    textDayColor.setTextColor(text);
+                                }
+
+                                AppState.get().colorDayBg = bg;
+                                textDayColor.setBackgroundColor(bg);
+                                AppState.get().isUseBGImageDay = false;
+
+                            } else {
+                                if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
+                                    AppState.get().colorNigthText = text;
+                                    textNigthColor.setTextColor(text);
+                                }
+
+                                AppState.get().colorNigthBg = bg;
+                                textNigthColor.setBackgroundColor(bg);
+                                AppState.get().isUseBGImageNight = false;
                             }
-                            String[] split = line.split(",");
-                            LOG.d("Split colors", split[0], split[1], split[2]);
-                            String name = split[0];
-                            final int bg = Color.parseColor(split[1]);
-                            final int text = Color.parseColor(split[2]);
-                            final boolean isDay = split[3].equals("0");
 
-                            BorderTextView t1 = new BorderTextView(controller.getActivity());
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                            params.setMargins(padding, padding, padding, padding);
-                            t1.setLayoutParams(params);
-                            t1.setGravity(Gravity.CENTER);
-                            t1.setBackgroundColor(bg);
-                            if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                t1.setText(name);
-                                t1.setTextColor(text);
-                                t1.setTypeface(null, Typeface.BOLD);
-                            }
+                            TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                            TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                        });
+                        lc.addView(t1);
+                    }
+                    // add DayBG
+                    {
+                        ImageView t1 = new ImageView(controller.getActivity());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                        params.setMargins(padding, padding, padding, padding);
+                        t1.setLayoutParams(params);
+                        t1.setScaleType(ScaleType.FIT_XY);
 
-                            t1.setOnClickListener(new OnClickListener() {
+                        t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
 
-                                @Override
-                                public void onClick(View v) {
-                                    if (isDay) {
-                                        if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                            AppState.get().colorDayText = text;
-                                            textDayColor.setTextColor(text);
-                                        }
+                        t1.setOnClickListener(v -> {
+                            AppState.get().colorDayText = AppState.COLOR_BLACK;
+                            AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                        AppState.get().colorDayBg = bg;
-                                        textDayColor.setBackgroundColor(bg);
-                                        AppState.get().isUseBGImageDay = false;
+                            textDayColor.setTextColor(Color.BLACK);
+                            textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
+                            AppState.get().isUseBGImageDay = true;
 
-                                    } else {
-                                        if (controller.isTextFormat() || AppState.get().isCustomizeBgAndColors) {
-                                            AppState.get().colorNigthText = text;
-                                            textNigthColor.setTextColor(text);
-                                        }
+                            TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                        });
+                        lc.addView(t1, AppState.get().readColors.split(";").length / 2);
+                    }
 
-                                        AppState.get().colorNigthBg = bg;
-                                        textNigthColor.setBackgroundColor(bg);
-                                        AppState.get().isUseBGImageNight = false;
-                                    }
+                    // add Night
+                    {
+                        ImageView t2 = new ImageView(controller.getActivity());
+                        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
+                        params2.setMargins(padding, padding, padding, padding);
+                        t2.setLayoutParams(params2);
+                        t2.setScaleType(ScaleType.FIT_XY);
 
-                                    TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
-                                }
+                        t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
 
-                            });
-                            lc.addView(t1);
-                        }
-                        // add DayBG
-                        {
-                            ImageView t1 = new ImageView(controller.getActivity());
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                            params.setMargins(padding, padding, padding, padding);
-                            t1.setLayoutParams(params);
-                            t1.setScaleType(ScaleType.FIT_XY);
+                        t2.setOnClickListener(v -> {
+                            AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                            AppState.get().colorNigthBg = AppState.COLOR_BLACK;
 
-                            t1.setImageDrawable(MagicHelper.getBgImageDayDrawable(false));
-
-                            t1.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    AppState.get().colorDayText = AppState.COLOR_BLACK;
-                                    AppState.get().colorDayBg = AppState.COLOR_WHITE;
-
-                                    textDayColor.setTextColor(Color.BLACK);
-                                    textDayColor.setBackgroundDrawable(MagicHelper.getBgImageDayDrawable(false));
-                                    AppState.get().isUseBGImageDay = true;
-
-                                    TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-
-                                }
-                            });
-                            lc.addView(t1, AppState.get().readColors.split(";").length / 2);
-                        }
-
-                        // add Night
-                        {
-                            ImageView t2 = new ImageView(controller.getActivity());
-                            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(Dips.dpToPx(30), Dips.dpToPx(30));
-                            params2.setMargins(padding, padding, padding, padding);
-                            t2.setLayoutParams(params2);
-                            t2.setScaleType(ScaleType.FIT_XY);
-
-                            t2.setImageDrawable(MagicHelper.getBgImageNightDrawable(false));
-
-                            t2.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                                    AppState.get().colorNigthBg = AppState.COLOR_BLACK;
-
-                                    textNigthColor.setTextColor(Color.WHITE);
-                                    textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
-                                    AppState.get().isUseBGImageNight = true;
-                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
-
-                                }
-                            });
-                            lc.addView(t2);
-                        }
-
+                            textNigthColor.setTextColor(Color.WHITE);
+                            textNigthColor.setBackgroundDrawable(MagicHelper.getBgImageNightDrawable(false));
+                            AppState.get().isUseBGImageNight = true;
+                            TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                        });
+                        lc.addView(t2);
                     }
                 };
                 colorsLine.run();
 
-                TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor)).setOnClickListener(new OnClickListener() {
+                TxtUtils.underlineTextView(inflate.findViewById(R.id.onDefaultColor))
+                        .setOnClickListener(v -> AlertDialogs.showOkDialog(controller.getActivity(),
+                                controller.getString(R.string.restore_defaults_full), () -> {
+                                    AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
+                                    AppState.get().isUseBGImageDay = false;
+                                    AppState.get().isUseBGImageNight = false;
 
-                    @Override
-                    public void onClick(View v) {
+                                    AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
+                                    AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
 
-                        AlertDialogs.showOkDialog(controller.getActivity(), controller.getString(R.string.restore_defaults_full), new Runnable() {
+                                    AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
+                                    AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_1;
 
-                            @Override
-                            public void run() {
-                                AppState.get().readColors = AppState.READ_COLORS_DEAFAUL;
-                                AppState.get().isUseBGImageDay = false;
-                                AppState.get().isUseBGImageNight = false;
+                                    AppState.get().isCustomizeBgAndColors = false;
 
-                                AppState.get().bgImageDayTransparency = AppState.DAY_TRANSPARENCY;
-                                AppState.get().bgImageDayPath = MagicHelper.IMAGE_BG_1;
+                                    AppState.get().colorDayText = AppState.COLOR_BLACK;
+                                    AppState.get().colorDayBg = AppState.COLOR_WHITE;
 
-                                AppState.get().bgImageNightTransparency = AppState.NIGHT_TRANSPARENCY;
-                                AppState.get().bgImageNightPath = MagicHelper.IMAGE_BG_1;
+                                    textDayColor.setTextColor(AppState.COLOR_BLACK);
+                                    textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
 
-                                AppState.get().isCustomizeBgAndColors = false;
+                                    AppState.get().colorNigthText = AppState.COLOR_WHITE;
+                                    AppState.get().colorNigthBg = AppState.COLOR_BLACK;
 
-                                AppState.get().colorDayText = AppState.COLOR_BLACK;
-                                AppState.get().colorDayBg = AppState.COLOR_WHITE;
+                                    textNigthColor.setTextColor(AppState.COLOR_WHITE);
+                                    textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
 
-                                textDayColor.setTextColor(AppState.COLOR_BLACK);
-                                textDayColor.setBackgroundColor(AppState.COLOR_WHITE);
+                                    TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
+                                    TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
 
-                                AppState.get().colorNigthText = AppState.COLOR_WHITE;
-                                AppState.get().colorNigthBg = AppState.COLOR_BLACK;
+                                    AppState.get().statusBarColorDay = Color.parseColor(AppState.TEXT_COLOR_DAY);
+                                    AppState.get().statusBarColorNight = Color.parseColor(AppState.TEXT_COLOR_NIGHT);
 
-                                textNigthColor.setTextColor(AppState.COLOR_WHITE);
-                                textNigthColor.setBackgroundColor(AppState.COLOR_BLACK);
+                                    colorsLine.run();
+                                }));
 
-                                TintUtil.setTintImageWithAlpha(onDayColorImage, AppState.get().colorDayText);
-                                TintUtil.setTintImageWithAlpha(onNigthColorImage, AppState.get().colorNigthText);
+                inflate.findViewById(R.id.moreReadColorSettings).setOnClickListener(v -> {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());
+                    builder.setTitle(R.string.customize);
 
-                                AppState.get().statusBarColorDay = Color.parseColor(AppState.TEXT_COLOR_DAY);
-                                AppState.get().statusBarColorNight = Color.parseColor(AppState.TEXT_COLOR_NIGHT);
+                    final LinearLayout root = new LinearLayout(controller.getActivity());
+                    root.setOrientation(LinearLayout.VERTICAL);
 
-                                colorsLine.run();
-                            }
-                        });
-
-                    }
-                });
-
-                inflate.findViewById(R.id.moreReadColorSettings).setOnClickListener(new OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(controller.getActivity());
-                        builder.setTitle(R.string.customize);
-
-                        final LinearLayout root = new LinearLayout(controller.getActivity());
-                        root.setOrientation(LinearLayout.VERTICAL);
-
-                        for (String line : AppState.get().readColors.split(";")) {
-                            if (TxtUtils.isEmpty(line)) {
-                                continue;
-                            }
-                            final String[] split = line.split(",");
-                            LOG.d("Split colors", split[0], split[1], split[2]);
-                            final String name = split[0];
-                            final int bg = Color.parseColor(split[1]);
-                            final int text = Color.parseColor(split[2]);
-                            final boolean isDay = split[3].equals("0");
-
-                            final LinearLayout child = new LinearLayout(controller.getActivity());
-                            child.setOrientation(LinearLayout.HORIZONTAL);
-                            child.setTag(line);
-
-                            final TextView t1Img = new TextView(controller.getActivity());
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(60), Dips.dpToPx(30));
-                            params.setMargins(padding, padding, padding, padding);
-                            t1Img.setLayoutParams(params);
-                            t1Img.setGravity(Gravity.CENTER);
-                            t1Img.setBackgroundColor(bg);
-                            t1Img.setText(name);
-                            t1Img.setTextColor(text);
-                            t1Img.setTypeface(null, Typeface.BOLD);
-                            t1Img.setTag(isDay);
-
-                            TextView t0 = new TextView(controller.getActivity());
-                            t0.setEms(1);
-
-                            TextView t00 = new TextView(controller.getActivity());
-                            t00.setEms(2);
-
-                            final TextView t2BG = new TextView(controller.getActivity());
-                            t2BG.setText(TxtUtils.underline(split[1]));
-                            t2BG.setEms(5);
-                            t2BG.setTag(bg);
-
-                            final TextView t3Text = new TextView(controller.getActivity());
-                            t3Text.setText(TxtUtils.underline(split[2]));
-                            t3Text.setEms(5);
-                            t3Text.setTag(text);
-
-                            child.addView(t0);
-                            child.addView(t1Img);
-                            child.addView(t00);
-                            child.addView(t2BG);
-                            child.addView(t3Text);
-
-                            child.setOnClickListener(new OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    new ColorsDialog((FragmentActivity) controller.getActivity(), (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(), true, true, new ColorsDialogResult() {
-
-                                        @Override
-                                        public void onChooseColor(int colorText, int colorBg) {
-                                            t1Img.setTextColor(colorText);
-                                            t1Img.setBackgroundColor(colorBg);
-
-                                            t2BG.setText(TxtUtils.underline(MagicHelper.colorToString(colorBg)));
-                                            t3Text.setText(TxtUtils.underline(MagicHelper.colorToString(colorText)));
-
-                                            t2BG.setTag(colorBg);
-                                            t3Text.setTag(colorText);
-
-                                            String line = name + "," + MagicHelper.colorToString(colorBg) + "," + MagicHelper.colorToString(colorText) + "," + split[3];
-                                            child.setTag(line);
-
-                                        }
-                                    });
-
-                                }
-                            });
-
-                            root.addView(child);
-
+                    for (String line : AppState.get().readColors.split(";")) {
+                        if (TxtUtils.isEmpty(line)) {
+                            continue;
                         }
+                        final String[] split = line.split(",");
+                        LOG.d("Split colors", split[0], split[1], split[2]);
+                        final String name = split[0];
+                        final int bg = Color.parseColor(split[1]);
+                        final int text = Color.parseColor(split[2]);
+                        final boolean isDay = split[3].equals("0");
 
-                        builder.setView(root);
+                        final LinearLayout child = new LinearLayout(controller.getActivity());
+                        child.setOrientation(LinearLayout.HORIZONTAL);
+                        child.setTag(line);
 
-                        builder.setNegativeButton(R.string.apply, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String res = "";
-                                for (int i = 0; i < root.getChildCount(); i++) {
-                                    View childAt = root.getChildAt(i);
-                                    String line = (String) childAt.getTag();
-                                    res = res + line + ";";
-                                }
-                                AppState.get().readColors = res;
-                                LOG.d("SAVE readColors", AppState.get().readColors);
-                                colorsLine.run();
+                        final TextView t1Img = new TextView(controller.getActivity());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(Dips.dpToPx(60), Dips.dpToPx(30));
+                        params.setMargins(padding, padding, padding, padding);
+                        t1Img.setLayoutParams(params);
+                        t1Img.setGravity(Gravity.CENTER);
+                        t1Img.setBackgroundColor(bg);
+                        t1Img.setText(name);
+                        t1Img.setTextColor(text);
+                        t1Img.setTypeface(null, Typeface.BOLD);
+                        t1Img.setTag(isDay);
 
-                            }
-                        });
-                        builder.setPositiveButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
+                        TextView t0 = new TextView(controller.getActivity());
+                        t0.setEms(1);
 
-                        builder.show();
+                        TextView t00 = new TextView(controller.getActivity());
+                        t00.setEms(2);
 
+                        final TextView t2BG = new TextView(controller.getActivity());
+                        t2BG.setText(TxtUtils.underline(split[1]));
+                        t2BG.setEms(5);
+                        t2BG.setTag(bg);
+
+                        final TextView t3Text = new TextView(controller.getActivity());
+                        t3Text.setText(TxtUtils.underline(split[2]));
+                        t3Text.setEms(5);
+                        t3Text.setTag(text);
+
+                        child.addView(t0);
+                        child.addView(t1Img);
+                        child.addView(t00);
+                        child.addView(t2BG);
+                        child.addView(t3Text);
+
+                        child.setOnClickListener(v1 -> new ColorsDialog((FragmentActivity) controller.getActivity(),
+                                (Boolean) t1Img.getTag(), (Integer) t3Text.getTag(), (Integer) t2BG.getTag(),
+                                true, true, (colorText, colorBg) -> {
+                            t1Img.setTextColor(colorText);
+                            t1Img.setBackgroundColor(colorBg);
+
+                            t2BG.setText(TxtUtils.underline(MagicHelper.colorToString(colorBg)));
+                            t3Text.setText(TxtUtils.underline(MagicHelper.colorToString(colorText)));
+
+                            t2BG.setTag(colorBg);
+                            t3Text.setTag(colorText);
+
+                            String line1 = name + "," + MagicHelper.colorToString(colorBg) + "," + MagicHelper.colorToString(colorText) + "," + split[3];
+                            child.setTag(line1);
+                        }));
+
+                        root.addView(child);
                     }
+
+                    builder.setView(root);
+
+                    builder.setNegativeButton(R.string.apply, (dialog1, which) -> {
+                        StringBuilder res = new StringBuilder();
+                        for (int i = 0; i < root.getChildCount(); i++) {
+                            View childAt = root.getChildAt(i);
+                            String line = (String) childAt.getTag();
+                            res.append(line).append(";");
+                        }
+                        AppState.get().readColors = res.toString();
+                        LOG.d("SAVE readColors", AppState.get().readColors);
+                        colorsLine.run();
+                    });
+                    builder.setPositiveButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());
+
+                    builder.show();
                 });
 
                 return inflate;
-
             }
-        }.show(DragingPopup.PREF + "_preferences").setOnCloseListener(new Runnable() {
-
-            @Override
-            public void run() {
-                // LOG.d("ojectAsString2", Objects.ojectAsString(AppState.get()));
-
-                if (initHash != Objects.appHash()) {
-                    if (onRefresh != null) {
-                        onRefresh.run();
-                    }
-                    controller.restartActivity();
+        }.show(DragingPopup.PREF + "_preferences").setOnCloseListener(() -> {
+            if (initHash != Objects.appHash()) {
+                if (onRefresh != null) {
+                    onRefresh.run();
                 }
+                controller.restartActivity();
             }
         });
         return dialog;

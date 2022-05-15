@@ -27,13 +27,7 @@ public abstract class BaseAsyncTask<Params, Result> extends CopyAsyncTask<Params
 
     @Override
     protected void onPreExecute() {
-        progressDialog = Dialogs.loadingBook(context, new Runnable() {
-
-            @Override
-            public void run() {
-                onBookCancel();
-            }
-        });
+        progressDialog = Dialogs.loadingBook(context, this::onBookCancel);
     }
 
     @Override

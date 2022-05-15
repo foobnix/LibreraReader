@@ -47,17 +47,12 @@ public class ImagePageFragment extends Fragment {
     Future<?> submit;
     private PageImaveView image;
     private TextView text;
-    Runnable callback = new Runnable() {
-
-        @Override
-        public void run() {
-            if (!isDetached()) {
-                loadImageGlide();
-            } else {
-                LOG.d("Image page is detached");
-            }
+    Runnable callback = () -> {
+        if (!isDetached()) {
+            loadImageGlide();
+        } else {
+            LOG.d("Image page is detached");
         }
-
     };
 
     public String getPath() {
@@ -80,22 +75,18 @@ public class ImagePageFragment extends Fragment {
         text.setTextColor(MagicHelper.getTextColor());
 
         handler = new Handler();
-        handler.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                LOG.d("ImagePageFragment1  run ", page, "getPriority", getPriority(), "counter", count);
-                if (isVisible()) {
-                    if (0 == getPriority()) {
-                        handler.post(callback);
-                    } else if (1 == getPriority()) {
-                        handler.postDelayed(callback, 200);
-                    } else {
-                        handler.postDelayed(callback, getPriority() * 200);
-                    }
+        handler.postDelayed(() -> {
+            LOG.d("ImagePageFragment1  run ", page, "getPriority", getPriority(), "counter", count);
+            if (isVisible()) {
+                if (0 == getPriority()) {
+                    handler.post(callback);
+                } else if (1 == getPriority()) {
+                    handler.postDelayed(callback, 200);
+                } else {
+                    handler.postDelayed(callback, getPriority() * 200);
                 }
-
             }
+
         }, 150);
         lifeTime = System.currentTimeMillis();
 
@@ -105,31 +96,25 @@ public class ImagePageFragment extends Fragment {
 
     public void loadImageGlide21() {
 
-        submit = executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                if (submit.isCancelled()) {
-                    LOG.d("loadImageGlide-isCancelled 1");
-                    return;
-                }
-                Bitmap bitmap = ImageExtractor.getInstance(getContext()).proccessOtherPage(getPath());
-
-                if (submit.isCancelled()) {
-                    LOG.d("loadImageGlide-isCancelled 2");
-                    return;
-                }
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        text.setVisibility(View.GONE);
-                        if (bitmap != null && image != null) {
-                            image.addBitmap(bitmap);
-                        }
-                    }
-                });
-
+        submit = executorService.submit(() -> {
+            if (submit.isCancelled()) {
+                LOG.d("loadImageGlide-isCancelled 1");
+                return;
             }
+            Bitmap bitmap = ImageExtractor.getInstance(getContext()).proccessOtherPage(getPath());
+
+            if (submit.isCancelled()) {
+                LOG.d("loadImageGlide-isCancelled 2");
+                return;
+            }
+
+            getActivity().runOnUiThread(() -> {
+                text.setVisibility(View.GONE);
+                if (bitmap != null && image != null) {
+                    image.addBitmap(bitmap);
+                }
+            });
+
         });
 
     }

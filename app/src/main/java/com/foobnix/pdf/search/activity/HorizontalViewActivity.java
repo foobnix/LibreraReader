@@ -1029,15 +1029,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         Apps.accessibilityButtonSize(onClose);
         onClose.setVisibility(View.INVISIBLE);
 
-        onClose.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(final View v) {
-                nullAdapter();
-                closeDialogs();
-                showInterstial();
-            }
-
+        onClose.setOnClickListener(v -> {
+            nullAdapter();
+            closeDialogs();
+            showInterstial();
         });
 
         onClose.setOnLongClickListener(onCloseLongClick);
@@ -1046,13 +1041,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         findViewById(R.id.nextTypeBootom).setVisibility(View.GONE);
 
         lockModelImage = (ImageView) findViewById(R.id.lockUnlock);
-        lockModelImage.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppSP.get().isLocked = !AppSP.get().isLocked;
-                updateLockMode();
-            }
+        lockModelImage.setOnClickListener(v -> {
+            AppSP.get().isLocked = !AppSP.get().isLocked;
+            updateLockMode();
         });
         updateLockMode();
 
@@ -1076,19 +1067,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
             protected void onPreExecute() {
                 start = System.currentTimeMillis();
                 TempHolder.get().loadingCancelled = false;
-                dialog = Dialogs.loadingBook(HorizontalViewActivity.this, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        isCancelled = true;
-                        TempHolder.get().loadingCancelled = true;
-                        CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
-                        finish();
-                    }
+                dialog = Dialogs.loadingBook(HorizontalViewActivity.this, () -> {
+                    isCancelled = true;
+                    TempHolder.get().loadingCancelled = true;
+                    CacheZipUtils.removeFiles(CacheZipUtils.CACHE_BOOK_DIR.listFiles());
+                    finish();
                 });
             }
-
-            ;
 
             @Override
             protected Object doInBackground(Object... params) {
@@ -1111,14 +1096,7 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                             }
                         }
 
-                        HorizontalViewActivity.this.runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                updateBannnerTop();
-                            }
-                        });
-
+                        HorizontalViewActivity.this.runOnUiThread(() -> updateBannnerTop());
                     } catch (InterruptedException e) {
                     }
                     LOG.d("viewPager", viewPager.getHeight() + "x" + viewPager.getWidth());
@@ -1182,44 +1160,35 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     dialog.setTitle(R.string.enter_password);
                     dialog.setView(input);
                     dialog.setCancelable(false);
-                    dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            if (dc != null) {
-                                dc.onCloseActivityFinal(null);
-                            } else {
-                                HorizontalViewActivity.this.finish();
-                            }
+                    dialog.setNegativeButton(R.string.cancel, (dialog12, which) -> {
+                        dialog12.dismiss();
+                        if (dc != null) {
+                            dc.onCloseActivityFinal(null);
+                        } else {
+                            HorizontalViewActivity.this.finish();
                         }
-
                     });
-                    dialog.setPositiveButton(R.string.open_file, new DialogInterface.OnClickListener() {
+                    dialog.setPositiveButton(R.string.open_file, (dialog1, which) -> {
+                        final String txt = input.getText().toString();
+                        if (TxtUtils.isNotEmpty(txt)) {
+                            dialog1.dismiss();
 
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            final String txt = input.getText().toString();
-                            if (TxtUtils.isNotEmpty(txt)) {
-                                dialog.dismiss();
-
-                                final Runnable runnable = () -> {
-                                    HorizontalViewActivity.this.finish();
-                                    getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
-                                    startActivity(getIntent());
-                                };
-                                if (dc != null) {
-                                    dc.onCloseActivityFinal(runnable);
-                                } else {
-                                    runnable.run();
-                                }
-
+                            final Runnable runnable = () -> {
+                                HorizontalViewActivity.this.finish();
+                                getIntent().putExtra(HorizontalModeController.EXTRA_PASSWORD, txt);
+                                startActivity(getIntent());
+                            };
+                            if (dc != null) {
+                                dc.onCloseActivityFinal(runnable);
                             } else {
-                                if (dc == null) {
-                                    HorizontalViewActivity.this.finish();
-                                } else {
-                                    dc.onCloseActivityFinal(null);
-                                }
+                                runnable.run();
+                            }
+
+                        } else {
+                            if (dc == null) {
+                                HorizontalViewActivity.this.finish();
+                            } else {
+                                dc.onCloseActivityFinal(null);
                             }
                         }
                     });
@@ -1285,14 +1254,10 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     onCrop.invalidate();
 
                     ttsActive.setDC(dc);
-                    ttsActive.addOnDialogRunnable(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            AppState.get().isEditMode = true;
-                            hideShow();
-                            DragingDialogs.textToSpeachDialog(anchor, dc);
-                        }
+                    ttsActive.addOnDialogRunnable(() -> {
+                        AppState.get().isEditMode = true;
+                        hideShow();
+                        DragingDialogs.textToSpeachDialog(anchor, dc);
                     });
 
                     DialogsPlaylist.dispalyPlaylist(HorizontalViewActivity.this, dc);
@@ -1303,12 +1268,8 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                     }
 
                     HypenPanelHelper.init(parentParent, dc);
-
                 }
-
             }
-
-            ;
         };
         loadinAsyncTask.executeOnExecutor(Executors.newSingleThreadExecutor());
         updateIconMode();
@@ -1318,41 +1279,33 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         tinUI();
         LOG.d("INIT end", (float) (System.currentTimeMillis() - crateBegin) / 1000);
 
-        anchor.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-
-            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onGlobalLayout() {
-
-                if (anchor.getVisibility() == View.VISIBLE) {
+        anchor.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            if (anchor.getVisibility() == View.VISIBLE) {
+                adFrame.setVisibility(View.GONE);
+                adFrame.setClickable(false);
+            } else {
+                if (AppState.get().isEditMode && adFrame.getTag() == null) {
+                    adFrame.setVisibility(View.VISIBLE);
+                    adFrame.setClickable(true);
+                } else {
                     adFrame.setVisibility(View.GONE);
                     adFrame.setClickable(false);
-                } else {
-                    if (AppState.get().isEditMode && adFrame.getTag() == null) {
-                        adFrame.setVisibility(View.VISIBLE);
-                        adFrame.setClickable(true);
-                    } else {
-                        adFrame.setVisibility(View.GONE);
-                        adFrame.setClickable(false);
-                    }
-                }
-
-                if (Build.VERSION.SDK_INT >= 11) {
-                    if (anchor.getX() < 0) {
-                        anchor.setX(0);
-                    }
-                    if (anchor.getY() < 0) {
-                        anchor.setY(0);
-                    }
                 }
             }
 
+            if (Build.VERSION.SDK_INT >= 11) {
+                if (anchor.getX() < 0) {
+                    anchor.setX(0);
+                }
+                if (anchor.getY() < 0) {
+                    anchor.setY(0);
+                }
+            }
         });
 
     }
 
     OnLongClickListener onCloseLongClick = new OnLongClickListener() {
-
         @Override
         public boolean onLongClick(final View v) {
             Vibro.vibrate();
@@ -1931,18 +1884,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         bottomIndicators.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
         progressDraw.setOnTouchListener(new HorizontallSeekTouchEventListener(onSeek, dc.getPageCount(), false));
-        bottomIndicators.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (AppState.get().tapZoneBottom == AppState.TAP_DO_NOTHING) {
-                    // do nothing
-                } else if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
-                    nextPage();
-                } else if (AppState.get().tapZoneBottom == AppState.TAP_PREV_PAGE) {
-                    prevPage();
-                }
-
+        bottomIndicators.setOnClickListener(v -> {
+            if (AppState.get().tapZoneBottom == AppState.TAP_DO_NOTHING) {
+                // do nothing
+            } else if (AppState.get().tapZoneBottom == AppState.TAP_NEXT_PAGE) {
+                nextPage();
+            } else if (AppState.get().tapZoneBottom == AppState.TAP_PREV_PAGE) {
+                prevPage();
             }
         });
 
@@ -1954,19 +1902,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
         progressDraw.updatePageCount(dc.getPageCount());
 
-        dc.getOutline(new ResultResponse<List<OutlineLinkWrapper>>() {
-
-            @Override
-            public boolean onResultRecive(List<OutlineLinkWrapper> result) {
-                onClose.setVisibility(View.VISIBLE);
-                progressDraw.updateDivs(result);
-                updateUI(dc.getCurrentPage());
-                if (TxtUtils.isListEmpty(result)) {
-                    TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
-                }
-                showPagesHelper();
-                return false;
+        dc.getOutline(result -> {
+            onClose.setVisibility(View.VISIBLE);
+            progressDraw.updateDivs(result);
+            updateUI(dc.getCurrentPage());
+            if (TxtUtils.isListEmpty(result)) {
+                TintUtil.setTintImageWithAlpha(outline, Color.LTGRAY);
             }
+            showPagesHelper();
+            return false;
         }, false);
 
         showHelp();
@@ -1975,19 +1919,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
 
     public void showHelp() {
         if (AppSP.get().isFirstTimeHorizontal) {
-            handler.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    AppSP.get().isFirstTimeHorizontal = false;
-                    AppState.get().isEditMode = true;
-                    hideShow();
-                    Views.showHelpToast(lockModelImage);
-
-                }
+            handler.postDelayed(() -> {
+                AppSP.get().isFirstTimeHorizontal = false;
+                AppState.get().isEditMode = true;
+                hideShow();
+                Views.showHelpToast(lockModelImage);
             }, 1000);
         }
-
     }
 
     private void tinUI() {
@@ -2024,13 +1962,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
                 dialog.setCancelable(false);
                 dialog.setMessage(R.string.apply_a_new_screen_orientation_);
-                dialog.setPositiveButton(R.string.yes, new AlertDialog.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        onRotateScreen();
-                        isInitPosistion = currentPosistion;
-                    }
+                dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
+                    onRotateScreen();
+                    isInitPosistion = currentPosistion;
                 });
                 rotatoinDialog = dialog.show();
                 rotatoinDialog.getWindow().setLayout((int) (Dips.screenMinWH() * 0.8f), LayoutParams.WRAP_CONTENT);

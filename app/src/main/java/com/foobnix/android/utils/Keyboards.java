@@ -46,19 +46,14 @@ public class Keyboards {
 
     public static void invalidateEink(View parent) {
         try {
-
             if (parent != null) {
                 if (Dips.isEInk()) {
-                    parent.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                parent.invalidate();
-                                LOG.d("invalidateEink", parent.getId());
-                            } catch (Exception e) {
-                                LOG.e(e);
-                            }
-
+                    parent.postDelayed(() -> {
+                        try {
+                            parent.invalidate();
+                            LOG.d("invalidateEink", parent.getId());
+                        } catch (Exception e) {
+                            LOG.e(e);
                         }
                     }, 100);
                 }
@@ -66,7 +61,6 @@ public class Keyboards {
         } catch (Exception e) {
             LOG.e(e);
         }
-
     }
 
     public static void hideNavigation(final Activity a) {
@@ -81,25 +75,20 @@ public class Keyboards {
             }
 
             final View decorView = a.getWindow().getDecorView();
-            decorView.postDelayed(new Runnable() {
-
-                @Override
-                public void run() {
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        decorView.setSystemUiVisibility(//
-                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN//
-                                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
-                    } else if (Build.VERSION.SDK_INT >= 14) {
-                        decorView.setSystemUiVisibility( //
-                                View.SYSTEM_UI_FLAG_LOW_PROFILE //
-                                        | View.SYSTEM_UI_FLAG_FULLSCREEN); //
-                    }
+            decorView.postDelayed(() -> {
+                if (Build.VERSION.SDK_INT >= 19) {
+                    decorView.setSystemUiVisibility(//
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE //
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION//
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN//
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION//
+                                    | View.SYSTEM_UI_FLAG_FULLSCREEN//
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);//
+                } else if (Build.VERSION.SDK_INT >= 14) {
+                    decorView.setSystemUiVisibility( //
+                            View.SYSTEM_UI_FLAG_LOW_PROFILE //
+                                    | View.SYSTEM_UI_FLAG_FULLSCREEN); //
                 }
-
             }, 100);
         } catch (Exception e) {
             LOG.e(e);

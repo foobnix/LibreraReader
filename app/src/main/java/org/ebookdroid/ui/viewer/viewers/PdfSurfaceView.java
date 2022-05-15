@@ -178,21 +178,16 @@ public final class PdfSurfaceView extends android.view.View implements IView{
      * @see org.ebookdroid.ui.viewer.IView#scrollTo(int, int)
      */
     @Override
-    public final void scrollTo(final int x, final int y) {
-        final Runnable r = new Runnable() {
+    public void scrollTo(final int x, final int y) {
+        base.getActivity().runOnUiThread(() -> {
+            final IViewController dc = base.getDocumentController();
+            final Rect l = dc.getScrollLimits();
 
-            @Override
-            public void run() {
-                final IViewController dc = base.getDocumentController();
-                final Rect l = dc.getScrollLimits();
-
-                final int xx = MathUtils.adjust(x, l.left, l.right);
-                final int yy = MathUtils.adjust(y, l.top, l.bottom);
-                PdfSurfaceView.super.scrollTo(xx, yy);
-                EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
-            }
-        };
-        base.getActivity().runOnUiThread(r);
+            final int xx = MathUtils.adjust(x, l.left, l.right);
+            final int yy = MathUtils.adjust(y, l.top, l.bottom);
+            PdfSurfaceView.super.scrollTo(xx, yy);
+            EventBus.getDefault().post(new MessagePageXY(MessagePageXY.TYPE_HIDE));
+        });
     }
 
     /**

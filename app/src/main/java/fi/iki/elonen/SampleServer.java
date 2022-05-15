@@ -79,30 +79,18 @@ public class SampleServer extends NanoHTTPD {
                 final MotionEvent motionEvent2 = MotionEvent.obtain(downTime, eventTime, MotionEvent.ACTION_UP, x, y, metaState);
 
                 // final View item = findViewAt(v1, x, y);
-                a.runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        v1.dispatchTouchEvent(motionEvent1);
-                        v1.dispatchTouchEvent(motionEvent2);
-                    }
+                a.runOnUiThread(() -> {
+                    v1.dispatchTouchEvent(motionEvent1);
+                    v1.dispatchTouchEvent(motionEvent2);
                 });
             }
 
-
-            a.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    bitmapToStream = takeScreenshot(a);
-
-                }
-            });
+            a.runOnUiThread(() -> bitmapToStream = takeScreenshot(a));
             try {
                 return new Response(Response.Status.OK, "image/png", bitmapToStream, -1);
             } catch (Exception e) {
                 LOG.e(e);
             }
-
         }
         String script1 = " <script>function reload() { var d = new Date(); document.getElementById(\"img1\").src='?screenshot=0,0,'+d.getTime(); }</script>";
 

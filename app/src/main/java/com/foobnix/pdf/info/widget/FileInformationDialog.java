@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -23,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.drive.GFile;
@@ -97,13 +94,9 @@ public class FileInformationDialog {
 
 
         if (firstTime && TxtUtils.isEmpty(fileMeta.getTitle())) {
-
-            new AsyncProgressResultToastTask(a, new ResultResponse<Boolean>() {
-                @Override
-                public boolean onResultRecive(Boolean result) {
-                    showFileInfoDialog(a, file, onDeleteAction, false);
-                    return false;
-                }
+            new AsyncProgressResultToastTask(a, result -> {
+                showFileInfoDialog(a, file, onDeleteAction, false);
+                return false;
             }) {
                 @Override
                 protected Boolean doInBackground(Object... objects) {
@@ -112,7 +105,6 @@ public class FileInformationDialog {
                 }
             }.execute();
             return;
-
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(a);
@@ -193,14 +185,7 @@ public class FileInformationDialog {
             bookmarksSection.setVisibility(View.GONE);
         }
 
-        bookmarks.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // AlertDialogs.showOkDialog(a, bookmarks.getText().toString(), null);
-                bookmarks.setMaxLines(Integer.MAX_VALUE);
-            }
-        });
+        bookmarks.setOnClickListener(v -> bookmarks.setMaxLines(Integer.MAX_VALUE));
 
         final TextView infoView = (TextView) dialog.findViewById(R.id.metaInfo);
         final TextView expand = (TextView) dialog.findViewById(R.id.expand);
@@ -209,14 +194,11 @@ public class FileInformationDialog {
 
         expand.setVisibility(TxtUtils.isNotEmpty(bookOverview) && bookOverview.length() > 200 ? View.VISIBLE : View.GONE);
 
-        expand.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
-                infoView.setMaxLines(Integer.MAX_VALUE);
-                infoView.setTextIsSelectable(true);
-                expand.setVisibility(View.GONE);
-            }
+        expand.setOnClickListener(v -> {
+            // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
+            infoView.setMaxLines(Integer.MAX_VALUE);
+            infoView.setTextIsSelectable(true);
+            expand.setVisibility(View.GONE);
         });
 
         String sequence = fileMeta.getSequence();
@@ -246,16 +228,8 @@ public class FileInformationDialog {
                 recyclerView.setAdapter(adapter);
 
                 DefaultListeners.bindAdapter(a, adapter);
-                adapter.setOnItemLongClickListener(new ResultResponse<FileMeta>() {
-
-                    @Override
-                    public boolean onResultRecive(FileMeta result) {
-                        return true;
-                    }
-                });
-
+                adapter.setOnItemLongClickListener(result1 -> true);
             }
-
         } else {
             ((TextView) dialog.findViewById(R.id.metaSeries)).setVisibility(View.GONE);
             ((TextView) dialog.findViewById(R.id.metaSeriesID)).setVisibility(View.GONE);
@@ -279,40 +253,26 @@ public class FileInformationDialog {
             ((TextView) dialog.findViewById(R.id.keywordList)).setVisibility(View.GONE);
         }
 
-        final Runnable tagsRunnable = new Runnable() {
-
-            @Override
-            public void run() {
-                String tag = fileMeta.getTag();
-                if (TxtUtils.isNotEmpty(tag)) {
-                    String replace = tag.replace("#", " ");
-                    replace = TxtUtils.replaceLast(replace, ",", "").trim();
-                    ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
-                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
-                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
-                } else {
-                    // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
-                    ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
-                }
-
+        final Runnable tagsRunnable = () -> {
+            String tag = fileMeta.getTag();
+            if (TxtUtils.isNotEmpty(tag)) {
+                String replace = tag.replace("#", " ");
+                replace = TxtUtils.replaceLast(replace, ",", "").trim();
+                ((TextView) dialog.findViewById(R.id.tagsList)).setText(replace);
+                // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.VISIBLE);
+                ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.VISIBLE);
+            } else {
+                // ((TextView) dialog.findViewById(R.id.tagsID)).setVisibility(View.GONE);
+                ((TextView) dialog.findViewById(R.id.tagsList)).setVisibility(View.GONE);
             }
         };
         tagsRunnable.run();
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, new Runnable() {
-
-                    @Override
-                    public void run() {
-                        tagsRunnable.run();
-                        EventBus.getDefault().post(new NotifyAllFragments());
-                    }
-                });
-            }
-        });
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.addTags)).setOnClickListener(v ->
+                Dialogs.showTagsDialog(a, new File(fileMeta.getPath()), false, () -> {
+                    tagsRunnable.run();
+                    EventBus.getDefault().post(new NotifyAllFragments());
+                }));
 
         TextView metaTags = (TextView) dialog.findViewById(R.id.metaTags);
         TextView metaTagsInfo = (TextView) dialog.findViewById(R.id.metaTagsInfo);
@@ -360,79 +320,52 @@ public class FileInformationDialog {
             } catch (Exception e) {
                 LOG.e(e);
             }
-
         }
 
         TextView convertFile = (TextView) dialog.findViewById(R.id.convertFile);
-        convertFile.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                ShareDialog.showsItemsDialog(a, file.getPath(), AppState.CONVERTERS.get("EPUB"));
-            }
-        });
+        convertFile.setOnClickListener(v -> ShareDialog.showsItemsDialog(a, file.getPath(), AppState.CONVERTERS.get("EPUB")));
         convertFile.setText(TxtUtils.underline(a.getString(R.string.convert_to) + " EPUB"));
         convertFile.setVisibility(ExtUtils.isImageOrEpub(file) ? View.GONE : View.VISIBLE);
         convertFile.setVisibility(View.GONE);
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.openWith(a, file);
-
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.openWith)).setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+                infoDialog = null;
             }
+            ExtUtils.openWith(a, file);
         });
 
-        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile)).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.sendFileTo(a, file);
-
+        TxtUtils.underlineTextView(dialog.findViewById(R.id.sendFile)).setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+                infoDialog = null;
             }
+            ExtUtils.sendFileTo(a, file);
         });
 
         TextView delete = TxtUtils.underlineTextView(dialog.findViewById(R.id.delete));
         if (onDeleteAction == null) {
             delete.setVisibility(View.GONE);
         }
-        delete.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-
-                dialogDelete(a, file, onDeleteAction);
-
+        delete.setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+                infoDialog = null;
             }
+
+            dialogDelete(a, file, onDeleteAction);
         });
 
         View openFile = dialog.findViewById(R.id.openFile);
         // openFile.setVisibility(ExtUtils.isNotSupportedFile(file) ? View.GONE :
         // View.VISIBLE);
-        openFile.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (infoDialog != null) {
-                    infoDialog.dismiss();
-                    infoDialog = null;
-                }
-                ExtUtils.showDocumentWithoutDialog2(a, file);
-
+        openFile.setOnClickListener(v -> {
+            if (infoDialog != null) {
+                infoDialog.dismiss();
+                infoDialog = null;
             }
+            ExtUtils.showDocumentWithoutDialog2(a, file);
         });
 
         final ImageView coverImage = (ImageView) dialog.findViewById(R.id.image);
@@ -440,35 +373,24 @@ public class FileInformationDialog {
 
         IMG.getCoverPage(coverImage, file.getPath(), IMG.getImageSize());
 
-        coverImage.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                showImage(a, file.getPath());
-            }
-        });
+        coverImage.setOnClickListener(v -> showImage(a, file.getPath()));
 
         // IMG.updateImageSizeBig(coverImage);
 
         final ImageView starIcon = ((ImageView) dialog.findViewById(R.id.starIcon));
 
-        starIcon.setOnClickListener(new OnClickListener() {
+        starIcon.setOnClickListener(v -> {
+            DefaultListeners.getOnStarClick(a).onResultRecive(fileMeta, null);
 
-            @Override
-            public void onClick(View v) {
-                DefaultListeners.getOnStarClick(a).onResultRecive(fileMeta, null);
-
-                if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
-                    starIcon.setImageResource(R.drawable.star_2);
-                } else {
-                    starIcon.setImageResource(R.drawable.star_1);
-                }
-                TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
-
+            if (fileMeta.getIsStar() == null || !fileMeta.getIsStar()) {
+                starIcon.setImageResource(R.drawable.star_2);
+            } else {
+                starIcon.setImageResource(R.drawable.star_1);
             }
+            TintUtil.setTintImageNoAlpha(starIcon, TintUtil.getColorInDayNighth());
         });
 
-        if (fileMeta.getIsStar() == null || fileMeta.getIsStar() == false) {
+        if (fileMeta.getIsStar() == null || !fileMeta.getIsStar()) {
             starIcon.setImageResource(R.drawable.star_2);
         } else {
             starIcon.setImageResource(R.drawable.star_1);
@@ -482,28 +404,12 @@ public class FileInformationDialog {
         // builder.setTitle(R.string.file_info);
         builder.setView(dialog);
 
-        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setNegativeButton(R.string.close, (dialog1, id) -> {});
 
-            }
-        });
-
-        builder.setPositiveButton(R.string.read_a_book, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                ExtUtils.showDocumentWithoutDialog2(a, file);
-            }
-        });
+        builder.setPositiveButton(R.string.read_a_book, (dialog12, id) -> ExtUtils.showDocumentWithoutDialog2(a, file));
 
         infoDialog = builder.create();
-        infoDialog.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                Keyboards.hideNavigation(a);
-            }
-        });
+        infoDialog.setOnDismissListener(dialog13 -> Keyboards.hideNavigation(a));
 
         infoDialog.show();
     }
@@ -512,21 +418,11 @@ public class FileInformationDialog {
         final Dialog builder = new Dialog(a);
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
         builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-            }
+        builder.setOnDismissListener(dialogInterface -> {
         });
 
         final ScaledImageView imageView = new ScaledImageView(a);
-        imageView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                builder.dismiss();
-
-            }
-        });
+        imageView.setOnClickListener(v -> builder.dismiss());
         final String url = IMG.toUrl(path, -2, Dips.screenWidth());
 
         Glide.with(LibreraApp.context).asBitmap().load(url).into(imageView);
@@ -540,21 +436,10 @@ public class FileInformationDialog {
         final Dialog builder = new Dialog(a);
         builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
         builder.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-            }
-        });
+        builder.setOnDismissListener(dialogInterface -> {});
 
         final ScaledImageView imageView = new ScaledImageView(a);
-        imageView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                builder.dismiss();
-
-            }
-        });
+        imageView.setOnClickListener(v -> builder.dismiss());
         Glide.with(LibreraApp.context).asBitmap().load(path).into(imageView);
 
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) (Dips.screenWidth() * 0.9), (int) (Dips.screenHeight() * 0.9));
@@ -576,44 +461,27 @@ public class FileInformationDialog {
             }
         }
 
-        builder.setMessage(a.getString(R.string.do_you_want_to_delete_this_file_) + "\n\"" + name + "\"").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
-
-
-                if (Clouds.isLibreraSyncRootFolder(file.getPath())) {
-
-
-                    new AsyncProgressResultToastTask(a) {
-
-                        @Override
-                        protected Boolean doInBackground(Object... objects) {
-                            try {
-                                GFile.deleteRemoteFile(file);
-                                a.runOnUiThread(onDeleteAction);
-                                //GFile.runSyncService(a);
-                            } catch (Exception e) {
-                                LOG.e(e);
-                                return false;
-                            }
-                            return true;
+        builder.setMessage(a.getString(R.string.do_you_want_to_delete_this_file_) + "\n\"" + name + "\"").setPositiveButton(android.R.string.yes, (dialog, id) -> {
+            if (Clouds.isLibreraSyncRootFolder(file.getPath())) {
+                new AsyncProgressResultToastTask(a) {
+                    @Override
+                    protected Boolean doInBackground(Object... objects) {
+                        try {
+                            GFile.deleteRemoteFile(file);
+                            a.runOnUiThread(onDeleteAction);
+                            //GFile.runSyncService(a);
+                        } catch (Exception e) {
+                            LOG.e(e);
+                            return false;
                         }
-
-                    }.execute();
-
-                } else {
-                    onDeleteAction.run();
-                    AppData.get().removeRecent(new FileMeta(file.getPath()));
-                }
-
+                        return true;
+                    }
+                }.execute();
+            } else {
+                onDeleteAction.run();
+                AppData.get().removeRecent(new FileMeta(file.getPath()));
             }
-        }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(final DialogInterface dialog, final int id) {
-                dialog.dismiss();
-            }
-        });
+        }).setNegativeButton(android.R.string.cancel, (dialog, id) -> dialog.dismiss());
         builder.show();
     }
-
 }

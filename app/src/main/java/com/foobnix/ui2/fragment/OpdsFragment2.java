@@ -2,8 +2,6 @@ package com.foobnix.ui2.fragment;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -11,15 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -32,8 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.foobnix.android.utils.Keyboards;
 import com.foobnix.android.utils.LOG;
-import com.foobnix.android.utils.ResultResponse;
-import com.foobnix.android.utils.ResultResponse2;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppProfile;
@@ -64,7 +54,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
@@ -102,12 +91,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
     }
 
     public List<Entry> getAllCatalogs() {
-
-        if (false) {
-            String test = "https://books.fbreader.org/opds";
-            return Arrays.asList(new Entry(test, test));
-        }
-
         String[] list = AppState.get().myOPDSLinks.split(";");
         List<Entry> res = new ArrayList<Entry>();
         boolean hasStars = false;
@@ -123,7 +106,6 @@ public class OpdsFragment2 extends UIFragment<Entry> {
             final Entry e = new Entry(it[0], it[1], it[2], it[3], true);
             e.appState = line + ";";
             res.add(e);
-
         }
         if (hasStars) {
             res.add(0, new Entry(SamlibOPDS.ROOT_FAVORITES, getString(R.string.favorites), getString(R.string.my_favorites_links), "assets://opds/star_1.png", true));
@@ -160,321 +142,187 @@ public class OpdsFragment2 extends UIFragment<Entry> {
         MyProgressBar.setVisibility(View.GONE);
         TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
-        onPlus.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AddCatalogDialog.showDialog(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        populate();
-                    }
-                }, null, true);
-            }
-        });
+        onPlus.setOnClickListener(v -> AddCatalogDialog.showDialog(getActivity(), this::populate, null, true));
 
         searchAdapter = new EntryAdapter();
 
         defaults = (TextView) view.findViewById(R.id.defaults);
         faq = (TextView) view.findViewById(R.id.faq);
-        defaults.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
-                        url = "/";
-                        populate();
-                    }
-                });
-
-            }
-        });
-        faq.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Urls.open(getActivity(), "https://wiki.mobileread.com/wiki/OPDS");
-
-            }
-        });
+        defaults.setOnClickListener(v -> AlertDialogs.showOkDialog(getActivity(),
+                getActivity().getString(R.string.restore_defaults_full), () -> {
+                    AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
+                    url = "/";
+                    populate();
+                }));
+        faq.setOnClickListener(v -> Urls.open(getActivity(), "https://wiki.mobileread.com/wiki/OPDS"));
 
         onGridList();
 
-        searchAdapter.setOnItemClickListener(new ResultResponse<Entry>() {
-
-            @Override
-            public boolean onResultRecive(Entry result) {
-                for (Link link : result.links) {
-                    if (link.isOpdsLink()) {
-                        onClickLink(link);
-                        break;
-                    }
+        searchAdapter.setOnItemClickListener(result -> {
+            for (Link link : result.links) {
+                if (link.isOpdsLink()) {
+                    onClickLink(link);
+                    break;
                 }
-
-                return false;
             }
+
+            return false;
         });
 
-        searchAdapter.setOnRemoveLinkClickListener(new ResultResponse<Entry>() {
-
-            @Override
-            public boolean onResultRecive(final Entry result) {
-                AlertDialogs.showDialog(getActivity(), getActivity().getString(R.string.do_you_want_to_delete_) + " " + result.title, getString(R.string.delete), new Runnable() {
-
-                    @Override
-                    public void run() {
+        searchAdapter.setOnRemoveLinkClickListener(result -> {
+            AlertDialogs.showDialog(getActivity(), getActivity()
+                            .getString(R.string.do_you_want_to_delete_) + " " + result.title,
+                    getString(R.string.delete), () -> {
                         AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(result.appState, "");
                         url = "/";
                         populate();
-                    }
-                });
+                    });
 
-                return false;
-            }
+            return false;
         });
 
-        searchAdapter.setOnLinkClickListener(new ResultResponse<Link>() {
-
-            @Override
-            public boolean onResultRecive(Link link) {
-                onClickLink(link);
-                return false;
-            }
+        searchAdapter.setOnLinkClickListener(link -> {
+            onClickLink(link);
+            return false;
         });
 
-        searchAdapter.setOnItemLongClickListener(new ResultResponse<Entry>() {
-            @Override
-            public boolean onResultRecive(Entry result) {
-                if (url.equals("/")) {
-                    AddCatalogDialog.showDialog(getActivity(), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            populate();
-                        }
-                    }, result, SamlibOPDS.isSamlibUrl(result.homeUrl) ? false : true);
-                }
-                return false;
+        searchAdapter.setOnItemLongClickListener(result -> {
+            if (url.equals("/")) {
+                AddCatalogDialog.showDialog(getActivity(), this::populate, result, !SamlibOPDS.isSamlibUrl(result.homeUrl));
             }
+            return false;
         });
 
-        starIcon.setOnClickListener(new OnClickListener() {
+        starIcon.setOnClickListener(v -> {
+            final Entry entry = new Entry();
+            String url2 = url;
+            if (url2.contains("?")) {
+                url2 = url2.substring(0, url2.indexOf("?"));
+            }
+            entry.setAppState(url, title, url2, "assets://opds/star_1.png");
 
-            @Override
-            public void onClick(View v) {
-                final Entry entry = new Entry();
-                String url2 = url;
-                if (url2.contains("?")) {
-                    url2 = url2.substring(0, url2.indexOf("?"));
-                }
-                entry.setAppState(url, title, url2, "assets://opds/star_1.png");
-
-                if (!AppState.get().myOPDSLinks.contains(url)) {
-
-                    AddCatalogDialog.showDialog(getActivity(), new Runnable() {
-
-                        @Override
-                        public void run() {
-                            starIcon.setImageResource(R.drawable.star_1);
-                            TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
-                        }
-                    }, entry, false);
-                } else {
-                    AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(entry.appState, "");
-                    starIcon.setImageResource(R.drawable.star_2);
+            if (!AppState.get().myOPDSLinks.contains(url)) {
+                AddCatalogDialog.showDialog(getActivity(), () -> {
+                    starIcon.setImageResource(R.drawable.star_1);
                     TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
-                    // AlertDialogs.showOkDialog(getActivity(),
-                    // getActivity().getString(R.string.do_you_want_to_delete_), new Runnable() {
-                    //
-                    // @Override
-                    // public void run() {
-                    //
-                    // // url = "/";
-                    // }
-                    // });
+                }, entry, false);
+            } else {
+                AppState.get().myOPDSLinks = AppState.get().myOPDSLinks.replace(entry.appState, "");
+                starIcon.setImageResource(R.drawable.star_2);
+                TintUtil.setTintImageWithAlpha(starIcon, Color.WHITE);
+            }
+        });
+
+        view.findViewById(R.id.onBack).setOnClickListener(v -> onBackAction());
+
+        view.findViewById(R.id.onHome).setOnClickListener(v -> {
+            stack.clear();
+            url = getHome();
+            LOG.d("URLAction", "ADD", url);
+            urlRoot = "";
+            populate();
+        });
+
+        view.findViewById(R.id.onHome).setOnLongClickListener(v -> {
+            AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), () -> {
+                AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
+                populate();
+            });
+            return true;
+        });
+
+        onProxy.setOnClickListener(v -> {
+            ADS.hideAdsTemp(getActivity());
+
+            final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            View view3 = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_proxy_server, null, false);
+
+            final CheckBox proxyEnable = (CheckBox) view3.findViewById(R.id.proxyEnable);
+            final CheckBox opdsLargeCovers = (CheckBox) view3.findViewById(R.id.opdsLargeCovers);
+            final EditText proxyServer = (EditText) view3.findViewById(R.id.proxyServer);
+            final EditText proxyPort = (EditText) view3.findViewById(R.id.proxyPort);
+            final EditText proxyUser = (EditText) view3.findViewById(R.id.proxyUser);
+            final EditText proxyPassword = (EditText) view3.findViewById(R.id.proxyPassword);
+
+            final TextView proxyType = (TextView) view3.findViewById(R.id.proxyType);
+
+            TintUtil.setBackgroundFillColor(view3.findViewById(R.id.section1), TintUtil.color);
+            TintUtil.setBackgroundFillColor(view3.findViewById(R.id.section2), TintUtil.color);
+
+            proxyEnable.setChecked(AppState.get().proxyEnable);
+            proxyServer.setText(AppState.get().proxyServer);
+            proxyPort.setText(AppState.get().proxyPort == 0 ? "" : "" + AppState.get().proxyPort);
+            proxyUser.setText(AppState.get().proxyUser);
+            proxyPassword.setText(AppState.get().proxyPassword);
+
+            proxyEnable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    if (TxtUtils.isEmpty(proxyServer.getText().toString())) {
+                        proxyServer.requestFocus();
+                        proxyEnable.setChecked(false);
+                        Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    } else if ("0".equals(proxyPort.getText().toString()) || TxtUtils.isEmpty(proxyPort.getText().toString())) {
+                        proxyPort.requestFocus();
+                        proxyEnable.setChecked(false);
+                        Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
+                    }
                 }
 
-            }
-        });
+            });
 
-        view.findViewById(R.id.onBack).setOnClickListener(new OnClickListener() {
+            TxtUtils.underline(proxyType, AppState.get().proxyType);
 
-            @Override
-            public void onClick(View v) {
-                onBackAction();
-            }
-        });
-
-        view.findViewById(R.id.onHome).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                stack.clear();
-                url = getHome();
-                LOG.d("URLAction", "ADD", url);
-                urlRoot = "";
-                populate();
-            }
-        });
-
-        view.findViewById(R.id.onHome).setOnLongClickListener(new OnLongClickListener() {
-
-            @Override
-            public boolean onLongClick(View v) {
-                AlertDialogs.showOkDialog(getActivity(), getActivity().getString(R.string.restore_defaults_full), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        AppState.get().myOPDSLinks = AppState.OPDS_DEFAULT;
-                        populate();
-                    }
+            proxyType.setOnClickListener(v1 -> {
+                PopupMenu menu = new PopupMenu(v1.getContext(), v1);
+                menu.getMenu().add(AppState.PROXY_HTTP).setOnMenuItemClickListener(item -> {
+                    AppState.get().proxyType = AppState.PROXY_HTTP;
+                    TxtUtils.underline(proxyType, AppState.get().proxyType);
+                    return false;
                 });
-                return true;
-            }
-        });
-
-        onProxy.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                ADS.hideAdsTemp(getActivity());
-
-                final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_proxy_server, null, false);
-
-                final CheckBox proxyEnable = (CheckBox) view.findViewById(R.id.proxyEnable);
-                final CheckBox opdsLargeCovers = (CheckBox) view.findViewById(R.id.opdsLargeCovers);
-                final EditText proxyServer = (EditText) view.findViewById(R.id.proxyServer);
-                final EditText proxyPort = (EditText) view.findViewById(R.id.proxyPort);
-                final EditText proxyUser = (EditText) view.findViewById(R.id.proxyUser);
-                final EditText proxyPassword = (EditText) view.findViewById(R.id.proxyPassword);
-
-                final TextView proxyType = (TextView) view.findViewById(R.id.proxyType);
-
-                TintUtil.setBackgroundFillColor(view.findViewById(R.id.section1), TintUtil.color);
-                TintUtil.setBackgroundFillColor(view.findViewById(R.id.section2), TintUtil.color);
-
-                proxyEnable.setChecked(AppState.get().proxyEnable);
-                proxyServer.setText(AppState.get().proxyServer);
-                proxyPort.setText(AppState.get().proxyPort == 0 ? "" : "" + AppState.get().proxyPort);
-                proxyUser.setText(AppState.get().proxyUser);
-                proxyPassword.setText(AppState.get().proxyPassword);
-
-                proxyEnable.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            if (TxtUtils.isEmpty(proxyServer.getText().toString())) {
-                                proxyServer.requestFocus();
-                                proxyEnable.setChecked(false);
-                                Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                            } else if ("0".equals(proxyPort.getText().toString()) || TxtUtils.isEmpty(proxyPort.getText().toString())) {
-                                proxyPort.requestFocus();
-                                proxyEnable.setChecked(false);
-                                Toast.makeText(getContext(), R.string.incorrect_value, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    }
+                menu.getMenu().add(AppState.PROXY_SOCKS).setOnMenuItemClickListener(item -> {
+                    AppState.get().proxyType = AppState.PROXY_SOCKS;
+                    TxtUtils.underline(proxyType, AppState.get().proxyType);
+                    return false;
                 });
+                menu.show();
+            });
 
-                TxtUtils.underline(proxyType, AppState.get().proxyType);
+            builder.setPositiveButton(R.string.apply, (dialog, which) -> {
+                AppState.get().proxyEnable = proxyEnable.isChecked();
+                AppState.get().proxyServer = proxyServer.getText().toString();
 
-                proxyType.setOnClickListener(new OnClickListener() {
+                try {
+                    AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
+                } catch (Exception e) {
+                    AppState.get().proxyPort = 0;
+                }
 
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        menu.getMenu().add(AppState.PROXY_HTTP).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                AppState.get().proxyUser = proxyUser.getText().toString().trim();
+                AppState.get().proxyPassword = proxyPassword.getText().toString().trim();
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().proxyType = AppState.PROXY_HTTP;
-                                TxtUtils.underline(proxyType, AppState.get().proxyType);
-                                return false;
-                            }
-                        });
-                        menu.getMenu().add(AppState.PROXY_SOCKS).setOnMenuItemClickListener(new OnMenuItemClickListener() {
+                OPDS.buildProxy();
 
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                AppState.get().proxyType = AppState.PROXY_SOCKS;
-                                TxtUtils.underline(proxyType, AppState.get().proxyType);
-                                return false;
-                            }
-                        });
-                        menu.show();
-                    }
-                });
+                AppProfile.save(getActivity());
+                Keyboards.close(proxyServer);
+            });
 
-                builder.setPositiveButton(R.string.apply, new DialogInterface.OnClickListener() {
+            builder.setNeutralButton(R.string.cancel, (dialog, which) -> {});
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        AppState.get().proxyEnable = proxyEnable.isChecked();
-                        AppState.get().proxyServer = proxyServer.getText().toString();
+            opdsLargeCovers.setChecked(AppState.get().opdsLargeCovers);
+            opdsLargeCovers.setOnCheckedChangeListener((buttonView, isChecked) -> AppState.get().opdsLargeCovers = isChecked);
 
-                        try {
-                            AppState.get().proxyPort = Integer.parseInt(proxyPort.getText().toString());
-                        } catch (Exception e) {
-                            AppState.get().proxyPort = 0;
-                        }
+            final TextView downlodsPath = (TextView) view3.findViewById(R.id.downlodsPath);
+            TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
+            downlodsPath.setOnClickListener(v12 -> ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath)
+                    .setOnSelectListener((nPath, dialog) -> {
+                        BookCSS.get().downlodsPath = nPath;
+                        TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
+                        dialog.dismiss();
+                        return false;
+                    }));
 
-                        AppState.get().proxyUser = proxyUser.getText().toString().trim();
-                        AppState.get().proxyPassword = proxyPassword.getText().toString().trim();
-
-                        OPDS.buildProxy();
-
-                        AppProfile.save(getActivity());
-                        Keyboards.close(proxyServer);
-
-                    }
-                });
-
-                builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-                opdsLargeCovers.setChecked(AppState.get().opdsLargeCovers);
-                opdsLargeCovers.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        AppState.get().opdsLargeCovers = isChecked;
-                    }
-                });
-
-                final TextView downlodsPath = (TextView) view.findViewById(R.id.downlodsPath);
-                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
-                downlodsPath.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(final View v) {
-                        ChooserDialogFragment.chooseFolder(getActivity(), BookCSS.get().downlodsPath).setOnSelectListener(new ResultResponse2<String, Dialog>() {
-                            @Override
-                            public boolean onResultRecive(String nPath, Dialog dialog) {
-                                BookCSS.get().downlodsPath = nPath;
-                                TxtUtils.underline(downlodsPath, TxtUtils.lastTwoPath(BookCSS.get().downlodsPath));
-                                dialog.dismiss();
-                                return false;
-                            }
-                        });
-                    }
-                });
-
-                builder.setView(view);
-                builder.show();
-
-            }
+            builder.setView(view3);
+            builder.show();
         });
         OPDS.buildProxy();
 
@@ -651,14 +499,9 @@ public class OpdsFragment2 extends UIFragment<Entry> {
                             }
                             clearEmpty();
                         }
-
-                        ;
-
                     }.execute();
-
                 }
             });
-
         }
     }
 

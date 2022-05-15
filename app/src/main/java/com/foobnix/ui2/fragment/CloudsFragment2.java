@@ -70,13 +70,7 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         panelRecent = view.findViewById(R.id.panelRecent);
 
         onListGrid = (ImageView) view.findViewById(R.id.onListGrid);
-        onListGrid.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popupMenu(onListGrid);
-            }
-        });
+        onListGrid.setOnClickListener(v -> popupMenu(onListGrid));
 
         metaAdapter = new FileMetaAdapter();
         metaAdapter.tempValue = FileMetaAdapter.TEMP_VALUE_FOLDER_PATH;
@@ -91,27 +85,19 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         TintUtil.setDrawableTint(MyProgressBar.getIndeterminateDrawable().getCurrent(), Color.WHITE);
 
         onRefresh = view.findViewById(R.id.onRefreshDropbox);
-        onRefresh.setOnClickListener(new OnClickListener() {
+        onRefresh.setOnClickListener(v -> {
+            MyProgressBar.setVisibility(View.VISIBLE);
+            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
 
-            @Override
-            public void onClick(View v) {
-                MyProgressBar.setVisibility(View.VISIBLE);
-                BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
-
-            }
         });
         cloudsLayout = view.findViewById(R.id.cloudsLayout);
         isShowCloudsLine = view.findViewById(R.id.isShowCloudsLine);
         isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
         cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
-        isShowCloudsLine.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
-                isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
-                cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
-            }
+        isShowCloudsLine.setOnClickListener(v -> {
+            AppState.get().isShowCloudsLine = !AppState.get().isShowCloudsLine;
+            isShowCloudsLine.setImageResource(AppState.get().isShowCloudsLine ? R.drawable.glyphicons_602_chevron_down : R.drawable.glyphicons_601_chevron_up);
+            cloudsLayout.setVisibility(TxtUtils.visibleIf(AppState.get().isShowCloudsLine));
         });
 
         TintUtil.setBackgroundFillColor(panelRecent, TintUtil.color);
@@ -123,89 +109,64 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
         View dropbox = view.findViewById(R.id.dropbox);
 
 
-        dropbox.setOnClickListener(new OnClickListener() {
+        dropbox.setOnClickListener(v -> {
+            final boolean isDropbox = Clouds.get().isDropbox();
+            Clouds.get().loginToDropbox(getActivity(), () -> {
+                if (isDropbox) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent);
 
-            @Override
-            public void onClick(final View v) {
-                final boolean isDropbox = Clouds.get().isDropbox();
-                Clouds.get().loginToDropbox(getActivity(), new Runnable() {
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
+                } else {
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                    BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
 
-                    @Override
-                    public void run() {
-                        if (isDropbox) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_DROPBOX + "/"));
-                        } else {
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                            BooksService.startForeground(getActivity(), BooksService.ACTION_SYNC_DROPBOX);
-
-                            MyProgressBar.setVisibility(View.VISIBLE);
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                    MyProgressBar.setVisibility(View.VISIBLE);
+                }
+                updateImages();
+            });
         });
 
         final View gdrive = view.findViewById(R.id.gdrive);
-        gdrive.setOnClickListener(new OnClickListener() {
+        gdrive.setOnClickListener(v -> {
+            final boolean isDrive = Clouds.get().isGoogleDrive();
+            Clouds.get().loginToGoogleDrive(getActivity(), () -> {
+                if (getActivity() == null) {
+                    return;
+                }
+                if (isDrive) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
-            @Override
-            public void onClick(final View v) {
-                final boolean isDrive = Clouds.get().isGoogleDrive();
-                Clouds.get().loginToGoogleDrive(getActivity(), new Runnable() {
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
 
-                    @Override
-                    public void run() {
-                        if (getActivity() == null) {
-                            return;
-                        }
-                        if (isDrive) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_GDRIVE + "/"));
-
-                        } else {
-                            MyProgressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                } else {
+                    MyProgressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                }
+                updateImages();
+            });
         });
 
         final View onedrive = view.findViewById(R.id.oneDrive);
-        onedrive.setOnClickListener(new OnClickListener() {
+        onedrive.setOnClickListener(v -> {
+            final boolean isDrive = Clouds.get().isOneDrive();
 
-            @Override
-            public void onClick(final View v) {
-                final boolean isDrive = Clouds.get().isOneDrive();
+            Clouds.get().loginToOneDrive(getActivity(), () -> {
+                if (isDrive) {
+                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
 
-                Clouds.get().loginToOneDrive(getActivity(), new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (isDrive) {
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
-
-                            EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
-
-                        } else {
-                            MyProgressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
-                        }
-                        updateImages();
-                    }
-                });
-            }
+                    EventBus.getDefault().post(new OpenDirMessage(Clouds.PREFIX_CLOUD_ONEDRIVE + "/"));
+                } else {
+                    MyProgressBar.setVisibility(View.VISIBLE);
+                    Toast.makeText(getActivity(), R.string.success, Toast.LENGTH_SHORT).show();
+                }
+                updateImages();
+            });
         });
 
         if (AppState.get().appTheme == AppState.THEME_DARK_OLED) {
@@ -343,15 +304,11 @@ public class CloudsFragment2 extends UIFragment<FileMeta> {
 
         for (int i = 0; i < names.size(); i++) {
             final int index = i;
-            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    AppState.get().cloudMode = actions.get(index);
-                    onGridList.setImageResource(icons.get(index));
-                    onGridList();
-                    return false;
-                }
+            p.getMenu().add(names.get(i)).setIcon(icons.get(i)).setOnMenuItemClickListener(item -> {
+                AppState.get().cloudMode = actions.get(index);
+                onGridList.setImageResource(icons.get(index));
+                onGridList();
+                return false;
             });
         }
 

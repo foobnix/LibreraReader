@@ -24,7 +24,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
 import com.foobnix.pdf.info.AppsConfig;
@@ -111,31 +110,15 @@ public class Views {
         mPopupWindow.setFocusable(true);
         mPopupWindow.showAsDropDown(anchor, 0, -Dips.dpToPx(180));
 
-        mPopupWindow.setOnDismissListener(new OnDismissListener() {
+        mPopupWindow.setOnDismissListener(() -> TintUtil.setTintImageNoAlpha(anchor, Color.WHITE));
 
-            @Override
-            public void onDismiss() {
-                TintUtil.setTintImageNoAlpha(anchor, Color.WHITE);
-            }
-        });
+        textView.setOnClickListener(v -> mPopupWindow.dismiss());
 
-        textView.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
+        anchor.getHandler().postDelayed(() -> {
+            try {
                 mPopupWindow.dismiss();
-            }
-        });
-
-        anchor.getHandler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    mPopupWindow.dismiss();
-                } catch (Exception e) {
-                    LOG.e(e);
-                }
+            } catch (Exception e) {
+                LOG.e(e);
             }
         }, 5000);
 

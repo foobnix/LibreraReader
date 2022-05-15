@@ -2,19 +2,13 @@ package com.foobnix.pdf.info;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
@@ -54,82 +48,62 @@ public class DialogSpeedRead {
         final CustomSeek seekBarSpeed = (CustomSeek) layout.findViewById(R.id.fastReadSpeed);
         seekBarSpeed.init(10, 900, AppState.get().fastReadSpeed);
         seekBarSpeed.setStep(10);
-        seekBarSpeed.setOnSeekChanged(new IntegerResponse() {
-
-            @Override
-            public boolean onResultRecive(int result) {
-                AppState.get().fastReadSpeed = result;
-                return false;
-            }
+        seekBarSpeed.setOnSeekChanged(result -> {
+            AppState.get().fastReadSpeed = result;
+            return false;
         });
 
         final CustomSeek fastManyWords = (CustomSeek) layout.findViewById(R.id.fastManyWords);
         fastManyWords.init(0, 30, AppState.get().fastManyWords);
-        fastManyWords.setOnSeekChanged(new IntegerResponse() {
-
-            @Override
-            public boolean onResultRecive(int result) {
-                AppState.get().fastManyWords = result;
-                return false;
-            }
+        fastManyWords.setOnSeekChanged(result -> {
+            AppState.get().fastManyWords = result;
+            return false;
         });
 
         final CustomSeek fastReadFontSize = (CustomSeek) layout.findViewById(R.id.fastReadFontSize);
         fastReadFontSize.init(10, 100, AppState.get().fastReadFontSize);
-        fastReadFontSize.setOnSeekChanged(new IntegerResponse() {
-
-            @Override
-            public boolean onResultRecive(int result) {
-                AppState.get().fastReadFontSize = result;
-                textWord.setTextSize(AppState.get().fastReadFontSize);
-                return false;
-            }
+        fastReadFontSize.setOnSeekChanged(result -> {
+            AppState.get().fastReadFontSize = result;
+            textWord.setTextSize(AppState.get().fastReadFontSize);
+            return false;
         });
         textWord.setTextSize(AppState.get().fastReadFontSize);
         textWord.setTypeface(BookCSS.getTypeFaceForFont(BookCSS.get().normalFont));
         TxtUtils.underlineTextView(textWord);
 
-        textWord.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                MyPopupMenu menu = new MyPopupMenu(textWord);
-                menu.getMenu().add(R.string.share).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
-                    final Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, textWord.getText().toString().trim());
-                    a.startActivity(Intent.createChooser(intent, a.getString(R.string.share)));
-                    return true;
-                });
-                menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
-
-                    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-                        android.text.ClipboardManager clipboard = (android.text.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
-                        clipboard.setText(textWord.getText().toString().trim());
-                    } else {
-                        android.content.ClipboardManager clipboard = (android.content.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
-                        android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
-                        clipboard.setPrimaryClip(clip);
-                    }
-                    Toast.makeText(a, R.string.copy_text, Toast.LENGTH_SHORT).show();
-                    return true;
-                });
-                menu.show();
-
+        textWord.setOnLongClickListener(v -> {
+            MyPopupMenu menu = new MyPopupMenu(textWord);
+            menu.getMenu().add(R.string.share).setIcon(R.drawable.glyphicons_basic_578_share).setOnMenuItemClickListener((it) -> {
+                final Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, textWord.getText().toString().trim());
+                a.startActivity(Intent.createChooser(intent, a.getString(R.string.share)));
                 return true;
-            }
+            });
+            menu.getMenu().add(R.string.copy).setIcon(R.drawable.glyphicons_basic_614_copy).setOnMenuItemClickListener((it) -> {
+                if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+                    clipboard.setText(textWord.getText().toString().trim());
+                } else {
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", textWord.getText().toString().trim());
+                    clipboard.setPrimaryClip(clip);
+                }
+                Toast.makeText(a, R.string.copy_text, Toast.LENGTH_SHORT).show();
+                return true;
+            });
+            menu.show();
+
+            return true;
         });
 
         final MyPopupMenu menu = new MyPopupMenu(seekBarSpeed.getContext(), seekBarSpeed);
         List<Integer> values = Arrays.asList(100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 700);
         for (final int i : values) {
-            menu.getMenu().add(String.format("%s wpm", i)).setOnMenuItemClickListener(new OnMenuItemClickListener() {
-
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    seekBarSpeed.reset(i);
-                    seekBarSpeed.sendProgressChanged();
-                    return false;
-                }
+            menu.getMenu().add(String.format("%s wpm", i)).setOnMenuItemClickListener(item -> {
+                seekBarSpeed.reset(i);
+                seekBarSpeed.sendProgressChanged();
+                return false;
             });
         }
 
@@ -154,13 +128,9 @@ public class DialogSpeedRead {
 
                     final int currentPage1 = currentPage;
 
-                    dc.getActivity().runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            if (TempHolder.isActiveSpeedRead.get()) {
-                                dc.onGoToPage(currentPage1);
-                            }
+                    dc.getActivity().runOnUiThread(() -> {
+                        if (TempHolder.isActiveSpeedRead.get()) {
+                            dc.onGoToPage(currentPage1);
                         }
                     });
 
@@ -225,13 +195,9 @@ public class DialogSpeedRead {
 
                         final String wordFinal = word.trim();
                         currentWord = i;
-                        dc.getActivity().runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                textWord.setText(wordFinal);
-                                LOG.d("RSPV-show text", wordFinal);
-                            }
+                        dc.getActivity().runOnUiThread(() -> {
+                            textWord.setText(wordFinal);
+                            LOG.d("RSPV-show text", wordFinal);
                         });
 
                         int k = 0;
@@ -259,82 +225,55 @@ public class DialogSpeedRead {
             }
         };
 
-        textWord.setOnClickListener(new OnClickListener() {
+        textWord.setOnClickListener(v -> {
+            onReset.setVisibility(View.VISIBLE);
+            TempHolder.isActiveSpeedRead.set(!TempHolder.isActiveSpeedRead.get());
+            if (TempHolder.isActiveSpeedRead.get()) {
+                new Thread(task, "@T isActiveSpeedRead").start();
 
-            @Override
-            public void onClick(View v) {
-                onReset.setVisibility(View.VISIBLE);
-                TempHolder.isActiveSpeedRead.set(!TempHolder.isActiveSpeedRead.get());
-                if (TempHolder.isActiveSpeedRead.get()) {
-                    new Thread(task,"@T isActiveSpeedRead").start();
-
-                    onNext.setVisibility(View.GONE);
-                    onPrev.setVisibility(View.GONE);
-                } else {
-                    onNext.setVisibility(View.VISIBLE);
-                    onPrev.setVisibility(View.VISIBLE);
-                }
-
+                onNext.setVisibility(View.GONE);
+                onPrev.setVisibility(View.GONE);
+            } else {
+                onNext.setVisibility(View.VISIBLE);
+                onPrev.setVisibility(View.VISIBLE);
             }
         });
 
-        onPrev.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (currentWord > 0) {
-                    currentWord--;
-                    textWord.setText(words[currentWord]);
-                }
-
+        onPrev.setOnClickListener(v -> {
+            if (currentWord > 0) {
+                currentWord--;
+                textWord.setText(words[currentWord]);
             }
         });
 
-        onNext.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (currentWord < words.length - 1) {
-                    currentWord++;
-                    textWord.setText(words[currentWord]);
-                }
-
+        onNext.setOnClickListener(v -> {
+            if (currentWord < words.length - 1) {
+                currentWord++;
+                textWord.setText(words[currentWord]);
             }
         });
 
-        onReset.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                textWord.setText(R.string.start);
-                TxtUtils.underlineTextView(textWord);
-                TempHolder.isActiveSpeedRead.set(false);
-                currentWord = 0;
-            }
+        onReset.setOnClickListener(v -> {
+            textWord.setText(R.string.start);
+            TxtUtils.underlineTextView(textWord);
+            TempHolder.isActiveSpeedRead.set(false);
+            currentWord = 0;
         });
         onReset.setVisibility(View.INVISIBLE);
 
         builder.setView(layout);
 
-        builder.setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                TempHolder.isActiveSpeedRead.set(false);
-                reset();
-                dialog.dismiss();
-            }
+        builder.setNegativeButton(R.string.close, (dialog, id) -> {
+            TempHolder.isActiveSpeedRead.set(false);
+            reset();
+            dialog.dismiss();
         });
 
         AlertDialog create = builder.create();
 
-        create.setOnDismissListener(new OnDismissListener() {
-
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                TempHolder.isActiveSpeedRead.set(false);
-                reset();
-            }
-
+        create.setOnDismissListener(dialog -> {
+            TempHolder.isActiveSpeedRead.set(false);
+            reset();
         });
         reset();
         create.show();

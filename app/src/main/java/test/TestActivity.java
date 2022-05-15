@@ -41,12 +41,9 @@ public class TestActivity extends Activity implements View.OnTouchListener,
         setContentView(mSurface);
 
         Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mThread.addItem((int) 100, 100);
-                mThread.addItem((int) 500, 500);
-            }
+        h.postDelayed(() -> {
+            mThread.addItem((int) 100, 100);
+            mThread.addItem((int) 500, 500);
         }, 200);
 
          scaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.OnScaleGestureListener() {

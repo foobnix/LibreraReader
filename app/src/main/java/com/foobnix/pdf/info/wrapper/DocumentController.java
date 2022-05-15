@@ -92,12 +92,7 @@ public abstract class DocumentController {
     public long readTimeStart;
     public volatile AppBookmark floatingBookmark;
     protected volatile List<OutlineLinkWrapper> outline;
-    Runnable saveCurrentPageRunnable = new Runnable() {
-        @Override
-        public void run() {
-            saveCurrentPageAsync();
-        }
-    };
+    Runnable saveCurrentPageRunnable = this::saveCurrentPageAsync;
     private DocumentWrapperUI ui;
     private File currentBook;
     private String title;

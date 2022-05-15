@@ -274,18 +274,9 @@ public abstract class UIFragment<T> extends Fragment {
                 return;
             }
 
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (MyProgressBar != null) {
-                        handler.postDelayed(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                MyProgressBar.setVisibility(View.VISIBLE);
-                            }
-                        }, 100);
-                    }
+            getActivity().runOnUiThread(() -> {
+                if (MyProgressBar != null) {
+                    handler.postDelayed(() -> MyProgressBar.setVisibility(View.VISIBLE), 100);
                 }
             });
 
@@ -302,21 +293,17 @@ public abstract class UIFragment<T> extends Fragment {
                 return;
             }
 
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (isAdded()) {
-                        if (MyProgressBar != null) {
-                            handler.removeCallbacksAndMessages(null);
-                            MyProgressBar.setVisibility(View.GONE);
-                        }
-                        try {
-                            populateDataInUI(result);
-                        } catch (Exception e) {
-                            LOG.e(e);
-                        }
+            getActivity().runOnUiThread(() -> {
+                if (isAdded()) {
+                    if (MyProgressBar != null) {
+                        handler.removeCallbacksAndMessages(null);
+                        MyProgressBar.setVisibility(View.GONE);
                     }
-
+                    try {
+                        populateDataInUI(result);
+                    } catch (Exception e) {
+                        LOG.e(e);
+                    }
                 }
             });
         };

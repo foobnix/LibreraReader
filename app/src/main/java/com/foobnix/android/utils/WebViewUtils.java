@@ -107,36 +107,30 @@ public class WebViewUtils {
 
         final String contentWrapper = h + content.replace("m:", "") + f;
 
+        Runnable execute = () -> {
+            try {
+                LOG.d("web.getContentHeight()", web.getContentHeight());
 
-        Runnable execute = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    LOG.d("web.getContentHeight()", web.getContentHeight());
+                Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
+                if (bitmap.getHeight() > 0 && bitmap.getWidth() > 0) {
+                    Canvas c = new Canvas(bitmap);
+                    web.draw(c);
 
-                    Bitmap bitmap = Bitmap.createBitmap(Dips.screenMinWH(), (int) (web.getContentHeight() * 1.1), Bitmap.Config.ARGB_8888);
-                    if (bitmap.getHeight() > 0 && bitmap.getWidth() > 0) {
-                        Canvas c = new Canvas(bitmap);
-                        web.draw(c);
-
-                        if (isMath) {
-                            bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
-                        }
-                        Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
-                        bitmap.compress(format, 100, os);
-                        bitmap.recycle();
+                    if (isMath) {
+                        bitmap = ImageExtractor.cropBitmap(bitmap, bitmap);
                     }
-                } catch (Exception e) {
-                    LOG.e(e);
-
-
-                } finally {
-                    synchronized (lock) {
-                        lock.notify();
-                    }
+                    Bitmap.CompressFormat format = Bitmap.CompressFormat.PNG;
+                    bitmap.compress(format, 100, os);
+                    bitmap.recycle();
                 }
-
+            } catch (Exception e) {
+                LOG.e(e);
+            } finally {
+                synchronized (lock) {
+                    lock.notify();
+                }
             }
+
         };
 
         handler.post(() -> {

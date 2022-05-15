@@ -47,22 +47,10 @@ import java.io.File;
 public class DefaultListeners {
 
     public static void bindAdapter(final Activity a, final FileMetaAdapter searchAdapter, final DocumentController dc, final Runnable onClick) {
-        searchAdapter.setOnItemClickListener(new ResultResponse<FileMeta>() {
-
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
-                onClick.run();
-                dc.onCloseActivityFinal(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null);
-
-                    }
-                });
-                return false;
-            }
-
+        searchAdapter.setOnItemClickListener(result -> {
+            onClick.run();
+            dc.onCloseActivityFinal(() -> ExtUtils.showDocumentWithoutDialog(a, new File(result.getPath()), null));
+            return false;
         });
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
@@ -74,14 +62,9 @@ public class DefaultListeners {
         searchAdapter.setOnItemLongClickListener(getOnItemLongClickListener(a, searchAdapter));
         searchAdapter.setOnMenuClickListener(getOnMenuClick(a, searchAdapter));
         searchAdapter.setOnStarClickListener(getOnStarClick(a));
-        searchAdapter.setOnTagClickListner(new ResultResponse<String>() {
-
-            @Override
-            public boolean onResultRecive(String result) {
-                showBooksByTag(a, result);
-                return false;
-            }
-
+        searchAdapter.setOnTagClickListner(result -> {
+            showBooksByTag(a, result);
+            return false;
         });
     }
 
@@ -100,85 +83,59 @@ public class DefaultListeners {
     }
 
     public static ResultResponse<FileMeta> getOnItemClickListener(final Activity a) {
-        return new ResultResponse<FileMeta>() {
+        return result -> {
+            if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
+                DialogsPlaylist.showPlayList(a, result.getPath(), null);
+                return true;
+            }
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
+            boolean isFolder = AppDB.get().isFolder(result);
 
-                if (false) {
-                    Dialogs.testWebView(a, result.getPath());
-                    return false;
-                }
+            if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
+                Downloader.openOrDownload(a, result, () -> {
+                    IMG.clearCache(result.getPath());
 
-                if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
-                    DialogsPlaylist.showPlayList(a, result.getPath(), null);
-                    return true;
-                }
-
-                boolean isFolder = AppDB.get().isFolder(result);
-
-                if (!isFolder && result.getPath().startsWith(Clouds.PREFIX_CLOUD)) {
-
-                    Downloader.openOrDownload(a, result, new Runnable() {
-
-                        @Override
-                        public void run() {
-                            IMG.clearCache(result.getPath());
-
-                            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                                    .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
-                                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, -2);//
-                            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-                        }
-                    });
-
-                    return false;
-                }
-
-                if (isTagCicked(a, result)) {
-                    return true;
-                }
-
-                // final File item = new File(result.getPath());
-                if (isFolder) {
-                    final int currentTabIndex = UITab.getCurrentTabIndex(UITab.BrowseFragment);
                     Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, currentTabIndex);//
-
-                    LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder7, currentTabIndex);
-
+                            .putExtra(MainTabs2.EXTRA_NOTIFY_REFRESH, true)//
+                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, -2);//
                     LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+                });
 
-                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
-
-                } else {
-                    if(AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH ){
-                        AppData.get().addRecent(new SimpleMeta(result.getPath()));
-                        EventBus.getDefault().post(new NotifyAllFragments());
-                        ExtUtils.openWith(a, new File(result.getPath()));
-                        return  false;
-                    }
-
-                    if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
-                        Dialogs.showTagsDialog(a, new File(result.getPath()), true, new Runnable() {
-
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new NotifyAllFragments());
-                            }
-                        });
-                    } else {
-                        ExtUtils.openFile(a, result);
-                    }
-                }
                 return false;
             }
 
+            if (isTagCicked(a, result)) {
+                return true;
+            }
+
+            if (isFolder) {
+                final int currentTabIndex = UITab.getCurrentTabIndex(UITab.BrowseFragment);
+                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, currentTabIndex);
+
+                LOG.d("EXTRA_PAGE_NUMBER", AppState.get().tabsOrder7, currentTabIndex);
+
+                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+                EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+            } else {
+                if(AppSP.get().readingMode == AppState.READING_MODE_OPEN_WITH ){
+                    AppData.get().addRecent(new SimpleMeta(result.getPath()));
+                    EventBus.getDefault().post(new NotifyAllFragments());
+                    ExtUtils.openWith(a, new File(result.getPath()));
+                    return  false;
+                }
+
+                if (AppSP.get().readingMode == AppState.READING_MODE_TAG_MANAGER && !ExtUtils.isExteralSD(result.getPath())) {
+                    Dialogs.showTagsDialog(a, new File(result.getPath()), true,
+                            () -> EventBus.getDefault().post(new NotifyAllFragments()));
+                } else {
+                    ExtUtils.openFile(a, result);
+                }
+            }
+            return false;
         };
     }
-
-    ;
 
     private static boolean isTagCicked(final Activity a, FileMeta result) {
         if (result.getCusType() != null && result.getCusType() == FileMetaAdapter.DISPALY_TYPE_LAYOUT_TAG) {
@@ -189,57 +146,44 @@ public class DefaultListeners {
     }
 
     public static ResultResponse<FileMeta> getOnItemLongClickListener(final Activity a, final FileMetaAdapter searchAdapter) {
-        return new ResultResponse<FileMeta>() {
+        return result -> {
+            LOG.d("getOnItemLongClickListener");
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
-                LOG.d("getOnItemLongClickListener");
+            if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
+                ExtUtils.openFile(a, result);
+                return false;
+            }
 
-                if (result.getPath().endsWith(Playlists.L_PLAYLIST)) {
-                    ExtUtils.openFile(a, result);
-                    return false;
-                }
+            if (ExtUtils.isExteralSD(result.getPath())) {
+                return false;
+            }
 
-                if (ExtUtils.isExteralSD(result.getPath())) {
-                    return false;
-                }
-
-                if (isTagCicked(a, result)) {
-                    return true;
-                }
-
-                File file = new File(result.getPath());
-
-                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
-                    file = Clouds.getCacheFile(file.getPath());
-                }
-
-                if (file.isDirectory()) {
-                    Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                            .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
-                    LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-
-                    EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
-                    return true;
-                }
-
-                Runnable onDeleteAction = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        deleteFile(a, searchAdapter, result);
-                    }
-
-                };
-                if (ExtUtils.doifFileExists(a, file)) {
-                    FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
-                }
+            if (isTagCicked(a, result)) {
                 return true;
             }
+
+            File file = new File(result.getPath());
+
+            if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                file = Clouds.getCacheFile(file.getPath());
+            }
+
+            if (file.isDirectory()) {
+                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.BrowseFragment));//
+                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+
+                EventBus.getDefault().post(new OpenDirMessage(result.getPath()));
+                return true;
+            }
+
+            Runnable onDeleteAction = () -> deleteFile(a, searchAdapter, result);
+            if (ExtUtils.doifFileExists(a, file)) {
+                FileInformationDialog.showFileInfoDialog(a, file, onDeleteAction);
+            }
+            return true;
         };
     }
-
-    ;
 
     @SuppressLint("NewApi")
     private static void deleteFile(final Activity a, final FileMetaAdapter searchAdapter, final FileMeta result) {
@@ -318,9 +262,6 @@ public class DefaultListeners {
                     Toast.makeText(a, R.string.can_t_delete_file, Toast.LENGTH_LONG).show();
                 }
             }
-
-            ;
-
         }.execute();
     }
 
@@ -377,123 +318,89 @@ public class DefaultListeners {
     }
 
     public static ResultResponse<FileMeta> getOnMenuClick(final Activity a, final FileMetaAdapter searchAdapter) {
-        return new ResultResponse<FileMeta>() {
+        return result -> {
+            ADS.hideAdsTemp(a);
 
-            @Override
-            public boolean onResultRecive(final FileMeta result) {
+            File file = new File(result.getPath());
 
-                ADS.hideAdsTemp(a);
-
-                File file = new File(result.getPath());
-
-                if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
-                    file = Clouds.getCacheFile(file.getPath());
-                }
-
-                Runnable onDeleteAction = new Runnable() {
-
-                    @Override
-                    public void run() {
-                        deleteFile(a, searchAdapter, result);
-                    }
-
-                };
-
-                if (ExtUtils.isExteralSD(result.getPath())) {
-                    ShareDialog.show(a, file, onDeleteAction, -1, null, null);
-                } else {
-
-                    if (ExtUtils.doifFileExists(a, result.getPath())) {
-
-                        if (ExtUtils.isNotSupportedFile(file)) {
-                            ShareDialog.showArchive(a, file, onDeleteAction);
-                        } else {
-                            ShareDialog.show(a, file, onDeleteAction, -1, null, null);
-                        }
-                    }
-                }
-
-                return false;
+            if (Clouds.isCloud(file.getPath()) && Clouds.isCacheFileExist(file.getPath())) {
+                file = Clouds.getCacheFile(file.getPath());
             }
+
+            Runnable onDeleteAction = () -> deleteFile(a, searchAdapter, result);
+
+            if (ExtUtils.isExteralSD(result.getPath())) {
+                ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+            } else {
+                if (ExtUtils.doifFileExists(a, result.getPath())) {
+                    if (ExtUtils.isNotSupportedFile(file)) {
+                        ShareDialog.showArchive(a, file, onDeleteAction);
+                    } else {
+                        ShareDialog.show(a, file, onDeleteAction, -1, null, null);
+                    }
+                }
+            }
+
+            return false;
         };
     }
 
     ;
 
     public static ResultResponse<String> getOnAuthorClickListener(final Activity a) {
-        return new ResultResponse<String>() {
+        return result -> {
+            result = AppDB.SEARCH_IN.AUTHOR.getDotPrefix() + " " + result;
 
-            @Override
-            public boolean onResultRecive(String result) {
+            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                    .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
+                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
-                result = AppDB.SEARCH_IN.AUTHOR.getDotPrefix() + " " + result;
-
-                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                        .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
-
-                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-                return false;
-            }
+            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+            return false;
         };
     }
 
     public static ResultResponse<String> getOnSeriesClickListener(final Activity a) {
-        return new ResultResponse<String>() {
+        return result -> {
+            result = AppDB.SEARCH_IN.SERIES.getDotPrefix() + " " + result;
 
-            @Override
-            public boolean onResultRecive(String result) {
+            Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
+                    .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
+                    .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
 
-                result = AppDB.SEARCH_IN.SERIES.getDotPrefix() + " " + result;
-
-                Intent intent = new Intent(UIFragment.INTENT_TINT_CHANGE)//
-                        .putExtra(MainTabs2.EXTRA_SEACH_TEXT, result)//
-                        .putExtra(MainTabs2.EXTRA_PAGE_NUMBER, UITab.getCurrentTabIndex(UITab.SearchFragment));//
-
-                LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
-                return false;
-            }
+            LocalBroadcastManager.getInstance(a).sendBroadcast(intent);
+            return false;
         };
     }
 
     public static ResultResponse2<FileMeta, FileMetaAdapter> getOnStarClick(final Activity a) {
-        return new ResultResponse2<FileMeta, FileMetaAdapter>() {
+        return (fileMeta, adapter) -> {
+            Boolean isStar = fileMeta.getIsStar();
 
-            @Override
-            public boolean onResultRecive(FileMeta fileMeta, FileMetaAdapter adapter) {
-                Boolean isStar = fileMeta.getIsStar();
+            if (isStar == null) {
+                isStar = AppDB.get().isStarFolder(fileMeta.getPath());
 
-                if (isStar == null) {
-                    isStar = AppDB.get().isStarFolder(fileMeta.getPath());
+            } else {
 
-                } else {
-
-                }
-
-
-                fileMeta.setIsStar(!isStar);
-
-
-                if (fileMeta.getIsStar()) {
-                    AppData.get().addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
-                } else {
-                    AppData.get().removeFavorite(fileMeta);
-                }
-
-                fileMeta.setIsStarTime(System.currentTimeMillis());
-                AppDB.get().updateOrSave(fileMeta);
-
-
-                if (adapter != null) {
-                    adapter.notifyDataSetChanged();
-                }
-                TempHolder.listHash++;
-
-                return false;
             }
+
+            fileMeta.setIsStar(!isStar);
+
+            if (fileMeta.getIsStar()) {
+                AppData.get().addFavorite(new SimpleMeta(fileMeta.getPath(), System.currentTimeMillis()));
+            } else {
+                AppData.get().removeFavorite(fileMeta);
+            }
+
+            fileMeta.setIsStarTime(System.currentTimeMillis());
+            AppDB.get().updateOrSave(fileMeta);
+
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+            TempHolder.listHash++;
+
+            return false;
         };
     }
-
-    ;
-
 }
