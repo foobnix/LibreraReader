@@ -243,8 +243,14 @@ public class Apps {
         return false;
     }
 
-
-    public static boolean isDestroyed(Activity a) {
-        return a == null || (Build.VERSION.SDK_INT >= 17 && a.isDestroyed());
+    public static boolean isDestroyedActivity(Activity a) {
+        if (a == null || a.isFinishing()) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT >= 17 && a.isDestroyed()) {
+            return true;
+        }
+        return false;
     }
+
 }

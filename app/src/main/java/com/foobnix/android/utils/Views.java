@@ -37,15 +37,6 @@ import java.util.List;
 
 public class Views {
 
-    public static boolean isDestroyedActivity(Activity a) {
-        if (a == null || a.isFinishing()) {
-            return true;
-        }
-        if (Build.VERSION.SDK_INT >= 17 && a.isDestroyed()) {
-            return true;
-        }
-        return false;
-    }
 
     public static final Handler handler = new Handler(Looper.getMainLooper());
 

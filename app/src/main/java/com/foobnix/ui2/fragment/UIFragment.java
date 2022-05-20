@@ -298,7 +298,7 @@ public abstract class UIFragment<T> extends Fragment {
                 inProgress = false;
 
             }
-            if (isDetached() || Apps.isDestroyed(getActivity())) {
+            if (isDetached() || Apps.isDestroyedActivity(getActivity())) {
                 return;
             }
 

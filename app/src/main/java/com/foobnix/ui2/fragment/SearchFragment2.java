@@ -619,7 +619,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     public void searchAndOrderAsync() {
-        if (Apps.isDestroyed(getActivity())) {
+        if (Apps.isDestroyedActivity(getActivity())) {
             return;
         }
         searchEditText.setHint(R.string.msg_loading);

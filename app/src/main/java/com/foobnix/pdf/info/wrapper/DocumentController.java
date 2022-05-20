@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.IntegerResponse;
 import com.foobnix.android.utils.Keyboards;
@@ -59,7 +60,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@SuppressLint("NewApi")
 public abstract class DocumentController {
 
     public static final String EXTRA_PASSWORD = "password";
@@ -108,7 +108,7 @@ public abstract class DocumentController {
         @Override
         public void run() {
             try {
-                if (activity == null || activity.isDestroyed()) {
+                if (Apps.isDestroyedActivity(activity)) {
                     LOG.d("Timer-Task Destroyed");
                     return;
                 }

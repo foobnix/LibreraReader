@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.core.util.Pair;
 
+import com.foobnix.android.utils.Apps;
 import com.foobnix.android.utils.BaseItemLayoutAdapter;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.Views;
@@ -34,7 +35,7 @@ public class ZipDialog {
     static AlertDialog create;
 
     public static void show(Activity a, File file, final Runnable onDismiss) {
-        if(Views.isDestroyedActivity(a)){
+        if(Apps.isDestroyedActivity(a)){
             return;
         }
 
@@ -73,7 +74,7 @@ public class ZipDialog {
             LOG.e(e);
         }
 
-        if(Views.isDestroyedActivity(a)){
+        if(Apps.isDestroyedActivity(a)){
             return;
         }
 
