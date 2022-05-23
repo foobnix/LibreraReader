@@ -13,6 +13,8 @@ git clone --recursive git://git.ghostscript.com/mupdf.git --branch 1.11 mupdf-1.
 cd mupdf-1.11
 echo "================== "
 if [ "$1" == "clean" ]; then
+  git reset --hard
+  git clean -f -d
   make clean
 fi
 make
