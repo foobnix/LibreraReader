@@ -8,6 +8,7 @@ include $(TOP_LOCAL_PATH)/libmobi-0.9/Android.mk
 include $(TOP_LOCAL_PATH)/hqx/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
 include $(TOP_LOCAL_PATH)/antiword/Android.mk
+include $(TOP_LOCAL_PATH)/libwebp-1.2.2/Android.mk
 
 include $(TOP_LOCAL_PATH)/MuPDF-1.11.mk
 
