@@ -38,6 +38,9 @@ LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 LOCAL_MODULE := mupdf_core
 
+LOCAL_STATIC_LIBRARIES := webpmux webpdemux webp
+
+
 ifdef FZ_ENABLE_GPRF
 LOCAL_CFLAGS += -DFZ_ENABLE_GPRF
 endif
@@ -72,7 +75,6 @@ LOCAL_SRC_FILES += \
 	$(wildcard $(MUPDF_PATH)/source/html/*.c) \
 	$(wildcard $(MUPDF_PATH)/generated/*.c) \
 
-LOCAL_STATIC_LIBRARIES := webpmux webpdemux webp
 
 include $(BUILD_STATIC_LIBRARY)
 

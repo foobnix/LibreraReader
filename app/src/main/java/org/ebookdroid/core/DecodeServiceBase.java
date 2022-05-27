@@ -564,7 +564,8 @@ public class DecodeServiceBase implements DecodeService {
         Runnable nextTask() {
             // TempHolder.lock.lock();
             try {
-                if (!tasks.isEmpty()) {
+
+                if (tasks!=null && !tasks.isEmpty()) {
                     final TaskComparator comp = new TaskComparator(viewState.get());
                     Task candidate = null;
                     int cindex = 0;

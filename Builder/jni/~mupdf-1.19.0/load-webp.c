@@ -1,5 +1,7 @@
 #include "mupdf/fitz.h"
 
+#include "pixmap-imp.h"
+
 #include <webp/decode.h>
 #include <webp/demux.h>
 #include <webp/types.h>
@@ -29,7 +31,7 @@ fz_load_webp(fz_context *ctx, const unsigned char *p, size_t total)
         fz_throw(ctx, FZ_ERROR_GENERIC, "failed decoding webp image");
 
     fz_pixmap *image;
-    image = fz_new_pixmap(ctx, fz_device_rgb(ctx), width, height, features.has_alpha ? 1:0);
+    image = fz_new_pixmap(ctx, fz_device_rgb(ctx), width, height, NULL, features.has_alpha ? 1:0);
 
     fz_clear_pixmap(ctx, image);
     fz_unpack_tile(ctx, image, rgba, image->n, 8, image->stride, 1);

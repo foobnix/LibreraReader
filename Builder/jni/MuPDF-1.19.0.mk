@@ -47,6 +47,9 @@ LOCAL_ARM_MODE  := $(APP_ARM_MODE)
 
 LOCAL_MODULE := mupdf_core
 
+LOCAL_STATIC_LIBRARIES = webpmux webpdemux webp
+
+
 LOCAL_C_INCLUDES := $(MUPDF_PATH)/include
 
 LOCAL_CFLAGS := \
@@ -297,6 +300,7 @@ LOCAL_CFLAGS += $(MUPDF_EXTRA_CFLAGS)
 
 LOCAL_SRC_FILES += $(MUPDF_PATH)/platform/java/mupdf_native.c
 
+LOCAL_STATIC_LIBRARIES += webpmux webpdemux webp
 LOCAL_STATIC_LIBRARIES += mupdf_core
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_freetype
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_gumbo
@@ -307,12 +311,15 @@ LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_libjpeg
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_mujs
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_openjpeg
 
+
 ifdef USE_TESSERACT
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_leptonica
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_tesseract
 endif
 
 LOCAL_STATIC_LIBRARIES += mupdf_thirdparty_extract
+
+
 
 LOCAL_LDLIBS += $(MUPDF_EXTRA_LDLIBS)
 LOCAL_LDLIBS += -ljnigraphics

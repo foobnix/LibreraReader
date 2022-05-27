@@ -14,8 +14,7 @@ MUPDF_JAVA=$MUPDF_ROOT/platform/librera
 mkdir -p $MUPDF_JAVA/jni
 
 SRC=jni/~mupdf-$VERSION_TAG
-DEST=$MUPDF_ROOT/source/
-SRC_FILES=$SRC/src_files/
+DEST=$MUPDF_ROOT/source
 LIBS=$BUILD_DIR/../app/src/main/jniLibs
 
 
@@ -26,12 +25,11 @@ git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG 
 
 cd mupdf-$VERSION_TAG
 
-git reset --hard
-#git clean -f -d
-
 echo "=================="
 
 if [ "$1" == "clean" ]; then
+  git reset --hard
+  git clean -f -d
   make clean
 fi
 
@@ -55,21 +53,16 @@ ln -s $MUPDF_JAVA/libs/arm64-v8a $LIBS
 ln -s $MUPDF_JAVA/libs/x86 $LIBS
 ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
-rm -rfv $SRC_FILES
-mkdir $SRC_FILES
-
-cp -rpv $DEST/html/css-apply.c $SRC_FILES
-cp -rpv $DEST/html/epub-doc.c $SRC_FILES
-cp -rpv $DEST/html/html-layout.c $SRC_FILES
-cp -rpv $DEST/html/html-parse.c $SRC_FILES
-cp -rpv $DEST/cbz/mucbz.c $SRC_FILES
-
-
 cp -rpv $SRC/html-layout.c       $DEST/html/html-layout.c
 cp -rpv $SRC/epub-doc.c          $DEST/html/epub-doc.c
 cp -rpv $SRC/html-parse.c        $DEST/html/html-parse.c
 cp -rpv $SRC/css-apply.c         $DEST/html/css-apply.c
 cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
+
+cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
+cp -rpv $SRC/image.c             $DEST/fitz/image.c
+
+cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
 
 
 cd $MUPDF_JAVA
