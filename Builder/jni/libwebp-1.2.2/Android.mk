@@ -33,6 +33,7 @@ else
   NEON := c
 endif
 
+
 dec_srcs := \
     src/dec/alpha_dec.c \
     src/dec/buffer_dec.c \
@@ -271,3 +272,5 @@ else
 endif
 
 ################################################################################
+
+$(call import-module,android/cpufeatures)
