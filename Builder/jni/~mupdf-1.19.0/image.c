@@ -149,15 +149,44 @@ fz_drop_image(fz_context *ctx, fz_image *image)
 }
 
 static void
-fz_mask_color_key(fz_pixmap *pix, int n, const int *colorkey)
+fz_mask_color_key(fz_pixmap *pix, int n, int bpc, const int *colorkey)
 {
 	unsigned char *p = pix->samples;
 	int w;
 	int k, t;
 	int h = pix->h;
 	size_t stride = pix->stride - pix->w * (size_t)pix->n;
+	int scaledcolorkey[FZ_MAX_COLORS * 2];
+	int scale, shift, max;
+
 	if (pix->w == 0)
 		return;
+
+	for (k = 0; k < 2 * n; k++)
+		scaledcolorkey[k] = fz_clampi(colorkey[k], 0, (1 << bpc) - 1);
+
+	switch (bpc)
+	{
+	case 1: scale = 255; shift = 0; max = 1; break;
+	case 2: scale = 85; shift = 0; max = 3; break;
+	case 4: scale = 17; shift = 0; max = 15; break;
+	default:
+	case 8: scale = 1; shift = 0; max = 0xff; break;
+	case 16: scale = 1; shift = 8; max = 0xffff; break;
+	case 24: scale = 1; shift = 16; max = 0xffffff; break;
+	case 32: scale = 1; shift = 24; max = 0xffffffff; break;
+	}
+
+	for (k = 0; k < 2 * n; k++)
+		scaledcolorkey[k] = fz_clampi(colorkey[k], 0, max);
+
+	if (scale > 1)
+		for (k = 0; k < 2 * n; k++)
+			scaledcolorkey[k] *= scale;
+	else if (shift > 0)
+		for (k = 0; k < 2 * n; k++)
+			scaledcolorkey[k] >>= shift;
+
 	while (h--)
 	{
 		w = pix->w;
@@ -165,7 +194,7 @@ fz_mask_color_key(fz_pixmap *pix, int n, const int *colorkey)
 		{
 			t = 1;
 			for (k = 0; k < n; k++)
-				if (p[k] < colorkey[k * 2] || p[k] > colorkey[k * 2 + 1])
+				if (p[k] < scaledcolorkey[k * 2] || p[k] > scaledcolorkey[k * 2 + 1])
 					t = 0;
 			if (t)
 				for (k = 0; k < pix->n; k++)
@@ -616,7 +645,7 @@ fz_decomp_image_from_stream(fz_context *ctx, fz_stream *stm, fz_compressed_image
 
 		/* color keyed transparency */
 		if (image->use_colorkey && !image->mask)
-			fz_mask_color_key(tile, image->n, image->colorkey);
+			fz_mask_color_key(tile, image->n, image->bpc, image->colorkey);
 
 		if (indexed)
 		{
@@ -729,8 +758,8 @@ compressed_image_get_pixmap(fz_context *ctx, fz_image *image_, fz_irect *subarea
 		tile = fz_load_jpx(ctx, image->buffer->buffer->data, image->buffer->buffer->len, NULL);
 		break;
 	case FZ_IMAGE_WEBP:
-    		tile = fz_load_webp(ctx, image->buffer->buffer->data, image->buffer->buffer->len, NULL);
-    		break;
+		tile = fz_load_webp(ctx, image->buffer->buffer->data, image->buffer->buffer->len);
+		break;
 	case FZ_IMAGE_JPEG:
 		/* Scan JPEG stream and patch missing height values in header */
 		{
@@ -1180,7 +1209,7 @@ void fz_set_pixmap_image_tile(fz_context *ctx, fz_pixmap_image *image, fz_pixmap
 }
 
 int
-fz_recognize_image_format(fz_context *ctx, unsigned char p[8])
+fz_recognize_image_format(fz_context *ctx, unsigned char p[16])
 {
 	if (p[0] == 'P' && p[1] >= '1' && p[1] <= '7')
 		return FZ_IMAGE_PNM;
@@ -1211,8 +1240,8 @@ fz_recognize_image_format(fz_context *ctx, unsigned char p[8])
 	if (p[0] == 0x97 && p[1] == 'J' && p[2] == 'B' && p[3] == '2' &&
 		p[4] == '\r' && p[5] == '\n'  && p[6] == 0x1a && p[7] == '\n')
 		return FZ_IMAGE_JBIG2;
-	if (p[0] == 'R' && p[1] == 'I' && p[2] == 'F' && p[3] == 'F')
-    	return FZ_IMAGE_WEBP;
+	if (memcmp(p, "RIFF", 4))
+		return FZ_IMAGE_WEBP;
 	return FZ_IMAGE_UNKNOWN;
 }
 
@@ -1229,7 +1258,7 @@ fz_new_image_from_buffer(fz_context *ctx, fz_buffer *buffer)
 	int bpc;
 	uint8_t orientation = 0;
 
-	if (len < 8)
+	if (len < 16)
 		fz_throw(ctx, FZ_ERROR_GENERIC, "unknown image file format");
 
 	type = fz_recognize_image_format(ctx, buf);
@@ -1260,12 +1289,12 @@ fz_new_image_from_buffer(fz_context *ctx, fz_buffer *buffer)
 	case FZ_IMAGE_BMP:
 		fz_load_bmp_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
 		break;
-	case FZ_IMAGE_WEBP:
-    		fz_load_webp_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
-    		break;
 	case FZ_IMAGE_JBIG2:
 		fz_load_jbig2_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
 		bpc = 1;
+		break;
+	case FZ_IMAGE_WEBP:
+		fz_load_webp_info(ctx, buf, len, &w, &h, &xres, &yres, &cspace);
 		break;
 	default:
 		fz_throw(ctx, FZ_ERROR_GENERIC, "unknown image file format");

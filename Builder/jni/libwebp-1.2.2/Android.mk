@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 WEBP_CFLAGS := -Wall -DANDROID -DHAVE_MALLOC_H  -DHAVE_PTHREAD -DWEBP_USE_THREAD
 WEBP_CFLAGS += -fvisibility=hidden
 
-ifeq ($(APP_OPTIM),release1)
+ifeq ($(APP_OPTIM),release)
   WEBP_CFLAGS += -finline-functions -ffast-math \
                  -ffunction-sections -fdata-sections
   ifeq ($(findstring clang,$(NDK_TOOLCHAIN_VERSION)),)
@@ -11,18 +11,7 @@ ifeq ($(APP_OPTIM),release1)
   endif
 endif
 
-# mips32 fails to build with clang from r14b
-# https://bugs.chromium.org/p/webp/issues/detail?id=343
-ifeq ($(findstring clang1,$(NDK_TOOLCHAIN_VERSION)),clang)
-  ifeq ($(TARGET_ARCH),mips)
-    clang_version := $(shell $(TARGET_CC) --version)
-    ifneq ($(findstring clang version 3,$(clang_version)),)
-      WEBP_CFLAGS += -no-integrated-as
-    endif
-  endif
-endif
-
-ifneq ($(findstring armeabi-v7a1, $(TARGET_ARCH_ABI)),)
+ifneq ($(findstring armeabi-v7a, $(TARGET_ARCH_ABI)),)
   # Setting LOCAL_ARM_NEON will enable -mfpu=neon which may cause illegal
   # instructions to be generated for armv7a code. Instead target the neon code
   # specifically.

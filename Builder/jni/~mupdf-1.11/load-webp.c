@@ -36,6 +36,7 @@ fz_load_webp(fz_context *ctx, const unsigned char *p, size_t total)
 
     WebPFree(rgba);
 
+
 return image;
 }
 
@@ -54,5 +55,7 @@ fz_load_webp_info(fz_context *ctx, const unsigned char *p, size_t total, int *wp
 
     *wp = width;
     *hp = height;
+    *xresp = 72;
+    *yresp = 72;
 }
 

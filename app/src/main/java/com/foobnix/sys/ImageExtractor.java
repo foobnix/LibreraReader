@@ -1,9 +1,7 @@
 package com.foobnix.sys;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -18,7 +16,6 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.Base64;
 import android.util.Pair;
-import android.util.TypedValue;
 
 import androidx.annotation.RequiresApi;
 
@@ -318,7 +315,7 @@ public class ImageExtractor {
             pageUrl.tempWithWatermakr = true;
         } else if (unZipPath.endsWith(MdContext.SUMMARY_MD)) {
             cover = BitmapFactory.decodeResource(LibreraApp.context.getResources(), R.drawable.gitbook);
-            LOG.d("SUMMARY_MD",unZipPath);
+            LOG.d("SUMMARY_MD", unZipPath);
         }
 
         if (cover == null) {
@@ -381,7 +378,7 @@ public class ImageExtractor {
         }
 
         final CodecPageInfo pageInfo = codeCache.getPageInfo(page);
-
+        
         Bitmap bitmap = null;
 
         RectF rectF = new RectF(0, 0, 1f, 1f);
@@ -554,7 +551,7 @@ public class ImageExtractor {
         if (imageUri.startsWith(Safe.TXT_SAFE_RUN)) {
             LOG.d("MUPDF!", Safe.TXT_SAFE_RUN, "begin", imageUri);
             //return LibreraApp.context.getResources().getAssets().open("opds/web.png");
-            return messageFile("safe run","stub");
+            return messageFile("safe run", "stub");
 
         }
         if (imageUri.startsWith("http")) {
