@@ -3,7 +3,7 @@
 
 ### 1.16.1
 #./link_to_mupdf_1.16.1.sh
-./link_to_mupdf_1.19.0.sh clean_ndk
+./link_to_mupdf_1.20.0.sh
 
 cd ../
 
@@ -17,7 +17,7 @@ cd ../
 ### 1.11.1
 
 cd Builder
-./link_to_mupdf_1.11.sh clean_ndk
+./link_to_mupdf_1.11.sh
 
 cd ../
 ./gradlew assembleProRelease

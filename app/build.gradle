@@ -108,7 +108,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader"
             manifestPlaceholders = [
-                    appName      : "Beta 111",
+                    appName      : "MuPDF-1.11",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "961762082517-dgsen03hb73s6oh59ovivcansatu16lc.apps.googleusercontent.com",
@@ -124,7 +124,7 @@ android {
             dimension "version"
             applicationId "com.foobnix.pdf.reader.a1"
             manifestPlaceholders = [
-                    appName      : "Alpha 119",
+                    appName      : "MuPDF-1.20",
                     appIcon      : "@mipmap/icon_pdf_reader",
                     appRoundIcon : "@mipmap/icon_pdf_reader",
                     appGdriveKey : "",
@@ -285,13 +285,21 @@ android {
 //                println abiName + " : appSafeMode false"
 //            }
 
+            if(flavor.equals("Alpha")){
+                flavor = "MuPDF-1.20"
+            }else if(flavor.equals("Beta")){
+                flavor = "MuPDF-1.11"
+            }
+
             if (abiName != null) {
                 def code = abiCodes.get(abiName, 0) + variant.versionCode
                 abiName = abiName.replace("arm64-v8a", "arm64").replace("armeabi-v7a", "arm")
 
                 output.versionCodeOverride = code
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${code}-d${db}-${abiName}.apk";
+
                 def fullName = "Librera ${flavor}-${versionNumber}-${abiName}.apk"
+
                 output.outputFileName = fullName
             } else {
                 //def fullName = "Librera ${flavor}-${versionNumber}-c${codeNumber}-d${db}-universal.apk";
