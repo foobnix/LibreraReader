@@ -79,11 +79,11 @@ cd Builder
 ./gradlew assembleLibrera
 ~~~~
 
-## Librera Build on MuPdf 1.16.1 (Optional, alpha, F-Droid)
+## Librera Build on MuPdf 1.20.0 (Optional, alpha, F-Droid)
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.20.0.sh
 ./gradlew assembleAlpha
 ~~~~
 
