@@ -44,8 +44,6 @@ void
 fz_load_webp_info(fz_context *ctx, const unsigned char *p, size_t total, int *wp, int *hp, int *xresp, int *yresp, fz_colorspace **cspacep)
 {
     struct WebPBitstreamFeatures features;
-    WebPData webp_data;
-    WebPDemuxer* demux = NULL;
 
     if (WebPGetFeatures(p, total, &features) != VP8_STATUS_OK)
         fz_throw(ctx, FZ_ERROR_GENERIC, "unable to extract webp features");
