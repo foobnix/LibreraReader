@@ -1,4 +1,5 @@
 #include "fitz-imp.h"
+#include "load-webp.h"
 
 #define SANE_DPI 72.0f
 #define INSANE_DPI 4800.0f

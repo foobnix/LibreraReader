@@ -50,6 +50,7 @@ cp -rp jni/~mupdf-1.11/stext-output.c $MUPDF_ROOT/source/fitz/stext-output.c
 cp -rp jni/~mupdf-1.11/mucbz.c        $MUPDF_ROOT/source/cbz/mucbz.c
 
 cp -rp jni/~mupdf-1.11/load-webp.c    $MUPDF_ROOT/source/fitz/load-webp.c
+cp -rp jni/~mupdf-1.11/load-webp.h    $MUPDF_ROOT/source/fitz/load-webp.h
 cp -rp jni/~mupdf-1.11/image.c        $MUPDF_ROOT/source/fitz/image.c
 
 cp -rp jni/~mupdf-1.11/structured-text.h    $MUPDF_ROOT/include/mupdf/fitz/structured-text.h
