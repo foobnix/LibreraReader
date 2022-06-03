@@ -444,8 +444,10 @@ public class MuPdfPage extends AbstractCodecPage {
 
         if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
             return getText_111();
-        } else {
+        } else  if (LibreraApp.MUPDF_VERSION == 116 || LibreraApp.MUPDF_VERSION == 119) {
             return getText_116();
+        }else{
+            return new TextWord[0][0];
         }
 
     }
