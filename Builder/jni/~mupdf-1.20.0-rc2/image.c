@@ -758,7 +758,7 @@ compressed_image_get_pixmap(fz_context *ctx, fz_image *image_, fz_irect *subarea
 		tile = fz_load_jpx(ctx, image->buffer->buffer->data, image->buffer->buffer->len, NULL);
 		break;
 	case FZ_IMAGE_WEBP:
-    		tile = fz_load_webp(ctx, image->buffer->buffer->data, image->buffer->buffer->len, NULL);
+    		tile = fz_load_webp(ctx, image->buffer->buffer->data, image->buffer->buffer->len);
     		break;
 	case FZ_IMAGE_JPEG:
 		/* Scan JPEG stream and patch missing height values in header */
@@ -1209,7 +1209,7 @@ void fz_set_pixmap_image_tile(fz_context *ctx, fz_pixmap_image *image, fz_pixmap
 }
 
 int
-fz_recognize_image_format(fz_context *ctx, unsigned char p[8])
+fz_recognize_image_format(fz_context *ctx, unsigned char p[16])
 {
 	if (p[0] == 'P' && p[1] >= '1' && p[1] <= '7')
 		return FZ_IMAGE_PNM;
@@ -1237,11 +1237,11 @@ fz_recognize_image_format(fz_context *ctx, unsigned char p[8])
 		return FZ_IMAGE_BMP;
 	if (p[0] == 'B' && p[1] == 'A')
 		return FZ_IMAGE_BMP;
-    if (p[0] == 'R' && p[1] == 'I' && p[2] == 'F' && p[3] == 'F')
-    		return FZ_IMAGE_WEBP;
 	if (p[0] == 0x97 && p[1] == 'J' && p[2] == 'B' && p[3] == '2' &&
 		p[4] == '\r' && p[5] == '\n'  && p[6] == 0x1a && p[7] == '\n')
 		return FZ_IMAGE_JBIG2;
+    if (!memcmp(p, "RIFF", 4) && !memcmp(p+8, "WEBPVP8 ", 8))
+    		return FZ_IMAGE_WEBP;
 	return FZ_IMAGE_UNKNOWN;
 }
 
@@ -1258,7 +1258,7 @@ fz_new_image_from_buffer(fz_context *ctx, fz_buffer *buffer)
 	int bpc;
 	uint8_t orientation = 0;
 
-	if (len < 8)
+	if (len < 16)
 		fz_throw(ctx, FZ_ERROR_GENERIC, "unknown image file format");
 
 	type = fz_recognize_image_format(ctx, buf);
