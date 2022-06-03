@@ -79,7 +79,7 @@ cd Builder
 ./gradlew assembleLibrera
 ~~~~
 
-## Librera Build on MuPdf 1.20.0 (Optional, alpha, F-Droid)
+## Librera Build on MuPdf 1.20.0 (Testing, F-Droid)
 
 ~~~~
 cd Builder
@@ -93,7 +93,7 @@ If you wish to build for F-Droid (e.g. not using google services) you can run th
 
 ~~~~
 cd Builder
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.20.0.sh
 ./gradlew assembleFdroid
 ~~~~
 
