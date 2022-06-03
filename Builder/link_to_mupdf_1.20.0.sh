@@ -54,6 +54,8 @@ ln -s $MUPDF_JAVA/libs/x86_64 $LIBS
 
 
 cp -rpv $SRC/mucbz.c             $DEST/cbz/mucbz.c
+cp -rpv $SRC/muimg.c             $DEST/cbz/muimg.c
+cp -rpv $SRC/image-imp.h         $DEST/fitz/image-imp.h
 cp -rpv $SRC/load-webp.c         $DEST/fitz/load-webp.c
 cp -rpv $SRC/image.c             $DEST/fitz/image.c
 cp -rpv $SRC/compressed-buffer.h $MUPDF_ROOT/include/mupdf/fitz/compressed-buffer.h
