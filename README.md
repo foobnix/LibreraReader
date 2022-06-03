@@ -10,7 +10,7 @@ it supports the following formats: PDF, EPUB, EPUB3, MOBI, DjVu, FB2, TXT, RTF, 
 
 Web: [http://librera.mobi/](http://librera.mobi/)
 
-FAQ: [Read](http://librera.mobi/wiki/faq/)
+FAQ: [Read](http://librera.mobi/faq/)
 
 Android Play Market Apps:
 
