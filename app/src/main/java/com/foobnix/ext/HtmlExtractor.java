@@ -11,7 +11,7 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.pdf.info.model.BookCSS;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -128,7 +128,8 @@ public class HtmlExtractor {
 
             String string = null;
             if (accurate) {
-                Whitelist whitelist = Whitelist.basic()
+
+                Safelist whitelist = Safelist.basic()
                         .addAttributes("ol", "reversed", "start", "type")
                         .addAttributes("li", "value");
                 string = Jsoup.clean(html.toString(), whitelist);
@@ -214,7 +215,7 @@ public class HtmlExtractor {
 
             FileOutputStream out = new FileOutputStream(file);
 
-            String string = Jsoup.clean(html.toString(), Whitelist.basic());
+            String string = Jsoup.clean(html.toString(), Safelist.basic());
 
             if (BookCSS.get().isAutoHypens) {
                 string = HypenUtils.applyHypnes(string);

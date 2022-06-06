@@ -345,14 +345,14 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
-    implementation 'com.github.axet:lame:1.0.6'
+    implementation 'com.github.axet:lame:1.0.9'
 
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation('org.greenrobot:greendao:3.3.0') {
         exclude group: 'org.greenrobot.greendao.rx'
     }
     implementation 'org.greenrobot:greendao-api:3.3.0'
-    implementation 'org.jsoup:jsoup:1.14.3'
+    implementation 'org.jsoup:jsoup:1.15.1'
 
     implementation 'com.github.albfernandez:juniversalchardet:2.4.0'
 
@@ -363,9 +363,9 @@ dependencies {
     implementation 'com.github.joniles:rtfparserkit:1.16.0'
     implementation 'org.zwobble.mammoth:mammoth:1.4.2'
     implementation 'javax.xml.stream:stax-api:1.0'
-    implementation 'net.lingala.zip4j:zip4j:2.9.1'
-    implementation 'com.github.bumptech.glide:glide:4.13.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+    implementation 'net.lingala.zip4j:zip4j:2.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
 
     alphaImplementation project(':pro')

@@ -1,5 +1,4 @@
-* Finds all books on the device
-* Bookmarks and Dictionaries
-* Night and Day Theme
-* Automatic scrolling
-* Built-in File Manager
+8.5.xx
+Android 12 optimization
+Support EPUB and comics with WEBP
+Improved PDF quality

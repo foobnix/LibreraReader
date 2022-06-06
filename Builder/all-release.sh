@@ -19,9 +19,9 @@ cd ../
 ./gradlew assembleHuaweiRelease
 
 
-### 1.16.1
+### 1.20.0
 cd Builder
-./link_to_mupdf_1.16.1.sh
+./link_to_mupdf_1.20.0.sh
 cd ../
 ./gradlew assembleAlphaRelease
 ./gradlew assembleFdroidRelease

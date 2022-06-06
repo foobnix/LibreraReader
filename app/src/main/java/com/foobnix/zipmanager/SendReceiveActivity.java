@@ -18,7 +18,7 @@ import com.foobnix.ui2.MyContextWrapper;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -131,7 +131,7 @@ public class SendReceiveActivity extends Activity {
                     file.getParentFile().mkdirs();
 
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
-                    String outerHtml = Jsoup.clean(document.html(), Whitelist.basic());
+                    String outerHtml = Jsoup.clean(document.html(), Safelist.basic());
                     LOG.d("outerHtml-html", outerHtml);
                     fileOutputStream.write("<html><head></head><body style='text-align:justify;'>".getBytes());
                     fileOutputStream.write(outerHtml.getBytes());

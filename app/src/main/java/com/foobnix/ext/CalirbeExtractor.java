@@ -6,7 +6,7 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.pdf.info.ExtUtils;
 
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 import org.librera.JSONArray;
 import org.librera.LinkedJSONObject;
 import org.xmlpull.v1.XmlPullParser;
@@ -46,7 +46,7 @@ public class CalirbeExtractor {
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
                     if ("dc:description".equals(xpp.getName()) || "dcns:description".equals(xpp.getName())) {
-                        return Jsoup.clean(xpp.nextText(), Whitelist.simpleText());
+                        return Jsoup.clean(xpp.nextText(), Safelist.simpleText());
                     }
                 }
                 eventType = xpp.next();

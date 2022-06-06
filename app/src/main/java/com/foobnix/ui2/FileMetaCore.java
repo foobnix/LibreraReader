@@ -29,7 +29,7 @@ import org.ebookdroid.BookType;
 import org.ebookdroid.droids.FolderContext;
 import org.ebookdroid.ui.viewer.VerticalViewActivity;
 import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import java.io.File;
 import java.io.IOException;
@@ -134,7 +134,7 @@ public class FileMetaCore {
             if (TxtUtils.isEmpty(info)) {
                 return "";
             }
-            info = Jsoup.clean(info, Whitelist.none());
+            info = Jsoup.clean(info, Safelist.none());
             info = info.replace("&nbsp;", " ");
         } catch (Exception e) {
             LOG.e(e);
