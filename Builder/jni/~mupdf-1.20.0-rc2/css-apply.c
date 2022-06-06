@@ -1305,8 +1305,8 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 
 	style->text_indent = number_from_property(match, PRO_TEXT_INDENT, 0, N_LENGTH);
 
-	style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
-	style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
+	//style->width = number_from_property(match, PRO_WIDTH, 0, N_AUTO);
+	//style->height = number_from_property(match, PRO_HEIGHT, 0, N_AUTO);
 
 	style->margin[0] = number_from_property(match, PRO_MARGIN_TOP, 0, N_LENGTH);
 	style->margin[1] = number_from_property(match, PRO_MARGIN_RIGHT, 0, N_LENGTH);
@@ -1317,13 +1317,6 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
     if(style->margin[1].unit==N_SCALE && style->margin[1].value>2)style->margin[1].value=2;
     if(style->margin[2].unit==N_SCALE && style->margin[2].value>2)style->margin[2].value=2;
     if(style->margin[3].unit==N_SCALE && style->margin[3].value>2)style->margin[3].value=2;
-
-
-    if(style->margin[0].unit==N_SCALE && style->margin[0].value<-2)style->margin[0].value=-2;
-    if(style->margin[1].unit==N_SCALE && style->margin[1].value<-2)style->margin[1].value=-2;
-    if(style->margin[2].unit==N_SCALE && style->margin[2].value<-2)style->margin[2].value=-2;
-    if(style->margin[3].unit==N_SCALE && style->margin[3].value<-2)style->margin[3].value=-2;
-
 
 	style->padding[0] = number_from_property(match, PRO_PADDING_TOP, 0, N_LENGTH);
 	style->padding[1] = number_from_property(match, PRO_PADDING_RIGHT, 0, N_LENGTH);
