@@ -909,13 +909,13 @@ number_from_value(fz_css_value *value, float initial, int initial_unit)
 
 		/* FIXME: 'rem' should be 'em' of root element. This is a bad approximation. */
 		if (p[0] == 'r' && p[1] == 'e' && p[2] == 'm' && p[3] == 0)
-			return make_number(x, N_LENGTH);
+			return make_number(x, N_SCALE);
 
 		/* FIXME: 'ch' should be width of '0' character. This is an approximation. */
 		if (p[0] == 'c' && p[1] == 'h' && p[2] == 0)
 			return make_number(x / 2, N_LENGTH);
 
-		return make_number(x, N_LENGTH);
+		return make_number(x, N_SCALE);
 	}
 
 	if (value->type == CSS_KEYWORD)
@@ -1266,17 +1266,19 @@ fz_apply_css_style(fz_context *ctx, fz_html_font_set *set, fz_css_style *style, 
 		else if (!strcmp(value->data, "larger")) style->font_size = make_number(1.2f, N_SCALE);
 		else if (!strcmp(value->data, "smaller")) style->font_size = make_number(1/1.2f, N_SCALE);
     	else if (!strcmp(value->data, "inherit")) style->font_size = make_number(1.0f, N_SCALE);
-
-		else style->font_size = number_from_value(value, 12, N_LENGTH);
+		else
+        		{
+        			if (value->type == CSS_PERCENT){
+        				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
+        			}else{
+        				style->font_size = make_number(1, N_SCALE);
+        			}
+        		}
 	}
 	else
-    		{
-    			if (value->type == CSS_PERCENT){
-    				style->font_size = make_number(fz_css_strtof(value->data, NULL)/100, N_SCALE);
-    			}else{
-    				style->font_size = make_number(1, N_SCALE);
-    			}
-    		}
+    {
+        style->font_size = make_number(1, N_SCALE);
+    }
 
 	value = value_from_property(match, PRO_LIST_STYLE_TYPE);
 	if (value)

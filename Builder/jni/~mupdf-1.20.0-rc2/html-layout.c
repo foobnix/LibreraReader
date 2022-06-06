@@ -525,9 +525,6 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 			node->h = node->content.image->h * 72 / 96;
 			aspect = node->w / node->h;
 
-			node->w = node->w * 3;
-            node->h = node->h * 3;
-
 			if (node->box->style->width.unit != N_AUTO)
 				node->w = fz_from_css_number(node->box->style->width, top->em, top->w - margin_w, node->w);
 			if (node->box->style->height.unit != N_AUTO)
@@ -536,6 +533,15 @@ static void layout_flow(fz_context *ctx, fz_html_box *box, fz_html_box *top, flo
 				node->w = node->h * aspect;
 			if (node->box->style->width.unit != N_AUTO && node->box->style->height.unit == N_AUTO)
 				node->h = node->w / aspect;
+
+            	int size = 50;
+            	if(node->h < size){
+            		node->w = node->w * size/ node->h;
+            		node->h = size;
+            	}else {
+            		node->w = node->w * 2;
+            		node->h = node->h * 2;
+            	}
 
 			/* Shrink image to fit on one page if needed */
 			if (max_w > 0 && node->w > max_w)
