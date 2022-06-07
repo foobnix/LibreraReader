@@ -17,7 +17,7 @@ if [ "$1" == "clean" ]; then
   git clean -f -d
   make clean
 fi
-#make
+make generate
 echo "================== "
 cd ..
 
