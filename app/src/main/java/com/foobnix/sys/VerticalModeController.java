@@ -423,16 +423,14 @@ public class VerticalModeController extends DocumentController {
 
             final ArrayList<PointF> quadPoints = new ArrayList<PointF>();
 
-            // merge consecutive words
+
             ArrayList<RectF> rects = new ArrayList<RectF>();
             RectF prevRect = null;
             for (TextWord text : texts) {
                 RectF rect = text.getOriginal();
-                if (prevRect != null) {
-                    if (rect.left - prevRect.right < 0.1 && prevRect.bottom == rect.bottom && prevRect.top == rect.top) {
-                        prevRect.right = rect.right;
-                        continue;
-                    }
+                if (prevRect!=null && prevRect.top == rect.top && prevRect.bottom== rect.bottom) {
+                    prevRect.union(rect);
+                    continue;
                 }
                 prevRect = new RectF(rect);
                 rects.add(prevRect);
@@ -443,6 +441,7 @@ public class VerticalModeController extends DocumentController {
                 quadPoints.add(new PointF(rect.right, rect.bottom));
                 quadPoints.add(new PointF(rect.right, rect.top));
                 quadPoints.add(new PointF(rect.left, rect.top));
+
             }
 
             PointF[] array = quadPoints.toArray(new PointF[quadPoints.size()]);
@@ -459,6 +458,7 @@ public class VerticalModeController extends DocumentController {
 
         }
     }
+
 
     @Override
     public void onAutoScroll() {
