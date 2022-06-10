@@ -33,7 +33,7 @@ if [ "$1" == "clean" ]; then
   make clean
 fi
 
-make release
+# make release
 make generate
 echo "=================="
 

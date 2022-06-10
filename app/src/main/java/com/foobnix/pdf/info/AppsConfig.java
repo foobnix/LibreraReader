@@ -35,7 +35,7 @@ public class AppsConfig {
 
 
     public static boolean isPDF_DRAW_ENABLE() {
-        return BuildConfig.DEBUG || LibreraApp.MUPDF_VERSION == MUPDF_1_11;
+        return true;
     }
 
     public static boolean checkIsProInstalled(final Context a) {

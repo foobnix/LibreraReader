@@ -441,7 +441,6 @@ public class MuPdfPage extends AbstractCodecPage {
             return new TextWord[0][0];
         }
 
-
         if (LibreraApp.MUPDF_VERSION == AppsConfig.MUPDF_1_11) {
             return getText_111();
         } else  {
@@ -471,23 +470,22 @@ public class MuPdfPage extends AbstractCodecPage {
         TextWord tw = new TextWord();
         for (TextChar tc : chars) {
             if (tc.c == ' ') {
-                //update(tw);
-                words.add(tw);
-                //LOG.d("text116 add1", tw.w);
-                tw = new TextWord();
+                if (tw.w.length() > 0) {
+                    words.add(tw);
+                    tw = new TextWord();
+                }
+                words.add(new TextWord(tc));
             } else {
                 tw.Add(tc);
             }
         }
         if (tw.w.length() > 0) {
             words.add(tw);
-            // LOG.d("text116 add2", tw.w);
         }
 
 
         if (words.size() > 0)
             lns.add(words.toArray(new TextWord[words.size()]));
-
 
         TextWord[][] res = lns.toArray(new TextWord[lns.size()][]);
 
