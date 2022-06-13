@@ -4,7 +4,9 @@ layout: main
 
 # Anotar y dibujar en archivos PDF
 
-> _Librera_ admite herramientas básicas de anotación y marcado de dibujo en PDF. **Estas herramientas solo funcionan en el modo DESPLAZAMIENTO**
+> _Librera_ admite herramientas básicas de anotación y marcado de dibujo en documentos PDF.
+
+> ¡NOTA! **Estas herramientas solo funcionan en modo SCROLL**
 
 Para hacer que un documento PDF sea adecuado para dibujar y/o anotar, el usuario debe cambiar al modo de desplazamiento.
 Esto revelará el icono _Editar_ en el menú inferior.
@@ -13,6 +15,7 @@ Esto revelará el icono _Editar_ en el menú inferior.
 - Notas escritas a mano
 - Dibujos a mano alzada (se recomienda un lápiz óptico)
 - Borrando texto, imágenes, información de tarjetas de crédito, etc.
+- Borrado de marcas anteriores
 > Consejo: Bloquear el &quot;candado&quot; en la esquina inferior derecha para evitar movimientos laterales.
 
 ||||
@@ -24,14 +27,14 @@ Además de las marcas anteriores:
 - Resaltado de texto
 - Subrayado
 - Atravesando
-> Sugerencia: simplemente seleccione una palabra (mantenga presionada) para abrir el conjunto de herramientas
+> Sugerencia: simplemente seleccione una palabra (con una pulsación prolongada) para abrir el conjunto de herramientas
 
 |||
 |-|-|
 |![](4.jpg)|![](5.jpg)|
 
 ## Marcado con herramientas preestablecidas
-El **+** permite al usuario agregar a la lista de herramientas solo una de las tres en el color elegido actualmente.
+El signo **+** permite al usuario agregar a la lista de herramientas solo una de las tres en el color elegido actualmente.
 Esto crea una herramienta preestablecida con la que puede indicar rápidamente las palabras y secuencias de palabras relacionadas entre sí o que merecen su atención especial (como el nombre _Girault_ en el ejemplo siguiente)
 
 |||
@@ -41,18 +44,20 @@ Esto crea una herramienta preestablecida con la que puede indicar rápidamente l
 ## Guardar archivos editados
 * Un gesto _Cerrar_ abrirá la ventana _ ¿Guardar cambios? _
 * Puede guardar su archivo modificado tocando _SÍ_
-* Puede guardar los cambios en una nueva instancia (archivo renombrado). Toca _RENAME_
+*Puede guardar los cambios en un archivo nuevo con el nombre cambiado. Presiona _RENOMBRAR_
 * Edite el nombre del archivo en la parte inferior de la ventana _Elegir_ y toque _SELECCIONAR_
 
 |||
 |-|-|
 |![](6.jpg)|![](7.jpg)|
+
 > Nota: El borrador de la paleta _Anotaciones y dibujos_ se puede utilizar para destruir dibujos dejados por otras aplicaciones.
+
 > Puede invocar la paleta mediante:
-- Tocando una marca
+- Tocando en una marca
 - Tocando el icono _Editar_ en el menú inferior
 
-> Toque _Eraser_ (el cubo de basura), y luego toque las marcas que está a punto de eliminar.
+> Seleccione el _Eraser_ (Papelera) tocándolo y luego toque las marcas que está a punto de eliminar.
 
 |||
 |-|-|

@@ -6,14 +6,14 @@
 {% if lang == 'fr' %}{% include fr.md %}{% endif %}
 {% if lang == 'it' %}{% include it.md %}{% endif %}
 {% if lang == 'zh' %}{% include zh.md %}{% endif %}
-{% if lang == 'ru' %}{% include ru.md %}{% endif %}
+{% if lang == 'uk' %}{% include uk.md %}{% endif %}
 {% if lang == 'pt' %}{% include pt.md %}{% endif %}
 {% if lang == '' %}{% include index.md %}{% endif %}
 
 <ul class="languagepicker roundborders large">
 	<a href="#"><li>{{ full }}</li></a>
 {% if full != 'English'%}<a href="index"><li>English</li></a>{% endif %}
-{% if full != 'Русский'%}<a href="ru"><li>Русский</li></a>{% endif %}
+{% if full != 'Українська'%}<a href="uk"><li>Українська</li></a>{% endif %}
 {% if full != 'Français'%}<a href="fr"><li>Français</li></a>{% endif %}
 {% if full != 'Deutsch'%}<a href="de"><li>Deutsch</li></a>{% endif %}
 {% if full != 'Italiano'%}<a href="it"><li>Italiano</li></a>{% endif %}

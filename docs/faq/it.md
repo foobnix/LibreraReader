@@ -4,7 +4,10 @@ layout: main
 
 # Domande frequenti
 
+*[Navigazione nella scheda _Libreria_]{5}
 *[Annotare e disegnare nei file PDF]{5}
+*[Sincronizzazione della configurazione di lettura su più dispositivi]{5}
+*[Utilizzo di dizionari e traduttori]{5}
 *[Utilizzo di *Librera*per l'apprendimento delle lingue straniere]{5}
 *[Lavorare con i segnalibri in modalità estesa (nastro dei segnalibri)]{5}
 *[Backup e migrazione dei dati]{5}
@@ -15,7 +18,6 @@ layout: main
 *[Lavorare con i cataloghi OPDS]{5}
 *[Aggiornamento della tua libreria]{5}
 *[Sostituzioni TTS]{5}
-*[Sincronizzazione della configurazione di lettura su più dispositivi]{5}
 *[Ordinamento della libreria in base alle ultime letture]{5}
 *[Lettura in lingue RTL]{5}
 *[Impostazione della protezione tramite impronte digitali o password]{5}
@@ -25,7 +27,6 @@ layout: main
 *[Modalità di lettura: Scorrimento, Libro e Musicista]{5}
 *[Apri libro con &quot;Tag Manager&quot;]{5}
 *[Apertura di una cartella con immagini come un libro (rilegatura in un libro)]{5}
-*[Navigazione nella scheda _Libreria_]{5}
 *[Utilizzo di un motore di sintesi vocale con _Librera_]{5}
 *[Note nel testo e note a piè di pagina]{5}
 *[Utilizzo della funzionalità TTS per leggere le condivisioni da altre app]{5}
@@ -38,7 +39,6 @@ layout: main
 *[Personalizzazione dell'aspetto della tua libreria]{5}
 *[Come eliminare un libro da una scheda SD esterna]{5}
 *[Utilizzo del widget di _Librera_]{5}
-*[Utilizzo di dizionari e traduttori]{5}
 *[IU di Theming Librera]{5}
 *[Configurazione di caratteri e stili]{5}
 *[Codifica CSS personalizzata]{5}

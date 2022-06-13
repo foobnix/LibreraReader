@@ -4,7 +4,10 @@ layout: main
 
 # Perguntas freqüentes
 
+* [Navegando na guia _Library_](/faq/main-app/pt)
 * [Anotando e desenhando em arquivos PDF](/faq/annotate-highlight-pdf/pt)
+* [Sincronizando sua configuração de leitura em vários dispositivos](/faq/setting-up-synchronization/pt)
+* [Usando dicionários e tradutores](/faq/dictionaries-translate-text-online-and-offline/pt)
 * [Usando * Librera * para aprender línguas estrangeiras](/faq/librera-for-study-foreign-languages/pt)
 * [Trabalhando com favoritos no modo estendido (faixa de favoritos)](/faq/bookmarks-extended-panel/pt)
 * [Backup e migração de dados](/faq/backup-import-export-migration/pt)
@@ -15,7 +18,6 @@ layout: main
 * [Trabalho com Catálogos OPDS](/faq/working-with-opds-online-catalogs/pt)
 * [Atualizando sua biblioteca](/faq/update-the-library/pt)
 * [Substituições TTS](/faq/tts-replacements/pt)
-* [Sincronizando sua configuração de leitura em vários dispositivos](/faq/setting-up-synchronization/pt)
 * [Classificando sua biblioteca pelas leituras mais recentes](/faq/sort-library-by-last-read-date/pt)
 * [Leitura em idiomas RTL](/faq/rtl-or-ltr-text-direction/pt)
 * [Configuração de impressão digital ou proteção por senha](/faq/setting-up-fingerprint-or-password-protection/pt)
@@ -25,7 +27,6 @@ layout: main
 * [Modos de leitura: rolagem, livro e músico](/faq/reading-mode-vertical-book-musician/pt)
 * [Abra o livro com o &quot;Gerenciador de tags&quot;](/faq/open-book-with-tag-manager/pt)
 * [Abrindo uma pasta com imagens como um livro (encadernação em um livro)](/faq/open-folder-with-images-as-a-book/pt)
-* [Navegando na guia _Library_](/faq/main-app/pt)
 * [Usando um mecanismo de conversão de texto em fala com _Librera _](/faq/installation-and-configuration-of-tts/pt)
 * [Notas no texto x notas de rodapé](/faq/include-footnotes-directly-in-the-text/pt)
 * [Usando o recurso TTS para ler compartilhamentos de outros aplicativos](/faq/how-to-transfer-text-from-browser/pt)
@@ -38,7 +39,6 @@ layout: main
 * [Personalizando a aparência de sua biblioteca](/faq/how-to-configure-the-library-view/pt)
 * [Como excluir um livro de um cartão SD externo](/faq/how-to-delete-file-from-external-sd-card/pt)
 * [Usando o widget _Librera_](/faq/how-to-configure-the-widget/pt)
-* [Usando dicionários e tradutores](/faq/dictionaries-translate-text-online-and-offline/pt)
 * [IU do Theming Librera](/faq/customize-theme-colors-links/pt)
 * [Configurando fontes e estilos](/faq/customize-text-fonts-and-styles/pt)
 * [Codificação CSS personalizada](/faq/customize-book-css-styles/pt)

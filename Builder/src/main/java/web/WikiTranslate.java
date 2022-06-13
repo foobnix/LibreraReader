@@ -43,7 +43,7 @@ public class WikiTranslate {
         try {
 
             for(String path: paths) {
-                syncPaths(path, "ru");
+                syncPaths(path, "uk");
                 syncPaths(path, "fr");
                 syncPaths(path, "de");
                 syncPaths(path, "it");

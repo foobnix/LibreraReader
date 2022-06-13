@@ -5,7 +5,10 @@ info: this file is generated automatically, please do not modify it
 
 # Frequently Asked Questions
 
+* [Navigating the _Library_ Tab](/faq/main-app)
 * [Annotating and Drawing in PDF Files](/faq/annotate-highlight-pdf)
+* [Syncing Your Reading Setup Across Multiple Devices](/faq/setting-up-synchronization)
+* [Using Dictionaries and Translators](/faq/dictionaries-translate-text-online-and-offline)
 * [Using *Librera* for Learning Foreign Languages](/faq/librera-for-study-foreign-languages)
 * [Working with Bookmarks in Extended Mode (Bookmarks Ribbon)](/faq/bookmarks-extended-panel)
 * [Data Backup and Migration](/faq/backup-import-export-migration)
@@ -16,7 +19,6 @@ info: this file is generated automatically, please do not modify it
 * [Working with OPDS Catalogs](/faq/working-with-opds-online-catalogs)
 * [Updating Your Library](/faq/update-the-library)
 * [TTS Replacements](/faq/tts-replacements)
-* [Syncing Your Reading Setup Across Multiple Devices](/faq/setting-up-synchronization)
 * [Sorting Your Library by Latest Reads](/faq/sort-library-by-last-read-date)
 * [Reading in RTL Languages](/faq/rtl-or-ltr-text-direction)
 * [Setting Up Fingerprint or Password Protection](/faq/setting-up-fingerprint-or-password-protection)
@@ -26,7 +28,6 @@ info: this file is generated automatically, please do not modify it
 * [Reading Modes: Scroll, Book, and Musician's](/faq/reading-mode-vertical-book-musician)
 * [Open book with "Tag Manager"](/faq/open-book-with-tag-manager)
 * [Opening a Folder with Images as a Book (Bind in a Book)](/faq/open-folder-with-images-as-a-book)
-* [Navigating the _Library_ Tab](/faq/main-app)
 * [Using a Text-to-Speech Engine with _Librera_](/faq/installation-and-configuration-of-tts)
 * [In-Text Notes vs. Footnotes](/faq/include-footnotes-directly-in-the-text)
 * [Using TTS Capability for Reading Shares from Other Apps](/faq/how-to-transfer-text-from-browser)
@@ -39,7 +40,6 @@ info: this file is generated automatically, please do not modify it
 * [Customizing the Look and Feel of Your Library](/faq/how-to-configure-the-library-view)
 * [How to Delete a Book from an External SD Card](/faq/how-to-delete-file-from-external-sd-card)
 * [Using _Librera_'s Widget](/faq/how-to-configure-the-widget)
-* [Using Dictionaries and Translators](/faq/dictionaries-translate-text-online-and-offline)
 * [Theming Librera's UI](/faq/customize-theme-colors-links)
 * [Configuring Fonts and Styles](/faq/customize-text-fonts-and-styles)
 * [Custom CSS Coding](/faq/customize-book-css-styles)
