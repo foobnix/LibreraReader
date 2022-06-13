@@ -571,7 +571,7 @@
    <string name="please_enter_more_characters_to_search">Kirjoita pidempi merkkijono hakuun!</string>
    <string name="enable_experimental_features">Ota käyttöön kokeelliset ominaisuudet</string>
    <string name="display_original_file_names_without_metadata">Ohita metatiedot (näytä vain tiedostonimet)</string>
-   <string name="use_fingerprint_as_the_password">Käytä sormenjälkeä tunnistautumiseen </string>
+   <string name="use_fingerprint_as_the_password">Käytä sormenjälkeä tunnistautumiseen</string>
    <string name="show_tap_zones_on_screen">Näytä kosketusalueet näytöllä katkoviivoin</string>
    <string name="show_the_last_page_with_the_red_line">Näytä viimeinen sivu punaisilla viivoilla</string>
    <string name="show_dividing_lines_on_pages_more_contrast">Korosta sivujen jakolinjat</string>

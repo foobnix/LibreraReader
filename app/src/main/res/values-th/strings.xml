@@ -637,4 +637,5 @@
    <string name="drag_element">องค์ประกอบลาก</string>
    <string name="cd_application_menu">เมนูแอพพลิเคชั่น</string>
    <string name="cd_view_menu">ดูเมนู</string>
+   <string name="cd_download_more_fonts">ดาวน์โหลดแบบอักษรเพิ่มเติม</string>
 </resources>

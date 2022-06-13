@@ -637,4 +637,5 @@
    <string name="drag_element">Przeciągnij element</string>
    <string name="cd_application_menu">Menu aplikacji</string>
    <string name="cd_view_menu">Zobacz menu</string>
+   <string name="cd_download_more_fonts">Pobierz więcej czcionek</string>
 </resources>

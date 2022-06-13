@@ -637,4 +637,5 @@
    <string name="drag_element">Drag elementum</string>
    <string name="cd_application_menu">Applicationem menu</string>
    <string name="cd_view_menu">View menu</string>
+   <string name="cd_download_more_fonts">Download more fonts</string>
 </resources>

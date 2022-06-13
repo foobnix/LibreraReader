@@ -637,4 +637,5 @@
    <string name="drag_element">Yếu tố kéo</string>
    <string name="cd_application_menu">Menu ứng dụng</string>
    <string name="cd_view_menu">Xem menu</string>
+   <string name="cd_download_more_fonts">Tải thêm phông chữ</string>
 </resources>

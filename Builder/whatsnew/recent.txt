@@ -1,4 +1,4 @@
-8.5.xx
-Android 12 optimization
-Support EPUB and comics with WEBP
-Improved PDF quality
+* 8.5.xx
+* Android 12 optimization
+* Support EPUB and comics with WEBP
+* Improved PDF quality

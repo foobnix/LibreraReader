@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class WhatsNewUpdateTexts {
 
-    private static final String RECENT_PATH = "/home/data/git/LibreraReader/Builder/whatsnew/";
+    private static final String RECENT_PATH = "/home/dev/git/LibreraReader/Builder/whatsnew/";
     // https://console.cloud.google.com/apis/credentials/key/0?project=seismic-bucksaw-120809
 
     public static Map<String, String> codes = new HashMap<String, String>();
@@ -51,7 +51,7 @@ public class WhatsNewUpdateTexts {
         final String[] asList = "ar, de-DE, fa, fr-FR, it-IT, ja-JP, ko-KR, pt-PT, ru-RU, th, tr-TR, vi, zh-CN, zh-TW".split(",");
         // final List<String> asList = Arrays.asList("zh-rCN", "zh-rTW");
 
-        String recentEN = new String(Files.readAllBytes(Paths.get("/home/data/git/LibreraReader/Builder/whatsnew/recent.txt")));
+        String recentEN = new String(Files.readAllBytes(Paths.get("/home/dev/git/LibreraReader/Builder/whatsnew/recent.txt")));
 
         StringBuilder res = new StringBuilder();
         for (String ex : asList) {
@@ -93,10 +93,9 @@ public class WhatsNewUpdateTexts {
             res.append(recentEN);
             res.append("\n</" + ln + ">\n");
         }
-
-        System.out.println("=======");
-        System.out.println(res.toString());
-        Files.write(Paths.get(RECENT_PATH + "all" + ".txt"), res.toString().getBytes());
+        String outTxt = res.toString().replace("* ","");
+        System.out.println(outTxt);
+        Files.write(Paths.get(RECENT_PATH + "all" + ".txt"), outTxt.getBytes());
     }
 
 }

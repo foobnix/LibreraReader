@@ -637,4 +637,5 @@
    <string name="drag_element">Плъзгане елемент</string>
    <string name="cd_application_menu">Меню за приложения</string>
    <string name="cd_view_menu">Меню за преглед</string>
+   <string name="cd_download_more_fonts">Изтегляне на още шрифтове</string>
 </resources>

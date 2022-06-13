@@ -637,4 +637,5 @@
    <string name="drag_element">Sürükleme elemanı</string>
    <string name="cd_application_menu">Uygulama menüsü</string>
    <string name="cd_view_menu">Menüyü görüntüle</string>
+   <string name="cd_download_more_fonts">Daha fazla yazı tipi indir</string>
 </resources>

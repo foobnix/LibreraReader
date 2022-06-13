@@ -637,4 +637,5 @@
    <string name="drag_element">Σύρετε το στοιχείο</string>
    <string name="cd_application_menu">Μενού εφαρμογής</string>
    <string name="cd_view_menu">Προβολή μενού</string>
+   <string name="cd_download_more_fonts">Κατεβάστε περισσότερες γραμματοσειρές</string>
 </resources>

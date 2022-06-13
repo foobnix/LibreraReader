@@ -1,120 +1,106 @@
 
 <ar>
-* يجد جميع الكتب على الجهاز 
-* الإشارات المرجعية والقواميس 
-* موضوع الليل والنهار 
-* التمرير التلقائي 
-* مدير الملفات المدمج
+8.5.xx 
+تحسين Android 12 
+دعم EPUB والرسوم الهزلية مع WEBP 
+جودة PDF محسنة
 </ar>
 
 <de-DE>
-* Findet alle Bücher auf dem Gerät 
-* Lesezeichen und Wörterbücher 
-* Tag- und Nachtthema 
-* Automatisches Scrollen 
-* Integrierter Dateimanager
+8.5.xx 
+Optimierung für Android 12 
+Unterstützung von EPUB und Comics mit WEBP 
+Verbesserte PDF-Qualität
 </de-DE>
 
 <fa>
-* تمام کتاب های موجود در دستگاه را پیدا می کند 
-* نشانک ها و واژه نامه ها 
-* تم شب و روز 
-* پیمایش خودکار 
-* مدیر فایل داخلی
+8.5.xx 
+بهینه سازی اندروید 12 
+پشتیبانی از EPUB و کمیک با WEBP 
+کیفیت PDF بهبود یافته
 </fa>
 
 <fr-FR>
-* Recherche tous les livres sur l’appareil 
-* Signets et dictionnaires 
-* Thème nuit et jour 
-* Défilement automatique 
-* Gestionnaire de fichiers intégré
+8.5.xx 
+Optimisation Android 12 
+Prise en charge d’EPUB et de bandes dessinées avec WEBP 
+Qualité PDF améliorée
 </fr-FR>
 
 <it-IT>
-* Trova tutti i libri sul dispositivo 
-* Segnalibri e dizionari 
-* Tema notte e giorno 
-* Scorrimento automatico 
-* File Manager integrato
+8.5.xx 
+Ottimizzazione per Android 12 
+Supporto EPUB e fumetti con WEBP 
+Qualità PDF migliorata
 </it-IT>
 
 <ja-JP>
-*デバイス上のすべての本を検索
-*ブックマークと辞書
-*夜と昼のテーマ
-*自動スクロール
-*組み込みのファイルマネージャー
+8.5.xx 
+*Android12の最適化
+*WEBPでEPUBとコミックをサポート
+*PDF品質の向上
 </ja-JP>
 
 <ko-KR>
-* 장치의 모든 책을 찾습니다 
-* 책갈피 및 사전 
-* 밤낮 테마 
-* 자동 스크롤 
-* 내장 파일 관리자
+8.5.xx 
+Android 12 최적화 
+WEBP로 EPUB 및 만화 지원 
+향상된 PDF 품질
 </ko-KR>
 
 <pt-PT>
-* Encontra todos os livros no dispositivo 
-* Marcadores e dicionários 
-* Tema noturno e diurno 
-* Rolagem automática 
-* Gerenciador de arquivos embutido
+8.5.xx 
+Otimização do Android 12 
+Suporte a EPUB e quadrinhos com WEBP 
+Qualidade de PDF aprimorada
 </pt-PT>
 
 <ru-RU>
-* Находит все книги на устройстве 
-* Закладки и словари 
-* Ночная и дневная тема 
-* Автоматическая прокрутка 
-* Встроенный файловый менеджер
+8.5.xx 
+Оптимизация Android 12 
+Поддержка EPUB и комиксов с WEBP 
+Улучшенное качество PDF
 </ru-RU>
 
 <th>
-* ค้นหาหนังสือทั้งหมดบนอุปกรณ์ 
-* ที่คั่นหนังสือและพจนานุกรม 
-* ธีมกลางคืนและกลางวัน 
-* การเลื่อนอัตโนมัติ 
-* ตัวจัดการไฟล์ในตัว
+8.5.xx 
+การเพิ่มประสิทธิภาพ Android 12 
+รองรับ EPUB และการ์ตูนด้วย WEBP 
+ปรับปรุงคุณภาพ PDF
 </th>
 
 <tr-TR>
-* Cihazdaki tüm kitapları bulur 
-* Yer imleri ve Sözlükler 
-* Gece ve Gündüz Teması 
-* Otomatik kaydırma 
-* Dahili Dosya Yöneticisi
+8.5.xx 
+Android 12 optimizasyonu 
+WEBP ile EPUB ve çizgi roman desteği 
+İyileştirilmiş PDF kalitesi
 </tr-TR>
 
 <vi>
-* Tìm tất cả sách trên thiết bị 
-* Dấu trang và Từ điển 
-* Chủ đề đêm và ngày 
-* Cuộn tự động 
-* Trình quản lý tệp tích hợp
+8.5.xx 
+Tối ưu hóa Android 12 
+Hỗ trợ EPUB và truyện tranh với WEBP 
+Chất lượng PDF được cải thiện
 </vi>
 
 <zh-CN>
-*查找设备上的所有书籍
-*书签和字典
-*昼夜主题
-*自动滚动
-*内置文件管理器
+8.5.xx 
+Android 12 优化 
+支持 EPUB 和带有 WEBP 的漫画 
+改进的 PDF 质量
 </zh-CN>
 
 <zh-TW>
-*查找設備上的所有書籍
-*書籤和字典
-*晝夜主題
-*自動滾動
-*內置文件管理器
+8.5.xx 
+Android 12 優化 
+支持 EPUB 和帶有 WEBP 的漫畫 
+改進的 PDF 質量
 </zh-TW>
 
 <en-US>
-* Finds all books on the device
-* Bookmarks and Dictionaries
-* Night and Day Theme
-* Automatic scrolling
-* Built-in File Manager
+8.5.xx
+Android 12 optimization
+Support EPUB and comics with WEBP
+Improved PDF quality
+
 </en-US>

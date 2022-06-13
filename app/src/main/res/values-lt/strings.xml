@@ -637,4 +637,5 @@
    <string name="drag_element">Vilkimo elementas</string>
    <string name="cd_application_menu">Programos meniu</string>
    <string name="cd_view_menu">Peržiūros meniu</string>
+   <string name="cd_download_more_fonts">Atsisiųskite daugiau šriftų</string>
 </resources>

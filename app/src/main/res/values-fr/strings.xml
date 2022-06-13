@@ -637,4 +637,5 @@
    <string name="drag_element">Élément de glissement</string>
    <string name="cd_application_menu">Menu des applications</string>
    <string name="cd_view_menu">Afficher le menu</string>
+   <string name="cd_download_more_fonts">Télécharger plus de polices</string>
 </resources>
