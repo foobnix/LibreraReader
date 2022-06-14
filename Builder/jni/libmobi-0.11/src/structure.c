@@ -103,7 +103,8 @@ void array_sort(MOBIArray *arr, const bool unique) {
     }
     qsort(arr->data, arr->size, sizeof(*arr->data), array_compare);
     if (unique) {
-        size_t i = 1, j = 1;
+        size_t i = 1;
+        size_t j = 1;
         while (i < arr->size) {
             if (arr->data[j - 1] == arr->data[i]) {
                 i++;
@@ -119,6 +120,7 @@ void array_sort(MOBIArray *arr, const bool unique) {
  @brief Get size of the array
  
  @param[in] arr MOBIArray structure
+ @return Array size
  */
 size_t array_size(MOBIArray *arr) {
     return arr->size;
@@ -225,9 +227,8 @@ static MOBITrie * mobi_trie_insert_char(MOBITrie *node, char c, char *value) {
         /* terminal node */
         if (mobi_trie_addvalue(node, value) == MOBI_SUCCESS) {
             return node;
-        } else {
-            return NULL;
         }
+        return NULL;
     }
     if (node->children == NULL) {
         node->children = mobi_trie_mknode();
@@ -244,13 +245,17 @@ static MOBITrie * mobi_trie_insert_char(MOBITrie *node, char c, char *value) {
  @return MOBI_RET status code (on success MOBI_SUCCESS)
  */
 MOBI_RET mobi_trie_insert_reversed(MOBITrie **root, char *string, char *value) {
+    size_t length = strlen(string);
+    if (length == 0) {
+        debug_print("Skipping empty lookup string in trie node%s", "\n");
+        return MOBI_SUCCESS;
+    }
     if (*root == NULL) {
         *root = mobi_trie_mknode();
         if (*root == NULL) {
             return MOBI_MALLOC_FAILED;
         }
     }
-    size_t length = strlen(string);
     MOBITrie *node = *root;
     while (length > 1) {
         node = mobi_trie_insert_char(node, string[length - 1], NULL);

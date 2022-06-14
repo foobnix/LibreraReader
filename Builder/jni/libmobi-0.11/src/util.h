@@ -38,21 +38,22 @@
 #define UNUSED(x) (void)(x)
 
 /** @brief Magic numbers of records */
-#define MOBI_MAGIC "MOBI"
-#define EXTH_MAGIC "EXTH"
-#define HUFF_MAGIC "HUFF"
+#define AUDI_MAGIC "AUDI"
 #define CDIC_MAGIC "CDIC"
+#define CMET_MAGIC "CMET"
+#define EXTH_MAGIC "EXTH"
 #define FDST_MAGIC "FDST"
+#define FONT_MAGIC "FONT"
+#define HUFF_MAGIC "HUFF"
 #define IDXT_MAGIC "IDXT"
 #define INDX_MAGIC "INDX"
 #define LIGT_MAGIC "LIGT"
+#define MOBI_MAGIC "MOBI"
 #define ORDT_MAGIC "ORDT"
-#define TAGX_MAGIC "TAGX"
-#define FONT_MAGIC "FONT"
-#define AUDI_MAGIC "AUDI"
-#define VIDE_MAGIC "VIDE"
+#define RESC_MAGIC "RESC"
 #define SRCS_MAGIC "SRCS"
-#define CMET_MAGIC "CMET"
+#define TAGX_MAGIC "TAGX"
+#define VIDE_MAGIC "VIDE"
 #define BOUNDARY_MAGIC "BOUNDARY"
 #define EOF_MAGIC "\xe9\x8e\r\n"
 #define REPLICA_MAGIC "%MOP"
@@ -88,14 +89,8 @@
  @{ 
  */
 #define RECORD0_HEADER_LEN 16 /**< Length of Record 0 header */
-#define RECORD0_NO_COMPRESSION 1 /**< Text record compression type: none */
-#define RECORD0_PALMDOC_COMPRESSION 2 /**< Text record compression type: palmdoc */
-#define RECORD0_HUFF_COMPRESSION 17480 /**< Text record compression type: huff/cdic */
 #define RECORD0_TEXT_SIZE_MAX 4096 /**< Max size of uncompressed text record */
 #define RECORD0_FULLNAME_SIZE_MAX 1024 /**< Max size to full name string */
-#define RECORD0_NO_ENCRYPTION 0 /**< Text record encryption type: none */
-#define RECORD0_OLD_ENCRYPTION 1 /**< Text record encryption type: old mobipocket */
-#define RECORD0_MOBI_ENCRYPTION 2 /**< Text record encryption type: mobipocket */
 /** @} */
 
 /** 
@@ -121,8 +116,6 @@
 #define MOBI_HEADER_V7_SIZE 0xe4
 /** @} */
 
-/** @} */
-
 #ifndef max
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
@@ -139,15 +132,18 @@ MOBI_RET mobi_delete_record_by_seqnumber(MOBIData *m, const size_t num);
 MOBI_RET mobi_swap_mobidata(MOBIData *m);
 char * mobi_strdup(const char *s);
 bool mobi_is_cp1252(const MOBIData *m);
+bool mobi_has_drmkey(const MOBIData *m);
+bool mobi_has_drmcookies(const MOBIData *m);
 MOBI_RET mobi_cp1252_to_utf8(char *output, const char *input, size_t *outsize, const size_t insize);
 MOBI_RET mobi_utf8_to_cp1252(char *output, const char *input, size_t *outsize, const size_t insize);
-uint8_t mobi_ligature_to_cp1252(const uint8_t c1, const uint8_t c2);
-uint16_t mobi_ligature_to_utf16(const uint32_t control, const uint32_t c);
+uint8_t mobi_ligature_to_cp1252(const uint8_t byte1, const uint8_t byte2);
+uint16_t mobi_ligature_to_utf16(const uint32_t byte1, const uint32_t byte2);
 MOBIFiletype mobi_determine_resource_type(const MOBIPdbRecord *record);
 MOBIFiletype mobi_determine_flowpart_type(const MOBIRawml *rawml, const size_t part_number);
 MOBI_RET mobi_base32_decode(uint32_t *decoded, const char *encoded);
 MOBIFiletype mobi_get_resourcetype_by_uid(const MOBIRawml *rawml, const size_t uid);
 uint32_t mobi_get_exthsize(const MOBIData *m);
+uint32_t mobi_get_drmsize(const MOBIData *m);
 uint16_t mobi_get_records_count(const MOBIData *m);
 void mobi_remove_zeros(unsigned char *buffer, size_t *len);
 MOBI_RET mobi_add_audio_resource(MOBIPart *part);
@@ -155,6 +151,7 @@ MOBI_RET mobi_add_video_resource(MOBIPart *part);
 MOBI_RET mobi_add_font_resource(MOBIPart *part);
 MOBI_RET mobi_set_fullname(MOBIData *m, const char *fullname);
 MOBI_RET mobi_set_pdbname(MOBIData *m, const char *name);
+void mobi_free_internals(MOBIData *m);
 uint32_t mobi_get32be(const unsigned char buf[4]);
 uint32_t mobi_get32le(const unsigned char buf[4]);
 #endif

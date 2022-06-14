@@ -93,6 +93,11 @@ void print_indx(const MOBIIndx *indx) {
     }
 }
 
+/**
+ @brief Dump inflections index (old version)
+ 
+ @param[in] indx Parsed index
+*/
 void print_indx_infl_old(const MOBIIndx *indx) {
     if (indx == NULL) { return; }
     for (size_t i = 0; i < indx->entries_count; i++) {
@@ -121,6 +126,11 @@ void print_indx_infl_old(const MOBIIndx *indx) {
     }
 }
 
+/**
+ @brief Dump orthographic index (old version)
+ 
+ @param[in] indx Parsed index
+*/
 void print_indx_orth_old(const MOBIIndx *indx) {
     if (indx == NULL) { return; }
     for (size_t i = 0; i < indx->entries_count; i++) {

@@ -49,15 +49,15 @@ MOBIBuffer * mobi_buffer_init(const size_t len) {
  */
 MOBIBuffer * mobi_buffer_init_null(unsigned char *data, const size_t len) {
     MOBIBuffer *buf = malloc(sizeof(MOBIBuffer));
-	if (buf == NULL) {
+    if (buf == NULL) {
         debug_print("%s", "Buffer allocation failed\n");
         return NULL;
     }
     buf->data = data;
-	buf->offset = 0;
-	buf->maxlen = len;
+    buf->offset = 0;
+    buf->maxlen = len;
     buf->error = MOBI_SUCCESS;
-	return buf;
+    return buf;
 }
 
 /**
@@ -246,7 +246,7 @@ uint32_t mobi_buffer_get32(MOBIBuffer *buf) {
  @param[in] direction 1 - read buffer forward, -1 - read buffer backwards
  @return Read value, 0 if end of buffer is encountered
  */
-static uint32_t _buffer_get_varlen(MOBIBuffer *buf, size_t *len, const int direction) {
+static uint32_t mobi_buffer_get_varlen_internal(MOBIBuffer *buf, size_t *len, const int direction) {
     uint32_t val = 0;
     uint8_t byte_count = 0;
     uint8_t byte;
@@ -289,7 +289,7 @@ static uint32_t _buffer_get_varlen(MOBIBuffer *buf, size_t *len, const int direc
  @return Read value, 0 if end of buffer is encountered
  */
 uint32_t mobi_buffer_get_varlen(MOBIBuffer *buf, size_t *len) {
-    return _buffer_get_varlen(buf, len, 1);
+    return mobi_buffer_get_varlen_internal(buf, len, 1);
 }
 
 /**
@@ -302,7 +302,7 @@ uint32_t mobi_buffer_get_varlen(MOBIBuffer *buf, size_t *len) {
  @return Read value, 0 if end of buffer is encountered
  */
 uint32_t mobi_buffer_get_varlen_dec(MOBIBuffer *buf, size_t *len) {
-    return _buffer_get_varlen(buf, len, -1);
+    return mobi_buffer_get_varlen_internal(buf, len, -1);
 }
 
 /**
@@ -604,11 +604,11 @@ void mobi_buffer_setpos(MOBIBuffer *buf, const size_t pos) {
  @param[in] buf MOBIBuffer structure
  */
 void mobi_buffer_free(MOBIBuffer *buf) {
-	if (buf == NULL) { return; }
-	if (buf->data != NULL) {
-		free(buf->data);
-	}
-	free(buf);
+    if (buf == NULL) { return; }
+    if (buf->data != NULL) {
+        free(buf->data);
+    }
+    free(buf);
 }
 
 /**
@@ -620,6 +620,6 @@ void mobi_buffer_free(MOBIBuffer *buf) {
  @param[in] buf MOBIBuffer structure
  */
 void mobi_buffer_free_null(MOBIBuffer *buf) {
-	if (buf == NULL) { return; }
-	free(buf);
+    if (buf == NULL) { return; }
+    free(buf);
 }

@@ -45,7 +45,7 @@ void mobi_buffer_getstring(char *str, MOBIBuffer *buf, const size_t len);
 void mobi_buffer_appendstring(char *str, MOBIBuffer *buf, const size_t len);
 void mobi_buffer_getraw(void *data, MOBIBuffer *buf, const size_t len);
 unsigned char * mobi_buffer_getpointer(MOBIBuffer *buf, const size_t len);
-void mobi_buffer_copy8(MOBIBuffer *in, MOBIBuffer *source);
+void mobi_buffer_copy8(MOBIBuffer *dest, MOBIBuffer *source);
 void mobi_buffer_move(MOBIBuffer *buf, const int offset, const size_t len);
 void mobi_buffer_copy(MOBIBuffer *dest, MOBIBuffer *source, const size_t len);
 bool mobi_buffer_match_magic(MOBIBuffer *buf, const char *magic);

@@ -4,7 +4,7 @@ TOP_LOCAL_PATH := $(LOCAL_PATH)
 MUPDF_ROOT := $(realpath $(LOCAL_PATH)/../../..)
 
 
-include $(TOP_LOCAL_PATH)/libmobi-0.9/Android.mk
+include $(TOP_LOCAL_PATH)/libmobi-0.11/Android.mk
 include $(TOP_LOCAL_PATH)/hqx/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
 include $(TOP_LOCAL_PATH)/antiword/Android.mk

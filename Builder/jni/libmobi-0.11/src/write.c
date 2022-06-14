@@ -16,6 +16,9 @@
 #include "write.h"
 #include "util.h"
 #include "debug.h"
+#ifdef USE_ENCRYPTION
+#include "encryption.h"
+#endif
 
 #define MOBI_HEADER_MAXLEN 280
 #define MOBI_RECORD0_PADDING 0x2002
@@ -32,9 +35,8 @@ MOBI_RET mobi_write_buffer(FILE *file, const MOBIBuffer *buf) {
     if (written != buf->maxlen) {
         debug_print("Writing failed (%s)\n", strerror(errno));
         return MOBI_WRITE_FAILED;
-    } else {
-        return MOBI_SUCCESS;
     }
+    return MOBI_SUCCESS;
 }
 
 /**
@@ -73,13 +75,13 @@ MOBI_RET mobi_write_pdbheader(FILE *file, const MOBIData *m) {
     mobi_buffer_addstring(buf, m->ph->creator);
     mobi_buffer_add32(buf, m->ph->uid);
     mobi_buffer_add32(buf, m->ph->next_rec);
-    uint16_t rec_count = mobi_get_records_count(m);
-    if (rec_count == 0) {
+    m->ph->rec_count = mobi_get_records_count(m);
+    if (m->ph->rec_count == 0) {
         mobi_buffer_free(buf);
         debug_print("%s", "Zero records count\n");
         return MOBI_DATA_CORRUPT;
     }
-    mobi_buffer_add16(buf, rec_count);
+    mobi_buffer_add16(buf, m->ph->rec_count);
     if (buf->error != MOBI_SUCCESS) {
         mobi_buffer_free(buf);
         return MOBI_DATA_CORRUPT;
@@ -110,6 +112,7 @@ MOBI_RET mobi_serialize_mobiheader(MOBIBuffer *buf, const MOBIData *m, const uin
     }
     uint32_t length_offset = (uint32_t) buf->offset;
     uint32_t name_offset = 0;
+    uint32_t drm_offset = 0;
     mobi_buffer_add32(buf, 0); /* dummy length */
     if (m->mh->mobi_type) { mobi_buffer_add32(buf, *m->mh->mobi_type); } else { goto finalize; }
     if (m->mh->text_encoding) { mobi_buffer_add32(buf, *m->mh->text_encoding); } else { goto finalize; }
@@ -134,7 +137,7 @@ MOBI_RET mobi_serialize_mobiheader(MOBIBuffer *buf, const MOBIData *m, const uin
     if (m->mh->non_text_index) { mobi_buffer_add32(buf, *m->mh->non_text_index); } else { goto finalize; }
     if (m->mh->full_name) {
         if (buf->offset > UINT32_MAX) {
-             debug_print("Offset too large: %zu\n", buf->offset);
+            debug_print("Offset too large: %zu\n", buf->offset);
             return MOBI_DATA_CORRUPT;
         }
         name_offset = (uint32_t) buf->offset;
@@ -153,7 +156,10 @@ MOBI_RET mobi_serialize_mobiheader(MOBIBuffer *buf, const MOBIData *m, const uin
     if (m->mh->exth_flags) { mobi_buffer_add32(buf, *m->mh->exth_flags); } else { goto finalize; }
     mobi_buffer_addzeros(buf, 32); /* 32 unknown bytes */
     if (m->mh->unknown6) { mobi_buffer_add32(buf, *m->mh->unknown6); } else { goto finalize; }
-    if (m->mh->drm_offset) { mobi_buffer_add32(buf, *m->mh->drm_offset); } else { goto finalize; }
+    if (m->mh->drm_offset) {
+        drm_offset = (uint32_t) buf->offset;
+        mobi_buffer_add32(buf, *m->mh->drm_offset);
+    } else { goto finalize; }
     if (m->mh->drm_count) { mobi_buffer_add32(buf, *m->mh->drm_count); } else { goto finalize; }
     if (m->mh->drm_size) { mobi_buffer_add32(buf, *m->mh->drm_size); } else { goto finalize; }
     if (m->mh->drm_flags) { mobi_buffer_add32(buf, *m->mh->drm_flags); } else { goto finalize; }
@@ -202,16 +208,30 @@ finalize:
     }
     size_t headersize = buf->offset - buffer_init;
     if (headersize > UINT32_MAX) {
-         debug_print("Header too large: %zu\n", headersize);
+        debug_print("Header too large: %zu\n", headersize);
         return MOBI_DATA_CORRUPT;
     }
     size_t saved_offset = buf->offset;
     /* write header length at offset 20 */
     mobi_buffer_setpos(buf, length_offset);
     mobi_buffer_add32(buf, (uint32_t) headersize);
+    *m->mh->header_length = (uint32_t) headersize;
+    uint32_t drmsize = 0;
+#ifdef USE_ENCRYPTION
+    if (m->rh->encryption_type == MOBI_ENCRYPTION_V2 &&
+        m->mh->drm_size && m->mh->drm_offset && *m->mh->drm_size > 0) {
+        drmsize = mobi_get_drmsize(m);
+        *m->mh->drm_offset = RECORD0_HEADER_LEN + (uint32_t) headersize + exthsize;
+        mobi_buffer_setpos(buf, drm_offset);
+        mobi_buffer_add32(buf, *m->mh->drm_offset);
+    } else if (m->rh->encryption_type == MOBI_ENCRYPTION_V1) {
+        drmsize = mobi_get_drmsize(m);
+    }
+#endif
+    
     if (m->mh->full_name) {
         /* full name's offset is after exth records */
-        uint32_t fullname_offset = RECORD0_HEADER_LEN + (uint32_t) headersize + exthsize;
+        uint32_t fullname_offset = RECORD0_HEADER_LEN + (uint32_t) headersize + exthsize + drmsize;
         size_t fullname_length = strlen(m->mh->full_name);
         if (fullname_length > MOBI_TITLE_SIZEMAX) {
             fullname_length = MOBI_TITLE_SIZEMAX;
@@ -221,8 +241,27 @@ finalize:
         mobi_buffer_setpos(buf, name_offset);
         mobi_buffer_add32(buf, fullname_offset);
         mobi_buffer_add32(buf, (uint32_t) fullname_length);
+        if (m->mh->full_name_offset == NULL) {
+            m->mh->full_name_offset = malloc(sizeof(uint32_t));
+            if (m->mh->full_name_offset == NULL) {
+                debug_print("Memory allocation failed%s", "\n");
+                return MOBI_MALLOC_FAILED;
+            }
+        }
+        *m->mh->full_name_offset = fullname_offset;
+        if (m->mh->full_name_length == NULL) {
+            m->mh->full_name_length = malloc(sizeof(uint32_t));
+            if (m->mh->full_name_length == NULL) {
+                debug_print("Memory allocation failed%s", "\n");
+                return MOBI_MALLOC_FAILED;
+            }
+        }
+        *m->mh->full_name_length = (uint32_t) fullname_length;
     }
     mobi_buffer_setpos(buf, saved_offset);
+    if (buf->error != MOBI_SUCCESS) {
+        return MOBI_DATA_CORRUPT;
+    }
     return MOBI_SUCCESS;
 }
 
@@ -299,7 +338,9 @@ MOBI_RET mobi_update_record0(MOBIData *m, const size_t seqnumber) {
     }
     size_t record0_maxlen = RECORD0_HEADER_LEN + MOBI_HEADER_MAXLEN;
     uint32_t exthsize = mobi_get_exthsize(m);
+    uint32_t drmsize = mobi_get_drmsize(m);
     record0_maxlen += exthsize;
+    record0_maxlen += drmsize;
     record0_maxlen += MOBI_TITLE_SIZEMAX;
     record0_maxlen += padding;
     MOBIBuffer *buf = mobi_buffer_init(record0_maxlen);
@@ -328,7 +369,20 @@ MOBI_RET mobi_update_record0(MOBIData *m, const size_t seqnumber) {
                 return ret;
             }
         }
-        if (m->mh->full_name) {
+        
+#ifdef USE_ENCRYPTION
+        if (m->rh->encryption_type == MOBI_ENCRYPTION_V1) {
+            ret = mobi_drm_serialize_v1(buf, m);
+        } else if (m->rh->encryption_type == MOBI_ENCRYPTION_V2) {
+            ret = mobi_drm_serialize_v2(buf, m);
+        }
+        if (ret != MOBI_SUCCESS) {
+            mobi_buffer_free(buf);
+            return ret;
+        }
+#endif
+        if (m->mh->full_name && m->mh->full_name_offset) {
+            mobi_buffer_setpos(buf, *m->mh->full_name_offset);
             mobi_buffer_addstring(buf, m->mh->full_name);
             if (buf->error != MOBI_SUCCESS) {
                 mobi_buffer_free(buf);
@@ -336,7 +390,17 @@ MOBI_RET mobi_update_record0(MOBIData *m, const size_t seqnumber) {
             }
         }
     }
-    
+#ifdef USE_ENCRYPTION
+    else if (m->rh->encryption_type == MOBI_ENCRYPTION_V1) {
+        MOBI_RET ret = mobi_drm_serialize_v1(buf, m);
+        if (ret != MOBI_SUCCESS) {
+            mobi_buffer_free(buf);
+            return ret;
+        }
+        mobi_buffer_setpos(buf, 14 + drmsize);
+    }
+#endif
+
     mobi_buffer_addzeros(buf, padding);
     if (buf->error) {
         mobi_buffer_free(buf);
@@ -387,6 +451,7 @@ MOBI_RET mobi_write_records(FILE *file, const MOBIData *m) {
     /* 8 bytes per record meta plus 2 bytes padding */
     offset += 8 * m->ph->rec_count + 2;
     MOBIPdbRecord *curr = m->rec;
+    uint32_t i = 0;
     while (curr) {
         if (offset > UINT32_MAX) {
             return MOBI_DATA_CORRUPT;
@@ -398,6 +463,7 @@ MOBI_RET mobi_write_records(FILE *file, const MOBIData *m) {
         mobi_buffer_add32(buf, (uint32_t) offset);
         offset += curr->size;
         mobi_buffer_add8(buf, curr->attributes);
+        curr->uid = 2 * i++;
         const uint8_t h = (uint8_t) ((curr->uid & 0xff0000U) >> 16);
         const uint16_t l = (uint16_t) (curr->uid & 0xffffU);
         mobi_buffer_add8(buf, h);

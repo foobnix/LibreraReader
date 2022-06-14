@@ -444,9 +444,9 @@ MOBI_RET mobi_parse_record0(MOBIData *m, const size_t seqnumber) {
     /* parse palmdoc header */
     const uint16_t compression = mobi_buffer_get16(buf);
     mobi_buffer_seek(buf, 2); // unused 2 bytes, zeroes
-    if ((compression != RECORD0_NO_COMPRESSION &&
-         compression != RECORD0_PALMDOC_COMPRESSION &&
-         compression != RECORD0_HUFF_COMPRESSION)) {
+    if ((compression != MOBI_COMPRESSION_NONE &&
+         compression != MOBI_COMPRESSION_PALMDOC &&
+         compression != MOBI_COMPRESSION_HUFFCDIC)) {
         debug_print("Wrong record0 header: %c%c%c%c\n", record0->data[0], record0->data[1], record0->data[2], record0->data[3]);
         mobi_buffer_free_null(buf);
         free(m->rh);
@@ -498,7 +498,7 @@ size_t mobi_get_record_extrasize(const MOBIPdbRecord *record, const uint16_t fla
             mobi_buffer_seek(buf, - (int)(size - len));
             extra_size += size;
         }
-    };
+    }
     /* check bit 0 */
     if (flags & 1) {
             const uint8_t b = mobi_buffer_get8(buf);
@@ -536,7 +536,7 @@ size_t mobi_get_record_mb_extrasize(const MOBIPdbRecord *record, const uint16_t 
                 /* TODO: read and store in record struct */
                 mobi_buffer_seek(buf, - (int)(size - len));
             }
-        };
+        }
         /* read multibyte section */
         const uint8_t b = mobi_buffer_get8(buf);
         /* two first bits hold size */
@@ -873,9 +873,9 @@ MOBI_RET mobi_load_file(MOBIData *m, FILE *file) {
     if (ret != MOBI_SUCCESS) {
         return ret;
     }
-    if (m->rh && m->rh->encryption_type == RECORD0_OLD_ENCRYPTION) {
+    if (m->rh && m->rh->encryption_type == MOBI_ENCRYPTION_V1) {
         /* try to set key for encryption type 1 */
-        debug_print("Trying to set key for encryption type 1%s", "\n")
+        debug_print("Trying to set key for encryption type 1%s", "\n");
         mobi_drm_setkey(m, NULL);
     }
     /* if EXTH is loaded parse KF8 record0 for hybrid KF7/KF8 file */
@@ -889,6 +889,7 @@ MOBI_RET mobi_load_file(MOBIData *m, FILE *file) {
             m->next->ph = m->ph;
             m->next->rec = m->rec;
             m->next->drm_key = m->drm_key;
+            m->next->internals = m->internals;
             /* close next loop */
             m->next->next = m;
             ret = mobi_parse_record0(m->next, boundary_rec_number + 1);

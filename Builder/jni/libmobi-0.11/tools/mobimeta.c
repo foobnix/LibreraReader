@@ -13,6 +13,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <errno.h>
@@ -20,9 +21,6 @@
 #include <mobi.h>
 
 #include "common.h"
-#ifdef HAVE_CONFIG_H
-# include "../config.h"
-#endif
 
 /* encryption */
 #ifdef USE_ENCRYPTION
@@ -35,8 +33,8 @@
 
 /* command line options */
 #ifdef USE_ENCRYPTION
-int setpid_opt = 0;
-int setserial_opt = 0;
+bool setpid_opt = false;
+bool setserial_opt = false;
 #endif
 
 /* options values */
@@ -49,9 +47,9 @@ char *serial = NULL;
 #define ACTIONS_SIZE ARRAYSIZE(actions)
 
 #if HAVE_ATTRIBUTE_NORETURN 
-void exit_with_usage(const char *progname) __attribute__((noreturn));
+static void exit_with_usage(const char *progname) __attribute__((noreturn));
 #else
-void exit_with_usage(const char *progname);
+static void exit_with_usage(const char *progname);
 #endif
 
 /**
@@ -60,6 +58,9 @@ void exit_with_usage(const char *progname);
 typedef MOBI_RET (*MetaFunAdd)(MOBIData *m, const char *string);
 typedef MOBI_RET (*MetaFunDel)(MOBIData *m);
 
+/**
+ @brief Meta functions structure
+ */
 typedef struct {
     const char *name;
     MetaFunAdd function_add;
@@ -87,10 +88,10 @@ const CB meta_functions[] = {
  @brief Print usage info
  @param[in] progname Executed program name
  */
-void exit_with_usage(const char *progname) {
+static void exit_with_usage(const char *progname) {
     char *p = strrchr(progname, separator);
     if (p) { progname = ++p; }
-    printf("usage: %s [-a | -s meta=value[,meta=value,...]] [-d meta[,meta,...]]" PRINT_ENC_USG " [-v] filein [fileout]\n", progname);
+    printf("usage: %s [-a | -s meta=value[,meta=value,...]] [-d meta[,meta,...]]" PRINT_ENC_USG " [-hv] filein [fileout]\n", progname);
     printf("       without arguments prints document metadata and exits\n");
     printf("       -a ?           list valid meta named keys\n");
     printf("       -a meta=value  add metadata\n");
@@ -100,6 +101,7 @@ void exit_with_usage(const char *progname) {
     printf("       -p pid         set pid for decryption\n");
     printf("       -P serial      set device serial for decryption\n");
 #endif
+    printf("       -h             show this usage summary and exit\n");
     printf("       -v             show version and exit\n");
     exit(ERROR);
 }
@@ -107,8 +109,9 @@ void exit_with_usage(const char *progname) {
 /**
  @brief Check whether string is integer
  @param[in] string String
+ @return True if string represents integer
  */
-bool isinteger(const char *string) {
+static bool isinteger(const char *string) {
     if (*string == '\0') { return false; }
     while (*string) {
         if (!isdigit(*string++)) { return false; }
@@ -122,9 +125,10 @@ bool isinteger(const char *string) {
  @param[in,out] subopts List of suboptions
  @param[in,out] token Will be filled with first found key name or NULL if missing
  @param[in,out] value Will be filled with first found key value or NULL if missing
+ @return True if there are more pairs to parse
  */
-bool parsesubopt(char **subopts, char **token, char **value) {
-    if (!**subopts) { return -1; }
+static bool parsesubopt(char **subopts, char **token, char **value) {
+    if (!**subopts) { return false; }
     *token = NULL;
     *value = NULL;
     char *p = NULL;
@@ -144,9 +148,10 @@ bool parsesubopt(char **subopts, char **token, char **value) {
 
 /**
  @brief Get matching token from meta functions array
- @param[in] token Will be filled with key name or NULL
+ @param[in] token Meta token name
+ @return Index in array,-1 if not found
  */
-int get_meta(const char *token) {
+static int get_meta(const char *token) {
     for (int i = 0; i < (int) META_SIZE; i++) {
         if (strcmp(token, meta_functions[i].name) == 0) {
             return i;
@@ -157,6 +162,10 @@ int get_meta(const char *token) {
 
 /**
  @brief Main
+ 
+ @param[in] argc Arguments count
+ @param[in] argv Arguments array
+ @return SUCCESS (0) or ERROR (1)
  */
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -178,16 +187,20 @@ int main(int argc, char *argv[]) {
     int opt;
     int subopt;
     bool parse;
-    while ((opt = getopt(argc, argv, "a:d:s:" PRINT_ENC_ARG "v")) != -1) {
+    while ((opt = getopt(argc, argv, "a:d:hs:" PRINT_ENC_ARG "v")) != -1) {
         switch (opt) {
             case 'a':
             case 'd':
             case 's':
+                if (strlen(optarg) == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", opt);
+                    return ERROR;
+                }
                 subopts = optarg;
                 parse = true;
                 while (parse) {
                     parse = parsesubopt(&subopts, &token, &value);
-                    if ((subopt = get_meta(token)) >= 0) {
+                    if (token && (subopt = get_meta(token)) >= 0) {
                         if ((value == NULL || strlen(value) == 0) && opt != 'd') {
                             printf("Missing value for suboption '%s'\n\n", meta_functions[subopt].name);
                             exit_with_usage(argv[0]);
@@ -195,7 +208,7 @@ int main(int argc, char *argv[]) {
                         if (cmd_count < (ACTIONS_SIZE)) {
                             actions[cmd_count++] = (Action) { opt, subopt, value };
                         }
-                    } else if (isinteger(token)) {
+                    } else if (token && isinteger(token)) {
                         if ((value == NULL || strlen(value) == 0) && opt != 'd') {
                             printf("Missing value for suboption '%s'\n\n", token);
                             exit_with_usage(argv[0]);
@@ -205,15 +218,15 @@ int main(int argc, char *argv[]) {
                             actions[cmd_count++] = (Action) { toupper(opt), atoi(token), value };
                         }
                     } else {
-                        if (token[0] != '?') {
-                            printf("Unknown meta: %s\n", token);
+                        if (token == NULL || token[0] != '?') {
+                            printf("Unknown meta: %s\n", token ? token : optarg);
                         }
                         printf("Valid named meta keys:\n");
                         for (size_t i = 0; i < META_SIZE; i++) {
                             printf("   %s\n", meta_functions[i].name);
                         }
                         printf("\n");
-                        if (token[0] != '?') {
+                        if (token == NULL || token[0] != '?') {
                             exit_with_usage(argv[0]);
                         }
                         return SUCCESS;
@@ -222,11 +235,19 @@ int main(int argc, char *argv[]) {
                 break;
 #ifdef USE_ENCRYPTION
             case 'p':
-                setpid_opt = 1;
+                if (strlen(optarg) == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", opt);
+                    return ERROR;
+                }
+                setpid_opt = true;
                 pid = optarg;
                 break;
             case 'P':
-                setserial_opt = 1;
+                if (strlen(optarg) == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", opt);
+                    return ERROR;
+                }
+                setserial_opt = true;
                 serial = optarg;
                 break;
 #endif
@@ -235,12 +256,6 @@ int main(int argc, char *argv[]) {
                 printf("libmobi: %s\n", mobi_version());
                 return 0;
             case '?':
-#ifdef USE_ENCRYPTION
-                if (optopt == 'p') {
-                    printf("Option -%c requires an argument.\n", optopt);
-                }
-                else
-#endif
                 if (isprint(optopt)) {
                     printf("Unknown option `-%c'\n", optopt);
                 }
@@ -248,6 +263,7 @@ int main(int argc, char *argv[]) {
                     printf("Unknown option character `\\x%x'\n", optopt);
                 }
                 exit_with_usage(argv[0]);
+            case 'h':
             default:
                 exit_with_usage(argv[0]);
         }
@@ -260,14 +276,16 @@ int main(int argc, char *argv[]) {
     }
     char infile[FILENAME_MAX];
     strncpy(infile, argv[optind], FILENAME_MAX - 1);
-	infile[FILENAME_MAX - 1] = '\0';
-    
+    infile[FILENAME_MAX - 1] = '\0';
+    normalize_path(infile);
+
     if (file_args >= 2) { optind++; }
     
     char outfile[FILENAME_MAX];
     strncpy(outfile, argv[optind], FILENAME_MAX - 1);
-	outfile[FILENAME_MAX - 1] = '\0';
-    
+    outfile[FILENAME_MAX - 1] = '\0';
+    normalize_path(outfile);
+
     /* Initialize MOBIData structure */
     MOBIData *m = mobi_init();
     if (m == NULL) {

@@ -3,9 +3,9 @@
  *
  * This file is installed with the library.
  * Include it in your project with "#include <mobi.h>".
- * See example of usage in mobitool.c.
+ * See example of usage in mobitool.c, mobimeta.c, mobidrm.c
  *
- * Copyright (c) 2014 Bartek Fabiszewski
+ * Copyright (c) 2014-2022 Bartek Fabiszewski
  * http://www.fabiszewski.net
  *
  * This file is part of libmobi.
@@ -36,6 +36,14 @@
  */
 #define MOBI_NOTSET UINT32_MAX
 
+#define MOBI_ENCRYPTION_NONE 0 /**< Text record encryption type: none */
+#define MOBI_ENCRYPTION_V1 1 /**< Text record encryption type: old mobipocket */
+#define MOBI_ENCRYPTION_V2 2 /**< Text record encryption type: mobipocket */
+
+#define MOBI_COMPRESSION_NONE 1 /**< Text record compression type: none */
+#define MOBI_COMPRESSION_PALMDOC 2 /**< Text record compression type: palmdoc */
+#define MOBI_COMPRESSION_HUFFCDIC 17480 /**< Text record compression type: huff/cdic */
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -64,6 +72,8 @@ extern "C"
         MOBI_DRM_KEYNOTFOUND = 12,  /**< Key not found */
         MOBI_DRM_UNSUPPORTED = 13, /**< DRM support not included */
         MOBI_WRITE_FAILED = 14, /**< Writing to file failed */
+        MOBI_DRM_EXPIRED = 15, /**< DRM expired */
+        MOBI_DRM_RANDOM_ERR = 16 /**< DRM random bytes generation failed */
     } MOBI_RET;
     
     /**
@@ -133,8 +143,8 @@ extern "C"
         EXTH_PUBLISHERLIMIT = 402,
         EXTH_UNK403 = 403,
         EXTH_TTSDISABLE = 404,
-        EXTH_UNK405 = 405,
-        EXTH_RENTAL = 406,
+        EXTH_READFORFREE = 405, // uint32_t, rental related, ReadForFree
+        EXTH_RENTAL = 406, // uint64_t
         EXTH_UNK407 = 407,
         EXTH_UNK450 = 450,
         EXTH_UNK451 = 451,
@@ -199,17 +209,15 @@ extern "C"
         char mime_type[30]; /**< mime-type */
     } MOBIFileMeta;
     
-    /** @} */
-    
     /**
-     @defgroup mobi_enc Encoding types in MOBI header (offset 28)
-     @{
+     @brief Encoding types in MOBI header (offset 28)
      */
     typedef enum {
         MOBI_CP1252 = 1252, /**< cp-1252 encoding */
         MOBI_UTF8 = 65001, /**< utf-8 encoding */
         MOBI_UTF16 = 65002, /**< utf-16 encoding */
     } MOBIEncoding;
+
     /** @} */
     
     /**
@@ -318,16 +326,16 @@ extern "C"
         uint32_t *datp_rec_index; /**< 120: section number of DATP record */
         uint32_t *datp_rec_count; /**< 124: DATP records count */
         uint32_t *exth_flags; /**< 128: bitfield. if bit 6 (0x40) is set, then there's an EXTH record */
-        /* 32 unknown bytes 0? */
+        /* 32 unknown bytes, usually 0, related to encryption and unknown6 */
         /* unknown2 */
         /* unknown3 */
         /* unknown4 */
         /* unknown5 */
-        uint32_t *unknown6; /**< 164: use MOBI_NOTSET */
+        uint32_t *unknown6; /**< 164: use MOBI_NOTSET , related to encryption*/
         uint32_t *drm_offset; /**< 168: offset to DRM key info in DRMed files. MOBI_NOTSET if no DRM */
         uint32_t *drm_count; /**< 172: number of entries in DRM info */
         uint32_t *drm_size; /**< 176: number of bytes in DRM info */
-        uint32_t *drm_flags; /**< 180: some flags concerning DRM info */
+        uint32_t *drm_flags; /**< 180: some flags concerning DRM info, bit 0 set if password encryption */
         /* 8 unknown bytes 0? */
         /* unknown7 */
         /* unknown8 */
@@ -373,13 +381,14 @@ extern "C"
     typedef struct MOBIData {
         bool use_kf8; /**< Flag: if set to true (default), KF8 part of hybrid file is parsed, if false - KF7 part will be parsed */
         uint32_t kf8_boundary_offset; /**< Set to KF8 boundary rec number if present, otherwise: MOBI_NOTSET */
-        unsigned char *drm_key; /**< key for decryption, NULL if not set */
+        unsigned char *drm_key; /**< @deprecated Will be removed in future versions */
         MOBIPdbHeader *ph; /**< Palmdoc database header structure or NULL if not loaded */
         MOBIRecord0Header *rh; /**< Record0 header structure or NULL if not loaded */
         MOBIMobiHeader *mh; /**< MOBI header structure or NULL if not loaded */
         MOBIExthHeader *eh; /**< Linked list of EXTH records or NULL if not loaded */
         MOBIPdbRecord *rec; /**< Linked list of palmdoc database records or NULL if not loaded */
         struct MOBIData *next; /**< Pointer to the other part of hybrid file or NULL if not a hybrid file */
+        void *internals;  /**< Used internally*/
     } MOBIData;
     
     /** @} */ // end of raw_structs group
@@ -521,7 +530,10 @@ extern "C"
     MOBI_EXPORT struct tm * mobi_pdbtime_to_time(const long pdb_time);
     MOBI_EXPORT const char * mobi_get_locale_string(const uint32_t locale);
     MOBI_EXPORT size_t mobi_get_locale_number(const char *locale_string);
-    
+    MOBI_EXPORT uint32_t mobi_get_orth_entry_offset(const MOBIIndexEntry *entry);
+    MOBI_EXPORT uint32_t mobi_get_orth_entry_length(const MOBIIndexEntry *entry);
+    MOBI_EXPORT MOBI_RET mobi_remove_hybrid_part(MOBIData *m, const bool remove_kf8);
+
     MOBI_EXPORT bool mobi_exists_mobiheader(const MOBIData *m);
     MOBI_EXPORT bool mobi_exists_fdst(const MOBIData *m);
     MOBI_EXPORT bool mobi_exists_skel_indx(const MOBIData *m);
@@ -595,9 +607,12 @@ extern "C"
     
     MOBI_EXPORT MOBI_RET mobi_drm_setkey(MOBIData *m, const char *pid);
     MOBI_EXPORT MOBI_RET mobi_drm_setkey_serial(MOBIData *m, const char *serial);
+    MOBI_EXPORT MOBI_RET mobi_drm_addvoucher(MOBIData *m, const char *serial, const time_t valid_from, const time_t valid_to,
+                                             const MOBIExthTag *tamperkeys, const size_t tamperkeys_count);
     MOBI_EXPORT MOBI_RET mobi_drm_delkey(MOBIData *m);
     MOBI_EXPORT MOBI_RET mobi_drm_decrypt(MOBIData *m);
-    
+    MOBI_EXPORT MOBI_RET mobi_drm_encrypt(MOBIData *m);
+
     MOBI_EXPORT MOBI_RET mobi_write_file(FILE *file, MOBIData *m);
     /** @} */ // end of mobi_export group
     

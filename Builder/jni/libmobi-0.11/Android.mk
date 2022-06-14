@@ -24,6 +24,7 @@ src/structure.c \
 src/util.c \
 src/write.c \
 src/xmlwriter.c \
+src/randombytes.c \
 tools/common.c \
 tools/mobitool.c
 

@@ -26,6 +26,14 @@ const char separator = '\\';
 #else
 const char separator = '/';
 #endif
+bool outdir_opt = false;
+char outdir[FILENAME_MAX];
+
+#define UNUSED(x) (void)(x)
+
+#ifndef min
+# define min(a, b) ((a) < (b) ? (a) : (b))
+#endif
 
 /**
  @brief Messages for libmobi return codes
@@ -46,6 +54,8 @@ const char *libmobi_messages[] = {
     "Invalid DRM pid",
     "DRM key not found",
     "DRM support not included",
+    "Write failed",
+    "DRM expired"
 };
 
 #define LIBMOBI_MSG_COUNT ARRAYSIZE(libmobi_messages)
@@ -53,34 +63,39 @@ const char *libmobi_messages[] = {
 /**
  @brief Return message for given libmobi return code
  @param[in] ret Libmobi return code
+ @return Message string
  */
 const char * libmobi_msg(const MOBI_RET ret) {
     size_t index = ret;
     if (index < LIBMOBI_MSG_COUNT) {
         return libmobi_messages[index];
-    } else {
-        return "Unknown error";
     }
+    return "Unknown error";
 }
 
 /**
  @brief Parse file name into file path and base name.
         Dirname or basename can be skipped by setting to null.
-        All buffers must have FILENAME_MAX size.
  @param[in] fullpath Full file path
  @param[in,out] dirname Will be set to full dirname
  @param[in,out] basename Will be set to file basename
+ @param[in] buf_len Size of each ouput buffer: dirname and basename
  */
-void split_fullpath(const char *fullpath, char *dirname, char *basename) {
+void split_fullpath(const char *fullpath, char *dirname, char *basename, const size_t buf_len) {
+    if (buf_len == 0) {
+        return;
+    }
     char *p = strrchr(fullpath, separator);
     if (p) {
         p += 1;
         if (dirname) {
-            strncpy(dirname, fullpath, (unsigned long)(p - fullpath));
-            dirname[p - fullpath] = '\0';
+            size_t dirlen = min(buf_len - 1, (size_t) (p - fullpath));
+            strncpy(dirname, fullpath, dirlen);
+            dirname[dirlen] = '\0';
         }
         if (basename) {
-            strcpy(basename, p);
+            strncpy(basename, p, buf_len - 1);
+            basename[buf_len - 1] = '\0';
         }
     }
     else {
@@ -88,7 +103,8 @@ void split_fullpath(const char *fullpath, char *dirname, char *basename) {
             dirname[0] = '\0';
         }
         if (basename) {
-            strcpy(basename, fullpath);
+            strncpy(basename, fullpath, buf_len - 1);
+            basename[buf_len - 1] = '\0';
         }
     }
     if (basename) {
@@ -100,8 +116,9 @@ void split_fullpath(const char *fullpath, char *dirname, char *basename) {
 }
 
 /**
- * @brief Make directory
- * @param[in] path Path
+ @brief Make directory
+ @param[in] path Path
+ @return SUCCESS or ERROR
  */
 int make_directory(const char *path) {
     errno = 0;
@@ -115,17 +132,19 @@ int make_directory(const char *path) {
 
 /**
  @brief Create subfolder in directory
- @param[in,out] newdir Path to created subfolder, must have FILENAME_MAX size
- @param[in] dir Directory path
- @param[in] name Subfolder name
+ @param[in,out] newdir Path to created subfolder
+ @param[in] buf_len Buffer size fo created subfolder
+ @param[in] parent_dir Directory path
+ @param[in] subdir_name Subfolder name
+ @return SUCCESS or ERROR
  */
-int create_subdir(char *newdir, const char *dir, const char *name) {
-    int n = snprintf(newdir, FILENAME_MAX, "%s%c%s", dir, separator, name);
+int create_subdir(char *newdir, const size_t buf_len, const char *parent_dir, const char *subdir_name) {
+    int n = snprintf(newdir, buf_len, "%s%c%s", parent_dir, separator, subdir_name);
     if (n < 0) {
         printf("Creating file name failed\n");
         return ERROR;
     }
-    if ((size_t) n > FILENAME_MAX) {
+    if ((size_t) n >= buf_len) {
         printf("File name too long: %s\n", newdir);
         return ERROR;
     }
@@ -137,6 +156,7 @@ int create_subdir(char *newdir, const char *dir, const char *name) {
  @param[in] buffer Buffer
  @param[in] len Buffer length
  @param[in] path File path
+ @return SUCCESS or ERROR
  */
 int write_file(const unsigned char *buffer, const size_t len, const char *path) {
     errno = 0;
@@ -163,6 +183,7 @@ int write_file(const unsigned char *buffer, const size_t len, const char *path) 
  @param[in] name File name
  @param[in] buffer Buffer
  @param[in] len Buffer length
+ @return SUCCESS or ERROR
  */
 int write_to_dir(const char *dir, const char *name, const unsigned char *buffer, const size_t len) {
     char path[FILENAME_MAX];
@@ -171,7 +192,7 @@ int write_to_dir(const char *dir, const char *name, const unsigned char *buffer,
         printf("Creating file name failed\n");
         return ERROR;
     }
-    if ((size_t) n > sizeof(path)) {
+    if ((size_t) n >= sizeof(path)) {
         printf("File name too long\n");
         return ERROR;
     }
@@ -181,6 +202,7 @@ int write_to_dir(const char *dir, const char *name, const unsigned char *buffer,
 /**
  @brief Check whether given path exists and is a directory
  @param[in] path Path to be tested
+ @return True if directory exists, false otherwise
  */
 bool dir_exists(const char *path) {
     struct stat sb;
@@ -189,11 +211,29 @@ bool dir_exists(const char *path) {
         printf("Path \"%s\" is not accessible (%s)\n", path, strerror(errsv));
         return false;
     }
-    else if (!S_ISDIR(sb.st_mode)) {
+    if (!S_ISDIR(sb.st_mode)) {
         printf("Path \"%s\" is not a directory\n", path);
         return false;
     }
     return true;
+}
+
+/**
+ @brief Make sure we use consistent separators on Windows builds
+ @param[in,out] path Path to be fixed
+ */
+void normalize_path(char *path) {
+#ifdef _WIN32
+    if (path != NULL) {
+        for (size_t i = 0; i <= strlen(path); i++) {
+            if (path[i] == '/') {
+                path[i] = separator;
+            }
+        }
+    }
+#else
+    UNUSED(path);
+#endif
 }
 
 
@@ -290,7 +330,7 @@ void print_summary(const MOBIData *m) {
             *m->mh->dict_input_lang && *m->mh->dict_output_lang) {
             const char *locale_in = mobi_get_locale_string(*m->mh->dict_input_lang);
             const char *locale_out = mobi_get_locale_string(*m->mh->dict_output_lang);
-            printf(": %s => %s", locale_in, locale_out);
+            printf(": %s => %s", locale_in ? locale_in : "unknown", locale_out ? locale_out : "unknown");
         }
         printf("\n");
     }
@@ -470,13 +510,48 @@ void print_exth(const MOBIData *m) {
 }
 
 /**
+ @brief Set PID for decryption
+ @param[in,out] m MOBIData structure
+ @param[in] pid Serial number
+ @return SUCCESS or error code
+ */
+int set_decryption_pid(MOBIData *m, const char *pid) {
+    printf("\nVerifying PID %s...", pid);
+    MOBI_RET mobi_ret = mobi_drm_setkey(m, pid);
+    if (mobi_ret != MOBI_SUCCESS) {
+        printf("failed (%s)\n", libmobi_msg(mobi_ret));
+        return (int) mobi_ret;
+    }
+    printf("ok\n");
+    return SUCCESS;
+}
+
+/**
+ @brief Set device serial number for decryption
+ @param[in,out] m MOBIData structure
+ @param[in] serial Serial number
+ @return SUCCESS or error code
+ */
+int set_decryption_serial(MOBIData *m, const char *serial) {
+    printf("\nVerifying serial %s... ", serial);
+    MOBI_RET mobi_ret = mobi_drm_setkey_serial(m, serial);
+    if (mobi_ret != MOBI_SUCCESS) {
+        printf("failed (%s)\n", libmobi_msg(mobi_ret));
+        return (int) mobi_ret;
+    }
+    printf("ok\n");
+    return SUCCESS;
+}
+
+/**
  @brief Set key for decryption. Use user supplied pid or device serial number
  @param[in,out] m MOBIData structure
  @param[in] serial Serial number
  @param[in] pid Pid
+ @return SUCCESS or error code
  */
 int set_decryption_key(MOBIData *m, const char *serial, const char *pid) {
-    MOBI_RET mobi_ret = MOBI_SUCCESS;
+
     if (!pid && !serial) {
         return SUCCESS;
     }
@@ -484,34 +559,62 @@ int set_decryption_key(MOBIData *m, const char *serial, const char *pid) {
         printf("\nDocument is not encrypted, ignoring PID/serial\n");
         return SUCCESS;
     }
-    else if (m->rh && m->rh->encryption_type == 1) {
+    if (m->rh && m->rh->encryption_type == MOBI_ENCRYPTION_V1) {
         printf("\nEncryption type 1, ignoring PID/serial\n");
         return SUCCESS;
     }
     int ret = SUCCESS;
-    if (pid) {
-        /* Try to set key for decompression */
-        printf("\nVerifying PID... ");
-        mobi_ret = mobi_drm_setkey(m, pid);
-        if (mobi_ret != MOBI_SUCCESS) {
-            printf("failed (%s)\n", libmobi_msg(mobi_ret));
-            ret = (int) mobi_ret;
-        } else {
-            printf("ok\n");
-            return SUCCESS;
-        }
+    if (pid && (ret = set_decryption_pid(m, pid)) == SUCCESS) {
+        return SUCCESS;
     }
     if (serial) {
-        /* Try to set key for decompression */
-        printf("\nVerifying serial... ");
-        mobi_ret = mobi_drm_setkey_serial(m, serial);
-        if (mobi_ret != MOBI_SUCCESS) {
-            printf("failed (%s)\n", libmobi_msg(mobi_ret));
-            ret = (int) mobi_ret;
-        } else {
-            printf("ok\n");
-            ret = SUCCESS;
-        }
+        ret = set_decryption_serial(m, serial);
     }
     return ret;
+}
+
+/**
+ @brief Save mobi file
+ 
+ @param[in,out] m MOBIData struicture
+ @param[in] fullpath Full file path
+ @param[in] suffix Suffix appended to file name
+ @return SUCCESS or ERROR
+ */
+int save_mobi(MOBIData *m, const char *fullpath, const char *suffix) {
+    char outfile[FILENAME_MAX];
+    char basename[FILENAME_MAX];
+    char dirname[FILENAME_MAX];
+    split_fullpath(fullpath, dirname, basename, FILENAME_MAX);
+    const char *ext = (mobi_get_fileversion(m) >= 8) ? "azw3" : "mobi";
+    int n;
+    if (outdir_opt) {
+        n = snprintf(outfile, sizeof(outfile), "%s%s-%s.%s", outdir, basename, suffix, ext);
+    } else {
+        n = snprintf(outfile, sizeof(outfile), "%s%s-%s.%s", dirname, basename, suffix, ext);
+    }
+    if (n < 0) {
+        printf("Creating file name failed\n");
+        return ERROR;
+    }
+    if ((size_t) n >= sizeof(outfile)) {
+        printf("File name too long\n");
+        return ERROR;
+    }
+    
+    /* write */
+    printf("Saving %s...\n", outfile);
+    FILE *file_out = fopen(outfile, "wb");
+    if (file_out == NULL) {
+        int errsv = errno;
+        printf("Error opening file: %s (%s)\n", outfile, strerror(errsv));
+        return ERROR;
+    }
+    MOBI_RET mobi_ret = mobi_write_file(file_out, m);
+    fclose(file_out);
+    if (mobi_ret != MOBI_SUCCESS) {
+        printf("Error writing file (%s)\n", libmobi_msg(mobi_ret));
+        return ERROR;
+    }
+    return SUCCESS;
 }

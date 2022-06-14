@@ -4,7 +4,7 @@ TOP_LOCAL_PATH := $(LOCAL_PATH)
 MUPDF_ROOT := $(realpath $(LOCAL_PATH)/../../..)
 
 
-include $(TOP_LOCAL_PATH)/libmobi-0.9/Android.mk
+include $(TOP_LOCAL_PATH)/libmobi-0.11/Android.mk
 include $(TOP_LOCAL_PATH)/hqx/Android.mk
 include $(TOP_LOCAL_PATH)/djvu/Android.mk
 include $(TOP_LOCAL_PATH)/antiword/Android.mk
@@ -36,7 +36,7 @@ LOCAL_SRC_FILES := \
 	ebookdroidjni.c \
 	DjvuDroidBridge.cpp \
 	cbdroidbridge.c \
-	jni_concurrent-1.16.1.c \
+	jni_concurrent-1.20.0.c \
     libmupdf-1.20.0.c
 
 

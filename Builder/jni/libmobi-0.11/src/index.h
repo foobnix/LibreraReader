@@ -41,8 +41,8 @@
 #define INDX_TAG_FRAG_POSITION (unsigned[]) {6, 0} /**< Frag position */
 #define INDX_TAG_FRAG_LENGTH (unsigned[]) {6, 1} /**< Frag length */
 
-#define INDX_TAG_ORTH_STARTPOS (unsigned[]) {1, 0} /**< Orth entry start position */
-#define INDX_TAG_ORTH_ENDPOS (unsigned[]) {2, 0} /**< Orth entry end position */
+#define INDX_TAG_ORTH_POSITION (unsigned[]) {1, 0} /**< Orth entry start position */
+#define INDX_TAG_ORTH_LENGTH (unsigned[]) {2, 0} /**< Orth entry end position */
 
 #define INDX_TAGARR_ORTH_INFL 42 /**< Inflection groups for orth entry */
 #define INDX_TAGARR_INFL_GROUPS 5 /**< Inflection groups in infl index */
@@ -122,7 +122,6 @@ char * mobi_get_cncx_string(const MOBIPdbRecord *cncx_record, const uint32_t cnc
 char * mobi_get_cncx_string_utf8(const MOBIPdbRecord *cncx_record, const uint32_t cncx_offset, MOBIEncoding cncx_encoding);
 char * mobi_get_cncx_string_flat(const MOBIPdbRecord *cncx_record, const uint32_t cncx_offset, const size_t length);
 MOBI_RET mobi_decode_infl(unsigned char *decoded, int *decoded_size, const unsigned char *rule);
-MOBI_RET mobi_decode_infl_old(const MOBIIndx *indx);
 MOBI_RET mobi_trie_insert_infl(MOBITrie **root, const MOBIIndx *indx, size_t i);
 size_t mobi_trie_get_inflgroups(char **infl_strings, MOBITrie * const root, const char *string);
 

@@ -13,6 +13,10 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
+#ifdef HAVE_CONFIG_H
+# include "../config.h"
+#endif
+
 #ifdef HAVE_GETOPT
 # include <unistd.h>
 #else
@@ -54,15 +58,21 @@
 #define FULLNAME_MAX 1024
 
 extern const char separator;
+extern bool outdir_opt;
+extern char outdir[FILENAME_MAX];
+
 const char * libmobi_msg(const MOBI_RET ret);
-void split_fullpath(const char *fullpath, char *dirname, char *basename);
+void split_fullpath(const char *fullpath, char *dirname, char *basename, const size_t buf_len);
 int make_directory(const char *path);
-int create_subdir(char *newdir, const char *dir, const char *name);
-int write_file(const unsigned char *content, const size_t len, const char *path);
-int write_to_dir(const char *dir, const char *name, const unsigned char *content, const size_t len);
+int create_subdir(char *newdir, const size_t buf_len, const char *parent_dir, const char *subdir_name);
+int write_file(const unsigned char *buffer, const size_t len, const char *path);
+int write_to_dir(const char *dir, const char *name, const unsigned char *buffer, const size_t len);
 bool dir_exists(const char *path);
+void normalize_path(char *path);
 void print_summary(const MOBIData *m);
 void print_exth(const MOBIData *m);
 int set_decryption_key(MOBIData *m, const char *serial, const char *pid);
-
+int set_decryption_pid(MOBIData *m, const char *pid);
+int set_decryption_serial(MOBIData *m, const char *serial);
+int save_mobi(MOBIData *m, const char *fullpath, const char *suffix);
 #endif /* common_h */

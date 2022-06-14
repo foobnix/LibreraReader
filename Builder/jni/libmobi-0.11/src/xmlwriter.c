@@ -381,8 +381,10 @@ xmlBufferPtr xmlBufferCreate(void) {
 }
 
 /**
- @brief Free xml buffer
-  */
+ @brief Free XML buffer
+ 
+ @param[in,out] buf XML buffer
+ */
 void xmlBufferFree(xmlBufferPtr buf) {
     if (buf == NULL) { return; }
     if (buf->mobibuffer != NULL) {
@@ -876,7 +878,7 @@ int xmlTextWriterWriteString(xmlTextWriterPtr writer, const xmlChar *content) {
             ret = mobi_xml_buffer_addstring(writer, ">");
             if (ret != MOBI_SUCCESS) { return XML_ERROR; }
             state->mode = MOBI_XMLMODE_TEXT;
-            /* falltrough */
+            /* fallthrough */
         case MOBI_XMLMODE_TEXT:
             ret = mobi_xml_buffer_addencoded(writer, (const char *) content);
             if (writer->indent_enable) {

@@ -16,11 +16,10 @@
 #include "compression.h"
 #include "mobi.h"
 
-MOBIData * mobi_init(void);
 void mobi_free_mh(MOBIMobiHeader *mh);
 void mobi_free_rec(MOBIData *m);
 void mobi_free_eh(MOBIData *m);
-void mobi_free(MOBIData *m);
+void mobi_free_next(MOBIData *m);
 
 MOBIHuffCdic * mobi_init_huffcdic(void);
 void mobi_free_huffcdic(MOBIHuffCdic *huffcdic);

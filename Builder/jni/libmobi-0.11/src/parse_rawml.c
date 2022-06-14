@@ -107,7 +107,7 @@ MOBI_RET mobi_search_links_kf7(MOBIResult *result, const unsigned char *data_sta
                     result->value[i++] = (char) *data++;
                 }
                 /* self closing tag '/>' */
-                if (*(data - 1) == '/' && *data == '>') {
+                if (data <= data_end && *(data - 1) == '/' && *data == '>') {
                     --data; --i;
                 }
                 result->end = data;
@@ -182,7 +182,7 @@ MOBI_RET mobi_find_attrvalue(MOBIResult *result, const unsigned char *data_start
                 result->value[i++] = (char) *data++;
             }
             /* self closing tag '/>' */
-            if (*(data - 1) == '/' && *data == '>') {
+            if (data <= data_end && *(data - 1) == '/' && *data == '>') {
                 --data; --i;
             }
             result->end = data;
@@ -354,7 +354,7 @@ size_t mobi_get_attribute_value(char *value, const unsigned char *data, const si
                 length--;
             }
             /* self closing tag '/>' */
-            if (*(data - 1) == '/' && *data == '>') {
+            if (length && *(data - 1) == '/' && *data == '>') {
                 value--;
             }
             *value = '\0';
@@ -817,8 +817,14 @@ MOBI_RET mobi_reconstruct_parts(MOBIRawml *rawml) {
         mobi_buffer_free_null(buf);
         return MOBI_SUCCESS;
     }
+    if (rawml->frag == NULL) {
+        debug_print("%s", "Missing frag part\n");
+        mobi_buffer_free_null(buf);
+        return MOBI_DATA_CORRUPT;
+    }
     /* parse skeleton data */
-    size_t i = 0, j = 0;
+    size_t i = 0;
+    size_t j = 0;
     size_t curr_position = 0;
     size_t total_fragments_count = rawml->frag->total_entries_count;
     while (i < rawml->skel->entries_count) {
@@ -850,7 +856,13 @@ MOBI_RET mobi_reconstruct_parts(MOBIRawml *rawml) {
         debug_print("%zu\t%s\t%i\t%i\t%i\n", i, entry->label, fragments_count, skel_position, skel_length);
         mobi_buffer_setpos(buf, skel_position);
         
-        MOBIFragment *first_fragment = mobi_list_add(NULL, 0, mobi_buffer_getpointer(buf, skel_length), skel_length, false);
+        unsigned char *frag_buffer = mobi_buffer_getpointer(buf, skel_length);
+        if (frag_buffer == NULL) {
+            debug_print("%s\n", "Fragment data beyond buffer");
+            mobi_buffer_free_null(buf);
+            return MOBI_DATA_CORRUPT;
+        }
+        MOBIFragment *first_fragment = mobi_list_add(NULL, 0, frag_buffer, skel_length, false);
         MOBIFragment *current_fragment = first_fragment;
         while (fragments_count--) {
             entry = &rawml->frag->entries[j];
@@ -925,7 +937,14 @@ MOBI_RET mobi_reconstruct_parts(MOBIRawml *rawml) {
             }
             skel_length += frag_length;
             
-            current_fragment = mobi_list_insert(current_fragment, insert_position, mobi_buffer_getpointer(buf, frag_length), frag_length, false, insert_position);
+            frag_buffer = mobi_buffer_getpointer(buf, frag_length);
+            if (frag_buffer == NULL) {
+                debug_print("%s\n", "Fragment data beyond buffer");
+                mobi_buffer_free_null(buf);
+                mobi_list_del_all(first_fragment);
+                return MOBI_DATA_CORRUPT;
+            }
+            current_fragment = mobi_list_insert(current_fragment, insert_position, frag_buffer, frag_length, false, insert_position);
             j++;
             
         }
@@ -1070,7 +1089,8 @@ MOBI_RET mobi_posfid_to_link(char *link, const MOBIRawml *rawml, const char *val
     str_off[10] = '\0';
     
     /* get file number and id value */
-    uint32_t pos_off, pos_fid;
+    uint32_t pos_off;
+    uint32_t pos_fid;
     MOBI_RET ret = mobi_base32_decode(&pos_off, str_off);
     if (ret != MOBI_SUCCESS) {
         return ret;
@@ -1373,6 +1393,10 @@ MOBI_RET mobi_reconstruct_infl(char *outstring, const MOBIIndx *infl, const MOBI
     }
     for (size_t i = 0; i < infl_count; i++) {
         size_t offset = infl_groups[i];
+        if (offset >= infl->entries_count) {
+            debug_print("%s\n", "Invalid entry offset");
+            return MOBI_DATA_CORRUPT;
+        }
         uint32_t *groups;
         size_t group_cnt = mobi_get_indxentry_tagarray(&groups, &infl->entries[offset], INDX_TAGARR_INFL_GROUPS);
         uint32_t *parts;
@@ -1394,6 +1418,10 @@ MOBI_RET mobi_reconstruct_infl(char *outstring, const MOBIIndx *infl, const MOBI
             
             unsigned char decoded[INDX_INFLBUF_SIZEMAX + 1];
             memset(decoded, 0, INDX_INFLBUF_SIZEMAX + 1);
+            if (parts[j] >= infl->entries_count) {
+                debug_print("%s\n", "Invalid entry offset");
+                return MOBI_DATA_CORRUPT;
+            }
             unsigned char *rule = (unsigned char *) infl->entries[parts[j]].label;
             memcpy(decoded, label, label_length);
             int decoded_length = (int) label_length;
@@ -1464,9 +1492,13 @@ MOBI_RET mobi_reconstruct_infl_v1(char *outstring, MOBITrie * const infl_tree, c
             free(decoded);
             continue;
         }
-        snprintf(infl_tag, INDX_INFLBUF_SIZEMAX, iform_tag, decoded);
+        int n = snprintf(infl_tag, INDX_INFLBUF_SIZEMAX, iform_tag, decoded);
         /* allocated in mobi_trie_get_inflgroups() */
         free(decoded);
+        if (n > INDX_INFLBUF_SIZEMAX) {
+            debug_print("Skipping too long tag: %s\n", infl_tag);
+            continue;
+        }
         outlen += strlen(infl_tag);
         if (outlen > INDX_INFLTAG_SIZEMAX) {
             debug_print("Inflections text in %s too long (%zu)\n", label, outlen);
@@ -1525,14 +1557,14 @@ MOBI_RET mobi_reconstruct_orth(const MOBIRawml *rawml, MOBIFragment *first, size
         const MOBIIndexEntry *orth_entry = &rawml->orth->entries[i];
         const char *label = orth_entry->label;
         uint32_t entry_startpos;
-        MOBI_RET ret = mobi_get_indxentry_tagvalue(&entry_startpos, orth_entry, INDX_TAG_ORTH_STARTPOS);
+        MOBI_RET ret = mobi_get_indxentry_tagvalue(&entry_startpos, orth_entry, INDX_TAG_ORTH_POSITION);
         if (ret != MOBI_SUCCESS) {
             i++;
             continue;
         }
         size_t entry_length = 0;
         uint32_t entry_textlen = 0;
-        mobi_get_indxentry_tagvalue(&entry_textlen, orth_entry, INDX_TAG_ORTH_ENDPOS);
+        mobi_get_indxentry_tagvalue(&entry_textlen, orth_entry, INDX_TAG_ORTH_LENGTH);
         char *start_tag;
         if (entry_textlen == 0) {
             entry_length += start_tag1_len + strlen(label);
@@ -1953,11 +1985,11 @@ MOBI_RET mobi_strip_mobitags(MOBIPart *part) {
         part_size += curr->size;
         
         unsigned char *new_data = malloc(part_size);
-		if (new_data == NULL) {
-			mobi_list_del_all(first);
-			debug_print("%s\n", "Memory allocation failed");
-			return MOBI_MALLOC_FAILED;
-		}
+        if (new_data == NULL) {
+            mobi_list_del_all(first);
+            debug_print("%s\n", "Memory allocation failed");
+            return MOBI_MALLOC_FAILED;
+        }
         unsigned char *data_out = new_data;
         while (first) {
             memcpy(data_out, first->fragment, first->size);

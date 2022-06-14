@@ -1,0 +1,98 @@
+.Dd February 16, 2022
+.Dt mobitool 1 URM
+.Os Unix
+.Sh NAME
+.Nm mobitool
+.Nd Utility for handling MOBI format ebook files.
+.Sh SYNOPSIS
+.Nm
+.if '@XMLWRITER_OPT@'yes' .ig
+.Op Fl cdhimrstuvx7
+..
+.if !'@XMLWRITER_OPT@'yes' .ig
+.Op Fl cdehimrstuvx7
+..
+.Op Fl o Ar dir
+.if !'@ENCRYPTION_OPT@'yes' .ig
+.Op Fl p Ar pid
+.Op Fl P Ar serial
+..
+.Ar file
+.Sh DESCRIPTION
+The program handles .prc, .mobi, .azw, .azw3, .azw4, some .pdb documents. It is powered by
+.Nm libmobi
+library.
+.Pp
+Invoked without arguments prints document metadata and exits.
+.Pp
+A list of flags and their descriptions:
+.Bl -tag -width -indent
+.It Fl c
+dump cover
+.It Fl d
+dump rawml text record
+.if !'@XMLWRITER_OPT@'yes' .ig
+.It Fl e
+convert mobi to epub
+..
+.It Fl h
+show usage summary and exit
+.It Fl i
+print detailed metadata
+.It Fl m
+print records metadata
+.It Fl o Ar dir
+save output to dir folder
+.if !'@ENCRYPTION_OPT@'yes' .ig
+.It Fl p Ar pid
+set pid for decryption
+.It Fl P Ar serial
+set device serial number for decryption
+..
+.It Fl r
+dump raw records
+.It Fl s
+dump recreated source files
+.It Fl t
+split hybrid file into two parts: mobi and azw3
+.It Fl u
+show rusage (diagnostics)
+.It Fl v
+show version and exit
+.It Fl x
+extract conversion source and log (if present)
+.It Fl 7
+parse KF7 part of hybrid file (by default KF8 part is parsed)
+.El
+.Pp
+.Sh EXAMPLES
+The following command decompiles given mobi document. The output folder will be created in /tmp.
+.Pp
+.Dl % mobitool -s -o /tmp example.mobi
+.Pp
+.if !'@XMLWRITER_OPT@'yes' .ig
+The following command converts mobi document to epub format.
+.Pp
+.Dl % mobitool -e example.mobi
+..
+.Sh RETURN VALUES
+The
+.Nm mobitool
+utility returns 0 on success, 1 on error.
+.Sh COPYRIGHT
+Copyright (C) 2014-2022 Bartek Fabiszewski.
+.Pp
+Released under LGPL version 3 or any later (same as
+.Nm libmobi Ns
+).
+.Sh WEB SITE
+Visit http://www.fabiszewski.net for details.
+.Sh DIAGNOSTICS
+For diagnostics
+.Nm libmobi
+must be configured with
+.Fl Fl enable-debug
+option.
+.Sh SEE ALSO
+.Xr mobimeta 1
+.Xr mobidrm 1

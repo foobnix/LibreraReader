@@ -25,7 +25,7 @@
 MOBIData * mobi_init(void) {
     MOBIData *m = NULL;
     m = calloc(1, sizeof(MOBIData));
-	if (m == NULL) return NULL;
+    if (m == NULL) { return NULL; }
     m->use_kf8 = true;
     m->kf8_boundary_offset = MOBI_NOTSET;
     m->drm_key = NULL;
@@ -35,6 +35,7 @@ MOBIData * mobi_init(void) {
     m->eh = NULL;
     m->rec = NULL;
     m->next = NULL;
+    m->internals = NULL;
     return m;
 }
 
@@ -154,6 +155,21 @@ void mobi_free_eh(MOBIData *m) {
 }
 
 /**
+ @brief Free MOBIData structure for currenly unused hybrid part and all its children
+ 
+ @param[in] m MOBIData structure
+ */
+void mobi_free_next(MOBIData *m) {
+    if (m && m->next) {
+        mobi_free_mh(m->next->mh);
+        mobi_free_eh(m->next);
+        free(m->next->rh);
+        free(m->next);
+        m->next = NULL;
+    }
+}
+
+/**
  @brief Free MOBIData structure and all its children
  
  @param[in] m MOBIData structure
@@ -167,16 +183,8 @@ void mobi_free(MOBIData *m) {
     mobi_free_rec(m);
     free(m->ph);
     free(m->rh);
-    if (m->next) {
-        mobi_free_mh(m->next->mh);
-        mobi_free_eh(m->next);
-        free(m->next->rh);
-        free(m->next);
-        m->next = NULL;
-    }
-    if (m->drm_key) {
-        free(m->drm_key);
-    }
+    mobi_free_next(m);
+    mobi_free_internals(m);
     free(m);
     m = NULL;
 }

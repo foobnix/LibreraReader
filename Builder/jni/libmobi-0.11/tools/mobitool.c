@@ -13,6 +13,7 @@
  */
 
 #include <string.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
@@ -20,9 +21,7 @@
 /* include libmobi header */
 #include <mobi.h>
 #include "common.h"
-#ifdef HAVE_CONFIG_H
-# include "../config.h"
-#endif
+
 /* miniz file is needed for EPUB creation */
 #ifdef USE_XMLWRITER
 # define MINIZ_HEADER_FILE_ONLY
@@ -53,9 +52,9 @@
 #endif
 
 #if HAVE_ATTRIBUTE_NORETURN 
-void exit_with_usage(const char *progname) __attribute__((noreturn));
+static void exit_with_usage(const char *progname) __attribute__((noreturn));
 #else
-void exit_with_usage(const char *progname);
+static void exit_with_usage(const char *progname);
 #endif
 
 #define EPUB_CONTAINER "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
@@ -67,24 +66,23 @@ void exit_with_usage(const char *progname);
 #define EPUB_MIMETYPE "application/epub+zip"
 
 /* command line options */
-int dump_cover_opt = 0;
-int dump_rawml_opt = 0;
-int create_epub_opt = 0;
-int print_extended_meta_opt = 0;
-int print_rec_meta_opt = 0;
-int dump_rec_opt = 0;
-int parse_kf7_opt = 0;
-int dump_parts_opt = 0;
-int print_rusage_opt = 0;
-int outdir_opt = 0;
-int extract_source_opt = 0;
+bool dump_cover_opt = false;
+bool dump_rawml_opt = false;
+bool create_epub_opt = false;
+bool print_extended_meta_opt = false;
+bool print_rec_meta_opt = false;
+bool dump_rec_opt = false;
+bool parse_kf7_opt = false;
+bool dump_parts_opt = false;
+bool print_rusage_opt = false;
+bool extract_source_opt = false;
+bool split_opt = false;
 #ifdef USE_ENCRYPTION
-int setpid_opt = 0;
-int setserial_opt = 0;
+bool setpid_opt = false;
+bool setserial_opt = false;
 #endif
 
 /* options values */
-char outdir[FILENAME_MAX];
 #ifdef USE_ENCRYPTION
 char *pid = NULL;
 char *serial = NULL;
@@ -94,7 +92,7 @@ char *serial = NULL;
  @brief Print all loaded headers meta information
  @param[in] m MOBIData structure
  */
-void print_meta(const MOBIData *m) {
+static void print_meta(const MOBIData *m) {
     /* Full name stored at offset given in MOBI header */
     if (m->mh && m->mh->full_name) {
         char full_name[FULLNAME_MAX + 1];
@@ -225,7 +223,7 @@ void print_meta(const MOBIData *m) {
  @brief Print meta data of each document record
  @param[in] m MOBIData structure
  */
-void print_records_meta(const MOBIData *m) {
+static void print_records_meta(const MOBIData *m) {
     /* Linked list of MOBIPdbRecord structures holds records data and metadata */
     const MOBIPdbRecord *currec = m->rec;
     while (currec != NULL) {
@@ -241,25 +239,27 @@ void print_records_meta(const MOBIData *m) {
 /**
  @brief Create new path. Name is derived from input file path.
         [dirname]/[basename][suffix]
- @param[out] newpath Created path, buffer must have FILENAME_MAX size
+ @param[out] newpath Created path
+ @param[in] buf_len Created path buffer size
  @param[in] fullpath Input file path
  @param[in] suffix Path name suffix
+ @return SUCCESS or ERROR
  */
-int create_path(char *newpath, const char *fullpath, const char *suffix) {
+static int create_path(char *newpath, const size_t buf_len, const char *fullpath, const char *suffix) {
     char dirname[FILENAME_MAX];
     char basename[FILENAME_MAX];
-    split_fullpath(fullpath, dirname, basename);
+    split_fullpath(fullpath, dirname, basename, FILENAME_MAX);
     int n;
     if (outdir_opt) {
-        n = snprintf(newpath, FILENAME_MAX, "%s%s%s", outdir, basename, suffix);
+        n = snprintf(newpath, buf_len, "%s%s%s", outdir, basename, suffix);
     } else {
-        n = snprintf(newpath, FILENAME_MAX, "%s%s%s", dirname, basename, suffix);
+        n = snprintf(newpath, buf_len, "%s%s%s", dirname, basename, suffix);
     }
     if (n < 0) {
         printf("Creating file name failed\n");
         return ERROR;
     }
-    if ((size_t) n > FILENAME_MAX) {
+    if ((size_t) n >= buf_len) {
         printf("File name too long\n");
         return ERROR;
     }
@@ -269,12 +269,14 @@ int create_path(char *newpath, const char *fullpath, const char *suffix) {
 /**
  @brief Create directory. Path is derived from input file path.
         [dirname]/[basename][suffix]
- @param[out] newdir Created directory path, buffer must have FILENAME_MAX size
+ @param[out] newdir Created directory path
+ @param[in] buf_len Created directory buffer size
  @param[in] fullpath Input file path
  @param[in] suffix Directory name suffix
+ @return SUCCESS or ERROR
  */
-int create_dir(char *newdir, const char *fullpath, const char *suffix) {
-    if (create_path(newdir, fullpath, suffix) == ERROR) {
+static int create_dir(char *newdir, const size_t buf_len, const char *fullpath, const char *suffix) {
+    if (create_path(newdir, buf_len, fullpath, suffix) == ERROR) {
         return ERROR;
     }
     return make_directory(newdir);
@@ -284,10 +286,11 @@ int create_dir(char *newdir, const char *fullpath, const char *suffix) {
  @brief Dump each document record to a file into created folder
  @param[in] m MOBIData structure
  @param[in] fullpath File path will be parsed to build basenames of dumped records
+ @return SUCCESS or ERROR
  */
-int dump_records(const MOBIData *m, const char *fullpath) {
+static int dump_records(const MOBIData *m, const char *fullpath) {
     char newdir[FILENAME_MAX];
-    if (create_dir(newdir, fullpath, "_records") == ERROR) {
+    if (create_dir(newdir, sizeof(newdir), fullpath, "_records") == ERROR) {
         return ERROR;
     }
     printf("Saving records to %s\n", newdir);
@@ -310,10 +313,11 @@ int dump_records(const MOBIData *m, const char *fullpath) {
  @brief Dump all text records, decompressed and concatenated, to a single rawml file
  @param[in] m MOBIData structure
  @param[in] fullpath File path will be parsed to create a new name for saved file
+ @return SUCCESS or ERROR
  */
-int dump_rawml(const MOBIData *m, const char *fullpath) {
+static int dump_rawml(const MOBIData *m, const char *fullpath) {
     char newpath[FILENAME_MAX];
-    if (create_path(newpath, fullpath, ".rawml") == ERROR) {
+    if (create_path(newpath, sizeof(newpath), fullpath, ".rawml") == ERROR) {
         return ERROR;
     }
     printf("Saving rawml to %s\n", newpath);
@@ -337,8 +341,9 @@ int dump_rawml(const MOBIData *m, const char *fullpath) {
  @brief Dump cover record
  @param[in] m MOBIData structure
  @param[in] fullpath File path will be parsed to create a new name for saved file
+ @return SUCCESS or ERROR
  */
-int dump_cover(const MOBIData *m, const char *fullpath) {
+static int dump_cover(const MOBIData *m, const char *fullpath) {
     
     MOBIPdbRecord *record = NULL;
     MOBIExthHeader *exth = mobi_get_exthrecord_by_tag(m, EXTH_COVEROFFSET);
@@ -377,7 +382,7 @@ int dump_cover(const MOBIData *m, const char *fullpath) {
     snprintf(suffix, sizeof(suffix), "_cover.%s", ext);
 
     char cover_path[FILENAME_MAX];
-    if (create_path(cover_path, fullpath, suffix) == ERROR) {
+    if (create_path(cover_path, sizeof(cover_path), fullpath, suffix) == ERROR) {
         return ERROR;
     }
     
@@ -390,15 +395,16 @@ int dump_cover(const MOBIData *m, const char *fullpath) {
  @brief Dump parsed markup files and resources into created folder
  @param[in] rawml MOBIRawml structure holding parsed records
  @param[in] fullpath File path will be parsed to build basenames of dumped records
+ @return SUCCESS or ERROR
  */
-int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
+static int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
     if (rawml == NULL) {
         printf("Rawml structure not initialized\n");
         return ERROR;
     }
 
     char newdir[FILENAME_MAX];
-    if (create_dir(newdir, fullpath, "_markup") == ERROR) {
+    if (create_dir(newdir, sizeof(newdir), fullpath, "_markup") == ERROR) {
         return ERROR;
     }
     printf("Saving markup to %s\n", newdir);
@@ -406,7 +412,7 @@ int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
     if (create_epub_opt) {
         /* create META_INF directory */
         char opfdir[FILENAME_MAX];
-        if (create_subdir(opfdir, newdir, "META-INF") == ERROR) {
+        if (create_subdir(opfdir, sizeof(opfdir), newdir, "META-INF") == ERROR) {
             return ERROR;
         }
 
@@ -421,7 +427,7 @@ int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
         }
 
         /* create OEBPS directory */
-        if (create_subdir(opfdir, newdir, "OEBPS") == ERROR) {
+        if (create_subdir(opfdir, sizeof(opfdir), newdir, "OEBPS") == ERROR) {
             return ERROR;
         }
 
@@ -474,7 +480,7 @@ int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
                     printf("Creating file name failed\n");
                     return ERROR;
                 }
-                if ((size_t) n > sizeof(partname)) {
+                if ((size_t) n >= sizeof(partname)) {
                     printf("File name too long: %s\n", partname);
                     return ERROR;
                 }
@@ -507,15 +513,16 @@ int dump_rawml_parts(const MOBIRawml *rawml, const char *fullpath) {
  
  @param[in] rawml MOBIRawml structure holding parsed records
  @param[in] fullpath File path will be parsed to build basenames of dumped records
+ @return SUCCESS or ERROR
  */
-int create_epub(const MOBIRawml *rawml, const char *fullpath) {
+static int create_epub(const MOBIRawml *rawml, const char *fullpath) {
     if (rawml == NULL) {
         printf("Rawml structure not initialized\n");
         return ERROR;
     }
 
     char zipfile[FILENAME_MAX];
-    if (create_path(zipfile, fullpath, ".epub") == ERROR) {
+    if (create_path(zipfile, sizeof(zipfile), fullpath, ".epub") == ERROR) {
         return ERROR;
     }
     printf("Saving EPUB to %s\n", zipfile);
@@ -616,8 +623,9 @@ int create_epub(const MOBIRawml *rawml, const char *fullpath) {
  @brief Dump SRCS record
  @param[in] m MOBIData structure
  @param[in] fullpath Full file path
+ @return SUCCESS or ERROR
  */
-int dump_embedded_source(const MOBIData *m, const char *fullpath) {
+static int dump_embedded_source(const MOBIData *m, const char *fullpath) {
     /* Try to get embedded source */
     unsigned char *data = NULL;
     size_t size = 0;
@@ -632,7 +640,7 @@ int dump_embedded_source(const MOBIData *m, const char *fullpath) {
     }
 
     char newdir[FILENAME_MAX];
-    if (create_dir(newdir, fullpath, "_source") == ERROR) {
+    if (create_dir(newdir, sizeof(newdir), fullpath, "_source") == ERROR) {
         return ERROR;
     }
 
@@ -648,13 +656,13 @@ int dump_embedded_source(const MOBIData *m, const char *fullpath) {
 
     char srcsname[FILENAME_MAX];
     char basename[FILENAME_MAX];
-    split_fullpath(fullpath, NULL, basename);
+    split_fullpath(fullpath, NULL, basename, FILENAME_MAX);
     int n = snprintf(srcsname, sizeof(srcsname), "%s_source.%s", basename, ext);
     if (n < 0) {
         printf("Creating file name failed\n");
         return ERROR;
     }
-    if ((size_t) n > sizeof(srcsname)) {
+    if ((size_t) n >= sizeof(srcsname)) {
         printf("File name too long\n");
         return ERROR;
     }
@@ -681,7 +689,7 @@ int dump_embedded_source(const MOBIData *m, const char *fullpath) {
         printf("Creating file name failed\n");
         return ERROR;
     }
-    if ((size_t) n > sizeof(srcsname)) {
+    if ((size_t) n >= sizeof(srcsname)) {
         printf("File name too long\n");
         return ERROR;
     }
@@ -694,10 +702,72 @@ int dump_embedded_source(const MOBIData *m, const char *fullpath) {
 }
 
 /**
+ @brief Split hybrid file in two parts
+ @param[in] fullpath Full file path
+ @return SUCCESS or ERROR
+ */
+static int split_hybrid(const char *fullpath) {
+    
+    static int run_count = 0;
+    run_count++;
+    
+    bool use_kf8 = run_count == 1 ? false : true;
+    
+    /* Initialize main MOBIData structure */
+    MOBIData *m = mobi_init();
+    if (m == NULL) {
+        printf("Memory allocation failed\n");
+        return ERROR;
+    }
+
+    errno = 0;
+    FILE *file = fopen(fullpath, "rb");
+    if (file == NULL) {
+        int errsv = errno;
+        printf("Error opening file: %s (%s)\n", fullpath, strerror(errsv));
+        mobi_free(m);
+        return ERROR;
+    }
+    /* MOBIData structure will be filled with loaded document data and metadata */
+    MOBI_RET mobi_ret = mobi_load_file(m, file);
+    fclose(file);
+    
+    if (mobi_ret != MOBI_SUCCESS) {
+        printf("Error while loading document (%s)\n", libmobi_msg(mobi_ret));
+        mobi_free(m);
+        return ERROR;
+    }
+    
+    mobi_ret = mobi_remove_hybrid_part(m, use_kf8);
+    if (mobi_ret != MOBI_SUCCESS) {
+        printf("Error removing hybrid part (%s)\n", libmobi_msg(mobi_ret));
+        mobi_free(m);
+        return ERROR;
+    }
+    
+    if (save_mobi(m, fullpath, "split") != SUCCESS) {
+        printf("Error saving file\n");
+        mobi_free(m);
+        return ERROR;
+    }
+    
+    /* Free MOBIData structure */
+    mobi_free(m);
+    
+    /* Proceed with KF8 part */
+    if (use_kf8 == false) {
+        split_hybrid(fullpath);
+    }
+    
+    return SUCCESS;
+}
+
+/**
  @brief Main routine that calls optional subroutines
  @param[in] fullpath Full file path
+ @return SUCCESS or ERROR
  */
-int loadfilename(const char *fullpath) {
+static int loadfilename(const char *fullpath) {
     MOBI_RET mobi_ret;
     int ret = SUCCESS;
     /* Initialize main MOBIData structure */
@@ -722,11 +792,6 @@ int loadfilename(const char *fullpath) {
     /* MOBIData structure will be filled with loaded document data and metadata */
     mobi_ret = mobi_load_file(m, file);
     fclose(file);
-    
-    if (create_epub_opt && mobi_is_replica(m)) {
-        create_epub_opt = 0;
-        printf("\nWarning: Can't create EPUB format from Print Replica book (ignoring -e argument)\n\n");
-    }
 
     /* Try to print basic metadata, even if further loading failed */
     /* In case of some unsupported formats it may still print some useful info */
@@ -736,6 +801,11 @@ int loadfilename(const char *fullpath) {
         printf("Error while loading document (%s)\n", libmobi_msg(mobi_ret));
         mobi_free(m);
         return ERROR;
+    }
+    
+    if (create_epub_opt && mobi_is_replica(m)) {
+        create_epub_opt = false;
+        printf("\nWarning: Can't create EPUB format from Print Replica book (ignoring -e argument)\n\n");
     }
     
     if (!print_extended_meta_opt) {
@@ -812,6 +882,10 @@ int loadfilename(const char *fullpath) {
     if (dump_cover_opt) {
         ret = dump_cover(m, fullpath);
     }
+    if (split_opt && !mobi_is_hybrid(m)) {
+        printf("File is not a hybrid, skip splitting\n");
+        split_opt = false;
+    }
     /* Free MOBIData structure */
     mobi_free(m);
     return ret;
@@ -821,14 +895,15 @@ int loadfilename(const char *fullpath) {
  @brief Print usage info
  @param[in] progname Executed program name
  */
-void exit_with_usage(const char *progname) {
-    printf("usage: %s [-cd" PRINT_EPUB_ARG "imrs" PRINT_RUSAGE_ARG "vx7] [-o dir]" PRINT_ENC_USG " filename\n", progname);
+static void exit_with_usage(const char *progname) {
+    printf("usage: %s [-cd" PRINT_EPUB_ARG "himrst" PRINT_RUSAGE_ARG "vx7] [-o dir]" PRINT_ENC_USG " filename\n", progname);
     printf("       without arguments prints document metadata and exits\n");
     printf("       -c        dump cover\n");
     printf("       -d        dump rawml text record\n");
 #ifdef USE_XMLWRITER
     printf("       -e        create EPUB file (with -s will dump EPUB source)\n");
 #endif
+    printf("       -h        show this usage summary and exit\n");
     printf("       -i        print detailed metadata\n");
     printf("       -m        print records metadata\n");
     printf("       -o dir    save output to dir folder\n");
@@ -838,6 +913,7 @@ void exit_with_usage(const char *progname) {
 #endif
     printf("       -r        dump raw records\n");
     printf("       -s        dump recreated source files\n");
+    printf("       -t        split hybrid file into two parts\n");
 #ifdef HAVE_SYS_RESOURCE_H
     printf("       -u        show rusage\n");
 #endif
@@ -849,6 +925,10 @@ void exit_with_usage(const char *progname) {
 
 /**
  @brief Main
+ 
+ @param[in] argc Arguments count
+ @param[in] argv Arguments array
+ @return SUCCESS (0) or ERROR (1)
  */
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -856,33 +936,38 @@ int main(int argc, char *argv[]) {
     }
     opterr = 0;
     int c;
-    while((c = getopt(argc, argv, "cd" PRINT_EPUB_ARG "imo:" PRINT_ENC_ARG "rs" PRINT_RUSAGE_ARG "vx7")) != -1)
-        switch(c) {
+    while ((c = getopt(argc, argv, "cd" PRINT_EPUB_ARG "himo:" PRINT_ENC_ARG "rst" PRINT_RUSAGE_ARG "vx7")) != -1) {
+        switch (c) {
             case 'c':
-                dump_cover_opt = 1;
+                dump_cover_opt = true;
                 break;
             case 'd':
-                dump_rawml_opt = 1;
+                dump_rawml_opt = true;
                 break;
 #ifdef USE_XMLWRITER
             case 'e':
-                create_epub_opt = 1;
+                create_epub_opt = true;
                 break;
 #endif
             case 'i':
-                print_extended_meta_opt = 1;
+                print_extended_meta_opt = true;
                 break;
             case 'm':
-                print_rec_meta_opt = 1;
+                print_rec_meta_opt = true;
                 break;
             case 'o':
-                outdir_opt = 1;
+                outdir_opt = true;
                 size_t outdir_length = strlen(optarg);
+                if (outdir_length == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", c);
+                    return ERROR;
+                }
                 if (outdir_length >= FILENAME_MAX - 1) {
                     printf("Output directory name too long\n");
                     return ERROR;
                 }
                 strncpy(outdir, optarg, FILENAME_MAX - 1);
+                normalize_path(outdir);
                 if (!dir_exists(outdir)) {
                     printf("Output directory is not valid\n");
                     return ERROR;
@@ -899,42 +984,47 @@ int main(int argc, char *argv[]) {
                 break;
 #ifdef USE_ENCRYPTION
             case 'p':
-                setpid_opt = 1;
+                if (strlen(optarg) == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", c);
+                    return ERROR;
+                }
+                setpid_opt = true;
                 pid = optarg;
                 break;
             case 'P':
-                setserial_opt = 1;
+                if (strlen(optarg) == 2 && optarg[0] == '-') {
+                    printf("Option -%c requires an argument.\n", c);
+                    return ERROR;
+                }
+                setserial_opt = true;
                 serial = optarg;
                 break;
 #endif
             case 'r':
-                dump_rec_opt = 1;
+                dump_rec_opt = true;
                 break;
             case 's':
-                dump_parts_opt = 1;
+                dump_parts_opt = true;
+                break;
+            case 't':
+                split_opt = true;
                 break;
 #ifdef HAVE_SYS_RESOURCE_H
             case 'u':
-                print_rusage_opt = 1;
+                print_rusage_opt = true;
                 break;
 #endif
             case 'v':
                 printf("mobitool build: " __DATE__ " " __TIME__ " (" COMPILER ")\n");
                 printf("libmobi: %s\n", mobi_version());
-                return 0;
+                return SUCCESS;
             case 'x':
-                extract_source_opt = 1;
+                extract_source_opt = true;
                 break;
             case '7':
-                parse_kf7_opt = 1;
+                parse_kf7_opt = true;
                 break;
             case '?':
-#ifdef USE_ENCRYPTION
-                if (optopt == 'p') {
-                    fprintf(stderr, "Option -%c requires an argument.\n", optopt);
-                }
-                else
-#endif
                 if (isprint(optopt)) {
                     fprintf(stderr, "Unknown option `-%c'\n", optopt);
                 }
@@ -942,18 +1032,27 @@ int main(int argc, char *argv[]) {
                     fprintf(stderr, "Unknown option character `\\x%x'\n", optopt);
                 }
                 exit_with_usage(argv[0]);
+            case 'h':
             default:
                 exit_with_usage(argv[0]);
         }
+    }
     if (argc <= optind) {
         printf("Missing filename\n");
         exit_with_usage(argv[0]);
     }
-    int ret = 0;
+    
+    int ret = SUCCESS;
     char filename[FILENAME_MAX];
     strncpy(filename, argv[optind], FILENAME_MAX - 1);
     filename[FILENAME_MAX - 1] = '\0';
+    normalize_path(filename);
+    
     ret = loadfilename(filename);
+    if (split_opt) {
+        printf("\nSplitting hybrid file...\n");
+        ret = split_hybrid(filename);
+    }
 #ifdef HAVE_SYS_RESOURCE_H
     if (print_rusage_opt) {
         /* rusage */
