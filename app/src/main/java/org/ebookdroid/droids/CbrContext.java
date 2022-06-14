@@ -3,6 +3,7 @@ package org.ebookdroid.droids;
 import com.foobnix.android.utils.LOG;
 import com.foobnix.ext.CacheZipUtils;
 import com.foobnix.ext.CbzCbrExtractor;
+import com.github.junrar.Junrar;
 
 import org.ebookdroid.core.codec.CodecDocument;
 import org.ebookdroid.droids.mupdf.codec.MuPdfDocument;
@@ -10,7 +11,7 @@ import org.ebookdroid.droids.mupdf.codec.PdfContext;
 
 import java.io.File;
 
-import junrar.ExtractArchive;
+
 
 public class CbrContext extends PdfContext {
 
@@ -39,7 +40,7 @@ public class CbrContext extends PdfContext {
                     cbrDir.mkdirs();
 
                     try {
-                        ExtractArchive.extractArchive(fileName, extractDir, password);
+                        Junrar.extract(fileName,extractDir);
                     } catch (OutOfMemoryError e) {
                         LOG.e(e);
                     }

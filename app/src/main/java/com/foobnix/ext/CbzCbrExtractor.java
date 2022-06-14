@@ -6,6 +6,9 @@ import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
 import com.foobnix.sys.ZipArchiveInputStream;
 import com.foobnix.sys.Zips;
+import com.github.junrar.Archive;
+import com.github.junrar.impl.FileVolumeManager;
+import com.github.junrar.rarfile.FileHeader;
 
 import org.ebookdroid.BookType;
 
@@ -18,8 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import junrar.Archive;
-import junrar.rarfile.FileHeader;
+
 
 public class CbzCbrExtractor {
 
@@ -51,7 +53,7 @@ public class CbzCbrExtractor {
                 zipInputStream.close();
 
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
+                Archive archive = new Archive(new FileVolumeManager(new File(path)));
 
                 for (FileHeader it : archive.getFileHeaders()) {
                     count++;
@@ -99,7 +101,7 @@ public class CbzCbrExtractor {
                 zipInputStream.close();
 
             } else if (BookType.CBR.is(path)) {
-                Archive archive = new Archive(new File(path));
+                Archive archive = new Archive(new FileVolumeManager(new File(path)));
 
                 List<FileHeader> fileHeaders = archive.getFileHeaders();
                 Collections.sort(fileHeaders, new Comparator<FileHeader>() {

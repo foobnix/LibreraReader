@@ -12,7 +12,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -20,7 +19,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.text.format.Formatter;
 import android.util.Base64;
@@ -75,7 +73,6 @@ import com.foobnix.sys.TempHolder;
 import com.foobnix.ui2.AppDB;
 import com.foobnix.zipmanager.ZipDialog;
 
-
 import org.ebookdroid.BookType;
 import org.ebookdroid.LibreraApp;
 import org.ebookdroid.core.codec.CodecDocument;
@@ -92,8 +89,6 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -276,7 +271,9 @@ public class ExtUtils {
         }
         if (AppState.get().supportCBZ) {
             result.add(".cbz");
-            result.add(".cbr");
+            if (!AppsConfig.IS_FDROID) {
+                result.add(".cbr");
+            }
         }
         if (AppState.get().supportZIP) {
             result.add(".zip");
@@ -1919,8 +1916,6 @@ public class ExtUtils {
 
         return encoding == null ? AppState.get().characterEncoding : encoding;
     }
-
-
 
 
 //

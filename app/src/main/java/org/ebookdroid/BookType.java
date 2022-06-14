@@ -191,7 +191,12 @@ public enum BookType {
         if (path == null) {
             return false;
         }
+
         path = path.toLowerCase(Locale.US);
+
+        if(AppsConfig.IS_FDROID && path.endsWith(".cbr")){
+            return false;
+        }
 
         for (final BookType a : values()) {
             for (final String ext : a.extensions) {
