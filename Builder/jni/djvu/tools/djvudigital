@@ -1,0 +1,704 @@
+#!/bin/sh
+#C--------------------------------------------------------------------
+#C- DjVuLibre-3.5
+#C- Copyright (c) 2002  Leon Bottou and Yann Le Cun.
+#C- Copyright (c) 2001  AT&T
+#C-
+#C- This software is subject to, and may be distributed under, the
+#C- GNU General Public License, either Version 2 of the license,
+#C- or (at your option) any later version. The license should have
+#C- accompanied the software or you may obtain a copy of the license
+#C- from the Free Software Foundation at http://www.fsf.org .
+#C-
+#C- This program is distributed in the hope that it will be useful,
+#C- but WITHOUT ANY WARRANTY; without even the implied warranty of
+#C- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#C- GNU General Public License for more details.
+#C-
+#C- DjVuLibre-3.5 is derived from the DjVu(r) Reference Library from
+#C- Lizardtech Software.  Lizardtech Software has authorized us to
+#C- replace the original DjVu(r) Reference Library notice by the following
+#C- text (see doc/lizard2002.djvu and doc/lizardtech2007.djvu):
+#C-
+#C-  ------------------------------------------------------------------
+#C- | DjVu (r) Reference Library (v. 3.5)
+#C- | Copyright (c) 1999-2001 LizardTech, Inc. All Rights Reserved.
+#C- | The DjVu Reference Library is protected by U.S. Pat. No.
+#C- | 6,058,214 and patents pending.
+#C- |
+#C- | This software is subject to, and may be distributed under, the
+#C- | GNU General Public License, either Version 2 of the license,
+#C- | or (at your option) any later version. The license should have
+#C- | accompanied the software or you may obtain a copy of the license
+#C- | from the Free Software Foundation at http://www.fsf.org .
+#C- |
+#C- | The computer code originally released by LizardTech under this
+#C- | license and unmodified by other parties is deemed "the LIZARDTECH
+#C- | ORIGINAL CODE."  Subject to any third party intellectual property
+#C- | claims, LizardTech grants recipient a worldwide, royalty-free, 
+#C- | non-exclusive license to make, use, sell, or otherwise dispose of 
+#C- | the LIZARDTECH ORIGINAL CODE or of programs derived from the 
+#C- | LIZARDTECH ORIGINAL CODE in compliance with the terms of the GNU 
+#C- | General Public License.   This grant only confers the right to 
+#C- | infringe patent claims underlying the LIZARDTECH ORIGINAL CODE to 
+#C- | the extent such infringement is reasonably necessary to enable 
+#C- | recipient to make, have made, practice, sell, or otherwise dispose 
+#C- | of the LIZARDTECH ORIGINAL CODE (or portions thereof) and not to 
+#C- | any greater extent that may be necessary to utilize further 
+#C- | modifications or combinations.
+#C- |
+#C- | The LIZARDTECH ORIGINAL CODE is provided "AS IS" WITHOUT WARRANTY
+#C- | OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+#C- | TO ANY WARRANTY OF NON-INFRINGEMENT, OR ANY IMPLIED WARRANTY OF
+#C- | MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+#C- +------------------------------------------------------------------
+#C--------------------------------------------------------------------
+
+
+# Step 1a -- temporary directory
+
+tempdir=`mktemp -d --tmpdir djXXXXXX 2>/dev/null` || tempdir=''
+while [ ! -d "$tempdir" -o ! -r "$tempdir" ] ; do
+    tempdir="/tmp/dj"`awk 'BEGIN{srand();printf("%d",rand()*100000)}'`
+    mkdir "$tempdir" || tempdir=''
+done
+trap 'rm -rf 2>/dev/null "$tempdir"' EXIT INT HUP QUIT
+
+
+# Step 1b -- utilities
+
+usage()
+{
+    cat 1>&2 <<\END
+Usage:  djvudigital [options] inputfile [outputfile]
+More information is displayed by typing
+    djvudigital --help
+END
+    exit 10
+}
+
+getarg()
+{
+        echo "$1" | sed -e 's/^[^=]*=//'
+}
+
+getargs()
+{
+        echo "$1" | sed -e 's/^[^=]*=//' -e 's/,/ /g'
+}
+
+pathexpand()
+{
+    tmpvar="$PATH"
+    tmpdir=
+    while [ -n "$tmpvar" ]
+    do
+      IFS=':' read tmpdir tmpvar <<EOF
+$tmpvar
+EOF
+      test -x "$tmpdir/$1" && echo "$tmpdir/$1"
+    done
+}
+
+psdvifix=
+checkpsdvifix()
+{
+    if [ -z "$psdvifix" ] 
+    then
+        psdvifix=psdvifix.ps
+        if ( "$gsdjvu" 2>&1 -dNODISPLAY -f psdvifix.ps -c quit | \
+              grep -q /undefinedfilename )
+        then
+            psdvifix=no
+        elif ( "$gsdjvu" 2>&1 -dNODISPLAY -f psdvifix.ps -c quit | \
+              grep -q WRITESYSTEMDICT )
+        then
+            psdvifix=no
+        fi
+    fi
+    test "$psdvifix" != no
+}
+
+djvutext=
+checkps2utf8()
+{
+    if [ -z "$djvutext" ] 
+    then
+        djvutext=no
+        if ( "$gsdjvu" 2>&1 -dNODISPLAY -c '(ps2utf8.ps) runlibfile quit' | \
+              grep -q WRITESYSTEMDICT )
+        then
+            djvutext="$tempdir/djvutext.ps"
+            cat > $djvutext <<\EOF
+(ps2utf8.ps) runlibfile currentglobal /setglobal load true setglobal 
+.ps2utf8 begin /onpage { } bind def /onfont { pop pop pop } bind def
+/onmark { pop pop pop pop currentx currenty currentpoint 
+.djvutextmark } bind def end exec
+EOF
+        fi
+    fi
+    test "$djvutext" != no
+}
+
+
+
+
+# Step 2a -- locate gsdjvu executable
+
+gsdjvu=
+while read gs
+do
+  if [ -z "$gsdjvu" ] && ( "$gs" -h 2>&1 | grep -q djvusep )
+  then
+     gsdjvu="$gs"
+  fi
+done <<EOF
+${GSDJVU}
+`pathexpand gs`
+`pathexpand gsdjvu`
+EOF
+
+if [ -z "$gsdjvu" ]
+then
+    cat 1>&2 <<\EOF
+djvudigital: cannot locate suitable ghostscript executable.
++--------------------------------------------------------------------+
+| DjVuDigital relies on a special ghostscript device driver, but     |
+| could not find a ghostscript executable that implement this driver.|
+| Please visit http://djvu.sourceforge.net/gsdjvu.html.              |
++--------------------------------------------------------------------+
+EOF
+    exit 10
+fi
+
+# Step 2b -- locate csepdjvu executable
+
+csepdjvu=
+while read cs
+do
+  if [ -z "$csepdjvu" ] && ( "$cs" -h 2>&1 | grep -q quality )
+  then
+      csepdjvu="$cs"
+  fi
+done <<EOF
+${CSEPDJVU}
+`pathexpand csepdjvu`
+`pathexpand msepdjvu`
+EOF
+
+if [ -z "$csepdjvu" ]
+then
+    cat 1>&2 <<\EOF
+djvudigital: cannot locate csepdjvu executable.
++--------------------------------------------------------------------+
+| DjVuDigital was not able to locate the djvulibre tool "csepdjvu".   |
+| Please make sure that the djvulibre tools are properly installed.  |
++--------------------------------------------------------------------+
+EOF
+    exit 10
+fi
+
+# Step 2c -- locate djvused executable
+
+djvused=
+while read ds
+do
+    if [ -z "$djvused" ] && ( "$ds" 2>&1 | grep -q -i djvulibre )
+    then
+        djvused="$ds"
+    fi
+done <<EOF
+${DJVUSED}
+`pathexpand djvused`
+EOF
+
+# Step 2d -- locate pdftotext executable
+
+pdftotext=
+while read pt
+do
+  if [ -z "$pdftotext" ] && \
+     ( "$pt" -bbox foo.pdf 2>&1 | grep -q foo.pdf )
+     ( "$pt" -v 2>&1 | grep -q Poppler )
+  then
+      pdftotext="$pt"
+  fi
+done <<EOF
+${PDFTOTEXT}
+`pathexpand pdftotext`
+EOF
+
+
+# Step 3 -- process arguments
+
+gsarg0="-sDEVICE=djvusep -dNOPAUSE -dBATCH -dSAFER"
+gsarg1=
+gsarg2=
+csepargs=
+dpi="300"
+gsprinted="-dPrinted"
+gsepsf="-dEPSCrop"
+gsverbosity=
+csepverbosity='-v'
+dsedverbosity=
+infile=
+outfile=
+run=
+sepfile=
+popplertext=0
+popplermeta=0
+
+for n
+do
+  case $n in 
+      --*) 
+          ;;
+      -*)  
+          n="-$n" 
+          ;;
+  esac
+  case $n in
+      --help)
+          man djvudigital
+          exit 10
+          ;;
+      --check)
+          echo 1>&2 "Using: $gsdjvu"
+          echo 1>&2 "  and: $csepdjvu"
+          test -n "$djvused" && echo 1>&2 "  and: $djvused"
+          test -n "$pdftotext" && echo 1>&2 "  and: $pdftotext"
+          exit 0
+          ;;
+      --dpi=[0-9]*)
+          dpi="`getarg $n`"
+          ;;
+      --verbose|--v)
+          gsverbosity=''
+          csepverbosity='-vv'
+          dsedverbosity='-v'
+          ;;
+      --dryrun)
+          run="echo +"
+          ;;
+      --sepfile)
+          sepfile=yes
+          ;;
+      --quiet|--q)
+          gsverbosity='-q'
+          csepverbosity=''
+          ;;
+      --psrotate=0)
+          gsarg2="-c << /Orientation 0 >> setpagedevice"
+          ;;
+      --psrotate=90)
+          gsarg2="-c << /Orientation 3 >> setpagedevice"
+          ;;
+      --psrotate=180)
+          gsarg2="-c << /Orientation 2 >> setpagedevice"
+          ;;
+      --psrotate=270)
+          gsarg2="-c << /Orientation 1 >> setpagedevice"
+          ;;
+      --epsf=no)
+          gsepsf=
+          ;;
+      --epsf=ignore)
+          gsepsf="-dNOEPS"
+          ;;
+      --epsf=fit)
+          gsepsf="-dEPSFitPage"
+          ;;
+      --epsf=crop)
+          gsepsf="-dEPSCrop"
+          ;;
+      --words)
+          gsarg0="$gsarg0 -dProvideUnicode -dExtractText"
+          if checkpsdvifix; then
+            gsarg1="-f $psdvifix"
+          elif checkps2utf8; then
+            # Modern gs do not like DELAYBIND
+            gsarg0="$gsarg0 -dDELAYBIND -dWRITESYSTEMDICT"
+            gsarg1="-f $djvutext"
+          fi
+          ;;
+      --lines)
+          gsarg0="$gsarg0 -dProvideUnicode -dExtractText"
+          if checkpsdvifix; then
+            gsarg1="-f $psdvifix"
+          elif checkps2utf8; then
+            # Modern gs do not like DELAYBIND
+            gsarg0="$gsarg0 -dDELAYBIND -dWRITESYSTEMDICT"
+            gsarg1="-f $djvutext"
+          fi
+          csepargs="$csepargs -t"
+          ;;
+      --poppler=*)
+          for arg in `getargs $n` ; do
+            case "$arg" in 
+              text) popplertext=1 ;;
+              meta) popplermeta=1 ;;
+                 *) echo 1>&2 "djvudigital: unrecognized option --poppler=$arg"
+                    usage ;; 
+            esac
+          done
+          ;;
+      --pdf=screen)
+          gsprinted="-dPrinted=false"
+          ;;
+      --pdf=printed)
+          gsprinted="-dPrinted=true"
+          ;;
+      --exact-color)
+          gsarg0="-dUseCIEColor $gsarg0"
+          ;;
+      --threshold=*)
+          gsarg0=" -dThreshold=`getarg $n` $gsarg0"
+          ;;
+      --bg-subsample=*)
+          gsarg0=" -dBgSubsample=`getarg $n` $gsarg0"
+          ;;
+      --bg-slices=*)
+          csepargs=" -q `getarg $n` $csepargs"
+          ;;
+      --fg-colors=*)
+          gsarg0=" -dFgColors=`getarg $n` $gsarg0"
+          ;;
+      --fg-image-colors=*)
+          gsarg0=" -dFgImgColors=`getarg $n` $gsarg0"
+          ;;
+      --gsarg=*)
+          gsarg0=" `getargs $n` $gsarg0"
+          ;;
+      --cseparg=*)
+          csepargs="$csepargs `getargs $n`"
+          ;;
+      -*)
+          echo 1>&2 "djvudigital: unrecognized option $n"
+          usage
+          ;;
+      *)
+          if [ -z "$infile" ] ; then
+              infile=$n
+          elif [ -z "$outfile" ] ; then
+              outfile=$n
+          else
+              usage
+          fi
+          ;;
+  esac
+done
+
+
+# Step 4 -- check input filename
+
+if [ -z "$infile" ] ; then
+    usage
+elif [ ! -r "$infile" -a -z "$run" ]; then
+    echo "djvudigital: cannot open $infile for reading" 1>&2
+    exit 10
+fi
+
+if [ -z "$outfile" ]
+then
+    outfile="$infile"
+    for ext in gz GZ ps PS eps EPS pdf PDF
+    do
+       case "$outfile" in
+         *.$ext)
+            outfile=`basename "$outfile" .$ext`
+            ;;
+       esac
+    done
+    if [ "$sepfile" = "yes" ] 
+    then
+      outfile="$outfile.sep"
+    else
+      outfile="$outfile.djvu"
+    fi
+fi
+
+# Step 5 -- execute command
+
+if [ "$csepverbosity" != "" -o "$gsverbosity" != "-q" ] 
+then
+    test -z "$run" && echo "DJVUDIGITAL --- DjVuLibre-3.5"
+fi
+
+if [ "$sepfile" = "yes" ] 
+then
+  backend="$outfile"
+else
+  backend="| "'"'"$csepdjvu"'"'" -d $dpi"
+  backend="$backend $csepverbosity $csepargs - "'"'"$outfile"'"'
+fi
+
+
+case "$infile" in
+    *.gz|*.GZ)
+        if test -z "$run" ; then
+          gzip -d -c "$infile" | \
+          "$gsdjvu" "-r$dpi" $gsverbosity $gsprinted $gsepsf \
+            "-sOutputFile=$backend" $gsarg0 $gsarg1 $gsarg2 -_ -c quit
+        else
+          $run gzip -d -c '"'"$infile"'"' '|' "" \
+             "$gsdjvu" "-r$dpi" $gsverbosity $gsprinted $gsepsf "" \
+             "-sOutputFile=""'""$backend""'" "" \
+             $gsarg0 $gsarg1 $gsarg2 -_ -c quit
+        fi
+        ;;
+    *)
+        if test -z "$run" ; then
+          "$gsdjvu" "-r$dpi" $gsverbosity $gsprinted $gsepsf \
+            "-sOutputFile=$backend" $gsarg0 $gsarg1 $gsarg2 \
+            -f "$infile" -c quit
+        else
+          $run "$gsdjvu" "-r$dpi" $gsverbosity $gsprinted $gsepsf "" \
+             "-sOutputFile=""'""$backend""'" "" \
+             $gsarg0 $gsarg1 $gsarg2 -f '"'"$infile"'"' -c quit
+        fi
+        ;;
+esac
+
+
+# Step 6 -- Postprocess djvu file with metadata/text found by poppler
+
+if ( file "$infile" | grep -q -i pdf ) \
+    && test "$popplertext$popplermeta" != "00"
+then
+
+    # check for djvused
+    if [ -z "$djvused" ]
+    then
+        cat 1>&2 <<\EOF
+djvudigital: cannot locate djvused executable.
++--------------------------------------------------------------------+
+| DjVuDigital was not able to locate the djvulibre tool "djvused".   |
+| This tool is needed to use the --poppler=(text,data) options.      |
+| Please make sure that the djvulibre tools are properly installed.  |
++--------------------------------------------------------------------+
+EOF
+        exit 10
+    fi
+
+    # check for pdftotext
+    if [ -z "$pdftotext" ] 
+    then
+        cat 1>&2 <<\EOF
+djvudigital: cannot locate pdftotext executable.
++--------------------------------------------------------------------+
+| DjVuDigital was not able to locate the poppler tool "pdftotext".   |
+| This tool is needed to use the --poppler=(text,data) options.      |
+| Please make sure that the poppler tools are properly installed.    |
++--------------------------------------------------------------------+
+EOF
+        exit 10
+    fi
+
+    # xml parser for awk :-)
+    xml2dsed="$tempdir/xml2dsed.awk"
+    cat > "$xml2dsed" <<\EOF
+
+# initializations
+
+function _esc_init() {
+    _ctrl = ""
+    for (i=1; i<32; i++) { _ctrl = _ctrl sprintf("%c",i) }
+    _esc = "[\"\\\\&" _ctrl "]"
+    _ctrl = "[" _ctrl "]"
+}
+
+function _ord_init() {
+    for (i=0; i<256; i++) {
+	_ord[sprintf("%c",i)]=i
+    }
+}
+
+function _amp_init() {
+    _amp["&amp;"] = "&"
+    _amp["&lt;"] = "<"
+    _amp["&gt;"] = ">"
+    _amp["&apos;"] = "'"
+    _amp["&quot;"] = "\\\""
+}
+
+BEGIN {
+    _esc_init()
+    _ord_init()
+    _amp_init()
+    delete meta
+    pheight=0
+    pwidth=0
+    location=""
+    context=""
+    content=""
+    pageno=0
+    dpi = 300 # use awk -f xml2dsed.awk dpi=xxx to override
+    dometa=1  # use awk -f xml2dsed.awk dometa=0 to override
+    dotext=1  # use awk -f xml2dsed.awk dotext=0 to override
+    RS=">"    # xml parsing wants record delimiter set to ">"
+}
+
+# return character code
+
+function ord(str) {
+    return _ord[substr(str,1,1)]
+}
+
+# print properly escaped c string
+
+function pstr(str,tmp) {
+    printf("\"")
+    while (str) {
+	tmp = match(str,_esc) # char classes do not always work
+	if (tmp == 0) {
+	    printf("%s",str)
+	    str = ""
+	} else if (tmp > 1) {
+	    printf("%s",substr(str,1,tmp-1))
+	    str = substr(str,tmp)
+	} else {
+	    tmp = match(str,"^&[a-z]*;")
+	    if (tmp != 1) { tmp = "" }
+	    if (tmp) { tmp = _amp[substr(str,RSTART,RLENGTH)] }
+	    if (tmp) {
+		printf("%s",tmp)
+		str = substr(str,RLENGTH+1)
+	    } else {
+		printf("\\%03o", ord(str))
+		str = substr(str,2)
+	    }
+	}
+    }
+    printf("\"")
+}
+
+# sax-like callbacks
+
+function charData(str) {
+    if (context == "title") {
+	meta["Title"] = str
+    } else if (context == "word") {
+	gsub(_ctrl," ",str)      # kill control characters
+	gsub("\302\240"," ",str) # nbsp in utf-8
+	gsub(/  */," ",str)      # simplify spaces
+	gsub(/^ /,"",str)        # simplify spaces
+	gsub(/ $/,"",str)        # simplify spaces
+	if (match(str,/[^ ]/)) { content = str } else { content = "" }
+    }
+}
+
+function startElement(tag,attrs) {
+    if (tag=="head" && ! context && dometa) {
+	context = "head"
+    } else if (tag=="title" && context=="head") {
+	context = "title"
+    } else if (tag=="meta" && attrs["name"] && attrs["content"] ) {
+	meta[attrs["name"]] = attrs["content"]
+    } else if (tag=="body" && ! context && dotext) {
+	context = "body"
+    } else if (tag=="page" && context == "body") {
+	pageno = pageno + 1
+	pwidth = attrs["width"] * dpi / 72
+	pheight = attrs["height"] * dpi / 72
+	context = "page"
+	printf("select %d\n", pageno)
+	printf("set-txt\n")
+	printf("(page %d %d %d %d\n", 0, 0, pwidth, pheight)
+    } else if (tag=="word" && context == "page") {
+	if (attrs["xMin"] && attrs["xMax"] && attrs["yMin"] && attrs["yMax"]) {
+	    context = "word"
+	    location = sprintf("%d %d %d %d",
+			       attrs["xMin"] * dpi / 72,
+			       pheight - attrs["yMin"] * dpi / 72,
+			       attrs["xMax"] * dpi / 72,
+			       pheight - attrs["yMax"] * dpi / 72 )
+	}
+    }
+}
+
+function endElement(tag) {
+    if (tag == "title" && context == "title") {
+	context = "head"
+    } else if (tag == "head" && context == "head" && length(meta)>0) {
+	context = ""
+	printf("create-shared-ant\n")
+	printf("set-meta\n")
+	for (i in meta) {
+	    printf("%s\t",i)
+	    pstr(meta[i])
+	    printf("\n")
+	}
+	printf(".\n")
+    } else if (tag == "page" && context == "page") {
+	context = "body"
+	printf(")\n.\n")
+    } else if (tag == "word" && context == "word" && content) {
+	context = "page"
+	printf("  (word %s ", location)
+	pstr(content)
+	printf(")\n")
+	content = ""
+    }
+}
+
+# xml parser (for pdftotext!)
+{
+    str = $0
+    match(str,/^[ \n\r\t\f]*/)
+    if (RSTART == 1 && RLENGTH > 0) {
+	str = substr(str,RLENGTH+1)
+    }
+    if (! match(str,/</)) {
+	charData(str)
+    } else {
+	if (RSTART > 1) {
+	    arg = substr(str,1,RSTART-1)
+	    str = substr(str,RSTART)
+	    charData(arg)
+	}
+	match(str, "^</?[a-zA-Z][a-zA-Z0-9_]*")
+	if (RSTART == 1) {
+	    tag = substr(str,2,RLENGTH-1)
+	    arg = substr(str,RLENGTH+1)
+	    # parse attrs
+	    delete attrs
+	    if (match(arg,"/$")) { arg = substr(arg,1,RSTART-1) }
+	    while (arg && match(arg,/[a-zA-Z][a-zA-Z0-9_]*=/)) {
+		attr = substr(arg,RSTART,RLENGTH-1)
+		arg = substr(arg,RSTART+RLENGTH)
+		if (match(arg,/^[ \n\r\f\t]*"/) && match(arg,/"[^"]*"/)) {
+		    attrs[attr] = substr(arg,RSTART+1,RLENGTH-2)
+		    arg = substr(arg,RSTART+RLENGTH)
+		} else if (match(arg,/^[^ \n\r\g\t]*/)) {
+		    attrs[attr] = substr(arg,RSTART,RLENGTH)
+		    arg = substr(arg,RSTART+RLENGTH)
+		}
+	    }
+	    # callbacks
+	    if (match(tag,"^/")) {
+		endElement(substr(tag,2))
+	    } else {
+		startElement(tag,attrs)
+		if (match(str,"/$")) { endElement(tag) }
+	    }
+	} 
+    }	    
+}
+EOF
+
+    # prepare djvused script
+    dsedscript="$tempdir/dsed"
+    if test -z "$run" 
+    then
+        "$pdftotext" -bbox "$infile" "-" \
+            | awk -f $xml2dsed dpi=$dpi dometa=$popplermeta dotext=$popplertext \
+            > "$dsedscript"
+    else
+        $run "$pdftotext" -bbox "$infile" "-" \
+            \| awk -f $xml2dsed dpi=$dpi dometa=$popplermeta dotext=$popplertext \
+            \> "$dsedscript"
+    fi
+    
+    # execute dsed script
+    $run "$djvused" $dsedverbosity -f "$dsedscript" -s "$outfile"
+fi

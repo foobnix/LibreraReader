@@ -1,0 +1,942 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVUSED 1 "5/22/2005" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+djvused \- Multi-purpose DjVu document editor.
+
+.SH SYNOPSIS
+.BI "djvused [" "options" "] " "djvufile"
+
+
+.SH DESCRIPTION
+Program
+.B djvused 
+is a powerful command line tool for manipulating multi-page documents,
+creating or editing annotation chunks, creating or editing hidden text layers, 
+pre-computing thumbnail images, and more.  
+The program first reads the DjVu document
+.I djvufile
+and executes a number of djvused commands.
+
+Djvused commands can be read from a specific file (when option
+.B -f
+is specified), read from the command line (when option
+.B -e
+is specified), or read from the standard input (the default).
+
+.SH OPTIONS
+.TP
+.BI "-v"
+Cause 
+.B djvused 
+to print a command line prompt before reading commands
+and a brief message describing how each command was executed.
+This option is very useful for debugging djvused scripts
+and also for interactively entering djvused commands on
+the standard input.
+.TP
+.BI "-f " "scriptfile"
+Cause
+.B djvused
+to read commands from file
+.IR scriptfile .
+.TP
+.BI "-e " "command"
+Cause
+.B djvused
+to execute the commands specified by the option argument
+.IR commands .
+It is advisable to surround the djvused commands by single
+quotes in order to prevent unwanted shell expansion.
+.TP
+.BI "-s"
+Cause 
+.B djvused
+to save the file 
+.I djvufile
+after executing the specified commands.
+This is similar to executing command
+.B save
+immediately before terminating the program.
+.TP
+.BI "-u"
+Cause
+.B djvused
+to print hidden text and annotations as UTF-8 
+instead of encoding non-ASCII characters with octal escape sequences
+for maximal portability. This option is convenient for 
+manually editing or viewing the djvused output.
+This option also causes the emission of an UTF-8 BOM under Windows.
+.TP
+.BI "-n"
+Cause 
+.B djvused 
+to disregard save commands.
+This is useful for debugging djvused scripts
+without overwriting files on your disk.
+
+.SH DJVUSED EXAMPLES
+There are many ways to use program
+.BR djvused .
+The following examples illustrate 
+some common uses of this program.
+
+.SS Obtaining the size of a page
+Command 
+.B size 
+outputs the width and height of the selected pages
+using a
+.SM HTML
+friendly syntax. 
+For instance, the following command prints the size 
+of page
+.I 3
+of document
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'select 3; size'"
+.PP
+
+.SS Extracting the hidden text
+Command
+.B print-pure-txt
+outputs the text associated with a page or a document.
+For instance, the following shell command outputs the text
+for the entire document.  Lines and pages are delimited
+by the usual control characters.
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'print-pure-txt'"
+.PP
+Command
+.B print-txt
+produces a more extensive output describing the structure
+and the location of the text components.  The syntax of this
+output is described later in this man page.  For instance, 
+the following shell command outputs extended text information
+for page 
+.I 3 
+of document
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'select 3; print-txt'"
+.PP
+
+.SS Extracting the annotations
+Annotation data can be extracted using command 
+.BR print-ant .
+The syntax of the annotation data is described later in this man page.
+For instance, the following shell command outputs the annotation data
+for the first page of document
+.BR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'select 1; print-ant'"
+.PP
+Command 
+.B print-ant
+only prints the annotations stored in the selected component file.
+Command
+.B print-merged-ant
+also retrieves annotations from all the component files 
+referenced by the current page (using 
+.SM INCL
+chunks) and prints the merged information.
+
+.SS Dumping/restoring annotations and text
+Three commands,
+.BR "output-txt" ", " "output-ant" ", and " "output-all" ","
+produce djvused scripts.  For instance, the following shell command
+produces a djvused script,
+.IR myfile.dsed ,
+that recreates all the text and annotation data
+in document
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'output-all' > " "myfile.dsed"
+.PP
+Script
+.I myfile.dsed
+is a text file that can be easily edited.  The following shell command
+then recreates the text and annotation information in file
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -f " "myfile.dsed" " -s"
+
+.SS Extracting a page
+Both commands
+.B save-page
+and
+.B save-page-with
+create a DjVu file representing the selected component file of a
+document.  The following shell command, for instance, creates a file
+.I p05.djvu
+containing page
+.I 5
+of document
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'select 5; save-page " "p05.djvu" "'"
+.PP
+Each page of a document might import data from 
+another component file using the so-called inclusion (
+.SM INCL
+) chunks.  Command
+.B save-page
+then produces a file with unresolved references to imported data.  
+Such a file should then be made part of a multi-page document
+containing the required data in other component files.
+On the other hand, command 
+.B save-page-with
+copies all the imported data into the output file.
+This file is directly usable. Yet collecting several
+such files into a multi-page document might lead
+to useless data replication.
+
+.SS Pre-computing thumbnails
+Commands 
+.B set-thumbnails
+constructs thumbnails that can be later displayed by
+DjVu viewers.  The following shell command, for instance,
+computes thumbnails of size 
+.IR 64 x 64
+pixels for all pages of file
+.IR myfile.djvu .
+.IP "" 3
+.BI "djvused " "myfile.djvu" " -e 'set-thumbnails 64' -s"
+
+.SH DJVUSED COMMANDS
+Command lines might contain zero, one, or more djvused commands and an
+optional comment.  Multiple djvused commands must be separated by a
+semicolon character ';'.  Comments are introduced by the '#' character
+and extend until the end of the command line.
+
+.SS Selection commands
+Multi-page DjVu documents are composed of a number of component files.
+Most component files describe a specific page of a document.  Some
+component files contain information shared by several pages such as
+shared image data, shared annotations or thumbnails.  Many djvused
+commands operate on selected component files.  All component files are
+initially selected.  The following commands are useful for changing
+the selection.
+.TP
+.BI "n"
+Print the total number of pages in the document.
+.TP
+.BI "ls"
+List all component files in the document.  Each line contains an
+optional page number, a letter describing the component file type, the
+size of the component file, and identifier of the component file.
+Component file type letters
+.BR P ", " I ", " A ", and " T 
+respectively stand for page data, shared image data, shared annotation
+data, and thumbnail data.  Page numbers are only listed for component
+files containing page data.  
+When it is set, the optional page title (see command
+.B "set-page-title"
+below) is displayed after the component file identifier.
+.TP
+.BI "select [" "fileid" "]"
+Select the component file identified by argument
+.IR fileid .
+Argument 
+.I fileid
+must be either a page number or a component file identifier.
+The
+.B select
+command selects all component files
+when the argument
+.I fileid
+is omitted.
+.TP
+.BI "select-shared-ant"
+Select a component file containing shared annotations.  
+Only one such component file is supported by the current DjVu software. 
+This component file usually contains annotations pertaining to the 
+whole document as opposed to specific pages.  An error message 
+is displayed if there is no such component file.
+.TP
+.BI "create-shared-ant"
+Create and select a component file containing shared annotations.
+This command only selects the shared annotation component file if such
+a component file already exists.  Otherwise it creates a new shared
+annotation component file and makes sure that it is imported by all
+pages in the document.
+.TP
+.BI "showsel"
+Shows the currently selected component files
+with the same format as command
+.BR ls .
+
+.SS Text and annotation commands
+.TP
+.BI "print-pure-txt"
+Print the text stored in the hidden text layer of the selected pages.
+A similar capability is offered by program
+.BR djvutxt .
+Structural information is sometimes represented by control characters.
+Text from different pages is delimited by form feed characters
+("\\f").  Lines are delimited by newline characters ("\\n").  Columns,
+regions, and paragraphs are sometimes delimited by vertical tab
+("\\013"), group separators ("\\035") and unit separators ("\\037")
+respectively.
+.TP
+.BI "print-txt"
+Prints extensive hidden text information for the selected pages.
+This information describes the structure of the text on the 
+document page and locates the structural elements in the page image.
+The syntax of this output is described later in this man page.
+.TP
+.BI "remove-txt"
+Remove the hidden text information from the selected component files.
+For instance, executing commands
+.BR "select" " and " "remove-txt"
+removes all hidden text information from the DjVu document.
+.TP
+.BI "set-txt [" "djvusedtxtfile" "]"
+Insert hidden text information into the selected pages.
+The optional argument
+.I djvusedtxtfile
+names a file containing the hidden text information.
+This file must contain data similar to what is produced
+by command
+.BR print-txt . 
+When the optional argument is omitted, the
+program reads the hidden text information from the djvused script
+until reaching an end-of-file or a line containing a single period.
+.TP
+.BI "output-txt"
+Prints a djvused script that reconstructs the hidden text
+information for the selected pages.  This script can later
+be edited and executed by invoking program
+.B djvused
+with option
+.BR -f .
+.TP
+.BI "print-ant"
+Prints the annotations of the selected component file.
+The annotation data is represented using a simple syntax
+described later in this document.
+.TP
+.BI "print-merged-ant"
+Merge the annotations stored in the selected component files
+with the annotations imported from other component files such
+as the shared annotation component file..
+The annotation data is represented using a simple syntax
+described later in this document.
+.TP
+.BI "remove-ant"
+Remove the annotation information from the selected component files.
+For instance, executing commands
+.BR "select" " and " "remove-ant"
+removes all annotation information from the DjVu document.
+.TP
+.BI "set-ant [" "djvusedantfile" "]"
+Insert annotations into the selected component file.
+The optional argument
+.I djvusedantfile
+names a file containing the annotation data.
+This file must contain data similar to what is produced
+by command
+.BR print-ant . 
+When the optional argument is omitted, the
+program reads the annotation data from the djvused script itself
+until reaching an end-of-file or a line containing a single period.
+.TP
+.BI "output-ant"
+Print a djvused script that reconstructs the annotation
+information for the selected pages.  This script can later
+be edited and executed by invoking program
+.B djvused
+with option
+.BR -f .
+.TP
+.BI "print-meta"
+Print the metadata part of the annotations for the selected component file.
+This command displays a subset of the information printed by command
+.B print-ant
+using a different syntax.  metadata are organized as key\-value pairs.
+Each printed line contains the key name such as
+.BR "author" ", " "title" ",etc.,"
+followed by a tab character ("\\t") and
+a double-quoted string representing the 
+.SM UTF-8
+encoded metadata value.
+.TP
+.BI "remove-meta"
+Remove the metadata part of the annotations of 
+the selected component files.
+.TP
+.BI "set-meta [" "djvusedmetafile" "]"
+Set the metadata part of the annotations of the selected component file.
+The remaining part of the annotations is left unchanged.
+The optional argument
+.I djvusedmetafile
+names a file containing the metadata.
+This file must contain data similar to what is produced
+by command
+.BR print-meta . 
+When the optional argument is omitted, the
+program reads the annotation data from the djvused script itself
+until reaching an end-of-file or a line containing a single period.
+.TP
+.BI "print-xmp"
+Print the XMP metadata string contained in 
+the annotation chunk of the selected component file.
+This command displays in fact a subset of the 
+information printed by command
+.BR print-ant .
+.TP
+.BI "remove-xmp"
+Removes the XMP tag from the annotation chunk of the selected component file.
+.TP
+.BI "set-xmp [" "xmpfile" "]"
+Set the XMP metadata part of the annotations of the selected component file.
+The remaining part of the annotations is left unchanged.
+The optional argument
+.I xmpfile
+names a file containing the XMP metadata in a format 
+similar to that produced
+by command
+.BR print-xmp . 
+When the optional argument is omitted, the
+program reads the XMP annotation data from the djvused script itself
+until reaching an end-of-file or a line containing a single period.
+.TP
+.BI "output-all"
+Print a djvused script that reconstructs both the hidden text and the
+annotation information for the selected pages.  This script can later
+be edited and executed by invoking program
+.B djvused
+with option
+.BR -f .
+.PP
+.SS Outline/bookmarks commands
+.TP
+.BI "print-outline"
+Print the outline of the document.
+Nothing is printed if the document contains no outline.
+.TP
+.BI "remove-outline"
+Removes the outline from the document.
+.TP
+.BI "set-outline [" djvusedoutlinefile "]"
+Insert outline information into the document.
+The optional argument
+.I djvusedoutlinefile
+names a file containing the outline information.
+This file must contain data similar to what is produced
+by command
+.BR print-outline . 
+When the optional argument is omitted, the
+program reads the hidden text information from the djvused script
+until reaching an end-of-file or a line containing a single period.
+.PP
+.SS Thumbnail commands
+.TP
+.BI "set-thumbnails " "sz"
+Compute thumbnails of size
+.IR sz x sz
+pixels and insert them into the document.
+DjVu viewers can later display these thumbnails very
+efficiently without need to download the data for
+each page.  Typical thumbnail size range 
+from 48 to 128 pixels.
+.TP
+.BI "remove-thumbnails"
+Remove the pre-computed thumbnails from the DjVu document.
+New thumbnails can then be computed using command
+.BR set-thumbnails .
+
+.SS Save commands
+The above commands only modify the memory image of the DjVu document.
+The following commands provide means to save the modified data
+into the file system.
+.TP
+.BI "save"
+Save the modified DjVu document back into the input file
+.I djvufile
+specified by the arguments of the program 
+.BR djvused .
+Nothing is done if the DjVu file was not modified.
+Passing option
+.B -s
+program
+.B djvused 
+is equivalent to executing command
+.B save
+before exiting the program.
+.TP
+.BI "save-bundled " "filename"
+Save the current DjVu document as a bundled 
+multi-page DjVu document named 
+.IR filename .
+A similar capability is offered by program
+.BR djvmcvt .
+.TP
+.BI "save-indirect " "filename"
+Save the current DjVu document as an indirect
+multi-page DjVu document.  The index file of the
+indirect document will be named 
+.BR filename .
+All other files composing the indirect document
+will be saved into the same directory as the
+index file.
+A similar capability is offered by program
+.BR djvmcvt .
+.TP
+.BI "save-page " "filename"
+Save the selected component file into DjVu file
+.IR filename .
+The selected component file might import data from 
+another component file using the so-called inclusion (
+.SM INCL
+) chunks.  This command then produces a file with unresolved
+references to imported data.  Such a file should then be made part of
+a multi-page document containing the required data in other component
+files.
+.TP
+.BI "save-page-with " "filename"
+Save the selected component file into DjVu file
+.IR filename .
+All data imported from other component files is copied into the output
+file as well.  This command always produces a usable DjVu file.  On
+the other hand, collecting several such files into a multi-page
+document might lead to useless data replication.
+
+.SS Miscellaneous commands
+.TP
+.BI "help"
+Display a help message listing all commands supported by
+.BR djvused .
+.TP
+.BI "dump"
+Display the 
+.SM EA IFF 85
+structure of the document or of the selected component file.
+A similar capability is offered by program
+.BR djvudump .
+.TP
+.BI "size"
+Display the width and the height of the selected pages.  The
+dimensions of each page are displayed using a syntax suitable for
+direct insertion into the
+.SM <EMBED...></EMBED>
+tags. This command also displays the default page orientation
+when it is different from zero.
+.TP
+.BI "set-rotation [+-]" "rot"
+Changes the default orientation of the selected pages.
+The orientation is expressed as an integer in range 0..3
+representing a number of 90 degree counter-clockwise rotations.
+When the argument is preceded by a sign
+.BR "+" " or " "-" ","
+argument
+.I rot
+counts how many additional 90 degree counter-clockwise rotations
+should be applied to the page. Otherwise, argument
+.I rot
+represents the desired absolute page orientation.
+Only DjVu pages can be rotated.
+Pages represented as a raw IW44 image cannot be rotated.
+.TP
+.BI "set-dpi " "dpi"
+Sets the resolution of the page image in dots per inche.
+Argument
+.I dpi
+should be in range 25..6000.
+.TP
+.BI "set-page-title " "title"
+Sets a page title for the selected page.
+When page titles are available, recent versions 
+of the DjVuLibre viewers display these page
+titles instead of page numbers and also 
+accept them in page selection options.
+Command
+.B "ls"
+can be used to see both the page titles and page identifiers.
+To unset a page title, simply make it equal to the page identifier.
+
+.SH DJVUSED FILE FORMATS
+
+Djvused uses a simple parenthesized syntax to represent
+both annotations and hidden text.
+.IP "*" 3
+This syntax is the native syntax used by DjVu for storing annotations.
+Program
+.B djvused
+simply compresses the annotation data using the
+.BR bzz (1)
+algorithm.
+.IP "*" 3
+This syntax differs from the native syntax used by DjVu for
+storing the hidden text.  Program 
+.B djvused
+performs the translations between the compact binary representation
+used by DjVu and the easily modifiable parenthesized syntax.
+.PP
+
+.SS General syntax
+Djvused files are
+.SM ASCII
+text files.  The legal characters in djvused files are 
+the printable 
+.SM ASCII 
+characters and the space, tab, cr, and nl characters.
+Using other characters has undefined results.
+
+Djvused files are composed of a sequence of expressions separated by
+blank characters (space, tab, cr, or nl).  There are four kind of
+expressions, namely integers, symbols, strings and lists.
+.IP Integers:
+Integer numbers are represented by one or more digits,
+with the usual interpretation.
+.IP Symbols:
+Symbols, or identifiers, are sequences of printable ascii characters
+representing a name or a keyword.  Acceptable characters are the alpha-numeric
+characters, the underscore "_", the minus character "-", and the hash
+character "#".  Names should not begin with a digit or a minus character.
+.IP Strings:
+Strings denote an arbitrary sequence of bytes,
+usually interpreted as a sequence of 
+.SM UTF-8
+encoded characters.  Strings in djvused files are similar to strings in the C
+language.  They are surrounded by double quote characters.  Certain sequences
+of characters starting with a backslash ("\\") have a special meaning.  
+A backslash followed by letter
+"a", "b", "t", "n", "v", "f", "r", "\\", and \"
+stands for the ascii character BEL(007), BS(008), HT(009),
+LF(010), VT(011), FF(012), CR(013), BACKSLASH(134) 
+and DOUBLEQUOTE(042) respectively.
+A backslash followed by one to three digits stands for the byte 
+whose octal code is expressed by the digits.  
+All other backslash sequences are illegal.
+All non printable ascii characters must be escaped.
+.IP Lists:
+Lists are sequence of expressions separated by blanks and surrounded by
+parentheses.  All expressions types are acceptable within a list, including
+sub-lists.
+
+.SS Hidden text syntax
+The building blocks of the hidden text syntax are lists
+representing each structural component of the hidden text.
+Structural components have the following form:
+.IP "" 3
+.BI "(" "type" " " "xmin" " " "ymin" " " "xmax" " " "ymax" " ... )"
+.PP
+
+The symbol
+.I type
+must be one of 
+.BR page ", " column ", " region ", " para ", " line ", " word ", or " char ,
+listed here by decreasing order of importance.  
+The integers
+.IR xmin ", " ymin ", " xmax ", and " ymax
+represent the coordinates of a rectangle indicating the position of the
+structural component in the page.  Coordinates are measured in pixels and have
+their origin at the bottom left corner of the page.  The remaining expressions
+in the list either is a single string representing the encoded text associated
+with this structural component, or is a sequence of structural components with
+a lesser type.
+.PP
+The hidden text for each page is simply represented by
+a single structural element of type
+.BR page .
+Various level of structural information are acceptable.  For instance, the
+page level component might only specify a page level string, or might only
+provide a list of lines, or might provide a full hierarchy down to the
+individual characters.
+
+.SS Outline/Bookmark syntax
+The outline syntax is a single list of the form
+.IP "" 3
+.BI "(bookmarks ...)"
+.PP
+The first element of the list is symbol
+.BR bookmarks .
+The subsequent elements are lists representing
+the toplevel outline entries.
+Each outline entry is represented by
+a list with the following form:
+.IP "" 3
+.BI "(" title " " url " ... )"
+.PP
+The string 
+.I title
+is the title of the outline entry.
+The destination string
+.I url
+can be either an arbitrary percent encoded
+.SM URL,
+or composed of the hash character ("#")
+followed by a page name or number,
+or composed of the question mark character ("?")
+followed by cgi-style arguments interpreted by the djvu viewer.
+The remaining expressions in the list
+describe subentries of this outline entry.
+
+.SS Annotation syntax
+Annotations are represented by a sequence of annotation expressions.
+The following annotation expressions are recognized:
+.TP
+.BI "(background " color ")"
+Specify the color of the viewer area surrounding the DjVu image.
+Colors are represented with the X11 hexadecimal syntax
+.BR #RRGGBB .
+For instance, 
+.B #000000
+is black and
+.B #FFFFFF
+is white.
+.TP
+.BI "(zoom " zoomvalue ")"
+Specify the initial zoom factor of the image.
+Argument
+.I zoomvalue
+can be one of
+.BR stretch ", " one2one ", " width ", " page ", "
+or composed of the letter
+.B d
+followed by a number in range 1 to 999 representing a zoom factor
+(such as in
+.BR d300 " or " d150
+for instance.)
+.TP
+.BI "(mode " modevalue ")"
+Specify the initial display mode of the image.
+Argument
+.I modevalue
+is one of
+.BR color ", " bw ", " fore ", or " back "."
+.TP
+.BI "(align " horzalign " " vertalign ")"
+Specify how the image should be aligned on the viewer surface.
+By default the image is located in the center.  
+Argument 
+.I horzalign
+can be one of
+.BR left ", " center ", or " right "."
+Argument 
+.I vertalign
+can be one of
+.BR top ", " center ", or " bottom "."
+.TP
+.BI "(maparea " url " " comment " " area " ...)"
+Define an hyper-link for the specified destination.
+.RS
+.PP
+Argument
+.I url
+can have one of the following forms:
+.IP "" 3
+.I href
+.br
+.BI "(url " href " " target ")" 
+.br
+.PP
+where 
+.I href
+is a string representing the destination and 
+.I target 
+is a string representing the target frame for the hyper-link,
+as defined by the 
+.SM HTML
+anchor tag
+.SM <A>.
+The destination string
+.I href
+can be either an arbitrary percent encoded
+.SM URL,
+or composed of the hash character ("#")
+followed by a page name or number,
+or composed of the question mark character ("?")
+followed by cgi-style arguments interpreted by the djvu viewer.
+Page numbers may be prefixed with an optional sign 
+to represent a page displacement.  
+For instance the strings
+.B """#-1""" 
+and 
+.B """#+1"""
+can be used to access the previous page and 
+the next page.
+
+Argument 
+.I comment 
+is a string that might be displayed by the viewer 
+when the user moves the mouse over the hyper-link.
+
+Argument
+.I area
+defines the shape and the location of the hyperlink.
+The following forms are recognized:
+.IP "" 3
+.BI "(rect " xmin " " ymin " " width " " height ")"
+.br
+.BI "(oval " xmin " " ymin " " width " " height ")"
+.br
+.BI "(poly " x0 " " y0 " " x1 " " y1 " ... )"
+.br
+.BI "(text " xmin " " ymin " " width " " height ")"
+.br
+.BI "(line " x0 " " y0 " " x1 " " y1 ")"
+.PP
+All parameters are numbers representing coordinates.  
+Coordinates are measured in pixels and have their origin 
+at the bottom left corner of the page.
+
+The remaining expressions in the
+.B maparea
+list represent the visual effect associated with
+the hyper-link. 
+
+A first set of options defines how borders
+are drawn for 
+.BR rect ", " oval ", " polygon ", or " text 
+hyperlink areas.
+.IP "" 3
+.BI "(none)"
+.br
+.BI "(xor)"
+.br
+.BI "(border " color ")"
+.br
+.BI "(shadow_in [" thickness "])"
+.br
+.BI "(shadow_out [" thickness "])"
+.br
+.BI "(shadow_ein [" thickness "])"
+.br
+.BI "(shadow_eout [" thickness "])"
+.PP
+where parameter 
+.I color
+has syntax
+.B #RRGGBB
+as described above,
+and parameter thickness is an integer in range 1 to 32.
+The last four border options are only supported for 
+.B rect
+hyperlink areas. 
+Although the border mode defaults to   
+.BR (xor) ,
+it is wise to always specify the border mode.
+Border options do not apply to 
+.B line 
+areas.
+
+When a border option is specified, the border 
+becomes visible when the user moves the mouse 
+over the hyperlink. The border may be made
+always visible by using the following option:
+.IP "" 3
+.B (border_avis)
+.PP
+The following two options may be used with 
+.B rect
+hyperlink areas.
+The complete area will be highlighted using the 
+specified color at the specified opacity (0-100, default 50).
+Some viewers (e.g.,
+.BR djview4 )
+support opacities in range 0-200 with 200
+representing a fully opaque color.
+.IP "" 3
+.BI "(hilite " color ")"
+.br
+.BI "(opacity " op ")"
+.PP
+This is often used with an empty 
+.SM URL 
+for simply emphasizing a specific
+segment of an image.
+.PP
+The following three options may be used with line areas to 
+specify an optional ending arrow, the line width and color.
+The default is a black line with width 1 and without arrow.
+.IP "" 3
+.B "(arrow)"
+.br
+.BI "(width " w ")"
+.br
+.BI "(lineclr " color ")"
+.PP
+Finally the following three options can be used with text areas.
+The default background color is transparent. 
+The default text color is black.
+The 
+.B pushpin
+option indicates that the text is symbolized by a small pushpin icon.
+Clicking the icon reveals the text.
+.IP "" 3
+.BI "(backclr " bkcolor ")"
+.br
+.BI "(textclr " txtcolor ")"
+.br
+.BI "(pushpin)"
+.PP
+
+.RE
+.TP
+.BI "(metadata ... (" key " " value ") ... )"
+Define metadata entries.
+Each entry is identified by a symbol
+.I key
+representing the nature of the meta data entry.
+The string
+.I value
+represents
+the value associated with the corresponding key.
+Two sets of keys are noteworthy:
+keys borrowed from the BibTex bibliography system,
+and keys borrowed from the PDF DocInfo metadata.
+BibTex keys are always expressed in lowercase, such as
+.BR year ", " booktitle ", " editor ", " author ", etc.."
+DocInfo keys start with an uppercase letter, such as
+.BR Title ", " Author ", " Subject ", " Creator ", "
+.BR Produced ", " Trapped ", "
+.BR CreationDate ", and " ModDate "."
+The values associated with the last two keys
+should be dates expressed according to RFC 3339.
+
+.SH LIMITATIONS
+The current version of program 
+.B djvused
+only supports selecting one component file
+or all component files.  There is no way to
+select only a few component files.
+
+.SH CREDITS
+This program was initially written by L\('eon Bottou
+<leonb@users.sourceforge.net> and was improved by Yann Le Cun
+<profshadoko@users.sourceforge.net>, Florin Nicsa, Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvutxt (1),
+.BR djvmcvt (1),
+.BR djvudump (1),
+.BR bzz (1),
+Emacs djvused front end \fBdjvu.el\fR on
+.SM GNU Elpa
+repository.

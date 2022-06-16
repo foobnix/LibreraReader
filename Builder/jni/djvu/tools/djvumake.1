@@ -1,0 +1,246 @@
+.\" t
+.\"
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVUMAKE 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+djvumake \- Assemble DjVu image files.
+
+.SH SYNOPSIS
+.BI "djvumake " "djvufile" " [" "chkid" "=" "argument" "]..." 
+
+.SH DESCRIPTION
+Program
+.B djvumake
+assembles a single-page DjVu file 
+.I djvufile
+by copying or creating chunks according to the provided arguments. 
+Supported arguments are as follows:
+.TP
+.BI INFO= w , h , dpi
+Create the initial information chunk.  Arguments 
+.IR w ", " h ", and " dpi
+describe the width, height and resolution of the image.  All arguments
+may be omitted.  The default resolution is 300 dpi.  The default width
+and height will be retrieved from the first mask chunk specified in the
+command line options.
+.TP
+.BI Sjbz= jb2file
+Create a 
+.SM JB2 
+foreground mask chunk.  File 
+.I jb2file
+may contain raw JB2 data, 
+or be a DjVu file containing JB2 data
+such as those produced by program
+.BR cjb2 .
+.TP
+.BI Smmr= mmrfile
+Create a
+.SM MMR/G4 
+foreground mask chunk.  File 
+.I mmrfile
+may contain raw MMR data or be a DjVu file 
+containing MMR data.
+.TP
+.BI BG44= iw44file "[:" n "]"
+Create one or more 
+.SM IW44 
+background chunks.  File 
+.I iw44file 
+must contain
+.SM IW44 
+data.
+Such files can be obtained by compressing the background image
+with program 
+.B c44
+and extracting the raw 
+.SM IW44 
+data using program
+.BR djvuextract .
+The optional argument
+.I n
+indicates the number of chunks to copy from the IW44 file.
+Omitting the number of chunks copies all available chunks.
+.TP
+.BI BGjp= jpegfile
+Create a 
+.SM JPEG
+encoded background chunk.
+File 
+.I jpegfile
+must contain 
+.SM JPEG 
+encoded data.
+.TP
+.BI BG2k= jpegfile
+Create a 
+.SM JPEG-2000 
+background chunk.
+File
+.I jpegfile
+must contain 
+.SM JPEG-2000
+encoded data.
+The DjVu decoder does not yet display
+files containing JPEG-2000 data.
+.TP
+.BI FGbz=( filename |{# color [: x , y , w , h ]})
+Create a foreground color chunk describing one solid
+color for each
+.SM JB2
+encoded mark. 
+The argument can be the name
+.I filename
+of a file containing the raw data.
+Such files are best created using program
+.BR djvuextract (1).
+Alternatively the argument could describe a sequence of color zones.
+Each color zone specifies a color name
+.IR color ,
+and optionally the coordinates
+.IR x , y , w , h
+of a rectangle.
+Each mark receives the color of the last color zone
+whose rectangle intersects the bounding box of the mark.
+The mark is painted black if its bounding box does not
+intersect one of the zones.
+The rectangle coordinates are expressed in pixels
+with the origin at the bottom left corner of the page.
+The full page is assumed when no rectangle 
+coordinates are specified.
+Color names can be specified with exactly 
+six hexadecimal digits, e.g. 
+.BR FGbz=#FF8080 ,
+or by one of the following sixteen HTML color names 
+defined by the W3C, e.g.
+.BR FGbz=#red .
+.br
+.TS
+center,box;
+lfB lfB lfB lfB
+lfB lfB lfB lfB
+lfB lfB lfB lfB
+lfB lfB lfB lfB
+. 
+aqua	black	blue	fuchsia
+gray	green	lime	maroon
+navy	olive	purple	red
+silver	teal	white	yellow
+.TE
+.TP
+.BI FG44= iw44file
+Create a 
+.SM IW44 
+foreground color chunk.  
+File 
+.I iw44file 
+must contain 
+.SM IW44 
+data.
+Such files can be obtained by compressing the background image
+with command 
+.B c44
+and extracting the raw 
+.SM IW44 
+data using program
+.BR djvuextract .
+Only the first chunk is copied.
+.TP
+.BI FGjp= jpegfile
+Create a 
+.SM JPEG
+foreground color chunk.
+.TP
+.BI FG2k= jpegfile
+Create a
+.SM JPEG-2000
+foreground color chunk.
+The DjVu decoder does not yet display
+files containing JPEG-2000 data.
+.TP
+.BI INCL= fileid
+Create a DjVu3 include chunk pointing to the component file named 
+.IR fileid .
+The resulting file should then be included into a 
+multipage document using command 
+.BR djvm .
+.TP
+.BI Djbz= jb2file
+Create a 
+.SM JB2 
+shape dictionary.  File 
+.I jb2file
+must contain raw JB2 data
+describing a JB2 dictionary.
+.TP 
+.BI PPM= ppmfile
+Create a
+.SM IW44
+background chunk and a 
+.SM IW44 
+foreground color chunk 
+by masking and subsampling the 
+.SM PPM
+file
+.IR ppmfile.
+
+Assume, for instance, that we have a 
+.SM PPM 
+image 
+.B myimage.ppm
+and an identically sized
+.SM PBM
+bitonal image 
+.B mymask.pbm
+whose black pixels indicate which pixels belong to the foreground.  
+Such a bitonal file might have been obtained by thresholding 
+or color-keying the 
+.SM PPM 
+image. We can then produce a DjVuDocument image using the
+following two commands:
+.IP "" 3
+.B cjb2 mymask.pbm mymask.djvu
+.br
+.B djvumake my.djvu Sjbz=mymask.djvu PPM=myimage.ppm
+.br
+.br
+.PP
+The DjVu specification documents in the directory
+.B doc
+of the DjVuLibre distribution provide the
+authoritative information about the composition 
+of a legal DjVu image file.
+
+.SH CREDITS
+This program was written by L\('eon Bottou <leonb@users.sourceforge.net> and
+was then improved by Andrei Erofeev <andrew_erofeev@yahoo.com>, Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvuextract (1),
+.BR cjb2 (1),
+.BR c44 (1)

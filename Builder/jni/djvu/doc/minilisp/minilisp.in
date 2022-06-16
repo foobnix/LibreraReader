@@ -1,0 +1,143 @@
+;; -*- Lisp -*-
+;; ---------------------------------------------------------------
+;; MiniLisp - Very small lisp interpreter to demonstrate MiniExp.
+;; Copyright (c) 2005  Leon Bottou
+;;
+;; This software is subject to, and may be distributed under, the
+;; GNU General Public License, either Version 2 of the license,
+;; or (at your option) any later version. The license should have
+;; accompanied the software or you may obtain a copy of the license
+;; from the Free Software Foundation at http://www.fsf.org .
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;; ---------------------------------------------------------------
+
+;;   Executable <minilisp> loads this file on startup.
+;;   It contains a few helpful minilisp functions and macros.
+
+(defvar defun
+  (mlambda((name . args) . body)
+     (list 'defvar name (list 'lambda args . body)) ) )
+
+(defvar defmacro
+  (mlambda((name . args) . body)
+     (list 'defvar name (list 'mlambda args . body)) ) )
+
+(defmacro (pretty f)
+  (let ((s (if (symbolp f) (list (list quote f)))))
+    (list 'let
+      (list (list 's (list 'funcdef f . s)))
+      (list 'pprint 's 72)
+      () ) ) )
+
+(defun (copyrev l)
+   (let ((r ()))
+     (while l
+       (setq r (cons (car l) r))
+       (setq l (cdr l)) )
+     r ) )
+
+(defun (copy l)
+   (reverse (copyrev l)) )
+
+(defun (append . l)
+  (setq l (copyrev l))
+  (let ((r (car l)))
+    (while (consp (setq l (cdr l)))
+      (let ((x (copyrev (car l))))
+        (while (consp x)
+          (let ((y (cdr x)))
+            (setq r (rplacd x r))
+            (setq x y) ) ) ) )
+    r ) )
+
+(defmacro (when cond . body)
+   (list 'if cond (list 'progn . body)) )
+
+(let ((sym-to  '|S 0001|)
+      (sym-res '|S 0002|) )
+  (defmacro (for (v from to) . body)
+    (list 'let (list (list v from)
+                     (list sym-to to)
+                     (list sym-res ()) )
+          (list 'while (list <= v sym-to)
+                (list 'setq sym-res (list 'progn . body))
+                (list 'setq v (list '+ v 1)) )
+          sym-res ) ) )
+
+(let ((sym-to  '|S 0001|)
+      (sym-res '|S 0002|) )
+  (defmacro (mapfor (v from to) . body)
+    (list 'let (list (list v from)
+                     (list sym-to to)
+                     (list sym-res ()) )
+          (list 'while (list <= v sym-to)
+                (list 'setq sym-res (list 'cons (list 'progn . body) sym-res))
+                (list 'setq v (list '+ v 1)) )
+          (list 'reverse sym-res) ) ) )
+
+(defmacro (cond . args)
+   (let ((a (copyrev args))
+         (r ()))
+     (while (consp a)
+       (setq r (cons 'if (cons (caar a)
+           (if (= (length (cdar a)) 1)
+              (list (car (cdar a)) r)
+              (list (cons 'progn (cdar a)) r) ) )))
+       (setq a (cdr a)) )
+     r ) )
+
+(defmacro (not n)
+  (list 'nullp n) )
+
+(defmacro (and . args)
+   (let ((r 't)
+         (a (copyrev args)) )
+      (while a
+        (setq r (list 'if (car a) r))
+        (setq a (cdr a)) )
+      r ) )
+
+(defmacro (or . args)
+   (let ((r ())
+         (a (copyrev args))
+         (f (mlambda(x . b)
+              (list 'let (list (list 's x))
+                 (list 'if 's 's . b) ) )) )
+     (while a
+        (setq r (list f (car a) r))
+        (setq a (cdr a)) )
+     r ) )
+
+(defun (mapcar f l)
+  (let ((r ()))
+    (while l
+       (setq r (cons (f (car l)) r))
+       (setq l (cdr l)) )
+    (reverse r) ) )
+
+(defun (1+ x) (+ x 1))
+
+(defun (1- x) (- x 1))
+
+(defun (2* x) (* x 2))
+
+(defun (2/ x) (/ x 2))
+
+(defun (div n d)
+  (floor (/ n d)) )
+
+(defun (mod n d)
+   (- n (* d (div n d))) )
+
+(defvar set! setq)
+
+(defvar set-car! rplaca)
+
+(defvar set-cdr! rplacd)
+
+(display "MiniLisp, (C) 2005, Leon Bottou.\n"
+         "Available under the GNU General Public Licence.\n\n")

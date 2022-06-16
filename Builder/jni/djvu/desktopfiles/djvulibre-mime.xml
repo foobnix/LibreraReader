@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="image/vnd.djvu">
+   <alias type="image/x.djvu"/>
+   <alias type="image/x-djvu"/>
+   <glob pattern="*.djvu"/>
+   <glob pattern="*.djv"/>
+   <icon name="image-vnd.djvu"/>
+   <generic-icon name="image-vnd.djvu"/>
+   <magic priority="30">
+     <match type="string" offset="0" value="AT&amp;TFORM">
+       <match type="string" offset="12" value="DJVM"/>
+       <match type="string" offset="12" value="DJVU"/>
+     </match>
+     <match type="string" offset="0" value="FORM">
+       <match type="string" offset="8" value="DJVM"/>
+       <match type="string" offset="8" value="DJVU"/>
+     </match>
+   </magic>
+   <comment>DjVu Document</comment>
+   <comment xml:lang="af">DjVu Dokument</comment>
+   <comment xml:lang="ast">documentu DjVu</comment>
+   <comment xml:lang="ar">مستند DjVu</comment>
+   <comment xml:lang="az">DjVu Sənədi</comment>
+   <comment xml:lang="be">Дакумэнт DjVu</comment>
+   <comment xml:lang="be@latin">Dakument DjVu</comment>
+   <comment xml:lang="bg">Документ DjVu</comment>
+   <comment xml:lang="bn">পি-ডি-এফ নথী</comment>
+   <comment xml:lang="bo">DjVu ཡིག་ཆ</comment>
+   <comment xml:lang="br">Teul DjVu</comment>
+   <comment xml:lang="bs">DjVu dokument</comment>
+   <comment xml:lang="ca">Document DjVu</comment>
+   <comment xml:lang="cs">DjVu dokument</comment>
+   <comment xml:lang="cy">Dogfen DjVu</comment>
+   <comment xml:lang="da">DjVu-dokument</comment>
+   <comment xml:lang="de">DjVu-Dokument</comment>
+   <comment xml:lang="el">Έγγραφο DjVu</comment>
+   <comment xml:lang="en_AU">DjVu document</comment>
+   <comment xml:lang="en_GB">DjVu document</comment>
+   <comment xml:lang="eo">DjVu-dokumento</comment>
+   <comment xml:lang="es">Documento DjVu</comment>
+   <comment xml:lang="et">DjVu-dokument</comment>
+   <comment xml:lang="eu">DjVu dokumentua</comment>
+   <comment xml:lang="fa">سند DjVu</comment>
+   <comment xml:lang="fi">DjVu-asiakirja</comment>
+   <comment xml:lang="fr">Document DjVu</comment>
+   <comment xml:lang="fy">DjVu-dokumint</comment>
+   <comment xml:lang="ga">Cáipéis DjVu</comment>
+   <comment xml:lang="gl">Documento DjVu</comment>
+   <comment xml:lang="he">מסמך DjVu</comment>
+   <comment xml:lang="hr">DjVu dokument</comment>
+   <comment xml:lang="hu">DjVu-dokumentum</comment>
+   <comment xml:lang="is">DjVu skjal</comment>
+   <comment xml:lang="it">Documento DjVu</comment>
+   <comment xml:lang="ja">DjVu ドキュメント</comment>
+   <comment xml:lang="km">ឯកសារ DjVu</comment>
+   <comment xml:lang="kk">DjVu құжаты</comment>
+   <comment xml:lang="ko">DjVu 문서</comment>
+   <comment xml:lang="lb">DjVu-Dokument</comment>
+   <comment xml:lang="lt">DjVu dokumentas</comment>
+   <comment xml:lang="lv">DjVu dokuments</comment>
+   <comment xml:lang="mk">DjVu документ</comment>
+   <comment xml:lang="mn">DjVu-Баримт</comment>
+   <comment xml:lang="ms">Dokumen DjVu</comment>
+   <comment xml:lang="mt">Dokument DjVu</comment>
+   <comment xml:lang="nb">DjVu-dokument</comment>
+   <comment xml:lang="nds">DjVu-Dokment</comment>
+   <comment xml:lang="nl">DjVu-document</comment>
+   <comment xml:lang="nn">DjVu-dokument</comment>
+   <comment xml:lang="nso">Tokomane ya DjVu</comment>
+   <comment xml:lang="oc">Document DjVu</comment>
+   <comment xml:lang="pa">DjVu ਦਸਤਾਵੇਜ਼</comment>
+   <comment xml:lang="pl">Dokument DjVu</comment>
+   <comment xml:lang="pt">Documento DjVu</comment>
+   <comment xml:lang="pt_BR">Documento DjVu</comment>
+   <comment xml:lang="ro">Document DjVu</comment>
+   <comment xml:lang="ru">Документ DjVu</comment>
+   <comment xml:lang="rw">DjVu Inyandiko</comment>
+   <comment xml:lang="se">DjVu-dokumeanta</comment>
+   <comment xml:lang="sk">DjVu dokument</comment>
+   <comment xml:lang="sl">Dokument DjVu</comment>
+   <comment xml:lang="sq">Dokument nga DjVu</comment>
+   <comment xml:lang="sr">DjVu документ</comment>
+   <comment xml:lang="sr@Latn">DjVu dokument</comment>
+   <comment xml:lang="sv">DjVu-dokument</comment>
+   <comment xml:lang="ta">DjVu ஆவணம்</comment>
+   <comment xml:lang="tg">Хуҷҷати DjVu </comment>
+   <comment xml:lang="th">เอกสาร DjVu</comment>
+   <comment xml:lang="tr">DjVu Belgesi</comment>
+   <comment xml:lang="tt">DjVu İstälek</comment>
+   <comment xml:lang="ug">DjVu پۈتۈكى</comment>
+   <comment xml:lang="uk">Документ DjVu</comment>
+   <comment xml:lang="uz">DjVu ҳужжати</comment>
+   <comment xml:lang="ven">Manwalwa a DjVu</comment>
+   <comment xml:lang="vi">Tài liệu DjVu</comment>
+   <comment xml:lang="wa">Documint DjVu</comment>
+   <comment xml:lang="xh">Uxwebhu lwe DjVu</comment>
+   <comment xml:lang="zh_CN">DjVu 文档</comment>
+   <comment xml:lang="zh_HK">DjVu 文件</comment>
+   <comment xml:lang="zh_TW">DjVu 文件</comment>
+   <comment xml:lang="zu">Uhlu lwamafayela e-DjVu</comment>
+ </mime-type>
+</mime-info>

@@ -1,0 +1,18 @@
+djvulibre for Debian
+--------------------
+
+Packaged with the cooperation of the upstream authors Yann LeCun and
+Leon Bottou.
+
+ WARNING: OTHERS MAY BE ABLE TO ACCESS FILES PROCESSED BY ANY2DJVU.
+ The any2djvu program uploads files to a server for conversion,
+ compression, and OCR.  Others (aside from the uploader) can
+ theoretically access the compressed files.  This has been known to
+ happen.
+
+If someone else wants to take over this package I'm willing (eager) to
+give it up.  Just ask.  (In fact, that goes for all my packages!)  If
+someone does take it over, I'm happy to serve as an interface to the
+upstream authors as I am in contact with them professionally anyway.
+
+ -- Barak A. Pearlmutter <bap@debian.org>, Sat, 12 Feb 2011 13:23:34 +0000

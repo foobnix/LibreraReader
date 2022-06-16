@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!-- Data Type Definition for the message files -->
+
+<!--================ HEAD (Include List) ==================================-->
+
+<!ELEMENT INCLUDE EMPTY>
+<!ATTLIST INCLUDE name CDATA #REQUIRED>
+	<!-- The value of the name attribute must be the name of an XML file
+	     conforming to this DTD -->
+
+<!ELEMENT HEAD ( INCLUDE* )>
+
+<!--================ BODY (Message List) ==================================-->
+
+<!ELEMENT MESSAGE (#PCDATA) >
+<!ATTLIST MESSAGE name CDATA #REQUIRED>
+<!ATTLIST MESSAGE number CDATA #REQUIRED>
+<!ATTLIST MESSAGE value CDATA #REQUIRED>
+
+<!ELEMENT BODY ( MESSAGE* )>
+
+<!--================ Document Structure ==================================-->
+
+<!ELEMENT DjVuMessages ( HEAD? , BODY? )>
+

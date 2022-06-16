@@ -1,0 +1,233 @@
+#! /bin/bash -f
+
+function copyright()
+{
+    echo "Copyright (C) 2002 David Kreil <D.Kreil@IEEE.Org>"
+    echo "Modified by Barak A. Pearlmutter <bap@debian.org>"
+    echo "         and Yaroslav Halchenko <debian@onerussian.com>"
+    echo "Released under the GNU GPL v2, 21-Oct-2002."
+}
+
+function warranty()
+{
+    echo "This program is distributed in the hope that it will be useful,"
+    echo "but WITHOUT ANY WARRANTY; without even the implied warranty of"
+    echo "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"
+    echo "GNU General Public License for more details."
+}
+
+function disclaimer()
+{
+    echo "By using this tool you accept the following disclaimer:"
+    echo "  Because the any2djvu service is free of charge, there is no"
+    echo "  warranty of any kind.  In particular, no effort is made to"
+    echo "  prevent anyone from downloading the files submitted to or"
+    echo "  produced by the any2djvu server."
+}
+
+# TO DO:
+#  - error handling
+
+rurl="http://any2djvu.djvu.org"
+rcgi="any2djvu.php"
+res=400
+ocr=1
+docformat=2
+
+function warn()
+{
+    echo "Notes:"
+    echo " - Internet connection is required."
+    echo " - Filenames are assumed to require no URL-encoding."
+    echo " - Documents must be PostScript (.ps, .ps.gz) or PDF (.pdf)."
+    echo " - Defaults are: conversion is at 400dpi, with English OCR enabled."
+    echo " - This script should not be used for large scale conversions of"
+    echo "   documents, as it may badly affect and hence endanger the free web"
+    echo "   service to the community."
+    echo " - This software comes with NO WARRANTY."
+}
+
+function format_help()
+{
+    echo "Codes for the formats of the input documents to use with -f"
+    echo "  1 - DjVu Document (for verification or OCR)"
+    echo "  2 - PS/PS.GZ/PDF Document (default)"
+    echo "  3 - Photo/Picture/Icon"
+    echo "  4 - Scanned Document - B&W - <200 dpi"
+    echo "  5 - Scanned Document - B&W - 200-400 dpi"
+    echo "  6 - Scanned Document - B&W - >400 dpi"
+    echo "  7 - Scanned Document - Color/Mixed - <200 dpi"
+    echo "  8 - Scanned Document - Color/Mixed - 200-400 dpi"
+    echo "  9 - Scanned Document - Color/Mixed - >400 dpi"
+}
+
+function usage()
+{
+    echo "Convert files from .ps/.ps.gz/.pdf to .djvu"
+    echo "Usage:	$0 [options] [url] {filename(s)}"
+    echo
+    echo "Options:"
+    echo "  -q          quiet mode: reduce chatter on the screen"
+    echo "  -a          acknowledge internet transmission"
+    echo "  -c          clean after work: remove log file"
+    echo "  -r dpi      resolution in dpi (200/300/400, default: $res)"
+    echo "  -o ocr      perform OCR (0 - no, 1 - yes, default: $ocr)"
+    echo "  -f format   format of input document; invoke -f help for list"
+    echo "  -u url      base URL of server (default: $rurl)"
+    echo "  -p s        CGI script name (default: $rcgi)"
+    echo
+    echo "If no local file is named by the 1st argument the 1st"
+    echo "argument is taken to be an external web-accessible directory and,"
+    echo "the specified files are uploaded from that location."
+    echo
+    echo "Examples:"
+    echo "  cd ~bap/public_html/foo"
+    echo " # uploads from web-accessible directory"
+    echo "  any2djvu http://barak.pearlmutter.net/papers mesh-preprint.ps.gz"
+    echo "  any2djvu http://www.inference.phy.cam.ac.uk/mackay *.ps.gz bar.pdf"
+    echo " # uploads from current directory"
+    echo "  any2djvu b*.pdf"
+    echo "  any2djvu -s -c -r 300 -o 0 bp.ps"
+}
+
+
+while getopts "hacqsr:o:f:u:p:" opt
+  do
+  case "$opt" in
+      h) usage; exit 0 ;;
+      a) DJVU_ONLINE_ACK=1 ;;
+      c) doclean=1 ;;
+      s) echo "option -s is deprecated, please use -q"; silent=1  ;;
+      q) silent=1  ;;
+      r) res="$OPTARG" ;;
+      o) ocr="$OPTARG" ;;
+      f) docformat="$OPTARG" ;;
+      u) rurl="$OPTARG" ;;
+      p) rcgi="$OPTARG" ;;
+      *) usage; exit 2 ;;
+  esac
+done
+
+shift $((OPTIND - 1))
+
+# check resolution
+if [ ${res#[234]} != '00' ]; then
+    echo 'error: -r resolution must be one of: 200, 300, 400'
+    exit 2
+fi
+
+# check OCR option
+if [ ! "x$ocr" == x0 ] && [ ! "x$ocr" == x1 ]; then
+    echo 'error: -o OCR must be 0 or 1'
+    exit 2
+fi
+
+# if help is requested or docformat is not specified right - show help
+if [ "x$docformat" == x'help' ]; then
+    format_help
+    exit 0
+fi
+
+if [ -z "$docformat" ] || [ ! -z "${docformat#[0-9]}" ]; then
+    echo "error: requested document format unknown: $docformat".
+    format_help
+    exit 2
+fi
+
+lurl=''
+if [ ! -e "$1" ]; then	     # if 1st argument is not an existing file
+    lurl="$1"			# assume that it is a URL
+    shift
+fi
+
+#log=`date -u`": "`whoami`'@'`hostname`", pid $$: $0 (cwd "`pwd`")"
+log="`date -u`: `whoami`@`hostname`, pid $$: $0 (cwd `pwd`)"
+[ -z $silent ]  && echo '/-- Started' "$log" >&2
+
+in="$1"
+shift
+if [ -z "$in" ]; then
+    echo "error: no files to convert"
+    usage
+    exit 1
+fi
+
+if [ ! -z $s ]; then
+    copyright
+    disclaimer
+    warn
+fi
+
+if [ -z "$DJVU_ONLINE_ACK" ]; then
+    cat <<EOF
+WARNING!
+
+any2djvu uses an external server which is willing to perform the
+conversion and requires the document transfer over to that server.
+There is a security issue in operating on documents not intended for
+widespread distribution, which could be partially although not
+completely ameliorated by using a secure web connection.
+
+Do you acknowledge and allow the transmission of the document?
+(Type 'yes' to acknowledge. You can define non-empty environment
+ variable DJVU_ONLINE_ACK to avoid seeing this dialog, or use -a
+ command line parameter to any2djvu).
+EOF
+    echo -n "[yes/no]:"
+    read ack
+    if [[ ! "$ack" =~ ^[yY][eE][sS]$ ]]; then
+        warn
+        exit 1
+    fi
+fi
+
+wgetopts=''
+curlopts=''
+shellopts=''
+if [ ! -z $silent ]; then
+    curlopts=' -s '
+    wgetopts=' -q '
+    shellopts=' 1>/dev/null ' # 2>&1
+fi
+
+cgiopts="&docformat=$docformat&resolution=$res&ocr=$ocr&legal=1"
+while [ -n "$in" ]; do
+    b="$in"
+    b="${b%.ps.gz}"
+    b="${b%.ps}"
+    b="${b%.pdf}"
+    b="${b%.PDF}"
+    echo `date -u` Processing $b ...
+    log="$b-any2djvu.log"
+    if [ -z "$lurl" ]; then
+        if [ ! -e "$in" ]; then
+            echo "File $in wasn't found. Conversion stopped"
+            exit 2
+        fi
+        curl $curlopts -F "fupload=@$in" -F submit=Submit               \
+            -F docformat=$docformat -F resolution=$res                  \
+            -F ocr=$ocr -F legal=1 "$rurl/$rcgi"                          \
+            | eval tee "'$log'" $shellopts
+    else
+        wget $wgetopts -O - "$rurl/$rcgi?urlupload=$lurl/$in$cgiopts"   \
+            | eval tee "'$log'" $shellopts
+    fi
+    l=`egrep 'href=djvu/.*\.djvu' "$log"`
+    l="${l##*href=}"
+    l="${l%%>*}"
+    if [ -z "$l" ]; then
+        echo "error: something got wrong. check log file"
+        exit 1
+    fi
+    wget $wgetopts -O "$b.djvu" "$rurl/$l"
+
+    [ -z "$doclean" ] || rm "$log"
+    [ -z $silent ]  && ls -l "$b.djvu"
+
+    in="$1"
+    shift
+done
+
+log=`date -u`": "`whoami`'@'`hostname`", pid $$: $0 (cwd "`pwd`")"
+
+[ -z $silent ]  && echo '\-- Done' $log >&2

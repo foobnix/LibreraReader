@@ -92,17 +92,18 @@ rely on the LIBTIFF library <http://libtiff.org>.
 You can also compile DjVuLibre with neither JPEG nor TIFF support.  
 You might never notice the difference.
 
-THREADS --
-The DjVu viewer makes heavy use of multiple threads of execution.  
-Modern  Unix operating systems come with the standardized Posix threads.  
-DjVuLibre-3.5 fully supports detecting and using Posix threads.
-
 
 3.2 - CONFIGURE
 ---------------
 
 Chances are that everything will work by simply running 
-commands "./configure", "make" and "make install". 
+commands "./configure", "make" and "make install".
+
+Note that there will be no configure file if you obtain the djvulibre 
+source using git clone. Instead there is a script 'autogen.sh' that 
+uses automake to generate and call the actual configure script.
+Since all autogen.sh arguments will be passed to configure,
+you can simply treat autogen.sh as a replacement for configure.
 
 Various options and environment variables affect the execution of the
 configuration script.  A complete list can be obtained by typing 
@@ -132,11 +133,6 @@ Here are the most important ones.
   the LIBTIFF library in standard places.
   When everything else fails, you can simply define the environment
   variables TIFF_CFLAGS and TIFF_LIBS.
-
-* Option "--enable-threads=(auto|win32|posix|no)"
-  This option specifies which threading model should be used.
-  You can help the search process by defining environment
-  variables PTHREAD_CFLAGS and PTHREAD_LIBS.
 
 Always check the output of the configuration script for warnings and errors.
 In particular, the configuration script might disable the compilation of
@@ -183,65 +179,38 @@ paths above can be fine-tuned using appropriate arguments to
 4 - BUILDING FOR MAC OS X
 =========================
 
-(note: these instructions are slightly outdated.)
+We recommend that you first install homebrew and use 
+command "brew install" to obtain the following packages:
+  $ brew install autoconf automake libtool pkg-config
+  $ brew install jpeg libtiff
 
-The Mac OS X version of djvulibre can be built in one of two ways:
+Note that homebrew comes with a djvulibre package already.
+The following instructions explain how to compile djvulibre
+in a standalone manner. You may want to do that if you want
+the latest version of djvulibre. Otherwise, chances are
+that you should just install the djvulibre homebrew package.
+  $ brew install djvulibre
 
-- the Unix way
-- the Xcode way
-
-These instructions are to help setup and build djvulibre for a
-multi-architecture binary (ppc, i386).  Your milage with the following
-configure options (note: libjpeg.a and libtiff.a are installed
-universal on the machine this was tested with.)
-
-We recommend that you first install macports with the 
-libraries zlib, libpng, jpeg and tiff with option +universal.
-The commands to install these libraries are
-  $ sudo port install zlib +universal
-  $ sudo port install libpng +universal
-  $ sudo port install jpeg +universal
-  $ sudo port install tiff +universal
+But most people should find sufficient
+to just install the homebrew package.
 
 Then you can run configure
+  $ ./configure --disable-desktopfiles 
 
-./configure \
-   --enable-static=yes \
-   --disable-desktopfiles \
-   --with-extra-includes=/usr/include \
-   --with-extra-libraries=/usr/lib \
-   CFLAGS="-arch ppc -arch i386" \
-   CXXFLAGS="-arch ppc -arch i386" \
-   LDFLAGS="-arch ppc -arch i386"
-
-The --with-extra-include and --with-extra-libraries are here
-to favor system libraries (in /usr) over those that come with macports.
 Then you can compile with 
-
-$ make
+  $ make
 
 Running "make install" will install djvulibre in directory /usr/local.
-Note that the produced libraries will depend on the macports jpeg and tiff
-libraries.  You can change that using the command "install_name_tool"
-and other macosx tricks...
-
-Alternatively you can just open the macosx/DjVuLibre/DjVuLibre.xcodeproj 
-and build everything using Xcode. This can be painful if you do not have
-the same version of Xcode as the one we used to generate that file.
-In Leon's opinion, this is hell.  Jeff agrees, those dyld dependancies 
-trap us forever in the eighth circle.
-
-Note that the macosx directory contains a few useful tools
-that are not compiled using the main makefile:
-
-The djvu.mdimporter program is a spotlight importer for djvu metadata.
-The djvu.qlgenerator program generates quicklook data (leopard only).
+This may not be a good idea as they will interfere with homebrew.
+You may instead specify an alternate directory with DESTDIR=...
+  $ make install DESTDIR=/usr/local/djvulibre-install
+  
 
 
 5 - BUILDING FOR WINDOWS
 ========================
 
-5.1- Using Microsoft Visual C++ 2012
+5.1- Using Microsoft Visual C++ 2019
 ------------------------------------
 
    See the directory win32.

@@ -1,0 +1,136 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH CJB2 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+cjb2 \- Simple DjVuBitonal encoder.
+
+.SH SYNOPSIS
+.BI "cjb2  [" "options" "] " "inputfile" " " "outputdjvufile"
+
+.SH DESCRIPTION
+This is a simple encoder for bitonal files.
+Argument 
+.I inputfile
+is the name of a 
+.SM PBM
+or bitonal
+.SM TIFF
+file containing a single document image.
+This program produces a DjVuBitonal file named
+.IR outputdjvufile .
+
+The default compression process is lossless: 
+decoding the DjVuBitonal file at full resolution will 
+produce an image exactly identical to the input file.
+Lossy compression is enabled by options
+.BR -losslevel ,
+.BR -lossy ,
+or
+.BR -clean .
+
+.SH OPTIONS
+.TP
+.BI "-dpi " "n"
+Specify the resolution information encoded into the output file expressed in
+dots per inch. The resolution information encoded in DjVu files determine how
+the decoder scales the image on a particular display.  Meaningful resolutions
+range from 25 to 1200.  The default resolution for 
+.SM TIFF
+files is the resolution is the resolution specified by the input file.
+The default resolution for
+.SM PBM
+files is 300 dpi.
+.TP
+.B "-lossless"
+Ensure that the encoded image is pixel-per-pixel equal
+to the initial image. 
+This option is is equivalent to 
+.BR "-losslevel 0" 
+and is the default.
+.TP
+.B "-clean"
+Only remove flyspecks from the input image. 
+This option enables a heuristic algorithm that removes very small marks.  
+Such marks are often causes by noise and dust during the scanning process.
+The threshold mark size is chosen according to the resolution
+specified with option 
+This option is is equivalent to 
+.BR "-losslevel 1" .
+.TP
+.B "-lossy"
+Substitute patterns with small variations.
+In addition to the flyspeck removal heuristic, this option
+enables an algorithm that encodes certain characters
+by simply replicating the shape of a previously encoded character
+with a similar shape.
+This option is is equivalent to 
+.BR "-losslevel 100" .
+.TP
+.BI "-losslevel " "x"
+Specify the aggressiveness of the lossy compression.
+Its argument ranges from 0 to 200. 
+Higher values generate smaller files 
+with more potential distortions.
+Loss level 0 corresponds to lossless encoding.
+Loss level 1 performs image cleaning but does not perform
+character substitution at all.
+Loss level 100 is intended to provide a good compromise.
+Higher loss levels provide marginally better compression
+at the risk of unacceptable character substitutions. 
+.TP
+.B "-verbose"
+Display informational messages while running.
+
+.SH REMARKS
+Lossless encoding is competitive with that of the 
+Lizardtech commercial encoders. 
+.PP
+Lossy encoding has made much progress thanks
+to Ilya Mezhirov from the minidjvu project.
+This also means that the lossy encoding performance
+can change from version to version.
+When lossy compression yields inadequate results,
+simply revert to only using option
+.BR -clean 
+or reduce the parameter of option
+.BR -losslevel .
+.PP
+Two features are still missing:
+.IP "*" 3
+Half-tone detection. Collecting small marks belonging 
+to half-tone patterns would improve compression speed.
+.IP "*" 3
+Multi-page compression. Matching characters on several pages
+would improve the compression ratios for multi-page documents.
+
+.SH CREDITS
+This program was initially written by L\('eon Bottou
+<leonb@users.sourceforge.net> and was improved 
+by Bill Riemers <docbill@sourceforge.net> and many others.
+The pattern matching algorithm for lossy compression
+was contributed by Ilya Mezhirov <ilya@mezhirov.mccme.ru>.
+TIFF input routines are inspired by the ones contributed by 
+R. Keith Dennis <dennis@rkd.math.cornell.edu> and Paul Young.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR pbm (5).

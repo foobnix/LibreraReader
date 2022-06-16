@@ -1,0 +1,147 @@
+.\" t
+.\"
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH BZZ 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+bzz \- DjVu general purpose compression utility.
+
+.SH SYNOPSIS
+.SS Encoding:
+.BI "bzz \-e" "[blocksize]" " " "inputfile" " " "outputfile"
+.SS Decoding:
+.BI "bzz \-d " "inputfile" " " "outputfile"
+.PP
+
+.SH DESCRIPTION
+The first form of the command line (option 
+.BR \-e )
+compresses the data from file
+.I inputfile 
+and writes the compressed data into 
+.IR outputfile .
+The second form of the command line (option
+.BR \-d )
+decompressed file
+.I inputfile
+and writes the output to
+.IR outputfile .
+
+.SH OPTIONS
+.TP
+.B "\-d"
+Decoding mode.
+.TP
+.BI "\-e" "[blocksize]"
+Encoding mode.
+The optional argument 
+.I blocksize
+specifies the size of the input file blocks processed by the Burrows-Wheeler
+transform expressed in kilobytes.  The default block sizes is 2048
+.SM KB.
+The maximal block size is 4096
+.SM KB.
+Specifying a larger block size usually produces higher compression ratios
+and increases the memory requirements of both the encoder and decoder.
+It is useless to specify a block size that is larger than the
+input file.
+
+.SH ALGORITHMS
+The Burrows-Wheeler transform is performed using a combination of the
+Karp-Miller-Rosenberg and the Bentley-Sedgewick algorithms. This is comparable
+to (Sadakane, DCC 98) with a slightly more flexible ranking scheme. Symbols
+are then ordered according to a running estimate of their occurrence
+frequencies.  The symbol ranks are then coded using a simple fixed tree and
+the ZP binary adaptive coder (Bottou, DCC 98).
+
+The Burrows-Wheeler transform is also used in the well known compressor
+.BR bzip2 .
+The originality of 
+.B bzz
+is the use of the ZP adaptive coder.
+The adaptation noise can cost up to 5 percent in
+file size, but this penalty is usually offset by the benefits of
+adaptation.
+
+.SH PERFORMANCE
+The following table shows comparative results (in bits per character) 
+on the Canterbury Corpus (
+.B http://corpus.canterbury.ac.nz
+). The very good 
+.B bzz
+performance on the spreadsheet file 
+.I excl
+puts the weighted average ahead of much more sophisticated
+compressors such as
+.BR fsmx .
+.ps -2
+
+.TS
+center,box;
+c s s s s s s s s s s s s s
+l c c c c c c c c c c c c c
+l n n n n n n n n n n n n n
+l n n n n n n n n n n n n n
+l n n n n n n n n n n n n n
+l n n n n n n n n n n n n n
+l nfB n nfB n nfB nfB nfB nfB nfB nfB nfB n nfB
+lfB n nfB n nfB n n n n n n n nfB n
+.
+Compression performance
+	text	fax	csrc	excl	sprc	tech	poem\
+	html	lisp	man	play	Weighted	Average
+=
+\0compress\0	3.27	0.97	3.56	2.41	4.21	3.06	3.38	3.68	3.90	4.43	3.51	2.55	3.31
+\0gzip \-9\0	2.85	0.82	2.24	1.63	2.67	2.71	3.23	2.59	2.65	3.31	3.12	2.08	2.53
+\0bzip2 \-9\0	2.27	0.78	2.18	1.01	2.70	2.02	2.42	2.48	2.79	3.33	2.53	1.54	2.23
+\0ppmd\0	2.31	0.99	2.11	1.08	2.68	2.19	2.48	2.38	2.43	3.00	2.53	1.65	2.20
+\0fsmx\0	2.10	0.79	1.89	1.48	2.52	1.84	2.21	2.24	2.29	2.91	2.35	1.63	2.06
+\0bzz\0	2.25	0.76	2.13	0.78	2.67	2.00	2.40	2.52	2.60	3.19	2.52	1.44	2.16
+.TE
+
+
+.PP
+Note that DjVu contributors have several 
+entries in this table.  Program
+.B compress
+was written some time ago by Joe Orost.
+Program
+.B ppmd
+is an improvement of the 
+.SM PPM-C
+method invented by Paul Howard.
+
+.SH CREDITS
+Program 
+.B bzz 
+was written by L\('eon Bottou <leonb@users.sourceforge.net> and
+was then improved by Andrei Erofeev <andrew_erofeev@yahoo.com>, Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR compress (1),
+.BR gzip (1),
+.BR bzip2 (1)

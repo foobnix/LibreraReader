@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ZlibRoot);$(ZlibDir);$(JpegRoot);$(JpegDir);$(TiffRoot);$(TiffDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CCITT_SUPPORT;PACKBITS_SUPPORT;LZW_SUPPORT;THUNDER_SUPPORT;NEXT_SUPPORT;LOGLUV_SUPPORT;JPEG_SUPPORT;ZIP_SUPPORT;EXTRASAMPLE_AS_ALPHA_SUPPORT;CHECK_JPEG_YCBCR_SUBSAMPLING;TIF_PLATFORM_CONSOLE;FILLODER_LSB2MSB;AVOID_WIN32_FILEIO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

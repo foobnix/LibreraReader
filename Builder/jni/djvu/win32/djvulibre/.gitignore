@@ -1,0 +1,6 @@
+Release/
+Debug/
+/*.sdf
+/*.opensdf
+/*.suo
+/djvulibre+djview.sln

@@ -4,71 +4,70 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := djvu
 
-LOCAL_CFLAGS    := $(APP_CFLAGS)  -D__APPLE__ -fexceptions -DHAVE_CONFIG_H
+LOCAL_CFLAGS    := $(APP_CFLAGS) -fexceptions -DHAVE_CONFIG_H
 LOCAL_CPPFLAGS  := $(APP_CPPFLAGS)
 LOCAL_ARM_MODE  := $(APP_ARM_MODE)
-
 
 LOCAL_C_INCLUDES := \
     $(MUPDF_ROOT)/thirdparty/libjpeg \
     $(MUPDF_ROOT)/scripts/libjpeg \
-	$(LOCAL_PATH)/include \
+	$(LOCAL_PATH)/libdjvu \
 
-
-LOCAL_SRC_FILES :=  \
-	src/Arrays.cpp \
-	src/BSByteStream.cpp \
-	src/BSEncodeByteStream.cpp \
-	src/ByteStream.cpp \
-	src/DataPool.cpp \
-	src/DjVmDir.cpp \
-	src/DjVmDir0.cpp \
-	src/DjVmDoc.cpp \
-	src/DjVmNav.cpp \
-	src/DjVuAnno.cpp \
-	src/DjVuDocument.cpp \
-	src/DjVuDumpHelper.cpp \
-	src/DjVuErrorList.cpp \
-	src/DjVuFile.cpp \
-	src/DjVuFileCache.cpp \
-	src/DjVuGlobal.cpp \
-	src/DjVuGlobalMemory.cpp \
-	src/DjVuImage.cpp \
-	src/DjVuInfo.cpp \
-	src/DjVuMessage.cpp \
-	src/DjVuMessageLite.cpp \
-	src/DjVuNavDir.cpp \
-	src/DjVuPalette.cpp \
-	src/DjVuPort.cpp \
-	src/DjVuText.cpp \
-	src/GBitmap.cpp \
-	src/GContainer.cpp \
-	src/GException.cpp \
-	src/GIFFManager.cpp \
-	src/GMapAreas.cpp \
-	src/GOS.cpp \
-	src/GPixmap.cpp \
-	src/GRect.cpp \
-	src/GScaler.cpp \
-	src/GSmartPointer.cpp \
-	src/GString.cpp \
-	src/GThreads.cpp \
-	src/GURL.cpp \
-	src/GUnicode.cpp \
-	src/IFFByteStream.cpp \
-	src/IW44Image.cpp \
-	src/IW44EncodeCodec.cpp \
-	src/JB2Image.cpp \
-	src/JPEGDecoder.cpp \
-	src/MMRDecoder.cpp \
-	src/MMX.cpp \
-	src/UnicodeByteStream.cpp \
-	src/XMLParser.cpp \
-	src/XMLTags.cpp \
-	src/ZPCodec.cpp \
-	src/atomic.cpp \
-	src/debug.cpp \
-	src/ddjvuapi.cpp \
-	src/miniexp.cpp
+LOCAL_SRC_FILES := \
+	libdjvu/Arrays.cpp \
+	libdjvu/BSByteStream.cpp \
+	libdjvu/BSEncodeByteStream.cpp \
+	libdjvu/ByteStream.cpp \
+	libdjvu/DataPool.cpp \
+	libdjvu/DjVmDir.cpp \
+	libdjvu/DjVmDir0.cpp \
+	libdjvu/DjVmDoc.cpp \
+	libdjvu/DjVmNav.cpp \
+	libdjvu/DjVuAnno.cpp \
+	libdjvu/DjVuDocument.cpp \
+	libdjvu/DjVuDumpHelper.cpp \
+	libdjvu/DjVuErrorList.cpp \
+	libdjvu/DjVuFile.cpp \
+	libdjvu/DjVuFileCache.cpp \
+	libdjvu/DjVuGlobal.cpp \
+	libdjvu/DjVuGlobalMemory.cpp \
+	libdjvu/DjVuImage.cpp \
+	libdjvu/DjVuInfo.cpp \
+	libdjvu/DjVuMessage.cpp \
+	libdjvu/DjVuMessageLite.cpp \
+	libdjvu/DjVuNavDir.cpp \
+	libdjvu/DjVuPalette.cpp \
+	libdjvu/DjVuPort.cpp \
+	libdjvu/DjVuText.cpp \
+	libdjvu/DjVuToPS.cpp \
+	libdjvu/GBitmap.cpp \
+	libdjvu/GContainer.cpp \
+	libdjvu/GException.cpp \
+	libdjvu/GIFFManager.cpp \
+	libdjvu/GMapAreas.cpp \
+	libdjvu/GOS.cpp \
+	libdjvu/GPixmap.cpp \
+	libdjvu/GRect.cpp \
+	libdjvu/GScaler.cpp \
+	libdjvu/GSmartPointer.cpp \
+	libdjvu/GString.cpp \
+	libdjvu/GThreads.cpp \
+	libdjvu/GURL.cpp \
+	libdjvu/GUnicode.cpp \
+	libdjvu/IFFByteStream.cpp \
+	libdjvu/IW44Image.cpp \
+	libdjvu/IW44EncodeCodec.cpp \
+	libdjvu/JB2Image.cpp \
+	libdjvu/JPEGDecoder.cpp \
+	libdjvu/MMRDecoder.cpp \
+	libdjvu/MMX.cpp \
+	libdjvu/UnicodeByteStream.cpp \
+	libdjvu/XMLParser.cpp \
+	libdjvu/XMLTags.cpp \
+	libdjvu/ZPCodec.cpp \
+	libdjvu/atomic.cpp \
+	libdjvu/debug.cpp \
+	libdjvu/ddjvuapi.cpp \
+	libdjvu/miniexp.cpp
 
 include $(BUILD_STATIC_LIBRARY)

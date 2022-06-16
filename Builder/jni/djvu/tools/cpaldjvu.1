@@ -1,0 +1,89 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH CPALDJVU 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+cpaldjvu \- DjVuDocument encoder for low-color images.
+
+.SH SYNOPSIS
+.BI "cpaldjvu  [" "options" "] " "inputppmfile" " " "outputdjvufile"
+
+.SH DESCRIPTION
+Program 
+.B cpaldjvu
+is a DjVuDocument encoder for images containing few colors.  It performs best
+on images containing large solid color areas such as screen dumps.
+Compression ratios on such images can be much higher than those achieved by
+.SM GIF
+or
+.SM PNG
+compression.
+
+This program works by first reducing the number of distinct colors to a small
+specified value using a simple color quantization algorithm.  The dominant
+color is encoded into the background layer.  The other colors are encoded into
+the foreground layer.
+
+.SH OPTIONS
+.TP
+.BI "-dpi " "n"
+Specify the resolution information encoded into the output file expressed in
+dots per inch. The resolution information encoded in DjVu files determine how
+the decoder scales the image on a particular display.  Meaningful resolutions
+range from 25 to 6000.  The default value is 300 dpi.
+.TP
+.BI "-colors " "n"
+Specify a maximum number of distinct colors for the color quantization
+algorithm.  process. The default value is 256.  Smaller values can produce
+much smaller files.
+.TP
+.B "-bgwhite"
+Cause the background layer to use the lightest quantified color
+instead of the dominant color.
+.TP
+.B "-verbose"
+Display informational messages while running.
+
+.SH REMARKS
+The color quantization might introduce severe degradation if the image
+contains photographic areas with a large number of very similar colors.
+Color quantization problems might be solved by pre-processing
+the input file with a different quantization program such as
+.BR ppmquant .
+Avoid using the error diffusion dithering algorithm.
+This algorithm generates random dithering patterns that
+might be very costly to encode.
+
+.SH BUGS
+This program should be rewritten as a pre-processor for 
+.BR csepdjvu .
+
+.SH CREDITS
+This program was initially written by L\('eon Bottou
+<leonb@users.sourceforge.net> and was improved by Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR pbm (5),
+.BR ppmquant (1),
+.BR pnmtogif (1),
+.BR pnmtopng (1)

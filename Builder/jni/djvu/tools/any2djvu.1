@@ -1,0 +1,30 @@
+.TH ANY2DJVU 1 "02/12/2003" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+any2djvu \- Convert .ps/.ps.gz/.pdf to .djvu
+
+.SH SYNOPSIS
+.B any2djvu
+\fIurl {filename(s)}\fR
+.SH DESCRIPTION
+Converts files from .ps/.ps.gz/.pdf to .djvu by running them through
+a web server willing to perform this task.
+.PP
+Invoke with \-h switch for usage information.
+.SH ENVIRONMENT
+Non-empty value of DJVU_ONLINE_ACK acknowledges transmission of the
+documents to the server (so that no warning dialog is displayed).
+.SH EXAMPLES
+any2djvu http://barak.pearlmutter.net/papers mesh-preprint.ps.gz
+.PP
+any2djvu localfile.pdf
+.SH AUTHORS
+David Kreil, Barak A. Pearlmutter, Yaroslav O. Halchenko
+.SH BUGS
+Using a web-based encoder server is a stop-gap measure until better
+encoders enjoy wide free distribution.
+.PP
+There is a security issue in operating on documents not intended for
+widespread distribution, which could be partially although not
+completely ameliorated by using a secure web connection.
+.SH "SEE ALSO"
+The entire djvu suite, eg djvu(1), djview(1), and djvuserver(1).

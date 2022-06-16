@@ -1,0 +1,261 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH CSEPDJVU 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+csepdjvu \- DjVu encoder for separated data files.
+
+.SH SYNOPSIS
+.BI "csepdjvu  [" "options" "] [" "sepfiles" "]... " "outputdjvufile"
+
+.SH DESCRIPTION
+
+This program creates a DjVuDocument file
+.I outputdjvufile
+from separated data files 
+.IR sepfiles .
+It can read separated data from the standard input when given 
+a single dash instead of the separated data file names.  
+This feature is intended for pre-processing programs that
+push separated data into
+.B csepdjvu
+via a pipe.
+
+Each separated data file represents one or more page images.  When the program
+arguments specify multiple pages, all the pages are encoded and saved as a
+bundled multi-page document.  When the program arguments specify a single
+page, the page is encoded and saved as a single page file.
+
+.SH OPTIONS
+.TP
+.BI "-d " "n"
+Specify the resolution information encoded into the output file expressed in
+dots per inch. The resolution information encoded in DjVu files determine how
+the decoder scales the image on a particular display.  Meaningful resolutions
+range from 25 to 6000.  The default value is 300 dpi.
+.TP
+.BI "-q " "n" ",...," "n"
+.TP
+.BI "-q " "n" "+...+" "n"
+Specify the encoding quality of the IW44 encoded background layer.  
+The option argument contain several integers (one per chunk) separated by
+either commas or pluses.  This option is similar to option
+.B -slice
+of program
+.BR c44 .
+Please refer to the 
+.BR c44 (1)
+man page for additional details.
+The default quality specification is
+.BR "-q 72,83,93,103" . 
+
+This option does not apply to uniformly white background that were not specified
+by the separated data but are called for by the DjVu specification.  Such 
+background images always come at the lowest possible resolution and with a
+standard quality setting that ensures the color uniformity.
+.TP
+.B "-t"
+Program 
+.B csepdjvu
+interprets certain comments in the separated file to
+construct a hidden text layer in the DjVu file. This layer
+records the location of each word for hiliting purposes. 
+This option reduces the file size by simply recording the
+location of each line.
+.TP
+.B "-v"
+Display a brief message describing each page.
+.TP
+.B "-vv"
+Display extensive informational messages during encoding.
+
+.SH SEPARATED DATA FILE FORMAT
+
+Each separated data file contains a concatenation of one or more separated
+page images.  Each page is logically represented by a foreground image with a
+transparent color and by a background image visible through the transparent
+pixels.  The data for each separated page image is the concatenation of the
+following data blocks:
+.IP "*" 3
+A foreground image encoded using either 
+the "Color RLE format" or the "Bitonal RLE format".
+These formats are described later in this section.
+.IP "*" 3
+An optional background image encoded as a "Portable Pixmap" (
+.SM PPM
+).  This well known format is summarized later in this section.  The absence
+of a background image simply indicates that a uniformly white background
+should be assumed.
+.IP "*" 3
+An arbitrary number of comment lines starting with character "#" and
+terminated by a linefeed character. Comment lines whose first word starts
+with a capital letter have special meanings documented later in this document.
+.PP
+The dimensions (width and height) of the background image must be obtained by
+rounding up the quotient of the foreground image dimensions by an integer
+reduction factor ranging from 1 to 12.  Assume, for instance, that the width
+of the foreground is 2507 and the reduction factor is 3.  The width of the
+background image will be the integer ratio (2507+2)/3.
+
+.SS Color RLE format
+
+The Color RLE format is a simple run-length encoding scheme for color images
+with a limited number of distinct colors.  The data always begin with a text
+header composed of the two characters "R6", the number of columns, the number
+of rows, and the number of color palette entries.  All numbers are expressed
+in decimal
+.SM ASCII.
+These four items are separated by blank characters (space, tab, carriage
+return, or linefeed) or by comment lines introduced by character "#".  The
+last number is followed by exactly one character which usually is a linefeed
+character.
+
+The header is followed by the color palette containing three bytes per color
+entry.  The bytes represent the red, green, and blue components of the color.
+
+The palette is followed by a collection of four bytes integers (most
+significant bit first) representing runs of pixels with an identical color.
+The twelve upper bits of this integer indicate the index of the run color in
+the palette entry.  The twenty lower bits of the integer indicate the run
+length.  Color indices greater than 0xff0 are reserved.  Color index 0xfff is
+used for transparent runs.  Each row is represented by a sequence of runs
+whose lengths add up to the image width.  Rows are encoded starting with the
+top row and progressing toward the bottom row.
+
+.SS Bitonal RLE format
+
+The Bitonal RLE format is a simple run-length encoding scheme for bitonal
+images.  The data always begin with a text header composed of the two
+characters "R4", the number of columns, and the number of rows.  All numbers
+are expressed in decimal
+.SM ASCII.
+These three items are separated by blank characters (space, tab, carriage
+return, or linefeed) or by comment lines introduced by character "#".  The
+last number is followed by exactly one character which usually is a linefeed
+character.
+
+The rest of the file encodes a sequence of numbers representing the lengths of
+alternating runs of transparent and black pixels.  Lines are encoded starting
+with the top line and progressing toward the bottom line.  Each line starts
+with a white run. The decoder knows that a line is finished when the sum of
+the run lengths for that line is equal to the number of columns in the image.
+Numbers in range 0 to 191 are represented by a single byte in range 0x00 to
+0xbf.  Numbers in range 192 to 16383 are represented by a two byte sequence:
+the first byte, in range 0xc0 to 0xff, encodes the six most significant bits
+of the number, the second byte encodes the remaining eight bits of the
+number. This scheme allows for runs of length zero, which are useful when a
+line starts with a black pixel, and when a very long run (whose length exceeds
+16383) must be split into smaller runs.
+
+.SS Portable Pixmap (PPM) format
+
+The Portable Pixmap format is a well known format for representing color
+images.  Check the
+.BR ppm (1)
+man page for complete information.
+
+The data always begin with a text header composed of the two characters "P6",
+the number of columns, the number of rows, and the maximal value of
+a color component (usually 255).  All numbers are expressed in
+decimal
+.SM ASCII.
+These three items are separated by blank characters (space, tab, carriage
+return, or linefeed) or by comment lines introduced by character "#".  The
+last number is followed by exactly one character which usually is a linefeed
+character.
+
+The rest of the file encodes all the pixels.  Each pixel is represented by
+three bytes representing the red, green and blue component of the pixel.
+Pixels are ordered in left to right, top to bottom.
+
+.SS Comments in separated files
+
+Each page is followed by an arbitrary number of comment lines starting with
+character "#" and terminated by a linefeed character.  Certain comment lines
+have special meanings. In the following constructs, all the strings are UTF-8
+encoded and represent in the style of Postscript strings, that is, surrounded
+with parenthesis and using C-style escape sequences introduced by a backslash.
+.IP "*" 3
+.BI "# T " px ":" py " " dx ":" dy " " w "x" h "+" x "+" y " (" string ")"
+.br
+Such a comment line indicates that the piece of text
+.I string
+must be associated with an area of size
+.IR w "x" h
+at position 
+.IR x "," y
+relative to the lower left corner of the page.
+Integers
+.IR px ", and " py
+represent the position of the current point on the text baseline
+before the text was drawn. The drawing operation then moves the
+current point by 
+.IR dx ", and " dy
+pixels.
+When such comments are present, 
+.BR csepdjvu 
+produces a hidden text layer for the 
+corresponding pages.
+.IP "*" 3
+.BI "# L " w "x" h "+" x "+" y " (" url ")"
+.br
+Such a comment line indicates that an hyperlink to url
+.I url
+should be associated with area of size
+.IR w "x" h
+at position 
+.IR x "," y "."
+When such comments are present, 
+.BR csepdjvu 
+produces pages with an annotation chunk 
+containing the specified hyperlinks.
+.IP "*" 3
+.BI "# B " count " (" string ") (#" pageno ")"
+.br
+Such a comment line provides outline information for the document.
+An outline entry entitled
+.I string
+is associated with page
+.IR pageno .
+Integer 
+.I count 
+indicates how many of the following outline entries must
+be attached to the current entry as subentries.
+When such comments are present in the first page
+.BR csepdjvu 
+produces an navigation chunk with 
+the specified outline.
+.IP "*" 3
+.BI "# P (" string ")"
+.br
+Such a comment line provides a title
+.I string
+for the current page.
+.SH CREDITS
+
+This program was initially written by L\('eon Bottou
+<leonb@users.sourceforge.net> and was improved by Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR ppm (5),
+.BR c44 (1)
