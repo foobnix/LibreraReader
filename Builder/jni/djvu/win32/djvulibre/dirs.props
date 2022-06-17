@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <DjvulibreRoot>$(SolutionDir)\..\..</DjvulibreRoot>
+    <ZlibRoot>$(SolutionDir)\..\zlib</ZlibRoot>
+    <TiffRoot>$(SolutionDir)\..\tiff</TiffRoot>
+    <JpegRoot>$(SolutionDir)\..\jpeg</JpegRoot>
+    <ZlibDir>$(ZlibRoot)\zlib</ZlibDir>
+    <TiffDir>$(TiffRoot)\tiff\libtiff</TiffDir>
+    <JpegDir>$(JpegRoot)\jpeg-6b</JpegDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="DjvulibreRoot">
+      <Value>$(DjvulibreRoot)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ZlibRoot">
+      <Value>$(ZlibRoot)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TiffRoot">
+      <Value>$(TiffRoot)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JpegRoot">
+      <Value>$(JpegRoot)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ZlibDir">
+      <Value>$(ZlibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TiffDir">
+      <Value>$(TiffDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="JpegDir">
+      <Value>$(JpegDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

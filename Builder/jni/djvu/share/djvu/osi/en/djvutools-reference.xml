@@ -1,0 +1,214 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../../pubtext/DjVuMessages.dtd">
+<!-- Error messages from the reference library -->
+<DjVuMessages>
+<BODY>
+<MESSAGE name="annotate.failed_chunk" number="17000" 
+  value="[%0!05d!] Failed to find chunk %1!d! in the source file." />
+<MESSAGE name="annotate.failed_stat" number="17001" 
+  value="[%0!05d!] Failed to stat annotation file." />
+<MESSAGE name="annotate.usage" number="17002" 
+  value="[%0!05d!] usage:&#10;    annotate -extract|-insert &lt;djvu_in&gt; &lt;ant_file&gt; [&lt;djvu_out&gt;]&#10;or  annotate -remove &lt;djvu_in&gt; [&lt;djvu_out&gt;]." />
+<MESSAGE name="c44.bitrate_not_number"  number="17500"
+  value="[1-%0!05u!] illegal bitrate specification (number expected)" />
+<MESSAGE name="c44.bitrate_out_of_range"  number="17501"
+  value="[1-%0!05u!] illegal bitrate specification (number out of range)" />
+<MESSAGE name="c44.bitrate_comma_expected"  number="17502"
+  value="[1-%0!05u!] illegal bitrate specification (comma or plus expected)" />
+<MESSAGE name="c44.bitrate_too_many"  number="17503"
+  value="[1-%0!05u!] illegal bitrate specification (too many chunks)" />
+<MESSAGE name="c44.bitrate_no_chunks"  number="17504"
+  value="[1-%0!05u!] illegal bitrate specification (no chunks)" />
+<MESSAGE name="c44.no_bpp_arg" number="17505"
+  value="[1-%0!05u!] no argument for option '-bpp'" />
+<MESSAGE name="c44.multiple_bitrate" number="17506"
+  value="[1-%0!05u!] multiple bitrate specification" />
+<MESSAGE name="c44.size_not_number"  number="17510"
+  value="[1-%0!05u!] illegal size specification (number expected)" />
+<MESSAGE name="c44.size_out_of_range"  number="17511"
+  value="[1-%0!05u!] illegal size specification (number out of range)" />
+<MESSAGE name="c44.size_comma_expected"  number="17512"
+  value="[1-%0!05u!] illegal size specification (comma or plus expected)" />
+<MESSAGE name="c44.size_too_many"  number="17513"
+  value="[1-%0!05u!] illegal size specification (too many chunks)" />
+<MESSAGE name="c44.size_no_chunks"  number="17514"
+  value="[1-%0!05u!] illegal size specification (no chunks)" />
+<MESSAGE name="c44.no_size_arg" number="17515"
+  value="[1-%0!05u!] no argument for option '-size'" />
+<MESSAGE name="c44.multiple_size" number="17516"
+  value="[1-%0!05u!] multiple size specification" />
+<MESSAGE name="c44.slice_not_number"  number="17520"
+  value="[1-%0!05u!] illegal slice specification (number expected)" />
+<MESSAGE name="c44.slice_out_of_range"  number="17521"
+  value="[1-%0!05u!] illegal slice specification (number out of range)" />
+<MESSAGE name="c44.slice_comma_expected"  number="17522"
+  value="[1-%0!05u!] illegal slice specification (comma or plus expected)" />
+<MESSAGE name="c44.slice_too_many"  number="17523"
+  value="[1-%0!05u!] illegal slice specification (too many chunks)" />
+<MESSAGE name="c44.slice_no_chunks"  number="17524"
+  value="[1-%0!05u!] illegal slice specification (no chunks)" />
+<MESSAGE name="c44.no_slice_arg" number="17525"
+  value="[1-%0!05u!] no argument for option '-slice'" />
+<MESSAGE name="c44.multiple_slice" number="17526"
+  value="[1-%0!05u!] multiple slice specification" />
+<MESSAGE name="c44.decibel_not_number"  number="17530"
+  value="[1-%0!05u!] illegal decibel specification (number expected)" />
+<MESSAGE name="c44.decibel_out_of_range"  number="17531"
+  value="[1-%0!05u!] illegal decibel specification (number out of range)" />
+<MESSAGE name="c44.decibel_comma_expected"  number="17532"
+  value="[1-%0!05u!] illegal decibel specification (comma or plus expected)" />
+<MESSAGE name="c44.decibel_too_many"  number="17533"
+  value="[1-%0!05u!] illegal decibel specification (too many chunks)" />
+<MESSAGE name="c44.decibel_no_chunks"  number="17534"
+  value="[1-%0!05u!] illegal decibel specification (no chunks)" />
+<MESSAGE name="c44.no_decibel_arg" number="17535"
+  value="[1-%0!05u!] no argument for option '-decibel'" />
+<MESSAGE name="c44.multiple_decibel" number="17537"
+  value="[1-%0!05u!] multiple decibel specification" />
+<MESSAGE name="c44.no_mask_arg" number="17540"
+  value="[1-%0!05u!] no argument for option '-mask'" />
+<MESSAGE name="c44.multiple_mask" number="17541"
+  value="[1-%0!05u!] multiple mask specification" />
+<MESSAGE name="c44.no_dbfrac_arg" number="17542"
+  value="[1-%0!05u!] no argument for option '-dbfrac'" />
+<MESSAGE name="c44.multiple_dbfrac" number="17543"
+  value="[1-%0!05u!] multiple dbfrac specification" />
+<MESSAGE name="c44.illegal_dbfrac" number="17544"
+  value="[1-%0!05u!] illegal dbfrac specification" />
+<MESSAGE name="c44.no_crcbdelay_arg" number="17545"
+  value="[1-%0!05u!] no argument for option '-crcbdelay'" />
+<MESSAGE name="c44.illegal_crcbdelay" number="17546"
+  value="[1-%0!05u!] illegal argument for option '-crcbdelay'" />
+<MESSAGE name="c44.no_dpi_arg" number="17547"
+  value="[1-%0!05u!] no argument for option '-dpi'" />
+<MESSAGE name="c44.illegal_dpi" number="17548"
+  value="[1-%0!05u!] illegal argument for option '-dpi'" />
+<MESSAGE name="c44.duplicate_dpi" number="17549"
+  value="[1-%0!05u!] duplicate argument for option '-dpi'" />
+<MESSAGE name="c44.no_gamma_arg" number="17550"
+  value="[1-%0!05u!] no argument for option '-gamma'" />
+<MESSAGE name="c44.illegal_gamma" number="17551"
+  value="[1-%0!05u!] illegal argument for option '-gamma'" />
+<MESSAGE name="c44.duplicate_gamma" number="17552"
+  value="[1-%0!05u!] duplicate argument for option '-gamma'" />
+<MESSAGE name="c44.incompatable_chrominance" number="17553"
+  value="[1-%0!05u!] incompatible chrominance options" />
+<MESSAGE name="c44.different_size" number="17554"
+  value="[1-%0!05u!] mask and image have different size" />
+<MESSAGE name="c44.exclusive" number="17555"
+  value="[1-%0!05u!] options -bpp and -size are exclusive" />
+<MESSAGE name="c44.failed_pnm_header" number="17556"
+  value="[1-%0!05u!] cannot read pnm file header" />
+<MESSAGE name="c44.unrecognized" number="17557"
+  value="[1-%0!05u!] unrecognized file" />
+<MESSAGE name="c44.failed_mask" number="17558"
+  value="[1-%0!05u!] cannot apply mask on an already compressed image" />
+<MESSAGE name="djthumb.one_page" number="17600"
+  value="[1-%0!05u!] Thumbnails cannot be generated for one-page documents." />
+<MESSAGE name="djthumb.new_size" number="17601"
+  value="[1-%0!05u!] Document size has increased %!d!%% (from %1!d! to %2!d!)." />
+<MESSAGE name="djthumb.size" number="17602"
+  value="[1-%0!05u!] Thumbnail size is %1!d!." />
+<MESSAGE name="ddjvu.bad_page" number="17700"
+  value="[1-%0!05u!] Illegal argument for option '-page'." />
+<MESSAGE name="ddjvu.bad_scale" number="17701"
+  value="[1-%0!05u!] Illegal argument for option '-scale'." />
+<MESSAGE name="ddjvu.bad_size" number="17702"
+  value="[1-%0!05u!] Illegal argument for option '-size'." />
+<MESSAGE name="ddjvu.bilevel" number="17703"
+  value="This is a legal Bitonal DjVu image." />
+<MESSAGE name="ddjvu.cant_render" number="17704"
+  value="[1-%0!05u!] Cannot render the requested image." />
+<MESSAGE name="ddjvu.compound" number="17705"
+  value="This is a legal Compound DjVu image." />
+<MESSAGE name="ddjvu.decode" number="17706"
+  value="Decoding time: %1!lu! ms" />
+<MESSAGE name="ddjvu.dupl_page" number="17707"
+  value="[1-%0!05u!] Duplicate page number specification." />
+<MESSAGE name="ddjvu.dupl_render" number="17708"
+  value="[1-%0!05u!] Duplicate rendering mode specification." />
+<MESSAGE name="ddjvu.dupl_scale" number="17709"
+  value="[1-%0!05u!] Duplicate scale specification." />
+<MESSAGE name="ddjvu.dupl_seg" number="17710"
+  value="[1-%0!05u!] Duplicate segment specification." />
+<MESSAGE name="ddjvu.dupl_size" number="17711"
+  value="[1-%0!05u!] Duplicate size specification." />
+<MESSAGE name="ddjvu.failed" number="17712"
+  value="[1-%0!05u!] Decoding failed. Nothing can be done." />
+<MESSAGE name="ddjvu.memory" number="17713"
+  value="Direct memory usage is %1!4.1f! Kb." />
+<MESSAGE name="ddjvu.no_info" number="17714"
+  value="[1-%0!05u!] Cannot find INFO chunk." />
+<MESSAGE name="ddjvu.no_page" number="17715"
+  value="[1-%0!05u!] No argument for option '-page'." />
+<MESSAGE name="ddjvu.no_scale" number="17716"
+  value="[1-%0!05u!] No argument for option '-scale'." />
+<MESSAGE name="ddjvu.no_seg" number="17717"
+  value="[1-%0!05u!] No argument for option '-segment'." />
+<MESSAGE name="ddjvu.no_size" number="17718"
+  value="[1-%0!05u!] No argument for option '-size'." />
+<MESSAGE name="ddjvu.photo" number="17719"
+  value="This is a legal Photo DjVu image." />
+<MESSAGE name="ddjvu.render" number="17720"
+  value="Rendering time: %1!lu! ms." />
+<MESSAGE name="ddjvu.syntax" number="17721"
+  value="[1-%0!05u!] Syntax error in geometry specification." />
+<MESSAGE name="cjb2.ccs_after" number="17800"
+  value="cjb2: %1!d! ccs after merging/splitting." />
+<MESSAGE name="cjb2.ccs_before" number="17801"
+  value="cjb2: %1!d! ccs after preprocessing." />
+<MESSAGE name="cjb2.runs" number="17802"
+  value="cjb2: %1!d! runs." />
+<MESSAGE name="cjb2.shapes" number="17803"
+  value="cjb2: %1!d! shapes after matching (%2!d! are cross-coded)." />
+<MESSAGE name="cpaldjvu.bkgnd" number="17900"
+  value="cpaldjvu: background color is #%1!02x!%2!02x!%3!02x!." />
+<MESSAGE name="cpaldjvu.ccs_after" number="17901"
+  value="cpaldjvu: %1!d! ccs after merging/splitting." />
+<MESSAGE name="cpaldjvu.ccs_before" number="17902"
+  value="cpaldjvu: %1!d! ccs." />
+<MESSAGE name="cpaldjvu.color_runs" number="17903"
+  value="cpaldjvu: %1!d! color runs." />
+<MESSAGE name="cpaldjvu.cross_code" number="17904"
+  value="cpaldjvu: %1!d! shapes after matching (%2!d! are cross-coded)." />
+<MESSAGE name="cpaldjvu.quantizied" number="17905"
+  value="cpaldjvu: image %1!d!x%2!d! quantized to %3!d! colors." />
+<MESSAGE name="csepdjvu.analyzed" number="18000"
+  value="csepdjvu: %1!d! ccs after cc analysis." />
+<MESSAGE name="csepdjvu.bilevel" number="18001"
+  value="csepdjvu: encoding as a bitonal image." />
+<MESSAGE name="csepdjvu.color" number="18002"
+  value="csepdjvu: encoding as a full color image." />
+<MESSAGE name="csepdjvu.cross_code" number="18003"
+  value="csepdjvu: %1!d! shapes after matching (%2!d! are cross-coded)." />
+<MESSAGE name="csepdjvu.gray_bg" number="18004"
+  value="csepdjvu: encoding with a gray level background." />
+<MESSAGE name="csepdjvu.merge_split" number="18005"
+  value="csepdjvu: %1!d! ccs after merging/splitting." />
+<MESSAGE name="csepdjvu.reduction" number="18006"
+  value="csepdjvu: found background (reduction=%1!d!)" />
+<MESSAGE name="csepdjvu.summary" number="18007"
+  value="csepdjvu: %1!d!x%2!d! foreground, %3!d! colors, %4!d! runs." />
+<MESSAGE name="csepdjvu.white_bg" number="18008"
+  value="csepdjvu: encoding with a white background." />
+<MESSAGE name="color.color" number="18101"
+  value="color" />
+<MESSAGE name="color.gray" number="18102"
+  value="gray" />
+<MESSAGE name="d44.summary" number="18100">
+image: %1!s! %2!d! x %3!d!
+times: %4!d!ms (decoding) + %5!d!ms (rendering)
+memory: %6!d!kB (%7!d!%% active coefficients)
+</MESSAGE>
+<MESSAGE name="DjVuToXML.negative_num" number="18201"
+  value="[1-%0!05u!] djvutoxml: negative number after option '-page'." />
+<MESSAGE name="DjVuToXML.no_name" number="18202"
+  value="[1-%0!05u!] djvutoxml: unspecified input file name." />
+<MESSAGE name="DjVuToXML.no_num" number="18203"
+  value="[1-%0!05u!] djvutoxml: missing page number after option '-page'." />
+<MESSAGE name="DjVuToXML.std_read" number="18204"
+  value="[1-%0!05u!] djvutoxml: cannot process standard input." />
+<MESSAGE name="DjVuToXML.unrecog_opt" number="18205"
+  value="[1-%0!05u!] djvutoxml: unrecognized option '%1!s!'." />
+</BODY>
+</DjVuMessages>

@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../pubtext/DjVuLanguages.dtd">
+<!-- List of files to include to get the entire list of messages -->
+<DjVuLanguages>
+<BODY>
+<!-- English -->
+<LANGUAGE locale="C" src="en" />
+<LANGUAGE locale="downcase^en" src="en" />
+<LANGUAGE locale="downcase^eng" src="en" />
+<LANGUAGE locale="downcase^english" src="en" />
+<LANGUAGE locale="downcase^english-us" src="en" />
+<LANGUAGE locale="downcase^english-usa" src="en" />
+<LANGUAGE locale="downcase^english-uk" src="en" />
+<LANGUAGE locale="downcase^enu" src="en" />
+<LANGUAGE locale="downcase^uk" src="en" />
+<LANGUAGE locale="downcase^us" src="en" />
+<LANGUAGE locale="downcase^usa" src="en" />
+<LANGUAGE locale="downcase^american" src="en" />
+<LANGUAGE locale="downcase^american-english" src="en" />
+<LANGUAGE locale="downcase^american english" src="en" />
+<!-- French (France) -->
+<LANGUAGE locale="downcase^fr" src="fr" />
+<LANGUAGE locale="downcase^fra" src="fr" />
+<LANGUAGE locale="downcase^fre" src="fr" />
+<LANGUAGE locale="downcase^french" src="fr" />
+<!-- German (Germany) -->
+<LANGUAGE locale="downcase^german" src="de" />
+<LANGUAGE locale="downcase^de" src="de" />
+<LANGUAGE locale="downcase^deu" src="de" />
+<!-- Japanese -->
+<LANGUAGE locale="downcase^japanese" src="ja" />
+<LANGUAGE locale="downcase^jpn" src="ja" />
+<LANGUAGE locale="downcase^ja" src="ja" />
+<!-- Chinese -->
+<LANGUAGE locale="downcase^zh" src="zh" />
+<LANGUAGE locale="downcase^chinese" src="zh" />
+<!-- Czech -->
+<LANGUAGE locale="downcase^cs" src="cs" />
+<LANGUAGE locale="downcase^czech" src="cs" />
+</BODY>
+</DjVuLanguages>
+

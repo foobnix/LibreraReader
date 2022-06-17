@@ -1,0 +1,65 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVMCVT 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+djvmcvt \- Convert multi-page DjVu documents.
+
+.SH SYNOPSIS
+.SS Creating a bundled document:
+.BI "djvmcvt -b[undled] " "docin.djvu" " " "docout.djvu"
+.SS Creating an indirect document:
+.BI "djvmcvt -i[ndirect] " "docin.djvu" " " "dir" " " "index.djvu"
+
+.SH DESCRIPTION
+This program converts any multi-page DjVu document 
+to either the bundled or indirect multi-page format.
+The input file
+.I docin.djvu
+must be either the file name of a bundled document 
+or the index file of an indirect document.
+
+.SH OPTIONS
+.TP
+.B -b[undled]
+Create a bundled multi-page DjVu document named
+.IR docout.djvu .
+.TP
+.B -i[ndirect]
+Create an indirect multi-page DjVu document.
+All the files composing the indirect document
+will be stored into directory 
+.IR dir .
+The index file will be named
+.IR index.djvu .
+
+.SH CREDITS
+This program was initially written by Andrei Erofeev
+<andrew_erofeev@yahoo.com> and was improved by Bill Riemers
+<docbill@sourceforge.net> and many others.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvmcvt (1)
+

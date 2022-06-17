@@ -1,0 +1,52 @@
+LIBRARY
+; jpeg data compression library
+
+EXPORTS
+        jpeg_std_error
+        jpeg_CreateCompress
+        jpeg_CreateDecompress
+        jpeg_destroy_compress
+        jpeg_destroy_decompress
+        jpeg_stdio_dest
+        jpeg_stdio_src
+        jpeg_set_defaults
+        jpeg_set_colorspace
+        jpeg_default_colorspace
+        jpeg_set_quality
+        jpeg_set_linear_quality
+        jpeg_add_quant_table
+        jpeg_quality_scaling
+        jpeg_simple_progression
+        jpeg_suppress_tables
+        jpeg_alloc_quant_table
+        jpeg_alloc_huff_table
+        jpeg_start_compress
+        jpeg_write_scanlines
+        jpeg_finish_compress
+        jpeg_write_raw_data
+        jpeg_write_marker
+        jpeg_write_m_header
+        jpeg_write_m_byte
+        jpeg_write_tables
+        jpeg_read_header
+        jpeg_start_decompress
+        jpeg_read_scanlines
+        jpeg_finish_decompress
+        jpeg_read_raw_data
+        jpeg_has_multiple_scans
+        jpeg_start_output
+        jpeg_finish_output
+        jpeg_input_complete
+        jpeg_new_colormap
+        jpeg_consume_input
+        jpeg_calc_output_dimensions
+        jpeg_save_markers
+        jpeg_set_marker_processor
+        jpeg_read_coefficients
+        jpeg_write_coefficients
+        jpeg_copy_critical_parameters
+        jpeg_abort_compress
+        jpeg_abort_decompress
+        jpeg_abort
+        jpeg_destroy
+        jpeg_resync_to_restart

@@ -1,0 +1,4 @@
+README
+doc/*.djvu
+doc/*.txt
+debian/tmp/usr/share/djvu/pubtext

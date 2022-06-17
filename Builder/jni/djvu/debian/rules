@@ -1,0 +1,65 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+# extract library major version from source build system
+libver0 := $(shell \
+	egrep 'm4_define..lt_compat.,' configure.ac \
+	 | head -1 \
+	 | sed 's:m4_define::' \
+	 | tr --delete --complement '[:digit:]')
+
+# extract library major version expected by debian packaging
+libver := $(shell egrep '^Package: libdjvulibre[0-9]+$$' debian/control \
+		  | head -1 \
+		  | sed 's/Package: libdjvulibre//')
+
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+configure_options += --enable-static
+configure_options += --enable-shared
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+configure_options += --enable-debug
+else ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+# consider modifying the autoconf scripts to accept a --disable-optimization flag
+configure_options += --enable-debug
+endif
+
+override_dh_testdir:
+	@echo "library major version: upstream $(libver0), debian $(libver)"
+ifneq ($(libver0),$(libver))
+	echo "error: inconsistent upstream and debian/control library major version"
+	exit 1
+endif
+	dh_testdir
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(configure_options)
+
+override_dh_auto_install:
+	dh_auto_install
+	mkdir --parents debian/tmp/usr/lib/cgi-bin
+	cp --preserve=mode,timestamps debian/djvuserve.sh \
+		debian/tmp/usr/lib/cgi-bin/djvuserve
+
+override_dh_install:
+	dh_install
+	@echo remove from djvulibre-bin, already in djvuserve
+	if test -d debian/djvulibre-bin; then find debian/djvulibre-bin -name djvuserve\* -print -delete; fi
+# 	@echo "remove from djvulibre-bin, not in Debian: needs gsdjvu, direct complaints to AT&T"
+# 	find debian/djvulibre-bin -name djvudigital\* -print -delete
+
+override_dh_installchangelogs:
+	dh_installchangelogs --keep NEWS
+
+override_dh_compress:
+	dh_compress --exclude=.djvu
+
+override_dh_makeshlibs:
+	dh_makeshlibs --version-info --exclude=/plugins
+
+override_dh_missing:
+	dh_missing --list-missing

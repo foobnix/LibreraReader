@@ -1,5 +1,28 @@
-NEW SINCE VERSION 3.5.26
+NEW IN VERSION 3.5.28
 ------------------------
+- ddjvu: tiff generation improvements
+- djvumake: security checks on INCL chunks
+- all: updated for modern compilers
+- win: moved to msvc2019
+- osx: nfd filename normalization
+- bugs: fixed several crashes on invalid inputs
+- miniexp: fixed escape printout and macrochars
+- djvudigital: can use poppler to find text
+- csepdjvu: handle T comments for page titles
+- bytestream: fixed 2GB limit
+- gexception, gthread: cleanup obsolete code
+
+
+NEW IN VERSION 3.5.27
+------------------------
+- simplified configuration scripts
+- deadlock fixes
+- miniexp under win32 uses tlsalloc instead of _thread vars (pb under xp)
+- djvudigital can extract text and metadata using pdftotext.
+- duplicate page titles are accepted
+- bug fixes: overflow in bitmap/pixmap/iw44image sizes
+- big fixes: handling INCL chunks in djvumake
+- bug fixes: better support for large files (2gb) 
 
 
 NEW IN VERSION 3.5.26

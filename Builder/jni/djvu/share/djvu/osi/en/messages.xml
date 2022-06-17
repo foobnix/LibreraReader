@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../../pubtext/DjVuMessages.dtd">
+<!-- List of files to include to get the entire list of messages -->
+<DjVuMessages>
+<HEAD>
+<!-- Message numbers 17000-19999 -->
+<INCLUDE name="djvutools-reference.xml" />
+<!-- Message numbers 10000-16999 -->
+<INCLUDE name="libdjvu++.xml" />
+</HEAD>
+<BODY>
+</BODY>
+</DjVuMessages>

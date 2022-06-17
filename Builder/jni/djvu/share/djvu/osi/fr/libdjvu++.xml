@@ -1,0 +1,1331 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../../pubtext/DjVuMessages.dtd">
+<!-- Messages from libdjvu++ -->
+<DjVuMessages>
+<BODY>
+<MESSAGE name="DjVuMessage.Unrecognized" number="10000">
+[1-%0!05u!] Message inconnu :
+	Nom du message : %1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuMessage.Parameter" number="10001">
+&#09;Parameter: %1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuMessage.failed_to_parse_XML" number="10002">
+[1-%0!05u!] Echec de l&apos;analyse du fichier message XML :
+	%1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuText.corrupt_text" number="10100">
+[1-%0!05u!] La structure du calque de texte est endommagée.
+</MESSAGE>
+<MESSAGE name="DjVuText.no_text" number="10101">
+[1-%0!05u!] Texte attendu introuvable
+</MESSAGE>
+<MESSAGE name="DjVuText.corrupt_chunk" number="10102">
+[1-%0!05u!] Bloc de fichier endommagé : taille insuffisante.
+</MESSAGE>
+<MESSAGE name="DjVuText.bad_version" number="10103">
+[1-%0!05u!] Version de texte %1!c! inattendue
+</MESSAGE>
+<MESSAGE name="DjVuText.one_word" number="10104">
+[1-%0!05u!] Détection d'un séparateur au milieu d&apos;un mot.
+</MESSAGE>
+<MESSAGE name="DjVuText.dupl_text" number="10105">
+[1-%0!05u!] Présence de plusieurs calques de texte.
+</MESSAGE>
+<MESSAGE name="arrays.ill_arg" number="11500">
+[1-%0!05u!] Arguments non autorisés dans DArray::del
+</MESSAGE>
+<MESSAGE name="arrays.ill_sub" number="11501">
+[1-%0!05u!] Indice DArray non autorisé
+</MESSAGE>
+<MESSAGE name="arrays.resize" number="11502">
+[1-%0!05u!] Limites inférieure et supérieure après redimensionnement de DArray incorrectes
+</MESSAGE>
+<MESSAGE name="bad_arg" number="11600">
+[1-%0!05u!] Arguments non autorisés dans %1!s!
+</MESSAGE>
+<MESSAGE name="ByteStream.backward" number="11700">
+[1-%0!05u!] La recherche en arrière n&apos;est pas prise en charge par ce ByteStream.
+</MESSAGE>
+<MESSAGE name="ByteStream.bad_arg" number="11701">
+[1-%0!05u!] Arguments non autorisés dans ByteStream::seek.
+</MESSAGE>
+<MESSAGE name="ByteStream.bad_mode" number="11703">
+[1-%0!05u!] Mode non autorisé dans StdioByteStream
+</MESSAGE>
+<MESSAGE name="ByteStream.cant_write" number="11704">
+[1-%0!05u!] Impossible d&apos;écrire dans BSByteStream créé pour le décodage
+</MESSAGE>
+<MESSAGE name="ByteStream.corrupt" number="11705">
+[1-%0!05u!] Entrée de décodage endommagée
+</MESSAGE>
+<MESSAGE name="ByteStream.flush_error" number="11707">
+[1-%0!05u!] StdioByteStream::flush, erreur de vidage.
+</MESSAGE>
+<MESSAGE name="ByteStream.no_read" number="11708">
+[1-%0!05u!] StdioByteStream n&apos;est pas disponible pour la lecture.
+</MESSAGE>
+<MESSAGE name="ByteStream.no_write" number="11709">
+[1-%0!05u!] StdioByteStream n&apos;est pas disponible pour l'écriture.
+</MESSAGE>
+<MESSAGE name="ByteStream.open_fail2" number="11710">
+[1-%0!05u!] StdioByteStream::StdioByteStream. Echec lors de l&apos;ouverture du fichier.
+</MESSAGE>
+<MESSAGE name="ByteStream.open_fail" number="11711">
+[1-%0!05u!] Echec lors de l&apos;ouverture de %1!s! : %2!s!.
+</MESSAGE>
+<MESSAGE name="ByteStream.read_error2" number="11712">
+[1-%0!05u!] StdioByteStream::read, erreur de lecture.
+</MESSAGE>
+<MESSAGE name="ByteStream.read_error" number="11713">
+[1-%0!05u!] ByteStream::readall, erreur de lecture.
+</MESSAGE>
+<MESSAGE name="ByteStream.seek_error2" number="11714">
+[1-%0!05u!] Tentative de recherche avant le début du fichier
+</MESSAGE>
+<MESSAGE name="ByteStream.seek_error" number="11715">
+[1-%0!05u!] StdioByteStream::seek, erreur de recherche.
+</MESSAGE>
+<MESSAGE name="ByteStream.seek" number="11716">
+[1-%0!05u!] La recherche fonctionne de manière inattendue dans ce ByteStream (ftell() a un comportement inhabituel).
+</MESSAGE>
+<MESSAGE name="ByteStream.write" number="11717">
+[1-%0!05u!] ByteStream::write%1!s!, erreur d&apos;écriture.
+</MESSAGE>
+<MESSAGE name="ByteStream.write_error2" number="11718">
+[1-%0!05u!] StdioByteStream::write, erreur d&apos;écriture.
+</MESSAGE>
+<MESSAGE name="ByteStream.write_error" number="11720">
+[1-%0!05u!] Erreur inconnue dans ByteStream::write.
+</MESSAGE>
+<MESSAGE name="ByteStream.not_implemented" number="11721">
+[1-%0!05u!] ByteStream::scanf non implémenté.
+</MESSAGE>
+<MESSAGE name="DataPool.add_data" number="11800">
+[1-%0!05u!] La fonction DataPool::add_data() ne peut pas être
+appelée pour les DataPools connectés.
+</MESSAGE>
+<MESSAGE name="DataPool.bad_length" number="11801">
+[1-%0!05u!] La longueur doit être positive.
+</MESSAGE>
+<MESSAGE name="DataPool.bad_size" number="11802">
+[1-%0!05u!] La taille ne peut pas être négative.
+</MESSAGE>
+<MESSAGE name="DataPool.connected1" number="11803">
+[1-%0!05u!] Une connexion à un autre DataPool existe déjà.
+</MESSAGE>
+<MESSAGE name="DataPool.connected2" number="11804">
+[1-%0!05u!] Une connexion à un autre fichier existe déjà.
+</MESSAGE>
+<MESSAGE name="DataPool.neg_start" number="11805">
+[1-%0!05u!] Le décalage de début d&apos;intervalle ne peut pas être négatif.
+</MESSAGE>
+<MESSAGE name="DataPool.no_threadless" number="11806">
+[1-%0!05u!] Erreur interne. Cette fonction peut être utilisée uniquement en
+mode thread.
+</MESSAGE>
+<MESSAGE name="DataPool.reenter" number="11807">
+[1-%0!05u!] DATA_POOL_REENTER.
+</MESSAGE>
+<MESSAGE name="DataPool.seek_backward" number="11808">
+[1-%0!05u!] La recherche en arrière à partir de la fin du fichier n&apos;est pas prise en charge par ce ByteStream.
+</MESSAGE>
+<MESSAGE name="DataPool.zero_DataPool" number="11809">
+[1-%0!05u!] Erreur interne : le DataPool envoyé comme entrée est NUL.
+</MESSAGE>
+<MESSAGE name="DjVmDir0.no_slash" number="11900">
+[1-%0!05u!] Le nom du fichier ne peut pas contenir de barres obliques
+</MESSAGE>
+<MESSAGE name="DjVmDir.bad_dir" number="12000">
+[1-%0!05u!] Le répertoire comprend des enregistrements séparés et groupés.
+</MESSAGE>
+<MESSAGE name="DjVmDir.bad_file" number="12001">
+[1-%0!05u!] L&apos;ID du fichier DjVm %1!s! contient un ou plusieurs caractères non autorisés.
+</MESSAGE>
+<MESSAGE name="DjVmDir.corrupt" number="12002">
+[1-%0!05u!] Le document DjVu est endommagé. Un document multipage ne peut contenir qu&apos;un seul fichier
+d&apos;annotations partagées.
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_id2" number="12003">
+[1-%0!05u!] Le fichier ID = %1!s! existe déjà dans le répertoire DJVM.
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_id" number="12004">
+[1-%0!05u!] Une erreur est survenue dans le bloc DIRM : présence de deux enregistrements pour le même ID
+%1!s!
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_name2" number="12005">
+[1-%0!05u!] Un fichier NOM = %1!s! existe déjà dans le répertoire DJVM.
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_name" number="12006">
+[1-%0!05u!] Une erreur est survenue dans le bloc DIRM : présence de deux enregistrements pour le même NOM
+%1!s!
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_title2" number="12007">
+[1-%0!05u!] Le fichier TITRE = %1!s! existe déjà dans le répertoire DJVM.
+</MESSAGE>
+<MESSAGE name="DjVmDir.dupl_title" number="12008">
+[1-%0!05u!] Une erreur est survenue dans le bloc DIRM : présence de deux enregistrements pour le même TITRE
+%1!s!
+</MESSAGE>
+<MESSAGE name="DjVmDir.get_str_type" number="12009">
+[1-%0!05u!] Erreur interne : veuillez modifier DjVmDir::File::get_str_type()
+pour référencer tous les types de fichiers possibles.
+</MESSAGE>
+<MESSAGE name="DjVmDir.multi_save2" number="12010">
+[1-%0!05u!] Le format multipage DjVu actif ne prend pas en charge
+plusieurs fichiers d&apos;annotations partagées.
+</MESSAGE>
+<MESSAGE name="DjVmDir.multi_save" number="12011">
+[1-%0!05u!] Impossible d&apos;enregistrer un document multipage contenant plusieurs fichiers
+d&apos;annotations partagées.
+</MESSAGE>
+<MESSAGE name="DjVmDir.name_in_use" number="12012">
+[1-%0!05u!] Le nom %1!s! est déjà utilisé.
+</MESSAGE>
+<MESSAGE name="DjVmDir.no_indirect" number="12013">
+[1-%0!05u!] Erreur de répertoire : les entrées séparées ne sont pas autorisées pour les documents groupés.
+</MESSAGE>
+<MESSAGE name="DjVmDir.no_info" number="12014">
+[1-%0!05u!] Aucune information disponible pour le fichier ID= %1!s!
+</MESSAGE>
+<MESSAGE name="DjVmDir.title_in_use" number="12015">
+[1-%0!05u!] Le titre %1!s! est déjà utilisé.
+</MESSAGE>
+<MESSAGE name="DjVmDir.version_error" number="12016">
+[1-%0!05u!] Impossible de lire les répertoires DJVM créés avec des versions ultérieures à %1!s!.
+La version des données est %2!s!.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.cant_delete" number="12100">
+[1-%0!05u!] Suppression impossible : il n&apos;existe aucun fichier ID = %1!s!.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.cant_find" number="12101">
+[1-%0!05u!] Fichier ID = %1!s! introuvable
+</MESSAGE>
+<MESSAGE name="DjVmDoc.cant_read_indr" number="12102">
+[1-%0!05u!] Impossible de lire des documents DjVm séparés dans les DataPools
+ou les ByteStreams
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_data" number="12103">
+[1-%0!05u!] Résultat inattendu : le fichier %1!s! ne contient aucune donnée.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_dirm_chunk" number="12104">
+[1-%0!05u!] Le premier bloc d&apos;un document DJVM doit être au format DIRM :
+format ancien utilisé.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_duplicate" number="12105">
+[1-%0!05u!] Tentative d&apos;insertion en double du même fichier
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_form_djvm2" number="12106">
+[1-%0!05u!] Impossible de trouver le format DJVM. Ce document n&apos;est pas au nouveau
+format multipage.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_form_djvm" number="12107">
+[1-%0!05u!] Impossible de trouver le format DJVM dans les données d&apos;entrée.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.not_IFF" number="12108">
+[1-%0!05u!] Le fichier %1!s! n&apos;est pas au format IFF.
+</MESSAGE>
+<MESSAGE name="DjVmDoc.no_zero_file" number="12109">
+[1-%0!05u!] Impossible d&apos;insérer un fichier dont la taille est nulle
+</MESSAGE>
+<MESSAGE name="DjVmDoc.zero_file" number="12110">
+[1-%0!05u!] Résultat inattendu : la taille du fichier est nulle.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.bad_type" number="12200">
+[1-%0!05u!] GLObject(): type d'objet envoyé incorrect. L&apos;objet doit être une chaîne
+ou un symbole.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.bad_url" number="12201">
+[1-%0!05u!] URL spécifié incorrect
+</MESSAGE>
+<MESSAGE name="DjVuAnno.bad_zoom" number="12203">
+[1-%0!05u!] Zoom spécifié non autorisé
+</MESSAGE>
+<MESSAGE name="DjVuAnno.invalid2list" number="12207">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible d&apos;effectuer la conversion en liste.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.invalid2number" number="12208">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible d&apos;effectuer la conversion en nombre.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.invalid2string" number="12209">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible d&apos;effectuer la conversion en chaîne.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.invalid2symbol" number="12210">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible d&apos;effectuer la conversion en symbole.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.list2number" number="12211">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir
+l&apos;objet composé %1!s! en nombre.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.list2string" number="12212">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir
+l&apos;objet composé %1!s! en chaîne.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.list2symbol" number="12213">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir
+l&apos;objet composé %1!s! en symbole.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.no_number" number="12214">
+[1-%0!05u!] Une erreur est survenue lors de l&apos;analyse du contenu de l&apos;objet %1!s! :
+Le signe ( doit être suivi du nom de l&apos;objet, pas d&apos;un nombre.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.no_paren" number="12215">
+[1-%0!05u!] Une erreur est survenue lors de l&apos;analyse du contenu de l&apos;objet %1!s! :
+Le signe ( doit être suivi du nom de l&apos;objet, pas d&apos;une autre parenthèse.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.no_string" number="12216">
+[1-%0!05u!] Une erreur est survenue lors de l&apos;analyse du contenu de l&apos;objet %1!s! :
+Le signe ( doit être suivi du nom de l&apos;objet, pas d&apos;une chaîne.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.number2list" number="12218">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le nombre %1!d!
+en objet composé.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.number2string" number="12219">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le nombre %1!d!
+en chaîne.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.number2symbol" number="12220">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le nombre %1!d!
+en symbole.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.paren" number="12222">
+[1-%0!05u!] Une erreur est survenue lors de l&apos;analyse du contenu de l&apos;objet %1!s! :
+Le signe ( doit être immédiatement suivi d&apos;un nom d&apos;objet.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.string2list" number="12223">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir la chaîne %1!s!
+en objet composé.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.string2number" number="12224">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir la chaîne %1!s!
+en nombre.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.string2symbol" number="12225">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir la chaîne %1!s!
+en symbole.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.symbol2list" number="12226">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le symbole %1!s!
+en objet composé.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.symbol2number" number="12227">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le symbole %1!s!
+en nombre.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.symbol2string" number="12228">
+[1-%0!05u!] Type d&apos;objet incorrect. Impossible de convertir le symbole %1!s!
+en chaîne.
+</MESSAGE>
+<MESSAGE name="DjVuAnno.too_few" number="12229">
+[1-%0!05u!] %1!s! contient un nombre insuffisant d&apos;éléments.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.bad_page" number="12300">
+[1-%0!05u!] Le numéro de page %1!d! est incorrect.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.cant_save2" number="12301">
+[1-%0!05u!] Impossible d&apos;enregistrer le document au format souhaité.
+Utilisez la commande Enregistrer sous.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.cant_save" number="12302">
+[1-%0!05u!] Impossible d&apos;enregistrer le document.
+Utilisez la commande Enregistrer sous.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.create_fail" number="12303">
+[1-%0!05u!] La création du fichier ID = %1!s! a échoué.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.dir_fail" number="12304">
+[1-%0!05u!] La création du répertoire ID = %1!s! a échoué.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.init" number="12305">
+[1-%0!05u!] DjVuDocEditor a déjà été initialisé.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.no_codec" number="12306">
+[1-%0!05u!] Impossible de charger le codec de compression
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.no_file" number="12307">
+[1-%0!05u!] Ce document ne contient pas de fichier ID = %1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.not_1_page" number="12308">
+[1-%0!05u!] Le fichier %1!s! n&apos;est pas un fichier DjVu d&apos;une seule page.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.no_thumb" number="12309">
+[1-%0!05u!] Erreur interne : impossible de trouver une vignette pour la page %1!d!.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.not_init" number="12310">
+[1-%0!05u!] DjVuDocEditor doit être initialisé avant d'être utilisé.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.open_fail" number="12311">
+[1-%0!05u!] Impossible d&apos;ouvrir le document %1!s!
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.page_fail" number="12312">
+[1-%0!05u!] Erreur interne : impossible d&apos;obtenir la page %1!d!.
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.page_num" number="12313">
+[1-%0!05u!] Numéro de page %1!d! incorrect
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.render" number="12314">
+[1-%0!05u!] Impossible de réaliser un rendu de l&apos;image de la page %1!d!
+</MESSAGE>
+<MESSAGE name="DjVuDocEditor.share_fail" number="12315">
+[1-%0!05u!] Impossible de créer un second fichier d&apos;annotations partagées.
+Un document multipage ne peut contenir qu&apos;un seul fichier de ce type.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.2nd_init" number="12400">
+[1-%0!05u!] DjVuDocument ne peut pas être initialisé deux fois.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.bad_format" number="12401">
+[1-%0!05u!] Format de document inconnu. Décodage impossible.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.bad_thumb" number="12402">
+[1-%0!05u!] Vignettes endommagées
+</MESSAGE>
+<MESSAGE name="DjVuDocument.big_num" number="12403">
+[1-%0!05u!] Le numéro de page est trop élevé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.cant_extract" number="12405">
+[1-%0!05u!] Impossible d&apos;extraire les vignettes précodées :
+</MESSAGE>
+<MESSAGE name="DjVuDocument.cant_render" number="12406">
+[1-%0!05u!] Impossible de réaliser le rendu de la page %1!d!.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.comp_codec" number="12407">
+[1-%0!05u!] Le codec de compression n&apos;est pas chargé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.empty_url" number="12408">
+[1-%0!05u!] Un URL vide a été envoyé dans DjVuDocument.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.exclude_page" number="12409">
+[1-%0!05u!] La page %1!d! est exclue du fichier suite à des erreurs.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.fail_URL" number="12411">
+[1-%0!05u!] Aucune donnée disponible pour l&apos;URL %1!s!
+</MESSAGE>
+<MESSAGE name="DjVuDocument.file_outside" number="12412">
+[1-%0!05u!] Le fichier %1!s! ne se trouve pas dans ce groupe.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.init_eof" number="12413">
+[1-%0!05u!] Une fin de fichier inattendue est survenue lors de l'initialisation du document.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.init_not_done" number="12414">
+[1-%0!05u!] Le document n&apos;a pas encore été complètement initialisé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.miss_page_name" number="12415">
+[1-%0!05u!] Ce document ne comprend pas de page intitulée %1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.miss_page_num" number="12416">
+[1-%0!05u!] Ce document ne contient pas de page %1!d!.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.no_dir" number="12417">
+[1-%0!05u!] Les documents d&apos;une seule page ne contiennent pas de répertoire DjVm.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.no_file" number="12418">
+[1-%0!05u!] Le fichier requis n&apos;existe pas.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.no_page" number="12419">
+[1-%0!05u!] Ce document ne contient aucune page.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.not_DjVu" number="12420">
+[1-%0!05u!] L&apos;entrée requise n&apos;est pas un fichier DjVu.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.not_init" number="12421">
+[1-%0!05u!] DjVuDocument n&apos;est pas initialisé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.not_secure" number="12422">
+[1-%0!05u!] DjVuDocument ne dispose pas de protection générale GP&lt;DjVuDocument&gt;
+</MESSAGE>
+<MESSAGE name="DjVuDocument.obsolete" number="12423">
+[1-%0!05u!] Le format de ce document est obsolète.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.old_bundle" number="12424">
+[1-%0!05u!] Seuls les documents ANCIEN_GROUPE disposent d&apos;un répertoire DjVm v.0.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.stopped" number="12425">
+[1-%0!05u!] L&apos;initialisation de la thread de DjVuDocument a été arrêtée.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.unk_type" number="12426">
+[1-%0!05u!] Type de document inconnu
+</MESSAGE>
+<MESSAGE name="DjVuDocument.URL_outside2" number="12427">
+[1-%0!05u!] La cible de l&apos;URL %1!s! se situe en dehors du document séparé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.URL_outside" number="12428">
+[1-%0!05u!] La cible de l&apos;URL %1!s! se situe en dehors du document groupé.
+</MESSAGE>
+<MESSAGE name="DjVuDocument.skip_page" number="12429">
+[1-%0!05u!] La page %1!d! est ignorée.
+</MESSAGE>
+<MESSAGE name="DjVuFile.2nd_init" number="12500">
+[1-%0!05u!] DjVuFile est déjà initialisé.
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_BG44" number="12501">
+[1-%0!05u!] Décodeur DjVu : données endommagées (taille incorrecte dans le bloc BG44)
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_dupl" number="12502">
+[1-%0!05u!] Décodeur DjVu : fichier endommagé (copie du bloc INFO)
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_INFO" number="12503">
+[1-%0!05u!] Décodeur DjVu : fichier endommagé (Le bloc INFO a été détecté dans FORM:DJVI.)
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_missing_info" number="12504">
+[1-%0!05u!] Décodeur DjVu : données endommagées (bloc INFO manquant)
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_missing_IW44" number="12505">
+[1-%0!05u!] Décodeur DjVu : données endommagées (blocs de données IW44 manquant)
+</MESSAGE>
+<MESSAGE name="DjVuFile.corrupt_zero" number="12506">
+[1-%0!05u!] Décodeur DjVu : fichier endommagé (La taille de l&apos;image est nulle.)
+</MESSAGE>
+<MESSAGE name="DjVuFile.decode_fail" number="12507">
+[1-%0!05u!] Le décodage d&apos;un fichier include a échoué.
+</MESSAGE>
+<MESSAGE name="DjVuFile.dupl_backgrnd" number="12508">
+[1-%0!05u!] Décodeur DjVu : données endommagées (copie du calque d'arrière-plan)
+</MESSAGE>
+<MESSAGE name="DjVuFile.dupl_Dxxx" number="12509">
+[1-%0!05u!] Décodeur DjVu : données endommagées (copie du bloc Dxxx)
+</MESSAGE>
+<MESSAGE name="DjVuFile.dupl_foregrnd" number="12510">
+[1-%0!05u!] Décodeur DjVu : données endommagées (copie des informations de couleurs du premier plan)
+</MESSAGE>
+<MESSAGE name="DjVuFile.dupl_Sxxx" number="12511">
+[1-%0!05u!] Décodeur DjVu : données endommagées (copie du bloc Sxxx)
+</MESSAGE>
+<MESSAGE name="DjVuFile.Dxxx_after_Sxxx" number="12512">
+[1-%0!05u!] Décodeur : données endommagées (Le bloc Dxxx a été détecté après le bloc Sxxx.)
+</MESSAGE>
+<MESSAGE name="DjVuFile.empty_URL" number="12513">
+[1-%0!05u!] Un URL vide a été envoyé dans DjVuFile.
+</MESSAGE>
+<MESSAGE name="DjVuFile.EOF" number="12514">
+[1-%0!05u!] Une fin inattendue est survenue lors de la lecture du fichier suivant :
+	%1!s!.
+</MESSAGE>
+<MESSAGE name="DjVuFile.failed" number="12515">
+[1-%0!05u!] %1!s! : échec
+</MESSAGE>
+<MESSAGE name="DjVuFile.illegal_chunk" number="12516">
+[1-%0!05u!] Numéro de bloc incorrect
+</MESSAGE>
+<MESSAGE name="DjVuFile.malformed" number="12517">
+[1-%0!05u!] Bloc INCL mal formulé. Les barres obliques ne sont pas autorisées.
+</MESSAGE>
+<MESSAGE name="DjVuFile.missing_chunk" number="12518">
+[1-%0!05u!] Nombre de blocs insuffisant
+</MESSAGE>
+<MESSAGE name="DjVuFile.new_version" number="12519">
+[1-%0!05u!] Décodeur DjVu : impossible de décoder des fichiers DjVu avec une version &gt;= %1!d!.
+</MESSAGE>
+<MESSAGE name="DjVuFile.no_create" number="12520">
+[1-%0!05u!] Erreur interne : id_to_file(%1!s!) n'a créé aucun fichier.
+</MESSAGE>
+<MESSAGE name="DjVuFile.no_data" number="12521">
+[1-%0!05u!] Aucune donnée disponible pour l&apos;URL %1!s!
+</MESSAGE>
+<MESSAGE name="DjVuFile.not_finished" number="12522">
+[1-%0!05u!] Erreur interne : un fichier include n&apos;est pas terminé.
+</MESSAGE>
+<MESSAGE name="DjVuFile.not_init" number="12523">
+[1-%0!05u!] DjVuFile n&apos;est pas initialisé.
+</MESSAGE>
+<MESSAGE name="DjVuFile.not_secured" number="12524">
+[1-%0!05u!] DjVuFile ne dispose pas de protection générale GP&lt;DjVuFile&gt;
+</MESSAGE>
+<MESSAGE name="DjVuFile.stopped" number="12525">
+[1-%0!05u!] %1!s! : arrêt
+</MESSAGE>
+<MESSAGE name="DjVuFile.unexp_image" number="12526">
+[1-%0!05u!] Décodeur DjVu : une image DJVU ou IW44 était attendue.
+</MESSAGE>
+<MESSAGE name="DjVuFile.unrecog_chunk" number="12527"
+  value="%1!5.1f! Ko '%2!4s!' Bloc non reconnu." />
+<MESSAGE name="DjVuFile.page_info" number="12528"
+  value="%1!5.1f! Ko '%2!4s!' Informations sur la page" />
+<MESSAGE name="DjVuFile.indir_chunk1" number="12529"
+  value="%2!5.1f! Ko '%3!4s!' Bloc d'indirection (%1!s!)" />
+<MESSAGE name="DjVuFile.indir_chunk2" number="12530"
+  value="%1!5.1f! Ko '%2!4s!' Bloc d'indirection" />
+<MESSAGE name="DjVuFile.shape_dict" number="12531"
+  value="%2!5.1f! Ko '%3!4s!' Dictionnaire de formes JB2 (%1!d! formes)" />
+<MESSAGE name="DjVuFile.fg_mask" number="12532"
+  value="%4!5.1f! Ko '%5!4s!' Calque de premier plan JB2 (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.G4_mask" number="12533"
+  value="%4!5.1f! Ko '%5!4s!' Masque codé G4/MMR (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.IW44_bg1" number="12534"
+  value="%4!5.1f! Ko '%5!4s!' Arrière-plan IW44 (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.IW44_bg2" number="12535"
+  value="%3!5.1f! Ko '%4!4s!' Arrière-plan IW44 (partie %1!d!, %2!d! ppp)" />
+<MESSAGE name="DjVuFile.IW44_fg" number="12536"
+  value="%4!5.1f! Ko '%5!4s!' Premier plan IW44 (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.color_import1" number="12537"
+  value="%4!5.1f! Ko '%5!4s!' Importation de couleurs LINK (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.color_import2" number="12538"
+  value="%1!5.1f! Ko '%2!4s!' Importation de couleurs LINK (fonction non implémentée)" />
+<MESSAGE name="DjVuFile.JPEG_bg1" number="12539"
+  value="%4!5.1f! Ko '%5!4s!' Arrière-plan JPEG (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.JPEG_bg2" number="12540"
+  value="%1!5.1f! Ko '%2!4s!' Arrière-plan JPEG (fonction non implémentée)" />
+<MESSAGE name="DjVuFile.JPEG_fg1" number="12541"
+  value="%4!5.1f! Ko '%5!4s!' Couleurs de premier plan JPEG (%1!d!x%2!d!, %3!d! ppp)" />
+<MESSAGE name="DjVuFile.JPEG_fg2" number="12542"
+  value="%1!5.1f! Ko '%2!4s!' Couleurs de premier plan JPEG (fonction non implémentée)" />
+<MESSAGE name="DjVuFile.JPEG2K_bg" number="12543"
+  value="%1!5.1f! Ko '%2!4s!' Arrière-plan JPEG-2000 (fonction non implémentée)" />
+<MESSAGE name="DjVuFile.JPEG2K_fg" number="12544"
+  value="[1-%0!05u!] %1!5.1f! Ko '%2!4s!' Couleurs de premier plan JPEG-2000 (fonction non implémentée)" />
+<MESSAGE name="DjVuFile.JB2_fg" number="12545"
+  value="%3!5.1f! Ko '%4!4s!' Couleurs de premier plan JB2 (%1!d! couleurs, %2!d! ccs)." />
+<MESSAGE name="DjVuFile.IW44_data1" number="12546"
+  value="%4!5.1f! Ko '%5!4s!' Données IW44 (%1!d!x%2!d!, %3!d! ppp)." />
+<MESSAGE name="DjVuFile.IW44_data2" number="12547"
+  value="%3!5.1f! Ko '%4!4s!' Données IW44 (partie %1!d!, %2!d! ppp)." />
+<MESSAGE name="DjVuFile.nav_dir" number="12548"
+  value="%1!5.1f! Ko '%2!4s!' Répertoire de navigation (obsolète)." />
+<MESSAGE name="DjVuFile.anno1" number="12549"
+  value="%1!5.1f! Ko '%2!4s!' Annotations (format groupé)." />
+<MESSAGE name="DjVuFile.anno2" number="12550"
+  value="%1!5.1f! Ko '%2!4s!' Annotations (hyperliens, etc.)." />
+<MESSAGE name="DjVuFile.text" number="12551"
+  value="%1!5.1f! Ko '%2!4s!' Texte (chaînes, etc.)." />
+<MESSAGE name="DjVuFile.djvu_header" number="12552"
+  value="Image DJVU (%1!d!x%2!d!, %3!d! ppp) version %4!d!:&#10;" />
+<MESSAGE name="DjVuFile.IW44_header" number="12553"
+  value="Image IW44 (%1!d!x%2!d!, %3!d! ppp):&#10;" />
+<MESSAGE name="DjVuFile.ratio" number="12554"
+  value="&#10;Taux de compression: %1!0.f! (%2!0.1f! Ko)" />
+<MESSAGE name="DjVuFile.securedjvu" number="12555">
+Incompatible file (so-called "Secure DjVu".)
+</MESSAGE>
+<MESSAGE name="DjVuGlobalMemory.exhausted" number="12600">
+[1-%0!05u!] Mémoire insuffisante
+</MESSAGE>
+<MESSAGE name="DjVuGlobal.not_compatible" number="12700">
+[1-%0!05u!] DjVuProgress n&apos;est pas compatible avec le mode multithread.
+</MESSAGE>
+<MESSAGE name="DjVuImage.bad_call" number="12800">
+[1-%0!05u!] DjVuImage::decode ne peut pas être appelé après DjVuImage::connect.
+</MESSAGE>
+<MESSAGE name="DjVuImage.bad_rect2" number="12801">
+[1-%0!05u!] (DjVuImage::do_pixmap) Rectangles cible non autorisés
+</MESSAGE>
+<MESSAGE name="DjVuImage.bad_rect" number="12802">
+[1-%0!05u!] (DjVuImage::get_pixmap) Rectangles cible non autorisés
+</MESSAGE>
+<MESSAGE name="DjVuImage.corrupted" number="12803">
+[1-%0!05u!] Fichier endommagé (l&apos;index de couleur est plus important que la taille de la palette).
+</MESSAGE>
+<MESSAGE name="DjVuImage.mult_error" number="12804">
+[1-%0!05u!] Plusieurs erreurs sont survenues lors du décodage.
+</MESSAGE>
+<MESSAGE name="DjVuImage.not_decode" number="12805">
+[1-%0!05u!] Impossible de décoder ce document DjVu à l&apos;aide du mode de
+compabilité avec les versions précédentes
+</MESSAGE>
+<MESSAGE name="DjVuImage.short1" number="12806"
+  value="%1!d!x%2!d! in %3!0.1f! Kb" />
+<MESSAGE name="DjVuImage.short2" number="12807" 
+  value="%1!d!x%2!d!" />
+<MESSAGE name="DjVuInfo.corrupt_file" number="12900">
+[1-%0!05u!] Décodeur DjVu : fichier endommagé (bloc INFO tronqué)
+</MESSAGE>
+<MESSAGE name="DjVuNavDir.bad_page" number="13000">
+[1-%0!05u!] Le numéro de page envoyé comme entrée est incorrect.
+</MESSAGE>
+<MESSAGE name="DjVuNavDir.large_page" number="13001">
+[1-%0!05u!] Le numéro de page est trop élevé.
+</MESSAGE>
+<MESSAGE name="DjVuNavDir.long_line" number="13002">
+[1-%0!05u!] Impossible de lire le répertoire DjVu, car la ligne est trop longue.
+</MESSAGE>
+<MESSAGE name="DjVuNavDir.neg_page" number="13003">
+[1-%0!05u!] Le numéro de page ne peut pas être négatif.
+</MESSAGE>
+<MESSAGE name="DjVuNavDir.zero_dir" number="13004">
+[1-%0!05u!] L&apos;URL de répertoire envoyé au constructeur DjVuNavDir est NUL.
+</MESSAGE>
+<MESSAGE name="DjVuPalette.bad_palette" number="13100">
+[1-%0!05u!] La palette des couleurs de premier plan est endommagée.
+</MESSAGE>
+<MESSAGE name="DjVuPalette.bad_version" number="13101">
+[1-%0!05u!] La balise de version des données de palette est inconnue.
+</MESSAGE>
+<MESSAGE name="DjVuPalette.many_colors" number="13102">
+[1-%0!05u!] Nombre de couleurs incorrect
+</MESSAGE>
+<MESSAGE name="DjVuPalette.no_color" number="13103">
+[1-%0!05u!] Impossible de trouver l&apos;histogramme des couleurs
+</MESSAGE>
+<MESSAGE name="DjVuPalette.not_init" number="13104">
+[1-%0!05u!] La palette n&apos;est pas initialisée.
+</MESSAGE>
+<MESSAGE name="DjVuPalette.test_usage" number="13105">
+[1-%0!05u!] Utilisation : quant&lt;ncol&gt;&lt;minbox&gt;&lt;ppmfile&gt;
+
+</MESSAGE>
+<MESSAGE name="DjVuPort.not_alloc" number="13200">
+[1-%0!05u!] DjVuPort ne dispose pas d&apos;espace alloué dans le segment de mémoire.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_EPS_num" number="13300">
+[1-%0!05u!] Une seule copie peut être imprimée au format EPS.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_format" number="13301">
+[1-%0!05u!] Le format PostScript doit être PS ou EPS.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_gamma" number="13302">
+[1-%0!05u!] Le gamma spécifié est incorrect. La valeur doit être comprise entre 0,3 et 5,0.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_level" number="13303">
+[1-%0!05u!] Le niveau PostScript %1!d! est incorrect. Choisissez le niveau 1 ou 2.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_mode" number="13304">
+[1-%0!05u!] Le mode d&apos;image envoyé au code d&apos;impression est incorrect.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_number" number="13305">
+[1-%0!05u!] Le nombre de copies doit être positif.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_orient" number="13306">
+[1-%0!05u!] L&apos;orientation envoyée au code d&apos;impression est incorrecte.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_page" number="13307">
+[1-%0!05u!] Numéro de page %1!d! incorrect
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_range" number="13308">
+[1-%0!05u!] Série de page %1!s! incorrecte
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_scale" number="13309">
+[1-%0!05u!] Tentative de mise à l&apos;,échelle de l&apos;image selon un point lors de l&apos;impression
+</MESSAGE>
+<MESSAGE name="DjVuToPS.bad_zoom" number="13310">
+[1-%0!05u!] Le facteur de zoom envoyé au code d&apos;impression est incorrect.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.big_page" number="13311">
+[1-%0!05u!] Le numéro de page %1!d! est trop élevé.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.empty_image" number="13313">
+[1-%0!05u!] Tentative d&apos;impression d&apos;une page vide
+</MESSAGE>
+<MESSAGE name="DjVuToPS.empty_rect" number="13314">
+[1-%0!05u!] Tentative d&apos;impression d&apos;un rectangle vide
+</MESSAGE>
+<MESSAGE name="DjVuToPS.no_image" number="13315">
+[1-%0!05u!] Impossible d&apos;obtenir l&apos;image de la page %1!d!
+</MESSAGE>
+<MESSAGE name="DjVuToPS.no_landscape" number="13316">
+[1-%0!05u!] Le mode paysage n&apos;est pas pris en charge par le format EPS.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.no_to" number="13318">
+[1-%0!05u!] La série de pages %1!s! ne comprend pas de page finale.
+</MESSAGE>
+<MESSAGE name="DjVuToPS.only_one_page" number="13319">
+[1-%0!05u!] Impossible d&apos;imprimer plus d&apos;une page au format EPS
+</MESSAGE>
+<MESSAGE name="EOF" number="13400">
+Unexpected End Of file.
+</MESSAGE>
+<MESSAGE name="Error" number="13500">
+Error: %1!s!.
+</MESSAGE>
+<MESSAGE name="error" number="13600">
+Error: %1!s!.
+</MESSAGE>
+<MESSAGE name="Failed" number="13700">
+Failed.
+</MESSAGE>
+<MESSAGE name="GBitmap.bad_format" number="13800">
+[1-%0!05u!] Format de fichier PBM, PGM ou RLE inconnu
+</MESSAGE>
+<MESSAGE name="GBitmap.bad_levels" number="13801">
+[1-%0!05u!] (GBitmap::set_grays) Nombre de niveaux de gris non autorisé
+</MESSAGE>
+<MESSAGE name="GBitmap.bad_PBM" number="13802">
+[1-%0!05u!] Fichier PBM incorrect
+</MESSAGE>
+<MESSAGE name="GBitmap.cant_compress" number="13803">
+[1-%0!05u!] Impossible de compresser le bitmap en niveaux de gris
+</MESSAGE>
+<MESSAGE name="GBitmap.cant_make_PBM" number="13804">
+[1-%0!05u!] Impossible de créer un fichier PBM avec un bitmap en niveaux de gris
+</MESSAGE>
+<MESSAGE name="GBitmap.left_damaged" number="13805">
+[1-%0!05u!] Déboguage : le contour gauche est endommagé.
+</MESSAGE>
+<MESSAGE name="GBitmap.lost_sync2" number="13806">
+[1-%0!05u!] (GBitmap::decode) Synchronisation RLE perdue
+</MESSAGE>
+<MESSAGE name="GBitmap.lost_sync" number="13807">
+[1-%0!05u!] RLE : synchronisation perdue.
+</MESSAGE>
+<MESSAGE name="GBitmap.not_init" number="13808">
+[1-%0!05u!] Bitmap non initialisé
+</MESSAGE>
+<MESSAGE name="GBitmap.not_int" number="13809">
+[1-%0!05u!] Lecture du bitmap : nombre entier attendu
+</MESSAGE>
+<MESSAGE name="GBitmap.null_arg" number="13810">
+[1-%0!05u!] (GBitmap::decode) Cette fonction a été appelée avec un argument nul.
+</MESSAGE>
+<MESSAGE name="GBitmap.right_damaged" number="13811">
+[1-%0!05u!] Déboguage : le contour droit est endommagé.
+</MESSAGE>
+<MESSAGE name="GBitmap.zero_damaged" number="13812">
+[1-%0!05u!] Déboguage : le tableau nul est endommagé.
+</MESSAGE>
+<MESSAGE name="GBitmap.zero_small" number="13813">
+[1-%0!05u!] Déboguage : le tampon nul est trop petit.
+</MESSAGE>
+<MESSAGE name="GContainer.bad_args" number="13900">
+[1-%0!05u!] Arguments incorrects pour GArray::resize
+</MESSAGE>
+<MESSAGE name="GContainer.bad_howmany" number="13901">
+[1-%0!05u!] Valeur non autorisée pour l&apos;argument &apos;combien&apos;
+</MESSAGE>
+<MESSAGE name="GContainer.bad_pos_cont" number="13902">
+[1-%0!05u!] Position incorrecte (La cible se trouve dans un autre conteneur.)
+</MESSAGE>
+<MESSAGE name="GContainer.bad_pos" number="13903">
+[1-%0!05u!] Position incorrecte
+</MESSAGE>
+<MESSAGE name="GContainer.bad_pos_null" number="13904">
+[1-%0!05u!] Position incorrecte (pointeur nul).
+</MESSAGE>
+<MESSAGE name="GContainer.bad_sub2" number="13905">
+[1-%0!05u!] Indice non autorisé dans GArray::del.
+</MESSAGE>
+<MESSAGE name="GContainer.cannot_add" number="13906">
+[1-%0!05u!] Impossible d&apos;ajouter une clé au mappage associatif constant
+</MESSAGE>
+<MESSAGE name="GContainer.illegal_subscript" number="13907">
+[1-%0!05u!] L&apos;indice GArray est en dehors des limites.
+</MESSAGE>
+<MESSAGE name="GException.outofmemory" number="14000">
+[1-%0!05u!] Mémoire insuffisante
+</MESSAGE>
+<MESSAGE name="GIFFManager.bad_char" number="14100">
+[1-%0!05u!] Le nom de bloc ne peut contenir ni points ni parenthèses.
+</MESSAGE>
+<MESSAGE name="GIFFManager.cant_find2" number="14101">
+[1-%0!05u!] Impossible de trouver le bloc FORM de niveau supérieur dans
+le fichier IFF en cours de chargement
+</MESSAGE>
+<MESSAGE name="GIFFManager.cant_find" number="14102">
+[1-%0!05u!] Impossible de trouver le bloc nommé %1!s!
+</MESSAGE>
+<MESSAGE name="GIFFManager.del_empty" number="14103">
+[1-%0!05u!] Tentative de suppression d&apos;un bloc sans nom
+</MESSAGE>
+<MESSAGE name="GIFFManager.garbage" number="14104">
+[1-%0!05u!] Le nom du bloc contient des caractères incorrects après le signe ].
+</MESSAGE>
+<MESSAGE name="GIFFManager.get_empty" number="14105">
+[1-%0!05u!] Tentative d&apos;obtention d&apos;un bloc sans nom
+</MESSAGE>
+<MESSAGE name="GIFFManager.malformed" number="14106">
+[1-%0!05u!] Le nom du bloc %1!s! est mal formulé : il comprend un point final.
+</MESSAGE>
+<MESSAGE name="GIFFManager.no_brackets" number="14107">
+[1-%0!05u!] Le nom du bloc ne peut pas contenir de parenthèses.
+</MESSAGE>
+<MESSAGE name="GIFFManager.no_chunk" number="14108">
+[1-%0!05u!] Le bloc %3!s! ne comprend pas de sous-élément %1!s! #%2!d!
+</MESSAGE>
+<MESSAGE name="GIFFManager.no_dots" number="14109">
+[1-%0!05u!] Le nom du bloc ne peut pas contenir de points.
+</MESSAGE>
+<MESSAGE name="GIFFManager.no_top_cont" number="14110">
+[1-%0!05u!] Seul un conteneur peut être défini comme bloc racine.
+</MESSAGE>
+<MESSAGE name="GIFFManager.no_top_name" number="14111">
+[1-%0!05u!] Le nom du bloc racine est encore inconnu.
+</MESSAGE>
+<MESSAGE name="GIFFManager.one_colon" number="14112">
+[1-%0!05u!] Le nom du bloc ne peut contenir qu&apos;un seul &apos;:&apos;.
+</MESSAGE>
+<MESSAGE name="GIFFManager.unknown" number="14114">
+[1-%0!05u!] Erreur interne : le bloc %1!s! est inconnu.
+</MESSAGE>
+<MESSAGE name="GIFFManager.unmatched" number="14115">
+[1-%0!05u!] Il manque une parenthèse dans le nom du bloc.
+</MESSAGE>
+<MESSAGE name="GIFFManager.wrong_name2" number="14116">
+[1-%0!05u!] Le nom du bloc racine ne correspond pas à %1!s!.
+</MESSAGE>
+<MESSAGE name="GIFFManager.wrong_name" number="14117">
+[1-%0!05u!] Le nom du bloc racine de ce fichier ne correspond pas à %1!s!.
+</MESSAGE>
+<MESSAGE name="GMapAreas.intersect" number="14200">
+[1-%0!05u!] Certains segments de polygones se coupent.
+</MESSAGE>
+<MESSAGE name="GMapAreas.oval_border" number="14201">
+[1-%0!05u!] Ce type de contour n&apos;est pas pris en charge par les zones de mappage ovales.
+</MESSAGE>
+<MESSAGE name="GMapAreas.oval_hilite" number="14202">
+[1-%0!05u!] La mise en surbrillance de zone n&apos;est pas prise en charge par les zones de mappage ovales.
+</MESSAGE>
+<MESSAGE name="GMapAreas.poly_border" number="14203">
+[1-%0!05u!] Ce type de contour n&apos;est pas pris en charge par les zones de mappage polygonales.
+</MESSAGE>
+<MESSAGE name="GMapAreas.poly_hilite" number="14204">
+[1-%0!05u!] La mise en surbrillance de zone n&apos;est pas prise en charge par les zones de mappage polygonales.
+</MESSAGE>
+<MESSAGE name="GMapAreas.too_few_points" number="14205">
+[1-%0!05u!] Le nombre de points du polygone est insuffisant.
+</MESSAGE>
+<MESSAGE name="GMapAreas.width_1" number="14206">
+[1-%0!05u!] La valeur de la largeur du contour doit être 1 pour les contours de type  Xor et solide.
+</MESSAGE>
+<MESSAGE name="GMapAreas.width_3-32" number="14207">
+[1-%0!05u!] La valeur de la largeur du contour doit être comprise entre 3 et 32 pour les contours de type ombré.
+</MESSAGE>
+<MESSAGE name="GMapAreas.zero_height" number="14208">
+[1-%0!05u!] La hauteur de la zone est nulle.
+</MESSAGE>
+<MESSAGE name="GMapAreas.zero_width" number="14209">
+[1-%0!05u!] La largeur de la zone est nulle.
+</MESSAGE>
+<MESSAGE name="GPixmap.bad_param" number="14400">
+[1-%0!05u!] (GPixmap::color_correct) Paramètre non autorisé
+</MESSAGE>
+<MESSAGE name="GPixmap.diff_size" number="14401">
+[1-%0!05u!] Le pixmap couleur et le bitmap alpha sont de tailles différentes.
+</MESSAGE>
+<MESSAGE name="GPixmap.no_int" number="14402">
+[1-%0!05u!] Lecture du pixmap : nombre entier attendu
+</MESSAGE>
+<MESSAGE name="GPixmap.null_alpha" number="14403">
+[1-%0!05u!] Pointeur de bitmap alpha nul
+</MESSAGE>
+<MESSAGE name="GPixmap.null_color" number="14404">
+[1-%0!05u!] Pointeur de pixmap couleur nul
+</MESSAGE>
+<MESSAGE name="GPixmap.overflow1" number="14405">
+[1-%0!05u!] (GPixmap::downsample) Le rectangle spécifié est plus grand que le
+pixmap cible.
+</MESSAGE>
+<MESSAGE name="GPixmap.overflow2" number="14406">
+[1-%0!05u!] (GPixmap::upsample) Le rectangle spécifié est plus grand que le
+pixmap cible.
+</MESSAGE>
+<MESSAGE name="GPixmap.overflow3" number="14407">
+[1-%0!05u!] (GPixmap::downsample43) Le rectangle spécifié est plus grand que le
+pixmap cible.
+</MESSAGE>
+<MESSAGE name="GPixmap.overflow4" number="14408">
+[1-%0!05u!] (GPixmap::upsample23) Le rectangle spécifié est plus grand que le
+pixmap cible.
+</MESSAGE>
+<MESSAGE name="GPixmap.overflow5" number="14409">
+[1-%0!05u!] (GPixmap::stencil) Le rectangle spécifié est plus grand que le
+pixmap de premier plan.
+</MESSAGE>
+<MESSAGE name="GPixmap.unk_PPM" number="14410">
+[1-%0!05u!] Format de fichier PPM inconnu
+</MESSAGE>
+<MESSAGE name="GRect.div_zero" number="14500">
+[1-%0!05u!] Division par zéro
+</MESSAGE>
+<MESSAGE name="GRect.empty_rect1" number="14501">
+[1-%0!05u!] Rectangle vide non autorisé dans GRectMapper::set_input
+</MESSAGE>
+<MESSAGE name="GRect.empty_rect2" number="14502">
+[1-%0!05u!] Rectangle vide non autorisé dans GRectMapper::set_output
+</MESSAGE>
+<MESSAGE name="GRect.empty_rect3" number="14503">
+[1-%0!05u!] Rectangle vide non autorisé dans GRectMapper::[un]map
+</MESSAGE>
+<MESSAGE name="GScaler.assertion" number="14600">
+[1-%0!05u!] Echec d&apos;assertion
+</MESSAGE>
+<MESSAGE name="GScaler.no_match" number="14601">
+[1-%0!05u!] Le pixmap d&apos;entrée ne correspond pas au rectangle d&apos;entrée.
+</MESSAGE>
+<MESSAGE name="GScaler.ratios" number="14602">
+[1-%0!05u!] Les deux taux GScaler doivent être nuls ou positifs.
+</MESSAGE>
+<MESSAGE name="GScaler.too_big" number="14603">
+[1-%0!05u!] La sortie souhaitée est plus grande que le rectangle de sortie de l&apos;image entière.
+</MESSAGE>
+<MESSAGE name="GScaler.too_small" number="14604">
+[1-%0!05u!] Le pixmap d&apos;entrée fourni est trop petit.
+</MESSAGE>
+<MESSAGE name="GScaler.undef_size" number="14605">
+[1-%0!05u!] Les valeurs taille_entrée et taille_sortie de GScaler ne sont pas encore définies.
+</MESSAGE>
+<MESSAGE name="GSmartPointer.suspicious" number="14700">
+[1-%0!05u!] Destruction suspecte de l&apos;objet GPEnabled référencé
+</MESSAGE>
+<MESSAGE name="GString.bad_subscript" number="14800">
+[1-%0!05u!] Indice non autorisé dans GString::operator[]
+</MESSAGE>
+<MESSAGE name="GString.overwrite" number="14801">
+[1-%0!05u!] Ecrasement de la mémoire. Le programme n&apos;est pas stable.
+</MESSAGE>
+<MESSAGE name="GStringRep.NativeToNative" number="14802">
+[1-%0!05u!] Tentative de conversion de l&apos;encodage natif en encodage natif
+</MESSAGE>>
+<MESSAGE name="GStringRep.UTF8ToUTF8" number="14803">
+[1-%0!05u!] Tentative de conversion de l&apos;encodage UTF8 en encodage UTF8
+</MESSAGE>>
+<MESSAGE name="GStringRep.appendNativeToUTF8" number="14804">
+[1-%0!05u!] Tentative d&apos;ajout d&apos;une chaîne native à une chaîne UTF8
+</MESSAGE>>
+<MESSAGE name="GStringRep.appendUTF8toNative" number="14805">
+[1-%0!05u!] Tentative d&apos;ajout d&apos;une chaîne UTF8 à une chaîne native
+</MESSAGE>>
+<MESSAGE name="GThreads.co_panic" number="14900">
+[1-%0!05u!] Erreur fatale COTHREADS : contexte d&apos;exception introuvable
+</MESSAGE>
+<MESSAGE name="GThreads.dupl_callback" number="14901">
+[1-%0!05u!] GThread::set_scheduling_callback appelé deux fois
+</MESSAGE>
+<MESSAGE name="GThreads.not_acq_broad" number="14902">
+[1-%0!05u!] Le moniteur n&apos;a pas été acquis par cette thread (GMonitor::broadcast).
+</MESSAGE>
+<MESSAGE name="GThreads.not_acq_leave" number="14903">
+[1-%0!05u!] Le moniteur n&apos;a pas été acquis par cette thread (GMonitor::leave).
+</MESSAGE>
+<MESSAGE name="GThreads.not_acq_signal" number="14904">
+[1-%0!05u!] Le moniteur n&apos;a pas été acquis par cette thread (GMonitor::signal).
+</MESSAGE>
+<MESSAGE name="GThreads.not_acq_wait" number="14905">
+[1-%0!05u!] Le moniteur n&apos;a pas été acquis par cette thread (GMonitor::wait).
+</MESSAGE>
+<MESSAGE name="GThreads.panic" number="14906">
+[1-%0!05u!] Erreur fatale : blocage Cothreads.
+</MESSAGE>
+<MESSAGE name="GThreads.uncaught" number="14907">
+[1-%0!05u!] GThreads : exception non capturée
+</MESSAGE>
+<MESSAGE name="GThreads.unrecognized" number="14908">
+[1-%0!05u!] GThreads : exception non capturée inconnue
+</MESSAGE>
+<MESSAGE name="GURL.fail_to_file" number="15000">
+[1-%0!05u!] Impossible de convertir l&apos;URL en nom de fichier
+</MESSAGE>
+<MESSAGE name="GURL.fail_to_URL" number="15001">
+[1-%0!05u!] Impossible de reconvertir le nom de fichier en URL
+</MESSAGE>
+<MESSAGE name="GURL.no_protocol" number="15002">
+[1-%0!05u!] L&apos;URL %1!s! ne contient pas de préfixe de protocole.
+</MESSAGE>
+<MESSAGE name="GURL.big_name" number="15003">
+[1-%0!05u!] Le nom de fichier est trop long.
+</MESSAGE>
+<MESSAGE name="GURL.listdir" number="15004">
+[1-%0!05u!] GURL::listdir n&apos;est pas implémenté sur cette plate-forme.
+</MESSAGE>
+<MESSAGE name="GURL.no_rename" number="15005">
+[1-%0!05u!] Renommer() n&apos;est pas disponible sur les périphériques WinCE.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.bad_chunk" number="15100">
+[1-%0!05u!] ID de bloc non autorisé (IFFByteStream::put_chunk)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.bad_offset" number="15101">
+[1-%0!05u!] Décalage de IFFByteStream (erreur interne) en dehors des limites du bloc
+</MESSAGE>
+<MESSAGE name="IFFByteStream.cant_close" number="15102">
+[1-%0!05u!] Impossible de fermer un bloc quand aucun bloc n&apos;est ouvert.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.cant_write" number="15103">
+[1-%0!05u!] Impossible d&apos;effectuer une écriture tant que le bloc précédent n&apos;est pas terminé.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_2nd_id" number="15104">
+[1-%0!05u!] Fichier IFF endommagé (ID de bloc secondaire non autorisé)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_end2" number="15105">
+[1-%0!05u!] Fichier IFF endommagé (Une fin de bloc est survenue lors de la lecture de la taille du bloc.)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_end" number="15106">
+[1-%0!05u!] Fichier IFF endommagé (Une fin de bloc est survenue lors de la lecture de l&apos;ID du bloc.)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_header" number="15107">
+[1-%0!05u!] Fichier IFF endommagé (Une fin de bloc est survenue lors de la lecture de l&apos;en-tête du bloc composite.)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_id" number="15108">
+[1-%0!05u!] Fichier IFF endommagé (ID de bloc non autorisé)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.corrupt_mangled" number="15109">
+[1-%0!05u!] Fichier IFF endommagé (limites de blocs détériorées)
+</MESSAGE>
+<MESSAGE name="IFFByteStream.no_chunk_id" number="15110">
+[1-%0!05u!] Aucun ID de bloc disponible pour le moment
+</MESSAGE>
+<MESSAGE name="IFFByteStream.not_ready2" number="15111">
+[1-%0!05u!] IFFByteStream n&apos;est pas prêt pour l&apos;écriture des blocs.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.not_ready3" number="15112">
+[1-%0!05u!] IFFByteStream n&apos;est pas prêt pour la lecture des octets.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.not_ready4" number="15113">
+[1-%0!05u!] IFFByteStream n&apos;est pas prêt pour l&apos;écriture des octets.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.not_ready" number="15114">
+[1-%0!05u!] IFFByteStream n&apos;est pas prêt pour la lecture des blocs.
+</MESSAGE>
+<MESSAGE name="IFFByteStream.read_write" number="15115">
+[1-%0!05u!] Tentative d&apos;écriture et de lecture du même IFFByteStream
+</MESSAGE>
+<MESSAGE name="Internal.error" number="15200">
+[1-%0!05u!] Erreur interne
+</MESSAGE>
+<MESSAGE name="IW44Image.bad_rect" number="15300">
+[1-%0!05u!] (IWMap::image) Le rectangle est hors limites.
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_primary2" number="15302">
+[1-%0!05u!] (IWPixmap::decode_chunk) Impossible de lire l&apos;en-tête primaire
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_primary" number="15303">
+[1-%0!05u!] (IWBitmap::decode_chunk) Impossible de lire l&apos;en-tête primaire
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_secondary2" number="15304">
+[1-%0!05u!] (IWPixmap::decode_chunk) Impossible de lire l&apos;en-tête secondaire
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_secondary" number="15305">
+[1-%0!05u!] (IWBitmap::decode_chunk) Impossible de lire l&apos;en-tête secondaire
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_tertiary2" number="15306">
+[1-%0!05u!] (IWPixmap::decode_chunk) Impossible de lire l&apos;en-tête tertiaire
+</MESSAGE>
+<MESSAGE name="IW44Image.cant_read_tertiary" number="15307">
+[1-%0!05u!] (IWBitmap::decode_chunk) Impossible de lire l&apos;en-tête tertiaire
+</MESSAGE>
+<MESSAGE name="IW44Image.codec_open2" number="15308">
+[1-%0!05u!] (IWBitmap::decode_chunk) Le codec est toujours ouvert pour le décodage.
+</MESSAGE>
+<MESSAGE name="IW44Image.corrupt_BM44_2" number="15312">
+[1-%0!05u!] (IWPixmap::decode_iff) Fichier endommagé (impossible de lire FORM.BM44)
+</MESSAGE>
+<MESSAGE name="IW44Image.corrupt_BM44" number="15313">
+[1-%0!05u!] (IWBitmap::decode_iff) Fichier endommagé (impossible de lire FORM.BM44)
+</MESSAGE>
+<MESSAGE name="IW44Image.empty_object2" number="15315">
+[1-%0!05u!] (IWPixmap::encode_chunk) L&apos;objet IWBitmap est vide.
+</MESSAGE>
+<MESSAGE name="IW44Image.empty_object" number="15316">
+[1-%0!05u!] (IWBitmap::encode_chunk) L&apos;objet IWBitmap est vide.
+</MESSAGE>
+<MESSAGE name="IW44Image.empty_rect" number="15317">
+[1-%0!05u!] (IWMap::image) Le rectangle est vide.
+</MESSAGE>
+<MESSAGE name="IW44Image.has_color" number="15318">
+[1-%0!05u!] (IWBitmap::decode_chunk) Le fichier contient une image couleur.
+</MESSAGE>
+<MESSAGE name="IW44Image.incompat_codec2" number="15319">
+[1-%0!05u!] (IWPixmap::decode_chunk) Le fichier a été compressé avec
+un IWCodec incompatible.
+</MESSAGE>
+<MESSAGE name="IW44Image.incompat_codec" number="15320">
+[1-%0!05u!] (IWBitmap::decode_chunk) Le fichier a été compressé avec
+un IWCodec incompatible.
+</MESSAGE>
+<MESSAGE name="IW44Image.left_open1" number="15321">
+[1-%0!05u!] (IWBitmap::encode_iff) Le codec est resté ouvert.
+</MESSAGE>
+<MESSAGE name="IW44Image.left_open2" number="15322">
+[1-%0!05u!] (IWBitmap::decode_iff) Le codec est resté ouvert.
+</MESSAGE>
+<MESSAGE name="IW44Image.left_open3" number="15323">
+[1-%0!05u!] (IWPixmap::encode_iff) Le codec est resté ouvert.
+</MESSAGE>
+<MESSAGE name="IW44Image.left_open4" number="15324">
+[1-%0!05u!] (IWPixmap::decode_iff) Le codec est resté ouvert.
+</MESSAGE>
+<MESSAGE name="IW44Image.need_stop2" number="15325">
+[1-%0!05u!] (IWPixmap::encode_chunk) Un critère d&apos;arrêt doit être spécifié.
+</MESSAGE>
+<MESSAGE name="IW44Image.need_stop" number="15326">
+[1-%0!05u!] (IWBitmap::encode_chunk) Un critère d&apos;arrêt doit être spécifié.
+</MESSAGE>
+<MESSAGE name="IW44Image.param_range2" number="15327">
+[1-%0!05u!] (IWPixmap::parm_dbfrac) Paramètre hors intervalle
+</MESSAGE>
+<MESSAGE name="IW44Image.param_range" number="15328">
+[1-%0!05u!] (IWBitmap::parm_dbfrac) Paramètre hors intervalle
+</MESSAGE>
+<MESSAGE name="IW44Image.recent_codec2" number="15329">
+[1-%0!05u!] (IWPixmap::decode_chunk) Le fichier a été compressé avec un
+\IWCodec plus récent.
+</MESSAGE>
+<MESSAGE name="IW44Image.recent_codec" number="15330">
+[1-%0!05u!] (IWBitmap::decode_chunk) Le fichier a été compressé avec un
+\IWCodec plus récent.
+</MESSAGE>
+<MESSAGE name="IW44Image.sample_factor" number="15331">
+[1-%0!05u!] (IWMap::image) Facteur d&apos;échantillonnage non pris en charge
+</MESSAGE>
+<MESSAGE name="IW44Image.wrong_serial2" number="15332">
+[1-%0!05u!] (IWPixmap::decode_chunk) Numéro de série du bloc inattendu
+</MESSAGE>
+<MESSAGE name="IW44Image.wrong_serial" number="15333">
+[1-%0!05u!] (IWBitmap::decode_chunk) Numéro de série du bloc inattendu
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_dict2" number="15400">
+[1-%0!05u!] Fichier endommagé : la dimension d&apos;image dans le dictionnaire JB2 n&apos;est pas nulle.
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_dict" number="15401">
+[1-%0!05u!] La taille du dictionnaire de formes ne correspond pas aux données JB2.
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_number" number="15402">
+[1-%0!05u!] (JB2Codec::CodeNum) Le nombre est hors limites.
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_numcontext" number="15403">
+[1-%0!05u!] (JB2Codec::CodeNum) NumContext non autorisé.
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_parent_shape" number="15404">
+[1-%0!05u!] Numéro de forme parent non autorisé dans JB2Shape
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_shape" number="15405">
+[1-%0!05u!] Numéro de forme non autorisé dans JB2Blit
+</MESSAGE>
+<MESSAGE name="JB2Image.bad_type" number="15406">
+[1-%0!05u!] Fichier endommagé : type d&apos;enregistrement non autorisé pour le dictionnaire de formes.
+</MESSAGE>
+<MESSAGE name="JB2Image.cant_change" number="15407">
+[1-%0!05u!] Impossible de modifier le dictionnaire une fois qu'il est défini.
+</MESSAGE>
+<MESSAGE name="JB2Image.cant_create" number="15408">
+[1-%0!05u!] Impossible de créer une image bitmap pour un objet JB2Image non dimensionné
+</MESSAGE>
+<MESSAGE name="JB2Image.cant_set" number="15409">
+[1-%0!05u!] Impossible de définir le dictionnaire après l&apos;ajout de formes
+</MESSAGE>
+<MESSAGE name="JB2Image.need_dict" number="15410">
+[1-%0!05u!] Les données JB2 requièrent un dictionnaire de formes.
+</MESSAGE>
+<MESSAGE name="JB2Image.no_start" number="15411">
+[1-%0!05u!] Fichier endommagé : aucun début d&apos;enregistrement
+</MESSAGE>
+<MESSAGE name="JB2Image.unknown_type" number="15412">
+[1-%0!05u!] Fichier endommagé : type d&apos;enregistrement inconnu
+</MESSAGE>
+<MESSAGE name="JB2Image.zero_dim" number="15413">
+[1-%0!05u!] Fichier endommagé : la dimension de l&apos;image JB2 est nulle.
+</MESSAGE>
+<MESSAGE name="MMRDecoder.bad_codebook" number="15500">
+[1-%0!05u!] Guide de codification MMR ambigu
+</MESSAGE>
+<MESSAGE name="MMRDecoder.bad_data" number="15501">
+[1-%0!05u!] Données G4/MMR incorrectes
+</MESSAGE>
+<MESSAGE name="MMRDecoder.bad_header" number="15502">
+[1-%0!05u!] En-tête G4/MMR endommagé
+</MESSAGE>
+<MESSAGE name="MMRDecoder.cant_process" number="15503">
+[1-%0!05u!] Impossible de traiter les bits non compressés dans les données G4/MMR
+</MESSAGE>
+<MESSAGE name="MMRDecoder.unrecog_header" number="15504">
+[1-%0!05u!] Impossible de reconnaître la&apos;en-tête G4/MMR
+</MESSAGE>
+<MESSAGE name="not_implemented_n" number="15600">
+[1-%0!05u!] %1!s! n&apos;est pas implémenté(e).
+</MESSAGE>
+<MESSAGE name="not_implemented" number="15700">
+[1-%0!05u!] Non implémenté(e)
+</MESSAGE>
+<MESSAGE name="parseoptions.ambiguous" number="15800">
+[1-%0!05u!] Options spécifiées ambiguës : 1!s!=%2!s! et %3!s!=%4!s!
+.
+</MESSAGE>
+<MESSAGE name="parseoptions.bad_install" number="15801">
+[1-%0!05u!] Le kit de développement logiciel n&apos;est pas installé correctement. Veuillez le réinstaller.
+</MESSAGE>
+<MESSAGE name="parseoptions.bad_number" number="15802">
+[1-%0!05u!] %1!s! n&apos;est pas un nombre.
+</MESSAGE>
+<MESSAGE name="parseoptions.bad_value" number="15803">
+[1-%0!05u!] %1!s! n&apos;est ni un nombre ni une valeur booléenne.
+</MESSAGE>
+<MESSAGE name="parseoptions.cant_inherit" number="15804">
+[1-%0!05u!] %1!s! : erreur à la ligne %2!d! de &apos;%3!s!&apos;&#10;&#09;
+&gt; ne peut pas hériter du profil inconnu &apos;%4!s!&apos;.
+</MESSAGE>
+<MESSAGE name="parseoptions.illegal_profile" number="15805">
+[1-%0!05u!] %1!s! : erreur à la ligne %2!d! du profil &apos;%3!s!&apos;&#10;
+&#09; &gt; nom de profil non autorisé %4!s!.
+</MESSAGE>
+<MESSAGE name="parseoptions.missing_arg_option" number="15806">
+[1-%0!05u!] Argument requis pour l&apos;option %1!s!
+</MESSAGE>
+<MESSAGE name="parseoptions.profile_error" number="15807">
+[1-%0!05u!] %1!s! : erreur à la ligne %2!d! du profil %3!s!&#10;
+&#09; &gt; %4!s!.
+</MESSAGE>
+<MESSAGE name="parseoptions.unrecog_option_c" number="15808">
+[1-%0!05u!] Option non reconnue : %1!s! 
+</MESSAGE>
+<MESSAGE name="parseoptions.unrecog_option" number="15809">
+[1-%0!05u!] Option %1!s! non reconnue
+</MESSAGE>
+<MESSAGE name="STOP" number="16000">
+[1-%0!05u!] Message d&apos;arrêt non capturé
+</MESSAGE>
+<MESSAGE name="TextException.test" number="16100">
+[1-%0!05u!] Exception de test
+</MESSAGE>
+<MESSAGE name="XMLAnno.bad_color" number="16200">
+[1-%0!05u!] La couleur %1!s! n&apos;est pas prise en charge.
+</MESSAGE>
+<MESSAGE name="XMLAnno.bad_page" number="16201">
+[1-%0!05u!] Impossible d&apos;obtenir la page spécifiée
+</MESSAGE>
+<MESSAGE name="XMLAnno.bad_rect" number="16202">
+[1-%0!05u!] Coordonnées de zone rectangulaire insuffisantes
+</MESSAGE>
+<MESSAGE name="XMLAnno.bad_circle" number="16203">
+[1-%0!05u!] Coordonnées de zone circulaire insuffisantes
+</MESSAGE>
+<MESSAGE name="XMLAnno.bad_oval" number="16204">
+[1-%0!05u!] Coordonnées de zone ovale insuffisantes
+</MESSAGE>
+<MESSAGE name="XMLAnno.unknown_shape" number="16205">
+[1-%0!05u!] Forme inconnue %1!s!
+</MESSAGE>
+<MESSAGE name="XMLAnno.unknown_border" number="16206">
+[1-%0!05u!] Type de contour non reconnu %1!s!
+</MESSAGE>
+<MESSAGE name="XMLAnno.extra_body" number="16207">
+[1-%0!05u!] Une&lt;BODY&gt;&lt;/BODY&gt; seule paire est requise.
+</MESSAGE>
+<MESSAGE name="XMLAnno.no_body" number="16208">
+[1-%0!05u!] Aucune&lt;BODY&gt;&lt;/BODY&gt; paire détectée
+</MESSAGE>
+<MESSAGE name="XMLAnno.map_find" number="16209">
+[1-%0!05u!] Impossible de détecter le mappage %1!s! spécifié
+</MESSAGE>
+<MESSAGE name="XMLAnno.fail_init" number="16210">
+[1-%0!05u!] Impossible d&apos;initialiser %1!s!
+</MESSAGE>
+<MESSAGE name="XMLTags.no_GP" number="16300">
+[1-%0!05u!] Aucun pointeur de protection générale défini
+</MESSAGE>
+<MESSAGE name="XMLTags.raw_string" number="16301">
+[1-%0!05u!] La chaîne brute %1!s! a été détectée en dehors du document.
+</MESSAGE>
+<MESSAGE name="XMLTags.bad_tag" number="16302">
+[1-%0!05u!] Balise %1!s! incomplète
+</MESSAGE>
+<MESSAGE name="XMLTags.bad_PI" number="16303">
+[1-%0!05u!] Instruction de traitement incomplète : %1!s!
+</MESSAGE>
+<MESSAGE name="XMLTags.bad_comment" number="16304">
+[1-%0!05u!] Commentaire incomplet : %1!s!
+</MESSAGE>
+<MESSAGE name="XMLTags.bad_form" number="16305">
+[1-%0!05u!] Erreur de formulation. Nombre de balises fermantes trop élevé.
+</MESSAGE>
+<MESSAGE name="XMLTags.no_body" number="16306">
+[1-%0!05u!] Pas de corps
+</MESSAGE>
+<MESSAGE name="XMLTags.unmatched_end" number="16307">
+[1-%0!05u!] La balise XML %1!s! de la ligne %2!u! a été fermée par la balise XML
+%3!s! de la ligne %4!u!.
+</MESSAGE>
+<MESSAGE name="ZPCodec.no_encoding" number="16400">
+[1-%0!05u!] ZPCodec n&apos;a pas été créé pour l&apos;encodage.
+</MESSAGE>
+<MESSAGE name="ZPCodec.write_error" number="16401">
+[1-%0!05u!] Erreur d&apos;écriture ZPCodec
+</MESSAGE>
+</BODY>
+</DjVuMessages>
+
+ 

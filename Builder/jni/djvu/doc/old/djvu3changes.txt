@@ -1,0 +1,691 @@
+
+
+
+<WARNING: THIS DOCUMENT HAS BEEN MADE OBSOLETE 
+ BY THE LIZARDTECH SPECIFICATION "DJVU3SPEC.DJVU".>
+
+
+
+    This file summarizes the file format changes 
+    between DjVu2 and DjVu3.
+
+
+
+
+------------------------------------------------------------
+1 - DJVU3 FILE STRUCTURE OVERVIEW
+------------------------------------------------------------
+
+    DjVu files are organized according to the ``EA IFF 85'' layout.  Pointers to
+    the appropriate reference document are provided in section
+    \Ref{IFFByteStream.h}.  IFF files are logically composed of a sequence of
+    data \emph{chunks}.  Each chunk comes with a four character \emph{chunk
+    identifier} describing the type of the data stored in the chunk.  A few
+    special chunk identifiers, for instance #"FORM"#, are reserved for so
+    called \emph{composite chunks} containing a sequence of data chunks.  This
+    convention effectively provides IFF files with a hierarchical structure.
+    Composite chunks are further identified by a \emph{secondary chunk
+    identifier}.  For convenience, both identifiers are gathered as an
+    extended chunk identifier such as #"FORM:DJVU"#.
+
+    The four octets #0x41,0x54,0x26,0x54# may be inserted in front of the IFF 
+    compliant byte stream.  The decoder simply ignores these four octets when
+    they are present.  These four octets are not part of the IFF format and
+    are not required components of a valid DjVu file.  Certain versions of MSIE
+    incorrectly recognize any IFF file as a Microsoft AIFF sound file.  The
+    presence of these four octets prevents this incorrect identification.
+
+    The DjVu specification mandates that the decoder should silently
+    skip chunks whose identifier is not recognized.  This mechanism
+    provides a backward compatible way to extend the initial format by
+    allocating new chunk identifiers. 
+
+------------------------------------------------------------
+1.1 - DJVU3 IMAGE FILES
+------------------------------------------------------------
+
+    \textbf{Photo DjVu Image} --- 
+
+    Photo DjVu Image files are best used for
+    encoding photographic images in colors or in shades of gray.  The data
+    compression model relies on the IW44 wavelet representation.  This format
+    is designed such that the IW44 decoder is able to quickly perform
+    progressive rendering of any image segment using only a small amount of
+    memory.  Photo DjVu files are composed of a single #"FORM:DJVU"# composite
+    chunk.  This composite chunk always begins with one #"INFO"# chunk
+    describing the image size and resolution (see \Ref{DjVuInfo.h}).  One or
+    more additional #"BG44"# chunks contains the image data encoded with the
+    IW44 representation (see \Ref{IW44Image.h}).  The image size specified in
+    the #"INFO"# chunk and the image size specified in the IW44 data must be
+    equal.
+
+    \textbf{Bilevel DjVu Image} --- 
+
+    Bilevel DjVu Image files are used to compress
+    black and white images representing text and simple drawings.   The
+    JB2 data compression model uses the soft pattern matching technique, which
+    essentially consists of encoding each character by describing how it
+    differs from a well chosen already encoded character.  Bilevel DjVu Files
+    are composed of a single #"FORM:DJVU"# composite chunk.  This composite
+    chunk always begins with one #"INFO"# chunk describing the image size and
+    resolution (see \Ref{DjVuInfo.h}).  An additional #"Sjbz"# chunk contains
+    the bilevel data encoded with the JB2 representation (see
+    \Ref{JB2Image.h}).  The image size specified in the #"INFO"# chunk and the
+    image size specified in the JB2 data must be equal.
+
+    \textbf{Compound DjVu Image} --- 
+
+    Compound DjVu Files are an extremely
+    efficient way to compress high resolution Compound document images
+    containing both pictures and text, such as a page of a magazine.  Compound
+    DjVu Files represent the document images using two layers.  The
+    \emph{background layer} is used for encoding the pictures and the
+    paper texture.
+    The \emph{foreground layer} is used for encoding the text and the drawings.
+    Compound DjVu Files are composed of a single #"FORM:DJVU"# composite
+    chunk.  This composite chunk always begins with one #"INFO"# chunk
+    describing the size and the resolution of the image (see \Ref{DjVuInfo}).
+    Additional chunks hold the components of either the foreground or the
+    background layers.
+
+    The main component of the foreground layer is a bilevel image named the
+    \emph{foreground mask}. The pixel size of the foreground mask is equal to
+    the size of the DjVu image.  It contains a black-on-white representation
+    of the text and the drawings.  This image is encoded by a #"Sjbz"# chunk
+    using the JB2 representation.  There may also be a companion chunk
+    #"Djbz"# containing a \emph{shape dictionary} that defines bilevel shapes
+    referenced by the #"Sjbz"# chunk.
+
+    The \emph{foreground colors} can be encoded according to two models:
+    \begin{itemize}
+    \item 
+      The foreground colors may be encoded using a small color image,
+      the \emph{foreground color image}, encoded as a single #"FG44"#
+      chunk using the
+      IW44 representation (see \Ref{IW44Image.h}).  Such compound DjVu images
+      are rendered by painting the foreground color image on top of the
+      background color image using the foreground mask as a stencil.  The
+      pixel size of the foreground color image is computed by rounding up the
+      quotient of the mask size by an integer sub-sampling factor ranging from
+      1 to 12.  Most Compound DjVu Images use a foreground color sub-sampling
+      factor of 12.  Smaller sub-sampling factors produce very slightly better
+      images.
+    \item
+      The foreground colors may be encoded by specifying one solid color per
+      object described by the JB2 encoded mask. These \emph{JB2 colors} are
+      color-quantized and stored in a single #"FGbz"# chunk (see.
+      \Ref{DjVuPalette.h}).  Such compound DjVu images are rendered by
+      painting each foreground object on top of the background color image
+      using the solid color specified by the #"FGbz"# chunk.
+    \end{itemize}
+
+    The background layer is a color image, \Ref{the background color image}
+    ncoded by an arbitrary number of #"BG44"# chunks containing successive
+    IW44 refinements (see \Ref{IW44Image.h}).  The size of this image is
+    computed by rounding up the quotient of the mask size by an integer
+    sub-sampling factor ranging from 1 to 12.  Most Compound DjVu Images use a
+    background sub-sampling factor equal to 3.  Smaller sub-sampling factors
+    are adequate for images with a very rich paper texture.  Larger
+    sub-sampling factors are adequate for images containing no pictures.
+
+    There are no ordering or interleaving constraints on these chunks except
+    that (a) the #"INFO"# chunk must appear first, and (b) the successive
+    #"BG44"# refinements must appear with their natural order.  The chunk
+    order simply affects the progressive rendering of DjVu images on a web
+    browser.  
+
+    \textbf{IW44 Image Files} --
+
+    The IW44 Image file format is the native format for the IW44 wavelet
+    representation.  These files are deprecated in favor of Photo DjVu
+    Images.
+
+    \textbf{Alternative encodings} --- 
+
+    Besides the JB2 and IW44 encoding schemes,
+    the DjVu format supports alternative encoding methods for its components.  
+
+    \begin{itemize}
+    \item
+       The foreground mask may be represented by a single #"Smmr"# chunk
+       instead of #"Sjbz"#.  The #"Smmr"# chunk contains a bilevel image
+       encoded with the Fax-G4/MMR method.  Although the resulting files
+       are typically six times larger, this capability can be useful when
+       DjVu is used as a front-end for fax machines and scanners with 
+       embedded Fax-G4/MMR capabilities. 
+    \item
+       The background color image may be represented by a single #"BGjp"#
+       chunk instead of several #"BG44"# chunks.  The #"BGjp"# chunk contains
+       a JPEG encoded color image.  The resulting files are significantly
+       larger and lack the progressivity of the usual DjVu files.  
+       This is useful because some scanners have embedded JPEG capabilities.
+    \item
+       The foreground color image may be represented by a single #"FGjp"#
+       chunk instead of a single #"FG44"# chunk.  This is useful because 
+       some scanners have embedded JPEG capabilities.
+    \end{itemize}
+
+    In addition, the chunk names #"BG2k"# and #"FG2k"# have been reserved for
+    encoding the background color image and the foreground color image using
+    the forthcoming JPEG-2000 standard.  This capability is not implemented at
+    the moment.  The JPEG-2000 standard may even become the preferred encoding
+    method for color images in DjVu.  */
+
+    \textbf{Annotations and Textual Information } --
+
+    All types of DjVu images may contain
+    annotation chunks.  Annotation chunks are currently used to describe
+    hyperlinks, to specify more closely the behavior of the viewers,
+    and to hold metadata information.  Annotations are contained in #"ANTa"# 
+    or #"ANTz"# chunks.  The #"ANTa"# chunks contain the annotation in 
+    plain text. The #"ANTz"# chunks contain the same information compressed 
+    with the BZZ encoder (cf. \Ref{BSByteStream.h}).
+
+    All types of DjVu image files may also contain a
+    computer readable description of the text appearing on the page.  This
+    information is contained by either a #"TXTa"# chunk or #"TXTz"# chunk.
+    The #"TXTa"# chunk contains uncompressed data.  The #"TXTz"# chunk
+    contains the same data compressed with the \Ref{bzz} compressor
+    (cf. \Ref{BSByteStream.h}).  The #"TXTa"# chunks begins by a 24 bit
+    integer (most significant byte first) describing the length of the text in
+    bytes.  Then come the ISO10646/UTF8 text.  Additional information
+    indicates the position of each column/region/paragraph/line/word in the
+    document.  More information about the capabilities of the chunk can be
+    found in section \Ref{DjVuTXT}.  More information about the encoding of
+    textual information can be found in file #"DjVuAnno.cpp"#.  */
+
+
+------------------------------------------------------------
+1.2 - DJVU3 MULTIPAGE DOCUMENTS
+------------------------------------------------------------
+
+    The DjVu3 system supports two models for multi-page documents:
+    \emph{bundled} multi-page documents and \emph{indirect} multi-page documents.
+    
+    \textbf{Bundled multi-page documents} --- 
+
+    A \emph{bundled} multi-page DjVu
+    document uses a single file to represent the entire document.  This single
+    file contains all the pages as well as ancillary information (e.g. the
+    page directory, data shared by several pages, thumbnails, etc.).  Using a
+    single file format is very convenient for storing documents or for sending
+    email attachments.
+
+    A bundled multi-page document is composed of a single #"FORM:DJVM"#
+    composite chunk.  This composite chunk always begins with a #"DIRM"# chunk
+    containing the document directory (see. \Ref{DjVmDir.h}) which represents
+    the list of the \emph{component files} that compose the document.  The
+    component files themselves are then encoded as IFF85 composite chunks
+    following the #"DIRM"# chunk.
+
+    \begin{itemize}
+    \item  
+       Component files may be any valid DjVu image (see \Ref{DjVu Image Files})
+       or IW44 image (see \Ref{IW44 Image Files}.)  These component files 
+       always represent a page of a document.  The corresponding IFF85 chunk ids are 
+       #"FORM:DJVU"#, #"FORM:PM44"#, or #"FORM:BM44"#.
+    \item 
+       Component files may contain shared information indirectly referenced by
+       some document pages.  These \emph{shared component files} are always composed
+       of a single #"FORM:DJVI"# chunk containing an arbitrary collection of
+       chunks. 
+    \item
+       Thumbnail files contain optional thumbnail images for a few consecutive
+       pages of the document.  Thumbnail files consist of a single
+       #"FORM:THUM"# composite chunk containing several #"TH44"# chunks
+       containing IW44 encoded thumbnail images (see \Ref{IW44Image.h}).  These
+       thumbnails always pertain the first few page files following the
+       thumbnail file in the document directory.
+    \end{itemize}
+
+    \textbf{Including shared information} --- 
+
+    Any DjVu image file contained in a multipage file may contain an #"INCL"#
+    chunk containing the ID of a shared component file.  The decoder processes
+    the chunks contained in the shared component file as if they were
+    contained by the DjVu image file.
+
+    A shared component file is composed of a single #"FORM:DJVI"# potentially
+    containing any information otherwise allowed in a DjVu image file (except
+    for the #"INFO"# chunk of course).
+
+    There are many benefits associated with storing such shared information in
+    separate files.  A well designed browser may keep pre-decoded copies of
+    these files in a cache.  This procedure would reduce the size of the data
+    transferred over the Internet and also increase the display speed.  The
+    multipage DjVu compressor, for instance, identifies similar object shapes
+    occuring in several pages.  These shapes are encoded in a shape dictionary
+    (chunk #"Djbz"#) placed in a shared component file.  All relevant pages
+    include this shared component file.  Although they appear in several
+    pages, these shared shapes are encoded only once in the document.
+
+    \textbf{Browsing a multi-page document} --- 
+
+    You can view the pages using the DjVu plugin and a web browser.  When you
+    type the URL of a multi-page document, the browser starts downloading the
+    whole file, but displays the first page as soon as it is available.  You
+    can immediately navigate to other pages using the DjVu toolbar.  Suppose
+    however that the document is stored on a remote web server.  You can
+    easily access the first page and see that this is not the document you
+    wanted.  Although you will never display the other pages the browser is
+    transferring data for these pages and is wasting the bandwith of your
+    server (and the bandwith of the Internet too).  You could also see the
+    summary of the document on the first page and jump to page 100.  But page
+    100 cannot be displayed until data for pages 1 to 99 has been received.
+    You may have to wait for the transmission of unnecessary page data.  This
+    second problem (the unnecessary wait) can be solved using the ``byte
+    serving'' options of the HTTP/1.1 protocol.  This option has to be
+    supported by the web server, the proxies, the caches and the browser.  We
+    are coming there but not quite yet.  Byte serving however does not solve
+    the first problem (the waste of bandwith).
+
+    \textbf{Indirect multi-page documents} --- 
+
+    DjVu solves both problem using a
+    special multi-page format named the \emph{indirect} model.  An indirect
+    multi-page DjVu document is composed of several files.  The main file is
+    named the \emph{index file}.  You can browse a document using the URL of
+    the index file, just like you do with a bundled multi-page document.  The
+    index file however is very small.  It simply contains the document
+    directory and the URLs of secondary files containing the page data.  When
+    you browse an indirect multi-page document, the browser only accesses data
+    for the pages you are viewing.  This can be done at a reasonable speed
+    because the browser maintains a cache of pages and sometimes pre-fetches a
+    few pages ahead of the current page.  This model uses the web serving
+    bandwith much more effectively.  It also eliminates unnecessary delays
+    when jumping ahead to pages located anywhere in a long document.
+
+    \textbf{Obsolete Formats} --- 
+
+    The library also supports two other multipage
+    formats which are now obsolete.  These formats are technologically
+    inferior and should no longer be used. */
+
+
+
+
+
+------------------------------------------------------------
+2 - CHUNK ENCODING
+------------------------------------------------------------
+
+    This section describes 
+    - the encoding of new chunks introduces with DjVu3
+    - the encoding changes of chunks already present in DjVu2
+
+
+
+------------------------------------------------------------
+2.1 - CHANGES TO JB2 ( "Sjbz" AND "Djbz" CHUNKS )
+------------------------------------------------------------
+
+    Two extensions of the JB2 encoding format have been introduced
+    with DjVu files version 21.  Both extensions maintain significant
+    backward compatibility with previous version of the JB2 format.
+    These extensions are described below by reference to the DjVu2 spec
+    dated August 1999.  Both extension make use of the unused record 
+    type value #9# (cf. ICFDD page 24) which has been renamed
+    #REQUIRED_DICT_OR_RESET#.
+
+    \textbf{Shared Shape Dictionaries} --- This extension provides
+    support for sharing symbol definitions between the pages of a
+    document.  To achieve this objective, the JB2 image data chunk
+    must be able to address symbols defined elsewhere by a JB2
+    dictionary data chunk shared by all the pages of a document.
+
+    The arithmetically encoded JB2 image data logically consist of a
+    sequence of records. The decoder processes these records in
+    sequence and maintains a library of symbols which can be addressed
+    by the following records.  The first record usually is a ``Start
+    Of Image'' record describing the size of the image.
+
+    Starting with version 21, a #REQUIRED_DICT_OR_RESET# (9) record
+    type can appear \emph{before} the #START_OF_DATA# (0) record.  The
+    record type field is followed by a single number arithmetically
+    encoded (cf. ICFDD page 26) using a sixteenth context (cf. ICFDD
+    page 25).  This record appears when the JB2 data chunk requires
+    symbols encoded in a separate JB2 dictionary data chunk.  The
+    number (the \textbf{dictionary size}) indicates how many symbols
+    should have been defined by the JB2 dictionary data chunk.  The
+    decoder should simply load these symbols in the symbol library and
+    proceed as usual.  New symbols potentially defined by the
+    subsequent JB2 image data records will therefore be numbered with
+    integers greater or equal than the dictionary size.
+
+    The JB2 dictionary data format is a pure subset of the JB2 image
+    data format.  The #START_OF_DATA# (0) record always specifies an
+    image width of zero and an image height of zero.  The only allowed
+    record types are those defining library symbols only
+    (#NEW_SYMBOL_LIBRARY_ONLY# (2) and #MATCHED_REFINE_LIBRARY_ONLY#
+    (5) cf. ICFDD page 24) followed by a final #END_OF_DATA# (11)
+    record.
+
+    The JB2 dictionary data is usually located in an \textbf{Djbz} chunk.
+    Each page \textbf{FORM:DJVU} may directly contain a \textbf{Djbz} chunk,
+    or may indirectly point to such a chunk using an \textbf{INCL} chunk
+    (cf. \Ref{Multipage DjVu documents.}).
+
+    \textbf{Numcoder Reset} --- This extension addresses a problem for
+    hardware implementations.  The encoding of numbers (cf. ICFDD page
+    26) potentially uses an unbounded number of binary coding
+    contexts. These contexts are normally allocated when they are used
+    for the first time (cf. ICFDD informative note, page 27).
+
+    Starting with version 21, a #REQUIRED_DICT_OR_RESET# (9) record
+    type can appear \emph{after} the #START_OF_DATA# (0) record.  The
+    decoder should proceed with the next record after \emph{clearing
+    all binary contexts used for coding numbers}.  This operation
+    implies that all binary contexts previously allocated for coding
+    numbers can be deallocated.
+  
+    Starting with version 21, the JB2 encoder should insert a
+    #REQUIRED_DICT_OR_RESET# record type whenever the number of these
+    allocated binary contexts exceeds #20000#.  Only very large
+    documents ever reach such a large number of allocated binary
+    contexts (e.g large maps).  Hardware implementation however can
+    benefit greatly from a hard bound on the total number of binary
+    coding contexts.  Old JB2 decoders will treat this record type as
+    an #END_OF_DATA# record and cleanly stop decoding (cf. ICFDD page
+    30, Image refinement data).
+
+
+
+
+------------------------------------------------------------
+2.2 - JB2 COLORS ( "FGbz" CHUNK )
+------------------------------------------------------------
+
+    To be documented.
+
+    The #"FGbz"# contains BZZ compressed data 
+    (cf. \Ref{BSByteStream.h}).
+
+    The uncompressed data can be decoded using function
+    #DjVuPalette::decode# defined in file #"DjVuPalette.cpp"#.
+
+
+
+
+------------------------------------------------------------
+2.3 - ANNOTATIONS ( "ANTa" AND "ANTz" CHUNKS )
+------------------------------------------------------------
+
+[MAY 19TH, 2005: 
+ New annotation types have been defined by Lizardtech.
+ The authoritative documentation is now the djvused man page.]
+
+
+    Annotations are contained in #"ANTa"# 
+    or #"ANTz"# chunks.  The #"ANTa"# chunks contain the annotation in 
+    plain text. The #"ANTz"# chunks contain the same information compressed 
+    with the BZZ encoder (cf. \Ref{BSByteStream.h}).
+
+    The complete annotation text is obtained by concatenating all annotation 
+    chunks present in the page.  Pages can share annotations using an INCL
+    chunk as explained in section \Ref{Including shared information}.
+    A restriction of the current reference library implementation
+    limits the number of shared annotation files to one.
+
+    The syntax of the annotation text uses a simple
+    parenthesized notation. Erroneous and unrecognized constructs are silently
+    ignored.  The following constructs are recognized:
+
+    \begin{description}
+    \item[(background <color>)]
+       Sets the color of the viewer area surrounding the DjVu image.
+       The color argument #color# are always represented using X11 
+       syntax \##RRGGBB#. For instance \##000000# is black 
+       and \##FFFFFF# is white.
+
+    \item[(zoom <zoom-value>)]
+       Sets the initial zoom factor of the image.  Argument #zoom-value# may
+       be #stretch#, #one2one#, #width#, #page#, or composed of the letter
+       #"d"# followed by a number between #1# and #999# (such as in #d300# for
+       instance.)
+
+    \item[(mode <mode-value>)]
+       Sets the display mode for the image.  Argument #mode-value# may
+       be #color#, #bw#, #fore# or #back#.
+
+    \item[(align <horz-align> <vert-align>)]
+       Specifies how the image should be aligned on the viewer surface.
+       By default the image is located in the center.  Argument #horz-align#
+       may be #left#, #center#, or #right#.  Argument #vert-align# may be
+       #top#, #center#, or #bottom#.
+
+    \item[(maparea <url> <comment> <area> <...options...>]
+       Defines an hyperlink for the URL specified by argument #url#.
+
+       Argument #url# may have one of the following two forms:
+       \begin{verbatim}
+            "<href>"
+            (url "<href>" "<target>")
+       \end{verbatim}
+       where #href# is a string representing the URL and #target# is a string
+       representing the target frame for the hyperlink (cf. Documentation for
+       the HTML tag #<A>#).  Both strings are surrounded with double quotes.
+       Argument #comment# is a string surrounded by double quotes.
+       This string may be displayed as a tooltip when the user
+       moves the mouse over the hyperlink.
+       Argument #area# defines the shape of the hyperlink.
+       The following options are supported for representing
+       rectangle, circle, or polygons.
+       \begin{verbatim}
+            (rect <xmin> <ymin> <width> <height>)
+            (oval <xmin> <ymin> <width> <height>)
+            (polygon <x0> <y0> <x1> <y1> ....)
+       \end{verbatim}
+       All parameters are numbers representing coordinates measured in image
+       pixels with the origin set at the bottom left corner of the image.  The
+       remaining arguments describe options regarding the hyperlink borders.
+       A first set of option define the type of the borders:
+       \begin{verbatim}
+            (xor)
+            (border <color>
+            (shadow_in [<thickness>])
+            (shadow_out [<thickness>])
+            (shadow_ein [<thickness>])
+            (shadow_eout [<thickness>])
+       \end{verbatim}
+       where parameter #color# has syntax \##RRGGBB# (as above) and parameter
+       #thickness# is a number from 1 to 32.  The last four border modes are
+       only supported with rectangular areas. The border becomes visible when
+       the user moves the mouse over the hyperlink.  The border may be made
+       always visible by using the following option:
+       \begin{verbatim}
+            (border-avis)
+       \end{verbatim}
+       Finally the following option may be used with rectangular areas only.
+       The complete area will be hilited using the specified color (specified
+       with syntax \##RRGGBB# as usual).
+       \begin{verbatim}
+            (hilite <color>)
+       \end{verbatim}
+       This is often used with an empty URL for simply emphasizing a specific
+       segment of an image.
+
+    \item[(metadata <...entries...>)]
+       Defines multiple metadata entries.
+
+       Each metadata entry has the form
+       \begin{verbatim}
+          (<key> "<value>")
+       \end{verbatim}
+       parameter #<key># is a symbolic attribute name such as #year#,
+       #booktitle#, #editor#, #author#, and parameter #<value>#
+       is a UTF-8 encoded string representing the attribute value.  
+       Common C escape sequences are recognized.
+       It is suggested to use the same key names as 
+       the BibTeX bibliography system.
+
+       Metadata pertaining to the entire document should be placed
+       in a shared annotation file (and therefore are seen in all pages).
+       Metadata pertaining to a particular page are usually places
+       inside an #"ANTz"# chunk in this particular page.
+
+    \end{description}
+
+    
+
+
+
+------------------------------------------------------------
+2.4 - HIDDEN TEXT ( "TXTa" AND "TXTz" CHUNKS )
+------------------------------------------------------------
+
+    To be documented.
+
+    The #"TXTa"# chunk contains uncompressed data.  
+    The #"TXTz"# chunk contains BZZ compressed data (cf. \Ref{BSByteStream.h}).
+
+    The uncompressed data can be decoded using function #DjVuText::decode#
+    defined in file #"DjVuText.cpp"# Program #djvused# can display the content
+    of the text chunk using a lisp syntax, and can create a text chunk from
+    this lisp syntax.
+
+
+------------------------------------------------------------
+2.5 - MULTIPAGE DIRECTORY CHUNK ( "DIRM" CHUNK )
+------------------------------------------------------------
+
+    Multipage DjVu documents follow the EA
+    IFF85 format (cf. \Ref{IFFByteStream.h}.)  A document is composed of a
+    #"FORM:DJVM"# whose first chunk is a #"DIRM"# chunk containing the
+    \emph{document directory}.  This directory lists all component
+    files composing
+    the given document, helps to access every component file and identify the
+    pages of the document.
+
+    \begin{itemize} 
+    \item
+         In a \emph{bundled} multipage file, the component files 
+         are stored immediately after the #"DIRM"# chunk,
+         within the #"FORM:DJVM"# composite chunk.  
+    \item
+         In an \emph{indirect} multipage file, the component files are 
+         stored in different files whose URLs are composed using information 
+         stored in the #"DIRM"# chunk.
+    \end{itemize} 
+
+    Most of the component files represent pages of a document.  Some files
+    however represent data shared by several pages.  The pages refer to these
+    supporting files by means of an inclusion chunk (#"INCL"# chunks)
+    identifying the supporting file.  Every directory record describes a 
+    component file.  Each component file is identified by a small string 
+    named the identifier (ID). Each component file also contains a 
+    file name and a title.
+
+    Theoretically, IDs are used to uniquely identify each component file in
+    #"INCL"# chunks, names are used to compose the the URLs of the component
+    files in an indirect multipage DjVu file, and titles are cosmetic names
+    possibly displayed when viewing a page of a document.  There are however
+    many problems with this scheme, and we \emph{strongly suggest}, with the
+    current implementation to always make the file ID, the file name and the
+    file title identical.
+
+    \textbf{Variants} --- There are two versions of the #"DIRM"# chunk format.
+    The version number is identified by the seven low bits of the first byte
+    of the chunk.  Version \textbf{0} is obsolete and should never be used.  This
+    section describes version \textbf{1}.  There are two major multipage DjVu
+    formats supported: \emph{bundled} and \emph{indirect}.  The #"DIRM"# chunk
+    indicates which format is used in the most significant bit of the first
+    byte of the chunk.  The document is bundled when this bit is set.
+    Otherwise the document is indirect.
+
+    \textbf{Unencoded data} --- 
+
+    The #"DIRM"# chunk is composed some unencoded
+    data followed by \Ref{bzz} encoded data.  The unencoded data starts with
+    the version byte and a 16 bit integer representing the number of component
+    files.  All integers are encoded with the most significant byte first.
+    \begin{verbatim}
+          BYTE:             Flags/Version:  0x<bundled>0000011
+          INT16:            Number of component files.
+    \end{verbatim}
+    When the document is a bundled document (i.e. the flag #bundled# is set),
+    this header is followed by the offsets of each of the component files within
+    the #"FORM:DJVM"#.  These offsets allow for random component file access.
+    \begin{verbatim}
+          INT32:            Offset of first component file.
+          INT32:            Offset of second component file.
+          ...
+          INT32:            Offset of last component file.
+    \end{verbatim}
+
+    \textbf{BZZ encoded data} ---
+
+     The rest of the chunk is entirely compressed
+    with the BZZ general purpose compressor.  We describe now the data fed
+    into (or retrieved from) the BZZ codec (cf. \Ref{BSByteStream}.)  First
+    come the sizes and the flags associated with each component file.
+    \begin{verbatim}
+          INT24:             Size of the first component file.
+          INT24:             Size of the second component file.
+          ...
+          INT24:             Size of the last component file.
+          BYTE:              Flag byte for the first component file.
+          BYTE:              Flag byte for the second component file.
+          ...
+          BYTE:              Flag byte for the last component file.
+    \end{verbatim}
+    The flag bytes have the following format:
+    \begin{verbatim}
+          0b<hasname><hastitle>000000     for a file included by other files.
+          0b<hasname><hastitle>000001     for a file representing a page.
+          0b<hasname><hastitle>000010     for a file containing thumbnails.
+    \end{verbatim}
+    Flag #hasname# is set when the name of the file is different from the file
+    ID.  Flag #hastitle# is set when the title of the file is different from
+    the file ID.  These flags are used to avoid encoding the same string three
+    times.  Then come a sequence of zero terminated strings.  There are one to
+    three such strings per component file.  The first string contains the ID
+    of the component file.  The second string contains the name of the
+    component file.  It is only present when the flag #hasname# is set. The third
+    one contains the title of the component file. It is only present when the
+    flag #hastitle# is set. The \Ref{bzz} encoding system makes sure that 
+    all these strings will be encoded efficiently despite their possible
+    redundancies.
+    \begin{verbatim}
+          ZSTR:     ID of the first component file.
+          ZSTR:     Name of the first component file (only if #hasname# is set.)
+          ZSTR:     Title of the first component file (only if #hastitle# is set.)
+          ... 
+          ZSTR:     ID of the last component file.
+          ZSTR:     Name of the last component file (only if #hasname# is set.)
+          ZSTR:     Title of the last component file (only if #hastitle# is set.)
+    \end{verbatim}
+
+
+
+------------------------------------------------------------
+2.6 - INCLUDES ( "INCL" CHUNK )
+------------------------------------------------------------
+
+    The chunks simply contains the ascii encoded ID
+    of the included component file.
+
+
+
+------------------------------------------------------------
+2.7 - THUMBNAILS
+------------------------------------------------------------
+
+
+    Multipage document file optionally can contain thumbnails for some or all
+    pages.  These thumbnails are stored into special component files
+    containing thumbnails for a number of consecutive pages.
+
+    The thumbnail component file is composed of a single #"FORM:THUM"#
+    containing one or more #"TH44"# chunk.  Each #"TH44"# chunk contains one
+    IW44 encoded thumbnail image for one page (cf. \Ref{IW44Image.h}).
+
+
+------------------------------------------------------------
+2.8 - OUTLINES/BOOKMARKS
+------------------------------------------------------------
+
+[MAY 19th, 2005
+ Multipage files (FORM:DJVM) can contain an 
+ additional chunk "NAVM" located after the "DIRM" chunk.
+ The NAVM chunk contains outlines and bookmarks.
+ See the files libdjvu/DjVmNav.h and libdjvu.DjVmNav.cpp]

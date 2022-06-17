@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AAA67337-AABD-4D04-A3CC-0A7F341F216C}</ProjectGuid>
+    <RootNamespace>libdjvulibre</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\libdjvulibre.props" />
+    <Import Project="..\warnings.props" />
+    <Import Project="..\dirs.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\libdjvulibre.props" />
+    <Import Project="..\warnings.props" />
+    <Import Project="..\dirs.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>DJVUAPI_EXPORT;DDJVUAPI_EXPORT;MINILISPAPI_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBDJVULIBRE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>DJVUAPI_EXPORT;DDJVUAPI_EXPORT;MINILISPAPI_EXPORT;WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBDJVULIBRE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\libdjvu\Arrays.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\atomic.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\BSByteStream.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\BSEncodeByteStream.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\ByteStream.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DataPool.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\ddjvuapi.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\debug.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVmDir.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVmDir0.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVmDoc.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVmNav.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuAnno.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuDocEditor.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuDocument.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuDumpHelper.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuErrorList.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuFile.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuFileCache.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuGlobal.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuGlobalMemory.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuImage.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuInfo.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuMessage.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuMessageLite.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuNavDir.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuPalette.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuPort.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuText.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\DjVuToPS.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GBitmap.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GContainer.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GException.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GIFFManager.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GMapAreas.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GOS.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GPixmap.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GRect.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GScaler.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GSmartPointer.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GString.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GThreads.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GUnicode.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\GURL.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\IFFByteStream.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\IW44EncodeCodec.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\IW44Image.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\JB2EncodeCodec.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\JB2Image.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\JPEGDecoder.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\miniexp.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\MMRDecoder.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\MMX.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\UnicodeByteStream.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\XMLParser.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\XMLTags.cpp" />
+    <ClCompile Include="..\..\..\libdjvu\ZPCodec.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\libdjvu\Arrays.h" />
+    <ClInclude Include="..\..\..\libdjvu\atomic.h" />
+    <ClInclude Include="..\..\..\libdjvu\BSByteStream.h" />
+    <ClInclude Include="..\..\..\libdjvu\ByteStream.h" />
+    <ClInclude Include="..\..\..\libdjvu\DataPool.h" />
+    <ClInclude Include="..\..\..\libdjvu\ddjvuapi.h" />
+    <ClInclude Include="..\..\..\libdjvu\debug.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVmDir.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVmDir0.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVmDoc.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVmNav.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuAnno.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuDocEditor.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuDocument.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuDumpHelper.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuErrorList.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuFile.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuFileCache.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuGlobal.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuImage.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuInfo.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuMessage.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuMessageLite.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuNavDir.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuPalette.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuPort.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuText.h" />
+    <ClInclude Include="..\..\..\libdjvu\DjVuToPS.h" />
+    <ClInclude Include="..\..\..\libdjvu\GBitmap.h" />
+    <ClInclude Include="..\..\..\libdjvu\GContainer.h" />
+    <ClInclude Include="..\..\..\libdjvu\GException.h" />
+    <ClInclude Include="..\..\..\libdjvu\GIFFManager.h" />
+    <ClInclude Include="..\..\..\libdjvu\GMapAreas.h" />
+    <ClInclude Include="..\..\..\libdjvu\GOS.h" />
+    <ClInclude Include="..\..\..\libdjvu\GPixmap.h" />
+    <ClInclude Include="..\..\..\libdjvu\GRect.h" />
+    <ClInclude Include="..\..\..\libdjvu\GScaler.h" />
+    <ClInclude Include="..\..\..\libdjvu\GSmartPointer.h" />
+    <ClInclude Include="..\..\..\libdjvu\GString.h" />
+    <ClInclude Include="..\..\..\libdjvu\GThreads.h" />
+    <ClInclude Include="..\..\..\libdjvu\GURL.h" />
+    <ClInclude Include="..\..\..\libdjvu\IFFByteStream.h" />
+    <ClInclude Include="..\..\..\libdjvu\IW44Image.h" />
+    <ClInclude Include="..\..\..\libdjvu\JB2Image.h" />
+    <ClInclude Include="..\..\..\libdjvu\JPEGDecoder.h" />
+    <ClInclude Include="..\..\..\libdjvu\miniexp.h" />
+    <ClInclude Include="..\..\..\libdjvu\MMRDecoder.h" />
+    <ClInclude Include="..\..\..\libdjvu\MMX.h" />
+    <ClInclude Include="..\..\..\libdjvu\Template.h" />
+    <ClInclude Include="..\..\..\libdjvu\UnicodeByteStream.h" />
+    <ClInclude Include="..\..\..\libdjvu\XMLParser.h" />
+    <ClInclude Include="..\..\..\libdjvu\XMLTags.h" />
+    <ClInclude Include="..\..\..\libdjvu\ZPCodec.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libjpeg\libjpeg.vcxproj">
+      <Project>{64bb5626-eeb1-443c-904b-c02eefb2dd5d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

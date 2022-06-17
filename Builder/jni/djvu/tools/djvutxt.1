@@ -1,0 +1,120 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVUTXT 1 "10/11/2001" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+djvutxt \- Extract the hidden text from DjVu documents.
+
+.SH SYNOPSIS
+.BI "djvutxt [" options "] " "inputdjvufile" " [" outputtxtfile "]"
+
+.SH DESCRIPTION
+Program 
+.B djvutxt
+decodes the hidden text layer of a DjVu document 
+.I inputdjvufile
+and prints it into file
+.I outputtxtfile
+or on the standard output.
+The hidden text layer is usually generated with 
+the help of an optical character recognition software.
+
+Without options
+.BR -detail
+and
+.BR -escape ,
+this program simply outputs the UTF-8 text.
+Option
+.BR -detail
+cause the output of S-expressions
+describing the text and its location.
+Option
+.BR -escape
+uses C-style escape sequences to represent
+nonprintable non-ASCII characters.
+
+
+
+.SH OPTIONS
+.TP
+.BI "--page=" "pagespec"
+Specify which pages should be processed.
+When this option is not specified,
+the text of all pages of the documents is
+concatenated into the output file.
+The page specification
+.I pagespec 
+contains one or more comma-separated page ranges.
+A page range is either a page number, 
+or two page numbers separated by a dash.
+For instance, specification
+.BR "1-10" 
+outputs pages 1 to 10, and specification
+.BR "1,3,99999-4"
+outputs pages 1 and 3, followed by all the document
+pages in reverse order up to page 4.
+.TP
+.BI "--detail=" "keyword"
+This options causes
+.B djvutxt
+to output S-expressions 
+specifying the position of the text in the page.
+See the manual page
+.BR djvused (1)
+for a description of the output format.
+Argument 
+.I keyword
+specifies the maximum level of detail
+for which text location is reported.
+The recognized values are:
+.BR page ", " column ", " region ", " para ", "
+.BR line ", " word ", and " char "."
+All other values are interpreted as 
+.BR char .
+.TP
+.BI "--escape"
+Output escape sequences of the form
+.BI \ "ooo"
+for all non ASCII or non printable UTF-8 
+characters and for the backslash character.
+
+
+
+
+.SH REMARKS
+Use program
+.BR djvused (1)
+for more control over the text layer.
+
+.SH CREDITS
+This program was initially written by 
+Andrei Erofeev <andrew_erofeev@yahoo.com> and
+was then improved Bill Riemers <docbill@sourceforge.net> 
+and many others. It was then rewritten to use the 
+ddjvuapi by Leon Bottou <leonb@sourceforge.net>.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvused (1)
+

@@ -1,0 +1,215 @@
+<?xml version="1.0" ?>
+<!--================== Imported Names ====================================-->
+
+<!ENTITY % ContentType "CDATA">
+    <!-- media type, as per [RFC2045]-->
+
+<!ENTITY % LanguageCode "CDATA">
+    <!-- a language code, as per [RFC1766]-->
+
+<!ENTITY % Text "CDATA">
+
+<!ENTITY % URI "CDATA">
+    <!-- a Uniform Resource Identifier,
+        see [URI]
+    -->
+
+<!--=================== Generic Attributes ===============================-->
+
+<!ENTITY % coreattrs
+ "id          ID             #IMPLIED
+  class       CDATA          #IMPLIED
+  title       %Text;         #IMPLIED"
+>
+
+<!ENTITY % i18n
+ "lang        %LanguageCode; #IMPLIED
+  dir         (ltr|rtl)      #IMPLIED"
+>
+
+<!ENTITY % attrs "%coreattrs; %i18n;">
+
+<!ENTITY % Shape "(rect|circle|oval|poly|default)">
+
+<!ENTITY % Coords "CDATA"> <!-- comma separated list of lengths
+                                alternating x and y values -->
+
+<!ENTITY % FrameTarget "CDATA">
+
+<!ENTITY % Color "CDATA">
+  <!-- There are also 16 widely known color names with their RGB values:
+
+      Black  = #000000    Green  = #008000
+      Silver = #C0C0C0    Lime   = #00FF00
+      Gray   = #808080    Olive  = #808000
+      White  = #FFFFFF    Yellow = #FFFF00
+      Maroon = #800000    Navy   = #000080
+      Red    = #FF0000    Blue   = #0000FF
+      Purple = #800080    Teal   = #008080
+      Fuchsia= #FF00FF    Aqua   = #00FFFF
+  -->
+
+<!ENTITY % BorderType
+   "(none|xor|solid|shadowout|shadowin|etchedin|etchedout)">
+
+<!ENTITY % Length "CDATA">
+
+<!ENTITY % block "P">
+
+<!--===================== HIDDEN TEXT LAYER =====================================-->
+
+<!ELEMENT HIDDENTEXT (PAGECOLUMN)+ >
+<!ATTLIST HIDDENTEXT
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT PAGECOLUMN (#PCDATA|REGION)* >
+<!ATTLIST PAGECOLUMN
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT REGION (#PCDATA|PARAGRAPH)* >
+<!ATTLIST REGION
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT PARAGRAPH (#PCDATA|LINE)* >
+<!ATTLIST PARAGRAPH 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT LINE (#PCDATA|WORD)* >
+<!ATTLIST LINE 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT WORD (#PCDATA)>
+<!ATTLIST WORD 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!--===================== METADATA =====================================-->
+<!ELEMENT METADATA (#PCDATA)>
+<!ATTLIST METADATA 
+  %attrs;
+>
+
+<!--================== Client-side image maps ============================-->
+
+<!-- These can be placed in the same document or grouped in a
+     separate document although this isn't yet widely supported -->
+
+<!ELEMENT MAP ( (%block;)+ | (AREA)+ )>
+<!ATTLIST MAP
+  %attrs;
+  name        CDATA          #REQUIRED
+>
+
+<!ELEMENT AREA EMPTY>
+<!ATTLIST AREA
+  %attrs;
+  shape       %Shape;        "rect"
+  coords      %Coords;       #IMPLIED
+  href        %URI;          #IMPLIED
+  nohref      (nohref)       #IMPLIED
+  alt         %Text;         #REQUIRED
+  target      %FrameTarget;  "_self"
+  highlight   %Color;        #IMPLIED
+  bordertype  %BorderType;   "none"
+  bordercolor %Color;        #IMPLIED
+  border      %Length;       #IMPLIED
+  visible     (visible)      #IMPLIED
+>
+
+<!--=================== Text Markup ======================================-->
+
+<!ENTITY % special "IMG | OBJECT | MAP">
+
+<!-- %inline; covers inline or "text-level" elements -->
+<!ENTITY % inline "CDATA | %special;">
+
+<!ENTITY % flow "%block; | %inline;">
+
+<!--==================== OBJECT ======================================-->
+<!--
+  OBJECT is used to embed objects as part of DjVuXML pages 
+  PARAM elements should precede other content. SGML mixed content
+  model technicality precludes specifying this formally ...
+  At most one HIDDENTEXT element may appear embedded in the object. It may appear
+  anywhere after the PARAM elements.
+-->
+
+<!ELEMENT OBJECT ( (PARAM)*, (%flow;)*, HIDDENTEXT?, METADATA?, (%flow;)* ) >
+<!ATTLIST OBJECT
+  %attrs;
+  data        %URI;          #REQUIRED
+  type        %ContentType;  #IMPLIED
+  height      %Length;       #IMPLIED
+  width       %Length;       #IMPLIED
+  usemap      %URI;          #IMPLIED
+>
+
+<!ELEMENT PARAM EMPTY>
+<!ATTLIST PARAM
+  id          ID             #IMPLIED
+  name        CDATA          #REQUIRED
+  value       CDATA          #IMPLIED
+>
+
+<!--===================== IMG ========================================-->
+
+<!ELEMENT IMG ANY>     <!-- currently undefined -->
+
+<!--=================== Paragraphs =======================================-->
+
+<!ELEMENT P (%inline;)* >
+<!ATTLIST P
+  %attrs;
+>
+
+<!--=================== Document Body ====================================-->
+
+<!ELEMENT BODY (%flow;)+ >
+<!ATTLIST BODY
+  %attrs;
+>
+
+<!--================ Document Head =======================================-->
+
+<!ENTITY % head.content "TITLE, BASE?">
+
+<!ELEMENT HEAD (%head.content;)>
+<!ATTLIST HEAD
+  %i18n;
+  profile     %URI;          #IMPLIED
+>
+
+<!-- The TITLE element is not considered part of the flow of text.
+       It should be displayed, for example as the page header or
+       window title. Exactly one title is required per document.
+-->
+
+<!ELEMENT TITLE (#PCDATA)>
+<!ATTLIST TITLE %i18n;>
+
+<!ELEMENT BASE EMPTY>
+<!ATTLIST BASE
+  href        %URI;          #REQUIRED
+>
+
+<!--================ Document Structure ==================================-->
+
+<!ENTITY % djvuxml.content "HEAD?, BODY?">
+
+<!ELEMENT DjVuXML (%djvuxml.content;)>
+<!ATTLIST DjVuXML
+  %i18n;
+>
+
+

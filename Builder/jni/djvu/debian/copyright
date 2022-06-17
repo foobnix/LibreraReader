@@ -1,0 +1,143 @@
+This package was debianized by Barak Pearlmutter <bap@debian.org> on
+Wed, 29 May 2002 15:43:15 -0600.
+
+It was downloaded from http://djvu.sourceforge.net/
+ git://git.code.sf.net/p/djvu/djvulibre-git
+
+Upstream Authors:
+
+ DjVuLibre Credits, from http://djvu.sourceforge.net/credits.html
+
+    Concept: Yann LeCun, Leon Bottou.
+    Compression Science: Leon Bottou, Paul Howard, Yann LeCun,
+	Yoshua Bengio, Patrick Haffner, Pascal Vincent, Steven Pigeon.
+    Software Architecture: Leon Bottou, Bill C Riemers, Yann LeCun,
+	Joseph M Orost.
+    Codec Libraries, File Format Design: Leon Bottou, Patrick Haffner,
+	Andrew Erofeev, Bill C Riemers, Pascal Vincent, Yann LeCun.
+    Plugins, Viewers: Leon Bottou, Andrew Erofeev, Ming Chen,
+	Bill C Riemers, Liang Chen, Praveen Guduru.
+    Command Line Programs: Leon Bottou, Bill C Riemers, Mike Houser.
+    Internationalization Fred Crary, Bill C Riemers.
+    Website Development: Jeffery Triggs, Yann LeCun
+
+ It gives me particular pleasure to thank Leon Bottou and Yann LeCun
+ for their heroic yet successful efforts to get LizardTech to handle
+ the patent situation in a way that addresses the concerns of the free
+ software community regarding the distribution and use of djvulibre.
+
+The script tools/any2djvu.sh was downloaded from
+ URL: http://www.inference.phy.cam.ac.uk/mackay/any2djvu.sh
+ Author: David Kreil <kreil@ebi.ac.uk>
+ Released (via statement in email) under the GNU GPL v2.
+
+Copyright:
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; version 2 dated June, 1991.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License version 2 can be found in
+`/usr/share/common-licenses/GPL-2'.
+
+As of upstream VERSION 3.5.19, the "GPL v2" has been broadened to
+"GPL v2 or any later version".
+
+The following appears in the file COPYRIGHT at the top level of the
+upstream source code.
+
+ DjVuLibre-3.5
+ Copyright (c) 2002  Leon Bottou and Yann Le Cun.
+ Copyright (c) 2001  AT&T
+
+ This software is subject to, and may be distributed under, the
+ GNU General Public License, either Version 2 of the license,
+ or (at your option) any later version. The license should have
+ accompanied the software or you may obtain a copy of the license
+ from the Free Software Foundation at http://www.fsf.org .
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ DjVuLibre-3.5 is derived from the DjVu(r) Reference Library from
+ Lizardtech Software.  Lizardtech Software has authorized us to
+ replace the original DjVu(r) Reference Library notice by the following
+ text (see doc/lizard2002.djvu and doc/lizardtech2007.djvu):
+
+  ------------------------------------------------------------------
+ | DjVu (r) Reference Library (v. 3.5)
+ | Copyright (c) 1999-2001 LizardTech, Inc. All Rights Reserved.
+ | The DjVu Reference Library is protected by U.S. Pat. No.
+ | 6,058,214 and patents pending.
+ |
+ | This software is subject to, and may be distributed under, the
+ | GNU General Public License, either Version 2 of the license,
+ | or (at your option) any later version. The license should have
+ | accompanied the software or you may obtain a copy of the license
+ | from the Free Software Foundation at http://www.fsf.org .
+ |
+ | The computer code originally released by LizardTech under this
+ | license and unmodified by other parties is deemed "the LIZARDTECH
+ | ORIGINAL CODE."  Subject to any third party intellectual property
+ | claims, LizardTech grants recipient a worldwide, royalty-free,
+ | non-exclusive license to make, use, sell, or otherwise dispose of
+ | the LIZARDTECH ORIGINAL CODE or of programs derived from the
+ | LIZARDTECH ORIGINAL CODE in compliance with the terms of the GNU
+ | General Public License.   This grant only confers the right to
+ | infringe patent claims underlying the LIZARDTECH ORIGINAL CODE to
+ | the extent such infringement is reasonably necessary to enable
+ | recipient to make, have made, practice, sell, or otherwise dispose
+ | of the LIZARDTECH ORIGINAL CODE (or portions thereof) and not to
+ | any greater extent that may be necessary to utilize further
+ | modifications or combinations.
+ |
+ | The LIZARDTECH ORIGINAL CODE is provided "AS IS" WITHOUT WARRANTY
+ | OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ | TO ANY WARRANTY OF NON-INFRINGEMENT, OR ANY IMPLIED WARRANTY OF
+ | MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+ +------------------------------------------------------------------
+
+The file tools/tiff2pdf.c is derived from the program tiff2pdf which 
+comes with the following notice:
+
+  | Copyright (c) 2003 Ross Finlayson
+  |
+  | Permission to use, copy, modify, distribute, and sell this software and 
+  | its documentation for any purpose is hereby granted without fee, provided
+  | that (i) the above copyright notices and this permission notice appear in
+  | all copies of the software and related documentation, and (ii) the name of
+  | Ross Finlayson may not be used in any advertising or
+  | publicity relating to the software without the specific, prior written
+  | permission of Ross Finlayson.
+  | 
+  | THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
+  | EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
+  | WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+  | 
+  | IN NO EVENT SHALL ROSS FINLAYSON BE LIABLE FOR
+  | ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+  | OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+  | WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
+  | LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+  | OF THIS SOFTWARE.
+
+The files doc/djvu{2,3}spec.djvu are documentation for the DjVu
+format.  The original LaTeX sources for these documents has been lost.
+It would be great if someone were to recreate it, rendering the
+documents more tractibly modified and reformatted.
+
+The files doc/lizard200{2,7}.{djvu,pdf} are legal documents related
+to the freedom of this package itself, and hence need not themselves
+be covered by a free license.

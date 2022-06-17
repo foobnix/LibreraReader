@@ -1,0 +1,278 @@
+
+
+
+0- INTRODUCTION.
+
+This document describes actual and proposed changes to the djvu
+format since the release of the DjVu3 specification by Lizardtech in
+november 2005.
+
+
+
+1- AMBIGUOUS PARTS IN THE SPECIFICATION
+
+1.1- BACKGROUND REDUCTION RATIO
+
+The relation between the size (W,H) of the foreground image and the
+size (w,h) of the background image is described in page 33 of the
+specification.  The requirement ceil(W/w)=ceil(H/h) does not
+completely capture the fact that the same reduction factor should be
+applied to both dimensions.  The requirements should be read as:
+
+<<There is a single integer reduction factor 1 <= k <= 12 such 
+  that w=ceil(W/k) and h=ceil(H/k).  Should there be several
+  such integers, the smallest one shall be considered
+  to rescale the background image to the foreground resolution.>>
+
+1.2- ENCODING OF URLS IN ANNOTATIONS
+
+Page 16 omits to specify that URLs in annotations should be percent encoded. 
+However, consistent with the encoding of strings in the annotation chunk, 
+UTF-8 characters in URL strings will be interpreted properly as if
+they were percent encoded.
+
+1.3- FLAGS IN DJVUINFO CHUNKS
+
+Page 24 specifies that {1,6,2,5} are the only four allowed 
+values of the "flags" field in the INFO chunk.
+To maximize compatibility with earlier versions of the standard,
+values different from {1,6,2,5} should be ignored
+and interpreted as 1 : rightside up orientation.
+
+1.4- ORDERING OF THE DJBZ AND SJBZ CHUNK
+
+Although the specification does not make it clear, when a FORM:DJVU chunk
+contains a bitonal image represented by a Sjbz chunk that uses a shape
+dictionary represented by a Djbz chunk, the Djbz chunk must appear before the
+Sjbz chunk that references it.  This also holds when the chunks is accessed
+indirectly via INCL chunks. For instance, an INCL chunk that refers to a
+shared Djbz shape dictionary must be placed before the corresponding Sjbz
+chunk.
+
+
+2- ANNOTATION CHUNK
+
+2.1- ESCAPE SEQUENCES IN ANNOTATION CHUNK STRINGS.
+
+The treatment of escape sequence in annotation chunk strings has
+historically been slightly different in Lizardtech DjVu and
+DjVuLibre.  We are expecting that the DjVuLibre solution will
+eventually become the standard.
+
+Lizardtech DjVu uses the "old" rule described in section 8.3.4.2.
+The sequence of characters BACKSLASH DOUBLEQUOTE represents a
+DOUBLEQUOTE character without terminating the string.  There are no
+other escape sequences. All other utf8 characters are written
+directly. The main drawback of this approach is the inability to
+write a string containing the sequence of characters BACKSLASH
+DOUBLEQUOTE since there is no way to escape the first BACKSLASH
+character.
+
+DjVuLibre has introduced a more flexible scheme a few years ago.
+Annotation strings are similar to strings in the C language.
+Character sequences starting with a backslash have special meaning.
+A BACKSLASH followed by "a", "b", "t", "n", "v", "f", "r", or "\"
+stands for the ascii character BEL, BS, HT, LF, VT, FF, CR,
+BACKSLASH or DOUBLEQUOTE.  A BACKSLASH followed by one to three
+digits stands for the byte whose octal code is expressed by the
+digits.  All other backslash sequences are illegal.  Non printable
+ascii characters must be escaped. Multibyte characters should either
+be entered directly, or represented using octal sequences.
+
+DjVuLibre minimizes the compatibility problems by searching illegal
+escape sequences in the annotation chunk.  If any illegal sequence
+is found, the Lizardtech rule is used instead of the DjVuLibre rule.
+It is expected that Lizardtech will at some point adopt the improved
+DjVuLibre rules. We will then be able to state that all DjVu files
+with version greater than some constant use the new convention.
+
+
+2.2- HIGHLIGHT ANNOTATION
+
+The standard specifies that highlight opacity ranges from 0 to 100
+with a default value of 50. Nothing says however that 100 represents
+a completely opaque color. In fact, in djview4, opacities are
+recognized up to 200, with 200 representing an opaque color.
+
+
+3- PAGE TITLES.
+
+Each page in a DjVu document is identified by three strings named
+the ID, the NAME, and the TITLE. The semantic distinction between
+these three strings is no longer very clear. DjVu libraries
+does not work consistently when these strings are different.  See
+the comment in the table, section 8.3.2.2 of the specification.
+
+Recent versions of DjVuLibre still require that the ID and NAME
+string are equal. The TITLE string however can be different and
+should be used to display friendly page names. The djvused program
+now features a command 'set-page-title' to install a TITLE different
+from the ID string. The djview program then displays and recognizes
+these page titles in lieu of the sequential page numbers.
+
+Things get complicated when some page titles are purely numerical.
+For instance, the page titled "4" might not be the fourth page of 
+the document, and there might be many pages titled "4".
+The djview4 viewer uses the following rules:
+
+3.1- DJVU CGI ARGUMENT "PAGE=".
+
+The djvu cgi argument "page=X" is interpreted as follows:
+- It first searches a page whose ID matches X.
+- Otherwise, if X has the form +N or -N where N is a number,
+  this indicates a displacement relative to the current page.
+- Otherwise, it searches a page with TITLE X starting
+  from the current page and wrapping around.
+- Otherwise, if X is numerical and in range, this is the page number.
+- Otherwise, it searches a page whose NAME matches X.
+ 
+3.2- PAGE REFERENCES IN MAPAREA AND OUTLINE LINKS
+
+Page references in hyperlink annotations always have the form "#X".
+These references are interpretes as follows.
+- It first searches a page whose ID matches X.
+- Otherwise, if X has the form +N or -N where N is a number,
+  this indicates a displacement relative to the page containing the link.
+- Otherwise, it searches a page with TITLE X starting
+  from the current page and wrapping around.
+- Otherwise, if X is numerical and in range, this is the page number.
+- Otherwise, it searches a page whose NAME matches X.
+
+
+
+4- METADATA
+
+4.1- DJVULIBRE METADATA
+
+DjVuLibre has introduced metadata annotations a few years ago.
+Metadata entries for each page are represent by key/value pairs
+located in a metadata directive in the annotation chunk.
+Metadata entries for the document are represented similarly
+using the methods described in the section 4.3.
+
+The metadata directive has the form
+
+  (metadata ... (key "value") ... )
+
+Each entry is identified by a symbol <key> 
+representing the nature of the metadata entry.
+The string <"value"> represents
+the value associated with the corresponding key.
+
+Several sets of keys are noteworthy.
+
+* Keys borrowed from the BibTex bibliography system. 
+  These key names are always expressed 
+  in lowercase, such as 'year', 'booktitle', 'editor', 
+  'author', etc.  
+
+* Keys borrowed from the PDF DocInfo.
+  These key names start with an uppercase letter:
+  'Title', 'Author', 'Subject', 'Keywords', 'Creator', 
+  'Producer', 'Trapped', 'CreationDate', and 'ModDate'.
+  The values associated with the last two keys
+  should be dates expressed according to RFC 3339.
+
+4.2- XMP METADATA
+
+The XMP specification describes a general purpose RDF/XML format for
+metadata. Just like DjVuLibre metadata, XMP metadata is embedded in
+an annotation chunk at the page or document level using the following
+annotation directive
+
+   (xmp "<rdf:RDF xmlns:rdf=... [escaped XMP here] ...</rdf:RDF>")
+
+The sole argument of the xmp directive is the serialized XMP data
+without the "xpacket" wrapper. The "x:xmpmeta" element may also be
+dropped. Only elements from "rdf:RDF" inwards are needed.
+Since the XMP data is represented as a string, doublequotes and
+backslashes must be escaped.  Other characters may be escaped as well
+(see section 2 above).
+
+The full XMP specification is available from Adobe:
+
+   http://www.adobe.com/devnet/xmp/
+
+To maximize interoperability with current viewers, it is recommended
+that XMP manipulation programs keep the DjVuLibre metadata in sync.
+This is facilitated by synchronizing the PDF DocInfo keys with XMP
+properties as follows:
+
+   DocInfo key    XMP property
+   ------------   ---------------
+   Title          dc:title
+   Author         dc:creator
+   Subject        dc:description
+   Keywords       pdf:Keywords
+   Producer       pdf:Producer
+   Trapped        pdf:Trapped
+   Creator        xmp:CreatorTool
+   CreationDate   xmp:CreateDate
+   ModDate        xmp:ModifyDate
+
+4.3- DOCUMENT ANNOTATIONS AND METADATA
+
+The above schemes provide ways to specify metadata for each page.
+But it is often useful to provide metadata that applies to the whole
+document. Document wide metadata are represented using one or
+several metadata directives in the shared annotations chunk.
+
+This scheme has a potential drawback. Since the shared annotations
+is included by all pages, the document wide metadata also appears as
+page metadata for all pages. This might not be adequate for some
+uses. As a workaround, the djview4 viewer only displays 
+page metadata that differ from the document metadata.
+A more definitive answer would be the definition of a document
+annotation chunk located after the DIRM chunk and before any
+component file. This space is already used by the NAVM chunk.  
+This is being considered.
+
+
+
+5- CGI STYLE OPTIONS IN MAPAREA AND OUTLINE LINKS
+
+Outline and maparea annotation are
+UTF-8 encoded strings that can be 
+interpreted as page specification (see section 3.1)
+or as percent-encoded URLs (see section 1.3.)
+
+In addition, strings starting with a question mark '?' are 
+interpreted as CGI style options separated by the 
+ampersand character '&'.  These options are ignored
+when the maparea link target is another window.
+Otherwise these options are passed verbatim to the viewer.
+This can cause portability problems because different djvu 
+viewers support different sets of CGI style options.
+
+
+
+6- THE "SECURE DJVU" FORMAT.
+
+Recently Lizardtech introduced an incompatible "Secure DJVU" format.
+This format encrypt djvu data in the hope of controlling
+whether users can use, copy or print djvu documents.
+A recent specification describes the container format
+but does not provide enough information to decode the content.
+Providing such an information would obviously provide
+a means to avoid the usage restrictions. In fact there is no durable 
+way to enforce such constraints besides "security through obscurity".
+
+The current djvulibre library simply emits an 
+error message when encountering such files.
+
+Some observations regarding these files:
+
+- They use the same IFF85 structure as djvu files.
+  Chunk "SINF" contains a scrambled version of the decryption 
+  key and describes which actions are authorized or denied.
+  Chunks "CELX" encapsulate the regular DjVu chunks.  
+  
+- Each CELX chunk starts with four bytes for the original chunk 
+  name, and four bytes for the original chunk length.
+  This is followed encrypted data, composed of enough
+  blocks of 8 bytes to covert the initial chunk length.
+
+- Lizardtech claims encryption is 32 bit blowfish.
+  It appears to be in fact composed of 64 bits block
+  as you would expect with blowfish.
+

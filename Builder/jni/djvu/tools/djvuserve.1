@@ -1,0 +1,239 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVUSERVE 1 "01/22/2002" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+djvuserve \- Generate indirect DjVu documents on the fly.
+
+.SH DESCRIPTION
+Program 
+.B djvuserve 
+is a 
+.SM CGI
+program that can be executed by a 
+.SM HTTP 
+server for serving DjVu documents.
+This program is able to convert a bundled multi-page document
+into an indirect document on the fly.  
+
+.SH USING DJVUSERVE
+Program
+.B djvuserve
+must first be installed as a 
+.SM CGI
+program for your web server.
+There are several ways to achieve this.   The Apache web server, 
+for instance, often defines a specific directory for
+.SM CGI 
+programs using the 
+.B ScriptAlias
+directive.
+Assume that the file
+.B httpd.conf
+contains the following line:
+.IP "" 3
+.BI "ScriptAlias /cgi\(enbin/ " """/var/www/cgi\(enbin"""
+.PP
+It is then sufficient to create a small executable shell script 
+.IB /var/www/cgi\(enbin/ djvuserve
+containing the following lines:
+.IP "" 3
+.B #!/bin/sh
+.br
+.BI "exec " "/full/path/to/" "djvuserve"
+.PP
+Suppose that a large bundled multi-page DjVu document
+is available at the following
+.SM URL.
+.IP "" 3
+.IB http "" ://server/dir/doc.djvu
+.PP
+The
+.SM CGI 
+program
+.B djvuserve
+lets you access this same document 
+as an indirect multi-page DjVu document
+using the following 
+.SM URL.
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu /index.djvu
+.PP
+Serving indirect multi-page DjVu documents provides
+for efficiently browsing large document without
+transferring unnecessary pages over the network.
+See 
+.BR djvu(1)
+for more information.
+.PP
+Furthermore 
+.B djvuserve 
+searches certain keywords among the
+.SM CGI 
+arguments of the 
+.SM URL.
+The keyword
+.B bundled
+forces serving a bundled document using
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu ?bundled
+.PP
+The keyword
+.B download
+inserts a content disposition 
+.SM HTTP
+header that suggests to display a save dialog
+instead of displaying the document.
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu ?download
+.PP
+
+.SH USING DJVUSERVE AS A HANDLER
+
+The Apache web server provides a way to automatically execute
+.B djvuserve
+for all DjVu documents.
+This can be achieved using the following
+directives in either the Apache configuration file
+or the 
+.BR .htaccess
+files.
+.IP "" 3
+.B Action djvu-server /cgi\(enbin/djvuserve/
+.br
+.B AddHandler djvu-server .djvu
+.PP
+Apache then executes program
+.B djvuserve
+for serving all DjVu files. 
+Providing the 
+.SM URL
+of DjVu file serves this DjVu file as usual,
+except that bundled multipage documents are converted
+to indirect documents on the fly.
+This convenience comes at the expense
+of the computational cost of executing
+.B djvuserve
+whenever a DjVu file is requested.
+
+.SH TECHNICAL DETAILS
+
+Program
+.B djvuserve
+provides a mean to directly access any component
+of a bundled multi-page DjVu document can be accessed using an extended 
+.SM URL.
+Suppose that the component file representing page 1
+is named
+.BR p0001.djvu .
+The following 
+.SM URL
+provides a direct access to this page:
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu /p0001.djvu
+.PP
+It is preferred however to access individual pages using the 
+.B CGI
+style arguments described in 
+.BR nsdejavu (1),
+as in the following 
+.SM URL.
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu ?djvuopts&page=12
+.PP
+The special component file name
+.B index.djvu
+is recognized as a request for the index of the corresponding
+indirect multi-page document.  In fact, when you access a bundled
+document using 
+.BR djvuserve ,
+the browser gets redirected to the following 
+.SM URL:
+.IP "" 3
+.IB http "" ://server /cgi\(enbin/djvuserve/ dir/doc.djvu /index.djvu
+.PP
+and then behaves as if the bundled file was a directory containing 
+the various component files of an equivalent indirect document.
+
+.SH ACCESS CONTROL
+
+Program
+.BR djvuserve ,
+like many
+.SM CGI
+programs, 
+bypasses a number of access protections established in a web server.
+Assume for instance that your web site contains DjVu files protected by a
+password.  
+Program
+.B djvuserve
+knows nothing about this protection and will happily serve
+any DjVu file associated with a valid
+.SM URL.
+
+Access control with 
+.B djvuserve 
+can be implemented by first remembering that the web server 
+always executes program 
+.B djvuserve
+via shell script
+.IB /var/www/cgi\(enbin/ djvuserve.
+
+This script can decide to execute the real program
+.B djvuserve
+on the basis of the target filename available in 
+the environment variable
+.SM PATH_TRANSLATED.  
+
+There can be several such scripts providing access to various 
+collections of DjVu files.  Each of these scripts can be 
+password protected using the usual methods supported by
+your web server.
+
+.SH KNOWN BUGS
+
+Hyperlinks specified using a relative 
+.SM URL 
+may not work with 
+.BR djvuserve.  
+These 
+.SM URLs 
+are relative to the 
+.SM URL 
+of the DjVu document. Yet 
+.BR djvuserve
+changes the apparent document 
+.SM URL
+.IB http://server/dir/doc.djvu
+into the more complicated 
+.SM URL
+.IB http://server /cgi\(enbin/djvuserve/ dir/doc.djvu /index.djvu.
+The extra components change the interpretation of relative 
+.SM URLs.
+
+.SH CREDITS
+This program was written by Leon Bottou <leonb@users.sourceforge.com>.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvmcvt (1),
+.BR nsdejavu (1)
+

@@ -1,0 +1,295 @@
+.\" Copyright (c) 2002 Bill C. Riemers
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" GNU General Public License, either Version 2 of the license,
+.\" or (at your option) any later version. The license should have
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.\"
+.\" I, Bill C. Riemers, hereby grant all rights to this code,
+.\" provided usage complies with the GPL or a written exception to 
+.\" the GPL granted by any of Bill C. Riemers, Leon Bottou, 
+.\" Yann Le Cun, or the Free Source Foundation.
+.\"
+.\" ------------------------------------------------------------------
+.\" DjVuLibre-3.5 is derived from the DjVu(r) Reference Library from
+.\" Lizardtech Software.  Lizardtech Software has authorized us to
+.\" replace the original DjVu(r) Reference Library notice by the following
+.\" text (see doc/lizard2002.djvu and doc/lizardtech2007.djvu):
+.\"
+.\"  ------------------------------------------------------------------
+.\" | DjVu (r) Reference Library (v. 3.5)
+.\" | Copyright (c) 1999-2001 LizardTech, Inc. All Rights Reserved.
+.\" | The DjVu Reference Library is protected by U.S. Pat. No.
+.\" | 6,058,214 and patents pending.
+.\" |
+.\" | This software is subject to, and may be distributed under, the
+.\" | GNU General Public License, either Version 2 of the license,
+.\" | or (at your option) any later version. The license should have
+.\" | accompanied the software or you may obtain a copy of the license
+.\" | from the Free Software Foundation at http://www.fsf.org .
+.\" |
+.\" | The computer code originally released by LizardTech under this
+.\" | license and unmodified by other parties is deemed "the LIZARDTECH
+.\" | ORIGINAL CODE."  Subject to any third party intellectual property
+.\" | claims, LizardTech grants recipient a worldwide, royalty-free, 
+.\" | non-exclusive license to make, use, sell, or otherwise dispose of 
+.\" | the LIZARDTECH ORIGINAL CODE or of programs derived from the 
+.\" | LIZARDTECH ORIGINAL CODE in compliance with the terms of the GNU 
+.\" | General Public License.   This grant only confers the right to 
+.\" | infringe patent claims underlying the LIZARDTECH ORIGINAL CODE to 
+.\" | the extent such infringement is reasonably necessary to enable 
+.\" | recipient to make, have made, practice, sell, or otherwise dispose 
+.\" | of the LIZARDTECH ORIGINAL CODE (or portions thereof) and not to 
+.\" | any greater extent that may be necessary to utilize further 
+.\" | modifications or combinations.
+.\" |
+.\" | The LIZARDTECH ORIGINAL CODE is provided "AS IS" WITHOUT WARRANTY
+.\" | OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+.\" | TO ANY WARRANTY OF NON-INFRINGEMENT, OR ANY IMPLIED WARRANTY OF
+.\" | MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+.\" +------------------------------------------------------------------
+.TH DJVUXML 1 "11/15/2002" "DjVuLibre XML Tools" "DjVuLibre XML Tools"
+.de SS
+.SH \\0\\0\\0\\$*
+..
+.SH NAME
+djvutoxml, djvuxmlparser \- DjVuLibre XML Tools.
+
+.SH SYNOPSIS
+.BI "djvutoxml [" options "] " inputdjvufile " [" outputxmlfile "]"
+.br
+.BI "djvuxmlparser [ -o " djvufile " ] " inputxmlfile 
+
+
+.SH DESCRIPTION
+The DjVuLibre XML Tools provide for editing the
+metadata, hyperlinks and hidden text 
+associated with DjVu files.  Unlike 
+.BR djvused (1)
+the DjVuLibre XML Tools rely on the XML technology
+and can take advantage of XML editors and verifiers.
+
+.SH DJVUTOXML
+Program
+.B djvutoxml
+creates a XML file
+.I outputxmlfile
+containing a reference to the original DjVu document
+.I inputdjvufile
+as well as tags describing the metadata,
+hyperlinks, and hidden text associated with the DjVu file.
+
+The following options are supported:
+.TP
+.BI "--page " "pagenum"
+Select a page in a multi-page document.
+Without this option, 
+.B djvutoxml
+outputs the XML 
+corresponding to all pages of the document.
+.TP 
+.BI "--with-text"
+Specifies the 
+.B HIDDENTEXT 
+element for each page should be included in the output.  
+If specified without the
+.B --with-anno
+flag then the
+.B --without-anno 
+is implied.  If none of the  
+.B --with-text, 
+.B --without-text, 
+.B --with-anno, 
+or
+.B --without-anno, 
+flags are specified, then the  
+.B --with-text 
+and 
+.B --with-anno 
+flags are implied.
+.TP
+.BI "--without-text"
+Specifies not to output the 
+.B HIDDENTEXT 
+element for each page.  If specified without the 
+.B --without-anno 
+flag then the 
+.B --with-anno 
+flag is implied.
+.TP
+.BI "--with-anno"
+Specifies the area 
+.B MAP 
+element for each page should be included in the output.  
+If specified without the
+.B --with-text 
+flag then the
+.B --without-text 
+flag is implied.
+.TP
+.BI "--without-anno"
+Specifies the area 
+.B MAP 
+element for each page should not be included in the output.  
+If specified without the
+.B --without-text 
+flag then the
+.B --with-text 
+flag is implied.
+
+
+.SH DJVUXMLPARSER
+
+Files produced by 
+.B djvutoxml
+can then be modified using 
+either a text editor or a XML editor.
+Program
+.B djvuxmlparser
+parses the XML file 
+.I inputxmlfile
+in order to modify the metadata of the corresponding DjVu file.
+.TP
+.BI "-o " "djvufile"
+In principle the target DjVu file is the file 
+referenced by the
+.I OBJECT 
+element of the XML file. 
+This option provides the means to override the filename
+specified in the 
+.I OBJECT
+element.
+
+.SH DJVUXML DOCUMENT TYPE DEFINITION
+The document type definition file (DTD)
+.IP "" 2
+.B DATADIR/djvu/pubtext/DjVuXML-s.dtd
+.PP
+defines the input and output of the DjVu XML tools.
+
+The DjVuXML-s DTD is a simplification of the HTML DTD:
+.IP "" 2
+.B \%http://www.w3c.org/TR/1998/REC-html40-19980424/sgml/dtd.html
+.PP
+with a few new attributes added specific to DjVu.  Each of the 
+specified pages of a DjVu document are represented as 
+.B OBJECT 
+elements within the 
+.B BODY 
+element of the XML file. 
+Each 
+.B OBJECT
+element may contain multiple 
+.B PARAM 
+elements to specify attributes like page name,
+resolution,
+and gamma factor.
+Each 
+.B OBJECT
+element may also contain one
+.B HIDDENTTEXT
+element to specify the hidden text (usually generated with an OCR engine) 
+within the DjVu page.  In addition each 
+.B OBJECT
+element may reference a single area 
+.B MAP
+element which contains multiple
+.B AREA
+elements to represent all the hyperlink and highlight areas within 
+the DjVu document.
+
+.SS PARAM Elements
+Legal 
+.B PARAM 
+elements of a DjVu 
+.B OBJECT 
+include but are not limited to
+.B PAGE
+for specifying the page-name,
+.B GAMMA
+for specifying the gamma correction factor (normally 2.2), and
+.B DPI
+for specifying the page resolution.
+
+.SS HIDDENTEXT Elements
+The 
+.B HIDDENTEXT
+elements consists of nested elements of 
+.B PAGECOLUMNS,
+.B REGION,
+.B PARAGRAPH,
+.B LINE,
+and
+.B WORD.
+The most deeply nested element specified, should specify the bounding 
+coordinates of the element in top-down orientation.  The body of the 
+most deeply nested element should contain the text.  Most DjVu 
+documents use either 
+.B LINE 
+or 
+.B WORD 
+as the lowest level element, but any element is legal as the lowest 
+level element.  A white space is always added between 
+.B WORD
+elements and a line feed is always added between
+.B LINE
+elements.  Since languages such as Japanese do not use spaces between 
+words, it is quite common for Asian OCR engines to use
+.B WORD
+as characters instead.
+
+.SS MAP Elements
+The body of the 
+.B MAP
+elements consist of 
+.B AREA
+elements.  In addition to the attributes listed in
+.IP "" 2
+.BR \%http://www.w3.org/TR/1998/REC-html40-19980424/struct/objects.html#edef-AREA ,
+.PP
+the attributes
+.BR bordertype ,
+.BR bordercolor ,
+.BR border ,
+and 
+.B highlight
+have been added to specify border type, border color, border width, and 
+highlight colors respectively.  Legal values for each of these attributes 
+are listed in the DjVuXML-s DTD.
+In addition, the shape
+.B oval
+has been added to the legal list of shapes.  An oval uses a rectangular 
+bounding box.
+
+.SH BUGS
+Perhaps it would have been better to use CC2 style sheets 
+with standard HTML elements instead of defining the 
+.B HIDDENTEXT 
+element.
+
+.SH CREDITS
+The DjVu XML tools and DTD were written
+by Bill C. Riemers <docbill@sourceforge.net> 
+and Fred Crary.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djvused (1),
+and
+.BR utf8 (7).

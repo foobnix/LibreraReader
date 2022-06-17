@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!--================== Imported Names ====================================-->
+
+<!ENTITY % LanguageCode "CDATA">
+    <!-- a language code, as per [RFC1766]-->
+
+<!--=================== Generic Attributes ===============================-->
+
+<!ENTITY % i18n
+ "lang        %LanguageCode; #IMPLIED
+  dir         (ltr|rtl)      #IMPLIED"
+>
+<!-- lang defaults to "en"; dir defaults to "ltr" (left-to-right) -->
+
+<!ENTITY % Coords "CDATA"> <!-- comma separated list of lengths
+                                alternating x and y values (a total
+                                of four values) -->
+
+<!--================= HIDDEN TEXT LAYER ==================================-->
+
+<!ELEMENT CHARACTER (#PCDATA)>
+<!ATTLIST CHARACTER 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT WORD ( (CHARACTER+) | (#PCDATA) ) >
+<!ATTLIST WORD 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT LINE ( (WORD+) | (#PCDATA) ) >
+<!ATTLIST LINE 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT PARAGRAPH ( (LINE+) | (#PCDATA) ) >
+<!ATTLIST PARAGRAPH 
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT REGION ( (PARAGRAPH+) | (#PCDATA) ) >
+<!ATTLIST REGION
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT PAGECOLUMN ( (REGION+) | (#PCDATA) ) >
+<!ATTLIST PAGECOLUMN
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!ELEMENT HIDDENTEXT (PAGECOLUMN+) >
+<!ATTLIST HIDDENTEXT
+  shape      CDATA      "rect"
+  coords     %Coords;   #IMPLIED
+>
+
+<!--================ Document Structure ==================================-->
+
+<!ENTITY % djvuxml.content "HIDDENTEXT?">
+
+<!ELEMENT DjVuXML (%djvuxml.content;)>
+<!ATTLIST DjVuXML
+  %i18n;
+>
+
+

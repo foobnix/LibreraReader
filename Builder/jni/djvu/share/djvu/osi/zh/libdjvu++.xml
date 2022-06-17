@@ -1,0 +1,455 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../../pubtext/DjVuMessages.dtd">
+<!-- Error messages from libdjvu++ -->
+<DjVuMessages>
+<BODY>
+<MESSAGE name="DjVuMessage.Unrecognized" value="不明错误信息:&#10;&#09;错误信息名称: %1!s!" />
+<MESSAGE name="DjVuMessage.Parameter" value="参数%1!s!" />
+<MESSAGE name="arrays.ill_arg" number="11500" value="[%0!s!] DArray::del中出现非法参数" />
+<MESSAGE name="arrays.ill_sub" number="11501" value="[%0!s!] 非法 DArray下标" />
+<MESSAGE name="arrays.resize" number="11502" value="[%0!s!] DArray在调整大小时出现无效上下限" />
+<MESSAGE name="bad_arg" number="11600" value="[%0!s!] 非法参数出现在 %1!s!" />
+<MESSAGE name="ByteStream.backward" number="11700" value="[%0!s!] ByteStream不支持反向搜寻" />
+<MESSAGE name="ByteStream.bad_arg" number="11701" value="[%0!s!] ByteStream::seek中出现非法参数" />
+<MESSAGE name="ByteStream.bad_mode2" number="11702" value="[%0!s!] 此模式对于stdin/stdout文件描述符非法" />
+<MESSAGE name="ByteStream.bad_mode" number="11703" value="[%0!s!] StdioByteStream中出现无效状态" />
+<MESSAGE name="ByteStream.cant_write" number="11704" value="[%0!s!] 不能写入为解码而建立的BSByteStream" />
+<MESSAGE name="ByteStream.corrupt" number="11705" value="[%0!s!] 损坏的解码器输入" />
+<MESSAGE name="ByteStream.decoder_only" number="11706" value="[%0!s!] 在NEED_DECODER_ONLY条件下编译" />
+<MESSAGE name="ByteStream.flush_error" number="11707" value="[%0!s!] StdioByteStream::flush, 刷新出错。" />
+<MESSAGE name="ByteStream.no_read" number="11708" value="[%0!s!] StdioByteStream 不是为读出打开" />
+<MESSAGE name="ByteStream.no_write" number="11709" value="[%0!s!] StdioByteStream 不是为写入打开" />
+<MESSAGE name="ByteStream.open_fail2" number="11710" value="[%0!s!] StdioByteStream::StdioByteStream, 无法打开文件。" />
+<MESSAGE name="ByteStream.open_fail" number="11711" value="[%0!s!] 无法打开 &apos;%1!s!&apos;: %2!s!" />
+<MESSAGE name="ByteStream.read_error2" number="11712" value="[%0!s!] StdioByteStream::read, 读出时出错。" />
+<MESSAGE name="ByteStream.read_error" number="11713" value="[%0!s!] ByteStream::readall, 读出全部时出错。" />
+<MESSAGE name="ByteStream.seek_error2" number="11714" value="[%0!s!] 寻道超出文件的开头" />
+<MESSAGE name="ByteStream.seek_error" number="11715" value="[%0!s!] StdioByteStream::seek, 寻道出错。" />
+<MESSAGE name="ByteStream.seek" number="11716" value="[%0!s!] 在ByteStream (ftell() acts strange)上寻道异常" />
+<MESSAGE name="ByteStream.write" number="11717" value="[%0!s!] ByteStream::write%1!s!, 写入出错。" />
+<MESSAGE name="ByteStream.write_error2" number="11718" value="[%0!s!] StdioByteStream::write, 写入出错。" />
+<MESSAGE name="ByteStream.write_error3" number="11719" value="[%0!s!] 试图写入 StaticByteStream" />
+<MESSAGE name="ByteStream.write_error" number="11720" value="[%0!s!] ByteStream::write出错, 类型不明。" />
+<MESSAGE name="ByteStream.not_implemented" number="11721" value="[%0!s!] 没有ByteStream::scanf功能" />
+<MESSAGE name="DataPool.add_data" number="11800" value="[%0!s!] 函数DataPool::add_data()可能尚未为连接的数据池调用。" />
+<MESSAGE name="DataPool.bad_length" number="11801" value="[%0!s!] 长度必须是正数" />
+<MESSAGE name="DataPool.bad_size" number="11802" value="[%0!s!] 尺寸大小必须非负" />
+<MESSAGE name="DataPool.connected1" number="11803" value="[%0!s!] 已经连接到另一个数据池。" />
+<MESSAGE name="DataPool.connected2" number="11804" value="[%0!s!] 已经连接到一个文件。" />
+<MESSAGE name="DataPool.neg_start" number="11805" value="[%0!s!] 起始位置偏移必须非负" />
+<MESSAGE name="DataPool.no_threadless" number="11806" value="[%0!s!] 内部出错，此函数&apos;t可被用于无主流模式。" />
+<MESSAGE name="DataPool.reenter" number="11807" value="[%0!s!] DATA_POOL_REENTER" />
+<MESSAGE name="DataPool.seek_backward" number="11808" value="[%0!s!] ByteStream不支持反向搜寻" />
+<MESSAGE name="DataPool.zero_DataPool" number="11809" value="[%0!s!] 内部出错，输入了空数据池。" />
+<MESSAGE name="DjVmDir0.no_slash" number="11900" value="[%0!s!] 文件名不能含有斜杆" />
+<MESSAGE name="DjVmDir.bad_dir" number="12000" value="[%0!s!] 此目录下同时含有成束和分散的记录。" />
+<MESSAGE name="DjVmDir.bad_file" number="12001" value="[%0!s!] DjVu文件 ID &apos;%1!s!&apos; 含有非法字符。" />
+<MESSAGE name="DjVmDir.corrupt" number="12002" value="[%0!s!] DjVu 文件已毁坏，在一个多页文件中可能只有一个文件&#10;具有分享的批注。" />
+<MESSAGE name="DjVmDir.dupl_id2" number="12003" value="[%0!s!] ID 为 &apos;%1!s!&apos; 的文件已出现在DJVM目录下。" />
+<MESSAGE name="DjVmDir.dupl_id" number="12004" value="[%0!s!] 数据块&apos;DIRM&apos; 出错: 同名为 &apos;%1!s!&apos;的有两个记录" />
+<MESSAGE name="DjVmDir.dupl_name2" number="12005" value="[%0!s!] 名为&apos;%1!s!&apos;的文件已出现在DJVM目录下。" />
+<MESSAGE name="DjVmDir.dupl_name" number="12006" value="[%0!s!] 数据块&apos;DIRM&apos; 出错: 同名为 &apos;%1!s!&apos; 的有两个记录" />
+<MESSAGE name="DjVmDir.dupl_title2" number="12007" value="[%0!s!] 标题为&apos;%1!s!&apos;的文件已经存在于DJVM 目录下。" />
+<MESSAGE name="DjVmDir.dupl_title" number="12008" value="[%0!s!] 数据块&apos;DIRM&apos; 出错: 两个记录具有相同的标题&apos;%1!s!&apos;" />
+<MESSAGE name="DjVmDir.get_str_type" number="12009" value="[%0!s!] 内部出错，请修改DjVmDir::File::get_str_type()&#10;使包含所有可能的文件类型。" />
+<MESSAGE name="DjVmDir.multi_save2" number="12010" value="[%0!s!] 当前的DjVu多页格式&#10;最多只能有一个文件具有分享批注。" />
+<MESSAGE name="DjVmDir.multi_save" number="12011" value="[%0!s!] 不能保存含多个具有分享批注子文件的文件。" />
+<MESSAGE name="DjVmDir.name_in_use" number="12012" value="[%0!s!] 名字&apos;%1!s!&apos;已被使用。" />
+<MESSAGE name="DjVmDir.no_indirect" number="12013" value="[%0!s!] 目录错误：在成束的文件中不能有分散的个体。" />
+<MESSAGE name="DjVmDir.no_info" number="12014" value="[%0!s!] 没有任何关于ID 为&apos;%1!s!&apos;的文件的消息" />
+<MESSAGE name="DjVmDir.title_in_use" number="12015" value="[%0!s!] 标题&apos;%1!s!&apos;已被使用。" />
+<MESSAGE name="DjVmDir.version_error" number="12016" value="[%0!s!] 不能读版本高于%1!s!.&#10;的DJVM目录。数据版本号是%2!s!。" />
+<MESSAGE name="DjVmDoc.cant_delete" number="12100" value="[%0!s!] 没有ID为&apos;%1!s!&apos;的文件可删除。" />
+<MESSAGE name="DjVmDoc.cant_find" number="12101" value="[%0!s!] 找不到ID为&apos;%1!s!&apos;的文件。" />
+<MESSAGE name="DjVmDoc.cant_read_indr" number="12102" value="[%0!s!] 没法从DataPools 或 ByteStreams 中读出分散方式的DjVu文件。" />
+<MESSAGE name="DjVmDoc.no_data" number="12103" value="[%0!s!] 文件&apos;%1!s!&apos;没有数据。" />
+<MESSAGE name="DjVmDoc.no_dirm_chunk" number="12104" value="[%0!s!] DJVM文件的第一个数据块必须是DIRM: 可能是老的格式。" />
+<MESSAGE name="DjVmDoc.no_duplicate" number="12105" value="[%0!s!] 试图重复插入同一个文件。" />
+<MESSAGE name="DjVmDoc.no_form_djvm2" number="12106" value="[%0!s!] 找不到DJVM。文件不是新的多页格式。" />
+<MESSAGE name="DjVmDoc.no_form_djvm" number="12107" value="[%0!s!] Can&apos;t find form DJVM in the input data." />
+<MESSAGE name="DjVmDoc.not_IFF" number="12108" value="[%0!s!] 在输入数据中找不到DJVM。" />
+<MESSAGE name="DjVmDoc.no_zero_file" number="12109" value="[%0!s!] 不能插入空文件。" />
+<MESSAGE name="DjVmDoc.zero_file" number="12110" value="[%0!s!] 空文件。" />
+<MESSAGE name="DjVuAnno.bad_type" number="12200" value="[%0!s!] GLObject(): 错误的目标类型。 应是STRING或SYMBOL。" />
+<MESSAGE name="DjVuAnno.bad_url" number="12201" value="[%0!s!] 无效的URL" />
+<MESSAGE name="DjVuAnno.bad_version" number="12202" value="[%0!s!] 不支持文字区信息的%1!s!版本。" />
+<MESSAGE name="DjVuAnno.bad_zoom" number="12203" value="[%0!s!] 无效的放缩要求。" />
+<MESSAGE name="DjVuAnno.corrupt_chunk" number="12204" value="[%0!s!] 损坏的TXT数据块。" />
+<MESSAGE name="DjVuAnno.corrupt_text" number="12205" value="[%0!s!] 损坏的文字区分层。" />
+<MESSAGE name="DjVuAnno.dupl_text" number="12206" value="[%0!s!] 重复的TXT批注。" />
+<MESSAGE name="DjVuAnno.invalid2list" number="12207" value="[%0!s!] 无效的目标类型。无法转换成表。" />
+<MESSAGE name="DjVuAnno.invalid2number" number="12208" value="[%0!s!] 无效的目标类型。无法转换成数。" />
+<MESSAGE name="DjVuAnno.invalid2string" number="12209" value="[%0!s!] 无效的目标类型。无法转换成字符窜。" />
+<MESSAGE name="DjVuAnno.invalid2symbol" number="12210" value="[%0!s!] 无效的目标类型。无法转换成符号。" />
+<MESSAGE name="DjVuAnno.list2number" number="12211" value="[%0!s!] 无效的复合目标类型。无法转换成数。" />
+<MESSAGE name="DjVuAnno.list2string" number="12212" value="[%0!s!] 无效的复合目标类型。无法转换成字符窜。" />
+<MESSAGE name="DjVuAnno.list2symbol" number="12213" value="[%0!s!] 无效的复合目标类型。无法转换成符号。" />
+<MESSAGE name="DjVuAnno.no_number" number="12214" value="[%0!s!]分析目标内容时出错。 &apos;%1!s!&apos;:&#10;&apos;(&apos;之后应是目标名， 而非数字。" />
+<MESSAGE name="DjVuAnno.no_paren" number="12215" value="[%0!s!] 分析目标内容时出错。 &apos;%1!s!&apos;:&#10;&apos;(&apos;之后应是目标名， 而非括符。" />
+<MESSAGE name="DjVuAnno.no_string" number="12216" value="[%0!s!] 分析目标内容时出错。 &apos;%1!s!&apos;:&#10;&apos;(&apos;之后应是目标名， 而非字符窜。" />
+<MESSAGE name="DjVuAnno.no_text" number="12217" value="[%0!s!] 无文本信息供编码。" />
+<MESSAGE name="DjVuAnno.number2list" number="12218" value="[%0!s!] 无效的目标类型。无法转换数字&apos;%d!1!&apos;成复合目标。" />
+<MESSAGE name="DjVuAnno.number2string" number="12219" value="[%0!s!] 无效的目标类型。无法转换数字&apos;%d!1!&apos;成字符窜。" />
+<MESSAGE name="DjVuAnno.number2symbol" number="12220" value="[%0!s!] 无效的目标类型。无法转换数字&apos;%d!1!&apos;成符号。" />
+<MESSAGE name="DjVuAnno.one_word" number="12221" value="[%0!s!] 在全词匹配搜索中， 字符窜只能含一个字&#10;" />
+<MESSAGE name="DjVuAnno.paren" number="12222" value="[%0!s!] 分析目标内容时出错，紧接着&apos;%1!s!&apos;:&#10;&apos;(&apos;必须是目标名。" />
+<MESSAGE name="DjVuAnno.string2list" number="12223" value="[%0!s!] 无效的目标类型。无法转换字符窜&apos;%1!s!&apos;成复合目标。" />
+<MESSAGE name="DjVuAnno.string2number" number="12224" value="[%0!s!] Invalid object type. Can&apos;t convert string &apos;%1!s!&apos; to number." />
+<MESSAGE name="DjVuAnno.string2symbol" number="12225" value="[%0!s!] 无效的目标类型。无法转换字符窜&apos;%1!s!&apos; 成数字。" />
+<MESSAGE name="DjVuAnno.symbol2list" number="12226" value="[%0!s!] 无效的目标类型。无法转换符号&apos;%1!s!&apos;成复合目标。" />
+<MESSAGE name="DjVuAnno.symbol2number" number="12227" value="[%0!s!] 无效的目标类型。无法转换符号&apos;%1!s!&apos;成数字。" />
+<MESSAGE name="DjVuAnno.symbol2string" number="12228" value="[%0!s!] 无效的目标类型。无法转换符号&apos;%1!s!&apos;成字符窜。" />
+<MESSAGE name="DjVuAnno.too_few" number="12229" value="[%0!s!] &apos;%1!s!&apos;中目标个数太少。" />
+<MESSAGE name="DjVuDocEditor.bad_page" number="12300" value="[%0!s!] %d!1!是无效页号。" />
+<MESSAGE name="DjVuDocEditor.cant_save2" number="12301" value="[%0!s!] 无法按要求的格是保存。请用另存为。" />
+<MESSAGE name="DjVuDocEditor.cant_save" number="12302" value="[%0!s!] 无法保存文件。请用另存为。" />
+<MESSAGE name="DjVuDocEditor.create_fail" number="12303" value="[%0!s!] 无法建立ID为&apos;%1!s!&apos;的文件。" />
+<MESSAGE name="DjVuDocEditor.dir_fail" number="12304" value="[%0!s!] 无法建立目录&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuDocEditor.init" number="12305" value="[%0!s!] DjVuDocEditor 已经初始化。" />
+<MESSAGE name="DjVuDocEditor.no_codec" number="12306" value="[%0!s!] 无法装载压缩的codec" />
+<MESSAGE name="DjVuDocEditor.no_file" number="12307" value="[%0!s!] 本文件中没有ID为&apos;%1!s!&apos;的子文件。" />
+<MESSAGE name="DjVuDocEditor.not_1_page" number="12308" value="[%0!s!] &apos;%1!s!&apos;不是单页文件。" />
+<MESSAGE name="DjVuDocEditor.no_thumb" number="12309" value="[%0!s!] 内部出错。无法找到%1!d!页的略图。" />
+<MESSAGE name="DjVuDocEditor.not_init" number="12310" value="[%0!s!] DjVuDocEditor 须初始化才能使用。" />
+<MESSAGE name="DjVuDocEditor.open_fail" number="12311" value="[%0!s!] 无法打开文件&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuDocEditor.page_fail" number="12312" value="[%0!s!] 内部出错。无法找到%1!d!页。" />
+<MESSAGE name="DjVuDocEditor.page_num" number="12313" value="[%0!s!] %1!d!是无效页码。" />
+<MESSAGE name="DjVuDocEditor.render" number="12314" value="[%0!s!] 无法显示%1!d!页的图像。" />
+<MESSAGE name="DjVuDocEditor.share_fail" number="12315" value="[%0!s!] 无法建立另一个具有分享批注的文件。在一个多页文件中只能有一个文件&#10;具有分享的批注。" />
+<MESSAGE name="DjVuDocument.2nd_init" number="12400" value="[%0!s!] 文件不能重复初始化。" />
+<MESSAGE name="DjVuDocument.bad_format" number="12401" value="[%0!s!] 未知格式，无法解码。" />
+<MESSAGE name="DjVuDocument.bad_thumb" number="12402" value="[%0!s!] 毁坏的略图。" />
+<MESSAGE name="DjVuDocument.big_num" number="12403" value="[%0!s!] 页码太大。" />
+<MESSAGE name="DjVuDocument.cant_extract2" number="12404" value="[%0!s!] 无法取出略图。" />
+<MESSAGE name="DjVuDocument.cant_extract" number="12405" value="[%0!s!] 无法取出预解码的略图。" />
+<MESSAGE name="DjVuDocument.cant_render" number="12406" value="[%0!s!] 无法显示%1!d!页。" />
+<MESSAGE name="DjVuDocument.comp_codec" number="12407" value="[%0!s!] 压缩的codec没有装上。" />
+<MESSAGE name="DjVuDocument.empty_url" number="12408" value="[%0!s!] DjVuDocument得到空的URL。" />
+<MESSAGE name="DjVuDocument.exclude_page" number="12409" value="[%0!s!] 由于出错，文件略去1!d!页。" />
+<MESSAGE name="DjVuDocument.fail_file" number="12410" value="[%0!s!] 无法读出&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuDocument.fail_URL" number="12411" value="[%0!s!] 无法得到URL &apos;%1!s!&apos;所要的数据。" />
+<MESSAGE name="DjVuDocument.file_outside" number="12412" value="[%0!s!] 子文件&apos;%1!s!&apos;不在此文见中" />
+<MESSAGE name="DjVuDocument.init_eof" number="12413" value="[%0!s!] 初始化文件时意外终止。" />
+<MESSAGE name="DjVuDocument.init_not_done" number="12414" value="[%0!s!] 文件尚未完全初始化。" />
+<MESSAGE name="DjVuDocument.miss_page_name" number="12415" value="[%0!s!] 名为&apos;%1!s!&apos;的子文件不在此文件中。" />
+<MESSAGE name="DjVuDocument.miss_page_num" number="12416" value="[%0!s!] 第&apos;%1!d!&apos;页不在此文件中。" />
+<MESSAGE name="DjVuDocument.no_dir" number="12417" value="[%0!s!] 单页文件没有DjVm目录。" />
+<MESSAGE name="DjVuDocument.no_file" number="12418" value="[%0!s!] 要求的文件不存在。" />
+<MESSAGE name="DjVuDocument.no_page" number="12419" value="[%0!s!] 无法找到文件中任何一页。" />
+<MESSAGE name="DjVuDocument.not_DjVu" number="12420" value="[%0!s!] 要求输入的不是DjVu文件。" />
+<MESSAGE name="DjVuDocument.not_init" number="12421" value="[%0!s!] 文件尚未初始化。" />
+<MESSAGE name="DjVuDocument.not_secure" number="12422" value="[%0!s!] 文件尚未由GP&lt;DjVuDocument&gt;保险。" />
+<MESSAGE name="DjVuDocument.obsolete" number="12423" value="[%0!s!] 此文件是obsolete格式。" />
+<MESSAGE name="DjVuDocument.old_bundle" number="12424" value="[%0!s!] 只又OLD_BUNDLED文件具有DjVm v.0目录。" />
+<MESSAGE name="DjVuDocument.stopped" number="12425" value="[%0!s!] DjVuDocument 初始化流程已停止。" />
+<MESSAGE name="DjVuDocument.unk_type" number="12426" value="[%0!s!] 文件类型未知。" />
+<MESSAGE name="DjVuDocument.URL_outside2" number="12427" value="[%0!s!] URL &apos;%1!s!&apos; 指到了INDIRECT文件的界外。" />
+<MESSAGE name="DjVuDocument.URL_outside" number="12428" value="[%0!s!] URL &apos;%1!s!&apos; 指到了bundled文件的界外。" />
+<MESSAGE name="DjVuDocument.skip_page" number="12429" value="[%0!s!] 跳过第%1!d!页。" />
+<MESSAGE name="DjVuFile.2nd_init" number="12500" value="[%0!s!] DjVuFile 已经初始化。" />
+<MESSAGE name="DjVuFile.corrupt_BG44" number="12501" value="[%0!s!] DjVu 解码器: 毁坏的数据 (BG44 数据块的大小不正确)" />
+<MESSAGE name="DjVuFile.corrupt_dupl" number="12502" value="[%0!s!] DjVu 解码器: 毁坏的文件 (INFO 数据块重复)" />
+<MESSAGE name="DjVuFile.corrupt_INFO" number="12503" value="[%0!s!] DjVu 解码器: 毁坏的文件(INFO 数据块出现在FORM:DJVI中)" />
+<MESSAGE name="DjVuFile.corrupt_missing_info" number="12504" value="[%0!s!] DjVu 解码器: 毁坏的数据 (INFO 数据块丢失)" />
+<MESSAGE name="DjVuFile.corrupt_missing_IW44" number="12505" value="[%0!s!] DjVu 解码器: 毁坏的数据 (IW44 数据块丢失)" />
+<MESSAGE name="DjVuFile.corrupt_zero" number="12506" value="[%0!s!] DjVu 解码器: 毁坏的文件(图像大小为0)" />
+<MESSAGE name="DjVuFile.decode_fail" number="12507" value="[%0!s!] 解码一个included文件时失败。" />
+<MESSAGE name="DjVuFile.dupl_backgrnd" number="12508" value="[%0!s!] DjVu 解码器: 毁坏的数据 (重叠的背境层)" />
+<MESSAGE name="DjVuFile.dupl_Dxxx" number="12509" value="[%0!s!] DjVu 解码器: 毁坏的数据 (重叠的Dxxx数据块)" />
+<MESSAGE name="DjVuFile.dupl_foregrnd" number="12510" value="[%0!s!] DjVu 解码器: 毁坏的数据 (重叠的近景色彩信息)" />
+<MESSAGE name="DjVuFile.dupl_Sxxx" number="12511" value="[%0!s!] DjVu 解码器: 毁坏的数据 (重叠的Sxxx数据块)" />
+<MESSAGE name="DjVuFile.Dxxx_after_Sxxx" number="12512" value="[%0!s!] DjVu 解码器: 毁坏的数据 (Dxxx数据块出现在Sxxx数据块之后)" />
+<MESSAGE name="DjVuFile.empty_URL" number="12513" value="[%0!s!] DjVuFile得到空的URL。" />
+<MESSAGE name="DjVuFile.EOF" number="12514" value="[%0!s!] 读取&#10;&#09;%1!s!时意外终止。" />
+<MESSAGE name="DjVuFile.failed" number="12515" value="[%0!s!] %1!s! 失败。" />
+<MESSAGE name="DjVuFile.illegal_chunk" number="12516" value="[%0!s!] 无效块号。" />
+<MESSAGE name="DjVuFile.malformed" number="12517" value="[%0!s!] 斜杆不允许出现在INCL数据块中。" />
+<MESSAGE name="DjVuFile.missing_chunk" number="12518" value="[%0!s!] 数据块太少。" />
+<MESSAGE name="DjVuFile.new_version" number="12519" value="[%0!s!] DjVu 解码器: 无法解码版本为 &gt;= %d!1!的DjVu文件。" />
+<MESSAGE name="DjVuFile.no_create" number="12520" value="[%0!s!] 内部出错：id_to_file(%1!s!)没有建立任何文件。" />
+<MESSAGE name="DjVuFile.no_data" number="12521" value="[%0!s!] 没有为URL &apos;%1!s!&apos;取得任何数据。" />
+<MESSAGE name="DjVuFile.not_finished" number="12522" value="[%0!s!] 内部出错：包含的文件尚未结束。" />
+<MESSAGE name="DjVuFile.not_init" number="12523" value="[%0!s!] DjVuFile尚未初始化。" />
+<MESSAGE name="DjVuFile.not_secured" number="12524" value="[%0!s!] DjVuFile尚未由GP&lt;DjVuFile&gt;保险。" />
+<MESSAGE name="DjVuFile.stopped" number="12525" value="[%0!s!] %1!s! 已停止。" />
+<MESSAGE name="DjVuFile.unexp_image" number="12526" value="[%0!s!] DjVu 解码器:需要一个DJVU或IW44图像。" />
+
+<!-- The following set of messages describe the chunks of a file. -->
+<MESSAGE name="DjVuFile.unrecog_chunk" number="12527" value=" %1!5.1f! Kb  '%2!4s!'  不认识的数据块" />
+<MESSAGE name="DjVuFile.page_info" number="12528" value=" %1!5.1f! Kb  '%2!4s!'  本页信息" />
+<MESSAGE name="DjVuFile.indir_chunk1" number="12529" value=" %2!5.1f! Kb  '%3!4s!'  间接数据块 (%1!s!)" />
+<MESSAGE name="DjVuFile.indir_chunk2" number="12530" value=" %1!5.1f! Kb  '%2!4s!'  间接数据块" />
+<MESSAGE name="DjVuFile.shape_dict" number="12531" value=" %2!5.1f! Kb  '%3!4s!'  JB2 样本字典 (%1!d! 样本)." />
+<MESSAGE name="DjVuFile.fg_mask" number="12532" value=" %4!5.1f! Kb  '%5!4s!'  JB2 前景掩模 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.G4_mask" number="12533" value=" %4!5.1f! Kb  '%5!4s!'  G4/MMR 编码掩模 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_bg1" number="12534" value=" %4!5.1f! Kb  '%5!4s!'  IW44 背景(%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_bg2" number="12535" value=" %3!5.1f! Kb  '%4!4s!'  IW44 背景 (第 %1!d! 部分, %2!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_fg" number="12536" value=" %4!5.1f! Kb  '%5!4s!'  IW44 前景颜色 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.color_import1" number="12537" value=" %4!5.1f! Kb  '%5!4s!'  LINK 颜色输入 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.color_import2" number="12538" value=" %1!5.1f! Kb  '%2!4s!'  LINK 颜色输入 (未实现)" />
+<MESSAGE name="DjVuFile.JPEG_bg1" number="12539" value=" %4!5.1f! Kb  '%5!4s!'  JPEG 背景(%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.JPEG_bg2" number="12540" value=" %1!5.1f! Kb  '%2!4s!'  JPEG 背景(未实现)" />
+<MESSAGE name="DjVuFile.JPEG_fg1" number="12541" value=" %4!5.1f! Kb  '%5!4s!'  JPEG 前景颜色 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.JPEG_fg2" number="12542" value=" %1!5.1f! Kb  '%2!4s!'  JPEG 前景颜色 (未实现)" />
+<MESSAGE name="DjVuFile.JPEG2K_bg" number="12543" value=" %1!5.1f! Kb  '%2!4s!'  JPEG-2000 背景(未实现)" />
+<MESSAGE name="DjVuFile.JPEG2K_fg" number="12544" value=" %1!5.1f! Kb  '%2!4s!'  JPEG-2000 前景颜色 (未实现)" />
+<MESSAGE name="DjVuFile.JB2_fg" number="12545" value=" %3!5.1f! Kb  '%4!4s!'  JB2 前景颜色 (%1!d! 颜色, %2!d! ccs)." />
+<MESSAGE name="DjVuFile.IW44_data1" number="12546" value=" %4!5.1f! Kb  '%5!4s!'  IW44 数据 (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_data2" number="12547" value=" %3!5.1f! Kb  '%4!4s!'  IW44 数据 (第 %1!d! 部分, %2!d! dpi)." />
+<MESSAGE name="DjVuFile.nav_dir" number="12548" value=" %1!5.1f! Kb  '%2!4s!'  搜索目录 (已不用)" />
+<MESSAGE name="DjVuFile.anno1" number="12549" value=" %1!5.1f! Kb  '%2!4s!'  批注(成束)" />
+<MESSAGE name="DjVuFile.anno2" number="12550" value=" %1!5.1f! Kb  '%2!4s!'  批注(超级链接及其它)." />
+<MESSAGE name="DjVuFile.text" number="12551" value=" %1!5.1f! Kb  '%2!4s!'  文字 (文字及其它)" />
+<!-- End of chunk descriptions -->
+
+<MESSAGE name="DjVuFile.djvu_header" number="12552" value="DJVU 图像 (%1!d!x%2!d!, %3!d! dpi) 版本 %4!d!:&#10;" />
+<MESSAGE name="DjVuFile.IW44_header" number="12553" value="IW44 图像 (%1!d!x%2!d!, %3!d! dpi):&#10;" />
+<MESSAGE name="DjVuFile.ratio" number="12554" value="&#10;压缩率: %1!0.f! (%2!0.1f! Kb)" />
+<MESSAGE name="DjVuFile.securedjvu" number="12555">
+Incompatible file (so-called "Secure DjVu".)
+</MESSAGE>
+<MESSAGE name="DjVuGlobalMemory.exhausted" number="12600" value="[%0!s!] 内存耗尽" />
+<MESSAGE name="DjVuGlobal.not_compatible" number="12700" value="[%0!s!] DjVuProgress 与 multithreading不兼容。" />
+<MESSAGE name="DjVuImage.bad_call" number="12800" value="[%0!s!] DjVuImage::decode 不应在 DjVuImage::connect之后调用。" />
+<MESSAGE name="DjVuImage.bad_rect2" number="12801" value="[%0!s!] (DjVuImage::do_pixmap) 非法的目标长方形。" />
+<MESSAGE name="DjVuImage.bad_rect" number="12802" value="[%0!s!] (DjVuImage::get_pixmap) 非法的目标长方形。" />
+<MESSAGE name="DjVuImage.corrupted" number="12803" value="[%0!s!] 毁坏的文件(色彩指标超出调色板范围)" />
+<MESSAGE name="DjVuImage.mult_error" number="12804" value="[%0!s!] 解码时多处出错。" />
+<MESSAGE name="DjVuImage.not_decode" number="12805" value="[%0!s!] 不能用向后兼容模式解码此DjVu文件" />
+<MESSAGE name="DjVuInfo.corrupt_file" number="12900" value="[%0!s!] DjVu 解码器：毁坏的文件(截断的INFO数据块)" />
+<MESSAGE name="DjVuNavDir.bad_page" number="13000" value="[%0!s!] 输入了无效页号。" />
+<MESSAGE name="DjVuNavDir.large_page" number="13001" value="[%0!s!] 页号太大。" />
+<MESSAGE name="DjVuNavDir.long_line" number="13002" value="[%0!s!] 无法读出DjVu目录。行太长。" />
+<MESSAGE name="DjVuNavDir.neg_page" number="13003" value="[%0!s!] 页号必须非负。" />
+<MESSAGE name="DjVuNavDir.zero_dir" number="13004" value="[%0!s!] 零目录URL交给DjVuNavDir 构造函数" />
+<MESSAGE name="DjVuPalette.bad_palette" number="13100" value="[%0!s!] 毁坏的近景色彩调色板。" />
+<MESSAGE name="DjVuPalette.bad_version" number="13101" value="[%0!s!] 未知的调色数据版本标记。" />
+<MESSAGE name="DjVuPalette.many_colors" number="13102" value="[%0!s!] 不现实的色彩数目。" />
+<MESSAGE name="DjVuPalette.no_color" number="13103" value="[%0!s!] 彩色直方图没找到。" />
+<MESSAGE name="DjVuPalette.not_init" number="13104" value="[%0!s!] 调色板未初始化" />
+<MESSAGE name="DjVuPalette.test_usage" number="13105" value="[%0!s!] 用语: quant &lt;ncol&gt; &lt;minbox&gt; &lt;ppmfile&gt;" />
+<MESSAGE name="DjVuPort.not_alloc" number="13200" value="[%0!s!] DjVuPort 没有配置于堆栈" />
+<MESSAGE name="DjVuToPS.bad_EPS_num" number="13300" value="[%0!s!] 只有一个拷贝可达印成EPS格式。" />
+<MESSAGE name="DjVuToPS.bad_format" number="13301" value="[%0!s!] PostScript 格式必须是 PS 或 EPS。" />
+<MESSAGE name="DjVuToPS.bad_gamma" number="13302" value="[%0!s!] 给定的gamma无效。 必须位于0.3与0.5之间。" />
+<MESSAGE name="DjVuToPS.bad_level" number="13303" value="[%0!s!] PostScript 水平 %1!d!无效的. 必须位于1与2之间。" />
+<MESSAGE name="DjVuToPS.bad_mode" number="13304" value="[%0!s!] 无效的图像模式交给达印函数。" />
+<MESSAGE name="DjVuToPS.bad_number" number="13305" value="[%0!s!] 复印份数须为正数。" />
+<MESSAGE name="DjVuToPS.bad_orient" number="13306" value="[%0!s!] 无效的定向交给打印函数。" />
+<MESSAGE name="DjVuToPS.bad_page" number="13307" value="[%0!s!] 无效的页码&apos;%d!1!&apos;" />
+<MESSAGE name="DjVuToPS.bad_range" number="13308" value="[%0!s!] 无效的范围&apos;%1!d!&apos;" />
+<MESSAGE name="DjVuToPS.bad_scale" number="13309" value="[%0!s!] 打印时试图把图像调成点。" />
+<MESSAGE name="DjVuToPS.bad_zoom" number="13310" value="[%0!s!] 无效的缩放比例交给打印函数。" />
+<MESSAGE name="DjVuToPS.big_page" number="13311" value="[%0!s!] 页码%1!d!太大。" />
+<MESSAGE name="DjVuToPS.empty_image" number="13313" value="[%0!s!] 试图打印空图像。" />
+<MESSAGE name="DjVuToPS.empty_rect" number="13314" value="[%0!s!] 试图打印空长方形。" />
+<MESSAGE name="DjVuToPS.no_image" number="13315" value="[%0!s!] 无法得到第 %1!d!页的图像" />
+<MESSAGE name="DjVuToPS.no_landscape" number="13316" value="[%0!s!] EPS格式不支持LANDSCAPE模式。" />
+<MESSAGE name="DjVuToPS.no_memory" number="13317" value="[%0!s!] 没有足够内存来打印图像。" />
+<MESSAGE name="DjVuToPS.no_to" number="13318" value="[%0!s!] 范围&apos;%1!s!&apos;内丢失页码&apos;To&apos;" />
+<MESSAGE name="DjVuToPS.only_one_page" number="13319" value="[%0!s!] 在EPS格式下最多打印一页。" />
+<MESSAGE name="EOF" number="13400" value="文件结尾" />
+<MESSAGE name="Error" number="13500" value="出错" />
+<MESSAGE name="error" number="13600" value="出错" />
+<MESSAGE name="Failed" number="13700" value="失败" />
+<MESSAGE name="GBitmap.bad_format" number="13800" value="[%0!s!] 未知的PBM, PGM 或 RLE 文件格式。" />
+<MESSAGE name="GBitmap.bad_levels" number="13801" value="[%0!s!] (GBitmap::set_grays) 非法的灰度" />
+<MESSAGE name="GBitmap.bad_PBM" number="13802" value="[%0!s!] 错误组成的PBM文件。" />
+<MESSAGE name="GBitmap.cant_compress" number="13803" value="[%0!s!] 无法压缩灰度bitmap" />
+<MESSAGE name="GBitmap.cant_make_PBM" number="13804" value="[%0!s!] 无法从一个灰度bitmap购造一个PBM文件。" />
+<MESSAGE name="GBitmap.left_damaged" number="13805" value="[%0!s!] 调试：左边界损坏。" />
+<MESSAGE name="GBitmap.lost_sync2" number="13806" value="[%0!s!] (GBitmap::decode) RLE 同步化丢失。" />
+<MESSAGE name="GBitmap.lost_sync" number="13807" value="[%0!s!] RLE 同步化丢失。" />
+<MESSAGE name="GBitmap.not_init" number="13808" value="[%0!s!] 非初始化的bitmap" />
+<MESSAGE name="GBitmap.not_int" number="13809" value="[%0!s!] 读出bitmap：预期整数。" />
+<MESSAGE name="GBitmap.null_arg" number="13810" value="[%0!s!] (GBitmap::decode) 空参数调用。" />
+<MESSAGE name="GBitmap.right_damaged" number="13811" value="[%0!s!] 调试：右边界损坏。" />
+<MESSAGE name="GBitmap.zero_damaged" number="13812" value="[%0!s!] 调试：零数组损坏。" />
+<MESSAGE name="GBitmap.zero_small" number="13813" value="[%0!s!] 调试: zerobuffer 太小" />
+<MESSAGE name="GContainer.bad_args" number="13900" value="[%0!s!] 对GArray::resize无效的参数。" />
+<MESSAGE name="GContainer.bad_howmany" number="13901" value="[%0!s!] 非法的参数值&apos;howmany&apos;" />
+<MESSAGE name="GContainer.bad_pos_cont" number="13902" value="[%0!s!] 无效的位置（指向另一个载体）" />
+<MESSAGE name="GContainer.bad_pos" number="13903" value="[%0!s!] 无效的位置" />
+<MESSAGE name="GContainer.bad_pos_null" number="13904" value="[%0!s!] 无效的位置 (空指针)" />
+<MESSAGE name="GContainer.bad_sub2" number="13905" value="[%0!s!] GArray::del中出现非法下标。" />
+<MESSAGE name="GContainer.cannot_add" number="13906" value="[%0!s!] 不能添加关键字到固定映射中。" />
+<MESSAGE name="GContainer.illegal_subscript" number="13907" value="[%0!s!] GArray 下标出界。" />
+<MESSAGE name="GException.outofmemory" number="14000" value="[%0!s!] 内存耗尽。" />
+<MESSAGE name="GIFFManager.bad_char" number="14100" value="[%0!s!] 块名可能不含点或括号。" />
+<MESSAGE name="GIFFManager.cant_find2" number="14101" value="[%0!s!] 正装载的IFF文件不见顶层的FORM块" />
+<MESSAGE name="GIFFManager.cant_find" number="14102" value="[%0!s!] 不见名为&apos;%1!s!&apos;的块" />
+<MESSAGE name="GIFFManager.del_empty" number="14103" value="[%0!s!] 试图删除一个无名块。" />
+<MESSAGE name="GIFFManager.garbage" number="14104" value="[%0!s!] 块名在&apos;]&apos;之后含有垃圾。" />
+<MESSAGE name="GIFFManager.get_empty" number="14105" value="[%0!s!] 试图取得一个空名块。" />
+<MESSAGE name="GIFFManager.malformed" number="14106" value="[%0!s!] 错误组成的块名&apos;%1!s!&apos;：以点结尾。" />
+<MESSAGE name="GIFFManager.no_brackets" number="14107" value="[%0!s!] 块名不能含有括号。" />
+<MESSAGE name="GIFFManager.no_chunk" number="14108" value="[%0!s!] 块&apos;%3!s!&apos;中不含子块&apos;%1!s!&apos; #%2!d!" />
+<MESSAGE name="GIFFManager.no_dots" number="14109" value="[%0!s!] 块名不能含有点。" />
+<MESSAGE name="GIFFManager.no_top_cont" number="14110" value="[%0!s!] 只有栽体可成为顶层块。" />
+<MESSAGE name="GIFFManager.no_top_name" number="14111" value="[%0!s!] 顶层块块名未知。" />
+<MESSAGE name="GIFFManager.one_colon" number="14112" value="[%0!s!] 块名只能含一个冒号。" />
+<MESSAGE name="GIFFManager.unbalanced" number="14113" value="[%0!s!] 块名中括号不匹配。" />
+<MESSAGE name="GIFFManager.unknown" number="14114" value="[%0!s!] 内部出错：&apos;%1!s!&apos;块未知。" />
+<MESSAGE name="GIFFManager.unmatched" number="14115" value="[%0!s!] 遇到括号不匹配的块名。" />
+<MESSAGE name="GIFFManager.wrong_name2" number="14116" value="[%0!s!] 顶层块块名不是&apos;%1!s!&apos;。" />
+<MESSAGE name="GIFFManager.wrong_name" number="14117" value="[%0!s!] 文件的顶层块块名不是&apos;%1!s!&apos;" />
+<MESSAGE name="GMapAreas.intersect" number="14200" value="[%0!s!] 某些多边形交在一起。" />
+<MESSAGE name="GMapAreas.oval_border" number="14201" value="[%0!s!] oval映射区不支持此边界类型。" />
+<MESSAGE name="GMapAreas.oval_hilite" number="14202" value="[%0!s!] oval映射区不支持区域增亮。" />
+<MESSAGE name="GMapAreas.poly_border" number="14203" value="[%0!s!] 多边形映射区不支持此边界类型。" />
+<MESSAGE name="GMapAreas.poly_hilite" number="14204" value="[%0!s!] 多边形映射区不支持区域增亮。" />
+<MESSAGE name="GMapAreas.too_few_points" number="14205" value="[%0!s!] 多边形中点数太少。" />
+<MESSAGE name="GMapAreas.width_1" number="14206" value="[%0!s!] 对于XOR 与 SOLID边界类型，边界宽度必须为1。" />
+<MESSAGE name="GMapAreas.width_3-32" number="14207" value="[%0!s!] 对于SHADOW边界类型，边界宽度必须是3与32之间。" />
+<MESSAGE name="GMapAreas.zero_height" number="14208" value="[%0!s!] 区域高度为零" />
+<MESSAGE name="GMapAreas.zero_width" number="14209" value="[%0!s!] 区域宽度为零" />
+<MESSAGE name="GOS.big_name" number="14300" value="[%0!s!] 文件名长度超过系统限制。" />
+<MESSAGE name="GOS.cleardir" number="14301" value="[%0!s!] 请为此平台提供GOS::cleardir()的正确实现。" />
+<MESSAGE name="GOS.unknown1" number="14302" value="[%0!s!] 未知的libc错误(errno=%1!d!)" />
+<MESSAGE name="GOS.unknown2" number="14303" value="[%0!s!] Windows CE下未知的GOS.cpp错误(errno=%1!d!)" />
+<MESSAGE name="GOS.unknown3" number="14304" value="[%0!s!] %1!s! (errno=%2!d!)" />
+<MESSAGE name="GPixmap.bad_param" number="14400" value="[%0!s!] (GPixmap::color_correct) 非法参数。" />
+<MESSAGE name="GPixmap.diff_size" number="14401" value="[%0!s!] 彩色 pixmap 与 alpha bitmap 大小不同。" />
+<MESSAGE name="GPixmap.no_int" number="14402" value="[%0!s!] 读出pixmap:预期为整数。" />
+<MESSAGE name="GPixmap.null_alpha" number="14403" value="[%0!s!] 空的alpha bitmap指针。" />
+<MESSAGE name="GPixmap.null_color" number="14404" value="[%0!s!] 空的彩色 bitmap指针。" />
+<MESSAGE name="GPixmap.overflow1" number="14405" value="[%0!s!] (GPixmap::downsample) 所给的矩形超出目标pixmap" />
+<MESSAGE name="GPixmap.overflow2" number="14406" value="[%0!s!] (GPixmap::upsample) 所给的矩形超出目标pixmap" />
+<MESSAGE name="GPixmap.overflow3" number="14407" value="[%0!s!] (GPixmap::downsample43) 所给的矩形超出目标pixmap" />
+<MESSAGE name="GPixmap.overflow4" number="14408" value="[%0!s!] (GPixmap::upsample23) 所给的矩形超出目标pixmap" />
+<MESSAGE name="GPixmap.overflow5" number="14409" value="[%0!s!] (GPixmap::stencil) 所给的矩形超出前景pixmap" />
+<MESSAGE name="GPixmap.unk_PPM" number="14410" value="[%0!s!] 未知的PPM文件格式。" />
+<MESSAGE name="GRect.div_zero" number="14500" value="[%0!s!] 分母为零。" />
+<MESSAGE name="GRect.empty_rect1" number="14501" value="[%0!s!] GRectMapper::set_input中非法空多边形。" />
+<MESSAGE name="GRect.empty_rect2" number="14502" value="[%0!s!] GRectMapper::set_output中非法空多边形。" />
+<MESSAGE name="GRect.empty_rect3" number="14503" value="[%0!s!] GRectMapper::[un]map中非法空多边形。" />
+<MESSAGE name="GScaler.assertion" number="14600" value="[%0!s!] 断言失败。" />
+<MESSAGE name="GScaler.no_match" number="14601" value="[%0!s!] 输入的pixmap与输入的矩形不匹配。" />
+<MESSAGE name="GScaler.ratios" number="14602" value="[%0!s!] GScaler比率必须同正或同为空。" />
+<MESSAGE name="GScaler.too_big" number="14603" value="[%0!s!] 要求的输出超出整个图像的输出矩形。" />
+<MESSAGE name="GScaler.too_small" number="14604" value="[%0!s!] 提供的输入pixmap太小。" />
+<MESSAGE name="GScaler.undef_size" number="14605" value="[%0!s!] GScaler 的输入与输出大小未定义。" />
+<MESSAGE name="GSmartPointer.suspicious" number="14700" value="[%0!s!] 怀疑此时可解除调用的GPEnabled目标。" />
+<MESSAGE name="GString.bad_subscript" number="14800" value="[%0!s!] GString::operator[]非法下标。" />
+<MESSAGE name="GString.overwrite" number="14801" value="[%0!s!] 内存重写。程序处于不稳定状态。" />
+<MESSAGE name="GThreads.co_panic" number="14900" value="[%0!s!] 可怕的COTHREADS :找不到异常内容。" />
+<MESSAGE name="GThreads.dupl_callback" number="14901" value="[%0!s!] GThread::set_scheduling_callback 被重复调用。" />
+<MESSAGE name="GThreads.not_acq_broad" number="14902" value="[%0!s!] 此线程(GMonitor::broadcast)不要求监督器。" />
+<MESSAGE name="GThreads.not_acq_leave" number="14903" value="[%0!s!] 此线程(GMonitor::leave)不要求监督器。" />
+<MESSAGE name="GThreads.not_acq_signal" number="14904" value="[%0!s!] 此线程(GMonitor::signal)不要求监督器。" />
+<MESSAGE name="GThreads.not_acq_wait" number="14905" value="[%0!s!] 此线程(GMonitor::wait)不要求监督器。" />
+<MESSAGE name="GThreads.panic" number="14906" value="[%0!s!] 可怕：Cothreads死锁。" />
+<MESSAGE name="GThreads.uncaught" number="14907" value="[%0!s!] GThreads: 未捕获的异常。。" />
+<MESSAGE name="GThreads.unrecognized" number="14908" value="[%0!s!] GThreads: 不明的未捕获的异常。。" />
+<MESSAGE name="GURL.fail_to_file" number="15000" value="[%0!s!] 转换URL成文件名时失败。" />
+<MESSAGE name="GURL.fail_to_URL" number="15001" value="[%0!s!] 从文件名换回URL时失败。" />
+<MESSAGE name="GURL.no_protocol" number="15002" value="[%0!s!] URL &apos;%1!s!&apos; 不含协议前缀。" />
+<MESSAGE name="GURL.big_name" number="15003" value="[%0!s!] 文件名太长。" />
+<MESSAGE name="GURL.listdir" number="15004" value="[%0!s!] GURL::listdir 没有在此平台上实现。" />
+<MESSAGE name="IFFByteStream.bad_chunk" number="15100" value="[%0!s!] 非法块标识符(IFFByteStream::put_chunk)" />
+<MESSAGE name="IFFByteStream.bad_offset" number="15101" value="[%0!s!] 内部出错，IFFByteStream偏移超出数据块范围。" />
+<MESSAGE name="IFFByteStream.cant_close" number="15102" value="[%0!s!] 没有打开的块可关闭。" />
+<MESSAGE name="IFFByteStream.cant_write" number="15103" value="[%0!s!] 前面的块未完成，不能写入。" />
+<MESSAGE name="IFFByteStream.corrupt_2nd_id" number="15104" value="[%0!s!] 损坏的IFF文件 (非法的第二数据块标识符)" />
+<MESSAGE name="IFFByteStream.corrupt_end2" number="15105" value="[%0!s!] 损坏的IFF文件 (读出块大小时出现EndOfChunk)" />
+<MESSAGE name="IFFByteStream.corrupt_end" number="15106" value="[%0!s!] 损坏的IFF文件 (读出块ID时出现EndOfChunk)" />
+<MESSAGE name="IFFByteStream.corrupt_header" number="15107" value="[%0!s!] 损坏的IFF文件 (读出复合块头时出现EndOfChunk)" />
+<MESSAGE name="IFFByteStream.corrupt_id" number="15108" value="[%0!s!] 损坏的IFF文件 (非法的数据块块标识符)" />
+<MESSAGE name="IFFByteStream.corrupt_mangled" number="15109" value="[%0!s!] 损坏的IFF文件 (交错的数据块边界)" />
+<MESSAGE name="IFFByteStream.no_chunk_id" number="15110" value="[%0!s!] 尚无数据块标识符" />
+<MESSAGE name="IFFByteStream.not_ready2" number="15111" value="[%0!s!] IFFByteStream 尚未准备好写入数据块" />
+<MESSAGE name="IFFByteStream.not_ready3" number="15112" value="[%0!s!] IFFByteStream 尚未准备好读出字节" />
+<MESSAGE name="IFFByteStream.not_ready4" number="15113" value="[%0!s!] IFFByteStream 尚未准备好写入字节" />
+<MESSAGE name="IFFByteStream.not_ready" number="15114" value="[%0!s!] IFFByteStream 尚未准备好读出数据块" />
+<MESSAGE name="IFFByteStream.read_write" number="15115" value="[%0!s!] 试图写入和读出同一个IFFByteStream" />
+<MESSAGE name="Internal.error" number="15200" value="[%0!s!] 内部出错" />
+<MESSAGE name="IW44Image.bad_rect" number="15300" value="[%0!s!] (IWMap::image) 长方形出界。" />
+<MESSAGE name="IW44Image.cant_estimate" number="15301" value="[%0!s!] 解码时无法估错。" />
+<MESSAGE name="IW44Image.cant_read_primary2" number="15302" value="[%0!s!] (IWPixmap::decode_chunk) 无法读出数据块主块头" />
+<MESSAGE name="IW44Image.cant_read_primary" number="15303" value="[%0!s!] (IWBitmap::decode_chunk) 无法读出数据块主块头" />
+<MESSAGE name="IW44Image.cant_read_secondary2" number="15304" value="[%0!s!] (IWPixmap::decode_chunk) 无法读出数据块次块头" />
+<MESSAGE name="IW44Image.cant_read_secondary" number="15305" value="[%0!s!] (IWBitmap::decode_chunk) 无法读出数据块次块头" />
+<MESSAGE name="IW44Image.cant_read_tertiary2" number="15306" value="[%0!s!] (IWPixmap::decode_chunk) 无法读出数据块第三块头" />
+<MESSAGE name="IW44Image.cant_read_tertiary" number="15307" value="[%0!s!] (IWBitmap::decode_chunk) 无法读出数据块第三块头" />
+<MESSAGE name="IW44Image.codec_open2" number="15308" value="[%0!s!] (IWBitmap::decode_chunk) Codec 仍为解码开着。" />
+<MESSAGE name="IW44Image.codec_open3" number="15309" value="[%0!s!] (IWPixmap::decode_chunk) Codec 仍为编码开着。" />
+<MESSAGE name="IW44Image.codec_open4" number="15310" value="[%0!s!] (IWPixmap::decode_chunk) Codec 仍为解码开着。" />
+<MESSAGE name="IW44Image.codec_open" number="15311" value="[%0!s!] (IWBitmap::decode_chunk) Codec 仍为编码开着。" />
+<MESSAGE name="IW44Image.corrupt_BM44_2" number="15312" value="[%0!s!] (IWPixmap::decode_iff) 文件已损坏（不能读出FORM.BM44）" />
+<MESSAGE name="IW44Image.corrupt_BM44" number="15313" value="[%0!s!] (IWBitmap::decode_iff) 文件已损坏（不能读出FORM.BM44）" />
+<MESSAGE name="IW44Image.decoder_only" number="15314" value="[%0!s!] Compiled with NEED_DECODER_ONLY" />
+<MESSAGE name="IW44Image.empty_object2" number="15315" value="[%0!s!] (IWPixmap::encode_chunk) IWBitmap 是空目标" />
+<MESSAGE name="IW44Image.empty_object" number="15316" value="[%0!s!] (IWBitmap::encode_chunk) IWBitmap 是空目标" />
+<MESSAGE name="IW44Image.empty_rect" number="15317" value="[%0!s!] (IWMap::image) 是空矩形" />
+<MESSAGE name="IW44Image.has_color" number="15318" value="[%0!s!] (IWBitmap::decode_chunk) 文件包含彩色图像。" />
+<MESSAGE name="IW44Image.incompat_codec2" number="15319" value="[%0!s!] (IWPixmap::decode_chunk) 文件已用非兼容的IWCodec压缩。" />
+<MESSAGE name="IW44Image.incompat_codec" number="15320" value="[%0!s!] (IWBitmap::decode_chunk) 文件已用非兼容的IWCodec压缩。" />
+<MESSAGE name="IW44Image.left_open1" number="15321" value="[%0!s!] (IWBitmap::encode_iff) Codec 已离开打开状态" />
+<MESSAGE name="IW44Image.left_open2" number="15322" value="[%0!s!] (IWBitmap::decode_iff) Codec 已离开打开状态" />
+<MESSAGE name="IW44Image.left_open3" number="15323" value="[%0!s!] (IWPixmap::encode_iff) Codec 已离开打开状态" />
+<MESSAGE name="IW44Image.left_open4" number="15324" value="[%0!s!] (IWPixmap::decode_iff) Codec 已离开打开状态" />
+<MESSAGE name="IW44Image.need_stop2" number="15325" value="[%0!s!] (IWPixmap::encode_chunk) 须确立一个停止准则。" />
+<MESSAGE name="IW44Image.need_stop" number="15326" value="[%0!s!] (IWBitmap::encode_chunk) 须确立一个停止准则。" />
+<MESSAGE name="IW44Image.param_range2" number="15327" value="[%0!s!] (IWPixmap::parm_dbfrac) 参数出界" />
+<MESSAGE name="IW44Image.param_range" number="15328" value="[%0!s!] (IWBitmap::parm_dbfrac) 参数出界" />
+<MESSAGE name="IW44Image.recent_codec2" number="15329" value="[%0!s!] (IWPixmap::decode_chunk) 文件已用更新的IWCodec压缩。" />
+<MESSAGE name="IW44Image.recent_codec" number="15330" value="[%0!s!] (IWBitmap::decode_chunk) 文件已用更新的IWCodec压缩。" />
+<MESSAGE name="IW44Image.sample_factor" number="15331" value="[%0!s!] (IWMap::image) 未获支持的子样本因子。" />
+<MESSAGE name="IW44Image.wrong_serial2" number="15332" value="[%0!s!] (IWPixmap::decode_chunk) 数据块不含有期待的序号。" />
+<MESSAGE name="IW44Image.wrong_serial" number="15333" value="[%0!s!] (IWBitmap::decode_chunk) 数据块不含有期待的序号。" />
+<MESSAGE name="JB2Image.bad_dict2" number="15400" value="[%0!s!] 损坏的文件：JB2 字典中出现非零图像维数。" />
+<MESSAGE name="JB2Image.bad_dict" number="15401" value="[%0!s!] 形状字典的大小与JB2数据不符。" />
+<MESSAGE name="JB2Image.bad_number" number="15402" value="[%0!s!] (JB2Codec::CodeNum) 数字出界。" />
+<MESSAGE name="JB2Image.bad_numcontext" number="15403" value="[%0!s!] (JB2Codec::CodeNum) 非发的 NumContext" />
+<MESSAGE name="JB2Image.bad_parent_shape" number="15404" value="[%0!s!] JB2Shape 中出现非法母形号。" />
+<MESSAGE name="JB2Image.bad_shape" number="15405" value="[%0!s!] JB2Blit 中出现非法形号。" />
+<MESSAGE name="JB2Image.bad_type" number="15406" value="[%0!s!] 损坏的文件：出现对于形状字典非法的记录类型。" />
+<MESSAGE name="JB2Image.cant_change" number="15407" value="[%0!s!] 字典一旦设定后不能改变。" />
+<MESSAGE name="JB2Image.cant_create" number="15408" value="[%0!s!] 不能为一个未设定大小的JB2Image目标建立bitmap图像。" />
+<MESSAGE name="JB2Image.cant_set" number="15409" value="[%0!s!] 不能在添加形状之后再设定字典。" />
+<MESSAGE name="JB2Image.need_dict" number="15410" value="[%0!s!] JB2 数据需要一个形状字典。" />
+<MESSAGE name="JB2Image.no_start" number="15411" value="[%0!s!] 损坏的文件： 无初始记录。" />
+<MESSAGE name="JB2Image.unknown_type" number="15412" value="[%0!s!] 损坏的文件： 未知记录类型。" />
+<MESSAGE name="JB2Image.zero_dim" number="15413" value="[%0!s!] 损坏的文件：JB2 图像维数为零。" />
+<MESSAGE name="MMRDecoder.bad_codebook" number="15500" value="[%0!s!] 混淆的 MMR codebook" />
+<MESSAGE name="MMRDecoder.bad_data" number="15501" value="[%0!s!] 无效的 G4/MMR 数据" />
+<MESSAGE name="MMRDecoder.bad_header" number="15502" value="[%0!s!] 损坏的 G4/MMR 头" />
+<MESSAGE name="MMRDecoder.cant_process" number="15503" value="[%0!s!] 无法对 G4/MMR 数据进行解压。" />
+<MESSAGE name="MMRDecoder.unrecog_header" number="15504" value="[%0!s!] 不认识 G4/MMR 头" />
+<MESSAGE name="not_implemented_n" number="15600" value="[%0!s!] %1!s! 未实现" />
+<MESSAGE name="not_implemented" number="15700" value="[%0!s!] 未实现" />
+<MESSAGE name="parseoptions.ambiguous" number="15800" value="[%0!s!] 给出的&apos;%1!s!=%2!s!&apos; 与 &apos;%3!s!=%4!s!&apos;是混淆的选择。" />
+<MESSAGE name="parseoptions.bad_install" number="15801" value="[%0!s!] SDK 没有安装好。请重装。" />
+<MESSAGE name="parseoptions.bad_number" number="15802" value="[%0!s!] &apos;%1!s!&apos; 是一个数" />
+<MESSAGE name="parseoptions.bad_value" number="15803" value="[%0!s!] &apos;%1!s!&apos; 不是数也不是布尔值。" />
+<MESSAGE name="parseoptions.cant_inherit" number="15804" value="[%0!s!] %1!s!: 错误出现在 &apos;%3!s!&apos;&#10;&#09;--&gt; 的第 %2!d! 行。无法继承未知的样板&apos;%4!s!&apos;" />
+<MESSAGE name="parseoptions.illegal_profile" number="15805" value="[%0!s!] %1!s!: 错误出现在样板&apos;%3!s!&apos;&#10;&#09;--&gt;的第 %2!d! 行。非法的样板名 &apos;%4!s!&apos;" />
+<MESSAGE name="parseoptions.missing_arg_option" number="15806" value="[%0!s!] %1!s! 选择要求参数。" />
+<MESSAGE name="parseoptions.profile_error" number="15807" value="[%0!s!] %1!s!: 错误出现在样板&apos;%3!s!&apos;&#10;&#09;--&gt; %4!s!的第 %2!d! 行。" />
+<MESSAGE name="parseoptions.unrecog_option_c" number="15808" value="[%0!s!] 不明的选择 -%1!s!" />
+<MESSAGE name="parseoptions.unrecog_option" number="15809" value="[%0!s!] 不明的选择 &apos;%1!s!&apos;" />
+<MESSAGE name="Stat" number="15900" value="[%0!s!] Stat" />
+<MESSAGE name="STOP" number="16000" value="[%0!s!] STOP" />
+<MESSAGE name="TextException.test" number="16100" value="[%0!s!] 测试异常" />
+<MESSAGE name="XMLAnno.bad_color" number="16200" value="[%0!s!] 颜色 %1!s! 不获支持。" />
+<MESSAGE name="XMLAnno.bad_page" number="16201" value="[%0!s!] 得不到指定的页。" />
+<MESSAGE name="XMLAnno.bad_rect" number="16202" value="[%0!s!] 矩形区域的坐标值太少。" />
+<MESSAGE name="XMLAnno.bad_circle" number="16203" value="[%0!s!] 圆形区域的坐标值太少。" />
+<MESSAGE name="XMLAnno.bad_oval" number="16204" value="[%0!s!] 椭圆形区域的坐标值太少。" />
+<MESSAGE name="XMLAnno.unknown_shape" number="16205" value="[%0!s!] 未知的形状 %1!s!" />
+<MESSAGE name="XMLAnno.unknown_border" number="16206" value="[%0!s!] 未知的边界类型 %1!s!" />
+<MESSAGE name="XMLAnno.extra_body" number="16207" value="[%0!s!] 须要恰好一对值 &lt;BODY&gt;&lt;/BODY&gt; " />
+<MESSAGE name="XMLAnno.no_body" number="16208" value="[%0!s!] 没找到坐标对 &lt;BODY&gt;&lt;/BODY&gt; " />
+<MESSAGE name="XMLAnno.map_find" number="16209" value="[%0!s!] 没找到指定的映射 %1!s!" />
+<MESSAGE name="XMLAnno.fail_init" number="16210" value="[%0!s!] 初始化 %1!s! 失败" />
+<MESSAGE name="XMLTags.no_GP" number="16300" value="[%0!s!] 没有从 GP 指针得到保险 " />
+<MESSAGE name="XMLTags.raw_string" number="16301" value="[%0!s!] 从文件范围外找到字符窜 '%1!s!' 。" />
+<MESSAGE name="XMLTags.bad_tag" number="16302" value="[%0!s!] 无终止的标记  %1!s!" />
+<MESSAGE name="XMLTags.bad_PI" number="16303" value="[%0!s!] 无终止的处理指令：%1!s!" />
+<MESSAGE name="XMLTags.bad_comment" number="16304" value="[%0!s!] 无终止的注释：%1!s!" />
+<MESSAGE name="XMLTags.bad_form" number="16305" value="[%0!s!] 正常形成的错误。 太多终止标记。" />
+<MESSAGE name="XMLTags.no_body" number="16306" value="[%0!s!] 没有本体。" />
+<MESSAGE name="ZPCodec.no_encoding" number="16400" value="[%0!s!] ZPCodec 尚未为解码而建立。" />
+<MESSAGE name="ZPCodec.write_error" number="16401" value="[%0!s!] ZPCodec 写出出错" />
+</BODY>
+</DjVuMessages>

@@ -1,0 +1,364 @@
+.\" Copyright (c) 2001-2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DDJVU 1 "10/19/2002" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+ddjvu \- Command line DjVu decoder.
+
+.SH SYNOPSIS
+.BI "ddjvu -format=" "fmt" " [" "options" "] [" "djvufile" "] [" "outputfile" "]"
+
+.SH DESCRIPTION
+
+Decode the DjVu file
+.IR "djvufile" ,
+produces the image file
+.IR "outputfile" .
+
+The DjVu data is read from the standard input when argument 
+.IR "djvufile"
+is not specified or when it is equal to a single dash.
+Similarly, the output data is written to the standard output
+when argument 
+.IR "outputfile"
+is not specified or equal to a single dash.
+However a valid output file name is always required when producing a
+TIFF or PDF file.
+
+.SH MAIN OPTIONS
+.TP
+.BI "-format=" "fmt"
+Specify the output file formats.
+The recognized file formats are
+.BR "pbm" ,
+.BR "pgm" ,
+.BR "ppm" ,
+.BR "pnm" ,
+.BR "rle" ,
+.BR "tiff" ,
+and
+.BR "pdf" .
+.RS
+.IP "*" 3
+Formats 
+.BR "pbm" ,
+.BR "pgm" ,
+and
+.BR "ppm"
+respectively produce a Portable Bitmap (PBM),
+Portable Graymap (PGM),
+or Portable Pixmap (PPM) file.
+Format 
+.B "pnm"
+produces a PBM, PGM, or PPM 
+output file according to the color content
+of the output image.
+.IP "*"
+Format
+.B "rle"
+produces a compact run length encoded bitonal file
+that is understood by the DjVuLibre commands
+.BR "cjb2" 
+and 
+.BR "csepdjvu" .
+.IP "*"
+Format
+.B "tiff"
+produces a Tagged Image Format (TIFF) 
+file using lossless compression.
+Enabling lossy JPEG compression (see option 
+.BI "-quality"
+below) often produces much smaller files.
+Commands 
+.BR tiffcp (1)
+and 
+.BR tiffsplit (1)
+are useful for manipulating the resulting 
+TIFF files.
+.IP "*"
+Format
+.B "pdf"
+produces a Portable Document Format (PDF) file.
+Each page in the resulting file is represented
+by an image at the specified resolution,
+using lossless compression.
+Enabling lossy JPEG compression (see option 
+.BI "-quality"
+below) often produces much smaller files.
+An alternate way to produce PDF 
+file consists in first using
+.BR djvups (1)
+and convert the resulting PostScript file to PDF.
+Which method gives better results depends
+on the contents of the DJVU file and on the
+capabilities of the PS to PDF converter.
+.RE
+.TP
+.B ""
+When option
+.B "-format"
+is not specified, 
+the extension of argument
+.I "outputfile"
+has no influence on the default output format.
+Instead the program behavior is modified to 
+ensure backward compatibility with previous 
+versions of 
+.BR "ddjvu" .
+We recommend to always specify the output
+format using this option.
+.TP
+.BI "-page=" "pagespec"
+Specify which pages should be decoded.
+When this option is not specified,
+all pages of the documents are decoded
+and concatenated into the output file.
+The page specification
+.I pagespec 
+contains one or more comma-separated page ranges.
+A page range is either a page number, 
+or two page numbers separated by a dash.
+For instance, specification
+.BR "1-10" 
+outputs pages 1 to 10, and specification
+.BR "1,3,99999-4"
+outputs pages 1 and 3, followed by all the document
+pages in reverse order up to page 4.
+.TP
+.BI "-eachpage"
+When this option is specified, program
+.B ddjvu
+generates one separate file per page
+named by replacing the 
+.B %d
+specification in 
+.I outputfilename
+by the page number 
+in a manner simular to the 
+.BR printf (3)
+function.
+.TP
+.BI "-mode=" "mod"
+Selects which layers of the DjVu image should be rendered.
+Valid rendering modes are 
+.BR "color" ,
+.BR "black" ,
+.BR "mask" ,
+.BR "foreground" ,
+and
+.BR "background" .
+.RS
+.IP "*" 3
+Rendering mode
+.BR "color" 
+is the default mode.
+When the DjVu file is bitonal, bitonal or gray-level output
+is produced depending on the subsampling factor. 
+Otherwise a color image is produced.
+.IP "*"
+Rendering mode
+.B "black"
+is useful to extract a meaningful black and white image.
+bitonal or gray-level output is produced depending 
+on the subsampling factor. 
+.IP "*"
+Rendering modes
+.BR "mask" ,
+.BR "foreground" ,
+and
+.BR "background"
+select specific layers of a DjVu image.
+These modes can fail if the DjVu image does 
+not contain the selected layer.
+.RE
+.TP
+.BI "-skip"
+Instead of aborting when encountering a corrupted page,
+this option causes
+.BR ddjvu
+to simply skip the corrupted page and continue with the next.
+This is useful for processing certain damaged files.
+
+.SH RESOLUTION OPTIONS
+The following options control the resolution of the output image.  
+The default resolution is the native resolution of the DjVu file, 
+equivalent to selecting
+.BR "-1" .
+.TP
+.BI "-" "n"
+Specify an integer sub-sampling factor.  
+The dimensions of the full output image will be 
+.I n
+times smaller than the DjVu image size.
+The legal values for argument
+.I n
+range from 1 to 12.  Option
+.BR -1 ,
+for instance, produces an output image whose resolution
+is equal to the resolution of the input DjVu image file.
+.TP
+.BI "-subsample=" "n"
+This is equivalent to option
+.IR "-n" .
+.TP
+.BI "-scale=" "mag"
+Specify a magnification factor relative to the resolution stored 
+in the DjVu image.  Specifying magnification of 100 produces an image 
+suitable for displaying on a 100 dpi device such as a computer screen.  
+The magnification factor
+.I "mag"
+can also be interpreted as the resolution
+of the output image expressed in dot per inch.
+.TP
+.BI "-size=" "w" "x" "h"
+Specify the size of the full output image.
+Rendering the full DjVu image would create an 
+output image whose width and height would not exceed
+.IR "w"
+and 
+.IR "h" .
+To change the aspect ratio, you must also use option
+.BR "-aspect=no" .
+.TP
+.BI "-aspect=" yesno
+This option indicates whether the image aspect ratio
+should be preserved.  The defaults is to preserve the
+aspect ration. This option permits changes in the aspect ratio
+when used in combination with option
+.BR "-size" .
+
+.SH OTHER OPTIONS
+.TP
+.BI "-verbose"
+Display informational messages describing the 
+structure of the DjVu image and the format
+of the output file.
+.TP
+.BI "-segment=" "w" "x" "h" "+" "x" "+" "y"
+Specify an image segment to render. 
+Program
+.B ddjvu
+conceptually renders the full page using the specified resolution, 
+and then extracts a sub-image of width
+.I w 
+and height
+.IR h ,
+starting at position 
+.IR "" ( x , y )
+relative to the bottom left corner of the page.
+Both operations of course happen simultaneously.  Rendering a small
+sub-image is much faster than rendering the complete image.  
+The output file will always have size
+.IR w x h 
+when this option is specified.
+.TP
+.BI "-quality=" "factor"
+Enables lossy JPEG compression for TIFF and PDF files.
+This option only affects images that cannot be encoded
+using the preferred TIFF/G4 compression.
+Argument 
+.I factor
+is a quantization factor ranging from 25 to 150. 
+See command 
+.BR cjpeg (1)
+for more information on JPEG quantization factors.
+Value 80 is a good starting point.
+.TP 
+.BR "-quality=uncompressed"
+Completely disables compression in TIFF and PDF files.
+Although the resulting files are often huge,
+this is sometimes useful for maximal compatibility
+with hastily written software.
+.TP
+.BR "-quality=deflate"
+Enables DEFLATE compression for TIFF files.
+Images that cannot be encoded using the preferred TIFF/G4 compression
+will be encoded with DEFLATE compression if available.
+Otherwise the more portable PACKBITS compression is used.
+Specifying this option is not necessary for PDF files
+because this is the default behavior.
+
+.SH DEPRECATED OPTIONS
+
+Various options have been maintained to ensure
+backward compatibility with previous versions of
+.BR ddjvu.  
+When option
+.BR -format
+is not specified, 
+the program only decodes the first page of the document
+and the default resolution becomes
+.BR -scale=100 .
+Options 
+.BR -size ,
+.BR -scale ,
+.BR -segment ,
+and
+.BR -page 
+accept an argument separated by a space.
+Options
+.BR -foreground ,
+.BR -background ,
+and
+.BR -black
+are shorthands for the 
+.BI -mode= mod
+option.
+Please do not rely on these features.
+
+
+.SH EXAMPLES
+Command
+.IP "" 3
+.BI "ddjvu -format=tiff " "myfile.djvu" " " "myfile.tif"
+.PP
+decodes all pages and produces a multipage TIFF file.
+
+Command
+.IP "" 3
+.BI "ddjvu -format=ppm -page=1-10 -eachpage -size=100x100 " "myfile.djvu" " thumb%03d.ppm"
+.PP
+produces 100x100 thumbnails for the first ten page of a document 
+and outputs them as PPM files named
+.BR thumb001.ppm
+to 
+.BR thumb010.ppm .
+
+.SH CREDITS
+The new version of this program was written 
+by L\('eon Bottou <leonb@users.sourceforge.net>.
+
+This program includes code derived from program
+.BR tiff2pdf ,
+written by Ross Finlayson and 
+released under a BSD license.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR djview (1),
+.BR pnm (5),
+.BR pbm (5),
+.BR pgm (5),
+.BR ppm (5),
+.BR cjpeg (1),
+.BR tiffsplit (1),
+.BR tiffcp (1),
+.BR printf (3)

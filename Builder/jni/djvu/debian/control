@@ -1,0 +1,97 @@
+Source: djvulibre
+Section: libs
+Priority: optional
+Maintainer: Barak A. Pearlmutter <bap@debian.org>
+Uploaders: Leon Bottou <leonb@bottou.org>
+Build-Depends: pkg-config,
+	       debhelper (>= 11),
+	       libjpeg-dev,
+	       libtiff-dev,
+	       librsvg2-bin | imagemagick
+Vcs-Git: https://salsa.debian.org/debian/djvulibre.git
+Vcs-Browser: https://salsa.debian.org/debian/djvulibre
+Homepage: http://djvu.sourceforge.net/
+Standards-Version: 4.1.4
+
+Package: libdjvulibre-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends},
+	 libdjvulibre21 (= ${binary:Version}), libjpeg-dev
+Description: Development files for the DjVu image format
+ DjVu image format static library and development files.
+ .
+ DjVu is a set of compression technologies, a file format, and a
+ software platform for the delivery over the Web of digital documents,
+ scanned documents, and high resolution images.
+ .
+ DjVu documents download and display extremely quickly, and look
+ exactly the same on all platforms.  DjVu can be seen as a superior
+ alternative to PDF and Postscript for digital documents, to TIFF (and
+ PDF) for scanned documents, to JPEG for photographs and pictures, and
+ to GIF for large palettized images.  DjVu is the only Web format that
+ is practical for distributing high-resolution scanned documents in
+ color.
+
+Package: libdjvulibre21
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, libdjvulibre-text (>= ${source:Version})
+Conflicts: libdjvulibre1
+Replaces: libdjvulibre1, libdjvulibre15
+Description: Runtime support for the DjVu image format
+ DjVu runtime library.
+
+Package: libdjvulibre-text
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Replaces: libdjvulibre15, djview3 (= 3.5.20-9), djvulibre-desktop (<< 3.5.20-9)
+Description: Linguistic support files for libdjvulibre
+ Runtime linguistic support files for the libdjvulibre library.
+
+Package: djvulibre-desktop
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: djview4 | djvu-viewer | evince
+Conflicts: libdjvulibre1, libdjvulibre21 (<= 3.5.20-5)
+Replaces: libdjvulibre15 (<= 3.5.20-5)
+Description: Desktop support for the DjVu image format
+ Miscellaneous files to support the DjVu image format on the desktop.
+
+Package: djview
+Section: graphics
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, djview4 | djview3
+Description: Transition package, djview3 to djview4
+ Ease transition from djview or djview3 to djview4 with this dummy package.
+
+Package: djview3
+Section: graphics
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, djview4
+Description: Transition package, djview3 to djview4
+ Ease transition from djview3 to djview4 with this dummy package.
+
+Package: djvuserve
+Section: web
+Recommends: apache2 | apache | httpd-cgi | httpd
+Conflicts: djvulibre-bin (<< 3.5.9-3)
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: CGI program for unbundling DjVu files on the fly
+ CGI program to convert a bundled multi-page DjVu document into an
+ indirect DjVu document on the fly.  This provides for efficiently
+ browsing large DjVu documents without transferring unnecessary pages.
+
+Package: djvulibre-bin
+Section: graphics
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, curl, libdjvulibre21 (= ${binary:Version})
+Recommends: pdf2djvu
+Suggests: djvulibre-desktop, djview4 | djvu-viewer | evince
+Description: Utilities for the DjVu image format
+ Executables including utilities for conversion between DjVu and other
+ formats.

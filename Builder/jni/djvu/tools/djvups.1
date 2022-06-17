@@ -1,0 +1,275 @@
+.\" Copyright (c) 2003 Leon Bottou, Yann Le Cun, Patrick Haffner,
+.\" Copyright (c) 2001 AT&T Corp., and Lizardtech, Inc.
+.\"
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual. Otherwise check the web site
+.\" of the Free Software Foundation at http://www.fsf.org.
+.TH DJVUPS 1 "01/18/2003" "DjVuLibre-3.5" "DjVuLibre-3.5"
+.SH NAME
+djvups \- Convert DjVu documents to PostScript.
+
+.SH SYNOPSIS
+.BI "djvups  [" "options" "] [" "djvufile" "] [" "outputfile" "]"
+
+.SH DESCRIPTION         
+This program decodes DjVu file 
+.IR djvufile ,  
+and generates a PostScript file named
+.IR outputfile .
+The DjVu data is read from the standard input when argument 
+.IR "djvufile"
+is not specified or when it is equal to a single dash.
+Similarly, the output data is written to the standard output
+when argument 
+.IR "outputfile"
+is not specified or equal to a single dash.
+
+PostScript printers have various capabilities.
+Investigate options 
+.B -level
+and
+.B -gray
+for obtaining the best results.
+
+.SH OPTIONS
+.TP
+.BI -help
+Prints the list of recognized options.
+.TP
+.BI -verbose
+Displays a progress bar.
+.TP
+.BI -page= pagespec
+Specify the document pages to be converted.
+The page specification
+.I pagespec 
+contains one or more comma-separated page ranges.
+A page range is either a page number, 
+or two page numbers separated by a dash.
+Specification
+.BR 1-10 ,
+for instance, prints pages 1 to 10.
+Specification
+.BR 1,3,99999-4
+prints pages 1 and 3, followed by all the document
+pages in reverse order up to page 4.
+.TP
+.BI -format=ps
+Produce a PostScript file. 
+This is the default.
+.TP
+.BI -format=eps
+Produce an Encapsulated PostScript file.
+Encapsulated PostScript files are suitable for
+embedding images into other documents.
+Encapsulated PostScript file can only contain 
+a single page. Setting this option
+overrides the options
+.BR -copies ,
+.BR -orientation ,
+.BR -zoom ,
+.BR -cropmarks ,
+and
+.BR -booklet .
+.TP
+.BI -copies= n
+Specify the number of copies to print.
+.TP
+.BI -orientation= orient
+Specify whether pages should be printed using
+the
+.BR auto ,
+.BR portrait ,
+or
+.B landscape 
+orientation.
+.TP
+.BI -mode= modespec
+Specify how pages should be decoded.
+The default mode,
+.BR color ,
+renders all the layers of the DjVu documents.
+Mode 
+.BR black
+only renders the foreground layer mask.  This mode does not work with
+DjVuPhoto images because these files have no foreground layer
+mask.
+Modes
+.BR foreground 
+and
+.BR background
+only render the foreground layer or the background layer 
+of a DjVuDocument image.
+.TP
+.BI -zoom= zoomspec
+Specify a zoom factor
+.IR zoomspec .
+The default zoom factor, 
+.BR auto ,
+scales the image to fit the page.
+Argument
+.I zoomspec
+also can be a number in range 
+.BR 25
+to
+.BR 2400 
+representing a magnification percentage
+relative to the original size of the document.
+.TP
+.BI -frame= yesno
+Specifying 
+.BR yes
+causes the generation of a thin gray border
+representing the boundaries of the document pages.
+The default is
+.BR no .
+.TP
+.BI -cropmarks= yesno
+Specifying 
+.BR yes
+causes the generation of crop marks
+indicating where pages should be cut.
+The default is
+.BR no .
+.TP
+.BI -level= languagelevel
+Select the language level of the generated PostScript.
+.IR languagelevel . 
+Valid language levels are 
+.BR 1 ,
+.BR 2 ,
+and
+.BR 3 .
+Level 
+.B 3 
+produces the most compact and fast printing PostScript files.
+Some of these files however require a very modern printer.
+Level
+.B 2 
+is the default value.
+The generated PostScript files are almost as compact
+and work with all but the oldest PostScript printers.
+Level
+.B 1
+can be used as a last resort option.
+.TP
+.BI -color= yesno
+The default value,
+.BR yes ,
+generates a color PostScript file.
+Specifying value
+.BR no
+converts the image to gray scale.
+The resulting PostScript file is smaller
+and marginally more portable.
+.TP
+.BI -gray
+This option is equivalent to option
+.BR -color=no 
+and is provided for convenience.
+.TP
+.BI -colormatch= yesno
+The default value,
+.BR yes ,
+generates a PostScript file using
+device independent colors in compliance
+with the 
+.SM sRGB
+specification.
+Modern printers then produce colors that match
+the original as well as possible.  
+Specifying value
+.B no
+generates a PostScript file using device dependent colors.  
+This is sometimes useful with older printers.
+You can then use option
+.BR -gamma 
+to tune the output colors.
+.TP
+.BI -gamma= gammaspec
+Specify a gamma correction factor for the device dependent PostScript colors.
+Argument 
+.I gammaspec
+must be in range
+.B 0.3
+to
+.BR 5.0 .
+Gamma correction normally pertains to cathodic screens only.  
+It gets meaningful for printers because several models
+interpret device dependent RGB colors by emulating the color
+response of a cathodic tube.  
+.TP
+.BI -booklet= opt
+Turns the booklet printing mode on.
+The booklet mode prints two pages on each side
+in a way suitable for making a booklet by folding
+the sheets. Option
+.I opt
+can take values
+.B no
+for disabling the booklet mode,
+.B yes
+for enabling the recto/verso booklet mode, and
+.B recto
+or
+.B verso
+to print only one side of each sheet.
+.TP
+.BI -bookletmax= max
+Specifies the maximal number of pages per booklet.
+A single printout might then be composed of several 
+booklets. Argument
+.I max
+is rounded up to the next multiple of 4. 
+Specifying 
+.B 0
+sets no maximal number of pages
+and ensures that the printout will produce
+a single booklet.  This is the default.
+.TP
+.BI -bookletalign= align
+Specifies a positive or negative offset 
+applied  to the verso of each sheet.  
+Argument 
+.I align
+is expressed in points 
+(one point is 1/72th of an inch, or 0.352 millimeter)
+This is useful with certain printers to ensure that 
+both recto and verso are properly aligned.  The default
+value is of course
+.BR 0 .
+.TP
+.BI -bookletfold= base[+incr]
+Specifies the extra margin left  between both pages
+on a single sheet.  The base value
+.I base
+is expressed in points (one point is 1/72th of an inch, 
+or 0.352 millimeter). This margin is incremented for 
+each outer sheet by value
+.I incr
+expressed in millipoints. The default value is 
+.BR 18+200 .
+
+.SH CREDITS
+This program was written by L\('eon Bottou <leonb@users.sourceforge.net>,
+Andrei Erofeev <andrew_erofeev@yahoo.com>, and Florin Nicsa.
+
+.SH SEE ALSO
+.BR djvu (1),
+.BR ddjvu (1).
+.BR djview (1)

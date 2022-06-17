@@ -1,0 +1,896 @@
+<?xml version="1.0" ?>
+<!DOCTYPE DjVuMessages PUBLIC "-//W3C/DTD DjVuMessages 1.0//EN" "../../../pubtext/DjVuMessages.dtd">
+<!-- Error messages from libdjvu++ -->
+<DjVuMessages>
+<BODY>
+<MESSAGE name="DjVuMessage.Unrecognized" number="10000"
+  value="[%0!05u!] 認識できないエラーメッセージ：&#10;&#09;メッセージ名：&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuMessage.Parameter" number="10001"
+  value="パラメーター &apos;%1!s!&apos;" />
+<MESSAGE name="DjVuMessage.failed_to_parse_XML" number="10002"
+  value="[%0!05u!] XMLメッセージを解析することができません。ファイル：;&#09;&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuText.no_text" number="10101">
+[1-%0!05u!] テキストが必要です。テキストが見つかりませんでした。
+</MESSAGE>
+<MESSAGE name="DjVuText.corrupt_chunk" number="10102">
+[1-%0!05u!] ファイルチャンクが不正です。ファイルチャンクが短すぎます。
+</MESSAGE>
+<MESSAGE name="DjVuText.bad_version" number="10103">
+[1-%0!05u!] テキストバージョン &apos;%1!c!&apos; はサポートしていません。
+</MESSAGE>
+<MESSAGE name="DjVuText.one_word" number="10104">
+[1-%0!05u!] 単語中にセパレータが見つかりました。
+</MESSAGE>
+<MESSAGE name="DjVuText.dupl_text" number="10105">
+[1-%0!05u!] 1つ以上のテキストレイヤが見つかりました。
+</MESSAGE>
+<MESSAGE name="arrays.ill_arg" number="11500"
+  value="[%0!05u!] DArray::del に不正な引数があります。" />
+<MESSAGE name="arrays.ill_sub" number="11501"
+  value="[%0!05u!] DArray の添え字が不正です。" />
+<MESSAGE name="arrays.resize" number="11502"
+  value="[%0!05u!] DArray のサイズ変更で指定された値が範囲外です。" />
+<MESSAGE name="bad_arg" number="11600"
+  value="[%0!05u!] 引数が正しくありません &apos;%1!s!&apos;" />
+<MESSAGE name="ByteStream.backward" number="11700"
+  value="[%0!05u!] この ByteStream では後方に捜索することができません。" />
+<MESSAGE name="ByteStream.bad_arg" number="11701"
+  value="[%0!05u!] ByteStream::seek に不正な引数があります。" />
+<MESSAGE name="ByteStream.bad_mode" number="11703"
+  value="[%0!05u!] StdioByteStream に不正なモードがあります。" />
+<MESSAGE name="ByteStream.cant_write" number="11704"
+  value="[%0!05u!] デコード時に作成される BSByteStream に書き込めません。" />
+<MESSAGE name="ByteStream.corrupt" number="11705"
+  value="[%0!05u!] デコーダーからの入力情報が破損しています。" />
+<MESSAGE name="ByteStream.flush_error" number="11707"
+  value="[%0!05u!] StdioByteStream::flush、フラッシュエラー" />
+<MESSAGE name="ByteStream.no_read" number="11708"
+  value="[%0!05u!] StdioByteStream が読み込むために開けません。" />
+<MESSAGE name="ByteStream.no_write" number="11709"
+  value="[%0!05u!] StdioByteStream が書き込むために開けません。" />
+<MESSAGE name="ByteStream.open_fail2" number="11710"
+  value="[%0!05u!] StdioByteStream::StdioByteStream が開けません。" />
+<MESSAGE name="ByteStream.open_fail" number="11711"
+  value="[%0!05u!] &apos;%1!s!&apos;：&apos;%2!s!&apos; を開くことができません。" />
+<MESSAGE name="ByteStream.read_error2" number="11712"
+  value="[%0!05u!] StdioByteStream::read、読み込みエラー" />
+<MESSAGE name="ByteStream.read_error" number="11713"
+  value="[%0!05u!] ByteStream::readall、読み込みエラー" />
+<MESSAGE name="ByteStream.seek_error2" number="11714"
+  value="[%0!05u!] ファイルの先頭より前方に捜索することができません。" />
+<MESSAGE name="ByteStream.seek_error" number="11715"
+  value="[%0!05u!] StdioByteStream::seek、捜索エラー" />
+<MESSAGE name="ByteStream.seek" number="11716"
+  value="[%0!05u!] この ByteStream のシーク中に異常がみつかりました(ftell()が異常な動作をしています)" />
+<MESSAGE name="ByteStream.write" number="11717"
+  value="[%0!05u!] ByteStream::write%1!s!、書き込みエラー" />
+<MESSAGE name="ByteStream.write_error2" number="11718"
+  value="[%0!05u!] StdioByteStream::write、書き込みエラー" />
+<MESSAGE name="ByteStream.write_error" number="11720"
+  value="[%0!05u!] ByteStream::write に未知のエラーがあります。" />
+<MESSAGE name="ByteStream.not_implemented" number="11721"
+  value="[%0!05u!] ByteStream::scanf が実装されていません。" />
+<MESSAGE name="DataPool.add_data" number="11800"
+  value="[%0!05u!] 関数 DataPool::add_data()は、接続済みの DataPools に対して呼び出してはいけません。" />
+<MESSAGE name="DataPool.bad_length" number="11801"
+  value="[%0!05u!] 長さは正の値でなければなりません。" />
+<MESSAGE name="DataPool.bad_size" number="11802"
+  value="[%0!05u!] サイズは、0以上でなければなりません。" />
+<MESSAGE name="DataPool.connected1" number="11803"
+  value="[%0!05u!] すでに、別の DataPool に接続されています。" />
+<MESSAGE name="DataPool.connected2" number="11804"
+  value="[%0!05u!] すでにファイルに接続されています。" />
+<MESSAGE name="DataPool.neg_start" number="11805"
+  value="[%0!05u!] 範囲の起点は負の値ではいけません。" />
+<MESSAGE name="DataPool.no_threadless" number="11806"
+  value="[%0!05u!] 内部エラーです：このファンクションはスレッドレスモードで使用することは出来ません。" />
+<MESSAGE name="DataPool.seek_backward" number="11808"
+  value="[%0!05u!] この ByteStream では EOF から後方に走査することができません。" />
+<MESSAGE name="DataPool.zero_DataPool" number="11809"
+  value="[%0!05u!] 内部エラー：入力にZERO DataPoolが指定されました。" />
+<MESSAGE name="DjVmDir0.no_slash" number="11900"
+  value="[%0!05u!] ファイル名には、スラッシュが入ってはいけません。" />
+<MESSAGE name="DjVmDir.bad_dir" number="12000"
+  value="[%0!05u!] ディレクトリには、バンドルド形式とインダイレクト形式が含まれています。" />
+<MESSAGE name="DjVmDir.bad_file" number="12001"
+  value="[%0!05u!] DjVm File ID &apos;%1!s!&apos; 不正な文字が含まれています。" />
+<MESSAGE name="DjVmDir.corrupt" number="12002"
+  value="[%0!05u!] DjVu 文書が不正です。 マルチページドキュメントのシェアードアノテーションは1ファイルしか使用できません。" />
+<MESSAGE name="DjVmDir.dupl_id2" number="12003"
+  value="[%0!05u!] File with ID &apos;%1!s!&apos; すでに、DJVM ディレクトリが存在します。" />
+<MESSAGE name="DjVmDir.dupl_id" number="12004"
+  value="[%0!05u!] エラー &apos;DIRM&apos; chunk：重複する ID(&apos;%1!s!&apos;) を持つレコードが存在します。" />
+<MESSAGE name="DjVmDir.dupl_name2" number="12005"
+  value="[%0!05u!] File with NAME &apos;%1!s!&apos; すでに、DJVM ディレクトリが存在します。" />
+<MESSAGE name="DjVmDir.dupl_name" number="12006"
+  value="[%0!05u!] エラー &apos;DIRM&apos; chunk：重複する名称(&apos;%1!s!&apos;)を持つレコードが存在します。" />
+<MESSAGE name="DjVmDir.dupl_title2" number="12007"
+  value="[%0!05u!] File with TITLE &apos;%1!s!&apos; すでに、DJVM ディレクトリが存在します。" />
+<MESSAGE name="DjVmDir.dupl_title" number="12008"
+  value="[%0!05u!] エラー &apos;DIRM&apos; chunk：重複するタイトル(&apos;%1!s!&apos;)を持つのレコードが存在します。" />
+<MESSAGE name="DjVmDir.get_str_type" number="12009"
+  value="[%0!05u!] 内部エラーです：すべての有効なファイルを含むように DjVmDir::File::get_str_type() を変更してください。" />
+<MESSAGE name="DjVmDir.multi_save2" number="12010"
+  value="[%0!05u!] 現在の DjVu のマルチページフォーマットは、シェアードアノテーション付の複数ファイルに対応していません。" />
+<MESSAGE name="DjVmDir.multi_save" number="12011"
+  value="[%0!05u!] シェアードアノテーション付きの複数ファイル形式でマルチページ文書を保存することはできません。" />
+<MESSAGE name="DjVmDir.name_in_use" number="12012"
+  value="[%0!05u!] 名前 &apos;%1!s!&apos; は現在使用されています。" />
+<MESSAGE name="DjVmDir.no_indirect" number="12013"
+  value="[%0!05u!] ディレクトリエラー：バンドルド形式ではインダイレクトエントリは許可されません。" />
+<MESSAGE name="DjVmDir.no_info" number="12014"
+  value="[%0!05u!] ファイルID &apos;%1!s!&apos; の情報がありません。" />
+<MESSAGE name="DjVmDir.title_in_use" number="12015"
+  value="[%0!05u!] タイトル &apos;%1!s!&apos; は現在使用されています。" />
+<MESSAGE name="DjVmDir.version_error" number="12016"
+  value="[%0!05u!] &apos;%1!s!&apos; より高いバージョンの DJVM ディレクトリを読むことはできません&#10;データバージョン番号は &apos;%2!s!&apos; です。" />
+<MESSAGE name="DjVmDoc.cant_delete" number="12100"
+  value="[%0!05u!] ID(&apos;%1!s!&apos;) を持つファイルが見つからないため削除できません。" />
+<MESSAGE name="DjVmDoc.cant_find" number="12101"
+  value="[%0!05u!] ID(&apos;%1!s!&apos;) を持つファイルがみつかりません。" />
+<MESSAGE name="DjVmDoc.cant_read_indr" number="12102"
+  value="[%0!05u!] DataPools または ByteStreams からインダイレクト形式の DjVm ドキュメントを読むことができません。" />
+<MESSAGE name="DjVmDoc.no_data" number="12103"
+  value="[%0!05u!] Strange：ファイル(&apos;%1!s!&apos;)にデータがありません。" />
+<MESSAGE name="DjVmDoc.no_dirm_chunk" number="12104"
+  value="[%0!05u!] DJVM ドキュメントの最初のチャンクは DIRM でなければなりません。" />
+<MESSAGE name="DjVmDoc.no_duplicate" number="12105"
+  value="[%0!05u!] 同じファイルを2ど挿入しようとしています。" />
+<MESSAGE name="DjVmDoc.no_form_djvm2" number="12106"
+  value="[%0!05u!] DJVM形式が見つかりません。ドキュメントは新しいマルチページ形式ではありません。" />
+<MESSAGE name="DjVmDoc.no_form_djvm" number="12107"
+  value="[%0!05u!] 入力されたデータから DJVM 形式を見つけることができません。" />
+<MESSAGE name="DjVmDoc.not_IFF" number="12108"
+  value="[%0!05u!] ファイル &apos;%1!s!&apos; は、IFFフォーマットの中にありません。" />
+<MESSAGE name="DjVmDoc.no_zero_file" number="12109"
+  value="[%0!05u!] ZERO ファイルを挿入することができません。" />
+<MESSAGE name="DjVmDoc.zero_file" number="12110"
+  value="[%0!05u!] Strange：ファイルサイズがゼロです。" />
+<MESSAGE name="DjVuAnno.bad_type" number="12200"
+  value="[%0!05u!] GLObject()：誤ったオブジェクト型が渡されました。STRING または SYMBOL を指定してください。" />
+<MESSAGE name="DjVuAnno.bad_url" number="12201"
+  value="[%0!05u!] URL仕様が無効です。" />
+<MESSAGE name="DjVuAnno.bad_zoom" number="12203"
+  value="[%0!05u!] ズーム仕様が正しくありません。" />
+<MESSAGE name="DjVuAnno.invalid2list" number="12207"
+  value="[%0!05u!] オブジェクトタイプが無効です　リストに変換することができません。" />
+<MESSAGE name="DjVuAnno.invalid2number" number="12208"
+  value="[%0!05u!] オブジェクトタイプが無効です　数値に変換することができません。" />
+<MESSAGE name="DjVuAnno.invalid2string" number="12209"
+  value="[%0!05u!] オブジェクトタイプが無効です　文字列に変換することができません。" />
+<MESSAGE name="DjVuAnno.invalid2symbol" number="12210"
+  value="[%0!05u!] オブジェクトタイプが無効です　シンボルに変換することができません。" />
+<MESSAGE name="DjVuAnno.list2number" number="12211"
+  value="[%0!05u!] オブジェクトタイプが無効です　オブジェクト &apos;%1!s!&apos; を数値に変換することができません。" />
+<MESSAGE name="DjVuAnno.list2string" number="12212"
+  value="[%0!05u!] オブジェクトタイプが無効です　オブジェクト &apos;%1!s!&apos; を文字列に変換することができません。" />
+<MESSAGE name="DjVuAnno.list2symbol" number="12213"
+  value="[%0!05u!] オブジェクトタイプが無効です　オブジェクト &apos;%1!s!&apos; をシンボルに変換することができません。" />
+<MESSAGE name="DjVuAnno.no_number" number="12214"
+  value="[%0!05u!] オブジェクト &apos;%1!s!&apos; の内容を走査中にエラーが発生しました：;&apos;(&apos; のあとには数値でなくオブジェクト名を記述します。" />
+<MESSAGE name="DjVuAnno.no_paren" number="12215"
+  value="[%0!05u!] オブジェクト &apos;%1!s!&apos;の内容を走査中にエラーが発生しました：;&apos;(&apos; のあとにはパーレンでなくオブジェクト名を記述します。" />
+<MESSAGE name="DjVuAnno.no_string" number="12216"
+  value="[%0!05u!] オブジェクト &apos;%1!s!&apos; の内容を走査中にエラーが発生しました：;&apos;(&apos; のあとには文字列でなくオブジェクト名を記述します。" />
+<MESSAGE name="DjVuAnno.number2list" number="12218"
+  value="[%0!05u!] オブジェクトタイプが無効です　数値 &apos;%1!d!&apos; を複合オブジェクトに変換することができません。" />
+<MESSAGE name="DjVuAnno.number2string" number="12219"
+  value="[%0!05u!] オブジェクトタイプが無効です　数値 &apos;%1!d!&apos; を文字列に変換することができません。" />
+<MESSAGE name="DjVuAnno.number2symbol" number="12220"
+  value="[%0!05u!] オブジェクトタイプが無効です　数値 &apos;%1!d!&apos; をシンボルに変換することができません。" />
+<MESSAGE name="DjVuAnno.paren" number="12222"
+  value="[%0!05u!] オブジェクト &apos;%1!s!&apos; の内容を走査中にエラーが発生しました：;&apos;(&apos; の直後にはオブジェクト名を記述します。" />
+<MESSAGE name="DjVuAnno.string2list" number="12223"
+  value="[%0!05u!] オブジェクトタイプが無効です　文字列 &apos;%1!d!&apos; を複合オブジェクトに変換することができません。" />
+<MESSAGE name="DjVuAnno.string2number" number="12224"
+  value="[%0!05u!] オブジェクトタイプが無効です　文字列 &apos;%1!d!&apos; を数値に変換することができません。" />
+<MESSAGE name="DjVuAnno.string2symbol" number="12225"
+  value="[%0!05u!] オブジェクトタイプが無効です　文字列 &apos;%1!d!&apos; をシンボルに変換することができません。" />
+<MESSAGE name="DjVuAnno.symbol2list" number="12226"
+  value="[%0!05u!] オブジェクトタイプが無効です　シンボル &apos;%1!d!&apos; を複合オブジェクトに変換することができません。" />
+<MESSAGE name="DjVuAnno.symbol2number" number="12227"
+  value="[%0!05u!] オブジェクトタイプが無効です　シンボル &apos;%1!d!&apos; を数値に変換することができません。" />
+<MESSAGE name="DjVuAnno.symbol2string" number="12228"
+  value="[%0!05u!] オブジェクトタイプが無効です　シンボル &apos;%1!d!&apos; を文字列に変換することができません。" />
+<MESSAGE name="DjVuAnno.too_few" number="12229"
+  value="[%0!05u!] &apos;%1!s!&apos; の要素が少なすぎます。" />
+<MESSAGE name="DjVuDocEditor.bad_page" number="12300"
+  value="[%0!05u!] ページ番号 %1!d! が異常です。" />
+<MESSAGE name="DjVuDocEditor.cant_save2" number="12301"
+  value="[%0!05u!] &apos;Save&apos; は使用できません。&apos;Save As&apos;を使用してください。" />
+<MESSAGE name="DjVuDocEditor.cant_save" number="12302"
+  value="[%0!05u!] 文章が保存できません。&apos;Save As&apos;を使用してください。" />
+<MESSAGE name="DjVuDocEditor.create_fail" number="12303"
+  value="[%0!05u!] ID &apos;%1!s!&apos; でファイルを作成することができません。" />
+<MESSAGE name="DjVuDocEditor.dir_fail" number="12304"
+  value="[%0!05u!] ディレクトリ &apos;%1!s!&apos; を作成できません。" />
+<MESSAGE name="DjVuDocEditor.init" number="12305"
+  value="[%0!05u!] DjVuDocEditor は既に初期化されています。" />
+<MESSAGE name="DjVuDocEditor.no_codec" number="12306"
+  value="[%0!05u!] 圧縮コーデックのロードに失敗しました。" />
+<MESSAGE name="DjVuDocEditor.no_file" number="12307"
+  value="[%0!05u!] この文章の中に ID &apos;%1!s!&apos; のファイルがありません。" />
+<MESSAGE name="DjVuDocEditor.not_1_page" number="12308"
+  value="[%0!05u!] ファイル &apos;%1!s!&apos; はシングルページの DjVu ファイルではありません。" />
+<MESSAGE name="DjVuDocEditor.no_thumb" number="12309"
+  value="[%0!05u!] 内部エラー：ページ %1!d! にサムネイルを見つけることができません。" />
+<MESSAGE name="DjVuDocEditor.not_init" number="12310"
+  value="[%0!05u!] DjVuDocEditor は使用される前に初期化されていなければいけません。" />
+<MESSAGE name="DjVuDocEditor.open_fail" number="12311"
+  value="[%0!05u!] 文書 &apos;%1!s!&apos; を開くことができません。" />
+<MESSAGE name="DjVuDocEditor.page_fail" number="12312"
+  value="[%0!05u!] 内部エラー：%1!d! ページがありません。" />
+<MESSAGE name="DjVuDocEditor.page_num" number="12313"
+  value="[%0!05u!] ページ番号 %1!d! が不正です。" />
+<MESSAGE name="DjVuDocEditor.render" number="12314"
+  value="[%0!05u!] %1!d! ページの画像が取得できません。" />
+<MESSAGE name="DjVuDocEditor.share_fail" number="12315"
+  value="[%0!05u!] シェアードアノテーション付きの別ファイルの作成に失敗しました。マルチページドキュメントでは1つしか持てません。" />
+<MESSAGE name="DjVuDocument.2nd_init" number="12400"
+  value="[%0!05u!] DjVuDocument を2度初期化することはできません。" />
+<MESSAGE name="DjVuDocument.bad_format" number="12401"
+  value="[%0!05u!] 未知の文書フォーマットのためデコードできません。" />
+<MESSAGE name="DjVuDocument.bad_thumb" number="12402"
+  value="[%0!05u!] サムネイルが破損しています。" />
+<MESSAGE name="DjVuDocument.big_num" number="12403"
+  value="[%0!05u!] ページ番号が大きすぎます。" />
+<MESSAGE name="DjVuDocument.cant_extract" number="12405"
+  value="[%0!05u!] プレデコードされたサムネイルが作成できません:" />
+<MESSAGE name="DjVuDocument.cant_render" number="12406"
+  value="[%0!05u!] %1!d! ページが取得できません。" />
+<MESSAGE name="DjVuDocument.comp_codec" number="12407"
+  value="[%0!05u!] 圧縮コーデックがロードされていません。" />
+<MESSAGE name="DjVuDocument.empty_url" number="12408"
+  value="[%0!05u!] 無効なURL が DjVuDocument に存在します。" />
+<MESSAGE name="DjVuDocument.exclude_page" number="12409"
+  value="[%0!05u!] エラーのため %1!d! ページをファイルリストから削除されます。" />
+<MESSAGE name="DjVuDocument.fail_URL" number="12411"
+  value="[%0!05u!] URL &apos;%1!s!&apos; のデータの取得に失敗しました。" />
+<MESSAGE name="DjVuDocument.file_outside" number="12412"
+  value="[%0!05u!] ファイル &apos;%1!s!&apos; はバンドルされていません。" />
+<MESSAGE name="DjVuDocument.init_eof" number="12413"
+  value="[%0!05u!] 初期化中に予期しない EOF が見つかりました。" />
+<MESSAGE name="DjVuDocument.init_not_done" number="12414"
+  value="[%0!05u!] 文章は正常に初期化されませんでした。" />
+<MESSAGE name="DjVuDocument.miss_page_name" number="12415"
+  value="[%0!05u!] 名称 &apos;%1!s!&apos;のページはこの文章中にありません。" />
+<MESSAGE name="DjVuDocument.miss_page_num" number="12416"
+  value="[%0!05u!] &apos;%1!d!&apos; ページはこの文章中にありません。" />
+<MESSAGE name="DjVuDocument.no_dir" number="12417"
+  value="[%0!05u!] シングルページ文書には、DjVm ディレクトリがありません。" />
+<MESSAGE name="DjVuDocument.no_file" number="12418"
+  value="[%0!05u!] 要求されたファイルが存在しません。" />
+<MESSAGE name="DjVuDocument.no_page" number="12419"
+  value="[%0!05u!] この文書にはページが存在しません。" />
+<MESSAGE name="DjVuDocument.not_DjVu" number="12420"
+  value="[%0!05u!] 要求された入力ファイルは DjVu ファイルではありません。" />
+<MESSAGE name="DjVuDocument.not_init" number="12421"
+  value="[%0!05u!] DjVuDocument は初期化されていません。" />
+<MESSAGE name="DjVuDocument.not_secure" number="12422"
+  value="[%0!05u!] DjVuDocument は GP&lt;DjVuDocument&gt; で保護されていません。" />
+<MESSAGE name="DjVuDocument.obsolete" number="12423"
+  value="[%0!05u!] 文書は現在用いられていないフォーマットです。" />
+<MESSAGE name="DjVuDocument.old_bundle" number="12424"
+  value="[%0!05u!] OLD_BUNDLED 文書のみ DjVm v.0 ディレクトリを持っています。" />
+<MESSAGE name="DjVuDocument.stopped" number="12425"
+  value="[%0!05u!] DjVuDocument のスレッドの初期化は 停止しました。" />
+<MESSAGE name="DjVuDocument.unk_type" number="12426"
+  value="[%0!05u!] 未知の文書タイプ" />
+<MESSAGE name="DjVuDocument.URL_outside2" number="12427"
+  value="[%0!05u!] URL &apos;%1!s!&apos; はインダイレクト形式ドキュメントの範囲外を指しています。" />
+<MESSAGE name="DjVuDocument.URL_outside" number="12428"
+  value="[%0!05u!] URL &apos;%1!s!&apos; はバンドルド形式ドキュメントの範囲外を指しています。" />
+<MESSAGE name="DjVuDocument.skip_page" number="12429"
+  value="[%0!05u!] %1!d! がスキップされました。" />
+<MESSAGE name="DjVuFile.2nd_init" number="12500"
+  value="[%0!05u!] DjVu ファイルはすでに初期化されています。" />
+<MESSAGE name="DjVuFile.corrupt_BG44" number="12501"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(BG44 チャンクのサイズが不正です。)" />
+<MESSAGE name="DjVuFile.corrupt_dupl" number="12502"
+  value="[%0!05u!] DjVu デコーダ：ファイルが破損しています。(INFO チャンクが重複しています。)" />
+<MESSAGE name="DjVuFile.corrupt_INFO" number="12503"
+  value="[%0!05u!] DjVu デコーダ：ファイルが破損しています。(FORM:DJVI で INFO チャンクが見つかりました。)" />
+<MESSAGE name="DjVuFile.corrupt_missing_info" number="12504"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(INFO チャンクがありません。)" />
+<MESSAGE name="DjVuFile.corrupt_missing_IW44" number="12505"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(IW44 データチャンクがありません。)" />
+<MESSAGE name="DjVuFile.corrupt_zero" number="12506"
+  value="[%0!05u!] DjVu デコーダ：ファイルが破損しています。(画像サイズがゼロです。)" />
+<MESSAGE name="DjVuFile.decode_fail" number="12507"
+  value="[%0!05u!] インクルードファイルのデコードに失敗しました。" />
+<MESSAGE name="DjVuFile.dupl_backgrnd" number="12508"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(背景レイヤーが重複しています。)" />
+<MESSAGE name="DjVuFile.dupl_Dxxx" number="12509"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(Dxxx チャンクが重複しています。)" />
+<MESSAGE name="DjVuFile.dupl_foregrnd" number="12510"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(前景色情報が重複しています。)" />
+<MESSAGE name="DjVuFile.dupl_Sxxx" number="12511"
+  value="[%0!05u!] DjVu デコーダ：データが破損しています。(Sxxx チャンクが重複しています。)" />
+<MESSAGE name="DjVuFile.Dxxx_after_Sxxx" number="12512"
+  value="[%0!05u!] デコーダ：データが破損しています。(Sxxx チャンクの後に Dxxx チャンクがあります。)" />
+<MESSAGE name="DjVuFile.empty_URL" number="12513"
+  value="[%0!05u!] DjVuFile が空の URL を参照しています。" />
+<MESSAGE name="DjVuFile.failed" number="12515"
+  value="[%0!05u!] &apos;%1!s!&apos; 失敗しました。" />
+<MESSAGE name="DjVuFile.illegal_chunk" number="12516"
+  value="[%0!05u!] チャンク番号が不正です。" />
+<MESSAGE name="DjVuFile.malformed" number="12517"
+  value="[%0!05u!] INCL チャンクの形式が不正です。スラッシュは使用できません。" />
+<MESSAGE name="DjVuFile.missing_chunk" number="12518"
+  value="[%0!05u!] チャンクが少なすぎます。" />
+<MESSAGE name="DjVuFile.new_version" number="12519"
+  value="[%0!05u!] DjVu デコーダ：バージョン &gt;= %1!d! で DjVu ファイルをデコードできません。" />
+<MESSAGE name="DjVuFile.no_create" number="12520"
+  value="[%0!05u!] 内部エラー：id_to_file(&apos;%1!s!&apos;) で任意のファイルが作成されませんでした。" />
+<MESSAGE name="DjVuFile.no_data" number="12521"
+  value="[%0!05u!] URL &apos;%1!s!&apos; からデータを取得できませんでした。" />
+<MESSAGE name="DjVuFile.not_finished" number="12522"
+  value="[%0!05u!] 内部エラー：含まれたファイルが終了していません。" />
+<MESSAGE name="DjVuFile.not_init" number="12523"
+  value="[%0!05u!] DjVuFile が初期化されていません。" />
+<MESSAGE name="DjVuFile.not_secured" number="12524"
+  value="[%0!05u!] DjVuFile は GP&lt;DjVuFile&gt; で保護されていません。" />
+<MESSAGE name="DjVuFile.stopped" number="12525"
+  value="[%0!05u!] &apos;%1!s!&apos; が中止されました。" />
+<MESSAGE name="DjVuFile.unexp_image" number="12526"
+  value="[%0!05u!] DejaVu デコーダ：DJVU もしくは IW44 が必要です。" />
+<MESSAGE name="DjVuFile.unrecog_chunk" number="12527"
+  value="%1!5.1f! Kb '%2!4s!' 不明なチャンク." />
+<MESSAGE name="DjVuFile.page_info" number="12528"
+  value="%1!5.1f! Kb '%2!4s!' ページ情報." />
+<MESSAGE name="DjVuFile.indir_chunk1" number="12529"
+  value="%2!5.1f! Kb '%3!4s!' インディレクションチャンク (%1!s!)." />
+<MESSAGE name="DjVuFile.indir_chunk2" number="12530"
+  value="%1!5.1f! Kb '%2!4s!' インディレクションチャンク." />
+<MESSAGE name="DjVuFile.shape_dict" number="12531"
+  value="%2!5.1f! Kb '%3!4s!' JB2シェイプ辞書 (%1!d! shapes)." />
+<MESSAGE name="DjVuFile.fg_mask" number="12532"
+  value="%4!5.1f! Kb '%5!4s!' JB2フォアグラウンドマスク (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.G4_mask" number="12533"
+  value="%4!5.1f! Kb '%5!4s!' G4/MMRマスク (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_bg1" number="12534"
+  value="%4!5.1f! Kb '%5!4s!' IW44バックグラウンド (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_bg2" number="12535"
+  value="%3!5.1f! Kb '%4!4s!' IW44バックグラウンド (part %1!d!, %2!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_fg" number="12536"
+  value="%4!5.1f! Kb '%5!4s!' IW44フォアグラウンドカラー (%1!d!x%2!d!, %3!d!dpi)." />
+<MESSAGE name="DjVuFile.color_import1" number="12537"
+  value="%4!5.1f! Kb '%5!4s!' LINKカラーインポート (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.color_import2" number="12538"
+  value="%1!5.1f! Kb '%2!4s!' LINKカラーインポート (Unimplemented)." />
+<MESSAGE name="DjVuFile.JPEG_bg1" number="12539"
+  value="%4!5.1f! Kb '%5!4s!' JPEGバックグラウンド (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.JPEG_bg2" number="12540"
+  value="%1!5.1f! Kb '%2!4s!' JPEGバックグラウンド (Unimplemented)." />
+<MESSAGE name="DjVuFile.JPEG_fg1" number="12541"
+  value="%4!5.1f! Kb '%5!4s!' JPEGフォアグラウンドカラー (%1!d!x%2!d!, %3!d!dpi)." />
+<MESSAGE name="DjVuFile.JPEG_fg2" number="12542"
+  value="%1!5.1f! Kb '%2!4s!' JPEGフォアグラウンドカラー (Unimplemented)." />
+<MESSAGE name="DjVuFile.JPEG2K_bg" number="12543"
+  value="%1!5.1f! Kb '%2!4s!' JPEG-2000バックグラウンド (Unimplemented)." />
+<MESSAGE name="DjVuFile.JPEG2K_fg" number="12544"
+  value="[1-%0!05u!] %1!5.1f! Kb '%2!4s!' JPEG-2000フォアグラウンドカラー (Unimplemented)." />
+<MESSAGE name="DjVuFile.JB2_fg" number="12545"
+  value="%3!5.1f! Kb '%4!4s!' JB2フォアグラウンドカラー (%1!d! colors, %2!d! ccs)." />
+<MESSAGE name="DjVuFile.IW44_data1" number="12546"
+  value="%4!5.1f! Kb '%5!4s!' IW44データ (%1!d!x%2!d!, %3!d! dpi)." />
+<MESSAGE name="DjVuFile.IW44_data2" number="12547"
+  value="%3!5.1f! Kb '%4!4s!' IW44データ (part %1!d!, %2!d! dpi)." />
+<MESSAGE name="DjVuFile.nav_dir" number="12548"
+  value="%1!5.1f! Kb '%2!4s!' Navigation directory (obsolete)." />
+<MESSAGE name="DjVuFile.anno1" number="12549"
+  value="%1!5.1f! Kb '%2!4s!' アノテーション (bundled)." />
+<MESSAGE name="DjVuFile.anno2" number="12550"
+  value="%1!5.1f! Kb '%2!4s!' アノテーション (hyperlinks, etc.)." />
+<MESSAGE name="DjVuFile.text" number="12551"
+  value="%1!5.1f! Kb '%2!4s!' テキスト (text, etc.)." />
+<MESSAGE name="DjVuFile.djvu_header" number="12552"
+  value="DJVU Image (%1!d!x%2!d!, %3!d! dpi) version %4!d!:&#10;" />
+<MESSAGE name="DjVuFile.IW44_header" number="12553"
+  value="IW44 Image (%1!d!x%2!d!, %3!d! dpi):&#10;" />
+<MESSAGE name="DjVuFile.ratio" number="12554"
+  value="&#10;圧縮比率： %1!0.f! (%2!0.1f! Kb)" />
+<MESSAGE name="DjVuFile.securedjvu" number="12555">
+Incompatible file (so-called "Secure DjVu".)
+</MESSAGE>
+<MESSAGE name="DjVuGlobalMemory.exhausted" number="12600"
+  value="[%0!05u!] メモリが使い尽くされました。" />
+<MESSAGE name="DjVuGlobal.not_compatible" number="12700"
+  value="[%0!05u!] DjVuProgress は マルチスレッドと互換性がありません。" />
+<MESSAGE name="DjVuImage.bad_call" number="12800"
+  value="[%0!05u!] DjVuImage::connect のあとに DjVuImage::decode を呼び出してはいけません。" />
+<MESSAGE name="DjVuImage.bad_rect2" number="12801"
+  value="[%0!05u!] (DjVuImage::do_pixmap) ターゲットの矩形が不正です。" />
+<MESSAGE name="DjVuImage.bad_rect" number="12802"
+  value="[%0!05u!] (DjVuImage::get_pixmap) ターゲットの矩形が不正です。" />
+<MESSAGE name="DjVuImage.corrupted" number="12803"
+  value="[%0!05u!] ファイルが破損しています。(カラーインデックスがパレットサイズを超えています。)" />
+<MESSAGE name="DjVuImage.mult_error" number="12804"
+  value="[%0!05u!] デコード中に複数のエラーがあります。" />
+<MESSAGE name="DjVuImage.not_decode" number="12805"
+  value="[%0!05u!] この DjVu ドキュメントを下位互換モードでデコードすることが出来ません。" />
+<MESSAGE name="DjVuImage.short1" number="12806"
+  value="%1!d!x%2!d!, %3!0.1f! Kb" />
+<MESSAGE name="DjVuImage.short2" number="12807" 
+  value="%1!d!x%2!d!" />
+<MESSAGE name="DjVuInfo.corrupt_file" number="12900"
+  value="[%0!05u!] DjVu デコーダ：ファイルが破損しています。(INFO チャンクが不完全です。)" />
+<MESSAGE name="DjVuNavDir.bad_page" number="13000"
+  value="[%0!05u!] 入力されたページ番号が不正です。" />
+<MESSAGE name="DjVuNavDir.large_page" number="13001"
+  value="[%0!05u!] ページ番号が大きすぎます。" />
+<MESSAGE name="DjVuNavDir.long_line" number="13002"
+  value="[%0!05u!] DjVu ディレクトリが読み込めません。ラインが長すぎます。" />
+<MESSAGE name="DjVuNavDir.neg_page" number="13003"
+  value="[%0!05u!] ページ番号が負の値ではいけません。" />
+<MESSAGE name="DjVuNavDir.zero_dir" number="13004"
+  value="[%0!05u!] DjVuNavDir コンストラクタにZERO directory URL が渡されました。" />
+<MESSAGE name="DjVuPalette.bad_palette" number="13100"
+  value="[%0!05u!] 前景色のパレットが破損しています。" />
+<MESSAGE name="DjVuPalette.bad_version" number="13101"
+  value="[%0!05u!] パレットデータの中に認識できないバージョンタグがあります。" />
+<MESSAGE name="DjVuPalette.many_colors" number="13102"
+  value="[%0!05u!] 色番号が不正です。" />
+<MESSAGE name="DjVuPalette.no_color" number="13103"
+  value="[%0!05u!] カラーヒストグラムが見つかりません。" />
+<MESSAGE name="DjVuPalette.not_init" number="13104"
+  value="[%0!05u!] パレットが初期化されていません。" />
+<MESSAGE name="DjVuPalette.test_usage" number="13105"
+  value="[%0!05u!] 使用方法：quant &lt;ncol&gt; &lt;minbox&gt; &lt;ppmfile&gt;" />
+<MESSAGE name="DjVuPort.not_alloc" number="13200"
+  value="[%0!05u!] ヒープに DjVuPort がアロケートされていません。" />
+<MESSAGE name="DjVuToPS.bad_EPS_num" number="13300"
+  value="[%0!05u!] EPS フォーマットでは ひとつのコピーだけを印刷することができます。" />
+<MESSAGE name="DjVuToPS.bad_format" number="13301"
+  value="[%0!05u!] ポストスクリプトフォーマットは、PS か EPS でなければなりません。" />
+<MESSAGE name="DjVuToPS.bad_gamma" number="13302"
+  value="[%0!05u!] ガンマ値が不正です　0.3 から 5.0 の間で指定してください。" />
+<MESSAGE name="DjVuToPS.bad_level" number="13303"
+  value="[%0!05u!] ポストスクリプトレベル %1!d! は不正です。1 か 2 を指定してください。" />
+<MESSAGE name="DjVuToPS.bad_mode" number="13304"
+  value="[%0!05u!] 不正なイメージモードが印刷コードに渡されました。" />
+<MESSAGE name="DjVuToPS.bad_number" number="13305"
+  value="[%0!05u!] コピー枚数が正の値でなければなりません。" />
+<MESSAGE name="DjVuToPS.bad_orient" number="13306"
+  value="[%0!05u!] 不正なオリエンテーションが印刷コードに渡されました。" />
+<MESSAGE name="DjVuToPS.bad_page" number="13307"
+  value="[%0!05u!] ページ番号が不正です。&apos;%1!d!&apos;" />
+<MESSAGE name="DjVuToPS.bad_range" number="13308"
+  value="[%0!05u!] 範囲が不正です。&apos;%1!s!&apos;" />
+<MESSAGE name="DjVuToPS.bad_scale" number="13309"
+  value="[%0!05u!] 印刷中に画像のスケーリングを試みました。" />
+<MESSAGE name="DjVuToPS.bad_zoom" number="13310"
+  value="[%0!05u!] 不正なズーム要因が印刷コードに渡されました。" />
+<MESSAGE name="DjVuToPS.big_page" number="13311"
+  value="[%0!05u!] ページ番号 %1!d! が大きすぎます。" />
+<MESSAGE name="DjVuToPS.empty_image" number="13313"
+  value="[%0!05u!] 空のページの印刷を試みました。" />
+<MESSAGE name="DjVuToPS.empty_rect" number="13314"
+  value="[%0!05u!] 空の矩形の印刷を試みました" />
+<MESSAGE name="DjVuToPS.no_image" number="13315"
+  value="[%0!05u!] ページ %1!d! の画像を取得できませんでした。" />
+<MESSAGE name="DjVuToPS.no_landscape" number="13316"
+  value="[%0!05u!] LANDSCAPE モードは EPS 形式でサポートされていません。" />
+<MESSAGE name="DjVuToPS.no_to" number="13318"
+  value="[%0!05u!] &apos;To&apos; で指定されているページが見つかりません &apos;%1!s!&apos;" />
+<MESSAGE name="DjVuToPS.only_one_page" number="13319"
+  value="[%0!05u!] EPSフォーマットでは複数のページを印刷することができません。" />
+<MESSAGE name="EOF" number="13400"
+  value="予想外の位置でファイルが終了しています。" />
+<MESSAGE name="Failed" number="13700"
+  value="失敗しました。" />
+<MESSAGE name="GBitmap.bad_format" number="13800"
+  value="[%0!05u!] PBM、PGM、RLE形式でフォーマットされたファイルが見つかりません。" />
+<MESSAGE name="GBitmap.bad_levels" number="13801"
+  value="[%0!05u!] (GBitmap::set_grays) グレーレベルの値が不正です。" />
+<MESSAGE name="GBitmap.bad_PBM" number="13802"
+  value="[%0!05u!] PBM ファイルが Malformed されています。" />
+<MESSAGE name="GBitmap.cant_compress" number="13803"
+  value="[%0!05u!] グレーレベルのビットマップを圧縮することはできません。" />
+<MESSAGE name="GBitmap.cant_make_PBM" number="13804"
+  value="[%0!05u!] グレー・レベルビットマップでは PBM ファイルを作ることができません。" />
+<MESSAGE name="GBitmap.left_damaged" number="13805"
+  value="[%0!05u!] デバッグ：左の境界が損害を受けています。" />
+<MESSAGE name="GBitmap.lost_sync2" number="13806"
+  value="[%0!05u!] (GBitmap::decode) RLE 同期が消失しています。" />
+<MESSAGE name="GBitmap.lost_sync" number="13807"
+  value="[%0!05u!] RLE：同期が消失しています。" />
+<MESSAGE name="GBitmap.not_init" number="13808"
+  value="[%0!05u!] 初期化されていないビットマップ。" />
+<MESSAGE name="GBitmap.not_int" number="13809"
+  value="[%0!05u!] ビットマップ読み込み：整数が必要です。" />
+<MESSAGE name="GBitmap.null_arg" number="13810"
+  value="[%0!05u!] (GBitmap::decode) 無効な引数で呼び出されました。" />
+<MESSAGE name="GBitmap.right_damaged" number="13811"
+  value="[%0!05u!] デバッグ：右の境界が破損しています。" />
+<MESSAGE name="GBitmap.zero_damaged" number="13812"
+  value="[%0!05u!] デバッグ：ゼロ配列が破損しています。" />
+<MESSAGE name="GBitmap.zero_small" number="13813"
+  value="[%0!05u!] デバッグ：ゼロバッファが小さすぎます。" />
+<MESSAGE name="GContainer.bad_args" number="13900"
+  value="[%0!05u!] GArray::resize の引数が無効です。" />
+<MESSAGE name="GContainer.bad_howmany" number="13901"
+  value="[%0!05u!] &apos;howmany&apos; の引数が不正な値です。" />
+<MESSAGE name="GContainer.bad_pos_cont" number="13902"
+  value="[%0!05u!] 位置が無効です。(別のコンテナへのポイント)" />
+<MESSAGE name="GContainer.bad_pos" number="13903"
+  value="[%0!05u!] 位置が無効です。" />
+<MESSAGE name="GContainer.bad_pos_null" number="13904"
+  value="[%0!05u!] 位置が無効です。(無効なポインタ)" />
+<MESSAGE name="GContainer.bad_sub2" number="13905"
+  value="[%0!05u!] GArray::del の添え字が無効です。" />
+<MESSAGE name="GContainer.cannot_add" number="13906"
+  value="[%0!05u!] 定数関連マップにキーを加えることができません。" />
+<MESSAGE name="GContainer.illegal_subscript" number="13907"
+  value="[%0!05u!] GArray の添え字が範囲外です。" />
+<MESSAGE name="GException.outofmemory" number="14000"
+  value="[%0!05u!] メモリーが足りません。" />
+<MESSAGE name="GIFFManager.bad_char" number="14100"
+  value="[%0!05u!] 名前にはドットや括弧を含んではいけません。" />
+<MESSAGE name="GIFFManager.cant_find2" number="14101"
+  value="[%0!05u!] IFF の読み込み中に、トップレベルの FORM チャンクが見つかりませんでした。" />
+<MESSAGE name="GIFFManager.cant_find" number="14102"
+  value="[%0!05u!] 名前 &apos;%1!s!&apos; のチャンクが見つかりません。" />
+<MESSAGE name="GIFFManager.del_empty" number="14103"
+  value="[%0!05u!] 名前が空のチャンクを削除しようとしました。" />
+<MESSAGE name="GIFFManager.garbage" number="14104"
+  value="[%0!05u!] チャンク名は &apos;]&apos; の後に不要データを含んでいます。" />
+<MESSAGE name="GIFFManager.get_empty" number="14105"
+  value="[%0!05u!] 名前が空のチャンクを取得しようとしました。" />
+<MESSAGE name="GIFFManager.malformed" number="14106"
+  value="[%0!05u!] &apos;%1!s!&apos; チャンク名が不正です: 最後はドットです。" />
+<MESSAGE name="GIFFManager.no_brackets" number="14107"
+  value="[%0!05u!] チャンク名には括弧を含んではいけません。" />
+<MESSAGE name="GIFFManager.no_chunk" number="14108"
+  value="[%0!05u!] チャンク &apos;%3!s!&apos; にサブチャンク &apos;%1!s!&apos; #%2!d! がありません。" />
+<MESSAGE name="GIFFManager.no_dots" number="14109"
+  value="[%0!05u!] チャンク名にはドットを含んではいけません。" />
+<MESSAGE name="GIFFManager.no_top_cont" number="14110"
+  value="[%0!05u!] コンテナのみがトップレベルチャンクとして許可されています。" />
+<MESSAGE name="GIFFManager.no_top_name" number="14111"
+  value="[%0!05u!] トップレベルチャンク名がわかりません。" />
+<MESSAGE name="GIFFManager.one_colon" number="14112"
+  value="[%0!05u!] チャンク名には１つのコロンだけを含むことが出来ます。" />
+<MESSAGE name="GIFFManager.unknown" number="14114"
+  value="[%0!05u!] 内部エラー：チャンク &apos;%1!s!&apos; が不明です。" />
+<MESSAGE name="GIFFManager.unmatched" number="14115"
+  value="[%0!05u!] チャンクにマッチしない括弧があります。" />
+<MESSAGE name="GIFFManager.wrong_name2" number="14116"
+  value="[%0!05u!] トップレベルチャンクの名前が &apos;%1!s!&apos; ではありません。" />
+<MESSAGE name="GIFFManager.wrong_name" number="14117"
+  value="[%0!05u!] ファイルのトップレベルチャンク名が &apos;%1!s!&apos; ではありません。" />
+<MESSAGE name="GMapAreas.intersect" number="14200"
+  value="[%0!05u!] いくつかのポリゴンセグメントが交差しています。" />
+<MESSAGE name="GMapAreas.oval_border" number="14201"
+  value="[%0!05u!] 楕円マップ領域はこのボーダータイプをサポートしていません。" />
+<MESSAGE name="GMapAreas.oval_hilite" number="14202"
+  value="[%0!05u!] 領域のハイライトはこのボーダータイプをサポートしていません。" />
+<MESSAGE name="GMapAreas.poly_border" number="14203"
+  value="[%0!05u!] ポリゴンマップ領域はこのボーダータイプをサポートしていません。" />
+<MESSAGE name="GMapAreas.poly_hilite" number="14204"
+  value="[%0!05u!] ポリゴンマップ領域はハイライトをサポートしていません。" />
+<MESSAGE name="GMapAreas.too_few_points" number="14205"
+  value="[%0!05u!] ポリゴンのポイントが少なすぎます。" />
+<MESSAGE name="GMapAreas.width_1" number="14206"
+  value="[%0!05u!] XOR または SOLID ボーダータイプでは、ボーダー幅は1でなければいけません。" />
+<MESSAGE name="GMapAreas.width_3-32" number="14207"
+  value="[%0!05u!] SHADOW ボーダータイプでは、ボーダー幅3から32の間でなければいけません。" />
+<MESSAGE name="GMapAreas.zero_height" number="14208"
+  value="[%0!05u!] 領域の高さがゼロです。" />
+<MESSAGE name="GMapAreas.zero_width" number="14209"
+  value="[%0!05u!] 領域の幅がゼロです。" />
+<MESSAGE name="GPixmap.bad_param" number="14400"
+  value="[%0!05u!] (GPixmap::color_correct) 不正なパラメータ" />
+<MESSAGE name="GPixmap.diff_size" number="14401"
+  value="[%0!05u!] カラー pixmap とアルファビットマップのサイズが違っています。" />
+<MESSAGE name="GPixmap.no_int" number="14402"
+  value="[%0!05u!] pixmap 読み込み：整数が必要です。" />
+<MESSAGE name="GPixmap.null_alpha" number="14403"
+  value="[%0!05u!] アルファビットマップのポインタが無効です。" />
+<MESSAGE name="GPixmap.null_color" number="14404"
+  value="[%0!05u!] カラー pixmap のポインタが無効です。" />
+<MESSAGE name="GPixmap.overflow1" number="14405"
+  value="[%0!05u!] (GPixmap::downsample) 指定された矩形は目的の pixmap からあふれ出ます。" />
+<MESSAGE name="GPixmap.overflow2" number="14406"
+  value="[%0!05u!] (GPixmap::upsample) 指定された矩形は目的の pixmap からあふれ出ます。" />
+<MESSAGE name="GPixmap.overflow3" number="14407"
+  value="[%0!05u!] (GPixmap::downsample43) 指定された矩形は目的の pixmap からあふれ出ます。" />
+<MESSAGE name="GPixmap.overflow4" number="14408"
+  value="[%0!05u!] (GPixmap::upsample23) 指定された矩形は目的の pixmap からあふれ出ます。" />
+<MESSAGE name="GPixmap.overflow5" number="14409"
+  value="[%0!05u!] (GPixmap::stencil) 指定された矩形は目的の pixmap からあふれ出ます。" />
+<MESSAGE name="GPixmap.unk_PPM" number="14410"
+  value="[%0!05u!] PPM ファイルフォーマットが見つかりません。" />
+<MESSAGE name="GRect.div_zero" number="14500"
+  value="[%0!05u!] ゼロで除算されました。" />
+<MESSAGE name="GRect.empty_rect1" number="14501"
+  value="[%0!05u!] GRectMapper::set_input に無効な空の矩形があります。" />
+<MESSAGE name="GRect.empty_rect2" number="14502"
+  value="[%0!05u!] GRectMapper::set_output に無効な空の矩形があります。" />
+<MESSAGE name="GRect.empty_rect3" number="14503"
+  value="[%0!05u!] GRectMapper::[un]map に無効な空の矩形があります。" />
+<MESSAGE name="GScaler.assertion" number="14600"
+  value="[%0!05u!] 失敗しました。" />
+<MESSAGE name="GScaler.no_match" number="14601"
+  value="[%0!05u!] 入力された pixmap は、入力された矩形にマッチしません。" />
+<MESSAGE name="GScaler.ratios" number="14602"
+  value="[%0!05u!] GScaler 比率は両方ともヌルまたは両方とも正の値でなければいけません。" />
+<MESSAGE name="GScaler.too_big" number="14603"
+  value="[%0!05u!] 要求された出力は最大限のイメージ出力 rect を上回っています。" />
+<MESSAGE name="GScaler.too_small" number="14604"
+  value="[%0!05u!] 入力された pixmap が小さすぎます。" />
+<MESSAGE name="GScaler.undef_size" number="14605"
+  value="[%0!05u!] GScaler の入力サイズと出力サイズが未定義です。" />
+<MESSAGE name="GSmartPointer.suspicious" number="14700"
+  value="[%0!05u!] 参照された GPEnabled オブジェクト は破壊されている疑いがあります。" />
+<MESSAGE name="GString.bad_subscript" number="14800"
+  value="[%0!05u!] GString::operator[] の添え字が不正です。" />
+<MESSAGE name="GString.overwrite" number="14801"
+  value="[%0!05u!] メモリが上書きされます。プログラムが不安定です。" />
+<MESSAGE name="GStringRep.NativeToNative" number="14802">
+[1-%0!05u!] ネイティブエンコードからネイティブエンコードに変換しました。
+</MESSAGE>
+<MESSAGE name="GStringRep.UTF8ToUTF8" number="14803">
+[1-%0!05u!] UTF-8からUTF-8に変換しました。
+</MESSAGE>
+<MESSAGE name="GStringRep.appendNativeToUTF8" number="14804">
+[1-%0!05u!] ネイティブストリングをUTF-8ストリングに変換しました。
+</MESSAGE>
+<MESSAGE name="GStringRep.appendUTF8toNative" number="14805">
+[1-%0!05u!] UTF-8ストリングをネイティブストリングに変換しました。
+</MESSAGE>
+<MESSAGE name="GThreads.co_panic" number="14900"
+  value="[%0!05u!] パニック COTHREADS：例外コンテキストが見つかりません。" />
+<MESSAGE name="GThreads.dupl_callback" number="14901"
+  value="[%0!05u!] GThread::set_scheduling_callback が2回呼び出されました。" />
+<MESSAGE name="GThreads.not_acq_broad" number="14902"
+  value="[%0!05u!] モニターは、このスレッドによって取得されませんでした (GMonitor::broadcast)" />
+<MESSAGE name="GThreads.not_acq_leave" number="14903"
+  value="[%0!05u!] モニターは、このスレッドによって取得されませんでした (GMonitor::leave)" />
+<MESSAGE name="GThreads.not_acq_signal" number="14904"
+  value="[%0!05u!] モニターは、このスレッドによって取得されませんでした (GMonitor::signal)" />
+<MESSAGE name="GThreads.not_acq_wait" number="14905"
+  value="[%0!05u!] モニターは、このスレッドによって取得されませんでした (GMonitor::wait)" />
+<MESSAGE name="GThreads.panic" number="14906"
+  value="[%0!05u!] パニック：Cothreads デッドロック" />
+<MESSAGE name="GThreads.uncaught" number="14907"
+  value="[%0!05u!] GThreads：トラップできない例外" />
+<MESSAGE name="GThreads.unrecognized" number="14908"
+  value="[%0!05u!] GThreads：未確認のトラップできない例外" />
+<MESSAGE name="GURL.fail_to_file" number="15000"
+  value="[%0!05u!] URL をファイル名に変換することができませんでした。" />
+<MESSAGE name="GURL.fail_to_URL" number="15001"
+  value="[%0!05u!] ファイル名称をURLへ変換することができませんでした。" />
+<MESSAGE name="GURL.no_protocol" number="15002"
+  value="[%0!05u!] URL &apos;%1!s!&apos; プロトコル接頭辞が含まれていません。" />
+<MESSAGE name="GURL.big_name" number="15003"
+  value="[%0!05u!] ファイル名が長すぎます。" />
+<MESSAGE name="GURL.listdir" number="15004"
+  value="[%0!05u!] GURL::listdir がこのプラットフォームでは実装されていません。" />
+<MESSAGE name="GURL.no_rename" number="15005">
+[1-%0!05u!] WinCEデバイスではrename()を使用できません。
+</MESSAGE>
+<MESSAGE name="IFFByteStream.bad_chunk" number="15100"
+  value="[%0!05u!] チャンクID が不正です。(IFFByteStream::put_chunk)" />
+<MESSAGE name="IFFByteStream.bad_offset" number="15101"
+  value="[%0!05u!] IFFByteStream (内部エラー) チャンクの境界を越えたオフセット" />
+<MESSAGE name="IFFByteStream.cant_close" number="15102"
+  value="[%0!05u!] チャンクがオープンされていないので、チャンクを閉じることは出来ません。" />
+<MESSAGE name="IFFByteStream.cant_write" number="15103"
+  value="[%0!05u!] 前のチャンクが終了するまで、書き込みは出来ません。" />
+<MESSAGE name="IFFByteStream.corrupt_2nd_id" number="15104"
+  value="[%0!05u!] IFF ファイルが壊れています。(二番目のチャンクID が不正です。)" />
+<MESSAGE name="IFFByteStream.corrupt_end2" number="15105"
+  value="[%0!05u!] IFF ファイルが壊れています。(チャンクサイズの読み込み中に EndOfChunk が見つかりました。" />
+<MESSAGE name="IFFByteStream.corrupt_end" number="15106"
+  value="[%0!05u!] IFF ファイルが壊れています。(チャンクID の読み込み中に EndOfChunk が見つかりました。)" />
+<MESSAGE name="IFFByteStream.corrupt_header" number="15107"
+  value="[%0!05u!] IFF ファイルが壊れています。(合成チャンクヘッダの読み込み中に EndOfChunk が見つかりました。)" />
+<MESSAGE name="IFFByteStream.corrupt_id" number="15108"
+  value="[%0!05u!] IFF ファイルが壊れています。(チャンクID が不正です。)" />
+<MESSAGE name="IFFByteStream.corrupt_mangled" number="15109"
+  value="[%0!05u!] IFF ファイルが壊れています。(チャンクの境界が異常です。)" />
+<MESSAGE name="IFFByteStream.no_chunk_id" number="15110"
+  value="[%0!05u!] チャンクID が利用できません。" />
+<MESSAGE name="IFFByteStream.not_ready2" number="15111"
+  value="[%0!05u!] IFFByteStream に書き込む準備ができていません。" />
+<MESSAGE name="IFFByteStream.not_ready3" number="15112"
+  value="[%0!05u!] IFFByteStream からバイトを読み込む準備ができていません。" />
+<MESSAGE name="IFFByteStream.not_ready4" number="15113"
+  value="[%0!05u!] IFFByteStream にバイトを書き込む準備ができていません。" />
+<MESSAGE name="IFFByteStream.not_ready" number="15114"
+  value="[%0!05u!] IFFByteStream から読み込む準備ができていません。" />
+<MESSAGE name="IFFByteStream.read_write" number="15115"
+  value="[%0!05u!] 同じ IFFByteStream に読み込みと書き込みを試みました。" />
+<MESSAGE name="Internal.error" number="15200"
+  value="[%0!05u!] 内部エラー" />
+<MESSAGE name="IW44Image.bad_rect" number="15300"
+  value="[%0!05u!] (IWMap::image) 矩形が範囲外です。" />
+<MESSAGE name="IW44Image.cant_read_primary2" number="15302"
+  value="[%0!05u!] (IWPixmap::decode_chunk) プライマリヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.cant_read_primary" number="15303"
+  value="[%0!05u!] (IWBitmap::decode_chunk) プライマリヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.cant_read_secondary2" number="15304"
+  value="[%0!05u!] (IWPixmap::decode_chunk) 2番目のヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.cant_read_secondary" number="15305"
+  value="[%0!05u!] (IWBitmap::decode_chunk) 2番目のヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.cant_read_tertiary2" number="15306"
+  value="[%0!05u!] (IWPixmap::decode_chunk) 3番目のヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.cant_read_tertiary" number="15307"
+  value="[%0!05u!] (IWBitmap::decode_chunk) 3番目のヘッダを読むことができません。" />
+<MESSAGE name="IW44Image.codec_open2" number="15308"
+  value="[%0!05u!] (IWBitmap::decode_chunk) デコードの Codec が開いたままです。" />
+<MESSAGE name="IW44Image.corrupt_BM44_2" number="15312"
+  value="[%0!05u!] (IWPixmap::decode_iff) ファイルが壊れています。(FORM.BM44 が読み込めません。)" />
+<MESSAGE name="IW44Image.corrupt_BM44" number="15313"
+  value="[%0!05u!] (IWBitmap::decode_iff) ファイルが壊れています。(FORM.BM44 が読み込めません。)" />
+<MESSAGE name="IW44Image.empty_object2" number="15315"
+  value="[%0!05u!] (IWPixmap::encode_chunk) IWBitmap オブジェクトが空です。" />
+<MESSAGE name="IW44Image.empty_object" number="15316"
+  value="[%0!05u!] (IWBitmap::encode_chunk) IWBitmap オブジェクトが空です。" />
+<MESSAGE name="IW44Image.empty_rect" number="15317"
+  value="[%0!05u!] (IWMap::image) 長方形が空です。" />
+<MESSAGE name="IW44Image.has_color" number="15318"
+  value="[%0!05u!] (IWBitmap::decode_chunk) ファイルはカラーイメージを含んでいます。" />
+<MESSAGE name="IW44Image.incompat_codec2" number="15319"
+  value="[%0!05u!] (IWPixmap::decode_chunk) ファイルは互換性のない IWCodec で圧縮されました。" />
+<MESSAGE name="IW44Image.incompat_codec" number="15320"
+  value="[%0!05u!] (IWBitmap::decode_chunk) ファイルは互換性のない IWCodec で圧縮されました。" />
+<MESSAGE name="IW44Image.left_open1" number="15321"
+  value="[%0!05u!] (IWBitmap::encode_iff) Codec は開いたままです。" />
+<MESSAGE name="IW44Image.left_open2" number="15322"
+  value="[%0!05u!] (IWBitmap::decode_iff) Codec は開いたままです。" />
+<MESSAGE name="IW44Image.left_open3" number="15323"
+  value="[%0!05u!] (IWPixmap::encode_iff) Codec は開いたままです。" />
+<MESSAGE name="IW44Image.left_open4" number="15324"
+  value="[%0!05u!] (IWPixmap::decode_iff) Codec は開いたままです。" />
+<MESSAGE name="IW44Image.need_stop2" number="15325"
+  value="[%0!05u!] (IWPixmap::encode_chunk) ストップ基準を指定しなければなりません。" />
+<MESSAGE name="IW44Image.need_stop" number="15326"
+  value="[%0!05u!] (IWBitmap::encode_chunk) ストップ基準を指定しなければなりません。" />
+<MESSAGE name="IW44Image.param_range2" number="15327"
+  value="[%0!05u!] (IWPixmap::parm_dbfrac) パラメータが範囲外です。" />
+<MESSAGE name="IW44Image.param_range" number="15328"
+  value="[%0!05u!] (IWBitmap::parm_dbfrac) パラメータが範囲外です。" />
+<MESSAGE name="IW44Image.recent_codec2" number="15329"
+  value="[%0!05u!] (IWPixmap::decode_chunk) ファイルは比較的新しい IWCodec で圧縮されました。" />
+<MESSAGE name="IW44Image.recent_codec" number="15330"
+  value="[%0!05u!] (IWBitmap::decode_chunk) ファイルは比較的新しい IWCodec で圧縮されました。" />
+<MESSAGE name="IW44Image.sample_factor" number="15331"
+  value="[%0!05u!] (IWMap::image) サポートされていないサブサンプル値" />
+<MESSAGE name="IW44Image.wrong_serial2" number="15332"
+  value="[%0!05u!] (IWPixmap::decode_chunk) チャンクは予期していたシリアル番号を持っていません。" />
+<MESSAGE name="IW44Image.wrong_serial" number="15333"
+  value="[%0!05u!] (IWBitmap::decode_chunk) チャンクは予期していたシリアル番号を持っていません。" />
+<MESSAGE name="JB2Image.bad_dict2" number="15400"
+  value="[%0!05u!] ファイルが破損しています：JB2 辞書に非0イメージディメンジョンがあります。" />
+<MESSAGE name="JB2Image.bad_dict" number="15401"
+  value="[%0!05u!] シェイプ辞書のサイズは JB2 データとマッチしません。" />
+<MESSAGE name="JB2Image.bad_number" number="15402"
+  value="[%0!05u!] (JB2Codec::CodeNum) 範囲外の数値です。" />
+<MESSAGE name="JB2Image.bad_numcontext" number="15403"
+  value="[%0!05u!] (JB2Codec::CodeNum) NumContext が不正です。" />
+<MESSAGE name="JB2Image.bad_parent_shape" number="15404"
+  value="[%0!05u!] JB2Shape でのペアレントシェイプ番号が不正です。" />
+<MESSAGE name="JB2Image.bad_shape" number="15405"
+  value="[%0!05u!] JB2Blit でのシェイプ番号が不正です。" />
+<MESSAGE name="JB2Image.bad_type" number="15406"
+  value="[%0!05u!] ファイルが壊れています：シェイプ辞書のためのレコードタイプが不正です。" />
+<MESSAGE name="JB2Image.cant_change" number="15407"
+  value="[%0!05u!] 一度セットされた辞書を変更することはできません。" />
+<MESSAGE name="JB2Image.cant_create" number="15408"
+  value="[%0!05u!] 大きさが設定されていない JB2Image オブジェクトのためにビットマップイメージをつくることができません。" />
+<MESSAGE name="JB2Image.cant_set" number="15409"
+  value="[%0!05u!] シェイプを加えた後に辞書をセットすることはできません。" />
+<MESSAGE name="JB2Image.need_dict" number="15410"
+  value="[%0!05u!] JB2データはシェイプ辞書を必要としています。" />
+<MESSAGE name="JB2Image.no_start" number="15411"
+  value="[%0!05u!] ファイルが壊れています：スタートレコードが見つかりません。" />
+<MESSAGE name="JB2Image.unknown_type" number="15412"
+  value="[%0!05u!] ファイルが壊れています：レコードタイプが見つかりません。" />
+<MESSAGE name="JB2Image.zero_dim" number="15413"
+  value="[%0!05u!] ファイルが壊れています：NJB2 イメージ寸法のスタートレコードがゼロです。" />
+<MESSAGE name="MMRDecoder.bad_codebook" number="15500"
+  value="[%0!05u!] MMR codebook があいまいです。" />
+<MESSAGE name="MMRDecoder.bad_data" number="15501"
+  value="[%0!05u!] G4/MMR データが無効です。" />
+<MESSAGE name="MMRDecoder.bad_header" number="15502"
+  value="[%0!05u!] G4/MMR ヘッダが壊れています。" />
+<MESSAGE name="MMRDecoder.cant_process" number="15503"
+  value="[%0!05u!] G4/MMR データで非圧縮ビットを処理できません。" />
+<MESSAGE name="MMRDecoder.unrecog_header" number="15504"
+  value="[%0!05u!] G4/MMR ヘッダが認識できません。" />
+<MESSAGE name="not_implemented_n" number="15600"
+  value="[%0!05u!] &apos;%1!s!&apos; が実装されていません。" />
+<MESSAGE name="not_implemented" number="15700"
+  value="[%0!05u!] 実装されていません" />
+<MESSAGE name="parseoptions.ambiguous" number="15800"
+  value="[%0!05u!] オプションがあいまいです：&apos;%1!s!=%2!s!&apos; と &apos;%3!s!=%4!s!&apos; が指定されています。" />
+<MESSAGE name="parseoptions.bad_number" number="15802"
+  value="[%0!05u!] &apos;%1!s!&apos; は数値ではありません。" />
+<MESSAGE name="parseoptions.bad_value" number="15803"
+  value="[%0!05u!] &apos;%1!s!&apos; は数値またはブーリアン値ではありません。" />
+<MESSAGE name="parseoptions.cant_inherit" number="15804"
+  value="[%0!05u!] &apos;%1!s!&apos;：&apos;%3!s!&apos;の行 %2!d! でエラーが発生しました。&#09;--&gt; 未知のプロファイル &apos;%4!s!&apos; を継承できません。" />
+<MESSAGE name="parseoptions.illegal_profile" number="15805"
+  value="[%0!05u!] &apos;%1!s!&apos;：プロファイル &apos;%3!s!&apos; の行 %2!d! でエラーが発生しました。&#09;--&gt; 無効なプロファイル名 &apos;%4!s!&apos;。" />
+<MESSAGE name="parseoptions.missing_arg_option" number="15806"
+  value="[%0!05u!] 引数が必要です： --&apos;%1!s!&apos;" />
+<MESSAGE name="parseoptions.profile_error" number="15807"
+  value="[%0!05u!] &apos;%1!s!&apos;：プロファイル &apos;%3!s!&apos; の行 %2!d! でエラーが発生しました。&#09;--&gt; %4!s!" />
+<MESSAGE name="parseoptions.unrecog_option_c" number="15808"
+  value="[%0!05u!] 認識できないオプション -&apos;%1!s!&apos;" />
+<MESSAGE name="parseoptions.unrecog_option" number="15809"
+  value="[%0!05u!] 認識できないオプション &apos;%1!s!&apos;" />
+<MESSAGE name="STOP" number="16000"
+  value="[%0!05u!] トラップできないストップメッセージ。" />
+<MESSAGE name="TextException.test" number="16100"
+  value="[%0!05u!] テスト例外" />
+<MESSAGE name="XMLAnno.bad_color" number="16200"
+  value="[%0!05u!] カラー &apos;%1!s!&apos; はサポートされていません。" />
+<MESSAGE name="XMLAnno.bad_page" number="16201"
+  value="[%0!05u!] 指定したページの取得に失敗しました。" />
+<MESSAGE name="XMLAnno.bad_rect" number="16202"
+  value="[%0!05u!] 矩形領域の座標が少なすぎます。" />
+<MESSAGE name="XMLAnno.bad_circle" number="16203"
+  value="[%0!05u!] 円領域の座標が少なすぎます。" />
+<MESSAGE name="XMLAnno.bad_oval" number="16204"
+  value="[%0!05u!] 楕円領域の座標が少なすぎます。" />
+<MESSAGE name="XMLAnno.unknown_shape" number="16205"
+  value="[%0!05u!] 未知のシェイプ &apos;%1!s!&apos;" />
+<MESSAGE name="XMLAnno.unknown_border" number="16206"
+  value="[%0!05u!] 未知のボーダータイプ &apos;%1!s!&apos;" />
+<MESSAGE name="XMLAnno.extra_body" number="16207"
+  value="[%0!05u!] &lt;BODY&gt;&lt;/BODY&gt; は1対だけ許可されます。" />
+<MESSAGE name="XMLAnno.no_body" number="16208"
+  value="[%0!05u!] &lt;BODY&gt;&lt;/BODY&gt; の対が見つかりません。" />
+<MESSAGE name="XMLAnno.map_find" number="16209"
+  value="[%0!05u!] 指定されたマップが見つかりません &apos;%1!s!&apos;" />
+<MESSAGE name="XMLAnno.fail_init" number="16210"
+  value="[%0!05u!] 初期化に失敗しました &apos;%1!s!&apos;" />
+<MESSAGE name="XMLTags.no_GP" number="16300"
+  value="[%0!05u!] GP ポインタで保護されていません。" />
+<MESSAGE name="XMLTags.raw_string" number="16301"
+  value="[%0!05u!] &apos;%1!s!&apos; ドキュメントスコープの外で文字列が見つかりました。" />
+<MESSAGE name="XMLTags.bad_tag" number="16302"
+  value="[%0!05u!] 未終了のタグ &apos;%1!s!&apos;" />
+<MESSAGE name="XMLTags.bad_PI" number="16303"
+  value="[%0!05u!] 未終了の処理指示：&apos;%1!s!&apos;" />
+<MESSAGE name="XMLTags.bad_comment" number="16304"
+  value="[%0!05u!] 未終了のコメント：&apos;%1!s!&apos;" />
+<MESSAGE name="XMLTags.bad_form" number="16305"
+  value="[%0!05u!] 整形式XML文書エラー。終了タグが多すぎます。" />
+<MESSAGE name="XMLTags.no_body" number="16306"
+  value="[%0!05u!] ボディがありません。" />
+<MESSAGE name="ZPCodec.no_encoding" number="16400"
+  value="[%0!05u!] エンコードの ZPCodec が作成されていません。" />
+<MESSAGE name="ZPCodec.write_error" number="16401"
+  value="[%0!05u!] ZPCodec 書込みエラー" />
+<MESSAGE name="DjVuText.corrupt_text" number="10100">
+[1-%0!05u!] Text layer hierarchy is corrupt"
+</MESSAGE>
+<MESSAGE name="DataPool.reenter" number="11807"
+  value="[%0!05u!] DATA_POOL_REENTER" />
+<MESSAGE name="DjVuFile.EOF" number="12514">
+[1-%0!05u!] Unexpected End Of File Encountered Reading:
+	%1!s!.
+</MESSAGE>
+<MESSAGE name="Error" number="13500">
+Error: %1!s!.
+</MESSAGE>
+<MESSAGE name="error" number="13600">
+Error: %1!s!.
+</MESSAGE>
+<MESSAGE name="XMLTags.unmatched_end" number="16307">
+[1-%0!05u!] XML tag &apos;%1!s!&apos; on line %2!u! was terminated with XML
+tag &apos;%3!s!&apos; line %4!u!.
+</MESSAGE>
+<MESSAGE name="DjVuDynamicLib.failed_open2" number="16402">
+[1-%0!05u!] Failed to open dynamic library '%1!s!'.
+	System reported: '%2!s!'.
+</MESSAGE>
+<MESSAGE name="DjVuDynamicLib.failed_open" number="16403">
+[1-%0!05u!] Failed to open dynamic library '%1!s!'.
+</MESSAGE>
+</BODY>
+</DjVuMessages>
