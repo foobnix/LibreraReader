@@ -1,7 +1,7 @@
 APP_PLATFORM=android-16
 
 APP_ABI := armeabi-v7a arm64-v8a x86 x86_64
-#APP_ABI := x86
+#APP_ABI := x86_64
 
 APP_OPTIM := release
 APP_ARM_MODE := arm
