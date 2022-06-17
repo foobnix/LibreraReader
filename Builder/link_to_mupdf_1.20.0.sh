@@ -6,7 +6,7 @@ BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd $BUILD_DIR
 
-VERSION_TAG="1.20.0-rc2"
+VERSION_TAG="1.20.0"
 git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG mupdf-$VERSION_TAG
 
 MUPDF_ROOT=$BUILD_DIR/mupdf-$VERSION_TAG

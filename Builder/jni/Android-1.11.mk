@@ -7,7 +7,7 @@ MUPDF_ROOT := $(realpath $(LOCAL_PATH)/../../..)
 include $(TOP_LOCAL_PATH)/libmobi-0.11/Android.mk
 include $(TOP_LOCAL_PATH)/libhqx-1.2/Android.mk
 include $(TOP_LOCAL_PATH)/libdjvu-3.5.28/Android.mk
-include $(TOP_LOCAL_PATH)/libantiword/Android.mk
+include $(TOP_LOCAL_PATH)/libantiword-1.3.1/Android.mk
 include $(TOP_LOCAL_PATH)/libwebp-1.2.2/Android.mk
 
 include $(TOP_LOCAL_PATH)/MuPDF-1.11.mk

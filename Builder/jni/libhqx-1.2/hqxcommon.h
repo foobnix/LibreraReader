@@ -54,9 +54,9 @@ static inline int Diff(uint32_t w1, uint32_t w2)
     // Mask against RGB_MASK to discard the alpha channel
     uint32_t YUV1 = rgb2yuv(w1);
     uint32_t YUV2 = rgb2yuv(w2);
-    return ( ( abs((YUV1 & Ymask) - (YUV2 & Ymask)) > trY ) ||
-            ( abs((YUV1 & Umask) - (YUV2 & Umask)) > trU ) ||
-            ( abs((YUV1 & Vmask) - (YUV2 & Vmask)) > trV ) );
+    return ( ( ((YUV1 & Ymask) - (YUV2 & Ymask)) > trY ) ||
+            ( ((YUV1 & Umask) - (YUV2 & Umask)) > trU ) ||
+            ( ((YUV1 & Vmask) - (YUV2 & Vmask)) > trV ) );
 }
 
 /* Interpolate functions */
