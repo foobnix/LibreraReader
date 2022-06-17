@@ -107,36 +107,36 @@ typedef struct docbooktags_tag {
 
 static const docbooktags_type atDocBookTags[] = {
 	{	TAG_NOTAG, 		"!ERROR!",	TRUE,	TRUE	},
-	{	TAG_AUTHOR,		"author",	TRUE,	TRUE	},
-	{	TAG_BEGINPAGE,		"beginpage",	TRUE,	TRUE	},
-	{	TAG_BOOK, 		"book",		TRUE,	TRUE	},
-	{	TAG_BOOKINFO, 		"bookinfo",	TRUE,	TRUE	},
-	{	TAG_CHAPTER, 		"chapter",	TRUE,	TRUE	},
-	{	TAG_COLSPEC,		"colspec",	TRUE,	TRUE	},
-	{	TAG_CORPNAME,		"corpname",	FALSE,	FALSE	},
-	{	TAG_DATE,		"date",		FALSE,	FALSE	},
-	{	TAG_EMPHASIS,		"emphasis",	FALSE,	FALSE	},
-	{	TAG_ENTRY,		"entry",	TRUE,	TRUE	},
-	{	TAG_FILENAME,		"filename",	FALSE,	FALSE	},
-	{	TAG_FOOTNOTE,		"footnote",	FALSE,	FALSE	},
-	{	TAG_INFORMALTABLE,	"informaltable",TRUE,	TRUE	},
-	{	TAG_ITEMIZEDLIST,	"itemizedlist",	TRUE,	TRUE	},
-	{	TAG_LISTITEM,		"listitem",	TRUE,	TRUE	},
-	{	TAG_ORDEREDLIST,	"orderedlist",	TRUE,	TRUE	},
+	{	TAG_AUTHOR,		"div",	TRUE,	TRUE	},
+	{	TAG_BEGINPAGE,		"div",	TRUE,	TRUE	},
+	{	TAG_BOOK, 		"div",		TRUE,	TRUE	},
+	{	TAG_BOOKINFO, 		"div",	TRUE,	TRUE	},
+	{	TAG_CHAPTER, 		"div",	TRUE,	TRUE	},
+	{	TAG_COLSPEC,		"div",	TRUE,	TRUE	},
+	{	TAG_CORPNAME,		"div",	FALSE,	FALSE	},
+	{	TAG_DATE,		"div",		FALSE,	FALSE	},
+	{	TAG_EMPHASIS,		"span",	FALSE,	FALSE	},
+	{	TAG_ENTRY,		"div",	TRUE,	TRUE	},
+	{	TAG_FILENAME,		"div",	FALSE,	FALSE	},
+	{	TAG_FOOTNOTE,		"div",	FALSE,	FALSE	},
+	{	TAG_INFORMALTABLE,	"div",TRUE,	TRUE	},
+	{	TAG_ITEMIZEDLIST,	"div",	TRUE,	TRUE	},
+	{	TAG_LISTITEM,		"div",	TRUE,	TRUE	},
+	{	TAG_ORDEREDLIST,	"div",	TRUE,	TRUE	},
 	{	TAG_PARA, 		"p",		TRUE,	TRUE	},
-	{	TAG_ROW,		"row",		TRUE,	TRUE	},
-	{	TAG_SECT1, 		"sect1",	TRUE,	TRUE	},
-	{	TAG_SECT2, 		"sect2",	TRUE,	TRUE	},
-	{	TAG_SECT3, 		"sect3",	TRUE,	TRUE	},
-	{	TAG_SECT4, 		"sect4",	TRUE,	TRUE	},
-	{	TAG_SECT5, 		"sect5",	TRUE,	TRUE	},
-	{	TAG_SUBSCRIPT,		"subscript",	FALSE,	FALSE	},
-	{	TAG_SUBTITLE,		"subtitle",	FALSE,	FALSE	},
-	{	TAG_SUPERSCRIPT,	"superscript",	FALSE,	FALSE	},
-	{	TAG_SURNAME,		"surname",	FALSE,	FALSE	},
-	{	TAG_TBODY,		"tbody",	TRUE,	TRUE	},
-	{	TAG_TGROUP,		"tgroup",	TRUE,	TRUE	},
-	{	TAG_TITLE, 		"title",	FALSE,	FALSE	},
+	{	TAG_ROW,		"div",		TRUE,	TRUE	},
+	{	TAG_SECT1, 		"div",	TRUE,	TRUE	},
+	{	TAG_SECT2, 		"div",	TRUE,	TRUE	},
+	{	TAG_SECT3, 		"div",	TRUE,	TRUE	},
+	{	TAG_SECT4, 		"div",	TRUE,	TRUE	},
+	{	TAG_SECT5, 		"div",	TRUE,	TRUE	},
+	{	TAG_SUBSCRIPT,		"div",	FALSE,	FALSE	},
+	{	TAG_SUBTITLE,		"div",	FALSE,	FALSE	},
+	{	TAG_SUPERSCRIPT,	"div",	FALSE,	FALSE	},
+	{	TAG_SURNAME,		"div",	FALSE,	FALSE	},
+	{	TAG_TBODY,		"div",	TRUE,	TRUE	},
+	{	TAG_TGROUP,		"div",	TRUE,	TRUE	},
+	{	TAG_TITLE, 		"div",	FALSE,	FALSE	},
 };
 
 static void	vAddStartTag(diagram_type *, UCHAR, const char *);
@@ -840,7 +840,7 @@ vPrintXML(diagram_type *pDiag, const char *szString, size_t tStringLength,
 			if (bEmphasisNew) {
 				aucStorage[tNextFree++] = ucTopTag;
 			}
-			vAddEndTag(pDiag, ucTopTag);
+			//vAddEndTag(pDiag, ucTopTag);
 			break;
 		case TAG_SUPERSCRIPT:
 			fail(!bSuperscriptOpen);
@@ -875,9 +875,9 @@ vPrintXML(diagram_type *pDiag, const char *szString, size_t tStringLength,
 	/* Start what has to be started */
 	if (bEmphasisNew && !bEmphasisOpen) {
 		if (bIsBold(usFontstyle)) {
-			szAttr = "style='font-weight: bold'";
+			szAttr = NULL;// "style='font-weight: bold'";
 		} else if (bIsItalic(usFontstyle)) {
-			szAttr = "style='font-style: italic'";
+			szAttr = NULL;// "style='font-style: italic'";
 		} else if (bIsUnderline(usFontstyle)) {
 			szAttr = NULL;// "role='underline'";
 		} else if (bIsStrike(usFontstyle)) {
@@ -885,7 +885,7 @@ vPrintXML(diagram_type *pDiag, const char *szString, size_t tStringLength,
 		} else {
 			szAttr = NULL;
 		}
-		vAddStartTag(pDiag, TAG_EMPHASIS, szAttr);
+		//vAddStartTag(pDiag, TAG_EMPHASIS, szAttr);
 	}
 	if (bSuperscriptNew && !bSuperscriptOpen) {
 		vAddStartTag(pDiag, TAG_SUPERSCRIPT, NULL);
@@ -984,7 +984,7 @@ vEndOfParagraphXML(diagram_type *pDiag, UINT uiMaxLevel)
 		switch (ucTopTag) {
 		case TAG_EMPHASIS:
 			fail(!bEmphasisOpen);
-			vAddEndTag(pDiag, TAG_EMPHASIS);
+			//vAddEndTag(pDiag, TAG_EMPHASIS);
 			break;
 		case TAG_SUPERSCRIPT:
 			fail(!bSuperscriptOpen);
@@ -1291,7 +1291,7 @@ vStartOfTable(diagram_type *pDiag, UCHAR ucBorderInfo)
 			break;
 		case TAG_EMPHASIS:
 			fail(!bEmphasisOpen);
-			vAddEndTag(pDiag, TAG_EMPHASIS);
+			//vAddEndTag(pDiag, TAG_EMPHASIS);
 			break;
 		case TAG_SUPERSCRIPT:
 			fail(!bSuperscriptOpen);
