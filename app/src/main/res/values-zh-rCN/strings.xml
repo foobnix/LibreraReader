@@ -26,7 +26,7 @@
    <string name="show">显示</string>
    <string name="layout">布局</string>
    <string name="number_of_books">书籍</string>
-   <string name="remember_reading_mode">记住阅读模式</string>
+   <string name="remember_reading_mode">记住翻页模式</string>
    <string name="opening_the_last_book_when_the_application_starts">启动时加载上次阅读书籍</string>
    <string name="show_application_close_dialog_every_time">返回键退出确认</string>
    <string name="display_all_file_types_in_folders">显示所有文件类型</string>
@@ -242,10 +242,10 @@
    <string name="loading_error">页面加载错误</string>
    <string name="loading_failed">页面加载失败</string>
    <string name="___CONTEXT___MENU___SECTION___"></string>
-   <string name="select_the_reading_mode">阅读模式</string>
+   <string name="select_the_reading_mode">翻页模式</string>
    <string name="convert_to">转换为</string>
-   <string name="mode_vertical">滚动模式</string>
-   <string name="mode_horizontally">书籍模式</string>
+   <string name="mode_vertical">上下翻页</string>
+   <string name="mode_horizontally">左右翻页</string>
    <string name="mode_musician">乐师模式</string>
    <string name="save">保存</string>
    <string name="remember_choice">记住选择</string>
