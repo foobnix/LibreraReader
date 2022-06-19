@@ -26,7 +26,7 @@
    <string name="show">显示</string>
    <string name="layout">布局</string>
    <string name="number_of_books">书籍</string>
-   <string name="remember_reading_mode">记住阅读模式</string>
+   <string name="remember_reading_mode">记住阅读方式</string>
    <string name="opening_the_last_book_when_the_application_starts">启动时加载上次阅读书籍</string>
    <string name="show_application_close_dialog_every_time">返回键退出确认</string>
    <string name="display_all_file_types_in_folders">显示所有文件类型</string>
