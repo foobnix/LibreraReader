@@ -71,7 +71,7 @@
    <string name="italic_font">斜体</string>
    <string name="bold_italic_font">粗斜体</string>
    <string name="font_for_headers">标题字体</string>
-   <string name="enable_volume_keys">音量键导航</string>
+   <string name="enable_volume_keys">音量键翻页</string>
    <string name="reverse_keys">反转键位</string>
    <string name="screen_orientation">屏幕方向</string>
    <string name="open_in_the_dictionary">在字典中打开所选内容</string>
@@ -124,8 +124,8 @@
    <string name="db_auto_alignemnt">适应页面</string>
    <string name="db_auto_center_horizontally">居中（不重新缩放）</string>
    <string name="zoom_in_zoom_out">缩放</string>
-   <string name="enhancements_for_oled_display">夜间模式 AMOLED 增强</string>
-   <string name="ignore_annotations_on_click">触碰忽略注释</string>
+   <string name="enhancements_for_oled_display">夜间模式增强(适用于AMOLED屏幕)</string>
+   <string name="ignore_annotations_on_click">忽略对注释的触摸</string>
    <string name="save_new_annotations_automatically">退出时自动保存注释</string>
    <string name="selecting_text_by_letters">逐字选择文本（亚洲语言）</string>
    <string name="change_the_automatic_scrolling_speed_with_the_volume_keys">音量键控制滚动速度</string>
@@ -138,7 +138,7 @@
    <string name="status_bar">状态栏</string>
    <string name="show_status_bar">显示状态栏</string>
    <string name="show_progress_of_reading">显示进度条</string>
-   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条导航</string>
+   <string name="enable_rewind_of_pages_using_the_read_progress_line">滑动进度条翻页</string>
    <string name="text_size">字体大小</string>
    <string name="line_height">进度条高度</string>
    <string name="text_color_day">字体颜色（白天）</string>
