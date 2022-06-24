@@ -106,7 +106,7 @@ typedef struct docbooktags_tag {
 } docbooktags_type;
 
 static const docbooktags_type atDocBookTags[] = {
-	{	TAG_NOTAG, 		"!ERROR!",	TRUE,	TRUE	},
+	{	TAG_NOTAG, 		"div",	TRUE,	TRUE	},
 	{	TAG_AUTHOR,		"div",	TRUE,	TRUE	},
 	{	TAG_BEGINPAGE,		"div",	TRUE,	TRUE	},
 	{	TAG_BOOK, 		"div",		TRUE,	TRUE	},
