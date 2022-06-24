@@ -1,6 +1,7 @@
 package com.foobnix.ext;
 
 import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.mobi.parser.IOUtils;
 import com.foobnix.pdf.info.ExtUtils;
 import com.foobnix.sys.ArchiveEntry;
@@ -11,7 +12,9 @@ import com.github.junrar.impl.FileVolumeManager;
 import com.github.junrar.rarfile.FileHeader;
 
 import org.ebookdroid.BookType;
+import org.xmlpull.v1.XmlPullParser;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -66,6 +69,238 @@ public class CbzCbrExtractor {
             LOG.e(e);
         }
         return count;
+    }
+
+    public static String getBookOverview(String path) {
+        String info = "";
+        try {
+            ZipArchiveInputStream zipInputStream = null;
+            ByteArrayOutputStream byteArrayStream = null;
+            ByteArrayInputStream inputStream = null;
+
+            if (BookType.CBZ.is(path) || isZip(path)) {
+                zipInputStream = Zips.buildZipArchiveInputStream(path);
+                ArchiveEntry nextEntry = null;
+
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    String name = nextEntry.getName().toLowerCase(Locale.US);
+                    if ("comicinfo.xml".equals(name)) {
+                        break;
+                    }
+                }
+
+                if (nextEntry == null) {
+                    zipInputStream.close();
+                    return "";
+                }
+            } else if (BookType.CBR.is(path)) {
+                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                byteArrayStream = new ByteArrayOutputStream();
+
+                for (FileHeader it : archive.getFileHeaders()) {
+                    if (it.isDirectory()) {
+                        continue;
+                    }
+
+                    String name = it.getFileNameString().toLowerCase(Locale.US);
+                    if ("comicinfo.xml".equals(name)) {
+                        archive.extractFile(it, byteArrayStream);
+                        break;
+                    }
+                }
+                archive.close();
+
+                if (byteArrayStream.size() == 0) {
+                    return "";
+                }
+            }
+
+            XmlPullParser xpp = XmlParser.buildPullParser();
+            if (zipInputStream != null) {
+                xpp.setInput(zipInputStream, "utf-8");
+            } else if (byteArrayStream != null){
+                inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
+                xpp.setInput(inputStream, "utf-8");
+            }
+
+            int eventType = xpp.getEventType();
+
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (eventType == XmlPullParser.START_TAG) {
+                    if ("Summary".equals(xpp.getName())) {
+                        info = xpp.nextText();
+                        break;
+                    }
+                }
+                eventType = xpp.next();
+            }
+
+            if (zipInputStream != null) {
+                zipInputStream.close();
+            } else if (byteArrayStream != null) {
+                byteArrayStream.close();
+                inputStream.close();
+            }
+        } catch (Exception e) {
+            LOG.e(e);
+        }
+        return info;
+    }
+
+    public static EbookMeta getBookMetaInformation(String path) {
+        try {
+            ZipArchiveInputStream zipInputStream = null;
+            ByteArrayOutputStream byteArrayStream = null;
+            ByteArrayInputStream inputStream = null;
+
+            String title = null;
+            String author = "";
+            String series = null;
+            String number = null;
+            String genre = "";
+            String lang = null;
+            String date = null;
+            String publisher = "";
+
+            if (BookType.CBZ.is(path) || isZip(path)) {
+                zipInputStream = Zips.buildZipArchiveInputStream(path);
+                ArchiveEntry nextEntry = null;
+
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    String name = nextEntry.getName().toLowerCase(Locale.US);
+
+                    if ("comicinfo.xml".equals(name)) {
+                        break;
+                    }
+                }
+
+                if (nextEntry == null) {
+                    zipInputStream.close();
+                    return EbookMeta.Empty();
+                }
+            } else if (BookType.CBR.is(path)) {
+                Archive archive = new Archive(new FileVolumeManager(new File(path)));
+                byteArrayStream = new ByteArrayOutputStream();
+
+                for (FileHeader it : archive.getFileHeaders()) {
+                    if (it.isDirectory()) {
+                        continue;
+                    }
+
+                    String name = it.getFileNameString().toLowerCase(Locale.US);
+                    if ("comicinfo.xml".equals(name)) {
+                        archive.extractFile(it, byteArrayStream);
+                        break;
+                    }
+                }
+                archive.close();
+
+                if (byteArrayStream.size() == 0) {
+                    return EbookMeta.Empty();
+                }
+            }
+
+            XmlPullParser xpp = XmlParser.buildPullParser();
+            if (zipInputStream != null) {
+                xpp.setInput(zipInputStream, "utf-8");
+            } else if (byteArrayStream != null){
+                inputStream = new ByteArrayInputStream(byteArrayStream.toByteArray());
+                xpp.setInput(inputStream, "utf-8");
+            }
+
+            int eventType = xpp.getEventType();
+
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (eventType == XmlPullParser.START_TAG) {
+                    if ("Title".equals(xpp.getName())) {
+                        if (title == null) {
+                            title = xpp.nextText();
+                        } else {
+                            title = title + " - " + xpp.nextText();
+                        }
+                    }
+
+                    if (series == null && "Series".equals(xpp.getName())) {
+                        series = xpp.nextText();
+                    }
+
+                    if (number == null && "Number".equals(xpp.getName())) {
+                        number = xpp.nextText();
+                    }
+
+                    if (genre == null && "Genre".equals(xpp.getName())) {
+                        genre = xpp.nextText();
+                    }
+
+                    if ("Writer".equals(xpp.getName()) ||
+                            "Penciller".equals(xpp.getName()) ||
+                            "Inker".equals(xpp.getName()) ||
+                            "Colorist".equals(xpp.getName()) ||
+                            "Letterer".equals(xpp.getName()) ||
+                            "CoverArtist".equals(xpp.getName()) ||
+                            "Editor".equals(xpp.getName())) {
+                        author = author + ", " + xpp.nextText();
+                    }
+
+
+                    if ("Year".equals(xpp.getName())) {
+                        if (date != null && xpp.getAttributeCount() == 0) {
+                            date = xpp.nextText();
+                        } else if (date == null) {
+                            date = xpp.nextText();
+                        }
+                    }
+
+                    if ("Publisher".equals(xpp.getName())) {
+                        publisher = xpp.nextText();
+                    }
+
+                    if (lang == null && ("LanguageISO".equals(xpp.getName()))) {
+                        lang = xpp.nextText();
+                    }
+                }
+                if (eventType == XmlPullParser.END_TAG) {
+                    if ("ComicInfo".equals(xpp.getName())) {
+                        break;
+                    }
+                }
+                eventType = xpp.next();
+            }
+
+            if (zipInputStream != null) {
+                zipInputStream.close();
+            } else if (byteArrayStream != null) {
+                byteArrayStream.close();
+                inputStream.close();
+            }
+
+            author = TxtUtils.replaceFirst(author, ", ", "");
+
+            EbookMeta ebookMeta = new EbookMeta(title, author, series, genre.replaceAll(",$", ""));
+            try {
+                if (number != null) {
+                    if (number.contains(".")) {
+                        ebookMeta.setsIndex((int) Float.parseFloat(number));
+                    } else {
+                        ebookMeta.setsIndex(Integer.parseInt(number));
+                    }
+                    LOG.d("cbz/cbr", series, ebookMeta.getsIndex());
+
+                }
+            } catch (Exception e) {
+                title = title + " [" + number + "]";
+                ebookMeta.setTitle(title);
+                LOG.d(e);
+            }
+            ebookMeta.setLang(lang);
+            ebookMeta.setYear(date);
+            ebookMeta.setPublisher(publisher);
+            ebookMeta.setPagesCount(getPageCount(path));
+            return ebookMeta;
+        } catch (Exception e) {
+            LOG.e(e);
+            return EbookMeta.Empty();
+        }
     }
 
     public static byte[] getBookCover(String path) {

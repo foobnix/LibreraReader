@@ -130,6 +130,8 @@ public class FileMetaCore {
                 info = DjvuExtract.getBookOverview(path);
             } else if (BookType.PDF.is(path)) {
                 info = PdfExtract.getBookOverview(path);
+            } else if (BookType.CBR.is(path) || BookType.CBZ.is(path)) {
+                info = CbzCbrExtractor.getBookOverview(path);
             }
             if (TxtUtils.isEmpty(info)) {
                 return "";
@@ -261,8 +263,7 @@ public class FileMetaCore {
             ebookMeta.setPublisher(local.getPublisher());
 
         } else if (BookType.CBR.is(unZipPath) || BookType.CBZ.is(unZipPath)) {
-            ebookMeta.setPagesCount(CbzCbrExtractor.getPageCount(unZipPath));
-
+            ebookMeta = CbzCbrExtractor.getBookMetaInformation(unZipPath);
         } else if (BookType.FOLDER.is(unZipPath)) {
             File parent = new File(unZipPath).getParentFile();
             ebookMeta.setTitle(parent.getName());
