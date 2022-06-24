@@ -49,8 +49,17 @@ public class CbzCbrExtractor {
             if (BookType.CBZ.is(path) || isZip(path)) {
 
                 ZipArchiveInputStream zipInputStream = Zips.buildZipArchiveInputStream(path);
+                ArchiveEntry nextEntry = null;
+                while ((nextEntry = zipInputStream.getNextEntry()) != null) {
+                    if (nextEntry.isDirectory()) {
+                        continue;
+                    }
+                    
+                    String name = nextEntry.getName().toLowerCase(Locale.US);
+                    if ("comicinfo.xml".equals(name)) {
+                        continue;
+                    }
 
-                while (zipInputStream.getNextEntry() != null) {
                     count++;
                 }
                 zipInputStream.close();
@@ -59,6 +68,15 @@ public class CbzCbrExtractor {
                 Archive archive = new Archive(new FileVolumeManager(new File(path)));
 
                 for (FileHeader it : archive.getFileHeaders()) {
+                    if (it.isDirectory()) {
+                        continue;
+                    }
+
+                    String name = it.getFileNameString().toLowerCase(Locale.US);
+                    if ("comicinfo.xml".equals(name)) {
+                        continue;
+                    }
+
                     count++;
                 }
 
