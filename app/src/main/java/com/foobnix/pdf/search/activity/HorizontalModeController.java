@@ -759,7 +759,7 @@ public abstract class HorizontalModeController extends DocumentController {
     }
 
     public static String getTitle(String path) {
-        if (ExtUtils.isTextFomat(path)) {
+        if (ExtUtils.hasTitle(path)) {
             return AppDB.get().getOrCreate(path).getTitle();
         }
         return new File(path).getName();
