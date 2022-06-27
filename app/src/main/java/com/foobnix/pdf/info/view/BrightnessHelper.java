@@ -116,6 +116,8 @@ public class BrightnessHelper {
             @Override
             public void onClick(View v) {
                 onMessegeBrightness(h, new MessegeBrightness(AppState.AUTO_BRIGTNESS), textView, overlay);
+                EventBus.getDefault().post(new MessegeBrightness(AppState.AUTO_BRIGTNESS));
+
                 Activity inflate = (Activity) textView.getContext();
                 CheckBox isEnableBlueFilter = inflate.findViewById(R.id.autoSettings);
                 if (isEnableBlueFilter != null) {
