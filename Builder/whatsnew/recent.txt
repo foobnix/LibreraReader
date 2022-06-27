@@ -1,4 +1,3 @@
-* 8.5.xx
-* Android 12 optimization
-* Support EPUB and comics with WEBP
-* Improved PDF quality
+* Read books easily
+* EPUB, PDF and Comics
+* Update PDF engine

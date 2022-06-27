@@ -4,8 +4,8 @@ def taskName = getGradle().getStartParameter().getTaskRequests().toString()
 
 
 ext {
-    FDroidCodeNumber = 4390
-    FDroidVersionNumber = "8.5.12"
+    FDroidCodeNumber = 4400
+    FDroidVersionNumber = "8.5.21"
 }
 
 println " --------------------"
@@ -44,7 +44,7 @@ android {
     configurations {
         all {
             exclude module: 'httpclient'
-            //exclude module: 'commons-logging'
+            exclude module: 'commons-logging'
         }
     }
 
@@ -461,6 +461,7 @@ if (!taskName.contains("Fdroid")) {
 
     dependencies {
         implementation "com.github.junrar:junrar:4.0.0"
+        implementation "commons-logging:commons-logging-api:1.1"
 
         implementation 'com.cloudrail:cloudrail-si-android:2.22.4'
         implementation 'com.google.android.gms:play-services-auth:17.0.0'
