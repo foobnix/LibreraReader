@@ -253,7 +253,7 @@ public class AdvGuestureDetector extends SimpleOnGestureListener implements IMul
     public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float vX, final float vY) {
         try {
 
-            if (e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
+            if (AppState.get().isBrighrnessEnable && e1.getX() < BrightnessHelper.BRIGHTNESS_WIDTH) {
                 return false;
             }
 

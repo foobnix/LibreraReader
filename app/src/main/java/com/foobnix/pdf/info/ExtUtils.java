@@ -670,14 +670,14 @@ public class ExtUtils {
         if (path == null) {
             return false;
         }
-        return BookType.isTextFormat(path);
+        return BookType.getByUri(path).isTextFormat();
     }
 
     public static synchronized boolean hasTitle(String path) {
         if (path == null) {
             return false;
         }
-        return BookType.hasTitle(path);
+        return BookType.getByUri(path).hasTitle();
     }
 
 

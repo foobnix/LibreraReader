@@ -163,11 +163,12 @@ public class FileMetaCore {
 
     public static void reUpdateIfNeed(FileMeta fileMeta) {
         if (fileMeta.getState() != null && fileMeta.getState() != FileMetaCore.STATE_FULL) {
-            LOG.d("reupdateIfNeed", fileMeta.getPath(), fileMeta.getState());
+            LOG.d("reupdateIfNeed 1", fileMeta.getPath(), fileMeta.getState());
             EbookMeta ebookMeta = FileMetaCore.get().getEbookMeta(fileMeta.getPath(), CacheDir.ZipApp, true);
             FileMetaCore.get().upadteBasicMeta(fileMeta, new File(fileMeta.getPath()));
             FileMetaCore.get().udpateFullMeta(fileMeta, ebookMeta);
             AppDB.get().updateOrSave(fileMeta);
+            LOG.d("reupdateIfNeed 2", fileMeta.getPath(), fileMeta.getState());
         }
     }
 
