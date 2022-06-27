@@ -179,6 +179,7 @@ public class CbzCbrExtractor {
             String lang = null;
             String date = null;
             String publisher = "";
+            String pageCount = null;
 
             if (BookType.CBZ.is(path) || isZip(path)) {
                 zipInputStream = Zips.buildZipArchiveInputStream(path);
@@ -230,12 +231,8 @@ public class CbzCbrExtractor {
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if (eventType == XmlPullParser.START_TAG) {
-                    if ("Title".equals(xpp.getName())) {
-                        if (title == null) {
-                            title = xpp.nextText();
-                        } else {
-                            title = title + " - " + xpp.nextText();
-                        }
+                    if (title == null && "Title".equals(xpp.getName())) {
+                        title = xpp.nextText();
                     }
 
                     if (series == null && "Series".equals(xpp.getName())) {
@@ -246,7 +243,7 @@ public class CbzCbrExtractor {
                         number = xpp.nextText();
                     }
 
-                    if (genre == null && "Genre".equals(xpp.getName())) {
+                    if ("".equals(genre) && "Genre".equals(xpp.getName())) {
                         genre = xpp.nextText();
                     }
 
@@ -261,16 +258,16 @@ public class CbzCbrExtractor {
                     }
 
 
-                    if ("Year".equals(xpp.getName())) {
-                        if (date != null && xpp.getAttributeCount() == 0) {
-                            date = xpp.nextText();
-                        } else if (date == null) {
-                            date = xpp.nextText();
-                        }
+                    if (date == null && "Year".equals(xpp.getName())) {
+                        date = xpp.nextText();
                     }
 
-                    if ("Publisher".equals(xpp.getName())) {
+                    if ("".equals(publisher) && "Publisher".equals(xpp.getName())) {
                         publisher = xpp.nextText();
+                    }
+
+                    if (pageCount == null && "PageCount".equals(xpp.getName())) {
+                        pageCount = xpp.nextText();
                     }
 
                     if (lang == null && ("LanguageISO".equals(xpp.getName()))) {
@@ -303,7 +300,6 @@ public class CbzCbrExtractor {
                         ebookMeta.setsIndex(Integer.parseInt(number));
                     }
                     LOG.d("cbz/cbr", series, ebookMeta.getsIndex());
-
                 }
             } catch (Exception e) {
                 title = title + " [" + number + "]";
@@ -313,7 +309,20 @@ public class CbzCbrExtractor {
             ebookMeta.setLang(lang);
             ebookMeta.setYear(date);
             ebookMeta.setPublisher(publisher);
-            ebookMeta.setPagesCount(getPageCount(path));
+            if (pageCount != null) {
+                try {
+                    if (pageCount.contains(".")) {
+                        ebookMeta.setPagesCount((int) Float.parseFloat(pageCount));
+                    } else {
+                        ebookMeta.setPagesCount(Integer.parseInt(pageCount));
+                    }
+                } catch (Exception e) {
+                    ebookMeta.setPagesCount(getPageCount(path));
+                    LOG.d(e);
+                }
+            } else {
+                ebookMeta.setPagesCount(getPageCount(path));
+            }
             return ebookMeta;
         } catch (Exception e) {
             LOG.e(e);

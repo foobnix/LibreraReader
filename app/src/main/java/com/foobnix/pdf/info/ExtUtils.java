@@ -673,6 +673,14 @@ public class ExtUtils {
         return BookType.isTextFormat(path);
     }
 
+    public static synchronized boolean hasTitle(String path) {
+        if (path == null) {
+            return false;
+        }
+        return BookType.hasTitle(path);
+    }
+
+
     public static synchronized boolean isZip(File path) {
         return isZip(path.getPath());
     }
