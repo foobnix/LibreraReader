@@ -15,7 +15,7 @@ layout: main
 
 [Beta APK(Telegram @LibreraBeta)](https://t.me/LibreraBeta)
 
-[图书馆新闻(Telegram @LibreraReader)](https://t.me/LibreraReader)
+[Librera新闻(Telegram @LibreraReader)](https://t.me/LibreraReader)
 
 [GitHub](https://github.com/foobnix/LibreraReader)
 
