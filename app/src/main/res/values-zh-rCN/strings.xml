@@ -166,7 +166,7 @@
    <string name="simple_scroll_animation">显示翻页动画（滚动）</string>
    <string name="___TABS___SECTION___"></string>
    <string name="library">书架</string>
-   <string name="extracting_information_from_books">从文件提取信息</string>
+   <string name="extracting_information_from_books">建立索引</string>
    <string name="no_author">无作者</string>
    <string name="no_serie">无丛书</string>
    <string name="no_genre">无流派</string>
@@ -271,7 +271,7 @@
    <string name="by_series">丛书</string>
    <string name="list">列表</string>
    <string name="compact">简表</string>
-   <string name="grid">表格</string>
+   <string name="grid">网格</string>
    <string name="cover">封面</string>
    <string name="author">作者</string>
    <string name="genre">流派</string>
@@ -418,7 +418,7 @@
    <string name="the_page_is_clipped_the_text_selection_does_not_work">无法在剪裁或分割后的页面中搜索</string>
    <string name="title">标题</string>
    <string name="subject">主题</string>
-   <string name="keywords">标引</string>
+   <string name="keywords">关键词</string>
    <string name="number">数字</string>
    <string name="percent">百分比</string>
    <string name="awards">授权</string>
@@ -556,7 +556,7 @@
    <string name="publication_date">出版日期</string>
    <string name="empy">空</string>
    <string name="show_quick_bookmarks">显示快速书签</string>
-   <string name="show_only_available_books">仅显可用书籍</string>
+   <string name="show_only_available_books">仅存在的书籍</string>
    <string name="share_as_text">分享为文本</string>
    <string name="share_as_image">分享为图像</string>
    <string name="copy_text">复制文本</string>
@@ -581,7 +581,7 @@
    <string name="pull_to_start_sync">手动同步（下拉刷新）</string>
    <string name="show_book_title">顶部显示书名</string>
    <string name="delete_reading_progress">重置进度</string>
-   <string name="ignore_folder_scan_if_nomedia_file_exists">忽略带有.nomedia文件的文件夹</string>
+   <string name="ignore_folder_scan_if_nomedia_file_exists">忽略包含.nomedia文件的文件夹</string>
    <string name="record_in_mp3_format">保存为MP3</string>
    <string name="speak_into_file_wav">录制TTS (MP3, WAV)</string>
    <string name="text_is_too_long">文本过长</string>
