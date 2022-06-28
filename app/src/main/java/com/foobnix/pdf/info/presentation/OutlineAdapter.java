@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
+import com.foobnix.android.utils.LOG;
 import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.R;
@@ -70,11 +71,15 @@ public class OutlineAdapter extends BaseAdapter {
     }
 
     public int getParentId(final int id) {
-        final int level = objects[id].level;
-        for (int i = id - 1; i >= 0; i--) {
-            if (objects[i].level < level) {
-                return i;
+        try {
+            final int level = objects[id].level;
+            for (int i = id - 1; i >= 0; i--) {
+                if (objects[i].level < level) {
+                    return i;
+                }
             }
+        }catch (Exception e){
+            LOG.e(e);
         }
         return -1;
     }
