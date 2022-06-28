@@ -21,7 +21,7 @@
    <string name="theme">主题</string>
    <string name="light">亮色</string>
    <string name="black">暗色</string>
-   <string name="theme_color">设置主题颜色</string>
+   <string name="theme_color">主题颜色</string>
    <string name="widget">小部件</string>
    <string name="show">显示</string>
    <string name="layout">布局</string>
@@ -283,7 +283,7 @@
    <string name="hide_app">隐藏程序</string>
    <string name="go_to_the_library">打开书架</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
-   <string name="contrast">对比</string>
+   <string name="contrast">对比度</string>
    <string name="make_text_bold">字体加粗</string>
    <string name="searching_please_wait_">正在搜索...</string>
    <string name="msg_no_text_found">无结果</string>
@@ -291,7 +291,7 @@
    <string name="go_to_page_dialog">前往页面</string>
    <string name="bookmark_with_text">笔记</string>
    <string name="fast_bookmark">快速书签</string>
-   <string name="content_of_book">章节目录</string>
+   <string name="content_of_book">目录</string>
    <string name="heading_and_subheadings">标题与副标题</string>
    <string name="headings_only">仅标题</string>
    <string name="one_page">单页</string>
