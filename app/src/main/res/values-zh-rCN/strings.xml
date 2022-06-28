@@ -630,7 +630,7 @@
    <string name="welcome_accessibility">欢迎，您可以在设置中启用无障碍模式</string>
    <string name="integration_in_the_context_menu">集成到全局上下文菜单</string>
    <string name="the_application_needs_storage_permission">应用需要访问存储权限以发现所有书籍</string>
-   <string name="always_open_in_2_pages_mode">以双页并列显示模式打开</string>
+   <string name="always_open_in_2_pages_mode">以双页并列模式显示页面</string>
    <string name="text_encoding">文字编码</string>
    <string name="minus">减</string>
    <string name="plus">加</string>
