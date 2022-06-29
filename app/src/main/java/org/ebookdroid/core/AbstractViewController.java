@@ -163,12 +163,9 @@ public abstract class AbstractViewController extends AbstractComponentController
             invalidatePageSizes(InvalidateSizeReason.INIT, null);
 
             final AppBook bs = SettingsManager.getBookSettings();
-            final Page page = bs.getCurrentPage(getBase().getDocumentModel().getPageCount()).getActualPage(model, bs);
-            int toPage = page != null ? page.index.viewIndex : 0;
 
-            if (toPage > 0 && AppSP.get().isCut) {
-                toPage = toPage / 2;
-            }
+            PageIndex currentPage = bs.getCurrentPage(getBase().getDocumentModel().getPageCount());
+            int toPage = currentPage != null ? currentPage.docIndex : 0;
 
             goToPage(toPage, bs.x, bs.y);
 

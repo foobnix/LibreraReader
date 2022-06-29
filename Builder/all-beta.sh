@@ -9,8 +9,12 @@ cd ../
 ./gradlew clean incVersion
 
 #./gradlew assembleFdroidRelease
-./gradlew assembleAlphaRelease
+#./gradlew assembleAlphaRelease
 #./gradlew assembleLibreraRelease
+
+./gradlew assembleProRelease
+./gradlew assembleLibreraRelease
+./gradlew assembleFdroidRelease
 
 
 ### 1.11.1
@@ -19,8 +23,8 @@ cd Builder
 ./link_to_mupdf_1.11.sh
 
 cd ../
-./gradlew assembleProRelease
-./gradlew assembleBetaRelease
+#./gradlew assembleProRelease
+#./gradlew assembleBetaRelease
 #./gradlew assembleLibreraRelease
 #./gradlew assembleHuaweiRelease
 
