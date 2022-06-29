@@ -2,6 +2,8 @@ package com.foobnix.pdf.info.model;
 
 import android.graphics.RectF;
 
+import com.foobnix.android.utils.LOG;
+import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.ext.Fb2Extractor;
 import com.foobnix.pdf.info.PageUrl;
 
@@ -63,10 +65,12 @@ public class OutlineLinkWrapper implements CharSequence {
 
     public String getTitleAsString() {
         String t = title;
-        if (title.contains("$")) {
+        if (t.contains("$")) {
             t = t.substring(0, title.indexOf("$"));
         }
-        return t.replace(Fb2Extractor.FOOTER_AFTRER_BOODY, "");
+        t = t.replace(Fb2Extractor.DIVIDER, "");
+        t = t.replaceAll("^\\s+","");
+        return t;
     }
 
     /**

@@ -154,7 +154,7 @@ public class OutlineAdapter extends BaseAdapter {
         final ImageView btn = (ImageView) container.findViewById(R.id.outline_collapse);
 
         final OutlineLinkWrapper item = getItem(position);
-        view.setText(item.getTitleAsString().trim());
+        view.setText(item.getTitleAsString());
         num.setText(TxtUtils.deltaPage(item.targetPage));
 
         if (AppState.get().appTheme == AppState.THEME_INK) {
