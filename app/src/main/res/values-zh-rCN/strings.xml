@@ -41,8 +41,8 @@
    <string name="cover_image_size">缩略图大小</string>
    <string name="column_count">列数</string>
    <string name="show_book_covers">显示书籍封面</string>
-   <string name="enable_effect_of_the_book_cover">模拟印刷书籍封面</string>
-   <string name="crop_images_in_the_book_cover">裁切的封面</string>
+   <string name="enable_effect_of_the_book_cover">立体封面</string>
+   <string name="crop_images_in_the_book_cover">平面封面</string>
    <string name="borders_and_shadow_around_the_book_cover">显示边框和阴影</string>
    <string name="tabs_position">标签页</string>
    <string name="show_preferences_tab_in_the_left_menu">显示动画（滑出）</string>
@@ -284,7 +284,7 @@
    <string name="go_to_the_library">打开书架</string>
    <string name="contrast_and_brightness">对比度和亮度</string>
    <string name="contrast">对比</string>
-   <string name="make_text_bold">加深显示</string>
+   <string name="make_text_bold">加黑显示全部（显示为黑白书籍）</string>
    <string name="searching_please_wait_">正在搜索...</string>
    <string name="msg_no_text_found">无结果</string>
    <string name="annotations_draw">注释和手绘</string>
@@ -477,10 +477,10 @@
    <string name="show_search_bar">显示搜索栏</string>
    <string name="never">从不</string>
    <string name="general_settings">常规设置</string>
-   <string name="cyclic_scrolling_return_to_1_page_">启用循环翻页</string>
+   <string name="cyclic_scrolling_return_to_1_page_">循环翻页</string>
    <string name="normalize_font_size">规范字体大小</string>
-   <string name="display_chapters_on_the_progress_line">篇章刻度线</string>
-   <string name="display_sub_chapters_on_the_progress_line">章节刻度线</string>
+   <string name="display_chapters_on_the_progress_line">篇章进度条</string>
+   <string name="display_sub_chapters_on_the_progress_line">章节进度条</string>
    <string name="enable_vertical_gesture">垂直翻页手势</string>
    <string name="enable_horizontal_gesture">水平翻页手势</string>
    <string name="pause_duration">停顿持续时间</string>
@@ -489,7 +489,7 @@
    <string name="show_the_capital_letter">首字母大写</string>
    <string name="size">尺寸</string>
    <string name="quick_bookmark_by_the_headset">启用远程书签（开始/停止按钮）</string>
-   <string name="slider_scale">滑块刻度</string>
+   <string name="slider_scale">进度条标度</string>
    <string name="chapter_format">章节格式</string>
    <string name="play_a_music_file">播放音频文件</string>
    <string name="rate_us">评价</string>
