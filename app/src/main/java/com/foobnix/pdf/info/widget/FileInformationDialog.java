@@ -214,6 +214,7 @@ public class FileInformationDialog {
             public void onClick(View v) {
                 // AlertDialogs.showOkDialog(a, infoView.getText().toString(), null);
                 infoView.setMaxLines(Integer.MAX_VALUE);
+                infoView.setEllipsize(null);
                 infoView.setTextIsSelectable(true);
                 expand.setVisibility(View.GONE);
             }
