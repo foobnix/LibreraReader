@@ -166,6 +166,7 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
 
         @Override
         public void afterTextChanged(final Editable s) {
+            AppState.get().searchQuery = s.toString();
         }
 
         @Override
@@ -454,6 +455,11 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         searchAdapter.setOnSeriesClickListener(onSeriesClick);
 
         authorsAdapter.setOnItemClickListener(onAuthorSeriesClick);
+
+        if (AppState.get().isRestoreSearchQuery && !TxtUtils.isEmpty(AppState.get().searchQuery))
+        {
+            searchEditText.setText(AppState.get().searchQuery);
+        }
 
         onGridList();
 
