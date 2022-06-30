@@ -74,11 +74,11 @@ static const char *html_default_css =
 "sub{font-size:0.83em;vertical-align:sub}"
 "sup{font-size:0.83em;vertical-align:super}"
 
-"table{display:table}"
-"tbody,tfoot,thead,tr{display:table-row}"
-"td,th{display:table-cell; text-align:left}"
-"th{font-weight:bold}"
-"td,th{font-size:0.7em !important;}"
+"table{display:block !important; margin:1em !important;font-size:0.8em;}"
+"tr,thead,tfoot   {display:block !important;margin-top:1em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
 
 "ul{display:block;list-style-type:disc;margin:1em;padding:0 0 0 30pt}"
 "ul ul{list-style-type:circle}"
@@ -103,11 +103,11 @@ static const char *fb2_default_css =
 "image{display:block}"
 "p>image{display:inline}"
 
-"table{display:table}"
-"tbody,tfoot,thead,tr{display:table-row}"
-"td,th{display:table-cell; text-align:left}"
-"th{font-weight:bold}"
-"td,th{font-size:0.7em !important;}"
+"table{display:block !important; margin:1em !important;font-size:0.8em;}"
+"tr,thead,tfoot   {display:block !important;margin-top:1em !important;}"
+"td,th {display:block !important;border-style:solid; border-width:1px; padding:0.1em 0 0.1em 0.5em}"
+"tbody {display:block !important;}"
+"th{font-weight:bold; text-align:center}"
 
 
 "a{color:#06C;text-decoration:underline}"
