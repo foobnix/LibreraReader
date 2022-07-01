@@ -1055,6 +1055,7 @@ public class DocumentWrapperUI {
 //                LOG.d("bookName.setText(2)", bookTitle);
 //            }
             bookName.setText(bookTitle);
+            bookName.setVisibility(View.VISIBLE);
             pagesCountIndicator.setGravity(Gravity.RIGHT);
             //bookName.setVisibility(View.VISIBLE);
             ((LinearLayout.LayoutParams) pagesCountIndicator.getLayoutParams()).weight = 0;
@@ -1063,6 +1064,7 @@ public class DocumentWrapperUI {
             ((LinearLayout.LayoutParams) pagesCountIndicator.getLayoutParams()).weight = 1;
             //bookName.setVisibility(View.GONE);
             bookName.setText("");
+            bookName.setVisibility(View.GONE);
         }
 
 
