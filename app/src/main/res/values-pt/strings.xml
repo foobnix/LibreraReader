@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Menu do aplicativo</string>
    <string name="cd_view_menu">Ver menu</string>
    <string name="cd_download_more_fonts">Baixe mais fontes</string>
+   <string name="restore_search_query_when_the_application_starts">Restaurar consulta de pesquisa na inicialização</string>
 </resources>

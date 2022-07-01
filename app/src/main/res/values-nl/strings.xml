@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Toepassingsmenu</string>
    <string name="cd_view_menu">Bekijk menu</string>
    <string name="cd_download_more_fonts">Meer lettertypen downloaden</string>
+   <string name="restore_search_query_when_the_application_starts">Zoekopdracht herstellen bij opstarten</string>
 </resources>

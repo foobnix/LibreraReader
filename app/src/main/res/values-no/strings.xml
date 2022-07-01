@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Applikasjonsmenyen</string>
    <string name="cd_view_menu">Se menyen</string>
    <string name="cd_download_more_fonts">Last ned flere fonter</string>
+   <string name="restore_search_query_when_the_application_starts">Gjenopprett søket ved oppstart</string>
 </resources>

@@ -638,4 +638,5 @@
    <string name="cd_application_menu">ആപ്ലിക്കേഷൻ മെനു</string>
    <string name="cd_view_menu">കാഴ്ച മെനു</string>
    <string name="cd_download_more_fonts">കൂടുതൽ ഫോണ്ടുകൾ ഡൗൺലോഡ് ചെയ്യുക</string>
+   <string name="restore_search_query_when_the_application_starts">ആരംഭത്തിൽ തിരയൽ ചോദ്യം പുനഃസ്ഥാപിക്കുക</string>
 </resources>

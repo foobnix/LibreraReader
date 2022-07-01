@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Meniul aplicației</string>
    <string name="cd_view_menu">Vizualiza meniul</string>
    <string name="cd_download_more_fonts">Descărcați mai multe fonturi</string>
+   <string name="restore_search_query_when_the_application_starts">Restabiliți interogarea de căutare la pornire</string>
 </resources>

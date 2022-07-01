@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Anwendungsmenü</string>
    <string name="cd_view_menu">Ansicht-Menü</string>
    <string name="cd_download_more_fonts">Laden Sie weitere Schriftarten herunter</string>
+   <string name="restore_search_query_when_the_application_starts">Suchabfrage beim Start wiederherstellen</string>
 </resources>

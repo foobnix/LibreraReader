@@ -638,4 +638,5 @@
    <string name="cd_application_menu">신청 메뉴</string>
    <string name="cd_view_menu">메뉴보기</string>
    <string name="cd_download_more_fonts">더 많은 글꼴 다운로드</string>
+   <string name="restore_search_query_when_the_application_starts">시작 시 검색어 복원</string>
 </resources>

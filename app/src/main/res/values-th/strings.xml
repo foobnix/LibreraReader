@@ -638,4 +638,5 @@
    <string name="cd_application_menu">เมนูแอพพลิเคชั่น</string>
    <string name="cd_view_menu">ดูเมนู</string>
    <string name="cd_download_more_fonts">ดาวน์โหลดแบบอักษรเพิ่มเติม</string>
+   <string name="restore_search_query_when_the_application_starts">กู้คืนคำค้นหาเมื่อเริ่มต้น</string>
 </resources>

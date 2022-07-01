@@ -638,4 +638,5 @@
    <string name="cd_application_menu">Applicationem menu</string>
    <string name="cd_view_menu">View menu</string>
    <string name="cd_download_more_fonts">Download more fonts</string>
+   <string name="restore_search_query_when_the_application_starts">Quaero quaestionem restituere ad startup</string>
 </resources>
