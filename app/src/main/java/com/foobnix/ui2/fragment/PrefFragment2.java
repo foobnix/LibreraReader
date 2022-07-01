@@ -1189,6 +1189,19 @@ public class PrefFragment2 extends UIFragment {
                                                               }
                                                           });
 
+        CheckBox isRestoreSearchQuery = inflate.findViewById(R.id.isRestoreSearchQuery);
+        isRestoreSearchQuery.setChecked(AppState.get().isRestoreSearchQuery);
+        isRestoreSearchQuery.setOnCheckedChangeListener(new
+
+                                                          OnCheckedChangeListener() {
+
+                                                              @Override
+                                                              public void onCheckedChanged(final CompoundButton buttonView,
+                                                                                           final boolean isChecked) {
+                                                                  AppState.get().isRestoreSearchQuery = isChecked;
+                                                              }
+                                                          });
+
         CheckBox isShowCloseAppDialog = inflate.findViewById(R.id.isShowCloseAppDialog);
         isShowCloseAppDialog.setChecked(AppState.get().isShowCloseAppDialog);
         isShowCloseAppDialog.setOnCheckedChangeListener(new
