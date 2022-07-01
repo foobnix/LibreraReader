@@ -753,6 +753,12 @@
             android:text="@string/opening_the_last_book_when_the_application_starts" />
 
         <CheckBox
+            android:id="@+id/isRestoreSearchQuery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restore_search_query_when_the_application_starts" />
+
+        <CheckBox
             android:id="@+id/isShowCloseAppDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

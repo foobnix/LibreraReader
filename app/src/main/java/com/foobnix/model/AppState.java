@@ -575,6 +575,8 @@ public class AppState {
     public String myAutoCompleteDb = "";
     public String bookTags = "";
     public String recentTag = "";
+    public boolean isRestoreSearchQuery = true;
+    public String searchQuery = "";
     @IgnoreHashCode
     public int hashCode = 0;
     @IgnoreHashCode
