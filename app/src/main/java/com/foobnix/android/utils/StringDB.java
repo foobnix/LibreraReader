@@ -10,6 +10,7 @@ import java.util.Set;
 
 public class StringDB {
     public static String DIVIDER = ",";
+    public static String EXACTMATCHCHAR = "\"";
 
     public static void add(String db, String text, final StringResult result) {
         if (TxtUtils.isEmpty(text)) {

@@ -581,8 +581,8 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
     }
 
     private void onMetaInfoClick(SEARCH_IN mode, String result) {
-        if (mode == SEARCH_IN.SERIES) {
-            result = "," + result + ",";
+        if (mode == SEARCH_IN.SERIES && !result.startsWith(EMPTY_ID)) {
+            result = StringDB.EXACTMATCHCHAR + result + StringDB.EXACTMATCHCHAR;
         }
 
         searchEditText.setText(mode.getDotPrefix() + " " + result);
