@@ -770,9 +770,9 @@ public class SearchFragment2 extends UIFragment<FileMeta> {
         String txt = searchEditText.getText().toString().trim();
         searchEditText.setHint(R.string.search);
 
-        if(AppsConfig.IS_LOG){
-            searchEditText.setHint(Apps.getApplicationName(getContext()));
-        }
+        //if(AppsConfig.IS_LOG){
+            //searchEditText.setHint(Apps.getApplicationName(getContext()));
+        //}
 
 
         if (CMD_KEYCODE.equals(txt)) {
