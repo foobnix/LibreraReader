@@ -539,11 +539,12 @@ public class AppDB {
 
             }
             LOG.d("searchBy", searchIn, str, "-");
-            if (str.startsWith(SearchFragment2.EMPTY_ID) || str.startsWith(","+SearchFragment2.EMPTY_ID)) {
+            if (str.startsWith(SearchFragment2.EMPTY_ID)) {
                 where = where.whereOr(searchIn.getProperty().like(""), searchIn.getProperty().isNull());
             } else {
                 if (TxtUtils.isNotEmpty(str)) {
                     str = str.replace(" ", "%").replace("*", "%");
+                    str = str.replace(StringDB.EXACTMATCHCHAR, StringDB.DIVIDER);
 
                     String string = "%" + str + "%";
 
