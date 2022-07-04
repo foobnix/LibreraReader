@@ -37,17 +37,17 @@ import static android.os.Build.VERSION.SDK_INT;
 
 public class AndroidWhatsNew {
 
-    public static final String DETAIL_URL_RU = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki";
+    public static final String DETAIL_URL_RU = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi";
     private static final String BETA_TXT = "changelog.txt";
     private static final String BETA = "beta-";
-    private static final String WIKI_URL = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/wiki/what-is-new/";
+    private static final String WHATSNEW_URL = (SDK_INT >= 24 ? "https" : "http") + "://librera.mobi/what-is-new/";
     public static final String DOWNLOAD_LINK = "https://emma.cloud.tabdigital.eu/s/E8froWd87JC6cM5";
 
     public static String getLangUrl(Context c) {
         //String versionName = Apps.getVersionName(c);
         //String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
         // String url = String.format(WIKI_URL, shortVersion);
-        String url = WIKI_URL;
+        String url = WHATSNEW_URL;
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
         String appLang = AppState.get().appLang;
@@ -76,7 +76,7 @@ public class AndroidWhatsNew {
 
         String versionName = Apps.getVersionName(c);
         String shortVersion = versionName.substring(0, versionName.lastIndexOf("."));
-        String url = String.format(WIKI_URL, shortVersion);
+        String url = String.format(WHATSNEW_URL, shortVersion);
 
         List<String> lns = Arrays.asList("ar", "de", "es", "fr", "it", "pt", "ru", "zh");
         String appLang = AppState.get().appLang;
