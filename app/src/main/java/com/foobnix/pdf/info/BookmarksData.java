@@ -153,7 +153,10 @@ public class BookmarksData {
                     appBookmark.file = file;
                     final LinkedJSONObject local = obj.getJSONObject(next);
                     Objects.loadFromJson(appBookmark, local);
-                    if (appBookmark.getPath().equals(path)) {
+                    String path1 = ExtUtils.getFileName(path);
+                    String path2 = ExtUtils.getFileName(appBookmark.getPath());
+                    if (path1.equals(path2)) {
+                        appBookmark.path = path;//update path
                         all.add(appBookmark);
                     }
                 }
