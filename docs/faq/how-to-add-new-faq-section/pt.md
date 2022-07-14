@@ -4,7 +4,7 @@ layout: main
 
 # Como adicionar um novo tópico de FAQ
 
-Se você deseja adicionar um novo tópico de FAQ, crie uma pasta **[qualquer-hífen-nome-separado]** com um único arquivo en-us **index.md** em [aqui](https : //github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Se você deseja adicionar um novo tópico de FAQ, crie uma pasta **[qualquer-hífen-nome-separado]** com um único arquivo en-us **index.md** em [aqui](https: //github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 O script atualizará automaticamente o índice das perguntas frequentes e adicionará arquivos de localidade para todos os idiomas suportados.
 
