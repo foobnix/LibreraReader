@@ -4,7 +4,7 @@ layout: main
 
 #如何添加新的常见问题解答主题
 
-如果要添加新的常见问题解答主题，请在 [此处](https ://github.com/foobnix/LibreraReader/tree/master/docs/faq)。
+如果要添加新的常见问题解答主题，请在 [此处](https://github.com/foobnix/LibreraReader/tree/master/docs/faq)。
 
 该脚本将自动更新FAQ目录，并添加所有受支持语言的语言环境文件。
 

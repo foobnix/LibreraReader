@@ -4,7 +4,7 @@ layout: main
 
 # Comment ajouter un nouveau sujet de FAQ
 
-Si vous souhaitez ajouter un nouveau sujet de FAQ, créez un dossier **[whatever-hyphen-separated-name]** avec un seul fichier en-us **index.md** dans [ici](https ://github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Si vous souhaitez ajouter un nouveau sujet de FAQ, créez un dossier **[whatever-hyphen-separated-name]** avec un seul fichier en-us **index.md** dans [ici](https://github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 Le script mettra automatiquement à jour la table des matières de la FAQ et ajoutera des fichiers de paramètres régionaux pour toutes les langues prises en charge.
 
