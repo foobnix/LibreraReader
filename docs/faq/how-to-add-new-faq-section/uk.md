@@ -4,7 +4,7 @@ layout: main
 
 # Як додати нову тему поширених запитань
 
-Якщо ви хочете додати нову тему поширених запитань, створіть папку **[whatever-hyphen-separated-name]** з одним файлом en-us **index.md** у [тут](https://github.com/foobnix/LibreraReader/tree/master/docs/faq).
+Якщо ви хочете додати нову тему поширених запитань, створіть папку **[whatever-hyphen-separated-name]** з одним файлом en-us **index.md** у [тут](https ://github.com/foobnix/LibreraReader/tree/master/docs/faq).
 
 Сценарій автоматично оновить зміст поширених запитань і додасть файли локалі для всіх підтримуваних мов.
 
